@@ -153,9 +153,12 @@ public open class PacketPeerUDP : PacketPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun isConnectedToHost(): Boolean {
+  /**
+   * Returns `true` if the UDP socket is open and has been connected to a remote address. See [connectToHost].
+   */
+  public fun isSocketConnected(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_CONNECTED_TO_HOST,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_SOCKET_CONNECTED,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }

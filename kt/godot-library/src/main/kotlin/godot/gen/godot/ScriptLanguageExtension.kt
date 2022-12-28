@@ -113,7 +113,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    *
    */
-  public open fun _getBuiltInTemplates(_object: StringName): VariantArray<Any?> {
+  public open fun _getBuiltInTemplates(_object: StringName): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_built_in_templates is not implemented for ScriptLanguageExtension")
   }
 
@@ -352,7 +352,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    *
    */
-  public open fun _debugGetCurrentStackInfo(): VariantArray<Any?> {
+  public open fun _debugGetCurrentStackInfo(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_debug_get_current_stack_info is not implemented for ScriptLanguageExtension")
   }
 
@@ -378,7 +378,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    *
    */
-  public open fun _getPublicFunctions(): VariantArray<Any?> {
+  public open fun _getPublicFunctions(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_public_functions is not implemented for ScriptLanguageExtension")
   }
 
@@ -387,6 +387,13 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    */
   public open fun _getPublicConstants(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_public_constants is not implemented for ScriptLanguageExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _getPublicAnnotations(): VariantArray<Dictionary<Any?, Any?>> {
+    throw NotImplementedError("_get_public_annotations is not implemented for ScriptLanguageExtension")
   }
 
   /**
@@ -432,6 +439,92 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    */
   public open fun _getGlobalClassName(path: String): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_global_class_name is not implemented for ScriptLanguageExtension")
+  }
+
+  public enum class LookupResultType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    LOOKUP_RESULT_SCRIPT_LOCATION(0),
+    /**
+     *
+     */
+    LOOKUP_RESULT_CLASS(1),
+    /**
+     *
+     */
+    LOOKUP_RESULT_CLASS_CONSTANT(2),
+    /**
+     *
+     */
+    LOOKUP_RESULT_CLASS_PROPERTY(3),
+    /**
+     *
+     */
+    LOOKUP_RESULT_CLASS_METHOD(4),
+    /**
+     *
+     */
+    LOOKUP_RESULT_CLASS_SIGNAL(5),
+    /**
+     *
+     */
+    LOOKUP_RESULT_CLASS_ENUM(6),
+    /**
+     *
+     */
+    LOOKUP_RESULT_CLASS_TBD_GLOBALSCOPE(7),
+    /**
+     *
+     */
+    LOOKUP_RESULT_CLASS_ANNOTATION(8),
+    /**
+     *
+     */
+    LOOKUP_RESULT_MAX(9),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CodeCompletionLocation(
+    id: Long
+  ) {
+    /**
+     * The option is local to the location of the code completion query - e.g. a local variable.
+     */
+    LOCATION_LOCAL(0),
+    /**
+     * The option is from the containing class or a parent class, relative to the location of the code completion query. Perform a bitwise OR with the class depth (e.g. 0 for the local class, 1 for the parent, 2 for the grandparent, etc) to store the depth of an option in a the class or a parent class.
+     */
+    LOCATION_PARENT_MASK(256),
+    /**
+     * The option is from user code which is not local and not in a derived class (e.g. Autoload Singletons).
+     */
+    LOCATION_OTHER_USER_CODE(512),
+    /**
+     * The option is from other engine code, not covered by the other enum constants - e.g. built-in classes.
+     */
+    LOCATION_OTHER(1024),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class CodeCompletionKind(
@@ -481,53 +574,6 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
      *
      */
     CODE_COMPLETION_KIND_MAX(10),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class LookupResultType(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    LOOKUP_RESULT_SCRIPT_LOCATION(0),
-    /**
-     *
-     */
-    LOOKUP_RESULT_CLASS(1),
-    /**
-     *
-     */
-    LOOKUP_RESULT_CLASS_CONSTANT(2),
-    /**
-     *
-     */
-    LOOKUP_RESULT_CLASS_PROPERTY(3),
-    /**
-     *
-     */
-    LOOKUP_RESULT_CLASS_METHOD(4),
-    /**
-     *
-     */
-    LOOKUP_RESULT_CLASS_ENUM(5),
-    /**
-     *
-     */
-    LOOKUP_RESULT_CLASS_TBD_GLOBALSCOPE(6),
-    /**
-     *
-     */
-    LOOKUP_RESULT_MAX(7),
     ;
 
     public val id: Long

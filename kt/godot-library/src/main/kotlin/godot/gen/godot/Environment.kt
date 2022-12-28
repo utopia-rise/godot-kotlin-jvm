@@ -11,6 +11,7 @@ import godot.core.Color
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -45,11 +46,11 @@ public open class Environment : Resource() {
   /**
    * The background mode. See [enum BGMode] for possible values.
    */
-  public var backgroundMode: Long
+  public var backgroundMode: Environment.BGMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Environment.BGMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -70,15 +71,35 @@ public open class Environment : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_COLOR, NIL)
     }
 
-  public var backgroundEnergy: Double
+  /**
+   * Multiplier for background energy. Increase to make background brighter, decrease to make background dimmer.
+   */
+  public var backgroundEnergyMultiplier: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_ENERGY, DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_ENERGY_MULTIPLIER, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_ENERGY, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_ENERGY_MULTIPLIER, NIL)
+    }
+
+  /**
+   * Luminance of background measured in nits (candela per square meter). Only used when [godot.ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. The default value is roughly equivalent to the sky at midday.
+   */
+  public var backgroundIntensity: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_INTENSITY,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_INTENSITY, NIL)
     }
 
   /**
@@ -161,12 +182,12 @@ public open class Environment : Resource() {
   /**
    * The ambient light source to use for rendering materials and global illumination.
    */
-  public var ambientLightSource: Long
+  public var ambientLightSource: Environment.AmbientSource
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_SOURCE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Environment.AmbientSource.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -227,12 +248,12 @@ public open class Environment : Resource() {
   /**
    * The reflected (specular) light source.
    */
-  public var reflectedLightSource: Long
+  public var reflectedLightSource: Environment.ReflectionSource
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_REFLECTION_SOURCE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Environment.ReflectionSource.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -243,11 +264,11 @@ public open class Environment : Resource() {
   /**
    * The tonemapping mode to use. Tonemapping is the process that "converts" HDR values to be suitable for rendering on a LDR display. (Godot doesn't support rendering on HDR displays yet.)
    */
-  public var tonemapMode: Long
+  public var tonemapMode: Environment.ToneMapper
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAPPER, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Environment.ToneMapper.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -284,71 +305,6 @@ public open class Environment : Resource() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_WHITE,
           NIL)
-    }
-
-  public var autoExposureEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_TONEMAP_AUTO_EXPOSURE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_ENABLED, NIL)
-    }
-
-  public var autoExposureScale: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_GREY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_GREY, NIL)
-    }
-
-  public var autoExposureMinLuma: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_MIN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_MIN, NIL)
-    }
-
-  public var autoExposureMaxLuma: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_MAX, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_MAX, NIL)
-    }
-
-  public var autoExposureSpeed: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_SPEED, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_SPEED, NIL)
     }
 
   /**
@@ -785,12 +741,12 @@ public open class Environment : Resource() {
   /**
    * The Y scale to use for SDFGI cells. Lower values will result in SDFGI cells being packed together more closely on the Y axis. This is used to balance between quality and covering a lot of vertical ground. [sdfgiYScale] should be set depending on how vertical your scene is (and how fast your camera may move on the Y axis).
    */
-  public var sdfgiYScale: Long
+  public var sdfgiYScale: Environment.SDFGIYScale
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_Y_SCALE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Environment.SDFGIYScale.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -857,83 +813,6 @@ public open class Environment : Resource() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_ENABLED, NIL)
-    }
-
-  /**
-   * The intensity of the 1st level of glow. This is the most "local" level (least blurry).
-   */
-  public val glowLevels1: Double
-    get() {
-      TransferContext.writeArguments(LONG to 0)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The intensity of the 2nd level of glow.
-   */
-  public val glowLevels2: Double
-    get() {
-      TransferContext.writeArguments(LONG to 1)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The intensity of the 3rd level of glow.
-   */
-  public val glowLevels3: Double
-    get() {
-      TransferContext.writeArguments(LONG to 2)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The intensity of the 4th level of glow.
-   */
-  public val glowLevels4: Double
-    get() {
-      TransferContext.writeArguments(LONG to 3)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The intensity of the 5th level of glow.
-   */
-  public val glowLevels5: Double
-    get() {
-      TransferContext.writeArguments(LONG to 4)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The intensity of the 6th level of glow.
-   */
-  public val glowLevels6: Double
-    get() {
-      TransferContext.writeArguments(LONG to 5)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The intensity of the 7th level of glow. This is the most "global" level (blurriest).
-   */
-  public val glowLevels7: Double
-    get() {
-      TransferContext.writeArguments(LONG to 6)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
   /**
@@ -1016,12 +895,12 @@ public open class Environment : Resource() {
   /**
    * The glow blending mode.
    */
-  public var glowBlendMode: Long
+  public var glowBlendMode: Environment.GlowBlendMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLEND_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Environment.GlowBlendMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -1098,11 +977,11 @@ public open class Environment : Resource() {
    *
    * **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).
    */
-  public var glowMap: Texture2D?
+  public var glowMap: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MAP, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+      return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -1202,6 +1081,24 @@ public open class Environment : Resource() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_AERIAL_PERSPECTIVE, NIL)
+    }
+
+  /**
+   * The factor to use when affecting the sky with non-volumetric fog. `1.0` means that fog can fully obscure the sky. Lower values reduce the impact of fog on sky rendering, with `0.0` not affecting sky rendering at all.
+   *
+   * **Note:** [fogSkyAffect] has no visual effect if [fogAerialPerspective] is `1.0`.
+   */
+  public var fogSkyAffect: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_SKY_AFFECT,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_SKY_AFFECT,
+          NIL)
     }
 
   /**
@@ -1408,6 +1305,24 @@ public open class Environment : Resource() {
     }
 
   /**
+   * The factor to use when affecting the sky with volumetric fog. `1.0` means that volumetric fog can fully obscure the sky. Lower values reduce the impact of volumetric fog on sky rendering, with `0.0` not affecting sky rendering at all.
+   *
+   * **Note:** [volumetricFogSkyAffect] also affects [godot.FogVolume]s, even if [volumetricFogDensity] is `0.0`. If you notice [godot.FogVolume]s are disappearing when looking towards the sky, set [volumetricFogSkyAffect] to `1.0`.
+   */
+  public var volumetricFogSkyAffect: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_SKY_AFFECT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_SKY_AFFECT, NIL)
+    }
+
+  /**
    * Enables temporal reprojection in the volumetric fog. Temporal reprojection blends the current frame's volumetric fog with the last frame's volumetric fog to smooth out jagged edges. The performance cost is minimal; however, it leads to moving [godot.FogVolume]s and [godot.Light3D]s "ghosting" and leaving a trail behind them. When temporal reprojection is enabled, try to avoid moving [godot.FogVolume]s or [godot.Light3D]s too fast. Short-lived dynamic lighting effects should have [godot.Light3D.lightVolumetricFogEnergy] set to `0.0` to avoid ghosting.
    */
   public var volumetricFogTemporalReprojectionEnabled: Boolean
@@ -1535,126 +1450,13 @@ public open class Environment : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_LEVEL, NIL)
   }
 
-  public enum class GlowBlendMode(
-    id: Long
-  ) {
-    /**
-     * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright sources.
-     */
-    GLOW_BLEND_MODE_ADDITIVE(0),
-    /**
-     * Screen glow blending mode. Increases brightness, used frequently with bloom.
-     */
-    GLOW_BLEND_MODE_SCREEN(1),
-    /**
-     * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid bloom).
-     */
-    GLOW_BLEND_MODE_SOFTLIGHT(2),
-    /**
-     * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to simulate a full-screen blur effect by tweaking the glow parameters to match the original image's brightness.
-     */
-    GLOW_BLEND_MODE_REPLACE(3),
-    /**
-     * Mixes the glow with the underlying color to avoid increasing brightness as much while still maintaining a glow effect.
-     */
-    GLOW_BLEND_MODE_MIX(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ToneMapper(
-    id: Long
-  ) {
-    /**
-     * Linear tonemapper operator. Reads the linear data and passes it on unmodified. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
-     */
-    TONE_MAPPER_LINEAR(0),
-    /**
-     * Reinhardt tonemapper operator. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image can look a bit dull.
-     */
-    TONE_MAPPER_REINHARDT(1),
-    /**
-     * Filmic tonemapper operator. This avoids clipping bright highlights, with a resulting image that usually looks more vivid than [TONE_MAPPER_REINHARDT].
-     */
-    TONE_MAPPER_FILMIC(2),
-    /**
-     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other options, but it handles bright lighting in a more realistic fashion by desaturating it as it becomes brighter. ACES typically has a more contrasted output compared to [TONE_MAPPER_REINHARDT] and [TONE_MAPPER_FILMIC].
-     *
-     * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
-     */
-    TONE_MAPPER_ACES(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ReflectionSource(
-    id: Long
-  ) {
-    /**
-     * Use the background for reflections.
-     */
-    REFLECTION_SOURCE_BG(0),
-    /**
-     * Disable reflections. This provides a slight performance boost over other options.
-     */
-    REFLECTION_SOURCE_DISABLED(1),
-    /**
-     * Use the [godot.Sky] for reflections regardless of what the background is.
-     */
-    REFLECTION_SOURCE_SKY(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class SDFGIYScale(
-    id: Long
-  ) {
-    /**
-     * Use 50% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as they are wide. This allows providing increased GI detail and reduced light leaking with thin floors and ceilings. This is usually the best choice for scenes that don't feature much verticality.
-     */
-    SDFGI_Y_SCALE_50_PERCENT(0),
-    /**
-     * Use 75% scale for SDFGI on the Y (vertical) axis. This is a balance between the 50% and 100% SDFGI Y scales.
-     */
-    SDFGI_Y_SCALE_75_PERCENT(1),
-    /**
-     * Use 100% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they are wide. This is usually the best choice for highly vertical scenes. The downside is that light leaking may become more noticeable with thin floors and ceilings.
-     */
-    SDFGI_Y_SCALE_100_PERCENT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
+  /**
+   * Returns the intensity of the glow level [idx].
+   */
+  public fun getGlowLevel(idx: Long): Double {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   public enum class BGMode(
@@ -1719,6 +1521,128 @@ public open class Environment : Resource() {
      * Gather ambient light from the [godot.Sky] regardless of what the background is.
      */
     AMBIENT_SOURCE_SKY(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ReflectionSource(
+    id: Long
+  ) {
+    /**
+     * Use the background for reflections.
+     */
+    REFLECTION_SOURCE_BG(0),
+    /**
+     * Disable reflections. This provides a slight performance boost over other options.
+     */
+    REFLECTION_SOURCE_DISABLED(1),
+    /**
+     * Use the [godot.Sky] for reflections regardless of what the background is.
+     */
+    REFLECTION_SOURCE_SKY(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ToneMapper(
+    id: Long
+  ) {
+    /**
+     * Linear tonemapper operator. Reads the linear data and passes it on unmodified. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
+     */
+    TONE_MAPPER_LINEAR(0),
+    /**
+     * Reinhardt tonemapper operator. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image can look a bit dull.
+     */
+    TONE_MAPPER_REINHARDT(1),
+    /**
+     * Filmic tonemapper operator. This avoids clipping bright highlights, with a resulting image that usually looks more vivid than [TONE_MAPPER_REINHARDT].
+     */
+    TONE_MAPPER_FILMIC(2),
+    /**
+     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other options, but it handles bright lighting in a more realistic fashion by desaturating it as it becomes brighter. ACES typically has a more contrasted output compared to [TONE_MAPPER_REINHARDT] and [TONE_MAPPER_FILMIC].
+     *
+     * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
+     */
+    TONE_MAPPER_ACES(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class GlowBlendMode(
+    id: Long
+  ) {
+    /**
+     * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright sources.
+     */
+    GLOW_BLEND_MODE_ADDITIVE(0),
+    /**
+     * Screen glow blending mode. Increases brightness, used frequently with bloom.
+     */
+    GLOW_BLEND_MODE_SCREEN(1),
+    /**
+     * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid bloom).
+     */
+    GLOW_BLEND_MODE_SOFTLIGHT(2),
+    /**
+     * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to simulate a full-screen blur effect by tweaking the glow parameters to match the original image's brightness.
+     */
+    GLOW_BLEND_MODE_REPLACE(3),
+    /**
+     * Mixes the glow with the underlying color to avoid increasing brightness as much while still maintaining a glow effect.
+     */
+    GLOW_BLEND_MODE_MIX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SDFGIYScale(
+    id: Long
+  ) {
+    /**
+     * Use 50% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as they are wide. This allows providing increased GI detail and reduced light leaking with thin floors and ceilings. This is usually the best choice for scenes that don't feature much verticality.
+     */
+    SDFGI_Y_SCALE_50_PERCENT(0),
+    /**
+     * Use 75% scale for SDFGI on the Y (vertical) axis. This is a balance between the 50% and 100% SDFGI Y scales.
+     */
+    SDFGI_Y_SCALE_75_PERCENT(1),
+    /**
+     * Use 100% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they are wide. This is usually the best choice for highly vertical scenes. The downside is that light leaking may become more noticeable with thin floors and ceilings.
+     */
+    SDFGI_Y_SCALE_100_PERCENT(2),
     ;
 
     public val id: Long

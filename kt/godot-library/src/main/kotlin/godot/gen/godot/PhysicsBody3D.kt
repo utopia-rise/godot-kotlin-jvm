@@ -19,7 +19,6 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -59,9 +58,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     distance: Vector3,
     testOnly: Boolean = false,
     safeMargin: Double = 0.001,
+    recoveryAsCollision: Boolean = false,
     maxCollisions: Long = 1
   ): KinematicCollision3D? {
-    TransferContext.writeArguments(VECTOR3 to distance, BOOL to testOnly, DOUBLE to safeMargin, LONG to maxCollisions)
+    TransferContext.writeArguments(VECTOR3 to distance, BOOL to testOnly, DOUBLE to safeMargin, BOOL to recoveryAsCollision, LONG to maxCollisions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_MOVE_AND_COLLIDE,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?
@@ -85,9 +85,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     distance: Vector3,
     collision: KinematicCollision3D? = null,
     safeMargin: Double = 0.001,
+    recoveryAsCollision: Boolean = false,
     maxCollisions: Long = 1
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM3D to from, VECTOR3 to distance, OBJECT to collision, DOUBLE to safeMargin, LONG to maxCollisions)
+    TransferContext.writeArguments(TRANSFORM3D to from, VECTOR3 to distance, OBJECT to collision, DOUBLE to safeMargin, BOOL to recoveryAsCollision, LONG to maxCollisions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_TEST_MOVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -112,11 +113,11 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
-  public fun getCollisionExceptions(): VariantArray<Any?> {
+  public fun getCollisionExceptions(): VariantArray<PhysicsBody3D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_COLLISION_EXCEPTIONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody3D>
   }
 
   /**

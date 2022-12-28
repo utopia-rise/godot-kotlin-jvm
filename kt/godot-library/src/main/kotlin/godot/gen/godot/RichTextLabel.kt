@@ -18,6 +18,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -27,6 +28,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
@@ -72,6 +74,11 @@ public open class RichTextLabel : Control() {
   public val metaHoverEnded: Signal1<Any> by signal("meta")
 
   /**
+   * Triggered when the document is fully loaded.
+   */
+  public val finished: Signal0 by signal()
+
+  /**
    * If `true`, the label uses BBCode formatting.
    */
   public var bbcodeEnabled: Boolean
@@ -84,20 +91,6 @@ public open class RichTextLabel : Control() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_USE_BBCODE, NIL)
-    }
-
-  /**
-   * The number of spaces associated with a single tab length. Does not affect `\t` in text tags, only indent tags.
-   */
-  public var tabSize: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TAB_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_TAB_SIZE, NIL)
     }
 
   /**
@@ -167,48 +160,65 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, the label allows text selection.
+   * If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode].
    */
-  public var selectionEnabled: Boolean
+  public var autowrapMode: TextServer.AutowrapMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SELECTION_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_AUTOWRAP_MODE,
+          LONG)
+      return TextServer.AutowrapMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SELECTION_ENABLED, NIL)
-    }
-
-  public var overrideSelectedFontColor: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_OVERRIDING_SELECTED_FONT_COLOR, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_OVERRIDE_SELECTED_FONT_COLOR, NIL)
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_AUTOWRAP_MODE,
+          NIL)
     }
 
   /**
-   * If `true`, the selected text will be deselected when focus is lost.
+   * The number of spaces associated with a single tab length. Does not affect `\t` in text tags, only indent tags.
    */
-  public var deselectOnFocusLossEnabled: Boolean
+  public var tabSize: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TAB_SIZE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_TAB_SIZE, NIL)
+    }
+
+  /**
+   * If `true`, a right-click displays the context menu.
+   */
+  public var contextMenuEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_CONTEXT_MENU_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL)
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CONTEXT_MENU_ENABLED, NIL)
+    }
+
+  /**
+   * If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled.
+   */
+  public var shortcutKeysEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SHORTCUT_KEYS_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SHORTCUT_KEYS_ENABLED, NIL)
     }
 
   /**
@@ -260,19 +270,67 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   * If `true`, text processing is done in a background thread.
    */
-  public var autowrapMode: Long
+  public var threaded: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_AUTOWRAP_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_THREADED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_THREADED, NIL)
+    }
+
+  /**
+   * The delay after which the loading progress bar is displayed, in milliseconds. Set to `-1` to disable progress bar entirely.
+   *
+   * **Note:** Progress bar is displayed only if [threaded] is enabled.
+   */
+  public var progressBarDelay: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PROGRESS_BAR_DELAY, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_AUTOWRAP_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_PROGRESS_BAR_DELAY, NIL)
+    }
+
+  /**
+   * If `true`, the label allows text selection.
+   */
+  public var selectionEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SELECTION_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SELECTION_ENABLED, NIL)
+    }
+
+  /**
+   * If `true`, the selected text will be deselected when focus is lost.
+   */
+  public var deselectOnFocusLossEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL)
     }
 
   /**
@@ -296,12 +354,12 @@ public open class RichTextLabel : Control() {
   /**
    * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See [enum TextServer.VisibleCharactersBehavior] for more info.
    */
-  public var visibleCharactersBehavior: Long
+  public var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_CHARACTERS_BEHAVIOR, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.VisibleCharactersBehavior.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -309,28 +367,33 @@ public open class RichTextLabel : Control() {
           ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS_BEHAVIOR, NIL)
     }
 
-  public var percentVisible: Double
+  /**
+   * The fraction of characters to display, relative to the total number of characters (see [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only half of the characters will be displayed. This can be useful when animating the text appearing in a dialog box.
+   *
+   * **Note:** Setting this property updates [visibleCharacters] accordingly.
+   */
+  public var visibleRatio: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PERCENT_VISIBLE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_RATIO,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_PERCENT_VISIBLE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_RATIO,
           NIL)
     }
 
   /**
    * Base text writing direction.
    */
-  public var textDirection: Long
+  public var textDirection: Control.TextDirection
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TEXT_DIRECTION,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -356,12 +419,12 @@ public open class RichTextLabel : Control() {
   /**
    * Set BiDi algorithm override for the structured text.
    */
-  public var structuredTextBidiOverride: Long
+  public var structuredTextBidiOverride: TextServer.StructuredTextParser
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.StructuredTextParser.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -420,9 +483,10 @@ public open class RichTextLabel : Control() {
     width: Long = 0,
     height: Long = 0,
     color: Color = Color(Color(1, 1, 1, 1)),
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
+    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0)
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to width, LONG to height, COLOR to color, LONG to inlineAlign.id)
+    TransferContext.writeArguments(OBJECT to image, LONG to width, LONG to height, COLOR to color, LONG to inlineAlign.id, RECT2 to region)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_ADD_IMAGE, NIL)
   }
 
@@ -448,8 +512,8 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[font]` tag to the tag stack. Overrides default fonts for its duration.
    */
-  public fun pushFont(font: Font): Unit {
-    TransferContext.writeArguments(OBJECT to font)
+  public fun pushFont(font: Font, fontSize: Long): Unit {
+    TransferContext.writeArguments(OBJECT to font, LONG to fontSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT, NIL)
   }
 
@@ -459,12 +523,6 @@ public open class RichTextLabel : Control() {
   public fun pushFontSize(fontSize: Long): Unit {
     TransferContext.writeArguments(LONG to fontSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT_SIZE, NIL)
-  }
-
-  public fun pushFontFeatures(opentypeFeatures: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to opentypeFeatures)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT_FEATURES,
-        NIL)
   }
 
   /**
@@ -541,7 +599,8 @@ public open class RichTextLabel : Control() {
     alignment: HorizontalAlignment,
     baseDirection: Control.TextDirection = Control.TextDirection.TEXT_DIRECTION_AUTO,
     language: String = "",
-    stParser: Control.StructuredTextParser = Control.StructuredTextParser.STRUCTURED_TEXT_DEFAULT
+    stParser: TextServer.StructuredTextParser =
+        TextServer.StructuredTextParser.STRUCTURED_TEXT_DEFAULT
   ): Unit {
     TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_PARAGRAPH, NIL)
@@ -767,6 +826,16 @@ public open class RichTextLabel : Control() {
   }
 
   /**
+   * Select all the text.
+   *
+   * If [selectionEnabled] is `false`, no selection will occur.
+   */
+  public fun selectAll(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SELECT_ALL, NIL)
+  }
+
+  /**
    * Returns the current selection text. Does not include BBCodes.
    */
   public fun getSelectedText(): String {
@@ -774,6 +843,14 @@ public open class RichTextLabel : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTED_TEXT,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Clears the current selection.
+   */
+  public fun deselect(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_DESELECT, NIL)
   }
 
   /**
@@ -792,6 +869,15 @@ public open class RichTextLabel : Control() {
   public fun appendText(bbcode: String): Unit {
     TransferContext.writeArguments(STRING to bbcode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_APPEND_TEXT, NIL)
+  }
+
+  /**
+   * If [threaded] is enabled, returns `true` if the background thread has finished text processing, otherwise always return `true`.
+   */
+  public fun isReady(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_READY, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -939,24 +1025,24 @@ public open class RichTextLabel : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_INSTALL_EFFECT, NIL)
   }
 
-  public enum class VisibleCharactersBehavior(
-    id: Long
-  ) {
-    VC_CHARS_BEFORE_SHAPING(0),
-    VC_CHARS_AFTER_SHAPING(1),
-    VC_GLYPHS_AUTO(2),
-    VC_GLYPHS_LTR(3),
-    VC_GLYPHS_RTL(4),
-    ;
+  /**
+   * Returns the [godot.PopupMenu] of this [godot.RichTextLabel]. By default, this menu is displayed when right-clicking on the [godot.RichTextLabel].
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
+   */
+  public fun getMenu(): PopupMenu? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_MENU, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+  }
 
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
+  /**
+   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided).
+   */
+  public fun isMenuVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_MENU_VISIBLE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public enum class ListType(
@@ -978,25 +1064,6 @@ public open class RichTextLabel : Control() {
      * Each list item has a filled circle marker.
      */
     LIST_DOTS(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class AutowrapMode(
-    id: Long
-  ) {
-    AUTOWRAP_OFF(0),
-    AUTOWRAP_ARBITRARY(1),
-    AUTOWRAP_WORD(2),
-    AUTOWRAP_WORD_SMART(3),
     ;
 
     public val id: Long

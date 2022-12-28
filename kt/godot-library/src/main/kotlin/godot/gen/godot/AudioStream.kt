@@ -14,6 +14,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
+import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -33,8 +34,11 @@ public open class AudioStream : Resource() {
     return true
   }
 
-  public open fun _instancePlayback(): AudioStreamPlayback? {
-    throw NotImplementedError("_instance_playback is not implemented for AudioStream")
+  /**
+   *
+   */
+  public open fun _instantiatePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("_instantiate_playback is not implemented for AudioStream")
   }
 
   /**
@@ -59,6 +63,20 @@ public open class AudioStream : Resource() {
   }
 
   /**
+   *
+   */
+  public open fun _getBpm(): Double {
+    throw NotImplementedError("_get_bpm is not implemented for AudioStream")
+  }
+
+  /**
+   *
+   */
+  public open fun _getBeatCount(): Long {
+    throw NotImplementedError("_get_beat_count is not implemented for AudioStream")
+  }
+
+  /**
    * Returns the length of the audio stream in seconds.
    */
   public fun getLength(): Double {
@@ -76,9 +94,12 @@ public open class AudioStream : Resource() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public fun instancePlayback(): AudioStreamPlayback? {
+  /**
+   * Returns an AudioStreamPlayback. Useful for when you want to extend [_instantiatePlayback] but call [instantiatePlayback] from an internally held AudioStream subresource. An example of this can be found in the source files for `AudioStreamRandomPitch::instantiate_playback`.
+   */
+  public fun instantiatePlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_INSTANCE_PLAYBACK,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_INSTANTIATE_PLAYBACK,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?
   }

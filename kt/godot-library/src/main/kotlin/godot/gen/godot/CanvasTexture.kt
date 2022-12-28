@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -17,7 +18,6 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -114,12 +114,12 @@ public open class CanvasTexture : Texture2D() {
   /**
    * The texture filtering mode to use when drawing this [godot.CanvasTexture].
    */
-  public var textureFilter: Long
+  public var textureFilter: CanvasItem.TextureFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_FILTER,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CanvasItem.TextureFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -130,12 +130,12 @@ public open class CanvasTexture : Texture2D() {
   /**
    * The texture repeat mode to use when drawing this [godot.CanvasTexture].
    */
-  public var textureRepeat: Long
+  public var textureRepeat: CanvasItem.TextureRepeat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_REPEAT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CanvasItem.TextureRepeat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

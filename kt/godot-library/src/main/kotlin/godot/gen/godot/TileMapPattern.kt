@@ -15,7 +15,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -99,11 +98,11 @@ public open class TileMapPattern : Resource() {
   /**
    * Returns the list of used cell coordinates in the pattern.
    */
-  public fun getUsedCells(): VariantArray<Any?> {
+  public fun getUsedCells(): VariantArray<Vector2i> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_USED_CELLS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
   }
 
   /**

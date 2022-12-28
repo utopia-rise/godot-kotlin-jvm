@@ -8,9 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.LONG
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -65,6 +67,16 @@ public open class RefCounted : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_UNREFERENCE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the current reference count.
+   */
+  public fun getReferenceCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_GET_REFERENCE_COUNT,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public companion object

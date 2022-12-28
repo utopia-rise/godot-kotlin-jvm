@@ -120,10 +120,10 @@ public open class HTTPClient : RefCounted() {
   public fun connectToHost(
     host: String,
     port: Long = -1,
-    useSsl: Boolean = false,
+    useTls: Boolean = false,
     verifyHost: Boolean = true
   ): GodotError {
-    TransferContext.writeArguments(STRING to host, LONG to port, BOOL to useSsl, BOOL to verifyHost)
+    TransferContext.writeArguments(STRING to host, LONG to port, BOOL to useTls, BOOL to verifyHost)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CONNECT_TO_HOST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -383,58 +383,6 @@ public open class HTTPClient : RefCounted() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public enum class Status(
-    id: Long
-  ) {
-    /**
-     * Status: Disconnected from the server.
-     */
-    STATUS_DISCONNECTED(0),
-    /**
-     * Status: Currently resolving the hostname for the given URL into an IP.
-     */
-    STATUS_RESOLVING(1),
-    /**
-     * Status: DNS failure: Can't resolve the hostname for the given URL.
-     */
-    STATUS_CANT_RESOLVE(2),
-    /**
-     * Status: Currently connecting to server.
-     */
-    STATUS_CONNECTING(3),
-    /**
-     * Status: Can't connect to the server.
-     */
-    STATUS_CANT_CONNECT(4),
-    /**
-     * Status: Connection established.
-     */
-    STATUS_CONNECTED(5),
-    /**
-     * Status: Currently sending request.
-     */
-    STATUS_REQUESTING(6),
-    /**
-     * Status: HTTP body received.
-     */
-    STATUS_BODY(7),
-    /**
-     * Status: Error in HTTP connection.
-     */
-    STATUS_CONNECTION_ERROR(8),
-    STATUS_SSL_HANDSHAKE_ERROR(9),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class Method(
     id: Long
   ) {
@@ -478,6 +426,61 @@ public open class HTTPClient : RefCounted() {
      * Represents the size of the [enum Method] enum.
      */
     METHOD_MAX(9),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class Status(
+    id: Long
+  ) {
+    /**
+     * Status: Disconnected from the server.
+     */
+    STATUS_DISCONNECTED(0),
+    /**
+     * Status: Currently resolving the hostname for the given URL into an IP.
+     */
+    STATUS_RESOLVING(1),
+    /**
+     * Status: DNS failure: Can't resolve the hostname for the given URL.
+     */
+    STATUS_CANT_RESOLVE(2),
+    /**
+     * Status: Currently connecting to server.
+     */
+    STATUS_CONNECTING(3),
+    /**
+     * Status: Can't connect to the server.
+     */
+    STATUS_CANT_CONNECT(4),
+    /**
+     * Status: Connection established.
+     */
+    STATUS_CONNECTED(5),
+    /**
+     * Status: Currently sending request.
+     */
+    STATUS_REQUESTING(6),
+    /**
+     * Status: HTTP body received.
+     */
+    STATUS_BODY(7),
+    /**
+     * Status: Error in HTTP connection.
+     */
+    STATUS_CONNECTION_ERROR(8),
+    /**
+     * Status: Error in TLS handshake.
+     */
+    STATUS_TLS_HANDSHAKE_ERROR(9),
     ;
 
     public val id: Long

@@ -369,12 +369,32 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
+   * Returns the physics layer or layers an area belongs to.
+   */
+  public fun areaGetCollisionLayer(area: RID): Long {
+    TransferContext.writeArguments(_RID to area)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_COLLISION_LAYER, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Sets which physics layers the area will monitor.
    */
   public fun areaSetCollisionMask(area: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to mask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_COLLISION_MASK, NIL)
+  }
+
+  /**
+   * Returns the physics layer or layers an area can contact with.
+   */
+  public fun areaGetCollisionMask(area: RID): Long {
+    TransferContext.writeArguments(_RID to area)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_COLLISION_MASK, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -562,6 +582,25 @@ public object PhysicsServer3D : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_COLLISION_MASK, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets the body's collision priority.
+   */
+  public fun bodySetCollisionPriority(body: RID, priority: Double): Unit {
+    TransferContext.writeArguments(_RID to body, DOUBLE to priority)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_COLLISION_PRIORITY, NIL)
+  }
+
+  /**
+   * Returns the body's collision priority.
+   */
+  public fun bodyGetCollisionPriority(body: RID): Double {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_COLLISION_PRIORITY, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -1421,167 +1460,33 @@ public object PhysicsServer3D : Object() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public enum class BodyAxis(
+  public enum class JointType(
     id: Long
   ) {
     /**
-     *
+     * The [godot.Joint3D] is a [godot.PinJoint3D].
      */
-    BODY_AXIS_LINEAR_X(1),
+    JOINT_TYPE_PIN(0),
     /**
-     *
+     * The [godot.Joint3D] is a [godot.HingeJoint3D].
      */
-    BODY_AXIS_LINEAR_Y(2),
+    JOINT_TYPE_HINGE(1),
     /**
-     *
+     * The [godot.Joint3D] is a [godot.SliderJoint3D].
      */
-    BODY_AXIS_LINEAR_Z(4),
+    JOINT_TYPE_SLIDER(2),
     /**
-     *
+     * The [godot.Joint3D] is a [godot.ConeTwistJoint3D].
      */
-    BODY_AXIS_ANGULAR_X(8),
+    JOINT_TYPE_CONE_TWIST(3),
     /**
-     *
+     * The [godot.Joint3D] is a [godot.Generic6DOFJoint3D].
      */
-    BODY_AXIS_ANGULAR_Y(16),
+    JOINT_TYPE_6DOF(4),
     /**
-     *
+     * Represents the size of the [enum JointType] enum.
      */
-    BODY_AXIS_ANGULAR_Z(32),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ProcessInfo(
-    id: Long
-  ) {
-    /**
-     * Constant to get the number of objects that are not sleeping.
-     */
-    INFO_ACTIVE_OBJECTS(0),
-    /**
-     * Constant to get the number of possible collisions.
-     */
-    INFO_COLLISION_PAIRS(1),
-    /**
-     * Constant to get the number of space regions where a collision could occur.
-     */
-    INFO_ISLAND_COUNT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class AreaBodyStatus(
-    id: Long
-  ) {
-    /**
-     * The value of the first parameter and area callback function receives, when an object enters one of its shapes.
-     */
-    AREA_BODY_ADDED(0),
-    /**
-     * The value of the first parameter and area callback function receives, when an object exits one of its shapes.
-     */
-    AREA_BODY_REMOVED(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class BodyMode(
-    id: Long
-  ) {
-    /**
-     * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't collide with other bodies along its path when moved.
-     */
-    BODY_MODE_STATIC(0),
-    /**
-     * Constant for kinematic bodies. In this mode, a body can be only moved by user code and collides with other bodies along its path.
-     */
-    BODY_MODE_KINEMATIC(1),
-    BODY_MODE_DYNAMIC(2),
-    BODY_MODE_DYNAMIC_LINEAR(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ShapeType(
-    id: Long
-  ) {
-    /**
-     * The [godot.Shape3D] is a [godot.WorldBoundaryShape3D].
-     */
-    SHAPE_WORLD_BOUNDARY(0),
-    /**
-     * The [godot.Shape3D] is a [godot.SeparationRayShape3D].
-     */
-    SHAPE_SEPARATION_RAY(1),
-    /**
-     * The [godot.Shape3D] is a [godot.SphereShape3D].
-     */
-    SHAPE_SPHERE(2),
-    /**
-     * The [godot.Shape3D] is a [godot.BoxShape3D].
-     */
-    SHAPE_BOX(3),
-    /**
-     * The [godot.Shape3D] is a [godot.CapsuleShape3D].
-     */
-    SHAPE_CAPSULE(4),
-    /**
-     * The [godot.Shape3D] is a [godot.CylinderShape3D].
-     */
-    SHAPE_CYLINDER(5),
-    /**
-     * The [godot.Shape3D] is a [godot.ConvexPolygonShape3D].
-     */
-    SHAPE_CONVEX_POLYGON(6),
-    /**
-     * The [godot.Shape3D] is a [godot.ConcavePolygonShape3D].
-     */
-    SHAPE_CONCAVE_POLYGON(7),
-    /**
-     * The [godot.Shape3D] is a [godot.HeightMapShape3D].
-     */
-    SHAPE_HEIGHTMAP(8),
-    /**
-     * The [godot.Shape3D] is used internally for a soft body. Any attempt to create this kind of shape results in an error.
-     */
-    SHAPE_SOFT_BODY(9),
-    /**
-     * This constant is used internally by the engine. Any attempt to create this kind of shape results in an error.
-     */
-    SHAPE_CUSTOM(10),
+    JOINT_TYPE_MAX(5),
     ;
 
     public val id: Long
@@ -1625,109 +1530,41 @@ public object PhysicsServer3D : Object() {
     }
   }
 
-  public enum class SpaceParameter(
+  public enum class HingeJointParam(
     id: Long
   ) {
     /**
-     * Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated.
+     * The speed with which the two bodies get pulled together when they move in different directions.
      */
-    SPACE_PARAM_CONTACT_RECYCLE_RADIUS(0),
+    HINGE_JOINT_BIAS(0),
     /**
-     * Constant to set/get the maximum distance a shape can be from another before they are considered separated and the contact is discarded.
+     * The maximum rotation across the Hinge.
      */
-    SPACE_PARAM_CONTACT_MAX_SEPARATION(1),
+    HINGE_JOINT_LIMIT_UPPER(1),
     /**
-     * Constant to set/get the maximum distance a shape can penetrate another shape before it is considered a collision.
+     * The minimum rotation across the Hinge.
      */
-    SPACE_PARAM_CONTACT_MAX_ALLOWED_PENETRATION(2),
+    HINGE_JOINT_LIMIT_LOWER(2),
     /**
-     * Constant to set/get the default solver bias for all physics contacts. A solver bias is a factor controlling how much two objects "rebound", after overlapping, to avoid leaving them in that state because of numerical imprecision.
+     * The speed with which the rotation across the axis perpendicular to the hinge gets corrected.
      */
-    SPACE_PARAM_CONTACT_DEFAULT_BIAS(3),
+    HINGE_JOINT_LIMIT_BIAS(3),
     /**
-     * Constant to set/get the threshold linear velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
-     */
-    SPACE_PARAM_BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD(4),
-    /**
-     * Constant to set/get the threshold angular velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
-     */
-    SPACE_PARAM_BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD(5),
-    /**
-     * Constant to set/get the maximum time of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after this time.
-     */
-    SPACE_PARAM_BODY_TIME_TO_SLEEP(6),
-    /**
-     * Constant to set/get the number of solver iterations for contacts and constraints. The greater the number of iterations, the more accurate the collisions and constraints will be. However, a greater number of iterations requires more CPU power, which can decrease performance.
-     */
-    SPACE_PARAM_SOLVER_ITERATIONS(7),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class BodyDampMode(
-    id: Long
-  ) {
-    /**
-     * The body's damping value is added to any value set in areas or the default value.
-     */
-    BODY_DAMP_MODE_COMBINE(0),
-    /**
-     * The body's damping value replaces any value set in areas or the default value.
-     */
-    BODY_DAMP_MODE_REPLACE(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ConeTwistJointParam(
-    id: Long
-  ) {
-    /**
-     * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
      *
-     * The swing span defines, how much rotation will not get corrected along the swing axis.
-     *
-     * Could be defined as looseness in the [godot.ConeTwistJoint3D].
-     *
-     * If below 0.05, this behavior is locked.
      */
-    CONE_TWIST_JOINT_SWING_SPAN(0),
+    HINGE_JOINT_LIMIT_SOFTNESS(4),
     /**
-     * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
-     *
-     * Twist is locked if below 0.05.
+     * The lower this value, the more the rotation gets slowed down.
      */
-    CONE_TWIST_JOINT_TWIST_SPAN(1),
+    HINGE_JOINT_LIMIT_RELAXATION(5),
     /**
-     * The speed with which the swing or twist will take place.
-     *
-     * The higher, the faster.
+     * Target speed for the motor.
      */
-    CONE_TWIST_JOINT_BIAS(2),
+    HINGE_JOINT_MOTOR_TARGET_VELOCITY(6),
     /**
-     * The ease with which the Joint3D twists, if it's too low, it takes more force to twist the joint.
+     * Maximum acceleration for the motor.
      */
-    CONE_TWIST_JOINT_SOFTNESS(3),
-    /**
-     * Defines, how fast the swing- and twist-speed-difference on both sides gets synced.
-     */
-    CONE_TWIST_JOINT_RELAXATION(4),
+    HINGE_JOINT_MOTOR_MAX_IMPULSE(7),
     ;
 
     public val id: Long
@@ -1740,206 +1577,17 @@ public object PhysicsServer3D : Object() {
     }
   }
 
-  public enum class JointType(
+  public enum class HingeJointFlag(
     id: Long
   ) {
     /**
-     * The [godot.Joint3D] is a [godot.PinJoint3D].
+     * If `true`, the Hinge has a maximum and a minimum rotation.
      */
-    JOINT_TYPE_PIN(0),
+    HINGE_JOINT_FLAG_USE_LIMIT(0),
     /**
-     * The [godot.Joint3D] is a [godot.HingeJoint3D].
+     * If `true`, a motor turns the Hinge.
      */
-    JOINT_TYPE_HINGE(1),
-    /**
-     * The [godot.Joint3D] is a [godot.SliderJoint3D].
-     */
-    JOINT_TYPE_SLIDER(2),
-    /**
-     * The [godot.Joint3D] is a [godot.ConeTwistJoint3D].
-     */
-    JOINT_TYPE_CONE_TWIST(3),
-    /**
-     * The [godot.Joint3D] is a [godot.Generic6DOFJoint3D].
-     */
-    JOINT_TYPE_6DOF(4),
-    /**
-     * Represents the size of the [enum JointType] enum.
-     */
-    JOINT_TYPE_MAX(5),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class BodyState(
-    id: Long
-  ) {
-    /**
-     * Constant to set/get the current transform matrix of the body.
-     */
-    BODY_STATE_TRANSFORM(0),
-    /**
-     * Constant to set/get the current linear velocity of the body.
-     */
-    BODY_STATE_LINEAR_VELOCITY(1),
-    /**
-     * Constant to set/get the current angular velocity of the body.
-     */
-    BODY_STATE_ANGULAR_VELOCITY(2),
-    /**
-     * Constant to sleep/wake up a body, or to get whether it is sleeping.
-     */
-    BODY_STATE_SLEEPING(3),
-    /**
-     * Constant to set/get whether the body can sleep.
-     */
-    BODY_STATE_CAN_SLEEP(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class BodyParameter(
-    id: Long
-  ) {
-    /**
-     * Constant to set/get a body's bounce factor.
-     */
-    BODY_PARAM_BOUNCE(0),
-    /**
-     * Constant to set/get a body's friction.
-     */
-    BODY_PARAM_FRICTION(1),
-    /**
-     * Constant to set/get a body's mass.
-     */
-    BODY_PARAM_MASS(2),
-    /**
-     * Constant to set/get a body's inertia.
-     */
-    BODY_PARAM_INERTIA(3),
-    /**
-     * Constant to set/get a body's center of mass position in the body's local coordinate system.
-     */
-    BODY_PARAM_CENTER_OF_MASS(4),
-    /**
-     * Constant to set/get a body's gravity multiplier.
-     */
-    BODY_PARAM_GRAVITY_SCALE(5),
-    /**
-     * Constant to set/get a body's linear dampening mode. See [enum BodyDampMode] for possible values.
-     */
-    BODY_PARAM_LINEAR_DAMP_MODE(6),
-    /**
-     * Constant to set/get a body's angular dampening mode. See [enum BodyDampMode] for possible values.
-     */
-    BODY_PARAM_ANGULAR_DAMP_MODE(7),
-    /**
-     * Constant to set/get a body's linear dampening factor.
-     */
-    BODY_PARAM_LINEAR_DAMP(8),
-    /**
-     * Constant to set/get a body's angular dampening factor.
-     */
-    BODY_PARAM_ANGULAR_DAMP(9),
-    /**
-     * Represents the size of the [enum BodyParameter] enum.
-     */
-    BODY_PARAM_MAX(10),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class G6DOFJointAxisParam(
-    id: Long
-  ) {
-    /**
-     * The minimum difference between the pivot points' axes.
-     */
-    G6DOF_JOINT_LINEAR_LOWER_LIMIT(0),
-    /**
-     * The maximum difference between the pivot points' axes.
-     */
-    G6DOF_JOINT_LINEAR_UPPER_LIMIT(1),
-    /**
-     * A factor that gets applied to the movement across the axes. The lower, the slower the movement.
-     */
-    G6DOF_JOINT_LINEAR_LIMIT_SOFTNESS(2),
-    /**
-     * The amount of restitution on the axes movement. The lower, the more velocity-energy gets lost.
-     */
-    G6DOF_JOINT_LINEAR_RESTITUTION(3),
-    /**
-     * The amount of damping that happens at the linear motion across the axes.
-     */
-    G6DOF_JOINT_LINEAR_DAMPING(4),
-    /**
-     * The velocity that the joint's linear motor will attempt to reach.
-     */
-    G6DOF_JOINT_LINEAR_MOTOR_TARGET_VELOCITY(5),
-    /**
-     * The maximum force that the linear motor can apply while trying to reach the target velocity.
-     */
-    G6DOF_JOINT_LINEAR_MOTOR_FORCE_LIMIT(6),
-    /**
-     * The minimum rotation in negative direction to break loose and rotate around the axes.
-     */
-    G6DOF_JOINT_ANGULAR_LOWER_LIMIT(10),
-    /**
-     * The minimum rotation in positive direction to break loose and rotate around the axes.
-     */
-    G6DOF_JOINT_ANGULAR_UPPER_LIMIT(11),
-    /**
-     * A factor that gets multiplied onto all rotations across the axes.
-     */
-    G6DOF_JOINT_ANGULAR_LIMIT_SOFTNESS(12),
-    /**
-     * The amount of rotational damping across the axes. The lower, the more dampening occurs.
-     */
-    G6DOF_JOINT_ANGULAR_DAMPING(13),
-    /**
-     * The amount of rotational restitution across the axes. The lower, the more restitution occurs.
-     */
-    G6DOF_JOINT_ANGULAR_RESTITUTION(14),
-    /**
-     * The maximum amount of force that can occur, when rotating around the axes.
-     */
-    G6DOF_JOINT_ANGULAR_FORCE_LIMIT(15),
-    /**
-     * When correcting the crossing of limits in rotation across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower.
-     */
-    G6DOF_JOINT_ANGULAR_ERP(16),
-    /**
-     * Target speed for the motor at the axes.
-     */
-    G6DOF_JOINT_ANGULAR_MOTOR_TARGET_VELOCITY(17),
-    /**
-     * Maximum acceleration for the motor at the axes.
-     */
-    G6DOF_JOINT_ANGULAR_MOTOR_FORCE_LIMIT(18),
+    HINGE_JOINT_FLAG_ENABLE_MOTOR(1),
     ;
 
     public val id: Long
@@ -2059,41 +1707,118 @@ public object PhysicsServer3D : Object() {
     }
   }
 
-  public enum class HingeJointParam(
+  public enum class ConeTwistJointParam(
     id: Long
   ) {
     /**
-     * The speed with which the two bodies get pulled together when they move in different directions.
-     */
-    HINGE_JOINT_BIAS(0),
-    /**
-     * The maximum rotation across the Hinge.
-     */
-    HINGE_JOINT_LIMIT_UPPER(1),
-    /**
-     * The minimum rotation across the Hinge.
-     */
-    HINGE_JOINT_LIMIT_LOWER(2),
-    /**
-     * The speed with which the rotation across the axis perpendicular to the hinge gets corrected.
-     */
-    HINGE_JOINT_LIMIT_BIAS(3),
-    /**
+     * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
      *
+     * The swing span defines, how much rotation will not get corrected along the swing axis.
+     *
+     * Could be defined as looseness in the [godot.ConeTwistJoint3D].
+     *
+     * If below 0.05, this behavior is locked.
      */
-    HINGE_JOINT_LIMIT_SOFTNESS(4),
+    CONE_TWIST_JOINT_SWING_SPAN(0),
     /**
-     * The lower this value, the more the rotation gets slowed down.
+     * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
+     *
+     * Twist is locked if below 0.05.
      */
-    HINGE_JOINT_LIMIT_RELAXATION(5),
+    CONE_TWIST_JOINT_TWIST_SPAN(1),
     /**
-     * Target speed for the motor.
+     * The speed with which the swing or twist will take place.
+     *
+     * The higher, the faster.
      */
-    HINGE_JOINT_MOTOR_TARGET_VELOCITY(6),
+    CONE_TWIST_JOINT_BIAS(2),
     /**
-     * Maximum acceleration for the motor.
+     * The ease with which the Joint3D twists, if it's too low, it takes more force to twist the joint.
      */
-    HINGE_JOINT_MOTOR_MAX_IMPULSE(7),
+    CONE_TWIST_JOINT_SOFTNESS(3),
+    /**
+     * Defines, how fast the swing- and twist-speed-difference on both sides gets synced.
+     */
+    CONE_TWIST_JOINT_RELAXATION(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class G6DOFJointAxisParam(
+    id: Long
+  ) {
+    /**
+     * The minimum difference between the pivot points' axes.
+     */
+    G6DOF_JOINT_LINEAR_LOWER_LIMIT(0),
+    /**
+     * The maximum difference between the pivot points' axes.
+     */
+    G6DOF_JOINT_LINEAR_UPPER_LIMIT(1),
+    /**
+     * A factor that gets applied to the movement across the axes. The lower, the slower the movement.
+     */
+    G6DOF_JOINT_LINEAR_LIMIT_SOFTNESS(2),
+    /**
+     * The amount of restitution on the axes movement. The lower, the more velocity-energy gets lost.
+     */
+    G6DOF_JOINT_LINEAR_RESTITUTION(3),
+    /**
+     * The amount of damping that happens at the linear motion across the axes.
+     */
+    G6DOF_JOINT_LINEAR_DAMPING(4),
+    /**
+     * The velocity that the joint's linear motor will attempt to reach.
+     */
+    G6DOF_JOINT_LINEAR_MOTOR_TARGET_VELOCITY(5),
+    /**
+     * The maximum force that the linear motor can apply while trying to reach the target velocity.
+     */
+    G6DOF_JOINT_LINEAR_MOTOR_FORCE_LIMIT(6),
+    /**
+     * The minimum rotation in negative direction to break loose and rotate around the axes.
+     */
+    G6DOF_JOINT_ANGULAR_LOWER_LIMIT(10),
+    /**
+     * The minimum rotation in positive direction to break loose and rotate around the axes.
+     */
+    G6DOF_JOINT_ANGULAR_UPPER_LIMIT(11),
+    /**
+     * A factor that gets multiplied onto all rotations across the axes.
+     */
+    G6DOF_JOINT_ANGULAR_LIMIT_SOFTNESS(12),
+    /**
+     * The amount of rotational damping across the axes. The lower, the more dampening occurs.
+     */
+    G6DOF_JOINT_ANGULAR_DAMPING(13),
+    /**
+     * The amount of rotational restitution across the axes. The lower, the more restitution occurs.
+     */
+    G6DOF_JOINT_ANGULAR_RESTITUTION(14),
+    /**
+     * The maximum amount of force that can occur, when rotating around the axes.
+     */
+    G6DOF_JOINT_ANGULAR_FORCE_LIMIT(15),
+    /**
+     * When correcting the crossing of limits in rotation across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower.
+     */
+    G6DOF_JOINT_ANGULAR_ERP(16),
+    /**
+     * Target speed for the motor at the axes.
+     */
+    G6DOF_JOINT_ANGULAR_MOTOR_TARGET_VELOCITY(17),
+    /**
+     * Maximum acceleration for the motor at the axes.
+     */
+    G6DOF_JOINT_ANGULAR_MOTOR_FORCE_LIMIT(18),
     ;
 
     public val id: Long
@@ -2137,52 +1862,53 @@ public object PhysicsServer3D : Object() {
     }
   }
 
-  public enum class HingeJointFlag(
+  public enum class ShapeType(
     id: Long
   ) {
     /**
-     * If `true`, the Hinge has a maximum and a minimum rotation.
+     * The [godot.Shape3D] is a [godot.WorldBoundaryShape3D].
      */
-    HINGE_JOINT_FLAG_USE_LIMIT(0),
+    SHAPE_WORLD_BOUNDARY(0),
     /**
-     * If `true`, a motor turns the Hinge.
+     * The [godot.Shape3D] is a [godot.SeparationRayShape3D].
      */
-    HINGE_JOINT_FLAG_ENABLE_MOTOR(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class AreaSpaceOverrideMode(
-    id: Long
-  ) {
+    SHAPE_SEPARATION_RAY(1),
     /**
-     * This area does not affect gravity/damp. These are generally areas that exist only to detect collisions, and objects entering or exiting them.
+     * The [godot.Shape3D] is a [godot.SphereShape3D].
      */
-    AREA_SPACE_OVERRIDE_DISABLED(0),
+    SHAPE_SPHERE(2),
     /**
-     * This area adds its gravity/damp values to whatever has been calculated so far. This way, many overlapping areas can combine their physics to make interesting effects.
+     * The [godot.Shape3D] is a [godot.BoxShape3D].
      */
-    AREA_SPACE_OVERRIDE_COMBINE(1),
+    SHAPE_BOX(3),
     /**
-     * This area adds its gravity/damp values to whatever has been calculated so far. Then stops taking into account the rest of the areas, even the default one.
+     * The [godot.Shape3D] is a [godot.CapsuleShape3D].
      */
-    AREA_SPACE_OVERRIDE_COMBINE_REPLACE(2),
+    SHAPE_CAPSULE(4),
     /**
-     * This area replaces any gravity/damp, even the default one, and stops taking into account the rest of the areas.
+     * The [godot.Shape3D] is a [godot.CylinderShape3D].
      */
-    AREA_SPACE_OVERRIDE_REPLACE(3),
+    SHAPE_CYLINDER(5),
     /**
-     * This area replaces any gravity/damp calculated so far, but keeps calculating the rest of the areas, down to the default one.
+     * The [godot.Shape3D] is a [godot.ConvexPolygonShape3D].
      */
-    AREA_SPACE_OVERRIDE_REPLACE_COMBINE(4),
+    SHAPE_CONVEX_POLYGON(6),
+    /**
+     * The [godot.Shape3D] is a [godot.ConcavePolygonShape3D].
+     */
+    SHAPE_CONCAVE_POLYGON(7),
+    /**
+     * The [godot.Shape3D] is a [godot.HeightMapShape3D].
+     */
+    SHAPE_HEIGHTMAP(8),
+    /**
+     * The [godot.Shape3D] is used internally for a soft body. Any attempt to create this kind of shape results in an error.
+     */
+    SHAPE_SOFT_BODY(9),
+    /**
+     * This constant is used internally by the engine. Any attempt to create this kind of shape results in an error.
+     */
+    SHAPE_CUSTOM(10),
     ;
 
     public val id: Long
@@ -2258,6 +1984,325 @@ public object PhysicsServer3D : Object() {
      * Constant to set/get the exponential rate at which wind force decreases with distance from its origin.
      */
     AREA_PARAM_WIND_ATTENUATION_FACTOR(14),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class AreaSpaceOverrideMode(
+    id: Long
+  ) {
+    /**
+     * This area does not affect gravity/damp. These are generally areas that exist only to detect collisions, and objects entering or exiting them.
+     */
+    AREA_SPACE_OVERRIDE_DISABLED(0),
+    /**
+     * This area adds its gravity/damp values to whatever has been calculated so far. This way, many overlapping areas can combine their physics to make interesting effects.
+     */
+    AREA_SPACE_OVERRIDE_COMBINE(1),
+    /**
+     * This area adds its gravity/damp values to whatever has been calculated so far. Then stops taking into account the rest of the areas, even the default one.
+     */
+    AREA_SPACE_OVERRIDE_COMBINE_REPLACE(2),
+    /**
+     * This area replaces any gravity/damp, even the default one, and stops taking into account the rest of the areas.
+     */
+    AREA_SPACE_OVERRIDE_REPLACE(3),
+    /**
+     * This area replaces any gravity/damp calculated so far, but keeps calculating the rest of the areas, down to the default one.
+     */
+    AREA_SPACE_OVERRIDE_REPLACE_COMBINE(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class BodyMode(
+    id: Long
+  ) {
+    /**
+     * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't collide with other bodies along its path when moved.
+     */
+    BODY_MODE_STATIC(0),
+    /**
+     * Constant for kinematic bodies. In this mode, a body can be only moved by user code and collides with other bodies along its path.
+     */
+    BODY_MODE_KINEMATIC(1),
+    /**
+     * Constant for rigid bodies. In this mode, a body can be pushed by other bodies and has forces applied.
+     */
+    BODY_MODE_RIGID(2),
+    /**
+     * Constant for linear rigid bodies. In this mode, a body can not rotate, and only its linear velocity is affected by external forces.
+     */
+    BODY_MODE_RIGID_LINEAR(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class BodyParameter(
+    id: Long
+  ) {
+    /**
+     * Constant to set/get a body's bounce factor.
+     */
+    BODY_PARAM_BOUNCE(0),
+    /**
+     * Constant to set/get a body's friction.
+     */
+    BODY_PARAM_FRICTION(1),
+    /**
+     * Constant to set/get a body's mass.
+     */
+    BODY_PARAM_MASS(2),
+    /**
+     * Constant to set/get a body's inertia.
+     */
+    BODY_PARAM_INERTIA(3),
+    /**
+     * Constant to set/get a body's center of mass position in the body's local coordinate system.
+     */
+    BODY_PARAM_CENTER_OF_MASS(4),
+    /**
+     * Constant to set/get a body's gravity multiplier.
+     */
+    BODY_PARAM_GRAVITY_SCALE(5),
+    /**
+     * Constant to set/get a body's linear dampening mode. See [enum BodyDampMode] for possible values.
+     */
+    BODY_PARAM_LINEAR_DAMP_MODE(6),
+    /**
+     * Constant to set/get a body's angular dampening mode. See [enum BodyDampMode] for possible values.
+     */
+    BODY_PARAM_ANGULAR_DAMP_MODE(7),
+    /**
+     * Constant to set/get a body's linear dampening factor.
+     */
+    BODY_PARAM_LINEAR_DAMP(8),
+    /**
+     * Constant to set/get a body's angular dampening factor.
+     */
+    BODY_PARAM_ANGULAR_DAMP(9),
+    /**
+     * Represents the size of the [enum BodyParameter] enum.
+     */
+    BODY_PARAM_MAX(10),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class BodyDampMode(
+    id: Long
+  ) {
+    /**
+     * The body's damping value is added to any value set in areas or the default value.
+     */
+    BODY_DAMP_MODE_COMBINE(0),
+    /**
+     * The body's damping value replaces any value set in areas or the default value.
+     */
+    BODY_DAMP_MODE_REPLACE(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class BodyState(
+    id: Long
+  ) {
+    /**
+     * Constant to set/get the current transform matrix of the body.
+     */
+    BODY_STATE_TRANSFORM(0),
+    /**
+     * Constant to set/get the current linear velocity of the body.
+     */
+    BODY_STATE_LINEAR_VELOCITY(1),
+    /**
+     * Constant to set/get the current angular velocity of the body.
+     */
+    BODY_STATE_ANGULAR_VELOCITY(2),
+    /**
+     * Constant to sleep/wake up a body, or to get whether it is sleeping.
+     */
+    BODY_STATE_SLEEPING(3),
+    /**
+     * Constant to set/get whether the body can sleep.
+     */
+    BODY_STATE_CAN_SLEEP(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class AreaBodyStatus(
+    id: Long
+  ) {
+    /**
+     * The value of the first parameter and area callback function receives, when an object enters one of its shapes.
+     */
+    AREA_BODY_ADDED(0),
+    /**
+     * The value of the first parameter and area callback function receives, when an object exits one of its shapes.
+     */
+    AREA_BODY_REMOVED(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ProcessInfo(
+    id: Long
+  ) {
+    /**
+     * Constant to get the number of objects that are not sleeping.
+     */
+    INFO_ACTIVE_OBJECTS(0),
+    /**
+     * Constant to get the number of possible collisions.
+     */
+    INFO_COLLISION_PAIRS(1),
+    /**
+     * Constant to get the number of space regions where a collision could occur.
+     */
+    INFO_ISLAND_COUNT(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SpaceParameter(
+    id: Long
+  ) {
+    /**
+     * Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated.
+     */
+    SPACE_PARAM_CONTACT_RECYCLE_RADIUS(0),
+    /**
+     * Constant to set/get the maximum distance a shape can be from another before they are considered separated and the contact is discarded.
+     */
+    SPACE_PARAM_CONTACT_MAX_SEPARATION(1),
+    /**
+     * Constant to set/get the maximum distance a shape can penetrate another shape before it is considered a collision.
+     */
+    SPACE_PARAM_CONTACT_MAX_ALLOWED_PENETRATION(2),
+    /**
+     * Constant to set/get the default solver bias for all physics contacts. A solver bias is a factor controlling how much two objects "rebound", after overlapping, to avoid leaving them in that state because of numerical imprecision.
+     */
+    SPACE_PARAM_CONTACT_DEFAULT_BIAS(3),
+    /**
+     * Constant to set/get the threshold linear velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
+     */
+    SPACE_PARAM_BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD(4),
+    /**
+     * Constant to set/get the threshold angular velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
+     */
+    SPACE_PARAM_BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD(5),
+    /**
+     * Constant to set/get the maximum time of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after this time.
+     */
+    SPACE_PARAM_BODY_TIME_TO_SLEEP(6),
+    /**
+     * Constant to set/get the number of solver iterations for contacts and constraints. The greater the number of iterations, the more accurate the collisions and constraints will be. However, a greater number of iterations requires more CPU power, which can decrease performance.
+     */
+    SPACE_PARAM_SOLVER_ITERATIONS(7),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class BodyAxis(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    BODY_AXIS_LINEAR_X(1),
+    /**
+     *
+     */
+    BODY_AXIS_LINEAR_Y(2),
+    /**
+     *
+     */
+    BODY_AXIS_LINEAR_Z(4),
+    /**
+     *
+     */
+    BODY_AXIS_ANGULAR_X(8),
+    /**
+     *
+     */
+    BODY_AXIS_ANGULAR_Y(16),
+    /**
+     *
+     */
+    BODY_AXIS_ANGULAR_Z(32),
     ;
 
     public val id: Long

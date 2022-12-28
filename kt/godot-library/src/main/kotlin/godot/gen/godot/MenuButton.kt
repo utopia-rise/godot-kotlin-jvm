@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
@@ -15,6 +16,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -53,14 +55,14 @@ public open class MenuButton : Button() {
   /**
    * The number of items currently in the list.
    */
-  public var itemCount: Material?
+  public var itemCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_ITEM_COUNT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_ITEM_COUNT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_ITEM_COUNT, NIL)
     }
 
@@ -78,6 +80,14 @@ public open class MenuButton : Button() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_POPUP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+  }
+
+  /**
+   * Adjusts popup position and sizing for the [godot.MenuButton], then shows the [godot.PopupMenu]. Prefer this over using `get_popup().popup()`.
+   */
+  public fun showPopup(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SHOW_POPUP, NIL)
   }
 
   /**

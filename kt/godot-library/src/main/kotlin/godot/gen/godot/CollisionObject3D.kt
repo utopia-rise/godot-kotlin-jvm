@@ -7,14 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.PackedInt32Array
 import godot.core.RID
 import godot.core.Transform3D
-import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType._RID
 import godot.core.Vector3
@@ -22,8 +24,8 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal5
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -37,11 +39,10 @@ import kotlin.Unit
 @GodotBaseType
 public open class CollisionObject3D internal constructor() : Node3D() {
   /**
-   * Emitted when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
-   *
-   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject2D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject2D] is overlapping the [godot.CollisionObject2D] in question.
+   * Emitted when the object receives an unhandled [godot.InputEvent]. [position] is the location in world space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is the normal vector of the surface at that point.
    */
-  public val mouseExited: Signal0 by signal()
+  public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera",
+      "event", "position", "normal", "shapeIdx")
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
@@ -51,20 +52,21 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public val mouseEntered: Signal0 by signal()
 
   /**
-   * Emitted when the object receives an unhandled [godot.InputEvent]. [position] is the location in world space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is the normal vector of the surface at that point.
+   * Emitted when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
+   *
+   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject2D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject2D] is overlapping the [godot.CollisionObject2D] in question.
    */
-  public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera",
-      "event", "position", "normal", "shapeIdx")
+  public val mouseExited: Signal0 by signal()
 
   /**
    * Defines the behavior in physics when [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes.
    */
-  public var disableMode: Long
+  public var disableMode: CollisionObject3D.DisableMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_DISABLE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CollisionObject3D.DisableMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -106,6 +108,22 @@ public open class CollisionObject3D internal constructor() : Node3D() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_MASK, NIL)
+    }
+
+  /**
+   * The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level.
+   */
+  public var collisionPriority: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_PRIORITY, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_PRIORITY, NIL)
     }
 
   /**
@@ -157,6 +175,18 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     normal: Vector3,
     shapeIdx: Long
   ): Unit {
+  }
+
+  /**
+   * Called when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject3D] won't cause this function to be called.
+   */
+  public open fun _mouseEnter(): Unit {
+  }
+
+  /**
+   * Called when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject3D] won't cause this function to be called.
+   */
+  public open fun _mouseExit(): Unit {
   }
 
   /**
@@ -228,11 +258,11 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Returns an [godot.Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument.
    */
-  public fun getShapeOwners(): VariantArray<Any?> {
+  public fun getShapeOwners(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_SHAPE_OWNERS,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_INT_32_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
   /**

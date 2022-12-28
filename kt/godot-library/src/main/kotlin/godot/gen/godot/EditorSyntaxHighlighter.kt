@@ -7,8 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantArray
-import kotlin.Any
+import godot.core.PackedStringArray
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -39,7 +38,7 @@ public open class EditorSyntaxHighlighter internal constructor() : SyntaxHighlig
   /**
    * Virtual method which can be overridden to return the supported language names.
    */
-  public open fun _getSupportedLanguages(): VariantArray<Any?> {
+  public open fun _getSupportedLanguages(): PackedStringArray {
     throw NotImplementedError("_get_supported_languages is not implemented for EditorSyntaxHighlighter")
   }
 

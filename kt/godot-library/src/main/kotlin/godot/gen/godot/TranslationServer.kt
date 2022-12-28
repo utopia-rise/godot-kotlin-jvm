@@ -9,8 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -19,7 +17,6 @@ import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -234,11 +231,11 @@ public object TranslationServer : Object() {
   /**
    * Returns an array of all loaded locales of the project.
    */
-  public fun getLoadedLocales(): VariantArray<Any?> {
+  public fun getLoadedLocales(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOADED_LOCALES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOADED_LOCALES, PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   public fun isPseudolocalizationEnabled(): Boolean {

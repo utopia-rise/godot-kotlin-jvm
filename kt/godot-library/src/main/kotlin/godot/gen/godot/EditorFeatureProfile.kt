@@ -179,9 +179,13 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
      */
     FEATURE_IMPORT_DOCK(6),
     /**
+     * The History dock. If this feature is disabled, the History dock won't be visible.
+     */
+    FEATURE_HISTORY_DOCK(7),
+    /**
      * Represents the size of the [enum Feature] enum.
      */
-    FEATURE_MAX(7),
+    FEATURE_MAX(8),
     ;
 
     public val id: Long

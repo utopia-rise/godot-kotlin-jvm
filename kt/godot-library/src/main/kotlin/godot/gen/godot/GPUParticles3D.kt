@@ -14,6 +14,7 @@ import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -278,12 +279,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public var drawOrder: Long
+  public var drawOrder: GPUParticles3D.DrawOrder
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_ORDER,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GPUParticles3D.DrawOrder.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -294,12 +295,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public var transformAlign: Long
+  public var transformAlign: GPUParticles3D.TransformAlign
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRANSFORM_ALIGN, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GPUParticles3D.TransformAlign.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -327,16 +328,19 @@ public open class GPUParticles3D : GeometryInstance3D() {
           NIL)
     }
 
-  public var trailLengthSecs: Double
+  /**
+   * The amount of time the particle's trail should represent (in seconds). Only effective if [trailEnabled] is `true`.
+   */
+  public var trailLifetime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRAIL_LENGTH,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRAIL_LIFETIME,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_TRAIL_LENGTH,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_TRAIL_LIFETIME,
           NIL)
     }
 
@@ -476,6 +480,37 @@ public open class GPUParticles3D : GeometryInstance3D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_EMIT_PARTICLE, NIL)
   }
 
+  public enum class DrawOrder(
+    id: Long
+  ) {
+    /**
+     * Particles are drawn in the order emitted.
+     */
+    DRAW_ORDER_INDEX(0),
+    /**
+     * Particles are drawn in order of remaining lifetime.
+     */
+    DRAW_ORDER_LIFETIME(1),
+    /**
+     *
+     */
+    DRAW_ORDER_REVERSE_LIFETIME(2),
+    /**
+     * Particles are drawn in order of depth.
+     */
+    DRAW_ORDER_VIEW_DEPTH(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class EmitFlags(
     id: Long
   ) {
@@ -530,37 +565,6 @@ public open class GPUParticles3D : GeometryInstance3D() {
      *
      */
     TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DrawOrder(
-    id: Long
-  ) {
-    /**
-     * Particles are drawn in the order emitted.
-     */
-    DRAW_ORDER_INDEX(0),
-    /**
-     * Particles are drawn in order of remaining lifetime.
-     */
-    DRAW_ORDER_LIFETIME(1),
-    /**
-     *
-     */
-    DRAW_ORDER_REVERSE_LIFETIME(2),
-    /**
-     * Particles are drawn in order of depth.
-     */
-    DRAW_ORDER_VIEW_DEPTH(3),
     ;
 
     public val id: Long

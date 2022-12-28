@@ -106,7 +106,7 @@ public open class Texture2D : Texture() {
    * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _drawRectRegion(
-    tpCanvasItem: RID,
+    toCanvasItem: RID,
     rect: Rect2,
     srcRect: Rect2,
     modulate: Color,

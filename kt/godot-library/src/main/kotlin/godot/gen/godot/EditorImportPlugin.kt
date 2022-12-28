@@ -281,7 +281,8 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
   /**
    * Gets the options and default values for the preset at this index. Returns an Array of Dictionaries with the following keys: `name`, `default_value`, `property_hint` (optional), `hint_string` (optional), `usage` (optional).
    */
-  public open fun _getImportOptions(path: String, presetIndex: Long): VariantArray<Any?> {
+  public open fun _getImportOptions(path: String, presetIndex: Long):
+      VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_import_options is not implemented for EditorImportPlugin")
   }
 
@@ -379,8 +380,8 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
     sourceFile: String,
     savePath: String,
     options: Dictionary<Any?, Any?>,
-    platformVariants: VariantArray<Any?>,
-    genFiles: VariantArray<Any?>
+    platformVariants: VariantArray<String>,
+    genFiles: VariantArray<String>
   ): Long {
     throw NotImplementedError("_import is not implemented for EditorImportPlugin")
   }

@@ -11,6 +11,7 @@ import godot.core.Color
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -92,11 +93,11 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The Light2D's blend mode. See [enum BlendMode] constants for values.
    */
-  public var blendMode: Long
+  public var blendMode: Light2D.BlendMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_BLEND_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Light2D.BlendMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -204,11 +205,11 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * Shadow filter type. See [enum ShadowFilter] for possible values.
    */
-  public var shadowFilter: Long
+  public var shadowFilter: Light2D.ShadowFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_FILTER, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Light2D.ShadowFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

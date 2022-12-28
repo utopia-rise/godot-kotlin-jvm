@@ -63,6 +63,7 @@ class ClassService(
                     property.shouldUseSuperSetter = true
                 } else {
                     property.shouldUseSuperGetter = true
+                    property.getterMethod = parentClassAndMethod.second
                 }
             }
         }

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Dictionary
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -35,14 +36,14 @@ import kotlin.Unit
 @GodotBaseType
 public object TextServerManager : Object() {
   /**
-   * Emitted when an interface is removed.
-   */
-  public val interfaceRemoved: Signal1<StringName> by signal("interfaceName")
-
-  /**
    * Emitted when a new interface has been added.
    */
   public val interfaceAdded: Signal1<StringName> by signal("interfaceName")
+
+  /**
+   * Emitted when an interface is removed.
+   */
+  public val interfaceRemoved: Signal1<StringName> by signal("interfaceName")
 
   public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_TEXTSERVERMANAGER)
@@ -90,11 +91,11 @@ public object TextServerManager : Object() {
   /**
    * Returns a list of available interfaces the index and name of each interface.
    */
-  public fun getInterfaces(): VariantArray<Any?> {
+  public fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**

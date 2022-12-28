@@ -13,7 +13,6 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
@@ -36,21 +35,15 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class MultiplayerPeer internal constructor() : PacketPeer() {
-  public val connectionFailed: Signal0 by signal()
-
-  public val connectionSucceeded: Signal0 by signal()
-
-  /**
-   * Emitted when a remote peer has disconnected.
-   */
-  public val peerDisconnected: Signal1<Long> by signal("id")
-
   /**
    * Emitted when a remote peer connects.
    */
   public val peerConnected: Signal1<Long> by signal("id")
 
-  public val serverDisconnected: Signal0 by signal()
+  /**
+   * Emitted when a remote peer has disconnected.
+   */
+  public val peerDisconnected: Signal1<Long> by signal("id")
 
   /**
    * If `true`, this [godot.MultiplayerPeer] refuses new connections.
@@ -71,12 +64,12 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * The manner in which to send packets to the target peer. See [enum TransferMode], and the [setTargetPeer] method.
    */
-  public var transferMode: Long
+  public var transferMode: MultiplayerPeer.TransferMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_TRANSFER_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return MultiplayerPeer.TransferMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -129,11 +122,48 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   /**
+   * Returns the channel over which the next available packet was received. See [godot.PacketPeer.getAvailablePacketCount].
+   */
+  public fun getPacketChannel(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_PACKET_CHANNEL,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the [enum MultiplayerPeer.TransferMode] the remote peer used to send the next available packet. See [godot.PacketPeer.getAvailablePacketCount].
+   */
+  public fun getPacketMode(): MultiplayerPeer.TransferMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_PACKET_MODE,
+        LONG)
+    return MultiplayerPeer.TransferMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
    * Waits up to 1 second to receive a new network event.
    */
   public fun poll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_POLL, NIL)
+  }
+
+  /**
+   * Immediately close the multiplayer peer returning to the state [CONNECTION_DISCONNECTED]. Connected peers will be dropped without emitting [peerDisconnected].
+   */
+  public fun close(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_CLOSE, NIL)
+  }
+
+  /**
+   * Disconnects the given [peer] from this host. If [force] is `true` the [peerDisconnected] signal will not be emitted for this peer.
+   */
+  public fun disconnectPeer(peer: Long, force: Boolean = false): Unit {
+    TransferContext.writeArguments(LONG to peer, BOOL to force)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_DISCONNECT_PEER,
+        NIL)
   }
 
   /**
@@ -165,6 +195,16 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns true if the server can act as a relay in the current configuration (i.e. if the higher level [godot.MultiplayerAPI] should notify connected clients of other peers, and implement a relay protocol to allow communication between them).
+   */
+  public fun isServerRelaySupported(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_IS_SERVER_RELAY_SUPPORTED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
   public enum class ConnectionStatus(
     id: Long
   ) {
@@ -180,6 +220,33 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
      * This MultiplayerPeer is connected.
      */
     CONNECTION_CONNECTED(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TransferMode(
+    id: Long
+  ) {
+    /**
+     * Packets are not acknowledged, no resend attempts are made for lost packets. Packets may arrive in any order. Potentially faster than [TRANSFER_MODE_UNRELIABLE_ORDERED]. Use for non-critical data, and always consider whether the order matters.
+     */
+    TRANSFER_MODE_UNRELIABLE(0),
+    /**
+     * Packets are not acknowledged, no resend attempts are made for lost packets. Packets are received in the order they were sent in. Potentially faster than [TRANSFER_MODE_RELIABLE]. Use for non-critical data or data that would be outdated if received late due to resend attempt(s) anyway, for example movement and positional data.
+     */
+    TRANSFER_MODE_UNRELIABLE_ORDERED(1),
+    /**
+     * Packets must be received and resend attempts should be made until the packets are acknowledged. Packets must be received in the order they were sent in. Most reliable transfer mode, but potentially the slowest due to the overhead. Use for critical data that must be transmitted and arrive in order, for example an ability being triggered or a chat message. Consider carefully if the information really is critical, and use sparingly.
+     */
+    TRANSFER_MODE_RELIABLE(2),
     ;
 
     public val id: Long

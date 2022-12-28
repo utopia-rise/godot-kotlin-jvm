@@ -80,15 +80,23 @@ public open class Curve : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_BAKE_RESOLUTION, NIL)
     }
 
+  /**
+   * The number of points describing the curve.
+   */
+  public var pointCount: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_COUNT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_COUNT, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CURVE, scriptIndex)
     return true
-  }
-
-  public fun getPointCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -148,15 +156,21 @@ public open class Curve : Resource() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun interpolate(offset: Double): Double {
+  /**
+   * Returns the Y value for the point that would exist at the X position [offset] along the curve.
+   */
+  public fun sample(offset: Double): Double {
     TransferContext.writeArguments(DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_INTERPOLATE, DOUBLE)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SAMPLE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun interpolateBaked(offset: Double): Double {
+  /**
+   * Returns the Y value for the point that would exist at the X position [offset] along the curve using the baked cache. Bakes the curve's points if not already baked.
+   */
+  public fun sampleBaked(offset: Double): Double {
     TransferContext.writeArguments(DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_INTERPOLATE_BAKED, DOUBLE)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SAMPLE_BAKED, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

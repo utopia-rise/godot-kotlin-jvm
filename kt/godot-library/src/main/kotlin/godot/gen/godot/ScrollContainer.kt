@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -93,12 +94,12 @@ public open class ScrollContainer : Container() {
   /**
    * Controls whether horizontal scrollbar can be used and when it should be visible. See [enum ScrollMode] for options.
    */
-  public var horizontalScrollMode: Long
+  public var horizontalScrollMode: ScrollContainer.ScrollMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_SCROLL_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return ScrollContainer.ScrollMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -109,12 +110,12 @@ public open class ScrollContainer : Container() {
   /**
    * Controls whether vertical scrollbar can be used and when it should be visible. See [enum ScrollMode] for options.
    */
-  public var verticalScrollMode: Long
+  public var verticalScrollMode: ScrollContainer.ScrollMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_SCROLL_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return ScrollContainer.ScrollMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

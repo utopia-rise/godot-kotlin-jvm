@@ -225,11 +225,11 @@ public object Performance : Object() {
   /**
    * Returns the names of active custom monitors in an [godot.Array].
    */
-  public fun getCustomMonitorNames(): VariantArray<Any?> {
+  public fun getCustomMonitorNames(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_CUSTOM_MONITOR_NAMES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>
   }
 
   public enum class Monitor(

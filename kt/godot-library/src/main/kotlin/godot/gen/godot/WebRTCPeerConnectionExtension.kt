@@ -6,10 +6,10 @@
 
 package godot
 
+import godot.WebRTCPeerConnection
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.VariantType.NIL
-import godot.core.memory.TransferContext
+import godot.core.GodotError
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -26,11 +26,19 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
     return true
   }
 
-  public open fun _getConnectionState(): Long {
+  public open fun _getConnectionState(): WebRTCPeerConnection.ConnectionState {
     throw NotImplementedError("_get_connection_state is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _initialize(pConfig: Dictionary<Any?, Any?>): Long {
+  public open fun _getGatheringState(): WebRTCPeerConnection.GatheringState {
+    throw NotImplementedError("_get_gathering_state is not implemented for WebRTCPeerConnectionExtension")
+  }
+
+  public open fun _getSignalingState(): WebRTCPeerConnection.SignalingState {
+    throw NotImplementedError("_get_signaling_state is not implemented for WebRTCPeerConnectionExtension")
+  }
+
+  public open fun _initialize(pConfig: Dictionary<Any?, Any?>): GodotError {
     throw NotImplementedError("_initialize is not implemented for WebRTCPeerConnectionExtension")
   }
 
@@ -38,15 +46,15 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
     throw NotImplementedError("_create_data_channel is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _createOffer(): Long {
+  public open fun _createOffer(): GodotError {
     throw NotImplementedError("_create_offer is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _setRemoteDescription(pType: String, pSdp: String): Long {
+  public open fun _setRemoteDescription(pType: String, pSdp: String): GodotError {
     throw NotImplementedError("_set_remote_description is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _setLocalDescription(pType: String, pSdp: String): Long {
+  public open fun _setLocalDescription(pType: String, pSdp: String): GodotError {
     throw NotImplementedError("_set_local_description is not implemented for WebRTCPeerConnectionExtension")
   }
 
@@ -54,21 +62,15 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
     pSdpMidName: String,
     pSdpMlineIndex: Long,
     pSdpName: String
-  ): Long {
+  ): GodotError {
     throw NotImplementedError("_add_ice_candidate is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _poll(): Long {
+  public open fun _poll(): GodotError {
     throw NotImplementedError("_poll is not implemented for WebRTCPeerConnectionExtension")
   }
 
   public open fun _close(): Unit {
-  }
-
-  public fun makeDefault(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTIONEXTENSION_MAKE_DEFAULT, NIL)
   }
 
   public companion object

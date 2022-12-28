@@ -11,7 +11,9 @@ import godot.core.PackedVector3Array
 import godot.core.RID
 import godot.core.StringName
 import godot.core.Transform3D
+import godot.core.VariantArray
 import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -24,6 +26,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
@@ -63,9 +66,23 @@ public object NavigationServer3D : Object() {
    */
   public val mapChanged: Signal1<RID> by signal("map")
 
+  /**
+   * Emitted when navigation debug settings are changed. Only available in debug builds.
+   */
+  public val navigationDebugChanged: Signal0 by signal()
+
   public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_NAVIGATIONSERVER3D)
     return false
+  }
+
+  /**
+   * Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them.
+   */
+  public fun getMaps(): VariantArray<RID> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_GET_MAPS, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
   }
 
   /**
@@ -89,8 +106,8 @@ public object NavigationServer3D : Object() {
   /**
    * Returns true if the map is active.
    */
-  public fun mapIsActive(nap: RID): Boolean {
-    TransferContext.writeArguments(_RID to nap)
+  public fun mapIsActive(map: RID): Boolean {
+    TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_IS_ACTIVE,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -153,6 +170,25 @@ public object NavigationServer3D : Object() {
   }
 
   /**
+   * Set the map's link connection radius used to connect links to navigation polygons.
+   */
+  public fun mapSetLinkConnectionRadius(map: RID, radius: Double): Unit {
+    TransferContext.writeArguments(_RID to map, DOUBLE to radius)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_LINK_CONNECTION_RADIUS, NIL)
+  }
+
+  /**
+   * Returns the link connection radius of the map. This distance is the maximum range any link will search for navigation mesh polygons to connect to.
+   */
+  public fun mapGetLinkConnectionRadius(map: RID): Double {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_LINK_CONNECTION_RADIUS, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Returns the navigation path to reach the destination from the origin. [navigationLayers] is a bitmask of all region navigation layers that are allowed to be in the path.
    */
   public fun mapGetPath(
@@ -160,9 +196,9 @@ public object NavigationServer3D : Object() {
     origin: Vector3,
     destination: Vector3,
     optimize: Boolean,
-    layers: Long = 1
+    navigationLayers: Long = 1
   ): PackedVector3Array {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to layers)
+    TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to navigationLayers)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_PATH,
         PACKED_VECTOR3_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
@@ -214,6 +250,60 @@ public object NavigationServer3D : Object() {
   }
 
   /**
+   * Returns all navigation link [RID]s that are currently assigned to the requested navigation `map`.
+   */
+  public fun mapGetLinks(map: RID): VariantArray<RID> {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_LINKS,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+  }
+
+  /**
+   * Returns all navigation regions [RID]s that are currently assigned to the requested navigation [map].
+   */
+  public fun mapGetRegions(map: RID): VariantArray<RID> {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_REGIONS,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+  }
+
+  /**
+   * Returns all navigation agents [RID]s that are currently assigned to the requested navigation [map].
+   */
+  public fun mapGetAgents(map: RID): VariantArray<RID> {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_AGENTS,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+  }
+
+  /**
+   * This function immediately forces synchronization of the specified navigation [map] [RID]. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).
+   *
+   * Due to technical restrictions the current NavigationServer command queue will be flushed. This means all already queued update commands for this physics frame will be executed, even those intended for other maps, regions and agents not part of the specified map. The expensive computation of the navigation meshes and region connections of a map will only be done for the specified map. Other maps will receive the normal synchronization at the end of the physics frame. Should the specified map receive changes after the forced update it will update again as well when the other maps receive their update.
+   *
+   * Avoidance processing and dispatch of the `safe_velocity` signals is untouched by this function and continues to happen for all maps and agents at the end of the physics frame.
+   *
+   * **Note:** With great power comes great responsibility. This function should only be used by users that really know what they are doing and have a good reason for it. Forcing an immediate update of a navigation map requires locking the NavigationServer and flushing the entire NavigationServer command queue. Not only can this severely impact the performance of a game but it can also introduce bugs if used inappropriately without much foresight.
+   */
+  public fun mapForceUpdate(map: RID): Unit {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_FORCE_UPDATE,
+        NIL)
+  }
+
+  /**
+   * Queries a path in a given navigation map. Start and target position and other parameters are defined through [godot.NavigationPathQueryParameters3D]. Updates the provided [godot.NavigationPathQueryResult3D] result object with the path among other results requested by the query.
+   */
+  public fun queryPath(parameters: NavigationPathQueryParameters3D,
+      result: NavigationPathQueryResult3D): Unit {
+    TransferContext.writeArguments(OBJECT to parameters, OBJECT to result)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_QUERY_PATH, NIL)
+  }
+
+  /**
    * Creates a new region.
    */
   public fun regionCreate(): RID {
@@ -221,6 +311,58 @@ public object NavigationServer3D : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_CREATE,
         _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Sets the [enterCost] for this [region].
+   */
+  public fun regionSetEnterCost(region: RID, enterCost: Double): Unit {
+    TransferContext.writeArguments(_RID to region, DOUBLE to enterCost)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_ENTER_COST, NIL)
+  }
+
+  /**
+   * Returns the `enter_cost` of this [region].
+   */
+  public fun regionGetEnterCost(region: RID): Double {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_ENTER_COST, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Sets the [travelCost] for this [region].
+   */
+  public fun regionSetTravelCost(region: RID, travelCost: Double): Unit {
+    TransferContext.writeArguments(_RID to region, DOUBLE to travelCost)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_TRAVEL_COST, NIL)
+  }
+
+  /**
+   * Returns the `travel_cost` of this [region].
+   */
+  public fun regionGetTravelCost(region: RID): Double {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_TRAVEL_COST, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns `true` if the provided [point] in world space is currently owned by the provided navigation [region]. Owned in this context means that one of the region's navigation mesh polygon faces has a possible position at the closest distance to this point compared to all other navigation meshes from other navigation regions that are also registered on the navigation map of the provided region.
+   *
+   * If multiple navigation meshes have positions at equal distance the navigation region whose polygons are processed first wins the ownership. Polygons are processed in the same order that navigation regions were registered on the NavigationServer.
+   *
+   * **Note:** If navigation meshes from different navigation regions overlap (which should be avoided in general) the result might not be what is expected.
+   */
+  public fun regionOwnsPoint(region: RID, point: Vector3): Boolean {
+    TransferContext.writeArguments(_RID to region, VECTOR3 to point)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_OWNS_POINT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -232,16 +374,32 @@ public object NavigationServer3D : Object() {
         NIL)
   }
 
-  public fun regionSetLayers(region: RID, layers: Long): Unit {
-    TransferContext.writeArguments(_RID to region, LONG to layers)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_LAYERS, NIL)
+  /**
+   * Returns the navigation map [RID] the requested [region] is currently assigned to.
+   */
+  public fun regionGetMap(region: RID): RID {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_MAP,
+        _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
   }
 
-  public fun regionGetLayers(region: RID): Long {
+  /**
+   * Set the region's navigation layers. This allows selecting regions from a path request (when using [godot.NavigationServer3D.mapGetPath]).
+   */
+  public fun regionSetNavigationLayers(region: RID, navigationLayers: Long): Unit {
+    TransferContext.writeArguments(_RID to region, LONG to navigationLayers)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_NAVIGATION_LAYERS, NIL)
+  }
+
+  /**
+   * Returns the region's navigation layers.
+   */
+  public fun regionGetNavigationLayers(region: RID): Long {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_LAYERS, LONG)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_NAVIGATION_LAYERS, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -303,6 +461,149 @@ public object NavigationServer3D : Object() {
   }
 
   /**
+   * Create a new link between two locations on a map.
+   */
+  public fun linkCreate(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_CREATE,
+        _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Sets the navigation map [RID] for the link.
+   */
+  public fun linkSetMap(link: RID, map: RID): Unit {
+    TransferContext.writeArguments(_RID to link, _RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_MAP,
+        NIL)
+  }
+
+  /**
+   * Returns the navigation map [RID] the requested `link` is currently assigned to.
+   */
+  public fun linkGetMap(link: RID): RID {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_MAP,
+        _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Sets whether this `link` can be travelled in both directions.
+   */
+  public fun linkSetBidirectional(link: RID, bidirectional: Boolean): Unit {
+    TransferContext.writeArguments(_RID to link, BOOL to bidirectional)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_BIDIRECTIONAL, NIL)
+  }
+
+  /**
+   * Returns whether this `link` can be travelled in both directions.
+   */
+  public fun linkIsBidirectional(link: RID): Boolean {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_IS_BIDIRECTIONAL, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Set the links's navigation layers. This allows selecting links from a path request (when using [godot.NavigationServer3D.mapGetPath]).
+   */
+  public fun linkSetNavigationLayers(link: RID, navigationLayers: Long): Unit {
+    TransferContext.writeArguments(_RID to link, LONG to navigationLayers)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_NAVIGATION_LAYERS, NIL)
+  }
+
+  /**
+   * Returns the navigation layers for this `link`.
+   */
+  public fun linkGetNavigationLayers(link: RID): Long {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_NAVIGATION_LAYERS, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets the entry location for this `link`.
+   */
+  public fun linkSetStartLocation(link: RID, location: Vector3): Unit {
+    TransferContext.writeArguments(_RID to link, VECTOR3 to location)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_START_LOCATION, NIL)
+  }
+
+  /**
+   * Returns the starting location of this `link`.
+   */
+  public fun linkGetStartLocation(link: RID): Vector3 {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_START_LOCATION, VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Sets the exit location for the `link`.
+   */
+  public fun linkSetEndLocation(link: RID, location: Vector3): Unit {
+    TransferContext.writeArguments(_RID to link, VECTOR3 to location)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_END_LOCATION, NIL)
+  }
+
+  /**
+   * Returns the ending location of this `link`.
+   */
+  public fun linkGetEndLocation(link: RID): Vector3 {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_END_LOCATION, VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Sets the `enter_cost` for this `link`.
+   */
+  public fun linkSetEnterCost(link: RID, enterCost: Double): Unit {
+    TransferContext.writeArguments(_RID to link, DOUBLE to enterCost)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_ENTER_COST, NIL)
+  }
+
+  /**
+   * Returns the `enter_cost` of this `link`.
+   */
+  public fun linkGetEnterCost(link: RID): Double {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_ENTER_COST, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Sets the `travel_cost` for this `link`.
+   */
+  public fun linkSetTravelCost(link: RID, travelCost: Double): Unit {
+    TransferContext.writeArguments(_RID to link, DOUBLE to travelCost)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_TRAVEL_COST, NIL)
+  }
+
+  /**
+   * Returns the `travel_cost` of this `link`.
+   */
+  public fun linkGetTravelCost(link: RID): Double {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_TRAVEL_COST, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Creates the agent.
    */
   public fun agentCreate(): RID {
@@ -321,10 +622,23 @@ public object NavigationServer3D : Object() {
         NIL)
   }
 
-  public fun agentSetNeighborDist(agent: RID, dist: Double): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to dist)
+  /**
+   * Returns the navigation map [RID] the requested [agent] is currently assigned to.
+   */
+  public fun agentGetMap(agent: RID): RID {
+    TransferContext.writeArguments(_RID to agent)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_GET_MAP,
+        _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Sets the maximum distance to other agents this agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe.
+   */
+  public fun agentSetNeighborDistance(agent: RID, distance: Double): Unit {
+    TransferContext.writeArguments(_RID to agent, DOUBLE to distance)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_NEIGHBOR_DIST, NIL)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_NEIGHBOR_DISTANCE, NIL)
   }
 
   /**
@@ -416,9 +730,12 @@ public object NavigationServer3D : Object() {
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_CALLBACK, NIL)
   }
 
-  public fun free(_object: RID): Unit {
-    TransferContext.writeArguments(_RID to _object)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_FREE, NIL)
+  /**
+   * Destroys the given RID.
+   */
+  public fun freeRid(rid: RID): Unit {
+    TransferContext.writeArguments(_RID to rid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_FREE_RID, NIL)
   }
 
   /**

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -15,9 +16,9 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -57,10 +58,10 @@ public open class RegEx : RefCounted() {
     subject: String,
     offset: Long = 0,
     end: Long = -1
-  ): VariantArray<Any?> {
+  ): VariantArray<RegExMatch> {
     TransferContext.writeArguments(STRING to subject, LONG to offset, LONG to end)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SEARCH_ALL, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RegExMatch>
   }
 
   public fun sub(
@@ -93,10 +94,11 @@ public open class RegEx : RefCounted() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun getNames(): VariantArray<Any?> {
+  public fun getNames(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_NAMES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_NAMES,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   public companion object

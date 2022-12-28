@@ -17,6 +17,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
@@ -44,9 +45,11 @@ import kotlin.Unit
 @GodotBaseType
 public open class PopupMenu : Popup() {
   /**
-   * Emitted when an item of some [index] is pressed or its accelerator is activated.
+   * Emitted when an item of some [id] is pressed or its accelerator is activated.
+   *
+   * **Note:** If [id] is negative (either explicitly or due to overflow), this will return the corresponding index instead.
    */
-  public val indexPressed: Signal1<Long> by signal("index")
+  public val idPressed: Signal1<Long> by signal("id")
 
   /**
    * Emitted when the user navigated to an item of some [id] using the [godot.ProjectSettings.input/uiUp] or [godot.ProjectSettings.input/uiDown] input action.
@@ -54,11 +57,14 @@ public open class PopupMenu : Popup() {
   public val idFocused: Signal1<Long> by signal("id")
 
   /**
-   * Emitted when an item of some [id] is pressed or its accelerator is activated.
-   *
-   * **Note:** If [id] is negative (either explicitly or due to overflow), this will return the corresponding index instead.
+   * Emitted when an item of some [index] is pressed or its accelerator is activated.
    */
-  public val idPressed: Signal1<Long> by signal("id")
+  public val indexPressed: Signal1<Long> by signal("index")
+
+  /**
+   *
+   */
+  public val menuChanged: Signal0 by signal()
 
   /**
    * If `true`, hides the [godot.PopupMenu] when an item is selected.
@@ -141,14 +147,14 @@ public open class PopupMenu : Popup() {
   /**
    * The number of items currently in the list.
    */
-  public var itemCount: Material?
+  public var itemCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_COUNT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_COUNT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_COUNT, NIL)
     }
 
@@ -394,16 +400,6 @@ public open class PopupMenu : Popup() {
         NIL)
   }
 
-  public fun setItemOpentypeFeature(
-    index: Long,
-    tag: String,
-    `value`: Long
-  ): Unit {
-    TransferContext.writeArguments(LONG to index, STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_OPENTYPE_FEATURE,
-        NIL)
-  }
-
   /**
    * Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
@@ -520,6 +516,14 @@ public open class PopupMenu : Popup() {
   }
 
   /**
+   * Sets the horizontal offset of the item at the given [index].
+   */
+  public fun setItemIndent(index: Long, indent: Long): Unit {
+    TransferContext.writeArguments(LONG to index, LONG to indent)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_INDENT, NIL)
+  }
+
+  /**
    * Sets the state of a multistate item. See [addMultistateItem] for details.
    */
   public fun setItemMultistate(index: Long, state: Long): Unit {
@@ -570,19 +574,6 @@ public open class PopupMenu : Popup() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TEXT_DIRECTION,
         LONG)
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public fun getItemOpentypeFeature(index: Long, tag: String): Long {
-    TransferContext.writeArguments(LONG to index, STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_OPENTYPE_FEATURE,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun clearItemOpentypeFeatures(index: Long): Unit {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_POPUPMENU_CLEAR_ITEM_OPENTYPE_FEATURES, NIL)
   }
 
   /**
@@ -729,14 +720,31 @@ public open class PopupMenu : Popup() {
     return TransferContext.readReturnValue(OBJECT, true) as Shortcut?
   }
 
-  public fun setCurrentIndex(index: Long): Unit {
+  /**
+   * Returns the horizontal offset of the item at the given [index].
+   */
+  public fun getItemIndent(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_CURRENT_INDEX, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_INDENT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun getCurrentIndex(): Long {
+  /**
+   * Sets the currently focused item as the given [index].
+   *
+   * Passing `-1` as the index makes so that no item is focused.
+   */
+  public fun setFocusedItem(index: Long): Unit {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_FOCUSED_ITEM, NIL)
+  }
+
+  /**
+   * Returns the index of the currently focused item. Returns `-1` if no item is focused.
+   */
+  public fun getFocusedItem(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_CURRENT_INDEX, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_FOCUSED_ITEM, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

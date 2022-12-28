@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -26,12 +27,12 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * Defines which source should be used for the sampling. See [enum Source] for options.
    */
-  public var source: Long
+  public var source: VisualShaderNodeCubemap.Source
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_GET_SOURCE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeCubemap.Source.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -58,12 +59,12 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * Defines the type of data provided by the source texture. See [enum TextureType] for options.
    */
-  public var textureType: Long
+  public var textureType: VisualShaderNodeCubemap.TextureType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_GET_TEXTURE_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeCubemap.TextureType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -74,6 +75,33 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODECUBEMAP, scriptIndex)
     return true
+  }
+
+  public enum class Source(
+    id: Long
+  ) {
+    /**
+     * Use the [godot.Cubemap] set via [cubeMap]. If this is set to [source], the `samplerCube` port is ignored.
+     */
+    SOURCE_TEXTURE(0),
+    /**
+     * Use the [godot.Cubemap] sampler reference passed via the `samplerCube` port. If this is set to [source], the [cubeMap] texture is ignored.
+     */
+    SOURCE_PORT(1),
+    /**
+     * Represents the size of the [enum Source] enum.
+     */
+    SOURCE_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class TextureType(
@@ -95,33 +123,6 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
      * Represents the size of the [enum TextureType] enum.
      */
     TYPE_MAX(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class Source(
-    id: Long
-  ) {
-    /**
-     * Use the [godot.Cubemap] set via [cubeMap]. If this is set to [source], the `samplerCube` port is ignored.
-     */
-    SOURCE_TEXTURE(0),
-    /**
-     * Use the [godot.Cubemap] sampler reference passed via the `samplerCube` port. If this is set to [source], the [cubeMap] texture is ignored.
-     */
-    SOURCE_PORT(1),
-    /**
-     * Represents the size of the [enum Source] enum.
-     */
-    SOURCE_MAX(2),
     ;
 
     public val id: Long

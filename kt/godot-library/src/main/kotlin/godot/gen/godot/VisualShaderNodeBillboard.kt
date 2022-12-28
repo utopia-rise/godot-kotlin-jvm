@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -26,12 +27,12 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   /**
    * Controls how the object faces the camera. See [enum BillboardType].
    */
-  public var billboardType: Long
+  public var billboardType: VisualShaderNodeBillboard.BillboardType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_GET_BILLBOARD_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeBillboard.BillboardType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

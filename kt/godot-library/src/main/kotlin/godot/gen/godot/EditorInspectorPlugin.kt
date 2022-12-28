@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
@@ -107,8 +108,12 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   /**
    * Adds a property editor for an individual property. The [editor] control must extend [godot.EditorProperty].
    */
-  public fun addPropertyEditor(`property`: String, editor: Control): Unit {
-    TransferContext.writeArguments(STRING to property, OBJECT to editor)
+  public fun addPropertyEditor(
+    `property`: String,
+    editor: Control,
+    addToEnd: Boolean = false
+  ): Unit {
+    TransferContext.writeArguments(STRING to property, OBJECT to editor, BOOL to addToEnd)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_PROPERTY_EDITOR, NIL)
   }

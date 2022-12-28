@@ -7,38 +7,45 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class OpenXRActionMap : Resource() {
-  public var actionSets: OpenXRActionSet?
+  public var actionSets: VariantArray<Any?>?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_ACTION_SETS,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as OpenXRActionSet?
+          ARRAY)
+      return TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_SET_ACTION_SETS,
           NIL)
     }
 
-  public var interactionProfiles: OpenXRInteractionProfile?
+  public var interactionProfiles: VariantArray<Any?>?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_INTERACTION_PROFILES, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as OpenXRInteractionProfile?
+          ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_INTERACTION_PROFILES, ARRAY)
+      return TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_SET_INTERACTION_PROFILES, NIL)
     }
@@ -46,6 +53,27 @@ public open class OpenXRActionMap : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_OPENXRACTIONMAP, scriptIndex)
     return true
+  }
+
+  public fun getActionSetCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_ACTION_SET_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public fun findActionSet(name: String): OpenXRActionSet? {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_FIND_ACTION_SET,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as OpenXRActionSet?
+  }
+
+  public fun getActionSet(idx: Long): OpenXRActionSet? {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_ACTION_SET,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as OpenXRActionSet?
   }
 
   public fun addActionSet(actionSet: OpenXRActionSet): Unit {
@@ -57,6 +85,27 @@ public open class OpenXRActionMap : Resource() {
     TransferContext.writeArguments(OBJECT to actionSet)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_REMOVE_ACTION_SET,
         NIL)
+  }
+
+  public fun getInteractionProfileCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_INTERACTION_PROFILE_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public fun findInteractionProfile(name: String): OpenXRInteractionProfile? {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_FIND_INTERACTION_PROFILE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as OpenXRInteractionProfile?
+  }
+
+  public fun getInteractionProfile(idx: Long): OpenXRInteractionProfile? {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_INTERACTION_PROFILE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as OpenXRInteractionProfile?
   }
 
   public fun addInteractionProfile(interactionProfile: OpenXRInteractionProfile): Unit {

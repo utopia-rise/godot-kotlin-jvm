@@ -11,6 +11,7 @@ import godot.core.NodePath
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -18,6 +19,8 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -39,14 +42,19 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationTree : Node() {
   /**
+   * Emitted when the [animPlayer] is changed.
+   */
+  public val animationPlayerChanged: Signal0 by signal()
+
+  /**
    * The root animation node of this [godot.AnimationTree]. See [godot.AnimationNode].
    */
-  public var treeRoot: AnimationRootNode?
+  public var treeRoot: AnimationNode?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_TREE_ROOT,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
+      return TransferContext.readReturnValue(OBJECT, true) as AnimationNode?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -70,6 +78,22 @@ public open class AnimationTree : Node() {
     }
 
   /**
+   * The path to the [godot.Node] used to evaluate the AnimationNode [godot.Expression] if one is not explicitly specified internally.
+   */
+  public var advanceExpressionBaseNode: NodePath
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ADVANCE_EXPRESSION_BASE_NODE, NODE_PATH)
+      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+    }
+    set(`value`) {
+      TransferContext.writeArguments(NODE_PATH to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_SET_ADVANCE_EXPRESSION_BASE_NODE, NIL)
+    }
+
+  /**
    * If `true`, the [godot.AnimationTree] will be processing.
    */
   public var active: Boolean
@@ -86,12 +110,12 @@ public open class AnimationTree : Node() {
   /**
    * The process mode of this [godot.AnimationTree]. See [enum AnimationProcessCallback] for available modes.
    */
-  public var processCallback: Long
+  public var processCallback: AnimationTree.AnimationProcessCallback
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_PROCESS_CALLBACK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AnimationTree.AnimationProcessCallback.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

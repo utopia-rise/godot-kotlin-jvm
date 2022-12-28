@@ -14,7 +14,6 @@ import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -55,19 +54,6 @@ public open class VisualShader : Shader() {
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_GRAPH_OFFSET,
-          NIL)
-    }
-
-  public var engineVersion: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_ENGINE_VERSION,
-          DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_ENGINE_VERSION,
           NIL)
     }
 
@@ -247,11 +233,11 @@ public open class VisualShader : Shader() {
   /**
    * Returns the list of connected nodes with the specified type.
    */
-  public fun getNodeConnections(type: VisualShader.Type): VariantArray<Any?> {
+  public fun getNodeConnections(type: VisualShader.Type): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_CONNECTIONS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -281,69 +267,6 @@ public open class VisualShader : Shader() {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_HAS_VARYING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public enum class VaryingMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VARYING_MODE_VERTEX_TO_FRAG_LIGHT(0),
-    /**
-     *
-     */
-    VARYING_MODE_FRAG_TO_LIGHT(1),
-    /**
-     *
-     */
-    VARYING_MODE_MAX(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class VaryingType(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VARYING_TYPE_FLOAT(0),
-    /**
-     *
-     */
-    VARYING_TYPE_VECTOR_2D(1),
-    /**
-     *
-     */
-    VARYING_TYPE_VECTOR_3D(2),
-    VARYING_TYPE_COLOR(3),
-    /**
-     *
-     */
-    VARYING_TYPE_TRANSFORM(4),
-    /**
-     *
-     */
-    VARYING_TYPE_MAX(5),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public enum class Type(
@@ -393,6 +316,80 @@ public open class VisualShader : Shader() {
      * Represents the size of the [enum Type] enum.
      */
     TYPE_MAX(10),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VaryingMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VARYING_MODE_VERTEX_TO_FRAG_LIGHT(0),
+    /**
+     *
+     */
+    VARYING_MODE_FRAG_TO_LIGHT(1),
+    /**
+     *
+     */
+    VARYING_MODE_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VaryingType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VARYING_TYPE_FLOAT(0),
+    /**
+     *
+     */
+    VARYING_TYPE_INT(1),
+    /**
+     *
+     */
+    VARYING_TYPE_VECTOR_2D(2),
+    /**
+     *
+     */
+    VARYING_TYPE_VECTOR_3D(3),
+    /**
+     *
+     */
+    VARYING_TYPE_VECTOR_4D(4),
+    /**
+     *
+     */
+    VARYING_TYPE_BOOLEAN(5),
+    /**
+     *
+     */
+    VARYING_TYPE_TRANSFORM(6),
+    /**
+     *
+     */
+    VARYING_TYPE_MAX(7),
     ;
 
     public val id: Long

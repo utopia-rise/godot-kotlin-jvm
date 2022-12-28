@@ -152,6 +152,20 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
+   * Global skew in radians.
+   */
+  public var globalSkew: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_GLOBAL_SKEW, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_SKEW, NIL)
+    }
+
+  /**
    * Global [godot.core.Transform2D].
    */
   public var globalTransform: Transform2D

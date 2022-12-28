@@ -105,13 +105,6 @@ public open class VisualInstance3D : Node3D() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public fun getTransformedAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_TRANSFORMED_AABB, godot.core.VariantType.AABB)
-    return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
-  }
-
   /**
    * Returns the [AABB] (also known as the bounding box) for this [godot.VisualInstance3D].
    */

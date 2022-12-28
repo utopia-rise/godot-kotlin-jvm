@@ -11,6 +11,7 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -24,11 +25,11 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class CSGShape3D internal constructor() : GeometryInstance3D() {
-  public var operation: Long
+  public var operation: CSGShape3D.Operation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_OPERATION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CSGShape3D.Operation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -94,6 +95,19 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_SET_COLLISION_MASK,
+          NIL)
+    }
+
+  public var collisionPriority: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_COLLISION_PRIORITY,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_SET_COLLISION_PRIORITY,
           NIL)
     }
 

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -25,12 +26,12 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   /**
    * An input source type.
    */
-  public var source: Long
+  public var source: VisualShaderNodeSample3D.Source
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESAMPLE3D_GET_SOURCE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeSample3D.Source.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

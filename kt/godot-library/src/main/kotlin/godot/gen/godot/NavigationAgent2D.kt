@@ -17,7 +17,6 @@ import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
-import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
@@ -44,9 +43,9 @@ public open class NavigationAgent2D : Node() {
   public val pathChanged: Signal0 by signal()
 
   /**
-   * Notifies when the collision avoidance velocity is calculated. Emitted by [setVelocity]. Only emitted when [avoidanceEnabled] is true.
+   * Notifies when the player-defined [targetLocation] is reached.
    */
-  public val velocityComputed: Signal1<Vector3> by signal("safeVelocity")
+  public val targetReached: Signal0 by signal()
 
   /**
    * Notifies when the final location is reached.
@@ -54,9 +53,41 @@ public open class NavigationAgent2D : Node() {
   public val navigationFinished: Signal0 by signal()
 
   /**
-   * Notifies when the player-defined [targetLocation] is reached.
+   * Notifies when the collision avoidance velocity is calculated. Emitted by [setVelocity]. Only emitted when [avoidanceEnabled] is true.
    */
-  public val targetReached: Signal0 by signal()
+  public val velocityComputed: Signal1<Vector2> by signal("safeVelocity")
+
+  /**
+   * The user-defined target location. Setting this property will clear the current navigation path.
+   */
+  public var targetLocation: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_TARGET_LOCATION, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_TARGET_LOCATION, NIL)
+    }
+
+  /**
+   * The distance threshold before a path point is considered to be reached. This will allow an agent to not have to hit a path point on the path exactly, but in the area. If this value is set to high the NavigationAgent will skip points on the path which can lead to leaving the navigation mesh. If this value is set to low the NavigationAgent will be stuck in a repath loop cause it will constantly overshoot or undershoot the distance to the next point on each physics frame update.
+   */
+  public var pathDesiredDistance: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATH_DESIRED_DISTANCE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_DESIRED_DISTANCE, NIL)
+    }
 
   /**
    * The distance threshold before the final target point is considered to be reached. This will allow an agent to not have to hit the point of the final target exactly, but only the area. If this value is set to low the NavigationAgent will be stuck in a repath loop cause it will constantly overshoot or undershoot the distance to the final target point on each physics frame update.
@@ -72,6 +103,54 @@ public open class NavigationAgent2D : Node() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_TARGET_DESIRED_DISTANCE, NIL)
+    }
+
+  /**
+   * The maximum distance the agent is allowed away from the ideal path to the final location. This can happen due to trying to avoid collisions. When the maximum distance is exceeded, it recalculates the ideal path.
+   */
+  public var pathMaxDistance: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATH_MAX_DISTANCE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_MAX_DISTANCE, NIL)
+    }
+
+  /**
+   * A bitfield determining what navigation layers of navigation regions this agent will use to calculate path. Changing it runtime will clear current navigation path and generate new one, according to new navigation layers.
+   */
+  public var navigationLayers: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NAVIGATION_LAYERS, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION_LAYERS, NIL)
+    }
+
+  /**
+   * If `true` the agent is registered for an RVO avoidance callback on the [godot.NavigationServer2D]. When [godot.NavigationAgent2D.setVelocity] is used and the processing is completed a `safe_velocity` Vector2 is received with a signal connection to [velocityComputed]. Avoidance processing with many registered agents has a significant performance cost and should only be enabled on agents that currently require it.
+   */
+  public var avoidanceEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_AVOIDANCE_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_ENABLED, NIL)
     }
 
   /**
@@ -91,17 +170,20 @@ public open class NavigationAgent2D : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_RADIUS, NIL)
     }
 
-  public var neighborDist: Double
+  /**
+   * The distance to search for other agents.
+   */
+  public var neighborDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NEIGHBOR_DIST, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NEIGHBOR_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NEIGHBOR_DIST, NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NEIGHBOR_DISTANCE, NIL)
     }
 
   /**
@@ -152,22 +234,6 @@ public open class NavigationAgent2D : Node() {
           NIL)
     }
 
-  /**
-   * The maximum distance the agent is allowed away from the ideal path to the final location. This can happen due to trying to avoid collisions. When the maximum distance is exceeded, it recalculates the ideal path.
-   */
-  public var pathMaxDistance: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATH_MAX_DISTANCE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_MAX_DISTANCE, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_NAVIGATIONAGENT2D, scriptIndex)
     return true
@@ -182,17 +248,42 @@ public open class NavigationAgent2D : Node() {
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
-  public fun setTargetLocation(location: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to location)
+  /**
+   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.
+   */
+  public fun setNavigationLayerValue(layerNumber: Long, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_TARGET_LOCATION, NIL)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION_LAYER_VALUE, NIL)
   }
 
-  public fun getTargetLocation(): Vector2 {
+  /**
+   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
+   */
+  public fun getNavigationLayerValue(layerNumber: Long): Boolean {
+    TransferContext.writeArguments(LONG to layerNumber)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NAVIGATION_LAYER_VALUE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the [RID] of the navigation map this NavigationAgent node should use and also updates the `agent` on the NavigationServer.
+   */
+  public fun setNavigationMap(navigationMap: RID): Unit {
+    TransferContext.writeArguments(_RID to navigationMap)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION_MAP, NIL)
+  }
+
+  /**
+   * Returns the [RID] of the navigation map for this NavigationAgent node. This function returns always the map set on the NavigationAgent node and not the map of the abstract agent on the NavigationServer. If the agent map is changed directly with the NavigationServer API the NavigationAgent node will not be aware of the map change. Use [setNavigationMap] to change the navigation map for the NavigationAgent and also update the agent on the NavigationServer.
+   */
+  public fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_TARGET_LOCATION, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NAVIGATION_MAP, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
   }
 
   /**

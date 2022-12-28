@@ -12,6 +12,7 @@ import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_COLOR_ARRAY
@@ -36,12 +37,12 @@ public open class Gradient : Resource() {
   /**
    * Defines how the colors between points of the gradient are interpolated. See [enum InterpolationMode] for available modes.
    */
-  public var interpolationMode: Long
+  public var interpolationMode: Gradient.InterpolationMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_INTERPOLATION_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Gradient.InterpolationMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -142,9 +143,12 @@ public open class Gradient : Resource() {
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
-  public fun interpolate(offset: Double): Color {
+  /**
+   * Returns the interpolated color specified by `offset`.
+   */
+  public fun sample(offset: Double): Color {
     TransferContext.writeArguments(DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_INTERPOLATE, COLOR)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SAMPLE, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 

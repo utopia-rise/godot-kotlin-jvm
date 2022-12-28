@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -64,12 +65,12 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * Decides if audio should get quieter with distance linearly, quadratically, logarithmically, or not be affected by distance, effectively disabling attenuation.
    */
-  public var attenuationModel: Long
+  public var attenuationModel: AudioStreamPlayer3D.AttenuationModel
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_GET_ATTENUATION_MODEL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AudioStreamPlayer3D.AttenuationModel.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -77,16 +78,19 @@ public open class AudioStreamPlayer3D : Node3D() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_ATTENUATION_MODEL, NIL)
     }
 
-  public var unitDb: Double
+  /**
+   * The base sound level unaffected by dampening, in decibels.
+   */
+  public var volumeDb: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_GET_UNIT_DB,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_GET_VOLUME_DB,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_UNIT_DB,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_VOLUME_DB,
           NIL)
     }
 
@@ -214,6 +218,22 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
+   * Scales the panning strength for this node by multiplying the base [godot.ProjectSettings.audio/general/3dPanningStrength] with this factor. Higher values will pan audio from left to right more dramatically than lower values.
+   */
+  public var panningStrength: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_GET_PANNING_STRENGTH, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_PANNING_STRENGTH, NIL)
+    }
+
+  /**
    * The bus on which this audio is playing.
    *
    * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
@@ -331,12 +351,12 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * Decides in which step the Doppler effect should be calculated.
    */
-  public var dopplerTracking: Long
+  public var dopplerTracking: AudioStreamPlayer3D.DopplerTracking
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_GET_DOPPLER_TRACKING, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AudioStreamPlayer3D.DopplerTracking.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

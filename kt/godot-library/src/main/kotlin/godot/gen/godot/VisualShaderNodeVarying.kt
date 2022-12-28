@@ -7,14 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.StringName
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 
 /**
@@ -25,15 +25,15 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   /**
    *
    */
-  public var varyingName: StringName
+  public var varyingName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_GET_VARYING_NAME, STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_GET_VARYING_NAME, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
+      TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_SET_VARYING_NAME, NIL)
     }
@@ -41,12 +41,12 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   /**
    *
    */
-  public var varyingType: Long
+  public var varyingType: VisualShader.VaryingType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_GET_VARYING_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShader.VaryingType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

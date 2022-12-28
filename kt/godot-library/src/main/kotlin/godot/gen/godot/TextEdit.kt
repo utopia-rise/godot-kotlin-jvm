@@ -10,6 +10,7 @@ import godot.TextEdit
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Color
+import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.Rect2i
 import godot.core.VariantArray
@@ -23,6 +24,7 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.RECT2I
 import godot.core.VariantType.STRING
@@ -55,14 +57,14 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextEdit : Control() {
   /**
-   * Emitted when a gutter is removed.
+   * Emitted when [clear] is called or [text] is set.
    */
-  public val gutterRemoved: Signal0 by signal()
+  public val textSet: Signal0 by signal()
 
   /**
-   * Emitted when a gutter is added.
+   * Emitted when the text changes.
    */
-  public val gutterAdded: Signal0 by signal()
+  public val textChanged: Signal0 by signal()
 
   /**
    * Emitted immediately when the text changes.
@@ -72,24 +74,24 @@ public open class TextEdit : Control() {
   public val linesEditedFrom: Signal2<Long, Long> by signal("fromLine", "toLine")
 
   /**
-   * Emitted when the text changes.
-   */
-  public val textChanged: Signal0 by signal()
-
-  /**
    * Emitted when the caret changes position.
    */
   public val caretChanged: Signal0 by signal()
 
   /**
-   * Emitted when [clear] is called or [text] is set.
-   */
-  public val textSet: Signal0 by signal()
-
-  /**
    * Emitted when a gutter is clicked.
    */
   public val gutterClicked: Signal2<Long, Long> by signal("line", "gutter")
+
+  /**
+   * Emitted when a gutter is added.
+   */
+  public val gutterAdded: Signal0 by signal()
+
+  /**
+   * Emitted when a gutter is removed.
+   */
+  public val gutterRemoved: Signal0 by signal()
 
   /**
    * String value of the [godot.TextEdit].
@@ -117,34 +119,6 @@ public open class TextEdit : Control() {
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_PLACEHOLDER, NIL)
-    }
-
-  /**
-   * Base text writing direction.
-   */
-  public var textDirection: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TEXT_DIRECTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TEXT_DIRECTION, NIL)
-    }
-
-  /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
-   */
-  public var language: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LANGUAGE, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LANGUAGE, NIL)
     }
 
   /**
@@ -228,6 +202,22 @@ public open class TextEdit : Control() {
     }
 
   /**
+   * If `true`, allow drag and drop of selected text.
+   */
+  public var dragAndDropSelectionEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAG_AND_DROP_SELECTION_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAG_AND_DROP_SELECTION_ENABLED, NIL)
+    }
+
+  /**
    * If `true`, the native virtual keyboard is shown when focused on platforms that support it.
    */
   public var virtualKeyboardEnabled: Boolean
@@ -264,30 +254,17 @@ public open class TextEdit : Control() {
   /**
    * Sets the line wrapping mode to use.
    */
-  public var wrapMode: Long
+  public var wrapMode: TextEdit.LineWrappingMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPING_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextEdit.LineWrappingMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_WRAPPING_MODE,
           NIL)
-    }
-
-  public var overrideSelectedFontColor: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_OVERRIDING_SELECTED_FONT_COLOR, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OVERRIDE_SELECTED_FONT_COLOR, NIL)
     }
 
   /**
@@ -394,8 +371,8 @@ public open class TextEdit : Control() {
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SMOOTH_SCROLL_ENABLE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SMOOTH_SCROLL_ENABLED, NIL)
     }
 
   /**
@@ -458,6 +435,22 @@ public open class TextEdit : Control() {
     }
 
   /**
+   * If `true`, [godot.TextEdit] will disable vertical scroll and fit minimum height to the number of visible lines.
+   */
+  public var scrollFitContentHeight: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_FIT_CONTENT_HEIGHT_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_FIT_CONTENT_HEIGHT_ENABLED, NIL)
+    }
+
+  /**
    * If `true`, a minimap is shown, providing an outline of your source code.
    */
   public var minimapDraw: Boolean
@@ -488,11 +481,11 @@ public open class TextEdit : Control() {
   /**
    * Set the type of caret to draw.
    */
-  public var caretType: Long
+  public var caretType: TextEdit.CaretType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextEdit.CaretType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -515,16 +508,19 @@ public open class TextEdit : Control() {
           NIL)
     }
 
-  public var caretBlinkSpeed: Double
+  /**
+   * Duration (in seconds) of a caret's blinking cycle.
+   */
+  public var caretBlinkInterval: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_BLINK_SPEED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_BLINK_INTERVAL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_BLINK_SPEED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_BLINK_INTERVAL,
           NIL)
     }
 
@@ -565,14 +561,58 @@ public open class TextEdit : Control() {
     }
 
   /**
+   * Sets if multiple carets are allowed.
+   */
+  public var caretMultiple: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MULTIPLE_CARETS_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MULTIPLE_CARETS_ENABLED, NIL)
+    }
+
+  /**
+   * Base text writing direction.
+   */
+  public var textDirection: Control.TextDirection
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TEXT_DIRECTION, LONG)
+      return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TEXT_DIRECTION, NIL)
+    }
+
+  /**
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   */
+  public var language: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LANGUAGE, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LANGUAGE, NIL)
+    }
+
+  /**
    * Set BiDi algorithm override for the structured text.
    */
-  public var structuredTextBidiOverride: Long
+  public var structuredTextBidiOverride: TextServer.StructuredTextParser
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.StructuredTextParser.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -604,31 +644,31 @@ public open class TextEdit : Control() {
   /**
    * Override this method to define what happens when the user types in the provided key [unicodeChar].
    */
-  public open fun _handleUnicodeInput(unicodeChar: Long): Unit {
+  public open fun _handleUnicodeInput(unicodeChar: Long, caretIndex: Long): Unit {
   }
 
   /**
    * Override this method to define what happens when the user presses the backspace key.
    */
-  public open fun _backspace(): Unit {
+  public open fun _backspace(caretIndex: Long): Unit {
   }
 
   /**
    * Override this method to define what happens when the user performs a cut operation.
    */
-  public open fun _cut(): Unit {
+  public open fun _cut(caretIndex: Long): Unit {
   }
 
   /**
    * Override this method to define what happens when the user performs a copy operation.
    */
-  public open fun _copy(): Unit {
+  public open fun _copy(caretIndex: Long): Unit {
   }
 
   /**
    * Override this method to define what happens when the user performs a paste operation.
    */
-  public open fun _paste(): Unit {
+  public open fun _paste(caretIndex: Long): Unit {
   }
 
   /**
@@ -636,7 +676,7 @@ public open class TextEdit : Control() {
    *
    * **Note:** This method is only implemented on Linux.
    */
-  public open fun _pastePrimaryClipboard(): Unit {
+  public open fun _pastePrimaryClipboard(caretIndex: Long): Unit {
   }
 
   /**
@@ -646,23 +686,6 @@ public open class TextEdit : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_IME_TEXT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
-    TransferContext.writeArguments(STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OPENTYPE_FEATURE, NIL)
-  }
-
-  public fun getOpentypeFeature(tag: String): Long {
-    TransferContext.writeArguments(STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_OPENTYPE_FEATURE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun clearOpentypeFeatures(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR_OPENTYPE_FEATURES,
-        NIL)
   }
 
   /**
@@ -791,8 +814,8 @@ public open class TextEdit : Control() {
   /**
    * Insert the specified text at the caret position.
    */
-  public fun insertTextAtCaret(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
+  public fun insertTextAtCaret(text: String, caretIndex: Long = -1): Unit {
+    TransferContext.writeArguments(STRING to text, LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_INSERT_TEXT_AT_CARET, NIL)
   }
 
@@ -848,33 +871,60 @@ public open class TextEdit : Control() {
   /**
    * Called when the user presses the backspace key. Can be overridden with [_backspace].
    */
-  public fun backspace(): Unit {
-    TransferContext.writeArguments()
+  public fun backspace(caretIndex: Long = -1): Unit {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_BACKSPACE, NIL)
   }
 
   /**
    * Cut's the current selection. Can be overridden with [_cut].
    */
-  public fun cut(): Unit {
-    TransferContext.writeArguments()
+  public fun cut(caretIndex: Long = -1): Unit {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CUT, NIL)
   }
 
   /**
    * Copies the current text selection. Can be overridden with [_copy].
    */
-  public fun copy(): Unit {
-    TransferContext.writeArguments()
+  public fun copy(caretIndex: Long = -1): Unit {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_COPY, NIL)
   }
 
   /**
    * Paste at the current location. Can be overridden with [_paste].
    */
-  public fun paste(): Unit {
-    TransferContext.writeArguments()
+  public fun paste(caretIndex: Long = -1): Unit {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_PASTE, NIL)
+  }
+
+  /**
+   * Pastes the primary clipboard.
+   */
+  public fun pastePrimaryClipboard(caretIndex: Long = -1): Unit {
+    TransferContext.writeArguments(LONG to caretIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_PASTE_PRIMARY_CLIPBOARD,
+        NIL)
+  }
+
+  /**
+   * Starts an action, will end the current action if `action` is different.
+   *
+   * An action will also end after a call to [endAction], after [godot.ProjectSettings.gui/timers/textEditIdleDetectSec] is triggered or a new undoable step outside the [startAction] and [endAction] calls.
+   */
+  public fun startAction(action: TextEdit.EditAction): Unit {
+    TransferContext.writeArguments(LONG to action.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_START_ACTION, NIL)
+  }
+
+  /**
+   * Marks the end of steps in the current action started with [startAction].
+   */
+  public fun endAction(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_END_ACTION, NIL)
   }
 
   /**
@@ -1114,18 +1164,99 @@ public open class TextEdit : Control() {
   /**
    * Returns whether the mouse is over selection. If [edges] is `true`, the edges are considered part of the selection.
    */
-  public fun isMouseOverSelection(edges: Boolean): Boolean {
-    TransferContext.writeArguments(BOOL to edges)
+  public fun isMouseOverSelection(edges: Boolean, caretIndex: Long = -1): Boolean {
+    TransferContext.writeArguments(BOOL to edges, LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MOUSE_OVER_SELECTION,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
+   * Adds a new caret at the given location. Returns the index of the new caret, or `-1` if the location is invalid.
+   */
+  public fun addCaret(line: Long, col: Long): Long {
+    TransferContext.writeArguments(LONG to line, LONG to col)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADD_CARET, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Removes the given caret index.
+   *
+   * **Note:** This can result in adjustment of all other caret indices.
+   */
+  public fun removeCaret(caret: Long): Unit {
+    TransferContext.writeArguments(LONG to caret)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_CARET, NIL)
+  }
+
+  /**
+   * Removes all additional carets.
+   */
+  public fun removeSecondaryCarets(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_SECONDARY_CARETS,
+        NIL)
+  }
+
+  /**
+   * Merges any overlapping carets. Will favour the newest caret, or the caret with a selection.
+   *
+   * **Note:** This is not called when a caret changes position but after certain actions, so it is possible to get into a state where carets overlap.
+   */
+  public fun mergeOverlappingCarets(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_MERGE_OVERLAPPING_CARETS,
+        NIL)
+  }
+
+  /**
+   * Returns the number of carets in this [godot.TextEdit].
+   */
+  public fun getCaretCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Adds an additional caret above or below every caret. If [below] is true the new caret will be added below and above otherwise.
+   */
+  public fun addCaretAtCarets(below: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to below)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADD_CARET_AT_CARETS, NIL)
+  }
+
+  /**
+   * Returns a list of caret indexes in their edit order, this done from bottom to top. Edit order refers to the way actions such as [insertTextAtCaret] are applied.
+   */
+  public fun getCaretIndexEditOrder(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_INDEX_EDIT_ORDER,
+        PACKED_INT_32_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+  }
+
+  /**
+   * Reposition the carets affected by the edit. This assumes edits are applied in edit order, see [getCaretIndexEditOrder].
+   */
+  public fun adjustCaretsAfterEdit(
+    caret: Long,
+    fromLine: Long,
+    fromCol: Long,
+    toLine: Long,
+    toCol: Long
+  ): Unit {
+    TransferContext.writeArguments(LONG to caret, LONG to fromLine, LONG to fromCol, LONG to toLine, LONG to toCol)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADJUST_CARETS_AFTER_EDIT,
+        NIL)
+  }
+
+  /**
    * Returns `true` if the caret is visible on the screen.
    */
-  public fun isCaretVisible(): Boolean {
-    TransferContext.writeArguments()
+  public fun isCaretVisible(caretIndex: Long = 0): Boolean {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_VISIBLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -1133,8 +1264,8 @@ public open class TextEdit : Control() {
   /**
    * Returns the caret pixel draw position.
    */
-  public fun getCaretDrawPos(): Vector2 {
-    TransferContext.writeArguments()
+  public fun getCaretDrawPos(caretIndex: Long = 0): Vector2 {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_DRAW_POS,
         VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -1153,17 +1284,18 @@ public open class TextEdit : Control() {
     line: Long,
     adjustViewport: Boolean = true,
     canBeHidden: Boolean = true,
-    wrapIndex: Long = 0
+    wrapIndex: Long = 0,
+    caretIndex: Long = 0
   ): Unit {
-    TransferContext.writeArguments(LONG to line, BOOL to adjustViewport, BOOL to canBeHidden, LONG to wrapIndex)
+    TransferContext.writeArguments(LONG to line, BOOL to adjustViewport, BOOL to canBeHidden, LONG to wrapIndex, LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_LINE, NIL)
   }
 
   /**
    * Returns the line the editing caret is on.
    */
-  public fun getCaretLine(): Long {
-    TransferContext.writeArguments()
+  public fun getCaretLine(caretIndex: Long = 0): Long {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_LINE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -1175,16 +1307,20 @@ public open class TextEdit : Control() {
    *
    * **Note:** If supporting multiple carets this will not check for any overlap. See [mergeOverlappingCarets].
    */
-  public fun setCaretColumn(column: Long, adjustViewport: Boolean = true): Unit {
-    TransferContext.writeArguments(LONG to column, BOOL to adjustViewport)
+  public fun setCaretColumn(
+    column: Long,
+    adjustViewport: Boolean = true,
+    caretIndex: Long = 0
+  ): Unit {
+    TransferContext.writeArguments(LONG to column, BOOL to adjustViewport, LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_COLUMN, NIL)
   }
 
   /**
    * Returns the column the editing caret is at.
    */
-  public fun getCaretColumn(): Long {
-    TransferContext.writeArguments()
+  public fun getCaretColumn(caretIndex: Long = 0): Long {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_COLUMN, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -1192,8 +1328,8 @@ public open class TextEdit : Control() {
   /**
    * Returns the wrap index the editing caret is on.
    */
-  public fun getCaretWrapIndex(): Long {
-    TransferContext.writeArguments()
+  public fun getCaretWrapIndex(caretIndex: Long = 0): Long {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_WRAP_INDEX, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -1201,8 +1337,8 @@ public open class TextEdit : Control() {
   /**
    * Returns a [godot.String] text with the word under the caret's location.
    */
-  public fun getWordUnderCaret(): String {
-    TransferContext.writeArguments()
+  public fun getWordUnderCaret(caretIndex: Long = -1): String {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_WORD_UNDER_CARET,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1214,9 +1350,10 @@ public open class TextEdit : Control() {
   public fun setSelectionMode(
     mode: TextEdit.SelectionMode,
     line: Long = -1,
-    column: Long = -1
+    column: Long = -1,
+    caretIndex: Long = 0
   ): Unit {
-    TransferContext.writeArguments(LONG to mode.id, LONG to line, LONG to column)
+    TransferContext.writeArguments(LONG to mode.id, LONG to line, LONG to column, LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SELECTION_MODE, NIL)
   }
 
@@ -1242,10 +1379,19 @@ public open class TextEdit : Control() {
   /**
    * Selects the word under the caret.
    */
-  public fun selectWordUnderCaret(): Unit {
-    TransferContext.writeArguments()
+  public fun selectWordUnderCaret(caretIndex: Long = -1): Unit {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT_WORD_UNDER_CARET,
         NIL)
+  }
+
+  /**
+   * Adds a selection and a caret for the next occurrence of the current selection. If there is no active selection, selects word under caret.
+   */
+  public fun addSelectionForNextOccurrence(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADD_SELECTION_FOR_NEXT_OCCURRENCE, NIL)
   }
 
   /**
@@ -1257,17 +1403,18 @@ public open class TextEdit : Control() {
     fromLine: Long,
     fromColumn: Long,
     toLine: Long,
-    toColumn: Long
+    toColumn: Long,
+    caretIndex: Long = 0
   ): Unit {
-    TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to toColumn)
+    TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to toColumn, LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT, NIL)
   }
 
   /**
    * Returns `true` if the user has selected text.
    */
-  public fun hasSelection(): Boolean {
-    TransferContext.writeArguments()
+  public fun hasSelection(caretIndex: Long = -1): Boolean {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_SELECTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -1275,8 +1422,8 @@ public open class TextEdit : Control() {
   /**
    * Returns the text inside the selection.
    */
-  public fun getSelectedText(): String {
-    TransferContext.writeArguments()
+  public fun getSelectedText(caretIndex: Long = -1): String {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTED_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
@@ -1284,8 +1431,8 @@ public open class TextEdit : Control() {
   /**
    * Returns the original start line of the selection.
    */
-  public fun getSelectionLine(): Long {
-    TransferContext.writeArguments()
+  public fun getSelectionLine(caretIndex: Long = 0): Long {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_LINE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -1293,8 +1440,8 @@ public open class TextEdit : Control() {
   /**
    * Returns the original start column of the selection.
    */
-  public fun getSelectionColumn(): Long {
-    TransferContext.writeArguments()
+  public fun getSelectionColumn(caretIndex: Long = 0): Long {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_COLUMN, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -1302,8 +1449,8 @@ public open class TextEdit : Control() {
   /**
    * Returns the selection begin line.
    */
-  public fun getSelectionFromLine(): Long {
-    TransferContext.writeArguments()
+  public fun getSelectionFromLine(caretIndex: Long = 0): Long {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_LINE,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1312,8 +1459,8 @@ public open class TextEdit : Control() {
   /**
    * Returns the selection begin column.
    */
-  public fun getSelectionFromColumn(): Long {
-    TransferContext.writeArguments()
+  public fun getSelectionFromColumn(caretIndex: Long = 0): Long {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_COLUMN,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1322,8 +1469,8 @@ public open class TextEdit : Control() {
   /**
    * Returns the selection end line.
    */
-  public fun getSelectionToLine(): Long {
-    TransferContext.writeArguments()
+  public fun getSelectionToLine(caretIndex: Long = 0): Long {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_LINE,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1332,8 +1479,8 @@ public open class TextEdit : Control() {
   /**
    * Returns the selection end column.
    */
-  public fun getSelectionToColumn(): Long {
-    TransferContext.writeArguments()
+  public fun getSelectionToColumn(caretIndex: Long = 0): Long {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_COLUMN,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1342,16 +1489,16 @@ public open class TextEdit : Control() {
   /**
    * Deselects the current selection.
    */
-  public fun deselect(): Unit {
-    TransferContext.writeArguments()
+  public fun deselect(caretIndex: Long = -1): Unit {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DESELECT, NIL)
   }
 
   /**
    * Deletes the selected text.
    */
-  public fun deleteSelection(): Unit {
-    TransferContext.writeArguments()
+  public fun deleteSelection(caretIndex: Long = -1): Unit {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DELETE_SELECTION, NIL)
   }
 
@@ -1391,6 +1538,24 @@ public open class TextEdit : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPED_TEXT,
         PACKED_STRING_ARRAY)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns the [godot.VScrollBar] of the [godot.TextEdit].
+   */
+  public fun getVScrollBar(): VScrollBar? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_V_SCROLL_BAR, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as VScrollBar?
+  }
+
+  /**
+   * Returns the [godot.HScrollBar] used by [godot.TextEdit].
+   */
+  public fun getHScrollBar(): HScrollBar? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_H_SCROLL_BAR, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as HScrollBar?
   }
 
   /**
@@ -1493,8 +1658,8 @@ public open class TextEdit : Control() {
   /**
    * Adjust the viewport so the caret is visible.
    */
-  public fun adjustViewportToCaret(): Unit {
-    TransferContext.writeArguments()
+  public fun adjustViewportToCaret(caretIndex: Long = 0): Unit {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADJUST_VIEWPORT_TO_CARET,
         NIL)
   }
@@ -1502,8 +1667,8 @@ public open class TextEdit : Control() {
   /**
    * Centers the viewport on the line the editing caret is at. This also resets the [scrollHorizontal] value to `0`.
    */
-  public fun centerViewportToCaret(): Unit {
-    TransferContext.writeArguments()
+  public fun centerViewportToCaret(caretIndex: Long = 0): Unit {
+    TransferContext.writeArguments(LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CENTER_VIEWPORT_TO_CARET,
         NIL)
   }
@@ -1834,118 +1999,6 @@ public open class TextEdit : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_MENU_OPTION, NIL)
   }
 
-  public enum class SelectionMode(
-    id: Long
-  ) {
-    /**
-     * Not selecting.
-     */
-    SELECTION_MODE_NONE(0),
-    /**
-     * Select as if `shift` is pressed.
-     */
-    SELECTION_MODE_SHIFT(1),
-    /**
-     * Select single characters as if the user single clicked.
-     */
-    SELECTION_MODE_POINTER(2),
-    /**
-     * Select whole words as if the user double clicked.
-     */
-    SELECTION_MODE_WORD(3),
-    /**
-     * Select whole lines as if the user tripped clicked.
-     */
-    SELECTION_MODE_LINE(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class SearchFlags(
-    id: Long
-  ) {
-    /**
-     * Match case when searching.
-     */
-    SEARCH_MATCH_CASE(1),
-    /**
-     * Match whole words when searching.
-     */
-    SEARCH_WHOLE_WORDS(2),
-    /**
-     * Search from end to beginning.
-     */
-    SEARCH_BACKWARDS(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class GutterType(
-    id: Long
-  ) {
-    /**
-     * Draw a string.
-     */
-    GUTTER_TYPE_STRING(0),
-    /**
-     * Draw an icon.
-     */
-    GUTTER_TYPE_ICON(1),
-    /**
-     * Custom draw.
-     */
-    GUTTER_TYPE_CUSTOM(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class LineWrappingMode(
-    id: Long
-  ) {
-    /**
-     * Line wrapping is disabled.
-     */
-    LINE_WRAPPING_NONE(0),
-    /**
-     * Line wrapping occurs at the control boundary, beyond what would normally be visible.
-     */
-    LINE_WRAPPING_BOUNDARY(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class MenuItems(
     id: Long
   ) {
@@ -2077,6 +2130,64 @@ public open class TextEdit : Control() {
     }
   }
 
+  public enum class EditAction(
+    id: Long
+  ) {
+    /**
+     * No current action.
+     */
+    ACTION_NONE(0),
+    /**
+     * A typing action.
+     */
+    ACTION_TYPING(1),
+    /**
+     * A backwards delete action.
+     */
+    ACTION_BACKSPACE(2),
+    /**
+     * A forward delete action.
+     */
+    ACTION_DELETE(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SearchFlags(
+    id: Long
+  ) {
+    /**
+     * Match case when searching.
+     */
+    SEARCH_MATCH_CASE(1),
+    /**
+     * Match whole words when searching.
+     */
+    SEARCH_WHOLE_WORDS(2),
+    /**
+     * Search from end to beginning.
+     */
+    SEARCH_BACKWARDS(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class CaretType(
     id: Long
   ) {
@@ -2088,6 +2199,91 @@ public open class TextEdit : Control() {
      * Block caret.
      */
     CARET_TYPE_BLOCK(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SelectionMode(
+    id: Long
+  ) {
+    /**
+     * Not selecting.
+     */
+    SELECTION_MODE_NONE(0),
+    /**
+     * Select as if `shift` is pressed.
+     */
+    SELECTION_MODE_SHIFT(1),
+    /**
+     * Select single characters as if the user single clicked.
+     */
+    SELECTION_MODE_POINTER(2),
+    /**
+     * Select whole words as if the user double clicked.
+     */
+    SELECTION_MODE_WORD(3),
+    /**
+     * Select whole lines as if the user tripped clicked.
+     */
+    SELECTION_MODE_LINE(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LineWrappingMode(
+    id: Long
+  ) {
+    /**
+     * Line wrapping is disabled.
+     */
+    LINE_WRAPPING_NONE(0),
+    /**
+     * Line wrapping occurs at the control boundary, beyond what would normally be visible.
+     */
+    LINE_WRAPPING_BOUNDARY(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class GutterType(
+    id: Long
+  ) {
+    /**
+     * Draw a string.
+     */
+    GUTTER_TYPE_STRING(0),
+    /**
+     * Draw an icon.
+     */
+    GUTTER_TYPE_ICON(1),
+    /**
+     * Custom draw.
+     */
+    GUTTER_TYPE_CUSTOM(2),
     ;
 
     public val id: Long

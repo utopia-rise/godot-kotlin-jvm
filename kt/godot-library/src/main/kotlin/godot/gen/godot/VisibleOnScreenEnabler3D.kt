@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -33,12 +34,12 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
   /**
    *
    */
-  public var enableMode: Long
+  public var enableMode: VisibleOnScreenEnabler3D.EnableMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_GET_ENABLE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisibleOnScreenEnabler3D.EnableMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

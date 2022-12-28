@@ -9,15 +9,20 @@ package godot
 import godot.DisplayServer
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
+import godot.core.Color
+import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.Rect2
 import godot.core.Rect2i
+import godot.core.VariantArray
 import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
+import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
@@ -31,8 +36,10 @@ import godot.core.VariantType.RECT2I
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR2I
+import godot.core.VariantType.VECTOR3I
 import godot.core.Vector2
 import godot.core.Vector2i
+import godot.core.Vector3i
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
@@ -93,6 +100,32 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Adds an item that will act as a submenu of the global menu [menuRoot]. The [submenu] argument is the ID of the global menu root that will be shown when the item is clicked.
+   *
+   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"_main" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
+   */
+  public fun globalMenuAddSubmenuItem(
+    menuRoot: String,
+    label: String,
+    submenu: String,
+    index: Long = -1
+  ): Long {
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, STRING to submenu, LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_SUBMENU_ITEM, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Adds a new item with text [label] to the global menu with ID [menuRoot].
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
@@ -110,13 +143,15 @@ public object DisplayServer : Object() {
     menuRoot: String,
     label: String,
     callback: Callable = Callable(),
+    keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
-  ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
+  ): Long {
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ITEM,
-        NIL)
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -137,13 +172,15 @@ public object DisplayServer : Object() {
     menuRoot: String,
     label: String,
     callback: Callable = Callable(),
+    keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
-  ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
+  ): Long {
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_CHECK_ITEM, NIL)
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_CHECK_ITEM, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -165,13 +202,15 @@ public object DisplayServer : Object() {
     icon: Texture2D,
     label: String,
     callback: Callable = Callable(),
+    keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
-  ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
+  ): Long {
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_ITEM, NIL)
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_ITEM, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -193,13 +232,15 @@ public object DisplayServer : Object() {
     icon: Texture2D,
     label: String,
     callback: Callable = Callable(),
+    keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
-  ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
+  ): Long {
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_CHECK_ITEM, NIL)
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_CHECK_ITEM, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -222,13 +263,15 @@ public object DisplayServer : Object() {
     menuRoot: String,
     label: String,
     callback: Callable = Callable(),
+    keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
-  ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
+  ): Long {
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_RADIO_CHECK_ITEM, NIL)
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_RADIO_CHECK_ITEM, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -252,13 +295,15 @@ public object DisplayServer : Object() {
     icon: Texture2D,
     label: String,
     callback: Callable = Callable(),
+    keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
-  ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
+  ): Long {
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_RADIO_CHECK_ITEM, NIL)
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_RADIO_CHECK_ITEM, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -285,38 +330,15 @@ public object DisplayServer : Object() {
     maxStates: Long,
     defaultState: Long,
     callback: Callable = Callable(),
+    keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
-  ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to labe, LONG to maxStates, LONG to defaultState, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
+  ): Long {
+    TransferContext.writeArguments(STRING to menuRoot, STRING to labe, LONG to maxStates, LONG to defaultState, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_MULTISTATE_ITEM, NIL)
-  }
-
-  /**
-   * Adds an item that will act as a submenu of the global menu [menuRoot]. The [submenu] argument is the ID of the global menu root that will be shown when the item is clicked.
-   *
-   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
-   *
-   * **Note:** This method is implemented on macOS.
-   *
-   * **Supported system menu IDs:**
-   *
-   * ```
-   * 				"_main" - Main menu (macOS).
-   * 				"_dock" - Dock popup menu (macOS).
-   * 				```
-   */
-  public fun globalMenuAddSubmenuItem(
-    menuRoot: String,
-    label: String,
-    submenu: String,
-    index: Long = -1
-  ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, STRING to submenu, LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_SUBMENU_ITEM, NIL)
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_MULTISTATE_ITEM, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -333,10 +355,11 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public fun globalMenuAddSeparator(menuRoot: String, index: Long = -1): Unit {
+  public fun globalMenuAddSeparator(menuRoot: String, index: Long = -1): Long {
     TransferContext.writeArguments(STRING to menuRoot, LONG to index)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_SEPARATOR, NIL)
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_SEPARATOR, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -410,6 +433,18 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_CALLBACK, CALLABLE)
+    return TransferContext.readReturnValue(CALLABLE, false) as Callable
+  }
+
+  /**
+   * Returns the callback of the item accelerator at index [idx].
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public fun globalMenuGetItemKeyCallback(menuRoot: String, idx: Long): Callable {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_KEY_CALLBACK, CALLABLE)
     return TransferContext.readReturnValue(CALLABLE, false) as Callable
   }
 
@@ -524,6 +559,18 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns the horizontal offset of the item at the given [idx].
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public fun globalMenuGetItemIndentationLevel(menuRoot: String, idx: Long): Long {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_INDENTATION_LEVEL, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Sets the checkstate status of the item at index [idx].
    *
    * **Note:** This method is implemented on macOS.
@@ -583,6 +630,21 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, CALLABLE to callback)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_CALLBACK, NIL)
+  }
+
+  /**
+   * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is activated.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public fun globalMenuSetItemKeyCallback(
+    menuRoot: String,
+    idx: Long,
+    keyCallback: Callable
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, CALLABLE to keyCallback)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_KEY_CALLBACK, NIL)
   }
 
   /**
@@ -723,6 +785,33 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Sets the horizontal offset of the item at the given [idx].
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public fun globalMenuSetItemIndentationLevel(
+    menuRoot: String,
+    idx: Long,
+    level: Long
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, LONG to level)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_INDENTATION_LEVEL, NIL)
+  }
+
+  /**
+   * Returns number of items in the global menu with ID [menuRoot].
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public fun globalMenuGetItemCount(menuRoot: String): Long {
+    TransferContext.writeArguments(STRING to menuRoot)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Removes the item at index [idx] from the global menu [menuRoot].
    *
    * **Note:** The indices of items after the removed item will be shifted by one.
@@ -751,6 +840,174 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(STRING to menuRoot)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_CLEAR,
         NIL)
+  }
+
+  /**
+   * Returns `true` if the synthesizer is generating speech, or have utterance waiting in the queue.
+   *
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   */
+  public fun ttsIsSpeaking(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_IS_SPEAKING, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if the synthesizer is in a paused state.
+   *
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   */
+  public fun ttsIsPaused(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_IS_PAUSED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns an [godot.Array] of voice information dictionaries.
+   *
+   * Each [godot.core.Dictionary] contains two [godot.String] entries:
+   *
+   * - `name` is voice name.
+   *
+   * - `id` is voice identifier.
+   *
+   * - `language` is language code in `lang_Variant` format. `lang` part is a 2 or 3-letter code based on the ISO-639 standard, in lowercase. And `Variant` part is an engine dependent string describing country, region or/and dialect.
+   *
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   */
+  public fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_GET_VOICES, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+  }
+
+  /**
+   * Returns an [godot.PackedStringArray] of voice identifiers for the [language].
+   *
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   */
+  public fun ttsGetVoicesForLanguage(language: String): PackedStringArray {
+    TransferContext.writeArguments(STRING to language)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_GET_VOICES_FOR_LANGUAGE, PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Adds an utterance to the queue. If [interrupt] is `true`, the queue is cleared first.
+   *
+   * - [voice] identifier is one of the `"id"` values returned by [ttsGetVoices] or one of the values returned by [ttsGetVoicesForLanguage].
+   *
+   * - [volume] ranges from `0` (lowest) to `100` (highest).
+   *
+   * - [pitch] ranges from `0.0` (lowest) to `2.0` (highest), `1.0` is default pitch for the current voice.
+   *
+   * - [rate] ranges from `0.1` (lowest) to `10.0` (highest), `1.0` is a normal speaking rate. Other values act as a percentage relative.
+   *
+   * - [utteranceId] is passed as a parameter to the callback functions.
+   *
+   * **Note:** On Windows and Linux (X11), utterance [text] can use SSML markup. SSML support is engine and voice dependent. If the engine does not support SSML, you should strip out all XML markup before calling [ttsSpeak].
+   *
+   * **Note:** The granularity of pitch, rate, and volume is engine and voice dependent. Values may be truncated.
+   *
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   */
+  public fun ttsSpeak(
+    text: String,
+    voice: String,
+    volume: Long = 50,
+    pitch: Double = 1.0,
+    rate: Double = 1.0,
+    utteranceId: Long = 0,
+    interrupt: Boolean = false
+  ): Unit {
+    TransferContext.writeArguments(STRING to text, STRING to voice, LONG to volume, DOUBLE to pitch, DOUBLE to rate, LONG to utteranceId, BOOL to interrupt)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_SPEAK, NIL)
+  }
+
+  /**
+   * Puts the synthesizer into a paused state.
+   *
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   */
+  public fun ttsPause(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_PAUSE, NIL)
+  }
+
+  /**
+   * Resumes the synthesizer if it was paused.
+   *
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   */
+  public fun ttsResume(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_RESUME, NIL)
+  }
+
+  /**
+   * Stops synthesis in progress and removes all utterances from the queue.
+   *
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   */
+  public fun ttsStop(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_STOP, NIL)
+  }
+
+  /**
+   * Adds a callback, which is called when the utterance has started, finished, canceled or reached a text boundary.
+   *
+   * - [TTS_UTTERANCE_STARTED], [TTS_UTTERANCE_ENDED], and [TTS_UTTERANCE_CANCELED] callable's method should take one [int] parameter, the utterance id.
+   *
+   * - [TTS_UTTERANCE_BOUNDARY] callable's method should take two [int] parameters, the index of the character and the utterance id.
+   *
+   * **Note:** The granularity of the boundary callbacks is engine dependent.
+   *
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   */
+  public fun ttsSetUtteranceCallback(event: DisplayServer.TTSUtteranceEvent, callable: Callable):
+      Unit {
+    TransferContext.writeArguments(LONG to event.id, CALLABLE to callable)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_SET_UTTERANCE_CALLBACK, NIL)
+  }
+
+  /**
+   * Returns `true` if OS supports dark mode.
+   *
+   * **Note:** This method is implemented on macOS, Windows and Linux (X11).
+   */
+  public fun isDarkModeSupported(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_IS_DARK_MODE_SUPPORTED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if OS is using dark mode.
+   *
+   * **Note:** This method is implemented on macOS, Windows and Linux (X11).
+   */
+  public fun isDarkMode(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_IS_DARK_MODE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns OS theme accent color. Returns `Color(0, 0, 0, 0)`, if accent color is unknown.
+   *
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  public fun getAccentColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_ACCENT_COLOR,
+        COLOR)
+    return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
   /**
@@ -845,6 +1102,28 @@ public object DisplayServer : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_GET_PRIMARY,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns an [godot.Array] of [godot.core.Rect2], each of which is the bounding rectangle for a display cutout or notch. These are non-functional areas on edge-to-edge screens used by cameras and sensors. Returns an empty array if the device does not have cutouts. See also [getDisplaySafeArea].
+   *
+   * **Note:** Currently only implemented on Android. Other platforms will return an empty array even if they do have display cutouts or notches.
+   */
+  public fun getDisplayCutouts(): VariantArray<Rect2> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_DISPLAY_CUTOUTS,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Rect2>
+  }
+
+  /**
+   * Returns the unobscured area of the display where interactive controls should be rendered. See also [getDisplayCutouts].
+   */
+  public fun getDisplaySafeArea(): Rect2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_DISPLAY_SAFE_AREA,
+        RECT2I)
+    return TransferContext.readReturnValue(RECT2I, false) as Rect2i
   }
 
   /**
@@ -1050,24 +1329,6 @@ public object DisplayServer : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_WINDOW_AT_SCREEN_POSITION, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun createSubWindow(
-    mode: DisplayServer.WindowMode,
-    vsyncMode: DisplayServer.VSyncMode,
-    flags: Long,
-    rect: Rect2i = Rect2i(0, 0, 0, 0)
-  ): Long {
-    TransferContext.writeArguments(LONG to mode.id, LONG to vsyncMode.id, LONG to flags, RECT2I to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CREATE_SUB_WINDOW,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun deleteSubWindow(windowId: Long): Unit {
-    TransferContext.writeArguments(LONG to windowId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DELETE_SUB_WINDOW,
-        NIL)
   }
 
   /**
@@ -1294,12 +1555,6 @@ public object DisplayServer : Object() {
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_DROP_FILES_CALLBACK, NIL)
   }
 
-  public fun windowAttachInstanceId(instanceId: Long, windowId: Long = 0): Unit {
-    TransferContext.writeArguments(LONG to instanceId, LONG to windowId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_ATTACH_INSTANCE_ID, NIL)
-  }
-
   /**
    * Returns the [godot.Object.getInstanceId] of the [godot.Window] the [windowId] is attached to. also [windowGetAttachedInstanceId].
    */
@@ -1405,6 +1660,27 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * When [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set, set offset to the center of the first titlebar button.
+   *
+   * **Note:** This flag is implemented on macOS.
+   */
+  public fun windowSetWindowButtonsOffset(offset: Vector2i, windowId: Long = 0): Unit {
+    TransferContext.writeArguments(VECTOR2I to offset, LONG to windowId)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_WINDOW_BUTTONS_OFFSET, NIL)
+  }
+
+  /**
+   * Returns left margins (`x`), right margins (`y`) and height (`z`) of the title that are safe to use (contains no buttons or other elements) when [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set.
+   */
+  public fun windowGetSafeTitleMargins(windowId: Long = 0): Vector3i {
+    TransferContext.writeArguments(LONG to windowId)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_SAFE_TITLE_MARGINS, VECTOR3I)
+    return TransferContext.readReturnValue(VECTOR3I, false) as Vector3i
+  }
+
+  /**
    * Makes the window specified by [windowId] request attention, which is materialized by the window title and taskbar entry blinking until the window is focused. This usually has no visible effect if the window is currently focused. The exact behavior varies depending on the operating system.
    */
   public fun windowRequestAttention(windowId: Long = 0): Unit {
@@ -1497,6 +1773,40 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns `true` if the given window can be maximized (the maximize button is enabled).
+   */
+  public fun windowIsMaximizeAllowed(windowId: Long = 0): Boolean {
+    TransferContext.writeArguments(LONG to windowId)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_IS_MAXIMIZE_ALLOWED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true`, if double-click on a window title should maximize it.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public fun windowMaximizeOnTitleDblClick(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_MAXIMIZE_ON_TITLE_DBL_CLICK, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true`, if double-click on a window title should minimize it.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public fun windowMinimizeOnTitleDblClick(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_MINIMIZE_ON_TITLE_DBL_CLICK, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns the text selection in the [godot.Input Method Editor](https://en.wikipedia.org/wiki/Input_method) composition string, with the [godot.Vector2i]'s `x` component being the caret position and `y` being the length of the selection.
    *
    * **Note:** This method is implemented on macOS.
@@ -1539,12 +1849,13 @@ public object DisplayServer : Object() {
   public fun virtualKeyboardShow(
     existingText: String,
     position: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
-    multiline: Boolean = false,
+    type: DisplayServer.VirtualKeyboardType =
+        DisplayServer.VirtualKeyboardType.KEYBOARD_TYPE_DEFAULT,
     maxLength: Long = -1,
     cursorStart: Long = -1,
     cursorEnd: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to existingText, RECT2 to position, BOOL to multiline, LONG to maxLength, LONG to cursorStart, LONG to cursorEnd)
+    TransferContext.writeArguments(STRING to existingText, RECT2 to position, LONG to type.id, LONG to maxLength, LONG to cursorStart, LONG to cursorEnd)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_VIRTUAL_KEYBOARD_SHOW,
         NIL)
   }
@@ -1808,49 +2119,6 @@ public object DisplayServer : Object() {
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TABLET_SET_CURRENT_DRIVER, NIL)
   }
 
-  public enum class ScreenOrientation(
-    id: Long
-  ) {
-    /**
-     * Default landscape orientation.
-     */
-    SCREEN_LANDSCAPE(0),
-    /**
-     * Default portrait orienstation.
-     */
-    SCREEN_PORTRAIT(1),
-    /**
-     * Reverse landscape orientation (upside down).
-     */
-    SCREEN_REVERSE_LANDSCAPE(2),
-    /**
-     * Reverse portrait orientation (upside down).
-     */
-    SCREEN_REVERSE_PORTRAIT(3),
-    /**
-     * Automatic landscape orientation (default or reverse depending on sensor).
-     */
-    SCREEN_SENSOR_LANDSCAPE(4),
-    /**
-     * Automatic portrait orientation (default or reverse depending on sensor).
-     */
-    SCREEN_SENSOR_PORTRAIT(5),
-    /**
-     * Automatic landscape or portrait orientation (default or reverse depending on sensor).
-     */
-    SCREEN_SENSOR(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class Feature(
     id: Long
   ) {
@@ -1926,141 +2194,14 @@ public object DisplayServer : Object() {
      * Display server supports Primary clipboard can be used. This is a different clipboard from [FEATURE_CLIPBOARD]. **Linux (X11)**
      */
     FEATURE_CLIPBOARD_PRIMARY(18),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class WindowFlags(
-    id: Long
-  ) {
     /**
-     * The window can't be resizing by dragging its resize grip. It's still possible to resize the window using [windowSetSize]. This flag is ignored for full screen windows.
+     * Display server supports text-to-speech. See `tts_*` methods. **Windows, macOS, Linux (X11), Android, iOS, Web**
      */
-    WINDOW_FLAG_RESIZE_DISABLED(0),
+    FEATURE_TEXT_TO_SPEECH(19),
     /**
-     * The window do not have native title bar and other decorations. This flag is ignored for full-screen windows.
+     * Display server supports expanding window content to the title. See [WINDOW_FLAG_EXTEND_TO_TITLE]. **macOS**
      */
-    WINDOW_FLAG_BORDERLESS(1),
-    /**
-     * The window is floating on top of all other windows. This flag is ignored for full-screen windows.
-     */
-    WINDOW_FLAG_ALWAYS_ON_TOP(2),
-    /**
-     * The window background can be transparent.
-     *
-     * **Note:** This flag has no effect if [godot.ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`.
-     *
-     * **Note:** Transparency support is implemented on Linux (X11), macOS and Windows, but availability might vary depending on GPU driver, display manager, and compositor capabilities.
-     */
-    WINDOW_FLAG_TRANSPARENT(3),
-    /**
-     * The window can't be focused. No-focus window will ignore all input, except mouse clicks.
-     */
-    WINDOW_FLAG_NO_FOCUS(4),
-    /**
-     * Window is part of menu or [godot.OptionButton] dropdown. This flag can't be changed when the window is visible. An active popup window will exclusively receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have `transient parent` set (see [windowSetTransient]).
-     */
-    WINDOW_FLAG_POPUP(5),
-    /**
-     * Max value of the [enum WindowFlags].
-     */
-    WINDOW_FLAG_MAX(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class WindowMode(
-    id: Long
-  ) {
-    /**
-     * Windowed mode, i.e. [godot.Window] doesn't occupy the whole screen (unless set to the size of the screen).
-     */
-    WINDOW_MODE_WINDOWED(0),
-    /**
-     * Minimized window mode, i.e. [godot.Window] is not visible and available on window manager's window list. Normally happens when the minimize button is pressed.
-     */
-    WINDOW_MODE_MINIMIZED(1),
-    /**
-     * Maximized window mode, i.e. [godot.Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the minimize button is pressed.
-     */
-    WINDOW_MODE_MAXIMIZED(2),
-    /**
-     * Full screen window mode. Note that this is not *exclusive* full screen. On Windows and Linux (X11), a borderless window is used to emulate full screen. On macOS, a new desktop is used to display the running project.
-     *
-     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
-     */
-    WINDOW_MODE_FULLSCREEN(3),
-    /**
-     * Exclusive full screen window mode. This mode is implemented on Windows and macOS only. On other platforms, it is equivalent to [WINDOW_MODE_FULLSCREEN].
-     *
-     * **On Windows:** Only one window in exclusive full screen mode can be visible on a given screen at a time. If multiple windows are in exclusive full screen mode for the same screen, the last one being set to this mode takes precedence.
-     *
-     * **On macOS:** Exclusive full-screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
-     *
-     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
-     */
-    WINDOW_MODE_EXCLUSIVE_FULLSCREEN(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class HandleType(
-    id: Long
-  ) {
-    /**
-     * Display handle:
-     *
-     * - Linux (X11): `X11::Display*` for the display.
-     */
-    DISPLAY_HANDLE(0),
-    /**
-     * Window handle:
-     *
-     * - Windows: `HWND` for the window.
-     *
-     * - Linux (X11): `X11::Window*` for the window.
-     *
-     * - macOS: `NSWindow*` for the window.
-     *
-     * - iOS: `UIViewController*` for the view controller.
-     *
-     * - Android: `jObject` for the activity.
-     */
-    WINDOW_HANDLE(1),
-    /**
-     * Window view:
-     *
-     * - Windows: `HDC` for the window (only with the GL Compatibility renderer).
-     *
-     * - macOS: `NSView*` for the window main view.
-     *
-     * - iOS: `UIView*` for the window main view.
-     */
-    WINDOW_VIEW(2),
+    FEATURE_EXTEND_TO_TITLE(20),
     ;
 
     public val id: Long
@@ -2098,6 +2239,98 @@ public object DisplayServer : Object() {
      * Confines the mouse cursor to the game window, and make it hidden.
      */
     MOUSE_MODE_CONFINED_HIDDEN(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ScreenOrientation(
+    id: Long
+  ) {
+    /**
+     * Default landscape orientation.
+     */
+    SCREEN_LANDSCAPE(0),
+    /**
+     * Default portrait orienstation.
+     */
+    SCREEN_PORTRAIT(1),
+    /**
+     * Reverse landscape orientation (upside down).
+     */
+    SCREEN_REVERSE_LANDSCAPE(2),
+    /**
+     * Reverse portrait orientation (upside down).
+     */
+    SCREEN_REVERSE_PORTRAIT(3),
+    /**
+     * Automatic landscape orientation (default or reverse depending on sensor).
+     */
+    SCREEN_SENSOR_LANDSCAPE(4),
+    /**
+     * Automatic portrait orientation (default or reverse depending on sensor).
+     */
+    SCREEN_SENSOR_PORTRAIT(5),
+    /**
+     * Automatic landscape or portrait orientation (default or reverse depending on sensor).
+     */
+    SCREEN_SENSOR(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VirtualKeyboardType(
+    id: Long
+  ) {
+    /**
+     * Default text virtual keyboard.
+     */
+    KEYBOARD_TYPE_DEFAULT(0),
+    /**
+     * Multiline virtual keyboard.
+     */
+    KEYBOARD_TYPE_MULTILINE(1),
+    /**
+     * Virtual number keypad, useful for PIN entry.
+     */
+    KEYBOARD_TYPE_NUMBER(2),
+    /**
+     * Virtual number keypad, useful for entering fractional numbers.
+     */
+    KEYBOARD_TYPE_NUMBER_DECIMAL(3),
+    /**
+     * Virtual phone number keypad.
+     */
+    KEYBOARD_TYPE_PHONE(4),
+    /**
+     * Virtual keyboard with additional keys to assist with typing email addresses.
+     */
+    KEYBOARD_TYPE_EMAIL_ADDRESS(5),
+    /**
+     * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete and autocapitalization.
+     *
+     * **Note:** This is not supported on Web. Instead, this behaves identically to [KEYBOARD_TYPE_DEFAULT].
+     */
+    KEYBOARD_TYPE_PASSWORD(6),
+    /**
+     * Virtual keyboard with additional keys to assist with typing URLs.
+     */
+    KEYBOARD_TYPE_URL(7),
     ;
 
     public val id: Long
@@ -2197,27 +2430,94 @@ public object DisplayServer : Object() {
     }
   }
 
-  public enum class VSyncMode(
+  public enum class WindowMode(
     id: Long
   ) {
     /**
-     * No vertical synchronization, which means the engine will display frames as fast as possible (tearing may be visible). Framerate is unlimited (nonwithstanding [godot.Engine.maxFps]).
+     * Windowed mode, i.e. [godot.Window] doesn't occupy the whole screen (unless set to the size of the screen).
      */
-    VSYNC_DISABLED(0),
+    WINDOW_MODE_WINDOWED(0),
     /**
-     * Default vertical synchronization mode, the image is displayed only on vertical blanking intervals (no tearing is visible). Framerate is limited by the monitor refresh rate (nonwithstanding [godot.Engine.maxFps]).
+     * Minimized window mode, i.e. [godot.Window] is not visible and available on window manager's window list. Normally happens when the minimize button is pressed.
      */
-    VSYNC_ENABLED(1),
+    WINDOW_MODE_MINIMIZED(1),
     /**
-     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (nonwithstanding [godot.Engine.maxFps]).
+     * Maximized window mode, i.e. [godot.Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the minimize button is pressed.
      */
-    VSYNC_ADAPTIVE(2),
+    WINDOW_MODE_MAXIMIZED(2),
     /**
-     * Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (nonwithstanding [godot.Engine.maxFps]).
+     * Full screen window mode. Note that this is not *exclusive* full screen. On Windows and Linux (X11), a borderless window is used to emulate full screen. On macOS, a new desktop is used to display the running project.
      *
-     * Although not guaranteed, the images can be rendered as fast as possible, which may reduce input lag (also called "Fast" V-Sync mode). [VSYNC_MAILBOX] works best when at least twice as many frames as the display refresh rate are rendered.
+     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
-    VSYNC_MAILBOX(3),
+    WINDOW_MODE_FULLSCREEN(3),
+    /**
+     * Exclusive full screen window mode. This mode is implemented on Windows and macOS only. On other platforms, it is equivalent to [WINDOW_MODE_FULLSCREEN].
+     *
+     * **On Windows:** Only one window in exclusive full screen mode can be visible on a given screen at a time. If multiple windows are in exclusive full screen mode for the same screen, the last one being set to this mode takes precedence.
+     *
+     * **On macOS:** Exclusive full-screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
+     *
+     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
+     */
+    WINDOW_MODE_EXCLUSIVE_FULLSCREEN(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class WindowFlags(
+    id: Long
+  ) {
+    /**
+     * The window can't be resizing by dragging its resize grip. It's still possible to resize the window using [windowSetSize]. This flag is ignored for full screen windows.
+     */
+    WINDOW_FLAG_RESIZE_DISABLED(0),
+    /**
+     * The window do not have native title bar and other decorations. This flag is ignored for full-screen windows.
+     */
+    WINDOW_FLAG_BORDERLESS(1),
+    /**
+     * The window is floating on top of all other windows. This flag is ignored for full-screen windows.
+     */
+    WINDOW_FLAG_ALWAYS_ON_TOP(2),
+    /**
+     * The window background can be transparent.
+     *
+     * **Note:** This flag has no effect if [godot.ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`.
+     *
+     * **Note:** Transparency support is implemented on Linux (X11), macOS and Windows, but availability might vary depending on GPU driver, display manager, and compositor capabilities.
+     */
+    WINDOW_FLAG_TRANSPARENT(3),
+    /**
+     * The window can't be focused. No-focus window will ignore all input, except mouse clicks.
+     */
+    WINDOW_FLAG_NO_FOCUS(4),
+    /**
+     * Window is part of menu or [godot.OptionButton] dropdown. This flag can't be changed when the window is visible. An active popup window will exclusively receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have `transient parent` set (see [windowSetTransient]).
+     */
+    WINDOW_FLAG_POPUP(5),
+    /**
+     * Window content is expanded to the full size of the window. Unlike borderless window, the frame is left intact and can be used to resize the window, title bar is transparent, but have minimize/maximize/close buttons.
+     *
+     * Use [windowSetWindowButtonsOffset] to adjust minimize/maximize/close buttons offset.
+     *
+     * Use [windowGetSafeTitleMargins] to determine area under the title bar that is not covered by decorations.
+     *
+     * **Note:** This flag is implemented on macOS.
+     */
+    WINDOW_FLAG_EXTEND_TO_TITLE(6),
+    /**
+     * Max value of the [enum WindowFlags].
+     */
+    WINDOW_FLAG_MAX(7),
     ;
 
     public val id: Long
@@ -2265,6 +2565,133 @@ public object DisplayServer : Object() {
      * **Note:** This flag is implemented on macOS.
      */
     WINDOW_EVENT_DPI_CHANGE(6),
+    /**
+     * Sent when the window title bar decoration is changed (e.g. [WINDOW_FLAG_EXTEND_TO_TITLE] is set or window entered/exited full screen mode), see [windowSetWindowEventCallback].
+     *
+     * **Note:** This flag is implemented on macOS.
+     */
+    WINDOW_EVENT_TITLEBAR_CHANGE(7),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VSyncMode(
+    id: Long
+  ) {
+    /**
+     * No vertical synchronization, which means the engine will display frames as fast as possible (tearing may be visible). Framerate is unlimited (nonwithstanding [godot.Engine.maxFps]).
+     */
+    VSYNC_DISABLED(0),
+    /**
+     * Default vertical synchronization mode, the image is displayed only on vertical blanking intervals (no tearing is visible). Framerate is limited by the monitor refresh rate (nonwithstanding [godot.Engine.maxFps]).
+     */
+    VSYNC_ENABLED(1),
+    /**
+     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (nonwithstanding [godot.Engine.maxFps]).
+     */
+    VSYNC_ADAPTIVE(2),
+    /**
+     * Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (nonwithstanding [godot.Engine.maxFps]).
+     *
+     * Although not guaranteed, the images can be rendered as fast as possible, which may reduce input lag (also called "Fast" V-Sync mode). [VSYNC_MAILBOX] works best when at least twice as many frames as the display refresh rate are rendered.
+     */
+    VSYNC_MAILBOX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class HandleType(
+    id: Long
+  ) {
+    /**
+     * Display handle:
+     *
+     * - Linux (X11): `X11::Display*` for the display.
+     */
+    DISPLAY_HANDLE(0),
+    /**
+     * Window handle:
+     *
+     * - Windows: `HWND` for the window.
+     *
+     * - Linux (X11): `X11::Window*` for the window.
+     *
+     * - macOS: `NSWindow*` for the window.
+     *
+     * - iOS: `UIViewController*` for the view controller.
+     *
+     * - Android: `jObject` for the activity.
+     */
+    WINDOW_HANDLE(1),
+    /**
+     * Window view:
+     *
+     * - Windows: `HDC` for the window (only with the GL Compatibility renderer).
+     *
+     * - macOS: `NSView*` for the window main view.
+     *
+     * - iOS: `UIView*` for the window main view.
+     */
+    WINDOW_VIEW(2),
+    /**
+     * OpenGL context (only with the GL Compatibility renderer):
+     *
+     * - Windows: `HGLRC` for the window.
+     *
+     * - Linux: `GLXContext*` for the window.
+     *
+     * - MacOS: `NSOpenGLContext*` for the window.
+     *
+     * - Android: `EGLContext` for the window.
+     */
+    OPENGL_CONTEXT(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TTSUtteranceEvent(
+    id: Long
+  ) {
+    /**
+     * Utterance has begun to be spoken.
+     */
+    TTS_UTTERANCE_STARTED(0),
+    /**
+     * Utterance was successfully finished.
+     */
+    TTS_UTTERANCE_ENDED(1),
+    /**
+     * Utterance was canceled, or TTS service was unable to process it.
+     */
+    TTS_UTTERANCE_CANCELED(2),
+    /**
+     * Utterance reached a word or sentence boundary.
+     */
+    TTS_UTTERANCE_BOUNDARY(3),
     ;
 
     public val id: Long

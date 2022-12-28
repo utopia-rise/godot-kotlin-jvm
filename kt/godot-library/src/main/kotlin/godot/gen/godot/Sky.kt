@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -40,11 +41,11 @@ public open class Sky : Resource() {
   /**
    * Sets the method for generating the radiance map from the sky. The radiance map is a cubemap with increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance maps can be expensive to calculate. See [enum ProcessMode] for options.
    */
-  public var processMode: Long
+  public var processMode: Sky.ProcessMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_PROCESS_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Sky.ProcessMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -58,11 +59,11 @@ public open class Sky : Resource() {
    *
    * **Note:** Some hardware will have trouble with higher radiance sizes, especially [godot.RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
    */
-  public var radianceSize: Long
+  public var radianceSize: Sky.RadianceSize
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_RADIANCE_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Sky.RadianceSize.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -72,39 +73,6 @@ public open class Sky : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SKY, scriptIndex)
     return true
-  }
-
-  public enum class ProcessMode(
-    id: Long
-  ) {
-    /**
-     * Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [PROCESS_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [PROCESS_MODE_INCREMENTAL]. Otherwise, this defaults to [PROCESS_MODE_QUALITY].
-     */
-    PROCESS_MODE_AUTOMATIC(0),
-    /**
-     * Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [PROCESS_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [godot.ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
-     */
-    PROCESS_MODE_QUALITY(1),
-    /**
-     * Uses the same high quality importance sampling to process the radiance map as [PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by [godot.ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need highest quality radiance maps, but have a sky that updates slowly.
-     */
-    PROCESS_MODE_INCREMENTAL(2),
-    /**
-     * Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [godot.ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
-     *
-     * **Note:** The fast filtering algorithm is limited to 256x256 cubemaps, so [radianceSize] must be set to [godot.RADIANCE_SIZE_256].
-     */
-    PROCESS_MODE_REALTIME(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public enum class RadianceSize(
@@ -142,6 +110,39 @@ public open class Sky : Resource() {
      * Represents the size of the [enum RadianceSize] enum.
      */
     RADIANCE_SIZE_MAX(7),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ProcessMode(
+    id: Long
+  ) {
+    /**
+     * Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [PROCESS_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [PROCESS_MODE_INCREMENTAL]. Otherwise, this defaults to [PROCESS_MODE_QUALITY].
+     */
+    PROCESS_MODE_AUTOMATIC(0),
+    /**
+     * Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [PROCESS_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [godot.ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
+     */
+    PROCESS_MODE_QUALITY(1),
+    /**
+     * Uses the same high quality importance sampling to process the radiance map as [PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by [godot.ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need highest quality radiance maps, but have a sky that updates slowly.
+     */
+    PROCESS_MODE_INCREMENTAL(2),
+    /**
+     * Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [godot.ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
+     *
+     * **Note:** The fast filtering algorithm is limited to 256x256 cubemaps, so [radianceSize] must be set to [godot.RADIANCE_SIZE_256].
+     */
+    PROCESS_MODE_REALTIME(3),
     ;
 
     public val id: Long

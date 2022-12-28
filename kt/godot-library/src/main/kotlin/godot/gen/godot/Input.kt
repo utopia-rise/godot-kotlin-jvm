@@ -26,7 +26,6 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal2
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -255,10 +254,10 @@ public object Input : Object() {
   /**
    * Returns an [godot.Array] containing the device IDs of all currently connected joypads.
    */
-  public fun getConnectedJoypads(): VariantArray<Any?> {
+  public fun getConnectedJoypads(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CONNECTED_JOYPADS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>
   }
 
   /**
@@ -551,6 +550,13 @@ public object Input : Object() {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_USE_ACCUMULATED_INPUT,
         NIL)
+  }
+
+  public fun isUsingAccumulatedInput(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_USING_ACCUMULATED_INPUT,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

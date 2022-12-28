@@ -149,6 +149,13 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
+   *
+   */
+  public open fun _getVrsTexture(): RID {
+    throw NotImplementedError("_get_vrs_texture is not implemented for XRInterfaceExtension")
+  }
+
+  /**
    * Called if this [godot.XRInterfaceExtension] is active before our physics and game process is called. most XR interfaces will update its [godot.XRPositionalTracker]s at this point in time.
    */
   public open fun _process(): Unit {
@@ -177,9 +184,6 @@ public open class XRInterfaceExtension : XRInterface() {
    * Called if interface is active and queues have been submitted.
    */
   public open fun _endFrame(): Unit {
-  }
-
-  public open fun _notification(what: Long): Unit {
   }
 
   /**
@@ -234,6 +238,57 @@ public open class XRInterfaceExtension : XRInterface() {
    */
   public open fun _getCameraFeedId(): Long {
     throw NotImplementedError("_get_camera_feed_id is not implemented for XRInterfaceExtension")
+  }
+
+  /**
+   * Return color texture into which to render (if applicable).
+   */
+  public open fun _getColorTexture(): RID {
+    throw NotImplementedError("_get_color_texture is not implemented for XRInterfaceExtension")
+  }
+
+  /**
+   * Return depth texture into which to render (if applicable).
+   */
+  public open fun _getDepthTexture(): RID {
+    throw NotImplementedError("_get_depth_texture is not implemented for XRInterfaceExtension")
+  }
+
+  /**
+   * Return velocity texture into which to render (if applicable).
+   */
+  public open fun _getVelocityTexture(): RID {
+    throw NotImplementedError("_get_velocity_texture is not implemented for XRInterfaceExtension")
+  }
+
+  /**
+   *
+   */
+  public fun getColorTexture(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_GET_COLOR_TEXTURE, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   *
+   */
+  public fun getDepthTexture(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_GET_DEPTH_TEXTURE, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   *
+   */
+  public fun getVelocityTexture(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_GET_VELOCITY_TEXTURE, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
   }
 
   /**

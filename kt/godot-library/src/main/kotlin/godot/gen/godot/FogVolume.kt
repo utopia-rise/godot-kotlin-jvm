@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -15,7 +16,6 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -50,11 +50,11 @@ public open class FogVolume : VisualInstance3D() {
   /**
    * The shape of the [godot.FogVolume]. This can be set to either [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE], [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX] or [godot.RenderingServer.FOG_VOLUME_SHAPE_WORLD].
    */
-  public var shape: Long
+  public var shape: RenderingServer.FogVolumeShape
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGVOLUME_GET_SHAPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingServer.FogVolumeShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

@@ -5,6 +5,7 @@ import godot.codegen.constants.GodotTypes
 import godot.codegen.extensions.convertToCamelCase
 import godot.codegen.extensions.getTypeClassName
 import godot.codegen.extensions.isObjectSubClass
+import godot.codegen.extensions.sanitizeApiType
 import godot.codegen.models.Argument
 import godot.codegen.models.Property
 import godot.codegen.traits.CallableTrait
@@ -29,13 +30,21 @@ class EnrichedProperty(val internal: Property) : TypedTrait, NullableTrait {
     var shouldUseSuperSetter = false
     var shouldUseSuperGetter = false
 
-    // There are property with multiple types, and it's all Materials, so
-    // Godot's developer should make more strict API
-    override val type = if (internal.type.indexOf(",") != -1) {
-        "Material"
-    } else {
-        internal.type
-    }
+    // Here we use getter type instead.
+    // We have part of code that check if core type or not before it is possible to
+    // set getter. So if getter is not set, we use property type.
+    val internalType: String
+        get() = getterMethod?.type ?: internal.type
+
+    override val type: String
+        get() = if (internal.type.indexOf(",") != -1) {
+            // There are property with multiple types, and it's all Materials, so
+            // Godot's developer should make more strict API
+            "Material"
+        } else {
+            // There are inconsistencies between property type and getter type in api.
+            internalType.sanitizeApiType()
+        }
     override val nullable = isObjectSubClass() || getTypeClassName().className == ANY
 }
 
@@ -51,11 +60,11 @@ fun EnrichedProperty.toSetterCallable() = object : CallableTrait {
     override val arguments = if (isIndexed) {
         listOf(
             Argument("index", GodotTypes.int, null, null).toEnriched(),
-            Argument("value", internal.type, null, null).toEnriched()
+            Argument("value", internalType, null, null).toEnriched()
         )
     } else {
         listOf(
-            Argument("value", internal.type, null, null).toEnriched()
+            Argument("value", internalType, null, null).toEnriched()
         )
     }
     override val isVararg = false

@@ -83,6 +83,22 @@ public open class EditorSpinSlider internal constructor() : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_FLAT, NIL)
     }
 
+  /**
+   * If `true`, the slider is hidden.
+   */
+  public var hideSlider: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_IS_HIDING_SLIDER,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_HIDE_SLIDER,
+          NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORSPINSLIDER, scriptIndex)
     return true

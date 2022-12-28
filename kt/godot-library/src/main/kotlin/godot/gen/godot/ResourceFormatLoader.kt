@@ -42,6 +42,15 @@ public open class ResourceFormatLoader : RefCounted() {
   }
 
   /**
+   * Tells whether or not this loader should load a resource from its resource path for a given type.
+   *
+   * If it is not implemented, the default behavior returns whether the path's extension is within the ones provided by [_getRecognizedExtensions], and if the type is within the ones provided by [_getResourceType].
+   */
+  public open fun _recognizePath(path: String, type: StringName): Boolean {
+    throw NotImplementedError("_recognize_path is not implemented for ResourceFormatLoader")
+  }
+
+  /**
    * Tells which resource class this loader can load.
    *
    * **Note:** Custom resource types defined by scripts aren't known by the [godot.ClassDB], so you might just handle `"Resource"` for them.
@@ -89,6 +98,13 @@ public open class ResourceFormatLoader : RefCounted() {
    */
   public open fun _exists(path: String): Boolean {
     throw NotImplementedError("_exists is not implemented for ResourceFormatLoader")
+  }
+
+  /**
+   *
+   */
+  public open fun _getClassesUsed(path: String): PackedStringArray {
+    throw NotImplementedError("_get_classes_used is not implemented for ResourceFormatLoader")
   }
 
   /**

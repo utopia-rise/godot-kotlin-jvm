@@ -108,5 +108,15 @@ public open class EditorPaths internal constructor() : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
+  /**
+   * Returns the project-specific editor settings path. Projects all have a unique subdirectory inside the settings path where project-specific editor settings are saved.
+   */
+  public fun getProjectSettingsDir(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_PROJECT_SETTINGS_DIR, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
   public companion object
 }

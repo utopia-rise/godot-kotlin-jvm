@@ -56,6 +56,19 @@ public object Engine : Object() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  public fun setMaxPhysicsStepsPerFrame(maxPhysicsSteps: Long): Unit {
+    TransferContext.writeArguments(LONG to maxPhysicsSteps)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ENGINE_SET_MAX_PHYSICS_STEPS_PER_FRAME, NIL)
+  }
+
+  public fun getMaxPhysicsStepsPerFrame(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ENGINE_GET_MAX_PHYSICS_STEPS_PER_FRAME, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
   public fun setPhysicsJitterFix(physicsJitterFix: Double): Unit {
     TransferContext.writeArguments(DOUBLE to physicsJitterFix)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PHYSICS_JITTER_FIX, NIL)
@@ -78,14 +91,14 @@ public object Engine : Object() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun setTargetFps(targetFps: Long): Unit {
-    TransferContext.writeArguments(LONG to targetFps)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_TARGET_FPS, NIL)
+  public fun setMaxFps(maxFps: Long): Unit {
+    TransferContext.writeArguments(LONG to maxFps)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_MAX_FPS, NIL)
   }
 
-  public fun getTargetFps(): Long {
+  public fun getMaxFps(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_TARGET_FPS, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_MAX_FPS, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -311,10 +324,10 @@ public object Engine : Object() {
    *
    * `parts`   - Array of Dictionaries {`files`, `copyright`, `license`} describing subsections of the component
    */
-  public fun getCopyrightInfo(): VariantArray<Any?> {
+  public fun getCopyrightInfo(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_COPYRIGHT_INFO, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -343,6 +356,48 @@ public object Engine : Object() {
   public fun getLicenseText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_LICENSE_TEXT, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the name of the CPU architecture the Godot binary was built for. Possible return values are `x86_64`, `x86_32`, `arm64`, `armv7`, `rv64`, `riscv`, `ppc64`, `ppc`, `wasm64` and `wasm32`.
+   *
+   * To detect whether the current CPU architecture is 64-bit, you can use the fact that all 64-bit architecture names have `64` in their name:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * if "64" in Engine.get_architecture_name():
+   *
+   *     print("Running on 64-bit CPU.")
+   *
+   * else:
+   *
+   *     print("Running on 32-bit CPU.")
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * if (Engine.GetArchitectureName().Contains("64"))
+   *
+   *     GD.Print("Running on 64-bit CPU.");
+   *
+   * else
+   *
+   *     GD.Print("Running on 32-bit CPU.");
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * **Note:** [getArchitectureName] does *not* return the name of the host CPU architecture. For example, if running an x86_32 Godot binary on a x86_64 system, the returned value will be `x86_32`.
+   */
+  public fun getArchitectureName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_ARCHITECTURE_NAME,
+        STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -466,6 +521,15 @@ public object Engine : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_EDITOR_HINT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the path to the [godot.MovieWriter]'s output file, or an empty string if the engine wasn't started in Movie Maker mode. This path can be absolute or relative depending on how the user specified it.
+   */
+  public fun getWriteMoviePath(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_WRITE_MOVIE_PATH, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   public fun setPrintErrorMessages(enabled: Boolean): Unit {

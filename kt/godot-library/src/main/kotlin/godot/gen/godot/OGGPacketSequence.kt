@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.PackedInt64Array
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.VariantType.PACKED_INT_64_ARRAY
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
@@ -19,13 +21,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 @GodotBaseType
-public open class OGGPacketSequence : Resource() {
-  public var packetData: VariantArray<Any?>
+public open class OggPacketSequence : Resource() {
+  public var packetData: VariantArray<VariantArray<Any?>>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_PACKET_DATA,
           ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -33,15 +35,16 @@ public open class OGGPacketSequence : Resource() {
           NIL)
     }
 
-  public var granulePositions: VariantArray<Any?>
+  public var granulePositions: PackedInt64Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_PACKET_GRANULE_POSITIONS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+          ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_PACKET_GRANULE_POSITIONS,
+          PACKED_INT_64_ARRAY)
+      return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
     }
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
+      TransferContext.writeArguments(PACKED_INT_64_ARRAY to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_SET_PACKET_GRANULE_POSITIONS, NIL)
     }

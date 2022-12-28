@@ -28,7 +28,7 @@ import kotlin.Suppress
  * **Note:** This class has known issues and isn't designed to provide realistic 3D vehicle physics. If you want advanced vehicle physics, you will probably have to write your own physics integration using another [godot.PhysicsBody3D] class.
  */
 @GodotBaseType
-public open class VehicleBody3D : RigidDynamicBody3D() {
+public open class VehicleBody3D : RigidBody3D() {
   /**
    * Accelerates the vehicle by applying an engine force. The vehicle is only sped up if the wheels that have [godot.VehicleWheel3D.useAsTraction] set to `true` and are in contact with a surface. The [godot.RigidBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
    *

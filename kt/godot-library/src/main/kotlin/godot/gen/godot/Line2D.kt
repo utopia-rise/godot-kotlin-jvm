@@ -12,6 +12,7 @@ import godot.core.PackedVector2Array
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -124,11 +125,11 @@ public open class Line2D : Node2D() {
   /**
    * The style to render the `texture` on the line. Use [enum LineTextureMode] constants.
    */
-  public var textureMode: Long
+  public var textureMode: Line2D.LineTextureMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Line2D.LineTextureMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -138,11 +139,11 @@ public open class Line2D : Node2D() {
   /**
    * The style for the points between the start and the end.
    */
-  public var jointMode: Long
+  public var jointMode: Line2D.LineJointMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_JOINT_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Line2D.LineJointMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -152,11 +153,11 @@ public open class Line2D : Node2D() {
   /**
    * Controls the style of the line's first point. Use [enum LineCapMode] constants.
    */
-  public var beginCapMode: Long
+  public var beginCapMode: Line2D.LineCapMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_BEGIN_CAP_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Line2D.LineCapMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -166,11 +167,11 @@ public open class Line2D : Node2D() {
   /**
    * Controls the style of the line's last point. Use [enum LineCapMode] constants.
    */
-  public var endCapMode: Long
+  public var endCapMode: Line2D.LineCapMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_END_CAP_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Line2D.LineCapMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -231,16 +232,16 @@ public open class Line2D : Node2D() {
   /**
    * Overwrites the position of the point at index [index] with the supplied [position].
    */
-  public fun setPointPosition(i: Long, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to i, VECTOR2 to position)
+  public fun setPointPosition(index: Long, position: Vector2): Unit {
+    TransferContext.writeArguments(LONG to index, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_POINT_POSITION, NIL)
   }
 
   /**
    * Returns the position of the point at index [index].
    */
-  public fun getPointPosition(i: Long): Vector2 {
-    TransferContext.writeArguments(LONG to i)
+  public fun getPointPosition(index: Long): Vector2 {
+    TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINT_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
@@ -259,16 +260,16 @@ public open class Line2D : Node2D() {
    *
    * If [index] is given, the new point is inserted before the existing point identified by index [index]. Every existing point starting from [index] is shifted further down the list of points. The index must be greater than or equal to `0` and must not exceed the number of existing points in the line. See [getPointCount].
    */
-  public fun addPoint(position: Vector2, atPosition: Long = -1): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, LONG to atPosition)
+  public fun addPoint(position: Vector2, index: Long = -1): Unit {
+    TransferContext.writeArguments(VECTOR2 to position, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_ADD_POINT, NIL)
   }
 
   /**
    * Removes the point at index [index] from the line.
    */
-  public fun removePoint(i: Long): Unit {
-    TransferContext.writeArguments(LONG to i)
+  public fun removePoint(index: Long): Unit {
+    TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_REMOVE_POINT, NIL)
   }
 
@@ -280,21 +281,21 @@ public open class Line2D : Node2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_CLEAR_POINTS, NIL)
   }
 
-  public enum class LineTextureMode(
+  public enum class LineJointMode(
     id: Long
   ) {
     /**
-     * Takes the left pixels of the texture and renders it over the whole line.
+     * The line's joints will be pointy. If `sharp_limit` is greater than the rotation of a joint, it becomes a bevel joint instead.
      */
-    LINE_TEXTURE_NONE(0),
+    LINE_JOINT_SHARP(0),
     /**
-     * Tiles the texture over the line. [godot.CanvasItem.textureRepeat] of the [godot.Line2D] node must be [godot.CanvasItem.TEXTURE_REPEAT_ENABLED] or [godot.CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work properly.
+     * The line's joints will be bevelled/chamfered.
      */
-    LINE_TEXTURE_TILE(1),
+    LINE_JOINT_BEVEL(1),
     /**
-     * Stretches the texture across the line. [godot.CanvasItem.textureRepeat] of the [godot.Line2D] node must be [godot.CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
+     * The line's joints will be rounded.
      */
-    LINE_TEXTURE_STRETCH(2),
+    LINE_JOINT_ROUND(2),
     ;
 
     public val id: Long
@@ -334,21 +335,21 @@ public open class Line2D : Node2D() {
     }
   }
 
-  public enum class LineJointMode(
+  public enum class LineTextureMode(
     id: Long
   ) {
     /**
-     * The line's joints will be pointy. If `sharp_limit` is greater than the rotation of a joint, it becomes a bevel joint instead.
+     * Takes the left pixels of the texture and renders it over the whole line.
      */
-    LINE_JOINT_SHARP(0),
+    LINE_TEXTURE_NONE(0),
     /**
-     * The line's joints will be bevelled/chamfered.
+     * Tiles the texture over the line. [godot.CanvasItem.textureRepeat] of the [godot.Line2D] node must be [godot.CanvasItem.TEXTURE_REPEAT_ENABLED] or [godot.CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work properly.
      */
-    LINE_JOINT_BEVEL(1),
+    LINE_TEXTURE_TILE(1),
     /**
-     * The line's joints will be rounded.
+     * Stretches the texture across the line. [godot.CanvasItem.textureRepeat] of the [godot.Line2D] node must be [godot.CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
      */
-    LINE_JOINT_ROUND(2),
+    LINE_TEXTURE_STRETCH(2),
     ;
 
     public val id: Long

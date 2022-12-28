@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
@@ -32,12 +33,12 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * Collision build mode. Use one of the [enum BuildMode] constants.
    */
-  public var buildMode: Long
+  public var buildMode: CollisionPolygon2D.BuildMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_BUILD_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CollisionPolygon2D.BuildMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

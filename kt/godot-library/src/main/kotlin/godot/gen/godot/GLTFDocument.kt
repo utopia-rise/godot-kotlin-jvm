@@ -18,7 +18,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -27,12 +26,12 @@ import kotlin.Suppress
 
 @GodotBaseType
 public open class GLTFDocument : Resource() {
-  public var extensions: VariantArray<Any?>
+  public var extensions: VariantArray<GLTFDocumentExtension>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GET_EXTENSIONS,
           ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<GLTFDocumentExtension>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

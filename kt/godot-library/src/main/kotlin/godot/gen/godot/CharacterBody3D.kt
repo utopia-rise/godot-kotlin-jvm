@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -38,12 +39,12 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Sets the motion mode which defines the behavior of [moveAndSlide]. See [enum MotionMode] constants for available modes.
    */
-  public var motionMode: Long
+  public var motionMode: CharacterBody3D.MotionMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOTION_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CharacterBody3D.MotionMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -216,47 +217,64 @@ public open class CharacterBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_SNAP_LENGTH, NIL)
     }
 
-  public var movingPlatformApplyVelocityOnLeave: Long
+  /**
+   * Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave] constants for available behavior.
+   */
+  public var platformOnLeave: CharacterBody3D.PlatformOnLeave
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOVING_PLATFORM_APPLY_VELOCITY_ON_LEAVE,
-          LONG)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_ON_LEAVE, LONG)
+      return CharacterBody3D.PlatformOnLeave.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_PLATFORM_ON_LEAVE, NIL)
+    }
+
+  /**
+   * Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [godot.CharacterBody3D]. By default, all floor bodies are detected and propagate their velocity.
+   */
+  public var platformFloorLayers: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_FLOOR_LAYERS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_APPLY_VELOCITY_ON_LEAVE, NIL)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_PLATFORM_FLOOR_LAYERS, NIL)
     }
 
-  public var movingPlatformFloorLayers: Long
+  /**
+   * Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [godot.CharacterBody3D]. By default, all wall bodies are ignored.
+   */
+  public var platformWallLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOVING_PLATFORM_FLOOR_LAYERS, LONG)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_WALL_LAYERS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_FLOOR_LAYERS, NIL)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_PLATFORM_WALL_LAYERS, NIL)
     }
 
-  public var movingPlatformWallLayers: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOVING_PLATFORM_WALL_LAYERS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_WALL_LAYERS, NIL)
-    }
-
-  public var collisionSafeMargin: Double
+  /**
+   * Extra margin used for collision recovery when calling [moveAndSlide].
+   *
+   * If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.
+   *
+   * A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.
+   *
+   * A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.
+   */
+  public var safeMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SAFE_MARGIN,
@@ -470,12 +488,21 @@ public open class CharacterBody3D : PhysicsBody3D() {
     }
   }
 
-  public enum class MovingPlatformApplyVelocityOnLeave(
+  public enum class PlatformOnLeave(
     id: Long
   ) {
-    PLATFORM_VEL_ON_LEAVE_ALWAYS(0),
-    PLATFORM_VEL_ON_LEAVE_UPWARD_ONLY(1),
-    PLATFORM_VEL_ON_LEAVE_NEVER(2),
+    /**
+     * Add the last platform velocity to the [velocity] when you leave a moving platform.
+     */
+    PLATFORM_ON_LEAVE_ADD_VELOCITY(0),
+    /**
+     * Add the last platform velocity to the [velocity] when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down.
+     */
+    PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY(1),
+    /**
+     * Do nothing when leaving a platform.
+     */
+    PLATFORM_ON_LEAVE_DO_NOTHING(2),
     ;
 
     public val id: Long

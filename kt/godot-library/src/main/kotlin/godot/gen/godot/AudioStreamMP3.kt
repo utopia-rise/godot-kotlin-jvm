@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 @GodotBaseType
@@ -30,6 +32,42 @@ public open class AudioStreamMP3 : AudioStream() {
     set(`value`) {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_DATA, NIL)
+    }
+
+  public var bpm: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_GET_BPM, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_BPM, NIL)
+    }
+
+  public var beatCount: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_GET_BEAT_COUNT,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_BEAT_COUNT,
+          NIL)
+    }
+
+  public var barBeats: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_GET_BAR_BEATS,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_BAR_BEATS, NIL)
     }
 
   public var loop: Boolean

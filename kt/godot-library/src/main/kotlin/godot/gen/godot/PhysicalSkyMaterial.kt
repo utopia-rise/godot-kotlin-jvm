@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
@@ -157,30 +158,36 @@ public open class PhysicalSkyMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_GROUND_COLOR, NIL)
     }
 
-  public var exposure: Double
+  /**
+   *
+   */
+  public var energyMultiplier: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_EXPOSURE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_ENERGY_MULTIPLIER, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_EXPOSURE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_ENERGY_MULTIPLIER, NIL)
     }
 
-  public var ditherStrength: Double
+  /**
+   * If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky.
+   */
+  public var useDebanding: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_DITHER_STRENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_USE_DEBANDING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_DITHER_STRENGTH, NIL)
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_USE_DEBANDING, NIL)
     }
 
   /**

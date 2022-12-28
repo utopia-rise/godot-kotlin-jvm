@@ -58,15 +58,6 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
     throw NotImplementedError("_import_scene is not implemented for EditorSceneFormatImporter")
   }
 
-  public open fun _importAnimation(
-    path: String,
-    flags: Long,
-    options: Dictionary<Any?, Any?>,
-    bakeFps: Long
-  ): Animation? {
-    throw NotImplementedError("_import_animation is not implemented for EditorSceneFormatImporter")
-  }
-
   /**
    *
    */
@@ -76,7 +67,11 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
   /**
    *
    */
-  public open fun _getOptionVisibility(path: String, option: String): Any? {
+  public open fun _getOptionVisibility(
+    path: String,
+    forAnimation: Boolean,
+    option: String
+  ): Any? {
     throw NotImplementedError("_get_option_visibility is not implemented for EditorSceneFormatImporter")
   }
 
@@ -105,5 +100,10 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
      *
      */
     public final const val IMPORT_USE_NAMED_SKIN_BINDS: Long = 16
+
+    /**
+     *
+     */
+    public final const val IMPORT_DISCARD_MESHES_AND_MATERIALS: Long = 32
   }
 }

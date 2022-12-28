@@ -102,7 +102,7 @@ public open class ScriptExtension : Script() {
   /**
    *
    */
-  public open fun _getDocumentation(): VariantArray<Any?> {
+  public open fun _getDocumentation(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_documentation is not implemented for ScriptExtension")
   }
 
@@ -151,8 +151,15 @@ public open class ScriptExtension : Script() {
   /**
    *
    */
-  public open fun _getScriptSignalList(): VariantArray<Any?> {
+  public open fun _getScriptSignalList(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_script_signal_list is not implemented for ScriptExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _hasPropertyDefaultValue(`property`: StringName): Boolean {
+    throw NotImplementedError("_has_property_default_value is not implemented for ScriptExtension")
   }
 
   /**
@@ -171,14 +178,14 @@ public open class ScriptExtension : Script() {
   /**
    *
    */
-  public open fun _getScriptMethodList(): VariantArray<Any?> {
+  public open fun _getScriptMethodList(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_script_method_list is not implemented for ScriptExtension")
   }
 
   /**
    *
    */
-  public open fun _getScriptPropertyList(): VariantArray<Any?> {
+  public open fun _getScriptPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_script_property_list is not implemented for ScriptExtension")
   }
 
@@ -199,7 +206,7 @@ public open class ScriptExtension : Script() {
   /**
    *
    */
-  public open fun _getMembers(): VariantArray<Any?> {
+  public open fun _getMembers(): VariantArray<StringName> {
     throw NotImplementedError("_get_members is not implemented for ScriptExtension")
   }
 
@@ -210,8 +217,11 @@ public open class ScriptExtension : Script() {
     throw NotImplementedError("_is_placeholder_fallback_enabled is not implemented for ScriptExtension")
   }
 
-  public open fun _getRpcMethods(): VariantArray<Any?> {
-    throw NotImplementedError("_get_rpc_methods is not implemented for ScriptExtension")
+  /**
+   *
+   */
+  public open fun _getRpcConfig(): Any? {
+    throw NotImplementedError("_get_rpc_config is not implemented for ScriptExtension")
   }
 
   public companion object

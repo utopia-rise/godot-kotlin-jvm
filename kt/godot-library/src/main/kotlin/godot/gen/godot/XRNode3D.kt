@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
@@ -32,14 +34,14 @@ public open class XRNode3D internal constructor() : Node3D() {
    *
    * Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may be configured within a given [godot.XRInterface].
    */
-  public var tracker: String
+  public var tracker: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_TRACKER, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_TRACKER, STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_SET_TRACKER, NIL)
     }
 
@@ -48,14 +50,15 @@ public open class XRNode3D internal constructor() : Node3D() {
    *
    * Godot defines number of standard pose names such as `aim` and `grip` but other may be configured within a given [godot.XRInterface].
    */
-  public var pose: String
+  public var pose: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_POSE_NAME, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_POSE_NAME,
+          STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_SET_POSE_NAME, NIL)
     }
 

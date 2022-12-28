@@ -45,11 +45,11 @@ public open class InputEventKey : InputEventWithModifiers() {
    *
    * To get a human-readable representation of the [godot.InputEventKey], use `OS.get_keycode_string(event.keycode)` where `event` is the [godot.InputEventKey].
    */
-  public var keycode: Long
+  public var keycode: Key
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -61,12 +61,12 @@ public open class InputEventKey : InputEventWithModifiers() {
    *
    * To get a human-readable representation of the [godot.InputEventKey], use `OS.get_keycode_string(event.keycode)` where `event` is the [godot.InputEventKey].
    */
-  public var physicalKeycode: Long
+  public var physicalKeycode: Key
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

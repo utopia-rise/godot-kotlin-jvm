@@ -390,7 +390,11 @@ class GenerationService(
             )
         }
 
-        if (property.hasValidGetterInClass) {
+        if (property.shouldUseSuperGetter) {
+            propertySpecBuilder.getter(
+                generateSuperGetter()
+            )
+        } else if (property.hasValidGetterInClass) {
             val argumentStringTemplate = if (property.isIndexed) {
                 "%T to ${property.internal.index}"
             } else {
@@ -405,22 +409,16 @@ class GenerationService(
                     .build()
             )
         } else {
-            if (property.shouldUseSuperGetter) {
-                propertySpecBuilder.getter(
-                    generateSuperGetter()
-                )
-            } else {
-                propertySpecBuilder.getter(
-                    FunSpec.getterBuilder()
-                        .addStatement(
-                            "%L %T(%S)",
-                            "throw",
-                            UninitializedPropertyAccessException::class,
-                            "Cannot access property ${property.name}: has no getter"
-                        )
-                        .build()
-                )
-            }
+            propertySpecBuilder.getter(
+                FunSpec.getterBuilder()
+                    .addStatement(
+                        "%L %T(%S)",
+                        "throw",
+                        UninitializedPropertyAccessException::class,
+                        "Cannot access property ${property.name}: has no getter"
+                    )
+                    .build()
+            )
         }
 
         val kDoc =
@@ -606,13 +604,6 @@ class GenerationService(
                             .build(),
                         ParameterSpec.builder("method", kTypeVariable)
                             .build(),
-                        ParameterSpec.builder(
-                            "binds", GODOT_ARRAY
-                                .parameterizedBy(ANY.copy(nullable = true))
-                                .copy(nullable = true)
-                        )
-                            .defaultValue("null")
-                            .build(),
                         ParameterSpec.builder("flags", Long::class)
                             .defaultValue("0")
                             .build()
@@ -621,7 +612,7 @@ class GenerationService(
             connectFun.addCode(
                 """
                             |val methodName = (method as %T<*>).name.%M().%M()
-                            |return connect(%T(target, methodName), binds, flags)
+                            |return connect(%T(target, methodName), flags)
                             |""".trimMargin(),
                 ClassName("kotlin.reflect", "KCallable"),
                 MemberName(godotUtilPackage, "camelToSnakeCase"),

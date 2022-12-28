@@ -16,16 +16,16 @@ import kotlin.Suppress
 
 @GodotBaseType
 public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
-  public var invertFaces: Boolean
+  public var flipFaces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPRIMITIVE3D_IS_INVERTING_FACES,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPRIMITIVE3D_GET_FLIP_FACES,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPRIMITIVE3D_SET_INVERT_FACES,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPRIMITIVE3D_SET_FLIP_FACES,
           NIL)
     }
 

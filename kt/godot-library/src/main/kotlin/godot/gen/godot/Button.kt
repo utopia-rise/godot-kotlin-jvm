@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -15,10 +16,8 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Standard themed Button.
@@ -105,34 +104,6 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Base text writing direction.
-   */
-  public var textDirection: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_DIRECTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_DIRECTION, NIL)
-    }
-
-  /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
-   */
-  public var language: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_LANGUAGE, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_LANGUAGE, NIL)
-    }
-
-  /**
    * Button's icon, if text is present the icon will be placed before the text.
    *
    * To edit margin and spacing of the icon, use [theme_item h_separation] theme property and `content_margin_*` properties of the used [godot.StyleBox]es.
@@ -179,11 +150,11 @@ public open class Button : BaseButton() {
   /**
    * Text alignment policy for the button's text, use one of the [enum HorizontalAlignment] constants.
    */
-  public var alignment: Long
+  public var alignment: HorizontalAlignment
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_ALIGNMENT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -191,13 +162,29 @@ public open class Button : BaseButton() {
     }
 
   /**
+   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes.
+   */
+  public var textOverrunBehavior: TextServer.OverrunBehavior
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_OVERRUN_BEHAVIOR,
+          LONG)
+      return TextServer.OverrunBehavior.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_OVERRUN_BEHAVIOR,
+          NIL)
+    }
+
+  /**
    * Specifies if the icon should be aligned to the left, right, or center of a button. Uses the same [enum HorizontalAlignment] constants as the text alignment. If centered, text will draw on top of the icon.
    */
-  public var iconAlignment: Long
+  public var iconAlignment: HorizontalAlignment
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_ICON_ALIGNMENT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -218,25 +205,37 @@ public open class Button : BaseButton() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_EXPAND_ICON, NIL)
     }
 
+  /**
+   * Base text writing direction.
+   */
+  public var textDirection: Control.TextDirection
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_DIRECTION, LONG)
+      return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_DIRECTION, NIL)
+    }
+
+  /**
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   */
+  public var language: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_LANGUAGE, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_LANGUAGE, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_BUTTON, scriptIndex)
     return true
-  }
-
-  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
-    TransferContext.writeArguments(STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_OPENTYPE_FEATURE, NIL)
-  }
-
-  public fun getOpentypeFeature(tag: String): Long {
-    TransferContext.writeArguments(STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_OPENTYPE_FEATURE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun clearOpentypeFeatures(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_CLEAR_OPENTYPE_FEATURES, NIL)
   }
 
   public companion object

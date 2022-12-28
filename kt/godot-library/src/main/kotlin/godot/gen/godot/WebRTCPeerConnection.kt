@@ -31,9 +31,9 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class WebRTCPeerConnection : RefCounted() {
-  public val iceCandidateCreated: Signal3<String, Long, String> by signal("media", "index", "name")
-
   public val sessionDescriptionCreated: Signal2<String, String> by signal("type", "sdp")
+
+  public val iceCandidateCreated: Signal3<String, Long, String> by signal("media", "index", "name")
 
   public val dataChannelReceived: Signal1<WebRTCDataChannel> by signal("channel")
 
@@ -107,6 +107,20 @@ public open class WebRTCPeerConnection : RefCounted() {
     return WebRTCPeerConnection.ConnectionState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  public fun getGatheringState(): WebRTCPeerConnection.GatheringState {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_GATHERING_STATE, LONG)
+    return WebRTCPeerConnection.GatheringState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public fun getSignalingState(): WebRTCPeerConnection.SignalingState {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_SIGNALING_STATE, LONG)
+    return WebRTCPeerConnection.SignalingState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
   public enum class ConnectionState(
     id: Long
   ) {
@@ -116,6 +130,45 @@ public open class WebRTCPeerConnection : RefCounted() {
     STATE_DISCONNECTED(3),
     STATE_FAILED(4),
     STATE_CLOSED(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class GatheringState(
+    id: Long
+  ) {
+    GATHERING_STATE_NEW(0),
+    GATHERING_STATE_GATHERING(1),
+    GATHERING_STATE_COMPLETE(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SignalingState(
+    id: Long
+  ) {
+    SIGNALING_STATE_STABLE(0),
+    SIGNALING_STATE_HAVE_LOCAL_OFFER(1),
+    SIGNALING_STATE_HAVE_REMOTE_OFFER(2),
+    SIGNALING_STATE_HAVE_LOCAL_PRANSWER(3),
+    SIGNALING_STATE_HAVE_REMOTE_PRANSWER(4),
+    SIGNALING_STATE_CLOSED(5),
     ;
 
     public val id: Long

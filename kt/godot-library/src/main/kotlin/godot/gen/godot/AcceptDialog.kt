@@ -30,19 +30,35 @@ import kotlin.Unit
 @GodotBaseType
 public open class AcceptDialog : Window() {
   /**
-   * Emitted when the dialog is closed or the button created with [addCancelButton] is pressed.
-   */
-  public val cancelled: Signal0 by signal()
-
-  /**
    * Emitted when the dialog is accepted, i.e. the OK button is pressed.
    */
   public val confirmed: Signal0 by signal()
 
   /**
+   * Emitted when the dialog is closed or the button created with [addCancelButton] is pressed.
+   */
+  public val cancelled: Signal0 by signal()
+
+  /**
    * Emitted when a custom button is pressed. See [addButton].
    */
   public val customAction: Signal1<StringName> by signal("action")
+
+  /**
+   * The text displayed by the OK button (see [getOkButton]).
+   */
+  public var okButtonText: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_OK_BUTTON_TEXT,
+          STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_OK_BUTTON_TEXT,
+          NIL)
+    }
 
   /**
    * The text displayed by the dialog.
@@ -72,6 +88,22 @@ public open class AcceptDialog : Window() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_HIDE_ON_OK, NIL)
+    }
+
+  /**
+   * If `true`, the dialog will be hidden when the escape key ([KEY_ESCAPE]) is pressed.
+   */
+  public var dialogCloseOnEscape: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_CLOSE_ON_ESCAPE,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_CLOSE_ON_ESCAPE,
+          NIL)
     }
 
   /**

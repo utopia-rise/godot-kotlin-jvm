@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -26,11 +27,11 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public var shape: Long
+  public var shape: RibbonTrailMesh.Shape
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_SHAPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RibbonTrailMesh.Shape.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

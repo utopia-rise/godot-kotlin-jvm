@@ -55,9 +55,10 @@ public object ResourceLoader : Object() {
   public fun loadThreadedRequest(
     path: String,
     typeHint: String = "",
-    useSubThreads: Boolean = false
+    useSubThreads: Boolean = false,
+    cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
   ): GodotError {
-    TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads)
+    TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads, LONG to cacheMode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_REQUEST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -120,6 +121,27 @@ public object ResourceLoader : Object() {
         ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_RECOGNIZED_EXTENSIONS_FOR_TYPE,
         PACKED_STRING_ARRAY)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Registers a new [godot.ResourceFormatLoader]. The ResourceLoader will use the ResourceFormatLoader as described in [load].
+   *
+   * This method is performed implicitly for ResourceFormatLoaders written in GDScript (see [godot.ResourceFormatLoader] for more information).
+   */
+  public fun addResourceFormatLoader(formatLoader: ResourceFormatLoader, atFront: Boolean = false):
+      Unit {
+    TransferContext.writeArguments(OBJECT to formatLoader, BOOL to atFront)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_ADD_RESOURCE_FORMAT_LOADER, NIL)
+  }
+
+  /**
+   * Unregisters the given [godot.ResourceFormatLoader].
+   */
+  public fun removeResourceFormatLoader(formatLoader: ResourceFormatLoader): Unit {
+    TransferContext.writeArguments(OBJECT to formatLoader)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_REMOVE_RESOURCE_FORMAT_LOADER, NIL)
   }
 
   /**

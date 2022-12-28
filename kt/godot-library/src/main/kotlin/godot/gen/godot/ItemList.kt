@@ -23,11 +23,13 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
+import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2
+import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
+import godot.signals.Signal3
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
@@ -54,22 +56,6 @@ import kotlin.Unit
 @GodotBaseType
 public open class ItemList : Control() {
   /**
-   * Triggered when specified list item is activated via double-clicking or by pressing [kbd]Enter[/kbd].
-   */
-  public val itemActivated: Signal1<Long> by signal("index")
-
-  /**
-   * Triggered when a multiple selection is altered on a list allowing multiple selection.
-   */
-  public val multiSelected: Signal2<Long, Boolean> by signal("index", "selected")
-
-  public val nothingSelected: Signal0 by signal()
-
-  public val rmbClicked: Signal1<Vector2> by signal("atPosition")
-
-  public val itemRmbSelected: Signal2<Long, Vector2> by signal("index", "atPosition")
-
-  /**
    * Triggered when specified item has been selected.
    *
    * [allowReselect] must be enabled to reselect an item.
@@ -77,13 +63,36 @@ public open class ItemList : Control() {
   public val itemSelected: Signal1<Long> by signal("index")
 
   /**
+   * Triggered when any mouse click is issued within the rect of the list but on empty space.
+   */
+  public val emptyClicked: Signal2<Vector2, Long> by signal("atPosition", "mouseButtonIndex")
+
+  /**
+   * Triggered when specified list item has been clicked with any mouse button.
+   *
+   * The click position is also provided to allow appropriate popup of context menus at the correct location.
+   */
+  public val itemClicked: Signal3<Long, Vector2, Long> by signal("index", "atPosition",
+      "mouseButtonIndex")
+
+  /**
+   * Triggered when a multiple selection is altered on a list allowing multiple selection.
+   */
+  public val multiSelected: Signal2<Long, Boolean> by signal("index", "selected")
+
+  /**
+   * Triggered when specified list item is activated via double-clicking or by pressing [kbd]Enter[/kbd].
+   */
+  public val itemActivated: Signal1<Long> by signal("index")
+
+  /**
    * Allows single or multiple item selection. See the [enum SelectMode] constants.
    */
-  public var selectMode: Long
+  public var selectMode: ItemList.SelectMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECT_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return ItemList.SelectMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -153,12 +162,12 @@ public open class ItemList : Control() {
   /**
    * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes.
    */
-  public var textOverrunBehavior: Long
+  public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_TEXT_OVERRUN_BEHAVIOR, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.OverrunBehavior.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -169,14 +178,14 @@ public open class ItemList : Control() {
   /**
    * The number of items currently in the list.
    */
-  public var itemCount: Material?
+  public var itemCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_COUNT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_COUNT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_COUNT, NIL)
     }
 
@@ -237,11 +246,11 @@ public open class ItemList : Control() {
   /**
    * The icon position, whether above or to the left of the text. See the [enum IconMode] constants.
    */
-  public var iconMode: Long
+  public var iconMode: ItemList.IconMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return ItemList.IconMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -267,15 +276,15 @@ public open class ItemList : Control() {
    *
    * If either X or Y component is not greater than zero, icon size won't be affected.
    */
-  public var fixedIconSize: Vector2
+  public var fixedIconSize: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_FIXED_ICON_SIZE,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+          VECTOR2I)
+      return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(VECTOR2I to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_FIXED_ICON_SIZE, NIL)
     }
 
@@ -361,29 +370,6 @@ public open class ItemList : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TEXT_DIRECTION,
         LONG)
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public fun setItemOpentypeFeature(
-    idx: Long,
-    tag: String,
-    `value`: Long
-  ): Unit {
-    TransferContext.writeArguments(LONG to idx, STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_OPENTYPE_FEATURE,
-        NIL)
-  }
-
-  public fun getItemOpentypeFeature(idx: Long, tag: String): Long {
-    TransferContext.writeArguments(LONG to idx, STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_OPENTYPE_FEATURE,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun clearItemOpentypeFeatures(idx: Long): Unit {
-    TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ITEMLIST_CLEAR_ITEM_OPENTYPE_FEATURES, NIL)
   }
 
   /**
@@ -703,17 +689,17 @@ public open class ItemList : Control() {
     return TransferContext.readReturnValue(OBJECT, true) as VScrollBar?
   }
 
-  public enum class SelectMode(
+  public enum class IconMode(
     id: Long
   ) {
     /**
-     * Only allow selecting a single item.
+     * Icon is drawn above the text.
      */
-    SELECT_SINGLE(0),
+    ICON_MODE_TOP(0),
     /**
-     * Allows selecting multiple items by holding [kbd]Ctrl[/kbd] or [kbd]Shift[/kbd].
+     * Icon is drawn to the left of the text.
      */
-    SELECT_MULTI(1),
+    ICON_MODE_LEFT(1),
     ;
 
     public val id: Long
@@ -726,17 +712,17 @@ public open class ItemList : Control() {
     }
   }
 
-  public enum class IconMode(
+  public enum class SelectMode(
     id: Long
   ) {
     /**
-     * Icon is drawn above the text.
+     * Only allow selecting a single item.
      */
-    ICON_MODE_TOP(0),
+    SELECT_SINGLE(0),
     /**
-     * Icon is drawn to the left of the text.
+     * Allows selecting multiple items by holding [kbd]Ctrl[/kbd] or [kbd]Shift[/kbd].
      */
-    ICON_MODE_LEFT(1),
+    SELECT_MULTI(1),
     ;
 
     public val id: Long

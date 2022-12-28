@@ -10,11 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,11 +29,11 @@ public open class RDUniform : RefCounted() {
   /**
    *
    */
-  public var uniformType: Long
+  public var uniformType: RenderingDevice.UniformType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_UNIFORM_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.UniformType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -78,10 +78,10 @@ public open class RDUniform : RefCounted() {
   /**
    *
    */
-  public fun getIds(): VariantArray<Any?> {
+  public fun getIds(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_IDS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
   }
 
   public companion object

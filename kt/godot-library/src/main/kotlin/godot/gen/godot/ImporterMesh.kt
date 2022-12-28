@@ -103,7 +103,7 @@ public open class ImporterMesh : Resource() {
   public fun addSurface(
     primitive: Mesh.PrimitiveType,
     arrays: VariantArray<Any?>,
-    blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
+    blendShapes: VariantArray<VariantArray<Any?>> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
     material: Material? = null,
     name: String = "",
@@ -228,6 +228,24 @@ public open class ImporterMesh : Resource() {
     TransferContext.writeArguments(LONG to surfaceIdx, OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_SURFACE_MATERIAL,
         NIL)
+  }
+
+  /**
+   * Generates all lods for this ImporterMesh.
+   *
+   * [normalMergeAngle] and [normalSplitAngle] are in degrees and used in the same way as the importer settings in `lods`. As a good default, use 25 and 60 respectively.
+   *
+   * The number of generated lods can be accessed using [getSurfaceLodCount], and each LOD is available in [getSurfaceLodSize] and [getSurfaceLodIndices].
+   *
+   * [boneTransformArray] is an [godot.Array] which can be either empty or contain [godot.Transform3D]s which, for each of the mesh's bone IDs, will apply mesh skinning when generating the LOD mesh variations. This is usually used to account for discrepancies in scale between the mesh itself and its skinning data.
+   */
+  public fun generateLods(
+    normalMergeAngle: Double,
+    normalSplitAngle: Double,
+    boneTransformArray: VariantArray<Any?>
+  ): Unit {
+    TransferContext.writeArguments(DOUBLE to normalMergeAngle, DOUBLE to normalSplitAngle, ARRAY to boneTransformArray)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GENERATE_LODS, NIL)
   }
 
   /**

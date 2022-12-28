@@ -118,11 +118,11 @@ public open class Animation : Resource() {
   /**
    * Determines the behavior of both ends of the animation timeline during animation playback. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
    */
-  public var loopMode: Long
+  public var loopMode: Animation.LoopMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_GET_LOOP_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Animation.LoopMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -341,9 +341,10 @@ public open class Animation : Resource() {
     time: Double,
     key: Any,
     transition: Double = 1.0
-  ): Unit {
+  ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, ANY to key, DOUBLE to transition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_INSERT_KEY, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_INSERT_KEY, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -586,10 +587,9 @@ public open class Animation : Resource() {
     time: Double,
     `value`: Double,
     inHandle: Vector2 = Vector2(0, 0),
-    outHandle: Vector2 = Vector2(0, 0),
-    handleMode: Animation.HandleMode = Animation.HandleMode.HANDLE_MODE_BALANCED
+    outHandle: Vector2 = Vector2(0, 0)
   ): Long {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, DOUBLE to value, VECTOR2 to inHandle, VECTOR2 to outHandle, LONG to handleMode.id)
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, DOUBLE to value, VECTOR2 to inHandle, VECTOR2 to outHandle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_INSERT_KEY,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -767,24 +767,6 @@ public open class Animation : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun bezierTrackSetKeyHandleMode(
-    trackIdx: Long,
-    keyIdx: Long,
-    keyHandleMode: Animation.HandleMode,
-    balancedValueTimeRatio: Double = 1.0
-  ): Unit {
-    TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, LONG to keyHandleMode.id, DOUBLE to balancedValueTimeRatio)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_SET_KEY_HANDLE_MODE, NIL)
-  }
-
-  public fun bezierTrackGetKeyHandleMode(trackIdx: Long, keyIdx: Long): Long {
-    TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_GET_KEY_HANDLE_MODE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
   /**
    * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be the index of an Animation Track.
    */
@@ -852,33 +834,6 @@ public open class Animation : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_COMPRESS, NIL)
   }
 
-  public enum class LoopMode(
-    id: Long
-  ) {
-    /**
-     * At both ends of the animation, the animation will stop playing.
-     */
-    LOOP_NONE(0),
-    /**
-     * At both ends of the animation, the animation will be repeated without changing the playback direction.
-     */
-    LOOP_LINEAR(1),
-    /**
-     * Repeats playback and reverse playback at both ends of the animation.
-     */
-    LOOP_PINGPONG(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class TrackType(
     id: Long
   ) {
@@ -930,6 +885,45 @@ public open class Animation : Resource() {
     }
   }
 
+  public enum class InterpolationType(
+    id: Long
+  ) {
+    /**
+     * No interpolation (nearest value).
+     */
+    INTERPOLATION_NEAREST(0),
+    /**
+     * Linear interpolation.
+     */
+    INTERPOLATION_LINEAR(1),
+    /**
+     * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to interpolate. Stick to [INTERPOLATION_LINEAR] for complex 3D animations imported from external software, even if it requires using a higher animation framerate in return.
+     */
+    INTERPOLATION_CUBIC(2),
+    /**
+     * Linear interpolation with shortest path rotation.
+     *
+     * **Note:** The result value is always normalized and may not match the key value.
+     */
+    INTERPOLATION_LINEAR_ANGLE(3),
+    /**
+     * Cubic interpolation with shortest path rotation.
+     *
+     * **Note:** The result value is always normalized and may not match the key value.
+     */
+    INTERPOLATION_CUBIC_ANGLE(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class UpdateMode(
     id: Long
   ) {
@@ -961,38 +955,21 @@ public open class Animation : Resource() {
     }
   }
 
-  public enum class HandleMode(
-    id: Long
-  ) {
-    HANDLE_MODE_FREE(0),
-    HANDLE_MODE_BALANCED(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class InterpolationType(
+  public enum class LoopMode(
     id: Long
   ) {
     /**
-     * No interpolation (nearest value).
+     * At both ends of the animation, the animation will stop playing.
      */
-    INTERPOLATION_NEAREST(0),
+    LOOP_NONE(0),
     /**
-     * Linear interpolation.
+     * At both ends of the animation, the animation will be repeated without changing the playback direction.
      */
-    INTERPOLATION_LINEAR(1),
+    LOOP_LINEAR(1),
     /**
-     * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to interpolate. Stick to [INTERPOLATION_LINEAR] for complex 3D animations imported from external software, even if it requires using a higher animation framerate in return.
+     * Repeats playback and reverse playback at both ends of the animation.
      */
-    INTERPOLATION_CUBIC(2),
+    LOOP_PINGPONG(2),
     ;
 
     public val id: Long

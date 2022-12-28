@@ -7,10 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 
 /**
@@ -38,6 +41,22 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class ConfirmationDialog : AcceptDialog() {
+  /**
+   * The text displayed by the cancel button (see [getCancelButton]).
+   */
+  public var cancelButtonText: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_GET_CANCEL_BUTTON_TEXT, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_SET_CANCEL_BUTTON_TEXT, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CONFIRMATIONDIALOG, scriptIndex)
     return true

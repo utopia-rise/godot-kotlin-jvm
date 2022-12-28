@@ -15,7 +15,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -39,7 +38,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    *
    * Each [godot.Image] represents one `layer`.
    */
-  public fun createFromImages(images: VariantArray<Any?>): GodotError {
+  public fun createFromImages(images: VariantArray<Image>): GodotError {
     TransferContext.writeArguments(ARRAY to images)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_CREATE_FROM_IMAGES, LONG)

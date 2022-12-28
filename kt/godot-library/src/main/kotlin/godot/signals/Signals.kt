@@ -20,9 +20,8 @@ open class Signal(
     @PublishedApi
     internal fun connect(
         callable: Callable,
-        binds: VariantArray<Any?>?,
         flags: Long
-    ) = instance.connect(name, callable, binds ?: VariantArray(), flags)
+    ) = instance.connect(name, callable, flags)
 }
 
 class Signal0(instance: Object, name: String) : Signal(instance, name) {

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -59,6 +60,24 @@ public open class InputEventMouseMotion : InputEventMouse() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_PRESSURE, NIL)
+    }
+
+  /**
+   * Returns `true` when using the eraser end of a stylus pen.
+   *
+   * **Note:** This property is implemented on Linux, macOS and Windows.
+   */
+  public var penInverted: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_PEN_INVERTED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_PEN_INVERTED, NIL)
     }
 
   /**

@@ -12,8 +12,8 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.VECTOR2
-import godot.core.Vector2
+import godot.core.VariantType.VECTOR2I
+import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
@@ -64,20 +64,22 @@ public open class ImageTexture : Texture2D() {
   }
 
   /**
-   * Creates a new [godot.ImageTexture] and initializes it by allocating and setting the data from an [godot.Image].
-   */
-  public fun createFromImage(image: Image): Unit {
-    TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_CREATE_FROM_IMAGE, NIL)
-  }
-
-  /**
    * Returns the format of the texture, one of [enum Image.Format].
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_GET_FORMAT, LONG)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Replaces the texture's data with a new [godot.Image]. This will re-allocate new memory for the texture.
+   *
+   * If you want to update the image, but don't need to change its parameters (format, size), use [update] instead for better performance.
+   */
+  public fun setImage(image: Image): Unit {
+    TransferContext.writeArguments(OBJECT to image)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_IMAGE, NIL)
   }
 
   /**
@@ -95,8 +97,8 @@ public open class ImageTexture : Texture2D() {
   /**
    * Resizes the texture to the specified dimensions.
    */
-  public fun setSizeOverride(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
+  public fun setSizeOverride(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_SIZE_OVERRIDE, NIL)
   }
 

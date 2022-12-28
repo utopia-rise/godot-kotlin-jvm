@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
+import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.KtObject
 import godot.core.NodePath
@@ -127,11 +128,10 @@ public open class Object : KtObject() {
   public inline fun <reified K : () -> Unit> Signal0.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   public fun <A0> Signal1<A0>.emit(a0: A0): Unit {
@@ -141,11 +141,10 @@ public open class Object : KtObject() {
   public inline fun <A0, reified K : (A0) -> Unit> Signal1<A0>.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   public fun <A0, A1> Signal2<A0, A1>.emit(a0: A0, a1: A1): Unit {
@@ -155,11 +154,10 @@ public open class Object : KtObject() {
   public inline fun <A0, A1, reified K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   public fun <A0, A1, A2> Signal3<A0, A1, A2>.emit(
@@ -177,11 +175,10 @@ public open class Object : KtObject() {
   ) -> Unit> Signal3<A0, A1, A2>.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   public fun <A0, A1, A2, A3> Signal4<A0, A1, A2, A3>.emit(
@@ -201,11 +198,10 @@ public open class Object : KtObject() {
   ) -> Unit> Signal4<A0, A1, A2, A3>.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   public fun <A0, A1, A2, A3, A4> Signal5<A0, A1, A2, A3, A4>.emit(
@@ -227,11 +223,10 @@ public open class Object : KtObject() {
   ) -> Unit> Signal5<A0, A1, A2, A3, A4>.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   public fun <A0, A1, A2, A3, A4, A5> Signal6<A0, A1, A2, A3, A4, A5>.emit(
@@ -255,11 +250,10 @@ public open class Object : KtObject() {
   ) -> Unit> Signal6<A0, A1, A2, A3, A4, A5>.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   public fun <A0, A1, A2, A3, A4, A5, A6> Signal7<A0, A1, A2, A3, A4, A5, A6>.emit(
@@ -285,11 +279,10 @@ public open class Object : KtObject() {
   ) -> Unit> Signal7<A0, A1, A2, A3, A4, A5, A6>.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   public fun <A0, A1, A2, A3, A4, A5, A6, A7> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.emit(
@@ -317,11 +310,10 @@ public open class Object : KtObject() {
   ) -> Unit> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   public fun <A0, A1, A2, A3, A4, A5, A6, A7, A8> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.emit(
@@ -351,11 +343,10 @@ public open class Object : KtObject() {
   ) -> Unit> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   public fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>
@@ -388,11 +379,10 @@ public open class Object : KtObject() {
   ) -> Unit> Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>.connect(
     target: Object,
     method: K,
-    binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), binds, flags)
+    return connect(Callable(target, methodName), flags)
   }
 
   /**
@@ -422,8 +412,8 @@ public open class Object : KtObject() {
    *
    * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
    */
-  public fun `set`(`property`: String, `value`: Any): Unit {
-    TransferContext.writeArguments(STRING to property, ANY to value)
+  public fun `set`(`property`: StringName, `value`: Any): Unit {
+    TransferContext.writeArguments(STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET, NIL)
   }
 
@@ -432,8 +422,8 @@ public open class Object : KtObject() {
    *
    * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
    */
-  public fun `get`(`property`: String): Any? {
-    TransferContext.writeArguments(STRING to property)
+  public fun `get`(`property`: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to property)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
@@ -471,8 +461,8 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    */
-  public fun setIndexed(`property`: NodePath, `value`: Any): Unit {
-    TransferContext.writeArguments(NODE_PATH to property, ANY to value)
+  public fun setIndexed(propertyPath: NodePath, `value`: Any): Unit {
+    TransferContext.writeArguments(NODE_PATH to propertyPath, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_INDEXED, NIL)
   }
 
@@ -483,8 +473,8 @@ public open class Object : KtObject() {
    *
    * **Note:** Even though the method takes [godot.core.NodePath] argument, it doesn't support actual paths to [godot.Node]s in the scene tree, only colon-separated sub-property paths. For the purpose of nodes, use [godot.Node.getNodeAndResource] instead.
    */
-  public fun getIndexed(`property`: NodePath): Any? {
-    TransferContext.writeArguments(NODE_PATH to property)
+  public fun getIndexed(propertyPath: NodePath): Any? {
+    TransferContext.writeArguments(NODE_PATH to propertyPath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_INDEXED, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
@@ -494,19 +484,19 @@ public open class Object : KtObject() {
    *
    * Each property's [godot.core.Dictionary] contain at least `name: String` and `type: int` (see [enum Variant.Type]) entries. Optionally, it can also include `hint: int` (see [enum PropertyHint]), `hint_string: String`, and `usage: int` (see [enum PropertyUsageFlags]).
    */
-  public fun getPropertyList(): VariantArray<Any?> {
+  public fun getPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_PROPERTY_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
    * Returns the object's methods and their signatures as an [godot.Array].
    */
-  public fun getMethodList(): VariantArray<Any?> {
+  public fun getMethodList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_METHOD_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -791,20 +781,20 @@ public open class Object : KtObject() {
   /**
    * Returns the list of signals as an [godot.Array] of dictionaries.
    */
-  public fun getSignalList(): VariantArray<Any?> {
+  public fun getSignalList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_SIGNAL_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
    * Returns an [godot.Array] of connections for the given [signal].
    */
-  public fun getSignalConnectionList(signal: String): VariantArray<Any?> {
-    TransferContext.writeArguments(STRING to signal)
+  public fun getSignalConnectionList(signal: StringName): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments(STRING_NAME to signal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_SIGNAL_CONNECTION_LIST,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -818,11 +808,11 @@ public open class Object : KtObject() {
    *
    * - `method_name` is the name of the method to which the signal is connected.
    */
-  public fun getIncomingConnections(): VariantArray<Any?> {
+  public fun getIncomingConnections(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_INCOMING_CONNECTIONS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -1095,10 +1085,9 @@ public open class Object : KtObject() {
   public fun connect(
     signal: StringName,
     callable: Callable,
-    binds: VariantArray<Any?> = godot.core.variantArrayOf(),
     flags: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, ARRAY to binds, LONG to flags)
+    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CONNECT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -1220,7 +1209,10 @@ public open class Object : KtObject() {
      * Persisting connections are saved when the object is serialized to file.
      */
     CONNECT_PERSIST(2),
-    CONNECT_ONESHOT(4),
+    /**
+     * One-shot connections disconnect themselves after emission.
+     */
+    CONNECT_ONE_SHOT(4),
     /**
      * Connect a signal as reference-counted. This means that a given signal can be connected several times to the same target, and will only be fully disconnected once no references are left.
      */

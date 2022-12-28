@@ -13,7 +13,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -50,10 +49,10 @@ public open class ButtonGroup : Resource() {
   /**
    * Returns an [godot.Array] of [godot.Button]s who have this as their [godot.ButtonGroup] (see [godot.BaseButton.buttonGroup]).
    */
-  public fun getButtons(): VariantArray<Any?> {
+  public fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_BUTTONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>
   }
 
   public companion object

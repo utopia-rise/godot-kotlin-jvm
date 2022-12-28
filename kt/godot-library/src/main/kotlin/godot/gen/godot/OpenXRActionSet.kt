@@ -7,11 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -46,21 +49,28 @@ public open class OpenXRActionSet : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_PRIORITY, NIL)
     }
 
-  public var actions: OpenXRAction?
+  public var actions: VariantArray<Any?>?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_ACTIONS,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as OpenXRAction?
+          ARRAY)
+      return TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_ACTIONS, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_OPENXRACTIONSET, scriptIndex)
     return true
+  }
+
+  public fun getActionCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_ACTION_COUNT,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun addAction(action: OpenXRAction): Unit {

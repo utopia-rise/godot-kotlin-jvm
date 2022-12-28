@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -34,12 +35,12 @@ public open class AudioEffectDistortion : AudioEffect() {
   /**
    * Distortion type.
    */
-  public var mode: Long
+  public var mode: AudioEffectDistortion.Mode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AudioEffectDistortion.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

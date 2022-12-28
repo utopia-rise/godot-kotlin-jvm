@@ -11,10 +11,10 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -29,12 +29,12 @@ public open class RDPipelineMultisampleState : RefCounted() {
   /**
    *
    */
-  public var sampleCount: Long
+  public var sampleCount: RenderingDevice.TextureSamples
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_SAMPLE_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.TextureSamples.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -109,12 +109,12 @@ public open class RDPipelineMultisampleState : RefCounted() {
   /**
    *
    */
-  public var sampleMasks: VariantArray<Any?>
+  public var sampleMasks: VariantArray<Long>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_SAMPLE_MASKS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

@@ -106,18 +106,35 @@ public object Time : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public fun getDatetimeDictFromString(datetime: String, weekday: Boolean): Dictionary<Any?, Any?> {
+  /**
+   * Converts the given ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS) to a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.
+   *
+   * If [weekday] is `false`, then the `weekday` entry is excluded (the calculation is relatively expensive).
+   *
+   * **Note:** Any decimal fraction in the time string will be ignored silently.
+   */
+  public fun getDatetimeDictFromDatetimeString(datetime: String, weekday: Boolean):
+      Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to datetime, BOOL to weekday)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_STRING,
-        DICTIONARY)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_DATETIME_STRING, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
-  public fun getDatetimeStringFromDict(datetime: Dictionary<Any?, Any?>, useSpace: Boolean):
+  /**
+   * Converts the given dictionary of keys to an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).
+   *
+   * The given dictionary can be populated with the following keys: `year`, `month`, `day`, `hour`, `minute`, and `second`. Any other entries (including `dst`) are ignored.
+   *
+   * If the dictionary is empty, `0` is returned. If some keys are omitted, they default to the equivalent values for the Unix epoch timestamp 0 (1970-01-01 at 00:00:00).
+   *
+   * If [useSpace] is `true`, the date and time bits are separated by an empty space character instead of the letter T.
+   */
+  public fun getDatetimeStringFromDatetimeDict(datetime: Dictionary<Any?, Any?>, useSpace: Boolean):
       String {
     TransferContext.writeArguments(DICTIONARY to datetime, BOOL to useSpace)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_DICT,
-        STRING)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_DATETIME_DICT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

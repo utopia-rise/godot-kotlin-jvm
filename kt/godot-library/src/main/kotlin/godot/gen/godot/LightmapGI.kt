@@ -11,6 +11,7 @@ import godot.core.Color
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -43,11 +44,11 @@ public open class LightmapGI : VisualInstance3D() {
    *
    * To further speed up bake times, decrease [bounces], disable [useDenoiser] and increase the lightmap texel size on 3D scenes in the Import doc.
    */
-  public var quality: Long
+  public var quality: LightmapGI.BakeQuality
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BAKE_QUALITY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return LightmapGI.BakeQuality.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -148,12 +149,12 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    * The environment mode to use when baking lightmaps.
    */
-  public var environmentMode: Long
+  public var environmentMode: LightmapGI.EnvironmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_ENVIRONMENT_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return LightmapGI.EnvironmentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -210,18 +211,34 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
+   * The [godot.CameraAttributes] resource that specifies exposure levels to bake at. Auto-exposure and non exposure properties will be ignored. Exposure settings should be used to reduce the dynamic range present when baking. If exposure is too high, the [godot.LightmapGI] will have banding artifacts or may have over-exposure artifacts.
+   */
+  public var cameraAttributes: Material?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_CAMERA_ATTRIBUTES,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Material?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_CAMERA_ATTRIBUTES,
+          NIL)
+    }
+
+  /**
    * The level of subdivision to use when automatically generating [godot.LightmapProbe]s for dynamic object lighting. Higher values result in more accurate indirect lighting on dynamic objects, at the cost of longer bake times and larger file sizes.
    *
    * **Note:** Automatically generated [godot.LightmapProbe]s are not visible as nodes in the Scene tree dock, and cannot be modified this way after they are generated.
    *
    * **Note:** Regardless of [generateProbesSubdiv], direct lighting on dynamic objects is always applied using [godot.Light3D] nodes in real-time.
    */
-  public var generateProbesSubdiv: Long
+  public var generateProbesSubdiv: LightmapGI.GenerateProbes
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_GENERATE_PROBES,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return LightmapGI.GenerateProbes.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -279,6 +296,41 @@ public open class LightmapGI : VisualInstance3D() {
     }
   }
 
+  public enum class GenerateProbes(
+    id: Long
+  ) {
+    /**
+     * Don't generate lightmap probes for lighting dynamic objects.
+     */
+    GENERATE_PROBES_DISABLED(0),
+    /**
+     * Lowest level of subdivision (fastest bake times, smallest file sizes).
+     */
+    GENERATE_PROBES_SUBDIV_4(1),
+    /**
+     * Low level of subdivision (fast bake times, small file sizes).
+     */
+    GENERATE_PROBES_SUBDIV_8(2),
+    /**
+     * High level of subdivision (slow bake times, large file sizes).
+     */
+    GENERATE_PROBES_SUBDIV_16(3),
+    /**
+     * Highest level of subdivision (slowest bake times, largest file sizes).
+     */
+    GENERATE_PROBES_SUBDIV_32(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class BakeError(
     id: Long
   ) {
@@ -310,41 +362,6 @@ public open class LightmapGI : VisualInstance3D() {
      * The user aborted the lightmap baking operation (typically by clicking the **Cancel** button in the progress dialog).
      */
     BAKE_ERROR_USER_ABORTED(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class GenerateProbes(
-    id: Long
-  ) {
-    /**
-     * Don't generate lightmap probes for lighting dynamic objects.
-     */
-    GENERATE_PROBES_DISABLED(0),
-    /**
-     * Lowest level of subdivision (fastest bake times, smallest file sizes).
-     */
-    GENERATE_PROBES_SUBDIV_4(1),
-    /**
-     * Low level of subdivision (fast bake times, small file sizes).
-     */
-    GENERATE_PROBES_SUBDIV_8(2),
-    /**
-     * High level of subdivision (slow bake times, large file sizes).
-     */
-    GENERATE_PROBES_SUBDIV_16(3),
-    /**
-     * Highest level of subdivision (slowest bake times, largest file sizes).
-     */
-    GENERATE_PROBES_SUBDIV_32(4),
     ;
 
     public val id: Long

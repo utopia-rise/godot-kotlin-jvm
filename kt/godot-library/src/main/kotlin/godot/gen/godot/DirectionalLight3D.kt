@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -29,12 +30,12 @@ public open class DirectionalLight3D : Light3D() {
   /**
    * The light's shadow rendering algorithm. See [enum ShadowMode].
    */
-  public var directionalShadowMode: Long
+  public var directionalShadowMode: DirectionalLight3D.ShadowMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SHADOW_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return DirectionalLight3D.ShadowMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -61,12 +62,12 @@ public open class DirectionalLight3D : Light3D() {
   /**
    * Set whether this [godot.DirectionalLight3D] is visible in the sky, in the scene, or both in the sky and in the scene. See [enum SkyMode] for options.
    */
-  public var skyMode: Long
+  public var skyMode: DirectionalLight3D.SkyMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SKY_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return DirectionalLight3D.SkyMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

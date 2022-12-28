@@ -7,10 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.StringName
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
@@ -37,15 +35,15 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   /**
    * One of the several input constants in lower-case style like: "vertex" (`VERTEX`) or "point_size" (`POINT_SIZE`).
    */
-  public var inputName: StringName
+  public var inputName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINPUT_GET_INPUT_NAME, STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINPUT_GET_INPUT_NAME, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
+      TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINPUT_SET_INPUT_NAME, NIL)
     }

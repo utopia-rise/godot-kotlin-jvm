@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
+import godot.core.PackedStringArray
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -35,27 +35,27 @@ public open class OpenXRAction : Resource() {
           NIL)
     }
 
-  public var actionType: Long
+  public var actionType: OpenXRAction.ActionType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_ACTION_TYPE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return OpenXRAction.ActionType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_SET_ACTION_TYPE, NIL)
     }
 
-  public var toplevelPaths: VariantArray<Any?>
+  public var toplevelPaths: PackedStringArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_TOPLEVEL_PATHS,
-          ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+          PACKED_STRING_ARRAY)
+      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
     }
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
+      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_SET_TOPLEVEL_PATHS,
           NIL)
     }

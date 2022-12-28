@@ -148,6 +148,26 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_EXCLUDE_OBJECTS, NIL)
     }
 
+  /**
+   * If set to `true`, any depenetration from the recovery phase is reported as a collision; this is used e.g. by [godot.CharacterBody3D] for improving floor detection during floor snapping.
+   *
+   * If set to `false`, only collisions resulting from the motion are reported, which is generally the desired behavior.
+   */
+  public var recoveryAsCollision: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_IS_RECOVERY_AS_COLLISION_ENABLED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_RECOVERY_AS_COLLISION_ENABLED,
+          NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D, scriptIndex)
     return true

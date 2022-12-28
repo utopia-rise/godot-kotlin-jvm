@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -31,6 +32,11 @@ import kotlin.Unit
 @GodotBaseType
 public open class EditorFileDialog internal constructor() : ConfirmationDialog() {
   /**
+   * Emitted when a file is selected.
+   */
+  public val fileSelected: Signal1<String> by signal("path")
+
+  /**
    * Emitted when multiple files are selected.
    */
   public val filesSelected: Signal1<PackedStringArray> by signal("paths")
@@ -41,18 +47,13 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   public val dirSelected: Signal1<String> by signal("dir")
 
   /**
-   * Emitted when a file is selected.
-   */
-  public val fileSelected: Signal1<String> by signal("path")
-
-  /**
    * The location from which the user may select a file, including `res://`, `user://`, and the local file system.
    */
-  public var access: Long
+  public var access: EditorFileDialog.Access
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_ACCESS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return EditorFileDialog.Access.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -62,12 +63,12 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The view format in which the [godot.EditorFileDialog] displays resources to the user.
    */
-  public var displayMode: Long
+  public var displayMode: EditorFileDialog.DisplayMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_DISPLAY_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return EditorFileDialog.DisplayMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -78,12 +79,12 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode]
    */
-  public var fileMode: Long
+  public var fileMode: EditorFileDialog.FileMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_FILE_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return EditorFileDialog.FileMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -191,8 +192,8 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
    *
    * For example, a [filter] of `"*.tscn, *.scn"` and a [description] of `"Scenes"` results in filter text "Scenes (*.tscn, *.scn)".
    */
-  public fun addFilter(filter: String): Unit {
-    TransferContext.writeArguments(STRING to filter)
+  public fun addFilter(filter: String, description: String = ""): Unit {
+    TransferContext.writeArguments(STRING to filter, STRING to description)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_ADD_FILTER, NIL)
   }
 
@@ -213,29 +214,6 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   public fun invalidate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_INVALIDATE, NIL)
-  }
-
-  public enum class DisplayMode(
-    id: Long
-  ) {
-    /**
-     * The [godot.EditorFileDialog] displays resources as thumbnails.
-     */
-    DISPLAY_THUMBNAILS(0),
-    /**
-     * The [godot.EditorFileDialog] displays resources as a list of filenames.
-     */
-    DISPLAY_LIST(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public enum class FileMode(
@@ -288,6 +266,29 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
      * The [godot.EditorFileDialog] can view the entire local file system.
      */
     ACCESS_FILESYSTEM(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class DisplayMode(
+    id: Long
+  ) {
+    /**
+     * The [godot.EditorFileDialog] displays resources as thumbnails.
+     */
+    DISPLAY_THUMBNAILS(0),
+    /**
+     * The [godot.EditorFileDialog] displays resources as a list of filenames.
+     */
+    DISPLAY_LIST(1),
     ;
 
     public val id: Long

@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.StringName
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -180,24 +182,16 @@ public open class UndoRedo : Object() {
   /**
    * Register a [godot.Callable] that will be called when the action is committed.
    */
-  public fun addDoMethod(
-    _object: Object,
-    method: StringName,
-    vararg __var_args: Any?
-  ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+  public fun addDoMethod(callable: Callable): Unit {
+    TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_METHOD, NIL)
   }
 
   /**
    * Register a [godot.Callable] that will be called when the action is undone.
    */
-  public fun addUndoMethod(
-    _object: Object,
-    method: StringName,
-    vararg __var_args: Any?
-  ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+  public fun addUndoMethod(callable: Callable): Unit {
+    TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_METHOD, NIL)
   }
 

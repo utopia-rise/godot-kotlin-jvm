@@ -55,6 +55,21 @@ public object Geometry2D : Object() {
   }
 
   /**
+   * Given the 2D segment ([segmentFrom], [segmentTo]), returns the position on the segment (as a number between 0 and 1) at which the segment hits the circle that is located at position [circlePosition] and has radius [circleRadius]. If the segment does not intersect the circle, -1 is returned (this is also the case if the line extending the segment would intersect the circle, but the segment does not).
+   */
+  public fun segmentIntersectsCircle(
+    segmentFrom: Vector2,
+    segmentTo: Vector2,
+    circlePosition: Vector2,
+    circleRadius: Double
+  ): Double {
+    TransferContext.writeArguments(VECTOR2 to segmentFrom, VECTOR2 to segmentTo, VECTOR2 to circlePosition, DOUBLE to circleRadius)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_SEGMENT_INTERSECTS_CIRCLE, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Checks if the two segments ([fromA], [toA]) and ([fromB], [toB]) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns `null`.
    */
   public fun segmentIntersectsSegment(
@@ -196,15 +211,26 @@ public object Geometry2D : Object() {
   }
 
   /**
+   * Decomposes the [polygon] into multiple convex hulls and returns an array of [godot.PackedVector2Array].
+   */
+  public fun decomposePolygonInConvex(polygon: PackedVector2Array):
+      VariantArray<PackedVector2Array> {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_DECOMPOSE_POLYGON_IN_CONVEX, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
+  }
+
+  /**
    * Merges (combines) [polygonA] and [polygonB] and returns an array of merged polygons. This performs [OPERATION_UNION] between polygons.
    *
    * The operation may result in an outer polygon (boundary) and multiple inner polygons (holes) produced which could be distinguished by calling [isPolygonClockwise].
    */
   public fun mergePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
-      VariantArray<Any?> {
+      VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_MERGE_POLYGONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
   }
 
   /**
@@ -213,10 +239,10 @@ public object Geometry2D : Object() {
    * If [polygonB] is enclosed by [polygonA], returns an outer polygon (boundary) and inner polygon (hole) which could be distinguished by calling [isPolygonClockwise].
    */
   public fun clipPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
-      VariantArray<Any?> {
+      VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CLIP_POLYGONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
   }
 
   /**
@@ -225,11 +251,11 @@ public object Geometry2D : Object() {
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
   public fun intersectPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
-      VariantArray<Any?> {
+      VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_INTERSECT_POLYGONS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
   }
 
   /**
@@ -238,32 +264,32 @@ public object Geometry2D : Object() {
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
   public fun excludePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
-      VariantArray<Any?> {
+      VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_EXCLUDE_POLYGONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
   }
 
   /**
    * Clips [polyline] against [polygon] and returns an array of clipped polylines. This performs [OPERATION_DIFFERENCE] between the polyline and the polygon. This operation can be thought of as cutting a line with a closed shape.
    */
   public fun clipPolylineWithPolygon(polyline: PackedVector2Array, polygon: PackedVector2Array):
-      VariantArray<Any?> {
+      VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CLIP_POLYLINE_WITH_POLYGON, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
   }
 
   /**
    * Intersects [polyline] with [polygon] and returns an array of intersected polylines. This performs [OPERATION_INTERSECTION] between the polyline and the polygon. This operation can be thought of as chopping a line with a closed shape.
    */
   public fun intersectPolylineWithPolygon(polyline: PackedVector2Array,
-      polygon: PackedVector2Array): VariantArray<Any?> {
+      polygon: PackedVector2Array): VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_INTERSECT_POLYLINE_WITH_POLYGON, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
   }
 
   /**
@@ -309,10 +335,10 @@ public object Geometry2D : Object() {
     polygon: PackedVector2Array,
     delta: Double,
     joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE
-  ): VariantArray<Any?> {
+  ): VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta, LONG to joinType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYGON, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
   }
 
   /**
@@ -329,10 +355,10 @@ public object Geometry2D : Object() {
     delta: Double,
     joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
     endType: Geometry2D.PolyEndType = Geometry2D.PolyEndType.END_SQUARE
-  ): VariantArray<Any?> {
+  ): VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta, LONG to joinType.id, LONG to endType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYLINE, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
   }
 
   /**
@@ -342,41 +368,6 @@ public object Geometry2D : Object() {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to sizes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_MAKE_ATLAS, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-  }
-
-  public enum class PolyEndType(
-    id: Long
-  ) {
-    /**
-     * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polygon.
-     */
-    END_POLYGON(0),
-    /**
-     * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polyline.
-     */
-    END_JOINED(1),
-    /**
-     * Endpoints are squared off with no extension.
-     */
-    END_BUTT(2),
-    /**
-     * Endpoints are squared off and extended by `delta` units.
-     */
-    END_SQUARE(3),
-    /**
-     * Endpoints are rounded off and extended by `delta` units.
-     */
-    END_ROUND(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public enum class PolyBooleanOperation(
@@ -425,6 +416,41 @@ public object Geometry2D : Object() {
      * There's a necessary limit to mitered joins since offsetting edges that join at very acute angles will produce excessively long and narrow "spikes". For any given edge join, when miter offsetting would exceed that maximum distance, "square" joining is applied.
      */
     JOIN_MITER(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class PolyEndType(
+    id: Long
+  ) {
+    /**
+     * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polygon.
+     */
+    END_POLYGON(0),
+    /**
+     * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polyline.
+     */
+    END_JOINED(1),
+    /**
+     * Endpoints are squared off with no extension.
+     */
+    END_BUTT(2),
+    /**
+     * Endpoints are squared off and extended by `delta` units.
+     */
+    END_SQUARE(3),
+    /**
+     * Endpoints are rounded off and extended by `delta` units.
+     */
+    END_ROUND(4),
     ;
 
     public val id: Long

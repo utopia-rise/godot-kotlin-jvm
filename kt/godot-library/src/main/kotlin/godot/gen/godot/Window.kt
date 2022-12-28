@@ -48,46 +48,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class Window : Viewport() {
   /**
-   * Emitted when the mouse cursor exits the [godot.Window]'s area (including when it's hovered over another window on top of this one).
-   */
-  public val mouseExited: Signal0 by signal()
-
-  /**
-   * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
-   */
-  public val themeChanged: Signal0 by signal()
-
-  /**
-   * Emitted when the [godot.Window] gains focus.
-   */
-  public val focusEntered: Signal0 by signal()
-
-  /**
-   * Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right after [godot.Node.NOTIFICATION_WM_GO_BACK_REQUEST].
-   */
-  public val goBackRequested: Signal0 by signal()
-
-  /**
-   * Emitted when the [godot.Window]'s close button is pressed or when [popupWindow] is enabled and user clicks outside the window.
-   *
-   * This signal can be used to handle window closing, e.g. by connecting it to [hide].
-   */
-  public val closeRequested: Signal0 by signal()
-
-  /**
-   * Emitted when the mouse cursor enters the [godot.Window]'s area, regardless if it's currently focused or not.
-   */
-  public val mouseEntered: Signal0 by signal()
-
-  /**
    * Emitted when the [godot.Window] is currently focused and receives any input, passing the received event as an argument. The event's position, if present, is in the embedder's coordinate system.
    */
   public val windowInput: Signal1<InputEvent> by signal("event")
-
-  /**
-   * Emitted right after [popup] call, before the [godot.Window] appears or does anything.
-   */
-  public val aboutToPopup: Signal0 by signal()
 
   /**
    * Emitted when files are dragged from the OS file manager and dropped in the game window. The argument is a list of file paths.
@@ -107,14 +70,56 @@ public open class Window : Viewport() {
   public val filesDropped: Signal1<PackedStringArray> by signal("files")
 
   /**
-   * Emitted when [godot.Window] is made visible or disappears.
+   * Emitted when the mouse cursor enters the [godot.Window]'s area, regardless if it's currently focused or not.
    */
-  public val visibilityChanged: Signal0 by signal()
+  public val mouseEntered: Signal0 by signal()
+
+  /**
+   * Emitted when the mouse cursor exits the [godot.Window]'s area (including when it's hovered over another window on top of this one).
+   */
+  public val mouseExited: Signal0 by signal()
+
+  /**
+   * Emitted when the [godot.Window] gains focus.
+   */
+  public val focusEntered: Signal0 by signal()
 
   /**
    * Emitted when the [godot.Window] loses its focus.
    */
   public val focusExited: Signal0 by signal()
+
+  /**
+   * Emitted when the [godot.Window]'s close button is pressed or when [popupWindow] is enabled and user clicks outside the window.
+   *
+   * This signal can be used to handle window closing, e.g. by connecting it to [hide].
+   */
+  public val closeRequested: Signal0 by signal()
+
+  /**
+   * Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right after [godot.Node.NOTIFICATION_WM_GO_BACK_REQUEST].
+   */
+  public val goBackRequested: Signal0 by signal()
+
+  /**
+   * Emitted when [godot.Window] is made visible or disappears.
+   */
+  public val visibilityChanged: Signal0 by signal()
+
+  /**
+   * Emitted right after [popup] call, before the [godot.Window] appears or does anything.
+   */
+  public val aboutToPopup: Signal0 by signal()
+
+  /**
+   * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
+   */
+  public val themeChanged: Signal0 by signal()
+
+  /**
+   * Emitted when window title bar decorations are changed, e.g. macOS window enter/exit full screen mode, or extend-to-title flag is changed.
+   */
+  public val titlebarChanged: Signal0 by signal()
 
   /**
    * The window's title. If the [godot.Window] is non-embedded, title styles set in [godot.Theme] will have no effect.
@@ -163,11 +168,11 @@ public open class Window : Viewport() {
    *
    * **Note:** Fullscreen mode is not exclusive full screen on Windows and Linux.
    */
-  public var mode: Long
+  public var mode: Window.Mode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Window.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -301,12 +306,12 @@ public open class Window : Viewport() {
   /**
    * Specifies how the content is scaled when the [godot.Window] is resized.
    */
-  public var contentScaleMode: Long
+  public var contentScaleMode: Window.ContentScaleMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Window.ContentScaleMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -317,12 +322,12 @@ public open class Window : Viewport() {
   /**
    * Specifies how the content's aspect behaves when the [godot.Window] is resized. The base aspect is determined by [contentScaleSize].
    */
-  public var contentScaleAspect: Long
+  public var contentScaleAspect: Window.ContentScaleAspect
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_ASPECT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Window.ContentScaleAspect.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -365,15 +370,15 @@ public open class Window : Viewport() {
   /**
    * The name of a theme type variation used by this [godot.Window] to look up its own theme items. See [godot.Control.themeTypeVariation] for more details.
    */
-  public var themeTypeVariation: String
+  public var themeTypeVariation: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_TYPE_VARIATION,
-          STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+          STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_THEME_TYPE_VARIATION,
           NIL)
     }
@@ -791,29 +796,35 @@ public open class Window : Viewport() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED_CLAMPED, NIL)
   }
 
-  public enum class ContentScaleAspect(
+  public enum class Mode(
     id: Long
   ) {
     /**
-     * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
+     * Windowed mode, i.e. [godot.Window] doesn't occupy the whole screen (unless set to the size of the screen).
      */
-    CONTENT_SCALE_ASPECT_IGNORE(0),
+    MODE_WINDOWED(0),
     /**
-     * The content's aspect will be preserved. If the target size has different aspect from the base one, the image will be centered and black bars will appear on left and right sides.
+     * Minimized window mode, i.e. [godot.Window] is not visible and available on window manager's window list. Normally happens when the minimize button is pressed.
      */
-    CONTENT_SCALE_ASPECT_KEEP(1),
+    MODE_MINIMIZED(1),
     /**
-     * The content can be expanded vertically. Scaling horizontally will result in keeping the width ratio and then black bars on left and right sides.
+     * Maximized window mode, i.e. [godot.Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the maximize button is pressed.
      */
-    CONTENT_SCALE_ASPECT_KEEP_WIDTH(2),
+    MODE_MAXIMIZED(2),
     /**
-     * The content can be expanded horizontally. Scaling vertically will result in keeping the height ratio and then black bars on top and bottom sides.
+     * Full screen window mode. Note that this is not *exclusive* full screen. On Windows and Linux, a borderless window is used to emulate full screen. On macOS, a new desktop is used to display the running project.
+     *
+     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
-    CONTENT_SCALE_ASPECT_KEEP_HEIGHT(3),
+    MODE_FULLSCREEN(3),
     /**
-     * The content's aspect will be preserved. If the target size has different aspect from the base one, the content will stay in the to-left corner and add an extra visible area in the stretched space.
+     * Exclusive full screen window mode. This mode is implemented on Windows only. On other platforms, it is equivalent to [MODE_FULLSCREEN].
+     *
+     * Only one window in exclusive full screen mode can be visible on a given screen at a time. If multiple windows are in exclusive full screen mode for the same screen, the last one being set to this mode takes precedence.
+     *
+     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
-    CONTENT_SCALE_ASPECT_EXPAND(4),
+    MODE_EXCLUSIVE_FULLSCREEN(4),
     ;
 
     public val id: Long
@@ -856,9 +867,15 @@ public open class Window : Viewport() {
      */
     FLAG_POPUP(5),
     /**
+     * Window content is expanded to the full size of the window. Unlike borderless window, the frame is left intact and can be used to resize the window, title bar is transparent, but have minimize/maximize/close buttons. Set with [extendToTitle].
+     *
+     * **Note:** This flag is implemented on macOS.
+     */
+    FLAG_EXTEND_TO_TITLE(6),
+    /**
      * Max value of the [enum Flags].
      */
-    FLAG_MAX(6),
+    FLAG_MAX(7),
     ;
 
     public val id: Long
@@ -871,35 +888,56 @@ public open class Window : Viewport() {
     }
   }
 
-  public enum class Mode(
+  public enum class ContentScaleMode(
     id: Long
   ) {
     /**
-     * Windowed mode, i.e. [godot.Window] doesn't occupy the whole screen (unless set to the size of the screen).
+     * The content will not be scaled to match the [godot.Window]'s size.
      */
-    MODE_WINDOWED(0),
+    CONTENT_SCALE_MODE_DISABLED(0),
     /**
-     * Minimized window mode, i.e. [godot.Window] is not visible and available on window manager's window list. Normally happens when the minimize button is pressed.
+     * The content will be rendered at the target size. This is more performance-expensive than [CONTENT_SCALE_MODE_VIEWPORT], but provides better results.
      */
-    MODE_MINIMIZED(1),
+    CONTENT_SCALE_MODE_CANVAS_ITEMS(1),
     /**
-     * Maximized window mode, i.e. [godot.Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the maximize button is pressed.
+     * The content will be rendered at the base size and then scaled to the target size. More performant than [CONTENT_SCALE_MODE_CANVAS_ITEMS], but results in pixelated image.
      */
-    MODE_MAXIMIZED(2),
+    CONTENT_SCALE_MODE_VIEWPORT(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ContentScaleAspect(
+    id: Long
+  ) {
     /**
-     * Full screen window mode. Note that this is not *exclusive* full screen. On Windows and Linux, a borderless window is used to emulate full screen. On macOS, a new desktop is used to display the running project.
-     *
-     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
+     * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
      */
-    MODE_FULLSCREEN(3),
+    CONTENT_SCALE_ASPECT_IGNORE(0),
     /**
-     * Exclusive full screen window mode. This mode is implemented on Windows only. On other platforms, it is equivalent to [MODE_FULLSCREEN].
-     *
-     * Only one window in exclusive full screen mode can be visible on a given screen at a time. If multiple windows are in exclusive full screen mode for the same screen, the last one being set to this mode takes precedence.
-     *
-     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
+     * The content's aspect will be preserved. If the target size has different aspect from the base one, the image will be centered and black bars will appear on left and right sides.
      */
-    MODE_EXCLUSIVE_FULLSCREEN(4),
+    CONTENT_SCALE_ASPECT_KEEP(1),
+    /**
+     * The content can be expanded vertically. Scaling horizontally will result in keeping the width ratio and then black bars on left and right sides.
+     */
+    CONTENT_SCALE_ASPECT_KEEP_WIDTH(2),
+    /**
+     * The content can be expanded horizontally. Scaling vertically will result in keeping the height ratio and then black bars on top and bottom sides.
+     */
+    CONTENT_SCALE_ASPECT_KEEP_HEIGHT(3),
+    /**
+     * The content's aspect will be preserved. If the target size has different aspect from the base one, the content will stay in the to-left corner and add an extra visible area in the stretched space.
+     */
+    CONTENT_SCALE_ASPECT_EXPAND(4),
     ;
 
     public val id: Long
@@ -943,37 +981,23 @@ public open class Window : Viewport() {
     }
   }
 
-  public enum class ContentScaleMode(
-    id: Long
-  ) {
-    /**
-     * The content will not be scaled to match the [godot.Window]'s size.
-     */
-    CONTENT_SCALE_MODE_DISABLED(0),
-    /**
-     * The content will be rendered at the target size. This is more performance-expensive than [CONTENT_SCALE_MODE_VIEWPORT], but provides better results.
-     */
-    CONTENT_SCALE_MODE_CANVAS_ITEMS(1),
-    /**
-     * The content will be rendered at the base size and then scaled to the target size. More performant than [CONTENT_SCALE_MODE_CANVAS_ITEMS], but results in pixelated image.
-     */
-    CONTENT_SCALE_MODE_VIEWPORT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public companion object {
     /**
      * Emitted when [godot.Window]'s visibility changes, right before [visibilityChanged].
      */
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 30
+
+    /**
+     * Sent when the node needs to refresh its theme items. This happens in one of the following cases:
+     *
+     * - The [theme] property is changed on this node or any of its ancestors.
+     *
+     * - The [themeTypeVariation] property is changed on this node.
+     *
+     * - The node enters the scene tree.
+     *
+     * **Note:** As an optimization, this notification won't be sent from changes that occur while this node is outside of the scene tree. Instead, all of the theme item updates can be applied at once when the node enters the scene tree.
+     */
+    public final const val NOTIFICATION_THEME_CHANGED: Long = 32
   }
 }

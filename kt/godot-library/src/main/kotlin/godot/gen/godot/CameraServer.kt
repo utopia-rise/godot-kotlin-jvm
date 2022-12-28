@@ -15,7 +15,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -34,14 +33,14 @@ import kotlin.Unit
 @GodotBaseType
 public object CameraServer : Object() {
   /**
-   * Emitted when a [godot.CameraFeed] is removed (e.g. a webcam is unplugged).
-   */
-  public val cameraFeedRemoved: Signal1<Long> by signal("id")
-
-  /**
    * Emitted when a [godot.CameraFeed] is added (e.g. a webcam is plugged in).
    */
   public val cameraFeedAdded: Signal1<Long> by signal("id")
+
+  /**
+   * Emitted when a [godot.CameraFeed] is removed (e.g. a webcam is unplugged).
+   */
+  public val cameraFeedRemoved: Signal1<Long> by signal("id")
 
   public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_CAMERASERVER)
@@ -69,10 +68,10 @@ public object CameraServer : Object() {
   /**
    * Returns an array of [godot.CameraFeed]s.
    */
-  public fun feeds(): VariantArray<Any?> {
+  public fun feeds(): VariantArray<CameraFeed> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_FEEDS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<CameraFeed>
   }
 
   /**

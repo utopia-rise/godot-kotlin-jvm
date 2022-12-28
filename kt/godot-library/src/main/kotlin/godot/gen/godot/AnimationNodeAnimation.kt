@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
@@ -46,12 +47,12 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
    * Determines the playback direction of the animation.
    */
-  public var playMode: Long
+  public var playMode: AnimationNodeAnimation.PlayMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEANIMATION_GET_PLAY_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AnimationNodeAnimation.PlayMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

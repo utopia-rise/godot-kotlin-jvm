@@ -11,6 +11,7 @@ import godot.core.Color
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -37,12 +38,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, transparency is enabled on the body. See also [blendMode].
    */
-  public var transparency: Long
+  public var transparency: BaseMaterial3D.Transparency
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSPARENCY,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.Transparency.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -85,12 +86,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The type of alpha antialiasing to apply. See [enum AlphaAntiAliasing].
    */
-  public var alphaAntialiasingMode: Long
+  public var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_ANTIALIASING, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.AlphaAntiAliasing.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -119,12 +120,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** Values other than `Mix` force the object into the transparent pipeline. See [enum BlendMode].
    */
-  public var blendMode: Long
+  public var blendMode: BaseMaterial3D.BlendMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BLEND_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.BlendMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -135,12 +136,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Determines which side of the triangle to cull depending on whether the triangle faces towards or away from the camera. See [enum CullMode].
    */
-  public var cullMode: Long
+  public var cullMode: BaseMaterial3D.CullMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CULL_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.CullMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -150,12 +151,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Determines when depth rendering takes place. See [enum DepthDrawMode]. See also [transparency].
    */
-  public var depthDrawMode: Long
+  public var depthDrawMode: BaseMaterial3D.DepthDrawMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DEPTH_DRAW_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.DepthDrawMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -166,12 +167,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Sets whether the shading takes place per-pixel or per-vertex. Per-vertex lighting is faster, making it the best choice for mobile applications, however it looks considerably worse than per-pixel.
    */
-  public var shadingMode: Long
+  public var shadingMode: BaseMaterial3D.ShadingMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SHADING_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.ShadingMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -182,12 +183,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The algorithm used for diffuse light scattering. See [enum DiffuseMode].
    */
-  public var diffuseMode: Long
+  public var diffuseMode: BaseMaterial3D.DiffuseMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DIFFUSE_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.DiffuseMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -200,12 +201,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** [specularMode] only applies to the specular blob. It does not affect specular reflections from the sky, screen-space reflections, [godot.VoxelGI], SDFGI or [godot.ReflectionProbe]s. To disable reflections from these sources as well, set [metallicSpecular] to `0.0` instead.
    */
-  public var specularMode: Long
+  public var specularMode: BaseMaterial3D.SpecularMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.SpecularMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -264,12 +265,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies the channel of the [metallicTexture] in which the metallic information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
-  public var metallicTextureChannel: Long
+  public var metallicTextureChannel: BaseMaterial3D.TextureChannel
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_METALLIC_TEXTURE_CHANNEL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.TextureChannel.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -295,12 +296,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
-  public var roughnessTextureChannel: Long
+  public var roughnessTextureChannel: BaseMaterial3D.TextureChannel
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ROUGHNESS_TEXTURE_CHANNEL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.TextureChannel.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -323,28 +324,47 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION, NIL)
     }
 
-  public var emissionEnergy: Double
+  /**
+   * Multiplier for emitted light. See [emissionEnabled].
+   */
+  public var emissionEnergyMultiplier: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_ENERGY, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_ENERGY_MULTIPLIER, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_ENERGY, NIL)
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_ENERGY_MULTIPLIER, NIL)
+    }
+
+  /**
+   * Luminance of emitted light, measured in nits (candela per square meter). Only available when [godot.ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. The default is roughly equivalent to an indoor lightbulb.
+   */
+  public var emissionIntensity: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_INTENSITY, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_INTENSITY, NIL)
     }
 
   /**
    * Sets how [emission] interacts with [emissionTexture]. Can either add or multiply. See [enum EmissionOperator] for options.
    */
-  public var emissionOperator: Long
+  public var emissionOperator: BaseMaterial3D.EmissionOperator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_OPERATOR, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.EmissionOperator.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -463,12 +483,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
-  public var aoTextureChannel: Long
+  public var aoTextureChannel: BaseMaterial3D.TextureChannel
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_AO_TEXTURE_CHANNEL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.TextureChannel.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -676,12 +696,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
-  public var refractionTextureChannel: Long
+  public var refractionTextureChannel: BaseMaterial3D.TextureChannel
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_REFRACTION_TEXTURE_CHANNEL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.TextureChannel.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -692,12 +712,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies how the [detailAlbedo] should blend with the current `ALBEDO`. See [enum BlendMode] for options.
    */
-  public var detailBlendMode: Long
+  public var detailBlendMode: BaseMaterial3D.BlendMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_BLEND_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.BlendMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -708,12 +728,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies whether to use `UV` or `UV2` for the detail layer. See [enum DetailUV] for options.
    */
-  public var detailUvLayer: Long
+  public var detailUvLayer: BaseMaterial3D.DetailUV
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_UV,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.DetailUV.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -823,12 +843,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** [heightmapTexture] is always sampled with linear filtering, even if nearest-neighbor filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need sharper height transitions between pixels, resize the heightmap texture in an image editor with nearest-neighbor filtering.
    */
-  public var textureFilter: Long
+  public var textureFilter: BaseMaterial3D.TextureFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE_FILTER,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.TextureFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -841,12 +861,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is not horizontal when the screen is attached to your head instead of on the table. See [godot.GitHub issue #41567](https://github.com/godotengine/godot/issues/41567) for details.
    */
-  public var billboardMode: Long
+  public var billboardMode: BaseMaterial3D.BillboardMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BILLBOARD_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.BillboardMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -948,7 +968,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
           NIL)
     }
 
-  public var proximityFadeEnable: Boolean
+  /**
+   * If `true`, the proximity fade effect is enabled. The proximity fade effect fades out each pixel based on its distance to another object.
+   */
+  public var proximityFadeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -957,8 +980,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PROXIMITY_FADE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PROXIMITY_FADE_ENABLED, NIL)
     }
 
   /**
@@ -978,14 +1001,46 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * The width of the range around the shape between the minimum and maximum representable signed distance.
+   */
+  public var msdfPixelRange: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_MSDF_PIXEL_RANGE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_MSDF_PIXEL_RANGE, NIL)
+    }
+
+  /**
+   * The width of the shape outine.
+   */
+  public var msdfOutlineSize: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_MSDF_OUTLINE_SIZE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_MSDF_OUTLINE_SIZE, NIL)
+    }
+
+  /**
    * Specifies which type of fade to use. Can be any of the [enum DistanceFadeMode]s.
    */
-  public var distanceFadeMode: Long
+  public var distanceFadeMode: BaseMaterial3D.DistanceFadeMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.DistanceFadeMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -1085,17 +1140,85 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
-  public enum class EmissionOperator(
+  public enum class TextureParam(
     id: Long
   ) {
     /**
-     * Adds the emission color to the color from the emission texture.
+     * Texture specifying per-pixel color.
      */
-    EMISSION_OP_ADD(0),
+    TEXTURE_ALBEDO(0),
     /**
-     * Multiplies the emission color by the color from the emission texture.
+     * Texture specifying per-pixel metallic value.
      */
-    EMISSION_OP_MULTIPLY(1),
+    TEXTURE_METALLIC(1),
+    /**
+     * Texture specifying per-pixel roughness value.
+     */
+    TEXTURE_ROUGHNESS(2),
+    /**
+     * Texture specifying per-pixel emission color.
+     */
+    TEXTURE_EMISSION(3),
+    /**
+     * Texture specifying per-pixel normal vector.
+     */
+    TEXTURE_NORMAL(4),
+    /**
+     * Texture specifying per-pixel rim value.
+     */
+    TEXTURE_RIM(5),
+    /**
+     * Texture specifying per-pixel clearcoat value.
+     */
+    TEXTURE_CLEARCOAT(6),
+    /**
+     * Texture specifying per-pixel flowmap direction for use with [anisotropy].
+     */
+    TEXTURE_FLOWMAP(7),
+    /**
+     * Texture specifying per-pixel ambient occlusion value.
+     */
+    TEXTURE_AMBIENT_OCCLUSION(8),
+    /**
+     * Texture specifying per-pixel height.
+     */
+    TEXTURE_HEIGHTMAP(9),
+    /**
+     * Texture specifying per-pixel subsurface scattering.
+     */
+    TEXTURE_SUBSURFACE_SCATTERING(10),
+    /**
+     * Texture specifying per-pixel transmittance for subsurface scattering.
+     */
+    TEXTURE_SUBSURFACE_TRANSMITTANCE(11),
+    /**
+     * Texture specifying per-pixel backlight color.
+     */
+    TEXTURE_BACKLIGHT(12),
+    /**
+     * Texture specifying per-pixel refraction strength.
+     */
+    TEXTURE_REFRACTION(13),
+    /**
+     * Texture specifying per-pixel detail mask blending value.
+     */
+    TEXTURE_DETAIL_MASK(14),
+    /**
+     * Texture specifying per-pixel detail color.
+     */
+    TEXTURE_DETAIL_ALBEDO(15),
+    /**
+     * Texture specifying per-pixel detail normal.
+     */
+    TEXTURE_DETAIL_NORMAL(16),
+    /**
+     * Texture holding ambient occlusion, roughness, and metallic.
+     */
+    TEXTURE_ORM(17),
+    /**
+     * Represents the size of the [enum TextureParam] enum.
+     */
+    TEXTURE_MAX(18),
     ;
 
     public val id: Long
@@ -1108,25 +1231,99 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
   }
 
-  public enum class DiffuseMode(
+  public enum class TextureFilter(
     id: Long
   ) {
     /**
-     * Default diffuse scattering algorithm.
+     * The texture filter reads from the nearest pixel only. The simplest and fastest method of filtering, but the texture will look pixelized.
      */
-    DIFFUSE_BURLEY(0),
+    TEXTURE_FILTER_NEAREST(0),
     /**
-     * Diffuse scattering ignores roughness.
+     * The texture filter blends between the nearest 4 pixels. Use this when you want to avoid a pixelated style, but do not want mipmaps.
      */
-    DIFFUSE_LAMBERT(1),
+    TEXTURE_FILTER_LINEAR(1),
     /**
-     * Extends Lambert to cover more than 90 degrees when roughness increases.
+     * The texture filter reads from the nearest pixel in the nearest mipmap. The fastest way to read from textures with mipmaps.
      */
-    DIFFUSE_LAMBERT_WRAP(2),
+    TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(2),
     /**
-     * Uses a hard cut for lighting, with smoothing affected by roughness.
+     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps. Use this for most cases as mipmaps are important to smooth out pixels that are far from the camera.
      */
-    DIFFUSE_TOON(3),
+    TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(3),
+    /**
+     * The texture filter reads from the nearest pixel, but selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     */
+    TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(4),
+    /**
+     * The texture filter blends between the nearest 4 pixels and selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. This is the slowest of the filtering options, but results in the highest quality texturing. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     */
+    TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(5),
+    /**
+     * Represents the size of the [enum TextureFilter] enum.
+     */
+    TEXTURE_FILTER_MAX(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class DetailUV(
+    id: Long
+  ) {
+    /**
+     * Use `UV` with the detail texture.
+     */
+    DETAIL_UV_1(0),
+    /**
+     * Use `UV2` with the detail texture.
+     */
+    DETAIL_UV_2(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class Transparency(
+    id: Long
+  ) {
+    /**
+     * The material will not use transparency.
+     */
+    TRANSPARENCY_DISABLED(0),
+    /**
+     * The material will use the texture's alpha values for transparency.
+     */
+    TRANSPARENCY_ALPHA(1),
+    /**
+     * The material will cut off all values below a threshold, the rest will remain opaque. The opaque portions will be rendering in the depth prepass.
+     */
+    TRANSPARENCY_ALPHA_SCISSOR(2),
+    /**
+     * The material will cut off all values below a spatially-deterministic threshold, the rest will remain opaque.
+     */
+    TRANSPARENCY_ALPHA_HASH(3),
+    /**
+     * The material will use the texture's alpha value for transparency, but will still be rendered in the depth prepass.
+     */
+    TRANSPARENCY_ALPHA_DEPTH_PRE_PASS(4),
+    /**
+     * Represents the size of the [enum Transparency] enum.
+     */
+    TRANSPARENCY_MAX(5),
     ;
 
     public val id: Long
@@ -1158,33 +1355,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * Represents the size of the [enum ShadingMode] enum.
      */
     SHADING_MODE_MAX(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class SpecularMode(
-    id: Long
-  ) {
-    /**
-     * Default specular blob.
-     */
-    SPECULAR_SCHLICK_GGX(0),
-    /**
-     * Toon blob which changes size based on roughness.
-     */
-    SPECULAR_TOON(1),
-    /**
-     * No specular blob.
-     */
-    SPECULAR_DISABLED(2),
     ;
 
     public val id: Long
@@ -1252,6 +1422,120 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * Represents the size of the [enum Feature] enum.
      */
     FEATURE_MAX(12),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class BlendMode(
+    id: Long
+  ) {
+    /**
+     * Default blend mode. The color of the object is blended over the background based on the object's alpha value.
+     */
+    BLEND_MODE_MIX(0),
+    /**
+     * The color of the object is added to the background.
+     */
+    BLEND_MODE_ADD(1),
+    /**
+     * The color of the object is subtracted from the background.
+     */
+    BLEND_MODE_SUB(2),
+    /**
+     * The color of the object is multiplied by the background.
+     */
+    BLEND_MODE_MUL(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class AlphaAntiAliasing(
+    id: Long
+  ) {
+    /**
+     * Disables Alpha AntiAliasing for the material.
+     */
+    ALPHA_ANTIALIASING_OFF(0),
+    /**
+     * Enables AlphaToCoverage. Alpha values in the material are passed to the AntiAliasing sample mask.
+     */
+    ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE(1),
+    /**
+     * Enables AlphaToCoverage and forces all non-zero alpha values to `1`. Alpha values in the material are passed to the AntiAliasing sample mask.
+     */
+    ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE_AND_TO_ONE(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class DepthDrawMode(
+    id: Long
+  ) {
+    /**
+     * Default depth draw mode. Depth is drawn only for opaque objects during the opaque prepass (if any) and during the opaque pass.
+     */
+    DEPTH_DRAW_OPAQUE_ONLY(0),
+    /**
+     * Objects will write to depth during the opaque and the transparent passes. Transparent objects that are close to the camera may obscure other transparent objects behind them.
+     *
+     * **Note:** This does not influence whether transparent objects are included in the depth prepass or not. For that, see [enum Transparency].
+     */
+    DEPTH_DRAW_ALWAYS(1),
+    /**
+     * Objects will not write their depth to the depth buffer, even during the depth prepass (if enabled).
+     */
+    DEPTH_DRAW_DISABLED(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CullMode(
+    id: Long
+  ) {
+    /**
+     * Default cull mode. The back of the object is culled when not visible. Back face triangles will be culled when facing the camera. This results in only the front side of triangles being drawn. For closed-surface meshes this means that only the exterior of the mesh will be visible.
+     */
+    CULL_BACK(0),
+    /**
+     * Front face triangles will be culled when facing the camera. This results in only the back side of triangles being drawn. For closed-surface meshes this means that the interior of the mesh will be drawn instead of the exterior.
+     */
+    CULL_FRONT(1),
+    /**
+     * No culling is performed.
+     */
+    CULL_DISABLED(2),
     ;
 
     public val id: Long
@@ -1350,9 +1634,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FLAG_PARTICLE_TRAILS_MODE(19),
     /**
+     * Enables multichannel signed distance field rendering shader.
+     */
+    FLAG_ALBEDO_TEXTURE_MSDF(20),
+    /**
      * Represents the size of the [enum Flags] enum.
      */
-    FLAG_MAX(20),
+    FLAG_MAX(21),
     ;
 
     public val id: Long
@@ -1365,21 +1653,25 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
   }
 
-  public enum class CullMode(
+  public enum class DiffuseMode(
     id: Long
   ) {
     /**
-     * Default cull mode. The back of the object is culled when not visible. Back face triangles will be culled when facing the camera. This results in only the front side of triangles being drawn. For closed-surface meshes this means that only the exterior of the mesh will be visible.
+     * Default diffuse scattering algorithm.
      */
-    CULL_BACK(0),
+    DIFFUSE_BURLEY(0),
     /**
-     * Front face triangles will be culled when facing the camera. This results in only the back side of triangles being drawn. For closed-surface meshes this means that the interior of the mesh will be drawn instead of the exterior.
+     * Diffuse scattering ignores roughness.
      */
-    CULL_FRONT(1),
+    DIFFUSE_LAMBERT(1),
     /**
-     * No culling is performed.
+     * Extends Lambert to cover more than 90 degrees when roughness increases.
      */
-    CULL_DISABLED(2),
+    DIFFUSE_LAMBERT_WRAP(2),
+    /**
+     * Uses a hard cut for lighting, with smoothing affected by roughness.
+     */
+    DIFFUSE_TOON(3),
     ;
 
     public val id: Long
@@ -1392,91 +1684,21 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
   }
 
-  public enum class DetailUV(
+  public enum class SpecularMode(
     id: Long
   ) {
     /**
-     * Use `UV` with the detail texture.
+     * Default specular blob.
      */
-    DETAIL_UV_1(0),
+    SPECULAR_SCHLICK_GGX(0),
     /**
-     * Use `UV2` with the detail texture.
+     * Toon blob which changes size based on roughness.
      */
-    DETAIL_UV_2(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TextureFilter(
-    id: Long
-  ) {
+    SPECULAR_TOON(1),
     /**
-     * The texture filter reads from the nearest pixel only. The simplest and fastest method of filtering, but the texture will look pixelized.
+     * No specular blob.
      */
-    TEXTURE_FILTER_NEAREST(0),
-    /**
-     * The texture filter blends between the nearest 4 pixels. Use this when you want to avoid a pixelated style, but do not want mipmaps.
-     */
-    TEXTURE_FILTER_LINEAR(1),
-    /**
-     * The texture filter reads from the nearest pixel in the nearest mipmap. The fastest way to read from textures with mipmaps.
-     */
-    TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(2),
-    /**
-     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps. Use this for most cases as mipmaps are important to smooth out pixels that are far from the camera.
-     */
-    TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(3),
-    /**
-     * The texture filter reads from the nearest pixel, but selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     */
-    TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(4),
-    /**
-     * The texture filter blends between the nearest 4 pixels and selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. This is the slowest of the filtering options, but results in the highest quality texturing. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     */
-    TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(5),
-    /**
-     * Represents the size of the [enum TextureFilter] enum.
-     */
-    TEXTURE_FILTER_MAX(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DistanceFadeMode(
-    id: Long
-  ) {
-    /**
-     * Do not use distance fade.
-     */
-    DISTANCE_FADE_DISABLED(0),
-    /**
-     * Smoothly fades the object out based on each pixel's distance from the camera using the alpha channel.
-     */
-    DISTANCE_FADE_PIXEL_ALPHA(1),
-    /**
-     * Smoothly fades the object out based on each pixel's distance from the camera using a dither approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware this can be faster than [DISTANCE_FADE_PIXEL_ALPHA].
-     */
-    DISTANCE_FADE_PIXEL_DITHER(2),
-    /**
-     * Smoothly fades the object out based on the object's distance from the camera using a dither approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware this can be faster than [DISTANCE_FADE_PIXEL_ALPHA].
-     */
-    DISTANCE_FADE_OBJECT_DITHER(3),
+    SPECULAR_DISABLED(2),
     ;
 
     public val id: Long
@@ -1510,35 +1732,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * The [godot.ParticleProcessMaterial.animSpeedMin] or [godot.CPUParticles3D.animSpeedMin] should also be set to a value bigger than zero for the animation to play.
      */
     BILLBOARD_PARTICLES(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DepthDrawMode(
-    id: Long
-  ) {
-    /**
-     * Default depth draw mode. Depth is drawn only for opaque objects during the opaque prepass (if any) and during the opaque pass.
-     */
-    DEPTH_DRAW_OPAQUE_ONLY(0),
-    /**
-     * Objects will write to depth during the opaque and the transparent passes. Transparent objects that are close to the camera may obscure other transparent objects behind them.
-     *
-     * **Note:** This does not influence whether transparent objects are included in the depth prepass or not. For that, see [enum Transparency].
-     */
-    DEPTH_DRAW_ALWAYS(1),
-    /**
-     * Objects will not write their depth to the depth buffer, even during the depth prepass (if enabled).
-     */
-    DEPTH_DRAW_DISABLED(2),
     ;
 
     public val id: Long
@@ -1586,21 +1779,17 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
   }
 
-  public enum class AlphaAntiAliasing(
+  public enum class EmissionOperator(
     id: Long
   ) {
     /**
-     * Disables Alpha AntiAliasing for the material.
+     * Adds the emission color to the color from the emission texture.
      */
-    ALPHA_ANTIALIASING_OFF(0),
+    EMISSION_OP_ADD(0),
     /**
-     * Enables AlphaToCoverage. Alpha values in the material are passed to the AntiAliasing sample mask.
+     * Multiplies the emission color by the color from the emission texture.
      */
-    ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE(1),
-    /**
-     * Enables AlphaToCoverage and forces all non-zero alpha values to `1`. Alpha values in the material are passed to the AntiAliasing sample mask.
-     */
-    ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE_AND_TO_ONE(2),
+    EMISSION_OP_MULTIPLY(1),
     ;
 
     public val id: Long
@@ -1613,155 +1802,25 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
   }
 
-  public enum class BlendMode(
+  public enum class DistanceFadeMode(
     id: Long
   ) {
     /**
-     * Default blend mode. The color of the object is blended over the background based on the object's alpha value.
+     * Do not use distance fade.
      */
-    BLEND_MODE_MIX(0),
+    DISTANCE_FADE_DISABLED(0),
     /**
-     * The color of the object is added to the background.
+     * Smoothly fades the object out based on each pixel's distance from the camera using the alpha channel.
      */
-    BLEND_MODE_ADD(1),
+    DISTANCE_FADE_PIXEL_ALPHA(1),
     /**
-     * The color of the object is subtracted from the background.
+     * Smoothly fades the object out based on each pixel's distance from the camera using a dither approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware this can be faster than [DISTANCE_FADE_PIXEL_ALPHA].
      */
-    BLEND_MODE_SUB(2),
+    DISTANCE_FADE_PIXEL_DITHER(2),
     /**
-     * The color of the object is multiplied by the background.
+     * Smoothly fades the object out based on the object's distance from the camera using a dither approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware this can be faster than [DISTANCE_FADE_PIXEL_ALPHA].
      */
-    BLEND_MODE_MUL(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class Transparency(
-    id: Long
-  ) {
-    /**
-     * The material will not use transparency.
-     */
-    TRANSPARENCY_DISABLED(0),
-    /**
-     * The material will use the texture's alpha values for transparency.
-     */
-    TRANSPARENCY_ALPHA(1),
-    /**
-     * The material will cut off all values below a threshold, the rest will remain opaque. The opaque portions will be rendering in the depth prepass.
-     */
-    TRANSPARENCY_ALPHA_SCISSOR(2),
-    /**
-     * The material will cut off all values below a spatially-deterministic threshold, the rest will remain opaque.
-     */
-    TRANSPARENCY_ALPHA_HASH(3),
-    /**
-     * The material will use the texture's alpha value for transparency, but will still be rendered in the depth prepass.
-     */
-    TRANSPARENCY_ALPHA_DEPTH_PRE_PASS(4),
-    /**
-     * Represents the size of the [enum Transparency] enum.
-     */
-    TRANSPARENCY_MAX(5),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TextureParam(
-    id: Long
-  ) {
-    /**
-     * Texture specifying per-pixel color.
-     */
-    TEXTURE_ALBEDO(0),
-    /**
-     * Texture specifying per-pixel metallic value.
-     */
-    TEXTURE_METALLIC(1),
-    /**
-     * Texture specifying per-pixel roughness value.
-     */
-    TEXTURE_ROUGHNESS(2),
-    /**
-     * Texture specifying per-pixel emission color.
-     */
-    TEXTURE_EMISSION(3),
-    /**
-     * Texture specifying per-pixel normal vector.
-     */
-    TEXTURE_NORMAL(4),
-    /**
-     * Texture specifying per-pixel rim value.
-     */
-    TEXTURE_RIM(5),
-    /**
-     * Texture specifying per-pixel clearcoat value.
-     */
-    TEXTURE_CLEARCOAT(6),
-    /**
-     * Texture specifying per-pixel flowmap direction for use with [anisotropy].
-     */
-    TEXTURE_FLOWMAP(7),
-    /**
-     * Texture specifying per-pixel ambient occlusion value.
-     */
-    TEXTURE_AMBIENT_OCCLUSION(8),
-    /**
-     * Texture specifying per-pixel height.
-     */
-    TEXTURE_HEIGHTMAP(9),
-    /**
-     * Texture specifying per-pixel subsurface scattering.
-     */
-    TEXTURE_SUBSURFACE_SCATTERING(10),
-    /**
-     * Texture specifying per-pixel transmittance for subsurface scattering.
-     */
-    TEXTURE_SUBSURFACE_TRANSMITTANCE(11),
-    /**
-     * Texture specifying per-pixel backlight color.
-     */
-    TEXTURE_BACKLIGHT(12),
-    /**
-     * Texture specifying per-pixel refraction strength.
-     */
-    TEXTURE_REFRACTION(13),
-    /**
-     * Texture specifying per-pixel detail mask blending value.
-     */
-    TEXTURE_DETAIL_MASK(14),
-    /**
-     * Texture specifying per-pixel detail color.
-     */
-    TEXTURE_DETAIL_ALBEDO(15),
-    /**
-     * Texture specifying per-pixel detail normal.
-     */
-    TEXTURE_DETAIL_NORMAL(16),
-    /**
-     * Texture holding ambient occlusion, roughness, and metallic.
-     */
-    TEXTURE_ORM(17),
-    /**
-     * Represents the size of the [enum TextureParam] enum.
-     */
-    TEXTURE_MAX(18),
+    DISTANCE_FADE_OBJECT_DITHER(3),
     ;
 
     public val id: Long

@@ -11,6 +11,7 @@ import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -48,21 +49,6 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRPositionalTracker : RefCounted() {
   /**
-   * Emitted when a thumbstick or thumbpad on this tracker moves.
-   */
-  public val inputAxisChanged: Signal2<String, Vector2> by signal("name", "vector")
-
-  /**
-   * Emitted when a trigger or similar input on this tracker changes value.
-   */
-  public val inputValueChanged: Signal2<String, Double> by signal("name", "value")
-
-  /**
-   * Emitted when a button on this tracker is released.
-   */
-  public val buttonReleased: Signal1<String> by signal("name")
-
-  /**
    * Emitted when the state of a pose tracked by this tracker changes.
    */
   public val poseChanged: Signal1<XRPose> by signal("pose")
@@ -73,6 +59,21 @@ public open class XRPositionalTracker : RefCounted() {
   public val buttonPressed: Signal1<String> by signal("name")
 
   /**
+   * Emitted when a button on this tracker is released.
+   */
+  public val buttonReleased: Signal1<String> by signal("name")
+
+  /**
+   * Emitted when a trigger or similar input on this tracker changes value.
+   */
+  public val inputValueChanged: Signal2<String, Double> by signal("name", "value")
+
+  /**
+   * Emitted when a thumbstick or thumbpad on this tracker moves.
+   */
+  public val inputAxisChanged: Signal2<String, Vector2> by signal("name", "vector")
+
+  /**
    * Emitted when the profile of our tracker changes.
    */
   public val profileChanged: Signal1<String> by signal("role")
@@ -80,12 +81,12 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * The type of tracker.
    */
-  public var type: Long
+  public var type: XRServer.TrackerType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return XRServer.TrackerType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -100,15 +101,15 @@ public open class XRPositionalTracker : RefCounted() {
    *
    * - `right_hand` identifies the controller held in the players right hand
    */
-  public var name: String
+  public var name: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_NAME, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_NAME, STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_NAME, NIL)
     }
@@ -148,12 +149,12 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Defines which hand this tracker relates to.
    */
-  public var hand: Long
+  public var hand: XRPositionalTracker.TrackerHand
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_HAND, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return XRPositionalTracker.TrackerHand.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

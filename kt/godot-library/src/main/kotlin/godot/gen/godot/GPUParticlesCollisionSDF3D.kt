@@ -7,7 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -19,6 +21,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Baked signed distance field 3D particle attractor affecting [godot.GPUParticles3D] nodes.
@@ -56,12 +59,12 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    * The bake resolution to use for the signed distance field [texture]. The texture must be baked again for changes to the [resolution] property to be effective. Higher resolutions have a greater performance cost and take more time to bake. Higher resolutions also result in larger baked textures, leading to increased VRAM and storage space requirements. To improve performance and reduce bake times, use the lowest resolution possible for the object you're representing the collision of.
    */
-  public var resolution: Long
+  public var resolution: GPUParticlesCollisionSDF3D.Resolution
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_RESOLUTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GPUParticlesCollisionSDF3D.Resolution.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -86,6 +89,22 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   /**
+   * The visual layers to account for when baking the particle collision SDF. Only [godot.MeshInstance3D]s whose [godot.VisualInstance3D.layers] match with this [bakeMask] will be included in the generated particle collision SDF. By default, all objects are taken into account for the particle collision SDF baking.
+   */
+  public var bakeMask: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_BAKE_MASK, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_SET_BAKE_MASK, NIL)
+    }
+
+  /**
    * The 3D texture representing the signed distance field.
    */
   public var texture: Texture3D?
@@ -104,6 +123,25 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D, scriptIndex)
     return true
+  }
+
+  /**
+   * Based on [value], enables or disables the specified layer in the [bakeMask], given a [layerNumber] between 1 and 32.
+   */
+  public fun setBakeMaskValue(layerNumber: Long, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_SET_BAKE_MASK_VALUE, NIL)
+  }
+
+  /**
+   * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [layerNumber] between 1 and 32.
+   */
+  public fun getBakeMaskValue(layerNumber: Long): Boolean {
+    TransferContext.writeArguments(LONG to layerNumber)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_BAKE_MASK_VALUE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public enum class Resolution(

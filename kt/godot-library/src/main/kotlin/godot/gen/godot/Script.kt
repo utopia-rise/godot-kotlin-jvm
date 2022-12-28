@@ -128,31 +128,31 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns the list of properties in this [godot.Script].
    */
-  public fun getScriptPropertyList(): VariantArray<Any?> {
+  public fun getScriptPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_PROPERTY_LIST,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
    * Returns the list of methods in this [godot.Script].
    */
-  public fun getScriptMethodList(): VariantArray<Any?> {
+  public fun getScriptMethodList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_METHOD_LIST,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
    * Returns the list of user signals defined in this [godot.Script].
    */
-  public fun getScriptSignalList(): VariantArray<Any?> {
+  public fun getScriptSignalList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_SIGNAL_LIST,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**

@@ -18,7 +18,6 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -54,9 +53,10 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   public fun moveAndCollide(
     distance: Vector2,
     testOnly: Boolean = false,
-    safeMargin: Double = 0.08
+    safeMargin: Double = 0.08,
+    recoveryAsCollision: Boolean = false
   ): KinematicCollision2D? {
-    TransferContext.writeArguments(VECTOR2 to distance, BOOL to testOnly, DOUBLE to safeMargin)
+    TransferContext.writeArguments(VECTOR2 to distance, BOOL to testOnly, DOUBLE to safeMargin, BOOL to recoveryAsCollision)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_MOVE_AND_COLLIDE,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?
@@ -77,9 +77,10 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
     from: Transform2D,
     distance: Vector2,
     collision: KinematicCollision2D? = null,
-    safeMargin: Double = 0.08
+    safeMargin: Double = 0.08,
+    recoveryAsCollision: Boolean = false
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to distance, OBJECT to collision, DOUBLE to safeMargin)
+    TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to distance, OBJECT to collision, DOUBLE to safeMargin, BOOL to recoveryAsCollision)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_TEST_MOVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -87,11 +88,11 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
-  public fun getCollisionExceptions(): VariantArray<Any?> {
+  public fun getCollisionExceptions(): VariantArray<PhysicsBody2D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_GET_COLLISION_EXCEPTIONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody2D>
   }
 
   /**

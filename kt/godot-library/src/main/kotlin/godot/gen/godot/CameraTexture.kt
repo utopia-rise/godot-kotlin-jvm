@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -44,12 +45,12 @@ public open class CameraTexture : Texture2D() {
   /**
    * Which image within the [godot.CameraFeed] we want access to, important if the camera image is split in a Y and CbCr component.
    */
-  public var whichFeed: Long
+  public var whichFeed: CameraServer.FeedImage
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERATEXTURE_GET_WHICH_FEED,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CameraServer.FeedImage.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

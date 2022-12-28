@@ -13,6 +13,7 @@ import godot.core.PackedVector2Array
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -227,12 +228,12 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public var drawOrder: Long
+  public var drawOrder: CPUParticles2D.DrawOrder
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_DRAW_ORDER,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CPUParticles2D.DrawOrder.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -258,12 +259,12 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Particles will be emitted inside this region. See [enum EmissionShape] for possible values.
    */
-  public var emissionShape: Long
+  public var emissionShape: CPUParticles2D.EmissionShape
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_SHAPE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CPUParticles2D.EmissionShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -588,68 +589,17 @@ public open class CPUParticles2D : Node2D() {
         ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_CONVERT_FROM_PARTICLES, NIL)
   }
 
-  public enum class EmissionShape(
+  public enum class DrawOrder(
     id: Long
   ) {
     /**
-     * All particles will be emitted from a single point.
+     * Particles are drawn in the order emitted.
      */
-    EMISSION_SHAPE_POINT(0),
+    DRAW_ORDER_INDEX(0),
     /**
-     * Particles will be emitted in the volume of a sphere flattened to two dimensions.
+     * Particles are drawn in order of remaining lifetime.
      */
-    EMISSION_SHAPE_SPHERE(1),
-    /**
-     * Particles will be emitted on the surface of a sphere flattened to two dimensions.
-     */
-    EMISSION_SHAPE_SPHERE_SURFACE(2),
-    /**
-     * Particles will be emitted in the area of a rectangle.
-     */
-    EMISSION_SHAPE_RECTANGLE(3),
-    /**
-     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle color will be modulated by [emissionColors].
-     */
-    EMISSION_SHAPE_POINTS(4),
-    /**
-     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated by [emissionColors].
-     */
-    EMISSION_SHAPE_DIRECTED_POINTS(5),
-    /**
-     * Represents the size of the [enum EmissionShape] enum.
-     */
-    EMISSION_SHAPE_MAX(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ParticleFlags(
-    id: Long
-  ) {
-    /**
-     * Use with [setParticleFlag] to set [particleFlagAlignY].
-     */
-    PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY(0),
-    /**
-     * Present for consistency with 3D particle nodes, not used in 2D.
-     */
-    PARTICLE_FLAG_ROTATE_Y(1),
-    /**
-     * Present for consistency with 3D particle nodes, not used in 2D.
-     */
-    PARTICLE_FLAG_DISABLE_Z(2),
-    /**
-     * Represents the size of the [enum ParticleFlags] enum.
-     */
-    PARTICLE_FLAG_MAX(3),
+    DRAW_ORDER_LIFETIME(1),
     ;
 
     public val id: Long
@@ -729,17 +679,68 @@ public open class CPUParticles2D : Node2D() {
     }
   }
 
-  public enum class DrawOrder(
+  public enum class ParticleFlags(
     id: Long
   ) {
     /**
-     * Particles are drawn in the order emitted.
+     * Use with [setParticleFlag] to set [particleFlagAlignY].
      */
-    DRAW_ORDER_INDEX(0),
+    PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY(0),
     /**
-     * Particles are drawn in order of remaining lifetime.
+     * Present for consistency with 3D particle nodes, not used in 2D.
      */
-    DRAW_ORDER_LIFETIME(1),
+    PARTICLE_FLAG_ROTATE_Y(1),
+    /**
+     * Present for consistency with 3D particle nodes, not used in 2D.
+     */
+    PARTICLE_FLAG_DISABLE_Z(2),
+    /**
+     * Represents the size of the [enum ParticleFlags] enum.
+     */
+    PARTICLE_FLAG_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EmissionShape(
+    id: Long
+  ) {
+    /**
+     * All particles will be emitted from a single point.
+     */
+    EMISSION_SHAPE_POINT(0),
+    /**
+     * Particles will be emitted in the volume of a sphere flattened to two dimensions.
+     */
+    EMISSION_SHAPE_SPHERE(1),
+    /**
+     * Particles will be emitted on the surface of a sphere flattened to two dimensions.
+     */
+    EMISSION_SHAPE_SPHERE_SURFACE(2),
+    /**
+     * Particles will be emitted in the area of a rectangle.
+     */
+    EMISSION_SHAPE_RECTANGLE(3),
+    /**
+     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle color will be modulated by [emissionColors].
+     */
+    EMISSION_SHAPE_POINTS(4),
+    /**
+     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated by [emissionColors].
+     */
+    EMISSION_SHAPE_DIRECTED_POINTS(5),
+    /**
+     * Represents the size of the [enum EmissionShape] enum.
+     */
+    EMISSION_SHAPE_MAX(6),
     ;
 
     public val id: Long

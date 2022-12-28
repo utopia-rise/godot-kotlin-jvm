@@ -35,8 +35,8 @@ public open class ResourceFormatSaver : RefCounted() {
    * Returns [OK] on success, or an [enum Error] constant in case of failure.
    */
   public open fun _save(
-    path: String,
     resource: Resource,
+    path: String,
     flags: Long
   ): Long {
     throw NotImplementedError("_save is not implemented for ResourceFormatSaver")
@@ -54,6 +54,15 @@ public open class ResourceFormatSaver : RefCounted() {
    */
   public open fun _getRecognizedExtensions(resource: Resource): PackedStringArray {
     throw NotImplementedError("_get_recognized_extensions is not implemented for ResourceFormatSaver")
+  }
+
+  /**
+   * Returns `true` if this saver handles a given save path and `false` otherwise.
+   *
+   * If this method is not implemented, the default behavior returns whether the path's extension is within the ones provided by [_getRecognizedExtensions].
+   */
+  public open fun _recognizePath(resource: Resource, path: String): Boolean {
+    throw NotImplementedError("_recognize_path is not implemented for ResourceFormatSaver")
   }
 
   public companion object

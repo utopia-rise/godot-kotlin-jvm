@@ -36,27 +36,26 @@ import kotlin.Unit
 @GodotBaseType
 public open class OptionButton : Button() {
   /**
-   * Emitted when the user navigates to an item using the [godot.ProjectSettings.input/uiUp] or [godot.ProjectSettings.input/uiDown] input actions. The index of the item selected is passed as argument.
-   */
-  public val itemFocused: Signal1<Long> by signal("index")
-
-  /**
    * Emitted when the current item has been changed by the user. The index of the item selected is passed as argument.
    */
   public val itemSelected: Signal1<Long> by signal("index")
 
   /**
+   * Emitted when the user navigates to an item using the [godot.ProjectSettings.input/uiUp] or [godot.ProjectSettings.input/uiDown] input actions. The index of the item selected is passed as argument.
+   */
+  public val itemFocused: Signal1<Long> by signal("index")
+
+  /**
    * The number of items to select from.
    */
-  public var itemCount: Material?
+  public var itemCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_COUNT,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_COUNT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_COUNT, NIL)
     }
 
@@ -68,6 +67,24 @@ public open class OptionButton : Button() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTED, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
+    }
+
+  /**
+   * If `true`, minimum size will be determined by the longest item's text, instead of the currently selected one's.
+   *
+   * **Note:** For performance reasons, the minimum size doesn't update immediately when adding, removing or modifying items.
+   */
+  public var fitToLongestItem: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_IS_FIT_TO_LONGEST_ITEM, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_FIT_TO_LONGEST_ITEM, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -210,10 +227,20 @@ public open class OptionButton : Button() {
   }
 
   /**
+   *
+   */
+  public fun isItemSeparator(idx: Long): Boolean {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_IS_ITEM_SEPARATOR,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Adds a separator to the list of items. Separators help to group items, and can optionally be given a [text] header. A separator also gets an index assigned, and is appended at the end of the item list.
    */
-  public fun addSeparator(): Unit {
-    TransferContext.writeArguments()
+  public fun addSeparator(text: String = ""): Unit {
+    TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_ADD_SEPARATOR, NIL)
   }
 
@@ -271,6 +298,34 @@ public open class OptionButton : Button() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_POPUP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+  }
+
+  /**
+   * Adjusts popup position and sizing for the [godot.OptionButton], then shows the [godot.PopupMenu]. Prefer this over using `get_popup().popup()`.
+   */
+  public fun showPopup(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SHOW_POPUP, NIL)
+  }
+
+  /**
+   *
+   */
+  public fun hasSelectableItems(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_HAS_SELECTABLE_ITEMS,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   *
+   */
+  public fun getSelectableItem(fromLast: Boolean = false): Long {
+    TransferContext.writeArguments(BOOL to fromLast)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTABLE_ITEM,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public companion object

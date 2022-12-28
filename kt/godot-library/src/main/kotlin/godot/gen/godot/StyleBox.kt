@@ -92,6 +92,15 @@ public open class StyleBox : Resource() {
   }
 
   /**
+   * Sets the default margin to [offset] pixels for all sides.
+   */
+  public fun setDefaultMarginAll(offset: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to offset)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_DEFAULT_MARGIN_ALL,
+        NIL)
+  }
+
+  /**
    * Returns the default margin of the specified [enum Side].
    */
   public fun getDefaultMargin(margin: Side): Double {

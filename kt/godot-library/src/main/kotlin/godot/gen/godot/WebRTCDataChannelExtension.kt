@@ -6,7 +6,9 @@
 
 package godot
 
+import godot.WebRTCDataChannel
 import godot.`annotation`.GodotBaseType
+import godot.core.GodotError
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -30,17 +32,17 @@ public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
     throw NotImplementedError("_get_max_packet_size is not implemented for WebRTCDataChannelExtension")
   }
 
-  public open fun _poll(): Long {
+  public open fun _poll(): GodotError {
     throw NotImplementedError("_poll is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _close(): Unit {
   }
 
-  public open fun _setWriteMode(pWriteMode: Long): Unit {
+  public open fun _setWriteMode(pWriteMode: WebRTCDataChannel.WriteMode): Unit {
   }
 
-  public open fun _getWriteMode(): Long {
+  public open fun _getWriteMode(): WebRTCDataChannel.WriteMode {
     throw NotImplementedError("_get_write_mode is not implemented for WebRTCDataChannelExtension")
   }
 
@@ -48,7 +50,7 @@ public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
     throw NotImplementedError("_was_string_packet is not implemented for WebRTCDataChannelExtension")
   }
 
-  public open fun _getReadyState(): Long {
+  public open fun _getReadyState(): WebRTCDataChannel.ChannelState {
     throw NotImplementedError("_get_ready_state is not implemented for WebRTCDataChannelExtension")
   }
 

@@ -28,7 +28,10 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class Joint3D internal constructor() : Node3D() {
-  public var nodesNodeA: NodePath
+  /**
+   * The node attached to the first side (A) of the joint.
+   */
+  public var nodeA: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_A, NODE_PATH)
@@ -39,7 +42,10 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_A, NIL)
     }
 
-  public var nodesNodeB: NodePath
+  /**
+   * The node attached to the second side (B) of the joint.
+   */
+  public var nodeB: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_B, NODE_PATH)
@@ -50,6 +56,9 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_B, NIL)
     }
 
+  /**
+   * The priority used to define which solver is executed first for multiple joints. The lower the value, the higher the priority.
+   */
   public var solverPriority: Long
     get() {
       TransferContext.writeArguments()
@@ -61,7 +70,10 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_SOLVER_PRIORITY, NIL)
     }
 
-  public var collisionExcludeNodes: Boolean
+  /**
+   * If `true`, the two bodies of the nodes are not able to collide with each other.
+   */
+  public var excludeNodesFromCollision: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.ANY
 import godot.codegen.extensions.convertToCamelCase
 import godot.codegen.extensions.getTypeClassName
 import godot.codegen.extensions.isObjectSubClass
+import godot.codegen.extensions.sanitizeApiType
 import godot.codegen.models.Argument
 import godot.codegen.models.Method
 import godot.codegen.traits.CallableTrait
@@ -24,7 +25,7 @@ class EnrichedMethod(val internal: Method, engineClassIndexName: String) : Calla
 
     var isGetterOrSetter = false
 
-    override val type = internal.returnValue?.type
+    override val type = internal.returnValue?.type?.sanitizeApiType()
     override val nullable = isObjectSubClass() || getTypeClassName().className == ANY
 }
 

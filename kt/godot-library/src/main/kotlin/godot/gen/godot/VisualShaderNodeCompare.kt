@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -25,12 +26,12 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * The type to be used in the comparison. See [enum ComparisonType] for options.
    */
-  public var type: Long
+  public var type: VisualShaderNodeCompare.ComparisonType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_COMPARISON_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeCompare.ComparisonType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -41,12 +42,12 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * A comparison function. See [enum Function] for options.
    */
-  public var function: Long
+  public var function: VisualShaderNodeCompare.Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_FUNCTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeCompare.Function.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -57,12 +58,12 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * Extra condition which is applied if [type] is set to [godot.CTYPE_VECTOR_3D].
    */
-  public var condition: Long
+  public var condition: VisualShaderNodeCompare.Condition
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_CONDITION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeCompare.Condition.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -95,17 +96,21 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      */
     CTYPE_VECTOR_3D(3),
     /**
+     * A 4D vector type.
+     */
+    CTYPE_VECTOR_4D(4),
+    /**
      * A boolean type.
      */
-    CTYPE_BOOLEAN(4),
+    CTYPE_BOOLEAN(5),
     /**
      * A transform (`mat4`) type.
      */
-    CTYPE_TRANSFORM(5),
+    CTYPE_TRANSFORM(6),
     /**
      * Represents the size of the [enum ComparisonType] enum.
      */
-    CTYPE_MAX(6),
+    CTYPE_MAX(7),
     ;
 
     public val id: Long

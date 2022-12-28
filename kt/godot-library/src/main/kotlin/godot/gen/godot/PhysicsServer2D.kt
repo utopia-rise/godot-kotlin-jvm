@@ -348,12 +348,32 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
+   * Returns the physics layer or layers an area belongs to.
+   */
+  public fun areaGetCollisionLayer(area: RID): Long {
+    TransferContext.writeArguments(_RID to area)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_COLLISION_LAYER, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Sets which physics layers the area will monitor.
    */
   public fun areaSetCollisionMask(area: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to mask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_COLLISION_MASK, NIL)
+  }
+
+  /**
+   * Returns the physics layer or layers an area can contact with.
+   */
+  public fun areaGetCollisionMask(area: RID): Long {
+    TransferContext.writeArguments(_RID to area)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_COLLISION_MASK, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -724,6 +744,25 @@ public object PhysicsServer2D : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_COLLISION_MASK, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets the body's collision priority.
+   */
+  public fun bodySetCollisionPriority(body: RID, priority: Double): Unit {
+    TransferContext.writeArguments(_RID to body, DOUBLE to priority)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_COLLISION_PRIORITY, NIL)
+  }
+
+  /**
+   * Returns the body's collision priority.
+   */
+  public fun bodyGetCollisionPriority(body: RID): Double {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_COLLISION_PRIORITY, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -1188,69 +1227,45 @@ public object PhysicsServer2D : Object() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public enum class ProcessInfo(
+  public enum class SpaceParameter(
     id: Long
   ) {
     /**
-     * Constant to get the number of objects that are not sleeping.
+     * Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated.
      */
-    INFO_ACTIVE_OBJECTS(0),
+    SPACE_PARAM_CONTACT_RECYCLE_RADIUS(0),
     /**
-     * Constant to get the number of possible collisions.
+     * Constant to set/get the maximum distance a shape can be from another before they are considered separated and the contact is discarded.
      */
-    INFO_COLLISION_PAIRS(1),
+    SPACE_PARAM_CONTACT_MAX_SEPARATION(1),
     /**
-     * Constant to get the number of space regions where a collision could occur.
+     * Constant to set/get the maximum distance a shape can penetrate another shape before it is considered a collision.
      */
-    INFO_ISLAND_COUNT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class AreaBodyStatus(
-    id: Long
-  ) {
+    SPACE_PARAM_CONTACT_MAX_ALLOWED_PENETRATION(2),
     /**
-     * The value of the first parameter and area callback function receives, when an object enters one of its shapes.
+     * Constant to set/get the default solver bias for all physics contacts. A solver bias is a factor controlling how much two objects "rebound", after overlapping, to avoid leaving them in that state because of numerical imprecision.
      */
-    AREA_BODY_ADDED(0),
+    SPACE_PARAM_CONTACT_DEFAULT_BIAS(3),
     /**
-     * The value of the first parameter and area callback function receives, when an object exits one of its shapes.
+     * Constant to set/get the threshold linear velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
      */
-    AREA_BODY_REMOVED(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class BodyMode(
-    id: Long
-  ) {
+    SPACE_PARAM_BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD(4),
     /**
-     * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't collide with other bodies along its path when moved.
+     * Constant to set/get the threshold angular velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
      */
-    BODY_MODE_STATIC(0),
+    SPACE_PARAM_BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD(5),
     /**
-     * Constant for kinematic bodies. In this mode, a body can be only moved by user code and collides with other bodies along its path.
+     * Constant to set/get the maximum time of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after this time.
      */
-    BODY_MODE_KINEMATIC(1),
-    BODY_MODE_DYNAMIC(2),
-    BODY_MODE_DYNAMIC_LINEAR(3),
+    SPACE_PARAM_BODY_TIME_TO_SLEEP(6),
+    /**
+     * Constant to set/get the default solver bias for all physics constraints. A solver bias is a factor controlling how much two objects "rebound", after violating a constraint, to avoid leaving them in that state because of numerical imprecision.
+     */
+    SPACE_PARAM_CONSTRAINT_DEFAULT_BIAS(7),
+    /**
+     * Constant to set/get the number of solver iterations for all contacts and constraints. The greater the number of iterations, the more accurate the collisions will be. However, a greater number of iterations requires more CPU power, which can decrease performance.
+     */
+    SPACE_PARAM_SOLVER_ITERATIONS(8),
     ;
 
     public val id: Long
@@ -1314,21 +1329,53 @@ public object PhysicsServer2D : Object() {
     }
   }
 
-  public enum class JointParam(
+  public enum class AreaParameter(
     id: Long
   ) {
     /**
-     *
+     * Constant to set/get gravity override mode in an area. See [enum AreaSpaceOverrideMode] for possible values.
      */
-    JOINT_PARAM_BIAS(0),
+    AREA_PARAM_GRAVITY_OVERRIDE_MODE(0),
     /**
-     *
+     * Constant to set/get gravity strength in an area.
      */
-    JOINT_PARAM_MAX_BIAS(1),
+    AREA_PARAM_GRAVITY(1),
     /**
-     *
+     * Constant to set/get gravity vector/center in an area.
      */
-    JOINT_PARAM_MAX_FORCE(2),
+    AREA_PARAM_GRAVITY_VECTOR(2),
+    /**
+     * Constant to set/get whether the gravity vector of an area is a direction, or a center point.
+     */
+    AREA_PARAM_GRAVITY_IS_POINT(3),
+    /**
+     * Constant to set/get the falloff factor for point gravity of an area. The greater this value is, the faster the strength of gravity decreases with the square of distance.
+     */
+    AREA_PARAM_GRAVITY_DISTANCE_SCALE(4),
+    /**
+     * This constant was used to set/get the falloff factor for point gravity. It has been superseded by [AREA_PARAM_GRAVITY_DISTANCE_SCALE].
+     */
+    AREA_PARAM_GRAVITY_POINT_ATTENUATION(5),
+    /**
+     * Constant to set/get linear damping override mode in an area. See [enum AreaSpaceOverrideMode] for possible values.
+     */
+    AREA_PARAM_LINEAR_DAMP_OVERRIDE_MODE(6),
+    /**
+     * Constant to set/get the linear damping factor of an area.
+     */
+    AREA_PARAM_LINEAR_DAMP(7),
+    /**
+     * Constant to set/get angular damping override mode in an area. See [enum AreaSpaceOverrideMode] for possible values.
+     */
+    AREA_PARAM_ANGULAR_DAMP_OVERRIDE_MODE(8),
+    /**
+     * Constant to set/get the angular damping factor of an area.
+     */
+    AREA_PARAM_ANGULAR_DAMP(9),
+    /**
+     * Constant to set/get the priority (order of processing) of an area.
+     */
+    AREA_PARAM_PRIORITY(10),
     ;
 
     public val id: Long
@@ -1341,17 +1388,29 @@ public object PhysicsServer2D : Object() {
     }
   }
 
-  public enum class BodyDampMode(
+  public enum class AreaSpaceOverrideMode(
     id: Long
   ) {
     /**
-     * The body's damping value is added to any value set in areas or the default value.
+     * This area does not affect gravity/damp. These are generally areas that exist only to detect collisions, and objects entering or exiting them.
      */
-    BODY_DAMP_MODE_COMBINE(0),
+    AREA_SPACE_OVERRIDE_DISABLED(0),
     /**
-     * The body's damping value replaces any value set in areas or the default value.
+     * This area adds its gravity/damp values to whatever has been calculated so far. This way, many overlapping areas can combine their physics to make interesting effects.
      */
-    BODY_DAMP_MODE_REPLACE(1),
+    AREA_SPACE_OVERRIDE_COMBINE(1),
+    /**
+     * This area adds its gravity/damp values to whatever has been calculated so far. Then stops taking into account the rest of the areas, even the default one.
+     */
+    AREA_SPACE_OVERRIDE_COMBINE_REPLACE(2),
+    /**
+     * This area replaces any gravity/damp, even the default one, and stops taking into account the rest of the areas.
+     */
+    AREA_SPACE_OVERRIDE_REPLACE(3),
+    /**
+     * This area replaces any gravity/damp calculated so far, but keeps calculating the rest of the areas, down to the default one.
+     */
+    AREA_SPACE_OVERRIDE_REPLACE_COMBINE(4),
     ;
 
     public val id: Long
@@ -1364,165 +1423,25 @@ public object PhysicsServer2D : Object() {
     }
   }
 
-  public enum class SpaceParameter(
+  public enum class BodyMode(
     id: Long
   ) {
     /**
-     * Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated.
+     * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't collide with other bodies along its path when moved.
      */
-    SPACE_PARAM_CONTACT_RECYCLE_RADIUS(0),
+    BODY_MODE_STATIC(0),
     /**
-     * Constant to set/get the maximum distance a shape can be from another before they are considered separated and the contact is discarded.
+     * Constant for kinematic bodies. In this mode, a body can be only moved by user code and collides with other bodies along its path.
      */
-    SPACE_PARAM_CONTACT_MAX_SEPARATION(1),
+    BODY_MODE_KINEMATIC(1),
     /**
-     * Constant to set/get the maximum distance a shape can penetrate another shape before it is considered a collision.
+     * Constant for rigid bodies. In this mode, a body can be pushed by other bodies and has forces applied.
      */
-    SPACE_PARAM_CONTACT_MAX_ALLOWED_PENETRATION(2),
+    BODY_MODE_RIGID(2),
     /**
-     * Constant to set/get the default solver bias for all physics contacts. A solver bias is a factor controlling how much two objects "rebound", after overlapping, to avoid leaving them in that state because of numerical imprecision.
+     * Constant for linear rigid bodies. In this mode, a body can not rotate, and only its linear velocity is affected by external forces.
      */
-    SPACE_PARAM_CONTACT_DEFAULT_BIAS(3),
-    /**
-     * Constant to set/get the threshold linear velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
-     */
-    SPACE_PARAM_BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD(4),
-    /**
-     * Constant to set/get the threshold angular velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
-     */
-    SPACE_PARAM_BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD(5),
-    /**
-     * Constant to set/get the maximum time of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after this time.
-     */
-    SPACE_PARAM_BODY_TIME_TO_SLEEP(6),
-    /**
-     * Constant to set/get the default solver bias for all physics constraints. A solver bias is a factor controlling how much two objects "rebound", after violating a constraint, to avoid leaving them in that state because of numerical imprecision.
-     */
-    SPACE_PARAM_CONSTRAINT_DEFAULT_BIAS(7),
-    /**
-     * Constant to set/get the number of solver iterations for all contacts and constraints. The greater the number of iterations, the more accurate the collisions will be. However, a greater number of iterations requires more CPU power, which can decrease performance.
-     */
-    SPACE_PARAM_SOLVER_ITERATIONS(8),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class JointType(
-    id: Long
-  ) {
-    /**
-     * Constant to create pin joints.
-     */
-    JOINT_TYPE_PIN(0),
-    /**
-     * Constant to create groove joints.
-     */
-    JOINT_TYPE_GROOVE(1),
-    /**
-     * Constant to create damped spring joints.
-     */
-    JOINT_TYPE_DAMPED_SPRING(2),
-    /**
-     * Represents the size of the [enum JointType] enum.
-     */
-    JOINT_TYPE_MAX(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CCDMode(
-    id: Long
-  ) {
-    /**
-     * Disables continuous collision detection. This is the fastest way to detect body collisions, but can miss small, fast-moving objects.
-     */
-    CCD_MODE_DISABLED(0),
-    /**
-     * Enables continuous collision detection by raycasting. It is faster than shapecasting, but less precise.
-     */
-    CCD_MODE_CAST_RAY(1),
-    /**
-     * Enables continuous collision detection by shapecasting. It is the slowest CCD method, and the most precise.
-     */
-    CCD_MODE_CAST_SHAPE(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DampedSpringParam(
-    id: Long
-  ) {
-    /**
-     * Sets the resting length of the spring joint. The joint will always try to go to back this length when pulled apart.
-     */
-    DAMPED_SPRING_REST_LENGTH(0),
-    /**
-     * Sets the stiffness of the spring joint. The joint applies a force equal to the stiffness times the distance from its resting length.
-     */
-    DAMPED_SPRING_STIFFNESS(1),
-    /**
-     * Sets the damping ratio of the spring joint. A value of 0 indicates an undamped spring, while 1 causes the system to reach equilibrium as fast as possible (critical damping).
-     */
-    DAMPED_SPRING_DAMPING(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class BodyState(
-    id: Long
-  ) {
-    /**
-     * Constant to set/get the current transform matrix of the body.
-     */
-    BODY_STATE_TRANSFORM(0),
-    /**
-     * Constant to set/get the current linear velocity of the body.
-     */
-    BODY_STATE_LINEAR_VELOCITY(1),
-    /**
-     * Constant to set/get the current angular velocity of the body.
-     */
-    BODY_STATE_ANGULAR_VELOCITY(2),
-    /**
-     * Constant to sleep/wake up a body, or to get whether it is sleeping.
-     */
-    BODY_STATE_SLEEPING(3),
-    /**
-     * Constant to set/get whether the body can sleep.
-     */
-    BODY_STATE_CAN_SLEEP(4),
+    BODY_MODE_RIGID_LINEAR(3),
     ;
 
     public val id: Long
@@ -1594,29 +1513,17 @@ public object PhysicsServer2D : Object() {
     }
   }
 
-  public enum class AreaSpaceOverrideMode(
+  public enum class BodyDampMode(
     id: Long
   ) {
     /**
-     * This area does not affect gravity/damp. These are generally areas that exist only to detect collisions, and objects entering or exiting them.
+     * The body's damping value is added to any value set in areas or the default value.
      */
-    AREA_SPACE_OVERRIDE_DISABLED(0),
+    BODY_DAMP_MODE_COMBINE(0),
     /**
-     * This area adds its gravity/damp values to whatever has been calculated so far. This way, many overlapping areas can combine their physics to make interesting effects.
+     * The body's damping value replaces any value set in areas or the default value.
      */
-    AREA_SPACE_OVERRIDE_COMBINE(1),
-    /**
-     * This area adds its gravity/damp values to whatever has been calculated so far. Then stops taking into account the rest of the areas, even the default one.
-     */
-    AREA_SPACE_OVERRIDE_COMBINE_REPLACE(2),
-    /**
-     * This area replaces any gravity/damp, even the default one, and stops taking into account the rest of the areas.
-     */
-    AREA_SPACE_OVERRIDE_REPLACE(3),
-    /**
-     * This area replaces any gravity/damp calculated so far, but keeps calculating the rest of the areas, down to the default one.
-     */
-    AREA_SPACE_OVERRIDE_REPLACE_COMBINE(4),
+    BODY_DAMP_MODE_REPLACE(1),
     ;
 
     public val id: Long
@@ -1629,53 +1536,210 @@ public object PhysicsServer2D : Object() {
     }
   }
 
-  public enum class AreaParameter(
+  public enum class BodyState(
     id: Long
   ) {
     /**
-     * Constant to set/get gravity override mode in an area. See [enum AreaSpaceOverrideMode] for possible values.
+     * Constant to set/get the current transform matrix of the body.
      */
-    AREA_PARAM_GRAVITY_OVERRIDE_MODE(0),
+    BODY_STATE_TRANSFORM(0),
     /**
-     * Constant to set/get gravity strength in an area.
+     * Constant to set/get the current linear velocity of the body.
      */
-    AREA_PARAM_GRAVITY(1),
+    BODY_STATE_LINEAR_VELOCITY(1),
     /**
-     * Constant to set/get gravity vector/center in an area.
+     * Constant to set/get the current angular velocity of the body.
      */
-    AREA_PARAM_GRAVITY_VECTOR(2),
+    BODY_STATE_ANGULAR_VELOCITY(2),
     /**
-     * Constant to set/get whether the gravity vector of an area is a direction, or a center point.
+     * Constant to sleep/wake up a body, or to get whether it is sleeping.
      */
-    AREA_PARAM_GRAVITY_IS_POINT(3),
+    BODY_STATE_SLEEPING(3),
     /**
-     * Constant to set/get the falloff factor for point gravity of an area. The greater this value is, the faster the strength of gravity decreases with the square of distance.
+     * Constant to set/get whether the body can sleep.
      */
-    AREA_PARAM_GRAVITY_DISTANCE_SCALE(4),
+    BODY_STATE_CAN_SLEEP(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class JointType(
+    id: Long
+  ) {
     /**
-     * This constant was used to set/get the falloff factor for point gravity. It has been superseded by [AREA_PARAM_GRAVITY_DISTANCE_SCALE].
+     * Constant to create pin joints.
      */
-    AREA_PARAM_GRAVITY_POINT_ATTENUATION(5),
+    JOINT_TYPE_PIN(0),
     /**
-     * Constant to set/get linear damping override mode in an area. See [enum AreaSpaceOverrideMode] for possible values.
+     * Constant to create groove joints.
      */
-    AREA_PARAM_LINEAR_DAMP_OVERRIDE_MODE(6),
+    JOINT_TYPE_GROOVE(1),
     /**
-     * Constant to set/get the linear damping factor of an area.
+     * Constant to create damped spring joints.
      */
-    AREA_PARAM_LINEAR_DAMP(7),
+    JOINT_TYPE_DAMPED_SPRING(2),
     /**
-     * Constant to set/get angular damping override mode in an area. See [enum AreaSpaceOverrideMode] for possible values.
+     * Represents the size of the [enum JointType] enum.
      */
-    AREA_PARAM_ANGULAR_DAMP_OVERRIDE_MODE(8),
+    JOINT_TYPE_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class JointParam(
+    id: Long
+  ) {
     /**
-     * Constant to set/get the angular damping factor of an area.
+     *
      */
-    AREA_PARAM_ANGULAR_DAMP(9),
+    JOINT_PARAM_BIAS(0),
     /**
-     * Constant to set/get the priority (order of processing) of an area.
+     *
      */
-    AREA_PARAM_PRIORITY(10),
+    JOINT_PARAM_MAX_BIAS(1),
+    /**
+     *
+     */
+    JOINT_PARAM_MAX_FORCE(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class PinJointParam(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    PIN_JOINT_SOFTNESS(0),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class DampedSpringParam(
+    id: Long
+  ) {
+    /**
+     * Sets the resting length of the spring joint. The joint will always try to go to back this length when pulled apart.
+     */
+    DAMPED_SPRING_REST_LENGTH(0),
+    /**
+     * Sets the stiffness of the spring joint. The joint applies a force equal to the stiffness times the distance from its resting length.
+     */
+    DAMPED_SPRING_STIFFNESS(1),
+    /**
+     * Sets the damping ratio of the spring joint. A value of 0 indicates an undamped spring, while 1 causes the system to reach equilibrium as fast as possible (critical damping).
+     */
+    DAMPED_SPRING_DAMPING(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CCDMode(
+    id: Long
+  ) {
+    /**
+     * Disables continuous collision detection. This is the fastest way to detect body collisions, but can miss small, fast-moving objects.
+     */
+    CCD_MODE_DISABLED(0),
+    /**
+     * Enables continuous collision detection by raycasting. It is faster than shapecasting, but less precise.
+     */
+    CCD_MODE_CAST_RAY(1),
+    /**
+     * Enables continuous collision detection by shapecasting. It is the slowest CCD method, and the most precise.
+     */
+    CCD_MODE_CAST_SHAPE(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class AreaBodyStatus(
+    id: Long
+  ) {
+    /**
+     * The value of the first parameter and area callback function receives, when an object enters one of its shapes.
+     */
+    AREA_BODY_ADDED(0),
+    /**
+     * The value of the first parameter and area callback function receives, when an object exits one of its shapes.
+     */
+    AREA_BODY_REMOVED(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ProcessInfo(
+    id: Long
+  ) {
+    /**
+     * Constant to get the number of objects that are not sleeping.
+     */
+    INFO_ACTIVE_OBJECTS(0),
+    /**
+     * Constant to get the number of possible collisions.
+     */
+    INFO_COLLISION_PAIRS(1),
+    /**
+     * Constant to get the number of space regions where a collision could occur.
+     */
+    INFO_ISLAND_COUNT(2),
     ;
 
     public val id: Long

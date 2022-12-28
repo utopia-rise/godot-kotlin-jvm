@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedVector2Array
 import godot.core.StringName
@@ -50,30 +51,16 @@ import kotlin.Unit
 @GodotBaseType
 public open class GraphEdit : Control() {
   /**
-   * Emitted at the beginning of a connection drag.
+   * Emitted to the GraphEdit when the connection between the [fromPort] of the [fromNode] [godot.GraphNode] and the [toPort] of the [toNode] [godot.GraphNode] is attempted to be created.
    */
-  public val connectionDragStarted: Signal3<String, String, Boolean> by signal("from", "slot",
-      "isOutput")
+  public val connectionRequest: Signal4<StringName, Long, StringName, Long> by signal("fromNode",
+      "fromPort", "toNode", "toPort")
 
   /**
-   * Emitted when a GraphNode is attempted to be removed from the GraphEdit. Provides a list of node names to be removed (all selected nodes, excluding nodes without closing button).
+   * Emitted to the GraphEdit when the connection between [fromPort] of [fromNode] [godot.GraphNode] and [toPort] of [toNode] [godot.GraphNode] is attempted to be removed.
    */
-  public val deleteNodesRequest: Signal0 by signal()
-
-  /**
-   * Emitted when the user presses [kbd]Ctrl + C[/kbd].
-   */
-  public val copyNodesRequest: Signal0 by signal()
-
-  /**
-   * Emitted when a GraphNode is attempted to be duplicated in the GraphEdit.
-   */
-  public val duplicateNodesRequest: Signal0 by signal()
-
-  /**
-   * Emitted at the end of a connection drag.
-   */
-  public val connectionDragEnded: Signal0 by signal()
+  public val disconnectionRequest: Signal4<StringName, Long, StringName, Long> by signal("fromNode",
+      "fromPort", "toNode", "toPort")
 
   /**
    * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [position] is the position of the mouse pointer when the signal is sent.
@@ -81,14 +68,19 @@ public open class GraphEdit : Control() {
   public val popupRequest: Signal1<Vector2> by signal("position")
 
   /**
+   * Emitted when a GraphNode is attempted to be duplicated in the GraphEdit.
+   */
+  public val duplicateNodesRequest: Signal0 by signal()
+
+  /**
+   * Emitted when the user presses [kbd]Ctrl + C[/kbd].
+   */
+  public val copyNodesRequest: Signal0 by signal()
+
+  /**
    * Emitted when the user presses [kbd]Ctrl + V[/kbd].
    */
   public val pasteNodesRequest: Signal0 by signal()
-
-  /**
-   * Emitted when the scroll offset is changed by the user. It will not be emitted when changed in code.
-   */
-  public val scrollOffsetChanged: Signal1<Vector2> by signal("ofs")
 
   /**
    * Emitted when a GraphNode is selected.
@@ -101,38 +93,47 @@ public open class GraphEdit : Control() {
   public val nodeDeselected: Signal1<Node> by signal("node")
 
   /**
+   * Emitted when user drags a connection from an output port into the empty space of the graph.
+   */
+  public val connectionToEmpty: Signal3<StringName, Long, Vector2> by signal("fromNode", "fromPort",
+      "releasePosition")
+
+  /**
+   * Emitted when user drags a connection from an input port into the empty space of the graph.
+   */
+  public val connectionFromEmpty: Signal3<StringName, Long, Vector2> by signal("toNode", "toPort",
+      "releasePosition")
+
+  /**
+   * Emitted when a GraphNode is attempted to be removed from the GraphEdit. Provides a list of node names to be removed (all selected nodes, excluding nodes without closing button).
+   */
+  public val deleteNodesRequest: Signal1<VariantArray<StringName>> by signal("nodes")
+
+  /**
    * Emitted at the beginning of a GraphNode movement.
    */
   public val beginNodeMove: Signal0 by signal()
 
   /**
-   * Emitted when user drags a connection from an output port into the empty space of the graph.
-   */
-  public val connectionToEmpty: Signal3<StringName, Long, Vector2> by signal("from", "fromSlot",
-      "releasePosition")
-
-  /**
-   * Emitted to the GraphEdit when the connection between [fromPort] of [fromNode] [godot.GraphNode] and [toPort] of [toNode] [godot.GraphNode] is attempted to be removed.
-   */
-  public val disconnectionRequest: Signal4<StringName, Long, StringName, Long> by signal("from",
-      "fromSlot", "to", "toSlot")
-
-  /**
-   * Emitted to the GraphEdit when the connection between the [fromPort] of the [fromNode] [godot.GraphNode] and the [toPort] of the [toNode] [godot.GraphNode] is attempted to be created.
-   */
-  public val connectionRequest: Signal4<StringName, Long, StringName, Long> by signal("from",
-      "fromSlot", "to", "toSlot")
-
-  /**
-   * Emitted when user drags a connection from an input port into the empty space of the graph.
-   */
-  public val connectionFromEmpty: Signal3<StringName, Long, Vector2> by signal("to", "toSlot",
-      "releasePosition")
-
-  /**
    * Emitted at the end of a GraphNode movement.
    */
   public val endNodeMove: Signal0 by signal()
+
+  /**
+   * Emitted when the scroll offset is changed by the user. It will not be emitted when changed in code.
+   */
+  public val scrollOffsetChanged: Signal1<Vector2> by signal("offset")
+
+  /**
+   * Emitted at the beginning of a connection drag.
+   */
+  public val connectionDragStarted: Signal3<String, Long, Boolean> by signal("fromNode", "fromPort",
+      "isOutput")
+
+  /**
+   * Emitted at the end of a connection drag.
+   */
+  public val connectionDragEnded: Signal0 by signal()
 
   /**
    * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right end.
@@ -195,16 +196,32 @@ public open class GraphEdit : Control() {
   /**
    * Defines the control scheme for panning with mouse wheel.
    */
-  public var panningScheme: Long
+  public var panningScheme: GraphEdit.PanningScheme
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_PANNING_SCHEME,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GraphEdit.PanningScheme.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_PANNING_SCHEME, NIL)
+    }
+
+  /**
+   * The curvature of the lines between the nodes. 0 results in straight lines.
+   */
+  public var connectionLinesCurvature: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINES_CURVATURE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_LINES_CURVATURE, NIL)
     }
 
   /**
@@ -358,6 +375,22 @@ public open class GraphEdit : Control() {
           NIL)
     }
 
+  /**
+   * If `true`, the Arrange Nodes button is hidden.
+   */
+  public var arrangeNodesButtonHidden: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_ARRANGE_NODES_BUTTON_HIDDEN, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ARRANGE_NODES_BUTTON_HIDDEN, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GRAPHEDIT, scriptIndex)
     return true
@@ -380,8 +413,8 @@ public open class GraphEdit : Control() {
    * 				```
    */
   public open fun _isInInputHotzone(
-    graphNode: Object,
-    slotIndex: Long,
+    inNode: Object,
+    inPort: Long,
     mousePosition: Vector2
   ): Boolean {
     throw NotImplementedError("_is_in_input_hotzone is not implemented for GraphEdit")
@@ -402,8 +435,8 @@ public open class GraphEdit : Control() {
    * 				```
    */
   public open fun _isInOutputHotzone(
-    graphNode: Object,
-    slotIndex: Long,
+    inNode: Object,
+    inPort: Long,
     mousePosition: Vector2
   ): Boolean {
     throw NotImplementedError("_is_in_output_hotzone is not implemented for GraphEdit")
@@ -412,20 +445,59 @@ public open class GraphEdit : Control() {
   /**
    * Virtual method which can be overridden to customize how connections are drawn.
    */
-  public open fun _getConnectionLine(from: Vector2, to: Vector2): PackedVector2Array {
+  public open fun _getConnectionLine(fromPosition: Vector2, toPosition: Vector2):
+      PackedVector2Array {
     throw NotImplementedError("_get_connection_line is not implemented for GraphEdit")
+  }
+
+  /**
+   * This virtual method can be used to insert additional error detection while the user is dragging a connection over a valid port.
+   *
+   * Return `true` if the connection is indeed valid or return `false` if the connection is impossible. If the connection is impossible, no snapping to the port and thus no connection request to that port will happen.
+   *
+   * In this example a connection to same node is suppressed:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * func _is_node_hover_valid(from, from_port, to, to_port):
+   *
+   *     return from != to
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * public override bool _IsNodeHoverValid(String from, int fromSlot, String to, int toSlot) {
+   *
+   *     return from != to;
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   */
+  public open fun _isNodeHoverValid(
+    fromNode: StringName,
+    fromPort: Long,
+    toNode: StringName,
+    toPort: Long
+  ): Boolean {
+    throw NotImplementedError("_is_node_hover_valid is not implemented for GraphEdit")
   }
 
   /**
    * Create a connection between the [fromPort] of the [fromNode] [godot.GraphNode] and the [toPort] of the [toNode] [godot.GraphNode]. If the connection already exists, no connection is created.
    */
   public fun connectNode(
-    from: StringName,
+    fromNode: StringName,
     fromPort: Long,
-    to: StringName,
+    toNode: StringName,
     toPort: Long
   ): GodotError {
-    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort)
+    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CONNECT_NODE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -434,12 +506,12 @@ public open class GraphEdit : Control() {
    * Returns `true` if the [fromPort] of the [fromNode] [godot.GraphNode] is connected to the [toPort] of the [toNode] [godot.GraphNode].
    */
   public fun isNodeConnected(
-    from: StringName,
+    fromNode: StringName,
     fromPort: Long,
-    to: StringName,
+    toNode: StringName,
     toPort: Long
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort)
+    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_NODE_CONNECTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -448,12 +520,12 @@ public open class GraphEdit : Control() {
    * Removes the connection between the [fromPort] of the [fromNode] [godot.GraphNode] and the [toPort] of the [toNode] [godot.GraphNode]. If the connection does not exist, no connection is removed.
    */
   public fun disconnectNode(
-    from: StringName,
+    fromNode: StringName,
     fromPort: Long,
-    to: StringName,
+    toNode: StringName,
     toPort: Long
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort)
+    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_DISCONNECT_NODE, NIL)
   }
 
@@ -461,13 +533,13 @@ public open class GraphEdit : Control() {
    * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort] with the color provided in the [theme_item activity] theme property.
    */
   public fun setConnectionActivity(
-    from: StringName,
+    fromNode: StringName,
     fromPort: Long,
-    to: StringName,
+    toNode: StringName,
     toPort: Long,
     amount: Double
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort, DOUBLE to amount)
+    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort, DOUBLE to amount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_ACTIVITY,
         NIL)
   }
@@ -475,11 +547,11 @@ public open class GraphEdit : Control() {
   /**
    * Returns an Array containing the list of connections. A connection consists in a structure of the form `{ from_port: 0, from: "GraphNode name 0", to_port: 1, to: "GraphNode name 1" }`.
    */
-  public fun getConnectionList(): VariantArray<Any?> {
+  public fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LIST,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -576,8 +648,8 @@ public open class GraphEdit : Control() {
   /**
    * Returns the points which would make up a connection between [fromNode] and [toNode].
    */
-  public fun getConnectionLine(from: Vector2, to: Vector2): PackedVector2Array {
-    TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
+  public fun getConnectionLine(fromNode: Vector2, toNode: Vector2): PackedVector2Array {
+    TransferContext.writeArguments(VECTOR2 to fromNode, VECTOR2 to toNode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINE,
         PACKED_VECTOR2_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array

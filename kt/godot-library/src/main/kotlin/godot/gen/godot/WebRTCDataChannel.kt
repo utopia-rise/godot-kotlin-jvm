@@ -24,12 +24,12 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class WebRTCDataChannel internal constructor() : PacketPeer() {
-  public var writeMode: Long
+  public var writeMode: WebRTCDataChannel.WriteMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_WRITE_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return WebRTCDataChannel.WriteMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

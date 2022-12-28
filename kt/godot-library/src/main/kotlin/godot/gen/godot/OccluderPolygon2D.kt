@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
@@ -42,12 +43,12 @@ public open class OccluderPolygon2D : Resource() {
   /**
    * The culling mode to use.
    */
-  public var cullMode: Long
+  public var cullMode: OccluderPolygon2D.CullMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_GET_CULL_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return OccluderPolygon2D.CullMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

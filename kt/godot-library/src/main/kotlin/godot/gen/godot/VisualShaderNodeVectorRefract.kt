@@ -17,7 +17,7 @@ import kotlin.Suppress
  * Translated to `refract(I, N, eta)` in the shader language, where `I` is the incident vector, `N` is the normal vector and `eta` is the ratio of the indices of the refraction.
  */
 @GodotBaseType
-public open class VisualShaderNodeVectorRefract : VisualShaderNode() {
+public open class VisualShaderNodeVectorRefract : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORREFRACT, scriptIndex)
     return true

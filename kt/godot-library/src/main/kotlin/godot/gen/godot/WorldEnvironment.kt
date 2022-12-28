@@ -44,17 +44,20 @@ public open class WorldEnvironment : Node() {
           NIL)
     }
 
-  public var cameraEffects: CameraEffects?
+  /**
+   * The default [godot.CameraAttributes] resource to use if none set on the [godot.Camera3D].
+   */
+  public var cameraAttributes: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_GET_CAMERA_EFFECTS, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as CameraEffects?
+          ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_GET_CAMERA_ATTRIBUTES, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_CAMERA_EFFECTS, NIL)
+          ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_CAMERA_ATTRIBUTES, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

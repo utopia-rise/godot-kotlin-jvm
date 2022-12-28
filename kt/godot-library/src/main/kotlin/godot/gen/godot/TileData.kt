@@ -118,11 +118,11 @@ public open class TileData : Object() {
   /**
    * The [godot.Material] to use for this [godot.TileData]. This can be a [godot.CanvasItemMaterial] to use the default shader, or a [godot.ShaderMaterial] to use a custom shader.
    */
-  public var material: ShaderMaterial?
+  public var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_MATERIAL, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as ShaderMaterial?
+      return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -169,6 +169,20 @@ public open class TileData : Object() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_TERRAIN_SET, NIL)
+    }
+
+  /**
+   *
+   */
+  public var terrain: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TERRAIN, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_TERRAIN, NIL)
     }
 
   /**
@@ -350,15 +364,21 @@ public open class TileData : Object() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun setPeeringBitTerrain(peeringBit: TileSet.CellNeighbor, terrain: Long): Unit {
+  /**
+   * Sets the tile's terrain bit for the given [peeringBit] direction.
+   */
+  public fun setTerrainPeeringBit(peeringBit: TileSet.CellNeighbor, terrain: Long): Unit {
     TransferContext.writeArguments(LONG to peeringBit.id, LONG to terrain)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_PEERING_BIT_TERRAIN,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_TERRAIN_PEERING_BIT,
         NIL)
   }
 
-  public fun getPeeringBitTerrain(peeringBit: TileSet.CellNeighbor): Long {
+  /**
+   * Returns the tile's terrain bit for the given [peeringBit] direction.
+   */
+  public fun getTerrainPeeringBit(peeringBit: TileSet.CellNeighbor): Long {
     TransferContext.writeArguments(LONG to peeringBit.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_PEERING_BIT_TERRAIN,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TERRAIN_PEERING_BIT,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }

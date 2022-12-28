@@ -11,6 +11,8 @@ import godot.core.GodotError
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -19,6 +21,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
+import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
@@ -29,6 +32,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -49,14 +53,11 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationPlayer : Node() {
   /**
-   * Notifies when the caches have been cleared, either automatically, or manually via [clearCaches].
+   * Notifies when an animation finished playing.
+   *
+   * **Note:** This signal is not emitted if an animation is looping.
    */
-  public val cachesCleared: Signal0 by signal()
-
-  /**
-   * Notifies when an animation starts playing.
-   */
-  public val animationStarted: Signal1<StringName> by signal("animName")
+  public val animationFinished: Signal1<StringName> by signal("animName")
 
   /**
    * Emitted when a queued animation plays after the previous animation finished. See [queue].
@@ -66,11 +67,24 @@ public open class AnimationPlayer : Node() {
   public val animationChanged: Signal2<StringName, StringName> by signal("oldName", "newName")
 
   /**
-   * Notifies when an animation finished playing.
-   *
-   * **Note:** This signal is not emitted if an animation is looping.
+   * Notifies when an animation starts playing.
    */
-  public val animationFinished: Signal1<StringName> by signal("animName")
+  public val animationStarted: Signal1<StringName> by signal("animName")
+
+  /**
+   * Notifies when an animation list is changed.
+   */
+  public val animationListChanged: Signal0 by signal()
+
+  /**
+   * Notifies when the animation libraries have changed.
+   */
+  public val animationLibrariesUpdated: Signal0 by signal()
+
+  /**
+   * Notifies when the caches have been cleared, either automatically, or manually via [clearCaches].
+   */
+  public val cachesCleared: Signal0 by signal()
 
   /**
    * The node from which node path references will travel.
@@ -92,15 +106,15 @@ public open class AnimationPlayer : Node() {
    *
    * **Note:** While this property appears in the Inspector, it's not meant to be edited, and it's not saved in the scene. This property is mainly used to get the currently playing animation, and internally for animation playback tracks. For more information, see [godot.Animation].
    */
-  public var currentAnimation: StringName
+  public var currentAnimation: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_CURRENT_ANIMATION, STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_CURRENT_ANIMATION, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
+      TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_CURRENT_ANIMATION, NIL)
     }
@@ -108,15 +122,15 @@ public open class AnimationPlayer : Node() {
   /**
    * If playing, the the current animation's key, otherwise, the animation last played. When set, this changes the animation, but will not play it unless already playing. See also [currentAnimation].
    */
-  public var assignedAnimation: StringName
+  public var assignedAnimation: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ASSIGNED_ANIMATION, STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ASSIGNED_ANIMATION, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
+      TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_ASSIGNED_ANIMATION, NIL)
     }
@@ -124,15 +138,15 @@ public open class AnimationPlayer : Node() {
   /**
    * The key of the animation to play when the scene loads.
    */
-  public var autoplay: StringName
+  public var autoplay: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_AUTOPLAY,
-          STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+          STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
+      TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_AUTOPLAY, NIL)
     }
 
@@ -179,12 +193,12 @@ public open class AnimationPlayer : Node() {
   /**
    * The process notification in which to update animations.
    */
-  public var playbackProcessMode: Long
+  public var playbackProcessMode: AnimationPlayer.AnimationProcessCallback
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_PROCESS_CALLBACK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AnimationPlayer.AnimationProcessCallback.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -241,12 +255,12 @@ public open class AnimationPlayer : Node() {
   /**
    * The call mode to use for Call Method tracks.
    */
-  public var methodCallMode: Long
+  public var methodCallMode: AnimationPlayer.AnimationMethodCallMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_METHOD_CALL_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AnimationPlayer.AnimationMethodCallMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -254,27 +268,85 @@ public open class AnimationPlayer : Node() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_METHOD_CALL_MODE, NIL)
     }
 
+  /**
+   * If `true` and the engine is running in Movie Maker mode (see [godot.MovieWriter]), exits the engine with [godot.SceneTree.quit] as soon as an animation is done playing in this [godot.AnimationPlayer]. A message is printed when the engine quits for this reason.
+   *
+   * **Note:** This obeys the same logic as the [animationFinished] signal, so it will not quit the engine if the animation is set to be looping.
+   */
+  public var movieQuitOnFinish: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_IS_MOVIE_QUIT_ON_FINISH_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_MOVIE_QUIT_ON_FINISH_ENABLED, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONPLAYER, scriptIndex)
     return true
   }
 
-  public fun addAnimation(name: StringName, animation: Animation): GodotError {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_ADD_ANIMATION, LONG)
+  /**
+   * Adds [library] to the animation player, under the key [name].
+   */
+  public fun addAnimationLibrary(name: StringName, library: AnimationLibrary): GodotError {
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_ADD_ANIMATION_LIBRARY, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun removeAnimation(name: StringName): Unit {
+  /**
+   * Removes the [godot.AnimationLibrary] associated with the key [name].
+   */
+  public fun removeAnimationLibrary(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_REMOVE_ANIMATION,
-        NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_REMOVE_ANIMATION_LIBRARY, NIL)
   }
 
-  public fun renameAnimation(name: StringName, newname: StringName): Unit {
+  /**
+   * Moves the [godot.AnimationLibrary] associated with the key [name] to the key [newname].
+   */
+  public fun renameAnimationLibrary(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_RENAME_ANIMATION,
-        NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_RENAME_ANIMATION_LIBRARY, NIL)
+  }
+
+  /**
+   * Returns `true` if the [godot.AnimationPlayer] stores an [godot.AnimationLibrary] with key [name].
+   */
+  public fun hasAnimationLibrary(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_HAS_ANIMATION_LIBRARY, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the first [godot.AnimationLibrary] with key [name] or `null` if not found.
+   */
+  public fun getAnimationLibrary(name: StringName): AnimationLibrary? {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ANIMATION_LIBRARY, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as AnimationLibrary?
+  }
+
+  /**
+   * Returns the list of stored library keys.
+   */
+  public fun getAnimationLibraryList(): VariantArray<StringName> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ANIMATION_LIBRARY_LIST, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>
   }
 
   /**
@@ -438,6 +510,16 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments(OBJECT to animation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_FIND_ANIMATION,
         STRING_NAME)
+    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+  }
+
+  /**
+   * Returns the key for the [godot.AnimationLibrary] that contains [animation] or an empty [godot.StringName] if not found.
+   */
+  public fun findAnimationLibrary(animation: Animation): StringName {
+    TransferContext.writeArguments(OBJECT to animation)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_FIND_ANIMATION_LIBRARY, STRING_NAME)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 

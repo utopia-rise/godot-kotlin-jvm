@@ -140,6 +140,33 @@ public object OS : Object() {
   }
 
   /**
+   * Returns list of font family names available.
+   *
+   * **Note:** This method is implemented on iOS, Linux, macOS and Windows.
+   */
+  public fun getSystemFonts(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONTS,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns path to the system font file with [fontName] and style. Return empty string if no matching fonts found.
+   *
+   * **Note:** This method is implemented on iOS, Linux, macOS and Windows.
+   */
+  public fun getSystemFontPath(
+    fontName: String,
+    bold: Boolean = false,
+    italic: Boolean = false
+  ): String {
+    TransferContext.writeArguments(STRING to fontName, BOOL to bold, BOOL to italic)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONT_PATH, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
    * Returns the path to the current engine executable.
    *
    * **Note:** On macOS, always use [createInstance] instead of relying on executable path.
@@ -147,6 +174,17 @@ public object OS : Object() {
   public fun getExecutablePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_EXECUTABLE_PATH, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Reads a user input string from the standard input (usually the terminal).
+   *
+   * **Note:** This method is implemented on Linux, macOS and Windows. Non-blocking reads are not currently supported on any platform.
+   */
+  public fun readStringFromStdin(block: Boolean = true): String {
+    TransferContext.writeArguments(BOOL to block)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_READ_STRING_FROM_STDIN, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -312,6 +350,19 @@ public object OS : Object() {
   }
 
   /**
+   * Returns `true` if the child process ID ([pid]) is still running or `false` if it has terminated.
+   *
+   * Must be a valid ID generated from [createProcess].
+   *
+   * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
+   */
+  public fun isProcessRunning(pid: Long): Boolean {
+    TransferContext.writeArguments(LONG to pid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_PROCESS_RUNNING, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns the project's process ID.
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
@@ -471,6 +522,42 @@ public object OS : Object() {
   }
 
   /**
+   * Returns the name of the distribution for Linux and BSD platforms (e.g. Ubuntu, Manjaro, OpenBSD, etc.).
+   *
+   * Returns the same value as [getName] for stock Android ROMs, but attempts to return the custom ROM name for popular Android derivatives such as LineageOS.
+   *
+   * Returns the same value as [getName] for other platforms.
+   *
+   * **Note:** This method is not supported on the web platform. It returns an empty string.
+   */
+  public fun getDistributionName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_DISTRIBUTION_NAME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the exact production and build version of the operating system. This is different from the branded version used in marketing. This helps to distinguish between different releases of operating systems, including minor versions, and insider and custom builds.
+   *
+   * For Windows, the major and minor version are returned, as well as the build number. For example, the returned string can look like `10.0.9926` for a build of Windows 10, and it can look like `6.1.7601` for a build of Windows 7 SP1.
+   *
+   * For rolling distributions, such as Arch Linux, an empty string is returned.
+   *
+   * For macOS and iOS, the major and minor version are returned, as well as the patch number.
+   *
+   * For UWP, the device family version is returned.
+   *
+   * For Android, the SDK version and the incremental build number are returned. If it's a custom ROM, it attempts to return its version instead.
+   *
+   * **Note:** This method is not supported on the web platform. It returns an empty string.
+   */
+  public fun getVersion(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_VERSION, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
    * Returns the command-line arguments passed to the engine.
    *
    * Command-line arguments can be written in any form, including both `--key value` and `--key=value` forms so they can be properly parsed, as long as custom command-line arguments do not conflict with engine arguments.
@@ -546,6 +633,72 @@ public object OS : Object() {
   public fun getCmdlineArgs(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CMDLINE_ARGS,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Similar to [getCmdlineArgs], but this returns the user arguments (any argument passed after the double dash `--` argument). These are left untouched by Godot for the user.
+   *
+   * For example, in the command line below, `--fullscreen` will not be returned in [getCmdlineUserArgs] and `--level 1` will only be returned in [getCmdlineUserArgs]:
+   *
+   * ```
+   * 				godot --fullscreen -- --level 1
+   * 				```
+   */
+  public fun getCmdlineUserArgs(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CMDLINE_USER_ARGS,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns the video adapter driver name and version for the user's currently active graphics card.
+   *
+   * The first element holds the driver name, such as `nvidia`, `amdgpu`, etc.
+   *
+   * The second element holds the driver version. For e.g. the `nvidia` driver on a Linux/BSD platform, the version is in the format `510.85.02`. For Windows, the driver's format is `31.0.15.1659`.
+   *
+   * **Note:** This method is only supported on the platforms Linux/BSD and Windows when not running in headless mode. It returns an empty array on other platforms.
+   */
+  public fun getVideoAdapterDriverInfo(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_VIDEO_ADAPTER_DRIVER_INFO,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * If [restart] is `true`, restarts the project automatically when it is exited with [godot.SceneTree.quit] or [godot.Node.NOTIFICATION_WM_CLOSE_REQUEST]. Command line [arguments] can be supplied. To restart the project with the same command line arguments as originally used to run the project, pass [getCmdlineArgs] as the value for [arguments].
+   *
+   * [setRestartOnExit] can be used to apply setting changes that require a restart. See also [isRestartOnExitSet] and [getRestartOnExitArguments].
+   *
+   * **Note:** This method is only effective on desktop platforms, and only when the project isn't started from the editor. It will have no effect on mobile and Web platforms, or when the project is started from the editor.
+   *
+   * **Note:** If the project process crashes or is *killed* by the user (by sending `SIGKILL` instead of the usual `SIGTERM`), the project won't restart automatically.
+   */
+  public fun setRestartOnExit(restart: Boolean, arguments: PackedStringArray = PackedStringArray()):
+      Unit {
+    TransferContext.writeArguments(BOOL to restart, PACKED_STRING_ARRAY to arguments)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_RESTART_ON_EXIT, NIL)
+  }
+
+  /**
+   * Returns `true` if the project will automatically restart when it exits for any reason, `false` otherwise. See also [setRestartOnExit] and [getRestartOnExitArguments].
+   */
+  public fun isRestartOnExitSet(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_RESTART_ON_EXIT_SET, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the list of command line arguments that will be used when the project automatically restarts using [setRestartOnExit]. See also [isRestartOnExitSet].
+   */
+  public fun getRestartOnExitArguments(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_RESTART_ON_EXIT_ARGUMENTS,
         PACKED_STRING_ARRAY)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
@@ -633,12 +786,6 @@ public object OS : Object() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public fun canUseThreads(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CAN_USE_THREADS, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
   /**
    * Returns `true` if the Godot binary used to run the project is a *debug* export template, or when running in the editor.
    *
@@ -650,26 +797,6 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_DEBUG_BUILD, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun dumpMemoryToFile(`file`: String): Unit {
-    TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DUMP_MEMORY_TO_FILE, NIL)
-  }
-
-  public fun dumpResourcesToFile(`file`: String): Unit {
-    TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DUMP_RESOURCES_TO_FILE, NIL)
-  }
-
-  public fun printResourcesInUse(short: Boolean = false): Unit {
-    TransferContext.writeArguments(BOOL to short)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_RESOURCES_IN_USE, NIL)
-  }
-
-  public fun printAllResources(tofile: String = ""): Unit {
-    TransferContext.writeArguments(STRING to tofile)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_ALL_RESOURCES, NIL)
   }
 
   /**
@@ -689,6 +816,39 @@ public object OS : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_PEAK_USAGE,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Moves the file or directory to the system's recycle bin. See also [godot.DirAccess.remove].
+   *
+   * The method takes only global paths, so you may need to use [godot.ProjectSettings.globalizePath]. Do not use it for files in `res://` as it will not work in exported projects.
+   *
+   * **Note:** If the user has disabled the recycle bin on their system, the file will be permanently deleted instead.
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var file_to_remove = "user://slot1.sav"
+   *
+   * OS.move_to_trash(ProjectSettings.globalize_path(file_to_remove))
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * var fileToRemove = "user://slot1.sav";
+   *
+   * OS.MoveToTrash(ProjectSettings.GlobalizePath(fileToRemove));
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   */
+  public fun moveToTrash(path: String): GodotError {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_MOVE_TO_TRASH, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -771,16 +931,6 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_UNIQUE_ID, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  public fun printAllTexturesBySize(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_ALL_TEXTURES_BY_SIZE, NIL)
-  }
-
-  public fun printResourcesByType(types: PackedStringArray): Unit {
-    TransferContext.writeArguments(PACKED_STRING_ARRAY to types)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_RESOURCES_BY_TYPE, NIL)
   }
 
   /**
@@ -895,11 +1045,17 @@ public object OS : Object() {
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
-  public enum class VideoDriver(
+  public enum class RenderingDriver(
     id: Long
   ) {
-    VIDEO_DRIVER_VULKAN(0),
-    VIDEO_DRIVER_OPENGL_3(1),
+    /**
+     * The Vulkan rendering driver. It requires Vulkan 1.0 support and automatically uses features from Vulkan 1.1 and 1.2 if available.
+     */
+    RENDERING_DRIVER_VULKAN(0),
+    /**
+     * The OpenGL 3 rendering driver. It uses OpenGL 3.3 Core Profile on desktop platforms, OpenGL ES 3.0 on mobile devices, and WebGL 2.0 on Web.
+     */
+    RENDERING_DRIVER_OPENGL3(1),
     ;
 
     public val id: Long
@@ -912,41 +1068,37 @@ public object OS : Object() {
     }
   }
 
-  public enum class SystemDir(
+  public enum class Weekday(
     id: Long
   ) {
     /**
-     * Desktop directory path.
+     * Sunday.
      */
-    SYSTEM_DIR_DESKTOP(0),
+    DAY_SUNDAY(0),
     /**
-     * DCIM (Digital Camera Images) directory path.
+     * Monday.
      */
-    SYSTEM_DIR_DCIM(1),
+    DAY_MONDAY(1),
     /**
-     * Documents directory path.
+     * Tuesday.
      */
-    SYSTEM_DIR_DOCUMENTS(2),
+    DAY_TUESDAY(2),
     /**
-     * Downloads directory path.
+     * Wednesday.
      */
-    SYSTEM_DIR_DOWNLOADS(3),
+    DAY_WEDNESDAY(3),
     /**
-     * Movies directory path.
+     * Thursday.
      */
-    SYSTEM_DIR_MOVIES(4),
+    DAY_THURSDAY(4),
     /**
-     * Music directory path.
+     * Friday.
      */
-    SYSTEM_DIR_MUSIC(5),
+    DAY_FRIDAY(5),
     /**
-     * Pictures directory path.
+     * Saturday.
      */
-    SYSTEM_DIR_PICTURES(6),
-    /**
-     * Ringtones directory path.
-     */
-    SYSTEM_DIR_RINGTONES(7),
+    DAY_SATURDAY(6),
     ;
 
     public val id: Long
@@ -1022,37 +1174,41 @@ public object OS : Object() {
     }
   }
 
-  public enum class Weekday(
+  public enum class SystemDir(
     id: Long
   ) {
     /**
-     * Sunday.
+     * Desktop directory path.
      */
-    DAY_SUNDAY(0),
+    SYSTEM_DIR_DESKTOP(0),
     /**
-     * Monday.
+     * DCIM (Digital Camera Images) directory path.
      */
-    DAY_MONDAY(1),
+    SYSTEM_DIR_DCIM(1),
     /**
-     * Tuesday.
+     * Documents directory path.
      */
-    DAY_TUESDAY(2),
+    SYSTEM_DIR_DOCUMENTS(2),
     /**
-     * Wednesday.
+     * Downloads directory path.
      */
-    DAY_WEDNESDAY(3),
+    SYSTEM_DIR_DOWNLOADS(3),
     /**
-     * Thursday.
+     * Movies directory path.
      */
-    DAY_THURSDAY(4),
+    SYSTEM_DIR_MOVIES(4),
     /**
-     * Friday.
+     * Music directory path.
      */
-    DAY_FRIDAY(5),
+    SYSTEM_DIR_MUSIC(5),
     /**
-     * Saturday.
+     * Pictures directory path.
      */
-    DAY_SATURDAY(6),
+    SYSTEM_DIR_PICTURES(6),
+    /**
+     * Ringtones directory path.
+     */
+    SYSTEM_DIR_RINGTONES(7),
     ;
 
     public val id: Long

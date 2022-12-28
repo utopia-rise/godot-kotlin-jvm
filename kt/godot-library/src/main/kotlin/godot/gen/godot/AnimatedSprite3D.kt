@@ -9,18 +9,18 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
-import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -67,15 +67,15 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * The current animation from the `frames` resource. If this value changes, the `frame` counter is reset.
    */
-  public var animation: String
+  public var animation: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_ANIMATION,
-          STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+          STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_ANIMATION,
           NIL)
     }
@@ -94,6 +94,36 @@ public open class AnimatedSprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_FRAME, NIL)
     }
 
+  /**
+   * The animation speed is multiplied by this value. If set to a negative value, the animation is played in reverse. If set to `0`, the animation is paused, preserving the current frame's elapsed time.
+   */
+  public var speedScale: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_SPEED_SCALE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_SPEED_SCALE,
+          NIL)
+    }
+
+  /**
+   * If `true`, the [animation] is currently playing. Setting this property to `false` is the equivalent of calling [stop].
+   */
+  public var playing: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_IS_PLAYING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_PLAYING, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATEDSPRITE3D, scriptIndex)
     return true
@@ -102,8 +132,8 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * Plays the animation named [anim]. If no [anim] is provided, the current animation is played. If [backwards] is `true`, the animation is played in reverse.
    */
-  public fun play(anim: StringName = StringName("")): Unit {
-    TransferContext.writeArguments(STRING_NAME to anim)
+  public fun play(anim: StringName = StringName(""), backwards: Boolean = false): Unit {
+    TransferContext.writeArguments(STRING_NAME to anim, BOOL to backwards)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_PLAY, NIL)
   }
 
@@ -115,12 +145,6 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_STOP, NIL)
-  }
-
-  public fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_IS_PLAYING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public companion object

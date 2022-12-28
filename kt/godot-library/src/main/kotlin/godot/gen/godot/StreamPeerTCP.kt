@@ -56,11 +56,13 @@ public open class StreamPeerTCP : StreamPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun isConnectedToHost(): Boolean {
+  /**
+   * Poll the socket, updating its state. See [getStatus].
+   */
+  public fun poll(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_IS_CONNECTED_TO_HOST,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_POLL, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**

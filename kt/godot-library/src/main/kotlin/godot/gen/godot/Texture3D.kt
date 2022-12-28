@@ -14,7 +14,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -75,7 +74,7 @@ public open class Texture3D : Texture() {
   /**
    * Called when the [godot.Texture3D]'s data is queried.
    */
-  public open fun _getData(): VariantArray<Any?> {
+  public open fun _getData(): VariantArray<Image> {
     throw NotImplementedError("_get_data is not implemented for Texture3D")
   }
 
@@ -127,10 +126,10 @@ public open class Texture3D : Texture() {
   /**
    * Returns the [godot.Texture3D]'s data as an array of [godot.Image]s. Each [godot.Image] represents a *slice* of the [godot.Texture3D], with different slices mapping to different depth (Z axis) levels.
    */
-  public fun getData(): VariantArray<Any?> {
+  public fun getData(): VariantArray<Image> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DATA, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>
   }
 
   public companion object

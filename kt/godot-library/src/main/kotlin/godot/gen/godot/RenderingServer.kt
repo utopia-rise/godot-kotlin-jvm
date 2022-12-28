@@ -18,9 +18,11 @@ import godot.core.PackedByteArray
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
+import godot.core.PackedInt64Array
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
+import godot.core.Plane
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.StringName
@@ -43,6 +45,7 @@ import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.PACKED_INT_32_ARRAY
+import godot.core.VariantType.PACKED_INT_64_ARRAY
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
@@ -176,14 +179,14 @@ public object RenderingServer : Object() {
   public final const val PARTICLES_EMIT_FLAG_CUSTOM: Long = 16
 
   /**
-   * Emitted at the end of the frame, after the RenderingServer has finished updating all the Viewports.
-   */
-  public val framePostDraw: Signal0 by signal()
-
-  /**
    * Emitted at the beginning of the frame, before the RenderingServer updates all the Viewports.
    */
   public val framePreDraw: Signal0 by signal()
+
+  /**
+   * Emitted at the end of the frame, after the RenderingServer has finished updating all the Viewports.
+   */
+  public val framePostDraw: Signal0 by signal()
 
   public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_RENDERINGSERVER)
@@ -203,7 +206,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun texture2dLayeredCreate(layers: VariantArray<Any?>,
+  public fun texture2dLayeredCreate(layers: VariantArray<Image>,
       layeredType: RenderingServer.TextureLayeredType): RID {
     TransferContext.writeArguments(ARRAY to layers, LONG to layeredType.id)
     TransferContext.callMethod(rawPtr,
@@ -220,7 +223,7 @@ public object RenderingServer : Object() {
     height: Long,
     depth: Long,
     mipmaps: Boolean,
-    `data`: VariantArray<Any?>
+    `data`: VariantArray<Image>
   ): RID {
     TransferContext.writeArguments(LONG to format.id, LONG to width, LONG to height, LONG to depth, BOOL to mipmaps, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_3D_CREATE,
@@ -254,7 +257,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun texture3dUpdate(texture: RID, `data`: VariantArray<Any?>): Unit {
+  public fun texture3dUpdate(texture: RID, `data`: VariantArray<Image>): Unit {
     TransferContext.writeArguments(_RID to texture, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_3D_UPDATE,
         NIL)
@@ -323,11 +326,11 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun texture3dGet(texture: RID): VariantArray<Any?> {
+  public fun texture3dGet(texture: RID): VariantArray<Image> {
     TransferContext.writeArguments(_RID to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_3D_GET,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>
   }
 
   /**
@@ -381,6 +384,16 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Returns a texture [RID] that can be used with [godot.RenderingDevice].
+   */
+  public fun textureGetRdTexture(texture: RID, srgb: Boolean = false): RID {
+    TransferContext.writeArguments(_RID to texture, BOOL to srgb)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_GET_RD_TEXTURE, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
    * Creates an empty shader and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `shader_*` RenderingServer functions.
    *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] static method.
@@ -389,6 +402,24 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   *
+   */
+  public fun shaderSetCode(shader: RID, code: String): Unit {
+    TransferContext.writeArguments(_RID to shader, STRING to code)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_SET_CODE,
+        NIL)
+  }
+
+  /**
+   *
+   */
+  public fun shaderSetPathHint(shader: RID, path: String): Unit {
+    TransferContext.writeArguments(_RID to shader, STRING to path)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_SET_PATH_HINT, NIL)
   }
 
   /**
@@ -401,39 +432,55 @@ public object RenderingServer : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public fun shaderGetParamList(shader: RID): VariantArray<Any?> {
+  /**
+   * Returns the parameters of a shader.
+   */
+  public fun getShaderParameterList(shader: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shader)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_GET_PARAM_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GET_SHADER_PARAMETER_LIST, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
-  public fun shaderGetParamDefault(shader: RID, `param`: StringName): Any? {
-    TransferContext.writeArguments(_RID to shader, STRING_NAME to param)
+  /**
+   *
+   */
+  public fun shaderGetParameterDefault(shader: RID, name: StringName): Any? {
+    TransferContext.writeArguments(_RID to shader, STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_GET_PARAM_DEFAULT, ANY)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_GET_PARAMETER_DEFAULT, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  public fun shaderSetDefaultTextureParam(
+  /**
+   * Sets a shader's default texture. Overwrites the texture given by name.
+   *
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  public fun shaderSetDefaultTextureParameter(
     shader: RID,
-    `param`: StringName,
+    name: StringName,
     texture: RID,
     index: Long = 0
   ): Unit {
-    TransferContext.writeArguments(_RID to shader, STRING_NAME to param, _RID to texture, LONG to index)
+    TransferContext.writeArguments(_RID to shader, STRING_NAME to name, _RID to texture, LONG to index)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_SET_DEFAULT_TEXTURE_PARAM, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_SET_DEFAULT_TEXTURE_PARAMETER, NIL)
   }
 
-  public fun shaderGetDefaultTextureParam(
+  /**
+   * Returns a default texture from a shader searched by name.
+   *
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  public fun shaderGetDefaultTextureParameter(
     shader: RID,
-    `param`: StringName,
+    name: StringName,
     index: Long = 0
   ): RID {
-    TransferContext.writeArguments(_RID to shader, STRING_NAME to param, LONG to index)
+    TransferContext.writeArguments(_RID to shader, STRING_NAME to name, LONG to index)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_GET_DEFAULT_TEXTURE_PARAM, _RID)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_GET_DEFAULT_TEXTURE_PARAMETER, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -502,7 +549,8 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun meshCreateFromSurfaces(surfaces: VariantArray<Any?>, blendShapeCount: Long = 0): RID {
+  public fun meshCreateFromSurfaces(surfaces: VariantArray<Dictionary<Any?, Any?>>,
+      blendShapeCount: Long = 0): RID {
     TransferContext.writeArguments(ARRAY to surfaces, LONG to blendShapeCount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_CREATE_FROM_SURFACES, _RID)
@@ -666,11 +714,12 @@ public object RenderingServer : Object() {
   /**
    * Returns a mesh's surface's arrays for blend shapes.
    */
-  public fun meshSurfaceGetBlendShapeArrays(mesh: RID, surface: Long): VariantArray<Any?> {
+  public fun meshSurfaceGetBlendShapeArrays(mesh: RID, surface: Long):
+      VariantArray<VariantArray<Any?>> {
     TransferContext.writeArguments(_RID to mesh, LONG to surface)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_BLEND_SHAPE_ARRAYS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>
   }
 
   /**
@@ -1238,16 +1287,22 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_PROJECTORS_SET_FILTER, NIL)
   }
 
-  public fun shadowsQualitySet(quality: RenderingServer.ShadowQuality): Unit {
-    TransferContext.writeArguments(LONG to quality.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADOWS_QUALITY_SET,
-        NIL)
-  }
-
-  public fun directionalShadowQualitySet(quality: RenderingServer.ShadowQuality): Unit {
+  /**
+   *
+   */
+  public fun positionalSoftShadowFilterSetQuality(quality: RenderingServer.ShadowQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_DIRECTIONAL_SHADOW_QUALITY_SET, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_POSITIONAL_SOFT_SHADOW_FILTER_SET_QUALITY, NIL)
+  }
+
+  /**
+   *
+   */
+  public fun directionalSoftShadowFilterSetQuality(quality: RenderingServer.ShadowQuality): Unit {
+    TransferContext.writeArguments(LONG to quality.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_DIRECTIONAL_SOFT_SHADOW_FILTER_SET_QUALITY, NIL)
   }
 
   /**
@@ -1637,6 +1692,15 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Used to inform the renderer what exposure normalization value was used while baking the voxel gi. This value will be used and modulated at run time to ensure that the voxel gi maintains a consistent level of exposure even if the scene-wide exposure normalization is changed at run time. For more information see [cameraAttributesSetExposure].
+   */
+  public fun voxelGiSetBakedExposureNormalization(voxelGi: RID, bakedExposure: Double): Unit {
+    TransferContext.writeArguments(_RID to voxelGi, DOUBLE to bakedExposure)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VOXEL_GI_SET_BAKED_EXPOSURE_NORMALIZATION, NIL)
+  }
+
+  /**
    *
    */
   public fun voxelGiSetBias(voxelGi: RID, bias: Double): Unit {
@@ -1778,6 +1842,15 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHTMAP_GET_PROBE_CAPTURE_BSP_TREE,
         PACKED_INT_32_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+  }
+
+  /**
+   * Used to inform the renderer what exposure normalization value was used while baking the lightmap. This value will be used and modulated at run time to ensure that the lightmap maintains a consistent level of exposure even if the scene-wide exposure normalization is changed at run time. For more information see [cameraAttributesSetExposure].
+   */
+  public fun lightmapSetBakedExposureNormalization(lightmap: RID, bakedExposure: Double): Unit {
+    TransferContext.writeArguments(_RID to lightmap, DOUBLE to bakedExposure)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHTMAP_SET_BAKED_EXPOSURE_NORMALIZATION, NIL)
   }
 
   /**
@@ -1985,7 +2058,8 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun particlesSetTrailBindPoses(particles: RID, bindPoses: VariantArray<Any?>): Unit {
+  public fun particlesSetTrailBindPoses(particles: RID, bindPoses: VariantArray<Transform3D>):
+      Unit {
     TransferContext.writeArguments(_RID to particles, ARRAY to bindPoses)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_TRAIL_BIND_POSES, NIL)
@@ -2375,10 +2449,13 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_SET_ENVIRONMENT, NIL)
   }
 
-  public fun cameraSetCameraEffects(camera: RID, effects: RID): Unit {
+  /**
+   *
+   */
+  public fun cameraSetCameraAttributes(camera: RID, effects: RID): Unit {
     TransferContext.writeArguments(_RID to camera, _RID to effects)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_SET_CAMERA_EFFECTS, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_SET_CAMERA_ATTRIBUTES, NIL)
   }
 
   /**
@@ -2485,6 +2562,15 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Sets the rendering mask associated with this [godot.Viewport]. Only [godot.CanvasItem] nodes with a matching rendering visibility layer will be rendered by this [godot.Viewport].
+   */
+  public fun viewportSetCanvasCullMask(viewport: RID, canvasCullMask: Long): Unit {
+    TransferContext.writeArguments(_RID to viewport, LONG to canvasCullMask)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_CANVAS_CULL_MASK, NIL)
+  }
+
+  /**
    * Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.
    */
   public fun viewportSetScaling3dMode(viewport: RID,
@@ -2514,10 +2600,15 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_FSR_SHARPNESS, NIL)
   }
 
-  public fun viewportSetFsrMipmapBias(viewport: RID, mipmapBias: Double): Unit {
+  /**
+   * Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close). To get sharper textures at a distance without introducing too much graininess, set this between `-0.75` and `0.0`. Enabling temporal antialiasing ([godot.ProjectSettings.rendering/antiAliasing/quality/useTaa]) can help reduce the graininess visible when using negative mipmap bias.
+   *
+   * **Note:** When the 3D scaling mode is set to FSR 1.0, this value is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `-log2(1.0 / scale) + mipmap_bias`.
+   */
+  public fun viewportSetTextureMipmapBias(viewport: RID, mipmapBias: Double): Unit {
     TransferContext.writeArguments(_RID to viewport, DOUBLE to mipmapBias)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_FSR_MIPMAP_BIAS, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_TEXTURE_MIPMAP_BIAS, NIL)
   }
 
   /**
@@ -2715,31 +2806,51 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_SDF_OVERSIZE_AND_SCALE, NIL)
   }
 
-  public fun viewportSetShadowAtlasSize(
+  /**
+   * Sets the size of the shadow atlas's images (used for omni and spot lights). The value will be rounded up to the nearest power of 2.
+   *
+   * **Note:** If this is set to `0`, no shadows will be visible at all (including directional shadows).
+   */
+  public fun viewportSetPositionalShadowAtlasSize(
     viewport: RID,
     size: Long,
     use16Bits: Boolean = false
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to size, BOOL to use16Bits)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_SHADOW_ATLAS_SIZE, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_SIZE, NIL)
   }
 
-  public fun viewportSetShadowAtlasQuadrantSubdivision(
+  /**
+   * Sets the shadow atlas quadrant's subdivision.
+   */
+  public fun viewportSetPositionalShadowAtlasQuadrantSubdivision(
     viewport: RID,
     quadrant: Long,
     subdivision: Long
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to quadrant, LONG to subdivision)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_SHADOW_ATLAS_QUADRANT_SUBDIVISION,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIVISION,
         NIL)
   }
 
-  public fun viewportSetMsaa(viewport: RID, msaa: RenderingServer.ViewportMSAA): Unit {
+  /**
+   * Sets the multisample anti-aliasing mode for 3D. See [enum ViewportMSAA] for options.
+   */
+  public fun viewportSetMsaa3d(viewport: RID, msaa: RenderingServer.ViewportMSAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_MSAA,
-        NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_MSAA_3D, NIL)
+  }
+
+  /**
+   * Sets the multisample anti-aliasing mode for 2D/Canvas. See [enum ViewportMSAA] for options.
+   */
+  public fun viewportSetMsaa2d(viewport: RID, msaa: RenderingServer.ViewportMSAA): Unit {
+    TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_MSAA_2D, NIL)
   }
 
   /**
@@ -2750,6 +2861,15 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_SCREEN_SPACE_AA, NIL)
+  }
+
+  /**
+   * If `true`, use Temporal Anti-Aliasing.
+   */
+  public fun viewportSetUseTaa(viewport: RID, enable: Boolean): Unit {
+    TransferContext.writeArguments(_RID to viewport, BOOL to enable)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_USE_TAA, NIL)
   }
 
   /**
@@ -2840,6 +2960,24 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_GET_MEASURED_RENDER_TIME_GPU, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Sets the Variable Rate Shading (VRS) mode for the viewport. Note, if hardware does not support VRS this property is ignored.
+   */
+  public fun viewportSetVrsMode(viewport: RID, mode: RenderingServer.ViewportVRSMode): Unit {
+    TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_VRS_MODE, NIL)
+  }
+
+  /**
+   * Texture to use when the VRS mode is set to [godot.RenderingServer.VIEWPORT_VRS_TEXTURE].
+   */
+  public fun viewportSetVrsTexture(viewport: RID, texture: RID): Unit {
+    TransferContext.writeArguments(_RID to viewport, _RID to texture)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_VRS_TEXTURE, NIL)
   }
 
   /**
@@ -2954,8 +3092,12 @@ public object RenderingServer : Object() {
   /**
    * Sets the intensity of the background color.
    */
-  public fun environmentSetBgEnergy(env: RID, energy: Double): Unit {
-    TransferContext.writeArguments(_RID to env, DOUBLE to energy)
+  public fun environmentSetBgEnergy(
+    env: RID,
+    multiplier: Double,
+    exposureValue: Double
+  ): Unit {
+    TransferContext.writeArguments(_RID to env, DOUBLE to multiplier, DOUBLE to exposureValue)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_BG_ENERGY, NIL)
   }
@@ -3017,14 +3159,9 @@ public object RenderingServer : Object() {
     env: RID,
     toneMapper: RenderingServer.EnvironmentToneMapper,
     exposure: Double,
-    white: Double,
-    autoExposure: Boolean,
-    minLuminance: Double,
-    maxLuminance: Double,
-    autoExpSpeed: Double,
-    autoExpGrey: Double
+    white: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to env, LONG to toneMapper.id, DOUBLE to exposure, DOUBLE to white, BOOL to autoExposure, DOUBLE to minLuminance, DOUBLE to maxLuminance, DOUBLE to autoExpSpeed, DOUBLE to autoExpGrey)
+    TransferContext.writeArguments(_RID to env, LONG to toneMapper.id, DOUBLE to exposure, DOUBLE to white)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_TONEMAP, NIL)
   }
@@ -3094,9 +3231,10 @@ public object RenderingServer : Object() {
     density: Double,
     height: Double,
     heightDensity: Double,
-    aerialPerspective: Double
+    aerialPerspective: Double,
+    skyAffect: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, COLOR to lightColor, DOUBLE to lightEnergy, DOUBLE to sunScatter, DOUBLE to density, DOUBLE to height, DOUBLE to heightDensity, DOUBLE to aerialPerspective)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, COLOR to lightColor, DOUBLE to lightEnergy, DOUBLE to sunScatter, DOUBLE to density, DOUBLE to height, DOUBLE to heightDensity, DOUBLE to aerialPerspective, DOUBLE to skyAffect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_FOG,
         NIL)
   }
@@ -3138,9 +3276,10 @@ public object RenderingServer : Object() {
     giInject: Double,
     temporalReprojection: Boolean,
     temporalReprojectionAmount: Double,
-    ambientInject: Double
+    ambientInject: Double,
+    skyAffect: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to density, COLOR to albedo, COLOR to emission, DOUBLE to emissionEnergy, DOUBLE to anisotropy, DOUBLE to length, DOUBLE to pDetailSpread, DOUBLE to giInject, BOOL to temporalReprojection, DOUBLE to temporalReprojectionAmount, DOUBLE to ambientInject)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to density, COLOR to albedo, COLOR to emission, DOUBLE to emissionEnergy, DOUBLE to anisotropy, DOUBLE to length, DOUBLE to pDetailSpread, DOUBLE to giInject, BOOL to temporalReprojection, DOUBLE to temporalReprojectionAmount, DOUBLE to ambientInject, DOUBLE to skyAffect)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_VOLUMETRIC_FOG, NIL)
   }
@@ -3301,28 +3440,42 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SUB_SURFACE_SCATTERING_SET_SCALE, NIL)
   }
 
-  public fun cameraEffectsCreate(): RID {
+  /**
+   * Creates a camera attributes object and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `camera_attributes_` RenderingServer functions.
+   *
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] static method.
+   */
+  public fun cameraAttributesCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_EFFECTS_CREATE, _RID)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_ATTRIBUTES_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
-  public fun cameraEffectsSetDofBlurQuality(quality: RenderingServer.DOFBlurQuality,
+  /**
+   *
+   */
+  public fun cameraAttributesSetDofBlurQuality(quality: RenderingServer.DOFBlurQuality,
       useJitter: Boolean): Unit {
     TransferContext.writeArguments(LONG to quality.id, BOOL to useJitter)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_EFFECTS_SET_DOF_BLUR_QUALITY, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_ATTRIBUTES_SET_DOF_BLUR_QUALITY, NIL)
   }
 
-  public fun cameraEffectsSetDofBlurBokehShape(shape: RenderingServer.DOFBokehShape): Unit {
+  /**
+   *
+   */
+  public fun cameraAttributesSetDofBlurBokehShape(shape: RenderingServer.DOFBokehShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_EFFECTS_SET_DOF_BLUR_BOKEH_SHAPE, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_ATTRIBUTES_SET_DOF_BLUR_BOKEH_SHAPE, NIL)
   }
 
-  public fun cameraEffectsSetDofBlur(
-    cameraEffects: RID,
+  /**
+   *
+   */
+  public fun cameraAttributesSetDofBlur(
+    cameraAttributes: RID,
     farEnable: Boolean,
     farDistance: Double,
     farTransition: Double,
@@ -3331,19 +3484,52 @@ public object RenderingServer : Object() {
     nearTransition: Double,
     amount: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to cameraEffects, BOOL to farEnable, DOUBLE to farDistance, DOUBLE to farTransition, BOOL to nearEnable, DOUBLE to nearDistance, DOUBLE to nearTransition, DOUBLE to amount)
+    TransferContext.writeArguments(_RID to cameraAttributes, BOOL to farEnable, DOUBLE to farDistance, DOUBLE to farTransition, BOOL to nearEnable, DOUBLE to nearDistance, DOUBLE to nearTransition, DOUBLE to amount)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_EFFECTS_SET_DOF_BLUR, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_ATTRIBUTES_SET_DOF_BLUR, NIL)
   }
 
-  public fun cameraEffectsSetCustomExposure(
-    cameraEffects: RID,
-    enable: Boolean,
-    exposure: Double
+  /**
+   * Sets the exposure values that will be used by the renderers. The normalization amount is used to bake a given Exposure Value (EV) into rendering calculations to reduce the dynamic range of the scene.
+   *
+   * The normalization factor can be calculated from exposure value (EV100) as follows:
+   *
+   * ```
+   * 				func get_exposure_normalization(float ev100):
+   * 				    			    return 1.0 / (pow(2.0, ev100) * 1.2)
+   * 				```
+   *
+   * The exposure value can be calculated from aperture (in f-stops), shutter speed (in seconds), and sensitivity (in ISO) as follows:
+   *
+   * ```
+   * 				func get_exposure(float aperture, float shutter_speed, float sensitivity):
+   * 				    return log2((aperture * aperture) / shutterSpeed * (100.0 / sensitivity))
+   * 				```
+   */
+  public fun cameraAttributesSetExposure(
+    cameraAttributes: RID,
+    multiplier: Double,
+    normalization: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to cameraEffects, BOOL to enable, DOUBLE to exposure)
+    TransferContext.writeArguments(_RID to cameraAttributes, DOUBLE to multiplier, DOUBLE to normalization)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_EFFECTS_SET_CUSTOM_EXPOSURE, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_ATTRIBUTES_SET_EXPOSURE, NIL)
+  }
+
+  /**
+   *
+   */
+  public fun cameraAttributesSetAutoExposure(
+    cameraAttributes: RID,
+    enable: Boolean,
+    minSensitivity: Double,
+    maxSensitivity: Double,
+    speed: Double,
+    scale: Double
+  ): Unit {
+    TransferContext.writeArguments(_RID to cameraAttributes, BOOL to enable, DOUBLE to minSensitivity, DOUBLE to maxSensitivity, DOUBLE to speed, DOUBLE to scale)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_ATTRIBUTES_SET_AUTO_EXPOSURE, NIL)
   }
 
   /**
@@ -3378,10 +3564,13 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SCENARIO_SET_FALLBACK_ENVIRONMENT, NIL)
   }
 
-  public fun scenarioSetCameraEffects(scenario: RID, effects: RID): Unit {
+  /**
+   *
+   */
+  public fun scenarioSetCameraAttributes(scenario: RID, effects: RID): Unit {
     TransferContext.writeArguments(_RID to scenario, _RID to effects)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SCENARIO_SET_CAMERA_EFFECTS, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SCENARIO_SET_CAMERA_ATTRIBUTES, NIL)
   }
 
   /**
@@ -3668,11 +3857,12 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun instanceGeometryGetShaderParameterList(instance: RID): VariantArray<Any?> {
+  public fun instanceGeometryGetShaderParameterList(instance: RID):
+      VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to instance)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCE_GEOMETRY_GET_SHADER_PARAMETER_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -3680,11 +3870,11 @@ public object RenderingServer : Object() {
    *
    * **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.
    */
-  public fun instancesCullAabb(aabb: AABB, scenario: RID = RID()): VariantArray<Any?> {
+  public fun instancesCullAabb(aabb: AABB, scenario: RID = RID()): PackedInt64Array {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb, _RID to scenario)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCES_CULL_AABB,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_INT_64_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
   }
 
   /**
@@ -3696,11 +3886,11 @@ public object RenderingServer : Object() {
     from: Vector3,
     to: Vector3,
     scenario: RID = RID()
-  ): VariantArray<Any?> {
+  ): PackedInt64Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, _RID to scenario)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCES_CULL_RAY,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_INT_64_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
   }
 
   /**
@@ -3708,12 +3898,12 @@ public object RenderingServer : Object() {
    *
    * **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.
    */
-  public fun instancesCullConvex(convex: VariantArray<Any?>, scenario: RID = RID()):
-      VariantArray<Any?> {
+  public fun instancesCullConvex(convex: VariantArray<Plane>, scenario: RID = RID()):
+      PackedInt64Array {
     TransferContext.writeArguments(ARRAY to convex, _RID to scenario)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCES_CULL_CONVEX, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCES_CULL_CONVEX, PACKED_INT_64_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
   }
 
   /**
@@ -3721,13 +3911,13 @@ public object RenderingServer : Object() {
    */
   public fun bakeRenderUv2(
     base: RID,
-    materialOverrides: VariantArray<Any?>,
+    materialOverrides: VariantArray<RID>,
     imageSize: Vector2i
-  ): VariantArray<Any?> {
+  ): VariantArray<Image> {
     TransferContext.writeArguments(_RID to base, ARRAY to materialOverrides, VECTOR2I to imageSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_BAKE_RENDER_UV2,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>
   }
 
   /**
@@ -3886,6 +4076,15 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Sets the rendering visibility layer associated with this [godot.CanvasItem]. Only [godot.Viewport] nodes with a matching rendering mask will render this [godot.CanvasItem].
+   */
+  public fun canvasItemSetVisibilityLayer(item: RID, visibilityLayer: Long): Unit {
+    TransferContext.writeArguments(_RID to item, LONG to visibilityLayer)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_SET_VISIBILITY_LAYER, NIL)
+  }
+
+  /**
    *
    */
   public fun canvasItemSetTransform(item: RID, transform: Transform2D): Unit {
@@ -3960,9 +4159,10 @@ public object RenderingServer : Object() {
     from: Vector2,
     to: Vector2,
     color: Color,
-    width: Double = 1.0
+    width: Double = 1.0,
+    antialiased: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to item, VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width)
+    TransferContext.writeArguments(_RID to item, VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width, BOOL to antialiased)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_LINE, NIL)
   }
@@ -4040,6 +4240,21 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect, COLOR to modulate, LONG to outlineSize, DOUBLE to pxRange)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_MSDF_TEXTURE_RECT_REGION, NIL)
+  }
+
+  /**
+   *
+   */
+  public fun canvasItemAddLcdTextureRectRegion(
+    item: RID,
+    rect: Rect2,
+    texture: RID,
+    srcRect: Rect2,
+    modulate: Color
+  ): Unit {
+    TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect, COLOR to modulate)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_LCD_TEXTURE_RECT_REGION, NIL)
   }
 
   /**
@@ -4605,53 +4820,76 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_SET_SHADOW_TEXTURE_SIZE, NIL)
   }
 
-  public fun globalVariableAdd(
+  /**
+   *
+   */
+  public fun globalShaderParameterAdd(
     name: StringName,
-    type: RenderingServer.GlobalVariableType,
+    type: RenderingServer.GlobalShaderParameterType,
     defaultValue: Any
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, LONG to type.id, ANY to defaultValue)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_ADD,
-        NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_SHADER_PARAMETER_ADD, NIL)
   }
 
-  public fun globalVariableRemove(name: StringName): Unit {
+  /**
+   *
+   */
+  public fun globalShaderParameterRemove(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_REMOVE, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_SHADER_PARAMETER_REMOVE, NIL)
   }
 
-  public fun globalVariableGetList(): PackedStringArray {
+  /**
+   *
+   */
+  public fun globalShaderParameterGetList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_GET_LIST, PACKED_STRING_ARRAY)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_SHADER_PARAMETER_GET_LIST,
+        PACKED_STRING_ARRAY)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
-  public fun globalVariableSet(name: StringName, `value`: Any): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_SET,
-        NIL)
-  }
-
-  public fun globalVariableSetOverride(name: StringName, `value`: Any): Unit {
+  /**
+   *
+   */
+  public fun globalShaderParameterSet(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_SET_OVERRIDE, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_SHADER_PARAMETER_SET, NIL)
   }
 
-  public fun globalVariableGet(name: StringName): Any? {
+  /**
+   *
+   */
+  public fun globalShaderParameterSetOverride(name: StringName, `value`: Any): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, ANY to value)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_SHADER_PARAMETER_SET_OVERRIDE, NIL)
+  }
+
+  /**
+   *
+   */
+  public fun globalShaderParameterGet(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_GET,
-        ANY)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_SHADER_PARAMETER_GET, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  public fun globalVariableGetType(name: StringName): RenderingServer.GlobalVariableType {
+  /**
+   *
+   */
+  public fun globalShaderParameterGetType(name: StringName):
+      RenderingServer.GlobalShaderParameterType {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_GET_TYPE, LONG)
-    return RenderingServer.GlobalVariableType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_SHADER_PARAMETER_GET_TYPE, LONG)
+    return RenderingServer.GlobalShaderParameterType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -4724,6 +4962,18 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GET_VIDEO_ADAPTER_TYPE, LONG)
     return RenderingDevice.DeviceType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns the version of the graphics video adapter *currently in use* (e.g. "1.2.189" for Vulkan, "3.3.0 NVIDIA 510.60.02" for OpenGL). This version may be different from the actual latest version supported by the hardware, as Godot may not always request the latest version.
+   *
+   * **Note:** When running a headless or server binary, this function returns an empty string.
+   */
+  public fun getVideoAdapterApiVersion(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GET_VIDEO_ADAPTER_API_VERSION, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -4878,33 +5128,21 @@ public object RenderingServer : Object() {
     return TransferContext.readReturnValue(OBJECT, true) as RenderingDevice?
   }
 
-  public enum class PrimitiveType(
+  public enum class TextureLayeredType(
     id: Long
   ) {
     /**
-     * Primitive to draw consists of points.
+     *
      */
-    PRIMITIVE_POINTS(0),
+    TEXTURE_LAYERED_2D_ARRAY(0),
     /**
-     * Primitive to draw consists of lines.
+     *
      */
-    PRIMITIVE_LINES(1),
+    TEXTURE_LAYERED_CUBEMAP(1),
     /**
-     * Primitive to draw consists of a line strip from start to end.
+     *
      */
-    PRIMITIVE_LINE_STRIP(2),
-    /**
-     * Primitive to draw consists of triangles.
-     */
-    PRIMITIVE_TRIANGLES(3),
-    /**
-     * Primitive to draw consists of a triangle strip (the last 3 vertices are always combined to make a triangle).
-     */
-    PRIMITIVE_TRIANGLE_STRIP(4),
-    /**
-     * Represents the size of the [enum PrimitiveType] enum.
-     */
-    PRIMITIVE_MAX(5),
+    TEXTURE_LAYERED_CUBEMAP_ARRAY(2),
     ;
 
     public val id: Long
@@ -4917,40 +5155,33 @@ public object RenderingServer : Object() {
     }
   }
 
-  public enum class BlendShapeMode(
+  public enum class CubeMapLayer(
     id: Long
   ) {
     /**
-     * Blend shapes are normalized.
+     *
      */
-    BLEND_SHAPE_MODE_NORMALIZED(0),
+    CUBEMAP_LAYER_LEFT(0),
     /**
-     * Blend shapes are relative to base weight.
+     *
      */
-    BLEND_SHAPE_MODE_RELATIVE(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ReflectionProbeUpdateMode(
-    id: Long
-  ) {
+    CUBEMAP_LAYER_RIGHT(1),
     /**
-     * Reflection probe will update reflections once and then stop.
+     *
      */
-    REFLECTION_PROBE_UPDATE_ONCE(0),
+    CUBEMAP_LAYER_BOTTOM(2),
     /**
-     * Reflection probe will update each frame. This mode is necessary to capture moving objects.
+     *
      */
-    REFLECTION_PROBE_UPDATE_ALWAYS(1),
+    CUBEMAP_LAYER_TOP(3),
+    /**
+     *
+     */
+    CUBEMAP_LAYER_FRONT(4),
+    /**
+     *
+     */
+    CUBEMAP_LAYER_BACK(5),
     ;
 
     public val id: Long
@@ -4990,753 +5221,6 @@ public object RenderingServer : Object() {
      * Represents the size of the [enum ShaderMode] enum.
      */
     SHADER_MAX(5),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ParticlesMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    PARTICLES_MODE_2D(0),
-    /**
-     *
-     */
-    PARTICLES_MODE_3D(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ViewportClearMode(
-    id: Long
-  ) {
-    /**
-     * The viewport is always cleared before drawing.
-     */
-    VIEWPORT_CLEAR_ALWAYS(0),
-    /**
-     * The viewport is never cleared before drawing.
-     */
-    VIEWPORT_CLEAR_NEVER(1),
-    /**
-     * The viewport is cleared once, then the clear mode is set to [VIEWPORT_CLEAR_NEVER].
-     */
-    VIEWPORT_CLEAR_ONLY_NEXT_FRAME(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ViewportRenderInfo(
-    id: Long
-  ) {
-    /**
-     * Number of objects drawn in a single frame.
-     */
-    VIEWPORT_RENDER_INFO_OBJECTS_IN_FRAME(0),
-    /**
-     * Number of vertices drawn in a single frame.
-     */
-    VIEWPORT_RENDER_INFO_PRIMITIVES_IN_FRAME(1),
-    /**
-     * Number of draw calls during this frame.
-     */
-    VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME(2),
-    /**
-     * Represents the size of the [enum ViewportRenderInfo] enum.
-     */
-    VIEWPORT_RENDER_INFO_MAX(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class SkyMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    SKY_MODE_AUTOMATIC(0),
-    /**
-     * Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [godot.Sky.PROCESS_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [godot.ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
-     */
-    SKY_MODE_QUALITY(1),
-    /**
-     *
-     */
-    SKY_MODE_INCREMENTAL(2),
-    /**
-     * Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times.
-     *
-     * **Note:** The fast filtering algorithm is limited to 256x256 cubemaps, so [godot.Sky.radianceSize] must be set to [godot.Sky.RADIANCE_SIZE_256].
-     */
-    SKY_MODE_REALTIME(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentSDFGIFramesToConverge(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    ENV_SDFGI_CONVERGE_IN_5_FRAMES(0),
-    /**
-     *
-     */
-    ENV_SDFGI_CONVERGE_IN_10_FRAMES(1),
-    /**
-     *
-     */
-    ENV_SDFGI_CONVERGE_IN_15_FRAMES(2),
-    /**
-     *
-     */
-    ENV_SDFGI_CONVERGE_IN_20_FRAMES(3),
-    /**
-     *
-     */
-    ENV_SDFGI_CONVERGE_IN_25_FRAMES(4),
-    /**
-     *
-     */
-    ENV_SDFGI_CONVERGE_IN_30_FRAMES(5),
-    /**
-     *
-     */
-    ENV_SDFGI_CONVERGE_MAX(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class MultimeshTransformFormat(
-    id: Long
-  ) {
-    /**
-     * Use [godot.core.Transform2D] to store MultiMesh transform.
-     */
-    MULTIMESH_TRANSFORM_2D(0),
-    /**
-     * Use [godot.Transform3D] to store MultiMesh transform.
-     */
-    MULTIMESH_TRANSFORM_3D(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ViewportScaling3DMode(
-    id: Long
-  ) {
-    /**
-     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
-     */
-    VIEWPORT_SCALING_3D_MODE_BILINEAR(0),
-    /**
-     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less then `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
-     */
-    VIEWPORT_SCALING_3D_MODE_FSR(1),
-    /**
-     *
-     */
-    VIEWPORT_SCALING_3D_MODE_MAX(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ShadowCastingSetting(
-    id: Long
-  ) {
-    /**
-     * Disable shadows from this instance.
-     */
-    SHADOW_CASTING_SETTING_OFF(0),
-    /**
-     * Cast shadows from this instance.
-     */
-    SHADOW_CASTING_SETTING_ON(1),
-    /**
-     * Disable backface culling when rendering the shadow of the object. This is slightly slower but may result in more correct shadows.
-     */
-    SHADOW_CASTING_SETTING_DOUBLE_SIDED(2),
-    /**
-     * Only render the shadows from the object. The object itself will not be drawn.
-     */
-    SHADOW_CASTING_SETTING_SHADOWS_ONLY(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CanvasItemTextureRepeat(
-    id: Long
-  ) {
-    /**
-     * Uses the default repeat mode for this [godot.Viewport].
-     */
-    CANVAS_ITEM_TEXTURE_REPEAT_DEFAULT(0),
-    /**
-     * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will be clamped to the edge of the texture, resulting in a stretched out look at the borders of the texture.
-     */
-    CANVAS_ITEM_TEXTURE_REPEAT_DISABLED(1),
-    /**
-     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of the linear filtering modes, this can result in artifacts at the edges of a texture when the sampler filters across the edges of the texture.
-     */
-    CANVAS_ITEM_TEXTURE_REPEAT_ENABLED(2),
-    /**
-     * Flip the texture when repeating so that the edge lines up instead of abruptly changing.
-     */
-    CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(3),
-    /**
-     * Max value for [enum CanvasItemTextureRepeat] enum.
-     */
-    CANVAS_ITEM_TEXTURE_REPEAT_MAX(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CanvasLightBlendMode(
-    id: Long
-  ) {
-    /**
-     * Adds light color additive to the canvas.
-     */
-    CANVAS_LIGHT_BLEND_MODE_ADD(0),
-    /**
-     * Adds light color subtractive to the canvas.
-     */
-    CANVAS_LIGHT_BLEND_MODE_SUB(1),
-    /**
-     * The light adds color depending on transparency.
-     */
-    CANVAS_LIGHT_BLEND_MODE_MIX(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ParticlesTransformAlign(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    PARTICLES_TRANSFORM_ALIGN_DISABLED(0),
-    /**
-     *
-     */
-    PARTICLES_TRANSFORM_ALIGN_Z_BILLBOARD(1),
-    /**
-     *
-     */
-    PARTICLES_TRANSFORM_ALIGN_Y_TO_VELOCITY(2),
-    /**
-     *
-     */
-    PARTICLES_TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ViewportScreenSpaceAA(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VIEWPORT_SCREEN_SPACE_AA_DISABLED(0),
-    /**
-     *
-     */
-    VIEWPORT_SCREEN_SPACE_AA_FXAA(1),
-    /**
-     *
-     */
-    VIEWPORT_SCREEN_SPACE_AA_MAX(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ViewportRenderInfoType(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VIEWPORT_RENDER_INFO_TYPE_VISIBLE(0),
-    /**
-     *
-     */
-    VIEWPORT_RENDER_INFO_TYPE_SHADOW(1),
-    /**
-     *
-     */
-    VIEWPORT_RENDER_INFO_TYPE_MAX(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentBG(
-    id: Long
-  ) {
-    /**
-     * Use the clear color as background.
-     */
-    ENV_BG_CLEAR_COLOR(0),
-    /**
-     * Use a specified color as the background.
-     */
-    ENV_BG_COLOR(1),
-    /**
-     * Use a sky resource for the background.
-     */
-    ENV_BG_SKY(2),
-    /**
-     * Use a specified canvas layer as the background. This can be useful for instantiating a 2D scene in a 3D world.
-     */
-    ENV_BG_CANVAS(3),
-    /**
-     * Do not clear the background, use whatever was rendered last frame as the background.
-     */
-    ENV_BG_KEEP(4),
-    /**
-     * Displays a camera feed in the background.
-     */
-    ENV_BG_CAMERA_FEED(5),
-    /**
-     * Represents the size of the [enum EnvironmentBG] enum.
-     */
-    ENV_BG_MAX(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentSDFGIFramesToUpdateLight(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    ENV_SDFGI_UPDATE_LIGHT_IN_1_FRAME(0),
-    /**
-     *
-     */
-    ENV_SDFGI_UPDATE_LIGHT_IN_2_FRAMES(1),
-    /**
-     *
-     */
-    ENV_SDFGI_UPDATE_LIGHT_IN_4_FRAMES(2),
-    /**
-     *
-     */
-    ENV_SDFGI_UPDATE_LIGHT_IN_8_FRAMES(3),
-    /**
-     *
-     */
-    ENV_SDFGI_UPDATE_LIGHT_IN_16_FRAMES(4),
-    /**
-     *
-     */
-    ENV_SDFGI_UPDATE_LIGHT_MAX(5),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CanvasGroupMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    CANVAS_GROUP_MODE_DISABLED(0),
-    CANVAS_GROUP_MODE_OPAQUE(1),
-    /**
-     *
-     */
-    CANVAS_GROUP_MODE_TRANSPARENT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class Features(
-    id: Long
-  ) {
-    /**
-     * Hardware supports shaders. This enum is currently unused in Godot 3.x.
-     */
-    FEATURE_SHADERS(0),
-    /**
-     * Hardware supports multithreading. This enum is currently unused in Godot 3.x.
-     */
-    FEATURE_MULTITHREADED(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ShadowQuality(
-    id: Long
-  ) {
-    /**
-     * Lowest shadow filtering quality (fastest). Soft shadows are not available with this quality setting, which means the [godot.Light3D.shadowBlur] property is ignored if [godot.Light3D.lightSize] and [godot.Light3D.lightAngularDistance] is `0.0`.
-     *
-     * **Note:** The variable shadow blur performed by [godot.Light3D.lightSize] and [godot.Light3D.lightAngularDistance] is still effective when using hard shadow filtering. In this case, [godot.Light3D.shadowBlur] *is* taken into account. However, the results will not be blurred, instead the blur amount is treated as a maximum radius for the penumbra.
-     */
-    SHADOW_QUALITY_HARD(0),
-    /**
-     * Very low shadow filtering quality (faster). When using this quality setting, [godot.Light3D.shadowBlur] is automatically multiplied by 0.75× to avoid introducing too much noise. This division only applies to lights whose [godot.Light3D.lightSize] or [godot.Light3D.lightAngularDistance] is `0.0`).
-     */
-    SHADOW_QUALITY_SOFT_VERY_LOW(1),
-    /**
-     * Low shadow filtering quality (fast).
-     */
-    SHADOW_QUALITY_SOFT_LOW(2),
-    /**
-     * Medium low shadow filtering quality (average).
-     */
-    SHADOW_QUALITY_SOFT_MEDIUM(3),
-    /**
-     * High low shadow filtering quality (slow). When using this quality setting, [godot.Light3D.shadowBlur] is automatically multiplied by 1.5× to better make use of the high sample count. This increased blur also improves the stability of dynamic object shadows. This multiplier only applies to lights whose [godot.Light3D.lightSize] or [godot.Light3D.lightAngularDistance] is `0.0`).
-     */
-    SHADOW_QUALITY_SOFT_HIGH(4),
-    /**
-     * Highest low shadow filtering quality (slowest). When using this quality setting, [godot.Light3D.shadowBlur] is automatically multiplied by 2× to better make use of the high sample count. This increased blur also improves the stability of dynamic object shadows. This multiplier only applies to lights whose [godot.Light3D.lightSize] or [godot.Light3D.lightAngularDistance] is `0.0`).
-     */
-    SHADOW_QUALITY_SOFT_ULTRA(5),
-    /**
-     *
-     */
-    SHADOW_QUALITY_MAX(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DecalFilter(
-    id: Long
-  ) {
-    /**
-     * Nearest-neighbor filter for decals (use for pixel art decals). No mipmaps are used for rendering, which means decals at a distance will look sharp but grainy. This has roughly the same performance cost as using mipmaps.
-     */
-    DECAL_FILTER_NEAREST(0),
-    /**
-     * Nearest-neighbor filter for decals (use for pixel art decals). Isotropic mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
-     */
-    DECAL_FILTER_NEAREST_MIPMAPS(1),
-    /**
-     * Linear filter for decals (use for non-pixel art decals). No mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as using mipmaps.
-     */
-    DECAL_FILTER_LINEAR(2),
-    /**
-     * Linear filter for decals (use for non-pixel art decals). Isotropic mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
-     */
-    DECAL_FILTER_LINEAR_MIPMAPS(3),
-    /**
-     * Linear filter for decals (use for non-pixel art decals). Anisotropic mipmaps are used for rendering, which means decals at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     */
-    DECAL_FILTER_LINEAR_MIPMAPS_ANISOTROPIC(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class BakeChannels(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    BAKE_CHANNEL_ALBEDO_ALPHA(0),
-    /**
-     *
-     */
-    BAKE_CHANNEL_NORMAL(1),
-    /**
-     *
-     */
-    BAKE_CHANNEL_ORM(2),
-    /**
-     *
-     */
-    BAKE_CHANNEL_EMISSION(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CanvasLightShadowFilter(
-    id: Long
-  ) {
-    /**
-     * Do not apply a filter to canvas light shadows.
-     */
-    CANVAS_LIGHT_FILTER_NONE(0),
-    /**
-     * Use PCF5 filtering to filter canvas light shadows.
-     */
-    CANVAS_LIGHT_FILTER_PCF5(1),
-    /**
-     * Use PCF13 filtering to filter canvas light shadows.
-     */
-    CANVAS_LIGHT_FILTER_PCF13(2),
-    /**
-     * Max value of the [enum CanvasLightShadowFilter] enum.
-     */
-    CANVAS_LIGHT_FILTER_MAX(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class LightBakeMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    LIGHT_BAKE_DISABLED(0),
-    /**
-     *
-     */
-    LIGHT_BAKE_STATIC(1),
-    /**
-     *
-     */
-    LIGHT_BAKE_DYNAMIC(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentToneMapper(
-    id: Long
-  ) {
-    /**
-     * Output color as they came in. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
-     */
-    ENV_TONE_MAPPER_LINEAR(0),
-    /**
-     * Use the Reinhard tonemapper. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image can look a bit dull.
-     */
-    ENV_TONE_MAPPER_REINHARD(1),
-    /**
-     * Use the filmic tonemapper. This avoids clipping bright highlights, with a resulting image that usually looks more vivid than [ENV_TONE_MAPPER_REINHARD].
-     */
-    ENV_TONE_MAPPER_FILMIC(2),
-    /**
-     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other options, but it handles bright lighting in a more realistic fashion by desaturating it as it becomes brighter. ACES typically has a more contrasted output compared to [ENV_TONE_MAPPER_REINHARD] and [ENV_TONE_MAPPER_FILMIC].
-     *
-     * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
-     */
-    ENV_TONE_MAPPER_ACES(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class SubSurfaceScatteringQuality(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    SUB_SURFACE_SCATTERING_QUALITY_DISABLED(0),
-    /**
-     *
-     */
-    SUB_SURFACE_SCATTERING_QUALITY_LOW(1),
-    /**
-     *
-     */
-    SUB_SURFACE_SCATTERING_QUALITY_MEDIUM(2),
-    /**
-     *
-     */
-    SUB_SURFACE_SCATTERING_QUALITY_HIGH(3),
     ;
 
     public val id: Long
@@ -5820,235 +5304,6 @@ public object RenderingServer : Object() {
     }
   }
 
-  public enum class LightDirectionalShadowMode(
-    id: Long
-  ) {
-    /**
-     * Use orthogonal shadow projection for directional light.
-     */
-    LIGHT_DIRECTIONAL_SHADOW_ORTHOGONAL(0),
-    /**
-     * Use 2 splits for shadow projection when using directional light.
-     */
-    LIGHT_DIRECTIONAL_SHADOW_PARALLEL_2_SPLITS(1),
-    /**
-     * Use 4 splits for shadow projection when using directional light.
-     */
-    LIGHT_DIRECTIONAL_SHADOW_PARALLEL_4_SPLITS(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ParticlesDrawOrder(
-    id: Long
-  ) {
-    /**
-     * Draw particles in the order that they appear in the particles array.
-     */
-    PARTICLES_DRAW_ORDER_INDEX(0),
-    /**
-     * Sort particles based on their lifetime.
-     */
-    PARTICLES_DRAW_ORDER_LIFETIME(1),
-    /**
-     *
-     */
-    PARTICLES_DRAW_ORDER_REVERSE_LIFETIME(2),
-    /**
-     * Sort particles based on their distance to the camera.
-     */
-    PARTICLES_DRAW_ORDER_VIEW_DEPTH(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentReflectionSource(
-    id: Long
-  ) {
-    /**
-     * Use the background for reflections.
-     */
-    ENV_REFLECTION_SOURCE_BG(0),
-    /**
-     * Disable reflections.
-     */
-    ENV_REFLECTION_SOURCE_DISABLED(1),
-    /**
-     * Use the [godot.Sky] for reflections regardless of what the background is.
-     */
-    ENV_REFLECTION_SOURCE_SKY(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class LightDirectionalSkyMode(
-    id: Long
-  ) {
-    /**
-     * Use DirectionalLight3D in both sky rendering and scene lighting.
-     */
-    LIGHT_DIRECTIONAL_SKY_MODE_LIGHT_AND_SKY(0),
-    /**
-     * Only use DirectionalLight3D in scene lighting.
-     */
-    LIGHT_DIRECTIONAL_SKY_MODE_LIGHT_ONLY(1),
-    /**
-     * Only use DirectionalLight3D in sky rendering.
-     */
-    LIGHT_DIRECTIONAL_SKY_MODE_SKY_ONLY(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ViewportMSAA(
-    id: Long
-  ) {
-    /**
-     * Multisample antialiasing for 3D is disabled. This is the default value, and also the fastest setting.
-     */
-    VIEWPORT_MSAA_DISABLED(0),
-    /**
-     * Multisample antialiasing uses 2 samples per pixel for 3D. This has a moderate impact on performance.
-     */
-    VIEWPORT_MSAA_2X(1),
-    /**
-     * Multisample antialiasing uses 4 samples per pixel for 3D. This has a high impact on performance.
-     */
-    VIEWPORT_MSAA_4X(2),
-    /**
-     * Multisample antialiasing uses 8 samples per pixel for 3D. This has a very high impact on performance. Likely unsupported on low-end and older hardware.
-     */
-    VIEWPORT_MSAA_8X(3),
-    /**
-     *
-     */
-    VIEWPORT_MSAA_MAX(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class InstanceFlags(
-    id: Long
-  ) {
-    /**
-     * Allows the instance to be used in baked lighting.
-     */
-    INSTANCE_FLAG_USE_BAKED_LIGHT(0),
-    /**
-     * Allows the instance to be used with dynamic global illumination.
-     */
-    INSTANCE_FLAG_USE_DYNAMIC_GI(1),
-    /**
-     * When set, manually requests to draw geometry on next frame.
-     */
-    INSTANCE_FLAG_DRAW_NEXT_FRAME_IF_VISIBLE(2),
-    /**
-     *
-     */
-    INSTANCE_FLAG_IGNORE_OCCLUSION_CULLING(3),
-    /**
-     * Represents the size of the [enum InstanceFlags] enum.
-     */
-    INSTANCE_FLAG_MAX(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CanvasItemTextureFilter(
-    id: Long
-  ) {
-    /**
-     * Uses the default filter mode for this [godot.Viewport].
-     */
-    CANVAS_ITEM_TEXTURE_FILTER_DEFAULT(0),
-    /**
-     * The texture filter reads from the nearest pixel only. The simplest and fastest method of filtering, but the texture will look pixelized.
-     */
-    CANVAS_ITEM_TEXTURE_FILTER_NEAREST(1),
-    /**
-     * The texture filter blends between the nearest 4 pixels. Use this when you want to avoid a pixelated style, but do not want mipmaps.
-     */
-    CANVAS_ITEM_TEXTURE_FILTER_LINEAR(2),
-    /**
-     * The texture filter reads from the nearest pixel in the nearest mipmap. The fastest way to read from textures with mipmaps.
-     */
-    CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
-    /**
-     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps.
-     */
-    CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(4),
-    /**
-     * The texture filter reads from the nearest pixel, but selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera.
-     */
-    CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(5),
-    /**
-     * The texture filter blends between the nearest 4 pixels and selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. This is the slowest of the filtering options, but results in the highest quality texturing.
-     */
-    CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(6),
-    /**
-     * Max value for [enum CanvasItemTextureFilter] enum.
-     */
-    CANVAS_ITEM_TEXTURE_FILTER_MAX(7),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class ArrayCustomFormat(
     id: Long
   ) {
@@ -6088,768 +5343,6 @@ public object RenderingServer : Object() {
      *
      */
     ARRAY_CUSTOM_MAX(8),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentSDFGIYScale(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    ENV_SDFGI_Y_SCALE_50_PERCENT(0),
-    /**
-     *
-     */
-    ENV_SDFGI_Y_SCALE_75_PERCENT(1),
-    /**
-     *
-     */
-    ENV_SDFGI_Y_SCALE_100_PERCENT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DOFBokehShape(
-    id: Long
-  ) {
-    /**
-     * Calculate the DOF blur using a box filter. The fastest option, but results in obvious lines in blur pattern.
-     */
-    DOF_BOKEH_BOX(0),
-    /**
-     * Calculates DOF blur using a hexagon shaped filter.
-     */
-    DOF_BOKEH_HEXAGON(1),
-    /**
-     * Calculates DOF blur using a circle shaped filter. Best quality and most realistic, but slowest. Use only for areas where a lot of performance can be dedicated to post-processing (e.g. cutscenes).
-     */
-    DOF_BOKEH_CIRCLE(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ParticlesCollisionHeightfieldResolution(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_256(0),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_512(1),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_1024(2),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_2048(3),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_4096(4),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_8192(5),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_MAX(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ViewportSDFOversize(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VIEWPORT_SDF_OVERSIZE_100_PERCENT(0),
-    /**
-     *
-     */
-    VIEWPORT_SDF_OVERSIZE_120_PERCENT(1),
-    /**
-     *
-     */
-    VIEWPORT_SDF_OVERSIZE_150_PERCENT(2),
-    /**
-     *
-     */
-    VIEWPORT_SDF_OVERSIZE_200_PERCENT(3),
-    /**
-     *
-     */
-    VIEWPORT_SDF_OVERSIZE_MAX(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentSSRRoughnessQuality(
-    id: Long
-  ) {
-    /**
-     * Lowest quality of roughness filter for screen-space reflections. Rough materials will not have blurrier screen-space reflections compared to smooth (non-rough) materials. This is the fastest option.
-     */
-    ENV_SSR_ROUGHNESS_QUALITY_DISABLED(0),
-    /**
-     * Low quality of roughness filter for screen-space reflections.
-     */
-    ENV_SSR_ROUGHNESS_QUALITY_LOW(1),
-    /**
-     * Medium quality of roughness filter for screen-space reflections.
-     */
-    ENV_SSR_ROUGHNESS_QUALITY_MEDIUM(2),
-    /**
-     * High quality of roughness filter for screen-space reflections. This is the slowest option.
-     */
-    ENV_SSR_ROUGHNESS_QUALITY_HIGH(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentSSAOQuality(
-    id: Long
-  ) {
-    /**
-     * Lowest quality of screen-space ambient occlusion.
-     */
-    ENV_SSAO_QUALITY_VERY_LOW(0),
-    /**
-     * Low quality screen-space ambient occlusion.
-     */
-    ENV_SSAO_QUALITY_LOW(1),
-    /**
-     * Medium quality screen-space ambient occlusion.
-     */
-    ENV_SSAO_QUALITY_MEDIUM(2),
-    /**
-     * High quality screen-space ambient occlusion.
-     */
-    ENV_SSAO_QUALITY_HIGH(3),
-    /**
-     * Highest quality screen-space ambient occlusion. Uses the adaptive target setting which can be dynamically adjusted to smoothly balance performance and visual quality.
-     */
-    ENV_SSAO_QUALITY_ULTRA(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class NinePatchAxisMode(
-    id: Long
-  ) {
-    /**
-     * The nine patch gets stretched where needed.
-     */
-    NINE_PATCH_STRETCH(0),
-    /**
-     * The nine patch gets filled with tiles where needed.
-     */
-    NINE_PATCH_TILE(1),
-    /**
-     * The nine patch gets filled with tiles where needed and stretches them a bit if needed.
-     */
-    NINE_PATCH_TILE_FIT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ParticlesCollisionType(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    PARTICLES_COLLISION_TYPE_SPHERE_ATTRACT(0),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_TYPE_BOX_ATTRACT(1),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_TYPE_VECTOR_FIELD_ATTRACT(2),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_TYPE_SPHERE_COLLIDE(3),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_TYPE_BOX_COLLIDE(4),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_TYPE_SDF_COLLIDE(5),
-    /**
-     *
-     */
-    PARTICLES_COLLISION_TYPE_HEIGHTFIELD_COLLIDE(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class FogVolumeShape(
-    id: Long
-  ) {
-    /**
-     * [godot.FogVolume] will be shaped like an ellipsoid (stretched sphere).
-     */
-    FOG_VOLUME_SHAPE_ELLIPSOID(0),
-    /**
-     * [godot.FogVolume] will be shaped like a box.
-     */
-    FOG_VOLUME_SHAPE_BOX(1),
-    /**
-     * [godot.FogVolume] will have no shape, will cover the whole world and will not be culled.
-     */
-    FOG_VOLUME_SHAPE_WORLD(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ViewportSDFScale(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VIEWPORT_SDF_SCALE_100_PERCENT(0),
-    /**
-     *
-     */
-    VIEWPORT_SDF_SCALE_50_PERCENT(1),
-    /**
-     *
-     */
-    VIEWPORT_SDF_SCALE_25_PERCENT(2),
-    /**
-     *
-     */
-    VIEWPORT_SDF_SCALE_MAX(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ViewportDebugDraw(
-    id: Long
-  ) {
-    /**
-     * Debug draw is disabled. Default setting.
-     */
-    VIEWPORT_DEBUG_DRAW_DISABLED(0),
-    /**
-     * Objects are displayed without light information.
-     */
-    VIEWPORT_DEBUG_DRAW_UNSHADED(1),
-    /**
-     * Objects are displayed with only light information.
-     */
-    VIEWPORT_DEBUG_DRAW_LIGHTING(2),
-    /**
-     * Objects are displayed semi-transparent with additive blending so you can see where they are drawing over top of one another. A higher overdraw (represented by brighter colors) means you are wasting performance on drawing pixels that are being hidden behind others.
-     *
-     * **Note:** When using this debug draw mode, custom shaders will be ignored. This means vertex displacement won't be visible anymore.
-     */
-    VIEWPORT_DEBUG_DRAW_OVERDRAW(3),
-    /**
-     * Debug draw draws objects in wireframe.
-     */
-    VIEWPORT_DEBUG_DRAW_WIREFRAME(4),
-    /**
-     * Normal buffer is drawn instead of regular scene so you can see the per-pixel normals that will be used by post-processing effects.
-     */
-    VIEWPORT_DEBUG_DRAW_NORMAL_BUFFER(5),
-    /**
-     * Objects are displayed with only the albedo value from [godot.VoxelGI]s.
-     */
-    VIEWPORT_DEBUG_DRAW_VOXEL_GI_ALBEDO(6),
-    /**
-     * Objects are displayed with only the lighting value from [godot.VoxelGI]s.
-     */
-    VIEWPORT_DEBUG_DRAW_VOXEL_GI_LIGHTING(7),
-    /**
-     * Objects are displayed with only the emission color from [godot.VoxelGI]s.
-     */
-    VIEWPORT_DEBUG_DRAW_VOXEL_GI_EMISSION(8),
-    /**
-     * Draws the shadow atlas that stores shadows from [godot.OmniLight3D]s and [godot.SpotLight3D]s in the upper left quadrant of the [godot.Viewport].
-     */
-    VIEWPORT_DEBUG_DRAW_SHADOW_ATLAS(9),
-    /**
-     * Draws the shadow atlas that stores shadows from [godot.DirectionalLight3D]s in the upper left quadrant of the [godot.Viewport].
-     */
-    VIEWPORT_DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS(10),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_SCENE_LUMINANCE(11),
-    /**
-     * Draws the screen space ambient occlusion texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [godot.Environment.ssaoEnabled] set in your [godot.WorldEnvironment].
-     */
-    VIEWPORT_DEBUG_DRAW_SSAO(12),
-    /**
-     * Draws the screen space indirect lighting texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [godot.Environment.ssilEnabled] set in your [godot.WorldEnvironment].
-     */
-    VIEWPORT_DEBUG_DRAW_SSIL(13),
-    /**
-     * Colors each PSSM split for the [godot.DirectionalLight3D]s in the scene a different color so you can see where the splits are. In order they will be colored red, green, blue, yellow.
-     */
-    VIEWPORT_DEBUG_DRAW_PSSM_SPLITS(14),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_DECAL_ATLAS(15),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_SDFGI(16),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_SDFGI_PROBES(17),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_GI_BUFFER(18),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_DISABLE_LOD(19),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_CLUSTER_OMNI_LIGHTS(20),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_CLUSTER_SPOT_LIGHTS(21),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_CLUSTER_DECALS(22),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_CLUSTER_REFLECTION_PROBES(23),
-    /**
-     *
-     */
-    VIEWPORT_DEBUG_DRAW_OCCLUDERS(24),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class LightProjectorFilter(
-    id: Long
-  ) {
-    /**
-     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). No mipmaps are used for rendering, which means light projectors at a distance will look sharp but grainy. This has roughly the same performance cost as using mipmaps.
-     */
-    LIGHT_PROJECTOR_FILTER_NEAREST(0),
-    /**
-     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). Isotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
-     */
-    LIGHT_PROJECTOR_FILTER_NEAREST_MIPMAPS(1),
-    /**
-     * Linear filter for light projectors (use for non-pixel art light projectors). No mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as using mipmaps.
-     */
-    LIGHT_PROJECTOR_FILTER_LINEAR(2),
-    /**
-     * Linear filter for light projectors (use for non-pixel art light projectors). Isotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
-     */
-    LIGHT_PROJECTOR_FILTER_LINEAR_MIPMAPS(3),
-    /**
-     * Linear filter for light projectors (use for non-pixel art light projectors). Anisotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     */
-    LIGHT_PROJECTOR_FILTER_LINEAR_MIPMAPS_ANISOTROPIC(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class LightOmniShadowMode(
-    id: Long
-  ) {
-    /**
-     * Use a dual paraboloid shadow map for omni lights.
-     */
-    LIGHT_OMNI_SHADOW_DUAL_PARABOLOID(0),
-    /**
-     * Use a cubemap shadow map for omni lights. Slower but better quality than dual paraboloid.
-     */
-    LIGHT_OMNI_SHADOW_CUBE(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ViewportOcclusionCullingBuildQuality(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VIEWPORT_OCCLUSION_BUILD_QUALITY_LOW(0),
-    /**
-     *
-     */
-    VIEWPORT_OCCLUSION_BUILD_QUALITY_MEDIUM(1),
-    /**
-     *
-     */
-    VIEWPORT_OCCLUSION_BUILD_QUALITY_HIGH(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentAmbientSource(
-    id: Long
-  ) {
-    /**
-     * Gather ambient light from whichever source is specified as the background.
-     */
-    ENV_AMBIENT_SOURCE_BG(0),
-    /**
-     * Disable ambient light.
-     */
-    ENV_AMBIENT_SOURCE_DISABLED(1),
-    /**
-     * Specify a specific [godot.core.Color] for ambient light.
-     */
-    ENV_AMBIENT_SOURCE_COLOR(2),
-    /**
-     * Gather ambient light from the [godot.Sky] regardless of what the background is.
-     */
-    ENV_AMBIENT_SOURCE_SKY(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CanvasTextureChannel(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    CANVAS_TEXTURE_CHANNEL_DIFFUSE(0),
-    /**
-     *
-     */
-    CANVAS_TEXTURE_CHANNEL_NORMAL(1),
-    /**
-     *
-     */
-    CANVAS_TEXTURE_CHANNEL_SPECULAR(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class VoxelGIQuality(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VOXEL_GI_QUALITY_LOW(0),
-    /**
-     *
-     */
-    VOXEL_GI_QUALITY_HIGH(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentSDFGIRayCount(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    ENV_SDFGI_RAY_COUNT_4(0),
-    /**
-     *
-     */
-    ENV_SDFGI_RAY_COUNT_8(1),
-    /**
-     *
-     */
-    ENV_SDFGI_RAY_COUNT_16(2),
-    /**
-     *
-     */
-    ENV_SDFGI_RAY_COUNT_32(3),
-    /**
-     *
-     */
-    ENV_SDFGI_RAY_COUNT_64(4),
-    /**
-     *
-     */
-    ENV_SDFGI_RAY_COUNT_96(5),
-    /**
-     *
-     */
-    ENV_SDFGI_RAY_COUNT_128(6),
-    /**
-     *
-     */
-    ENV_SDFGI_RAY_COUNT_MAX(7),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DOFBlurQuality(
-    id: Long
-  ) {
-    /**
-     * Lowest quality DOF blur. This is the fastest setting, but you may be able to see filtering artifacts.
-     */
-    DOF_BLUR_QUALITY_VERY_LOW(0),
-    /**
-     * Low quality DOF blur.
-     */
-    DOF_BLUR_QUALITY_LOW(1),
-    /**
-     * Medium quality DOF blur.
-     */
-    DOF_BLUR_QUALITY_MEDIUM(2),
-    /**
-     * Highest quality DOF blur. Results in the smoothest looking blur by taking the most samples, but is also significantly slower.
-     */
-    DOF_BLUR_QUALITY_HIGH(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class InstanceType(
-    id: Long
-  ) {
-    /**
-     * The instance does not have a type.
-     */
-    INSTANCE_NONE(0),
-    /**
-     * The instance is a mesh.
-     */
-    INSTANCE_MESH(1),
-    /**
-     * The instance is a multimesh.
-     */
-    INSTANCE_MULTIMESH(2),
-    /**
-     * The instance is a particle emitter.
-     */
-    INSTANCE_PARTICLES(3),
-    /**
-     *
-     */
-    INSTANCE_PARTICLES_COLLISION(4),
-    /**
-     * The instance is a light.
-     */
-    INSTANCE_LIGHT(5),
-    /**
-     * The instance is a reflection probe.
-     */
-    INSTANCE_REFLECTION_PROBE(6),
-    /**
-     * The instance is a decal.
-     */
-    INSTANCE_DECAL(7),
-    /**
-     * The instance is a VoxelGI.
-     */
-    INSTANCE_VOXEL_GI(8),
-    /**
-     * The instance is a lightmap.
-     */
-    INSTANCE_LIGHTMAP(9),
-    /**
-     *
-     */
-    INSTANCE_OCCLUDER(10),
-    /**
-     *
-     */
-    INSTANCE_VISIBLITY_NOTIFIER(11),
-    /**
-     *
-     */
-    INSTANCE_FOG_VOLUME(12),
-    /**
-     * Represents the size of the [enum InstanceType] enum.
-     */
-    INSTANCE_MAX(13),
-    /**
-     * A combination of the flags of geometry instances (mesh, multimesh, immediate and particles).
-     */
-    INSTANCE_GEOMETRY_MASK(14),
     ;
 
     public val id: Long
@@ -6977,6 +5470,428 @@ public object RenderingServer : Object() {
     }
   }
 
+  public enum class PrimitiveType(
+    id: Long
+  ) {
+    /**
+     * Primitive to draw consists of points.
+     */
+    PRIMITIVE_POINTS(0),
+    /**
+     * Primitive to draw consists of lines.
+     */
+    PRIMITIVE_LINES(1),
+    /**
+     * Primitive to draw consists of a line strip from start to end.
+     */
+    PRIMITIVE_LINE_STRIP(2),
+    /**
+     * Primitive to draw consists of triangles.
+     */
+    PRIMITIVE_TRIANGLES(3),
+    /**
+     * Primitive to draw consists of a triangle strip (the last 3 vertices are always combined to make a triangle).
+     */
+    PRIMITIVE_TRIANGLE_STRIP(4),
+    /**
+     * Represents the size of the [enum PrimitiveType] enum.
+     */
+    PRIMITIVE_MAX(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class BlendShapeMode(
+    id: Long
+  ) {
+    /**
+     * Blend shapes are normalized.
+     */
+    BLEND_SHAPE_MODE_NORMALIZED(0),
+    /**
+     * Blend shapes are relative to base weight.
+     */
+    BLEND_SHAPE_MODE_RELATIVE(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class MultimeshTransformFormat(
+    id: Long
+  ) {
+    /**
+     * Use [godot.core.Transform2D] to store MultiMesh transform.
+     */
+    MULTIMESH_TRANSFORM_2D(0),
+    /**
+     * Use [godot.Transform3D] to store MultiMesh transform.
+     */
+    MULTIMESH_TRANSFORM_3D(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LightProjectorFilter(
+    id: Long
+  ) {
+    /**
+     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). No mipmaps are used for rendering, which means light projectors at a distance will look sharp but grainy. This has roughly the same performance cost as using mipmaps.
+     */
+    LIGHT_PROJECTOR_FILTER_NEAREST(0),
+    /**
+     * Linear filter for light projectors (use for non-pixel art light projectors). No mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as using mipmaps.
+     */
+    LIGHT_PROJECTOR_FILTER_LINEAR(1),
+    /**
+     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). Isotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
+     */
+    LIGHT_PROJECTOR_FILTER_NEAREST_MIPMAPS(2),
+    /**
+     * Linear filter for light projectors (use for non-pixel art light projectors). Isotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
+     */
+    LIGHT_PROJECTOR_FILTER_LINEAR_MIPMAPS(3),
+    /**
+     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). Anisotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     */
+    LIGHT_PROJECTOR_FILTER_NEAREST_MIPMAPS_ANISOTROPIC(4),
+    /**
+     * Linear filter for light projectors (use for non-pixel art light projectors). Anisotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     */
+    LIGHT_PROJECTOR_FILTER_LINEAR_MIPMAPS_ANISOTROPIC(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LightType(
+    id: Long
+  ) {
+    /**
+     * Is a directional (sun) light.
+     */
+    LIGHT_DIRECTIONAL(0),
+    /**
+     * Is an omni light.
+     */
+    LIGHT_OMNI(1),
+    /**
+     * Is a spot light.
+     */
+    LIGHT_SPOT(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LightParam(
+    id: Long
+  ) {
+    /**
+     * The light's energy multiplier.
+     */
+    LIGHT_PARAM_ENERGY(0),
+    /**
+     * The light's indirect energy multiplier (final indirect energy is [LIGHT_PARAM_ENERGY] * [LIGHT_PARAM_INDIRECT_ENERGY]).
+     */
+    LIGHT_PARAM_INDIRECT_ENERGY(1),
+    /**
+     * The light's volumetric fog energy multiplier (final volumetric fog energy is [LIGHT_PARAM_ENERGY] * [LIGHT_PARAM_VOLUMETRIC_FOG_ENERGY]).
+     */
+    LIGHT_PARAM_VOLUMETRIC_FOG_ENERGY(2),
+    /**
+     * The light's influence on specularity.
+     */
+    LIGHT_PARAM_SPECULAR(3),
+    /**
+     * The light's range.
+     */
+    LIGHT_PARAM_RANGE(4),
+    /**
+     * The size of the light when using spot light or omni light. The angular size of the light when using directional light.
+     */
+    LIGHT_PARAM_SIZE(5),
+    /**
+     * The light's attenuation.
+     */
+    LIGHT_PARAM_ATTENUATION(6),
+    /**
+     * The spotlight's angle.
+     */
+    LIGHT_PARAM_SPOT_ANGLE(7),
+    /**
+     * The spotlight's attenuation.
+     */
+    LIGHT_PARAM_SPOT_ATTENUATION(8),
+    /**
+     * Max distance that shadows will be rendered.
+     */
+    LIGHT_PARAM_SHADOW_MAX_DISTANCE(9),
+    /**
+     * Proportion of shadow atlas occupied by the first split.
+     */
+    LIGHT_PARAM_SHADOW_SPLIT_1_OFFSET(10),
+    /**
+     * Proportion of shadow atlas occupied by the second split.
+     */
+    LIGHT_PARAM_SHADOW_SPLIT_2_OFFSET(11),
+    /**
+     * Proportion of shadow atlas occupied by the third split. The fourth split occupies the rest.
+     */
+    LIGHT_PARAM_SHADOW_SPLIT_3_OFFSET(12),
+    /**
+     * Proportion of shadow max distance where the shadow will start to fade out.
+     */
+    LIGHT_PARAM_SHADOW_FADE_START(13),
+    /**
+     * Normal bias used to offset shadow lookup by object normal. Can be used to fix self-shadowing artifacts.
+     */
+    LIGHT_PARAM_SHADOW_NORMAL_BIAS(14),
+    /**
+     * Bias the shadow lookup to fix self-shadowing artifacts.
+     */
+    LIGHT_PARAM_SHADOW_BIAS(15),
+    /**
+     * Sets the size of the directional shadow pancake. The pancake offsets the start of the shadow's camera frustum to provide a higher effective depth resolution for the shadow. However, a high pancake size can cause artifacts in the shadows of large objects that are close to the edge of the frustum. Reducing the pancake size can help. Setting the size to `0` turns off the pancaking effect.
+     */
+    LIGHT_PARAM_SHADOW_PANCAKE_SIZE(16),
+    /**
+     * The light's shadow opacity. Values lower than `1.0` make the light appear through shadows. This can be used to fake global illumination at a low performance cost.
+     */
+    LIGHT_PARAM_SHADOW_OPACITY(17),
+    /**
+     * Blurs the edges of the shadow. Can be used to hide pixel artifacts in low resolution shadow maps. A high value can make shadows appear grainy and can cause other unwanted artifacts. Try to keep as near default as possible.
+     */
+    LIGHT_PARAM_SHADOW_BLUR(18),
+    /**
+     *
+     */
+    LIGHT_PARAM_TRANSMITTANCE_BIAS(19),
+    /**
+     * Represents the size of the [enum LightParam] enum.
+     */
+    LIGHT_PARAM_MAX(21),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LightBakeMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    LIGHT_BAKE_DISABLED(0),
+    /**
+     *
+     */
+    LIGHT_BAKE_STATIC(1),
+    /**
+     *
+     */
+    LIGHT_BAKE_DYNAMIC(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LightOmniShadowMode(
+    id: Long
+  ) {
+    /**
+     * Use a dual paraboloid shadow map for omni lights.
+     */
+    LIGHT_OMNI_SHADOW_DUAL_PARABOLOID(0),
+    /**
+     * Use a cubemap shadow map for omni lights. Slower but better quality than dual paraboloid.
+     */
+    LIGHT_OMNI_SHADOW_CUBE(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LightDirectionalShadowMode(
+    id: Long
+  ) {
+    /**
+     * Use orthogonal shadow projection for directional light.
+     */
+    LIGHT_DIRECTIONAL_SHADOW_ORTHOGONAL(0),
+    /**
+     * Use 2 splits for shadow projection when using directional light.
+     */
+    LIGHT_DIRECTIONAL_SHADOW_PARALLEL_2_SPLITS(1),
+    /**
+     * Use 4 splits for shadow projection when using directional light.
+     */
+    LIGHT_DIRECTIONAL_SHADOW_PARALLEL_4_SPLITS(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LightDirectionalSkyMode(
+    id: Long
+  ) {
+    /**
+     * Use DirectionalLight3D in both sky rendering and scene lighting.
+     */
+    LIGHT_DIRECTIONAL_SKY_MODE_LIGHT_AND_SKY(0),
+    /**
+     * Only use DirectionalLight3D in scene lighting.
+     */
+    LIGHT_DIRECTIONAL_SKY_MODE_LIGHT_ONLY(1),
+    /**
+     * Only use DirectionalLight3D in sky rendering.
+     */
+    LIGHT_DIRECTIONAL_SKY_MODE_SKY_ONLY(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ShadowQuality(
+    id: Long
+  ) {
+    /**
+     * Lowest shadow filtering quality (fastest). Soft shadows are not available with this quality setting, which means the [godot.Light3D.shadowBlur] property is ignored if [godot.Light3D.lightSize] and [godot.Light3D.lightAngularDistance] is `0.0`.
+     *
+     * **Note:** The variable shadow blur performed by [godot.Light3D.lightSize] and [godot.Light3D.lightAngularDistance] is still effective when using hard shadow filtering. In this case, [godot.Light3D.shadowBlur] *is* taken into account. However, the results will not be blurred, instead the blur amount is treated as a maximum radius for the penumbra.
+     */
+    SHADOW_QUALITY_HARD(0),
+    /**
+     * Very low shadow filtering quality (faster). When using this quality setting, [godot.Light3D.shadowBlur] is automatically multiplied by 0.75× to avoid introducing too much noise. This division only applies to lights whose [godot.Light3D.lightSize] or [godot.Light3D.lightAngularDistance] is `0.0`).
+     */
+    SHADOW_QUALITY_SOFT_VERY_LOW(1),
+    /**
+     * Low shadow filtering quality (fast).
+     */
+    SHADOW_QUALITY_SOFT_LOW(2),
+    /**
+     * Medium low shadow filtering quality (average).
+     */
+    SHADOW_QUALITY_SOFT_MEDIUM(3),
+    /**
+     * High low shadow filtering quality (slow). When using this quality setting, [godot.Light3D.shadowBlur] is automatically multiplied by 1.5× to better make use of the high sample count. This increased blur also improves the stability of dynamic object shadows. This multiplier only applies to lights whose [godot.Light3D.lightSize] or [godot.Light3D.lightAngularDistance] is `0.0`).
+     */
+    SHADOW_QUALITY_SOFT_HIGH(4),
+    /**
+     * Highest low shadow filtering quality (slowest). When using this quality setting, [godot.Light3D.shadowBlur] is automatically multiplied by 2× to better make use of the high sample count. This increased blur also improves the stability of dynamic object shadows. This multiplier only applies to lights whose [godot.Light3D.lightSize] or [godot.Light3D.lightAngularDistance] is `0.0`).
+     */
+    SHADOW_QUALITY_SOFT_ULTRA(5),
+    /**
+     *
+     */
+    SHADOW_QUALITY_MAX(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ReflectionProbeUpdateMode(
+    id: Long
+  ) {
+    /**
+     * Reflection probe will update reflections once and then stop.
+     */
+    REFLECTION_PROBE_UPDATE_ONCE(0),
+    /**
+     * Reflection probe will update each frame. This mode is necessary to capture moving objects.
+     */
+    REFLECTION_PROBE_UPDATE_ALWAYS(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class ReflectionProbeAmbientMode(
     id: Long
   ) {
@@ -6992,6 +5907,340 @@ public object RenderingServer : Object() {
      *
      */
     REFLECTION_PROBE_AMBIENT_COLOR(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class DecalTexture(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    DECAL_TEXTURE_ALBEDO(0),
+    /**
+     *
+     */
+    DECAL_TEXTURE_NORMAL(1),
+    /**
+     *
+     */
+    DECAL_TEXTURE_ORM(2),
+    /**
+     *
+     */
+    DECAL_TEXTURE_EMISSION(3),
+    /**
+     *
+     */
+    DECAL_TEXTURE_MAX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class DecalFilter(
+    id: Long
+  ) {
+    /**
+     * Nearest-neighbor filter for decals (use for pixel art decals). No mipmaps are used for rendering, which means decals at a distance will look sharp but grainy. This has roughly the same performance cost as using mipmaps.
+     */
+    DECAL_FILTER_NEAREST(0),
+    /**
+     * Linear filter for decals (use for non-pixel art decals). No mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as using mipmaps.
+     */
+    DECAL_FILTER_LINEAR(1),
+    /**
+     * Nearest-neighbor filter for decals (use for pixel art decals). Isotropic mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
+     */
+    DECAL_FILTER_NEAREST_MIPMAPS(2),
+    /**
+     * Linear filter for decals (use for non-pixel art decals). Isotropic mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
+     */
+    DECAL_FILTER_LINEAR_MIPMAPS(3),
+    /**
+     * Nearest-neighbor filter for decals (use for pixel art decals). Anisotropic mipmaps are used for rendering, which means decals at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     */
+    DECAL_FILTER_NEAREST_MIPMAPS_ANISOTROPIC(4),
+    /**
+     * Linear filter for decals (use for non-pixel art decals). Anisotropic mipmaps are used for rendering, which means decals at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     */
+    DECAL_FILTER_LINEAR_MIPMAPS_ANISOTROPIC(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VoxelGIQuality(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VOXEL_GI_QUALITY_LOW(0),
+    /**
+     *
+     */
+    VOXEL_GI_QUALITY_HIGH(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ParticlesMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    PARTICLES_MODE_2D(0),
+    /**
+     *
+     */
+    PARTICLES_MODE_3D(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ParticlesTransformAlign(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    PARTICLES_TRANSFORM_ALIGN_DISABLED(0),
+    /**
+     *
+     */
+    PARTICLES_TRANSFORM_ALIGN_Z_BILLBOARD(1),
+    /**
+     *
+     */
+    PARTICLES_TRANSFORM_ALIGN_Y_TO_VELOCITY(2),
+    /**
+     *
+     */
+    PARTICLES_TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ParticlesDrawOrder(
+    id: Long
+  ) {
+    /**
+     * Draw particles in the order that they appear in the particles array.
+     */
+    PARTICLES_DRAW_ORDER_INDEX(0),
+    /**
+     * Sort particles based on their lifetime.
+     */
+    PARTICLES_DRAW_ORDER_LIFETIME(1),
+    /**
+     *
+     */
+    PARTICLES_DRAW_ORDER_REVERSE_LIFETIME(2),
+    /**
+     * Sort particles based on their distance to the camera.
+     */
+    PARTICLES_DRAW_ORDER_VIEW_DEPTH(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ParticlesCollisionType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    PARTICLES_COLLISION_TYPE_SPHERE_ATTRACT(0),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_TYPE_BOX_ATTRACT(1),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_TYPE_VECTOR_FIELD_ATTRACT(2),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_TYPE_SPHERE_COLLIDE(3),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_TYPE_BOX_COLLIDE(4),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_TYPE_SDF_COLLIDE(5),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_TYPE_HEIGHTFIELD_COLLIDE(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ParticlesCollisionHeightfieldResolution(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_256(0),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_512(1),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_1024(2),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_2048(3),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_4096(4),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_8192(5),
+    /**
+     *
+     */
+    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_MAX(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class FogVolumeShape(
+    id: Long
+  ) {
+    /**
+     * [godot.FogVolume] will be shaped like an ellipsoid (stretched sphere).
+     */
+    FOG_VOLUME_SHAPE_ELLIPSOID(0),
+    /**
+     * [godot.FogVolume] will be shaped like a cone pointing upwards (in local coordinates). The cone's angle is set automatically to fill the extents. The cone will be adjusted to fit within the extents. Rotate the [godot.FogVolume] node to reorient the cone. Non-uniform scaling via extents is not supported (scale the [godot.FogVolume] node instead).
+     */
+    FOG_VOLUME_SHAPE_CONE(1),
+    /**
+     * [godot.FogVolume] will be shaped like an upright cylinder (in local coordinates). Rotate the [godot.FogVolume] node to reorient the cylinder. The cylinder will be adjusted to fit within the extents. Non-uniform scaling via extents is not supported (scale the [godot.FogVolume] node instead).
+     */
+    FOG_VOLUME_SHAPE_CYLINDER(2),
+    /**
+     * [godot.FogVolume] will be shaped like a box.
+     */
+    FOG_VOLUME_SHAPE_BOX(3),
+    /**
+     * [godot.FogVolume] will have no shape, will cover the whole world and will not be culled.
+     */
+    FOG_VOLUME_SHAPE_WORLD(4),
+    /**
+     *
+     */
+    FOG_VOLUME_SHAPE_MAX(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportScaling3DMode(
+    id: Long
+  ) {
+    /**
+     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
+     */
+    VIEWPORT_SCALING_3D_MODE_BILINEAR(0),
+    /**
+     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less then `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
+     */
+    VIEWPORT_SCALING_3D_MODE_FSR(1),
+    /**
+     *
+     */
+    VIEWPORT_SCALING_3D_MODE_MAX(2),
     ;
 
     public val id: Long
@@ -7039,6 +6288,532 @@ public object RenderingServer : Object() {
     }
   }
 
+  public enum class ViewportClearMode(
+    id: Long
+  ) {
+    /**
+     * The viewport is always cleared before drawing.
+     */
+    VIEWPORT_CLEAR_ALWAYS(0),
+    /**
+     * The viewport is never cleared before drawing.
+     */
+    VIEWPORT_CLEAR_NEVER(1),
+    /**
+     * The viewport is cleared once, then the clear mode is set to [VIEWPORT_CLEAR_NEVER].
+     */
+    VIEWPORT_CLEAR_ONLY_NEXT_FRAME(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportSDFOversize(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VIEWPORT_SDF_OVERSIZE_100_PERCENT(0),
+    /**
+     *
+     */
+    VIEWPORT_SDF_OVERSIZE_120_PERCENT(1),
+    /**
+     *
+     */
+    VIEWPORT_SDF_OVERSIZE_150_PERCENT(2),
+    /**
+     *
+     */
+    VIEWPORT_SDF_OVERSIZE_200_PERCENT(3),
+    /**
+     *
+     */
+    VIEWPORT_SDF_OVERSIZE_MAX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportSDFScale(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VIEWPORT_SDF_SCALE_100_PERCENT(0),
+    /**
+     *
+     */
+    VIEWPORT_SDF_SCALE_50_PERCENT(1),
+    /**
+     *
+     */
+    VIEWPORT_SDF_SCALE_25_PERCENT(2),
+    /**
+     *
+     */
+    VIEWPORT_SDF_SCALE_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportMSAA(
+    id: Long
+  ) {
+    /**
+     * Multisample antialiasing for 3D is disabled. This is the default value, and also the fastest setting.
+     */
+    VIEWPORT_MSAA_DISABLED(0),
+    /**
+     * Multisample antialiasing uses 2 samples per pixel for 3D. This has a moderate impact on performance.
+     */
+    VIEWPORT_MSAA_2X(1),
+    /**
+     * Multisample antialiasing uses 4 samples per pixel for 3D. This has a high impact on performance.
+     */
+    VIEWPORT_MSAA_4X(2),
+    /**
+     * Multisample antialiasing uses 8 samples per pixel for 3D. This has a very high impact on performance. Likely unsupported on low-end and older hardware.
+     */
+    VIEWPORT_MSAA_8X(3),
+    /**
+     *
+     */
+    VIEWPORT_MSAA_MAX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportScreenSpaceAA(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VIEWPORT_SCREEN_SPACE_AA_DISABLED(0),
+    /**
+     *
+     */
+    VIEWPORT_SCREEN_SPACE_AA_FXAA(1),
+    /**
+     *
+     */
+    VIEWPORT_SCREEN_SPACE_AA_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportOcclusionCullingBuildQuality(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VIEWPORT_OCCLUSION_BUILD_QUALITY_LOW(0),
+    /**
+     *
+     */
+    VIEWPORT_OCCLUSION_BUILD_QUALITY_MEDIUM(1),
+    /**
+     *
+     */
+    VIEWPORT_OCCLUSION_BUILD_QUALITY_HIGH(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportRenderInfo(
+    id: Long
+  ) {
+    /**
+     * Number of objects drawn in a single frame.
+     */
+    VIEWPORT_RENDER_INFO_OBJECTS_IN_FRAME(0),
+    /**
+     * Number of vertices drawn in a single frame.
+     */
+    VIEWPORT_RENDER_INFO_PRIMITIVES_IN_FRAME(1),
+    /**
+     * Number of draw calls during this frame.
+     */
+    VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME(2),
+    /**
+     * Represents the size of the [enum ViewportRenderInfo] enum.
+     */
+    VIEWPORT_RENDER_INFO_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportRenderInfoType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VIEWPORT_RENDER_INFO_TYPE_VISIBLE(0),
+    /**
+     *
+     */
+    VIEWPORT_RENDER_INFO_TYPE_SHADOW(1),
+    /**
+     *
+     */
+    VIEWPORT_RENDER_INFO_TYPE_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportDebugDraw(
+    id: Long
+  ) {
+    /**
+     * Debug draw is disabled. Default setting.
+     */
+    VIEWPORT_DEBUG_DRAW_DISABLED(0),
+    /**
+     * Objects are displayed without light information.
+     */
+    VIEWPORT_DEBUG_DRAW_UNSHADED(1),
+    /**
+     * Objects are displayed with only light information.
+     */
+    VIEWPORT_DEBUG_DRAW_LIGHTING(2),
+    /**
+     * Objects are displayed semi-transparent with additive blending so you can see where they are drawing over top of one another. A higher overdraw (represented by brighter colors) means you are wasting performance on drawing pixels that are being hidden behind others.
+     *
+     * **Note:** When using this debug draw mode, custom shaders will be ignored. This means vertex displacement won't be visible anymore.
+     */
+    VIEWPORT_DEBUG_DRAW_OVERDRAW(3),
+    /**
+     * Debug draw draws objects in wireframe.
+     */
+    VIEWPORT_DEBUG_DRAW_WIREFRAME(4),
+    /**
+     * Normal buffer is drawn instead of regular scene so you can see the per-pixel normals that will be used by post-processing effects.
+     */
+    VIEWPORT_DEBUG_DRAW_NORMAL_BUFFER(5),
+    /**
+     * Objects are displayed with only the albedo value from [godot.VoxelGI]s.
+     */
+    VIEWPORT_DEBUG_DRAW_VOXEL_GI_ALBEDO(6),
+    /**
+     * Objects are displayed with only the lighting value from [godot.VoxelGI]s.
+     */
+    VIEWPORT_DEBUG_DRAW_VOXEL_GI_LIGHTING(7),
+    /**
+     * Objects are displayed with only the emission color from [godot.VoxelGI]s.
+     */
+    VIEWPORT_DEBUG_DRAW_VOXEL_GI_EMISSION(8),
+    /**
+     * Draws the shadow atlas that stores shadows from [godot.OmniLight3D]s and [godot.SpotLight3D]s in the upper left quadrant of the [godot.Viewport].
+     */
+    VIEWPORT_DEBUG_DRAW_SHADOW_ATLAS(9),
+    /**
+     * Draws the shadow atlas that stores shadows from [godot.DirectionalLight3D]s in the upper left quadrant of the [godot.Viewport].
+     */
+    VIEWPORT_DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS(10),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_SCENE_LUMINANCE(11),
+    /**
+     * Draws the screen space ambient occlusion texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [godot.Environment.ssaoEnabled] set in your [godot.WorldEnvironment].
+     */
+    VIEWPORT_DEBUG_DRAW_SSAO(12),
+    /**
+     * Draws the screen space indirect lighting texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [godot.Environment.ssilEnabled] set in your [godot.WorldEnvironment].
+     */
+    VIEWPORT_DEBUG_DRAW_SSIL(13),
+    /**
+     * Colors each PSSM split for the [godot.DirectionalLight3D]s in the scene a different color so you can see where the splits are. In order they will be colored red, green, blue, yellow.
+     */
+    VIEWPORT_DEBUG_DRAW_PSSM_SPLITS(14),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_DECAL_ATLAS(15),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_SDFGI(16),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_SDFGI_PROBES(17),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_GI_BUFFER(18),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_DISABLE_LOD(19),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_CLUSTER_OMNI_LIGHTS(20),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_CLUSTER_SPOT_LIGHTS(21),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_CLUSTER_DECALS(22),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_CLUSTER_REFLECTION_PROBES(23),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_OCCLUDERS(24),
+    /**
+     *
+     */
+    VIEWPORT_DEBUG_DRAW_MOTION_VECTORS(25),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportVRSMode(
+    id: Long
+  ) {
+    /**
+     * VRS is disabled.
+     */
+    VIEWPORT_VRS_DISABLED(0),
+    /**
+     * VRS uses a texture. Note, for stereoscopic use a texture atlas with a texture for each view.
+     */
+    VIEWPORT_VRS_TEXTURE(1),
+    /**
+     * VRS texture is supplied by the primary [godot.XRInterface].
+     */
+    VIEWPORT_VRS_XR(2),
+    /**
+     * Represents the size of the [enum ViewportVRSMode] enum.
+     */
+    VIEWPORT_VRS_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SkyMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    SKY_MODE_AUTOMATIC(0),
+    /**
+     * Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [godot.Sky.PROCESS_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [godot.ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
+     */
+    SKY_MODE_QUALITY(1),
+    /**
+     *
+     */
+    SKY_MODE_INCREMENTAL(2),
+    /**
+     * Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times.
+     *
+     * **Note:** The fast filtering algorithm is limited to 256x256 cubemaps, so [godot.Sky.radianceSize] must be set to [godot.Sky.RADIANCE_SIZE_256].
+     */
+    SKY_MODE_REALTIME(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentBG(
+    id: Long
+  ) {
+    /**
+     * Use the clear color as background.
+     */
+    ENV_BG_CLEAR_COLOR(0),
+    /**
+     * Use a specified color as the background.
+     */
+    ENV_BG_COLOR(1),
+    /**
+     * Use a sky resource for the background.
+     */
+    ENV_BG_SKY(2),
+    /**
+     * Use a specified canvas layer as the background. This can be useful for instantiating a 2D scene in a 3D world.
+     */
+    ENV_BG_CANVAS(3),
+    /**
+     * Do not clear the background, use whatever was rendered last frame as the background.
+     */
+    ENV_BG_KEEP(4),
+    /**
+     * Displays a camera feed in the background.
+     */
+    ENV_BG_CAMERA_FEED(5),
+    /**
+     * Represents the size of the [enum EnvironmentBG] enum.
+     */
+    ENV_BG_MAX(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentAmbientSource(
+    id: Long
+  ) {
+    /**
+     * Gather ambient light from whichever source is specified as the background.
+     */
+    ENV_AMBIENT_SOURCE_BG(0),
+    /**
+     * Disable ambient light.
+     */
+    ENV_AMBIENT_SOURCE_DISABLED(1),
+    /**
+     * Specify a specific [godot.core.Color] for ambient light.
+     */
+    ENV_AMBIENT_SOURCE_COLOR(2),
+    /**
+     * Gather ambient light from the [godot.Sky] regardless of what the background is.
+     */
+    ENV_AMBIENT_SOURCE_SKY(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentReflectionSource(
+    id: Long
+  ) {
+    /**
+     * Use the background for reflections.
+     */
+    ENV_REFLECTION_SOURCE_BG(0),
+    /**
+     * Disable reflections.
+     */
+    ENV_REFLECTION_SOURCE_DISABLED(1),
+    /**
+     * Use the [godot.Sky] for reflections regardless of what the background is.
+     */
+    ENV_REFLECTION_SOURCE_SKY(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class EnvironmentGlowBlendMode(
     id: Long
   ) {
@@ -7074,7 +6849,860 @@ public object RenderingServer : Object() {
     }
   }
 
-  public enum class GlobalVariableType(
+  public enum class EnvironmentToneMapper(
+    id: Long
+  ) {
+    /**
+     * Output color as they came in. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
+     */
+    ENV_TONE_MAPPER_LINEAR(0),
+    /**
+     * Use the Reinhard tonemapper. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image can look a bit dull.
+     */
+    ENV_TONE_MAPPER_REINHARD(1),
+    /**
+     * Use the filmic tonemapper. This avoids clipping bright highlights, with a resulting image that usually looks more vivid than [ENV_TONE_MAPPER_REINHARD].
+     */
+    ENV_TONE_MAPPER_FILMIC(2),
+    /**
+     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other options, but it handles bright lighting in a more realistic fashion by desaturating it as it becomes brighter. ACES typically has a more contrasted output compared to [ENV_TONE_MAPPER_REINHARD] and [ENV_TONE_MAPPER_FILMIC].
+     *
+     * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
+     */
+    ENV_TONE_MAPPER_ACES(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentSSRRoughnessQuality(
+    id: Long
+  ) {
+    /**
+     * Lowest quality of roughness filter for screen-space reflections. Rough materials will not have blurrier screen-space reflections compared to smooth (non-rough) materials. This is the fastest option.
+     */
+    ENV_SSR_ROUGHNESS_QUALITY_DISABLED(0),
+    /**
+     * Low quality of roughness filter for screen-space reflections.
+     */
+    ENV_SSR_ROUGHNESS_QUALITY_LOW(1),
+    /**
+     * Medium quality of roughness filter for screen-space reflections.
+     */
+    ENV_SSR_ROUGHNESS_QUALITY_MEDIUM(2),
+    /**
+     * High quality of roughness filter for screen-space reflections. This is the slowest option.
+     */
+    ENV_SSR_ROUGHNESS_QUALITY_HIGH(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentSSAOQuality(
+    id: Long
+  ) {
+    /**
+     * Lowest quality of screen-space ambient occlusion.
+     */
+    ENV_SSAO_QUALITY_VERY_LOW(0),
+    /**
+     * Low quality screen-space ambient occlusion.
+     */
+    ENV_SSAO_QUALITY_LOW(1),
+    /**
+     * Medium quality screen-space ambient occlusion.
+     */
+    ENV_SSAO_QUALITY_MEDIUM(2),
+    /**
+     * High quality screen-space ambient occlusion.
+     */
+    ENV_SSAO_QUALITY_HIGH(3),
+    /**
+     * Highest quality screen-space ambient occlusion. Uses the adaptive target setting which can be dynamically adjusted to smoothly balance performance and visual quality.
+     */
+    ENV_SSAO_QUALITY_ULTRA(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentSSILQuality(
+    id: Long
+  ) {
+    /**
+     * Lowest quality of screen-space indirect lighting.
+     */
+    ENV_SSIL_QUALITY_VERY_LOW(0),
+    /**
+     * Low quality screen-space indirect lighting.
+     */
+    ENV_SSIL_QUALITY_LOW(1),
+    /**
+     * High quality screen-space indirect lighting.
+     */
+    ENV_SSIL_QUALITY_MEDIUM(2),
+    /**
+     * High quality screen-space indirect lighting.
+     */
+    ENV_SSIL_QUALITY_HIGH(3),
+    /**
+     * Highest quality screen-space indirect lighting. Uses the adaptive target setting which can be dynamically adjusted to smoothly balance performance and visual quality.
+     */
+    ENV_SSIL_QUALITY_ULTRA(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentSDFGIYScale(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    ENV_SDFGI_Y_SCALE_50_PERCENT(0),
+    /**
+     *
+     */
+    ENV_SDFGI_Y_SCALE_75_PERCENT(1),
+    /**
+     *
+     */
+    ENV_SDFGI_Y_SCALE_100_PERCENT(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentSDFGIRayCount(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    ENV_SDFGI_RAY_COUNT_4(0),
+    /**
+     *
+     */
+    ENV_SDFGI_RAY_COUNT_8(1),
+    /**
+     *
+     */
+    ENV_SDFGI_RAY_COUNT_16(2),
+    /**
+     *
+     */
+    ENV_SDFGI_RAY_COUNT_32(3),
+    /**
+     *
+     */
+    ENV_SDFGI_RAY_COUNT_64(4),
+    /**
+     *
+     */
+    ENV_SDFGI_RAY_COUNT_96(5),
+    /**
+     *
+     */
+    ENV_SDFGI_RAY_COUNT_128(6),
+    /**
+     *
+     */
+    ENV_SDFGI_RAY_COUNT_MAX(7),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentSDFGIFramesToConverge(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    ENV_SDFGI_CONVERGE_IN_5_FRAMES(0),
+    /**
+     *
+     */
+    ENV_SDFGI_CONVERGE_IN_10_FRAMES(1),
+    /**
+     *
+     */
+    ENV_SDFGI_CONVERGE_IN_15_FRAMES(2),
+    /**
+     *
+     */
+    ENV_SDFGI_CONVERGE_IN_20_FRAMES(3),
+    /**
+     *
+     */
+    ENV_SDFGI_CONVERGE_IN_25_FRAMES(4),
+    /**
+     *
+     */
+    ENV_SDFGI_CONVERGE_IN_30_FRAMES(5),
+    /**
+     *
+     */
+    ENV_SDFGI_CONVERGE_MAX(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentSDFGIFramesToUpdateLight(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    ENV_SDFGI_UPDATE_LIGHT_IN_1_FRAME(0),
+    /**
+     *
+     */
+    ENV_SDFGI_UPDATE_LIGHT_IN_2_FRAMES(1),
+    /**
+     *
+     */
+    ENV_SDFGI_UPDATE_LIGHT_IN_4_FRAMES(2),
+    /**
+     *
+     */
+    ENV_SDFGI_UPDATE_LIGHT_IN_8_FRAMES(3),
+    /**
+     *
+     */
+    ENV_SDFGI_UPDATE_LIGHT_IN_16_FRAMES(4),
+    /**
+     *
+     */
+    ENV_SDFGI_UPDATE_LIGHT_MAX(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SubSurfaceScatteringQuality(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    SUB_SURFACE_SCATTERING_QUALITY_DISABLED(0),
+    /**
+     *
+     */
+    SUB_SURFACE_SCATTERING_QUALITY_LOW(1),
+    /**
+     *
+     */
+    SUB_SURFACE_SCATTERING_QUALITY_MEDIUM(2),
+    /**
+     *
+     */
+    SUB_SURFACE_SCATTERING_QUALITY_HIGH(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class DOFBokehShape(
+    id: Long
+  ) {
+    /**
+     * Calculate the DOF blur using a box filter. The fastest option, but results in obvious lines in blur pattern.
+     */
+    DOF_BOKEH_BOX(0),
+    /**
+     * Calculates DOF blur using a hexagon shaped filter.
+     */
+    DOF_BOKEH_HEXAGON(1),
+    /**
+     * Calculates DOF blur using a circle shaped filter. Best quality and most realistic, but slowest. Use only for areas where a lot of performance can be dedicated to post-processing (e.g. cutscenes).
+     */
+    DOF_BOKEH_CIRCLE(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class DOFBlurQuality(
+    id: Long
+  ) {
+    /**
+     * Lowest quality DOF blur. This is the fastest setting, but you may be able to see filtering artifacts.
+     */
+    DOF_BLUR_QUALITY_VERY_LOW(0),
+    /**
+     * Low quality DOF blur.
+     */
+    DOF_BLUR_QUALITY_LOW(1),
+    /**
+     * Medium quality DOF blur.
+     */
+    DOF_BLUR_QUALITY_MEDIUM(2),
+    /**
+     * Highest quality DOF blur. Results in the smoothest looking blur by taking the most samples, but is also significantly slower.
+     */
+    DOF_BLUR_QUALITY_HIGH(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class InstanceType(
+    id: Long
+  ) {
+    /**
+     * The instance does not have a type.
+     */
+    INSTANCE_NONE(0),
+    /**
+     * The instance is a mesh.
+     */
+    INSTANCE_MESH(1),
+    /**
+     * The instance is a multimesh.
+     */
+    INSTANCE_MULTIMESH(2),
+    /**
+     * The instance is a particle emitter.
+     */
+    INSTANCE_PARTICLES(3),
+    /**
+     *
+     */
+    INSTANCE_PARTICLES_COLLISION(4),
+    /**
+     * The instance is a light.
+     */
+    INSTANCE_LIGHT(5),
+    /**
+     * The instance is a reflection probe.
+     */
+    INSTANCE_REFLECTION_PROBE(6),
+    /**
+     * The instance is a decal.
+     */
+    INSTANCE_DECAL(7),
+    /**
+     * The instance is a VoxelGI.
+     */
+    INSTANCE_VOXEL_GI(8),
+    /**
+     * The instance is a lightmap.
+     */
+    INSTANCE_LIGHTMAP(9),
+    /**
+     *
+     */
+    INSTANCE_OCCLUDER(10),
+    /**
+     *
+     */
+    INSTANCE_VISIBLITY_NOTIFIER(11),
+    /**
+     *
+     */
+    INSTANCE_FOG_VOLUME(12),
+    /**
+     * Represents the size of the [enum InstanceType] enum.
+     */
+    INSTANCE_MAX(13),
+    /**
+     * A combination of the flags of geometry instances (mesh, multimesh, immediate and particles).
+     */
+    INSTANCE_GEOMETRY_MASK(14),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class InstanceFlags(
+    id: Long
+  ) {
+    /**
+     * Allows the instance to be used in baked lighting.
+     */
+    INSTANCE_FLAG_USE_BAKED_LIGHT(0),
+    /**
+     * Allows the instance to be used with dynamic global illumination.
+     */
+    INSTANCE_FLAG_USE_DYNAMIC_GI(1),
+    /**
+     * When set, manually requests to draw geometry on next frame.
+     */
+    INSTANCE_FLAG_DRAW_NEXT_FRAME_IF_VISIBLE(2),
+    /**
+     *
+     */
+    INSTANCE_FLAG_IGNORE_OCCLUSION_CULLING(3),
+    /**
+     * Represents the size of the [enum InstanceFlags] enum.
+     */
+    INSTANCE_FLAG_MAX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ShadowCastingSetting(
+    id: Long
+  ) {
+    /**
+     * Disable shadows from this instance.
+     */
+    SHADOW_CASTING_SETTING_OFF(0),
+    /**
+     * Cast shadows from this instance.
+     */
+    SHADOW_CASTING_SETTING_ON(1),
+    /**
+     * Disable backface culling when rendering the shadow of the object. This is slightly slower but may result in more correct shadows.
+     */
+    SHADOW_CASTING_SETTING_DOUBLE_SIDED(2),
+    /**
+     * Only render the shadows from the object. The object itself will not be drawn.
+     */
+    SHADOW_CASTING_SETTING_SHADOWS_ONLY(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VisibilityRangeFadeMode(
+    id: Long
+  ) {
+    /**
+     * Disable visibility range fading for the given instance.
+     */
+    VISIBILITY_RANGE_FADE_DISABLED(0),
+    /**
+     * Fade-out the given instance when it approaches its visibility range limits.
+     */
+    VISIBILITY_RANGE_FADE_SELF(1),
+    /**
+     * Fade-in the given instance's dependencies when reaching its visibility range limits.
+     */
+    VISIBILITY_RANGE_FADE_DEPENDENCIES(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class BakeChannels(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    BAKE_CHANNEL_ALBEDO_ALPHA(0),
+    /**
+     *
+     */
+    BAKE_CHANNEL_NORMAL(1),
+    /**
+     *
+     */
+    BAKE_CHANNEL_ORM(2),
+    /**
+     *
+     */
+    BAKE_CHANNEL_EMISSION(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CanvasTextureChannel(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    CANVAS_TEXTURE_CHANNEL_DIFFUSE(0),
+    /**
+     *
+     */
+    CANVAS_TEXTURE_CHANNEL_NORMAL(1),
+    /**
+     *
+     */
+    CANVAS_TEXTURE_CHANNEL_SPECULAR(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class NinePatchAxisMode(
+    id: Long
+  ) {
+    /**
+     * The nine patch gets stretched where needed.
+     */
+    NINE_PATCH_STRETCH(0),
+    /**
+     * The nine patch gets filled with tiles where needed.
+     */
+    NINE_PATCH_TILE(1),
+    /**
+     * The nine patch gets filled with tiles where needed and stretches them a bit if needed.
+     */
+    NINE_PATCH_TILE_FIT(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CanvasItemTextureFilter(
+    id: Long
+  ) {
+    /**
+     * Uses the default filter mode for this [godot.Viewport].
+     */
+    CANVAS_ITEM_TEXTURE_FILTER_DEFAULT(0),
+    /**
+     * The texture filter reads from the nearest pixel only. The simplest and fastest method of filtering, but the texture will look pixelized.
+     */
+    CANVAS_ITEM_TEXTURE_FILTER_NEAREST(1),
+    /**
+     * The texture filter blends between the nearest 4 pixels. Use this when you want to avoid a pixelated style, but do not want mipmaps.
+     */
+    CANVAS_ITEM_TEXTURE_FILTER_LINEAR(2),
+    /**
+     * The texture filter reads from the nearest pixel in the nearest mipmap. The fastest way to read from textures with mipmaps.
+     */
+    CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
+    /**
+     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps.
+     */
+    CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(4),
+    /**
+     * The texture filter reads from the nearest pixel, but selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera.
+     */
+    CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(5),
+    /**
+     * The texture filter blends between the nearest 4 pixels and selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. This is the slowest of the filtering options, but results in the highest quality texturing.
+     */
+    CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(6),
+    /**
+     * Max value for [enum CanvasItemTextureFilter] enum.
+     */
+    CANVAS_ITEM_TEXTURE_FILTER_MAX(7),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CanvasItemTextureRepeat(
+    id: Long
+  ) {
+    /**
+     * Uses the default repeat mode for this [godot.Viewport].
+     */
+    CANVAS_ITEM_TEXTURE_REPEAT_DEFAULT(0),
+    /**
+     * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will be clamped to the edge of the texture, resulting in a stretched out look at the borders of the texture.
+     */
+    CANVAS_ITEM_TEXTURE_REPEAT_DISABLED(1),
+    /**
+     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of the linear filtering modes, this can result in artifacts at the edges of a texture when the sampler filters across the edges of the texture.
+     */
+    CANVAS_ITEM_TEXTURE_REPEAT_ENABLED(2),
+    /**
+     * Flip the texture when repeating so that the edge lines up instead of abruptly changing.
+     */
+    CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(3),
+    /**
+     * Max value for [enum CanvasItemTextureRepeat] enum.
+     */
+    CANVAS_ITEM_TEXTURE_REPEAT_MAX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CanvasGroupMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    CANVAS_GROUP_MODE_DISABLED(0),
+    /**
+     *
+     */
+    CANVAS_GROUP_MODE_CLIP_ONLY(1),
+    /**
+     *
+     */
+    CANVAS_GROUP_MODE_CLIP_AND_DRAW(2),
+    /**
+     *
+     */
+    CANVAS_GROUP_MODE_TRANSPARENT(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CanvasLightMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    CANVAS_LIGHT_MODE_POINT(0),
+    /**
+     *
+     */
+    CANVAS_LIGHT_MODE_DIRECTIONAL(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CanvasLightBlendMode(
+    id: Long
+  ) {
+    /**
+     * Adds light color additive to the canvas.
+     */
+    CANVAS_LIGHT_BLEND_MODE_ADD(0),
+    /**
+     * Adds light color subtractive to the canvas.
+     */
+    CANVAS_LIGHT_BLEND_MODE_SUB(1),
+    /**
+     * The light adds color depending on transparency.
+     */
+    CANVAS_LIGHT_BLEND_MODE_MIX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CanvasLightShadowFilter(
+    id: Long
+  ) {
+    /**
+     * Do not apply a filter to canvas light shadows.
+     */
+    CANVAS_LIGHT_FILTER_NONE(0),
+    /**
+     * Use PCF5 filtering to filter canvas light shadows.
+     */
+    CANVAS_LIGHT_FILTER_PCF5(1),
+    /**
+     * Use PCF13 filtering to filter canvas light shadows.
+     */
+    CANVAS_LIGHT_FILTER_PCF13(2),
+    /**
+     * Max value of the [enum CanvasLightShadowFilter] enum.
+     */
+    CANVAS_LIGHT_FILTER_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CanvasOccluderPolygonCullMode(
+    id: Long
+  ) {
+    /**
+     * Culling of the canvas occluder is disabled.
+     */
+    CANVAS_OCCLUDER_POLYGON_CULL_DISABLED(0),
+    /**
+     * Culling of the canvas occluder is clockwise.
+     */
+    CANVAS_OCCLUDER_POLYGON_CULL_CLOCKWISE(1),
+    /**
+     * Culling of the canvas occluder is counterclockwise.
+     */
+    CANVAS_OCCLUDER_POLYGON_CULL_COUNTER_CLOCKWISE(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class GlobalShaderParameterType(
     id: Long
   ) {
     /**
@@ -7205,183 +7833,6 @@ public object RenderingServer : Object() {
     }
   }
 
-  public enum class CanvasLightMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    CANVAS_LIGHT_MODE_POINT(0),
-    /**
-     *
-     */
-    CANVAS_LIGHT_MODE_DIRECTIONAL(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TextureLayeredType(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    TEXTURE_LAYERED_2D_ARRAY(0),
-    /**
-     *
-     */
-    TEXTURE_LAYERED_CUBEMAP(1),
-    /**
-     *
-     */
-    TEXTURE_LAYERED_CUBEMAP_ARRAY(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class LightParam(
-    id: Long
-  ) {
-    /**
-     * The light's energy multiplier.
-     */
-    LIGHT_PARAM_ENERGY(0),
-    /**
-     * The light's indirect energy multiplier (final indirect energy is [LIGHT_PARAM_ENERGY] * [LIGHT_PARAM_INDIRECT_ENERGY]).
-     */
-    LIGHT_PARAM_INDIRECT_ENERGY(1),
-    /**
-     * The light's influence on specularity.
-     */
-    LIGHT_PARAM_SPECULAR(2),
-    /**
-     * The light's range.
-     */
-    LIGHT_PARAM_RANGE(3),
-    /**
-     * The size of the light when using spot light or omni light. The angular size of the light when using directional light.
-     */
-    LIGHT_PARAM_SIZE(4),
-    /**
-     * The light's attenuation.
-     */
-    LIGHT_PARAM_ATTENUATION(5),
-    /**
-     * The spotlight's angle.
-     */
-    LIGHT_PARAM_SPOT_ANGLE(6),
-    /**
-     * The spotlight's attenuation.
-     */
-    LIGHT_PARAM_SPOT_ATTENUATION(7),
-    /**
-     * Max distance that shadows will be rendered.
-     */
-    LIGHT_PARAM_SHADOW_MAX_DISTANCE(8),
-    /**
-     * Proportion of shadow atlas occupied by the first split.
-     */
-    LIGHT_PARAM_SHADOW_SPLIT_1_OFFSET(9),
-    /**
-     * Proportion of shadow atlas occupied by the second split.
-     */
-    LIGHT_PARAM_SHADOW_SPLIT_2_OFFSET(10),
-    /**
-     * Proportion of shadow atlas occupied by the third split. The fourth split occupies the rest.
-     */
-    LIGHT_PARAM_SHADOW_SPLIT_3_OFFSET(11),
-    /**
-     * Proportion of shadow max distance where the shadow will start to fade out.
-     */
-    LIGHT_PARAM_SHADOW_FADE_START(12),
-    /**
-     * Normal bias used to offset shadow lookup by object normal. Can be used to fix self-shadowing artifacts.
-     */
-    LIGHT_PARAM_SHADOW_NORMAL_BIAS(13),
-    /**
-     * Bias the shadow lookup to fix self-shadowing artifacts.
-     */
-    LIGHT_PARAM_SHADOW_BIAS(14),
-    /**
-     * Sets the size of the directional shadow pancake. The pancake offsets the start of the shadow's camera frustum to provide a higher effective depth resolution for the shadow. However, a high pancake size can cause artifacts in the shadows of large objects that are close to the edge of the frustum. Reducing the pancake size can help. Setting the size to `0` turns off the pancaking effect.
-     */
-    LIGHT_PARAM_SHADOW_PANCAKE_SIZE(15),
-    /**
-     * Blurs the edges of the shadow. Can be used to hide pixel artifacts in low resolution shadow maps. A high value can make shadows appear grainy and can cause other unwanted artifacts. Try to keep as near default as possible.
-     */
-    LIGHT_PARAM_SHADOW_BLUR(16),
-    LIGHT_PARAM_SHADOW_VOLUMETRIC_FOG_FADE(17),
-    /**
-     *
-     */
-    LIGHT_PARAM_TRANSMITTANCE_BIAS(18),
-    /**
-     * Represents the size of the [enum LightParam] enum.
-     */
-    LIGHT_PARAM_MAX(19),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class EnvironmentSSILQuality(
-    id: Long
-  ) {
-    /**
-     * Lowest quality of screen-space indirect lighting.
-     */
-    ENV_SSIL_QUALITY_VERY_LOW(0),
-    /**
-     * Low quality screen-space indirect lighting.
-     */
-    ENV_SSIL_QUALITY_LOW(1),
-    /**
-     * High quality screen-space indirect lighting.
-     */
-    ENV_SSIL_QUALITY_MEDIUM(2),
-    /**
-     * High quality screen-space indirect lighting.
-     */
-    ENV_SSIL_QUALITY_HIGH(3),
-    /**
-     * Highest quality screen-space indirect lighting. Uses the adaptive target setting which can be dynamically adjusted to smoothly balance performance and visual quality.
-     */
-    ENV_SSIL_QUALITY_ULTRA(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class RenderingInfo(
     id: Long
   ) {
@@ -7421,149 +7872,17 @@ public object RenderingServer : Object() {
     }
   }
 
-  public enum class CanvasOccluderPolygonCullMode(
+  public enum class Features(
     id: Long
   ) {
     /**
-     * Culling of the canvas occluder is disabled.
+     * Hardware supports shaders. This enum is currently unused in Godot 3.x.
      */
-    CANVAS_OCCLUDER_POLYGON_CULL_DISABLED(0),
+    FEATURE_SHADERS(0),
     /**
-     * Culling of the canvas occluder is clockwise.
+     * Hardware supports multithreading. This enum is currently unused in Godot 3.x.
      */
-    CANVAS_OCCLUDER_POLYGON_CULL_CLOCKWISE(1),
-    /**
-     * Culling of the canvas occluder is counterclockwise.
-     */
-    CANVAS_OCCLUDER_POLYGON_CULL_COUNTER_CLOCKWISE(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CubeMapLayer(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    CUBEMAP_LAYER_LEFT(0),
-    /**
-     *
-     */
-    CUBEMAP_LAYER_RIGHT(1),
-    /**
-     *
-     */
-    CUBEMAP_LAYER_BOTTOM(2),
-    /**
-     *
-     */
-    CUBEMAP_LAYER_TOP(3),
-    /**
-     *
-     */
-    CUBEMAP_LAYER_FRONT(4),
-    /**
-     *
-     */
-    CUBEMAP_LAYER_BACK(5),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class LightType(
-    id: Long
-  ) {
-    /**
-     * Is a directional (sun) light.
-     */
-    LIGHT_DIRECTIONAL(0),
-    /**
-     * Is an omni light.
-     */
-    LIGHT_OMNI(1),
-    /**
-     * Is a spot light.
-     */
-    LIGHT_SPOT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DecalTexture(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    DECAL_TEXTURE_ALBEDO(0),
-    /**
-     *
-     */
-    DECAL_TEXTURE_NORMAL(1),
-    /**
-     *
-     */
-    DECAL_TEXTURE_ORM(2),
-    /**
-     *
-     */
-    DECAL_TEXTURE_EMISSION(3),
-    /**
-     *
-     */
-    DECAL_TEXTURE_MAX(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class VisibilityRangeFadeMode(
-    id: Long
-  ) {
-    /**
-     * Disable visibility range fading for the given instance.
-     */
-    VISIBILITY_RANGE_FADE_DISABLED(0),
-    /**
-     * Fade-out the given instance when it approaches its visibility range limits.
-     */
-    VISIBILITY_RANGE_FADE_SELF(1),
-    /**
-     * Fade-in the given instance's dependencies when reaching its visibility range limits.
-     */
-    VISIBILITY_RANGE_FADE_DEPENDENCIES(2),
+    FEATURE_MULTITHREADED(1),
     ;
 
     public val id: Long

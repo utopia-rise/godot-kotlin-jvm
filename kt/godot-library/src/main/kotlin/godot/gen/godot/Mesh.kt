@@ -92,7 +92,7 @@ public open class Mesh : Resource() {
   /**
    *
    */
-  public open fun _surfaceGetBlendShapeArrays(index: Long): VariantArray<Any?> {
+  public open fun _surfaceGetBlendShapeArrays(index: Long): VariantArray<VariantArray<Any?>> {
     throw NotImplementedError("_surface_get_blend_shape_arrays is not implemented for Mesh")
   }
 
@@ -190,11 +190,11 @@ public open class Mesh : Resource() {
   /**
    * Returns the blend shape arrays for the requested surface.
    */
-  public fun surfaceGetBlendShapeArrays(surfIdx: Long): VariantArray<Any?> {
+  public fun surfaceGetBlendShapeArrays(surfIdx: Long): VariantArray<VariantArray<Any?>> {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_BLEND_SHAPE_ARRAYS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>
   }
 
   /**
@@ -266,17 +266,102 @@ public open class Mesh : Resource() {
     return TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?
   }
 
-  public enum class BlendShapeMode(
+  public enum class PrimitiveType(
     id: Long
   ) {
     /**
-     * Blend shapes are normalized.
+     * Render array as points (one vertex equals one point).
      */
-    BLEND_SHAPE_MODE_NORMALIZED(0),
+    PRIMITIVE_POINTS(0),
     /**
-     * Blend shapes are relative to base weight.
+     * Render array as lines (every two vertices a line is created).
      */
-    BLEND_SHAPE_MODE_RELATIVE(1),
+    PRIMITIVE_LINES(1),
+    /**
+     * Render array as line strip.
+     */
+    PRIMITIVE_LINE_STRIP(2),
+    /**
+     * Render array as triangles (every three vertices a triangle is created).
+     */
+    PRIMITIVE_TRIANGLES(3),
+    /**
+     * Render array as triangle strips.
+     */
+    PRIMITIVE_TRIANGLE_STRIP(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ArrayType(
+    id: Long
+  ) {
+    /**
+     * [godot.PackedVector3Array], [godot.PackedVector2Array], or [godot.Array] of vertex positions.
+     */
+    ARRAY_VERTEX(0),
+    /**
+     * [godot.PackedVector3Array] of vertex normals.
+     */
+    ARRAY_NORMAL(1),
+    /**
+     * [godot.PackedFloat32Array] of vertex tangents. Each element in groups of 4 floats, first 3 floats determine the tangent, and the last the binormal direction as -1 or 1.
+     */
+    ARRAY_TANGENT(2),
+    /**
+     * [godot.PackedColorArray] of vertex colors.
+     */
+    ARRAY_COLOR(3),
+    /**
+     * [godot.PackedVector2Array] for UV coordinates.
+     */
+    ARRAY_TEX_UV(4),
+    /**
+     * [godot.PackedVector2Array] for second UV coordinates.
+     */
+    ARRAY_TEX_UV2(5),
+    /**
+     * Contains custom color channel 0. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM0_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     */
+    ARRAY_CUSTOM0(6),
+    /**
+     * Contains custom color channel 1. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM1_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     */
+    ARRAY_CUSTOM1(7),
+    /**
+     * Contains custom color channel 2. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM2_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     */
+    ARRAY_CUSTOM2(8),
+    /**
+     * Contains custom color channel 3. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM3_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     */
+    ARRAY_CUSTOM3(9),
+    /**
+     * [godot.PackedFloat32Array] or [godot.PackedInt32Array] of bone indices. Each element is a group of 4 numbers.
+     */
+    ARRAY_BONES(10),
+    /**
+     * [godot.PackedFloat32Array] of bone weights. Each element in groups of 4 floats.
+     */
+    ARRAY_WEIGHTS(11),
+    /**
+     * [godot.PackedInt32Array] of integers used as indices referencing vertices, colors, normals, tangents, and textures. All of those arrays must have the same number of elements as the vertex array. No index can be beyond the vertex array size. When this index array is present, it puts the function into "index mode," where the index selects the *i*'th vertex, normal, tangent, color, UV, etc. This means if you want to have different normals or colors along an edge, you have to duplicate the vertices.
+     *
+     * For triangles, the index array is interpreted as triples, referring to the vertices of each triangle. For lines, the index array is in pairs indicating the start and end of each line.
+     */
+    ARRAY_INDEX(12),
+    /**
+     * Represents the size of the [enum ArrayType] enum.
+     */
+    ARRAY_MAX(13),
     ;
 
     public val id: Long
@@ -328,41 +413,6 @@ public open class Mesh : Resource() {
      * Represents the size of the [enum ArrayCustomFormat] enum.
      */
     ARRAY_CUSTOM_MAX(8),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class PrimitiveType(
-    id: Long
-  ) {
-    /**
-     * Render array as points (one vertex equals one point).
-     */
-    PRIMITIVE_POINTS(0),
-    /**
-     * Render array as lines (every two vertices a line is created).
-     */
-    PRIMITIVE_LINES(1),
-    /**
-     * Render array as line strip.
-     */
-    PRIMITIVE_LINE_STRIP(2),
-    /**
-     * Render array as triangles (every three vertices a triangle is created).
-     */
-    PRIMITIVE_TRIANGLES(3),
-    /**
-     * Render array as triangle strips.
-     */
-    PRIMITIVE_TRIANGLE_STRIP(4),
     ;
 
     public val id: Long
@@ -490,67 +540,17 @@ public open class Mesh : Resource() {
     }
   }
 
-  public enum class ArrayType(
+  public enum class BlendShapeMode(
     id: Long
   ) {
     /**
-     * [godot.PackedVector3Array], [godot.PackedVector2Array], or [godot.Array] of vertex positions.
+     * Blend shapes are normalized.
      */
-    ARRAY_VERTEX(0),
+    BLEND_SHAPE_MODE_NORMALIZED(0),
     /**
-     * [godot.PackedVector3Array] of vertex normals.
+     * Blend shapes are relative to base weight.
      */
-    ARRAY_NORMAL(1),
-    /**
-     * [godot.PackedFloat32Array] of vertex tangents. Each element in groups of 4 floats, first 3 floats determine the tangent, and the last the binormal direction as -1 or 1.
-     */
-    ARRAY_TANGENT(2),
-    /**
-     * [godot.PackedColorArray] of vertex colors.
-     */
-    ARRAY_COLOR(3),
-    /**
-     * [godot.PackedVector2Array] for UV coordinates.
-     */
-    ARRAY_TEX_UV(4),
-    /**
-     * [godot.PackedVector2Array] for second UV coordinates.
-     */
-    ARRAY_TEX_UV2(5),
-    /**
-     * Contains custom color channel 0. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM0_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
-     */
-    ARRAY_CUSTOM0(6),
-    /**
-     * Contains custom color channel 1. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM1_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
-     */
-    ARRAY_CUSTOM1(7),
-    /**
-     * Contains custom color channel 2. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM2_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
-     */
-    ARRAY_CUSTOM2(8),
-    /**
-     * Contains custom color channel 3. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM3_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
-     */
-    ARRAY_CUSTOM3(9),
-    /**
-     * [godot.PackedFloat32Array] or [godot.PackedInt32Array] of bone indices. Each element is a group of 4 numbers.
-     */
-    ARRAY_BONES(10),
-    /**
-     * [godot.PackedFloat32Array] of bone weights. Each element in groups of 4 floats.
-     */
-    ARRAY_WEIGHTS(11),
-    /**
-     * [godot.PackedInt32Array] of integers used as indices referencing vertices, colors, normals, tangents, and textures. All of those arrays must have the same number of elements as the vertex array. No index can be beyond the vertex array size. When this index array is present, it puts the function into "index mode," where the index selects the *i*'th vertex, normal, tangent, color, UV, etc. This means if you want to have different normals or colors along an edge, you have to duplicate the vertices.
-     *
-     * For triangles, the index array is interpreted as triples, referring to the vertices of each triangle. For lines, the index array is in pairs indicating the start and end of each line.
-     */
-    ARRAY_INDEX(12),
-    /**
-     * Represents the size of the [enum ArrayType] enum.
-     */
-    ARRAY_MAX(13),
+    BLEND_SHAPE_MODE_RELATIVE(1),
     ;
 
     public val id: Long

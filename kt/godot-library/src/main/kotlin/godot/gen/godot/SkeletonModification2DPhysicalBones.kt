@@ -8,13 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -89,7 +89,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    *
    * Optionally, an array of bone names can be passed to this function, and that will cause only [godot.PhysicalBone2D] nodes with those names to start simulating.
    */
-  public fun startSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()): Unit {
+  public fun startSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_START_SIMULATION, NIL)
@@ -100,7 +100,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    *
    * Optionally, an array of bone names can be passed to this function, and that will cause only [godot.PhysicalBone2D] nodes with those names to stop simulating.
    */
-  public fun stopSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()): Unit {
+  public fun stopSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_STOP_SIMULATION, NIL)

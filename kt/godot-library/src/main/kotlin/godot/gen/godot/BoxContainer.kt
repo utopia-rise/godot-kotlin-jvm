@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -26,19 +27,35 @@ import kotlin.Suppress
  * Arranges child [godot.Control] nodes vertically or horizontally, and rearranges them automatically when their minimum size changes.
  */
 @GodotBaseType
-public open class BoxContainer internal constructor() : Container() {
+public open class BoxContainer : Container() {
   /**
    * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN], [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
-  public var alignment: Long
+  public var alignment: BoxContainer.AlignmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_GET_ALIGNMENT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BoxContainer.AlignmentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_SET_ALIGNMENT, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.BoxContainer] will arrange its children vertically, rather than horizontally.
+   *
+   * Can't be changed when using [godot.HBoxContainer] and [godot.VBoxContainer].
+   */
+  public var vertical: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_IS_VERTICAL, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_SET_VERTICAL, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

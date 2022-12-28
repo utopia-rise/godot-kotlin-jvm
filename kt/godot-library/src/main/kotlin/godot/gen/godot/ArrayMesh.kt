@@ -129,12 +129,12 @@ public open class ArrayMesh : Mesh() {
   /**
    * Sets the blend shape mode to one of [enum Mesh.BlendShapeMode].
    */
-  public var blendShapeMode: Long
+  public var blendShapeMode: Mesh.BlendShapeMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Mesh.BlendShapeMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -230,7 +230,7 @@ public open class ArrayMesh : Mesh() {
   public fun addSurfaceFromArrays(
     primitive: Mesh.PrimitiveType,
     arrays: VariantArray<Any?>,
-    blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
+    blendShapes: VariantArray<VariantArray<Any?>> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
     compressFlags: Long = 0
   ): Unit {

@@ -11,8 +11,10 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Any
@@ -22,7 +24,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Displays plain text in a line or wrapped inside a rectangle. For formatted text, use [godot.RichTextLabel].
@@ -51,14 +52,28 @@ public open class Label : Control() {
     }
 
   /**
+   *
+   */
+  public var labelSettings: LabelSettings?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LABEL_SETTINGS, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as LabelSettings?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_LABEL_SETTINGS, NIL)
+    }
+
+  /**
    * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify. Set it to one of the [enum HorizontalAlignment] constants.
    */
-  public var horizontalAlignment: Long
+  public var horizontalAlignment: HorizontalAlignment
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_HORIZONTAL_ALIGNMENT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -69,12 +84,12 @@ public open class Label : Control() {
   /**
    * Controls the text's vertical alignment. Supports top, center, bottom, and fill. Set it to one of the [enum VerticalAlignment] constants.
    */
-  public var verticalAlignment: Long
+  public var verticalAlignment: VerticalAlignment
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VERTICAL_ALIGNMENT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VerticalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -84,11 +99,11 @@ public open class Label : Control() {
   /**
    * If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. To see how each mode behaves, see [enum TextServer.AutowrapMode].
    */
-  public var autowrapMode: Long
+  public var autowrapMode: TextServer.AutowrapMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_AUTOWRAP_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.AutowrapMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -112,12 +127,12 @@ public open class Label : Control() {
   /**
    * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes.
    */
-  public var textOverrunBehavior: Long
+  public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT_OVERRUN_BEHAVIOR,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.OverrunBehavior.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -187,12 +202,12 @@ public open class Label : Control() {
   /**
    * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See [enum TextServer.VisibleCharactersBehavior] for more info.
    */
-  public var visibleCharactersBehavior: Long
+  public var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_CHARACTERS_BEHAVIOR, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.VisibleCharactersBehavior.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -200,25 +215,30 @@ public open class Label : Control() {
           ENGINEMETHOD_ENGINECLASS_LABEL_SET_VISIBLE_CHARACTERS_BEHAVIOR, NIL)
     }
 
-  public var percentVisible: Double
+  /**
+   * The fraction of characters to display, relative to the total number of characters (see [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only half of the characters will be displayed. This can be useful when animating the text appearing in a dialog box.
+   *
+   * **Note:** Setting this property updates [visibleCharacters] accordingly.
+   */
+  public var visibleRatio: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_PERCENT_VISIBLE, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_RATIO, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_PERCENT_VISIBLE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_VISIBLE_RATIO, NIL)
     }
 
   /**
    * Base text writing direction.
    */
-  public var textDirection: Long
+  public var textDirection: Control.TextDirection
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT_DIRECTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -242,12 +262,12 @@ public open class Label : Control() {
   /**
    * Set BiDi algorithm override for the structured text.
    */
-  public var structuredTextBidiOverride: Long
+  public var structuredTextBidiOverride: TextServer.StructuredTextParser
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LABEL_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.StructuredTextParser.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -274,22 +294,6 @@ public open class Label : Control() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_LABEL, scriptIndex)
     return true
-  }
-
-  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
-    TransferContext.writeArguments(STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_OPENTYPE_FEATURE, NIL)
-  }
-
-  public fun getOpentypeFeature(tag: String): Long {
-    TransferContext.writeArguments(STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_OPENTYPE_FEATURE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun clearOpentypeFeatures(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_CLEAR_OPENTYPE_FEATURES, NIL)
   }
 
   /**
@@ -331,65 +335,6 @@ public open class Label : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TOTAL_CHARACTER_COUNT,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public enum class VisibleCharactersBehavior(
-    id: Long
-  ) {
-    VC_CHARS_BEFORE_SHAPING(0),
-    VC_CHARS_AFTER_SHAPING(1),
-    VC_GLYPHS_AUTO(2),
-    VC_GLYPHS_LTR(3),
-    VC_GLYPHS_RTL(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class AutowrapMode(
-    id: Long
-  ) {
-    AUTOWRAP_OFF(0),
-    AUTOWRAP_ARBITRARY(1),
-    AUTOWRAP_WORD(2),
-    AUTOWRAP_WORD_SMART(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class OverrunBehavior(
-    id: Long
-  ) {
-    OVERRUN_NO_TRIMMING(0),
-    OVERRUN_TRIM_CHAR(1),
-    OVERRUN_TRIM_WORD(2),
-    OVERRUN_TRIM_ELLIPSIS(3),
-    OVERRUN_TRIM_WORD_ELLIPSIS(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public companion object

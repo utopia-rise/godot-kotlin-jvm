@@ -16,6 +16,7 @@ import godot.core.Transform2D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -59,16 +60,6 @@ import kotlin.Unit
 @GodotBaseType
 public open class CanvasItem internal constructor() : Node() {
   /**
-   * Emitted when becoming hidden.
-   */
-  public val hidden: Signal0 by signal()
-
-  /**
-   * Emitted when the item's [godot.core.Rect2] boundaries (position or size) have changed, or when an action is taking place that may have impacted these boundaries (e.g. changing [godot.Sprite2D.texture]).
-   */
-  public val itemRectChanged: Signal0 by signal()
-
-  /**
    * Emitted when the [godot.CanvasItem] must redraw, *after* the related [NOTIFICATION_DRAW] notification, and *before* [_draw] is called.
    *
    * **Note:** Deferred connections do not allow drawing through the `draw_*` methods.
@@ -79,6 +70,16 @@ public open class CanvasItem internal constructor() : Node() {
    * Emitted when the visibility (hidden/visible) changes.
    */
   public val visibilityChanged: Signal0 by signal()
+
+  /**
+   * Emitted when becoming hidden.
+   */
+  public val hidden: Signal0 by signal()
+
+  /**
+   * Emitted when the item's [godot.core.Rect2] boundaries (position or size) have changed, or when an action is taking place that may have impacted these boundaries (e.g. changing [godot.Sprite2D.texture]).
+   */
+  public val itemRectChanged: Signal0 by signal()
 
   /**
    * If `true`, this [godot.CanvasItem] is drawn. The node is only visible if all of its antecedents are visible as well (in other words, [isVisibleInTree] must return `true`).
@@ -159,16 +160,17 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Allows the current node to clip children nodes, essentially acting as a mask.
    */
-  public var clipChildren: Boolean
+  public var clipChildren: CanvasItem.ClipChildrenMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_CLIPPING_CHILDREN,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_CLIP_CHILDREN_MODE,
+          LONG)
+      return CanvasItem.ClipChildrenMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_CLIP_CHILDREN, NIL)
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_CLIP_CHILDREN_MODE,
+          NIL)
     }
 
   /**
@@ -186,14 +188,30 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
+   * The rendering layer in which this [godot.CanvasItem] is rendered by [godot.Viewport] nodes. A [godot.Viewport] will render a [godot.CanvasItem] if it and all its parents share a layer with the [godot.Viewport]'s canvas cull mask.
+   */
+  public var visibilityLayer: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_VISIBILITY_LAYER,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_VISIBILITY_LAYER,
+          NIL)
+    }
+
+  /**
    * The texture filtering mode to use on this [godot.CanvasItem].
    */
-  public var textureFilter: Long
+  public var textureFilter: CanvasItem.TextureFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TEXTURE_FILTER,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CanvasItem.TextureFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -204,12 +222,12 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The texture repeating mode to use on this [godot.CanvasItem].
    */
-  public var textureRepeat: Long
+  public var textureRepeat: CanvasItem.TextureRepeat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TEXTURE_REPEAT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CanvasItem.TextureRepeat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -294,9 +312,22 @@ public open class CanvasItem internal constructor() : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_HIDE, NIL)
   }
 
-  public fun update(): Unit {
+  /**
+   * Queues the [godot.CanvasItem] to redraw. During idle time, if [godot.CanvasItem] is visible, [NOTIFICATION_DRAW] is sent and [_draw] is called. This only occurs **once** per frame, even if this method has been called multiple times.
+   */
+  public fun queueRedraw(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_UPDATE, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_QUEUE_REDRAW, NIL)
+  }
+
+  /**
+   * Moves this node to display on top of its siblings. This has more use in [godot.Control], as [godot.Node2D] can be ordered with [godot.Node2D.zIndex].
+   *
+   * Internally, the node is moved to the bottom of parent's children list. The method has no effect on nodes without a parent.
+   */
+  public fun moveToFront(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_MOVE_TO_FRONT, NIL)
   }
 
   /**
@@ -306,9 +337,10 @@ public open class CanvasItem internal constructor() : Node() {
     from: Vector2,
     to: Vector2,
     color: Color,
-    width: Double = 1.0
+    width: Double = 1.0,
+    antialiased: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width)
+    TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width, BOOL to antialiased)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_LINE, NIL)
   }
 
@@ -485,6 +517,29 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
+   * Draws a textured rectangle region of the font texture with LCD subpixel anti-aliasing at a given position, optionally modulated by a color.
+   *
+   * Texture is drawn using the following blend operation, blend mode of the [godot.CanvasItemMaterial] is ignored:
+   *
+   * ```
+   * 				dst.r = texture.r * modulate.r * modulate.a + dst.r * (1.0 - texture.r * modulate.a);
+   * 				dst.g = texture.g * modulate.g * modulate.a + dst.g * (1.0 - texture.g * modulate.a);
+   * 				dst.b = texture.b * modulate.b * modulate.a + dst.b * (1.0 - texture.b * modulate.a);
+   * 				dst.a = modulate.a + dst.a * (1.0 - modulate.a);
+   * 				```
+   */
+  public fun drawLcdTextureRectRegion(
+    texture: Texture2D,
+    rect: Rect2,
+    srcRect: Rect2,
+    modulate: Color = Color(Color(1, 1, 1, 1))
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to texture, RECT2 to rect, RECT2 to srcRect, COLOR to modulate)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_LCD_TEXTURE_RECT_REGION, NIL)
+  }
+
+  /**
    * Draws a styled rectangle.
    */
   public fun drawStyleBox(styleBox: StyleBox, rect: Rect2): Unit {
@@ -582,13 +637,13 @@ public open class CanvasItem internal constructor() : Node() {
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Double = -1.0,
-    size: Long = 16,
+    fontSize: Long = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    outlineSize: Long = 0,
-    outlineModulate: Color = Color(Color(1, 1, 1, 0)),
-    flags: Long = 3
+    jstFlags: Long = 3,
+    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate, LONG to flags)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STRING, NIL)
   }
 
@@ -601,16 +656,60 @@ public open class CanvasItem internal constructor() : Node() {
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Double = -1.0,
+    fontSize: Long = 16,
     maxLines: Long = -1,
-    size: Long = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    outlineSize: Long = 0,
-    outlineModulate: Color = Color(Color(1, 1, 1, 0)),
-    flags: Long = 99
+    brkFlags: Long = 3,
+    jstFlags: Long = 3,
+    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to maxLines, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate, LONG to flags)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE_STRING,
         NIL)
+  }
+
+  /**
+   * Draws [text] outline using the specified [font] at the [pos] (bottom-left corner using the baseline of the font). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   */
+  public fun drawStringOutline(
+    font: Font,
+    pos: Vector2,
+    text: String,
+    alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
+    width: Double = -1.0,
+    fontSize: Long = 16,
+    size: Long = 1,
+    modulate: Color = Color(Color(1, 1, 1, 1)),
+    jstFlags: Long = 3,
+    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to size, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STRING_OUTLINE, NIL)
+  }
+
+  /**
+   * Breaks [text] to the lines and draws text outline using the specified [font] at the [pos] (top-left corner). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   */
+  public fun drawMultilineStringOutline(
+    font: Font,
+    pos: Vector2,
+    text: String,
+    alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
+    width: Double = -1.0,
+    fontSize: Long = 16,
+    maxLines: Long = -1,
+    size: Long = 1,
+    modulate: Color = Color(Color(1, 1, 1, 1)),
+    brkFlags: Long = 3,
+    jstFlags: Long = 3,
+    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, LONG to size, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE_STRING_OUTLINE, NIL)
   }
 
   /**
@@ -620,15 +719,26 @@ public open class CanvasItem internal constructor() : Node() {
     font: Font,
     pos: Vector2,
     char: String,
-    next: String = "",
-    size: Long = 16,
-    modulate: Color = Color(Color(1, 1, 1, 1)),
-    outlineSize: Long = 0,
-    outlineModulate: Color = Color(Color(1, 1, 1, 0))
-  ): Double {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to char, STRING to next, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_CHAR, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    fontSize: Long = 16,
+    modulate: Color = Color(Color(1, 1, 1, 1))
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to char, LONG to fontSize, COLOR to modulate)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_CHAR, NIL)
+  }
+
+  /**
+   * Draws a string first character outline using a custom font.
+   */
+  public fun drawCharOutline(
+    font: Font,
+    pos: Vector2,
+    char: String,
+    fontSize: Long = 16,
+    size: Long = -1,
+    modulate: Color = Color(Color(1, 1, 1, 1))
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to char, LONG to fontSize, LONG to size, COLOR to modulate)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_CHAR_OUTLINE, NIL)
   }
 
   /**
@@ -870,6 +980,25 @@ public open class CanvasItem internal constructor() : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as InputEvent?
   }
 
+  /**
+   * Set/clear individual bits on the rendering visibility layer. This simplifies editing this [godot.CanvasItem]'s visibility layer.
+   */
+  public fun setVisibilityLayerBit(layer: Long, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layer, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_VISIBILITY_LAYER_BIT,
+        NIL)
+  }
+
+  /**
+   * Returns an individual bit on the rendering visibility layer.
+   */
+  public fun getVisibilityLayerBit(layer: Long): Boolean {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_VISIBILITY_LAYER_BIT,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
   public enum class TextureFilter(
     id: Long
   ) {
@@ -944,6 +1073,37 @@ public open class CanvasItem internal constructor() : Node() {
      * Represents the size of the [enum TextureRepeat] enum.
      */
     TEXTURE_REPEAT_MAX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ClipChildrenMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    CLIP_CHILDREN_DISABLED(0),
+    /**
+     *
+     */
+    CLIP_CHILDREN_ONLY(1),
+    /**
+     *
+     */
+    CLIP_CHILDREN_AND_DRAW(2),
+    /**
+     *
+     */
+    CLIP_CHILDREN_MAX(3),
     ;
 
     public val id: Long

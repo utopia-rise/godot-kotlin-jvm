@@ -21,6 +21,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 
 @GodotBaseType
@@ -49,12 +50,12 @@ public open class GLTFSkeleton : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_ROOTS, NIL)
     }
 
-  public var uniqueNames: VariantArray<Any?>
+  public var uniqueNames: VariantArray<String>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_UNIQUE_NAMES,
           ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

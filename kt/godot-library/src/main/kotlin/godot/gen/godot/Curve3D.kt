@@ -49,6 +49,20 @@ public open class Curve3D : Resource() {
     }
 
   /**
+   * The number of points describing the curve.
+   */
+  public var pointCount: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_COUNT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_COUNT, NIL)
+    }
+
+  /**
    * If `true`, the curve will bake up vectors used for orientation. This is used when [godot.PathFollow3D.rotationMode] is set to [godot.PathFollow3D.ROTATION_ORIENTED]. Changing it forces the cache to be recomputed.
    */
   public var upVectorEnabled: Boolean
@@ -69,12 +83,6 @@ public open class Curve3D : Resource() {
     return true
   }
 
-  public fun getPointCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
   /**
    * Adds a point with the specified [position] relative to the curve's own position, with control points [in] and [out]. Appends the new point at the end of the point list.
    *
@@ -84,9 +92,9 @@ public open class Curve3D : Resource() {
     position: Vector3,
     _in: Vector3 = Vector3(0, 0, 0),
     `out`: Vector3 = Vector3(0, 0, 0),
-    atPosition: Long = -1
+    index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to _in, VECTOR3 to out, LONG to atPosition)
+    TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to _in, VECTOR3 to out, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_ADD_POINT, NIL)
   }
 
@@ -176,15 +184,23 @@ public open class Curve3D : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_CLEAR_POINTS, NIL)
   }
 
-  public fun interpolate(idx: Long, t: Double): Vector3 {
+  /**
+   * Returns the position between the vertex [idx] and the vertex `idx + 1`, where [t] controls if the point is the first vertex (`t = 0.0`), the last vertex (`t = 1.0`), or in between. Values of [t] outside the range (`0.0 >= t <=1`) give strange, but predictable results.
+   *
+   * If [idx] is out of bounds it is truncated to the first or last vertex, and [t] is ignored. If the curve has no points, the function sends an error to the console, and returns `(0, 0, 0)`.
+   */
+  public fun sample(idx: Long, t: Double): Vector3 {
     TransferContext.writeArguments(LONG to idx, DOUBLE to t)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE, VECTOR3)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
-  public fun interpolatef(fofs: Double): Vector3 {
+  /**
+   * Returns the position at the vertex [fofs]. It calls [sample] using the integer part of [fofs] as `idx`, and its fractional part as `t`.
+   */
+  public fun samplef(fofs: Double): Vector3 {
     TransferContext.writeArguments(DOUBLE to fofs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATEF, VECTOR3)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLEF, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -197,15 +213,29 @@ public open class Curve3D : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun interpolateBaked(offset: Double, cubic: Boolean = false): Vector3 {
+  /**
+   * Returns a point within the curve at position [offset], where [offset] is measured as a distance in 3D units along the curve.
+   *
+   * To do that, it finds the two cached points where the [offset] lies between, then interpolates the values. This interpolation is cubic if [cubic] is set to `true`, or linear if set to `false`.
+   *
+   * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
+   */
+  public fun sampleBaked(offset: Double, cubic: Boolean = false): Vector3 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE_BAKED, VECTOR3)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE_BAKED, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
-  public fun interpolateBakedUpVector(offset: Double, applyTilt: Boolean = false): Vector3 {
+  /**
+   * Returns an up vector within the curve at position [offset], where [offset] is measured as a distance in 3D units along the curve.
+   *
+   * To do that, it finds the two cached up vectors where the [offset] lies between, then interpolates the values. If [applyTilt] is `true`, an interpolated tilt is applied to the interpolated up vector.
+   *
+   * If the curve has no up vectors, the function sends an error to the console, and returns `(0, 1, 0)`.
+   */
+  public fun sampleBakedUpVector(offset: Double, applyTilt: Boolean = false): Vector3 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to applyTilt)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE_BAKED_UP_VECTOR,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE_BAKED_UP_VECTOR,
         VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }

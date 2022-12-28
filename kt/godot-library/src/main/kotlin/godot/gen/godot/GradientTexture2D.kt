@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -86,11 +87,11 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The gradient fill type, one of the [enum Fill] values. The texture is filled by interpolating colors starting from [fillFrom] to [fillTo] offsets.
    */
-  public var fill: Long
+  public var fill: GradientTexture2D.Fill
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GradientTexture2D.Fill.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -132,12 +133,12 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The gradient repeat type, one of the [enum Repeat] values. The texture is filled starting from [fillFrom] to [fillTo] offsets by default, but the gradient fill can be repeated to cover the entire texture.
    */
-  public var repeat: Long
+  public var repeat: GradientTexture2D.Repeat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_REPEAT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GradientTexture2D.Repeat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

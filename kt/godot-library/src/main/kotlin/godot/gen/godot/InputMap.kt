@@ -16,7 +16,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -50,10 +49,10 @@ public object InputMap : Object() {
   /**
    * Returns an array of all actions in the [godot.InputMap].
    */
-  public fun getActions(): VariantArray<Any?> {
+  public fun getActions(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_GET_ACTIONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>
   }
 
   /**
@@ -130,10 +129,10 @@ public object InputMap : Object() {
    *
    * **Note:** When used in the editor (e.g. a tool script or [godot.EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the `input/ *` settings from [godot.ProjectSettings].
    */
-  public fun actionGetEvents(action: StringName): VariantArray<Any?> {
+  public fun actionGetEvents(action: StringName): VariantArray<InputEvent> {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_GET_EVENTS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<InputEvent>
   }
 
   /**

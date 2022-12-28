@@ -12,6 +12,7 @@ import godot.core.Rect2
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -123,11 +124,11 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The direction in which the front of the texture faces.
    */
-  public var axis: Long
+  public var axis: Vector3.Axis
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_AXIS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Vector3.Axis.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -137,12 +138,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The billboard mode to use for the sprite. See [enum BaseMaterial3D.BillboardMode] for possible values.
    */
-  public var billboard: Long
+  public var billboard: BaseMaterial3D.BillboardMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_BILLBOARD_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseMaterial3D.BillboardMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -153,16 +154,52 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The alpha cutting mode to use for the sprite. See [enum AlphaCutMode] for possible values.
    */
-  public var alphaCut: Long
+  public var alphaCut: SpriteBase3D.AlphaCutMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ALPHA_CUT_MODE,
+          LONG)
+      return SpriteBase3D.AlphaCutMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_ALPHA_CUT_MODE,
+          NIL)
+    }
+
+  /**
+   * Filter flags for the texture. See [enum BaseMaterial3D.TextureFilter] for options.
+   */
+  public var textureFilter: BaseMaterial3D.TextureFilter
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_TEXTURE_FILTER,
+          LONG)
+      return BaseMaterial3D.TextureFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_TEXTURE_FILTER,
+          NIL)
+    }
+
+  /**
+   * Sets the render priority for the sprite. Higher priority objects will be sorted in front of lower priority objects.
+   *
+   * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
+   *
+   * **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
+   */
+  public var renderPriority: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_RENDER_PRIORITY,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_ALPHA_CUT_MODE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_RENDER_PRIORITY,
           NIL)
     }
 
@@ -223,9 +260,17 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
      */
     FLAG_DOUBLE_SIDED(2),
     /**
+     * Disables the depth test, so this object is drawn on top of all others. However, objects drawn after it in the draw order may cover it.
+     */
+    FLAG_DISABLE_DEPTH_TEST(3),
+    /**
+     * Label is scaled by depth so that it always appears the same size on screen.
+     */
+    FLAG_FIXED_SIZE(4),
+    /**
      * Represents the size of the [enum DrawFlags] enum.
      */
-    FLAG_MAX(3),
+    FLAG_MAX(5),
     ;
 
     public val id: Long

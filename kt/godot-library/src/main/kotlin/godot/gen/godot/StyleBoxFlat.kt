@@ -85,6 +85,22 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
+   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left (X axis) and downwards (Y axis).
+   *
+   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the [godot.StyleBox]'s content margin (see [godot.StyleBox.contentMarginBottom]). It is preferable to increase the content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand margin does not increase the size of the clickable area for [godot.Control]s.
+   */
+  public var skew: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SKEW, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SKEW, NIL)
+    }
+
+  /**
    * Sets the color of the border.
    */
   public var borderColor: Color
@@ -256,17 +272,6 @@ public open class StyleBoxFlat : StyleBox() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun setCornerRadiusIndividual(
-    radiusTopLeft: Long,
-    radiusTopRight: Long,
-    radiusBottomRight: Long,
-    radiusBottomLeft: Long
-  ): Unit {
-    TransferContext.writeArguments(LONG to radiusTopLeft, LONG to radiusTopRight, LONG to radiusBottomRight, LONG to radiusBottomLeft)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_INDIVIDUAL, NIL)
-  }
-
   /**
    * Sets the corner radius to [radius] pixels for all corners.
    */
@@ -309,17 +314,6 @@ public open class StyleBoxFlat : StyleBox() {
     TransferContext.writeArguments(DOUBLE to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_ALL,
         NIL)
-  }
-
-  public fun setExpandMarginIndividual(
-    sizeLeft: Double,
-    sizeTop: Double,
-    sizeRight: Double,
-    sizeBottom: Double
-  ): Unit {
-    TransferContext.writeArguments(DOUBLE to sizeLeft, DOUBLE to sizeTop, DOUBLE to sizeRight, DOUBLE to sizeBottom)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_INDIVIDUAL, NIL)
   }
 
   /**

@@ -16,7 +16,6 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -59,11 +58,11 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
   /**
    * Returns an array with all [godot.ScriptEditorBase] objects which are currently open in editor.
    */
-  public fun getOpenScriptEditors(): VariantArray<Any?> {
+  public fun getOpenScriptEditors(): VariantArray<ScriptEditorBase> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPT_EDITORS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<ScriptEditorBase>
   }
 
   /**
@@ -109,11 +108,11 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
   /**
    * Returns an array with all [godot.Script] objects which are currently open in editor.
    */
-  public fun getOpenScripts(): VariantArray<Any?> {
+  public fun getOpenScripts(): VariantArray<Script> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPTS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Script>
   }
 
   /**

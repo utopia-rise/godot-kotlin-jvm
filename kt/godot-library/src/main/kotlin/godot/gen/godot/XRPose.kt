@@ -7,17 +7,20 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.TRANSFORM3D
+import godot.core.VariantType.VECTOR3
+import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
-import kotlin.String
 import kotlin.Suppress
 
 /**
@@ -55,70 +58,70 @@ public open class XRPose : RefCounted() {
    *
    * - `skeleton` defines the root location a hand mesh should be placed when using hand tracking and the animated skeleton supplied by the XR runtime.
    */
-  public var name: String
+  public var name: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_NAME, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_NAME, STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_NAME, NIL)
     }
 
   /**
    * The transform containing the original and transform as reported by the XR runtime.
    */
-  public var transform: String
+  public var transform: Transform3D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRANSFORM, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRANSFORM, TRANSFORM3D)
+      return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(TRANSFORM3D to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_TRANSFORM, NIL)
     }
 
   /**
    * The linear velocity of this pose.
    */
-  public var linearVelocity: String
+  public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_LINEAR_VELOCITY,
-          STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_LINEAR_VELOCITY, NIL)
     }
 
   /**
    * The angular velocity for this pose.
    */
-  public var angularVelocity: String
+  public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_ANGULAR_VELOCITY,
-          STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_ANGULAR_VELOCITY, NIL)
     }
 
   /**
    * The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is.
    */
-  public var trackingConfidence: Long
+  public var trackingConfidence: XRPose.TrackingConfidence
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRACKING_CONFIDENCE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return XRPose.TrackingConfidence.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

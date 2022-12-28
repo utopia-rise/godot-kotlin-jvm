@@ -27,6 +27,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
@@ -39,7 +40,6 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.UninitializedPropertyAccessException
 import kotlin.Unit
 
 /**
@@ -71,6 +71,23 @@ import kotlin.Unit
 @GodotBaseType
 public open class Control : CanvasItem() {
   /**
+   * Emitted when the control changes size.
+   */
+  public val resized: Signal0 by signal()
+
+  /**
+   * Emitted when the node receives an [godot.InputEvent].
+   */
+  public val guiInput: Signal1<InputEvent> by signal("event")
+
+  /**
+   * Emitted when the mouse enters the control's `Rect` area, provided its [mouseFilter] lets the event reach it.
+   *
+   * **Note:** [mouseEntered] will not be emitted if the mouse enters a child [godot.Control] node before entering the parent's `Rect` area, at least until the mouse is moved to reach the parent's `Rect` area.
+   */
+  public val mouseEntered: Signal0 by signal()
+
+  /**
    * Emitted when the mouse leaves the control's `Rect` area, provided its [mouseFilter] lets the event reach it.
    *
    * **Note:** [mouseExited] will be emitted if the mouse enters a child [godot.Control] node, even if the mouse cursor is still inside the parent's `Rect` area.
@@ -86,36 +103,14 @@ public open class Control : CanvasItem() {
   public val mouseExited: Signal0 by signal()
 
   /**
-   * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
-   */
-  public val themeChanged: Signal0 by signal()
-
-  /**
-   * Emitted when the node receives an [godot.InputEvent].
-   */
-  public val guiInput: Signal1<InputEvent> by signal("event")
-
-  /**
    * Emitted when the node gains focus.
    */
   public val focusEntered: Signal0 by signal()
 
   /**
-   * Emitted when the control changes size.
+   * Emitted when the node loses focus.
    */
-  public val resized: Signal0 by signal()
-
-  /**
-   * Emitted when the node's minimum size changes.
-   */
-  public val minimumSizeChanged: Signal0 by signal()
-
-  /**
-   * Emitted when the mouse enters the control's `Rect` area, provided its [mouseFilter] lets the event reach it.
-   *
-   * **Note:** [mouseEntered] will not be emitted if the mouse enters a child [godot.Control] node before entering the parent's `Rect` area, at least until the mouse is moved to reach the parent's `Rect` area.
-   */
-  public val mouseEntered: Signal0 by signal()
+  public val focusExited: Signal0 by signal()
 
   /**
    * Emitted when one of the size flags changes. See [sizeFlagsHorizontal] and [sizeFlagsVertical].
@@ -123,9 +118,14 @@ public open class Control : CanvasItem() {
   public val sizeFlagsChanged: Signal0 by signal()
 
   /**
-   * Emitted when the node loses focus.
+   * Emitted when the node's minimum size changes.
    */
-  public val focusExited: Signal0 by signal()
+  public val minimumSizeChanged: Signal0 by signal()
+
+  /**
+   * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
+   */
+  public val themeChanged: Signal0 by signal()
 
   /**
    * Enables whether rendering of [godot.CanvasItem] based children should be clipped to this control's rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle will not be rendered and won't receive input.
@@ -161,12 +161,12 @@ public open class Control : CanvasItem() {
   /**
    * Controls layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew).
    */
-  public var layoutDirection: Long
+  public var layoutDirection: Control.LayoutDirection
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_LAYOUT_DIRECTION,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Control.LayoutDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -176,12 +176,12 @@ public open class Control : CanvasItem() {
   /**
    * Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
    */
-  public var growHorizontal: Long
+  public var growHorizontal: Control.GrowDirection
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_H_GROW_DIRECTION,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Control.GrowDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -191,12 +191,12 @@ public open class Control : CanvasItem() {
   /**
    * Controls the direction on the vertical axis in which the control should grow if its vertical minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
    */
-  public var growVertical: Long
+  public var growVertical: Control.GrowDirection
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_V_GROW_DIRECTION,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Control.GrowDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -338,14 +338,56 @@ public open class Control : CanvasItem() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_AUTO_TRANSLATE, NIL)
     }
 
-  public var hintTooltip: String
+  /**
+   * The default tooltip text. The tooltip appears when the user's mouse cursor stays idle over this control for a few moments, provided that the [mouseFilter] property is not [MOUSE_FILTER_IGNORE]. The time required for the tooltip to appear can be changed with the [godot.ProjectSettings.gui/timers/tooltipDelaySec] option. See also [getTooltip].
+   *
+   * The tooltip popup will use either a default implementation, or a custom one that you can provide by overriding [_makeCustomTooltip]. The default tooltip includes a [godot.PopupPanel] and [godot.Label] whose theme properties can be customized using [godot.Theme] methods with the `"TooltipPanel"` and `"TooltipLabel"` respectively. For example:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var style_box = StyleBoxFlat.new()
+   *
+   * style_box.set_bg_color(Color(1, 1, 0))
+   *
+   * style_box.set_border_width_all(2)
+   *
+   * # We assume here that the `theme` property has been assigned a custom Theme beforehand.
+   *
+   * theme.set_stylebox("panel", "TooltipPanel", style_box)
+   *
+   * theme.set_color("font_color", "TooltipLabel", Color(0, 1, 1))
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * var styleBox = new StyleBoxFlat();
+   *
+   * styleBox.SetBgColor(new Color(1, 1, 0));
+   *
+   * styleBox.SetBorderWidthAll(2);
+   *
+   * // We assume here that the `Theme` property has been assigned a custom Theme beforehand.
+   *
+   * Theme.SetStyleBox("panel", "TooltipPanel", styleBox);
+   *
+   * Theme.SetColor("font_color", "TooltipLabel", new Color(0, 1, 1));
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   */
+  public var tooltipText: String
     get() {
-      throw
-          UninitializedPropertyAccessException("Cannot access property hintTooltip: has no getter")
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_TOOLTIP_TEXT, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_TOOLTIP, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_TOOLTIP_TEXT, NIL)
     }
 
   /**
@@ -384,11 +426,11 @@ public open class Control : CanvasItem() {
   /**
    * The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard, gamepad, and mouse signals.
    */
-  public var focusMode: Long
+  public var focusMode: Control.FocusMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Control.FocusMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -398,11 +440,11 @@ public open class Control : CanvasItem() {
   /**
    * Controls whether the control will be able to receive mouse button input events through [_guiInput] and how these events should be handled. Also controls whether the control can receive the [mouseEntered], and [mouseExited] signals. See the constants to learn what each does.
    */
-  public var mouseFilter: Long
+  public var mouseFilter: Control.MouseFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_MOUSE_FILTER, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Control.MouseFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -410,21 +452,54 @@ public open class Control : CanvasItem() {
     }
 
   /**
+   * When enabled, scroll wheel events processed by [_guiInput] will be passed to the parent control even if [mouseFilter] is set to [MOUSE_FILTER_STOP]. As it defaults to true, this allows nested scrollable containers to work out of the box.
+   *
+   * You should disable it on the root of your UI if you do not want scroll events to go to the [godot.Node.UnhandledInput] processing.
+   */
+  public var mouseForcePassScrollEvents: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CONTROL_IS_FORCE_PASS_SCROLL_EVENTS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FORCE_PASS_SCROLL_EVENTS, NIL)
+    }
+
+  /**
    * The default cursor shape for this control. Useful for Godot plugins and applications or games that use the system's mouse cursors.
    *
    * **Note:** On Linux, shapes may vary depending on the cursor theme of the system.
    */
-  public var mouseDefaultCursorShape: Long
+  public var mouseDefaultCursorShape: Control.CursorShape
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_DEFAULT_CURSOR_SHAPE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Control.CursorShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_DEFAULT_CURSOR_SHAPE,
           NIL)
+    }
+
+  /**
+   * The [godot.Node] which must be a parent of the focused [godot.Control] for the shortcut to be activated. If `null`, the shortcut can be activated when any control is focused (a global shortcut). This allows shortcuts to be accepted only when the user has a certain area of the GUI focused.
+   */
+  public var shortcutContext: Node?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_SHORTCUT_CONTEXT,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Node?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_SHORTCUT_CONTEXT, NIL)
     }
 
   /**
@@ -450,15 +525,15 @@ public open class Control : CanvasItem() {
    *
    * **Note:** Theme items are looked for in the tree order, from branch to root, where each [godot.Control] node is checked for its [theme] property. The earliest match against any type/class name is returned. The project-level Theme and the default Theme are checked last.
    */
-  public var themeTypeVariation: String
+  public var themeTypeVariation: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_TYPE_VARIATION,
-          STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+          STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_THEME_TYPE_VARIATION,
           NIL)
     }
@@ -485,7 +560,7 @@ public open class Control : CanvasItem() {
    * Returns an [godot.Array] of [godot.Vector2i] text ranges, in the left-to-right order. Ranges should cover full source [text] without overlaps. BiDi algorithm will be used on each range separately.
    */
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
-      VariantArray<Any?> {
+      VariantArray<Vector2i> {
     throw NotImplementedError("_structured_text_parser is not implemented for Control")
   }
 
@@ -1873,29 +1948,6 @@ public open class Control : CanvasItem() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public enum class Anchor(
-    id: Long
-  ) {
-    /**
-     * Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once, use [setAnchorsPreset].
-     */
-    ANCHOR_BEGIN(0),
-    /**
-     * Snaps one of the 4 anchor's sides to the end of the node's `Rect`, in the bottom right. Use it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once, use [setAnchorsPreset].
-     */
-    ANCHOR_END(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class FocusMode(
     id: Long
   ) {
@@ -1911,148 +1963,6 @@ public open class Control : CanvasItem() {
      * The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or using the D-pad buttons on a gamepad. Use with [focusMode].
      */
     FOCUS_ALL(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TextDirection(
-    id: Long
-  ) {
-    /**
-     * Text writing direction is the same as layout direction.
-     */
-    TEXT_DIRECTION_INHERITED(3),
-    /**
-     * Automatic text writing direction, determined from the current locale and text content.
-     */
-    TEXT_DIRECTION_AUTO(0),
-    /**
-     * Left-to-right text writing direction.
-     */
-    TEXT_DIRECTION_LTR(1),
-    /**
-     * Right-to-left text writing direction.
-     */
-    TEXT_DIRECTION_RTL(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class LayoutPresetMode(
-    id: Long
-  ) {
-    /**
-     * The control will be resized to its minimum size.
-     */
-    PRESET_MODE_MINSIZE(0),
-    /**
-     * The control's width will not change.
-     */
-    PRESET_MODE_KEEP_WIDTH(1),
-    /**
-     * The control's height will not change.
-     */
-    PRESET_MODE_KEEP_HEIGHT(2),
-    /**
-     * The control's size will not change.
-     */
-    PRESET_MODE_KEEP_SIZE(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class StructuredTextParser(
-    id: Long
-  ) {
-    STRUCTURED_TEXT_DEFAULT(0),
-    STRUCTURED_TEXT_URI(1),
-    STRUCTURED_TEXT_FILE(2),
-    STRUCTURED_TEXT_EMAIL(3),
-    STRUCTURED_TEXT_LIST(4),
-    STRUCTURED_TEXT_NONE(5),
-    STRUCTURED_TEXT_CUSTOM(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class LayoutDirection(
-    id: Long
-  ) {
-    /**
-     * Automatic layout direction, determined from the parent control layout direction.
-     */
-    LAYOUT_DIRECTION_INHERITED(0),
-    /**
-     * Automatic layout direction, determined from the current locale.
-     */
-    LAYOUT_DIRECTION_LOCALE(1),
-    /**
-     * Left-to-right layout direction.
-     */
-    LAYOUT_DIRECTION_LTR(2),
-    /**
-     * Right-to-left layout direction.
-     */
-    LAYOUT_DIRECTION_RTL(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class MouseFilter(
-    id: Long
-  ) {
-    /**
-     * The control will receive mouse button input events through [_guiInput] if clicked on. And the control will receive the [mouseEntered] and [mouseExited] signals. These events are automatically marked as handled, and they will not propagate further to other controls. This also results in blocking signals in other controls.
-     */
-    MOUSE_FILTER_STOP(0),
-    /**
-     * The control will receive mouse button input events through [_guiInput] if clicked on. And the control will receive the [mouseEntered] and [mouseExited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. If no control handled it, the event will be passed to [godot.Node.UnhandledInput] for further processing.
-     */
-    MOUSE_FILTER_PASS(1),
-    /**
-     * The control will not receive mouse button input events through [_guiInput]. The control will also not receive the [mouseEntered] nor [mouseExited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically.
-     */
-    MOUSE_FILTER_IGNORE(2),
     ;
 
     public val id: Long
@@ -2148,74 +2058,6 @@ public open class Control : CanvasItem() {
     }
   }
 
-  public enum class GrowDirection(
-    id: Long
-  ) {
-    /**
-     * The control will grow to the left or top to make up if its minimum size is changed to be greater than its current size on the respective axis.
-     */
-    GROW_DIRECTION_BEGIN(0),
-    /**
-     * The control will grow to the right or bottom to make up if its minimum size is changed to be greater than its current size on the respective axis.
-     */
-    GROW_DIRECTION_END(1),
-    /**
-     * The control will grow in both directions equally to make up if its minimum size is changed to be greater than its current size.
-     */
-    GROW_DIRECTION_BOTH(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class SizeFlags(
-    id: Long
-  ) {
-    /**
-     * Tells the parent [godot.Container] to align the node with its start, either the top or the left edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
-     *
-     * **Note:** Setting this flag is equal to not having any size flags.
-     */
-    SIZE_SHRINK_BEGIN(0),
-    /**
-     * Tells the parent [godot.Container] to expand the bounds of this node to fill all the available space without pushing any other node. It is mutually exclusive with shrink size flags. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
-     */
-    SIZE_FILL(1),
-    /**
-     * Tells the parent [godot.Container] to let this node take all the available space on the axis you flag. If multiple neighboring nodes are set to expand, they'll share the space based on their stretch ratio. See [sizeFlagsStretchRatio]. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
-     */
-    SIZE_EXPAND(2),
-    /**
-     * Sets the node's size flags to both fill and expand. See [SIZE_FILL] and [SIZE_EXPAND] for more information.
-     */
-    SIZE_EXPAND_FILL(3),
-    /**
-     * Tells the parent [godot.Container] to center the node in the available space. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
-     */
-    SIZE_SHRINK_CENTER(4),
-    /**
-     * Tells the parent [godot.Container] to align the node with its end, either the bottom or the right edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
-     */
-    SIZE_SHRINK_END(8),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class LayoutPreset(
     id: Long
   ) {
@@ -2279,7 +2121,221 @@ public open class Control : CanvasItem() {
      * Snap all 4 anchors to a horizontal line that cuts the parent control in half. Use with [setAnchorsPreset].
      */
     PRESET_HCENTER_WIDE(14),
-    PRESET_WIDE(15),
+    /**
+     * Snap all 4 anchors to the respective corners of the parent control. Set all 4 offsets to 0 after you applied this preset and the [godot.Control] will fit its parent control. Use with [setAnchorsPreset].
+     */
+    PRESET_FULL_RECT(15),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LayoutPresetMode(
+    id: Long
+  ) {
+    /**
+     * The control will be resized to its minimum size.
+     */
+    PRESET_MODE_MINSIZE(0),
+    /**
+     * The control's width will not change.
+     */
+    PRESET_MODE_KEEP_WIDTH(1),
+    /**
+     * The control's height will not change.
+     */
+    PRESET_MODE_KEEP_HEIGHT(2),
+    /**
+     * The control's size will not change.
+     */
+    PRESET_MODE_KEEP_SIZE(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SizeFlags(
+    id: Long
+  ) {
+    /**
+     * Tells the parent [godot.Container] to align the node with its start, either the top or the left edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+     *
+     * **Note:** Setting this flag is equal to not having any size flags.
+     */
+    SIZE_SHRINK_BEGIN(0),
+    /**
+     * Tells the parent [godot.Container] to expand the bounds of this node to fill all the available space without pushing any other node. It is mutually exclusive with shrink size flags. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+     */
+    SIZE_FILL(1),
+    /**
+     * Tells the parent [godot.Container] to let this node take all the available space on the axis you flag. If multiple neighboring nodes are set to expand, they'll share the space based on their stretch ratio. See [sizeFlagsStretchRatio]. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+     */
+    SIZE_EXPAND(2),
+    /**
+     * Sets the node's size flags to both fill and expand. See [SIZE_FILL] and [SIZE_EXPAND] for more information.
+     */
+    SIZE_EXPAND_FILL(3),
+    /**
+     * Tells the parent [godot.Container] to center the node in the available space. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+     */
+    SIZE_SHRINK_CENTER(4),
+    /**
+     * Tells the parent [godot.Container] to align the node with its end, either the bottom or the right edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+     */
+    SIZE_SHRINK_END(8),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class MouseFilter(
+    id: Long
+  ) {
+    /**
+     * The control will receive mouse button input events through [_guiInput] if clicked on. And the control will receive the [mouseEntered] and [mouseExited] signals. These events are automatically marked as handled, and they will not propagate further to other controls. This also results in blocking signals in other controls.
+     */
+    MOUSE_FILTER_STOP(0),
+    /**
+     * The control will receive mouse button input events through [_guiInput] if clicked on. And the control will receive the [mouseEntered] and [mouseExited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. If no control handled it, the event will be passed to [godot.Node.UnhandledInput] for further processing.
+     */
+    MOUSE_FILTER_PASS(1),
+    /**
+     * The control will not receive mouse button input events through [_guiInput]. The control will also not receive the [mouseEntered] nor [mouseExited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically.
+     */
+    MOUSE_FILTER_IGNORE(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class GrowDirection(
+    id: Long
+  ) {
+    /**
+     * The control will grow to the left or top to make up if its minimum size is changed to be greater than its current size on the respective axis.
+     */
+    GROW_DIRECTION_BEGIN(0),
+    /**
+     * The control will grow to the right or bottom to make up if its minimum size is changed to be greater than its current size on the respective axis.
+     */
+    GROW_DIRECTION_END(1),
+    /**
+     * The control will grow in both directions equally to make up if its minimum size is changed to be greater than its current size.
+     */
+    GROW_DIRECTION_BOTH(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class Anchor(
+    id: Long
+  ) {
+    /**
+     * Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once, use [setAnchorsPreset].
+     */
+    ANCHOR_BEGIN(0),
+    /**
+     * Snaps one of the 4 anchor's sides to the end of the node's `Rect`, in the bottom right. Use it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once, use [setAnchorsPreset].
+     */
+    ANCHOR_END(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LayoutDirection(
+    id: Long
+  ) {
+    /**
+     * Automatic layout direction, determined from the parent control layout direction.
+     */
+    LAYOUT_DIRECTION_INHERITED(0),
+    /**
+     * Automatic layout direction, determined from the current locale.
+     */
+    LAYOUT_DIRECTION_LOCALE(1),
+    /**
+     * Left-to-right layout direction.
+     */
+    LAYOUT_DIRECTION_LTR(2),
+    /**
+     * Right-to-left layout direction.
+     */
+    LAYOUT_DIRECTION_RTL(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TextDirection(
+    id: Long
+  ) {
+    /**
+     * Text writing direction is the same as layout direction.
+     */
+    TEXT_DIRECTION_INHERITED(3),
+    /**
+     * Automatic text writing direction, determined from the current locale and text content.
+     */
+    TEXT_DIRECTION_AUTO(0),
+    /**
+     * Left-to-right text writing direction.
+     */
+    TEXT_DIRECTION_LTR(1),
+    /**
+     * Right-to-left text writing direction.
+     */
+    TEXT_DIRECTION_RTL(2),
     ;
 
     public val id: Long

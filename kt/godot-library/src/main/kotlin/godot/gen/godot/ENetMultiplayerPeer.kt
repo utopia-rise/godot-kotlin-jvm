@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -24,19 +23,6 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class ENetMultiplayerPeer : MultiplayerPeer() {
-  public var serverRelay: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_IS_SERVER_RELAY_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_SET_SERVER_RELAY_ENABLED, NIL)
-    }
-
   public val host: ENetConnection?
     get() {
       TransferContext.writeArguments()
@@ -89,12 +75,6 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_ADD_MESH_PEER,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public fun closeConnection(waitUsec: Long = 100): Unit {
-    TransferContext.writeArguments(LONG to waitUsec)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CLOSE_CONNECTION, NIL)
   }
 
   public fun setBindIp(ip: String): Unit {

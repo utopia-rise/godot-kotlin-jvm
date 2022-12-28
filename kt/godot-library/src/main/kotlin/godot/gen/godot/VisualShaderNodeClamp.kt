@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -25,12 +26,12 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
   /**
    * A type of operands and returned value.
    */
-  public var opType: Long
+  public var opType: VisualShaderNodeClamp.OpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECLAMP_GET_OP_TYPE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeClamp.OpType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -63,9 +64,13 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
      */
     OP_TYPE_VECTOR_3D(3),
     /**
+     * A 4D vector type.
+     */
+    OP_TYPE_VECTOR_4D(4),
+    /**
      * Represents the size of the [enum OpType] enum.
      */
-    OP_TYPE_MAX(4),
+    OP_TYPE_MAX(5),
     ;
 
     public val id: Long

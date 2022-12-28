@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
@@ -19,7 +20,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Simple button used to represent a link to some resource.
@@ -45,14 +45,30 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
+   * Determines when to show the underline. See [enum UnderlineMode] for options.
+   */
+  public var underline: LinkButton.UnderlineMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_UNDERLINE_MODE,
+          LONG)
+      return LinkButton.UnderlineMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_UNDERLINE_MODE,
+          NIL)
+    }
+
+  /**
    * Base text writing direction.
    */
-  public var textDirection: Long
+  public var textDirection: Control.TextDirection
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_TEXT_DIRECTION,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -75,30 +91,14 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
-   * Determines when to show the underline. See [enum UnderlineMode] for options.
-   */
-  public var underline: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_UNDERLINE_MODE,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_UNDERLINE_MODE,
-          NIL)
-    }
-
-  /**
    * Set BiDi algorithm override for the structured text.
    */
-  public var structuredTextBidiOverride: Long
+  public var structuredTextBidiOverride: TextServer.StructuredTextParser
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.StructuredTextParser.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -125,25 +125,6 @@ public open class LinkButton : BaseButton() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_LINKBUTTON, scriptIndex)
     return true
-  }
-
-  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
-    TransferContext.writeArguments(STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_OPENTYPE_FEATURE,
-        NIL)
-  }
-
-  public fun getOpentypeFeature(tag: String): Long {
-    TransferContext.writeArguments(STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_OPENTYPE_FEATURE,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun clearOpentypeFeatures(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_CLEAR_OPENTYPE_FEATURES,
-        NIL)
   }
 
   public enum class UnderlineMode(

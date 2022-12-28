@@ -42,6 +42,9 @@ public open class AudioEffectDelay : AudioEffect() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_DRY, NIL)
     }
 
+  /**
+   * If `true`, `tap1` will be enabled.
+   */
   public var tap1Active: Boolean
     get() {
       TransferContext.writeArguments()
@@ -55,6 +58,9 @@ public open class AudioEffectDelay : AudioEffect() {
           NIL)
     }
 
+  /**
+   * `tap1` delay time in milliseconds.
+   */
   public var tap1DelayMs: Double
     get() {
       TransferContext.writeArguments()
@@ -68,6 +74,9 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_TAP1_DELAY_MS, NIL)
     }
 
+  /**
+   * Sound level for `tap1`.
+   */
   public var tap1LevelDb: Double
     get() {
       TransferContext.writeArguments()
@@ -81,6 +90,9 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_TAP1_LEVEL_DB, NIL)
     }
 
+  /**
+   * Pan position for `tap1`. Value can range from -1 (fully left) to 1 (fully right).
+   */
   public var tap1Pan: Double
     get() {
       TransferContext.writeArguments()
@@ -94,6 +106,9 @@ public open class AudioEffectDelay : AudioEffect() {
           NIL)
     }
 
+  /**
+   * If `true`, `tap2` will be enabled.
+   */
   public var tap2Active: Boolean
     get() {
       TransferContext.writeArguments()
@@ -107,6 +122,9 @@ public open class AudioEffectDelay : AudioEffect() {
           NIL)
     }
 
+  /**
+   * **Tap2** delay time in milliseconds.
+   */
   public var tap2DelayMs: Double
     get() {
       TransferContext.writeArguments()
@@ -120,6 +138,9 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_TAP2_DELAY_MS, NIL)
     }
 
+  /**
+   * Sound level for `tap2`.
+   */
   public var tap2LevelDb: Double
     get() {
       TransferContext.writeArguments()
@@ -133,6 +154,9 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_TAP2_LEVEL_DB, NIL)
     }
 
+  /**
+   * Pan position for `tap2`. Value can range from -1 (fully left) to 1 (fully right).
+   */
   public var tap2Pan: Double
     get() {
       TransferContext.writeArguments()
@@ -146,6 +170,9 @@ public open class AudioEffectDelay : AudioEffect() {
           NIL)
     }
 
+  /**
+   * If `true`, feedback is enabled.
+   */
   public var feedbackActive: Boolean
     get() {
       TransferContext.writeArguments()
@@ -159,6 +186,9 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_FEEDBACK_ACTIVE, NIL)
     }
 
+  /**
+   * Feedback delay time in milliseconds.
+   */
   public var feedbackDelayMs: Double
     get() {
       TransferContext.writeArguments()
@@ -172,6 +202,9 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_FEEDBACK_DELAY_MS, NIL)
     }
 
+  /**
+   * Sound level for `tap1`.
+   */
   public var feedbackLevelDb: Double
     get() {
       TransferContext.writeArguments()
@@ -185,6 +218,9 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_FEEDBACK_LEVEL_DB, NIL)
     }
 
+  /**
+   * Low-pass filter for feedback, in Hz. Frequencies below this value are filtered out of the source signal.
+   */
   public var feedbackLowpass: Double
     get() {
       TransferContext.writeArguments()

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -40,9 +41,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class TabContainer : Container() {
   /**
-   * Emitted when the [godot.TabContainer]'s [godot.Popup] button is clicked. See [setPopup] for details.
+   * Emitted when switching to another tab.
    */
-  public val prePopupPressed: Signal0 by signal()
+  public val tabChanged: Signal1<Long> by signal("tab")
 
   /**
    * Emitted when a tab is selected, even if it is the current tab.
@@ -50,19 +51,24 @@ public open class TabContainer : Container() {
   public val tabSelected: Signal1<Long> by signal("tab")
 
   /**
-   * Emitted when switching to another tab.
+   * Emitted when the user clicks on the button icon on this tab.
    */
-  public val tabChanged: Signal1<Long> by signal("tab")
+  public val tabButtonPressed: Signal1<Long> by signal("tab")
+
+  /**
+   * Emitted when the [godot.TabContainer]'s [godot.Popup] button is clicked. See [setPopup] for details.
+   */
+  public val prePopupPressed: Signal0 by signal()
 
   /**
    * Sets the position at which tabs will be placed. See [enum TabBar.AlignmentMode] for details.
    */
-  public var tabAlignment: Long
+  public var tabAlignment: TabBar.AlignmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_ALIGNMENT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TabBar.AlignmentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -290,6 +296,25 @@ public open class TabContainer : Container() {
     TransferContext.writeArguments(LONG to tabIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_IS_TAB_HIDDEN, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the button icon from the tab at index [tabIdx].
+   */
+  public fun setTabButtonIcon(tabIdx: Long, icon: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to tabIdx, OBJECT to icon)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_BUTTON_ICON,
+        NIL)
+  }
+
+  /**
+   * Returns the button icon from the tab at index [tabIdx].
+   */
+  public fun getTabButtonIcon(tabIdx: Long): Texture2D? {
+    TransferContext.writeArguments(LONG to tabIdx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_BUTTON_ICON,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
   /**

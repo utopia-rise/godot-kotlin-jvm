@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -55,26 +56,30 @@ public open class Camera2D : Node2D() {
   /**
    * The Camera2D's anchor point. See [enum AnchorMode] constants.
    */
-  public var anchorMode: Long
+  public var anchorMode: Camera2D.AnchorMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ANCHOR_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Camera2D.AnchorMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ANCHOR_MODE, NIL)
     }
 
-  public var rotating: Boolean
+  /**
+   * If `true`, the camera's rendered view is not affected by its [godot.Node2D.rotation] and [godot.Node2D.globalRotation].
+   */
+  public var ignoreRotation: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_ROTATING, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_IGNORING_ROTATION,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ROTATING, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_IGNORE_ROTATION, NIL)
     }
 
   /**
@@ -108,12 +113,12 @@ public open class Camera2D : Node2D() {
   /**
    * The custom [godot.Viewport] node attached to the [godot.Camera2D]. If `null` or not a [godot.Viewport], uses the default viewport instead.
    */
-  public var customViewport: Viewport?
+  public var customViewport: Node?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CUSTOM_VIEWPORT,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Viewport?
+      return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -123,12 +128,12 @@ public open class Camera2D : Node2D() {
   /**
    * The camera's process callback. See [enum Camera2DProcessCallback].
    */
-  public var processCallback: Long
+  public var processCallback: Camera2D.Camera2DProcessCallback
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_PROCESS_CALLBACK,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Camera2D.Camera2DProcessCallback.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -156,30 +161,70 @@ public open class Camera2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_SMOOTHING_ENABLED, NIL)
     }
 
-  public var smoothingEnabled: Boolean
+  /**
+   * If `true`, the camera's view smoothly moves towards its target position at [positionSmoothingSpeed].
+   */
+  public var positionSmoothingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_FOLLOW_SMOOTHING_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_POSITION_SMOOTHING_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ENABLE_FOLLOW_SMOOTHING, NIL)
+          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_POSITION_SMOOTHING_ENABLED, NIL)
     }
 
-  public var smoothingSpeed: Double
+  /**
+   * Speed in pixels per second of the camera's smoothing effect when [positionSmoothingEnabled] is `true`.
+   */
+  public var positionSmoothingSpeed: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_FOLLOW_SMOOTHING,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_POSITION_SMOOTHING_SPEED, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_FOLLOW_SMOOTHING,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_POSITION_SMOOTHING_SPEED, NIL)
+    }
+
+  /**
+   * If `true`, the camera's view smoothly rotates, via asymptotic smoothing, to align with its target rotation at [rotationSmoothingSpeed].
+   *
+   * **Note:** This property has no effect if [ignoreRotation] is `true`.
+   */
+  public var rotationSmoothingEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_ROTATION_SMOOTHING_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ROTATION_SMOOTHING_ENABLED, NIL)
+    }
+
+  /**
+   * The angular, asymptotic speed of the camera's rotation smoothing effect when [rotationSmoothingEnabled] is `true`.
+   */
+  public var rotationSmoothingSpeed: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ROTATION_SMOOTHING_SPEED, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ROTATION_SMOOTHING_SPEED, NIL)
     }
 
   /**
@@ -337,16 +382,26 @@ public open class Camera2D : Node2D() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun getCameraPosition(): Vector2 {
+  /**
+   * Returns this camera's target position, in global coordinates.
+   *
+   * **Note:** The returned value is not the same as [godot.Node2D.globalPosition], as it is affected by the drag properties. It is also not the same as the current position if [positionSmoothingEnabled] is `true` (see [getScreenCenterPosition]).
+   */
+  public fun getTargetPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_POSITION,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_TARGET_POSITION,
         VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  public fun getCameraScreenCenter(): Vector2 {
+  /**
+   * Returns the center of the screen from this camera's point of view, in global coordinates.
+   *
+   * **Note:** The exact targeted position of the camera may be different. See [getTargetPosition].
+   */
+  public fun getScreenCenterPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_SCREEN_CENTER,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_SCREEN_CENTER_POSITION,
         VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
@@ -377,17 +432,17 @@ public open class Camera2D : Node2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_ALIGN, NIL)
   }
 
-  public enum class Camera2DProcessCallback(
+  public enum class AnchorMode(
     id: Long
   ) {
     /**
-     * The camera updates with the `_physics_process` callback.
+     * The camera's position is fixed so that the top-left corner is always at the origin.
      */
-    CAMERA2D_PROCESS_PHYSICS(0),
+    ANCHOR_MODE_FIXED_TOP_LEFT(0),
     /**
-     * The camera updates with the `_process` callback.
+     * The camera's position takes into account vertical/horizontal offsets and the screen size.
      */
-    CAMERA2D_PROCESS_IDLE(1),
+    ANCHOR_MODE_DRAG_CENTER(1),
     ;
 
     public val id: Long
@@ -400,17 +455,17 @@ public open class Camera2D : Node2D() {
     }
   }
 
-  public enum class AnchorMode(
+  public enum class Camera2DProcessCallback(
     id: Long
   ) {
     /**
-     * The camera's position is fixed so that the top-left corner is always at the origin.
+     * The camera updates with the `_physics_process` callback.
      */
-    ANCHOR_MODE_FIXED_TOP_LEFT(0),
+    CAMERA2D_PROCESS_PHYSICS(0),
     /**
-     * The camera's position takes into account vertical/horizontal offsets and the screen size.
+     * The camera updates with the `_process` callback.
      */
-    ANCHOR_MODE_DRAG_CENTER(1),
+    CAMERA2D_PROCESS_IDLE(1),
     ;
 
     public val id: Long

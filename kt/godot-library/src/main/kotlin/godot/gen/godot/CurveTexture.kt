@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -41,12 +42,12 @@ public open class CurveTexture : Texture2D() {
   /**
    * The format the texture should be generated with. When passing a CurveTexture as a input to a [godot.Shader], this may need to be adjusted.
    */
-  public var textureMode: Long
+  public var textureMode: CurveTexture.TextureMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_TEXTURE_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CurveTexture.TextureMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

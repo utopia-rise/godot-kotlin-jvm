@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -45,12 +46,12 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * Controls how this AudioStreamRandomizer picks which AudioStream to play next.
    */
-  public var playbackMode: Long
+  public var playbackMode: AudioStreamRandomizer.PlaybackMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_PLAYBACK_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AudioStreamRandomizer.PlaybackMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

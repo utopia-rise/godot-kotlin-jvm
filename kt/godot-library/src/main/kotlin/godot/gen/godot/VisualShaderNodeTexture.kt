@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -26,12 +27,12 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
    * Determines the source for the lookup. See [enum Source] for options.
    */
-  public var source: Long
+  public var source: VisualShaderNodeTexture.Source
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_GET_SOURCE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeTexture.Source.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -58,12 +59,12 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
    * Specifies the type of the texture if [source] is set to [SOURCE_TEXTURE]. See [enum TextureType] for options.
    */
-  public var textureType: Long
+  public var textureType: VisualShaderNodeTexture.TextureType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_GET_TEXTURE_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeTexture.TextureType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -74,37 +75,6 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE, scriptIndex)
     return true
-  }
-
-  public enum class TextureType(
-    id: Long
-  ) {
-    /**
-     * No hints are added to the uniform declaration.
-     */
-    TYPE_DATA(0),
-    /**
-     * Adds `hint_albedo` as hint to the uniform declaration for proper sRGB to linear conversion.
-     */
-    TYPE_COLOR(1),
-    /**
-     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
-     */
-    TYPE_NORMAL_MAP(2),
-    /**
-     * Represents the size of the [enum TextureType] enum.
-     */
-    TYPE_MAX(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public enum class Source(
@@ -138,6 +108,37 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      * Represents the size of the [enum Source] enum.
      */
     SOURCE_MAX(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TextureType(
+    id: Long
+  ) {
+    /**
+     * No hints are added to the uniform declaration.
+     */
+    TYPE_DATA(0),
+    /**
+     * Adds `hint_albedo` as hint to the uniform declaration for proper sRGB to linear conversion.
+     */
+    TYPE_COLOR(1),
+    /**
+     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
+     */
+    TYPE_NORMAL_MAP(2),
+    /**
+     * Represents the size of the [enum TextureType] enum.
+     */
+    TYPE_MAX(3),
     ;
 
     public val id: Long

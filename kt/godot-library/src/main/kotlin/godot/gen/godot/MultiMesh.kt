@@ -14,6 +14,7 @@ import godot.core.Transform2D
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -50,12 +51,12 @@ public open class MultiMesh : Resource() {
   /**
    * Format of transform used to transform mesh, either 2D or 3D.
    */
-  public var transformFormat: Long
+  public var transformFormat: MultiMesh.TransformFormat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_TRANSFORM_FORMAT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return MultiMesh.TransformFormat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

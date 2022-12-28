@@ -132,21 +132,25 @@ public open class VisualShaderNode internal constructor() : Resource() {
      */
     PORT_TYPE_VECTOR_3D(3),
     /**
+     * 4D vector of floating-point values. Translated to `vec4` type in shader code.
+     */
+    PORT_TYPE_VECTOR_4D(4),
+    /**
      * Boolean type. Translated to `bool` type in shader code.
      */
-    PORT_TYPE_BOOLEAN(4),
+    PORT_TYPE_BOOLEAN(5),
     /**
      * Transform type. Translated to `mat4` type in shader code.
      */
-    PORT_TYPE_TRANSFORM(5),
+    PORT_TYPE_TRANSFORM(6),
     /**
      * Sampler type. Translated to reference of sampler uniform in shader code. Can only be used for input ports in non-uniform nodes.
      */
-    PORT_TYPE_SAMPLER(6),
+    PORT_TYPE_SAMPLER(7),
     /**
      * Represents the size of the [enum PortType] enum.
      */
-    PORT_TYPE_MAX(7),
+    PORT_TYPE_MAX(8),
     ;
 
     public val id: Long

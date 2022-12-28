@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.RECT2
@@ -29,12 +30,12 @@ public open class BackBufferCopy : Node2D() {
   /**
    * Buffer mode. See [enum CopyMode] constants.
    */
-  public var copyMode: Long
+  public var copyMode: BackBufferCopy.CopyMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_COPY_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BackBufferCopy.CopyMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

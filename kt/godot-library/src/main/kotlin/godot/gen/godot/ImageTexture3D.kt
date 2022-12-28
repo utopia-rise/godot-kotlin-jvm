@@ -15,7 +15,6 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -45,7 +44,7 @@ public open class ImageTexture3D : Texture3D() {
     height: Long,
     depth: Long,
     useMipmaps: Boolean,
-    `data`: VariantArray<Any?>
+    `data`: VariantArray<Image>
   ): GodotError {
     TransferContext.writeArguments(LONG to format.id, LONG to width, LONG to height, LONG to depth, BOOL to useMipmaps, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_CREATE, LONG)
@@ -55,7 +54,7 @@ public open class ImageTexture3D : Texture3D() {
   /**
    * Replaces the texture's existing data with the layers specified in `data`. The size of `data` must match the parameters that were used for [create]. In other words, the texture cannot be resized or have its format changed by calling [update].
    */
-  public fun update(`data`: VariantArray<Any?>): Unit {
+  public fun update(`data`: VariantArray<Image>): Unit {
     TransferContext.writeArguments(ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_UPDATE, NIL)
   }

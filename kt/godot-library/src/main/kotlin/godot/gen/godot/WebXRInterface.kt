@@ -27,29 +27,29 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class WebXRInterface internal constructor() : XRInterface() {
+  public val sessionSupported: Signal2<String, Boolean> by signal("sessionMode", "supported")
+
+  public val sessionStarted: Signal0 by signal()
+
   public val sessionEnded: Signal0 by signal()
 
-  public val referenceSpaceReset: Signal0 by signal()
+  public val sessionFailed: Signal1<String> by signal("message")
 
   public val selectstart: Signal1<Long> by signal("controllerId")
+
+  public val select: Signal1<Long> by signal("controllerId")
 
   public val selectend: Signal1<Long> by signal("controllerId")
 
   public val squeezestart: Signal1<Long> by signal("controllerId")
 
-  public val select: Signal1<Long> by signal("controllerId")
-
-  public val sessionFailed: Signal1<String> by signal("message")
-
-  public val visibilityStateChanged: Signal0 by signal()
+  public val squeeze: Signal1<Long> by signal("controllerId")
 
   public val squeezeend: Signal1<Long> by signal("controllerId")
 
-  public val sessionSupported: Signal2<String, Boolean> by signal("sessionMode", "supported")
+  public val visibilityStateChanged: Signal0 by signal()
 
-  public val squeeze: Signal1<Long> by signal("controllerId")
-
-  public val sessionStarted: Signal0 by signal()
+  public val referenceSpaceReset: Signal0 by signal()
 
   public var sessionMode: String
     get() {

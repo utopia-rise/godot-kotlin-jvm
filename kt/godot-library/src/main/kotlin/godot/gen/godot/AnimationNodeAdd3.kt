@@ -7,9 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.NIL
-import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -31,20 +28,7 @@ import kotlin.Suppress
  * - A +add animation to blend with when the blend amount is in the `[0.0, 1.0]` range
  */
 @GodotBaseType
-public open class AnimationNodeAdd3 : AnimationNode() {
-  public var sync: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEADD3_IS_USING_SYNC,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEADD3_SET_USE_SYNC,
-          NIL)
-    }
-
+public open class AnimationNodeAdd3 : AnimationNodeSync() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONNODEADD3, scriptIndex)
     return true

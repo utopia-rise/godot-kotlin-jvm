@@ -145,6 +145,16 @@ public open class Translation : Resource() {
   }
 
   /**
+   * Returns all the messages (translated text).
+   */
+  public fun getTranslatedMessageList(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_TRANSLATED_MESSAGE_LIST, PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
    * Returns the number of existing messages.
    */
   public fun getMessageCount(): Long {

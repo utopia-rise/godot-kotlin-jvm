@@ -12,6 +12,7 @@ import godot.core.Rect2
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -47,6 +48,38 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
+   * Controls how the stylebox's texture will be stretched or tiled horizontally. See [enum AxisStretchMode] for possible values.
+   */
+  public var axisStretchHorizontal: StyleBoxTexture.AxisStretchMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_H_AXIS_STRETCH_MODE, LONG)
+      return StyleBoxTexture.AxisStretchMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_H_AXIS_STRETCH_MODE, NIL)
+    }
+
+  /**
+   * Controls how the stylebox's texture will be stretched or tiled vertically. See [enum AxisStretchMode] for possible values.
+   */
+  public var axisStretchVertical: StyleBoxTexture.AxisStretchMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_V_AXIS_STRETCH_MODE, LONG)
+      return StyleBoxTexture.AxisStretchMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_V_AXIS_STRETCH_MODE, NIL)
+    }
+
+  /**
    * Species a sub-region of the texture to use.
    *
    * This is equivalent to first wrapping the texture in an [godot.AtlasTexture] with the same region.
@@ -62,38 +95,6 @@ public open class StyleBoxTexture : StyleBox() {
       TransferContext.writeArguments(RECT2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_REGION_RECT,
           NIL)
-    }
-
-  /**
-   * Controls how the stylebox's texture will be stretched or tiled horizontally. See [enum AxisStretchMode] for possible values.
-   */
-  public var axisStretchHorizontal: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_H_AXIS_STRETCH_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_H_AXIS_STRETCH_MODE, NIL)
-    }
-
-  /**
-   * Controls how the stylebox's texture will be stretched or tiled vertically. See [enum AxisStretchMode] for possible values.
-   */
-  public var axisStretchVertical: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_V_AXIS_STRETCH_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_V_AXIS_STRETCH_MODE, NIL)
     }
 
   /**
@@ -142,6 +143,15 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   /**
+   * Sets the margin to [size] pixels for all sides.
+   */
+  public fun setMarginSizeAll(size: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to size)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_MARGIN_SIZE_ALL,
+        NIL)
+  }
+
+  /**
    * Returns the margin size of the specified [enum Side].
    */
   public fun getMarginSize(margin: Side): Double {
@@ -167,17 +177,6 @@ public open class StyleBoxTexture : StyleBox() {
     TransferContext.writeArguments(DOUBLE to size)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN_ALL, NIL)
-  }
-
-  public fun setExpandMarginIndividual(
-    sizeLeft: Double,
-    sizeTop: Double,
-    sizeRight: Double,
-    sizeBottom: Double
-  ): Unit {
-    TransferContext.writeArguments(DOUBLE to sizeLeft, DOUBLE to sizeTop, DOUBLE to sizeRight, DOUBLE to sizeBottom)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN_INDIVIDUAL, NIL)
   }
 
   /**

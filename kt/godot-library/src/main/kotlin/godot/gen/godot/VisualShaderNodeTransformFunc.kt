@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -25,12 +26,12 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
   /**
    * The function to be computed. See [enum Function] for options.
    */
-  public var function: Long
+  public var function: VisualShaderNodeTransformFunc.Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMFUNC_GET_FUNCTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeTransformFunc.Function.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
