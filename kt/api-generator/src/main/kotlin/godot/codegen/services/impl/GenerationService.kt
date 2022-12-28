@@ -165,7 +165,7 @@ class GenerationService(
                 .build()
         )
 
-        clazz.methods.forEach { method ->
+        for (method in clazz.methods) {
             if (!jvmMethodToNotGenerate.contains(method.engineIndexName)) {
                 fileSpecBuilder.addProperty(
                     PropertySpec.builder(method.engineIndexName, INT, KModifier.CONST)
@@ -855,17 +855,9 @@ class GenerationService(
 
         val registerMethodForClassFun = FunSpec.builder("registerEngineTypeMethodFor${clazz.name}")
         registerMethodForClassFun.addModifiers(KModifier.PRIVATE)
-        clazz.methods.filter { !it.isGetterOrSetter }.forEach {
-            if (!jvmMethodToNotGenerate.contains(it.engineIndexName)) {
-                registerMethodForClassFun.addEngineTypeMethod(clazz.engineClassDBIndexName, it.internal.name)
-            }
-        }
-        clazz.properties.forEach {
-            if (it.hasValidGetterInClass) {
-                registerMethodForClassFun.addEngineTypeMethod(clazz.engineClassDBIndexName, it.internal.getter)
-            }
-            if (it.hasValidSetterInClass) {
-                registerMethodForClassFun.addEngineTypeMethod(clazz.engineClassDBIndexName, it.internal.setter)
+        for (method in clazz.methods) {
+            if (!jvmMethodToNotGenerate.contains(method.engineIndexName)) {
+                registerMethodForClassFun.addEngineTypeMethod(clazz.engineClassDBIndexName, method.internal.name)
             }
         }
         registrationFileSpec.registrationFile.addFunction(registerMethodForClassFun.build())
