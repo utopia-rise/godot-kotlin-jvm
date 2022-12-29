@@ -55,7 +55,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Partitioning algorithm for creating the navigation mesh polys. See [enum SamplePartitionType] for possible values.
    */
-  public var samplePartitionType: NavigationMesh.SamplePartitionType
+  public var samplePartitionType: SamplePartitionType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -71,7 +71,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for possible values.
    */
-  public var geometryParsedGeometryType: NavigationMesh.ParsedGeometryType
+  public var geometryParsedGeometryType: ParsedGeometryType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -105,7 +105,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The source of the geometry used when baking. See [enum SourceGeometryMode] for possible values.
    */
-  public var geometrySourceGeometryMode: NavigationMesh.SourceGeometryMode
+  public var geometrySourceGeometryMode: SourceGeometryMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

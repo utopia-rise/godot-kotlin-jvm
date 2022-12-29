@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Shader
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL
@@ -56,7 +55,7 @@ public open class Shader : Resource() {
   /**
    * Returns the shader mode for the shader, either [MODE_CANVAS_ITEM], [MODE_SPATIAL] or [MODE_PARTICLES].
    */
-  public fun getMode(): Shader.Mode {
+  public fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_MODE, LONG)
     return Shader.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]

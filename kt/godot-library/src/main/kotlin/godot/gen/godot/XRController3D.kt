@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.XRPositionalTracker
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL

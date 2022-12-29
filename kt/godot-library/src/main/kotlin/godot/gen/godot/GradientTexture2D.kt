@@ -87,7 +87,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The gradient fill type, one of the [enum Fill] values. The texture is filled by interpolating colors starting from [fillFrom] to [fillTo] offsets.
    */
-  public var fill: GradientTexture2D.Fill
+  public var fill: Fill
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL, LONG)
@@ -133,7 +133,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The gradient repeat type, one of the [enum Repeat] values. The texture is filled starting from [fillFrom] to [fillTo] offsets by default, but the gradient fill can be repeated to cover the entire texture.
    */
-  public var repeat: GradientTexture2D.Repeat
+  public var repeat: Repeat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_REPEAT,

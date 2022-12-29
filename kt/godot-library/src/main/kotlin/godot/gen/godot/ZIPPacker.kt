@@ -27,7 +27,7 @@ public open class ZIPPacker : RefCounted() {
     return true
   }
 
-  public fun `open`(path: String, append: ZIPPacker.ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
+  public fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
       GodotError {
     TransferContext.writeArguments(STRING to path, LONG to append.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ZIPPACKER_OPEN, LONG)

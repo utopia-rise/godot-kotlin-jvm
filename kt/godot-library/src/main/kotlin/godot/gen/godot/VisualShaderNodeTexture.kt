@@ -27,7 +27,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
    * Determines the source for the lookup. See [enum Source] for options.
    */
-  public var source: VisualShaderNodeTexture.Source
+  public var source: Source
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -59,7 +59,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
    * Specifies the type of the texture if [source] is set to [SOURCE_TEXTURE]. See [enum TextureType] for options.
    */
-  public var textureType: VisualShaderNodeTexture.TextureType
+  public var textureType: TextureType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

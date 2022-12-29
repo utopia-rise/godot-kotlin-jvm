@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.PhysicsServer3D
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Callable
@@ -156,7 +155,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the type of shape (see [enum ShapeType] constants).
    */
-  public fun shapeGetType(shape: RID): PhysicsServer3D.ShapeType {
+  public fun shapeGetType(shape: RID): ShapeType {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SHAPE_GET_TYPE,
         LONG)
@@ -205,7 +204,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun spaceSetParam(
     space: RID,
-    `param`: PhysicsServer3D.SpaceParameter,
+    `param`: SpaceParameter,
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to space, LONG to param.id, DOUBLE to value)
@@ -216,7 +215,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the value of a space parameter.
    */
-  public fun spaceGetParam(space: RID, `param`: PhysicsServer3D.SpaceParameter): Double {
+  public fun spaceGetParam(space: RID, `param`: SpaceParameter): Double {
     TransferContext.writeArguments(_RID to space, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_GET_PARAM,
         DOUBLE)
@@ -402,7 +401,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaSetParam(
     area: RID,
-    `param`: PhysicsServer3D.AreaParameter,
+    `param`: AreaParameter,
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
@@ -421,7 +420,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns an area parameter value. A list of available parameters is on the [enum AreaParameter] constants.
    */
-  public fun areaGetParam(area: RID, `param`: PhysicsServer3D.AreaParameter): Any? {
+  public fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
     TransferContext.writeArguments(_RID to area, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_PARAM, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -532,7 +531,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the body mode, from one of the [enum BodyMode] constants.
    */
-  public fun bodySetMode(body: RID, mode: PhysicsServer3D.BodyMode): Unit {
+  public fun bodySetMode(body: RID, mode: BodyMode): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_MODE, NIL)
   }
@@ -540,7 +539,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the body mode.
    */
-  public fun bodyGetMode(body: RID): PhysicsServer3D.BodyMode {
+  public fun bodyGetMode(body: RID): BodyMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_MODE, LONG)
     return PhysicsServer3D.BodyMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -749,7 +748,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetParam(
     body: RID,
-    `param`: PhysicsServer3D.BodyParameter,
+    `param`: BodyParameter,
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
@@ -759,7 +758,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the value of a body parameter. A list of available parameters is on the [enum BodyParameter] constants.
    */
-  public fun bodyGetParam(body: RID, `param`: PhysicsServer3D.BodyParameter): Any? {
+  public fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
     TransferContext.writeArguments(_RID to body, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_PARAM, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -779,7 +778,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetState(
     body: RID,
-    state: PhysicsServer3D.BodyState,
+    state: BodyState,
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
@@ -789,7 +788,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns a body state.
    */
-  public fun bodyGetState(body: RID, state: PhysicsServer3D.BodyState): Any? {
+  public fun bodyGetState(body: RID, state: BodyState): Any? {
     TransferContext.writeArguments(_RID to body, LONG to state.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_STATE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -966,7 +965,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetAxisLock(
     body: RID,
-    axis: PhysicsServer3D.BodyAxis,
+    axis: BodyAxis,
     lock: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to axis.id, BOOL to lock)
@@ -977,7 +976,7 @@ public object PhysicsServer3D : Object() {
   /**
    *
    */
-  public fun bodyIsAxisLocked(body: RID, axis: PhysicsServer3D.BodyAxis): Boolean {
+  public fun bodyIsAxisLocked(body: RID, axis: BodyAxis): Boolean {
     TransferContext.writeArguments(_RID to body, LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_IS_AXIS_LOCKED,
         BOOL)
@@ -1140,7 +1139,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun pinJointSetParam(
     joint: RID,
-    `param`: PhysicsServer3D.PinJointParam,
+    `param`: PinJointParam,
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
@@ -1151,7 +1150,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a pin_joint parameter (see [enum PinJointParam] constants).
    */
-  public fun pinJointGetParam(joint: RID, `param`: PhysicsServer3D.PinJointParam): Double {
+  public fun pinJointGetParam(joint: RID, `param`: PinJointParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_GET_PARAM,
         DOUBLE)
@@ -1216,7 +1215,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun hingeJointSetParam(
     joint: RID,
-    `param`: PhysicsServer3D.HingeJointParam,
+    `param`: HingeJointParam,
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
@@ -1227,7 +1226,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a hinge_joint parameter (see [enum HingeJointParam]).
    */
-  public fun hingeJointGetParam(joint: RID, `param`: PhysicsServer3D.HingeJointParam): Double {
+  public fun hingeJointGetParam(joint: RID, `param`: HingeJointParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HINGE_JOINT_GET_PARAM, DOUBLE)
@@ -1239,7 +1238,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun hingeJointSetFlag(
     joint: RID,
-    flag: PhysicsServer3D.HingeJointFlag,
+    flag: HingeJointFlag,
     enabled: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id, BOOL to enabled)
@@ -1250,7 +1249,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a hinge_joint flag (see [enum HingeJointFlag] constants).
    */
-  public fun hingeJointGetFlag(joint: RID, flag: PhysicsServer3D.HingeJointFlag): Boolean {
+  public fun hingeJointGetFlag(joint: RID, flag: HingeJointFlag): Boolean {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HINGE_JOINT_GET_FLAG, BOOL)
@@ -1277,7 +1276,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun sliderJointSetParam(
     joint: RID,
-    `param`: PhysicsServer3D.SliderJointParam,
+    `param`: SliderJointParam,
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
@@ -1288,7 +1287,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a slider_joint parameter (see [enum SliderJointParam] constants).
    */
-  public fun sliderJointGetParam(joint: RID, `param`: PhysicsServer3D.SliderJointParam): Double {
+  public fun sliderJointGetParam(joint: RID, `param`: SliderJointParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SLIDER_JOINT_GET_PARAM, DOUBLE)
@@ -1315,7 +1314,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun coneTwistJointSetParam(
     joint: RID,
-    `param`: PhysicsServer3D.ConeTwistJointParam,
+    `param`: ConeTwistJointParam,
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
@@ -1326,8 +1325,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a cone_twist_joint parameter (see [enum ConeTwistJointParam] constants).
    */
-  public fun coneTwistJointGetParam(joint: RID, `param`: PhysicsServer3D.ConeTwistJointParam):
-      Double {
+  public fun coneTwistJointGetParam(joint: RID, `param`: ConeTwistJointParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CONE_TWIST_JOINT_GET_PARAM, DOUBLE)
@@ -1337,7 +1335,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the type of the Joint3D.
    */
-  public fun jointGetType(joint: RID): PhysicsServer3D.JointType {
+  public fun jointGetType(joint: RID): JointType {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_GET_TYPE,
         LONG)
@@ -1384,7 +1382,7 @@ public object PhysicsServer3D : Object() {
   public fun generic6dofJointSetParam(
     joint: RID,
     axis: Vector3.Axis,
-    `param`: PhysicsServer3D.G6DOFJointAxisParam,
+    `param`: G6DOFJointAxisParam,
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id, DOUBLE to value)
@@ -1398,7 +1396,7 @@ public object PhysicsServer3D : Object() {
   public fun generic6dofJointGetParam(
     joint: RID,
     axis: Vector3.Axis,
-    `param`: PhysicsServer3D.G6DOFJointAxisParam
+    `param`: G6DOFJointAxisParam
   ): Double {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id)
     TransferContext.callMethod(rawPtr,
@@ -1412,7 +1410,7 @@ public object PhysicsServer3D : Object() {
   public fun generic6dofJointSetFlag(
     joint: RID,
     axis: Vector3.Axis,
-    flag: PhysicsServer3D.G6DOFJointAxisFlag,
+    flag: G6DOFJointAxisFlag,
     enable: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to flag.id, BOOL to enable)
@@ -1426,7 +1424,7 @@ public object PhysicsServer3D : Object() {
   public fun generic6dofJointGetFlag(
     joint: RID,
     axis: Vector3.Axis,
-    flag: PhysicsServer3D.G6DOFJointAxisFlag
+    flag: G6DOFJointAxisFlag
   ): Boolean {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to flag.id)
     TransferContext.callMethod(rawPtr,
@@ -1453,7 +1451,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns information about the current state of the 3D physics engine. See [enum ProcessInfo] for a list of available states.
    */
-  public fun getProcessInfo(processInfo: PhysicsServer3D.ProcessInfo): Long {
+  public fun getProcessInfo(processInfo: ProcessInfo): Long {
     TransferContext.writeArguments(LONG to processInfo.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GET_PROCESS_INFO,
         LONG)

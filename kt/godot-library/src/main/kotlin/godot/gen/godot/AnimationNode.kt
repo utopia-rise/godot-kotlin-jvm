@@ -212,7 +212,7 @@ public open class AnimationNode : Resource() {
     seek: Boolean,
     seekRoot: Boolean,
     blend: Double,
-    filter: AnimationNode.FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
+    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
     sync: Boolean = true
   ): Double {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, BOOL to seekRoot, DOUBLE to blend, LONG to filter.id, BOOL to sync)
@@ -229,7 +229,7 @@ public open class AnimationNode : Resource() {
     seek: Boolean,
     seekRoot: Boolean,
     blend: Double,
-    filter: AnimationNode.FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
+    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
     sync: Boolean = true
   ): Double {
     TransferContext.writeArguments(LONG to inputIndex, DOUBLE to time, BOOL to seek, BOOL to seekRoot, DOUBLE to blend, LONG to filter.id, BOOL to sync)

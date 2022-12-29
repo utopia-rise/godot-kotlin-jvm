@@ -53,7 +53,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    * Higher resolutions can represent small details more accurately in large scenes, at the cost of lower performance. If [updateMode] is [UPDATE_MODE_ALWAYS], consider using the lowest resolution possible.
    */
-  public var resolution: GPUParticlesCollisionHeightField3D.Resolution
+  public var resolution: Resolution
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -69,7 +69,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    * The update policy to use for the generated heightmap.
    */
-  public var updateMode: GPUParticlesCollisionHeightField3D.UpdateMode
+  public var updateMode: UpdateMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

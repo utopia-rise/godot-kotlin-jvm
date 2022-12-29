@@ -47,7 +47,7 @@ public open class AspectRatioContainer : Container() {
   /**
    * The stretch mode used to align child controls.
    */
-  public var stretchMode: AspectRatioContainer.StretchMode
+  public var stretchMode: StretchMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -63,7 +63,7 @@ public open class AspectRatioContainer : Container() {
   /**
    * Specifies the horizontal relative position of child controls.
    */
-  public var alignmentHorizontal: AspectRatioContainer.AlignmentMode
+  public var alignmentHorizontal: AlignmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -79,7 +79,7 @@ public open class AspectRatioContainer : Container() {
   /**
    * Specifies the vertical relative position of child controls.
    */
-  public var alignmentVertical: AspectRatioContainer.AlignmentMode
+  public var alignmentVertical: AlignmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

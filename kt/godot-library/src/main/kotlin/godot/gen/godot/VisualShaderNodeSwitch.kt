@@ -26,7 +26,7 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
   /**
    * A type of operands and returned value.
    */
-  public var opType: VisualShaderNodeSwitch.OpType
+  public var opType: OpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

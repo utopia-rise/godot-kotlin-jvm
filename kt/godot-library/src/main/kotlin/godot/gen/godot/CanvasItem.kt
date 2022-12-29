@@ -160,7 +160,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Allows the current node to clip children nodes, essentially acting as a mask.
    */
-  public var clipChildren: CanvasItem.ClipChildrenMode
+  public var clipChildren: ClipChildrenMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_CLIP_CHILDREN_MODE,
@@ -206,7 +206,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The texture filtering mode to use on this [godot.CanvasItem].
    */
-  public var textureFilter: CanvasItem.TextureFilter
+  public var textureFilter: TextureFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TEXTURE_FILTER,
@@ -222,7 +222,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The texture repeating mode to use on this [godot.CanvasItem].
    */
-  public var textureRepeat: CanvasItem.TextureRepeat
+  public var textureRepeat: TextureRepeat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TEXTURE_REPEAT,

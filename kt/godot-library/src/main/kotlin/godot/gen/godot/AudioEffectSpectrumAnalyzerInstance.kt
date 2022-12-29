@@ -35,8 +35,7 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
   public fun getMagnitudeForFrequencyRange(
     fromHz: Double,
     toHz: Double,
-    mode: AudioEffectSpectrumAnalyzerInstance.MagnitudeMode =
-        AudioEffectSpectrumAnalyzerInstance.MagnitudeMode.MAGNITUDE_MAX
+    mode: MagnitudeMode = AudioEffectSpectrumAnalyzerInstance.MagnitudeMode.MAGNITUDE_MAX
   ): Vector2 {
     TransferContext.writeArguments(DOUBLE to fromHz, DOUBLE to toHz, LONG to mode.id)
     TransferContext.callMethod(rawPtr,

@@ -26,7 +26,7 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
   /**
    * An operator to be applied to the inputs. See [enum Operator] for options.
    */
-  public var `operator`: VisualShaderNodeFloatOp.Operator
+  public var `operator`: Operator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Control
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -295,7 +294,7 @@ public open class Tree : Control() {
   /**
    * Allows single or multiple selection. See the [enum SelectMode] constants.
    */
-  public var selectMode: Tree.SelectMode
+  public var selectMode: SelectMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SELECT_MODE, LONG)

@@ -55,7 +55,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Particles will be emitted inside this region. Use [enum EmissionShape] constants for values.
    */
-  public var emissionShape: ParticleProcessMaterial.EmissionShape
+  public var emissionShape: EmissionShape
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -436,7 +436,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    *
    */
-  public var subEmitterMode: ParticleProcessMaterial.SubEmitterMode
+  public var subEmitterMode: SubEmitterMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -537,7 +537,7 @@ public open class ParticleProcessMaterial : Material() {
    *
    * **Note:** Particles can only collide with [godot.GPUParticlesCollision3D] nodes, not [godot.PhysicsBody3D] nodes. To make particles collide with various objects, you can add [godot.GPUParticlesCollision3D] nodes as children of [godot.PhysicsBody3D] nodes.
    */
-  public var collisionMode: ParticleProcessMaterial.CollisionMode
+  public var collisionMode: CollisionMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -606,7 +606,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Sets the minimum value range for the given parameter.
    */
-  public fun setParamMin(`param`: ParticleProcessMaterial.Parameter, `value`: Double): Unit {
+  public fun setParamMin(`param`: Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
@@ -615,7 +615,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Returns the minimum value range for the given parameter.
    */
-  public fun getParamMin(`param`: ParticleProcessMaterial.Parameter): Double {
+  public fun getParamMin(`param`: Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
@@ -625,7 +625,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Sets the maximum value range for the given parameter.
    */
-  public fun setParamMax(`param`: ParticleProcessMaterial.Parameter, `value`: Double): Unit {
+  public fun setParamMax(`param`: Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
@@ -634,7 +634,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Returns the maximum value range for the given parameter.
    */
-  public fun getParamMax(`param`: ParticleProcessMaterial.Parameter): Double {
+  public fun getParamMax(`param`: Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
@@ -644,7 +644,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Sets the [godot.Texture2D] for the specified [enum Parameter].
    */
-  public fun setParamTexture(`param`: ParticleProcessMaterial.Parameter, texture: Texture2D): Unit {
+  public fun setParamTexture(`param`: Parameter, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
@@ -653,7 +653,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Returns the [godot.Texture2D] used by the specified parameter.
    */
-  public fun getParamTexture(`param`: ParticleProcessMaterial.Parameter): Texture2D? {
+  public fun getParamTexture(`param`: Parameter): Texture2D? {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
@@ -663,8 +663,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * If `true`, enables the specified particle flag. See [enum ParticleFlags] for options.
    */
-  public fun setParticleFlag(particleFlag: ParticleProcessMaterial.ParticleFlags, enable: Boolean):
-      Unit {
+  public fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARTICLE_FLAG, NIL)
@@ -673,7 +672,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Returns `true` if the specified particle flag is enabled. See [enum ParticleFlags] for options.
    */
-  public fun getParticleFlag(particleFlag: ParticleProcessMaterial.ParticleFlags): Boolean {
+  public fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARTICLE_FLAG, BOOL)

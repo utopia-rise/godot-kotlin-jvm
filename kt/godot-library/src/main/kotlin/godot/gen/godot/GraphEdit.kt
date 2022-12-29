@@ -196,7 +196,7 @@ public open class GraphEdit : Control() {
   /**
    * Defines the control scheme for panning with mouse wheel.
    */
-  public var panningScheme: GraphEdit.PanningScheme
+  public var panningScheme: PanningScheme
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_PANNING_SCHEME,

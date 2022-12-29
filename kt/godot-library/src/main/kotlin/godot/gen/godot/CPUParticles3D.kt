@@ -225,7 +225,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public var drawOrder: CPUParticles3D.DrawOrder
+  public var drawOrder: DrawOrder
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_DRAW_ORDER,
@@ -255,7 +255,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particles will be emitted inside this region. See [enum EmissionShape] for possible values.
    */
-  public var emissionShape: CPUParticles3D.EmissionShape
+  public var emissionShape: EmissionShape
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_SHAPE,
@@ -605,7 +605,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the minimum value for the given parameter.
    */
-  public fun setParamMin(`param`: CPUParticles3D.Parameter, `value`: Double): Unit {
+  public fun setParamMin(`param`: Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
   }
@@ -613,7 +613,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the minimum value range for the given parameter.
    */
-  public fun getParamMin(`param`: CPUParticles3D.Parameter): Double {
+  public fun getParamMin(`param`: Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
         DOUBLE)
@@ -623,7 +623,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the maximum value for the given parameter.
    */
-  public fun setParamMax(`param`: CPUParticles3D.Parameter, `value`: Double): Unit {
+  public fun setParamMax(`param`: Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
   }
@@ -631,7 +631,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the maximum value range for the given parameter.
    */
-  public fun getParamMax(`param`: CPUParticles3D.Parameter): Double {
+  public fun getParamMax(`param`: Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
         DOUBLE)
@@ -641,7 +641,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the [godot.Curve] of the parameter specified by [enum Parameter].
    */
-  public fun setParamCurve(`param`: CPUParticles3D.Parameter, curve: Curve): Unit {
+  public fun setParamCurve(`param`: Parameter, curve: Curve): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to curve)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE, NIL)
   }
@@ -649,7 +649,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the [godot.Curve] of the parameter specified by [enum Parameter].
    */
-  public fun getParamCurve(`param`: CPUParticles3D.Parameter): Curve? {
+  public fun getParamCurve(`param`: Parameter): Curve? {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
         OBJECT)
@@ -659,7 +659,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Enables or disables the given particle flag (see [enum ParticleFlags] for options).
    */
-  public fun setParticleFlag(particleFlag: CPUParticles3D.ParticleFlags, enable: Boolean): Unit {
+  public fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARTICLE_FLAG,
         NIL)
@@ -668,7 +668,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the enabled state of the given particle flag (see [enum ParticleFlags] for options).
    */
-  public fun getParticleFlag(particleFlag: CPUParticles3D.ParticleFlags): Boolean {
+  public fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARTICLE_FLAG,
         BOOL)

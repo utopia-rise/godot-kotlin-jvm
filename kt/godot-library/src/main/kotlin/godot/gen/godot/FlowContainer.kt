@@ -29,7 +29,7 @@ public open class FlowContainer : Container() {
   /**
    * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN], [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
-  public var alignment: FlowContainer.AlignmentMode
+  public var alignment: AlignmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FLOWCONTAINER_GET_ALIGNMENT, LONG)

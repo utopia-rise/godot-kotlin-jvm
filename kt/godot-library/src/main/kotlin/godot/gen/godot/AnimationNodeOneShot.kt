@@ -32,7 +32,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   /**
    *
    */
-  public var mixMode: AnimationNodeOneShot.MixMode
+  public var mixMode: MixMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_MIX_MODE,

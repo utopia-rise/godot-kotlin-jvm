@@ -26,7 +26,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
   /**
    * The function to be computed. See [enum Function] for options.
    */
-  public var function: VisualShaderNodeTransformFunc.Function
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

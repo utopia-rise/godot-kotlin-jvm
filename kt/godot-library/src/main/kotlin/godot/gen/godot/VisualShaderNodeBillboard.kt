@@ -27,7 +27,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   /**
    * Controls how the object faces the camera. See [enum BillboardType].
    */
-  public var billboardType: VisualShaderNodeBillboard.BillboardType
+  public var billboardType: BillboardType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

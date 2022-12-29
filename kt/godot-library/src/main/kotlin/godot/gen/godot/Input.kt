@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Input
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantArray
@@ -424,12 +423,12 @@ public object Input : Object() {
     return MouseButton.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun setMouseMode(mode: Input.MouseMode): Unit {
+  public fun setMouseMode(mode: MouseMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MOUSE_MODE, NIL)
   }
 
-  public fun getMouseMode(): Input.MouseMode {
+  public fun getMouseMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG)
     return Input.MouseMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -472,8 +471,7 @@ public object Input : Object() {
    *
    * **Note:** This method generates an [godot.InputEventMouseMotion] to update cursor immediately.
    */
-  public fun setDefaultCursorShape(shape: Input.CursorShape = Input.CursorShape.CURSOR_ARROW):
-      Unit {
+  public fun setDefaultCursorShape(shape: CursorShape = Input.CursorShape.CURSOR_ARROW): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_DEFAULT_CURSOR_SHAPE, NIL)
   }
@@ -481,7 +479,7 @@ public object Input : Object() {
   /**
    * Returns the currently assigned cursor shape (see [enum CursorShape]).
    */
-  public fun getCurrentCursorShape(): Input.CursorShape {
+  public fun getCurrentCursorShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CURRENT_CURSOR_SHAPE,
         LONG)
@@ -501,7 +499,7 @@ public object Input : Object() {
    */
   public fun setCustomMouseCursor(
     image: Resource,
-    shape: Input.CursorShape = Input.CursorShape.CURSOR_ARROW,
+    shape: CursorShape = Input.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to shape.id, VECTOR2 to hotspot)

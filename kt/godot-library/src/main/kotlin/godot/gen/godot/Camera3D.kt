@@ -45,7 +45,7 @@ public open class Camera3D : Node3D() {
   /**
    * The axis to lock during [fov]/[size] adjustments. Can be either [KEEP_WIDTH] or [KEEP_HEIGHT].
    */
-  public var keepAspect: Camera3D.KeepAspect
+  public var keepAspect: KeepAspect
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_KEEP_ASPECT_MODE,
@@ -131,7 +131,7 @@ public open class Camera3D : Node3D() {
   /**
    * If not [DOPPLER_TRACKING_DISABLED], this camera will simulate the [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) for objects changed in particular `_process` methods. See [enum DopplerTracking] for possible values.
    */
-  public var dopplerTracking: Camera3D.DopplerTracking
+  public var dopplerTracking: DopplerTracking
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_DOPPLER_TRACKING,
@@ -147,7 +147,7 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's projection mode. In [PROJECTION_PERSPECTIVE] mode, objects' Z distance from the camera's local space scales their perceived size.
    */
-  public var projection: Camera3D.ProjectionType
+  public var projection: ProjectionType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PROJECTION, LONG)

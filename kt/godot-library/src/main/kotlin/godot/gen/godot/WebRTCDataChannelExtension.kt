@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.WebRTCDataChannel
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import kotlin.Boolean

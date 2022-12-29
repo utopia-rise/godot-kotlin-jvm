@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.NativeExtensionManager
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.VariantType.BOOL
@@ -35,7 +34,7 @@ public object NativeExtensionManager : Object() {
   /**
    *
    */
-  public fun loadExtension(path: String): NativeExtensionManager.LoadStatus {
+  public fun loadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_LOAD_EXTENSION, LONG)
@@ -45,7 +44,7 @@ public object NativeExtensionManager : Object() {
   /**
    *
    */
-  public fun reloadExtension(path: String): NativeExtensionManager.LoadStatus {
+  public fun reloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_RELOAD_EXTENSION, LONG)
@@ -55,7 +54,7 @@ public object NativeExtensionManager : Object() {
   /**
    *
    */
-  public fun unloadExtension(path: String): NativeExtensionManager.LoadStatus {
+  public fun unloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_UNLOAD_EXTENSION, LONG)

@@ -27,7 +27,7 @@ public open class CanvasItemMaterial : Material() {
   /**
    * The manner in which a material's rendering is applied to underlying textures.
    */
-  public var blendMode: CanvasItemMaterial.BlendMode
+  public var blendMode: BlendMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_BLEND_MODE,
@@ -43,7 +43,7 @@ public open class CanvasItemMaterial : Material() {
   /**
    * The manner in which material reacts to lighting.
    */
-  public var lightMode: CanvasItemMaterial.LightMode
+  public var lightMode: LightMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_LIGHT_MODE,

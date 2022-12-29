@@ -77,7 +77,7 @@ public open class AudioEffectFilter : AudioEffect() {
   /**
    *
    */
-  public var db: AudioEffectFilter.FilterDB
+  public var db: FilterDB
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_GET_DB, LONG)

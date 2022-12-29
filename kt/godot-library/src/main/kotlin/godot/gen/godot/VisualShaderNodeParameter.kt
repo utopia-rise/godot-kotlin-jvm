@@ -44,7 +44,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   /**
    *
    */
-  public var qualifier: VisualShaderNodeParameter.Qualifier
+  public var qualifier: Qualifier
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

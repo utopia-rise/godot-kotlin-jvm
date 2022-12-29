@@ -94,7 +94,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   /**
    * The pathfinding algorithm used in the path query.
    */
-  public var pathfindingAlgorithm: NavigationPathQueryParameters2D.PathfindingAlgorithm
+  public var pathfindingAlgorithm: PathfindingAlgorithm
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -110,7 +110,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   /**
    * The path postprocessing applied to the raw path corridor found by the [pathfindingAlgorithm].
    */
-  public var pathPostprocessing: NavigationPathQueryParameters2D.PathPostProcessing
+  public var pathPostprocessing: PathPostProcessing
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

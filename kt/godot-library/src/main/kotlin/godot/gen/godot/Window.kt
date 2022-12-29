@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Window
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedStringArray
@@ -168,7 +167,7 @@ public open class Window : Viewport() {
    *
    * **Note:** Fullscreen mode is not exclusive full screen on Windows and Linux.
    */
-  public var mode: Window.Mode
+  public var mode: Mode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MODE, LONG)
@@ -306,7 +305,7 @@ public open class Window : Viewport() {
   /**
    * Specifies how the content is scaled when the [godot.Window] is resized.
    */
-  public var contentScaleMode: Window.ContentScaleMode
+  public var contentScaleMode: ContentScaleMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_MODE,
@@ -322,7 +321,7 @@ public open class Window : Viewport() {
   /**
    * Specifies how the content's aspect behaves when the [godot.Window] is resized. The base aspect is determined by [contentScaleSize].
    */
-  public var contentScaleAspect: Window.ContentScaleAspect
+  public var contentScaleAspect: ContentScaleAspect
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_ASPECT,
@@ -422,7 +421,7 @@ public open class Window : Viewport() {
   /**
    * Sets a specified window flag.
    */
-  public fun setFlag(flag: Window.Flags, enabled: Boolean): Unit {
+  public fun setFlag(flag: Flags, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
   }
@@ -430,7 +429,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if the [flag] is set.
    */
-  public fun getFlag(flag: Window.Flags): Boolean {
+  public fun getFlag(flag: Flags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -724,7 +723,7 @@ public open class Window : Viewport() {
   /**
    * Sets layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew).
    */
-  public fun setLayoutDirection(direction: Window.LayoutDirection): Unit {
+  public fun setLayoutDirection(direction: LayoutDirection): Unit {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_LAYOUT_DIRECTION, NIL)
   }
@@ -732,7 +731,7 @@ public open class Window : Viewport() {
   /**
    * Returns layout direction and text writing direction.
    */
-  public fun getLayoutDirection(): Window.LayoutDirection {
+  public fun getLayoutDirection(): LayoutDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_LAYOUT_DIRECTION, LONG)
     return Window.LayoutDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]

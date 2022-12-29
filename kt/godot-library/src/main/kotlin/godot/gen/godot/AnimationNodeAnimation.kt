@@ -47,7 +47,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
    * Determines the playback direction of the animation.
    */
-  public var playMode: AnimationNodeAnimation.PlayMode
+  public var playMode: PlayMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

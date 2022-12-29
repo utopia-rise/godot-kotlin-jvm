@@ -94,7 +94,7 @@ public open class ScrollContainer : Container() {
   /**
    * Controls whether horizontal scrollbar can be used and when it should be visible. See [enum ScrollMode] for options.
    */
-  public var horizontalScrollMode: ScrollContainer.ScrollMode
+  public var horizontalScrollMode: ScrollMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -110,7 +110,7 @@ public open class ScrollContainer : Container() {
   /**
    * Controls whether vertical scrollbar can be used and when it should be visible. See [enum ScrollMode] for options.
    */
-  public var verticalScrollMode: ScrollContainer.ScrollMode
+  public var verticalScrollMode: ScrollMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

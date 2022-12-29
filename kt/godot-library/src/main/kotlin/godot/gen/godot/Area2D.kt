@@ -173,7 +173,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * Override mode for gravity calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public var gravitySpaceOverride: Area2D.SpaceOverride
+  public var gravitySpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -264,7 +264,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * Override mode for linear damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public var linearDampSpaceOverride: Area2D.SpaceOverride
+  public var linearDampSpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -296,7 +296,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * Override mode for angular damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public var angularDampSpaceOverride: Area2D.SpaceOverride
+  public var angularDampSpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

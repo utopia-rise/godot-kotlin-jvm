@@ -26,7 +26,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   /**
    * The multiplication type to be performed. See [enum Operator] for options.
    */
-  public var `operator`: VisualShaderNodeTransformVecMult.Operator
+  public var `operator`: Operator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.SkeletonProfile
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform3D
@@ -205,7 +204,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the tail direction of the bone at [boneIdx].
    */
-  public fun getTailDirection(boneIdx: Long): SkeletonProfile.TailDirection {
+  public fun getTailDirection(boneIdx: Long): TailDirection {
     TransferContext.writeArguments(LONG to boneIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_TAIL_DIRECTION,
         LONG)
@@ -217,7 +216,7 @@ public open class SkeletonProfile : Resource() {
    *
    * **Note:** This only specifies the method of calculation. The actual coordinates required should be stored in an external skeleton, so the calculation itself needs to be done externally.
    */
-  public fun setTailDirection(boneIdx: Long, tailDirection: SkeletonProfile.TailDirection): Unit {
+  public fun setTailDirection(boneIdx: Long, tailDirection: TailDirection): Unit {
     TransferContext.writeArguments(LONG to boneIdx, LONG to tailDirection.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_TAIL_DIRECTION,
         NIL)

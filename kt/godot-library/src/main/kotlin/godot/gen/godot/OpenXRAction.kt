@@ -35,7 +35,7 @@ public open class OpenXRAction : Resource() {
           NIL)
     }
 
-  public var actionType: OpenXRAction.ActionType
+  public var actionType: ActionType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_ACTION_TYPE,

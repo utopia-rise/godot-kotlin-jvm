@@ -26,7 +26,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   /**
    * A type of operands and returned value. See [enum OpType] for options.
    */
-  public var opType: VisualShaderNodeDerivativeFunc.OpType
+  public var opType: OpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -42,7 +42,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   /**
    * A derivative function type. See [enum Function] for options.
    */
-  public var function: VisualShaderNodeDerivativeFunc.Function
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

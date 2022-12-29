@@ -26,7 +26,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
   /**
    * The comparison function. See [enum Function] for options.
    */
-  public var function: VisualShaderNodeIs.Function
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEIS_GET_FUNCTION,

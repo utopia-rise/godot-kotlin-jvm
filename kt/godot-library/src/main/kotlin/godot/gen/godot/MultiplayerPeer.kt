@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.MultiplayerPeer
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
@@ -64,7 +63,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * The manner in which to send packets to the target peer. See [enum TransferMode], and the [setTargetPeer] method.
    */
-  public var transferMode: MultiplayerPeer.TransferMode
+  public var transferMode: TransferMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_TRANSFER_MODE,
@@ -134,7 +133,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Returns the [enum MultiplayerPeer.TransferMode] the remote peer used to send the next available packet. See [godot.PacketPeer.getAvailablePacketCount].
    */
-  public fun getPacketMode(): MultiplayerPeer.TransferMode {
+  public fun getPacketMode(): TransferMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_PACKET_MODE,
         LONG)
@@ -169,7 +168,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Returns the current state of the connection. See [enum ConnectionStatus].
    */
-  public fun getConnectionStatus(): MultiplayerPeer.ConnectionStatus {
+  public fun getConnectionStatus(): ConnectionStatus {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_CONNECTION_STATUS, LONG)

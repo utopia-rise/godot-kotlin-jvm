@@ -24,7 +24,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
   /**
    * A base type.
    */
-  public var opType: VisualShaderNodeVectorBase.OpType
+  public var opType: OpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

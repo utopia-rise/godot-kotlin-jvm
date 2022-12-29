@@ -193,7 +193,7 @@ public open class AnimationPlayer : Node() {
   /**
    * The process notification in which to update animations.
    */
-  public var playbackProcessMode: AnimationPlayer.AnimationProcessCallback
+  public var playbackProcessMode: AnimationProcessCallback
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -255,7 +255,7 @@ public open class AnimationPlayer : Node() {
   /**
    * The call mode to use for Call Method tracks.
    */
-  public var methodCallMode: AnimationPlayer.AnimationMethodCallMode
+  public var methodCallMode: AnimationMethodCallMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

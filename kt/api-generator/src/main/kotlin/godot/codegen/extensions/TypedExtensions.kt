@@ -8,12 +8,14 @@ import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait
 import godot.codegen.traits.WithDefaultValueTrait
 
+private const val enumPrefix = "enum::"
+
 fun TypedTrait.isCoreType() = isTypedArray() || GodotTypes.coreTypes.find { s -> s == this.type } != null
 fun TypedTrait.isPrimitive() = GodotTypes.primitives.find { s -> s == this.type } != null
 fun TypedTrait.isCoreTypeReimplementedInKotlin() = GodotTypes.coreTypesReimplementedInKotlin.find { s ->
     s == this.type
 } != null
-fun TypedTrait.isEnum() = type?.startsWith("enum::") ?: false
+fun TypedTrait.isEnum() = type?.startsWith(enumPrefix) ?: false
 fun TypedTrait.isBitField() = type?.startsWith("bitfield::") ?: false
 fun TypedTrait.isTypedArray() = type?.startsWith(GodotTypes.typedArray) ?: false
 
@@ -34,7 +36,8 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
         }
         type == GodotTypes.error -> ClassTypeNameWrapper(GODOT_ERROR)
         isEnum() -> {
-            if (type == GodotTypes.variantType) {
+            val enumType = type!!.removePrefix(enumPrefix)
+            if (enumType == GodotTypes.variantType) {
                 ClassTypeNameWrapper(
                     ClassName(
                         godotCorePackage,
@@ -42,10 +45,14 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
                     )
                 )
             } else {
+                val containerAndEnum = enumType.split('.')
+                val packageName = object : TypedTrait {
+                    override val type = containerAndEnum.first()
+                }.getTypeClassName().className.packageName
                 ClassTypeNameWrapper(
                     ClassName(
-                        godotApiPackage,
-                        type!!.replace("enum::", "")
+                        packageName,
+                        containerAndEnum
                     )
                 )
             }

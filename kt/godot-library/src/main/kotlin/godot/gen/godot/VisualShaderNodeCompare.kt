@@ -26,7 +26,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * The type to be used in the comparison. See [enum ComparisonType] for options.
    */
-  public var type: VisualShaderNodeCompare.ComparisonType
+  public var type: ComparisonType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -42,7 +42,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * A comparison function. See [enum Function] for options.
    */
-  public var function: VisualShaderNodeCompare.Function
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * Extra condition which is applied if [type] is set to [godot.CTYPE_VECTOR_3D].
    */
-  public var condition: VisualShaderNodeCompare.Condition
+  public var condition: Condition
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

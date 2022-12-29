@@ -40,7 +40,7 @@ public open class VoxelGI : VisualInstance3D() {
   /**
    * Number of times to subdivide the grid that the [godot.VoxelGI] operates on. A higher number results in finer detail and thus higher visual quality, while lower numbers result in better performance.
    */
-  public var subdiv: VoxelGI.Subdiv
+  public var subdiv: Subdiv
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_SUBDIV, LONG)

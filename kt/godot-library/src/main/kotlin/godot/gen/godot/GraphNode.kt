@@ -207,7 +207,7 @@ public open class GraphNode : Container() {
   /**
    * Sets the overlay shown above the GraphNode. See [enum Overlay].
    */
-  public var overlay: GraphNode.Overlay
+  public var overlay: Overlay
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OVERLAY, LONG)

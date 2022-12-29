@@ -204,7 +204,7 @@ public open class SoftBody3D : MeshInstance3D() {
   /**
    * Defines the behavior in physics when [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes.
    */
-  public var disableMode: SoftBody3D.DisableMode
+  public var disableMode: DisableMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY3D_GET_DISABLE_MODE, LONG)

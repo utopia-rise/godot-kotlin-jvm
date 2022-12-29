@@ -108,7 +108,7 @@ public open class ENetConnection : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BROADCAST, NIL)
   }
 
-  public fun compress(mode: ENetConnection.CompressionMode): Unit {
+  public fun compress(mode: CompressionMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_COMPRESS, NIL)
   }
@@ -137,7 +137,7 @@ public open class ENetConnection : RefCounted() {
         ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_REFUSE_NEW_CONNECTIONS, NIL)
   }
 
-  public fun popStatistic(statistic: ENetConnection.HostStatistic): Double {
+  public fun popStatistic(statistic: HostStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_POP_STATISTIC,
         DOUBLE)

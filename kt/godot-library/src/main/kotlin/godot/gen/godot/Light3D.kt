@@ -98,7 +98,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    *
    * **Note:** Meshes' global illumination mode will also affect the global illumination rendering. See [godot.GeometryInstance3D.giMode].
    */
-  public var lightBakeMode: Light3D.BakeMode
+  public var lightBakeMode: BakeMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_BAKE_MODE, LONG)
@@ -247,7 +247,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * Sets the value of the specified [enum Light3D.Param] parameter.
    */
-  public fun setParam(`param`: Light3D.Param, `value`: Double): Unit {
+  public fun setParam(`param`: Param, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
   }
@@ -255,7 +255,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * Returns the value of the specified [enum Light3D.Param] parameter.
    */
-  public fun getParam(`param`: Light3D.Param): Double {
+  public fun getParam(`param`: Param): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double

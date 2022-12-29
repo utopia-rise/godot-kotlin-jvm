@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.CameraFeed
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
@@ -86,7 +85,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * Returns the position of camera on the device.
    */
-  public fun getPosition(): CameraFeed.FeedPosition {
+  public fun getPosition(): FeedPosition {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_POSITION, LONG)
     return CameraFeed.FeedPosition.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -95,7 +94,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * Returns feed image data type.
    */
-  public fun getDatatype(): CameraFeed.FeedDataType {
+  public fun getDatatype(): FeedDataType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_DATATYPE, LONG)
     return CameraFeed.FeedDataType.values()[TransferContext.readReturnValue(JVM_INT) as Int]

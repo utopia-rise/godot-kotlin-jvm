@@ -65,7 +65,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * Decides if audio should get quieter with distance linearly, quadratically, logarithmically, or not be affected by distance, effectively disabling attenuation.
    */
-  public var attenuationModel: AudioStreamPlayer3D.AttenuationModel
+  public var attenuationModel: AttenuationModel
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -351,7 +351,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * Decides in which step the Doppler effect should be calculated.
    */
-  public var dopplerTracking: AudioStreamPlayer3D.DopplerTracking
+  public var dopplerTracking: DopplerTracking
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

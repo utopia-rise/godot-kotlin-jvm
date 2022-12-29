@@ -32,7 +32,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint type. See [enum JointType] for possible values.
    */
-  public var jointType: PhysicalBone3D.JointType
+  public var jointType: JointType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_TYPE,
@@ -171,7 +171,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
    */
-  public var linearDampMode: PhysicalBone3D.DampMode
+  public var linearDampMode: DampMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -205,7 +205,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
    */
-  public var angularDampMode: PhysicalBone3D.DampMode
+  public var angularDampMode: DampMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

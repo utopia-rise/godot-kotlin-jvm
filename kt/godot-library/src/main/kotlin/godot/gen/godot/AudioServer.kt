@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.AudioServer
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
@@ -351,7 +350,7 @@ public object AudioServer : Object() {
   /**
    * Returns the speaker configuration.
    */
-  public fun getSpeakerMode(): AudioServer.SpeakerMode {
+  public fun getSpeakerMode(): SpeakerMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_SPEAKER_MODE, LONG)
     return AudioServer.SpeakerMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]

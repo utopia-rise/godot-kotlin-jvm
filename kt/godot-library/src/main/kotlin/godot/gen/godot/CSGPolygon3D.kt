@@ -38,7 +38,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_POLYGON, NIL)
     }
 
-  public var mode: CSGPolygon3D.Mode
+  public var mode: Mode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_MODE, LONG)
@@ -96,7 +96,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_NODE, NIL)
     }
 
-  public var pathIntervalType: CSGPolygon3D.PathIntervalType
+  public var pathIntervalType: PathIntervalType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -135,7 +135,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
           ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_SIMPLIFY_ANGLE, NIL)
     }
 
-  public var pathRotation: CSGPolygon3D.PathRotation
+  public var pathRotation: PathRotation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_PATH_ROTATION,

@@ -37,7 +37,7 @@ public open class Gradient : Resource() {
   /**
    * Defines how the colors between points of the gradient are interpolated. See [enum InterpolationMode] for available modes.
    */
-  public var interpolationMode: Gradient.InterpolationMode
+  public var interpolationMode: InterpolationMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_INTERPOLATION_MODE,

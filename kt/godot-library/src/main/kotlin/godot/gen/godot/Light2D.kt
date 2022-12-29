@@ -93,7 +93,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The Light2D's blend mode. See [enum BlendMode] constants for values.
    */
-  public var blendMode: Light2D.BlendMode
+  public var blendMode: BlendMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_BLEND_MODE, LONG)
@@ -205,7 +205,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * Shadow filter type. See [enum ShadowFilter] for possible values.
    */
-  public var shadowFilter: Light2D.ShadowFilter
+  public var shadowFilter: ShadowFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_FILTER, LONG)

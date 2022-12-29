@@ -279,7 +279,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public var drawOrder: GPUParticles3D.DrawOrder
+  public var drawOrder: DrawOrder
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_ORDER,
@@ -295,7 +295,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public var transformAlign: GPUParticles3D.TransformAlign
+  public var transformAlign: TransformAlign
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

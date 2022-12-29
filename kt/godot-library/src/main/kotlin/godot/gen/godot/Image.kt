@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Image
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -94,7 +93,7 @@ public open class Image : Resource() {
   /**
    * Returns the image's format. See [enum Format] constants.
    */
-  public fun getFormat(): Image.Format {
+  public fun getFormat(): Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_FORMAT, LONG)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -112,7 +111,7 @@ public open class Image : Resource() {
   /**
    * Converts the image's format. See [enum Format] constants.
    */
-  public fun convert(format: Image.Format): Unit {
+  public fun convert(format: Format): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CONVERT, NIL)
   }
@@ -129,7 +128,7 @@ public open class Image : Resource() {
   /**
    * Resizes the image to the nearest power of 2 for the width and height. If [square] is `true` then set width and height to be the same. New pixels are calculated using the [interpolation] mode defined via [enum Interpolation] constants.
    */
-  public fun resizeToPo2(square: Boolean = false, interpolation: Image.Interpolation =
+  public fun resizeToPo2(square: Boolean = false, interpolation: Interpolation =
       Image.Interpolation.INTERPOLATE_BILINEAR): Unit {
     TransferContext.writeArguments(BOOL to square, LONG to interpolation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE_TO_PO2, NIL)
@@ -141,7 +140,7 @@ public open class Image : Resource() {
   public fun resize(
     width: Long,
     height: Long,
-    interpolation: Image.Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR
+    interpolation: Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR
   ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, LONG to interpolation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE, NIL)
@@ -203,7 +202,7 @@ public open class Image : Resource() {
     width: Long,
     height: Long,
     useMipmaps: Boolean,
-    format: Image.Format,
+    format: Format,
     `data`: PackedByteArray
   ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
@@ -323,7 +322,7 @@ public open class Image : Resource() {
   /**
    * Returns [ALPHA_BLEND] if the image has data for alpha values. Returns [ALPHA_BIT] if all the alpha values are stored in a single bit. Returns [ALPHA_NONE] if no data for alpha values is found.
    */
-  public fun detectAlpha(): Image.AlphaMode {
+  public fun detectAlpha(): AlphaMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_ALPHA, LONG)
     return Image.AlphaMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -341,8 +340,8 @@ public open class Image : Resource() {
   /**
    *
    */
-  public fun detectUsedChannels(source: Image.CompressSource =
-      Image.CompressSource.COMPRESS_SOURCE_GENERIC): Image.UsedChannels {
+  public fun detectUsedChannels(source: CompressSource =
+      Image.CompressSource.COMPRESS_SOURCE_GENERIC): UsedChannels {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_USED_CHANNELS, LONG)
     return Image.UsedChannels.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -352,8 +351,8 @@ public open class Image : Resource() {
    * Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available. See [enum CompressMode] and [enum CompressSource] constants.
    */
   public fun compress(
-    mode: Image.CompressMode,
-    source: Image.CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
+    mode: CompressMode,
+    source: CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
     lossyQuality: Double = 0.7
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, LONG to source.id, DOUBLE to lossyQuality)
@@ -365,8 +364,8 @@ public open class Image : Resource() {
    *
    */
   public fun compressFromChannels(
-    mode: Image.CompressMode,
-    channels: Image.UsedChannels,
+    mode: CompressMode,
+    channels: UsedChannels,
     lossyQuality: Double = 0.7
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, DOUBLE to lossyQuality)

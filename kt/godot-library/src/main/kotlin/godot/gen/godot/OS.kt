@@ -881,7 +881,7 @@ public object OS : Object() {
    *
    * **Note:** Shared storage is implemented on Android and allows to differentiate between app specific and shared directories. Shared directories have additional restrictions on Android.
    */
-  public fun getSystemDir(dir: OS.SystemDir, sharedStorage: Boolean = true): String {
+  public fun getSystemDir(dir: SystemDir, sharedStorage: Boolean = true): String {
     TransferContext.writeArguments(LONG to dir.id, BOOL to sharedStorage)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String

@@ -28,7 +28,7 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
   /**
    * A type of operands and returned value.
    */
-  public var opType: VisualShaderNodeSmoothStep.OpType
+  public var opType: OpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.TextServer
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -67,7 +66,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if the server supports a feature.
    */
-  public fun hasFeature(feature: TextServer.Feature): Boolean {
+  public fun hasFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_HAS_FEATURE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -278,7 +277,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font anti-aliasing mode.
    */
-  public fun fontSetAntialiasing(fontRid: RID, antialiasing: TextServer.FontAntialiasing): Unit {
+  public fun fontSetAntialiasing(fontRid: RID, antialiasing: FontAntialiasing): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to antialiasing.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_ANTIALIASING,
         NIL)
@@ -287,7 +286,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font anti-aliasing mode.
    */
-  public fun fontGetAntialiasing(fontRid: RID): TextServer.FontAntialiasing {
+  public fun fontGetAntialiasing(fontRid: RID): FontAntialiasing {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_ANTIALIASING,
         LONG)
@@ -410,7 +409,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font hinting mode. Used by dynamic fonts only.
    */
-  public fun fontSetHinting(fontRid: RID, hinting: TextServer.Hinting): Unit {
+  public fun fontSetHinting(fontRid: RID, hinting: Hinting): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to hinting.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_HINTING, NIL)
   }
@@ -418,7 +417,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the font hinting mode. Used by dynamic fonts only.
    */
-  public fun fontGetHinting(fontRid: RID): TextServer.Hinting {
+  public fun fontGetHinting(fontRid: RID): Hinting {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_HINTING, LONG)
     return TextServer.Hinting.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -427,8 +426,8 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font subpixel glyph positioning mode.
    */
-  public fun fontSetSubpixelPositioning(fontRid: RID,
-      subpixelPositioning: TextServer.SubpixelPositioning): Unit {
+  public fun fontSetSubpixelPositioning(fontRid: RID, subpixelPositioning: SubpixelPositioning):
+      Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to subpixelPositioning.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_SUBPIXEL_POSITIONING, NIL)
@@ -437,7 +436,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font subpixel glyph positioning mode.
    */
-  public fun fontGetSubpixelPositioning(fontRid: RID): TextServer.SubpixelPositioning {
+  public fun fontGetSubpixelPositioning(fontRid: RID): SubpixelPositioning {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_SUBPIXEL_POSITIONING, LONG)
@@ -1331,8 +1330,8 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
-  public fun createShapedText(direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-      orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL): RID {
+  public fun createShapedText(direction: Direction = TextServer.Direction.DIRECTION_AUTO,
+      orientation: Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL): RID {
     TransferContext.writeArguments(LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_CREATE_SHAPED_TEXT, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -1351,7 +1350,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** Direction is ignored if server does not support [FEATURE_BIDI_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
-  public fun shapedTextSetDirection(shaped: RID, direction: TextServer.Direction =
+  public fun shapedTextSetDirection(shaped: RID, direction: Direction =
       TextServer.Direction.DIRECTION_AUTO): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to direction.id)
     TransferContext.callMethod(rawPtr,
@@ -1361,7 +1360,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns direction of the text.
    */
-  public fun shapedTextGetDirection(shaped: RID): TextServer.Direction {
+  public fun shapedTextGetDirection(shaped: RID): Direction {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_DIRECTION, LONG)
@@ -1371,7 +1370,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns direction of the text, inferred by the BiDi algorithm.
    */
-  public fun shapedTextGetInferredDirection(shaped: RID): TextServer.Direction {
+  public fun shapedTextGetInferredDirection(shaped: RID): Direction {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_INFERRED_DIRECTION, LONG)
@@ -1413,7 +1412,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
-  public fun shapedTextSetOrientation(shaped: RID, orientation: TextServer.Orientation =
+  public fun shapedTextSetOrientation(shaped: RID, orientation: Orientation =
       TextServer.Orientation.ORIENTATION_HORIZONTAL): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to orientation.id)
     TransferContext.callMethod(rawPtr,
@@ -1423,7 +1422,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns text orientation.
    */
-  public fun shapedTextGetOrientation(shaped: RID): TextServer.Orientation {
+  public fun shapedTextGetOrientation(shaped: RID): Orientation {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_ORIENTATION, LONG)
@@ -1475,7 +1474,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun shapedTextSetSpacing(
     shaped: RID,
-    spacing: TextServer.SpacingType,
+    spacing: SpacingType,
     `value`: Long
   ): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to spacing.id, LONG to value)
@@ -1486,7 +1485,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns extra spacing added between glyphs or lines in pixels.
    */
-  public fun shapedTextGetSpacing(shaped: RID, spacing: TextServer.SpacingType): Long {
+  public fun shapedTextGetSpacing(shaped: RID, spacing: SpacingType): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to spacing.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_SPACING,
         LONG)
@@ -1976,7 +1975,7 @@ public open class TextServer internal constructor() : RefCounted() {
     shaped: RID,
     start: Long,
     end: Long
-  ): TextServer.Direction {
+  ): Direction {
     TransferContext.writeArguments(_RID to shaped, LONG to start, LONG to end)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_DOMINANT_DIRECTION_IN_RANGE, LONG)
@@ -2111,7 +2110,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Default implementation of the BiDi algorithm override function. See [enum StructuredTextParser] for more info.
    */
   public fun parseStructuredText(
-    parserType: TextServer.StructuredTextParser,
+    parserType: StructuredTextParser,
     args: VariantArray<Any?>,
     text: String
   ): VariantArray<Vector2i> {

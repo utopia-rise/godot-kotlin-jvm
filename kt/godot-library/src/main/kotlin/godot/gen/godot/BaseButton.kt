@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.BaseButton
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
@@ -115,7 +114,7 @@ public open class BaseButton : Control() {
   /**
    * Determines when the button is considered clicked, one of the [enum ActionMode] constants.
    */
-  public var actionMode: BaseButton.ActionMode
+  public var actionMode: ActionMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_ACTION_MODE, LONG)
@@ -245,7 +244,7 @@ public open class BaseButton : Control() {
   /**
    * Returns the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the [enum DrawMode] enum.
    */
-  public fun getDrawMode(): BaseButton.DrawMode {
+  public fun getDrawMode(): DrawMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_DRAW_MODE, LONG)
     return BaseButton.DrawMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]

@@ -27,7 +27,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public var shape: RibbonTrailMesh.Shape
+  public var shape: Shape
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_SHAPE, LONG)

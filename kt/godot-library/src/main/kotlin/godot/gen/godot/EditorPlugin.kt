@@ -592,8 +592,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * When your plugin is deactivated, make sure to remove your custom control with [removeControlFromContainer] and free it with [godot.Node.queueFree].
    */
-  public fun addControlToContainer(container: EditorPlugin.CustomControlContainer,
-      control: Control): Unit {
+  public fun addControlToContainer(container: CustomControlContainer, control: Control): Unit {
     TransferContext.writeArguments(LONG to container.id, OBJECT to control)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_CONTAINER, NIL)
@@ -616,7 +615,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * When your plugin is deactivated, make sure to remove your custom control with [removeControlFromDocks] and free it with [godot.Node.queueFree].
    */
-  public fun addControlToDock(slot: EditorPlugin.DockSlot, control: Control): Unit {
+  public fun addControlToDock(slot: DockSlot, control: Control): Unit {
     TransferContext.writeArguments(LONG to slot.id, OBJECT to control)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_DOCK,
         NIL)
@@ -643,8 +642,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes the control from the specified container. You have to manually [godot.Node.queueFree] the control.
    */
-  public fun removeControlFromContainer(container: EditorPlugin.CustomControlContainer,
-      control: Control): Unit {
+  public fun removeControlFromContainer(container: CustomControlContainer, control: Control): Unit {
     TransferContext.writeArguments(LONG to container.id, OBJECT to control)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_CONTAINER, NIL)

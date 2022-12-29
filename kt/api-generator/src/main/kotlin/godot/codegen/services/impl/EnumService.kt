@@ -3,6 +3,7 @@ package godot.codegen.services.impl
 import godot.codegen.constants.GodotTypes
 import godot.codegen.exceptions.NoMatchingEnumFound
 import godot.codegen.models.custom.DefaultEnumValue
+import godot.codegen.poet.ClassTypeNameWrapper
 import godot.codegen.repositories.CoreTypeEnumRepository
 import godot.codegen.repositories.GlobalEnumRepository
 import godot.codegen.services.IClassService
@@ -14,11 +15,11 @@ class EnumService(
     private val classService: IClassService
 ) : IEnumService {
     override fun getGlobalEnums() = globalEnumRepository.list()
-    override fun findEnumValue(enumName: String, enumValue: Int) : DefaultEnumValue {
-        val enumSplit = enumName.split(".")
-        return if (enumSplit.size > 1) {
-            val className = enumSplit[0]
-            val enum = enumSplit[1]
+    override fun findEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Int) : DefaultEnumValue {
+        val simpleNames = enumClassName.className.simpleNames
+        return if (simpleNames.size > 1) {
+            val className = simpleNames[0]
+            val enum = simpleNames[1]
             val enrichedEnum = if (GodotTypes.coreTypes.contains(className)) {
                 coreTypeEnumRepository.listForCoreType(className)
             } else {
@@ -31,12 +32,12 @@ class EnumService(
             val value = enrichedEnum
                 ?.internal
                 ?.values
-                ?.first { it.value == enumValue } ?: throw NoMatchingEnumFound(enumName)
+                ?.first { it.value == enumValue } ?: throw NoMatchingEnumFound(simpleNames.joinToString("."))
 
             DefaultEnumValue(enrichedEnum, value)
         } else {
             val enum = getGlobalEnums()
-                .first { it.name == enumName }
+                .first { it.name == simpleNames[0] }
             val value = enum
                 .internal
                 .values

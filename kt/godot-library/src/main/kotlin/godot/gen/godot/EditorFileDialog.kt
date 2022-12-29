@@ -49,7 +49,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The location from which the user may select a file, including `res://`, `user://`, and the local file system.
    */
-  public var access: EditorFileDialog.Access
+  public var access: Access
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_ACCESS, LONG)
@@ -63,7 +63,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The view format in which the [godot.EditorFileDialog] displays resources to the user.
    */
-  public var displayMode: EditorFileDialog.DisplayMode
+  public var displayMode: DisplayMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_DISPLAY_MODE,
@@ -79,7 +79,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode]
    */
-  public var fileMode: EditorFileDialog.FileMode
+  public var fileMode: FileMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_FILE_MODE,

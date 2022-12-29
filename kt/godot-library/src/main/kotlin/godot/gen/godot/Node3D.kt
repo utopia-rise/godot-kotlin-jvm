@@ -162,7 +162,7 @@ public open class Node3D : Node() {
   /**
    * Specify how rotation (and scale) will be presented in the editor.
    */
-  public var rotationEditMode: Node3D.RotationEditMode
+  public var rotationEditMode: RotationEditMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_EDIT_MODE,

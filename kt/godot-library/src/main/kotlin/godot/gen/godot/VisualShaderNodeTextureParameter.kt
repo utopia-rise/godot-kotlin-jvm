@@ -27,7 +27,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   /**
    * Defines the type of data provided by the source texture. See [enum TextureType] for options.
    */
-  public var textureType: VisualShaderNodeTextureParameter.TextureType
+  public var textureType: TextureType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -43,7 +43,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   /**
    * Sets the default color if no texture is assigned to the uniform.
    */
-  public var colorDefault: VisualShaderNodeTextureParameter.ColorDefault
+  public var colorDefault: ColorDefault
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -59,7 +59,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   /**
    * Sets the texture filtering mode. See [enum TextureFilter] for options.
    */
-  public var textureFilter: VisualShaderNodeTextureParameter.TextureFilter
+  public var textureFilter: TextureFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -75,7 +75,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   /**
    * Sets the texture repeating mode. See [enum TextureRepeat] for options.
    */
-  public var textureRepeat: VisualShaderNodeTextureParameter.TextureRepeat
+  public var textureRepeat: TextureRepeat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

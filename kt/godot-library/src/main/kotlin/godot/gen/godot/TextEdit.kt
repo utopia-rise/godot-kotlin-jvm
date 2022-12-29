@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.TextEdit
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Color
@@ -254,7 +253,7 @@ public open class TextEdit : Control() {
   /**
    * Sets the line wrapping mode to use.
    */
-  public var wrapMode: TextEdit.LineWrappingMode
+  public var wrapMode: LineWrappingMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPING_MODE,
@@ -481,7 +480,7 @@ public open class TextEdit : Control() {
   /**
    * Set the type of caret to draw.
    */
-  public var caretType: TextEdit.CaretType
+  public var caretType: CaretType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_TYPE, LONG)
@@ -914,7 +913,7 @@ public open class TextEdit : Control() {
    *
    * An action will also end after a call to [endAction], after [godot.ProjectSettings.gui/timers/textEditIdleDetectSec] is triggered or a new undoable step outside the [startAction] and [endAction] calls.
    */
-  public fun startAction(action: TextEdit.EditAction): Unit {
+  public fun startAction(action: EditAction): Unit {
     TransferContext.writeArguments(LONG to action.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_START_ACTION, NIL)
   }
@@ -1348,7 +1347,7 @@ public open class TextEdit : Control() {
    * Sets the current selection mode.
    */
   public fun setSelectionMode(
-    mode: TextEdit.SelectionMode,
+    mode: SelectionMode,
     line: Long = -1,
     column: Long = -1,
     caretIndex: Long = 0
@@ -1360,7 +1359,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the current selection mode.
    */
-  public fun getSelectionMode(): TextEdit.SelectionMode {
+  public fun getSelectionMode(): SelectionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_MODE, LONG)
     return TextEdit.SelectionMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -1728,7 +1727,7 @@ public open class TextEdit : Control() {
   /**
    * Sets the type of gutter.
    */
-  public fun setGutterType(gutter: Long, type: TextEdit.GutterType): Unit {
+  public fun setGutterType(gutter: Long, type: GutterType): Unit {
     TransferContext.writeArguments(LONG to gutter, LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_TYPE, NIL)
   }
@@ -1736,7 +1735,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the type of the gutter at the given index.
    */
-  public fun getGutterType(gutter: Long): TextEdit.GutterType {
+  public fun getGutterType(gutter: Long): GutterType {
     TransferContext.writeArguments(LONG to gutter)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_TYPE, LONG)
     return TextEdit.GutterType.values()[TransferContext.readReturnValue(JVM_INT) as Int]

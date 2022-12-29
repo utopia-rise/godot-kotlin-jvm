@@ -6,8 +6,6 @@
 
 package godot
 
-import godot.RenderingDevice
-import godot.RenderingServer
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Basis
@@ -206,8 +204,8 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun texture2dLayeredCreate(layers: VariantArray<Image>,
-      layeredType: RenderingServer.TextureLayeredType): RID {
+  public fun texture2dLayeredCreate(layers: VariantArray<Image>, layeredType: TextureLayeredType):
+      RID {
     TransferContext.writeArguments(ARRAY to layers, LONG to layeredType.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_2D_LAYERED_CREATE, _RID)
@@ -285,8 +283,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun texture2dLayeredPlaceholderCreate(layeredType: RenderingServer.TextureLayeredType):
-      RID {
+  public fun texture2dLayeredPlaceholderCreate(layeredType: TextureLayeredType): RID {
     TransferContext.writeArguments(LONG to layeredType.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_2D_LAYERED_PLACEHOLDER_CREATE, _RID)
@@ -628,7 +625,7 @@ public object RenderingServer : Object() {
    */
   public fun meshAddSurfaceFromArrays(
     mesh: RID,
-    primitive: RenderingServer.PrimitiveType,
+    primitive: PrimitiveType,
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
@@ -652,7 +649,7 @@ public object RenderingServer : Object() {
   /**
    * Sets a mesh's blend shape mode.
    */
-  public fun meshSetBlendShapeMode(mesh: RID, mode: RenderingServer.BlendShapeMode): Unit {
+  public fun meshSetBlendShapeMode(mesh: RID, mode: BlendShapeMode): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SET_BLEND_SHAPE_MODE, NIL)
@@ -661,7 +658,7 @@ public object RenderingServer : Object() {
   /**
    * Returns a mesh's blend shape mode.
    */
-  public fun meshGetBlendShapeMode(mesh: RID): RenderingServer.BlendShapeMode {
+  public fun meshGetBlendShapeMode(mesh: RID): BlendShapeMode {
     TransferContext.writeArguments(_RID to mesh)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_GET_BLEND_SHAPE_MODE, LONG)
@@ -830,7 +827,7 @@ public object RenderingServer : Object() {
   public fun multimeshAllocateData(
     multimesh: RID,
     instances: Long,
-    transformFormat: RenderingServer.MultimeshTransformFormat,
+    transformFormat: MultimeshTransformFormat,
     colorFormat: Boolean = false,
     customDataFormat: Boolean = false
   ): Unit {
@@ -1154,7 +1151,7 @@ public object RenderingServer : Object() {
    */
   public fun lightSetParam(
     light: RID,
-    `param`: RenderingServer.LightParam,
+    `param`: LightParam,
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to light, LONG to param.id, DOUBLE to value)
@@ -1225,7 +1222,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun lightSetBakeMode(light: RID, bakeMode: RenderingServer.LightBakeMode): Unit {
+  public fun lightSetBakeMode(light: RID, bakeMode: LightBakeMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to bakeMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_SET_BAKE_MODE,
         NIL)
@@ -1243,7 +1240,7 @@ public object RenderingServer : Object() {
   /**
    * Sets whether to use a dual paraboloid or a cubemap for the shadow map. Dual paraboloid is faster but may suffer from artifacts. Equivalent to [godot.OmniLight3D.omniShadowMode].
    */
-  public fun lightOmniSetShadowMode(light: RID, mode: RenderingServer.LightOmniShadowMode): Unit {
+  public fun lightOmniSetShadowMode(light: RID, mode: LightOmniShadowMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_OMNI_SET_SHADOW_MODE, NIL)
@@ -1252,8 +1249,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the shadow mode for this directional light. Equivalent to [godot.DirectionalLight3D.directionalShadowMode]. See [enum LightDirectionalShadowMode] for options.
    */
-  public fun lightDirectionalSetShadowMode(light: RID,
-      mode: RenderingServer.LightDirectionalShadowMode): Unit {
+  public fun lightDirectionalSetShadowMode(light: RID, mode: LightDirectionalShadowMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_DIRECTIONAL_SET_SHADOW_MODE, NIL)
@@ -1271,8 +1267,7 @@ public object RenderingServer : Object() {
   /**
    * If `true`, this light will not be used for anything except sky shaders. Use this for lights that impact your sky shader that you may want to hide from affecting the rest of the scene. For example, you may want to enable this when the sun in your sky shader falls below the horizon.
    */
-  public fun lightDirectionalSetSkyMode(light: RID, mode: RenderingServer.LightDirectionalSkyMode):
-      Unit {
+  public fun lightDirectionalSetSkyMode(light: RID, mode: LightDirectionalSkyMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_DIRECTIONAL_SET_SKY_MODE, NIL)
@@ -1281,7 +1276,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun lightProjectorsSetFilter(filter: RenderingServer.LightProjectorFilter): Unit {
+  public fun lightProjectorsSetFilter(filter: LightProjectorFilter): Unit {
     TransferContext.writeArguments(LONG to filter.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_PROJECTORS_SET_FILTER, NIL)
@@ -1290,7 +1285,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun positionalSoftShadowFilterSetQuality(quality: RenderingServer.ShadowQuality): Unit {
+  public fun positionalSoftShadowFilterSetQuality(quality: ShadowQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_POSITIONAL_SOFT_SHADOW_FILTER_SET_QUALITY, NIL)
@@ -1299,7 +1294,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun directionalSoftShadowFilterSetQuality(quality: RenderingServer.ShadowQuality): Unit {
+  public fun directionalSoftShadowFilterSetQuality(quality: ShadowQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_DIRECTIONAL_SOFT_SHADOW_FILTER_SET_QUALITY, NIL)
@@ -1331,8 +1326,7 @@ public object RenderingServer : Object() {
   /**
    * Sets how often the reflection probe updates. Can either be once or every frame. See [enum ReflectionProbeUpdateMode] for options.
    */
-  public fun reflectionProbeSetUpdateMode(probe: RID,
-      mode: RenderingServer.ReflectionProbeUpdateMode): Unit {
+  public fun reflectionProbeSetUpdateMode(probe: RID, mode: ReflectionProbeUpdateMode): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_REFLECTION_PROBE_SET_UPDATE_MODE, NIL)
@@ -1350,8 +1344,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun reflectionProbeSetAmbientMode(probe: RID,
-      mode: RenderingServer.ReflectionProbeAmbientMode): Unit {
+  public fun reflectionProbeSetAmbientMode(probe: RID, mode: ReflectionProbeAmbientMode): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_REFLECTION_PROBE_SET_AMBIENT_MODE, NIL)
@@ -1479,7 +1472,7 @@ public object RenderingServer : Object() {
    */
   public fun decalSetTexture(
     decal: RID,
-    type: RenderingServer.DecalTexture,
+    type: DecalTexture,
     texture: RID
   ): Unit {
     TransferContext.writeArguments(_RID to decal, LONG to type.id, _RID to texture)
@@ -1561,7 +1554,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun decalsSetFilter(filter: RenderingServer.DecalFilter): Unit {
+  public fun decalsSetFilter(filter: DecalFilter): Unit {
     TransferContext.writeArguments(LONG to filter.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_DECALS_SET_FILTER,
         NIL)
@@ -1739,7 +1732,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun voxelGiSetQuality(quality: RenderingServer.VoxelGIQuality): Unit {
+  public fun voxelGiSetQuality(quality: VoxelGIQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VOXEL_GI_SET_QUALITY, NIL)
@@ -1879,7 +1872,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun particlesSetMode(particles: RID, mode: RenderingServer.ParticlesMode): Unit {
+  public fun particlesSetMode(particles: RID, mode: ParticlesMode): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_MODE,
         NIL)
@@ -2035,8 +2028,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun particlesSetTransformAlign(particles: RID,
-      align: RenderingServer.ParticlesTransformAlign): Unit {
+  public fun particlesSetTransformAlign(particles: RID, align: ParticlesTransformAlign): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to align.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_TRANSFORM_ALIGN, NIL)
@@ -2120,8 +2112,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the draw order of the particles to one of the named enums from [enum ParticlesDrawOrder]. See [enum ParticlesDrawOrder] for options. Equivalent to [godot.GPUParticles3D.drawOrder].
    */
-  public fun particlesSetDrawOrder(particles: RID, order: RenderingServer.ParticlesDrawOrder):
-      Unit {
+  public fun particlesSetDrawOrder(particles: RID, order: ParticlesDrawOrder): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to order.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_DRAW_ORDER, NIL)
@@ -2183,7 +2174,7 @@ public object RenderingServer : Object() {
    *
    */
   public fun particlesCollisionSetCollisionType(particlesCollision: RID,
-      type: RenderingServer.ParticlesCollisionType): Unit {
+      type: ParticlesCollisionType): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, LONG to type.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_COLLISION_SET_COLLISION_TYPE, NIL)
@@ -2269,7 +2260,7 @@ public object RenderingServer : Object() {
    *
    */
   public fun particlesCollisionSetHeightFieldResolution(particlesCollision: RID,
-      resolution: RenderingServer.ParticlesCollisionHeightfieldResolution): Unit {
+      resolution: ParticlesCollisionHeightfieldResolution): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, LONG to resolution.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_COLLISION_SET_HEIGHT_FIELD_RESOLUTION,
@@ -2289,7 +2280,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the shape of the fog volume to either [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE], [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX] or [godot.RenderingServer.FOG_VOLUME_SHAPE_WORLD].
    */
-  public fun fogVolumeSetShape(fogVolume: RID, shape: RenderingServer.FogVolumeShape): Unit {
+  public fun fogVolumeSetShape(fogVolume: RID, shape: FogVolumeShape): Unit {
     TransferContext.writeArguments(_RID to fogVolume, LONG to shape.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_FOG_VOLUME_SET_SHAPE, NIL)
@@ -2573,8 +2564,7 @@ public object RenderingServer : Object() {
   /**
    * Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.
    */
-  public fun viewportSetScaling3dMode(viewport: RID,
-      scaling3dMode: RenderingServer.ViewportScaling3DMode): Unit {
+  public fun viewportSetScaling3dMode(viewport: RID, scaling3dMode: ViewportScaling3DMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to scaling3dMode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_SCALING_3D_MODE, NIL)
@@ -2614,8 +2604,7 @@ public object RenderingServer : Object() {
   /**
    * Sets when the viewport should be updated. See [enum ViewportUpdateMode] constants for options.
    */
-  public fun viewportSetUpdateMode(viewport: RID, updateMode: RenderingServer.ViewportUpdateMode):
-      Unit {
+  public fun viewportSetUpdateMode(viewport: RID, updateMode: ViewportUpdateMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to updateMode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_UPDATE_MODE, NIL)
@@ -2624,8 +2613,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the clear mode of a viewport. See [enum ViewportClearMode] for options.
    */
-  public fun viewportSetClearMode(viewport: RID, clearMode: RenderingServer.ViewportClearMode):
-      Unit {
+  public fun viewportSetClearMode(viewport: RID, clearMode: ViewportClearMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to clearMode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_CLEAR_MODE, NIL)
@@ -2728,7 +2716,7 @@ public object RenderingServer : Object() {
    *
    */
   public fun viewportSetDefaultCanvasItemTextureFilter(viewport: RID,
-      filter: RenderingServer.CanvasItemTextureFilter): Unit {
+      filter: CanvasItemTextureFilter): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to filter.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER,
@@ -2739,7 +2727,7 @@ public object RenderingServer : Object() {
    *
    */
   public fun viewportSetDefaultCanvasItemTextureRepeat(viewport: RID,
-      repeat: RenderingServer.CanvasItemTextureRepeat): Unit {
+      repeat: CanvasItemTextureRepeat): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to repeat.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT,
@@ -2798,8 +2786,8 @@ public object RenderingServer : Object() {
    */
   public fun viewportSetSdfOversizeAndScale(
     viewport: RID,
-    oversize: RenderingServer.ViewportSDFOversize,
-    scale: RenderingServer.ViewportSDFScale
+    oversize: ViewportSDFOversize,
+    scale: ViewportSDFScale
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to oversize.id, LONG to scale.id)
     TransferContext.callMethod(rawPtr,
@@ -2838,7 +2826,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the multisample anti-aliasing mode for 3D. See [enum ViewportMSAA] for options.
    */
-  public fun viewportSetMsaa3d(viewport: RID, msaa: RenderingServer.ViewportMSAA): Unit {
+  public fun viewportSetMsaa3d(viewport: RID, msaa: ViewportMSAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_MSAA_3D, NIL)
@@ -2847,7 +2835,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the multisample anti-aliasing mode for 2D/Canvas. See [enum ViewportMSAA] for options.
    */
-  public fun viewportSetMsaa2d(viewport: RID, msaa: RenderingServer.ViewportMSAA): Unit {
+  public fun viewportSetMsaa2d(viewport: RID, msaa: ViewportMSAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_MSAA_2D, NIL)
@@ -2856,8 +2844,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun viewportSetScreenSpaceAa(viewport: RID, mode: RenderingServer.ViewportScreenSpaceAA):
-      Unit {
+  public fun viewportSetScreenSpaceAa(viewport: RID, mode: ViewportScreenSpaceAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_SCREEN_SPACE_AA, NIL)
@@ -2902,8 +2889,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public
-      fun viewportSetOcclusionCullingBuildQuality(quality: RenderingServer.ViewportOcclusionCullingBuildQuality):
+  public fun viewportSetOcclusionCullingBuildQuality(quality: ViewportOcclusionCullingBuildQuality):
       Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr,
@@ -2915,8 +2901,8 @@ public object RenderingServer : Object() {
    */
   public fun viewportGetRenderInfo(
     viewport: RID,
-    type: RenderingServer.ViewportRenderInfoType,
-    info: RenderingServer.ViewportRenderInfo
+    type: ViewportRenderInfoType,
+    info: ViewportRenderInfo
   ): Long {
     TransferContext.writeArguments(_RID to viewport, LONG to type.id, LONG to info.id)
     TransferContext.callMethod(rawPtr,
@@ -2927,7 +2913,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the debug draw mode of a viewport. See [enum ViewportDebugDraw] for options.
    */
-  public fun viewportSetDebugDraw(viewport: RID, draw: RenderingServer.ViewportDebugDraw): Unit {
+  public fun viewportSetDebugDraw(viewport: RID, draw: ViewportDebugDraw): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to draw.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_DEBUG_DRAW, NIL)
@@ -2965,7 +2951,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the Variable Rate Shading (VRS) mode for the viewport. Note, if hardware does not support VRS this property is ignored.
    */
-  public fun viewportSetVrsMode(viewport: RID, mode: RenderingServer.ViewportVRSMode): Unit {
+  public fun viewportSetVrsMode(viewport: RID, mode: ViewportVRSMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_VRS_MODE, NIL)
@@ -3003,7 +2989,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun skySetMode(sky: RID, mode: RenderingServer.SkyMode): Unit {
+  public fun skySetMode(sky: RID, mode: SkyMode): Unit {
     TransferContext.writeArguments(_RID to sky, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SKY_SET_MODE, NIL)
   }
@@ -3047,7 +3033,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the *BGMode* of the environment. Equivalent to [godot.Environment.backgroundMode].
    */
-  public fun environmentSetBackground(env: RID, bg: RenderingServer.EnvironmentBG): Unit {
+  public fun environmentSetBackground(env: RID, bg: EnvironmentBG): Unit {
     TransferContext.writeArguments(_RID to env, LONG to bg.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_BACKGROUND, NIL)
@@ -3117,11 +3103,11 @@ public object RenderingServer : Object() {
   public fun environmentSetAmbientLight(
     env: RID,
     color: Color,
-    ambient: RenderingServer.EnvironmentAmbientSource =
+    ambient: EnvironmentAmbientSource =
         RenderingServer.EnvironmentAmbientSource.ENV_AMBIENT_SOURCE_BG,
     energy: Double = 1.0,
     skyContibution: Double = 0.0,
-    reflectionSource: RenderingServer.EnvironmentReflectionSource =
+    reflectionSource: EnvironmentReflectionSource =
         RenderingServer.EnvironmentReflectionSource.ENV_REFLECTION_SOURCE_BG
   ): Unit {
     TransferContext.writeArguments(_RID to env, COLOR to color, LONG to ambient.id, DOUBLE to energy, DOUBLE to skyContibution, LONG to reflectionSource.id)
@@ -3140,7 +3126,7 @@ public object RenderingServer : Object() {
     strength: Double,
     mix: Double,
     bloomThreshold: Double,
-    blendMode: RenderingServer.EnvironmentGlowBlendMode,
+    blendMode: EnvironmentGlowBlendMode,
     hdrBleedThreshold: Double,
     hdrBleedScale: Double,
     hdrLuminanceCap: Double,
@@ -3157,7 +3143,7 @@ public object RenderingServer : Object() {
    */
   public fun environmentSetTonemap(
     env: RID,
-    toneMapper: RenderingServer.EnvironmentToneMapper,
+    toneMapper: EnvironmentToneMapper,
     exposure: Double,
     white: Double
   ): Unit {
@@ -3247,7 +3233,7 @@ public object RenderingServer : Object() {
     enable: Boolean,
     cascades: Long,
     minCellSize: Double,
-    yScale: RenderingServer.EnvironmentSDFGIYScale,
+    yScale: EnvironmentSDFGIYScale,
     useOcclusion: Boolean,
     bounceFeedback: Double,
     readSky: Boolean,
@@ -3305,9 +3291,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public
-      fun environmentSetSsrRoughnessQuality(quality: RenderingServer.EnvironmentSSRRoughnessQuality):
-      Unit {
+  public fun environmentSetSsrRoughnessQuality(quality: EnvironmentSSRRoughnessQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_SSR_ROUGHNESS_QUALITY, NIL)
@@ -3317,7 +3301,7 @@ public object RenderingServer : Object() {
    * Sets the quality level of the screen-space ambient occlusion (SSAO) post-process effect. See [godot.Environment] for more details.
    */
   public fun environmentSetSsaoQuality(
-    quality: RenderingServer.EnvironmentSSAOQuality,
+    quality: EnvironmentSSAOQuality,
     halfSize: Boolean,
     adaptiveTarget: Double,
     blurPasses: Long,
@@ -3333,7 +3317,7 @@ public object RenderingServer : Object() {
    * Sets the quality level of the screen-space indirect lighting (SSIL) post-process effect. See [godot.Environment] for more details.
    */
   public fun environmentSetSsilQuality(
-    quality: RenderingServer.EnvironmentSSILQuality,
+    quality: EnvironmentSSILQuality,
     halfSize: Boolean,
     adaptiveTarget: Double,
     blurPasses: Long,
@@ -3348,7 +3332,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun environmentSetSdfgiRayCount(rayCount: RenderingServer.EnvironmentSDFGIRayCount): Unit {
+  public fun environmentSetSdfgiRayCount(rayCount: EnvironmentSDFGIRayCount): Unit {
     TransferContext.writeArguments(LONG to rayCount.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_SDFGI_RAY_COUNT, NIL)
@@ -3357,9 +3341,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public
-      fun environmentSetSdfgiFramesToConverge(frames: RenderingServer.EnvironmentSDFGIFramesToConverge):
-      Unit {
+  public fun environmentSetSdfgiFramesToConverge(frames: EnvironmentSDFGIFramesToConverge): Unit {
     TransferContext.writeArguments(LONG to frames.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_SDFGI_FRAMES_TO_CONVERGE, NIL)
@@ -3368,8 +3350,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public
-      fun environmentSetSdfgiFramesToUpdateLight(frames: RenderingServer.EnvironmentSDFGIFramesToUpdateLight):
+  public fun environmentSetSdfgiFramesToUpdateLight(frames: EnvironmentSDFGIFramesToUpdateLight):
       Unit {
     TransferContext.writeArguments(LONG to frames.id)
     TransferContext.callMethod(rawPtr,
@@ -3424,8 +3405,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun subSurfaceScatteringSetQuality(quality: RenderingServer.SubSurfaceScatteringQuality):
-      Unit {
+  public fun subSurfaceScatteringSetQuality(quality: SubSurfaceScatteringQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SUB_SURFACE_SCATTERING_SET_QUALITY, NIL)
@@ -3455,8 +3435,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun cameraAttributesSetDofBlurQuality(quality: RenderingServer.DOFBlurQuality,
-      useJitter: Boolean): Unit {
+  public fun cameraAttributesSetDofBlurQuality(quality: DOFBlurQuality, useJitter: Boolean): Unit {
     TransferContext.writeArguments(LONG to quality.id, BOOL to useJitter)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_ATTRIBUTES_SET_DOF_BLUR_QUALITY, NIL)
@@ -3465,7 +3444,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun cameraAttributesSetDofBlurBokehShape(shape: RenderingServer.DOFBokehShape): Unit {
+  public fun cameraAttributesSetDofBlurBokehShape(shape: DOFBokehShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_ATTRIBUTES_SET_DOF_BLUR_BOKEH_SHAPE, NIL)
@@ -3744,7 +3723,7 @@ public object RenderingServer : Object() {
    */
   public fun instanceGeometrySetFlag(
     instance: RID,
-    flag: RenderingServer.InstanceFlags,
+    flag: InstanceFlags,
     enabled: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to instance, LONG to flag.id, BOOL to enabled)
@@ -3756,7 +3735,7 @@ public object RenderingServer : Object() {
    * Sets the shadow casting setting to one of [enum ShadowCastingSetting]. Equivalent to [godot.GeometryInstance3D.castShadow].
    */
   public fun instanceGeometrySetCastShadowsSetting(instance: RID,
-      shadowCastingSetting: RenderingServer.ShadowCastingSetting): Unit {
+      shadowCastingSetting: ShadowCastingSetting): Unit {
     TransferContext.writeArguments(_RID to instance, LONG to shadowCastingSetting.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCE_GEOMETRY_SET_CAST_SHADOWS_SETTING, NIL)
@@ -3789,7 +3768,7 @@ public object RenderingServer : Object() {
     max: Double,
     minMargin: Double,
     maxMargin: Double,
-    fadeMode: RenderingServer.VisibilityRangeFadeMode
+    fadeMode: VisibilityRangeFadeMode
   ): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to min, DOUBLE to max, DOUBLE to minMargin, DOUBLE to maxMargin, LONG to fadeMode.id)
     TransferContext.callMethod(rawPtr,
@@ -3977,7 +3956,7 @@ public object RenderingServer : Object() {
    */
   public fun canvasTextureSetChannel(
     canvasTexture: RID,
-    channel: RenderingServer.CanvasTextureChannel,
+    channel: CanvasTextureChannel,
     texture: RID
   ): Unit {
     TransferContext.writeArguments(_RID to canvasTexture, LONG to channel.id, _RID to texture)
@@ -4001,8 +3980,8 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun canvasTextureSetTextureFilter(canvasTexture: RID,
-      filter: RenderingServer.CanvasItemTextureFilter): Unit {
+  public fun canvasTextureSetTextureFilter(canvasTexture: RID, filter: CanvasItemTextureFilter):
+      Unit {
     TransferContext.writeArguments(_RID to canvasTexture, LONG to filter.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_TEXTURE_SET_TEXTURE_FILTER, NIL)
@@ -4011,8 +3990,8 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun canvasTextureSetTextureRepeat(canvasTexture: RID,
-      repeat: RenderingServer.CanvasItemTextureRepeat): Unit {
+  public fun canvasTextureSetTextureRepeat(canvasTexture: RID, repeat: CanvasItemTextureRepeat):
+      Unit {
     TransferContext.writeArguments(_RID to canvasTexture, LONG to repeat.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_TEXTURE_SET_TEXTURE_REPEAT, NIL)
@@ -4040,8 +4019,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun canvasItemSetDefaultTextureFilter(item: RID,
-      filter: RenderingServer.CanvasItemTextureFilter): Unit {
+  public fun canvasItemSetDefaultTextureFilter(item: RID, filter: CanvasItemTextureFilter): Unit {
     TransferContext.writeArguments(_RID to item, LONG to filter.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_SET_DEFAULT_TEXTURE_FILTER, NIL)
@@ -4050,8 +4028,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun canvasItemSetDefaultTextureRepeat(item: RID,
-      repeat: RenderingServer.CanvasItemTextureRepeat): Unit {
+  public fun canvasItemSetDefaultTextureRepeat(item: RID, repeat: CanvasItemTextureRepeat): Unit {
     TransferContext.writeArguments(_RID to item, LONG to repeat.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_SET_DEFAULT_TEXTURE_REPEAT, NIL)
@@ -4284,10 +4261,8 @@ public object RenderingServer : Object() {
     texture: RID,
     topleft: Vector2,
     bottomright: Vector2,
-    xAxisMode: RenderingServer.NinePatchAxisMode =
-        RenderingServer.NinePatchAxisMode.NINE_PATCH_STRETCH,
-    yAxisMode: RenderingServer.NinePatchAxisMode =
-        RenderingServer.NinePatchAxisMode.NINE_PATCH_STRETCH,
+    xAxisMode: NinePatchAxisMode = RenderingServer.NinePatchAxisMode.NINE_PATCH_STRETCH,
+    yAxisMode: NinePatchAxisMode = RenderingServer.NinePatchAxisMode.NINE_PATCH_STRETCH,
     drawCenter: Boolean = true,
     modulate: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
@@ -4516,7 +4491,7 @@ public object RenderingServer : Object() {
    */
   public fun canvasItemSetCanvasGroupMode(
     item: RID,
-    mode: RenderingServer.CanvasGroupMode,
+    mode: CanvasGroupMode,
     clearMargin: Double = 5.0,
     fitEmpty: Boolean = false,
     fitMargin: Double = 0.0,
@@ -4667,7 +4642,7 @@ public object RenderingServer : Object() {
   /**
    * The mode of the light, see [enum CanvasLightMode] constants.
    */
-  public fun canvasLightSetMode(light: RID, mode: RenderingServer.CanvasLightMode): Unit {
+  public fun canvasLightSetMode(light: RID, mode: CanvasLightMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_LIGHT_SET_MODE, NIL)
@@ -4685,8 +4660,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the canvas light's shadow's filter, see [enum CanvasLightShadowFilter] constants.
    */
-  public fun canvasLightSetShadowFilter(light: RID,
-      filter: RenderingServer.CanvasLightShadowFilter): Unit {
+  public fun canvasLightSetShadowFilter(light: RID, filter: CanvasLightShadowFilter): Unit {
     TransferContext.writeArguments(_RID to light, LONG to filter.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_LIGHT_SET_SHADOW_FILTER, NIL)
@@ -4805,7 +4779,7 @@ public object RenderingServer : Object() {
    * Sets an occluder polygons cull mode. See [enum CanvasOccluderPolygonCullMode] constants.
    */
   public fun canvasOccluderPolygonSetCullMode(occluderPolygon: RID,
-      mode: RenderingServer.CanvasOccluderPolygonCullMode): Unit {
+      mode: CanvasOccluderPolygonCullMode): Unit {
     TransferContext.writeArguments(_RID to occluderPolygon, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_OCCLUDER_POLYGON_SET_CULL_MODE, NIL)
@@ -4825,7 +4799,7 @@ public object RenderingServer : Object() {
    */
   public fun globalShaderParameterAdd(
     name: StringName,
-    type: RenderingServer.GlobalShaderParameterType,
+    type: GlobalShaderParameterType,
     defaultValue: Any
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, LONG to type.id, ANY to defaultValue)
@@ -4884,8 +4858,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun globalShaderParameterGetType(name: StringName):
-      RenderingServer.GlobalShaderParameterType {
+  public fun globalShaderParameterGetType(name: StringName): GlobalShaderParameterType {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_SHADER_PARAMETER_GET_TYPE, LONG)
@@ -4921,7 +4894,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun getRenderingInfo(info: RenderingServer.RenderingInfo): Long {
+  public fun getRenderingInfo(info: RenderingInfo): Long {
     TransferContext.writeArguments(LONG to info.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GET_RENDERING_INFO,
         LONG)
@@ -5044,7 +5017,7 @@ public object RenderingServer : Object() {
   /**
    * Not yet implemented. Always returns `false`.
    */
-  public fun hasFeature(feature: RenderingServer.Features): Boolean {
+  public fun hasFeature(feature: Features): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_HAS_FEATURE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

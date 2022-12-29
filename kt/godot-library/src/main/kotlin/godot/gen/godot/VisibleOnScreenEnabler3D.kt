@@ -34,7 +34,7 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
   /**
    *
    */
-  public var enableMode: VisibleOnScreenEnabler3D.EnableMode
+  public var enableMode: EnableMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

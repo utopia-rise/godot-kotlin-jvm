@@ -293,7 +293,7 @@ public open class LineEdit : Control() {
   /**
    * Specifies the type of virtual keyboard to show.
    */
-  public var virtualKeyboardType: LineEdit.VirtualKeyboardType
+  public var virtualKeyboardType: VirtualKeyboardType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

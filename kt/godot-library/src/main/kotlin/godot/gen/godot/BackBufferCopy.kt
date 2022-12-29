@@ -30,7 +30,7 @@ public open class BackBufferCopy : Node2D() {
   /**
    * Buffer mode. See [enum CopyMode] constants.
    */
-  public var copyMode: BackBufferCopy.CopyMode
+  public var copyMode: CopyMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_COPY_MODE,

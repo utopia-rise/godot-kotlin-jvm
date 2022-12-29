@@ -156,8 +156,8 @@ public open class UndoRedo : Object() {
    *
    * The way actions are merged is dictated by [mergeMode]. See [enum MergeMode] for details.
    */
-  public fun createAction(name: String, mergeMode: UndoRedo.MergeMode =
-      UndoRedo.MergeMode.MERGE_DISABLE): Unit {
+  public fun createAction(name: String, mergeMode: MergeMode = UndoRedo.MergeMode.MERGE_DISABLE):
+      Unit {
     TransferContext.writeArguments(STRING to name, LONG to mergeMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_CREATE_ACTION, NIL)
   }

@@ -619,7 +619,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushList(
     level: Long,
-    type: RichTextLabel.ListType,
+    type: ListType,
     capitalize: Boolean
   ): Unit {
     TransferContext.writeArguments(LONG to level, LONG to type.id, BOOL to capitalize)

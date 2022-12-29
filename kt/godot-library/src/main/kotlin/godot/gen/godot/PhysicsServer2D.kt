@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.PhysicsServer2D
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.RID
@@ -135,7 +134,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns a shape's type (see [enum ShapeType]).
    */
-  public fun shapeGetType(shape: RID): PhysicsServer2D.ShapeType {
+  public fun shapeGetType(shape: RID): ShapeType {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_GET_TYPE,
         LONG)
@@ -184,7 +183,7 @@ public object PhysicsServer2D : Object() {
    */
   public fun spaceSetParam(
     space: RID,
-    `param`: PhysicsServer2D.SpaceParameter,
+    `param`: SpaceParameter,
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to space, LONG to param.id, DOUBLE to value)
@@ -195,7 +194,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the value of a space parameter.
    */
-  public fun spaceGetParam(space: RID, `param`: PhysicsServer2D.SpaceParameter): Double {
+  public fun spaceGetParam(space: RID, `param`: SpaceParameter): Double {
     TransferContext.writeArguments(_RID to space, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_GET_PARAM,
         DOUBLE)
@@ -381,7 +380,7 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaSetParam(
     area: RID,
-    `param`: PhysicsServer2D.AreaParameter,
+    `param`: AreaParameter,
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
@@ -400,7 +399,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns an area parameter value. See [enum AreaParameter] for a list of available parameters.
    */
-  public fun areaGetParam(area: RID, `param`: PhysicsServer2D.AreaParameter): Any? {
+  public fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
     TransferContext.writeArguments(_RID to area, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_PARAM, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -521,7 +520,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the body mode using one of the [enum BodyMode] constants.
    */
-  public fun bodySetMode(body: RID, mode: PhysicsServer2D.BodyMode): Unit {
+  public fun bodySetMode(body: RID, mode: BodyMode): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_MODE, NIL)
   }
@@ -529,7 +528,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the body mode.
    */
-  public fun bodyGetMode(body: RID): PhysicsServer2D.BodyMode {
+  public fun bodyGetMode(body: RID): BodyMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_MODE, LONG)
     return PhysicsServer2D.BodyMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -691,8 +690,7 @@ public object PhysicsServer2D : Object() {
    *
    * Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
    */
-  public fun bodySetContinuousCollisionDetectionMode(body: RID, mode: PhysicsServer2D.CCDMode):
-      Unit {
+  public fun bodySetContinuousCollisionDetectionMode(body: RID, mode: CCDMode): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_CONTINUOUS_COLLISION_DETECTION_MODE, NIL)
@@ -701,7 +699,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the continuous collision detection mode.
    */
-  public fun bodyGetContinuousCollisionDetectionMode(body: RID): PhysicsServer2D.CCDMode {
+  public fun bodyGetContinuousCollisionDetectionMode(body: RID): CCDMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
@@ -770,7 +768,7 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetParam(
     body: RID,
-    `param`: PhysicsServer2D.BodyParameter,
+    `param`: BodyParameter,
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
@@ -780,7 +778,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the value of a body parameter. See [enum BodyParameter] for a list of available parameters.
    */
-  public fun bodyGetParam(body: RID, `param`: PhysicsServer2D.BodyParameter): Any? {
+  public fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
     TransferContext.writeArguments(_RID to body, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_PARAM, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -802,7 +800,7 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetState(
     body: RID,
-    state: PhysicsServer2D.BodyState,
+    state: BodyState,
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
@@ -812,7 +810,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns a body state.
    */
-  public fun bodyGetState(body: RID, state: PhysicsServer2D.BodyState): Any? {
+  public fun bodyGetState(body: RID, state: BodyState): Any? {
     TransferContext.writeArguments(_RID to body, LONG to state.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_STATE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -1105,7 +1103,7 @@ public object PhysicsServer2D : Object() {
    */
   public fun jointSetParam(
     joint: RID,
-    `param`: PhysicsServer2D.JointParam,
+    `param`: JointParam,
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
@@ -1116,7 +1114,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the value of a joint parameter.
    */
-  public fun jointGetParam(joint: RID, `param`: PhysicsServer2D.JointParam): Double {
+  public fun jointGetParam(joint: RID, `param`: JointParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_GET_PARAM,
         DOUBLE)
@@ -1172,7 +1170,7 @@ public object PhysicsServer2D : Object() {
    */
   public fun dampedSpringJointSetParam(
     joint: RID,
-    `param`: PhysicsServer2D.DampedSpringParam,
+    `param`: DampedSpringParam,
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
@@ -1183,8 +1181,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the value of a damped spring joint parameter. See [enum DampedSpringParam] for a list of available parameters.
    */
-  public fun dampedSpringJointGetParam(joint: RID, `param`: PhysicsServer2D.DampedSpringParam):
-      Double {
+  public fun dampedSpringJointGetParam(joint: RID, `param`: DampedSpringParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_DAMPED_SPRING_JOINT_GET_PARAM, DOUBLE)
@@ -1194,7 +1191,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns a joint's type (see [enum JointType]).
    */
-  public fun jointGetType(joint: RID): PhysicsServer2D.JointType {
+  public fun jointGetType(joint: RID): JointType {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_GET_TYPE,
         LONG)
@@ -1220,7 +1217,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns information about the current state of the 2D physics engine. See [enum ProcessInfo] for a list of available states.
    */
-  public fun getProcessInfo(processInfo: PhysicsServer2D.ProcessInfo): Long {
+  public fun getProcessInfo(processInfo: ProcessInfo): Long {
     TransferContext.writeArguments(LONG to processInfo.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_GET_PROCESS_INFO,
         LONG)

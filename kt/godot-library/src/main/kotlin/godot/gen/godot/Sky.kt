@@ -41,7 +41,7 @@ public open class Sky : Resource() {
   /**
    * Sets the method for generating the radiance map from the sky. The radiance map is a cubemap with increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance maps can be expensive to calculate. See [enum ProcessMode] for options.
    */
-  public var processMode: Sky.ProcessMode
+  public var processMode: ProcessMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_PROCESS_MODE, LONG)
@@ -59,7 +59,7 @@ public open class Sky : Resource() {
    *
    * **Note:** Some hardware will have trouble with higher radiance sizes, especially [godot.RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
    */
-  public var radianceSize: Sky.RadianceSize
+  public var radianceSize: RadianceSize
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_RADIANCE_SIZE, LONG)

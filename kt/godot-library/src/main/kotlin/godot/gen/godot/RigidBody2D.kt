@@ -130,7 +130,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   /**
    * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values.
    */
-  public var centerOfMassMode: RigidBody2D.CenterOfMassMode
+  public var centerOfMassMode: CenterOfMassMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -216,7 +216,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available. See [enum CCDMode] for details.
    */
-  public var continuousCd: RigidBody2D.CCDMode
+  public var continuousCd: CCDMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -335,7 +335,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * For a body that is always frozen, use [godot.StaticBody2D] or [godot.AnimatableBody2D] instead.
    */
-  public var freezeMode: RigidBody2D.FreezeMode
+  public var freezeMode: FreezeMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_FREEZE_MODE, LONG)
@@ -365,7 +365,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   /**
    * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
    */
-  public var linearDampMode: RigidBody2D.DampMode
+  public var linearDampMode: DampMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_LINEAR_DAMP_MODE,
@@ -414,7 +414,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   /**
    * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
    */
-  public var angularDampMode: RigidBody2D.DampMode
+  public var angularDampMode: DampMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_ANGULAR_DAMP_MODE,

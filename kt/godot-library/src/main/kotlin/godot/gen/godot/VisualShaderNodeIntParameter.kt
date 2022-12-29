@@ -25,7 +25,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   /**
    *
    */
-  public var hint: VisualShaderNodeIntParameter.Hint
+  public var hint: Hint
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

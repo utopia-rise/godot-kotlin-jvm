@@ -46,7 +46,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * Controls how this AudioStreamRandomizer picks which AudioStream to play next.
    */
-  public var playbackMode: AudioStreamRandomizer.PlaybackMode
+  public var playbackMode: PlaybackMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

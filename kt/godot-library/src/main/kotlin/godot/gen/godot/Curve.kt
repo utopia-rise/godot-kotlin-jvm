@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Curve
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -106,8 +105,8 @@ public open class Curve : Resource() {
     position: Vector2,
     leftTangent: Double = 0.0,
     rightTangent: Double = 0.0,
-    leftMode: Curve.TangentMode = Curve.TangentMode.TANGENT_FREE,
-    rightMode: Curve.TangentMode = Curve.TangentMode.TANGENT_FREE
+    leftMode: TangentMode = Curve.TangentMode.TANGENT_FREE,
+    rightMode: TangentMode = Curve.TangentMode.TANGENT_FREE
   ): Long {
     TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent, DOUBLE to rightTangent, LONG to leftMode.id, LONG to rightMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_ADD_POINT, LONG)
@@ -197,7 +196,7 @@ public open class Curve : Resource() {
   /**
    * Returns the left [enum TangentMode] for the point at [index].
    */
-  public fun getPointLeftMode(index: Long): Curve.TangentMode {
+  public fun getPointLeftMode(index: Long): TangentMode {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_LEFT_MODE, LONG)
     return Curve.TangentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -206,7 +205,7 @@ public open class Curve : Resource() {
   /**
    * Returns the right [enum TangentMode] for the point at [index].
    */
-  public fun getPointRightMode(index: Long): Curve.TangentMode {
+  public fun getPointRightMode(index: Long): TangentMode {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_RIGHT_MODE, LONG)
     return Curve.TangentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -231,7 +230,7 @@ public open class Curve : Resource() {
   /**
    * Sets the left [enum TangentMode] for the point at [index] to [mode].
    */
-  public fun setPointLeftMode(index: Long, mode: Curve.TangentMode): Unit {
+  public fun setPointLeftMode(index: Long, mode: TangentMode): Unit {
     TransferContext.writeArguments(LONG to index, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_LEFT_MODE, NIL)
   }
@@ -239,7 +238,7 @@ public open class Curve : Resource() {
   /**
    * Sets the right [enum TangentMode] for the point at [index] to [mode].
    */
-  public fun setPointRightMode(index: Long, mode: Curve.TangentMode): Unit {
+  public fun setPointRightMode(index: Long, mode: TangentMode): Unit {
     TransferContext.writeArguments(LONG to index, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_RIGHT_MODE, NIL)
   }

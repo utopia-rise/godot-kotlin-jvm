@@ -108,7 +108,7 @@ public object XRServer : Object() {
    *
    * You should call this method after a few seconds have passed. For example, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, or when implementing a teleport mechanism.
    */
-  public fun centerOnHmd(rotationMode: XRServer.RotationMode, keepHeight: Boolean): Unit {
+  public fun centerOnHmd(rotationMode: RotationMode, keepHeight: Boolean): Unit {
     TransferContext.writeArguments(LONG to rotationMode.id, BOOL to keepHeight)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_CENTER_ON_HMD, NIL)
   }

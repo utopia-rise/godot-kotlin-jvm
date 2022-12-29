@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Mesh
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Dictionary

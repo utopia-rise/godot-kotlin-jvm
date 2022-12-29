@@ -26,7 +26,7 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
   /**
    * A type of operands and returned value.
    */
-  public var opType: VisualShaderNodeMultiplyAdd.OpType
+  public var opType: OpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

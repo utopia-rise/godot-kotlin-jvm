@@ -175,7 +175,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Override mode for gravity calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public var gravitySpaceOverride: Area3D.SpaceOverride
+  public var gravitySpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -266,7 +266,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Override mode for linear damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public var linearDampSpaceOverride: Area3D.SpaceOverride
+  public var linearDampSpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -298,7 +298,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Override mode for angular damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public var angularDampSpaceOverride: Area3D.SpaceOverride
+  public var angularDampSpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

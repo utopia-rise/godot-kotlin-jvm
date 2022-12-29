@@ -847,7 +847,7 @@ public open class CodeEdit : TextEdit() {
    * **Note:** This list will replace all current candidates.
    */
   public fun addCodeCompletionOption(
-    type: CodeEdit.CodeCompletionKind,
+    type: CodeCompletionKind,
     displayText: String,
     insertText: String,
     textColor: Color = Color(Color(1, 1, 1, 1)),

@@ -28,7 +28,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   /**
    * Determines how the node is enabled. Corresponds to [enum Node.ProcessMode]. Disabled node uses [godot.Node.PROCESS_MODE_DISABLED].
    */
-  public var enableMode: VisibleOnScreenEnabler2D.EnableMode
+  public var enableMode: EnableMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

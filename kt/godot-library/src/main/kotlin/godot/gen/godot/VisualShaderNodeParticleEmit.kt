@@ -24,7 +24,7 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   /**
    *
    */
-  public var flags: VisualShaderNodeParticleEmit.EmitFlags
+  public var flags: EmitFlags
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

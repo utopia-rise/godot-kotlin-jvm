@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.DisplayServer
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Color
@@ -82,7 +81,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if the specified [feature] is supported by the current [godot.DisplayServer], `false` otherwise.
    */
-  public fun hasFeature(feature: DisplayServer.Feature): Boolean {
+  public fun hasFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_HAS_FEATURE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -968,8 +967,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
    */
-  public fun ttsSetUtteranceCallback(event: DisplayServer.TTSUtteranceEvent, callable: Callable):
-      Unit {
+  public fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable): Unit {
     TransferContext.writeArguments(LONG to event.id, CALLABLE to callable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_SET_UTTERANCE_CALLBACK, NIL)
@@ -1013,7 +1011,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the current mouse mode. See also [mouseGetMode].
    */
-  public fun mouseSetMode(mouseMode: DisplayServer.MouseMode): Unit {
+  public fun mouseSetMode(mouseMode: MouseMode): Unit {
     TransferContext.writeArguments(LONG to mouseMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_SET_MODE, NIL)
   }
@@ -1021,7 +1019,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the current mouse mode. See also [mouseSetMode].
    */
-  public fun mouseGetMode(): DisplayServer.MouseMode {
+  public fun mouseGetMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_MODE, LONG)
     return DisplayServer.MouseMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -1262,8 +1260,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the [screen]'s [orientation]. See also [screenGetOrientation].
    */
-  public fun screenSetOrientation(orientation: DisplayServer.ScreenOrientation, screen: Long = -1):
-      Unit {
+  public fun screenSetOrientation(orientation: ScreenOrientation, screen: Long = -1): Unit {
     TransferContext.writeArguments(LONG to orientation.id, LONG to screen)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_SET_ORIENTATION, NIL)
@@ -1274,7 +1271,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android and iOS.
    */
-  public fun screenGetOrientation(screen: Long = -1): DisplayServer.ScreenOrientation {
+  public fun screenGetOrientation(screen: Long = -1): ScreenOrientation {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_ORIENTATION, LONG)
@@ -1336,7 +1333,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, Linux (X11), macOS and Windows.
    */
-  public fun windowGetNativeHandle(handleType: DisplayServer.HandleType, windowId: Long = 0): Long {
+  public fun windowGetNativeHandle(handleType: HandleType, windowId: Long = 0): Long {
     TransferContext.writeArguments(LONG to handleType.id, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_NATIVE_HANDLE, LONG)
@@ -1622,7 +1619,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the mode of the given window.
    */
-  public fun windowGetMode(windowId: Long = 0): DisplayServer.WindowMode {
+  public fun windowGetMode(windowId: Long = 0): WindowMode {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_MODE, LONG)
     return DisplayServer.WindowMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -1633,7 +1630,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** Setting the window to full screen forcibly sets the borderless flag to `true`, so make sure to set it back to `false` when not wanted.
    */
-  public fun windowSetMode(mode: DisplayServer.WindowMode, windowId: Long = 0): Unit {
+  public fun windowSetMode(mode: WindowMode, windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to mode.id, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_MODE, NIL)
   }
@@ -1642,7 +1639,7 @@ public object DisplayServer : Object() {
    * Enables or disables the given window's given [flag]. See [enum WindowFlags] for possible values and their behavior.
    */
   public fun windowSetFlag(
-    flag: DisplayServer.WindowFlags,
+    flag: WindowFlags,
     enabled: Boolean,
     windowId: Long = 0
   ): Unit {
@@ -1653,7 +1650,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the current value of the given window's [flag].
    */
-  public fun windowGetFlag(flag: DisplayServer.WindowFlags, windowId: Long = 0): Boolean {
+  public fun windowGetFlag(flag: WindowFlags, windowId: Long = 0): Boolean {
     TransferContext.writeArguments(LONG to flag.id, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_FLAG, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1756,7 +1753,7 @@ public object DisplayServer : Object() {
    *
    * Depending on the platform and used renderer, the engine will fall back to [VSYNC_ENABLED], if the desired mode is not supported.
    */
-  public fun windowSetVsyncMode(vsyncMode: DisplayServer.VSyncMode, windowId: Long = 0): Unit {
+  public fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to vsyncMode.id, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_VSYNC_MODE,
         NIL)
@@ -1765,7 +1762,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the V-Sync mode of the given window.
    */
-  public fun windowGetVsyncMode(windowId: Long = 0): DisplayServer.VSyncMode {
+  public fun windowGetVsyncMode(windowId: Long = 0): VSyncMode {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_VSYNC_MODE,
         LONG)
@@ -1849,8 +1846,7 @@ public object DisplayServer : Object() {
   public fun virtualKeyboardShow(
     existingText: String,
     position: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
-    type: DisplayServer.VirtualKeyboardType =
-        DisplayServer.VirtualKeyboardType.KEYBOARD_TYPE_DEFAULT,
+    type: VirtualKeyboardType = DisplayServer.VirtualKeyboardType.KEYBOARD_TYPE_DEFAULT,
     maxLength: Long = -1,
     cursorStart: Long = -1,
     cursorEnd: Long = -1
@@ -1882,7 +1878,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the default mouse cursor shape. The cursor's appearance will vary depending on the user's operating system and mouse cursor theme. See also [cursorGetShape] and [cursorSetCustomImage].
    */
-  public fun cursorSetShape(shape: DisplayServer.CursorShape): Unit {
+  public fun cursorSetShape(shape: CursorShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CURSOR_SET_SHAPE, NIL)
   }
@@ -1890,7 +1886,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the default mouse cursor shape set by [cursorSetShape].
    */
-  public fun cursorGetShape(): DisplayServer.CursorShape {
+  public fun cursorGetShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CURSOR_GET_SHAPE,
         LONG)
@@ -1902,7 +1898,7 @@ public object DisplayServer : Object() {
    */
   public fun cursorSetCustomImage(
     cursor: Resource,
-    shape: DisplayServer.CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
+    shape: CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(OBJECT to cursor, LONG to shape.id, VECTOR2 to hotspot)

@@ -581,10 +581,10 @@ class GenerationService(
 
             val kTypeVariable = TypeVariableName.invoke(
                 "K",
-                bounds = *arrayOf(
+                bounds = arrayOf(
                     LambdaTypeName.get(
                         returnType = UNIT,
-                        parameters = *typeVariablesNames.toTypedArray()
+                        parameters = typeVariablesNames.toTypedArray()
                     )
                 )
             ).copy(reified = true)
@@ -734,7 +734,7 @@ class GenerationService(
                 val defaultValueKotlinCode = argument.getDefaultValueKotlinString()
                 val appliedDefault = if (argument.isEnum() && defaultValueKotlinCode != null) {
                     enumService.findEnumValue(
-                        argumentTypeClassName.className.simpleName,
+                        argumentTypeClassName,
                         defaultValueKotlinCode.toInt()
                     ).name
                 } else {
@@ -744,7 +744,7 @@ class GenerationService(
 
                 generatedFunBuilder.addParameter(parameterBuilder.build())
             }
-            if (method.internal.isVararg && length != 0) append(",·")
+            if (method.internal.isVararg && isNotEmpty()) append(",·")
         }
     }
 
@@ -805,7 +805,7 @@ class GenerationService(
         if (methodReturnType.typeName != UNIT) {
             if (callable.isEnum()) {
                 addStatement(
-                    "return·${methodReturnType.className.simpleName}.values()[%T.readReturnValue(%T)·as·%T]",
+                    "return·${methodReturnType.className.simpleNames.joinToString(".")}.values()[%T.readReturnValue(%T)·as·%T]",
                     TRANSFER_CONTEXT,
                     ClassName("godot.core.VariantType", "JVM_INT"),
                     INT

@@ -42,7 +42,7 @@ public open class CurveTexture : Texture2D() {
   /**
    * The format the texture should be generated with. When passing a CurveTexture as a input to a [godot.Shader], this may need to be adjusted.
    */
-  public var textureMode: CurveTexture.TextureMode
+  public var textureMode: TextureMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_TEXTURE_MODE,

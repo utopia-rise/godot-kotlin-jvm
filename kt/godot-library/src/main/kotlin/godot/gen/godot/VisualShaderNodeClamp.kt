@@ -26,7 +26,7 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
   /**
    * A type of operands and returned value.
    */
-  public var opType: VisualShaderNodeClamp.OpType
+  public var opType: OpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECLAMP_GET_OP_TYPE,

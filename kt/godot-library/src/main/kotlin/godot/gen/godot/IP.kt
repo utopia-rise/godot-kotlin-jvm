@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.IP
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedStringArray
@@ -51,7 +50,7 @@ public object IP : Object() {
   /**
    * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the [enum Type] constant given as [ipType].
    */
-  public fun resolveHostname(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): String {
+  public fun resolveHostname(host: String, ipType: Type = IP.Type.TYPE_ANY): String {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -60,7 +59,7 @@ public object IP : Object() {
   /**
    * Resolves a given hostname in a blocking way. Addresses are returned as an [godot.Array] of IPv4 or IPv6 addresses depending on [ipType].
    */
-  public fun resolveHostnameAddresses(host: String, ipType: IP.Type = IP.Type.TYPE_ANY):
+  public fun resolveHostnameAddresses(host: String, ipType: Type = IP.Type.TYPE_ANY):
       PackedStringArray {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_ADDRESSES,
@@ -71,7 +70,7 @@ public object IP : Object() {
   /**
    * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as [ipType]. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
    */
-  public fun resolveHostnameQueueItem(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): Long {
+  public fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.TYPE_ANY): Long {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_QUEUE_ITEM,
         LONG)
@@ -81,7 +80,7 @@ public object IP : Object() {
   /**
    * Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue [id].
    */
-  public fun getResolveItemStatus(id: Long): IP.ResolverStatus {
+  public fun getResolveItemStatus(id: Long): ResolverStatus {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_STATUS, LONG)
     return IP.ResolverStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]

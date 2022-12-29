@@ -101,7 +101,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * If [disable] is `true`, disables the editor feature specified in [feature]. When a feature is disabled, it will disappear from the editor entirely.
    */
-  public fun setDisableFeature(feature: EditorFeatureProfile.Feature, disable: Boolean): Unit {
+  public fun setDisableFeature(feature: Feature, disable: Boolean): Unit {
     TransferContext.writeArguments(LONG to feature.id, BOOL to disable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_FEATURE, NIL)
@@ -110,7 +110,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * Returns `true` if the [feature] is disabled. When a feature is disabled, it will disappear from the editor entirely.
    */
-  public fun isFeatureDisabled(feature: EditorFeatureProfile.Feature): Boolean {
+  public fun isFeatureDisabled(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_FEATURE_DISABLED, BOOL)
@@ -120,7 +120,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * Returns the specified [feature]'s human-readable name.
    */
-  public fun getFeatureName(feature: EditorFeatureProfile.Feature): String {
+  public fun getFeatureName(feature: Feature): String {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_GET_FEATURE_NAME, STRING)

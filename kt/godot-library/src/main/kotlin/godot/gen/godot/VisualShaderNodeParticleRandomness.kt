@@ -24,7 +24,7 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
   /**
    * A type of operands and returned value.
    */
-  public var opType: VisualShaderNodeParticleRandomness.OpType
+  public var opType: OpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

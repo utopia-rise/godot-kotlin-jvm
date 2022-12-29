@@ -51,7 +51,7 @@ public open class AudioStreamWAV : AudioStream() {
   /**
    * Audio format. See [enum Format] constants for values.
    */
-  public var format: AudioStreamWAV.Format
+  public var format: Format
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_GET_FORMAT, LONG)
@@ -65,7 +65,7 @@ public open class AudioStreamWAV : AudioStream() {
   /**
    * The loop mode. This information will be imported automatically from the WAV file if present. See [enum LoopMode] constants for values.
    */
-  public var loopMode: AudioStreamWAV.LoopMode
+  public var loopMode: LoopMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_GET_LOOP_MODE,

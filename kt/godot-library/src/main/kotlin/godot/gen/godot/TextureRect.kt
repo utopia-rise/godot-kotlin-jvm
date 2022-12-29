@@ -61,7 +61,7 @@ public open class TextureRect : Control() {
   /**
    * Controls the texture's behavior when resizing the node's bounding rectangle. See [enum StretchMode].
    */
-  public var stretchMode: TextureRect.StretchMode
+  public var stretchMode: StretchMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_STRETCH_MODE,

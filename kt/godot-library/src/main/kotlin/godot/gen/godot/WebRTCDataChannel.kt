@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.WebRTCDataChannel
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.BOOL
@@ -24,7 +23,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class WebRTCDataChannel internal constructor() : PacketPeer() {
-  public var writeMode: WebRTCDataChannel.WriteMode
+  public var writeMode: WriteMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_WRITE_MODE,
@@ -60,7 +59,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public fun getReadyState(): WebRTCDataChannel.ChannelState {
+  public fun getReadyState(): ChannelState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_READY_STATE,
         LONG)

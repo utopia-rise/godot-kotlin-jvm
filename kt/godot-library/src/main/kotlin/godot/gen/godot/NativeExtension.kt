@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.NativeExtension
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.BOOL
@@ -62,7 +61,7 @@ public open class NativeExtension : Resource() {
   /**
    *
    */
-  public fun getMinimumLibraryInitializationLevel(): NativeExtension.InitializationLevel {
+  public fun getMinimumLibraryInitializationLevel(): InitializationLevel {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_GET_MINIMUM_LIBRARY_INITIALIZATION_LEVEL, LONG)
@@ -72,7 +71,7 @@ public open class NativeExtension : Resource() {
   /**
    *
    */
-  public fun initializeLibrary(level: NativeExtension.InitializationLevel): Unit {
+  public fun initializeLibrary(level: InitializationLevel): Unit {
     TransferContext.writeArguments(LONG to level.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_INITIALIZE_LIBRARY,
         NIL)

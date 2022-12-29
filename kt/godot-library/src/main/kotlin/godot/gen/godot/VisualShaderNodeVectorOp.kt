@@ -26,7 +26,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   /**
    * The operator to be used. See [enum Operator] for options.
    */
-  public var `operator`: VisualShaderNodeVectorOp.Operator
+  public var `operator`: Operator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

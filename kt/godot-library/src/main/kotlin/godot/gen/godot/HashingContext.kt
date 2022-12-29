@@ -137,7 +137,7 @@ public open class HashingContext : RefCounted() {
   /**
    * Starts a new hash computation of the given [type] (e.g. [godot.HASH_SHA256] to start computation of a SHA-256).
    */
-  public fun start(type: HashingContext.HashType): GodotError {
+  public fun start(type: HashType): GodotError {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_START, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

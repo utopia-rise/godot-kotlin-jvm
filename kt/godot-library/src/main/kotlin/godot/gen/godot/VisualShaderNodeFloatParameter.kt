@@ -29,7 +29,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   /**
    * A hint applied to the uniform, which controls the values it can take when set through the Inspector.
    */
-  public var hint: VisualShaderNodeFloatParameter.Hint
+  public var hint: Hint
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

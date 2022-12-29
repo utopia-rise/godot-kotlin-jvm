@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.WebRTCPeerConnection
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError

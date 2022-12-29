@@ -110,7 +110,7 @@ public open class AnimationTree : Node() {
   /**
    * The process mode of this [godot.AnimationTree]. See [enum AnimationProcessCallback] for available modes.
    */
-  public var processCallback: AnimationTree.AnimationProcessCallback
+  public var processCallback: AnimationProcessCallback
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

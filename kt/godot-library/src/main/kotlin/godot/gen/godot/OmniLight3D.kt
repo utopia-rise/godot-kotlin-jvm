@@ -29,7 +29,7 @@ public open class OmniLight3D : Light3D() {
   /**
    * See [enum ShadowMode].
    */
-  public var omniShadowMode: OmniLight3D.ShadowMode
+  public var omniShadowMode: ShadowMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OMNILIGHT3D_GET_SHADOW_MODE, LONG)

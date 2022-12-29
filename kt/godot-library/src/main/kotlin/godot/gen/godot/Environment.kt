@@ -46,7 +46,7 @@ public open class Environment : Resource() {
   /**
    * The background mode. See [enum BGMode] for possible values.
    */
-  public var backgroundMode: Environment.BGMode
+  public var backgroundMode: BGMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND, LONG)
@@ -182,7 +182,7 @@ public open class Environment : Resource() {
   /**
    * The ambient light source to use for rendering materials and global illumination.
    */
-  public var ambientLightSource: Environment.AmbientSource
+  public var ambientLightSource: AmbientSource
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_SOURCE,
@@ -248,7 +248,7 @@ public open class Environment : Resource() {
   /**
    * The reflected (specular) light source.
    */
-  public var reflectedLightSource: Environment.ReflectionSource
+  public var reflectedLightSource: ReflectionSource
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_REFLECTION_SOURCE,
@@ -264,7 +264,7 @@ public open class Environment : Resource() {
   /**
    * The tonemapping mode to use. Tonemapping is the process that "converts" HDR values to be suitable for rendering on a LDR display. (Godot doesn't support rendering on HDR displays yet.)
    */
-  public var tonemapMode: Environment.ToneMapper
+  public var tonemapMode: ToneMapper
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAPPER, LONG)
@@ -741,7 +741,7 @@ public open class Environment : Resource() {
   /**
    * The Y scale to use for SDFGI cells. Lower values will result in SDFGI cells being packed together more closely on the Y axis. This is used to balance between quality and covering a lot of vertical ground. [sdfgiYScale] should be set depending on how vertical your scene is (and how fast your camera may move on the Y axis).
    */
-  public var sdfgiYScale: Environment.SDFGIYScale
+  public var sdfgiYScale: SDFGIYScale
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_Y_SCALE,
@@ -895,7 +895,7 @@ public open class Environment : Resource() {
   /**
    * The glow blending mode.
    */
-  public var glowBlendMode: Environment.GlowBlendMode
+  public var glowBlendMode: GlowBlendMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLEND_MODE,

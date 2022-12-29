@@ -61,7 +61,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Defines the behavior in physics when [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes.
    */
-  public var disableMode: CollisionObject3D.DisableMode
+  public var disableMode: DisableMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

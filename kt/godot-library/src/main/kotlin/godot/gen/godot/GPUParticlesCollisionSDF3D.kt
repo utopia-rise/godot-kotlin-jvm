@@ -59,7 +59,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    * The bake resolution to use for the signed distance field [texture]. The texture must be baked again for changes to the [resolution] property to be effective. Higher resolutions have a greater performance cost and take more time to bake. Higher resolutions also result in larger baked textures, leading to increased VRAM and storage space requirements. To improve performance and reduce bake times, use the lowest resolution possible for the object you're representing the collision of.
    */
-  public var resolution: GPUParticlesCollisionSDF3D.Resolution
+  public var resolution: Resolution
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

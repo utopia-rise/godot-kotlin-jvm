@@ -40,7 +40,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Sets how frequently the [godot.ReflectionProbe] is updated. Can be [UPDATE_ONCE] or [UPDATE_ALWAYS].
    */
-  public var updateMode: ReflectionProbe.UpdateMode
+  public var updateMode: UpdateMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_UPDATE_MODE,
@@ -207,7 +207,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The ambient color to use within the [godot.ReflectionProbe]'s [extents]. The ambient color will smoothly blend with other [godot.ReflectionProbe]s and the rest of the scene (outside the [godot.ReflectionProbe]'s [extents]).
    */
-  public var ambientMode: ReflectionProbe.AmbientMode
+  public var ambientMode: AmbientMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_MODE,

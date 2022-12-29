@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Control
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL

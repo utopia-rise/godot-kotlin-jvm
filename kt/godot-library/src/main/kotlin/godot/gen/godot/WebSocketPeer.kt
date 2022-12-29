@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.WebSocketPeer
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
@@ -115,7 +114,7 @@ public open class WebSocketPeer : PacketPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun send(message: PackedByteArray, writeMode: WebSocketPeer.WriteMode =
+  public fun send(message: PackedByteArray, writeMode: WriteMode =
       WebSocketPeer.WriteMode.WRITE_MODE_BINARY): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to message, LONG to writeMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SEND, LONG)
@@ -185,7 +184,7 @@ public open class WebSocketPeer : PacketPeer() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun getReadyState(): WebSocketPeer.State {
+  public fun getReadyState(): State {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_READY_STATE, LONG)
     return WebSocketPeer.State.values()[TransferContext.readReturnValue(JVM_INT) as Int]

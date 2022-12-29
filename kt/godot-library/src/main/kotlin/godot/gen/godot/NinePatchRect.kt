@@ -84,7 +84,7 @@ public open class NinePatchRect : Control() {
   /**
    * The stretch mode to use for horizontal stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values.
    */
-  public var axisStretchHorizontal: NinePatchRect.AxisStretchMode
+  public var axisStretchHorizontal: AxisStretchMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -100,7 +100,7 @@ public open class NinePatchRect : Control() {
   /**
    * The stretch mode to use for vertical stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values.
    */
-  public var axisStretchVertical: NinePatchRect.AxisStretchMode
+  public var axisStretchVertical: AxisStretchMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

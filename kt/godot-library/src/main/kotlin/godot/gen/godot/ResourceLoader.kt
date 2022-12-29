@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.ResourceLoader
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
@@ -56,7 +55,7 @@ public object ResourceLoader : Object() {
     path: String,
     typeHint: String = "",
     useSubThreads: Boolean = false,
-    cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
+    cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
   ): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads, LONG to cacheMode.id)
     TransferContext.callMethod(rawPtr,
@@ -70,7 +69,7 @@ public object ResourceLoader : Object() {
    * An array variable can optionally be passed via [progress], and will return a one-element array containing the percentage of completion of the threaded loading.
    */
   public fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
-      godot.core.variantArrayOf()): ResourceLoader.ThreadLoadStatus {
+      godot.core.variantArrayOf()): ThreadLoadStatus {
     TransferContext.writeArguments(STRING to path, ARRAY to progress)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_GET_STATUS, LONG)
@@ -105,7 +104,7 @@ public object ResourceLoader : Object() {
   public fun load(
     path: String,
     typeHint: String = "",
-    cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
+    cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
   ): Resource? {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, LONG to cacheMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD, OBJECT)

@@ -25,7 +25,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class CSGShape3D internal constructor() : GeometryInstance3D() {
-  public var operation: CSGShape3D.Operation
+  public var operation: Operation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_OPERATION, LONG)

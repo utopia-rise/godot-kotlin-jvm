@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.HTTPClient
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
@@ -138,7 +137,7 @@ public open class HTTPClient : RefCounted() {
    * Sends the body data raw, as a byte array and does not encode it in any way.
    */
   public fun requestRaw(
-    method: HTTPClient.Method,
+    method: Method,
     url: String,
     headers: PackedStringArray,
     body: PackedByteArray
@@ -188,7 +187,7 @@ public open class HTTPClient : RefCounted() {
    * **Note:** The [body] parameter is ignored if [method] is [godot.HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [godot.String.uriEncode] for an example.
    */
   public fun request(
-    method: HTTPClient.Method,
+    method: Method,
     url: String,
     headers: PackedStringArray,
     body: String = ""
@@ -288,7 +287,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Returns a [enum Status] constant. Need to call [poll] in order to get status updates.
    */
-  public fun getStatus(): HTTPClient.Status {
+  public fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_STATUS, LONG)
     return HTTPClient.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]

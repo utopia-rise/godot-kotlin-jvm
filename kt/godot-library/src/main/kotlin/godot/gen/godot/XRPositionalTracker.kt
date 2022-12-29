@@ -149,7 +149,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Defines which hand this tracker relates to.
    */
-  public var hand: XRPositionalTracker.TrackerHand
+  public var hand: TrackerHand
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

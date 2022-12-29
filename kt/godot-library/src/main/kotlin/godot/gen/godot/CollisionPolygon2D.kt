@@ -33,7 +33,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * Collision build mode. Use one of the [enum BuildMode] constants.
    */
-  public var buildMode: CollisionPolygon2D.BuildMode
+  public var buildMode: BuildMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_BUILD_MODE,

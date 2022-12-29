@@ -19,6 +19,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
@@ -154,7 +155,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The alpha cutting mode to use for the sprite. See [enum AlphaCutMode] for possible values.
    */
-  public var alphaCut: SpriteBase3D.AlphaCutMode
+  public var alphaCut: AlphaCutMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ALPHA_CUT_MODE,
@@ -211,7 +212,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * If `true`, the specified flag will be enabled. See [enum SpriteBase3D.DrawFlags] for a list of flags.
    */
-  public fun setDrawFlag(flag: SpriteBase3D.DrawFlags, enabled: Boolean): Unit {
+  public fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
   }
@@ -219,7 +220,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * Returns the value of the specified flag.
    */
-  public fun getDrawFlag(flag: SpriteBase3D.DrawFlags): Boolean {
+  public fun getDrawFlag(flag: DrawFlags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

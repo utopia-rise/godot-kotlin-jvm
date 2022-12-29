@@ -135,7 +135,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * If the audio configuration has more than two speakers, this sets the target channels. See [enum MixTarget] constants.
    */
-  public var mixTarget: AudioStreamPlayer.MixTarget
+  public var mixTarget: MixTarget
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_MIX_TARGET,

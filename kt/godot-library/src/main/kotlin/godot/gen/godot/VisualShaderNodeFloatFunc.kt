@@ -26,7 +26,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   /**
    * A function to be applied to the scalar. See [enum Function] for options.
    */
-  public var function: VisualShaderNodeFloatFunc.Function
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

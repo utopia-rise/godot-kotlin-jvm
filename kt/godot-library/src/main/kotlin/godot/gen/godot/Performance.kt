@@ -68,7 +68,7 @@ public object Performance : Object() {
    *
    * See [getCustomMonitor] to query custom performance monitors' values.
    */
-  public fun getMonitor(monitor: Performance.Monitor): Double {
+  public fun getMonitor(monitor: Monitor): Double {
     TransferContext.writeArguments(LONG to monitor.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_MONITOR, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double

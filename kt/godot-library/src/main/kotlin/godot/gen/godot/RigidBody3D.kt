@@ -130,7 +130,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values.
    */
-  public var centerOfMassMode: RigidBody3D.CenterOfMassMode
+  public var centerOfMassMode: CenterOfMassMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -335,7 +335,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * For a body that is always frozen, use [godot.StaticBody3D] or [godot.AnimatableBody3D] instead.
    */
-  public var freezeMode: RigidBody3D.FreezeMode
+  public var freezeMode: FreezeMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_FREEZE_MODE, LONG)
@@ -365,7 +365,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
    */
-  public var linearDampMode: RigidBody3D.DampMode
+  public var linearDampMode: DampMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_LINEAR_DAMP_MODE,
@@ -414,7 +414,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
    */
-  public var angularDampMode: RigidBody3D.DampMode
+  public var angularDampMode: DampMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_ANGULAR_DAMP_MODE,

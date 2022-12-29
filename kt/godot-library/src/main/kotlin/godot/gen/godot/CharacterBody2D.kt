@@ -39,7 +39,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Sets the motion mode which defines the behavior of [moveAndSlide]. See [enum MotionMode] constants for available modes.
    */
-  public var motionMode: CharacterBody2D.MotionMode
+  public var motionMode: MotionMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_MOTION_MODE,
@@ -220,7 +220,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave] constants for available behavior.
    */
-  public var platformOnLeave: CharacterBody2D.PlatformOnLeave
+  public var platformOnLeave: PlatformOnLeave
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

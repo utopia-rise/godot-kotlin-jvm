@@ -93,7 +93,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Direction that the [godot.PlaneMesh] is facing. See [enum Orientation] for options.
    */
-  public var orientation: PlaneMesh.Orientation
+  public var orientation: Orientation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_ORIENTATION, LONG)

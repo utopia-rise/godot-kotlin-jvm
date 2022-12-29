@@ -44,7 +44,7 @@ public open class LightmapGI : VisualInstance3D() {
    *
    * To further speed up bake times, decrease [bounces], disable [useDenoiser] and increase the lightmap texel size on 3D scenes in the Import doc.
    */
-  public var quality: LightmapGI.BakeQuality
+  public var quality: BakeQuality
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BAKE_QUALITY, LONG)
@@ -149,7 +149,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    * The environment mode to use when baking lightmaps.
    */
-  public var environmentMode: LightmapGI.EnvironmentMode
+  public var environmentMode: EnvironmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_ENVIRONMENT_MODE,
@@ -233,7 +233,7 @@ public open class LightmapGI : VisualInstance3D() {
    *
    * **Note:** Regardless of [generateProbesSubdiv], direct lighting on dynamic objects is always applied using [godot.Light3D] nodes in real-time.
    */
-  public var generateProbesSubdiv: LightmapGI.GenerateProbes
+  public var generateProbesSubdiv: GenerateProbes
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_GENERATE_PROBES,

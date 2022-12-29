@@ -30,7 +30,7 @@ public open class DirectionalLight3D : Light3D() {
   /**
    * The light's shadow rendering algorithm. See [enum ShadowMode].
    */
-  public var directionalShadowMode: DirectionalLight3D.ShadowMode
+  public var directionalShadowMode: ShadowMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -62,7 +62,7 @@ public open class DirectionalLight3D : Light3D() {
   /**
    * Set whether this [godot.DirectionalLight3D] is visible in the sky, in the scene, or both in the sky and in the scene. See [enum SkyMode] for options.
    */
-  public var skyMode: DirectionalLight3D.SkyMode
+  public var skyMode: SkyMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SKY_MODE,

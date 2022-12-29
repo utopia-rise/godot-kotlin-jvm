@@ -43,7 +43,7 @@ public open class OccluderPolygon2D : Resource() {
   /**
    * The culling mode to use.
    */
-  public var cullMode: OccluderPolygon2D.CullMode
+  public var cullMode: CullMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_GET_CULL_MODE,

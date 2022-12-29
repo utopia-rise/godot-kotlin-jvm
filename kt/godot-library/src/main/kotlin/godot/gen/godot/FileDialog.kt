@@ -66,7 +66,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode].
    */
-  public var fileMode: FileDialog.FileMode
+  public var fileMode: FileMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILE_MODE, LONG)
@@ -82,7 +82,7 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * **Warning:** Currently, in sandboxed environments such as Web builds or sandboxed macOS apps, FileDialog cannot access the host file system. See [godot-proposals#1123](https://github.com/godotengine/godot-proposals/issues/1123).
    */
-  public var access: FileDialog.Access
+  public var access: Access
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ACCESS, LONG)

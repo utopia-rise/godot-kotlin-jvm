@@ -27,7 +27,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * Defines which source should be used for the sampling. See [enum Source] for options.
    */
-  public var source: VisualShaderNodeCubemap.Source
+  public var source: Source
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -59,7 +59,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * Defines the type of data provided by the source texture. See [enum TextureType] for options.
    */
-  public var textureType: VisualShaderNodeCubemap.TextureType
+  public var textureType: TextureType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

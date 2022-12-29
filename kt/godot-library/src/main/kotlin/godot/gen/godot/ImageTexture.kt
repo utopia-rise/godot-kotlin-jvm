@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Image
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG

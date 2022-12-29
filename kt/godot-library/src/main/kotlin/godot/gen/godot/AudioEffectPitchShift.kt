@@ -65,7 +65,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
   /**
    * The size of the [godot.Fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform) buffer. Higher values smooth out the effect over time, but have greater latency. The effects of this higher latency are especially noticeable on sounds that have sudden amplitude changes.
    */
-  public var fftSize: AudioEffectPitchShift.FFTSize
+  public var fftSize: FFTSize
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

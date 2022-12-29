@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Mesh
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedInt32Array

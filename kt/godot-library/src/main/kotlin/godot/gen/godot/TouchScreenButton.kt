@@ -174,7 +174,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's visibility mode. See [enum VisibilityMode] for possible values.
    */
-  public var visibilityMode: TouchScreenButton.VisibilityMode
+  public var visibilityMode: VisibilityMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -334,7 +334,7 @@ public object Geometry2D : Object() {
   public fun offsetPolygon(
     polygon: PackedVector2Array,
     delta: Double,
-    joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE
+    joinType: PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE
   ): VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta, LONG to joinType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYGON, ARRAY)
@@ -353,8 +353,8 @@ public object Geometry2D : Object() {
   public fun offsetPolyline(
     polyline: PackedVector2Array,
     delta: Double,
-    joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
-    endType: Geometry2D.PolyEndType = Geometry2D.PolyEndType.END_SQUARE
+    joinType: PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
+    endType: PolyEndType = Geometry2D.PolyEndType.END_SQUARE
   ): VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta, LONG to joinType.id, LONG to endType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYLINE, ARRAY)

@@ -80,7 +80,7 @@ public open class SubViewport : Viewport() {
    *
    * **Note:** This property is intended for 2D usage.
    */
-  public var renderTargetClearMode: SubViewport.ClearMode
+  public var renderTargetClearMode: ClearMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_CLEAR_MODE, LONG)
@@ -94,7 +94,7 @@ public open class SubViewport : Viewport() {
   /**
    * The update mode when the sub-viewport is used as a render target.
    */
-  public var renderTargetUpdateMode: SubViewport.UpdateMode
+  public var renderTargetUpdateMode: UpdateMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_UPDATE_MODE, LONG)

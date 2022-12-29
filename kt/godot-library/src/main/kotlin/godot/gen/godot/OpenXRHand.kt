@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 @GodotBaseType
 public open class OpenXRHand : Node3D() {
-  public var hand: OpenXRHand.Hands
+  public var hand: Hands
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_GET_HAND, LONG)
@@ -31,7 +31,7 @@ public open class OpenXRHand : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_SET_HAND, NIL)
     }
 
-  public var motionRange: OpenXRHand.MotionRange
+  public var motionRange: MotionRange
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_GET_MOTION_RANGE, LONG)

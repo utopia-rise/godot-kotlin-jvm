@@ -42,7 +42,7 @@ public open class Timer : Node() {
   /**
    * Processing callback. See [enum TimerProcessCallback].
    */
-  public var processCallback: Timer.TimerProcessCallback
+  public var processCallback: TimerProcessCallback
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_TIMER_PROCESS_CALLBACK,

@@ -100,7 +100,7 @@ public open class TileMap : Node2D() {
   /**
    * Show or hide the TileMap's collision shapes. If set to [VISIBILITY_MODE_DEFAULT], this depends on the show collision debug settings.
    */
-  public var collisionVisibilityMode: TileMap.VisibilityMode
+  public var collisionVisibilityMode: VisibilityMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -116,7 +116,7 @@ public open class TileMap : Node2D() {
   /**
    * Show or hide the TileMap's navigation meshes. If set to [VISIBILITY_MODE_DEFAULT], this depends on the show navigation debug settings.
    */
-  public var navigationVisibilityMode: TileMap.VisibilityMode
+  public var navigationVisibilityMode: VisibilityMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

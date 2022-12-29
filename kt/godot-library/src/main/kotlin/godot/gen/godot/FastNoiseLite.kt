@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 @GodotBaseType
 public open class FastNoiseLite : Noise() {
-  public var noiseType: FastNoiseLite.NoiseType
+  public var noiseType: NoiseType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_NOISE_TYPE,
@@ -69,7 +69,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_OFFSET, NIL)
     }
 
-  public var fractalType: FastNoiseLite.FractalType
+  public var fractalType: FractalType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_FRACTAL_TYPE,
@@ -147,7 +147,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_FRACTAL_PING_PONG_STRENGTH, NIL)
     }
 
-  public var cellularDistanceFunction: FastNoiseLite.CellularDistanceFunction
+  public var cellularDistanceFunction: CellularDistanceFunction
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -173,7 +173,7 @@ public open class FastNoiseLite : Noise() {
           NIL)
     }
 
-  public var cellularReturnType: FastNoiseLite.CellularReturnType
+  public var cellularReturnType: CellularReturnType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -199,7 +199,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_ENABLED, NIL)
     }
 
-  public var domainWarpType: FastNoiseLite.DomainWarpType
+  public var domainWarpType: DomainWarpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -238,7 +238,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_FREQUENCY, NIL)
     }
 
-  public var domainWarpFractalType: FastNoiseLite.DomainWarpFractalType
+  public var domainWarpFractalType: DomainWarpFractalType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

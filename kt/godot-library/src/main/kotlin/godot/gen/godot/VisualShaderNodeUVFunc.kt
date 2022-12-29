@@ -24,7 +24,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
   /**
    * A function to be applied to the texture coordinates. See [enum Function] for options.
    */
-  public var function: VisualShaderNodeUVFunc.Function
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

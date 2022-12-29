@@ -125,7 +125,7 @@ public open class Line2D : Node2D() {
   /**
    * The style to render the `texture` on the line. Use [enum LineTextureMode] constants.
    */
-  public var textureMode: Line2D.LineTextureMode
+  public var textureMode: LineTextureMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE_MODE, LONG)
@@ -139,7 +139,7 @@ public open class Line2D : Node2D() {
   /**
    * The style for the points between the start and the end.
    */
-  public var jointMode: Line2D.LineJointMode
+  public var jointMode: LineJointMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_JOINT_MODE, LONG)
@@ -153,7 +153,7 @@ public open class Line2D : Node2D() {
   /**
    * Controls the style of the line's first point. Use [enum LineCapMode] constants.
    */
-  public var beginCapMode: Line2D.LineCapMode
+  public var beginCapMode: LineCapMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_BEGIN_CAP_MODE, LONG)
@@ -167,7 +167,7 @@ public open class Line2D : Node2D() {
   /**
    * Controls the style of the line's last point. Use [enum LineCapMode] constants.
    */
-  public var endCapMode: Line2D.LineCapMode
+  public var endCapMode: LineCapMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_END_CAP_MODE, LONG)

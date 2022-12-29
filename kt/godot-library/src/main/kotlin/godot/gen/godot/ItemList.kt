@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Control
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedInt32Array
@@ -88,7 +87,7 @@ public open class ItemList : Control() {
   /**
    * Allows single or multiple item selection. See the [enum SelectMode] constants.
    */
-  public var selectMode: ItemList.SelectMode
+  public var selectMode: SelectMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECT_MODE, LONG)
@@ -246,7 +245,7 @@ public open class ItemList : Control() {
   /**
    * The icon position, whether above or to the left of the text. See the [enum IconMode] constants.
    */
-  public var iconMode: ItemList.IconMode
+  public var iconMode: IconMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_MODE, LONG)

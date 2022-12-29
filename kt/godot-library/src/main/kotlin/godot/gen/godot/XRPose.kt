@@ -116,7 +116,7 @@ public open class XRPose : RefCounted() {
   /**
    * The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is.
    */
-  public var trackingConfidence: XRPose.TrackingConfidence
+  public var trackingConfidence: TrackingConfidence
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRACKING_CONFIDENCE,

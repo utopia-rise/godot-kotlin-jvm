@@ -202,7 +202,7 @@ public open class Node : Object() {
   /**
    * Can be used to pause or unpause the node, or make the node paused based on the [godot.SceneTree], or make it inherit the process mode from its parent (default).
    */
-  public var processMode: Node.ProcessMode
+  public var processMode: ProcessMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_MODE, LONG)
@@ -657,7 +657,7 @@ public open class Node : Object() {
   public fun addChild(
     node: Node,
     forceReadableName: Boolean = false,
-    `internal`: Node.InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED
+    `internal`: InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED
   ): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to forceReadableName, LONG to internal.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_CHILD, NIL)

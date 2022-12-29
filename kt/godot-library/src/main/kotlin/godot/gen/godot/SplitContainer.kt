@@ -68,7 +68,7 @@ public open class SplitContainer : Container() {
   /**
    * Determines the dragger's visibility. See [enum DraggerVisibility] for details.
    */
-  public var draggerVisibility: SplitContainer.DraggerVisibility
+  public var draggerVisibility: DraggerVisibility
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.TileSet
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantArray
@@ -53,7 +52,7 @@ public open class TileSet : Resource() {
   /**
    * The tile shape.
    */
-  public var tileShape: TileSet.TileShape
+  public var tileShape: TileShape
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_SHAPE, LONG)
@@ -67,7 +66,7 @@ public open class TileSet : Resource() {
   /**
    * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles are indexed in the TileMap grid.
    */
-  public var tileLayout: TileSet.TileLayout
+  public var tileLayout: TileLayout
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_LAYOUT, LONG)
@@ -81,7 +80,7 @@ public open class TileSet : Resource() {
   /**
    * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), determines the offset axis.
    */
-  public var tileOffsetAxis: TileSet.TileOffsetAxis
+  public var tileOffsetAxis: TileOffsetAxis
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_OFFSET_AXIS,
@@ -403,7 +402,7 @@ public open class TileSet : Resource() {
   /**
    * Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighbouring tiles' terrains.
    */
-  public fun setTerrainSetMode(terrainSet: Long, mode: TileSet.TerrainMode): Unit {
+  public fun setTerrainSetMode(terrainSet: Long, mode: TerrainMode): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_SET_MODE, NIL)
   }
@@ -411,7 +410,7 @@ public open class TileSet : Resource() {
   /**
    * Returns a terrain set mode.
    */
-  public fun getTerrainSetMode(terrainSet: Long): TileSet.TerrainMode {
+  public fun getTerrainSetMode(terrainSet: Long): TerrainMode {
     TransferContext.writeArguments(LONG to terrainSet)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_SET_MODE, LONG)
     return TileSet.TerrainMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]

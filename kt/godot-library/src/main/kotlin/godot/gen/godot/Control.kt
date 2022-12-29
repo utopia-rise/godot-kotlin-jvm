@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Control
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
@@ -161,7 +160,7 @@ public open class Control : CanvasItem() {
   /**
    * Controls layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew).
    */
-  public var layoutDirection: Control.LayoutDirection
+  public var layoutDirection: LayoutDirection
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_LAYOUT_DIRECTION,
@@ -176,7 +175,7 @@ public open class Control : CanvasItem() {
   /**
    * Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
    */
-  public var growHorizontal: Control.GrowDirection
+  public var growHorizontal: GrowDirection
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_H_GROW_DIRECTION,
@@ -191,7 +190,7 @@ public open class Control : CanvasItem() {
   /**
    * Controls the direction on the vertical axis in which the control should grow if its vertical minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
    */
-  public var growVertical: Control.GrowDirection
+  public var growVertical: GrowDirection
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_V_GROW_DIRECTION,
@@ -426,7 +425,7 @@ public open class Control : CanvasItem() {
   /**
    * The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard, gamepad, and mouse signals.
    */
-  public var focusMode: Control.FocusMode
+  public var focusMode: FocusMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_MODE, LONG)
@@ -440,7 +439,7 @@ public open class Control : CanvasItem() {
   /**
    * Controls whether the control will be able to receive mouse button input events through [_guiInput] and how these events should be handled. Also controls whether the control can receive the [mouseEntered], and [mouseExited] signals. See the constants to learn what each does.
    */
-  public var mouseFilter: Control.MouseFilter
+  public var mouseFilter: MouseFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_MOUSE_FILTER, LONG)
@@ -474,7 +473,7 @@ public open class Control : CanvasItem() {
    *
    * **Note:** On Linux, shapes may vary depending on the cursor theme of the system.
    */
-  public var mouseDefaultCursorShape: Control.CursorShape
+  public var mouseDefaultCursorShape: CursorShape
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_DEFAULT_CURSOR_SHAPE,
@@ -878,7 +877,7 @@ public open class Control : CanvasItem() {
    *
    * If [keepOffsets] is `true`, control's position will also be updated.
    */
-  public fun setAnchorsPreset(preset: Control.LayoutPreset, keepOffsets: Boolean = false): Unit {
+  public fun setAnchorsPreset(preset: LayoutPreset, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to preset.id, BOOL to keepOffsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_ANCHORS_PRESET, NIL)
   }
@@ -891,8 +890,8 @@ public open class Control : CanvasItem() {
    * Use parameter [margin] to determine the gap between the [godot.Control] and the edges.
    */
   public fun setOffsetsPreset(
-    preset: Control.LayoutPreset,
-    resizeMode: Control.LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
+    preset: LayoutPreset,
+    resizeMode: LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
     margin: Long = 0
   ): Unit {
     TransferContext.writeArguments(LONG to preset.id, LONG to resizeMode.id, LONG to margin)
@@ -903,8 +902,8 @@ public open class Control : CanvasItem() {
    * Sets both anchor preset and offset preset. See [setAnchorsPreset] and [setOffsetsPreset].
    */
   public fun setAnchorsAndOffsetsPreset(
-    preset: Control.LayoutPreset,
-    resizeMode: Control.LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
+    preset: LayoutPreset,
+    resizeMode: LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
     margin: Long = 0
   ): Unit {
     TransferContext.writeArguments(LONG to preset.id, LONG to resizeMode.id, LONG to margin)
@@ -1660,7 +1659,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the mouse cursor shape the control displays on mouse hover. See [enum CursorShape].
    */
-  public fun getCursorShape(position: Vector2 = Vector2(0, 0)): Control.CursorShape {
+  public fun getCursorShape(position: Vector2 = Vector2(0, 0)): CursorShape {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_CURSOR_SHAPE, LONG)
     return Control.CursorShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]

@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Image
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY

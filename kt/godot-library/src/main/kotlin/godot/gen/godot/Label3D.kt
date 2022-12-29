@@ -82,7 +82,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The alpha cutting mode to use for the sprite. See [enum AlphaCutMode] for possible values.
    */
-  public var alphaCut: Label3D.AlphaCutMode
+  public var alphaCut: AlphaCutMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_ALPHA_CUT_MODE, LONG)
@@ -404,7 +404,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * If `true`, the specified flag will be enabled. See [enum Label3D.DrawFlags] for a list of flags.
    */
-  public fun setDrawFlag(flag: Label3D.DrawFlags, enabled: Boolean): Unit {
+  public fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_DRAW_FLAG, NIL)
   }
@@ -412,7 +412,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Returns the value of the specified flag.
    */
-  public fun getDrawFlag(flag: Label3D.DrawFlags): Boolean {
+  public fun getDrawFlag(flag: DrawFlags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_DRAW_FLAG, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

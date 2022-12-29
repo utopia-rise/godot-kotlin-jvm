@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.HTTPClient
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray

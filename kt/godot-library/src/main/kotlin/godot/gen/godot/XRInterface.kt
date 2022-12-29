@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.XRInterface
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
 import godot.core.Projection
@@ -69,7 +68,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * The play area mode for this interface.
    */
-  public val xrPlayAreaMode: XRInterface.PlayAreaMode
+  public val xrPlayAreaMode: PlayAreaMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA_MODE,
@@ -153,7 +152,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking.
    */
-  public fun getTrackingStatus(): XRInterface.TrackingStatus {
+  public fun getTrackingStatus(): TrackingStatus {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_TRACKING_STATUS,
         LONG)
@@ -202,7 +201,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Call this to find out if a given play area mode is supported by this interface.
    */
-  public fun supportsPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
+  public fun supportsPlayAreaMode(mode: PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SUPPORTS_PLAY_AREA_MODE,
         BOOL)
@@ -212,7 +211,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Sets the active play area mode, will return `false` if the mode can't be used with this interface.
    */
-  public fun setPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
+  public fun setPlayAreaMode(mode: PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_PLAY_AREA_MODE,
         BOOL)

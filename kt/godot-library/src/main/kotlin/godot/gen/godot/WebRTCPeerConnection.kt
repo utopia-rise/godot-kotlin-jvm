@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.WebRTCPeerConnection
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
@@ -100,21 +99,21 @@ public open class WebRTCPeerConnection : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_CLOSE, NIL)
   }
 
-  public fun getConnectionState(): WebRTCPeerConnection.ConnectionState {
+  public fun getConnectionState(): ConnectionState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_CONNECTION_STATE, LONG)
     return WebRTCPeerConnection.ConnectionState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun getGatheringState(): WebRTCPeerConnection.GatheringState {
+  public fun getGatheringState(): GatheringState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_GATHERING_STATE, LONG)
     return WebRTCPeerConnection.GatheringState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun getSignalingState(): WebRTCPeerConnection.SignalingState {
+  public fun getSignalingState(): SignalingState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_SIGNALING_STATE, LONG)

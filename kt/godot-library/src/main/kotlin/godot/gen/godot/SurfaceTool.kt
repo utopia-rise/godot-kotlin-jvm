@@ -6,8 +6,6 @@
 
 package godot
 
-import godot.Mesh
-import godot.SurfaceTool
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Color
@@ -113,7 +111,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** This function takes an enum, not the exact number of weights.
    */
-  public fun setSkinWeightCount(count: SurfaceTool.SkinWeightCount): Unit {
+  public fun setSkinWeightCount(count: SkinWeightCount): Unit {
     TransferContext.writeArguments(LONG to count.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SKIN_WEIGHT_COUNT,
         NIL)
@@ -126,7 +124,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** This function returns an enum, not the exact number of weights.
    */
-  public fun getSkinWeightCount(): SurfaceTool.SkinWeightCount {
+  public fun getSkinWeightCount(): SkinWeightCount {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_SKIN_WEIGHT_COUNT,
         LONG)
@@ -138,7 +136,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * Must be invoked after [begin] and should be set before [commit] or [commitToArrays].
    */
-  public fun setCustomFormat(channelIndex: Long, format: SurfaceTool.CustomFormat): Unit {
+  public fun setCustomFormat(channelIndex: Long, format: CustomFormat): Unit {
     TransferContext.writeArguments(LONG to channelIndex, LONG to format.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM_FORMAT, NIL)
   }
@@ -146,7 +144,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Returns the format for custom [channelIndex] (currently up to 4). Returns [CUSTOM_MAX] if this custom channel is unused.
    */
-  public fun getCustomFormat(channelIndex: Long): SurfaceTool.CustomFormat {
+  public fun getCustomFormat(channelIndex: Long): CustomFormat {
     TransferContext.writeArguments(LONG to channelIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_CUSTOM_FORMAT, LONG)
     return SurfaceTool.CustomFormat.values()[TransferContext.readReturnValue(JVM_INT) as Int]

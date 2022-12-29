@@ -613,7 +613,7 @@ public open class Tween : RefCounted() {
    *
    * Default value is [TWEEN_PROCESS_IDLE].
    */
-  public fun setProcessMode(mode: Tween.TweenProcessMode): Tween? {
+  public fun setProcessMode(mode: TweenProcessMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PROCESS_MODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -624,7 +624,7 @@ public open class Tween : RefCounted() {
    *
    * Default value is [TWEEN_PAUSE_BOUND].
    */
-  public fun setPauseMode(mode: Tween.TweenPauseMode): Tween? {
+  public fun setPauseMode(mode: TweenPauseMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PAUSE_MODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -664,7 +664,7 @@ public open class Tween : RefCounted() {
   /**
    * Sets the default transition type for [godot.PropertyTweener]s and [godot.MethodTweener]s animated by this [godot.Tween].
    */
-  public fun setTrans(trans: Tween.TransitionType): Tween? {
+  public fun setTrans(trans: TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_TRANS, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -673,7 +673,7 @@ public open class Tween : RefCounted() {
   /**
    * Sets the default ease type for [godot.PropertyTweener]s and [godot.MethodTweener]s animated by this [godot.Tween].
    */
-  public fun setEase(ease: Tween.EaseType): Tween? {
+  public fun setEase(ease: EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_EASE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?

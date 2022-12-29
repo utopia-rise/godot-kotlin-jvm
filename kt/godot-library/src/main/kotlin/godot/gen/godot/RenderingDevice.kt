@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.RenderingDevice
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.GodotError
@@ -87,7 +86,7 @@ public open class RenderingDevice internal constructor() : Object() {
     layer: Long,
     mipmap: Long,
     mipmaps: Long = 1,
-    sliceType: RenderingDevice.TextureSliceType = RenderingDevice.TextureSliceType.TEXTURE_SLICE_2D
+    sliceType: TextureSliceType = RenderingDevice.TextureSliceType.TEXTURE_SLICE_2D
   ): RID {
     TransferContext.writeArguments(OBJECT to view, _RID to withTexture, LONG to layer, LONG to mipmap, LONG to mipmaps, LONG to sliceType.id)
     TransferContext.callMethod(rawPtr,
@@ -123,8 +122,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun textureIsFormatSupportedForUsage(format: RenderingDevice.DataFormat, usageFlags: Long):
-      Boolean {
+  public fun textureIsFormatSupportedForUsage(format: DataFormat, usageFlags: Long): Boolean {
     TransferContext.writeArguments(LONG to format.id, LONG to usageFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_IS_FORMAT_SUPPORTED_FOR_USAGE, BOOL)
@@ -230,7 +228,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun framebufferFormatCreateEmpty(samples: RenderingDevice.TextureSamples =
+  public fun framebufferFormatCreateEmpty(samples: TextureSamples =
       RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1): Long {
     TransferContext.writeArguments(LONG to samples.id)
     TransferContext.callMethod(rawPtr,
@@ -242,7 +240,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun framebufferFormatGetTextureSamples(format: Long, renderPass: Long = 0):
-      RenderingDevice.TextureSamples {
+      TextureSamples {
     TransferContext.writeArguments(LONG to format, LONG to renderPass)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_GET_TEXTURE_SAMPLES, LONG)
@@ -283,7 +281,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun framebufferCreateEmpty(
     size: Vector2i,
-    samples: RenderingDevice.TextureSamples = RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1,
+    samples: TextureSamples = RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1,
     validateWithFormat: Long = -1
   ): RID {
     TransferContext.writeArguments(VECTOR2I to size, LONG to samples.id, LONG to validateWithFormat)
@@ -365,7 +363,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun indexBufferCreate(
     sizeIndices: Long,
-    format: RenderingDevice.IndexBufferFormat,
+    format: IndexBufferFormat,
     `data`: PackedByteArray = PackedByteArray(),
     useRestartIndices: Boolean = false
   ): RID {
@@ -472,7 +470,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun textureBufferCreate(
     sizeBytes: Long,
-    format: RenderingDevice.DataFormat,
+    format: DataFormat,
     `data`: PackedByteArray = PackedByteArray()
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, LONG to format.id, PACKED_BYTE_ARRAY to data)
@@ -551,7 +549,7 @@ public open class RenderingDevice internal constructor() : Object() {
     shader: RID,
     framebufferFormat: Long,
     vertexFormat: Long,
-    primitive: RenderingDevice.RenderPrimitive,
+    primitive: RenderPrimitive,
     rasterizationState: RDPipelineRasterizationState,
     multisampleState: RDPipelineMultisampleState,
     stencilState: RDPipelineDepthStencilState,
@@ -645,10 +643,10 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawListBegin(
     framebuffer: RID,
-    initialColorAction: RenderingDevice.InitialAction,
-    finalColorAction: RenderingDevice.FinalAction,
-    initialDepthAction: RenderingDevice.InitialAction,
-    finalDepthAction: RenderingDevice.FinalAction,
+    initialColorAction: InitialAction,
+    finalColorAction: FinalAction,
+    initialDepthAction: InitialAction,
+    finalDepthAction: FinalAction,
     clearColorValues: PackedColorArray = PackedColorArray(),
     clearDepth: Double = 1.0,
     clearStencil: Long = 0,
@@ -667,10 +665,10 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun drawListBeginSplit(
     framebuffer: RID,
     splits: Long,
-    initialColorAction: RenderingDevice.InitialAction,
-    finalColorAction: RenderingDevice.FinalAction,
-    initialDepthAction: RenderingDevice.InitialAction,
-    finalDepthAction: RenderingDevice.FinalAction,
+    initialColorAction: InitialAction,
+    finalColorAction: FinalAction,
+    initialDepthAction: InitialAction,
+    finalDepthAction: FinalAction,
     clearColorValues: PackedColorArray = PackedColorArray(),
     clearDepth: Double = 1.0,
     clearStencil: Long = 0,
@@ -952,7 +950,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun limitGet(limit: RenderingDevice.Limit): Long {
+  public fun limitGet(limit: Limit): Long {
     TransferContext.writeArguments(LONG to limit.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_LIMIT_GET, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1079,7 +1077,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun getMemoryUsage(type: RenderingDevice.MemoryType): Long {
+  public fun getMemoryUsage(type: MemoryType): Long {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_MEMORY_USAGE,
         LONG)
@@ -1090,7 +1088,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun getDriverResource(
-    resource: RenderingDevice.DriverResource,
+    resource: DriverResource,
     rid: RID,
     index: Long
   ): Long {

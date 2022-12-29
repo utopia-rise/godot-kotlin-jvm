@@ -50,7 +50,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Controls how the stylebox's texture will be stretched or tiled horizontally. See [enum AxisStretchMode] for possible values.
    */
-  public var axisStretchHorizontal: StyleBoxTexture.AxisStretchMode
+  public var axisStretchHorizontal: AxisStretchMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -66,7 +66,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Controls how the stylebox's texture will be stretched or tiled vertically. See [enum AxisStretchMode] for possible values.
    */
-  public var axisStretchVertical: StyleBoxTexture.AxisStretchMode
+  public var axisStretchVertical: AxisStretchMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

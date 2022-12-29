@@ -90,7 +90,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * The transition type.
    */
-  public var switchMode: AnimationNodeStateMachineTransition.SwitchMode
+  public var switchMode: SwitchMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

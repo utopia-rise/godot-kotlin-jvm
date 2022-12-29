@@ -26,7 +26,7 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
   /**
    * The type of the operation to be performed on the transforms. See [enum Operator] for options.
    */
-  public var `operator`: VisualShaderNodeTransformOp.Operator
+  public var `operator`: Operator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

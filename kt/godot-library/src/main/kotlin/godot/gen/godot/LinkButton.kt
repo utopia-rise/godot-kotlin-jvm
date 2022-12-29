@@ -47,7 +47,7 @@ public open class LinkButton : BaseButton() {
   /**
    * Determines when to show the underline. See [enum UnderlineMode] for options.
    */
-  public var underline: LinkButton.UnderlineMode
+  public var underline: UnderlineMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_UNDERLINE_MODE,

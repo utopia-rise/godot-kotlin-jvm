@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.AudioServer
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.Vector2i

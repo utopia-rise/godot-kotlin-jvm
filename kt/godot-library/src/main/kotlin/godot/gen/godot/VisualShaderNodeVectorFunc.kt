@@ -26,7 +26,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   /**
    * The function to be performed. See [enum Function] for options.
    */
-  public var function: VisualShaderNodeVectorFunc.Function
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

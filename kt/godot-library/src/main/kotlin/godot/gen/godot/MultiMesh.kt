@@ -51,7 +51,7 @@ public open class MultiMesh : Resource() {
   /**
    * Format of transform used to transform mesh, either 2D or 3D.
    */
-  public var transformFormat: MultiMesh.TransformFormat
+  public var transformFormat: TransformFormat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_TRANSFORM_FORMAT,

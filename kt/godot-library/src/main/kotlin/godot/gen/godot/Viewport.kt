@@ -207,7 +207,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The multisample anti-aliasing mode for 2D/Canvas rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. This has no effect on shader-induced aliasing or texture aliasing.
    */
-  public var msaa2d: Viewport.MSAA
+  public var msaa2d: MSAA
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_2D, LONG)
@@ -221,7 +221,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The multisample anti-aliasing mode for 3D rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. See also bilinear scaling 3d [scaling3dMode] for supersampling, which provides higher quality but is much more expensive. This has no effect on shader-induced aliasing or texture aliasing.
    */
-  public var msaa3d: Viewport.MSAA
+  public var msaa3d: MSAA
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_3D, LONG)
@@ -235,7 +235,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will smooth out specular aliasing, but tend to make scenes appear blurry.
    */
-  public var screenSpaceAa: Viewport.ScreenSpaceAA
+  public var screenSpaceAa: ScreenSpaceAA
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_SPACE_AA,
@@ -320,7 +320,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The overlay mode for test rendered geometry in debug purposes.
    */
-  public var debugDraw: Viewport.DebugDraw
+  public var debugDraw: DebugDraw
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBUG_DRAW, LONG)
@@ -336,7 +336,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/mode] project setting.
    */
-  public var scaling3dMode: Viewport.Scaling3DMode
+  public var scaling3dMode: Scaling3DMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_MODE,
@@ -410,7 +410,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The Variable Rate Shading (VRS) mode that is used for this viewport. Note, if hardware does not support VRS this property is ignored.
    */
-  public var vrsMode: Viewport.VRSMode
+  public var vrsMode: VRSMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VRS_MODE, LONG)
@@ -438,7 +438,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Sets the default filter mode used by [godot.CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureFilter] for options.
    */
-  public var canvasItemDefaultTextureFilter: Viewport.DefaultCanvasItemTextureFilter
+  public var canvasItemDefaultTextureFilter: DefaultCanvasItemTextureFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -454,7 +454,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Sets the default repeat mode used by [godot.CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureRepeat] for options.
    */
-  public var canvasItemDefaultTextureRepeat: Viewport.DefaultCanvasItemTextureRepeat
+  public var canvasItemDefaultTextureRepeat: DefaultCanvasItemTextureRepeat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -564,7 +564,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public var sdfOversize: Viewport.SDFOversize
+  public var sdfOversize: SDFOversize
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_OVERSIZE, LONG)
@@ -578,7 +578,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public var sdfScale: Viewport.SDFScale
+  public var sdfScale: SDFScale
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_SCALE, LONG)
@@ -626,7 +626,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The subdivision amount of the first quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad0: Viewport.PositionalShadowAtlasQuadrantSubdiv
+  public val positionalShadowAtlasQuad0: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr,
@@ -637,7 +637,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The subdivision amount of the second quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad1: Viewport.PositionalShadowAtlasQuadrantSubdiv
+  public val positionalShadowAtlasQuad1: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr,
@@ -648,7 +648,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The subdivision amount of the third quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad2: Viewport.PositionalShadowAtlasQuadrantSubdiv
+  public val positionalShadowAtlasQuad2: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr,
@@ -659,7 +659,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The subdivision amount of the fourth quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad3: Viewport.PositionalShadowAtlasQuadrantSubdiv
+  public val positionalShadowAtlasQuad3: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr,
@@ -761,7 +761,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public fun getRenderInfo(type: Viewport.RenderInfoType, info: Viewport.RenderInfo): Long {
+  public fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Long {
     TransferContext.writeArguments(LONG to type.id, LONG to info.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_INFO, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -924,7 +924,7 @@ public open class Viewport internal constructor() : Node() {
    * Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
    */
   public fun setPositionalShadowAtlasQuadrantSubdiv(quadrant: Long,
-      subdiv: Viewport.PositionalShadowAtlasQuadrantSubdiv): Unit {
+      subdiv: PositionalShadowAtlasQuadrantSubdiv): Unit {
     TransferContext.writeArguments(LONG to quadrant, LONG to subdiv.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)

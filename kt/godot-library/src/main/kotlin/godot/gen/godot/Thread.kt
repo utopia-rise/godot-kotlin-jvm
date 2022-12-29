@@ -49,7 +49,7 @@ public open class Thread : RefCounted() {
    *
    * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
    */
-  public fun start(callable: Callable, priority: Thread.Priority = Thread.Priority.PRIORITY_NORMAL):
+  public fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):
       GodotError {
     TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_START, LONG)

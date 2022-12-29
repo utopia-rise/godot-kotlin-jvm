@@ -6,9 +6,6 @@
 
 package godot
 
-import godot.Control
-import godot.TextServer
-import godot.TreeItem
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -116,7 +113,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's cell mode to [mode]. See [enum TreeCellMode] constants.
    */
-  public fun setCellMode(column: Long, mode: TreeItem.TreeCellMode): Unit {
+  public fun setCellMode(column: Long, mode: TreeCellMode): Unit {
     TransferContext.writeArguments(LONG to column, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CELL_MODE, NIL)
   }
@@ -124,7 +121,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Returns the column's cell mode.
    */
-  public fun getCellMode(column: Long): TreeItem.TreeCellMode {
+  public fun getCellMode(column: Long): TreeCellMode {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CELL_MODE, LONG)
     return TreeItem.TreeCellMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]

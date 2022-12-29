@@ -26,7 +26,7 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
   /**
    * A function to be applied to the scalar. See [enum Function] for options.
    */
-  public var function: VisualShaderNodeIntFunc.Function
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

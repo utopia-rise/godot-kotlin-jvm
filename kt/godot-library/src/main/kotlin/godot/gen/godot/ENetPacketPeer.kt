@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.ENetPacketPeer
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
@@ -108,14 +107,14 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun getStatistic(statistic: ENetPacketPeer.PeerStatistic): Double {
+  public fun getStatistic(statistic: PeerStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATISTIC,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun getState(): ENetPacketPeer.PeerState {
+  public fun getState(): PeerState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATE, LONG)
     return ENetPacketPeer.PeerState.values()[TransferContext.readReturnValue(JVM_INT) as Int]

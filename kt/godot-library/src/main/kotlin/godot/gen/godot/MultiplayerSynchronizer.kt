@@ -70,7 +70,7 @@ public open class MultiplayerSynchronizer : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_REPLICATION_CONFIG, NIL)
     }
 
-  public var visibilityUpdateMode: MultiplayerSynchronizer.VisibilityUpdateMode
+  public var visibilityUpdateMode: VisibilityUpdateMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

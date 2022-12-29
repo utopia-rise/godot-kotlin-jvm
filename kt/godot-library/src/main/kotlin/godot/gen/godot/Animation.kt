@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Animation
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.PackedInt32Array
@@ -118,7 +117,7 @@ public open class Animation : Resource() {
   /**
    * Determines the behavior of both ends of the animation timeline during animation playback. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
    */
-  public var loopMode: Animation.LoopMode
+  public var loopMode: LoopMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_GET_LOOP_MODE, LONG)
@@ -151,7 +150,7 @@ public open class Animation : Resource() {
   /**
    * Adds a track to the Animation.
    */
-  public fun addTrack(type: Animation.TrackType, atPosition: Long = -1): Long {
+  public fun addTrack(type: TrackType, atPosition: Long = -1): Long {
     TransferContext.writeArguments(LONG to type.id, LONG to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_ADD_TRACK, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -177,7 +176,7 @@ public open class Animation : Resource() {
   /**
    * Gets the type of a track.
    */
-  public fun trackGetType(trackIdx: Long): Animation.TrackType {
+  public fun trackGetType(trackIdx: Long): TrackType {
     TransferContext.writeArguments(LONG to trackIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_TYPE, LONG)
     return Animation.TrackType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -205,7 +204,7 @@ public open class Animation : Resource() {
   /**
    * Returns the index of the specified track. If the track is not found, return -1.
    */
-  public fun findTrack(path: NodePath, type: Animation.TrackType): Long {
+  public fun findTrack(path: NodePath, type: TrackType): Long {
     TransferContext.writeArguments(NODE_PATH to path, LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_FIND_TRACK, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -455,8 +454,7 @@ public open class Animation : Resource() {
   /**
    * Sets the interpolation type of a given track.
    */
-  public fun trackSetInterpolationType(trackIdx: Long, interpolation: Animation.InterpolationType):
-      Unit {
+  public fun trackSetInterpolationType(trackIdx: Long, interpolation: InterpolationType): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to interpolation.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_INTERPOLATION_TYPE, NIL)
@@ -465,7 +463,7 @@ public open class Animation : Resource() {
   /**
    * Returns the interpolation type of a given track.
    */
-  public fun trackGetInterpolationType(trackIdx: Long): Animation.InterpolationType {
+  public fun trackGetInterpolationType(trackIdx: Long): InterpolationType {
     TransferContext.writeArguments(LONG to trackIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_INTERPOLATION_TYPE, LONG)
@@ -503,7 +501,7 @@ public open class Animation : Resource() {
   /**
    * Sets the update mode (see [enum UpdateMode]) of a value track.
    */
-  public fun valueTrackSetUpdateMode(trackIdx: Long, mode: Animation.UpdateMode): Unit {
+  public fun valueTrackSetUpdateMode(trackIdx: Long, mode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_SET_UPDATE_MODE, NIL)
@@ -512,7 +510,7 @@ public open class Animation : Resource() {
   /**
    * Returns the update mode of a value track.
    */
-  public fun valueTrackGetUpdateMode(trackIdx: Long): Animation.UpdateMode {
+  public fun valueTrackGetUpdateMode(trackIdx: Long): UpdateMode {
     TransferContext.writeArguments(LONG to trackIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_GET_UPDATE_MODE, LONG)

@@ -24,7 +24,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   /**
    *
    */
-  public var mode: VisualShaderNodeParticleAccelerator.Mode
+  public var mode: Mode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

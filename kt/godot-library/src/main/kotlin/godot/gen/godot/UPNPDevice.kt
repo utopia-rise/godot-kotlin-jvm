@@ -84,7 +84,7 @@ public open class UPNPDevice : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_SET_IGD_OUR_ADDR, NIL)
     }
 
-  public var igdStatus: UPNPDevice.IGDStatus
+  public var igdStatus: IGDStatus
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_GET_IGD_STATUS, LONG)

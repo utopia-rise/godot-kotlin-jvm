@@ -35,7 +35,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   /**
    * Distortion type.
    */
-  public var mode: AudioEffectDistortion.Mode
+  public var mode: Mode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_MODE,

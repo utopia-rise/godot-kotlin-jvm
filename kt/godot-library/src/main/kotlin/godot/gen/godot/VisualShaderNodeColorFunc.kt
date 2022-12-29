@@ -26,7 +26,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   /**
    * A function to be applied to the input color. See [enum Function] for options.
    */
-  public var function: VisualShaderNodeColorFunc.Function
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

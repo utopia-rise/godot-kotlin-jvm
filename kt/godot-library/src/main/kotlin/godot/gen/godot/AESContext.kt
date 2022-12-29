@@ -178,7 +178,7 @@ public open class AESContext : RefCounted() {
    * Start the AES context in the given [mode]. A [key] of either 16 or 32 bytes must always be provided, while an [iv] (initialization vector) of exactly 16 bytes, is only needed when [mode] is either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
   public fun start(
-    mode: AESContext.Mode,
+    mode: Mode,
     key: PackedByteArray,
     iv: PackedByteArray = PackedByteArray()
   ): GodotError {

@@ -56,7 +56,7 @@ public open class Camera2D : Node2D() {
   /**
    * The Camera2D's anchor point. See [enum AnchorMode] constants.
    */
-  public var anchorMode: Camera2D.AnchorMode
+  public var anchorMode: AnchorMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ANCHOR_MODE, LONG)
@@ -128,7 +128,7 @@ public open class Camera2D : Node2D() {
   /**
    * The camera's process callback. See [enum Camera2DProcessCallback].
    */
-  public var processCallback: Camera2D.Camera2DProcessCallback
+  public var processCallback: Camera2DProcessCallback
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_PROCESS_CALLBACK,

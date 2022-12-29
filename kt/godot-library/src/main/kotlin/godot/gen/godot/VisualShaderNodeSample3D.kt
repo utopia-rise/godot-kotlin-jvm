@@ -26,7 +26,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   /**
    * An input source type.
    */
-  public var source: VisualShaderNodeSample3D.Source
+  public var source: Source
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

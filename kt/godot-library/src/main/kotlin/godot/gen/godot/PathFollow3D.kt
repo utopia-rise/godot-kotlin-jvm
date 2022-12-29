@@ -89,7 +89,7 @@ public open class PathFollow3D : Node3D() {
   /**
    * Allows or forbids rotation on one or more axes, depending on the [enum RotationMode] constants being used.
    */
-  public var rotationMode: PathFollow3D.RotationMode
+  public var rotationMode: RotationMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_ROTATION_MODE,

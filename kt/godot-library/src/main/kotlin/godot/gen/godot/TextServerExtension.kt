@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.TextServer
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary

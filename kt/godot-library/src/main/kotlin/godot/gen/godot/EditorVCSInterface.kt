@@ -253,8 +253,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun createStatusFile(
     filePath: String,
-    changeType: EditorVCSInterface.ChangeType,
-    area: EditorVCSInterface.TreeArea
+    changeType: ChangeType,
+    area: TreeArea
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to filePath, LONG to changeType.id, LONG to area.id)
     TransferContext.callMethod(rawPtr,

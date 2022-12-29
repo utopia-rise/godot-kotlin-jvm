@@ -67,7 +67,7 @@ object GodotTypes {
     const val callable = "Callable"
     const val signal = "Signal"
     const val variant = "Variant"
-    const val variantType = "enum::Variant.Type"
+    const val variantType = "Variant.Type"
 
     val coreTypes = listOf(
         error,

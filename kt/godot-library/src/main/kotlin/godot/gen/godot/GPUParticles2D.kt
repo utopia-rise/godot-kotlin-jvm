@@ -280,7 +280,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public var drawOrder: GPUParticles2D.DrawOrder
+  public var drawOrder: DrawOrder
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_DRAW_ORDER,

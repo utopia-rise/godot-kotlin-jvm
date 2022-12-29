@@ -92,7 +92,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The selected shadow casting flag. See [enum ShadowCastingSetting] for possible values.
    */
-  public var castShadow: GeometryInstance3D.ShadowCastingSetting
+  public var castShadow: ShadowCastingSetting
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -160,7 +160,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    *
    * **Note:** Lights' bake mode will also affect the global illumination rendering. See [godot.Light3D.lightBakeMode].
    */
-  public var giMode: GeometryInstance3D.GIMode
+  public var giMode: GIMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_GI_MODE,
@@ -176,7 +176,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The texel density to use for lightmapping in [godot.LightmapGI]. Greater scale values provide higher resolution in the lightmap, which can result in sharper shadows for lights that have both direct and indirect light baked. However, greater scale values will also increase the space taken by the mesh in the lightmap texture, which increases the memory, storage, and bake time requirements. When using a single mesh at different scales, consider adjusting this value to keep the lightmap texel density consistent across meshes.
    */
-  public var giLightmapScale: GeometryInstance3D.LightmapScale
+  public var giLightmapScale: LightmapScale
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -260,7 +260,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values.
    */
-  public var visibilityRangeFadeMode: GeometryInstance3D.VisibilityRangeFadeMode
+  public var visibilityRangeFadeMode: VisibilityRangeFadeMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

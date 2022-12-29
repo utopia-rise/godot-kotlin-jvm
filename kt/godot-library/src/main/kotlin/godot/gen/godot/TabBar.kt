@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Control
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -110,7 +109,7 @@ public open class TabBar : Control() {
   /**
    * Sets the position at which tabs will be placed. See [enum AlignmentMode] for details.
    */
-  public var tabAlignment: TabBar.AlignmentMode
+  public var tabAlignment: AlignmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ALIGNMENT, LONG)
@@ -138,7 +137,7 @@ public open class TabBar : Control() {
   /**
    * Sets when the close button will appear on the tabs. See [enum CloseButtonDisplayPolicy] for details.
    */
-  public var tabCloseDisplayPolicy: TabBar.CloseButtonDisplayPolicy
+  public var tabCloseDisplayPolicy: CloseButtonDisplayPolicy
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

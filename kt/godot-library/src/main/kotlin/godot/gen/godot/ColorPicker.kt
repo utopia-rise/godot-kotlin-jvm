@@ -83,7 +83,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * The currently selected color mode. See [enum ColorModeType].
    */
-  public var colorMode: ColorPicker.ColorModeType
+  public var colorMode: ColorModeType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_COLOR_MODE, LONG)
@@ -113,7 +113,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * The shape of the color space view. See [enum PickerShapeType].
    */
-  public var pickerShape: ColorPicker.PickerShapeType
+  public var pickerShape: PickerShapeType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PICKER_SHAPE,

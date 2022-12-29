@@ -135,7 +135,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The default [enum Heuristic] which will be used to calculate the path if [_computeCost] and/or [_estimateCost] were not overridden.
    */
-  public var defaultHeuristic: AStarGrid2D.Heuristic
+  public var defaultHeuristic: Heuristic
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DEFAULT_HEURISTIC,
@@ -151,7 +151,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * A specific [enum DiagonalMode] mode which will force the path to avoid or accept the specified diagonals.
    */
-  public var diagonalMode: AStarGrid2D.DiagonalMode
+  public var diagonalMode: DiagonalMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DIAGONAL_MODE,

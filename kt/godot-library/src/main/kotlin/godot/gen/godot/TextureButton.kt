@@ -146,7 +146,7 @@ public open class TextureButton : BaseButton() {
   /**
    * Controls the texture's behavior when you resize the node's bounding rectangle. See the [enum StretchMode] constants for available options.
    */
-  public var stretchMode: TextureButton.StretchMode
+  public var stretchMode: StretchMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_STRETCH_MODE,

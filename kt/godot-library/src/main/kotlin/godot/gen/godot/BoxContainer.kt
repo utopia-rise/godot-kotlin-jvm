@@ -31,7 +31,7 @@ public open class BoxContainer : Container() {
   /**
    * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN], [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
-  public var alignment: BoxContainer.AlignmentMode
+  public var alignment: AlignmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_GET_ALIGNMENT, LONG)

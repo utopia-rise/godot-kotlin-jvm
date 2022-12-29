@@ -143,7 +143,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Controls the interpolation between animations. See [enum BlendMode] constants.
    */
-  public var blendMode: AnimationNodeBlendSpace2D.BlendMode
+  public var blendMode: BlendMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

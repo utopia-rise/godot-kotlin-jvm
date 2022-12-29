@@ -26,7 +26,7 @@ public open class VisualShaderNodeIntOp : VisualShaderNode() {
   /**
    * An operator to be applied to the inputs. See [enum Operator] for options.
    */
-  public var `operator`: VisualShaderNodeIntOp.Operator
+  public var `operator`: Operator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
