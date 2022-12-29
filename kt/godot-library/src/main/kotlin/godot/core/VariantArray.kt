@@ -243,15 +243,6 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     }
 
     /**
-     * Searches the array in reverse order for a value and returns its index or -1 if not found.
-     */
-    fun findLast(value: T): Int {
-        TransferContext.writeArguments(variantType to value)
-        Bridge.engine_call_findLast(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
-    }
-
-    /**
      * Returns the first element of the array, or null if the array is empty.
      */
     fun front(): T {
@@ -440,7 +431,6 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         external fun engine_call_duplicate(_handle: VoidPtr)
         external fun engine_call_erase(_handle: VoidPtr)
         external fun engine_call_find(_handle: VoidPtr)
-        external fun engine_call_findLast(_handle: VoidPtr)
         external fun engine_call_front(_handle: VoidPtr)
         external fun engine_call_has(_handle: VoidPtr)
         external fun engine_call_insert(_handle: VoidPtr)

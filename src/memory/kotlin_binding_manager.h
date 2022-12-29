@@ -15,13 +15,13 @@ private:
     HashMap<Object*, KotlinBinding> binding_map;
 
     // Callbacks required by Godot for instance bindings.
-    static GDNativeInstanceBindingCallbacks _instance_binding_callbacks;
+    static GDExtensionInstanceBindingCallbacks _instance_binding_callbacks;
 
     static void* _instance_binding_create_callback(void* p_token, void* p_instance);
 
     static void _instance_binding_free_callback(void* p_token, void* p_instance, void* p_binding);
 
-    static GDNativeBool _instance_binding_reference_callback(void* p_token, void* p_binding, GDNativeBool p_reference);
+    static GDExtensionBool _instance_binding_reference_callback(void* p_token, void* p_binding, GDExtensionBool p_reference);
 
 public:
     KotlinBindingManager(KotlinBindingManager const& other) = delete;

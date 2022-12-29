@@ -8,6 +8,7 @@ using namespace bridges;
 
 JNI_INIT_STATICS_FOR_CLASS(VariantArrayBridge)
 
+//TODO/4.0: Implement all missing methods
 VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
   JavaInstanceWrapper(VARIANT_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method {
@@ -82,10 +83,6 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
       const_cast<char*>("engine_call_find"),
       const_cast<char*>("(J)V"),
       (void*) VariantArrayBridge::engine_call_find};
-    jni::JNativeMethod engine_call_findLast_method {
-      const_cast<char*>("engine_call_findLast"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_findLast};
     jni::JNativeMethod engine_call_front_method {
       const_cast<char*>("engine_call_front"),
       const_cast<char*>("(J)V"),
@@ -150,7 +147,6 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
     methods.push_back(engine_call_duplicate_method);
     methods.push_back(engine_call_erase_method);
     methods.push_back(engine_call_find_method);
-    methods.push_back(engine_call_findLast_method);
     methods.push_back(engine_call_front_method);
     methods.push_back(engine_call_has_method);
     methods.push_back(engine_call_insert_method);
@@ -289,15 +285,6 @@ void VariantArrayBridge::engine_call_find(JNIEnv* p_raw_env, jobject p_instance,
     TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
     transfer_context->read_args(env, args);
     Variant variant {from_uint_to_ptr<Array>(p_raw_ptr)->find(args[0], args[1].operator int64_t())};
-    transfer_context->write_return_value(env, variant);
-}
-
-void VariantArrayBridge::engine_call_findLast(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env {p_raw_env};
-    Variant args[1] = {};
-    TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
-    transfer_context->read_args(env, args);
-    Variant variant {from_uint_to_ptr<Array>(p_raw_ptr)->find_last(args[0])};
     transfer_context->write_return_value(env, variant);
 }
 
