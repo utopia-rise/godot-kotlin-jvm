@@ -1,6 +1,6 @@
 #include "kotlin_binding_manager.h"
 
-GDNativeInstanceBindingCallbacks KotlinBindingManager::_instance_binding_callbacks = {
+GDExtensionInstanceBindingCallbacks KotlinBindingManager::_instance_binding_callbacks = {
   &_instance_binding_create_callback,
   &_instance_binding_free_callback,
   &_instance_binding_reference_callback};
@@ -30,7 +30,7 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     manager.spin.unlock();
 }
 
-GDNativeBool KotlinBindingManager::_instance_binding_reference_callback(void* p_token, void* p_binding, GDNativeBool p_reference) {
+GDExtensionBool KotlinBindingManager::_instance_binding_reference_callback(void* p_token, void* p_binding, GDExtensionBool p_reference) {
     // Called when a RefCounted is referenced or unreferenced.
     // Also called in the context of a mutex lock specific to the Object.
     KotlinBinding* binding = reinterpret_cast<KotlinBinding*>(p_binding);

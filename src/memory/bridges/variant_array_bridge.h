@@ -28,7 +28,6 @@ namespace bridges {
         static void engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_erase(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_find(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_findLast(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_front(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_has(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_insert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
