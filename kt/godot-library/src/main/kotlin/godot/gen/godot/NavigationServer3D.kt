@@ -352,6 +352,25 @@ public object NavigationServer3D : Object() {
   }
 
   /**
+   * Set the `ObjectID` of the object which manages this region.
+   */
+  public fun regionSetOwnerId(region: RID, ownerId: Long): Unit {
+    TransferContext.writeArguments(_RID to region, LONG to ownerId)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_OWNER_ID, NIL)
+  }
+
+  /**
+   * Returns the `ObjectID` of the object which manages this region.
+   */
+  public fun regionGetOwnerId(region: RID): Long {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_OWNER_ID, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Returns `true` if the provided [point] in world space is currently owned by the provided navigation [region]. Owned in this context means that one of the region's navigation mesh polygon faces has a possible position at the closest distance to this point compared to all other navigation meshes from other navigation regions that are also registered on the navigation map of the provided region.
    *
    * If multiple navigation meshes have positions at equal distance the navigation region whose polygons are processed first wins the ownership. Polygons are processed in the same order that navigation regions were registered on the NavigationServer.
@@ -415,19 +434,19 @@ public object NavigationServer3D : Object() {
   /**
    * Sets the navigation mesh for the region.
    */
-  public fun regionSetNavmesh(region: RID, navMesh: NavigationMesh): Unit {
-    TransferContext.writeArguments(_RID to region, OBJECT to navMesh)
+  public fun regionSetNavigationMesh(region: RID, navigationMesh: NavigationMesh): Unit {
+    TransferContext.writeArguments(_RID to region, OBJECT to navigationMesh)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_NAVMESH, NIL)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_NAVIGATION_MESH, NIL)
   }
 
   /**
-   * Bakes the navigation mesh.
+   * Bakes the [navigationMesh] with bake source geometry collected starting from the [rootNode].
    */
-  public fun regionBakeNavmesh(mesh: NavigationMesh, node: Node): Unit {
-    TransferContext.writeArguments(OBJECT to mesh, OBJECT to node)
+  public fun regionBakeNavigationMesh(navigationMesh: NavigationMesh, rootNode: Node): Unit {
+    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_BAKE_NAVMESH, NIL)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_BAKE_NAVIGATION_MESH, NIL)
   }
 
   /**
@@ -604,6 +623,25 @@ public object NavigationServer3D : Object() {
   }
 
   /**
+   * Set the `ObjectID` of the object which manages this link.
+   */
+  public fun linkSetOwnerId(link: RID, ownerId: Long): Unit {
+    TransferContext.writeArguments(_RID to link, LONG to ownerId)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_OWNER_ID, NIL)
+  }
+
+  /**
+   * Returns the `ObjectID` of the object which manages this link.
+   */
+  public fun linkGetOwnerId(link: RID): Long {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_OWNER_ID, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Creates the agent.
    */
   public fun agentCreate(): RID {
@@ -715,17 +753,17 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Callback called at the end of the RVO process. If a callback is created manually and the agent is placed on a navigation map it will calculate avoidance for the agent and dispatch the calculated `safe_velocity` to the [receiver] object with a signal to the chosen [method] name.
+   * Sets the callback [objectId] and [method] that gets called after each avoidance processing step for the [agent]. The calculated `safe_velocity` will be dispatched with a signal to the object just before the physics calculations.
    *
-   * **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [agentSetCallback] again with a `null` object as the [receiver].
+   * **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [agentSetCallback] again with a `0` ObjectID as the [objectId].
    */
   public fun agentSetCallback(
     agent: RID,
-    `receiver`: Object,
+    objectId: Long,
     method: StringName,
     userdata: Any? = null
   ): Unit {
-    TransferContext.writeArguments(_RID to agent, OBJECT to receiver, STRING_NAME to method, ANY to userdata)
+    TransferContext.writeArguments(_RID to agent, LONG to objectId, STRING_NAME to method, ANY to userdata)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_CALLBACK, NIL)
   }

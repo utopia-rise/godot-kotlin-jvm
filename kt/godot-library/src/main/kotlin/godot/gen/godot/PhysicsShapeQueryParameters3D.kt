@@ -21,7 +21,6 @@ import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -52,14 +51,14 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     }
 
   /**
-   * The list of objects or object [RID]s that will be excluded from collisions.
+   * The list of object [RID]s that will be excluded from collisions. Use [godot.CollisionObject3D.getRid] to get the [RID] associated with a [godot.CollisionObject3D]-derived node.
    */
-  public var exclude: VariantArray<Any?>
+  public var exclude: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_EXCLUDE, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

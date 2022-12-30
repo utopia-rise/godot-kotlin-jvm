@@ -52,7 +52,7 @@ public open class Label : Control() {
     }
 
   /**
-   *
+   * A [godot.LabelSettings] resource that can be shared between multiple [godot.Label] nodes. Takes priority over theme properties.
    */
   public var labelSettings: LabelSettings?
     get() {

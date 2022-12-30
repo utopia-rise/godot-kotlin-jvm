@@ -7,26 +7,21 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.signals.Signal0
-import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Popup is a base window container for popup-like subwindows.
+ * A [godot.MultiplayerPeer] which is always connected and acts as a server.
  *
- * Popup is a base window container for popup-like subwindows. It's a modal by default (see [godot.Window.popupWindow]) and has helpers for custom popup behavior.
+ * This is the default [godot.MultiplayerAPI.multiplayerPeer] for the [godot.Node.multiplayer]. It mimics the behavior of a server with no peers connected.
+ *
+ * This means that the [godot.SceneTree] will act as the multiplayer authority by default. Calls to [godot.MultiplayerAPI.isServer] will return `true`, and calls to [godot.MultiplayerAPI.getUniqueId] will return [godot.MultiplayerPeer.TARGET_PEER_SERVER].
  */
 @GodotBaseType
-public open class Popup : Window() {
-  /**
-   * Emitted when the popup is hidden.
-   */
-  public val popupHide: Signal0 by signal()
-
+public open class OfflineMultiplayerPeer : MultiplayerPeer() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_POPUP, scriptIndex)
+    callConstructor(ENGINECLASS_OFFLINEMULTIPLAYERPEER, scriptIndex)
     return true
   }
 

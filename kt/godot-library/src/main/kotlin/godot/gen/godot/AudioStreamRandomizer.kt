@@ -97,10 +97,14 @@ public open class AudioStreamRandomizer : AudioStream() {
   }
 
   /**
-   * Insert a stream at the specified index.
+   * Insert a stream at the specified index. If the index is less than zero, the insertion occurs at the end of the underlying pool.
    */
-  public fun addStream(index: Long): Unit {
-    TransferContext.writeArguments(LONG to index)
+  public fun addStream(
+    index: Long,
+    stream: AudioStream,
+    weight: Double = 1.0
+  ): Unit {
+    TransferContext.writeArguments(LONG to index, OBJECT to stream, DOUBLE to weight)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_ADD_STREAM,
         NIL)
   }
@@ -165,15 +169,15 @@ public open class AudioStreamRandomizer : AudioStream() {
     id: Long
   ) {
     /**
-     * Pick a stream at random according to the probability weights chosen for each stream, but avoid playing the same stream twice in a row whenever possible.
+     * Pick a stream at random according to the probability weights chosen for each stream, but avoid playing the same stream twice in a row whenever possible. If only 1 sound is present in the pool, the same sound will always play, effectively allowing repeats to occur.
      */
     PLAYBACK_RANDOM_NO_REPEATS(0),
     /**
-     * Pick a stream at random according to the probability weights chosen for each stream.
+     * Pick a stream at random according to the probability weights chosen for each stream. If only 1 sound is present in the pool, the same sound will always play.
      */
     PLAYBACK_RANDOM(1),
     /**
-     * Play streams in the order they appear in the stream pool.
+     * Play streams in the order they appear in the stream pool. If only 1 sound is present in the pool, the same sound will always play.
      */
     PLAYBACK_SEQUENTIAL(2),
     ;

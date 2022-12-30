@@ -103,7 +103,7 @@ public open class RenderingDevice internal constructor() : Object() {
     `data`: PackedByteArray,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_UPDATE,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -123,7 +123,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun textureIsFormatSupportedForUsage(format: DataFormat, usageFlags: Long): Boolean {
-    TransferContext.writeArguments(LONG to format.id, LONG to usageFlags)
+    TransferContext.writeArguments(LONG to format.id, OBJECT to usageFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_IS_FORMAT_SUPPORTED_FOR_USAGE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -164,7 +164,7 @@ public open class RenderingDevice internal constructor() : Object() {
     dstLayer: Long,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_COPY, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -181,7 +181,7 @@ public open class RenderingDevice internal constructor() : Object() {
     layerCount: Long,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CLEAR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -194,7 +194,7 @@ public open class RenderingDevice internal constructor() : Object() {
     toTexture: RID,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_RESOLVE_MULTISAMPLE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -345,14 +345,15 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Creates a vertex array based on the specified buffers.
+   * Creates a vertex array based on the specified buffers. Optionally, [offsets] (in bytes) may be defined for each buffer.
    */
   public fun vertexArrayCreate(
     vertexCount: Long,
     vertexFormat: Long,
-    srcBuffers: VariantArray<RID>
+    srcBuffers: VariantArray<RID>,
+    offsets: PackedInt64Array = PackedInt64Array()
   ): RID {
-    TransferContext.writeArguments(LONG to vertexCount, LONG to vertexFormat, ARRAY to srcBuffers)
+    TransferContext.writeArguments(LONG to vertexCount, LONG to vertexFormat, ARRAY to srcBuffers, PACKED_INT_64_ARRAY to offsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_VERTEX_ARRAY_CREATE,
         _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -459,7 +460,7 @@ public open class RenderingDevice internal constructor() : Object() {
     `data`: PackedByteArray = PackedByteArray(),
     usage: Long = 0
   ): RID {
-    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to usage)
+    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, OBJECT to usage)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_STORAGE_BUFFER_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -513,7 +514,7 @@ public open class RenderingDevice internal constructor() : Object() {
     `data`: PackedByteArray,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_UPDATE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -527,7 +528,7 @@ public open class RenderingDevice internal constructor() : Object() {
     sizeBytes: Long,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_CLEAR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -559,7 +560,7 @@ public open class RenderingDevice internal constructor() : Object() {
     specializationConstants: VariantArray<RDPipelineSpecializationConstant> =
         godot.core.variantArrayOf()
   ): RID {
-    TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, LONG to dynamicStateFlags, LONG to forRenderPass, ARRAY to specializationConstants)
+    TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, OBJECT to dynamicStateFlags, LONG to forRenderPass, ARRAY to specializationConstants)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_RENDER_PIPELINE_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -799,7 +800,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun drawListEnd(postBarrier: Long = 7): Unit {
-    TransferContext.writeArguments(LONG to postBarrier)
+    TransferContext.writeArguments(OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_END, NIL)
   }
 
@@ -875,7 +876,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun computeListEnd(postBarrier: Long = 7): Unit {
-    TransferContext.writeArguments(LONG to postBarrier)
+    TransferContext.writeArguments(OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_END,
         NIL)
   }
@@ -986,7 +987,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun barrier(from: Long = 7, to: Long = 7): Unit {
-    TransferContext.writeArguments(LONG to from, LONG to to)
+    TransferContext.writeArguments(OBJECT to from, OBJECT to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BARRIER, NIL)
   }
 
@@ -2083,6 +2084,41 @@ public open class RenderingDevice internal constructor() : Object() {
      *
      */
     DATA_FORMAT_MAX(218),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class BarrierMask(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    BARRIER_MASK_RASTER(1),
+    /**
+     *
+     */
+    BARRIER_MASK_COMPUTE(2),
+    /**
+     *
+     */
+    BARRIER_MASK_TRANSFER(4),
+    /**
+     *
+     */
+    BARRIER_MASK_ALL_BARRIERS(7),
+    /**
+     *
+     */
+    BARRIER_MASK_NO_BARRIER(8),
     ;
 
     public val id: Long
@@ -3396,31 +3432,6 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public companion object {
-    /**
-     *
-     */
-    public final const val BARRIER_MASK_RASTER: Long = 1
-
-    /**
-     *
-     */
-    public final const val BARRIER_MASK_COMPUTE: Long = 2
-
-    /**
-     *
-     */
-    public final const val BARRIER_MASK_TRANSFER: Long = 4
-
-    /**
-     *
-     */
-    public final const val BARRIER_MASK_ALL: Long = 7
-
-    /**
-     *
-     */
-    public final const val BARRIER_MASK_NO_BARRIER: Long = 8
-
     /**
      *
      */

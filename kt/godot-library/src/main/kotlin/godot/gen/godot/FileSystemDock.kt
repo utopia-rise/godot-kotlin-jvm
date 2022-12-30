@@ -34,7 +34,7 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
   /**
    *
    */
-  public val instance: Signal1<PackedStringArray> by signal("files")
+  public val instantiate: Signal1<PackedStringArray> by signal("files")
 
   /**
    *

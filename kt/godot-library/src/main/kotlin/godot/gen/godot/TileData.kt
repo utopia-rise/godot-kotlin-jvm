@@ -35,17 +35,19 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Settings for a single tile in a [godot.TileSet].
  *
+ * [godot.TileData] object represents a single tile in a [godot.TileSet]. It is usually edited using the tileset editor, but it can be modified at runtime using [godot.TileMap.TileDataRuntimeUpdate].
  */
 @GodotBaseType
 public open class TileData : Object() {
   /**
-   *
+   * Emitted when any of the properties are changed.
    */
   public val changed: Signal0 by signal()
 
   /**
-   *
+   * If `true`, the tile will have its texture flipped horizontally.
    */
   public var flipH: Boolean
     get() {
@@ -59,7 +61,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * If `true`, the tile will have its texture flipped vertically.
    */
   public var flipV: Boolean
     get() {
@@ -73,7 +75,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * If `true`, the tile will display transposed, i.e. with horizontal and vertical texture UVs swapped.
    */
   public var transpose: Boolean
     get() {
@@ -87,7 +89,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * Offsets the position of where the tile is drawn.
    */
   public var textureOffset: Vector2i
     get() {
@@ -102,7 +104,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * Color modulation of the tile.
    */
   public var modulate: Color
     get() {
@@ -130,7 +132,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * Ordering index of this tile, relative to [godot.TileMap].
    */
   public var zIndex: Long
     get() {
@@ -144,7 +146,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * Vertical point of the tile used for determining y-sorted order.
    */
   public var ySortOrigin: Long
     get() {
@@ -158,7 +160,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * ID of the terrain set that the tile uses.
    */
   public var terrainSet: Long
     get() {
@@ -172,7 +174,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * ID of the terrain from the terrain set that the tile uses.
    */
   public var terrain: Long
     get() {
@@ -186,7 +188,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * Relative probability of this tile being selected when drawing a pattern of random tiles.
    */
   public var probability: Double
     get() {

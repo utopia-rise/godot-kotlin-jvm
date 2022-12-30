@@ -3282,15 +3282,6 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun environmentGlowSetUseHighQuality(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_GLOW_SET_USE_HIGH_QUALITY, NIL)
-  }
-
-  /**
-   *
-   */
   public fun environmentSetSsrRoughnessQuality(quality: EnvironmentSSRRoughnessQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr,
@@ -3606,6 +3597,19 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Sets the sorting offset and switches between using the bounding box or instance origin for depth sorting.
+   */
+  public fun instanceSetPivotData(
+    instance: RID,
+    sortingOffset: Double,
+    useAabbCenter: Boolean
+  ): Unit {
+    TransferContext.writeArguments(_RID to instance, DOUBLE to sortingOffset, BOOL to useAabbCenter)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCE_SET_PIVOT_DATA, NIL)
+  }
+
+  /**
    * Sets the world space transform of the instance. Equivalent to [godot.Node3D.transform].
    */
   public fun instanceSetTransform(instance: RID, transform: Transform3D): Unit {
@@ -3674,7 +3678,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a custom AABB to use when culling objects from the view frustum. Equivalent to [godot.GeometryInstance3D.setCustomAabb].
+   * Sets a custom AABB to use when culling objects from the view frustum. Equivalent to setting [godot.GeometryInstance3D.customAabb].
    */
   public fun instanceSetCustomAabb(instance: RID, aabb: AABB): Unit {
     TransferContext.writeArguments(_RID to instance, godot.core.VariantType.AABB to aabb)
@@ -4212,9 +4216,10 @@ public object RenderingServer : Object() {
     srcRect: Rect2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     outlineSize: Long = 0,
-    pxRange: Double = 1.0
+    pxRange: Double = 1.0,
+    scale: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect, COLOR to modulate, LONG to outlineSize, DOUBLE to pxRange)
+    TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect, COLOR to modulate, LONG to outlineSize, DOUBLE to pxRange, DOUBLE to scale)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_MSDF_TEXTURE_RECT_REGION, NIL)
   }
@@ -4964,7 +4969,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the id of the test cube. Creates one if none exists.
+   * Returns the ID of the test cube. Creates one if none exists.
    */
   public fun getTestCube(): RID {
     TransferContext.writeArguments()
@@ -4973,7 +4978,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the id of the test texture. Creates one if none exists.
+   * Returns the ID of the test texture. Creates one if none exists.
    */
   public fun getTestTexture(): RID {
     TransferContext.writeArguments()
@@ -4983,7 +4988,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the id of a white texture. Creates one if none exists.
+   * Returns the ID of a white texture. Creates one if none exists.
    */
   public fun getWhiteTexture(): RID {
     TransferContext.writeArguments()
@@ -5082,7 +5087,9 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Returns the global RenderingDevice.
    *
+   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns `null`.
    */
   public fun getRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
@@ -5092,7 +5099,9 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Creates a RenderingDevice that can be used to do draw and compute operations on a separate thread. Cannot draw to the screen nor share data with the global RenderingDevice.
    *
+   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns `null`.
    */
   public fun createLocalRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()

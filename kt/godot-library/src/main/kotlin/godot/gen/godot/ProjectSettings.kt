@@ -84,7 +84,7 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the value of a setting.
+   * Returns the value of the setting identified by [name]. If the setting doesn't exist and [defaultValue] is specified, the value of [defaultValue] is returned. Otherwise, `null` is returned.
    *
    * **Example:**
    *
@@ -94,18 +94,22 @@ public object ProjectSettings : Object() {
    *
    * print(ProjectSettings.get_setting("application/config/name"))
    *
+   * print(ProjectSettings.get_setting("application/config/custom_description", "No description specified."))
+   *
    * [/gdscript]
    *
    * [csharp]
    *
    * GD.Print(ProjectSettings.GetSetting("application/config/name"));
    *
+   * GD.Print(ProjectSettings.GetSetting("application/config/custom_description", "No description specified."));
+   *
    * [/csharp]
    *
    * [/codeblocks]
    */
-  public fun getSetting(name: String): Any? {
-    TransferContext.writeArguments(STRING to name)
+  public fun getSetting(name: String, defaultValue: Any? = null): Any? {
+    TransferContext.writeArguments(STRING to name, ANY to defaultValue)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }

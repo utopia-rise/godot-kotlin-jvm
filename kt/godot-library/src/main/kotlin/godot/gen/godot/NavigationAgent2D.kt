@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Dictionary
 import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
@@ -21,6 +23,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -46,6 +49,36 @@ public open class NavigationAgent2D : Node() {
    * Notifies when the player-defined [targetLocation] is reached.
    */
   public val targetReached: Signal0 by signal()
+
+  /**
+   * Notifies when a waypoint along the path has been reached.
+   *
+   * The details dictionary may contain the following keys depending on the value of [pathMetadataFlags]:
+   *
+   * - `location`: The location of the waypoint that was reached.
+   *
+   * - `type`: The type of navigation primitive (region or link) that contains this waypoint.
+   *
+   * - `rid`: The [RID] of the containing navigation primitive (region or link).
+   *
+   * - `owner`: The object which manages the containing navigation primitive (region or link).
+   */
+  public val waypointReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
+
+  /**
+   * Notifies when a navigation link has been reached.
+   *
+   * The details dictionary may contain the following keys depending on the value of [pathMetadataFlags]:
+   *
+   * - `location`: The start location of the link that was reached.
+   *
+   * - `type`: Always [godot.NavigationPathQueryResult2D.PATH_SEGMENT_TYPE_LINK].
+   *
+   * - `rid`: The [RID] of the link.
+   *
+   * - `owner`: The object which manages the link (usually [godot.NavigationLink2D]).
+   */
+  public val linkReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
 
   /**
    * Notifies when the final location is reached.
@@ -135,6 +168,22 @@ public open class NavigationAgent2D : Node() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION_LAYERS, NIL)
+    }
+
+  /**
+   * Additional information to return with the navigation path.
+   */
+  public var pathMetadataFlags: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATH_METADATA_FLAGS, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_METADATA_FLAGS, NIL)
     }
 
   /**
@@ -315,11 +364,22 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
+   * Returns the path query result for the path the agent is currently following.
+   */
+  public fun getCurrentNavigationResult(): NavigationPathQueryResult2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_CURRENT_NAVIGATION_RESULT, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as NavigationPathQueryResult2D?
+  }
+
+  /**
    * Returns this agent's current path from start to finish in global coordinates. The path only updates when the target location is changed or the agent requires a repath. The path array is not intended to be used in direct path movement as the agent has its own internal path logic that would get corrupted by changing the path array manually. Use the intended [getNextLocation] once every physics frame to receive the next path point for the agents movement as this function also updates the internal path logic.
    */
-  public fun getNavPath(): PackedVector2Array {
+  public fun getCurrentNavigationPath(): PackedVector2Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NAV_PATH,
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_CURRENT_NAVIGATION_PATH,
         PACKED_VECTOR2_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }
@@ -327,10 +387,10 @@ public open class NavigationAgent2D : Node() {
   /**
    * Returns which index the agent is currently on in the navigation path's [godot.PackedVector2Array].
    */
-  public fun getNavPathIndex(): Long {
+  public fun getCurrentNavigationPathIndex(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NAV_PATH_INDEX, LONG)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_CURRENT_NAVIGATION_PATH_INDEX, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

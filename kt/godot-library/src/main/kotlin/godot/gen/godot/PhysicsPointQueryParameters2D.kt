@@ -45,7 +45,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If different from `0`, restricts the query to a specific canvas layer specified by its instance id. See [godot.Object.getInstanceId].
+   * If different from `0`, restricts the query to a specific canvas layer specified by its instance ID. See [godot.Object.getInstanceId].
    */
   public var canvasInstanceId: Long
     get() {
@@ -77,7 +77,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The list of objects or object [RID]s that will be excluded from collisions.
+   * The list of object [RID]s that will be excluded from collisions. Use [godot.CollisionObject2D.getRid] to get the [RID] associated with a [godot.CollisionObject2D]-derived node.
    */
   public var exclude: VariantArray<RID>
     get() {

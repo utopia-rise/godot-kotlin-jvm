@@ -280,7 +280,7 @@ public object Input : Object() {
   }
 
   /**
-   * Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. [weakMagnitude] is the strength of the weak motor (between 0 and 1) and [strongMagnitude] is the strength of the strong motor (between 0 and 1). [duration] is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely).
+   * Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. [weakMagnitude] is the strength of the weak motor (between 0 and 1) and [strongMagnitude] is the strength of the strong motor (between 0 and 1). [duration] is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely). The vibration can be stopped early by calling [stopJoyVibration].
    *
    * **Note:** Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.
    */
@@ -295,7 +295,7 @@ public object Input : Object() {
   }
 
   /**
-   * Stops the vibration of the joypad.
+   * Stops the vibration of the joypad started with [startJoyVibration].
    */
   public fun stopJoyVibration(device: Long): Unit {
     TransferContext.writeArguments(LONG to device)
@@ -303,15 +303,15 @@ public object Input : Object() {
   }
 
   /**
-   * Vibrate handheld devices.
+   * Vibrate the handheld device for the specified duration in milliseconds.
    *
-   * **Note:** This method is implemented on Android, iOS, and Web.
+   * **Note:** This method is implemented on Android, iOS, and Web. It has no effect on other platforms.
    *
-   * **Note:** For Android, it requires enabling the `VIBRATE` permission in the export preset.
+   * **Note:** For Android, [vibrateHandheld] requires enabling the `VIBRATE` permission in the export preset. Otherwise, [vibrateHandheld] will have no effect.
    *
-   * **Note:** For iOS, specifying the duration is supported in iOS 13 and later.
+   * **Note:** For iOS, specifying the duration is only supported in iOS 13 and later.
    *
-   * **Note:** Some web browsers such as Safari and Firefox for Android do not support this method.
+   * **Note:** Some web browsers such as Safari and Firefox for Android do not support [vibrateHandheld].
    */
   public fun vibrateHandheld(durationMs: Long = 500): Unit {
     TransferContext.writeArguments(LONG to durationMs)

@@ -83,13 +83,17 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * var vertices = new Godot.Collections.Array<Vector3>();
+ * var vertices = new Vector3[]
  *
- * vertices.Add(new Vector3(0, 1, 0));
+ * {
  *
- * vertices.Add(new Vector3(1, 0, 0));
+ *     new Vector3(0, 1, 0),
  *
- * vertices.Add(new Vector3(0, 0, 1));
+ *     new Vector3(1, 0, 0),
+ *
+ *     new Vector3(0, 0, 1),
+ *
+ * };
  *
  *
  *
@@ -109,7 +113,7 @@ import kotlin.Unit
  *
  * arrMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
  *
- * var m = new MeshInstance();
+ * var m = new MeshInstance3D();
  *
  * m.Mesh = arrMesh;
  *

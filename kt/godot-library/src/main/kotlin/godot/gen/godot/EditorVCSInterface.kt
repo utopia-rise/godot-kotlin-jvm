@@ -117,14 +117,14 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Gets an instance of an [godot.Array] of [godot.String]s containing available branch names in the VCS.
    */
-  public open fun _getBranchList(): VariantArray<Dictionary<Any?, Any?>> {
+  public open fun _getBranchList(): VariantArray<String> {
     throw NotImplementedError("_get_branch_list is not implemented for EditorVCSInterface")
   }
 
   /**
    * Returns an [godot.Array] of [godot.String]s, each containing the name of a remote configured in the VCS.
    */
-  public open fun _getRemotes(): VariantArray<Dictionary<Any?, Any?>> {
+  public open fun _getRemotes(): VariantArray<String> {
     throw NotImplementedError("_get_remotes is not implemented for EditorVCSInterface")
   }
 

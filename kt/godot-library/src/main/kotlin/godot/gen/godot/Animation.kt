@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.PackedInt32Array
 import godot.core.Quaternion
 import godot.core.StringName
 import godot.core.VariantArray
@@ -21,7 +20,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.QUATERNION
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
@@ -29,8 +27,6 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -93,11 +89,6 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Animation : Resource() {
-  /**
-   * Emitted when there's a change in the list of tracks, e.g. tracks are added, moved or have changed paths.
-   */
-  public val tracksChanged: Signal0 by signal()
-
   /**
    * The total length of the animation (in seconds).
    *
@@ -439,14 +430,14 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Finds the key index by time in a given track. Optionally, only find it if the exact time is given.
+   * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time is given.
    */
   public fun trackFindKey(
     trackIdx: Long,
     time: Double,
-    exact: Boolean = false
+    findMode: FindMode = Animation.FindMode.FIND_MODE_NEAREST
   ): Long {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, BOOL to exact)
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, LONG to findMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_FIND_KEY, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -518,20 +509,6 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns all the key indices of a value track, given a position and delta time.
-   */
-  public fun valueTrackGetKeyIndices(
-    trackIdx: Long,
-    timeSec: Double,
-    delta: Double
-  ): PackedInt32Array {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec, DOUBLE to delta)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_GET_KEY_INDICES, PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
-  }
-
-  /**
    * Returns the interpolated value at the given time (in seconds). The [trackIdx] must be the index of a value track.
    */
   public fun valueTrackInterpolate(trackIdx: Long, timeSec: Double): Any? {
@@ -539,20 +516,6 @@ public open class Animation : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_INTERPOLATE,
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
-   * Returns all the key indices of a method track, given a position and delta time.
-   */
-  public fun methodTrackGetKeyIndices(
-    trackIdx: Long,
-    timeSec: Double,
-    delta: Double
-  ): PackedInt32Array {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec, DOUBLE to delta)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_METHOD_TRACK_GET_KEY_INDICES, PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
   /**
@@ -926,21 +889,17 @@ public open class Animation : Resource() {
     id: Long
   ) {
     /**
-     * Update between keyframes.
+     * Update between keyframes and hold the value.
      */
     UPDATE_CONTINUOUS(0),
     /**
-     * Update at the keyframes and hold the value.
+     * Update at the keyframes.
      */
     UPDATE_DISCRETE(1),
     /**
-     * Update at the keyframes.
-     */
-    UPDATE_TRIGGER(2),
-    /**
      * Same as linear interpolation, but also interpolates from the current value (i.e. dynamically at runtime) if the first key isn't at 0 seconds.
      */
-    UPDATE_CAPTURE(3),
+    UPDATE_CAPTURE(2),
     ;
 
     public val id: Long
@@ -968,6 +927,60 @@ public open class Animation : Resource() {
      * Repeats playback and reverse playback at both ends of the animation.
      */
     LOOP_PINGPONG(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LoopedFlag(
+    id: Long
+  ) {
+    /**
+     * This flag indicates that the animation proceeds without any looping.
+     */
+    LOOPED_FLAG_NONE(0),
+    /**
+     * This flag indicates that the animation has reached the end of the animation and just after loop processed.
+     */
+    LOOPED_FLAG_END(1),
+    /**
+     * This flag indicates that the animation has reached the start of the animation and just after loop processed.
+     */
+    LOOPED_FLAG_START(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class FindMode(
+    id: Long
+  ) {
+    /**
+     * Finds the nearest time key.
+     */
+    FIND_MODE_NEAREST(0),
+    /**
+     * Finds only the key with approximating the time.
+     */
+    FIND_MODE_APPROX(1),
+    /**
+     * Finds only the key with matching the time.
+     */
+    FIND_MODE_EXACT(2),
     ;
 
     public val id: Long

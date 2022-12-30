@@ -17,7 +17,10 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * Directional light from a distance.
+ * Directional 2D light from a distance.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/2d/2d_lights_and_shadows.html]($DOCS_URL/tutorials/2d/2d_lights_and_shadows.html)
  *
  * A directional light is a type of [godot.Light2D] node that models an infinite number of parallel rays covering the entire scene. It is used for lights with strong intensity that are located far away from the scene (for example: to model sunlight or moonlight).
  */
@@ -37,7 +40,7 @@ public open class DirectionalLight2D : Light2D() {
     }
 
   /**
-   * Maximum distance this light covers. Increasing this value will make directional shadows visible from further away, at the cost of lower overall shadow detail and performance (due to more objects being included in shadow rendering).
+   * The maximum distance from the camera center objects can be before their shadows are culled (in pixels). Decreasing this value can prevent objects located outside the camera from casting shadows (while also improving performance). [godot.Camera2D.zoom] is not taken into account by [maxDistance], which means that at higher zoom values, shadows will appear to fade out sooner when zooming onto a given point.
    */
   public var maxDistance: Double
     get() {

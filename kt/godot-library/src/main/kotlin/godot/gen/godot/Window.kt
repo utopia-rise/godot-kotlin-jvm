@@ -351,9 +351,23 @@ public open class Window : Viewport() {
     }
 
   /**
-   * The [godot.Theme] resource that determines the style of the underlying [godot.Control] nodes.
+   * Toggles if any text should automatically change to its translated version depending on the current locale.
+   */
+  public var autoTranslate: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_AUTO_TRANSLATING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_AUTO_TRANSLATE, NIL)
+    }
+
+  /**
+   * The [godot.Theme] resource this node and all its [godot.Control] and [godot.Window] children use. If a child node has its own [godot.Theme] resource set, theme items are merged with child's definitions having higher priority.
    *
-   * [godot.Window] styles will have no effect unless the window is embedded.
+   * **Note:** [godot.Window] styles will have no effect unless the window is embedded.
    */
   public var theme: Theme?
     get() {
@@ -382,20 +396,6 @@ public open class Window : Viewport() {
           NIL)
     }
 
-  /**
-   * Toggles if any text should automatically change to its translated version depending on the current locale.
-   */
-  public var autoTranslate: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_AUTO_TRANSLATING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_AUTO_TRANSLATE, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WINDOW, scriptIndex)
     return true
@@ -410,11 +410,22 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the window's position including its border.
+   */
+  public fun getPositionWithDecorations(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WINDOW_GET_POSITION_WITH_DECORATIONS, VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+  }
+
+  /**
    * Returns the window's size including its border.
    */
-  public fun getRealSize(): Vector2i {
+  public fun getSizeWithDecorations(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_REAL_SIZE, VECTOR2I)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_SIZE_WITH_DECORATIONS,
+        VECTOR2I)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -565,9 +576,144 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the icon at [name] if the theme has [themeType].
+   * Prevents `*_theme_*_override` methods from emitting [NOTIFICATION_THEME_CHANGED] until [endBulkThemeOverride] is called.
+   */
+  public fun beginBulkThemeOverride(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_BEGIN_BULK_THEME_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Ends a bulk theme override update. See [beginBulkThemeOverride].
+   */
+  public fun endBulkThemeOverride(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_END_BULK_THEME_OVERRIDE, NIL)
+  }
+
+  /**
+   * Creates a local override for a theme icon with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeIconOverride].
    *
-   * See [godot.Control.getThemeColor] for more details.
+   * See also [getThemeIcon].
+   */
+  public fun addThemeIconOverride(name: StringName, texture: Texture2D): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_ICON_OVERRIDE, NIL)
+  }
+
+  /**
+   * Creates a local override for a theme [godot.StyleBox] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeStyleboxOverride].
+   *
+   * See also [getThemeStylebox] and [godot.Control.addThemeStyleboxOverride] for more details.
+   */
+  public fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to stylebox)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_STYLEBOX_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Creates a local override for a theme [godot.Font] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontOverride].
+   *
+   * See also [getThemeFont].
+   */
+  public fun addThemeFontOverride(name: StringName, font: Font): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to font)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_FONT_OVERRIDE, NIL)
+  }
+
+  /**
+   * Creates a local override for a theme font size with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontSizeOverride].
+   *
+   * See also [getThemeFontSize].
+   */
+  public fun addThemeFontSizeOverride(name: StringName, fontSize: Long): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, LONG to fontSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_FONT_SIZE_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Creates a local override for a theme [godot.core.Color] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeColorOverride].
+   *
+   * See also [getThemeColor] and [godot.Control.addThemeColorOverride] for more details.
+   */
+  public fun addThemeColorOverride(name: StringName, color: Color): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, COLOR to color)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_COLOR_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Creates a local override for a theme constant with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeConstantOverride].
+   *
+   * See also [getThemeConstant].
+   */
+  public fun addThemeConstantOverride(name: StringName, constant: Long): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, LONG to constant)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_CONSTANT_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Removes a local override for a theme icon with the specified [name] previously added by [addThemeIconOverride] or via the Inspector dock.
+   */
+  public fun removeThemeIconOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_ICON_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Removes a local override for a theme [godot.StyleBox] with the specified [name] previously added by [addThemeStyleboxOverride] or via the Inspector dock.
+   */
+  public fun removeThemeStyleboxOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_STYLEBOX_OVERRIDE, NIL)
+  }
+
+  /**
+   * Removes a local override for a theme [godot.Font] with the specified [name] previously added by [addThemeFontOverride] or via the Inspector dock.
+   */
+  public fun removeThemeFontOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_FONT_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Removes a local override for a theme font size with the specified [name] previously added by [addThemeFontSizeOverride] or via the Inspector dock.
+   */
+  public fun removeThemeFontSizeOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_FONT_SIZE_OVERRIDE, NIL)
+  }
+
+  /**
+   * Removes a local override for a theme [godot.core.Color] with the specified [name] previously added by [addThemeColorOverride] or via the Inspector dock.
+   */
+  public fun removeThemeColorOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_COLOR_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Removes a local override for a theme constant with the specified [name] previously added by [addThemeConstantOverride] or via the Inspector dock.
+   */
+  public fun removeThemeConstantOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_CONSTANT_OVERRIDE, NIL)
+  }
+
+  /**
+   * Returns an icon from the first matching [godot.Theme] in the tree if that [godot.Theme] has an icon item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeIcon(name: StringName, themeType: StringName = StringName("")): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -576,9 +722,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the [godot.StyleBox] at [name] if the theme has [themeType].
+   * Returns a [godot.StyleBox] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a stylebox item with the specified [name] and [themeType].
    *
-   * See [godot.Control.getThemeColor] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -587,9 +733,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the [godot.Font] at [name] if the theme has [themeType].
+   * Returns a [godot.Font] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font item with the specified [name] and [themeType].
    *
-   * See [godot.Control.getThemeColor] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -598,9 +744,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the font size at [name] if the theme has [themeType].
+   * Returns a font size from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font size item with the specified [name] and [themeType].
    *
-   * See [godot.Control.getThemeColor] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -609,7 +755,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the [godot.core.Color] at [name] if the theme has [themeType].
+   * Returns a [godot.core.Color] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a color item with the specified [name] and [themeType].
    *
    * See [godot.Control.getThemeColor] for more details.
    */
@@ -620,7 +766,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the constant at [name] if the theme has [themeType].
+   * Returns a constant from the first matching [godot.Theme] in the tree if that [godot.Theme] has a constant item with the specified [name] and [themeType].
    *
    * See [godot.Control.getThemeColor] for more details.
    */
@@ -631,7 +777,81 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if icon with [name] is in [themeType].
+   * Returns `true` if there is a local override for a theme icon with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeIconOverride].
+   */
+  public fun hasThemeIconOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_ICON_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a local override for a theme [godot.StyleBox] with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeStyleboxOverride].
+   */
+  public fun hasThemeStyleboxOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_STYLEBOX_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a local override for a theme [godot.Font] with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeFontOverride].
+   */
+  public fun hasThemeFontOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_FONT_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a local override for a theme font size with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeFontSizeOverride].
+   */
+  public fun hasThemeFontSizeOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_FONT_SIZE_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a local override for a theme [godot.core.Color] with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeColorOverride].
+   */
+  public fun hasThemeColorOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_COLOR_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a local override for a theme constant with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeConstantOverride].
+   */
+  public fun hasThemeConstantOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_CONSTANT_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has an icon item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -640,7 +860,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if [godot.StyleBox] with [name] is in [themeType].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a stylebox item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -649,7 +871,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if [godot.Font] with [name] is in [themeType].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -658,7 +882,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if font size with [name] is in [themeType].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font size item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -667,7 +893,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if [godot.core.Color] with [name] is in [themeType].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a color item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -676,7 +904,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if constant with [name] is in [themeType].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a constant item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -685,9 +915,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the default base scale defined in the attached [godot.Theme].
+   * Returns the default base scale value from the first matching [godot.Theme] in the tree if that [godot.Theme] has a valid [godot.Theme.defaultBaseScale] value.
    *
-   * See [godot.Theme.defaultBaseScale] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeDefaultBaseScale(): Double {
     TransferContext.writeArguments()
@@ -697,9 +927,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the default [godot.Font] defined in the attached [godot.Theme].
+   * Returns the default font from the first matching [godot.Theme] in the tree if that [godot.Theme] has a valid [godot.Theme.defaultFont] value.
    *
-   * See [godot.Theme.defaultFont] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeDefaultFont(): Font? {
     TransferContext.writeArguments()
@@ -709,9 +939,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the default font size defined in the attached [godot.Theme].
+   * Returns the default font size value from the first matching [godot.Theme] in the tree if that [godot.Theme] has a valid [godot.Theme.defaultFontSize] value.
    *
-   * See [godot.Theme.defaultFontSize] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeDefaultFontSize(): Long {
     TransferContext.writeArguments()

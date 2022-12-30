@@ -185,7 +185,7 @@ public open class Curve2D : Resource() {
    *
    * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
    */
-  public fun sampleBaked(offset: Double, cubic: Boolean = false): Vector2 {
+  public fun sampleBaked(offset: Double = 0.0, cubic: Boolean = false): Vector2 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLE_BAKED, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -194,21 +194,14 @@ public open class Curve2D : Resource() {
   /**
    * Similar to [sampleBaked], but returns [godot.core.Transform2D] that includes a rotation along the curve. Returns empty transform if length of the curve is `0`.
    *
-   * Use [loop] to smooth the tangent at the end of the curve. [lookahead] defines the distance to a nearby point for calculating the tangent vector.
-   *
    * ```
    * 				var transform = curve.sample_baked_with_rotation(offset)
    * 				position = transform.get_origin()
    * 				rotation = transform.get_rotation()
    * 				```
    */
-  public fun sampleBakedWithRotation(
-    offset: Double,
-    cubic: Boolean = false,
-    loop: Boolean = true,
-    lookahead: Double = 4.0
-  ): Transform2D {
-    TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic, BOOL to loop, DOUBLE to lookahead)
+  public fun sampleBakedWithRotation(offset: Double = 0.0, cubic: Boolean = false): Transform2D {
+    TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLE_BAKED_WITH_ROTATION,
         TRANSFORM2D)
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
@@ -225,7 +218,7 @@ public open class Curve2D : Resource() {
   }
 
   /**
-   * Returns the closest baked point (in curve's local space) to [toPoint].
+   * Returns the closest point on baked segments (in curve's local space) to [toPoint].
    *
    * [toPoint] must be in this curve's local space.
    */
@@ -258,6 +251,17 @@ public open class Curve2D : Resource() {
   public fun tessellate(maxStages: Long = 5, toleranceDegrees: Double = 4.0): PackedVector2Array {
     TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceDegrees)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_TESSELLATE,
+        PACKED_VECTOR2_ARRAY)
+    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+  }
+
+  /**
+   *
+   */
+  public fun tessellateEvenLength(maxStages: Long = 5, toleranceLength: Double = 20.0):
+      PackedVector2Array {
+    TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceLength)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_TESSELLATE_EVEN_LENGTH,
         PACKED_VECTOR2_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }

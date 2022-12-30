@@ -870,6 +870,8 @@ public open class TileSet : Resource() {
     TILE_SHAPE_SQUARE(0),
     /**
      * Diamond tile shape (for isometric look).
+     *
+     * **Note:** Isometric [godot.TileSet] works best if [godot.TileMap] and all its layers have Y-sort enabled.
      */
     TILE_SHAPE_ISOMETRIC(1),
     /**

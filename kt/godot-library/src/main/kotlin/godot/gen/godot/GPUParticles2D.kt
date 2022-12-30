@@ -88,6 +88,37 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
+   * [godot.Material] for processing particles. Can be a [godot.ParticleProcessMaterial] or a [godot.ShaderMaterial].
+   */
+  public var processMaterial: Material?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_PROCESS_MATERIAL, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Material?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_PROCESS_MATERIAL, NIL)
+    }
+
+  /**
+   * Particle texture. If `null`, particles will be squares.
+   */
+  public var texture: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TEXTURE,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_TEXTURE, NIL)
+    }
+
+  /**
    * Amount of time each particle will exist.
    */
   public var lifetime: Double
@@ -357,37 +388,6 @@ public open class GPUParticles2D : Node2D() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_TRAIL_SECTION_SUBDIVISIONS, NIL)
-    }
-
-  /**
-   * [godot.Material] for processing particles. Can be a [godot.ParticleProcessMaterial] or a [godot.ShaderMaterial].
-   */
-  public var processMaterial: Material?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_PROCESS_MATERIAL, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_PROCESS_MATERIAL, NIL)
-    }
-
-  /**
-   * Particle texture. If `null`, particles will be squares.
-   */
-  public var texture: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TEXTURE,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_TEXTURE, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

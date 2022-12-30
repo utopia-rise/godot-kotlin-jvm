@@ -1214,12 +1214,12 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if the screen can send touch events or if [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is `true`.
+   * Returns `true` if touch events are available (Android or iOS), the capability is detected on the Webplatform or if [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is `true`.
    */
-  public fun screenIsTouchscreen(screen: Long = -1): Boolean {
-    TransferContext.writeArguments(LONG to screen)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_IS_TOUCHSCREEN,
-        BOOL)
+  public fun isTouchscreenAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_IS_TOUCHSCREEN_AVAILABLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1458,12 +1458,22 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the position of the given window to on the screen.
+   * Returns the position of the client area of the given window on the screen.
    */
   public fun windowGetPosition(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_POSITION,
         VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+  }
+
+  /**
+   * Returns the position of the given window on the screen including the borders drawn by the operating system. See also [windowGetPosition].
+   */
+  public fun windowGetPositionWithDecorations(windowId: Long = 0): Vector2i {
+    TransferContext.writeArguments(LONG to windowId)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_POSITION_WITH_DECORATIONS, VECTOR2I)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -1488,7 +1498,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the size of the window specified by [windowId] (in pixels), excluding the borders drawn by the operating system. This is also called the "client area". See also [windowGetRealSize], [windowSetSize] and [windowGetPosition].
+   * Returns the size of the window specified by [windowId] (in pixels), excluding the borders drawn by the operating system. This is also called the "client area". See also [windowGetSizeWithDecorations], [windowSetSize] and [windowGetPosition].
    */
   public fun windowGetSize(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
@@ -1609,10 +1619,10 @@ public object DisplayServer : Object() {
   /**
    * Returns the size of the window specified by [windowId] (in pixels), including the borders drawn by the operating system. See also [windowGetSize].
    */
-  public fun windowGetRealSize(windowId: Long = 0): Vector2i {
+  public fun windowGetSizeWithDecorations(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_REAL_SIZE,
-        VECTOR2I)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_SIZE_WITH_DECORATIONS, VECTOR2I)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -2442,19 +2452,25 @@ public object DisplayServer : Object() {
      */
     WINDOW_MODE_MAXIMIZED(2),
     /**
-     * Full screen window mode. Note that this is not *exclusive* full screen. On Windows and Linux (X11), a borderless window is used to emulate full screen. On macOS, a new desktop is used to display the running project.
+     * Full screen mode with full multi-window support.
      *
-     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
+     * Full screen window cover the entire display area of a screen, have no border or decorations. Display video mode is not changed.
+     *
+     * **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
     WINDOW_MODE_FULLSCREEN(3),
     /**
-     * Exclusive full screen window mode. This mode is implemented on Windows and macOS only. On other platforms, it is equivalent to [WINDOW_MODE_FULLSCREEN].
+     * A single window full screen mode. This mode has less overhead, but only one window can be open on a given screen at a time (opening a child window or application switching will trigger a full screen transition).
      *
-     * **On Windows:** Only one window in exclusive full screen mode can be visible on a given screen at a time. If multiple windows are in exclusive full screen mode for the same screen, the last one being set to this mode takes precedence.
+     * Full screen window cover the entire display area of a screen, have no border or decorations. Display video mode is not changed.
      *
-     * **On macOS:** Exclusive full-screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
+     * **On Windows:** Depending on video driver, full screen transition might cause screens to go black for a moment.
      *
-     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
+     * **On macOS:** Exclusive full screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
+     *
+     * **On Linux (X11):** Exclusive full screen mode bypasses compositor.
+     *
+     * **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
     WINDOW_MODE_EXCLUSIVE_FULLSCREEN(4),
     ;
@@ -2619,6 +2635,8 @@ public object DisplayServer : Object() {
      * Display handle:
      *
      * - Linux (X11): `X11::Display*` for the display.
+     *
+     * - Android: `EGLDisplay` for the display.
      */
     DISPLAY_HANDLE(0),
     /**

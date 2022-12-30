@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat32Array
 import godot.core.PackedVector3Array
+import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
+import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
@@ -220,10 +222,24 @@ public open class Curve3D : Resource() {
    *
    * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
    */
-  public fun sampleBaked(offset: Double, cubic: Boolean = false): Vector3 {
+  public fun sampleBaked(offset: Double = 0.0, cubic: Boolean = false): Vector3 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE_BAKED, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Similar with `interpolate_baked()`. The the return value is `Transform3D`, with `origin` as point position, `basis.x` as sideway vector, `basis.y` as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way to calculate the rotation, all vectors aligned with global space axes.
+   */
+  public fun sampleBakedWithRotation(
+    offset: Double = 0.0,
+    cubic: Boolean = false,
+    applyTilt: Boolean = false
+  ): Transform3D {
+    TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic, BOOL to applyTilt)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE_BAKED_WITH_ROTATION,
+        TRANSFORM3D)
+    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
   /**
@@ -273,7 +289,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the closest baked point (in curve's local space) to [toPoint].
+   * Returns the closest point on baked segments (in curve's local space) to [toPoint].
    *
    * [toPoint] must be in this curve's local space.
    */
@@ -306,6 +322,19 @@ public open class Curve3D : Resource() {
   public fun tessellate(maxStages: Long = 5, toleranceDegrees: Double = 4.0): PackedVector3Array {
     TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceDegrees)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_TESSELLATE,
+        PACKED_VECTOR3_ARRAY)
+    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+  }
+
+  /**
+   * Returns a list of points along the curve, with almost uniform density. [maxStages] controls how many subdivisions a curve segment may face before it is considered approximate enough. Each subdivision splits the segment in half, so the default 5 stages may mean up to 32 subdivisions per curve segment. Increase with care!
+   *
+   * [toleranceLength] controls the maximal distance between two neighbouring points, before the segment has to be subdivided.
+   */
+  public fun tessellateEvenLength(maxStages: Long = 5, toleranceLength: Double = 0.2):
+      PackedVector3Array {
+    TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceLength)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_TESSELLATE_EVEN_LENGTH,
         PACKED_VECTOR3_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }

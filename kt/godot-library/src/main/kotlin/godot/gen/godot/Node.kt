@@ -941,9 +941,13 @@ public open class Node : Object() {
 
   /**
    * Returns the relative [godot.core.NodePath] from this node to the specified [node]. Both nodes must be in the same scene or the function will fail.
+   *
+   * If [useUniquePath] is `true`, returns the shortest path considering unique node.
+   *
+   * **Note:** If you get a relative path which starts from a unique node, the path may be longer than a normal relative path due to the addition of the unique node's name.
    */
-  public fun getPathTo(node: Node): NodePath {
-    TransferContext.writeArguments(OBJECT to node)
+  public fun getPathTo(node: Node, useUniquePath: Boolean = false): NodePath {
+    TransferContext.writeArguments(OBJECT to node, BOOL to useUniquePath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH_TO, NODE_PATH)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
@@ -1239,16 +1243,6 @@ public open class Node : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CAN_PROCESS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Prints all orphan nodes (nodes outside the [godot.SceneTree]). Used for debugging.
-   *
-   * **Note:** [printOrphanNodes] only works in debug builds. When called in a project exported in release mode, [printOrphanNodes] will not print anything.
-   */
-  public fun printOrphanNodes(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_ORPHAN_NODES, NIL)
   }
 
   /**
@@ -1566,7 +1560,7 @@ public open class Node : Object() {
      *
      * An instance stays linked to the original so when the original changes, the instance changes too.
      */
-    DUPLICATE_USE_INSTANCING(8),
+    DUPLICATE_USE_INSTANTIATION(8),
     ;
 
     public val id: Long

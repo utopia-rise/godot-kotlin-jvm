@@ -35,7 +35,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
-import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -127,8 +126,8 @@ public open class GraphEdit : Control() {
   /**
    * Emitted at the beginning of a connection drag.
    */
-  public val connectionDragStarted: Signal3<String, Long, Boolean> by signal("fromNode", "fromPort",
-      "isOutput")
+  public val connectionDragStarted: Signal3<StringName, Long, Boolean> by signal("fromNode",
+      "fromPort", "isOutput")
 
   /**
    * Emitted at the end of a connection drag.

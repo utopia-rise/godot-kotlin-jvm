@@ -23,12 +23,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Collection of common settings to customize label text.
  *
+ * [godot.LabelSettings] is a resource that can be assigned to a [godot.Label] node to customize it. It will take priority over the properties defined in theme. The resource can be shared between multiple labels and swapped on the fly, so it's convenient and flexible way to setup text style.
  */
 @GodotBaseType
 public open class LabelSettings : Resource() {
   /**
-   *
+   * Vertical space between lines when the text is multiline.
    */
   public var lineSpacing: Double
     get() {
@@ -44,7 +46,7 @@ public open class LabelSettings : Resource() {
     }
 
   /**
-   *
+   * [godot.Font] used for the text.
    */
   public var font: Font?
     get() {
@@ -58,7 +60,7 @@ public open class LabelSettings : Resource() {
     }
 
   /**
-   *
+   * Size of the text.
    */
   public var fontSize: Long
     get() {
@@ -72,7 +74,7 @@ public open class LabelSettings : Resource() {
     }
 
   /**
-   *
+   * Color of the text.
    */
   public var fontColor: Color
     get() {
@@ -87,7 +89,7 @@ public open class LabelSettings : Resource() {
     }
 
   /**
-   *
+   * Text outline size.
    */
   public var outlineSize: Long
     get() {
@@ -103,7 +105,7 @@ public open class LabelSettings : Resource() {
     }
 
   /**
-   *
+   * The color of the outline.
    */
   public var outlineColor: Color
     get() {
@@ -119,7 +121,7 @@ public open class LabelSettings : Resource() {
     }
 
   /**
-   *
+   * Size of the shadow effect.
    */
   public var shadowSize: Long
     get() {
@@ -135,7 +137,7 @@ public open class LabelSettings : Resource() {
     }
 
   /**
-   *
+   * Color of the shadow effect. If alpha is `0`, no shadow will be drawn.
    */
   public var shadowColor: Color
     get() {
@@ -151,7 +153,7 @@ public open class LabelSettings : Resource() {
     }
 
   /**
-   *
+   * Offset of the shadow effect, in pixels.
    */
   public var shadowOffset: Vector2
     get() {

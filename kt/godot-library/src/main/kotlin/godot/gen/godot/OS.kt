@@ -142,7 +142,7 @@ public object OS : Object() {
   /**
    * Returns list of font family names available.
    *
-   * **Note:** This method is implemented on iOS, Linux, macOS and Windows.
+   * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
   public fun getSystemFonts(): PackedStringArray {
     TransferContext.writeArguments()
@@ -152,18 +152,49 @@ public object OS : Object() {
   }
 
   /**
-   * Returns path to the system font file with [fontName] and style. Return empty string if no matching fonts found.
+   * Returns path to the system font file with [fontName] and style. Returns empty string if no matching fonts found.
    *
-   * **Note:** This method is implemented on iOS, Linux, macOS and Windows.
+   * The following aliases can be used to request default fonts: "sans-serif", "serif", "monospace", "cursive", and "fantasy".
+   *
+   * **Note:** Returned font might have different style if the requested style is not available.
+   *
+   * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
   public fun getSystemFontPath(
     fontName: String,
-    bold: Boolean = false,
+    weight: Long = 400,
+    stretch: Long = 100,
     italic: Boolean = false
   ): String {
-    TransferContext.writeArguments(STRING to fontName, BOOL to bold, BOOL to italic)
+    TransferContext.writeArguments(STRING to fontName, LONG to weight, LONG to stretch, BOOL to italic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONT_PATH, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns an array of the system substitute font file paths, which are similar to the font with [fontName] and style for the specified text, locale and script. Returns empty array if no matching fonts found.
+   *
+   * The following aliases can be used to request default fonts: "sans-serif", "serif", "monospace", "cursive", and "fantasy".
+   *
+   * **Note:** Depending on OS, it's not guaranteed that any of the returned fonts is suitable for rendering specified text. Fonts should be loaded and checked in the order they are returned, and the first suitable one used.
+   *
+   * **Note:** Returned fonts might have different style if the requested style is not available or belong to a different font family.
+   *
+   * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
+   */
+  public fun getSystemFontPathForText(
+    fontName: String,
+    text: String,
+    locale: String = "",
+    script: String = "",
+    weight: Long = 400,
+    stretch: Long = 100,
+    italic: Boolean = false
+  ): PackedStringArray {
+    TransferContext.writeArguments(STRING to fontName, STRING to text, STRING to locale, STRING to script, LONG to weight, LONG to stretch, BOOL to italic)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONT_PATH_FOR_TEXT,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
@@ -638,12 +669,14 @@ public object OS : Object() {
   }
 
   /**
-   * Similar to [getCmdlineArgs], but this returns the user arguments (any argument passed after the double dash `--` argument). These are left untouched by Godot for the user.
+   * Similar to [getCmdlineArgs], but this returns the user arguments (any argument passed after the double dash `--` or double plus `++` argument). These are left untouched by Godot for the user. `++` can be used in situations where `--` is intercepted by another program (such as `startx`).
    *
    * For example, in the command line below, `--fullscreen` will not be returned in [getCmdlineUserArgs] and `--level 1` will only be returned in [getCmdlineUserArgs]:
    *
    * ```
    * 				godot --fullscreen -- --level 1
+   * 				# Or:
+   * 				godot --fullscreen ++ --level 1
    * 				```
    */
   public fun getCmdlineUserArgs(): PackedStringArray {

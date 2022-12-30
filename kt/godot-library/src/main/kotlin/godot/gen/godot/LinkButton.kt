@@ -45,7 +45,7 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
-   * Determines when to show the underline. See [enum UnderlineMode] for options.
+   * The underline mode to use for the text. See [enum LinkButton.UnderlineMode] for the available modes.
    */
   public var underline: UnderlineMode
     get() {
@@ -58,6 +58,46 @@ public open class LinkButton : BaseButton() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_UNDERLINE_MODE,
           NIL)
+    }
+
+  /**
+   * The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) for this [godot.LinkButton]. If set to a valid URI, pressing the button opens the URI using the operating system's default program for the protocol (via [godot.OS.shellOpen]). HTTP and HTTPS URLs open the default web browser.
+   *
+   * **Examples:**
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * uri = "https://godotengine.org"  # Opens the URL in the default web browser.
+   *
+   * uri = "C:\SomeFolder"  # Opens the file explorer at the given path.
+   *
+   * uri = "C:\SomeImage.png"  # Opens the given image in the default viewing app.
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Uri = "https://godotengine.org"; // Opens the URL in the default web browser.
+   *
+   * Uri = "C:\SomeFolder"; // Opens the file explorer at the given path.
+   *
+   * Uri = "C:\SomeImage.png"; // Opens the given image in the default viewing app.
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   */
+  public var uri: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_URI, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_URI, NIL)
     }
 
   /**

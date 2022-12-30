@@ -77,7 +77,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The list of objects or object [RID]s that will be excluded from collisions.
+   * The list of object [RID]s that will be excluded from collisions. Use [godot.CollisionObject2D.getRid] to get the [RID] associated with a [godot.CollisionObject2D]-derived node.
    */
   public var exclude: VariantArray<RID>
     get() {

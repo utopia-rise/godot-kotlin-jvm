@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PackedVector3Array
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
@@ -35,17 +35,17 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   public val sessionFailed: Signal1<String> by signal("message")
 
-  public val selectstart: Signal1<Long> by signal("controllerId")
+  public val selectstart: Signal1<Long> by signal("inputSourceId")
 
-  public val select: Signal1<Long> by signal("controllerId")
+  public val select: Signal1<Long> by signal("inputSourceId")
 
-  public val selectend: Signal1<Long> by signal("controllerId")
+  public val selectend: Signal1<Long> by signal("inputSourceId")
 
-  public val squeezestart: Signal1<Long> by signal("controllerId")
+  public val squeezestart: Signal1<Long> by signal("inputSourceId")
 
-  public val squeeze: Signal1<Long> by signal("controllerId")
+  public val squeeze: Signal1<Long> by signal("inputSourceId")
 
-  public val squeezeend: Signal1<Long> by signal("controllerId")
+  public val squeezeend: Signal1<Long> by signal("inputSourceId")
 
   public val visibilityStateChanged: Signal0 by signal()
 
@@ -119,14 +119,6 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val boundsGeometry: PackedVector3Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_BOUNDS_GEOMETRY, PACKED_VECTOR3_ARRAY)
-      return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WEBXRINTERFACE, scriptIndex)
     return true
@@ -138,11 +130,44 @@ public open class WebXRInterface internal constructor() : XRInterface() {
         NIL)
   }
 
-  public fun getController(controllerId: Long): XRPositionalTracker? {
-    TransferContext.writeArguments(LONG to controllerId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_CONTROLLER,
-        OBJECT)
+  public fun isInputSourceActive(inputSourceId: Long): Boolean {
+    TransferContext.writeArguments(LONG to inputSourceId)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_IS_INPUT_SOURCE_ACTIVE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public fun getInputSourceTracker(inputSourceId: Long): XRPositionalTracker? {
+    TransferContext.writeArguments(LONG to inputSourceId)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_INPUT_SOURCE_TRACKER, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as XRPositionalTracker?
+  }
+
+  public fun getInputSourceTargetRayMode(inputSourceId: Long): TargetRayMode {
+    TransferContext.writeArguments(LONG to inputSourceId)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_INPUT_SOURCE_TARGET_RAY_MODE, LONG)
+    return WebXRInterface.TargetRayMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public enum class TargetRayMode(
+    id: Long
+  ) {
+    TARGET_RAY_MODE_UNKNOWN(0),
+    TARGET_RAY_MODE_GAZE(1),
+    TARGET_RAY_MODE_TRACKED_POINTER(2),
+    TARGET_RAY_MODE_SCREEN(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public companion object

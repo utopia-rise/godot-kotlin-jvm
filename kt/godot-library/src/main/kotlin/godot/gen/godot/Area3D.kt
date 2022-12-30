@@ -47,86 +47,94 @@ import kotlin.Suppress
 @GodotBaseType
 public open class Area3D : CollisionObject3D() {
   /**
-   * Emitted when one of a [godot.PhysicsBody3D] or [godot.GridMap]'s [godot.Shape3D]s enters one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
+   * Emitted when a [godot.Shape3D] of the received [body] enters a shape of this area. [body] can be a [godot.PhysicsBody3D] or a [godot.GridMap]. [godot.GridMap]s are detected if their [godot.MeshLibrary] has collision shapes configured. Requires [monitoring] to be set to `true`.
    *
-   * [bodyRid] the [RID] of the [godot.PhysicsBody3D] or [godot.MeshLibrary]'s [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
+   * [localShapeIndex] and [bodyShapeIndex] contain indices of the interacting shapes from this area and the interacting body, respectively. [bodyRid] contains the [RID] of the body. These values can be used with the [godot.PhysicsServer3D].
    *
-   * [body] the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody3D] or [godot.GridMap].
+   * **Example of getting the** [godot.CollisionShape3D] **node from the shape index:**
    *
-   * [bodyShapeIndex] the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
+   * [codeblocks]
    *
-   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * [gdscript]
+   *
+   * var body_shape_owner = body.shape_find_owner(body_shape_index)
+   *
+   * var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
+   *
+   *
+   *
+   * var local_shape_owner = shape_find_owner(local_shape_index)
+   *
+   * var local_shape_node = shape_owner_get_owner(local_shape_owner)
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
    */
   public val bodyShapeEntered: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when one of a [godot.PhysicsBody3D] or [godot.GridMap]'s [godot.Shape3D]s enters one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
+   * Emitted when a [godot.Shape3D] of the received [body] exits a shape of this area. [body] can be a [godot.PhysicsBody3D] or a [godot.GridMap]. [godot.GridMap]s are detected if their [godot.MeshLibrary] has collision shapes configured. Requires [monitoring] to be set to `true`.
    *
-   * [bodyRid] the [RID] of the [godot.PhysicsBody3D] or [godot.MeshLibrary]'s [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
-   *
-   * [body] the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody3D] or [godot.GridMap].
-   *
-   * [bodyShapeIndex] the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
-   *
-   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * See also [bodyShapeEntered].
    */
   public val bodyShapeExited: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when a [godot.PhysicsBody3D] or [godot.GridMap] enters this Area3D. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
-   *
-   * [body] the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody3D] or [godot.GridMap].
+   * Emitted when the received [body] enters this area. [body] can be a [godot.PhysicsBody3D] or a [godot.GridMap]. [godot.GridMap]s are detected if their [godot.MeshLibrary] has collision shapes configured. Requires [monitoring] to be set to `true`.
    */
   public val bodyEntered: Signal1<Node3D> by signal("body")
 
   /**
-   * Emitted when a [godot.PhysicsBody3D] or [godot.GridMap] exits this Area3D. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
-   *
-   * [body] the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody3D] or [godot.GridMap].
+   * Emitted when the received [body] exits this area. [body] can be a [godot.PhysicsBody3D] or a [godot.GridMap]. [godot.GridMap]s are detected if their [godot.MeshLibrary] has collision shapes configured. Requires [monitoring] to be set to `true`.
    */
   public val bodyExited: Signal1<Node3D> by signal("body")
 
   /**
-   * Emitted when one of another Area3D's [godot.Shape3D]s enters one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`.
+   * Emitted when a [godot.Shape3D] of the received [area] enters a shape of this area. Requires [monitoring] to be set to `true`.
    *
-   * [areaRid] the [RID] of the other Area3D's [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
+   * [localShapeIndex] and [areaShapeIndex] contain indices of the interacting shapes from this area and the other area, respectively. [areaRid] contains the [RID] of the other area. These values can be used with the [godot.PhysicsServer3D].
    *
-   * [area] the other Area3D.
+   * **Example of getting the** [godot.CollisionShape3D] **node from the shape index:**
    *
-   * [areaShapeIndex] the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
+   * [codeblocks]
    *
-   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * [gdscript]
+   *
+   * var other_shape_owner = area.shape_find_owner(area_shape_index)
+   *
+   * var other_shape_node = area.shape_owner_get_owner(other_shape_owner)
+   *
+   *
+   *
+   * var local_shape_owner = shape_find_owner(local_shape_index)
+   *
+   * var local_shape_node = shape_owner_get_owner(local_shape_owner)
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
    */
   public val areaShapeEntered: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when one of another Area3D's [godot.Shape3D]s exits one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`.
+   * Emitted when a [godot.Shape3D] of the received [area] exits a shape of this area. Requires [monitoring] to be set to `true`.
    *
-   * [areaRid] the [RID] of the other Area3D's [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
-   *
-   * [area] the other Area3D.
-   *
-   * [areaShapeIndex] the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
-   *
-   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * See also [areaShapeEntered].
    */
   public val areaShapeExited: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when another Area3D enters this Area3D. Requires [monitoring] to be set to `true`.
-   *
-   * [area] the other Area3D.
+   * Emitted when the received [area] enters this area. Requires [monitoring] to be set to `true`.
    */
   public val areaEntered: Signal1<Area3D> by signal("area")
 
   /**
-   * Emitted when another Area3D exits this Area3D. Requires [monitoring] to be set to `true`.
-   *
-   * [area] the other Area3D.
+   * Emitted when the received [area] exits this area. Requires [monitoring] to be set to `true`.
    */
   public val areaExited: Signal1<Area3D> by signal("area")
 

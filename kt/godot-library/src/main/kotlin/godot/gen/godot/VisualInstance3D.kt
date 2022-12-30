@@ -10,11 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.RID
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -46,6 +48,40 @@ public open class VisualInstance3D : Node3D() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYER_MASK,
           NIL)
+    }
+
+  /**
+   * The sorting offset used by this [godot.VisualInstance3D]. Adjusting it to a higher value will make the [godot.VisualInstance3D] reliably draw on top of other [godot.VisualInstance3D]s that are otherwise positioned at the same spot.
+   */
+  public var sortingOffset: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_SORTING_OFFSET, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_SORTING_OFFSET, NIL)
+    }
+
+  /**
+   * If `true`, the object is sorted based on the [AABB] center. The object will be sorted based on the global position otherwise.
+   *
+   * The [AABB] center based sorting is generally more accurate for 3D models. The position based sorting instead allows to better control the drawing order when working with [godot.GPUParticles3D] and [godot.CPUParticles3D].
+   */
+  public var sortingUseAabbCenter: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_IS_SORTING_USE_AABB_CENTER, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_SORTING_USE_AABB_CENTER, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

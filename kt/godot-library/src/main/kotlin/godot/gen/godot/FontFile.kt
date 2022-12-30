@@ -175,7 +175,31 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better kerning for smaller font sizes, at the cost of memory usage and font rasterization speed. Use [godot.TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
+   * Weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   */
+  public var fontWeight: Long
+    @JvmName("getFontWeight_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getFontWeight()
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FONT_WEIGHT, NIL)
+    }
+
+  /**
+   * Font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   */
+  public var fontStretch: Long
+    @JvmName("getFontStretch_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getFontStretch()
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FONT_STRETCH, NIL)
+    }
+
+  /**
+   * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better kerning for smaller font sizes, at the cost of higher memory usage and lower font rasterization speed. Use [godot.TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
    */
   public var subpixelPositioning: TextServer.SubpixelPositioning
     get() {
@@ -191,7 +215,11 @@ public open class FontFile : Font() {
     }
 
   /**
-   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data.
+   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field (MSDF) generated from the dynamic font vector data. Since this approach does not rely on rasterizing the font every time its size changes, this allows for resizing the font in real-time without any performance penalty. Text will also not look grainy for [godot.Control]s that are scaled down (or for [godot.Label3D]s viewed from a long distance). As a downside, font hinting is not available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small sizes.
+   *
+   * **Note:** If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the largest font outline.
+   *
+   * **Note:** MSDF font rendering does not render glyphs with overlapping shapes correctly. Overlapping shapes are not valid per the OpenType standard, but are still commonly found in many font files, especially those converted by Google Fonts. To avoid issues with overlapping glyphs, consider downloading the font file directly from the type foundry instead of relying on Google Fonts.
    */
   public var multichannelSignedDistanceField: Boolean
     get() {
@@ -207,7 +235,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * The width of the range around the shape between the minimum and maximum representable signed distance.
+   * The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to look correct.
    */
   public var msdfPixelRange: Long
     get() {
@@ -223,7 +251,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Source font size used to generate MSDF textures.
+   * Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering.
    */
   public var msdfSize: Long
     get() {
@@ -237,7 +265,23 @@ public open class FontFile : Font() {
     }
 
   /**
-   * If set to `true`, auto-hinting is supported and preferred over font built-in hinting. Used by dynamic fonts only.
+   * If set to `true`, system fonts can be automatically used as fallbacks.
+   */
+  public var allowSystemFallback: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_IS_ALLOW_SYSTEM_FALLBACK,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_ALLOW_SYSTEM_FALLBACK, NIL)
+    }
+
+  /**
+   * If set to `true`, auto-hinting is supported and preferred over font built-in hinting. Used by dynamic fonts only (MSDF fonts don't support hinting).
    */
   public var forceAutohinter: Boolean
     get() {
@@ -267,7 +311,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used by dynamic fonts only.
+   * Font oversampling factor. If set to `0.0`, the global oversampling factor is used instead. Used by dynamic fonts only (MSDF fonts ignore oversampling).
    */
   public var oversampling: Double
     get() {

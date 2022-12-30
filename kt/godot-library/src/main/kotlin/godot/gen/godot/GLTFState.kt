@@ -147,11 +147,11 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_MESHES, NIL)
     }
 
-  public var materials: VariantArray<BaseMaterial3D>
+  public var materials: VariantArray<Material>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_MATERIALS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseMaterial3D>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Material>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

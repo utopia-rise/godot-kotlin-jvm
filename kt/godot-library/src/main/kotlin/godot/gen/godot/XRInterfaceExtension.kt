@@ -234,7 +234,7 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns the camera feed id for the [godot.CameraFeed] registered with the [godot.CameraServer] that should be presented as the background on an AR capable device (if applicable).
+   * Returns the camera feed ID for the [godot.CameraFeed] registered with the [godot.CameraServer] that should be presented as the background on an AR capable device (if applicable).
    */
   public open fun _getCameraFeedId(): Long {
     throw NotImplementedError("_get_camera_feed_id is not implemented for XRInterfaceExtension")

@@ -200,6 +200,32 @@ public open class TextServerExtension : TextServer() {
   /**
    *
    */
+  public open fun _fontSetWeight(fontRid: RID, weight: Long): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _fontGetWeight(fontRid: RID): Long {
+    throw NotImplementedError("_font_get_weight is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _fontSetStretch(fontRid: RID, stretch: Long): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _fontGetStretch(fontRid: RID): Long {
+    throw NotImplementedError("_font_get_stretch is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _fontSetAntialiasing(fontRid: RID, antialiasing: TextServer.FontAntialiasing):
       Unit {
   }
@@ -274,6 +300,19 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontGetFixedSize(fontRid: RID): Long {
     throw NotImplementedError("_font_get_fixed_size is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _fontIsAllowSystemFallback(fontRid: RID): Boolean {
+    throw NotImplementedError("_font_is_allow_system_fallback is not implemented for TextServerExtension")
   }
 
   /**
@@ -1092,7 +1131,8 @@ public open class TextServerExtension : TextServer() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment,
-    length: Long
+    length: Long,
+    baseline: Double
   ): Boolean {
     throw NotImplementedError("_shaped_text_add_object is not implemented for TextServerExtension")
   }
@@ -1104,7 +1144,8 @@ public open class TextServerExtension : TextServer() {
     shaped: RID,
     key: Any,
     size: Vector2,
-    inlineAlign: InlineAlignment
+    inlineAlign: InlineAlignment,
+    baseline: Double
   ): Boolean {
     throw NotImplementedError("_shaped_text_resize_object is not implemented for TextServerExtension")
   }
@@ -1454,7 +1495,11 @@ public open class TextServerExtension : TextServer() {
   /**
    *
    */
-  public open fun _stringGetWordBreaks(string: String, language: String): PackedInt32Array {
+  public open fun _stringGetWordBreaks(
+    string: String,
+    language: String,
+    charsPerLine: Long
+  ): PackedInt32Array {
     throw NotImplementedError("_string_get_word_breaks is not implemented for TextServerExtension")
   }
 
@@ -1495,6 +1540,12 @@ public open class TextServerExtension : TextServer() {
     text: String
   ): VariantArray<Vector2i> {
     throw NotImplementedError("_parse_structured_text is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _cleanup(): Unit {
   }
 
   public companion object

@@ -319,9 +319,11 @@ public open class TileMap : Node2D() {
    *
    * - The source identifier [sourceId] identifies a [godot.TileSetSource] identifier. See [godot.TileSet.setSourceId],
    *
-   * - The atlas coordinates identifier [atlasCoords] identifies a tile coordinates in the atlas (if the source is a [godot.TileSetAtlasSource]. For [godot.TileSetScenesCollectionSource] it should be 0),
+   * - The atlas coordinates identifier [atlasCoords] identifies a tile coordinates in the atlas (if the source is a [godot.TileSetAtlasSource]. For [godot.TileSetScenesCollectionSource] it should always be `Vector2i(0, 0)`),
    *
    * - The alternative tile identifier [alternativeTile] identifies a tile alternative the source is a [godot.TileSetAtlasSource], and the scene for a [godot.TileSetScenesCollectionSource].
+   *
+   * If [sourceId] is set to `-1`, [atlasCoords] to `Vector2i(-1, -1)` or [alternativeTile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
    */
   public fun setCell(
     layer: Long,
@@ -518,9 +520,9 @@ public open class TileMap : Node2D() {
   /**
    * Returns the list of all neighbourings cells to the one at [coords]
    */
-  public fun getSurroundingTiles(coords: Vector2i): VariantArray<Vector2i> {
+  public fun getSurroundingCells(coords: Vector2i): VariantArray<Vector2i> {
     TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SURROUNDING_TILES,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SURROUNDING_CELLS,
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
   }

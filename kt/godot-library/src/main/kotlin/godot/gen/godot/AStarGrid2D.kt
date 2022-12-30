@@ -11,6 +11,7 @@ import godot.core.PackedVector2Array
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -118,6 +119,8 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Enables or disables jumping to skip up the intermediate points and speeds up the searching algorithm.
+   *
+   * **Note:** Currently, toggling it on disables the consideration of weight scaling in pathfinding.
    */
   public var jumpingEnabled: Boolean
     get() {
@@ -224,6 +227,8 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Disables or enables the specified point for pathfinding. Useful for making an obstacle. By default, all points are enabled.
+   *
+   * **Note:** Calling [update] is not needed after the call of this function.
    */
   public fun setPointSolid(id: Vector2i, solid: Boolean = true): Unit {
     TransferContext.writeArguments(VECTOR2I to id, BOOL to solid)
@@ -240,11 +245,42 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
+   * Sets the [weightScale] for the point with the given [id]. The [weightScale] is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point.
+   *
+   * **Note:** Calling [update] is not needed after the call of this function.
+   */
+  public fun setPointWeightScale(id: Vector2i, weightScale: Double): Unit {
+    TransferContext.writeArguments(VECTOR2I to id, DOUBLE to weightScale)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_SET_POINT_WEIGHT_SCALE,
+        NIL)
+  }
+
+  /**
+   * Returns the weight scale of the point associated with the given [id].
+   */
+  public fun getPointWeightScale(id: Vector2i): Double {
+    TransferContext.writeArguments(VECTOR2I to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_POINT_WEIGHT_SCALE,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Clears the grid and sets the [size] to [godot.Vector2i.ZERO].
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_CLEAR, NIL)
+  }
+
+  /**
+   * Returns the position of the point associated with the given [id].
+   */
+  public fun getPointPosition(id: Vector2i): Vector2 {
+    TransferContext.writeArguments(VECTOR2I to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_POINT_POSITION,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
   /**
@@ -272,23 +308,27 @@ public open class AStarGrid2D : RefCounted() {
     id: Long
   ) {
     /**
-     * The Euclidean heuristic to be used for the pathfinding using the following formula:
+     * The [godot.Euclidean heuristic](https://en.wikipedia.org/wiki/Euclidean_distance) to be used for the pathfinding using the following formula:
      *
      * ```
      * 			dx = abs(to_id.x - from_id.x)
      * 			dy = abs(to_id.y - from_id.y)
      * 			result = sqrt(dx * dx + dy * dy)
      * 			```
+     *
+     * **Note:** This is also the internal heuristic used in [godot.AStar3D] and [godot.AStar2D] by default (with the inclusion of possible z-axis coordinate).
      */
     HEURISTIC_EUCLIDEAN(0),
     /**
-     * The Manhattan heuristic to be used for the pathfinding using the following formula:
+     * The [godot.Manhattan heuristic](https://en.wikipedia.org/wiki/Taxicab_geometry) to be used for the pathfinding using the following formula:
      *
      * ```
      * 			dx = abs(to_id.x - from_id.x)
      * 			dy = abs(to_id.y - from_id.y)
      * 			result = dx + dy
      * 			```
+     *
+     * **Note:** This heuristic is intended to be used with 4-side orthogonal movements, provided by setting the [diagonalMode] to [DIAGONAL_MODE_NEVER].
      */
     HEURISTIC_MANHATTAN(1),
     /**
@@ -303,7 +343,7 @@ public open class AStarGrid2D : RefCounted() {
      */
     HEURISTIC_OCTILE(2),
     /**
-     * The Chebyshev heuristic to be used for the pathfinding using the following formula:
+     * The [godot.Chebyshev heuristic](https://en.wikipedia.org/wiki/Chebyshev_distance) to be used for the pathfinding using the following formula:
      *
      * ```
      * 			dx = abs(to_id.x - from_id.x)

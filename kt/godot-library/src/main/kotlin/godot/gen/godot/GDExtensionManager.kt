@@ -25,9 +25,9 @@ import kotlin.Suppress
  *
  */
 @GodotBaseType
-public object NativeExtensionManager : Object() {
+public object GDExtensionManager : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_NATIVEEXTENSIONMANAGER)
+    rawPtr = TransferContext.getSingleton(ENGINECLASS_GDEXTENSIONMANAGER)
     return false
   }
 
@@ -36,9 +36,9 @@ public object NativeExtensionManager : Object() {
    */
   public fun loadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_LOAD_EXTENSION, LONG)
-    return NativeExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_LOAD_EXTENSION,
+        LONG)
+    return GDExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -46,9 +46,9 @@ public object NativeExtensionManager : Object() {
    */
   public fun reloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_RELOAD_EXTENSION, LONG)
-    return NativeExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_RELOAD_EXTENSION,
+        LONG)
+    return GDExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -56,9 +56,9 @@ public object NativeExtensionManager : Object() {
    */
   public fun unloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_UNLOAD_EXTENSION, LONG)
-    return NativeExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_UNLOAD_EXTENSION,
+        LONG)
+    return GDExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -67,7 +67,7 @@ public object NativeExtensionManager : Object() {
   public fun isExtensionLoaded(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_IS_EXTENSION_LOADED, BOOL)
+        ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_IS_EXTENSION_LOADED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -77,18 +77,18 @@ public object NativeExtensionManager : Object() {
   public fun getLoadedExtensions(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_GET_LOADED_EXTENSIONS, PACKED_STRING_ARRAY)
+        ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_GET_LOADED_EXTENSIONS, PACKED_STRING_ARRAY)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
    *
    */
-  public fun getExtension(path: String): NativeExtension? {
+  public fun getExtension(path: String): GDExtension? {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_GET_EXTENSION, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as NativeExtension?
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_GET_EXTENSION,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as GDExtension?
   }
 
   public enum class LoadStatus(

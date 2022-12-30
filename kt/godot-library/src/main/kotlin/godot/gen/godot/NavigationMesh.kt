@@ -310,17 +310,17 @@ public open class NavigationMesh : Resource() {
   /**
    * The maximum number of vertices allowed for polygons generated during the contour to polygon conversion process.
    */
-  public var polygonVertsPerPoly: Double
+  public var verticesPerPolygon: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_VERTS_PER_POLY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_VERTICES_PER_POLYGON, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_VERTS_PER_POLY,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_VERTICES_PER_POLYGON, NIL)
     }
 
   /**
@@ -573,9 +573,9 @@ public open class NavigationMesh : Resource() {
     id: Long
   ) {
     /**
-     * Scans the child nodes of [godot.NavigationRegion3D] recursively for geometry.
+     * Scans the child nodes of the root node recursively for geometry.
      */
-    SOURCE_GEOMETRY_NAVMESH_CHILDREN(0),
+    SOURCE_GEOMETRY_ROOT_NODE_CHILDREN(0),
     /**
      * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometrySourceGroupName].
      */

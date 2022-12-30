@@ -376,7 +376,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns the [godot.Shape2D] with the given id from the given shape owner.
+   * Returns the [godot.Shape2D] with the given ID from the given shape owner.
    */
   public fun shapeOwnerGetShape(ownerId: Long, shapeId: Long): Shape2D? {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)
@@ -386,7 +386,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns the child index of the [godot.Shape2D] with the given id from the given shape owner.
+   * Returns the child index of the [godot.Shape2D] with the given ID from the given shape owner.
    */
   public fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Long): Long {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)

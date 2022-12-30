@@ -248,6 +248,21 @@ public open class Control : CanvasItem() {
     }
 
   /**
+   * Helper property to access [rotation] in degrees instead of radians.
+   */
+  public var rotationDegrees: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ROTATION_DEGREES,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_ROTATION_DEGREES, NIL)
+    }
+
+  /**
    * The node's scale, relative to its [size]. Change this property to scale the node around its [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
    *
    * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) instead of scaling Controls individually.
@@ -335,6 +350,24 @@ public open class Control : CanvasItem() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_AUTO_TRANSLATE, NIL)
+    }
+
+  /**
+   * If `true`, automatically converts code line numbers, list indices, [godot.SpinBox] and [godot.ProgressBar] values from the Western Arabic (0..9) to the numeral systems used in current locale.
+   *
+   * **Note:** Numbers within the text are not automatically converted, it can be done manually, using [godot.TextServer.formatNumber].
+   */
+  public var localizeNumeralSystem: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CONTROL_IS_LOCALIZING_NUMERAL_SYSTEM, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CONTROL_SET_LOCALIZE_NUMERAL_SYSTEM, NIL)
     }
 
   /**
@@ -502,7 +535,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The [godot.Theme] resource this node and all its [godot.Control] children use. If a child node has its own [godot.Theme] resource set, theme items are merged with child's definitions having higher priority.
+   * The [godot.Theme] resource this node and all its [godot.Control] and [godot.Window] children use. If a child node has its own [godot.Theme] resource set, theme items are merged with child's definitions having higher priority.
+   *
+   * **Note:** [godot.Window] styles will have no effect unless the window is embedded.
    */
   public var theme: Theme?
     get() {

@@ -18,10 +18,10 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -100,7 +100,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
     }
 
   /**
-   * Optional array of body [RID] to exclude from collision.
+   * Optional array of body [RID] to exclude from collision. Use [godot.CollisionObject2D.getRid] to get the [RID] associated with a [godot.CollisionObject2D]-derived node.
    */
   public var excludeBodies: VariantArray<RID>
     get() {
@@ -118,12 +118,12 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   /**
    * Optional array of object unique instance ID to exclude from collision. See [godot.Object.getInstanceId].
    */
-  public var excludeObjects: VariantArray<Any?>
+  public var excludeObjects: VariantArray<Long>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_EXCLUDE_OBJECTS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

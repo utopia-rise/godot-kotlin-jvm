@@ -52,8 +52,7 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
   public open fun _importScene(
     path: String,
     flags: Long,
-    options: Dictionary<Any?, Any?>,
-    bakeFps: Long
+    options: Dictionary<Any?, Any?>
   ): Object? {
     throw NotImplementedError("_import_scene is not implemented for EditorSceneFormatImporter")
   }

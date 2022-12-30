@@ -204,6 +204,54 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
+   * Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between [godot.RenderingServer.CANVAS_ITEM_Z_MIN] and [godot.RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).
+   *
+   * **Note:** Changing the Z index of a [godot.Control] only affects the drawing order, not the order in which input events are handled. This can be useful to implement certain UI animations, e.g. a menu where hovered items are scaled and should overlap others.
+   */
+  public var zIndex: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_Z_INDEX, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_Z_INDEX, NIL)
+    }
+
+  /**
+   * If `true`, the node's Z index is relative to its parent's Z index. If this node's Z index is 2 and its parent's effective Z index is 3, then this node's effective Z index will be 2 + 3 = 5.
+   */
+  public var zAsRelative: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_Z_RELATIVE, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_Z_AS_RELATIVE, NIL)
+    }
+
+  /**
+   * If `true`, child nodes with the lowest Y position are drawn before those with a higher Y position. If `false`, Y-sorting is disabled. Y-sorting only affects children that inherit from [godot.CanvasItem].
+   *
+   * You can nest nodes with Y-sorting. Child Y-sorted nodes are sorted in the same space as the parent Y-sort. This feature allows you to organize a scene better or divide it into multiple ones without changing your scene tree.
+   */
+  public var ySortEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_Y_SORT_ENABLED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_Y_SORT_ENABLED,
+          NIL)
+    }
+
+  /**
    * The texture filtering mode to use on this [godot.CanvasItem].
    */
   public var textureFilter: TextureFilter
@@ -321,7 +369,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Moves this node to display on top of its siblings. This has more use in [godot.Control], as [godot.Node2D] can be ordered with [godot.Node2D.zIndex].
+   * Moves this node to display on top of its siblings.
    *
    * Internally, the node is moved to the bottom of parent's children list. The method has no effect on nodes without a parent.
    */
@@ -509,9 +557,10 @@ public open class CanvasItem internal constructor() : Node() {
     srcRect: Rect2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     outline: Double = 0.0,
-    pixelRange: Double = 4.0
+    pixelRange: Double = 4.0,
+    scale: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(OBJECT to texture, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, DOUBLE to outline, DOUBLE to pixelRange)
+    TransferContext.writeArguments(OBJECT to texture, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, DOUBLE to outline, DOUBLE to pixelRange, DOUBLE to scale)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MSDF_TEXTURE_RECT_REGION, NIL)
   }
@@ -826,7 +875,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the global transform matrix of this item in relation to the canvas.
+   * Returns the transform from the local coordinate system of this [godot.CanvasItem] to the [godot.Viewport]s coordinate system.
    */
   public fun getGlobalTransformWithCanvas(): Transform2D {
     TransferContext.writeArguments()
@@ -836,7 +885,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns this item's transform in relation to the viewport.
+   * Returns the transform from the coordinate system of the canvas, this item is in, to the [godot.Viewport]s embedders coordinate system.
    */
   public fun getViewportTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -855,7 +904,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform matrix of this item's canvas.
+   * Returns the transform from the coordinate system of the canvas, this item is in, to the [godot.Viewport]s coordinate system.
    */
   public fun getCanvasTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -1089,19 +1138,19 @@ public open class CanvasItem internal constructor() : Node() {
     id: Long
   ) {
     /**
-     *
+     * Child draws over parent and is not clipped.
      */
     CLIP_CHILDREN_DISABLED(0),
     /**
-     *
+     * Parent is used for the purposes of clipping only. Child is clipped to the parent's visible area, parent is not drawn.
      */
     CLIP_CHILDREN_ONLY(1),
     /**
-     *
+     * Parent is used for clipping child, but parent is also drawn underneath child as normal before clipping child to its visible area.
      */
     CLIP_CHILDREN_AND_DRAW(2),
     /**
-     *
+     * Represents the size of the [enum ClipChildrenMode] enum.
      */
     CLIP_CHILDREN_MAX(3),
     ;

@@ -171,6 +171,24 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
+   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   */
+  public fun getFontWeight(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_FONT_WEIGHT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   */
+  public fun getFontStretch(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_FONT_STRETCH, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Returns the spacing for the given `type` (see [enum TextServer.SpacingType]).
    */
   public fun getSpacing(spacing: TextServer.SpacingType): Long {

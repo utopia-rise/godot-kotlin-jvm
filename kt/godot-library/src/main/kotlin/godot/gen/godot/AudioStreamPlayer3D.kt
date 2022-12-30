@@ -143,7 +143,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * If `true`, audio is playing.
+   * If `true`, audio is playing or is queued to be played (see [play]).
    */
   public val playing: Boolean
     get() {
@@ -370,7 +370,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   /**
-   * Plays the audio from the given position [fromPosition], in seconds.
+   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in seconds.
    */
   public fun play(fromPosition: Double = 0.0): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition)

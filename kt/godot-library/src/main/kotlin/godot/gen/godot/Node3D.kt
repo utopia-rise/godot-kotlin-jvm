@@ -114,6 +114,21 @@ public open class Node3D : Node() {
     }
 
   /**
+   * Helper property to access [rotation] in degrees instead of radians.
+   */
+  public var rotationDegrees: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_DEGREES,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_ROTATION_DEGREES, NIL)
+    }
+
+  /**
    * Access to the node rotation as a [godot.Quaternion]. This property is ideal for tweening complex rotations.
    */
   public var quaternion: Quaternion
@@ -233,6 +248,22 @@ public open class Node3D : Node() {
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_ROTATION, NIL)
+    }
+
+  /**
+   * Helper property to access [globalRotation] in degrees instead of radians.
+   */
+  public var globalRotationDegrees: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_ROTATION_DEGREES, VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_ROTATION_DEGREES, NIL)
     }
 
   /**

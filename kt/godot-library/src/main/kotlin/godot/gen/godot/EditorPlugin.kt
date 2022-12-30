@@ -1026,51 +1026,51 @@ public open class EditorPlugin internal constructor() : Node() {
     id: Long
   ) {
     /**
-     *
+     * Main editor toolbar, next to play buttons.
      */
     CONTAINER_TOOLBAR(0),
     /**
-     *
+     * The toolbar that appears when 3D editor is active.
      */
     CONTAINER_SPATIAL_EDITOR_MENU(1),
     /**
-     *
+     * Left sidebar of the 3D editor.
      */
     CONTAINER_SPATIAL_EDITOR_SIDE_LEFT(2),
     /**
-     *
+     * Right sidebar of the 3D editor.
      */
     CONTAINER_SPATIAL_EDITOR_SIDE_RIGHT(3),
     /**
-     *
+     * Bottom panel of the 3D editor.
      */
     CONTAINER_SPATIAL_EDITOR_BOTTOM(4),
     /**
-     *
+     * The toolbar that appears when 2D editor is active.
      */
     CONTAINER_CANVAS_EDITOR_MENU(5),
     /**
-     *
+     * Left sidebar of the 2D editor.
      */
     CONTAINER_CANVAS_EDITOR_SIDE_LEFT(6),
     /**
-     *
+     * Right sidebar of the 2D editor.
      */
     CONTAINER_CANVAS_EDITOR_SIDE_RIGHT(7),
     /**
-     *
+     * Bottom panel of the 2D editor.
      */
     CONTAINER_CANVAS_EDITOR_BOTTOM(8),
     /**
-     *
+     * Bottom section of the inspector.
      */
     CONTAINER_INSPECTOR_BOTTOM(9),
     /**
-     *
+     * Tab of Project Settings dialog, to the left of other tabs.
      */
     CONTAINER_PROJECT_SETTING_TAB_LEFT(10),
     /**
-     *
+     * Tab of Project Settings dialog, to the right of other tabs.
      */
     CONTAINER_PROJECT_SETTING_TAB_RIGHT(11),
     ;
@@ -1089,35 +1089,35 @@ public open class EditorPlugin internal constructor() : Node() {
     id: Long
   ) {
     /**
-     *
+     * Dock slot, left side, upper-left (empty in default layout).
      */
     DOCK_SLOT_LEFT_UL(0),
     /**
-     *
+     * Dock slot, left side, bottom-left (empty in default layout).
      */
     DOCK_SLOT_LEFT_BL(1),
     /**
-     *
+     * Dock slot, left side, upper-right (in default layout includes Scene and Import docks).
      */
     DOCK_SLOT_LEFT_UR(2),
     /**
-     *
+     * Dock slot, left side, bottom-right (in default layout includes FileSystem dock).
      */
     DOCK_SLOT_LEFT_BR(3),
     /**
-     *
+     * Dock slot, right side, upper-left (empty in default layout).
      */
     DOCK_SLOT_RIGHT_UL(4),
     /**
-     *
+     * Dock slot, right side, bottom-left (empty in default layout).
      */
     DOCK_SLOT_RIGHT_BL(5),
     /**
-     *
+     * Dock slot, right side, upper-right (in default layout includes Inspector, Node and History docks).
      */
     DOCK_SLOT_RIGHT_UR(6),
     /**
-     *
+     * Dock slot, right side, bottom-right (empty in default layout).
      */
     DOCK_SLOT_RIGHT_BR(7),
     /**

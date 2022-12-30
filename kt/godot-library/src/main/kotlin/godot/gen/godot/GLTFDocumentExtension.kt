@@ -15,6 +15,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
@@ -23,12 +24,28 @@ public open class GLTFDocumentExtension : Resource() {
     return true
   }
 
+  public open fun _importPreflight(state: GLTFState, extensions: PackedStringArray): Long {
+    throw NotImplementedError("_import_preflight is not implemented for GLTFDocumentExtension")
+  }
+
   public open fun _getSupportedExtensions(): PackedStringArray {
     throw NotImplementedError("_get_supported_extensions is not implemented for GLTFDocumentExtension")
   }
 
-  public open fun _importPreflight(state: GLTFState): Long {
-    throw NotImplementedError("_import_preflight is not implemented for GLTFDocumentExtension")
+  public open fun _parseNodeExtensions(
+    state: GLTFState,
+    gltfNode: GLTFNode,
+    extensions: Dictionary<Any?, Any?>
+  ): Long {
+    throw NotImplementedError("_parse_node_extensions is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _generateSceneNode(
+    state: GLTFState,
+    gltfNode: GLTFNode,
+    sceneParent: Node
+  ): Node3D? {
+    throw NotImplementedError("_generate_scene_node is not implemented for GLTFDocumentExtension")
   }
 
   public open fun _importPostParse(state: GLTFState): Long {
@@ -48,8 +65,15 @@ public open class GLTFDocumentExtension : Resource() {
     throw NotImplementedError("_import_post is not implemented for GLTFDocumentExtension")
   }
 
-  public open fun _exportPreflight(root: Node): Long {
+  public open fun _exportPreflight(state: GLTFState, root: Node): Long {
     throw NotImplementedError("_export_preflight is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _convertSceneNode(
+    state: GLTFState,
+    gltfNode: GLTFNode,
+    sceneNode: Node
+  ): Unit {
   }
 
   public open fun _exportNode(

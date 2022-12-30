@@ -51,68 +51,52 @@ import kotlin.Unit
 import kotlin.reflect.KCallable
 
 /**
- * Base class for all non-built-in types.
+ * Base class for all other classes in the engine.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/best_practices/godot_notifications.html]($DOCS_URL/tutorials/best_practices/godot_notifications.html)
  *
- * Every class which is not a built-in type inherits from this class.
+ * An advanced [Variant] type. All classes in the engine inherit from Object. Each class may define new properties, methods or signals, which are available to all inheriting classes. For example, a [godot.Sprite2D] instance is able to call [godot.Node.addChild] because it inherits from [godot.Node].
  *
- * You can construct Objects from scripting languages, using `Object.new()` in GDScript, or `new Object` in C#.
+ * You can create new instances, using `Object.new()` in GDScript, or `new Object` in C#.
  *
- * Objects do not manage memory. If a class inherits from Object, you will have to delete instances of it manually. To do so, call the [free] method from your script or delete the instance from C++.
+ * To delete an Object instance, call [free]. This is necessary for most classes inheriting Object, because they do not manage memory on their own, and will otherwise cause memory leaks when no longer in use. There are a few classes that perform memory management. For example, [godot.RefCounted] (and by extension [godot.Resource]) deletes itself when no longer referenced, and [godot.Node] deletes its children when freed.
  *
- * Some classes that extend Object add memory management. This is the case of [godot.RefCounted], which counts references and deletes itself automatically when no longer referenced. [godot.Node], another fundamental type, deletes all its children when freed from memory.
+ * Objects can have a [godot.Script] attached to them. Once the [godot.Script] is instantiated, it effectively acts as an extension to the base class, allowing it to define and inherit new properties, methods and signals.
  *
- * Objects export properties, which are mainly useful for storage and editing, but not really so much in programming. Properties are exported in [_getPropertyList] and handled in [_get] and [_set]. However, scripting languages and C++ have simpler means to export them.
+ * Inside a [godot.Script], [_getPropertyList] may be overridden to customize properties in several ways. This allows them to be available to the editor, display as lists of options, sub-divide into groups, save on disk, etc. Scripting languages offer easier ways to customize properties, such as with the [annotation @GDScript.@export] annotation.
  *
- * Property membership can be tested directly in GDScript using `in`:
+ * Godot is very dynamic. An object's script, and therefore its properties, methods and signals, can be changed at run-time. Because of this, there can be occasions where, for example, a property required by a method may not exist. To prevent run-time errors, see methods such as [set], [get], [call], [hasMethod], [hasSignal], etc. Note that these methods are **much** slower than direct references.
  *
- * [codeblocks]
+ * In GDScript, you can also check if a given property, method, or signal name exists in an object with the `in` operator:
  *
- * [gdscript]
+ * ```
+ * 		var node = Node.new()
+ * 		print("name" in node)         # Prints true
+ * 		print("get_parent" in node)   # Prints true
+ * 		print("tree_entered" in node) # Prints true
+ * 		print("unknown" in node)      # Prints false
+ * 		```
  *
- * var n = Node2D.new()
+ * Notifications are [int] constants commonly sent and received by objects. For example, on every rendered frame, the [godot.SceneTree] notifies nodes inside the tree with a [godot.Node.NOTIFICATION_PROCESS]. The nodes receive it and may call [godot.Node.Process] to update. To make use of notifications, see [notification] and [_notification].
  *
- * print("position" in n) # Prints "true".
+ * Lastly, every object can also contain metadata (data about data). [setMeta] can be useful to store information that the object itself does not depend on. To keep your code clean, making excessive use of metadata is discouraged.
  *
- * print("other_property" in n) # Prints "false".
+ * **Note:** Unlike references to a [godot.RefCounted], references to an object stored in a variable can become invalid without being set to `null`. To check if an object has been deleted, do *not* compare it against `null`. Instead, use [@GlobalScope.isInstanceValid]. It's also recommended to inherit from [godot.RefCounted] for classes storing data instead of [godot.Object].
  *
- * [/gdscript]
- *
- * [csharp]
- *
- * var node = new Node2D();
- *
- * // C# has no direct equivalent to GDScript's `in` operator here, but we
- *
- * // can achieve the same behavior by performing `Get` with a null check.
- *
- * GD.Print(node.Get("position") != null); // Prints "true".
- *
- * GD.Print(node.Get("other_property") != null); // Prints "false".
- *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * The `in` operator will evaluate to `true` as long as the key exists, even if the value is `null`.
- *
- * Objects also receive notifications. Notifications are a simple way to notify the object about different events, so they can all be handled together. See [_notification].
- *
- * **Note:** Unlike references to a [godot.RefCounted], references to an Object stored in a variable can become invalid without warning. Therefore, it's recommended to use [godot.RefCounted] for data classes instead of [godot.Object].
- *
- * **Note:** The `script` property is not exposed like most properties, but it does have a setter and getter (`set_script()` and `get_script()`).
+ * **Note:** The `script` is not exposed like most properties. To set or get an object's [godot.Script] in code, use [setScript] and [getScript], respectively.
  */
 @GodotBaseType
 public open class Object : KtObject() {
   /**
-   * Emitted whenever the object's script is changed.
+   * Emitted when the object's script is changed.
+   *
+   * **Note:** When this signal is emitted, the new script is not initialized yet. If you need to access the new script, defer connections to this signal with [CONNECT_DEFERRED].
    */
   public val scriptChanged: Signal0 by signal()
 
   /**
-   *
+   * Emitted when [notifyPropertyListChanged] is called.
    */
   public val propertyListChanged: Signal0 by signal()
 
@@ -386,9 +370,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's class as a [godot.String]. See also [isClass].
+   * Returns the object's built-in class name, as a [godot.String]. See also [isClass].
    *
-   * **Note:** [getClass] does not take `class_name` declarations into account. If the object has a `class_name` defined, the base class name will be returned instead.
+   * **Note:** This method ignores `class_name` declarations. If this object's script has defined a `class_name`, the base, built-in class name is returned instead.
    */
   public fun getClass(): String {
     TransferContext.writeArguments()
@@ -399,7 +383,35 @@ public open class Object : KtObject() {
   /**
    * Returns `true` if the object inherits from the given [class]. See also [getClass].
    *
-   * **Note:** [isClass] does not take `class_name` declarations into account. If the object has a `class_name` defined, [isClass] will return `false` for that name.
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var sprite2d = Sprite2D.new()
+   *
+   * sprite2d.is_class("Sprite2D") # Returns true
+   *
+   * sprite2d.is_class("Node")     # Returns true
+   *
+   * sprite2d.is_class("Node3D")   # Returns false
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * var sprite2d = new Sprite2D();
+   *
+   * sprite2d.IsClass("Sprite2D"); // Returns true
+   *
+   * sprite2d.IsClass("Node");     // Returns true
+   *
+   * sprite2d.IsClass("Node3D");   // Returns false
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * **Note:** This method ignores `class_name` declarations in the object's script.
    */
   public fun isClass(_class: String): Boolean {
     TransferContext.writeArguments(STRING to _class)
@@ -408,9 +420,33 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns a new value to the given property. If the [property] does not exist or the given value's type doesn't match, nothing will happen.
+   * Assigns [value] to the given [property]. If the property does not exist or the given [value]'s type doesn't match, nothing happens.
    *
-   * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var node = Node2D.new()
+   *
+   * node.set("global_scale", Vector2(8, 2.5))
+   *
+   * print(node.global_scale) # Prints (8, 2.5)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * var node = new Node2D();
+   *
+   * node.Set("global_scale", new Vector2(8, 2.5));
+   *
+   * GD.Print(node.GlobalScale); // Prints Vector2(8, 2.5)
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun `set`(`property`: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
@@ -418,9 +454,33 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the [Variant] value of the given [property]. If the [property] doesn't exist, this will return `null`.
+   * Returns the [Variant] value of the given [property]. If the [property] does not exist, this method returns `null`.
    *
-   * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var node = Node2D.new()
+   *
+   * node.rotation = 1.5
+   *
+   * var a = node.get("rotation") # a is 1.5
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * var node = new Node2D();
+   *
+   * node.Rotation = 1.5f;
+   *
+   * var a = node.Get("rotation"); // a is 1.5
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun `get`(`property`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to property)
@@ -429,9 +489,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns a new value to the property identified by the [propertyPath]. The path should be a [godot.core.NodePath] relative to the current object and can use the colon character (`:`) to access nested properties.
-   *
-   * **Example:**
+   * Assigns a new [value] to the property identified by the [propertyPath]. The path should be a [godot.core.NodePath] relative to this object, and can use the colon character (`:`) to access nested properties.
    *
    * [codeblocks]
    *
@@ -443,7 +501,7 @@ public open class Object : KtObject() {
    *
    * node.set_indexed("position:y", -10)
    *
-   * print(node.position) # (42, -10)
+   * print(node.position) # Prints (42, -10)
    *
    * [/gdscript]
    *
@@ -455,11 +513,13 @@ public open class Object : KtObject() {
    *
    * node.SetIndexed("position:y", -10);
    *
-   * GD.Print(node.Position); // (42, -10)
+   * GD.Print(node.Position); // Prints (42, -10)
    *
    * [/csharp]
    *
    * [/codeblocks]
+   *
+   * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot properties.
    */
   public fun setIndexed(propertyPath: NodePath, `value`: Any): Unit {
     TransferContext.writeArguments(NODE_PATH to propertyPath, ANY to value)
@@ -471,7 +531,37 @@ public open class Object : KtObject() {
    *
    * **Examples:** `"position:x"` or `"material:next_pass:blend_mode"`.
    *
-   * **Note:** Even though the method takes [godot.core.NodePath] argument, it doesn't support actual paths to [godot.Node]s in the scene tree, only colon-separated sub-property paths. For the purpose of nodes, use [godot.Node.getNodeAndResource] instead.
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var node = Node2D.new()
+   *
+   * node.position = Vector2(5, -10)
+   *
+   * var a = node.get_indexed("position")   # a is Vector2(5, -10)
+   *
+   * var b = node.get_indexed("position:y") # b is -10
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * var node = new Node2D();
+   *
+   * node.Position = new Vector2(5, -10);
+   *
+   * var a = node.GetIndexed("position");   // a is Vector2(5, -10)
+   *
+   * var b = node.GetIndexed("position:y"); // b is -10
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot properties.
+   *
+   * **Note:** This method does not support actual paths to nodes in the [godot.SceneTree], only sub-property paths. In the context of nodes, use [godot.Node.getNodeAndResource] instead.
    */
   public fun getIndexed(propertyPath: NodePath): Any? {
     TransferContext.writeArguments(NODE_PATH to propertyPath)
@@ -480,9 +570,19 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's property list as an [godot.Array] of dictionaries.
+   * Returns the object's property list as an [godot.Array] of dictionaries. Each [godot.core.Dictionary] contains the following entries:
    *
-   * Each property's [godot.core.Dictionary] contain at least `name: String` and `type: int` (see [enum Variant.Type]) entries. Optionally, it can also include `hint: int` (see [enum PropertyHint]), `hint_string: String`, and `usage: int` (see [enum PropertyUsageFlags]).
+   * - `name` is the property's name, as a [godot.String];
+   *
+   * - `class_name` is an empty [godot.StringName], unless the property is [TYPE_OBJECT] and it inherits from a class;
+   *
+   * - `type` is the property's type, as an [int] (see [enum Variant.Type]);
+   *
+   * - `hint` is *how* the property is meant to be edited (see [enum PropertyHint]);
+   *
+   * - `hint_string` depends on the hint (see [enum PropertyHint]);
+   *
+   * - `usage` is a combination of [enum PropertyUsageFlags].
    */
   public fun getPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -491,7 +591,21 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's methods and their signatures as an [godot.Array].
+   * Returns this object's methods and their signatures as an [godot.Array] of dictionaries. Each [godot.core.Dictionary] contains the following entries:
+   *
+   * - `name` is the name of the method, as a [godot.String];
+   *
+   * - `args` is an [godot.Array] of dictionaries representing the arguments;
+   *
+   * - `default_args` is the default arguments as an [godot.Array] of variants;
+   *
+   * - `flags` is a combination of [enum MethodFlags];
+   *
+   * - `id` is the method's internal identifier [int];
+   *
+   * - `return` is the returned value, as a [godot.core.Dictionary];
+   *
+   * **Note:** The dictionaries of `args` and `return` are formatted identically to the results of [getPropertyList], although not all entries are used.
    */
   public fun getMethodList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -500,9 +614,75 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Send a given notification to the object, which will also trigger a call to the [_notification] method of all classes that the object inherits from.
+   * Returns `true` if the given [property] has a custom default value. Use [propertyGetRevert] to get the [property]'s default value.
    *
-   * If [reversed] is `true`, [_notification] is called first on the object's own class, and then up to its successive parent classes. If [reversed] is `false`, [_notification] is called first on the highest ancestor ([godot.Object] itself), and then down to its successive inheriting classes.
+   * **Note:** This method is used by the Inspector dock to display a revert icon. The object must implement [_propertyCanRevert] to customize the default value. If [_propertyCanRevert] is not implemented, this method returns `false`.
+   */
+  public fun propertyCanRevert(`property`: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to property)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_PROPERTY_CAN_REVERT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the custom default value of the given [property]. Use [propertyCanRevert] to check if the [property] has a custom default value.
+   *
+   * **Note:** This method is used by the Inspector dock to display a revert icon. The object must implement [_propertyGetRevert] to customize the default value. If [_propertyGetRevert] is not implemented, this method returns `null`.
+   */
+  public fun propertyGetRevert(`property`: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to property)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_PROPERTY_GET_REVERT, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   * Sends the given [what] notification to all classes inherited by the object, triggering calls to [_notification], starting from the highest ancestor (the [godot.Object] class) and going down to the object's script.
+   *
+   * If [reversed] is `true`, the call order is reversed.
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var player = Node2D.new()
+   *
+   * player.set_script(load("res://player.gd"))
+   *
+   *
+   *
+   * player.notification(NOTIFICATION_ENTER_TREE)
+   *
+   * # The call order is Object -> Node -> Node2D -> player.gd.
+   *
+   *
+   *
+   * player.notification(NOTIFICATION_ENTER_TREE, true)
+   *
+   * # The call order is player.gd -> Node2D -> Node -> Object.
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * var player = new Node2D();
+   *
+   * player.SetScript(GD.Load("res://player.gd"));
+   *
+   *
+   *
+   * player.Notification(NotificationEnterTree);
+   *
+   * // The call order is Object -> Node -> Node2D -> player.gd.
+   *
+   *
+   *
+   * player.notification(NotificationEnterTree, true);
+   *
+   * // The call order is player.gd -> Node2D -> Node -> Object.
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun notification(what: Long, reversed: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to what, BOOL to reversed)
@@ -510,9 +690,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns a [godot.String] representing the object. If not overridden, defaults to `"[godot.ClassName:RID]"`.
-   *
-   * Override the method [_toString] to customize the [godot.String] representation.
+   * Returns a [godot.String] representing the object. Defaults to `"<ClassName#RID>"`. Override [_toString] to customize the string representation of the object.
    */
   public override fun toString(): String {
     TransferContext.writeArguments()
@@ -521,9 +699,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's unique instance ID.
-   *
-   * This ID can be saved in [godot.EncodedObjectAsID], and can be used to retrieve the object instance with [@GlobalScope.instanceFromId].
+   * Returns the object's unique instance ID. This ID can be saved in [godot.EncodedObjectAsID], and can be used to retrieve this object instance with [@GlobalScope.instanceFromId].
    */
   public fun getInstanceId(): Long {
     TransferContext.writeArguments()
@@ -532,9 +708,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns a script to the object. Each object can have a single script assigned to it, which are used to extend its functionality.
+   * Attaches [script] to the object, and instantiates it. As a result, the script's [_init] is called. A [godot.Script] is used to extend the object's functionality.
    *
-   * If the object already had a script, the previous script instance will be freed and its variables and state will be lost. The new script's [_init] method will be called.
+   * If a script already exists, its instance is detached, and its property values and state are lost. Built-in property values are still kept.
    */
   public fun setScript(script: Any): Unit {
     TransferContext.writeArguments(ANY to script)
@@ -542,7 +718,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's [godot.Script] instance, or `null` if none is assigned.
+   * Returns the object's [godot.Script] instance, or `null` if no script is attached.
    */
   public fun getScript(): Any? {
     TransferContext.writeArguments()
@@ -551,11 +727,11 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Adds, changes or removes a given entry in the object's metadata. Metadata are serialized and can take any [Variant] value.
+   * Adds or changes the entry [name] inside the object's metadata. The metadata [value] can be any [Variant], although some types cannot be serialised correctly.
    *
-   * To remove a given entry from the object's metadata, use [removeMeta]. Metadata is also removed if its value is set to `null`. This means you can also use `set_meta("name", null)` to remove metadata for `"name"`. See also [hasMeta] and [getMeta].
+   * If [value] is `null`, the entry is removed. This is the equivalent of using [removeMeta]. See also [hasMeta] and [getMeta].
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited.
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector dock and should not be edited.
    */
   public fun setMeta(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
@@ -563,7 +739,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Removes a given entry from the object's metadata. See also [hasMeta], [getMeta] and [setMeta].
+   * Removes the given entry [name] from the object's metadata. See also [hasMeta], [getMeta] and [setMeta].
    *
    * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited.
    */
@@ -573,11 +749,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's metadata entry for the given [name].
+   * Returns the object's metadata value for the given entry [name]. If the entry does not exist, returns [default]. If [default] is `null`, an error is also generated.
    *
-   * Throws error if the entry does not exist, unless [default] is not `null` (in which case the default value will be returned). See also [hasMeta], [setMeta] and [removeMeta].
-   *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited.
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector dock and should not be edited.
    */
   public fun getMeta(name: StringName, default: Any? = null): Any? {
     TransferContext.writeArguments(STRING_NAME to name, ANY to default)
@@ -588,7 +762,7 @@ public open class Object : KtObject() {
   /**
    * Returns `true` if a metadata entry is found with the given [name]. See also [getMeta], [setMeta] and [removeMeta].
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited.
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
   public fun hasMeta(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -597,7 +771,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's metadata as a [godot.PackedStringArray].
+   * Returns the object's metadata entry names as a [godot.PackedStringArray].
    */
   public fun getMetaList(): PackedStringArray {
     TransferContext.writeArguments()
@@ -607,7 +781,53 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Adds a user-defined [signal]. Arguments are optional, but can be added as an [godot.Array] of dictionaries, each containing `name: String` and `type: int` (see [enum Variant.Type]) entries.
+   * Adds a user-defined [signal]. Optional arguments for the signal can be added as an [godot.Array] of dictionaries, each defining a `name` [godot.String] and a `type` [int] (see [enum Variant.Type]). See also [hasUserSignal].
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * add_user_signal("hurt", [
+   *
+   *     { "name": "damage", "type": TYPE_INT },
+   *
+   *     { "name": "source", "type": TYPE_OBJECT }
+   *
+   * ])
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * AddUserSignal("Hurt", new Godot.Collections.Array()
+   *
+   * {
+   *
+   *     new Godot.Collections.Dictionary()
+   *
+   *     {
+   *
+   *         { "name", "damage" },
+   *
+   *         { "type", (int)Variant.Type.Int }
+   *
+   *     },
+   *
+   *     new Godot.Collections.Dictionary()
+   *
+   *     {
+   *
+   *         { "name", "source" },
+   *
+   *         { "type", (int)Variant.Type.Object }
+   *
+   *     }
+   *
+   * });
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun addUserSignal(signal: String, arguments: VariantArray<Any?> =
       godot.core.variantArrayOf()): Unit {
@@ -616,7 +836,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the given user-defined [signal] exists. Only signals added using [addUserSignal] are taken into account.
+   * Returns `true` if the given user-defined [signal] name exists. Only signals added with [addUserSignal] are included.
    */
   public fun hasUserSignal(signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal)
@@ -625,9 +845,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Emits the given [signal]. The signal must exist, so it should be a built-in signal of this class or one of its parent classes, or a user-defined signal. This method supports a variable number of arguments, so parameters are passed as a comma separated list.
+   * Emits the given [signal] by name. The signal must exist, so it should be a built-in signal of this class or one of its inherited classes, or a user-defined signal (see [addUserSignal]). This method supports a variable number of arguments, so parameters can be passed as a comma separated list.
    *
-   * **Example:**
+   * Returns [ERR_UNAVAILABLE] if [signal] does not exist or the parameters are invalid.
    *
    * [codeblocks]
    *
@@ -641,13 +861,15 @@ public open class Object : KtObject() {
    *
    * [csharp]
    *
-   * EmitSignal("hit", "sword", 100);
+   * EmitSignal("Hit", "sword", 100);
    *
-   * EmitSignal("game_over");
+   * EmitSignal("GameOver");
    *
    * [/csharp]
    *
    * [/codeblocks]
+   *
+   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot signals. Prefer using the names exposed in the `SignalName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun emitSignal(signal: StringName, vararg __var_args: Any?): GodotError {
     TransferContext.writeArguments(STRING_NAME to signal,  *__var_args.map { ANY to it }.toTypedArray())
@@ -656,9 +878,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the [method] on the object and returns the result. This method supports a variable number of arguments, so parameters are passed as a comma separated list.
-   *
-   * **Example:**
+   * Calls the [method] on the object and returns the result. This method supports a variable number of arguments, so parameters can be passed as a comma separated list.
    *
    * [codeblocks]
    *
@@ -680,7 +900,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    *
-   * **Note:** In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun call(method: StringName, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
@@ -689,9 +909,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the [method] on the object during idle time. This method supports a variable number of arguments, so parameters are passed as a comma separated list.
-   *
-   * **Example:**
+   * Calls the [method] on the object during idle time. This method supports a variable number of arguments, so parameters can be passed as a comma separated list.
    *
    * [codeblocks]
    *
@@ -713,7 +931,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    *
-   * **Note:** In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun callDeferred(method: StringName, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
@@ -722,9 +940,53 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns a new value to the given property, after the current frame's physics step. This is equivalent to calling [set] via [callDeferred], i.e. `call_deferred("set", property, value)`.
+   * Assigns [value] to the given [property], after the current frame's physics step. This is equivalent to calling [set] through [callDeferred].
    *
-   * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var node = Node2D.new()
+   *
+   * add_child(node)
+   *
+   *
+   *
+   * node.rotation = 45.0
+   *
+   * node.set_deferred("rotation", 90.0)
+   *
+   * print(node.rotation) # Prints 45.0
+   *
+   *
+   *
+   * await get_tree().process_frame
+   *
+   * print(node.rotation) # Prints 90.0
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * var node = new Node2D();
+   *
+   * node.Rotation = 45f;
+   *
+   * node.SetDeferred("rotation", 90f);
+   *
+   * GD.Print(node.Rotation); // Prints 45.0
+   *
+   *
+   *
+   * await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+   *
+   * GD.Print(node.Rotation); // Prints 90.0
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun setDeferred(`property`: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
@@ -732,7 +994,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the [method] on the object and returns the result. Contrarily to [call], this method does not support a variable number of arguments but expects all parameters to be via a single [godot.Array].
+   * Calls the [method] on the object and returns the result. Unlike [call], this method expects all parameters to be contained inside [argArray].
    *
    * [codeblocks]
    *
@@ -753,6 +1015,8 @@ public open class Object : KtObject() {
    * [/csharp]
    *
    * [/codeblocks]
+   *
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [godot.StringName] on each call
    */
   public fun callv(method: StringName, argArray: VariantArray<Any?>): Any? {
     TransferContext.writeArguments(STRING_NAME to method, ARRAY to argArray)
@@ -761,7 +1025,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the object contains the given [method].
+   * Returns `true` if the the given [method] name exists in the object.
+   *
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun hasMethod(method: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to method)
@@ -770,7 +1036,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the given [signal] exists.
+   * Returns `true` if the given [signal] name exists in the object.
+   *
+   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `SignalName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun hasSignal(signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal)
@@ -779,7 +1047,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the list of signals as an [godot.Array] of dictionaries.
+   * Returns the list of existing signals as an [godot.Array] of dictionaries.
+   *
+   * **Note:** Due of the implementation, each [godot.core.Dictionary] is formatted very similarly to the returned values of [getMethodList].
    */
   public fun getSignalList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -788,7 +1058,13 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns an [godot.Array] of connections for the given [signal].
+   * Returns an [godot.Array] of connections for the given [signal] name. Each connection is represented as a [godot.core.Dictionary] that contains three entries:
+   *
+   * - `signal` is a reference to the [godot.Signal];
+   *
+   * - `callable` is a reference to the [godot.Callable];
+   *
+   * - `flags` is a combination of [enum ConnectFlags].
    */
   public fun getSignalConnectionList(signal: StringName): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to signal)
@@ -798,15 +1074,13 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns an [godot.Array] of dictionaries with information about signals that are connected to the object.
+   * Returns an [godot.Array] of signal connections received by this object. Each connection is represented as a [godot.core.Dictionary] that contains three entries:
    *
-   * Each [godot.core.Dictionary] contains three String entries:
+   * - `signal` is a reference to the [godot.Signal];
    *
-   * - `source` is a reference to the signal emitter.
+   * - `callable` is a reference to the [godot.Callable];
    *
-   * - `signal_name` is the name of the connected signal.
-   *
-   * - `method_name` is the name of the method to which the signal is connected.
+   * - `flags` is a combination of [enum ConnectFlags].
    */
   public fun getIncomingConnections(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -816,15 +1090,15 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Connects a [signal] to a [callable]. Use [flags] to set deferred or one-shot connections. See [enum ConnectFlags] constants.
+   * Connects a [signal] by name to a [callable]. Optional [flags] can be also added to configure the connection's behavior (see [enum ConnectFlags] constants).
    *
-   * A signal can only be connected once to a [godot.Callable]. It will print an error if already connected, unless the signal was connected with [CONNECT_REFERENCE_COUNTED]. To avoid this, first, use [isConnected] to check for existing connections.
+   * A signal can only be connected once to the same [godot.Callable]. If the signal is already connected, this method returns [ERR_INVALID_PARAMETER] and pushes an error message, unless the signal is connected with [CONNECT_REFERENCE_COUNTED]. To prevent this, use [isConnected] first to check for existing connections.
    *
-   * If the callable's target is destroyed in the game's lifecycle, the connection will be lost.
+   * If the [callable]'s object is freed, the connection will be lost.
    *
    * **Examples with recommended syntax:**
    *
-   * Connecting signals is one of the most common operations in Godot and the API gives many options to do so, which are described further down. The code block below shows the recommended approach for both GDScript and C#.
+   * Connecting signals is one of the most common operations in Godot and the API gives many options to do so, which are described further down. The code block below shows the recommended approach.
    *
    * [codeblocks]
    *
@@ -834,21 +1108,21 @@ public open class Object : KtObject() {
    *
    *     var button = Button.new()
    *
-   *     # `button_down` here is a Signal object, and we thus call the Signal.connect() method,
+   *     # `button_down` here is a Signal variant type, and we thus call the Signal.connect() method, not Object.connect().
    *
-   *     # not Object.connect(). See discussion below for a more in-depth overview of the API.
+   *     # See discussion below for a more in-depth overview of the API.
    *
    *     button.button_down.connect(_on_button_down)
    *
    *
    *
-   *     # This assumes that a `Player` class exists which defines a `hit` signal.
+   *     # This assumes that a `Player` class exists, which defines a `hit` signal.
    *
    *     var player = Player.new()
    *
-   *     # We use Signal.connect() again, and we also use the Callable.bind() method which
+   *     # We use Signal.connect() again, and we also use the Callable.bind() method,
    *
-   *     # returns a new Callable with the parameter binds.
+   *     # which returns a new Callable with the parameter binds.
    *
    *     player.hit.connect(_on_player_hit.bind("sword", 100))
    *
@@ -880,7 +1154,7 @@ public open class Object : KtObject() {
    *
    *
    *
-   *     // This assumes that a `Player` class exists which defines a `Hit` signal.
+   *     // This assumes that a `Player` class exists, which defines a `Hit` signal.
    *
    *     var player = new Player();
    *
@@ -994,13 +1268,13 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    *
-   * While all options have the same outcome (`button`'s [godot.BaseButton.buttonDown] signal will be connected to `_on_button_down`), option 3 offers the best validation: it will print a compile-time error if either the `button_down` signal or the `_on_button_down` callable are undefined. On the other hand, option 2 only relies on string names and will only be able to validate either names at runtime: it will print a runtime error if `"button_down"` doesn't correspond to a signal, or if `"_on_button_down"` is not a registered method in the object `self`. The main reason for using options 1, 2, or 4 would be if you actually need to use strings (e.g. to connect signals programmatically based on strings read from a configuration file). Otherwise, option 3 is the recommended (and fastest) method.
+   * While all options have the same outcome (`button`'s [godot.BaseButton.buttonDown] signal will be connected to `_on_button_down`), **option 3** offers the best validation: it will print a compile-time error if either the `button_down` [godot.Signal] or the `_on_button_down` [godot.Callable] are not defined. On the other hand, **option 2** only relies on string names and will only be able to validate either names at runtime: it will print a runtime error if `"button_down"` doesn't correspond to a signal, or if `"_on_button_down"` is not a registered method in the object `self`. The main reason for using options 1, 2, or 4 would be if you actually need to use strings (e.g. to connect signals programmatically based on strings read from a configuration file). Otherwise, option 3 is the recommended (and fastest) method.
    *
-   * **Parameter bindings and passing:**
+   * **Binding and passing parameters:**
    *
-   * For legacy or language-specific reasons, there are also several ways to bind parameters to signals. One can pass a `binds` [godot.Array] to [godot.Object.connect] or [godot.Signal.connect], or use the recommended [godot.Callable.bind] method to create a new callable from an existing one, with the given parameter binds.
+   * The syntax to bind parameters is through [godot.Callable.bind], which returns a copy of the [godot.Callable] with its parameters bound.
    *
-   * One can also pass additional parameters when emitting the signal with [emitSignal]. The examples below show the relationship between those two types of parameters.
+   * When calling [emitSignal], the signal parameters can be also passed. The examples below show the relationship between these signal parameters and bound parameters.
    *
    * [codeblocks]
    *
@@ -1008,17 +1282,11 @@ public open class Object : KtObject() {
    *
    * func _ready():
    *
-   *     # This assumes that a `Player` class exists which defines a `hit` signal.
+   *     # This assumes that a `Player` class exists, which defines a `hit` signal.
    *
    *     var player = Player.new()
    *
-   *     # Option 1: Using Callable.bind().
-   *
    *     player.hit.connect(_on_player_hit.bind("sword", 100))
-   *
-   *     # Option 2: Using a `binds` Array in Signal.connect() (same syntax for Object.connect()).
-   *
-   *     player.hit.connect(_on_player_hit, ["sword", 100])
    *
    *
    *
@@ -1028,9 +1296,9 @@ public open class Object : KtObject() {
    *
    *
    *
-   * # Four arguments, since we pass two when emitting (hit_by, level)
+   * # We pass two arguments when emitting (`hit_by`, `level`),
    *
-   * # and two when connecting (weapon_type, damage).
+   * # and bind two more arguments when connecting (`weapon_type`, `damage`).
    *
    * func _on_player_hit(hit_by, level, weapon_type, damage):
    *
@@ -1044,7 +1312,7 @@ public open class Object : KtObject() {
    *
    * {
    *
-   *     // This assumes that a `Player` class exists which defines a `Hit` signal.
+   *     // This assumes that a `Player` class exists, which defines a `Hit` signal.
    *
    *     var player = new Player();
    *
@@ -1052,7 +1320,7 @@ public open class Object : KtObject() {
    *
    *     player.Hit += OnPlayerHit.Bind("sword", 100);
    *
-   *     // Option 2: Using a `binds` Array in Signal.Connect() (same syntax for Object.Connect()).
+   *     // Option 2: Using a `binds` Array in Signal.Connect().
    *
    *     player.Hit.Connect(OnPlayerHit, new Godot.Collections.Array{ "sword", 100 });
    *
@@ -1066,9 +1334,9 @@ public open class Object : KtObject() {
    *
    *
    *
-   * // Four arguments, since we pass two when emitting (hitBy, level)
+   * // We pass two arguments when emitting (`hit_by`, `level`),
    *
-   * // and two when connecting (weaponType, damage).
+   * // and bind two more arguments when connecting (`weapon_type`, `damage`).
    *
    * private void OnPlayerHit(string hitBy, int level, string weaponType, int damage)
    *
@@ -1093,9 +1361,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Disconnects a [signal] from a given [callable].
-   *
-   * If you try to disconnect a connection that does not exist, the method will print an error. Use [isConnected] to ensure that the connection exists.
+   * Disconnects a [signal] by name from a given [callable]. If the connection does not exist, generates an error. Use [isConnected] to make sure that the connection exists.
    */
   public fun disconnect(signal: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
@@ -1103,7 +1369,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if a connection exists for a given [signal] and [callable].
+   * Returns `true` if a connection exists between the given [signal] name and [callable].
+   *
+   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `SignalName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun isConnected(signal: StringName, callable: Callable): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
@@ -1112,7 +1380,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * If set to `true`, signal emission is blocked.
+   * If set to `true`, the object becomes unable to emit signals. As such, [emitSignal] and signal connections will not work, until it is set to `false`.
    */
   public fun setBlockSignals(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1120,7 +1388,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if signal emission blocking is enabled.
+   * Returns `true` if the object is blocking its signals from being emitted. See [setBlockSignals].
    */
   public fun isBlockingSignals(): Boolean {
     TransferContext.writeArguments()
@@ -1129,7 +1397,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Notify the editor that the property list has changed by emitting the [propertyListChanged] signal, so that editor plugins can take the new values into account.
+   * Emits the [propertyListChanged] signal. This is mainly used to refresh the editor, so that the Inspector and editor plugins are properly updated.
    */
   public fun notifyPropertyListChanged(): Unit {
     TransferContext.writeArguments()
@@ -1138,7 +1406,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Defines whether the object can translate strings (with calls to [tr]). Enabled by default.
+   * If set to `true`, allows the object to translate messages with [tr] and [trN]. Enabled by default. See also [canTranslateMessages].
    */
   public fun setMessageTranslation(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1146,7 +1414,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the object can translate strings. See [setMessageTranslation] and [tr].
+   * Returns `true` if the object is allowed to translate messages with [tr] and [trN]. See also [setMessageTranslation].
    */
   public fun canTranslateMessages(): Boolean {
     TransferContext.writeArguments()
@@ -1155,11 +1423,11 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Translates a message using translation catalogs configured in the Project Settings. An additional context could be used to specify the translation context.
+   * Translates a [message], using the translation catalogs configured in the Project Settings. Further [context] can be specified to help with the translation.
    *
-   * Only works if message translation is enabled (which it is by default), otherwise it returns the [message] unchanged. See [setMessageTranslation].
+   * If [canTranslateMessages] is `false`, or no translation is available, this method returns the [message] without changes. See [setMessageTranslation].
    *
-   * See [godot.Internationalizing games]($DOCS_URL/tutorials/i18n/internationalizing_games.html) for examples of the usage of this method.
+   * For detailed examples, see [godot.Internationalizing games]($DOCS_URL/tutorials/i18n/internationalizing_games.html).
    */
   public fun tr(message: StringName, context: StringName = StringName("")): String {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
@@ -1168,15 +1436,15 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Translates a message involving plurals using translation catalogs configured in the Project Settings. An additional context could be used to specify the translation context.
+   * Translates a [message] or [pluralMessage], using the translation catalogs configured in the Project Settings. Further [context] can be specified to help with the translation.
    *
-   * Only works if message translation is enabled (which it is by default), otherwise it returns the [message] or [pluralMessage] unchanged. See [setMessageTranslation].
+   * If [canTranslateMessages] is `false`, or no translation is available, this method returns [message] or [pluralMessage], without changes. See [setMessageTranslation].
    *
-   * The number [n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
+   * The [n] is the number, or amount, of the message's subject. It is used by the translation system to fetch the correct plural form for the current language.
    *
-   * **Note:** Negative and floating-point values usually represent physical entities for which singular and plural don't clearly apply. In such cases, use [tr].
+   * For detailed examples, see [godot.Localization using gettext]($DOCS_URL/tutorials/i18n/localization_using_gettext.html).
    *
-   * See [godot.Localization using gettext]($DOCS_URL/tutorials/i18n/localization_using_gettext.html) for examples of the usage of this method.
+   * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's recommended handling these cases with [tr].
    */
   public fun trN(
     message: StringName,
@@ -1202,11 +1470,11 @@ public open class Object : KtObject() {
     id: Long
   ) {
     /**
-     * Connects a signal in deferred mode. This way, signal emissions are stored in a queue, then set on idle time.
+     * Deferred connections trigger their [godot.Callable]s on idle time, rather than instantly.
      */
     CONNECT_DEFERRED(1),
     /**
-     * Persisting connections are saved when the object is serialized to file.
+     * Persisting connections are stored when the object is serialized (such as when using [godot.PackedScene.pack]). In the editor, connections created through the Node dock are always persisting.
      */
     CONNECT_PERSIST(2),
     /**
@@ -1214,7 +1482,7 @@ public open class Object : KtObject() {
      */
     CONNECT_ONE_SHOT(4),
     /**
-     * Connect a signal as reference-counted. This means that a given signal can be connected several times to the same target, and will only be fully disconnected once no references are left.
+     * Reference-counted connections can be assigned to the same [godot.Callable] multiple times. Each disconnection decreases the internal counter. The signal fully disconnects only when the counter reaches 0.
      */
     CONNECT_REFERENCE_COUNTED(8),
     ;
@@ -1231,12 +1499,12 @@ public open class Object : KtObject() {
 
   public companion object {
     /**
-     * Called right when the object is initialized. Not available in script.
+     * Notification received when the object is initialized, before its script is attached. Used internally.
      */
     public final const val NOTIFICATION_POSTINITIALIZE: Long = 0
 
     /**
-     * Called before the object is about to be deleted.
+     * Notification received when the object is about to be deleted. Can act as the deconstructor of some programming languages.
      */
     public final const val NOTIFICATION_PREDELETE: Long = 1
   }

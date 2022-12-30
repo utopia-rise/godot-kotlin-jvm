@@ -294,7 +294,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
+   * Specifies the channel of the [roughnessTexture] in which the roughness information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public var roughnessTextureChannel: TextureChannel
     get() {
@@ -694,7 +694,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
+   * Specifies the channel of the [refractionTexture] in which the refraction information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored refraction in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public var refractionTextureChannel: TextureChannel
     get() {

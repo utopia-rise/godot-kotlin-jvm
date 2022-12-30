@@ -25,9 +25,9 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class NativeExtension : Resource() {
+public open class GDExtension : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_NATIVEEXTENSION, scriptIndex)
+    callConstructor(ENGINECLASS_GDEXTENSION, scriptIndex)
     return true
   }
 
@@ -36,7 +36,7 @@ public open class NativeExtension : Resource() {
    */
   public fun openLibrary(path: String, entrySymbol: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to entrySymbol)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_OPEN_LIBRARY, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_OPEN_LIBRARY, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -45,7 +45,7 @@ public open class NativeExtension : Resource() {
    */
   public fun closeLibrary(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_CLOSE_LIBRARY, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_CLOSE_LIBRARY, NIL)
   }
 
   /**
@@ -53,8 +53,7 @@ public open class NativeExtension : Resource() {
    */
   public fun isLibraryOpen(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_IS_LIBRARY_OPEN,
-        BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_IS_LIBRARY_OPEN, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -64,8 +63,8 @@ public open class NativeExtension : Resource() {
   public fun getMinimumLibraryInitializationLevel(): InitializationLevel {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_GET_MINIMUM_LIBRARY_INITIALIZATION_LEVEL, LONG)
-    return NativeExtension.InitializationLevel.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+        ENGINEMETHOD_ENGINECLASS_GDEXTENSION_GET_MINIMUM_LIBRARY_INITIALIZATION_LEVEL, LONG)
+    return GDExtension.InitializationLevel.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -73,8 +72,7 @@ public open class NativeExtension : Resource() {
    */
   public fun initializeLibrary(level: InitializationLevel): Unit {
     TransferContext.writeArguments(LONG to level.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_INITIALIZE_LIBRARY,
-        NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_INITIALIZE_LIBRARY, NIL)
   }
 
   public enum class InitializationLevel(

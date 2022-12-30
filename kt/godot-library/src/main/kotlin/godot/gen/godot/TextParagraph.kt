@@ -285,9 +285,10 @@ public open class TextParagraph : RefCounted() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    length: Long = 1
+    length: Long = 1,
+    baseline: Double = 0.0
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length)
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_OBJECT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -298,9 +299,10 @@ public open class TextParagraph : RefCounted() {
   public fun resizeObject(
     key: Any,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
+    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    baseline: Double = 0.0
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id)
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_RESIZE_OBJECT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }

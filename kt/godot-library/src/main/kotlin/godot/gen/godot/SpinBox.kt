@@ -72,7 +72,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SpinBox : Range() {
   /**
-   *
+   * Changes the alignment of the underlying [godot.LineEdit].
    */
   public var alignment: HorizontalAlignment
     get() {

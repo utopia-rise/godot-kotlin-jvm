@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.RID
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -18,7 +19,6 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -117,14 +117,14 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * Optional array of body [RID] to exclude from collision.
+   * Optional array of body [RID] to exclude from collision. Use [godot.CollisionObject3D.getRid] to get the [RID] associated with a [godot.CollisionObject3D]-derived node.
    */
-  public var excludeBodies: VariantArray<Any?>
+  public var excludeBodies: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_GET_EXCLUDE_BODIES, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -135,12 +135,12 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * Optional array of object unique instance ID to exclude from collision. See [godot.Object.getInstanceId].
    */
-  public var excludeObjects: VariantArray<Any?>
+  public var excludeObjects: VariantArray<Long>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_GET_EXCLUDE_OBJECTS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

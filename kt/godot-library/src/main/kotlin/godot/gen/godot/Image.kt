@@ -348,27 +348,41 @@ public open class Image : Resource() {
   }
 
   /**
-   * Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available. See [enum CompressMode] and [enum CompressSource] constants.
+   * Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.
+   *
+   * The [mode] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.
+   *
+   * The [lossyQuality] parameter is optional for compressors that support it.
+   *
+   * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
   public fun compress(
     mode: CompressMode,
     source: CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
-    lossyQuality: Double = 0.7
+    lossyQuality: Double = 0.7,
+    astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4
   ): GodotError {
-    TransferContext.writeArguments(LONG to mode.id, LONG to source.id, DOUBLE to lossyQuality)
+    TransferContext.writeArguments(LONG to mode.id, LONG to source.id, DOUBLE to lossyQuality, LONG to astcFormat.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
+   * Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.
    *
+   * This is an alternative to [compress] that lets the user supply the channels used in order for the compressor to pick the best DXT and ETC2 formats. For other formats (non DXT or ETC2), this argument is ignored.
+   *
+   * The [lossyQuality] parameter is optional for compressors that support it.
+   *
+   * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
   public fun compressFromChannels(
     mode: CompressMode,
     channels: UsedChannels,
-    lossyQuality: Double = 0.7
+    lossyQuality: Double = 0.7,
+    astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4
   ): GodotError {
-    TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, DOUBLE to lossyQuality)
+    TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, DOUBLE to lossyQuality, LONG to astcFormat.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS_FROM_CHANNELS, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -905,9 +919,25 @@ public open class Image : Resource() {
      */
     FORMAT_DXT5_RA_AS_RG(34),
     /**
+     * [godot.Adaptive Scalable Texutre Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 4x4 (high quality) mode.
+     */
+    FORMAT_ASTC_4x4(35),
+    /**
+     * Same format as [godot.FORMAT_ASTC_4x4], but with the hint to let the GPU know it is used for HDR.
+     */
+    FORMAT_ASTC_4x4_HDR(36),
+    /**
+     * [godot.Adaptive Scalable Texutre Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 8x8 (low quality) mode.
+     */
+    FORMAT_ASTC_8x8(37),
+    /**
+     * Same format as [godot.FORMAT_ASTC_8x8], but with the hint to let the GPU know it is used for HDR.
+     */
+    FORMAT_ASTC_8x8_HDR(38),
+    /**
      * Represents the size of the [enum Format] enum.
      */
-    FORMAT_MAX(35),
+    FORMAT_MAX(39),
     ;
 
     public val id: Long
@@ -1075,6 +1105,29 @@ public open class Image : Resource() {
      * Source texture (before compression) is a normal texture (e.g. it can be compressed into two channels).
      */
     COMPRESS_SOURCE_NORMAL(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ASTCFormat(
+    id: Long
+  ) {
+    /**
+     * Hint to indicate that the high quality 4x4 ASTC compression format should be used.
+     */
+    ASTC_FORMAT_4x4(0),
+    /**
+     * Hint to indicate that the low quality 8x8 ASTC compression format should be used.
+     */
+    ASTC_FORMAT_8x8(1),
     ;
 
     public val id: Long

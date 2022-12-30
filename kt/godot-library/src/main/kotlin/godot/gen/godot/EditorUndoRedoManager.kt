@@ -204,6 +204,10 @@ public open class EditorUndoRedoManager internal constructor() : RefCounted() {
      */
     GLOBAL_HISTORY(0),
     /**
+     * History associated with remote inspector. Used when live editing a running project.
+     */
+    REMOTE_HISTORY(-9),
+    /**
      * Invalid "null" history. It's a special value, not associated with any object.
      */
     INVALID_HISTORY(-99),

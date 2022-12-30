@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
@@ -72,7 +71,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   /**
-   * Lower priority transitions are preferred when travelling through the tree via [godot.AnimationNodeStateMachinePlayback.travel] or [autoAdvance].
+   * Lower priority transitions are preferred when travelling through the tree via [godot.AnimationNodeStateMachinePlayback.travel] or [advanceMode] is set to [ADVANCE_MODE_AUTO].
    */
   public var priority: Long
     get() {
@@ -104,19 +103,19 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   /**
-   * Turn on the transition automatically when this state is reached. This works best with [SWITCH_MODE_AT_END].
+   * Determines whether the transition should disabled, enabled when using [godot.AnimationNodeStateMachinePlayback.travel], or traversed automatically if the [advanceCondition] and [advanceExpression] checks are true (if assigned).
    */
-  public var autoAdvance: Boolean
+  public var advanceMode: AdvanceMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_HAS_AUTO_ADVANCE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_GET_ADVANCE_MODE, LONG)
+      return AnimationNodeStateMachineTransition.AdvanceMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_AUTO_ADVANCE, NIL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_ADVANCE_MODE, NIL)
     }
 
   /**
@@ -169,22 +168,6 @@ public open class AnimationNodeStateMachineTransition : Resource() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_ADVANCE_EXPRESSION, NIL)
     }
 
-  /**
-   * Don't use this transition during [godot.AnimationNodeStateMachinePlayback.travel] or [autoAdvance].
-   */
-  public var disabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_IS_DISABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_DISABLED, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION, scriptIndex)
     return true
@@ -205,6 +188,33 @@ public open class AnimationNodeStateMachineTransition : Resource() {
      * Wait for the current state playback to end, then switch to the beginning of the next state animation.
      */
     SWITCH_MODE_AT_END(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class AdvanceMode(
+    id: Long
+  ) {
+    /**
+     * Don't use this transition.
+     */
+    ADVANCE_MODE_DISABLED(0),
+    /**
+     * Only use this transition during [godot.AnimationNodeStateMachinePlayback.travel].
+     */
+    ADVANCE_MODE_ENABLED(1),
+    /**
+     * Automatically use this transition if the [advanceCondition] and [advanceExpression] checks are true (if assigned).
+     */
+    ADVANCE_MODE_AUTO(2),
     ;
 
     public val id: Long

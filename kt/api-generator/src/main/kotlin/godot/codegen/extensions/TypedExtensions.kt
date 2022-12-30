@@ -66,8 +66,6 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
             val parameterType = object : TypedTrait {
                 override val type: String = this@getTypeClassName.type!!
                     .removePrefix("${GodotTypes.typedArray}::")
-                    // Api inconsistency
-                    .replace("STRING", "String")
             }
             ClassTypeNameWrapper(GODOT_ARRAY)
                 .parameterizedBy(

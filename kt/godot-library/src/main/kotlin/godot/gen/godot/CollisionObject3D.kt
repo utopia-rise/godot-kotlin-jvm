@@ -333,7 +333,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns the [godot.Shape3D] with the given id from the given shape owner.
+   * Returns the [godot.Shape3D] with the given ID from the given shape owner.
    */
   public fun shapeOwnerGetShape(ownerId: Long, shapeId: Long): Shape3D? {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)
@@ -343,7 +343,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns the child index of the [godot.Shape3D] with the given id from the given shape owner.
+   * Returns the child index of the [godot.Shape3D] with the given ID from the given shape owner.
    */
   public fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Long): Long {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)

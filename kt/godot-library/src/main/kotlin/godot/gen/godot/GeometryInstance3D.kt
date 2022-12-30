@@ -122,6 +122,22 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
+   * Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [godot.MeshInstance3D] or to have fine control over the [godot.MeshInstance3D]'s bounding box. To remove this, set value to an [AABB] with all fields set to zero.
+   */
+  public var customAabb: AABB
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CUSTOM_AABB, godot.core.VariantType.AABB)
+      return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
+    }
+    set(`value`) {
+      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CUSTOM_AABB, NIL)
+    }
+
+  /**
    * Changes how quickly the mesh transitions to a lower level of detail.  A value of 0 will force the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger values will keep the mesh in a higher level of detail at farther distances.
    *
    * Useful for testing level of detail transitions in the editor.
@@ -295,15 +311,6 @@ public open class GeometryInstance3D : VisualInstance3D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_INSTANCE_SHADER_PARAMETER, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
-   * Overrides the bounding box of this node with a custom one. To remove it, set an [AABB] with all fields set to zero.
-   */
-  public fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CUSTOM_AABB,
-        NIL)
   }
 
   public enum class ShadowCastingSetting(

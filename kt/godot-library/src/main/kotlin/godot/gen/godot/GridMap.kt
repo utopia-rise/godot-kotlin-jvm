@@ -148,6 +148,19 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_COLLISION_MASK, NIL)
     }
 
+  public var collisionPriority: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_COLLISION_PRIORITY,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_COLLISION_PRIORITY,
+          NIL)
+    }
+
   public var bakeNavigation: Boolean
     get() {
       TransferContext.writeArguments()
@@ -158,19 +171,6 @@ public open class GridMap : Node3D() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_BAKE_NAVIGATION, NIL)
-    }
-
-  public var navigationLayers: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_NAVIGATION_LAYERS,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_NAVIGATION_LAYERS,
-          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -213,19 +213,6 @@ public open class GridMap : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_NAVIGATION_MAP, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
-  }
-
-  public fun setNavigationLayerValue(layerNumber: Long, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_NAVIGATION_LAYER_VALUE,
-        NIL)
-  }
-
-  public fun getNavigationLayerValue(layerNumber: Long): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_NAVIGATION_LAYER_VALUE,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public fun setCellItem(

@@ -51,6 +51,13 @@ public open class AnimationLibrary : Resource() {
    */
   public val animationRenamed: Signal2<StringName, StringName> by signal("name", "toName")
 
+  /**
+   * Emitted when there's a change in one of the animations, e.g. tracks are added, moved or have changed paths. [name] is the key of the animation that was changed.
+   *
+   * See also [godot.Resource.changed], which this acts as a relay for.
+   */
+  public val animationChanged: Signal1<StringName> by signal("name")
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONLIBRARY, scriptIndex)
     return true

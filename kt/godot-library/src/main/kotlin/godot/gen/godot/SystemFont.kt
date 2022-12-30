@@ -14,7 +14,6 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.memory.TransferContext
 import kotlin.Boolean
@@ -33,7 +32,7 @@ import kotlin.jvm.JvmName
  *
  * It will attempt to match font style, but it's not guaranteed.
  *
- * The returned font might be part of a font collection or be a variable font with OpenType "weight" and/or "italic" features set.
+ * The returned font might be part of a font collection or be a variable font with OpenType "weight", "width" and/or "italic" features set.
  *
  * You can create [godot.FontVariation] of the system font for fine control over its features.
  */
@@ -55,15 +54,41 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * Font style flags, see [enum TextServer.FontStyle].
+   * If set to `true`, italic or oblique font is preferred.
    */
-  public var fontStyle: Long
-    @JvmName("getFontStyle_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    get() = super.getFontStyle()
+  public var fontItalic: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_FONT_ITALIC, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FONT_STYLE, NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FONT_ITALIC, NIL)
+    }
+
+  /**
+   * Preferred weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   */
+  public var fontWeight: Long
+    @JvmName("getFontWeight_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getFontWeight()
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FONT_WEIGHT, NIL)
+    }
+
+  /**
+   * Preferred font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   */
+  public var fontStretch: Long
+    @JvmName("getFontStretch_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getFontStretch()
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FONT_STRETCH, NIL)
     }
 
   /**
@@ -94,6 +119,22 @@ public open class SystemFont : Font() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_GENERATE_MIPMAPS,
           NIL)
+    }
+
+  /**
+   * If set to `true`, system fonts can be automatically used as fallbacks.
+   */
+  public var allowSystemFallback: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_IS_ALLOW_SYSTEM_FALLBACK, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_ALLOW_SYSTEM_FALLBACK, NIL)
     }
 
   /**

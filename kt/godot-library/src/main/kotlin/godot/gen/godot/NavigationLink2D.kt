@@ -115,7 +115,7 @@ public open class NavigationLink2D : Node2D() {
     }
 
   /**
-   * When pathfinding enters this link from another regions navmesh the `enter_cost` value is added to the path distance for determining the shortest path.
+   * When pathfinding enters this link from another regions navigation mesh the `enter_cost` value is added to the path distance for determining the shortest path.
    */
   public var enterCost: Double
     get() {

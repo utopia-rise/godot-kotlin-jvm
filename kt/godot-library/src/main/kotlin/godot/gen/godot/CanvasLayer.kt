@@ -204,6 +204,16 @@ public open class CanvasLayer : Node() {
   }
 
   /**
+   * Returns the transform from the [godot.CanvasLayer]s coordinate system to the [godot.Viewport]s coordinate system.
+   */
+  public fun getFinalTransform(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_FINAL_TRANSFORM,
+        TRANSFORM2D)
+    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+  }
+
+  /**
    * Returns the RID of the canvas used by this layer.
    */
   public fun getCanvas(): RID {

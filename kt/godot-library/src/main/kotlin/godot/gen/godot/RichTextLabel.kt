@@ -499,13 +499,14 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Removes a line of content from the label. Returns `true` if the line exists.
+   * Removes a paragraph of content from the label. Returns `true` if the paragraph exists.
    *
-   * The [line] argument is the index of the line to remove, it can take values in the interval `[0, get_line_count() - 1]`.
+   * The [paragraph] argument is the index of the paragraph to remove, it can take values in the interval `[0, get_paragraph_count() - 1]`.
    */
-  public fun removeLine(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_REMOVE_LINE, BOOL)
+  public fun removeParagraph(paragraph: Long): Boolean {
+    TransferContext.writeArguments(LONG to paragraph)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_REMOVE_PARAGRAPH,
+        BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -662,9 +663,12 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[table=columns,inline_align]` tag to the tag stack.
    */
-  public fun pushTable(columns: Long, inlineAlign: InlineAlignment =
-      InlineAlignment.INLINE_ALIGNMENT_TOP_TO): Unit {
-    TransferContext.writeArguments(LONG to columns, LONG to inlineAlign.id)
+  public fun pushTable(
+    columns: Long,
+    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_TOP_TO,
+    alignToRow: Long = -1
+  ): Unit {
+    TransferContext.writeArguments(LONG to columns, LONG to inlineAlign.id, LONG to alignToRow)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_TABLE, NIL)
   }
 
@@ -802,6 +806,15 @@ public open class RichTextLabel : Control() {
   public fun scrollToParagraph(paragraph: Long): Unit {
     TransferContext.writeArguments(LONG to paragraph)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SCROLL_TO_PARAGRAPH,
+        NIL)
+  }
+
+  /**
+   * Scrolls to the beginning of the current selection.
+   */
+  public fun scrollToSelection(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SCROLL_TO_SELECTION,
         NIL)
   }
 

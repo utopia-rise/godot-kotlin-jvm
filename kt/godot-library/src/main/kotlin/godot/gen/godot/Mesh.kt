@@ -217,10 +217,10 @@ public open class Mesh : Resource() {
   /**
    * Calculate a [godot.ConcavePolygonShape3D] from the mesh.
    */
-  public fun createTrimeshShape(): Shape3D? {
+  public fun createTrimeshShape(): ConcavePolygonShape3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_TRIMESH_SHAPE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Shape3D?
+    return TransferContext.readReturnValue(OBJECT, true) as ConcavePolygonShape3D?
   }
 
   /**
@@ -230,10 +230,11 @@ public open class Mesh : Resource() {
    *
    * If [simplify] is `true`, the geometry can be further simplified to reduce the number of vertices. Disabled by default.
    */
-  public fun createConvexShape(clean: Boolean = true, simplify: Boolean = false): Shape3D? {
+  public fun createConvexShape(clean: Boolean = true, simplify: Boolean = false):
+      ConvexPolygonShape3D? {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_CONVEX_SHAPE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Shape3D?
+    return TransferContext.readReturnValue(OBJECT, true) as ConvexPolygonShape3D?
   }
 
   /**

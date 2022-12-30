@@ -8,7 +8,8 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.Transform3D
+import godot.core.Quaternion
+import godot.core.StringName
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -16,10 +17,13 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.QUATERNION
 import godot.core.VariantType.STRING
-import godot.core.VariantType.TRANSFORM3D
+import godot.core.VariantType.VECTOR3
+import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
+import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
@@ -45,6 +49,20 @@ public open class AnimationTree : Node() {
    * Emitted when the [animPlayer] is changed.
    */
   public val animationPlayerChanged: Signal0 by signal()
+
+  /**
+   * Notifies when an animation starts playing.
+   *
+   * **Note:** This signal is not emitted if an animation is looping or playbacked from the middle. Also be aware of the possibility of unseen playback by sync and xfade.
+   */
+  public val animationStarted: Signal1<StringName> by signal("animName")
+
+  /**
+   * Notifies when an animation finished playing.
+   *
+   * **Note:** This signal is not emitted if an animation is looping or aborted. Also be aware of the possibility of unseen playback by sync and xfade.
+   */
+  public val animationFinished: Signal1<StringName> by signal("animName")
 
   /**
    * The root animation node of this [godot.AnimationTree]. See [godot.AnimationNode].
@@ -126,7 +144,7 @@ public open class AnimationTree : Node() {
   /**
    * The path to the Animation track used for root motion. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. To specify a track that controls properties or bones, append its name after the path, separated by `":"`. For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    *
-   * If the track has type [godot.Animation.TYPE_POSITION_3D], [godot.Animation.TYPE_ROTATION_3D] or [godot.Animation.TYPE_SCALE_3D] the transformation will be cancelled visually, and the animation will appear to stay in place. See also [getRootMotionTransform] and [godot.RootMotionView].
+   * If the track has type [godot.Animation.TYPE_POSITION_3D], [godot.Animation.TYPE_ROTATION_3D] or [godot.Animation.TYPE_SCALE_3D] the transformation will be cancelled visually, and the animation will appear to stay in place. See also [getRootMotionPosition], [getRootMotionRotation], [getRootMotionScale] and [godot.RootMotionView].
    */
   public var rootMotionTrack: NodePath
     get() {
@@ -147,13 +165,121 @@ public open class AnimationTree : Node() {
   }
 
   /**
-   * Retrieve the motion of the [rootMotionTrack] as a [godot.Transform3D] that can be used elsewhere. If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_POSITION_3D], [godot.Animation.TYPE_SCALE_3D] or [godot.Animation.TYPE_ROTATION_3D], returns an identity transformation. See also [rootMotionTrack] and [godot.RootMotionView].
+   * Retrieve the motion of position with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
+   *
+   * If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_POSITION_3D], returns `Vector3(0, 0, 0)`.
+   *
+   * See also [rootMotionTrack] and [godot.RootMotionView].
+   *
+   * The most basic example is applying position to [godot.CharacterBody3D]:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var current_rotation: Quaternion
+   *
+   *
+   *
+   * func _process(delta):
+   *
+   *     if Input.is_action_just_pressed("animate"):
+   *
+   *         current_rotation = get_quaternion()
+   *
+   *         state_machine.travel("Animate")
+   *
+   *     var velocity: Vector3 = current_rotation * animation_tree.get_root_motion_position() / delta
+   *
+   *     set_velocity(velocity)
+   *
+   *     move_and_slide()
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
    */
-  public fun getRootMotionTransform(): Transform3D {
+  public fun getRootMotionPosition(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_TRANSFORM, TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_POSITION, VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Retrieve the motion of rotation with the [rootMotionTrack] as a [godot.Quaternion] that can be used elsewhere.
+   *
+   * If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_ROTATION_3D], returns `Quaternion(0, 0, 0, 1)`.
+   *
+   * See also [rootMotionTrack] and [godot.RootMotionView].
+   *
+   * The most basic example is applying rotation to [godot.CharacterBody3D]:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * func _process(delta):
+   *
+   *     if Input.is_action_just_pressed("animate"):
+   *
+   *         state_machine.travel("Animate")
+   *
+   *     set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
+   */
+  public fun getRootMotionRotation(): Quaternion {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_ROTATION, QUATERNION)
+    return TransferContext.readReturnValue(QUATERNION, false) as Quaternion
+  }
+
+  /**
+   * Retrieve the motion of scale with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
+   *
+   * If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_SCALE_3D], returns `Vector3(0, 0, 0)`.
+   *
+   * See also [rootMotionTrack] and [godot.RootMotionView].
+   *
+   * The most basic example is applying scale to [godot.CharacterBody3D]:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var current_scale: Vector3 = Vector3(1, 1, 1)
+   *
+   * var scale_accum: Vector3 = Vector3(1, 1, 1)
+   *
+   *
+   *
+   * func _process(delta):
+   *
+   *     if Input.is_action_just_pressed("animate"):
+   *
+   *         current_scale = get_scale()
+   *
+   *         scale_accum = Vector3(1, 1, 1)
+   *
+   *         state_machine.travel("Animate")
+   *
+   *     scale_accum += animation_tree.get_root_motion_scale()
+   *
+   *     set_scale(current_scale * scale_accum)
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
+   */
+  public fun getRootMotionScale(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_SCALE,
+        VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
   /**

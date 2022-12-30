@@ -28,9 +28,7 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/2d/2d_lights_and_shadows.html]($DOCS_URL/tutorials/2d/2d_lights_and_shadows.html)
  *
- * Casts light in a 2D environment. Light is defined by a (usually grayscale) texture, a color, an energy value, a mode (see constants), and various other parameters (range and shadows-related).
- *
- * **Note:** Light2D can also be used as a mask.
+ * Casts light in a 2D environment. A light is defined as a color, an energy value, a mode (see constants), and various other parameters (range and shadows-related).
  */
 @GodotBaseType
 public open class Light2D internal constructor() : Node2D() {
@@ -217,7 +215,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * Smoothing value for shadows.
+   * Smoothing value for shadows. Higher values will result in softer shadows, at the cost of visible streaks that can appear in shadow rendering. [shadowFilterSmooth] only has an effect if [shadowFilter] is [godot.SHADOW_FILTER_PCF5] or [godot.SHADOW_FILTER_PCF13].
    */
   public var shadowFilterSmooth: Double
     get() {
@@ -252,7 +250,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   /**
-   *
+   * Sets the light's height, which is used in 2D normal mapping. See [godot.PointLight2D.height] and [godot.DirectionalLight2D.height].
    */
   public fun setHeight(height: Double): Unit {
     TransferContext.writeArguments(DOUBLE to height)
@@ -260,7 +258,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   /**
-   *
+   * Returns the light's height, which is used in 2D normal mapping. See [godot.PointLight2D.height] and [godot.DirectionalLight2D.height].
    */
   public fun getHeight(): Double {
     TransferContext.writeArguments()
@@ -272,15 +270,15 @@ public open class Light2D internal constructor() : Node2D() {
     id: Long
   ) {
     /**
-     * No filter applies to the shadow map. See [shadowFilter].
+     * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to render. See [shadowFilter].
      */
     SHADOW_FILTER_NONE(0),
     /**
-     * Percentage closer filtering (5 samples) applies to the shadow map. See [shadowFilter].
+     * Percentage closer filtering (5 samples) applies to the shadow map. This is slower compared to hard shadow rendering. See [shadowFilter].
      */
     SHADOW_FILTER_PCF5(1),
     /**
-     * Percentage closer filtering (13 samples) applies to the shadow map. See [shadowFilter].
+     * Percentage closer filtering (13 samples) applies to the shadow map. This is the slowest shadow filtereing mode, and should be used sparingly. See [shadowFilter].
      */
     SHADOW_FILTER_PCF13(2),
     ;

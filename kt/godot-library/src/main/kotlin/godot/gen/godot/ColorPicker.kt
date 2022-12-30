@@ -35,7 +35,7 @@ import kotlin.Unit
  * **Note:** This control is the color picker widget itself. You can use a [godot.ColorPickerButton] instead if you need a button that brings up a [godot.ColorPicker] in a pop-up.
  */
 @GodotBaseType
-public open class ColorPicker : BoxContainer() {
+public open class ColorPicker : VBoxContainer() {
   /**
    * Emitted when the color is changed.
    */

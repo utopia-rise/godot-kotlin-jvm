@@ -31,7 +31,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class PhysicalSkyMaterial : Material() {
   /**
-   * Controls the strength of the Rayleigh scattering. Rayleigh scattering results from light colliding with small particles. It is responsible for the blue color of the sky.
+   * Controls the strength of the [godot.Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering). Rayleigh scattering results from light colliding with small particles. It is responsible for the blue color of the sky.
    */
   public var rayleighCoefficient: Double
     get() {
@@ -47,7 +47,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the [godot.core.Color] of the Rayleigh scattering. While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [godot.core.Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
+   * Controls the [godot.core.Color] of the [godot.Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering). While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [godot.core.Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
    */
   public var rayleighColor: Color
     get() {
@@ -63,7 +63,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the strength of mie scattering for the sky. Mie scattering results from light colliding with larger particles (like water). On earth, mie scattering results in a whitish color around the sun and horizon.
+   * Controls the strength of [godot.Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering) for the sky. Mie scattering results from light colliding with larger particles (like water). On earth, Mie scattering results in a whitish color around the sun and horizon.
    */
   public var mieCoefficient: Double
     get() {
@@ -79,7 +79,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the direction of the mie scattering. A value of `1` means that when light hits a particle it's passing through straight forward. A value of `-1` means that all light is scatter backwards.
+   * Controls the direction of the [godot.Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). A value of `1` means that when light hits a particle it's passing through straight forward. A value of `-1` means that all light is scatter backwards.
    */
   public var mieEccentricity: Double
     get() {
@@ -95,7 +95,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the [godot.core.Color] of the mie scattering effect. While not physically accurate, this allows for the creation of alien-looking planets.
+   * Controls the [godot.core.Color] of the [godot.Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering) effect. While not physically accurate, this allows for the creation of alien-looking planets.
    */
   public var mieColor: Color
     get() {
@@ -159,7 +159,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   *
+   * The sky's overall brightness multiplier. Higher values result in a brighter sky.
    */
   public var energyMultiplier: Double
     get() {

@@ -20,9 +20,9 @@ import kotlin.Suppress
 /**
  * Group of Buttons.
  *
- * Group of [godot.Button]. All direct and indirect children buttons become radios. Only one allows being pressed.
+ * Group of [godot.BaseButton]. The members of this group are treated like radio buttons in the sense that only one button can be pressed at the same time.
  *
- * [godot.BaseButton.toggleMode] should be `true`.
+ * Every member of the ButtonGroup should have [godot.BaseButton.toggleMode] set to `true`.
  */
 @GodotBaseType
 public open class ButtonGroup : Resource() {

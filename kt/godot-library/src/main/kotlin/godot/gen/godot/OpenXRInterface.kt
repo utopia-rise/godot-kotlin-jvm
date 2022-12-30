@@ -32,12 +32,12 @@ public open class OpenXRInterface : XRInterface() {
 
   public val poseRecentered: Signal0 by signal()
 
-  public var displayRefreshRate: Double?
+  public var displayRefreshRate: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_DISPLAY_REFRESH_RATE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, true) as Double?
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)

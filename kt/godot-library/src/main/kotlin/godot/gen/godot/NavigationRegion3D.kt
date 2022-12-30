@@ -31,7 +31,7 @@ import kotlin.Unit
  *
  * Two regions can be connected to each other if they share a similar edge. You can set the minimum distance between two vertices required to connect two edges by using [godot.NavigationServer3D.mapSetEdgeConnectionMargin].
  *
- * **Note:** Overlapping two regions' navmeshes is not enough for connecting two regions. They must share a similar edge.
+ * **Note:** Overlapping two regions' navigation meshes is not enough for connecting two regions. They must share a similar edge.
  *
  * The cost of entering this region from another region can be controlled with the [enterCost] value.
  *
@@ -56,7 +56,7 @@ public open class NavigationRegion3D : Node3D() {
   /**
    * The [godot.NavigationMesh] resource to use.
    */
-  public var navmesh: NavigationMesh?
+  public var navigationMesh: NavigationMesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -102,7 +102,7 @@ public open class NavigationRegion3D : Node3D() {
     }
 
   /**
-   * When pathfinding enters this region's navmesh from another regions navmesh the `enter_cost` value is added to the path distance for determining the shortest path.
+   * When pathfinding enters this region's navigation mesh from another regions navigation mesh the `enter_cost` value is added to the path distance for determining the shortest path.
    */
   public var enterCost: Double
     get() {
@@ -118,7 +118,7 @@ public open class NavigationRegion3D : Node3D() {
     }
 
   /**
-   * When pathfinding moves inside this region's navmesh the traveled distances are multiplied with `travel_cost` for determining the shortest path.
+   * When pathfinding moves inside this region's navigation mesh the traveled distances are multiplied with `travel_cost` for determining the shortest path.
    */
   public var travelCost: Double
     get() {

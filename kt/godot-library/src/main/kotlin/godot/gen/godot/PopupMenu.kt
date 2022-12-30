@@ -61,7 +61,7 @@ public open class PopupMenu : Popup() {
   public val indexPressed: Signal1<Long> by signal("index")
 
   /**
-   *
+   * Emitted when any item is added, modified or removed.
    */
   public val menuChanged: Signal0 by signal()
 
@@ -603,7 +603,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the id of the item at the given [index]. `id` can be manually assigned, while index can not.
+   * Returns the ID of the item at the given [index]. `id` can be manually assigned, while index can not.
    */
   public fun getItemId(index: Long): Long {
     TransferContext.writeArguments(LONG to index)

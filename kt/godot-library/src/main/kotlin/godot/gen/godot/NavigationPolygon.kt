@@ -43,7 +43,7 @@ import kotlin.Unit
  *
  * polygon.make_polygons_from_outlines()
  *
- * $NavigationRegion2D.navpoly = polygon
+ * $NavigationRegion2D.navigation_polygon = polygon
  *
  * [/gdscript]
  *
@@ -57,7 +57,7 @@ import kotlin.Unit
  *
  * polygon.MakePolygonsFromOutlines();
  *
- * GetNode<NavigationRegion2D>("NavigationRegion2D").Navpoly = polygon;
+ * GetNode<NavigationRegion2D>("NavigationRegion2D").NavigationPolygon = polygon;
  *
  * [/csharp]
  *
@@ -79,7 +79,7 @@ import kotlin.Unit
  *
  * polygon.add_polygon(indices)
  *
- * $NavigationRegion2D.navpoly = polygon
+ * $NavigationRegion2D.navigation_polygon = polygon
  *
  * [/gdscript]
  *
@@ -95,7 +95,7 @@ import kotlin.Unit
  *
  * polygon.AddPolygon(indices);
  *
- * GetNode<NavigationRegion2D>("NavigationRegion2D").Navpoly = polygon;
+ * GetNode<NavigationRegion2D>("NavigationRegion2D").NavigationPolygon = polygon;
  *
  * [/csharp]
  *
@@ -159,11 +159,12 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Returns the [godot.NavigationMesh] resulting from this navigation polygon. This navmesh can be used to update the navmesh of a region with the [godot.NavigationServer3D.regionSetNavmesh] API directly (as 2D uses the 3D server behind the scene).
+   * Returns the [godot.NavigationMesh] resulting from this navigation polygon. This navigation mesh can be used to update the navigation mesh of a region with the [godot.NavigationServer3D.regionSetNavigationMesh] API directly (as 2D uses the 3D server behind the scene).
    */
-  public fun getMesh(): NavigationMesh? {
+  public fun getNavigationMesh(): NavigationMesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_MESH, OBJECT)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_NAVIGATION_MESH, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?
   }
 

@@ -224,6 +224,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Sets the font style flags, see [enum FontStyle].
+   *
+   * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], [fontSetEmbolden], or [fontSetTransform] instead.
    */
   public fun fontSetStyle(fontRid: RID, style: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, OBJECT to style)
@@ -272,6 +274,44 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_STYLE_NAME,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Sets weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   *
+   * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], or [fontSetEmbolden] instead.
+   */
+  public fun fontSetWeight(fontRid: RID, weight: Long): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to weight)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_WEIGHT, NIL)
+  }
+
+  /**
+   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   */
+  public fun fontGetWeight(fontRid: RID): Long {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_WEIGHT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   *
+   * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], or [fontSetTransform] instead.
+   */
+  public fun fontSetStretch(fontRid: RID, weight: Long): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to weight)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_STRETCH, NIL)
+  }
+
+  /**
+   * Returns font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   */
+  public fun fontGetStretch(fontRid: RID): Long {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_STRETCH, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -385,6 +425,25 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_FIXED_SIZE,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * If set to `true`, system fonts can be automatically used as fallbacks.
+   */
+  public fun fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
+    TransferContext.writeArguments(_RID to fontRid, BOOL to allowSystemFallback)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_ALLOW_SYSTEM_FALLBACK, NIL)
+  }
+
+  /**
+   * Returns `true` if system fonts can be automatically used as fallbacks.
+   */
+  public fun fontIsAllowSystemFallback(fontRid: RID): Boolean {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_IS_ALLOW_SYSTEM_FALLBACK, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -925,7 +984,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns resource id of the cache texture containing the glyph.
+   * Returns resource ID of the cache texture containing the glyph.
    *
    * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
    */
@@ -1518,9 +1577,10 @@ public open class TextServer internal constructor() : RefCounted() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    length: Long = 1
+    length: Long = 1,
+    baseline: Double = 0.0
   ): Boolean {
-    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length)
+    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_ADD_OBJECT,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1533,9 +1593,10 @@ public open class TextServer internal constructor() : RefCounted() {
     shaped: RID,
     key: Any,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
+    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    baseline: Double = 0.0
   ): Boolean {
-    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id)
+    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_RESIZE_OBJECT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1984,6 +2045,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Converts a number from the Western Arabic (0..9) to the numeral systems used in [language].
+   *
+   * If [language] is omitted, the active locale will be used.
    */
   public fun formatNumber(number: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to number, STRING to language)
@@ -2010,10 +2073,22 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns array of the word break character offsets.
+   * Returns an array of the word break boundaries. Elements in the returned array are the offsets of the start and end of words. Therefore the length of the array is always even.
+   *
+   * When [charsPerLine] is greater than zero, line break boundaries are returned instead.
+   *
+   * ```
+   * 				var ts = TextServerManager.get_primary_interface()
+   * 				print(ts.string_get_word_breaks("Godot Engine")) # Prints [0, 5, 6, 12]
+   * 				print(ts.string_get_word_breaks("Godot Engine", "en", 5)) # Prints [0, 5, 6, 11, 11, 12]
+   * 				```
    */
-  public fun stringGetWordBreaks(string: String, language: String = ""): PackedInt32Array {
-    TransferContext.writeArguments(STRING to string, STRING to language)
+  public fun stringGetWordBreaks(
+    string: String,
+    language: String = "",
+    charsPerLine: Long = 0
+  ): PackedInt32Array {
+    TransferContext.writeArguments(STRING to string, STRING to language, LONG to charsPerLine)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_STRING_GET_WORD_BREAKS,
         PACKED_INT_32_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array

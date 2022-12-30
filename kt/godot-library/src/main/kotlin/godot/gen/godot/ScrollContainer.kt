@@ -124,7 +124,7 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   *
+   * Deadzone for touch scrolling. Lower deadzone makes the scrolling more sensitive.
    */
   public var scrollDeadzone: Long
     get() {

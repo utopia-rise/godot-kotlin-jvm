@@ -647,7 +647,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the id for the button at index [buttonIdx] in column [column].
+   * Returns the ID for the button at index [buttonIdx] in column [column].
    */
   public fun getButtonId(column: Long, buttonIdx: Long): Long {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
@@ -656,7 +656,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the button index if there is a button with id [id] in column [column], otherwise returns -1.
+   * Returns the button index if there is a button with ID [id] in column [column], otherwise returns -1.
    */
   public fun getButtonById(column: Long, id: Long): Long {
     TransferContext.writeArguments(LONG to column, LONG to id)
