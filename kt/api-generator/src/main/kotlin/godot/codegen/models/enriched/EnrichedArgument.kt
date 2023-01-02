@@ -4,7 +4,7 @@ import com.squareup.kotlinpoet.ANY
 import godot.codegen.extensions.convertToCamelCase
 import godot.codegen.extensions.escapeKotlinReservedNames
 import godot.codegen.extensions.getTypeClassName
-import godot.codegen.extensions.sanitizeApiType
+import godot.codegen.workarounds.sanitizeApiType
 import godot.codegen.models.Argument
 import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait

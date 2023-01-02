@@ -39,8 +39,6 @@ fun String.convertToSnakeCase(): String =
 
 fun String.escapeKotlinReservedNames() = if (kotlinReservedNames.find { s -> s == this } != null) "_$this" else this
 
-fun String.sanitizeApiType() = this.replace("24/17:", "")
-
 private val kotlinReservedNames = listOf(
     "class",
     "enum",

@@ -9,6 +9,7 @@ import godot.codegen.traits.TypedTrait
 import godot.codegen.traits.WithDefaultValueTrait
 
 private const val enumPrefix = "enum::"
+private const val bitfieldPrefix = "bitfield::"
 
 fun TypedTrait.isCoreType() = isTypedArray() || GodotTypes.coreTypes.find { s -> s == this.type } != null
 fun TypedTrait.isPrimitive() = GodotTypes.primitives.find { s -> s == this.type } != null
@@ -16,7 +17,7 @@ fun TypedTrait.isCoreTypeReimplementedInKotlin() = GodotTypes.coreTypesReimpleme
     s == this.type
 } != null
 fun TypedTrait.isEnum() = type?.startsWith(enumPrefix) ?: false
-fun TypedTrait.isBitField() = type?.startsWith("bitfield::") ?: false
+fun TypedTrait.isBitField() = type?.startsWith(bitfieldPrefix) ?: false
 fun TypedTrait.isTypedArray() = type?.startsWith(GodotTypes.typedArray) ?: false
 
 fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{

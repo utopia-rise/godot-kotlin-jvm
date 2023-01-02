@@ -1,7 +1,7 @@
 package godot.codegen.models.enriched
 
 import godot.codegen.extensions.escapeUnderscore
-import godot.codegen.extensions.sanitizeApiType
+import godot.codegen.workarounds.sanitizeApiType
 import godot.codegen.models.Singleton
 
 class EnrichedSingleton(val internal: Singleton) {

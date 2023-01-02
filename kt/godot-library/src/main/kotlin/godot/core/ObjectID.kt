@@ -3,7 +3,7 @@ package godot.core
 @JvmInline
 value class ObjectID(val id: Long) {
     val isReference: Boolean
-        get() = (id and OBJECTDB_REFERENCE_BIT) > 0
+        get() = (id and OBJECTDB_REFERENCE_BIT) != 0L
 
     val index: Int
         get() = (id and OBJECTDB_SLOT_MAX_COUNT_MASK).toInt()
