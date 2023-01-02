@@ -17,12 +17,14 @@
 #include "bridges/rid_bridge.h"
 #include "bridges/string_name_bridge.h"
 #include "bridges/variant_array_bridge.h"
+#include "memory/bridges/callable_bridge.h"
 
 class BridgesManager {
     bridges::MemoryBridge* memory_bridge;
 
     bridges::GDPrintBridge* gd_print_bridge;
 
+    bridges::CallableBridge* callable_bridge;
     bridges::VariantArrayBridge* variant_array_bridge;
     bridges::DictionaryBridge* dictionary_bridge;
     bridges::RidBridge* rid_bridge;
