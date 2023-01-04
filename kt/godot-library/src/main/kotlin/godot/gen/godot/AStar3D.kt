@@ -7,20 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PackedInt32Array
+import godot.core.PackedInt64Array
 import godot.core.PackedVector3Array
-import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_INT_32_ARRAY
+import godot.core.VariantType.PACKED_INT_64_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -268,20 +265,21 @@ public open class AStar3D : RefCounted() {
    *
    * [/codeblocks]
    */
-  public fun getPointConnections(id: Long): PackedInt32Array {
+  public fun getPointConnections(id: Long): PackedInt64Array {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_CONNECTIONS,
-        PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+        PACKED_INT_64_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
   }
 
   /**
    * Returns an array of all point IDs.
    */
-  public fun getPointIds(): VariantArray<Any?> {
+  public fun getPointIds(): PackedInt64Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_IDS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_IDS,
+        PACKED_INT_64_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
   }
 
   /**
@@ -528,11 +526,11 @@ public open class AStar3D : RefCounted() {
    *
    * If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
    */
-  public fun getIdPath(fromId: Long, toId: Long): PackedInt32Array {
+  public fun getIdPath(fromId: Long, toId: Long): PackedInt64Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_ID_PATH,
-        PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+        PACKED_INT_64_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
   }
 
   public companion object

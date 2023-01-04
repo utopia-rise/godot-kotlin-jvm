@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Shader
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantType.LONG

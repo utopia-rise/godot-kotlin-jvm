@@ -219,6 +219,15 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
+   * Returns the [RID] of the first object that the ray intersects, or an empty [RID] if no object is intersecting the ray (i.e. [isColliding] returns `false`).
+   */
+  public fun getColliderRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_GET_COLLIDER_RID, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
    * Returns the shape ID of the first object that the ray intersects, or `0` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
   public fun getColliderShape(): Long {

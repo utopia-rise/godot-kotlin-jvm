@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Plane
 import godot.core.RID
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -23,7 +25,6 @@ import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -44,12 +45,12 @@ public open class Camera3D : Node3D() {
   /**
    * The axis to lock during [fov]/[size] adjustments. Can be either [KEEP_WIDTH] or [KEEP_HEIGHT].
    */
-  public var keepAspect: Long
+  public var keepAspect: KeepAspect
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_KEEP_ASPECT_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Camera3D.KeepAspect.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -85,15 +86,18 @@ public open class Camera3D : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_ENVIRONMENT, NIL)
     }
 
-  public var effects: CameraEffects?
+  /**
+   * The [godot.CameraAttributes] to use for this camera.
+   */
+  public var attributes: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_EFFECTS, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as CameraEffects?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_ATTRIBUTES, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_EFFECTS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_ATTRIBUTES, NIL)
     }
 
   /**
@@ -127,12 +131,12 @@ public open class Camera3D : Node3D() {
   /**
    * If not [DOPPLER_TRACKING_DISABLED], this camera will simulate the [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) for objects changed in particular `_process` methods. See [enum DopplerTracking] for possible values.
    */
-  public var dopplerTracking: Long
+  public var dopplerTracking: DopplerTracking
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_DOPPLER_TRACKING,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Camera3D.DopplerTracking.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -143,11 +147,11 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's projection mode. In [PROJECTION_PERSPECTIVE] mode, objects' Z distance from the camera's local space scales their perceived size.
    */
-  public var projection: Long
+  public var projection: ProjectionType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PROJECTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Camera3D.ProjectionType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -393,10 +397,10 @@ public open class Camera3D : Node3D() {
   /**
    * Returns the camera's frustum planes in world space units as an array of [godot.core.Plane]s in the following order: near, far, left, top, right, bottom. Not to be confused with [frustumOffset].
    */
-  public fun getFrustum(): VariantArray<Any?> {
+  public fun getFrustum(): VariantArray<Plane> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FRUSTUM, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>
   }
 
   /**
@@ -445,30 +449,7 @@ public open class Camera3D : Node3D() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public enum class KeepAspect(
-    id: Long
-  ) {
-    /**
-     * Preserves the horizontal aspect ratio; also known as Vert- scaling. This is usually the best option for projects running in portrait mode, as taller aspect ratios will benefit from a wider vertical FOV.
-     */
-    KEEP_WIDTH(0),
-    /**
-     * Preserves the vertical aspect ratio; also known as Hor+ scaling. This is usually the best option for projects running in landscape mode, as wider aspect ratios will automatically benefit from a wider horizontal FOV.
-     */
-    KEEP_HEIGHT(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class Projection(
+  public enum class ProjectionType(
     id: Long
   ) {
     /**
@@ -483,6 +464,29 @@ public open class Camera3D : Node3D() {
      * Frustum projection. This mode allows adjusting [frustumOffset] to create "tilted frustum" effects.
      */
     PROJECTION_FRUSTUM(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class KeepAspect(
+    id: Long
+  ) {
+    /**
+     * Preserves the horizontal aspect ratio; also known as Vert- scaling. This is usually the best option for projects running in portrait mode, as taller aspect ratios will benefit from a wider vertical FOV.
+     */
+    KEEP_WIDTH(0),
+    /**
+     * Preserves the vertical aspect ratio; also known as Hor+ scaling. This is usually the best option for projects running in landscape mode, as wider aspect ratios will automatically benefit from a wider horizontal FOV.
+     */
+    KEEP_HEIGHT(1),
     ;
 
     public val id: Long

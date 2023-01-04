@@ -111,7 +111,11 @@ public open class AnimationNode : Resource() {
    *
    * This function should return the time left for the current animation to finish (if unsure, pass the value from the main blend being called).
    */
-  public open fun _process(time: Double, seek: Boolean): Double {
+  public open fun _process(
+    time: Double,
+    seek: Boolean,
+    isExternalSeeking: Boolean
+  ): Double {
     throw NotImplementedError("_process is not implemented for AnimationNode")
   }
 
@@ -184,16 +188,19 @@ public open class AnimationNode : Resource() {
 
   /**
    * Blend an animation by [blend] amount (name must be valid in the linked [godot.AnimationPlayer]). A [time] and [delta] may be passed, as well as whether [seeked] happened.
+   *
+   * A [loopedFlag] is used by internal processing immediately after the loop. See also [enum Animation.LoopedFlag].
    */
   public fun blendAnimation(
     animation: StringName,
     time: Double,
     delta: Double,
     seeked: Boolean,
+    isExternalSeeking: Boolean,
     blend: Double,
-    pingponged: Long = 0
+    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.LOOPED_FLAG_NONE
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, DOUBLE to blend, LONG to pingponged)
+    TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend, LONG to loopedFlag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_ANIMATION, NIL)
   }
 
@@ -205,11 +212,12 @@ public open class AnimationNode : Resource() {
     node: AnimationNode,
     time: Double,
     seek: Boolean,
+    isExternalSeeking: Boolean,
     blend: Double,
-    filter: AnimationNode.FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
-    optimize: Boolean = true
+    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
+    sync: Boolean = true
   ): Double {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, DOUBLE to blend, LONG to filter.id, BOOL to optimize)
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend, LONG to filter.id, BOOL to sync)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_NODE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
@@ -221,11 +229,12 @@ public open class AnimationNode : Resource() {
     inputIndex: Long,
     time: Double,
     seek: Boolean,
+    isExternalSeeking: Boolean,
     blend: Double,
-    filter: AnimationNode.FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
-    optimize: Boolean = true
+    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
+    sync: Boolean = true
   ): Double {
-    TransferContext.writeArguments(LONG to inputIndex, DOUBLE to time, BOOL to seek, DOUBLE to blend, LONG to filter.id, BOOL to optimize)
+    TransferContext.writeArguments(LONG to inputIndex, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend, LONG to filter.id, BOOL to sync)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_INPUT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }

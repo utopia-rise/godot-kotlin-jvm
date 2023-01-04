@@ -13,7 +13,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -21,9 +20,9 @@ import kotlin.Suppress
 /**
  * Group of Buttons.
  *
- * Group of [godot.Button]. All direct and indirect children buttons become radios. Only one allows being pressed.
+ * Group of [godot.BaseButton]. The members of this group are treated like radio buttons in the sense that only one button can be pressed at the same time.
  *
- * [godot.BaseButton.toggleMode] should be `true`.
+ * Every member of the ButtonGroup should have [godot.BaseButton.toggleMode] set to `true`.
  */
 @GodotBaseType
 public open class ButtonGroup : Resource() {
@@ -50,10 +49,10 @@ public open class ButtonGroup : Resource() {
   /**
    * Returns an [godot.Array] of [godot.Button]s who have this as their [godot.ButtonGroup] (see [godot.BaseButton.buttonGroup]).
    */
-  public fun getButtons(): VariantArray<Any?> {
+  public fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_BUTTONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>
   }
 
   public companion object

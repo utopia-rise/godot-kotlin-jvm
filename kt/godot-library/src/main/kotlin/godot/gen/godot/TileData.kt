@@ -35,17 +35,19 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Settings for a single tile in a [godot.TileSet].
  *
+ * [godot.TileData] object represents a single tile in a [godot.TileSet]. It is usually edited using the tileset editor, but it can be modified at runtime using [godot.TileMap.TileDataRuntimeUpdate].
  */
 @GodotBaseType
 public open class TileData : Object() {
   /**
-   *
+   * Emitted when any of the properties are changed.
    */
   public val changed: Signal0 by signal()
 
   /**
-   *
+   * If `true`, the tile will have its texture flipped horizontally.
    */
   public var flipH: Boolean
     get() {
@@ -59,7 +61,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * If `true`, the tile will have its texture flipped vertically.
    */
   public var flipV: Boolean
     get() {
@@ -73,7 +75,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * If `true`, the tile will display transposed, i.e. with horizontal and vertical texture UVs swapped.
    */
   public var transpose: Boolean
     get() {
@@ -87,7 +89,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * Offsets the position of where the tile is drawn.
    */
   public var textureOffset: Vector2i
     get() {
@@ -102,7 +104,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * Color modulation of the tile.
    */
   public var modulate: Color
     get() {
@@ -118,11 +120,11 @@ public open class TileData : Object() {
   /**
    * The [godot.Material] to use for this [godot.TileData]. This can be a [godot.CanvasItemMaterial] to use the default shader, or a [godot.ShaderMaterial] to use a custom shader.
    */
-  public var material: ShaderMaterial?
+  public var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_MATERIAL, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as ShaderMaterial?
+      return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -130,7 +132,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * Ordering index of this tile, relative to [godot.TileMap].
    */
   public var zIndex: Long
     get() {
@@ -144,7 +146,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * Vertical point of the tile used for determining y-sorted order.
    */
   public var ySortOrigin: Long
     get() {
@@ -158,7 +160,7 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * ID of the terrain set that the tile uses.
    */
   public var terrainSet: Long
     get() {
@@ -172,7 +174,21 @@ public open class TileData : Object() {
     }
 
   /**
-   *
+   * ID of the terrain from the terrain set that the tile uses.
+   */
+  public var terrain: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TERRAIN, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_TERRAIN, NIL)
+    }
+
+  /**
+   * Relative probability of this tile being selected when drawing a pattern of random tiles.
    */
   public var probability: Double
     get() {
@@ -350,15 +366,21 @@ public open class TileData : Object() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun setPeeringBitTerrain(peeringBit: TileSet.CellNeighbor, terrain: Long): Unit {
+  /**
+   * Sets the tile's terrain bit for the given [peeringBit] direction.
+   */
+  public fun setTerrainPeeringBit(peeringBit: TileSet.CellNeighbor, terrain: Long): Unit {
     TransferContext.writeArguments(LONG to peeringBit.id, LONG to terrain)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_PEERING_BIT_TERRAIN,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_TERRAIN_PEERING_BIT,
         NIL)
   }
 
-  public fun getPeeringBitTerrain(peeringBit: TileSet.CellNeighbor): Long {
+  /**
+   * Returns the tile's terrain bit for the given [peeringBit] direction.
+   */
+  public fun getTerrainPeeringBit(peeringBit: TileSet.CellNeighbor): Long {
     TransferContext.writeArguments(LONG to peeringBit.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_PEERING_BIT_TERRAIN,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TERRAIN_PEERING_BIT,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }

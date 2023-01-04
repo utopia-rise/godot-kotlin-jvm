@@ -35,9 +35,9 @@ import kotlin.Suppress
 @GodotBaseType
 public open class ColorPickerButton : Button() {
   /**
-   * Emitted when the [godot.ColorPicker] is created (the button is pressed for the first time).
+   * Emitted when the color changes.
    */
-  public val pickerCreated: Signal0 by signal()
+  public val colorChanged: Signal1<Color> by signal("color")
 
   /**
    * Emitted when the [godot.ColorPicker] is closed.
@@ -45,9 +45,9 @@ public open class ColorPickerButton : Button() {
   public val popupClosed: Signal0 by signal()
 
   /**
-   * Emitted when the color changes.
+   * Emitted when the [godot.ColorPicker] is created (the button is pressed for the first time).
    */
-  public val colorChanged: Signal1<Color> by signal("color")
+  public val pickerCreated: Signal0 by signal()
 
   /**
    * The currently selected color.

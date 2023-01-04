@@ -29,7 +29,7 @@ import kotlin.Suppress
  * **Note:** The PhysicalBone2D node does not automatically create a [godot.Joint2D] node to keep `PhysicalBone2D` nodes together. You will need to create these manually. For most cases, you want to use a [godot.PinJoint2D] node. The `PhysicalBone2D` node can automatically configure the [godot.Joint2D] node once it's been created as a child node.
  */
 @GodotBaseType
-public open class PhysicalBone2D : RigidDynamicBody2D() {
+public open class PhysicalBone2D : RigidBody2D() {
   /**
    * The [godot.core.NodePath] to the [godot.Bone2D] node that this `PhysicalBone2D` node is supposed to be simulating.
    */

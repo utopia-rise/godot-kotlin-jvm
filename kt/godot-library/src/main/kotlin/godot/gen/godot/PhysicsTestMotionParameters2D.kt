@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.RID
 import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -17,10 +18,10 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -99,14 +100,14 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
     }
 
   /**
-   * Optional array of body [RID] to exclude from collision.
+   * Optional array of body [RID] to exclude from collision. Use [godot.CollisionObject2D.getRid] to get the [RID] associated with a [godot.CollisionObject2D]-derived node.
    */
-  public var excludeBodies: VariantArray<Any?>
+  public var excludeBodies: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_EXCLUDE_BODIES, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -117,17 +118,37 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   /**
    * Optional array of object unique instance ID to exclude from collision. See [godot.Object.getInstanceId].
    */
-  public var excludeObjects: VariantArray<Any?>
+  public var excludeObjects: VariantArray<Long>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_EXCLUDE_OBJECTS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_EXCLUDE_OBJECTS, NIL)
+    }
+
+  /**
+   * If set to `true`, any depenetration from the recovery phase is reported as a collision; this is used e.g. by [godot.CharacterBody2D] for improving floor detection during floor snapping.
+   *
+   * If set to `false`, only collisions resulting from the motion are reported, which is generally the desired behavior.
+   */
+  public var recoveryAsCollision: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_IS_RECOVERY_AS_COLLISION_ENABLED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_RECOVERY_AS_COLLISION_ENABLED,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

@@ -6,10 +6,10 @@
 
 package godot
 
-import godot.TileSet
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantArray
+import godot.core.VariantType
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -52,11 +52,11 @@ public open class TileSet : Resource() {
   /**
    * The tile shape.
    */
-  public var tileShape: Long
+  public var tileShape: TileShape
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_SHAPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TileSet.TileShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -66,11 +66,11 @@ public open class TileSet : Resource() {
   /**
    * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles are indexed in the TileMap grid.
    */
-  public var tileLayout: Long
+  public var tileLayout: TileLayout
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_LAYOUT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TileSet.TileLayout.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -80,12 +80,12 @@ public open class TileSet : Resource() {
   /**
    * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), determines the offset axis.
    */
-  public var tileOffsetAxis: Long
+  public var tileOffsetAxis: TileOffsetAxis
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_OFFSET_AXIS,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TileSet.TileOffsetAxis.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -402,7 +402,7 @@ public open class TileSet : Resource() {
   /**
    * Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighbouring tiles' terrains.
    */
-  public fun setTerrainSetMode(terrainSet: Long, mode: TileSet.TerrainMode): Unit {
+  public fun setTerrainSetMode(terrainSet: Long, mode: TerrainMode): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_SET_MODE, NIL)
   }
@@ -410,7 +410,7 @@ public open class TileSet : Resource() {
   /**
    * Returns a terrain set mode.
    */
-  public fun getTerrainSetMode(terrainSet: Long): TileSet.TerrainMode {
+  public fun getTerrainSetMode(terrainSet: Long): TerrainMode {
     TransferContext.writeArguments(LONG to terrainSet)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_SET_MODE, LONG)
     return TileSet.TerrainMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -586,6 +586,54 @@ public open class TileSet : Resource() {
     TransferContext.writeArguments(LONG to layerIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_CUSTOM_DATA_LAYER,
         NIL)
+  }
+
+  /**
+   * Returns the index of the custom data layer identified by the given name.
+   */
+  public fun getCustomDataLayerByName(layerName: String): Long {
+    TransferContext.writeArguments(STRING to layerName)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYER_BY_NAME, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets the name of the custom data layer identified by the given index. Names are identifiers of the layer therefore if the name is already taken it will fail and raise an error.
+   */
+  public fun setCustomDataLayerName(layerIndex: Long, layerName: String): Unit {
+    TransferContext.writeArguments(LONG to layerIndex, STRING to layerName)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_CUSTOM_DATA_LAYER_NAME,
+        NIL)
+  }
+
+  /**
+   * Returns the name of the custom data layer identified by the given index.
+   */
+  public fun getCustomDataLayerName(layerIndex: Long): String {
+    TransferContext.writeArguments(LONG to layerIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYER_NAME,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Sets the type of the custom data layer identified by the given index.
+   */
+  public fun setCustomDataLayerType(layerIndex: Long, layerType: VariantType): Unit {
+    TransferContext.writeArguments(LONG to layerIndex, LONG to layerType.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_CUSTOM_DATA_LAYER_TYPE,
+        NIL)
+  }
+
+  /**
+   * Returns the type of the custom data layer identified by the given index.
+   */
+  public fun getCustomDataLayerType(layerIndex: Long): VariantType {
+    TransferContext.writeArguments(LONG to layerIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYER_TYPE,
+        LONG)
+    return VariantType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -813,6 +861,39 @@ public open class TileSet : Resource() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  public enum class TileShape(
+    id: Long
+  ) {
+    /**
+     * Rectangular tile shape.
+     */
+    TILE_SHAPE_SQUARE(0),
+    /**
+     * Diamond tile shape (for isometric look).
+     *
+     * **Note:** Isometric [godot.TileSet] works best if [godot.TileMap] and all its layers have Y-sort enabled.
+     */
+    TILE_SHAPE_ISOMETRIC(1),
+    /**
+     * Rectangular tile shape with one row/column out of two offset by half a tile.
+     */
+    TILE_SHAPE_HALF_OFFSET_SQUARE(2),
+    /**
+     * Hexagonal tile shape.
+     */
+    TILE_SHAPE_HEXAGON(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class TileLayout(
     id: Long
   ) {
@@ -840,6 +921,29 @@ public open class TileSet : Resource() {
      * Tile coordinates layout where the horizontal axis goes down-right, and the vertical one goes down-left.
      */
     TILE_LAYOUT_DIAMOND_DOWN(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TileOffsetAxis(
+    id: Long
+  ) {
+    /**
+     * Horizontal half-offset.
+     */
+    TILE_OFFSET_AXIS_HORIZONTAL(0),
+    /**
+     * Vertical half-offset.
+     */
+    TILE_OFFSET_AXIS_VERTICAL(1),
     ;
 
     public val id: Long
@@ -931,37 +1035,6 @@ public open class TileSet : Resource() {
     }
   }
 
-  public enum class TileShape(
-    id: Long
-  ) {
-    /**
-     * Rectangular tile shape.
-     */
-    TILE_SHAPE_SQUARE(0),
-    /**
-     * Diamond tile shape (for isometric look).
-     */
-    TILE_SHAPE_ISOMETRIC(1),
-    /**
-     * Rectangular tile shape with one row/column out of two offset by half a tile.
-     */
-    TILE_SHAPE_HALF_OFFSET_SQUARE(2),
-    /**
-     * Hexagonal tile shape.
-     */
-    TILE_SHAPE_HEXAGON(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class TerrainMode(
     id: Long
   ) {
@@ -977,29 +1050,6 @@ public open class TileSet : Resource() {
      * Requires sides to match with neighboring tiles' terrains.
      */
     TERRAIN_MODE_MATCH_SIDES(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TileOffsetAxis(
-    id: Long
-  ) {
-    /**
-     * Horizontal half-offset.
-     */
-    TILE_OFFSET_AXIS_HORIZONTAL(0),
-    /**
-     * Vertical half-offset.
-     */
-    TILE_OFFSET_AXIS_VERTICAL(1),
     ;
 
     public val id: Long

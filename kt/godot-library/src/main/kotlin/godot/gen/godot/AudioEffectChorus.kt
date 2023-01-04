@@ -72,270 +72,6 @@ public open class AudioEffectChorus : AudioEffect() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_SET_WET, NIL)
     }
 
-  /**
-   * The voice's signal delay.
-   */
-  public val voice1DelayMs: Double
-    get() {
-      TransferContext.writeArguments(LONG to 0)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_DELAY_MS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's filter rate.
-   */
-  public val voice1RateHz: Double
-    get() {
-      TransferContext.writeArguments(LONG to 0)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_RATE_HZ, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice filter's depth.
-   */
-  public val voice1DepthMs: Double
-    get() {
-      TransferContext.writeArguments(LONG to 0)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_DEPTH_MS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's volume.
-   */
-  public val voice1LevelDb: Double
-    get() {
-      TransferContext.writeArguments(LONG to 0)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_LEVEL_DB, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's cutoff frequency.
-   */
-  public val voice1CutoffHz: Double
-    get() {
-      TransferContext.writeArguments(LONG to 0)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_CUTOFF_HZ, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's pan level.
-   */
-  public val voice1Pan: Double
-    get() {
-      TransferContext.writeArguments(LONG to 0)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_PAN,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's signal delay.
-   */
-  public val voice2DelayMs: Double
-    get() {
-      TransferContext.writeArguments(LONG to 1)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_DELAY_MS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's filter rate.
-   */
-  public val voice2RateHz: Double
-    get() {
-      TransferContext.writeArguments(LONG to 1)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_RATE_HZ, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice filter's depth.
-   */
-  public val voice2DepthMs: Double
-    get() {
-      TransferContext.writeArguments(LONG to 1)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_DEPTH_MS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's volume.
-   */
-  public val voice2LevelDb: Double
-    get() {
-      TransferContext.writeArguments(LONG to 1)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_LEVEL_DB, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's cutoff frequency.
-   */
-  public val voice2CutoffHz: Double
-    get() {
-      TransferContext.writeArguments(LONG to 1)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_CUTOFF_HZ, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's pan level.
-   */
-  public val voice2Pan: Double
-    get() {
-      TransferContext.writeArguments(LONG to 1)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_PAN,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's signal delay.
-   */
-  public val voice3DelayMs: Double
-    get() {
-      TransferContext.writeArguments(LONG to 2)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_DELAY_MS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's filter rate.
-   */
-  public val voice3RateHz: Double
-    get() {
-      TransferContext.writeArguments(LONG to 2)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_RATE_HZ, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice filter's depth.
-   */
-  public val voice3DepthMs: Double
-    get() {
-      TransferContext.writeArguments(LONG to 2)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_DEPTH_MS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's volume.
-   */
-  public val voice3LevelDb: Double
-    get() {
-      TransferContext.writeArguments(LONG to 2)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_LEVEL_DB, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's cutoff frequency.
-   */
-  public val voice3CutoffHz: Double
-    get() {
-      TransferContext.writeArguments(LONG to 2)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_CUTOFF_HZ, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's pan level.
-   */
-  public val voice3Pan: Double
-    get() {
-      TransferContext.writeArguments(LONG to 2)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_PAN,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's signal delay.
-   */
-  public val voice4DelayMs: Double
-    get() {
-      TransferContext.writeArguments(LONG to 3)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_DELAY_MS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's filter rate.
-   */
-  public val voice4RateHz: Double
-    get() {
-      TransferContext.writeArguments(LONG to 3)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_RATE_HZ, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice filter's depth.
-   */
-  public val voice4DepthMs: Double
-    get() {
-      TransferContext.writeArguments(LONG to 3)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_DEPTH_MS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's volume.
-   */
-  public val voice4LevelDb: Double
-    get() {
-      TransferContext.writeArguments(LONG to 3)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_LEVEL_DB, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's cutoff frequency.
-   */
-  public val voice4CutoffHz: Double
-    get() {
-      TransferContext.writeArguments(LONG to 3)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_CUTOFF_HZ, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
-  /**
-   * The voice's pan level.
-   */
-  public val voice4Pan: Double
-    get() {
-      TransferContext.writeArguments(LONG to 3)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_PAN,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOEFFECTCHORUS, scriptIndex)
     return true
@@ -353,10 +89,30 @@ public open class AudioEffectChorus : AudioEffect() {
   /**
    *
    */
+  public fun getVoiceDelayMs(voiceIdx: Long): Double {
+    TransferContext.writeArguments(LONG to voiceIdx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_DELAY_MS, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   *
+   */
   public fun setVoiceRateHz(voiceIdx: Long, rateHz: Double): Unit {
     TransferContext.writeArguments(LONG to voiceIdx, DOUBLE to rateHz)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_SET_VOICE_RATE_HZ,
         NIL)
+  }
+
+  /**
+   *
+   */
+  public fun getVoiceRateHz(voiceIdx: Long): Double {
+    TransferContext.writeArguments(LONG to voiceIdx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_RATE_HZ,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -371,10 +127,30 @@ public open class AudioEffectChorus : AudioEffect() {
   /**
    *
    */
+  public fun getVoiceDepthMs(voiceIdx: Long): Double {
+    TransferContext.writeArguments(LONG to voiceIdx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_DEPTH_MS, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   *
+   */
   public fun setVoiceLevelDb(voiceIdx: Long, levelDb: Double): Unit {
     TransferContext.writeArguments(LONG to voiceIdx, DOUBLE to levelDb)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_SET_VOICE_LEVEL_DB, NIL)
+  }
+
+  /**
+   *
+   */
+  public fun getVoiceLevelDb(voiceIdx: Long): Double {
+    TransferContext.writeArguments(LONG to voiceIdx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_LEVEL_DB, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -389,10 +165,30 @@ public open class AudioEffectChorus : AudioEffect() {
   /**
    *
    */
+  public fun getVoiceCutoffHz(voiceIdx: Long): Double {
+    TransferContext.writeArguments(LONG to voiceIdx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_CUTOFF_HZ, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   *
+   */
   public fun setVoicePan(voiceIdx: Long, pan: Double): Unit {
     TransferContext.writeArguments(LONG to voiceIdx, DOUBLE to pan)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_SET_VOICE_PAN,
         NIL)
+  }
+
+  /**
+   *
+   */
+  public fun getVoicePan(voiceIdx: Long): Double {
+    TransferContext.writeArguments(LONG to voiceIdx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_GET_VOICE_PAN,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   public companion object

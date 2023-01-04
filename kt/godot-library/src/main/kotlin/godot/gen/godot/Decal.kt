@@ -235,7 +235,7 @@ public open class Decal : VisualInstance3D() {
    *
    * [/codeblocks]
    */
-  public fun setTexture(type: Decal.DecalTexture, texture: Texture2D): Unit {
+  public fun setTexture(type: DecalTexture, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to type.id, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
   }
@@ -271,7 +271,7 @@ public open class Decal : VisualInstance3D() {
    *
    * [/codeblocks]
    */
-  public fun getTexture(type: Decal.DecalTexture): Texture2D? {
+  public fun getTexture(type: DecalTexture): Texture2D? {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?

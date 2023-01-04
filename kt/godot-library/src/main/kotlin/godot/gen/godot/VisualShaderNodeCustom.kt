@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -141,8 +140,8 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **required**.
    */
   public open fun _getCode(
-    inputVars: VariantArray<Any?>,
-    outputVars: VariantArray<Any?>,
+    inputVars: VariantArray<String>,
+    outputVars: VariantArray<String>,
     mode: Shader.Mode,
     type: VisualShader.Type
   ): String {

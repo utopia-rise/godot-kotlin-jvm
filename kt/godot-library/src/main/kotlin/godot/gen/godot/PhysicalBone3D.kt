@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM3D
@@ -31,12 +32,12 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint type. See [enum JointType] for possible values.
    */
-  public var jointType: Long
+  public var jointType: JointType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_TYPE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return PhysicalBone3D.JointType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -170,12 +171,12 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
    */
-  public var linearDampMode: Long
+  public var linearDampMode: DampMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_DAMP_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return PhysicalBone3D.DampMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -204,12 +205,12 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
    */
-  public var angularDampMode: Long
+  public var angularDampMode: DampMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_DAMP_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return PhysicalBone3D.DampMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -339,6 +340,29 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  public enum class DampMode(
+    id: Long
+  ) {
+    /**
+     * In this mode, the body's damping value is added to any value set in areas or the default value.
+     */
+    DAMP_MODE_COMBINE(0),
+    /**
+     * In this mode, the body's damping value replaces any value set in areas or the default value.
+     */
+    DAMP_MODE_REPLACE(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class JointType(
     id: Long
   ) {
@@ -366,29 +390,6 @@ public open class PhysicalBone3D : PhysicsBody3D() {
      *
      */
     JOINT_TYPE_6DOF(5),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DampMode(
-    id: Long
-  ) {
-    /**
-     * In this mode, the body's damping value is added to any value set in areas or the default value.
-     */
-    DAMP_MODE_COMBINE(0),
-    /**
-     * In this mode, the body's damping value replaces any value set in areas or the default value.
-     */
-    DAMP_MODE_REPLACE(1),
     ;
 
     public val id: Long

@@ -8,12 +8,17 @@ import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait
 import godot.codegen.traits.WithDefaultValueTrait
 
-fun TypedTrait.isCoreType() = GodotTypes.coreTypes.find { s -> s == this.type } != null
+private const val enumPrefix = "enum::"
+private const val bitfieldPrefix = "bitfield::"
+
+fun TypedTrait.isCoreType() = isTypedArray() || GodotTypes.coreTypes.find { s -> s == this.type } != null
 fun TypedTrait.isPrimitive() = GodotTypes.primitives.find { s -> s == this.type } != null
 fun TypedTrait.isCoreTypeReimplementedInKotlin() = GodotTypes.coreTypesReimplementedInKotlin.find { s ->
     s == this.type
 } != null
-fun TypedTrait.isEnum() = type?.startsWith("enum::") ?: false
+fun TypedTrait.isEnum() = type?.startsWith(enumPrefix) ?: false
+fun TypedTrait.isBitField() = type?.startsWith(bitfieldPrefix) ?: false
+fun TypedTrait.isTypedArray() = type?.startsWith(GodotTypes.typedArray) ?: false
 
 fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
     val typeNameWrapper = when {
@@ -32,7 +37,8 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
         }
         type == GodotTypes.error -> ClassTypeNameWrapper(GODOT_ERROR)
         isEnum() -> {
-            if (type == GodotTypes.variantType) {
+            val enumType = type!!.removePrefix(enumPrefix)
+            if (enumType == GodotTypes.variantType) {
                 ClassTypeNameWrapper(
                     ClassName(
                         godotCorePackage,
@@ -40,18 +46,33 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
                     )
                 )
             } else {
+                val containerAndEnum = enumType.split('.')
+                val packageName = object : TypedTrait {
+                    override val type = containerAndEnum.first()
+                }.getTypeClassName().className.packageName
                 ClassTypeNameWrapper(
                     ClassName(
-                        godotApiPackage,
-                        type!!.replace("enum::", "")
+                        packageName,
+                        containerAndEnum
                     )
                 )
             }
         }
+        isBitField() -> ClassTypeNameWrapper(LONG)
         type == GodotTypes.bool -> ClassTypeNameWrapper(BOOLEAN)
         type == GodotTypes.int -> ClassTypeNameWrapper(LONG)
         type == GodotTypes.float -> ClassTypeNameWrapper(DOUBLE)
         type == GodotTypes.string -> ClassTypeNameWrapper(STRING)
+        isTypedArray() -> {
+            val parameterType = object : TypedTrait {
+                override val type: String = this@getTypeClassName.type!!
+                    .removePrefix("${GodotTypes.typedArray}::")
+            }
+            ClassTypeNameWrapper(GODOT_ARRAY)
+                .parameterizedBy(
+                    parameterType.getTypeClassName().typeName
+                )
+        }
         type == GodotTypes.array -> ClassTypeNameWrapper(GODOT_ARRAY)
             .parameterizedBy(ANY.copy(nullable = true))
         type == GodotTypes.dictionary -> ClassTypeNameWrapper(GODOT_DICTIONARY)
@@ -68,7 +89,7 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
     return typeNameWrapper
 }
 
-fun TypedTrait.isObjectSubClass() = !(type.isNullOrEmpty() || isEnum() || isPrimitive() || isCoreType())
+fun TypedTrait.isObjectSubClass() = !(type.isNullOrEmpty() || isEnum() || isPrimitive() || isCoreType() || isBitField())
 
 val TypedTrait.jvmVariantTypeValue: ClassName
     get() {
@@ -81,7 +102,7 @@ val TypedTrait.jvmVariantTypeValue: ClassName
             type == GodotTypes.nodePath -> VARIANT_TYPE_NODE_PATH
             type == GodotTypes.stringName -> VARIANT_TYPE_STRING_NAME
             type == GodotTypes.rid -> VARIANT_TYPE__RID
-            type == GodotTypes.array -> VARIANT_TYPE_ARRAY
+            type == GodotTypes.array || isTypedArray() -> VARIANT_TYPE_ARRAY
             type == GodotTypes.packedByteArray -> VARIANT_TYPE_PACKED_BYTE_ARRAY
             type == GodotTypes.packedInt32Array -> VARIANT_TYPE_PACKED_INT_32_ARRAY
             type == GodotTypes.packedInt64Array -> VARIANT_TYPE_PACKED_INT_64_ARRAY
@@ -105,32 +126,32 @@ fun <T> T.getDefaultValueKotlinString(): String?
     return if (defaultValueString != null && nullable) {
         "null"
     } else if (defaultValueString != null) {
-        when (type) {
-            GodotTypes.color -> "${KotlinTypes.color}($defaultValueString)"
-            GodotTypes.variant -> defaultValueString
-            GodotTypes.bool -> defaultValueString.toLowerCase()
-            GodotTypes.float -> intToFloat(defaultValueString)
-            GodotTypes.stringName -> "${KotlinTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
-            GodotTypes.array -> "$godotCorePackage.variantArrayOf(".plus(defaultValueString.removePrefix("[").removeSuffix("]")).plus(")")
+        when {
+            type == GodotTypes.color -> "${KotlinTypes.color}($defaultValueString)"
+            type == GodotTypes.variant -> defaultValueString
+            type == GodotTypes.bool -> defaultValueString.toLowerCase()
+            type == GodotTypes.float -> intToFloat(defaultValueString)
+            type == GodotTypes.stringName -> "${KotlinTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
+            type == GodotTypes.array || isTypedArray() -> "$godotCorePackage.variantArrayOf(".plus(defaultValueString.removePrefix("[").removeSuffix("]")).plus(")")
 
-            GodotTypes.rect2 -> defaultValueString
+            type == GodotTypes.rect2 -> defaultValueString
                 .replace(",", ".0,")
                 .replace(")", ".0)")
 
-            GodotTypes.rid,
-            GodotTypes.callable,
-            GodotTypes.dictionary,
-            GodotTypes.transform2D,
-            GodotTypes.transform3D,
-            GodotTypes.packedByteArray,
-            GodotTypes.packedColorArray,
-            GodotTypes.packedFloat32Array,
-            GodotTypes.packedFloat64Array,
-            GodotTypes.packedStringArray,
-            GodotTypes.packedInt32Array,
-            GodotTypes.packedInt64Array,
-            GodotTypes.packedVector2Array,
-            GodotTypes.packedVector3Array,
+            type == GodotTypes.rid ||
+            type == GodotTypes.callable ||
+            type == GodotTypes.dictionary ||
+            type == GodotTypes.transform2D ||
+            type == GodotTypes.transform3D ||
+            type == GodotTypes.packedByteArray ||
+            type == GodotTypes.packedColorArray ||
+            type == GodotTypes.packedFloat32Array ||
+            type == GodotTypes.packedFloat64Array ||
+            type == GodotTypes.packedStringArray ||
+            type == GodotTypes.packedInt32Array ||
+            type == GodotTypes.packedInt64Array ||
+            type == GodotTypes.packedVector2Array ||
+            type == GodotTypes.packedVector3Array
             -> "$type()"
 
             else -> defaultValueString

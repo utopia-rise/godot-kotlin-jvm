@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.Dictionary
 import godot.core.PackedFloat32Array
 import godot.core.RID
 import godot.core.Rect2
@@ -17,8 +16,8 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -50,11 +49,11 @@ public open class TextParagraph : RefCounted() {
   /**
    * Text writing direction.
    */
-  public var direction: Long
+  public var direction: TextServer.Direction
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DIRECTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.Direction.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -80,12 +79,12 @@ public open class TextParagraph : RefCounted() {
   /**
    * Text orientation.
    */
-  public var orientation: Long
+  public var orientation: TextServer.Orientation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_ORIENTATION,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.Orientation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -128,37 +127,58 @@ public open class TextParagraph : RefCounted() {
   /**
    * Paragraph horizontal alignment.
    */
-  public var alignment: Long
+  public var alignment: HorizontalAlignment
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_ALIGNMENT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_ALIGNMENT, NIL)
     }
 
-  public var flags: Long
+  /**
+   * Line breaking rules. For more info see [godot.TextServer].
+   */
+  public var breakFlags: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_FLAGS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_BREAK_FLAGS,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_FLAGS, NIL)
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_BREAK_FLAGS,
+          NIL)
+    }
+
+  /**
+   * Line alignment rules. For more info see [godot.TextServer].
+   */
+  public var justificationFlags: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_JUSTIFICATION_FLAGS, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_JUSTIFICATION_FLAGS, NIL)
     }
 
   /**
    * Sets the clipping behavior when the text exceeds the paragraph's set width. See [enum TextServer.OverrunBehavior] for a description of all modes.
    */
-  public var textOverrunBehavior: Long
+  public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_TEXT_OVERRUN_BEHAVIOR, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.OverrunBehavior.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -225,13 +245,12 @@ public open class TextParagraph : RefCounted() {
    */
   public fun setDropcap(
     text: String,
-    fonts: Font,
-    size: Long,
+    font: Font,
+    fontSize: Long,
     dropcapMargins: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
-    opentypeFeatures: Dictionary<Any?, Any?> = Dictionary(),
     language: String = ""
   ): Boolean {
-    TransferContext.writeArguments(STRING to text, OBJECT to fonts, LONG to size, RECT2 to dropcapMargins, DICTIONARY to opentypeFeatures, STRING to language)
+    TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize, RECT2 to dropcapMargins, STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_DROPCAP, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -249,13 +268,12 @@ public open class TextParagraph : RefCounted() {
    */
   public fun addString(
     text: String,
-    fonts: Font,
-    size: Long,
-    opentypeFeatures: Dictionary<Any?, Any?> = Dictionary(),
+    font: Font,
+    fontSize: Long,
     language: String = "",
     meta: Any? = null
   ): Boolean {
-    TransferContext.writeArguments(STRING to text, OBJECT to fonts, LONG to size, DICTIONARY to opentypeFeatures, STRING to language, ANY to meta)
+    TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize, STRING to language, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_STRING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -267,9 +285,10 @@ public open class TextParagraph : RefCounted() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    length: Long = 1
+    length: Long = 1,
+    baseline: Double = 0.0
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length)
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_OBJECT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -280,9 +299,10 @@ public open class TextParagraph : RefCounted() {
   public fun resizeObject(
     key: Any,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
+    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    baseline: Double = 0.0
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id)
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_RESIZE_OBJECT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -440,19 +460,6 @@ public open class TextParagraph : RefCounted() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun getSpacingTop(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SPACING_TOP, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun getSpacingBottom(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SPACING_BOTTOM,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
   /**
    * Returns drop cap bounding box size.
    */
@@ -561,26 +568,6 @@ public open class TextParagraph : RefCounted() {
     TransferContext.writeArguments(VECTOR2 to coords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_HIT_TEST, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public enum class OverrunBehavior(
-    id: Long
-  ) {
-    OVERRUN_NO_TRIMMING(0),
-    OVERRUN_TRIM_CHAR(1),
-    OVERRUN_TRIM_WORD(2),
-    OVERRUN_TRIM_ELLIPSIS(3),
-    OVERRUN_TRIM_WORD_ELLIPSIS(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public companion object

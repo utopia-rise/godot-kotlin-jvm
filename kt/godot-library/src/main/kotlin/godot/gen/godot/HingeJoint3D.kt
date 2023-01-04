@@ -34,7 +34,7 @@ public open class HingeJoint3D : Joint3D() {
   /**
    * Sets the value of the specified parameter.
    */
-  public fun setParam(`param`: HingeJoint3D.Param, `value`: Double): Unit {
+  public fun setParam(`param`: Param, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_SET_PARAM, NIL)
   }
@@ -42,7 +42,7 @@ public open class HingeJoint3D : Joint3D() {
   /**
    * Returns the value of the specified parameter.
    */
-  public fun getParam(`param`: HingeJoint3D.Param): Double {
+  public fun getParam(`param`: Param): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_GET_PARAM, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -51,7 +51,7 @@ public open class HingeJoint3D : Joint3D() {
   /**
    * If `true`, enables the specified flag.
    */
-  public fun setFlag(flag: HingeJoint3D.Flag, enabled: Boolean): Unit {
+  public fun setFlag(flag: Flag, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_SET_FLAG, NIL)
   }
@@ -59,7 +59,7 @@ public open class HingeJoint3D : Joint3D() {
   /**
    * Returns the value of the specified flag.
    */
-  public fun getFlag(flag: HingeJoint3D.Flag): Boolean {
+  public fun getFlag(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_GET_FLAG, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

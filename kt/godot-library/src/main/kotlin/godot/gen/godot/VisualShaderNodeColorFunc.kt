@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -25,12 +26,12 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   /**
    * A function to be applied to the input color. See [enum Function] for options.
    */
-  public var function: Long
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORFUNC_GET_FUNCTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeColorFunc.Function.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -59,6 +60,14 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      */
     FUNC_GRAYSCALE(0),
     /**
+     * Converts HSV vector to RGB equivalent.
+     */
+    FUNC_HSV2RGB(1),
+    /**
+     * Converts RGB vector to HSV equivalent.
+     */
+    FUNC_RGB2HSV(2),
+    /**
      * Applies sepia tone effect using the following formula:
      *
      * ```
@@ -69,11 +78,11 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * 			return vec3(r, g, b);
      * 			```
      */
-    FUNC_SEPIA(1),
+    FUNC_SEPIA(3),
     /**
      * Represents the size of the [enum Function] enum.
      */
-    FUNC_MAX(2),
+    FUNC_MAX(4),
     ;
 
     public val id: Long

@@ -209,14 +209,14 @@ import kotlin.Unit
 @GodotBaseType
 public open class Tween : RefCounted() {
   /**
-   * Emitted when a full loop is complete (see [setLoops]), providing the loop index. This signal is not emitted after the final loop, use [finished] instead for this case.
-   */
-  public val loopFinished: Signal1<Long> by signal("loopCount")
-
-  /**
    * Emitted when one step of the [godot.Tween] is complete, providing the step index. One step is either a single [godot.Tweener] or a group of [godot.Tweener]s running in parallel.
    */
   public val stepFinished: Signal1<Long> by signal("idx")
+
+  /**
+   * Emitted when a full loop is complete (see [setLoops]), providing the loop index. This signal is not emitted after the final loop, use [finished] instead for this case.
+   */
+  public val loopFinished: Signal1<Long> by signal("loopCount")
 
   /**
    * Emitted when the [godot.Tween] has finished all tweening. Never emitted when the [godot.Tween] is set to infinite looping (see [setLoops]).
@@ -568,6 +568,18 @@ public open class Tween : RefCounted() {
   }
 
   /**
+   * Returns the total time in seconds the [godot.Tween] has been animating (i.e. the time since it started, not counting pauses etc.). The time is affected by [setSpeedScale], and [stop] will reset it to `0`.
+   *
+   * **Note:** As it results from accumulating frame deltas, the time returned after the [godot.Tween] has finished animating will be slightly greater than the actual [godot.Tween] duration.
+   */
+  public fun getTotalElapsedTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_TOTAL_ELAPSED_TIME,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Returns whether the [godot.Tween] is currently running, i.e. it wasn't paused and it's not finished.
    */
   public fun isRunning(): Boolean {
@@ -601,7 +613,7 @@ public open class Tween : RefCounted() {
    *
    * Default value is [TWEEN_PROCESS_IDLE].
    */
-  public fun setProcessMode(mode: Tween.TweenProcessMode): Tween? {
+  public fun setProcessMode(mode: TweenProcessMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PROCESS_MODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -612,7 +624,7 @@ public open class Tween : RefCounted() {
    *
    * Default value is [TWEEN_PAUSE_BOUND].
    */
-  public fun setPauseMode(mode: Tween.TweenPauseMode): Tween? {
+  public fun setPauseMode(mode: TweenPauseMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PAUSE_MODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -652,7 +664,7 @@ public open class Tween : RefCounted() {
   /**
    * Sets the default transition type for [godot.PropertyTweener]s and [godot.MethodTweener]s animated by this [godot.Tween].
    */
-  public fun setTrans(trans: Tween.TransitionType): Tween? {
+  public fun setTrans(trans: TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_TRANS, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -661,7 +673,7 @@ public open class Tween : RefCounted() {
   /**
    * Sets the default ease type for [godot.PropertyTweener]s and [godot.MethodTweener]s animated by this [godot.Tween].
    */
-  public fun setEase(ease: Tween.EaseType): Tween? {
+  public fun setEase(ease: EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_EASE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -747,30 +759,54 @@ public open class Tween : RefCounted() {
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
   }
 
-  /**
-   * This method can be used for manual interpolation of a value, when you don't want [godot.Tween] to do animating for you. It's similar to [@GlobalScope.lerp], but with support for custom transition and easing.
-   *
-   * [initialValue] is the starting value of the interpolation.
-   *
-   * [deltaValue] is the change of the value in the interpolation, i.e. it's equal to `final_value - initial_value`.
-   *
-   * [elapsedTime] is the time in seconds that passed after the interpolation started and it's used to control the position of the interpolation. E.g. when it's equal to half of the [duration], the interpolated value will be halfway between initial and final values. This value can also be greater than [duration] or lower than 0, which will extrapolate the value.
-   *
-   * [duration] is the total time of the interpolation.
-   *
-   * **Note:** If [duration] is equal to `0`, the method will always return the final value, regardless of [elapsedTime] provided.
-   */
-  public fun interpolateValue(
-    initialValue: Any,
-    deltaValue: Any,
-    elapsedTime: Double,
-    duration: Double,
-    transType: Tween.TransitionType,
-    easeType: Tween.EaseType
-  ): Any? {
-    TransferContext.writeArguments(ANY to initialValue, ANY to deltaValue, DOUBLE to elapsedTime, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_INTERPOLATE_VALUE, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+  public enum class TweenProcessMode(
+    id: Long
+  ) {
+    /**
+     * The [godot.Tween] updates during the physics frame.
+     */
+    TWEEN_PROCESS_PHYSICS(0),
+    /**
+     * The [godot.Tween] updates during the idle frame.
+     */
+    TWEEN_PROCESS_IDLE(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TweenPauseMode(
+    id: Long
+  ) {
+    /**
+     * If the [godot.Tween] has a bound node, it will process when that node can process (see [godot.Node.processMode]). Otherwise it's the same as [TWEEN_PAUSE_STOP].
+     */
+    TWEEN_PAUSE_BOUND(0),
+    /**
+     * If [godot.SceneTree] is paused, the [godot.Tween] will also pause.
+     */
+    TWEEN_PAUSE_STOP(1),
+    /**
+     * The [godot.Tween] will process regardless of whether [godot.SceneTree] is paused.
+     */
+    TWEEN_PAUSE_PROCESS(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class TransitionType(
@@ -820,56 +856,6 @@ public open class Tween : RefCounted() {
      * The animation is interpolated backing out at ends.
      */
     TRANS_BACK(10),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TweenPauseMode(
-    id: Long
-  ) {
-    /**
-     * If the [godot.Tween] has a bound node, it will process when that node can process (see [godot.Node.processMode]). Otherwise it's the same as [TWEEN_PAUSE_STOP].
-     */
-    TWEEN_PAUSE_BOUND(0),
-    /**
-     * If [godot.SceneTree] is paused, the [godot.Tween] will also pause.
-     */
-    TWEEN_PAUSE_STOP(1),
-    /**
-     * The [godot.Tween] will process regardless of whether [godot.SceneTree] is paused.
-     */
-    TWEEN_PAUSE_PROCESS(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TweenProcessMode(
-    id: Long
-  ) {
-    /**
-     * The [godot.Tween] updates during the physics frame.
-     */
-    TWEEN_PROCESS_PHYSICS(0),
-    /**
-     * The [godot.Tween] updates during the idle frame.
-     */
-    TWEEN_PROCESS_IDLE(1),
     ;
 
     public val id: Long

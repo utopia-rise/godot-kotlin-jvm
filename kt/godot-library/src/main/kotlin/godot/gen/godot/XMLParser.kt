@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.XMLParser
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
@@ -48,7 +47,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the type of the current node. Compare with [enum NodeType] constants.
    */
-  public fun getNodeType(): XMLParser.NodeType {
+  public fun getNodeType(): NodeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_TYPE, LONG)
     return XMLParser.NodeType.values()[TransferContext.readReturnValue(JVM_INT) as Int]

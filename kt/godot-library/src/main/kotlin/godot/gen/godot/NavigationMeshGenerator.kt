@@ -36,18 +36,18 @@ public object NavigationMeshGenerator : Object() {
   }
 
   /**
-   * Bakes navigation data to the provided [navMesh] by parsing child nodes under the provided [rootNode] or a specific group of nodes for potential source geometry. The parse behavior can be controlled with the [godot.NavigationMesh.geometryParsedGeometryType] and [godot.NavigationMesh.geometrySourceGeometryMode] properties on the [godot.NavigationMesh] resource.
+   * Bakes navigation data to the provided [navigationMesh] by parsing child nodes under the provided [rootNode] or a specific group of nodes for potential source geometry. The parse behavior can be controlled with the [godot.NavigationMesh.geometryParsedGeometryType] and [godot.NavigationMesh.geometrySourceGeometryMode] properties on the [godot.NavigationMesh] resource.
    */
-  public fun bake(navMesh: NavigationMesh, rootNode: Node): Unit {
-    TransferContext.writeArguments(OBJECT to navMesh, OBJECT to rootNode)
+  public fun bake(navigationMesh: NavigationMesh, rootNode: Node): Unit {
+    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESHGENERATOR_BAKE, NIL)
   }
 
   /**
-   * Removes all polygons and vertices from the provided [navMesh] resource.
+   * Removes all polygons and vertices from the provided [navigationMesh] resource.
    */
-  public fun clear(navMesh: NavigationMesh): Unit {
-    TransferContext.writeArguments(OBJECT to navMesh)
+  public fun clear(navigationMesh: NavigationMesh): Unit {
+    TransferContext.writeArguments(OBJECT to navigationMesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESHGENERATOR_CLEAR, NIL)
   }
 }

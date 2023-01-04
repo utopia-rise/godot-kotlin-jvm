@@ -79,18 +79,18 @@ object FunctionRegistrationGenerator {
     private fun getRpcModeEnum(registeredFunction: RegisteredFunction): ClassName {
         return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.rpcMode) {
             null,
-            RpcMode.DISABLED -> ClassName("godot.RPCMode", "RPC_MODE_DISABLED")
-            RpcMode.ANY -> ClassName("godot.RPCMode", "RPC_MODE_ANY_PEER")
-            RpcMode.AUTHORITY -> ClassName("godot.RPCMode", "RPC_MODE_AUTH")
+            RpcMode.DISABLED -> ClassName("godot.MultiplayerAPI.RPCMode", "RPC_MODE_DISABLED")
+            RpcMode.ANY -> ClassName("godot.MultiplayerAPI.RPCMode", "RPC_MODE_ANY_PEER")
+            RpcMode.AUTHORITY -> ClassName("godot.MultiplayerAPI.RPCMode", "RPC_MODE_AUTHORITY")
         }
     }
 
     private fun getRpcTransferModeEnum(registeredFunction: RegisteredFunction): ClassName {
         return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.transferMode) {
             null,
-            TransferMode.RELIABLE -> ClassName("godot.TransferMode", "TRANSFER_MODE_RELIABLE")
-            TransferMode.UNRELIABLE -> ClassName("godot.TransferMode", "TRANSFER_MODE_UNRELIABLE")
-            TransferMode.UNRELIABLE_ORDERED -> ClassName("godot.TransferMode", "TRANSFER_MODE_UNRELIABLE_ORDERED")
+            TransferMode.RELIABLE -> ClassName("godot.MultiplayerPeer.TransferMode", "TRANSFER_MODE_RELIABLE")
+            TransferMode.UNRELIABLE -> ClassName("godot.MultiplayerPeer.TransferMode", "TRANSFER_MODE_UNRELIABLE")
+            TransferMode.UNRELIABLE_ORDERED -> ClassName("godot.MultiplayerPeer.TransferMode", "TRANSFER_MODE_UNRELIABLE_ORDERED")
         }
     }
 

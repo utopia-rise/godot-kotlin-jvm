@@ -14,7 +14,6 @@ import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -58,19 +57,6 @@ public open class VisualShader : Shader() {
           NIL)
     }
 
-  public var engineVersion: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_ENGINE_VERSION,
-          DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_ENGINE_VERSION,
-          NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADER, scriptIndex)
     return true
@@ -88,7 +74,7 @@ public open class VisualShader : Shader() {
    * Adds the specified [node] to the shader.
    */
   public fun addNode(
-    type: VisualShader.Type,
+    type: Type,
     node: VisualShaderNode,
     position: Vector2,
     id: Long
@@ -100,7 +86,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns the shader node instance with specified [type] and [id].
    */
-  public fun getNode(type: VisualShader.Type, id: Long): VisualShaderNode? {
+  public fun getNode(type: Type, id: Long): VisualShaderNode? {
     TransferContext.writeArguments(LONG to type.id, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VisualShaderNode?
@@ -110,7 +96,7 @@ public open class VisualShader : Shader() {
    * Sets the position of the specified node.
    */
   public fun setNodePosition(
-    type: VisualShader.Type,
+    type: Type,
     id: Long,
     position: Vector2
   ): Unit {
@@ -121,7 +107,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns the position of the specified node within the shader graph.
    */
-  public fun getNodePosition(type: VisualShader.Type, id: Long): Vector2 {
+  public fun getNodePosition(type: Type, id: Long): Vector2 {
     TransferContext.writeArguments(LONG to type.id, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_POSITION,
         VECTOR2)
@@ -131,7 +117,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns the list of all nodes in the shader with the specified type.
    */
-  public fun getNodeList(type: VisualShader.Type): PackedInt32Array {
+  public fun getNodeList(type: Type): PackedInt32Array {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_LIST,
         PACKED_INT_32_ARRAY)
@@ -141,7 +127,7 @@ public open class VisualShader : Shader() {
   /**
    *
    */
-  public fun getValidNodeId(type: VisualShader.Type): Long {
+  public fun getValidNodeId(type: Type): Long {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_VALID_NODE_ID,
         LONG)
@@ -151,7 +137,7 @@ public open class VisualShader : Shader() {
   /**
    * Removes the specified node from the shader.
    */
-  public fun removeNode(type: VisualShader.Type, id: Long): Unit {
+  public fun removeNode(type: Type, id: Long): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REMOVE_NODE, NIL)
   }
@@ -160,7 +146,7 @@ public open class VisualShader : Shader() {
    * Replaces the specified node with a node of new class type.
    */
   public fun replaceNode(
-    type: VisualShader.Type,
+    type: Type,
     id: Long,
     newClass: StringName
   ): Unit {
@@ -172,7 +158,7 @@ public open class VisualShader : Shader() {
    * Returns `true` if the specified node and port connection exist.
    */
   public fun isNodeConnection(
-    type: VisualShader.Type,
+    type: Type,
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
@@ -188,7 +174,7 @@ public open class VisualShader : Shader() {
    * Returns `true` if the specified nodes and ports can be connected together.
    */
   public fun canConnectNodes(
-    type: VisualShader.Type,
+    type: Type,
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
@@ -204,7 +190,7 @@ public open class VisualShader : Shader() {
    * Connects the specified nodes and ports.
    */
   public fun connectNodes(
-    type: VisualShader.Type,
+    type: Type,
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
@@ -219,7 +205,7 @@ public open class VisualShader : Shader() {
    * Connects the specified nodes and ports.
    */
   public fun disconnectNodes(
-    type: VisualShader.Type,
+    type: Type,
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
@@ -233,7 +219,7 @@ public open class VisualShader : Shader() {
    * Connects the specified nodes and ports, even if they can't be connected. Such connection is invalid and will not function properly.
    */
   public fun connectNodesForced(
-    type: VisualShader.Type,
+    type: Type,
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
@@ -247,11 +233,11 @@ public open class VisualShader : Shader() {
   /**
    * Returns the list of connected nodes with the specified type.
    */
-  public fun getNodeConnections(type: VisualShader.Type): VariantArray<Any?> {
+  public fun getNodeConnections(type: Type): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_CONNECTIONS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -259,8 +245,8 @@ public open class VisualShader : Shader() {
    */
   public fun addVarying(
     name: String,
-    mode: VisualShader.VaryingMode,
-    type: VisualShader.VaryingType
+    mode: VaryingMode,
+    type: VaryingType
   ): Unit {
     TransferContext.writeArguments(STRING to name, LONG to mode.id, LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_ADD_VARYING, NIL)
@@ -281,69 +267,6 @@ public open class VisualShader : Shader() {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_HAS_VARYING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public enum class VaryingMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VARYING_MODE_VERTEX_TO_FRAG_LIGHT(0),
-    /**
-     *
-     */
-    VARYING_MODE_FRAG_TO_LIGHT(1),
-    /**
-     *
-     */
-    VARYING_MODE_MAX(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class VaryingType(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VARYING_TYPE_FLOAT(0),
-    /**
-     *
-     */
-    VARYING_TYPE_VECTOR_2D(1),
-    /**
-     *
-     */
-    VARYING_TYPE_VECTOR_3D(2),
-    VARYING_TYPE_COLOR(3),
-    /**
-     *
-     */
-    VARYING_TYPE_TRANSFORM(4),
-    /**
-     *
-     */
-    VARYING_TYPE_MAX(5),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public enum class Type(
@@ -393,6 +316,80 @@ public open class VisualShader : Shader() {
      * Represents the size of the [enum Type] enum.
      */
     TYPE_MAX(10),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VaryingMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VARYING_MODE_VERTEX_TO_FRAG_LIGHT(0),
+    /**
+     *
+     */
+    VARYING_MODE_FRAG_TO_LIGHT(1),
+    /**
+     *
+     */
+    VARYING_MODE_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VaryingType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VARYING_TYPE_FLOAT(0),
+    /**
+     *
+     */
+    VARYING_TYPE_INT(1),
+    /**
+     *
+     */
+    VARYING_TYPE_VECTOR_2D(2),
+    /**
+     *
+     */
+    VARYING_TYPE_VECTOR_3D(3),
+    /**
+     *
+     */
+    VARYING_TYPE_VECTOR_4D(4),
+    /**
+     *
+     */
+    VARYING_TYPE_BOOLEAN(5),
+    /**
+     *
+     */
+    VARYING_TYPE_TRANSFORM(6),
+    /**
+     *
+     */
+    VARYING_TYPE_MAX(7),
     ;
 
     public val id: Long

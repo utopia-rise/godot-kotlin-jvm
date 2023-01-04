@@ -12,13 +12,12 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -45,12 +44,12 @@ public open class RDPipelineColorBlendState : RefCounted() {
   /**
    *
    */
-  public var logicOp: Long
+  public var logicOp: RenderingDevice.LogicOperation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_LOGIC_OP, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.LogicOperation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -77,12 +76,13 @@ public open class RDPipelineColorBlendState : RefCounted() {
   /**
    *
    */
-  public var attachments: VariantArray<Any?>
+  public var attachments: VariantArray<RDPipelineColorBlendStateAttachment>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_ATTACHMENTS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY,
+          false) as VariantArray<RDPipelineColorBlendStateAttachment>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

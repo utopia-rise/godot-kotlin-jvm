@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.StreamPeerTCP
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.BOOL
@@ -56,17 +55,19 @@ public open class StreamPeerTCP : StreamPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun isConnectedToHost(): Boolean {
+  /**
+   * Poll the socket, updating its state. See [getStatus].
+   */
+  public fun poll(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_IS_CONNECTED_TO_HOST,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_POLL, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
    * Returns the status of the connection, see [enum Status].
    */
-  public fun getStatus(): StreamPeerTCP.Status {
+  public fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_STATUS, LONG)
     return StreamPeerTCP.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]

@@ -8,12 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.StringName
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
@@ -39,16 +37,16 @@ import kotlin.Unit
 @GodotBaseType
 public open class Resource : RefCounted() {
   /**
-   * Emitted when [setupLocalToScene] is called, usually by a newly duplicated resource with [resourceLocalToScene] set to `true`. Custom behavior can be defined by connecting this signal.
-   */
-  public val setupLocalToSceneRequested: Signal0 by signal()
-
-  /**
    * Emitted when the resource changes, usually when one of its properties is modified. See also [emitChanged].
    *
    * **Note:** This signal is not emitted automatically for properties of custom resources. If necessary, a setter needs to be created to emit the signal.
    */
   public val changed: Signal0 by signal()
+
+  /**
+   * Emitted when [setupLocalToScene] is called, usually by a newly duplicated resource with [resourceLocalToScene] set to `true`. Custom behavior can be defined by connecting this signal.
+   */
+  public val setupLocalToSceneRequested: Signal0 by signal()
 
   /**
    * If `true`, the resource is duplicated for each instance of all scenes using it. At run-time, the resource can be modified in one scene without affecting other instances (see [godot.PackedScene.instantiate]).
@@ -85,14 +83,14 @@ public open class Resource : RefCounted() {
   /**
    * An optional name for this resource. When defined, its value is displayed to represent the resource in the Inspector dock. For built-in scripts, the name is displayed as part of the tab name in the script editor.
    */
-  public var resourceName: StringName
+  public var resourceName: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_NAME, STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_NAME, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
+      TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_NAME, NIL)
     }
 

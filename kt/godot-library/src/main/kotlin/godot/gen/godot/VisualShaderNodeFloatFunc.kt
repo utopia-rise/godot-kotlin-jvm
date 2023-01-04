@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -25,12 +26,12 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   /**
    * A function to be applied to the scalar. See [enum Function] for options.
    */
-  public var function: Long
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATFUNC_GET_FUNCTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeFloatFunc.Function.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -114,7 +115,10 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      * Finds the nearest integer that is greater than or equal to the parameter. Translates to `ceil(x)` in the Godot Shader Language.
      */
     FUNC_CEIL(16),
-    FUNC_FRAC(17),
+    /**
+     * Computes the fractional part of the argument. Translates to `fract(x)` in the Godot Shader Language.
+     */
+    FUNC_FRACT(17),
     /**
      * Clamps the value between `0.0` and `1.0` using `min(max(x, 0.0), 1.0)`.
      */

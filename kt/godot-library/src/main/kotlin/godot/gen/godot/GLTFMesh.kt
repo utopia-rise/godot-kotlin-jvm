@@ -14,18 +14,17 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
 @GodotBaseType
 public open class GLTFMesh : Resource() {
-  public var mesh: Object?
+  public var mesh: ImporterMesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_MESH, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Object?
+      return TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -44,12 +43,12 @@ public open class GLTFMesh : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_SET_BLEND_WEIGHTS, NIL)
     }
 
-  public var instanceMaterials: VariantArray<Any?>
+  public var instanceMaterials: VariantArray<Material>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_INSTANCE_MATERIALS,
           ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Material>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

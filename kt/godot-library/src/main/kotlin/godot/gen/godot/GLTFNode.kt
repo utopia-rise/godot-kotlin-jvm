@@ -9,20 +9,25 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
+import godot.core.StringName
 import godot.core.Transform3D
+import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.QUATERNION
+import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFNode : Resource() {
@@ -173,6 +178,17 @@ public open class GLTFNode : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFNODE, scriptIndex)
     return true
+  }
+
+  public fun getAdditionalData(extensionName: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to extensionName)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_ADDITIONAL_DATA, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  public fun setAdditionalData(extensionName: StringName, additionalData: Any): Unit {
+    TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_ADDITIONAL_DATA, NIL)
   }
 
   public companion object

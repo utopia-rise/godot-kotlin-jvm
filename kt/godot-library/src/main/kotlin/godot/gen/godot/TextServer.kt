@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.TextServer
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -67,7 +66,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if the server supports a feature.
    */
-  public fun hasFeature(feature: TextServer.Feature): Boolean {
+  public fun hasFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_HAS_FEATURE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -196,10 +195,40 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Sets an active face index in the TrueType / OpenType collection.
+   */
+  public fun fontSetFaceIndex(fontRid: RID, faceIndex: Long): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to faceIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_FACE_INDEX, NIL)
+  }
+
+  /**
+   * Recturns an active face index in the TrueType / OpenType collection.
+   */
+  public fun fontGetFaceIndex(fontRid: RID): Long {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_FACE_INDEX,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns number of faces in the TrueType / OpenType collection.
+   */
+  public fun fontGetFaceCount(fontRid: RID): Long {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_FACE_COUNT,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Sets the font style flags, see [enum FontStyle].
+   *
+   * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], [fontSetEmbolden], or [fontSetTransform] instead.
    */
   public fun fontSetStyle(fontRid: RID, style: Long): Unit {
-    TransferContext.writeArguments(_RID to fontRid, LONG to style)
+    TransferContext.writeArguments(_RID to fontRid, OBJECT to style)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_STYLE, NIL)
   }
 
@@ -208,8 +237,8 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun fontGetStyle(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_STYLE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_STYLE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, false) as Long
   }
 
   /**
@@ -247,16 +276,79 @@ public open class TextServer internal constructor() : RefCounted() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public fun fontSetAntialiased(fontRid: RID, antialiased: Boolean): Unit {
-    TransferContext.writeArguments(_RID to fontRid, BOOL to antialiased)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_ANTIALIASED,
+  /**
+   * Sets weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   *
+   * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], or [fontSetEmbolden] instead.
+   */
+  public fun fontSetWeight(fontRid: RID, weight: Long): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to weight)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_WEIGHT, NIL)
+  }
+
+  /**
+   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   */
+  public fun fontGetWeight(fontRid: RID): Long {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_WEIGHT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   *
+   * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], or [fontSetTransform] instead.
+   */
+  public fun fontSetStretch(fontRid: RID, weight: Long): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to weight)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_STRETCH, NIL)
+  }
+
+  /**
+   * Returns font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   */
+  public fun fontGetStretch(fontRid: RID): Long {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_STRETCH, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets font anti-aliasing mode.
+   */
+  public fun fontSetAntialiasing(fontRid: RID, antialiasing: FontAntialiasing): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to antialiasing.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_ANTIALIASING,
         NIL)
   }
 
-  public fun fontIsAntialiased(fontRid: RID): Boolean {
+  /**
+   * Returns font anti-aliasing mode.
+   */
+  public fun fontGetAntialiasing(fontRid: RID): FontAntialiasing {
     TransferContext.writeArguments(_RID to fontRid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_IS_ANTIALIASED,
-        BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_ANTIALIASING,
+        LONG)
+    return TextServer.FontAntialiasing.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * If set to `true` font texture mipmap generation is enabled.
+   */
+  public fun fontSetGenerateMipmaps(fontRid: RID, generateMipmaps: Boolean): Unit {
+    TransferContext.writeArguments(_RID to fontRid, BOOL to generateMipmaps)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_GENERATE_MIPMAPS, NIL)
+  }
+
+  /**
+   * Returns `true` if font texture mipmap generation is enabled.
+   */
+  public fun fontGetGenerateMipmaps(fontRid: RID): Boolean {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GENERATE_MIPMAPS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -336,6 +428,25 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * If set to `true`, system fonts can be automatically used as fallbacks.
+   */
+  public fun fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
+    TransferContext.writeArguments(_RID to fontRid, BOOL to allowSystemFallback)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_ALLOW_SYSTEM_FALLBACK, NIL)
+  }
+
+  /**
+   * Returns `true` if system fonts can be automatically used as fallbacks.
+   */
+  public fun fontIsAllowSystemFallback(fontRid: RID): Boolean {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_IS_ALLOW_SYSTEM_FALLBACK, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * If set to `true` auto-hinting is preferred over font built-in hinting.
    */
   public fun fontSetForceAutohinter(fontRid: RID, forceAutohinter: Boolean): Unit {
@@ -357,7 +468,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font hinting mode. Used by dynamic fonts only.
    */
-  public fun fontSetHinting(fontRid: RID, hinting: TextServer.Hinting): Unit {
+  public fun fontSetHinting(fontRid: RID, hinting: Hinting): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to hinting.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_HINTING, NIL)
   }
@@ -365,7 +476,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the font hinting mode. Used by dynamic fonts only.
    */
-  public fun fontGetHinting(fontRid: RID): TextServer.Hinting {
+  public fun fontGetHinting(fontRid: RID): Hinting {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_HINTING, LONG)
     return TextServer.Hinting.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -374,8 +485,8 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font subpixel glyph positioning mode.
    */
-  public fun fontSetSubpixelPositioning(fontRid: RID,
-      subpixelPositioning: TextServer.SubpixelPositioning): Unit {
+  public fun fontSetSubpixelPositioning(fontRid: RID, subpixelPositioning: SubpixelPositioning):
+      Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to subpixelPositioning.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_SUBPIXEL_POSITIONING, NIL)
@@ -384,7 +495,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font subpixel glyph positioning mode.
    */
-  public fun fontGetSubpixelPositioning(fontRid: RID): TextServer.SubpixelPositioning {
+  public fun fontGetSubpixelPositioning(fontRid: RID): SubpixelPositioning {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_SUBPIXEL_POSITIONING, LONG)
@@ -471,11 +582,11 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns list of the font sizes in the cache. Each size is `Vector2i` with font size and outline size.
    */
-  public fun fontGetSizeCacheList(fontRid: RID): VariantArray<Any?> {
+  public fun fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_SIZE_CACHE_LIST,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
   }
 
   /**
@@ -605,26 +716,6 @@ public open class TextServer internal constructor() : RefCounted() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun fontSetSpacing(
-    fontRid: RID,
-    size: Long,
-    spacing: TextServer.SpacingType,
-    `value`: Long
-  ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to spacing.id, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_SPACING, NIL)
-  }
-
-  public fun fontGetSpacing(
-    fontRid: RID,
-    size: Long,
-    spacing: TextServer.SpacingType
-  ): Long {
-    TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to spacing.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_SPACING, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
   /**
    * Returns number of textures used by font cache entry.
    */
@@ -718,11 +809,11 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns list of rendered glyphs in the cache entry.
    */
-  public fun fontGetGlyphList(fontRid: RID, size: Vector2i): VariantArray<Any?> {
+  public fun fontGetGlyphList(fontRid: RID, size: Vector2i): PackedInt32Array {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_LIST,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_INT_32_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
   /**
@@ -893,6 +984,38 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Returns resource ID of the cache texture containing the glyph.
+   *
+   * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
+   */
+  public fun fontGetGlyphTextureRid(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long
+  ): RID {
+    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_TEXTURE_RID, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Returns size of the cache texture containing the glyph.
+   *
+   * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
+   */
+  public fun fontGetGlyphTextureSize(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long
+  ): Vector2 {
+    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_TEXTURE_SIZE, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
    * Returns outline contours of the glyph as a `Dictionary` with the following contents:
    *
    * `points`         - [godot.PackedVector3Array], containing outline points. `x` and `y` are point coordinates. `z` is the type of the point, using the [enum ContourPointTag] values.
@@ -915,11 +1038,11 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns list of the kerning overrides.
    */
-  public fun fontGetKerningList(fontRid: RID, size: Long): VariantArray<Any?> {
+  public fun fontGetKerningList(fontRid: RID, size: Long): VariantArray<Vector2i> {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_KERNING_LIST,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
   }
 
   /**
@@ -1266,8 +1389,8 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
-  public fun createShapedText(direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-      orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL): RID {
+  public fun createShapedText(direction: Direction = TextServer.Direction.DIRECTION_AUTO,
+      orientation: Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL): RID {
     TransferContext.writeArguments(LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_CREATE_SHAPED_TEXT, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -1286,7 +1409,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** Direction is ignored if server does not support [FEATURE_BIDI_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
-  public fun shapedTextSetDirection(shaped: RID, direction: TextServer.Direction =
+  public fun shapedTextSetDirection(shaped: RID, direction: Direction =
       TextServer.Direction.DIRECTION_AUTO): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to direction.id)
     TransferContext.callMethod(rawPtr,
@@ -1296,7 +1419,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns direction of the text.
    */
-  public fun shapedTextGetDirection(shaped: RID): TextServer.Direction {
+  public fun shapedTextGetDirection(shaped: RID): Direction {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_DIRECTION, LONG)
@@ -1306,7 +1429,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns direction of the text, inferred by the BiDi algorithm.
    */
-  public fun shapedTextGetInferredDirection(shaped: RID): TextServer.Direction {
+  public fun shapedTextGetInferredDirection(shaped: RID): Direction {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_INFERRED_DIRECTION, LONG)
@@ -1348,7 +1471,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
-  public fun shapedTextSetOrientation(shaped: RID, orientation: TextServer.Orientation =
+  public fun shapedTextSetOrientation(shaped: RID, orientation: Orientation =
       TextServer.Orientation.ORIENTATION_HORIZONTAL): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to orientation.id)
     TransferContext.callMethod(rawPtr,
@@ -1358,7 +1481,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns text orientation.
    */
-  public fun shapedTextGetOrientation(shaped: RID): TextServer.Orientation {
+  public fun shapedTextGetOrientation(shaped: RID): Orientation {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_ORIENTATION, LONG)
@@ -1406,12 +1529,35 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Sets extra spacing added between glyphs or lines in pixels.
+   */
+  public fun shapedTextSetSpacing(
+    shaped: RID,
+    spacing: SpacingType,
+    `value`: Long
+  ): Unit {
+    TransferContext.writeArguments(_RID to shaped, LONG to spacing.id, LONG to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_SET_SPACING,
+        NIL)
+  }
+
+  /**
+   * Returns extra spacing added between glyphs or lines in pixels.
+   */
+  public fun shapedTextGetSpacing(shaped: RID, spacing: SpacingType): Long {
+    TransferContext.writeArguments(_RID to shaped, LONG to spacing.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_SPACING,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Adds text span and font to draw it to the text buffer.
    */
   public fun shapedTextAddString(
     shaped: RID,
     text: String,
-    fonts: VariantArray<Any?>,
+    fonts: VariantArray<RID>,
     size: Long,
     opentypeFeatures: Dictionary<Any?, Any?> = Dictionary(),
     language: String = "",
@@ -1431,9 +1577,10 @@ public open class TextServer internal constructor() : RefCounted() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    length: Long = 1
+    length: Long = 1,
+    baseline: Double = 0.0
   ): Boolean {
-    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length)
+    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_ADD_OBJECT,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1446,9 +1593,10 @@ public open class TextServer internal constructor() : RefCounted() {
     shaped: RID,
     key: Any,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
+    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    baseline: Double = 0.0
   ): Boolean {
-    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id)
+    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_RESIZE_OBJECT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1480,7 +1628,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun shapedSetSpanUpdateFont(
     shaped: RID,
     index: Long,
-    fonts: VariantArray<Any?>,
+    fonts: VariantArray<RID>,
     size: Long,
     opentypeFeatures: Dictionary<Any?, Any?> = Dictionary()
   ): Unit {
@@ -1520,7 +1668,7 @@ public open class TextServer internal constructor() : RefCounted() {
     width: Double,
     jstFlags: Long = 3
   ): Double {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to jstFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, OBJECT to jstFlags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_FIT_TO_WIDTH,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -1560,21 +1708,21 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns an array of glyphs in the visual order.
    */
-  public fun shapedTextGetGlyphs(shaped: RID): VariantArray<Any?> {
+  public fun shapedTextGetGlyphs(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_GLYPHS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
    * Returns text glyphs in the logical order.
    */
-  public fun shapedTextSortLogical(shaped: RID): VariantArray<Any?> {
+  public fun shapedTextSortLogical(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_SORT_LOGICAL,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -1605,9 +1753,9 @@ public open class TextServer internal constructor() : RefCounted() {
     width: PackedFloat32Array,
     start: Long = 0,
     once: Boolean = true,
-    breakFlags: Long = 96
+    breakFlags: Long = 3
   ): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start, BOOL to once, LONG to breakFlags)
+    TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start, BOOL to once, OBJECT to breakFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_LINE_BREAKS_ADV, PACKED_INT_32_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
@@ -1620,9 +1768,9 @@ public open class TextServer internal constructor() : RefCounted() {
     shaped: RID,
     width: Double,
     start: Long = 0,
-    breakFlags: Long = 96
+    breakFlags: Long = 3
   ): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to start, LONG to breakFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to start, OBJECT to breakFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_LINE_BREAKS, PACKED_INT_32_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
@@ -1631,8 +1779,8 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what characters are used for breaking (see [enum GraphemeFlag]).
    */
-  public fun shapedTextGetWordBreaks(shaped: RID, graphemeFlags: Long): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, LONG to graphemeFlags)
+  public fun shapedTextGetWordBreaks(shaped: RID, graphemeFlags: Long = 264): PackedInt32Array {
+    TransferContext.writeArguments(_RID to shaped, OBJECT to graphemeFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_WORD_BREAKS, PACKED_INT_32_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
@@ -1661,11 +1809,11 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns array of the glyphs in the ellipsis.
    */
-  public fun shapedTextGetEllipsisGlyphs(shaped: RID): VariantArray<Any?> {
+  public fun shapedTextGetEllipsisGlyphs(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_ELLIPSIS_GLYPHS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -1686,7 +1834,7 @@ public open class TextServer internal constructor() : RefCounted() {
     width: Double = 0.0,
     overrunTrimFlags: Long = 0
   ): Unit {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to overrunTrimFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, OBJECT to overrunTrimFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_OVERRUN_TRIM_TO_WIDTH, NIL)
   }
@@ -1888,7 +2036,7 @@ public open class TextServer internal constructor() : RefCounted() {
     shaped: RID,
     start: Long,
     end: Long
-  ): TextServer.Direction {
+  ): Direction {
     TransferContext.writeArguments(_RID to shaped, LONG to start, LONG to end)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_DOMINANT_DIRECTION_IN_RANGE, LONG)
@@ -1897,6 +2045,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Converts a number from the Western Arabic (0..9) to the numeral systems used in [language].
+   *
+   * If [language] is omitted, the active locale will be used.
    */
   public fun formatNumber(number: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to number, STRING to language)
@@ -1923,6 +2073,52 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Returns an array of the word break boundaries. Elements in the returned array are the offsets of the start and end of words. Therefore the length of the array is always even.
+   *
+   * When [charsPerLine] is greater than zero, line break boundaries are returned instead.
+   *
+   * ```
+   * 				var ts = TextServerManager.get_primary_interface()
+   * 				print(ts.string_get_word_breaks("Godot Engine")) # Prints [0, 5, 6, 12]
+   * 				print(ts.string_get_word_breaks("Godot Engine", "en", 5)) # Prints [0, 5, 6, 11, 11, 12]
+   * 				```
+   */
+  public fun stringGetWordBreaks(
+    string: String,
+    language: String = "",
+    charsPerLine: Long = 0
+  ): PackedInt32Array {
+    TransferContext.writeArguments(STRING to string, STRING to language, LONG to charsPerLine)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_STRING_GET_WORD_BREAKS,
+        PACKED_INT_32_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+  }
+
+  /**
+   * Returns index of the first string in [dict] which is visually confusable with the [string], or `-1` if none is found.
+   *
+   * **Note:** This method doesn't detect invisible characters, for spoof detection use it in combination with [spoofCheck].
+   *
+   * **Note:** Always returns `-1` if the server does not support the [FEATURE_UNICODE_SECURITY] feature.
+   */
+  public fun isConfusable(string: String, dict: PackedStringArray): Long {
+    TransferContext.writeArguments(STRING to string, PACKED_STRING_ARRAY to dict)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_IS_CONFUSABLE, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns `true` if [string] is likely to be an attempt at confusing the reader.
+   *
+   * **Note:** Always returns `false` if the server does not support the [FEATURE_UNICODE_SECURITY] feature.
+   */
+  public fun spoofCheck(string: String): Boolean {
+    TransferContext.writeArguments(STRING to string)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SPOOF_CHECK, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Strips diacritics from the string.
    *
    * **Note:** The result may be longer or shorter than the original.
@@ -1931,6 +2127,32 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_STRIP_DIACRITICS, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns `true` is [string] is a valid identifier.
+   *
+   * If the text server supports the [FEATURE_UNICODE_IDENTIFIERS] feature, a valid identifier must:
+   *
+   * - Conform to normalization form C.
+   *
+   * - Begin with a Unicode character of class XID_Start or `"_"`.
+   *
+   * - May contain Unicode characters of class XID_Continue in the other positions.
+   *
+   * - Use UAX #31 recommended scripts only (mixed scripts are allowed).
+   *
+   * If the [FEATURE_UNICODE_IDENTIFIERS] feature is not supported, a valid identifier must:
+   *
+   * - Begin with a Unicode character of class XID_Start or `"_"`.
+   *
+   * - May contain Unicode characters of class XID_Continue in the other positions.
+   */
+  public fun isValidIdentifier(string: String): Boolean {
+    TransferContext.writeArguments(STRING to string)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_IS_VALID_IDENTIFIER,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -1959,53 +2181,39 @@ public open class TextServer internal constructor() : RefCounted() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public enum class GraphemeFlag(
+  /**
+   * Default implementation of the BiDi algorithm override function. See [enum StructuredTextParser] for more info.
+   */
+  public fun parseStructuredText(
+    parserType: StructuredTextParser,
+    args: VariantArray<Any?>,
+    text: String
+  ): VariantArray<Vector2i> {
+    TransferContext.writeArguments(LONG to parserType.id, ARRAY to args, STRING to text)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_PARSE_STRUCTURED_TEXT,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
+  }
+
+  public enum class FontAntialiasing(
     id: Long
   ) {
     /**
-     * Grapheme is supported by the font, and can be drawn.
+     * Font glyphs are rasterized as 1-bit bitmaps.
      */
-    GRAPHEME_IS_VALID(1),
+    FONT_ANTIALIASING_NONE(0),
     /**
-     * Grapheme is part of right-to-left or bottom-to-top run.
+     * Font glyphs are rasterized as 8-bit grayscale anti-aliased bitmaps.
      */
-    GRAPHEME_IS_RTL(2),
+    FONT_ANTIALIASING_GRAY(1),
     /**
-     * Grapheme is not part of source text, it was added by justification process.
+     * Font glyphs are rasterized for LCD screens.
+     *
+     * LCD subpixel layout is determined by the value of `gui/theme/lcd_subpixel_layout` project settings.
+     *
+     * LCD subpixel anti-aliasing mode is suitable only for rendering horizontal, unscaled text in 2D.
      */
-    GRAPHEME_IS_VIRTUAL(4),
-    /**
-     * Grapheme is whitespace.
-     */
-    GRAPHEME_IS_SPACE(8),
-    /**
-     * Grapheme is mandatory break point (e.g. `"\n"`).
-     */
-    GRAPHEME_IS_BREAK_HARD(16),
-    /**
-     * Grapheme is optional break point (e.g. space).
-     */
-    GRAPHEME_IS_BREAK_SOFT(32),
-    /**
-     * Grapheme is the tabulation character.
-     */
-    GRAPHEME_IS_TAB(64),
-    /**
-     * Grapheme is kashida.
-     */
-    GRAPHEME_IS_ELONGATION(128),
-    /**
-     * Grapheme is punctuation character.
-     */
-    GRAPHEME_IS_PUNCTUATION(256),
-    /**
-     * Grapheme is underscore character.
-     */
-    GRAPHEME_IS_UNDERSCORE(512),
-    /**
-     * Grapheme is connected to the previous grapheme. Breaking line before this grapheme is not safe.
-     */
-    GRAPHEME_IS_CONNECTED(1024),
+    FONT_ANTIALIASING_LCD(2),
     ;
 
     public val id: Long
@@ -2018,61 +2226,60 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public enum class Feature(
+  public enum class FontLCDSubpixelLayout(
     id: Long
   ) {
     /**
-     * TextServer supports simple text layouts.
+     * Unknown or unsupported subpixel layout, LCD subpixel antialiasing is disabled.
      */
-    FEATURE_SIMPLE_LAYOUT(1),
+    FONT_LCD_SUBPIXEL_LAYOUT_NONE(0),
     /**
-     * TextServer supports bidirectional text layouts.
+     * Horizontal RGB subpixel layout.
      */
-    FEATURE_BIDI_LAYOUT(2),
+    FONT_LCD_SUBPIXEL_LAYOUT_HRGB(1),
     /**
-     * TextServer supports vertical layouts.
+     * Horizontal BGR subpixel layout.
      */
-    FEATURE_VERTICAL_LAYOUT(4),
+    FONT_LCD_SUBPIXEL_LAYOUT_HBGR(2),
     /**
-     * TextServer supports complex text shaping.
+     * Vertical RGB subpixel layout.
      */
-    FEATURE_SHAPING(8),
+    FONT_LCD_SUBPIXEL_LAYOUT_VRGB(3),
     /**
-     * TextServer supports justification using kashidas.
+     * Vertical BGR subpixel layout.
      */
-    FEATURE_KASHIDA_JUSTIFICATION(16),
+    FONT_LCD_SUBPIXEL_LAYOUT_VBGR(4),
     /**
-     * TextServer supports complex line/word breaking rules (e.g. dictionary based).
+     *
      */
-    FEATURE_BREAK_ITERATORS(32),
+    FONT_LCD_SUBPIXEL_LAYOUT_MAX(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class Direction(
+    id: Long
+  ) {
     /**
-     * TextServer supports loading bitmap fonts.
+     * Text direction is determined based on contents and current locale.
      */
-    FEATURE_FONT_BITMAP(64),
+    DIRECTION_AUTO(0),
     /**
-     * TextServer supports loading dynamic (TrueType, OpeType, etc.) fonts.
+     * Text is written from left to right.
      */
-    FEATURE_FONT_DYNAMIC(128),
+    DIRECTION_LTR(1),
     /**
-     * TextServer supports multichannel signed distance field dynamic font rendering.
+     * Text is written from right to left.
      */
-    FEATURE_FONT_MSDF(256),
-    /**
-     * TextServer supports loading system fonts.
-     */
-    FEATURE_FONT_SYSTEM(512),
-    /**
-     * TextServer supports variable fonts.
-     */
-    FEATURE_FONT_VARIABLE(1024),
-    /**
-     * TextServer supports locale dependent and context sensitive case conversion.
-     */
-    FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION(2048),
-    /**
-     * TextServer require external data file for some features, see [loadSupportData].
-     */
-    FEATURE_USE_SUPPORT_DATA(4096),
+    DIRECTION_RTL(2),
     ;
 
     public val id: Long
@@ -2149,25 +2356,265 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public enum class SpacingType(
+  public enum class AutowrapMode(
     id: Long
   ) {
     /**
-     * Spacing for each glyph.
+     * Autowrap is disabled.
      */
-    SPACING_GLYPH(0),
+    AUTOWRAP_OFF(0),
     /**
-     * Spacing for the space character.
+     * Wraps the text inside the node's bounding rectangle by allowing to break lines at arbitrary positions, which is useful when very limited space is available.
      */
-    SPACING_SPACE(1),
+    AUTOWRAP_ARBITRARY(1),
     /**
-     * Spacing at the top of the line.
+     * Wraps the text inside the node's bounding rectangle by soft-breaking between words.
      */
-    SPACING_TOP(2),
+    AUTOWRAP_WORD(2),
     /**
-     * Spacing at the bottom of the line.
+     * Behaves similarly to [AUTOWRAP_WORD], but force-breaks a word if that single word does not fit in one line.
      */
-    SPACING_BOTTOM(3),
+    AUTOWRAP_WORD_SMART(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LineBreakFlag(
+    id: Long
+  ) {
+    /**
+     * Do not break the line.
+     */
+    BREAK_NONE(0),
+    /**
+     * Break the line at the line mandatory break characters (e.g. `"\n"`).
+     */
+    BREAK_MANDATORY(1),
+    /**
+     * Break the line between the words.
+     */
+    BREAK_WORD_BOUND(2),
+    /**
+     * Break the line between any unconnected graphemes.
+     */
+    BREAK_GRAPHEME_BOUND(4),
+    /**
+     * Should be used only in conjunction with [BREAK_WORD_BOUND], break the line between any unconnected graphemes, if it's impossible to break it between the words.
+     */
+    BREAK_ADAPTIVE(8),
+    /**
+     * Remove edge spaces from the broken line segments.
+     */
+    BREAK_TRIM_EDGE_SPACES(16),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VisibleCharactersBehavior(
+    id: Long
+  ) {
+    /**
+     * Trims text before the shaping. e.g, increasing [godot.Label.visibleCharacters] or [godot.RichTextLabel.visibleCharacters] value is visually identical to typing the text.
+     */
+    VC_CHARS_BEFORE_SHAPING(0),
+    /**
+     * Displays glyphs that are mapped to the first [godot.Label.visibleCharacters] or [godot.RichTextLabel.visibleCharacters] characters from the beginning of the text.
+     */
+    VC_CHARS_AFTER_SHAPING(1),
+    /**
+     * Displays [godot.Label.visibleRatio] or [godot.RichTextLabel.visibleRatio] glyphs, starting from the left or from the right, depending on [godot.Control.layoutDirection] value.
+     */
+    VC_GLYPHS_AUTO(2),
+    /**
+     * Displays [godot.Label.visibleRatio] or [godot.RichTextLabel.visibleRatio] glyphs, starting from the left.
+     */
+    VC_GLYPHS_LTR(3),
+    /**
+     * Displays [godot.Label.visibleRatio] or [godot.RichTextLabel.visibleRatio] glyphs, starting from the right.
+     */
+    VC_GLYPHS_RTL(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class OverrunBehavior(
+    id: Long
+  ) {
+    /**
+     * No text trimming is performed.
+     */
+    OVERRUN_NO_TRIMMING(0),
+    /**
+     * Trims the text per character.
+     */
+    OVERRUN_TRIM_CHAR(1),
+    /**
+     * Trims the text per word.
+     */
+    OVERRUN_TRIM_WORD(2),
+    /**
+     * Trims the text per character and adds an ellipsis to indicate that parts are hidden.
+     */
+    OVERRUN_TRIM_ELLIPSIS(3),
+    /**
+     * Trims the text per word and adds an ellipsis to indicate that parts are hidden.
+     */
+    OVERRUN_TRIM_WORD_ELLIPSIS(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TextOverrunFlag(
+    id: Long
+  ) {
+    /**
+     * No trimming is performed.
+     */
+    OVERRUN_NO_TRIM(0),
+    /**
+     * Trims the text when it exceeds the given width.
+     */
+    OVERRUN_TRIM(1),
+    /**
+     * Trims the text per word instead of per grapheme.
+     */
+    OVERRUN_TRIM_WORD_ONLY(2),
+    /**
+     * Determines whether an ellipsis should be added at the end of the text.
+     */
+    OVERRUN_ADD_ELLIPSIS(4),
+    /**
+     * Determines whether the ellipsis at the end of the text is enforced and may not be hidden.
+     */
+    OVERRUN_ENFORCE_ELLIPSIS(8),
+    /**
+     *
+     */
+    OVERRUN_JUSTIFICATION_AWARE(16),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class GraphemeFlag(
+    id: Long
+  ) {
+    /**
+     * Grapheme is supported by the font, and can be drawn.
+     */
+    GRAPHEME_IS_VALID(1),
+    /**
+     * Grapheme is part of right-to-left or bottom-to-top run.
+     */
+    GRAPHEME_IS_RTL(2),
+    /**
+     * Grapheme is not part of source text, it was added by justification process.
+     */
+    GRAPHEME_IS_VIRTUAL(4),
+    /**
+     * Grapheme is whitespace.
+     */
+    GRAPHEME_IS_SPACE(8),
+    /**
+     * Grapheme is mandatory break point (e.g. `"\n"`).
+     */
+    GRAPHEME_IS_BREAK_HARD(16),
+    /**
+     * Grapheme is optional break point (e.g. space).
+     */
+    GRAPHEME_IS_BREAK_SOFT(32),
+    /**
+     * Grapheme is the tabulation character.
+     */
+    GRAPHEME_IS_TAB(64),
+    /**
+     * Grapheme is kashida.
+     */
+    GRAPHEME_IS_ELONGATION(128),
+    /**
+     * Grapheme is punctuation character.
+     */
+    GRAPHEME_IS_PUNCTUATION(256),
+    /**
+     * Grapheme is underscore character.
+     */
+    GRAPHEME_IS_UNDERSCORE(512),
+    /**
+     * Grapheme is connected to the previous grapheme. Breaking line before this grapheme is not safe.
+     */
+    GRAPHEME_IS_CONNECTED(1024),
+    /**
+     * It is safe to insert a U+0640 before this grapheme for elongation.
+     */
+    GRAPHEME_IS_SAFE_TO_INSERT_TATWEEL(2048),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class Hinting(
+    id: Long
+  ) {
+    /**
+     * Disables font hinting (smoother but less crisp).
+     */
+    HINTING_NONE(0),
+    /**
+     * Use the light font hinting mode.
+     */
+    HINTING_LIGHT(1),
+    /**
+     * Use the default font hinting mode (crisper but less smooth).
+     *
+     * **Note:** This hinting mode changes both horizontal and vertical glyph metrics. If applied to monospace font, some glyphs might have different width.
+     */
+    HINTING_NORMAL(2),
     ;
 
     public val id: Long
@@ -2225,53 +2672,69 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public enum class LineBreakFlag(
+  public enum class Feature(
     id: Long
   ) {
     /**
-     * Do not break the line.
+     * TextServer supports simple text layouts.
      */
-    BREAK_NONE(0),
+    FEATURE_SIMPLE_LAYOUT(1),
     /**
-     * Break the line at the line mandatory break characters (e.g. `"\n"`).
+     * TextServer supports bidirectional text layouts.
      */
-    BREAK_MANDATORY(32),
+    FEATURE_BIDI_LAYOUT(2),
     /**
-     * Break the line between the words.
+     * TextServer supports vertical layouts.
      */
-    BREAK_WORD_BOUND(64),
+    FEATURE_VERTICAL_LAYOUT(4),
     /**
-     * Break the line between any unconnected graphemes.
+     * TextServer supports complex text shaping.
      */
-    BREAK_GRAPHEME_BOUND(128),
-    BREAK_WORD_BOUND_ADAPTIVE(320),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class FontStyle(
-    id: Long
-  ) {
+    FEATURE_SHAPING(8),
     /**
-     * Font is bold.
+     * TextServer supports justification using kashidas.
      */
-    FONT_BOLD(1),
+    FEATURE_KASHIDA_JUSTIFICATION(16),
     /**
-     * Font is italic or oblique.
+     * TextServer supports complex line/word breaking rules (e.g. dictionary based).
      */
-    FONT_ITALIC(2),
+    FEATURE_BREAK_ITERATORS(32),
     /**
-     * Font have fixed-width characters.
+     * TextServer supports loading bitmap fonts.
      */
-    FONT_FIXED_WIDTH(4),
+    FEATURE_FONT_BITMAP(64),
+    /**
+     * TextServer supports loading dynamic (TrueType, OpeType, etc.) fonts.
+     */
+    FEATURE_FONT_DYNAMIC(128),
+    /**
+     * TextServer supports multichannel signed distance field dynamic font rendering.
+     */
+    FEATURE_FONT_MSDF(256),
+    /**
+     * TextServer supports loading system fonts.
+     */
+    FEATURE_FONT_SYSTEM(512),
+    /**
+     * TextServer supports variable fonts.
+     */
+    FEATURE_FONT_VARIABLE(1024),
+    /**
+     * TextServer supports locale dependent and context sensitive case conversion.
+     */
+    FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION(2048),
+    /**
+     * TextServer require external data file for some features, see [loadSupportData].
+     */
+    FEATURE_USE_SUPPORT_DATA(4096),
+    /**
+     * TextServer supports UAX #31 identifier validation, see [isValidIdentifier].
+     */
+    FEATURE_UNICODE_IDENTIFIERS(8192),
+    /**
+     * TextServer supports [godot.Unicode Technical Report #36](https://unicode.org/reports/tr36/) and [godot.Unicode Technical Standard #39](https://unicode.org/reports/tr39/) based spoof detection features.
+     */
+    FEATURE_UNICODE_SECURITY(16384),
     ;
 
     public val id: Long
@@ -2311,33 +2774,29 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public enum class TextOverrunFlag(
+  public enum class SpacingType(
     id: Long
   ) {
     /**
-     * No text trimming is performed.
+     * Spacing for each glyph.
      */
-    OVERRUN_NO_TRIMMING(0),
+    SPACING_GLYPH(0),
     /**
-     * Trims the text when it exceeds the given width.
+     * Spacing for the space character.
      */
-    OVERRUN_TRIM(1),
+    SPACING_SPACE(1),
     /**
-     * Trims the text per word instead of per grapheme.
+     * Spacing at the top of the line.
      */
-    OVERRUN_TRIM_WORD_ONLY(2),
+    SPACING_TOP(2),
     /**
-     * Determines whether an ellipsis should be added at the end of the text.
+     * Spacing at the bottom of the line.
      */
-    OVERRUN_ADD_ELLIPSIS(4),
-    /**
-     * Determines whether the ellipsis at the end of the text is enforced and may not be hidden.
-     */
-    OVERRUN_ENFORCE_ELLIPSIS(8),
+    SPACING_BOTTOM(3),
     /**
      *
      */
-    OVERRUN_JUSTIFICATION_AWARE(16),
+    SPACING_MAX(4),
     ;
 
     public val id: Long
@@ -2350,23 +2809,21 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public enum class Hinting(
+  public enum class FontStyle(
     id: Long
   ) {
     /**
-     * Disables font hinting (smoother but less crisp).
+     * Font is bold.
      */
-    HINTING_NONE(0),
+    FONT_BOLD(1),
     /**
-     * Use the light font hinting mode.
+     * Font is italic or oblique.
      */
-    HINTING_LIGHT(1),
+    FONT_ITALIC(2),
     /**
-     * Use the default font hinting mode (crisper but less smooth).
-     *
-     * **Note:** This hinting mode changes both horizontal and vertical glyph metrics. If applied to monospace font, some glyphs might have different width.
+     * Font have fixed-width characters.
      */
-    HINTING_NORMAL(2),
+    FONT_FIXED_WIDTH(4),
     ;
 
     public val id: Long
@@ -2379,21 +2836,39 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public enum class Direction(
+  public enum class StructuredTextParser(
     id: Long
   ) {
     /**
-     * Text direction is determined based on contents and current locale.
+     * Use default behavior. Same as [STRUCTURED_TEXT_NONE] unless specified otherwise in the control description.
      */
-    DIRECTION_AUTO(0),
+    STRUCTURED_TEXT_DEFAULT(0),
     /**
-     * Text is written from left to right.
+     * BiDi override for URI.
      */
-    DIRECTION_LTR(1),
+    STRUCTURED_TEXT_URI(1),
     /**
-     * Text is written from right to left.
+     * BiDi override for file path.
      */
-    DIRECTION_RTL(2),
+    STRUCTURED_TEXT_FILE(2),
+    /**
+     * BiDi override for email.
+     */
+    STRUCTURED_TEXT_EMAIL(3),
+    /**
+     * BiDi override for lists.
+     *
+     * Structured text options: list separator `String`.
+     */
+    STRUCTURED_TEXT_LIST(4),
+    /**
+     * Use default Unicode BiDi algorithm.
+     */
+    STRUCTURED_TEXT_NONE(5),
+    /**
+     * User defined structured text BiDi override function.
+     */
+    STRUCTURED_TEXT_CUSTOM(6),
     ;
 
     public val id: Long

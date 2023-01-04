@@ -7,8 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
@@ -24,11 +26,11 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public var format: Long
+  public var format: RenderingDevice.DataFormat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_FORMAT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.DataFormat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -110,12 +112,12 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public var textureType: Long
+  public var textureType: RenderingDevice.TextureType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_TEXTURE_TYPE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.TextureType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -126,11 +128,11 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public var samples: Long
+  public var samples: RenderingDevice.TextureSamples
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_SAMPLES, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.TextureSamples.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -144,11 +146,11 @@ public open class RDTextureFormat : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_USAGE_BITS,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_USAGE_BITS,
           NIL)
     }

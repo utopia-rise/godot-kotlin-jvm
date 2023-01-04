@@ -14,7 +14,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -68,21 +67,21 @@ public open class EditorSelection internal constructor() : Object() {
   /**
    * Gets the list of selected nodes.
    */
-  public fun getSelectedNodes(): VariantArray<Any?> {
+  public fun getSelectedNodes(): VariantArray<Node> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_SELECTED_NODES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>
   }
 
   /**
    * Gets the list of selected nodes, optimized for transform operations (i.e. moving them, rotating, etc). This list avoids situations where a node is selected and also child/grandchild.
    */
-  public fun getTransformableSelectedNodes(): VariantArray<Any?> {
+  public fun getTransformableSelectedNodes(): VariantArray<Node> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_TRANSFORMABLE_SELECTED_NODES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>
   }
 
   public companion object

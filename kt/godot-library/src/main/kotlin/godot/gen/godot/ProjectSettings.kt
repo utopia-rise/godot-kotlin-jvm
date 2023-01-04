@@ -84,7 +84,7 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the value of a setting.
+   * Returns the value of the setting identified by [name]. If the setting doesn't exist and [defaultValue] is specified, the value of [defaultValue] is returned. Otherwise, `null` is returned.
    *
    * **Example:**
    *
@@ -94,18 +94,22 @@ public object ProjectSettings : Object() {
    *
    * print(ProjectSettings.get_setting("application/config/name"))
    *
+   * print(ProjectSettings.get_setting("application/config/custom_description", "No description specified."))
+   *
    * [/gdscript]
    *
    * [csharp]
    *
    * GD.Print(ProjectSettings.GetSetting("application/config/name"));
    *
+   * GD.Print(ProjectSettings.GetSetting("application/config/custom_description", "No description specified."));
+   *
    * [/csharp]
    *
    * [/codeblocks]
    */
-  public fun getSetting(name: String): Any? {
-    TransferContext.writeArguments(STRING to name)
+  public fun getSetting(name: String, defaultValue: Any? = null): Any? {
+    TransferContext.writeArguments(STRING to name, ANY to defaultValue)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
@@ -208,6 +212,17 @@ public object ProjectSettings : Object() {
   }
 
   /**
+   * Sets whether a setting requires restarting the editor to properly take effect.
+   *
+   * **Note:** This is just a hint to display to the user that the editor must be restarted for changes to take effect. Enabling [setRestartIfChanged] does *not* delay the setting being set when changed.
+   */
+  public fun setRestartIfChanged(name: String, restart: Boolean): Unit {
+    TransferContext.writeArguments(STRING to name, BOOL to restart)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_RESTART_IF_CHANGED, NIL)
+  }
+
+  /**
    * Clears the whole configuration (not recommended, may break things).
    */
   public fun clear(name: String): Unit {
@@ -278,20 +293,6 @@ public object ProjectSettings : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOAD_RESOURCE_PACK,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun propertyCanRevert(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_PROPERTY_CAN_REVERT,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun propertyGetRevert(name: String): Any? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_PROPERTY_GET_REVERT,
-        ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   /**

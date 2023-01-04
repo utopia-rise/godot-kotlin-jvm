@@ -37,7 +37,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   /**
    * Emitted when the resource value was set and user clicked to edit it. When [inspect] is `true`, the signal was caused by the context menu "Edit" or "Inspect" option.
    */
-  public val resourceSelected: Signal2<Resource, Boolean> by signal("resource", "edit")
+  public val resourceSelected: Signal2<Resource, Boolean> by signal("resource", "inspect")
 
   /**
    * Emitted when the value of the edited resource was changed.

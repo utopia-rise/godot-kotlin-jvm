@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -28,7 +29,7 @@ import kotlin.Unit
  * Container for splitting two [godot.Control]s vertically or horizontally, with a grabber that allows adjusting the split offset or ratio.
  */
 @GodotBaseType
-public open class SplitContainer internal constructor() : Container() {
+public open class SplitContainer : Container() {
   /**
    * Emitted when the dragger is dragged by user.
    */
@@ -67,17 +68,33 @@ public open class SplitContainer internal constructor() : Container() {
   /**
    * Determines the dragger's visibility. See [enum DraggerVisibility] for details.
    */
-  public var draggerVisibility: Long
+  public var draggerVisibility: DraggerVisibility
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_DRAGGER_VISIBILITY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return SplitContainer.DraggerVisibility.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_DRAGGER_VISIBILITY, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.SplitContainer] will arrange its children vertically, rather than horizontally.
+   *
+   * Can't be changed when using [godot.HSplitContainer] and [godot.VSplitContainer].
+   */
+  public var vertical: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_IS_VERTICAL, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_VERTICAL, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

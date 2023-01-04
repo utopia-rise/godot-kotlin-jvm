@@ -14,6 +14,7 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -25,7 +26,6 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal4
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -47,88 +47,96 @@ import kotlin.Suppress
 @GodotBaseType
 public open class Area3D : CollisionObject3D() {
   /**
-   * Emitted when another Area3D exits this Area3D. Requires [monitoring] to be set to `true`.
+   * Emitted when a [godot.Shape3D] of the received [body] enters a shape of this area. [body] can be a [godot.PhysicsBody3D] or a [godot.GridMap]. [godot.GridMap]s are detected if their [godot.MeshLibrary] has collision shapes configured. Requires [monitoring] to be set to `true`.
    *
-   * [area] the other Area3D.
-   */
-  public val areaExited: Signal1<Area3D> by signal("area")
-
-  /**
-   * Emitted when one of another Area3D's [godot.Shape3D]s exits one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`.
+   * [localShapeIndex] and [bodyShapeIndex] contain indices of the interacting shapes from this area and the interacting body, respectively. [bodyRid] contains the [RID] of the body. These values can be used with the [godot.PhysicsServer3D].
    *
-   * [areaRid] the [RID] of the other Area3D's [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
+   * **Example of getting the** [godot.CollisionShape3D] **node from the shape index:**
    *
-   * [area] the other Area3D.
+   * [codeblocks]
    *
-   * [areaShapeIndex] the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
+   * [gdscript]
    *
-   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
-   */
-  public val areaShapeExited: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
-      "areaShapeIndex", "localShapeIndex")
-
-  /**
-   * Emitted when a [godot.PhysicsBody3D] or [godot.GridMap] enters this Area3D. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
+   * var body_shape_owner = body.shape_find_owner(body_shape_index)
    *
-   * [body] the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody3D] or [godot.GridMap].
-   */
-  public val bodyEntered: Signal1<Node3D> by signal("body")
-
-  /**
-   * Emitted when one of a [godot.PhysicsBody3D] or [godot.GridMap]'s [godot.Shape3D]s enters one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
+   * var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
    *
-   * [bodyRid] the [RID] of the [godot.PhysicsBody3D] or [godot.MeshLibrary]'s [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
    *
-   * [body] the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody3D] or [godot.GridMap].
    *
-   * [bodyShapeIndex] the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
+   * var local_shape_owner = shape_find_owner(local_shape_index)
    *
-   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * var local_shape_node = shape_owner_get_owner(local_shape_owner)
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
    */
   public val bodyShapeEntered: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when another Area3D enters this Area3D. Requires [monitoring] to be set to `true`.
+   * Emitted when a [godot.Shape3D] of the received [body] exits a shape of this area. [body] can be a [godot.PhysicsBody3D] or a [godot.GridMap]. [godot.GridMap]s are detected if their [godot.MeshLibrary] has collision shapes configured. Requires [monitoring] to be set to `true`.
    *
-   * [area] the other Area3D.
+   * See also [bodyShapeEntered].
    */
-  public val areaEntered: Signal1<Area3D> by signal("area")
+  public val bodyShapeExited: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
+      "bodyShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when one of another Area3D's [godot.Shape3D]s enters one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`.
+   * Emitted when the received [body] enters this area. [body] can be a [godot.PhysicsBody3D] or a [godot.GridMap]. [godot.GridMap]s are detected if their [godot.MeshLibrary] has collision shapes configured. Requires [monitoring] to be set to `true`.
+   */
+  public val bodyEntered: Signal1<Node3D> by signal("body")
+
+  /**
+   * Emitted when the received [body] exits this area. [body] can be a [godot.PhysicsBody3D] or a [godot.GridMap]. [godot.GridMap]s are detected if their [godot.MeshLibrary] has collision shapes configured. Requires [monitoring] to be set to `true`.
+   */
+  public val bodyExited: Signal1<Node3D> by signal("body")
+
+  /**
+   * Emitted when a [godot.Shape3D] of the received [area] enters a shape of this area. Requires [monitoring] to be set to `true`.
    *
-   * [areaRid] the [RID] of the other Area3D's [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
+   * [localShapeIndex] and [areaShapeIndex] contain indices of the interacting shapes from this area and the other area, respectively. [areaRid] contains the [RID] of the other area. These values can be used with the [godot.PhysicsServer3D].
    *
-   * [area] the other Area3D.
+   * **Example of getting the** [godot.CollisionShape3D] **node from the shape index:**
    *
-   * [areaShapeIndex] the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
+   * [codeblocks]
    *
-   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * [gdscript]
+   *
+   * var other_shape_owner = area.shape_find_owner(area_shape_index)
+   *
+   * var other_shape_node = area.shape_owner_get_owner(other_shape_owner)
+   *
+   *
+   *
+   * var local_shape_owner = shape_find_owner(local_shape_index)
+   *
+   * var local_shape_node = shape_owner_get_owner(local_shape_owner)
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
    */
   public val areaShapeEntered: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when a [godot.PhysicsBody3D] or [godot.GridMap] exits this Area3D. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
+   * Emitted when a [godot.Shape3D] of the received [area] exits a shape of this area. Requires [monitoring] to be set to `true`.
    *
-   * [body] the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody3D] or [godot.GridMap].
+   * See also [areaShapeEntered].
    */
-  public val bodyExited: Signal1<Node3D> by signal("body")
+  public val areaShapeExited: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
+      "areaShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when one of a [godot.PhysicsBody3D] or [godot.GridMap]'s [godot.Shape3D]s enters one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
-   *
-   * [bodyRid] the [RID] of the [godot.PhysicsBody3D] or [godot.MeshLibrary]'s [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
-   *
-   * [body] the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody3D] or [godot.GridMap].
-   *
-   * [bodyShapeIndex] the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
-   *
-   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * Emitted when the received [area] enters this area. Requires [monitoring] to be set to `true`.
    */
-  public val bodyShapeExited: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
-      "bodyShapeIndex", "localShapeIndex")
+  public val areaEntered: Signal1<Area3D> by signal("area")
+
+  /**
+   * Emitted when the received [area] exits this area. Requires [monitoring] to be set to `true`.
+   */
+  public val areaExited: Signal1<Area3D> by signal("area")
 
   /**
    * If `true`, the area detects bodies or areas entering and exiting it.
@@ -161,26 +169,26 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The area's priority. Higher priority areas are processed first.
    */
-  public var priority: Long
+  public var priority: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_PRIORITY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_PRIORITY, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_PRIORITY, NIL)
     }
 
   /**
    * Override mode for gravity calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public var gravitySpaceOverride: Long
+  public var gravitySpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_SPACE_OVERRIDE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Area3D.SpaceOverride.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -266,12 +274,12 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Override mode for linear damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public var linearDampSpaceOverride: Long
+  public var linearDampSpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AREA3D_GET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Area3D.SpaceOverride.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -298,12 +306,12 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Override mode for angular damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public var angularDampSpaceOverride: Long
+  public var angularDampSpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AREA3D_GET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Area3D.SpaceOverride.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -405,7 +413,10 @@ public open class Area3D : CollisionObject3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_AUDIO_BUS_NAME, NIL)
     }
 
-  public var reverbBusEnable: Boolean
+  /**
+   * If `true`, the area applies reverb to its associated audio.
+   */
+  public var reverbBusEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_USING_REVERB_BUS, BOOL)
@@ -422,13 +433,13 @@ public open class Area3D : CollisionObject3D() {
   public var reverbBusName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_BUS,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_BUS_NAME,
           STRING_NAME)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_BUS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_BUS_NAME, NIL)
     }
 
   /**
@@ -470,11 +481,11 @@ public open class Area3D : CollisionObject3D() {
    *
    * For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
-  public fun getOverlappingBodies(): VariantArray<Any?> {
+  public fun getOverlappingBodies(): VariantArray<Node3D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_OVERLAPPING_BODIES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node3D>
   }
 
   /**
@@ -482,10 +493,32 @@ public open class Area3D : CollisionObject3D() {
    *
    * For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
-  public fun getOverlappingAreas(): VariantArray<Any?> {
+  public fun getOverlappingAreas(): VariantArray<Area3D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_OVERLAPPING_AREAS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Area3D>
+  }
+
+  /**
+   * Returns `true` if intersecting any [godot.PhysicsBody3D]s or [godot.GridMap]s, otherwise returns `false`. The overlapping body's [godot.CollisionObject3D.collisionLayer] must be part of this area's [godot.CollisionObject3D.collisionMask] in order to be detected.
+   *
+   * For performance reasons (collisions are all processed at the same time) the list of overlapping bodies is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
+   */
+  public fun hasOverlappingBodies(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_HAS_OVERLAPPING_BODIES, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if intersecting any [godot.Area3D]s, otherwise returns `false`. The overlapping area's [godot.CollisionObject3D.collisionLayer] must be part of this area's [godot.CollisionObject3D.collisionMask] in order to be detected.
+   *
+   * For performance reasons (collisions are all processed at the same time) the list of overlapping areas is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
+   */
+  public fun hasOverlappingAreas(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_HAS_OVERLAPPING_AREAS, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

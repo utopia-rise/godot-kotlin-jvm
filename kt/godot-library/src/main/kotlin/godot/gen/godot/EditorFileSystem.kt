@@ -12,6 +12,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
@@ -34,9 +35,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class EditorFileSystem internal constructor() : Node() {
   /**
-   * Emitted if a resource is reimported.
+   * Emitted if the filesystem changed.
    */
-  public val resourcesReimported: Signal1<PackedStringArray> by signal("resources")
+  public val filesystemChanged: Signal0 by signal()
 
   /**
    * Emitted if the source of any imported file changed.
@@ -44,9 +45,9 @@ public open class EditorFileSystem internal constructor() : Node() {
   public val sourcesChanged: Signal1<Boolean> by signal("exist")
 
   /**
-   * Emitted if the filesystem changed.
+   * Emitted if a resource is reimported.
    */
-  public val filesystemChanged: Signal0 by signal()
+  public val resourcesReimported: Signal1<PackedStringArray> by signal("resources")
 
   /**
    * Emitted if at least one resource is reloaded when the filesystem is scanned.
@@ -140,6 +141,19 @@ public open class EditorFileSystem internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_SCRIPT_CLASSES, NIL)
+  }
+
+  /**
+   * Reimports a set of files. Call this if these files or their `.import` files were directly edited by script or an external program.
+   *
+   * If the file type changed or the file was newly created, use [updateFile] or [scan].
+   *
+   * **Note:** This function blocks until the import is finished. However, the main loop iteration, including timers and [godot.Node.Process], will occur during the import process due to progress bar updates. Avoid calls to [reimportFiles] or [scan] while an import is in progress.
+   */
+  public fun reimportFiles(files: PackedStringArray): Unit {
+    TransferContext.writeArguments(PACKED_STRING_ARRAY to files)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_REIMPORT_FILES,
+        NIL)
   }
 
   public companion object

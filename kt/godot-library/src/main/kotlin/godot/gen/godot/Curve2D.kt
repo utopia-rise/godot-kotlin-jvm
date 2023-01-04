@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
+import godot.core.Transform2D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
+import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
@@ -46,15 +48,23 @@ public open class Curve2D : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_BAKE_INTERVAL, NIL)
     }
 
+  /**
+   * The number of points describing the curve.
+   */
+  public var pointCount: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_COUNT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_COUNT, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CURVE2D, scriptIndex)
     return true
-  }
-
-  public fun getPointCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -66,9 +76,9 @@ public open class Curve2D : Resource() {
     position: Vector2,
     _in: Vector2 = Vector2(0, 0),
     `out`: Vector2 = Vector2(0, 0),
-    atPosition: Long = -1
+    index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to _in, VECTOR2 to out, LONG to atPosition)
+    TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to _in, VECTOR2 to out, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_ADD_POINT, NIL)
   }
 
@@ -139,15 +149,23 @@ public open class Curve2D : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_CLEAR_POINTS, NIL)
   }
 
-  public fun interpolate(idx: Long, t: Double): Vector2 {
+  /**
+   * Returns the position between the vertex [idx] and the vertex `idx + 1`, where [t] controls if the point is the first vertex (`t = 0.0`), the last vertex (`t = 1.0`), or in between. Values of [t] outside the range (`0.0 >= t <=1`) give strange, but predictable results.
+   *
+   * If [idx] is out of bounds it is truncated to the first or last vertex, and [t] is ignored. If the curve has no points, the function sends an error to the console, and returns `(0, 0)`.
+   */
+  public fun sample(idx: Long, t: Double): Vector2 {
     TransferContext.writeArguments(LONG to idx, DOUBLE to t)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATE, VECTOR2)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  public fun interpolatef(fofs: Double): Vector2 {
+  /**
+   * Returns the position at the vertex [fofs]. It calls [sample] using the integer part of [fofs] as `idx`, and its fractional part as `t`.
+   */
+  public fun samplef(fofs: Double): Vector2 {
     TransferContext.writeArguments(DOUBLE to fofs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATEF, VECTOR2)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLEF, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -160,10 +178,33 @@ public open class Curve2D : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun interpolateBaked(offset: Double, cubic: Boolean = false): Vector2 {
+  /**
+   * Returns a point within the curve at position [offset], where [offset] is measured as a pixel distance along the curve.
+   *
+   * To do that, it finds the two cached points where the [offset] lies between, then interpolates the values. This interpolation is cubic if [cubic] is set to `true`, or linear if set to `false`.
+   *
+   * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
+   */
+  public fun sampleBaked(offset: Double = 0.0, cubic: Boolean = false): Vector2 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATE_BAKED, VECTOR2)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLE_BAKED, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Similar to [sampleBaked], but returns [godot.core.Transform2D] that includes a rotation along the curve. Returns empty transform if length of the curve is `0`.
+   *
+   * ```
+   * 				var transform = curve.sample_baked_with_rotation(offset)
+   * 				position = transform.get_origin()
+   * 				rotation = transform.get_rotation()
+   * 				```
+   */
+  public fun sampleBakedWithRotation(offset: Double = 0.0, cubic: Boolean = false): Transform2D {
+    TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLE_BAKED_WITH_ROTATION,
+        TRANSFORM2D)
+    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
   /**
@@ -177,7 +218,7 @@ public open class Curve2D : Resource() {
   }
 
   /**
-   * Returns the closest baked point (in curve's local space) to [toPoint].
+   * Returns the closest point on baked segments (in curve's local space) to [toPoint].
    *
    * [toPoint] must be in this curve's local space.
    */
@@ -210,6 +251,17 @@ public open class Curve2D : Resource() {
   public fun tessellate(maxStages: Long = 5, toleranceDegrees: Double = 4.0): PackedVector2Array {
     TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceDegrees)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_TESSELLATE,
+        PACKED_VECTOR2_ARRAY)
+    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+  }
+
+  /**
+   *
+   */
+  public fun tessellateEvenLength(maxStages: Long = 5, toleranceLength: Double = 20.0):
+      PackedVector2Array {
+    TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceLength)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_TESSELLATE_EVEN_LENGTH,
         PACKED_VECTOR2_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }

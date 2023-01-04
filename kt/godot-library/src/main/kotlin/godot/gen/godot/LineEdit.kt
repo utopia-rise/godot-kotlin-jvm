@@ -11,6 +11,7 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -79,11 +80,6 @@ import kotlin.Unit
 @GodotBaseType
 public open class LineEdit : Control() {
   /**
-   * Emitted when the user presses [KEY_ENTER] on the [godot.LineEdit].
-   */
-  public val textSubmitted: Signal1<String> by signal("newText")
-
-  /**
    * Emitted when the text changes.
    */
   public val textChanged: Signal1<String> by signal("newText")
@@ -92,6 +88,11 @@ public open class LineEdit : Control() {
    * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to fit [maxLength], and the part that couldn't fit is passed as the `rejected_substring` argument.
    */
   public val textChangeRejected: Signal1<String> by signal("rejectedSubstring")
+
+  /**
+   * Emitted when the user presses [KEY_ENTER] on the [godot.LineEdit].
+   */
+  public val textSubmitted: Signal1<String> by signal("newText")
 
   /**
    * String value of the [godot.LineEdit].
@@ -126,12 +127,12 @@ public open class LineEdit : Control() {
   /**
    * Text alignment as defined in the [enum HorizontalAlignment] enum.
    */
-  public var alignment: Long
+  public var alignment: HorizontalAlignment
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_HORIZONTAL_ALIGNMENT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -290,6 +291,22 @@ public open class LineEdit : Control() {
     }
 
   /**
+   * Specifies the type of virtual keyboard to show.
+   */
+  public var virtualKeyboardType: VirtualKeyboardType
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_VIRTUAL_KEYBOARD_TYPE, LONG)
+      return LineEdit.VirtualKeyboardType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_VIRTUAL_KEYBOARD_TYPE, NIL)
+    }
+
+  /**
    * If `true`, the [godot.LineEdit] will show a clear button if `text` is not empty, which can be used to clear the text quickly.
    */
   public var clearButtonEnabled: Boolean
@@ -374,11 +391,11 @@ public open class LineEdit : Control() {
   /**
    * Sets the icon that will appear in the right end of the [godot.LineEdit] if there's no [text], or always, if [clearButtonEnabled] is set to `false`.
    */
-  public var rightIcon: Texture?
+  public var rightIcon: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_RIGHT_ICON, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -400,34 +417,6 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Base text writing direction.
-   */
-  public var textDirection: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_TEXT_DIRECTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_TEXT_DIRECTION, NIL)
-    }
-
-  /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
-   */
-  public var language: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_LANGUAGE, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_LANGUAGE, NIL)
-    }
-
-  /**
    * If `true`, control characters are displayed.
    */
   public var drawControlChars: Boolean
@@ -444,35 +433,19 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Set BiDi algorithm override for the structured text.
+   * If `true`, the [godot.LineEdit] will select the whole text when it gains focus.
    */
-  public var structuredTextBidiOverride: Long
+  public var selectAllOnFocus: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_SELECT_ALL_ON_FOCUS,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
-    }
-
-  /**
-   * Set additional options for BiDi override.
-   */
-  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-    }
-    set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SELECT_ALL_ON_FOCUS,
+          NIL)
     }
 
   /**
@@ -491,16 +464,19 @@ public open class LineEdit : Control() {
           NIL)
     }
 
-  public var caretBlinkSpeed: Double
+  /**
+   * Duration (in seconds) of a caret's blinking cycle.
+   */
+  public var caretBlinkInterval: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CARET_BLINK_SPEED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CARET_BLINK_INTERVAL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_BLINK_SPEED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_BLINK_INTERVAL,
           NIL)
     }
 
@@ -550,6 +526,66 @@ public open class LineEdit : Control() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_MID_GRAPHEME_ENABLED, NIL)
+    }
+
+  /**
+   * Base text writing direction.
+   */
+  public var textDirection: Control.TextDirection
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_TEXT_DIRECTION, LONG)
+      return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_TEXT_DIRECTION, NIL)
+    }
+
+  /**
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   */
+  public var language: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_LANGUAGE, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_LANGUAGE, NIL)
+    }
+
+  /**
+   * Set BiDi algorithm override for the structured text.
+   */
+  public var structuredTextBidiOverride: TextServer.StructuredTextParser
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
+      return TextServer.StructuredTextParser.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
+    }
+
+  /**
+   * Set additional options for BiDi override.
+   */
+  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY)
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    }
+    set(`value`) {
+      TransferContext.writeArguments(ARRAY to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -646,30 +682,13 @@ public open class LineEdit : Control() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
-    TransferContext.writeArguments(STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_OPENTYPE_FEATURE, NIL)
-  }
-
-  public fun getOpentypeFeature(tag: String): Long {
-    TransferContext.writeArguments(STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_OPENTYPE_FEATURE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun clearOpentypeFeatures(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_CLEAR_OPENTYPE_FEATURES,
-        NIL)
-  }
-
   /**
    * Returns the scroll offset due to [caretColumn], as a number of characters.
    */
-  public fun getScrollOffset(): Long {
+  public fun getScrollOffset(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SCROLL_OFFSET, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SCROLL_OFFSET, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -845,6 +864,55 @@ public open class LineEdit : Control() {
      * Represents the size of the [enum MenuItems] enum.
      */
     MENU_MAX(28),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VirtualKeyboardType(
+    id: Long
+  ) {
+    /**
+     * Default text virtual keyboard.
+     */
+    KEYBOARD_TYPE_DEFAULT(0),
+    /**
+     * Multiline virtual keyboard.
+     */
+    KEYBOARD_TYPE_MULTILINE(1),
+    /**
+     * Virtual number keypad, useful for PIN entry.
+     */
+    KEYBOARD_TYPE_NUMBER(2),
+    /**
+     * Virtual number keypad, useful for entering fractional numbers.
+     */
+    KEYBOARD_TYPE_NUMBER_DECIMAL(3),
+    /**
+     * Virtual phone number keypad.
+     */
+    KEYBOARD_TYPE_PHONE(4),
+    /**
+     * Virtual keyboard with additional keys to assist with typing email addresses.
+     */
+    KEYBOARD_TYPE_EMAIL_ADDRESS(5),
+    /**
+     * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete and autocapitalization.
+     *
+     * **Note:** This is not supported on Web. Instead, this behaves identically to [KEYBOARD_TYPE_DEFAULT].
+     */
+    KEYBOARD_TYPE_PASSWORD(6),
+    /**
+     * Virtual keyboard with additional keys to assist with typing URLs.
+     */
+    KEYBOARD_TYPE_URL(7),
     ;
 
     public val id: Long

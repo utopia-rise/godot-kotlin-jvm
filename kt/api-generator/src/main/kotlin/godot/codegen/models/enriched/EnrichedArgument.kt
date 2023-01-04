@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.ANY
 import godot.codegen.extensions.convertToCamelCase
 import godot.codegen.extensions.escapeKotlinReservedNames
 import godot.codegen.extensions.getTypeClassName
+import godot.codegen.workarounds.sanitizeApiType
 import godot.codegen.models.Argument
 import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait
@@ -17,7 +18,7 @@ class EnrichedArgument(val internal: Argument) : TypedTrait, NullableTrait, With
         getTypeClassName().className == ANY
     }
 
-    override val type = internal.type
+    override val type = internal.type.sanitizeApiType()
     override val defaultValue = internal.defaultValue
 }
 

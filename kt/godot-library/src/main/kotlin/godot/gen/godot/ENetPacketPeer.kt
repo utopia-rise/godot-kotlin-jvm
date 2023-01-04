@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.ENetPacketPeer
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
@@ -16,11 +15,13 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
+import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -92,14 +93,28 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SET_TIMEOUT, NIL)
   }
 
-  public fun getStatistic(statistic: ENetPacketPeer.PeerStatistic): Double {
+  public fun getRemoteAddress(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_REMOTE_ADDRESS,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  public fun getRemotePort(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_REMOTE_PORT,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public fun getStatistic(statistic: PeerStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATISTIC,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun getState(): ENetPacketPeer.PeerState {
+  public fun getState(): PeerState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATE, LONG)
     return ENetPacketPeer.PeerState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -115,6 +130,31 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_IS_ACTIVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public enum class PeerState(
+    id: Long
+  ) {
+    STATE_DISCONNECTED(0),
+    STATE_CONNECTING(1),
+    STATE_ACKNOWLEDGING_CONNECT(2),
+    STATE_CONNECTION_PENDING(3),
+    STATE_CONNECTION_SUCCEEDED(4),
+    STATE_CONNECTED(5),
+    STATE_DISCONNECT_LATER(6),
+    STATE_DISCONNECTING(7),
+    STATE_ACKNOWLEDGING_DISCONNECT(8),
+    STATE_ZOMBIE(9),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class PeerStatistic(
@@ -134,31 +174,6 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     PEER_PACKET_THROTTLE_ACCELERATION(11),
     PEER_PACKET_THROTTLE_DECELERATION(12),
     PEER_PACKET_THROTTLE_INTERVAL(13),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class PeerState(
-    id: Long
-  ) {
-    STATE_DISCONNECTED(0),
-    STATE_CONNECTING(1),
-    STATE_ACKNOWLEDGING_CONNECT(2),
-    STATE_CONNECTION_PENDING(3),
-    STATE_CONNECTION_SUCCEEDED(4),
-    STATE_CONNECTED(5),
-    STATE_DISCONNECT_LATER(6),
-    STATE_DISCONNECTING(7),
-    STATE_ACKNOWLEDGING_DISCONNECT(8),
-    STATE_ZOMBIE(9),
     ;
 
     public val id: Long

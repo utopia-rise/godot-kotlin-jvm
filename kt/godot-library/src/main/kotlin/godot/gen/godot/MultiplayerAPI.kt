@@ -8,27 +8,27 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.NodePath
-import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
+import godot.core.StringName
+import godot.core.VariantArray
+import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.PACKED_INT_32_ARRAY
+import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
-import godot.signals.Signal2
 import godot.signals.signal
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * High-level multiplayer API interface.
@@ -42,18 +42,11 @@ import kotlin.Unit
  * It is also possible to extend or replace the default implementation via scripting or native extensions. See [godot.MultiplayerAPIExtension] for details about extensions, [godot.SceneMultiplayer] for the details about the default implementation.
  */
 @GodotBaseType
-public open class MultiplayerAPI : RefCounted() {
+public open class MultiplayerAPI internal constructor() : RefCounted() {
   /**
-   * Emitted when this MultiplayerAPI's [multiplayerPeer] successfully connected to a server. Only emitted on clients.
+   * Emitted when this MultiplayerAPI's [multiplayerPeer] connects with a new peer. ID is the peer ID of the new peer. Clients get notified when other clients connect to the same server. Upon connecting to a server, a client also receives this signal for the server (with ID being 1).
    */
-  public val connectedToServer: Signal0 by signal()
-
-  public val peerPacket: Signal2<Long, PackedByteArray> by signal("id", "packet")
-
-  /**
-   * Emitted when this MultiplayerAPI's [multiplayerPeer] fails to establish a connection to a server. Only emitted on clients.
-   */
-  public val connectionFailed: Signal0 by signal()
+  public val peerConnected: Signal1<Long> by signal("id")
 
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] disconnects from a peer. Clients get notified when other clients disconnect from the same server.
@@ -61,40 +54,19 @@ public open class MultiplayerAPI : RefCounted() {
   public val peerDisconnected: Signal1<Long> by signal("id")
 
   /**
-   * Emitted when this MultiplayerAPI's [multiplayerPeer] connects with a new peer. ID is the peer ID of the new peer. Clients get notified when other clients connect to the same server. Upon connecting to a server, a client also receives this signal for the server (with ID being 1).
+   * Emitted when this MultiplayerAPI's [multiplayerPeer] successfully connected to a server. Only emitted on clients.
    */
-  public val peerConnected: Signal1<Long> by signal("id")
+  public val connectedToServer: Signal0 by signal()
+
+  /**
+   * Emitted when this MultiplayerAPI's [multiplayerPeer] fails to establish a connection to a server. Only emitted on clients.
+   */
+  public val connectionFailed: Signal0 by signal()
 
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] disconnects from server. Only emitted on clients.
    */
   public val serverDisconnected: Signal0 by signal()
-
-  public var allowObjectDecoding: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_OBJECT_DECODING_ALLOWED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_ALLOW_OBJECT_DECODING, NIL)
-    }
-
-  public var refuseNewConnections: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_REFUSING_NEW_CONNECTIONS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_REFUSE_NEW_CONNECTIONS, NIL)
-    }
 
   /**
    * The peer object to handle the RPC system (effectively enabling networking when set). Depending on the peer itself, the MultiplayerAPI will become a network server (check with [isServer]) and will set root node's network mode to authority, or it will become a regular client peer. All child nodes are set to inherit the network mode by default. Handling of networking-related events (connection, disconnection, new clients) is done by connecting to MultiplayerAPI's signals.
@@ -112,32 +84,9 @@ public open class MultiplayerAPI : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_MULTIPLAYER_PEER, NIL)
     }
 
-  public var rootPath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_ROOT_PATH,
-          NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
-    }
-    set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_ROOT_PATH, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MULTIPLAYERAPI, scriptIndex)
     return true
-  }
-
-  public fun sendBytes(
-    bytes: PackedByteArray,
-    id: Long = 0,
-    mode: TransferMode = TransferMode.TRANSFER_MODE_RELIABLE,
-    channel: Long = 0
-  ): GodotError {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id, LONG to mode.id, LONG to channel)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SEND_BYTES, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -185,14 +134,50 @@ public open class MultiplayerAPI : RefCounted() {
    *
    * **Note:** This method results in RPCs being called, so they will be executed in the same context of this function (e.g. `_process`, `physics`, [godot.Thread]).
    */
-  public fun poll(): Unit {
+  public fun poll(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_POLL, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_POLL, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_CLEAR, NIL)
+  /**
+   * Sends an RPC to the target [peer]. The given [method] will be called on the remote [object] with the provided [arguments]. The RPC may also be called locally depending on the implementation and RPC configuration. See [godot.Node.rpc] and [godot.Node.rpcConfig].
+   *
+   * **Note:** Prefer using [godot.Node.rpc], [godot.Node.rpcId], or `my_method.rpc(peer, arg1, arg2, ...)` (in GDScript), since they are faster. This method is mostly useful in conjunction with [godot.MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.
+   */
+  public fun rpc(
+    peer: Long,
+    _object: Object,
+    method: StringName,
+    arguments: VariantArray<Any?> = godot.core.variantArrayOf()
+  ): GodotError {
+    TransferContext.writeArguments(LONG to peer, OBJECT to _object, STRING_NAME to method, ARRAY to arguments)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_RPC, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Notifies the MultiplayerAPI of a new [configuration] for the given [object]. This method is used internally by [godot.SceneTree] to configure the root path for this MultiplayerAPI (passing `null` and a valid [godot.core.NodePath] as [configuration]). This method can be further used by MultiplayerAPI implementations to provide additional features, refer to specific implementation (e.g. [godot.SceneMultiplayer]) for details on how they use it.
+   *
+   * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI behavior via [godot.MultiplayerAPIExtension].
+   */
+  public fun objectConfigurationAdd(_object: Object, configuration: Any): GodotError {
+    TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_OBJECT_CONFIGURATION_ADD, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Notifies the MultiplayerAPI to remove a [configuration] for the given [object]. This method is used internally by [godot.SceneTree] to configure the root path for this MultiplayerAPI (passing `null` and an empty [godot.core.NodePath] as [configuration]). This method can be further used by MultiplayerAPI implementations to provide additional features, refer to specific implementation (e.g. [godot.SceneMultiplayer]) for details on how they use it.
+   *
+   * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI behavior via [godot.MultiplayerAPIExtension].
+   */
+  public fun objectConfigurationRemove(_object: Object, configuration: Any): GodotError {
+    TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_OBJECT_CONFIGURATION_REMOVE, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -203,6 +188,33 @@ public open class MultiplayerAPI : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_PEERS,
         PACKED_INT_32_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+  }
+
+  public enum class RPCMode(
+    id: Long
+  ) {
+    /**
+     * Used with [godot.Node.rpcConfig] to disable a method or property for all RPC calls, making it unavailable. Default for all methods.
+     */
+    RPC_MODE_DISABLED(0),
+    /**
+     * Used with [godot.Node.rpcConfig] to set a method to be callable remotely by any peer. Analogous to the `@rpc(any)` annotation. Calls are accepted from all remote peers, no matter if they are node's authority or not.
+     */
+    RPC_MODE_ANY_PEER(1),
+    /**
+     * Used with [godot.Node.rpcConfig] to set a method to be callable remotely only by the current multiplayer authority (which is the server by default). Analogous to the `@rpc(authority)` annotation. See [godot.Node.setMultiplayerAuthority].
+     */
+    RPC_MODE_AUTHORITY(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public companion object

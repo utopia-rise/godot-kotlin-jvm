@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.PacketPeerDTLS
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.BOOL
@@ -65,7 +64,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   /**
    * Returns the status of the connection. See [enum Status] for values.
    */
-  public fun getStatus(): PacketPeerDTLS.Status {
+  public fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_GET_STATUS, LONG)
     return PacketPeerDTLS.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]

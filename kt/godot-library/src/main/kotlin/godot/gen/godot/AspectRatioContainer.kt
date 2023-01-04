@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -46,12 +47,12 @@ public open class AspectRatioContainer : Container() {
   /**
    * The stretch mode used to align child controls.
    */
-  public var stretchMode: Long
+  public var stretchMode: StretchMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_STRETCH_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AspectRatioContainer.StretchMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -62,12 +63,12 @@ public open class AspectRatioContainer : Container() {
   /**
    * Specifies the horizontal relative position of child controls.
    */
-  public var alignmentHorizontal: Long
+  public var alignmentHorizontal: AlignmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_ALIGNMENT_HORIZONTAL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AspectRatioContainer.AlignmentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -78,12 +79,12 @@ public open class AspectRatioContainer : Container() {
   /**
    * Specifies the vertical relative position of child controls.
    */
-  public var alignmentVertical: Long
+  public var alignmentVertical: AlignmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_ALIGNMENT_VERTICAL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AspectRatioContainer.AlignmentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -94,33 +95,6 @@ public open class AspectRatioContainer : Container() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ASPECTRATIOCONTAINER, scriptIndex)
     return true
-  }
-
-  public enum class AlignmentMode(
-    id: Long
-  ) {
-    /**
-     * Aligns child controls with the beginning (left or top) of the container.
-     */
-    ALIGNMENT_BEGIN(0),
-    /**
-     * Aligns child controls with the center of the container.
-     */
-    ALIGNMENT_CENTER(1),
-    /**
-     * Aligns child controls with the end (right or bottom) of the container.
-     */
-    ALIGNMENT_END(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public enum class StretchMode(
@@ -144,6 +118,33 @@ public open class AspectRatioContainer : Container() {
      * When the bounding rectangle of child controls exceed the container's size and [godot.Control.clipContents] is enabled, this allows to show only the container's area restricted by its own bounding rectangle.
      */
     STRETCH_COVER(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class AlignmentMode(
+    id: Long
+  ) {
+    /**
+     * Aligns child controls with the beginning (left or top) of the container.
+     */
+    ALIGNMENT_BEGIN(0),
+    /**
+     * Aligns child controls with the center of the container.
+     */
+    ALIGNMENT_CENTER(1),
+    /**
+     * Aligns child controls with the end (right or bottom) of the container.
+     */
+    ALIGNMENT_END(2),
     ;
 
     public val id: Long

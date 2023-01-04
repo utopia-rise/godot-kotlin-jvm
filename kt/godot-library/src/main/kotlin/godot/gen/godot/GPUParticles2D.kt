@@ -14,6 +14,7 @@ import godot.core.Transform2D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -84,6 +85,37 @@ public open class GPUParticles2D : Node2D() {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_SUB_EMITTER,
           NIL)
+    }
+
+  /**
+   * [godot.Material] for processing particles. Can be a [godot.ParticleProcessMaterial] or a [godot.ShaderMaterial].
+   */
+  public var processMaterial: Material?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_PROCESS_MATERIAL, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Material?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_PROCESS_MATERIAL, NIL)
+    }
+
+  /**
+   * Particle texture. If `null`, particles will be squares.
+   */
+  public var texture: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TEXTURE,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_TEXTURE, NIL)
     }
 
   /**
@@ -195,6 +227,22 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
+   * Enables particle interpolation, which makes the particle movement smoother when their [fixedFps] is lower than the screen refresh rate.
+   */
+  public var interpolate: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_INTERPOLATE,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_INTERPOLATE,
+          NIL)
+    }
+
+  /**
    * If `true`, results in fractional delta calculation which has a smoother particles display effect.
    */
   public var fractDelta: Boolean
@@ -263,12 +311,12 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public var drawOrder: Long
+  public var drawOrder: DrawOrder
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_DRAW_ORDER,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GPUParticles2D.DrawOrder.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -294,16 +342,19 @@ public open class GPUParticles2D : Node2D() {
           NIL)
     }
 
-  public var trailLengthSecs: Double
+  /**
+   * The amount of time the particle's trail should represent (in seconds). Only effective if [trailEnabled] is `true`.
+   */
+  public var trailLifetime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TRAIL_LENGTH,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TRAIL_LIFETIME,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_TRAIL_LENGTH,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_TRAIL_LIFETIME,
           NIL)
     }
 
@@ -337,37 +388,6 @@ public open class GPUParticles2D : Node2D() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_TRAIL_SECTION_SUBDIVISIONS, NIL)
-    }
-
-  /**
-   * [godot.Material] for processing particles. Can be a [godot.ParticleProcessMaterial] or a [godot.ShaderMaterial].
-   */
-  public var processMaterial: Material?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_PROCESS_MATERIAL, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_PROCESS_MATERIAL, NIL)
-    }
-
-  /**
-   * Particle texture. If `null`, particles will be squares.
-   */
-  public var texture: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TEXTURE,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_TEXTURE, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -406,6 +426,33 @@ public open class GPUParticles2D : Node2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_EMIT_PARTICLE, NIL)
   }
 
+  public enum class DrawOrder(
+    id: Long
+  ) {
+    /**
+     * Particles are drawn in the order emitted.
+     */
+    DRAW_ORDER_INDEX(0),
+    /**
+     * Particles are drawn in order of remaining lifetime.
+     */
+    DRAW_ORDER_LIFETIME(1),
+    /**
+     *
+     */
+    DRAW_ORDER_REVERSE_LIFETIME(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class EmitFlags(
     id: Long
   ) {
@@ -429,33 +476,6 @@ public open class GPUParticles2D : Node2D() {
      * Particle starts with specified `CUSTOM` data.
      */
     EMIT_FLAG_CUSTOM(16),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DrawOrder(
-    id: Long
-  ) {
-    /**
-     * Particles are drawn in the order emitted.
-     */
-    DRAW_ORDER_INDEX(0),
-    /**
-     * Particles are drawn in order of remaining lifetime.
-     */
-    DRAW_ORDER_LIFETIME(1),
-    /**
-     *
-     */
-    DRAW_ORDER_REVERSE_LIFETIME(2),
     ;
 
     public val id: Long

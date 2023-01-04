@@ -20,12 +20,12 @@ import kotlin.Suppress
 
 @GodotBaseType
 public open class GLTFSpecGloss : Resource() {
-  public var diffuseImg: Object?
+  public var diffuseImg: Image?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_DIFFUSE_IMG,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Object?
+      return TransferContext.readReturnValue(OBJECT, true) as Image?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -72,12 +72,12 @@ public open class GLTFSpecGloss : Resource() {
           NIL)
     }
 
-  public var specGlossImg: Object?
+  public var specGlossImg: Image?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_SPEC_GLOSS_IMG,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Object?
+      return TransferContext.readReturnValue(OBJECT, true) as Image?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

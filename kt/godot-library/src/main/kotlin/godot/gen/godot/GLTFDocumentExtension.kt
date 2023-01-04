@@ -7,20 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
-import godot.core.StringName
-import godot.core.VariantArray
-import godot.core.VariantType.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.core.Dictionary
+import godot.core.PackedStringArray
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -31,72 +24,69 @@ public open class GLTFDocumentExtension : Resource() {
     return true
   }
 
-  public fun getImportSettingKeys(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_IMPORT_SETTING_KEYS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  public open fun _importPreflight(state: GLTFState, extensions: PackedStringArray): Long {
+    throw NotImplementedError("_import_preflight is not implemented for GLTFDocumentExtension")
   }
 
-  public fun importPreflight(document: GLTFDocument): GodotError {
-    TransferContext.writeArguments(OBJECT to document)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_IMPORT_PREFLIGHT, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  public open fun _getSupportedExtensions(): PackedStringArray {
+    throw NotImplementedError("_get_supported_extensions is not implemented for GLTFDocumentExtension")
   }
 
-  public fun getImportSetting(key: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to key)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_IMPORT_SETTING, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+  public open fun _parseNodeExtensions(
+    state: GLTFState,
+    gltfNode: GLTFNode,
+    extensions: Dictionary<Any?, Any?>
+  ): Long {
+    throw NotImplementedError("_parse_node_extensions is not implemented for GLTFDocumentExtension")
   }
 
-  public fun setImportSetting(key: StringName, `value`: Any): Unit {
-    TransferContext.writeArguments(STRING_NAME to key, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_SET_IMPORT_SETTING, NIL)
+  public open fun _generateSceneNode(
+    state: GLTFState,
+    gltfNode: GLTFNode,
+    sceneParent: Node
+  ): Node3D? {
+    throw NotImplementedError("_generate_scene_node is not implemented for GLTFDocumentExtension")
   }
 
-  public fun importPost(document: GLTFDocument, node: Node): GodotError {
-    TransferContext.writeArguments(OBJECT to document, OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_IMPORT_POST,
-        LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  public open fun _importPostParse(state: GLTFState): Long {
+    throw NotImplementedError("_import_post_parse is not implemented for GLTFDocumentExtension")
   }
 
-  public fun getExportSettingKeys(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_EXPORT_SETTING_KEYS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  public open fun _importNode(
+    state: GLTFState,
+    gltfNode: GLTFNode,
+    json: Dictionary<Any?, Any?>,
+    node: Node
+  ): Long {
+    throw NotImplementedError("_import_node is not implemented for GLTFDocumentExtension")
   }
 
-  public fun getExportSetting(key: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to key)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_EXPORT_SETTING, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+  public open fun _importPost(state: GLTFState, root: Node): Long {
+    throw NotImplementedError("_import_post is not implemented for GLTFDocumentExtension")
   }
 
-  public fun setExportSetting(key: StringName, `value`: Any): Unit {
-    TransferContext.writeArguments(STRING_NAME to key, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_SET_EXPORT_SETTING, NIL)
+  public open fun _exportPreflight(state: GLTFState, root: Node): Long {
+    throw NotImplementedError("_export_preflight is not implemented for GLTFDocumentExtension")
   }
 
-  public fun exportPreflight(document: GLTFDocument, node: Node): GodotError {
-    TransferContext.writeArguments(OBJECT to document, OBJECT to node)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_EXPORT_PREFLIGHT, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  public open fun _convertSceneNode(
+    state: GLTFState,
+    gltfNode: GLTFNode,
+    sceneNode: Node
+  ): Unit {
   }
 
-  public fun exportPost(document: GLTFDocument): GodotError {
-    TransferContext.writeArguments(OBJECT to document)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_EXPORT_POST,
-        LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  public open fun _exportNode(
+    state: GLTFState,
+    gltfNode: GLTFNode,
+    json: Dictionary<Any?, Any?>,
+    node: Node
+  ): Long {
+    throw NotImplementedError("_export_node is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _exportPost(state: GLTFState): Long {
+    throw NotImplementedError("_export_post is not implemented for GLTFDocumentExtension")
   }
 
   public companion object

@@ -12,29 +12,26 @@ import godot.core.NodePath
 import godot.core.Quaternion
 import godot.core.Transform3D
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BASIS
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.QUATERNION
-import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
-import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -117,6 +114,21 @@ public open class Node3D : Node() {
     }
 
   /**
+   * Helper property to access [rotation] in degrees instead of radians.
+   */
+  public var rotationDegrees: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_DEGREES,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_ROTATION_DEGREES, NIL)
+    }
+
+  /**
    * Access to the node rotation as a [godot.Quaternion]. This property is ideal for tweening complex rotations.
    */
   public var quaternion: Quaternion
@@ -165,12 +177,12 @@ public open class Node3D : Node() {
   /**
    * Specify how rotation (and scale) will be presented in the editor.
    */
-  public var rotationEditMode: Long
+  public var rotationEditMode: RotationEditMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_EDIT_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Node3D.RotationEditMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -181,11 +193,11 @@ public open class Node3D : Node() {
   /**
    * Specify the axis rotation order of the [rotation] property. The final orientation is constructed by rotating the Euler angles in the order specified by this property.
    */
-  public var rotationOrder: Long
+  public var rotationOrder: EulerOrder
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_ORDER, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return EulerOrder.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -204,6 +216,54 @@ public open class Node3D : Node() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_AS_TOP_LEVEL, NIL)
+    }
+
+  /**
+   * Global position of this node. This is equivalent to `global_transform.origin`.
+   */
+  public var globalPosition: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_POSITION,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_POSITION, NIL)
+    }
+
+  /**
+   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
+   *
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   */
+  public var globalRotation: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_ROTATION,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_ROTATION, NIL)
+    }
+
+  /**
+   * Helper property to access [globalRotation] in degrees instead of radians.
+   */
+  public var globalRotationDegrees: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_ROTATION_DEGREES, VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_ROTATION_DEGREES, NIL)
     }
 
   /**
@@ -311,10 +371,10 @@ public open class Node3D : Node() {
   /**
    * Returns all the gizmos attached to this `Node3D`.
    */
-  public fun getGizmos(): VariantArray<Any?> {
+  public fun getGizmos(): VariantArray<Node3DGizmo> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GIZMOS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node3DGizmo>
   }
 
   /**
@@ -558,18 +618,6 @@ public open class Node3D : Node() {
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
-  public fun propertyCanRevert(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_PROPERTY_CAN_REVERT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun propertyGetRevert(name: String): Any? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_PROPERTY_GET_REVERT, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
   public enum class RotationEditMode(
     id: Long
   ) {
@@ -585,27 +633,6 @@ public open class Node3D : Node() {
      *
      */
     ROTATION_EDIT_MODE_BASIS(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class RotationOrder(
-    id: Long
-  ) {
-    ROTATION_ORDER_XYZ(0),
-    ROTATION_ORDER_XZY(1),
-    ROTATION_ORDER_YXZ(2),
-    ROTATION_ORDER_YZX(3),
-    ROTATION_ORDER_ZXY(4),
-    ROTATION_ORDER_ZYX(5),
     ;
 
     public val id: Long
@@ -640,5 +667,12 @@ public open class Node3D : Node() {
      * Node3D nodes receives this notification when their visibility changes.
      */
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 43
+
+    /**
+     * Node3D nodes receives this notification when their local transform changes. This is not received when the transform of a parent node is changed.
+     *
+     * In order for [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it, with [setNotifyLocalTransform].
+     */
+    public final const val NOTIFICATION_LOCAL_TRANSFORM_CHANGED: Long = 44
   }
 }

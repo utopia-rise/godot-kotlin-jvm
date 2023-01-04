@@ -6,9 +6,8 @@
 
 package godot
 
-import godot.Mesh
-import godot.SurfaceTool
 import godot.`annotation`.GodotBaseType
+import godot.core.AABB
 import godot.core.Color
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
@@ -112,7 +111,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** This function takes an enum, not the exact number of weights.
    */
-  public fun setSkinWeightCount(count: SurfaceTool.SkinWeightCount): Unit {
+  public fun setSkinWeightCount(count: SkinWeightCount): Unit {
     TransferContext.writeArguments(LONG to count.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SKIN_WEIGHT_COUNT,
         NIL)
@@ -125,7 +124,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** This function returns an enum, not the exact number of weights.
    */
-  public fun getSkinWeightCount(): SurfaceTool.SkinWeightCount {
+  public fun getSkinWeightCount(): SkinWeightCount {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_SKIN_WEIGHT_COUNT,
         LONG)
@@ -137,16 +136,16 @@ public open class SurfaceTool : RefCounted() {
    *
    * Must be invoked after [begin] and should be set before [commit] or [commitToArrays].
    */
-  public fun setCustomFormat(index: Long, format: SurfaceTool.CustomFormat): Unit {
-    TransferContext.writeArguments(LONG to index, LONG to format.id)
+  public fun setCustomFormat(channelIndex: Long, format: CustomFormat): Unit {
+    TransferContext.writeArguments(LONG to channelIndex, LONG to format.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM_FORMAT, NIL)
   }
 
   /**
    * Returns the format for custom [channelIndex] (currently up to 4). Returns [CUSTOM_MAX] if this custom channel is unused.
    */
-  public fun getCustomFormat(index: Long): SurfaceTool.CustomFormat {
-    TransferContext.writeArguments(LONG to index)
+  public fun getCustomFormat(channelIndex: Long): CustomFormat {
+    TransferContext.writeArguments(LONG to channelIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_CUSTOM_FORMAT, LONG)
     return SurfaceTool.CustomFormat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -230,8 +229,8 @@ public open class SurfaceTool : RefCounted() {
    *
    * [setCustomFormat] must be called first for this [channelIndex]. Formats which are not RGBA will ignore other color channels.
    */
-  public fun setCustom(index: Long, custom: Color): Unit {
-    TransferContext.writeArguments(LONG to index, COLOR to custom)
+  public fun setCustom(channelIndex: Long, customColor: Color): Unit {
+    TransferContext.writeArguments(LONG to channelIndex, COLOR to customColor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM, NIL)
   }
 
@@ -313,11 +312,14 @@ public open class SurfaceTool : RefCounted() {
         ENGINEMETHOD_ENGINECLASS_SURFACETOOL_OPTIMIZE_INDICES_FOR_CACHE, NIL)
   }
 
-  public fun getMaxAxisLength(): Double {
+  /**
+   * Returns the axis-aligned bounding box of the vertex positions.
+   */
+  public fun getAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_MAX_AXIS_LENGTH,
-        DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_AABB,
+        godot.core.VariantType.AABB)
+    return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
   }
 
   /**
@@ -340,9 +342,13 @@ public open class SurfaceTool : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_MATERIAL, NIL)
   }
 
-  public fun getPrimitive(): Mesh.PrimitiveType {
+  /**
+   * Returns the type of mesh geometry, such as [godot.Mesh.PRIMITIVE_TRIANGLES].
+   */
+  public fun getPrimitiveType(): Mesh.PrimitiveType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_PRIMITIVE, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_PRIMITIVE_TYPE,
+        LONG)
     return Mesh.PrimitiveType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

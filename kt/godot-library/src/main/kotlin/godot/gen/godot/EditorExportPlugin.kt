@@ -18,6 +18,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -63,6 +64,64 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    * Virtual method to be overridden by the user. Called when the export is finished.
    */
   public open fun _exportEnd(): Unit {
+  }
+
+  /**
+   * Return true if this plugin will customize resources based on the platform and features used.
+   */
+  public open fun _beginCustomizeResources(platform: EditorExportPlatform,
+      features: PackedStringArray): Boolean {
+    throw NotImplementedError("_begin_customize_resources is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Customize a resource. If changes are made to it, return the same or a new resource. Otherwise, return `null`.
+   *
+   * The *path* argument is only used when customizing an actual file, otherwise this means that this resource is part of another one and it will be empty.
+   */
+  public open fun _customizeResource(resource: Resource, path: String): Resource? {
+    throw NotImplementedError("_customize_resource is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Return true if this plugin will customize scenes based on the platform and features used.
+   */
+  public open fun _beginCustomizeScenes(platform: EditorExportPlatform,
+      features: PackedStringArray): Boolean {
+    throw NotImplementedError("_begin_customize_scenes is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Customize a scene. If changes are made to it, return the same or a new scene. Otherwise, return `null`. If a new scene is returned, it is up to you to dispose of the old one.
+   */
+  public open fun _customizeScene(scene: Node, path: String): Node? {
+    throw NotImplementedError("_customize_scene is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Return a hash based on the configuration passed (for both scenes and resources). This helps keep separate caches for separate export configurations.
+   */
+  public open fun _getCustomizationConfigurationHash(): Long {
+    throw NotImplementedError("_get_customization_configuration_hash is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * This is called when the customization process for scenes ends.
+   */
+  public open fun _endCustomizeScenes(): Unit {
+  }
+
+  /**
+   * This is called when the customization process for resources ends.
+   */
+  public open fun _endCustomizeResources(): Unit {
+  }
+
+  /**
+   * Return the name identifier of this plugin (for future identification by the exporter).
+   */
+  public open fun _getName(): String {
+    throw NotImplementedError("_get_name is not implemented for EditorExportPlugin")
   }
 
   /**
@@ -161,10 +220,15 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
         NIL)
   }
 
-  public fun addOsxPluginFile(path: String): Unit {
+  /**
+   * Adds file or directory matching [path] to `PlugIns` directory of macOS app bundle.
+   *
+   * **Note:** This is useful only for macOS exports.
+   */
+  public fun addMacosPluginFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_OSX_PLUGIN_FILE, NIL)
+        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_MACOS_PLUGIN_FILE, NIL)
   }
 
   /**

@@ -18,7 +18,6 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -41,7 +40,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   }
 
   /**
-   * Moves the body along the vector [distance]. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [distance] should be computed using `delta`.
+   * Moves the body along the vector [motion]. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [motion] should be computed using `delta`.
    *
    * Returns a [godot.KinematicCollision2D], which contains information about the collision when stopped, or when touching another body along the motion.
    *
@@ -52,20 +51,21 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [godot.CharacterBody2D] for improving floor detection during floor snapping.
    */
   public fun moveAndCollide(
-    distance: Vector2,
+    motion: Vector2,
     testOnly: Boolean = false,
-    safeMargin: Double = 0.08
+    safeMargin: Double = 0.08,
+    recoveryAsCollision: Boolean = false
   ): KinematicCollision2D? {
-    TransferContext.writeArguments(VECTOR2 to distance, BOOL to testOnly, DOUBLE to safeMargin)
+    TransferContext.writeArguments(VECTOR2 to motion, BOOL to testOnly, DOUBLE to safeMargin, BOOL to recoveryAsCollision)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_MOVE_AND_COLLIDE,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?
   }
 
   /**
-   * Checks for collisions without moving the body. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [distance] should be computed using `delta`.
+   * Checks for collisions without moving the body. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [motion] should be computed using `delta`.
    *
-   * Virtually sets the node's position, scale and rotation to that of the given [godot.core.Transform2D], then tries to move the body along the vector [distance]. Returns `true` if a collision would stop the body from moving along the whole path.
+   * Virtually sets the node's position, scale and rotation to that of the given [godot.core.Transform2D], then tries to move the body along the vector [motion]. Returns `true` if a collision would stop the body from moving along the whole path.
    *
    * [collision] is an optional object of type [godot.KinematicCollision2D], which contains additional information about the collision when stopped, or when touching another body along the motion.
    *
@@ -75,11 +75,12 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    */
   public fun testMove(
     from: Transform2D,
-    distance: Vector2,
+    motion: Vector2,
     collision: KinematicCollision2D? = null,
-    safeMargin: Double = 0.08
+    safeMargin: Double = 0.08,
+    recoveryAsCollision: Boolean = false
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to distance, OBJECT to collision, DOUBLE to safeMargin)
+    TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to motion, OBJECT to collision, DOUBLE to safeMargin, BOOL to recoveryAsCollision)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_TEST_MOVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -87,11 +88,11 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
-  public fun getCollisionExceptions(): VariantArray<Any?> {
+  public fun getCollisionExceptions(): VariantArray<PhysicsBody2D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_GET_COLLISION_EXCEPTIONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody2D>
   }
 
   /**

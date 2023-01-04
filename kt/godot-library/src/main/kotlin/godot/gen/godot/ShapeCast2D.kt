@@ -218,6 +218,15 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
+   * Returns the [RID] of the collided object of one of the multiple collisions at [index].
+   */
+  public fun getColliderRid(index: Long): RID {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLIDER_RID, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
    * Returns the shape ID of the colliding shape of one of the multiple collisions at [index], or `0` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
   public fun getColliderShape(index: Long): Long {

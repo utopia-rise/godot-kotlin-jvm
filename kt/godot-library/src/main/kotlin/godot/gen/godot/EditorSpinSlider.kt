@@ -11,6 +11,8 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -23,6 +25,26 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class EditorSpinSlider internal constructor() : Range() {
+  /**
+   * Emitted when the spinner/slider is grabbed.
+   */
+  public val grabbed: Signal0 by signal()
+
+  /**
+   * Emitted when the spinner/slider is ungrabbed.
+   */
+  public val ungrabbed: Signal0 by signal()
+
+  /**
+   * Emitted when the value form gains focus.
+   */
+  public val valueFocusEntered: Signal0 by signal()
+
+  /**
+   * Emitted when the value form loses focus.
+   */
+  public val valueFocusExited: Signal0 by signal()
+
   /**
    * The text that displays to the left of the value.
    */
@@ -81,6 +103,22 @@ public open class EditorSpinSlider internal constructor() : Range() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_FLAT, NIL)
+    }
+
+  /**
+   * If `true`, the slider is hidden.
+   */
+  public var hideSlider: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_IS_HIDING_SLIDER,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_HIDE_SLIDER,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

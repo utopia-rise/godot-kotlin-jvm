@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.GodotError
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.StringName
@@ -15,6 +16,7 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -81,16 +83,14 @@ import kotlin.reflect.KFunction9
 @GodotBaseType
 public open class Node : Object() {
   /**
-   * Emitted when the node is renamed.
-   */
-  public val renamed: Signal0 by signal()
-
-  public val childExitedTree: Signal1<Node> by signal("node")
-
-  /**
    * Emitted when the node is ready. Comes after [_ready] callback and follows the same rules.
    */
   public val ready: Signal0 by signal()
+
+  /**
+   * Emitted when the node is renamed.
+   */
+  public val renamed: Signal0 by signal()
 
   /**
    * Emitted when the node enters the tree.
@@ -107,6 +107,11 @@ public open class Node : Object() {
   public val treeExiting: Signal0 by signal()
 
   /**
+   * Emitted after the node exits the tree and is no longer active.
+   */
+  public val treeExited: Signal0 by signal()
+
+  /**
    * Emitted when a child node enters the scene tree, either because it entered on its own or because this node entered with it.
    *
    * This signal is emitted *after* the child node's own [NOTIFICATION_ENTER_TREE] and [treeEntered].
@@ -114,9 +119,11 @@ public open class Node : Object() {
   public val childEnteredTree: Signal1<Node> by signal("node")
 
   /**
-   * Emitted after the node exits the tree and is no longer active.
+   * Emitted when a child node is about to exit the scene tree, either because it is being removed or freed directly, or because this node is exiting the tree.
+   *
+   * When this signal is received, the child [node] is still in the tree and valid. This signal is emitted *after* the child node's own [treeExiting] and [NOTIFICATION_EXIT_TREE].
    */
-  public val treeExited: Signal0 by signal()
+  public val childExitingTree: Signal1<Node> by signal("node")
 
   /**
    * The name of the node. This name is unique among the siblings (other child nodes from the same parent). When set to an existing name, the node will be automatically renamed.
@@ -132,6 +139,24 @@ public open class Node : Object() {
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_NAME, NIL)
+    }
+
+  /**
+   * Sets this node's name as a unique name in its [owner]. This allows the node to be accessed as `%Name` instead of the full path, from any node within that scene.
+   *
+   * If another node with the same owner already had that name declared as unique, that other node's name will no longer be set as having a unique name.
+   */
+  public var uniqueNameInOwner: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_UNIQUE_NAME_IN_OWNER,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_UNIQUE_NAME_IN_OWNER,
+          NIL)
     }
 
   /**
@@ -174,26 +199,14 @@ public open class Node : Object() {
       return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
     }
 
-  public var customMultiplayer: MultiplayerAPI?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CUSTOM_MULTIPLAYER,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_CUSTOM_MULTIPLAYER, NIL)
-    }
-
   /**
    * Can be used to pause or unpause the node, or make the node paused based on the [godot.SceneTree], or make it inherit the process mode from its parent (default).
    */
-  public var processMode: Long
+  public var processMode: ProcessMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Node.ProcessMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -537,6 +550,20 @@ public open class Node : Object() {
   }
 
   /**
+   * Called when an [godot.InputEventKey] or [godot.InputEventShortcut] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
+   *
+   * It is only called if shortcut processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessShortcutInput].
+   *
+   * To consume the input event and stop it propagating further to other nodes, [godot.Viewport.setInputAsHandled] can be called.
+   *
+   * This method can be used to handle shortcuts.
+   *
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
+   */
+  public open fun _shortcutInput(event: InputEvent): Unit {
+  }
+
+  /**
    * Called when an [godot.InputEvent] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
    *
    * It is only called if unhandled input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessUnhandledInput].
@@ -577,8 +604,8 @@ public open class Node : Object() {
    *
    * **Note:** If this node is internal, the new sibling will be internal too (see `internal` parameter in [addChild]).
    */
-  public fun addSibling(sibling: Node, legibleUniqueName: Boolean = false): Unit {
-    TransferContext.writeArguments(OBJECT to sibling, BOOL to legibleUniqueName)
+  public fun addSibling(sibling: Node, forceReadableName: Boolean = false): Unit {
+    TransferContext.writeArguments(OBJECT to sibling, BOOL to forceReadableName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_SIBLING, NIL)
   }
 
@@ -629,10 +656,10 @@ public open class Node : Object() {
    */
   public fun addChild(
     node: Node,
-    legibleUniqueName: Boolean = false,
-    `internal`: Node.InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED
+    forceReadableName: Boolean = false,
+    `internal`: InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED
   ): Unit {
-    TransferContext.writeArguments(OBJECT to node, BOOL to legibleUniqueName, LONG to internal.id)
+    TransferContext.writeArguments(OBJECT to node, BOOL to forceReadableName, LONG to internal.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_CHILD, NIL)
   }
 
@@ -662,10 +689,10 @@ public open class Node : Object() {
    *
    * If [includeInternal] is `false`, the returned array won't include internal children (see `internal` parameter in [addChild]).
    */
-  public fun getChildren(includeInternal: Boolean = false): VariantArray<Any?> {
+  public fun getChildren(includeInternal: Boolean = false): VariantArray<Node> {
     TransferContext.writeArguments(BOOL to includeInternal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILDREN, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>
   }
 
   /**
@@ -764,15 +791,57 @@ public open class Node : Object() {
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
-  public fun findNodes(
-    mask: String,
+  /**
+   * Finds the first descendant of this node whose name matches [pattern] as in [godot.String.match].
+   *
+   * [pattern] does not match against the full path, just against individual node names. It is case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single character except `"."`).
+   *
+   * If [recursive] is `true`, all child nodes are included, even if deeply nested. Nodes are checked in tree order, so this node's first direct child is checked first, then its own direct children, etc., before moving to the second direct child, and so on. If [recursive] is `false`, only this node's direct children are matched.
+   *
+   * If [owned] is `true`, this method only finds nodes who have an assigned [godot.Node.owner]. This is especially important for scenes instantiated through a script, because those scenes don't have an owner.
+   *
+   * Returns `null` if no matching [godot.Node] is found.
+   *
+   * **Note:** As this method walks through all the descendants of the node, it is the slowest way to get a reference to another node. Whenever possible, consider using [getNode] with unique names instead (see [uniqueNameInOwner]), or caching the node references into variable.
+   *
+   * **Note:** To find all descendant nodes matching a pattern or a class type, see [findChildren].
+   */
+  public fun findChild(
+    pattern: String,
+    recursive: Boolean = true,
+    owned: Boolean = true
+  ): Node? {
+    TransferContext.writeArguments(STRING to pattern, BOOL to recursive, BOOL to owned)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_CHILD, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Node?
+  }
+
+  /**
+   * Finds descendants of this node whose name matches [pattern] as in [godot.String.match], and/or type matches [type] as in [godot.Object.isClass].
+   *
+   * [pattern] does not match against the full path, just against individual node names. It is case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single character except `"."`).
+   *
+   * [type] will check equality or inheritance, and is case-sensitive. `"Object"` will match a node whose type is `"Node"` but not the other way around.
+   *
+   * If [recursive] is `true`, all child nodes are included, even if deeply nested. Nodes are checked in tree order, so this node's first direct child is checked first, then its own direct children, etc., before moving to the second direct child, and so on. If [recursive] is `false`, only this node's direct children are matched.
+   *
+   * If [owned] is `true`, this method only finds nodes who have an assigned [godot.Node.owner]. This is especially important for scenes instantiated through a script, because those scenes don't have an owner.
+   *
+   * Returns an empty array if no matching nodes are found.
+   *
+   * **Note:** As this method walks through all the descendants of the node, it is the slowest way to get references to other nodes. Whenever possible, consider caching the node references into variables.
+   *
+   * **Note:** If you only want to find the first descendant node that matches a pattern, see [findChild].
+   */
+  public fun findChildren(
+    pattern: String,
     type: String = "",
     recursive: Boolean = true,
     owned: Boolean = true
-  ): VariantArray<Any?> {
-    TransferContext.writeArguments(STRING to mask, STRING to type, BOOL to recursive, BOOL to owned)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_NODES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  ): VariantArray<Node> {
+    TransferContext.writeArguments(STRING to pattern, STRING to type, BOOL to recursive, BOOL to owned)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_CHILDREN, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>
   }
 
   /**
@@ -782,8 +851,8 @@ public open class Node : Object() {
    *
    * **Note:** As this method walks upwards in the scene tree, it can be slow in large, deeply nested scene trees. Whenever possible, consider using [getNode] with unique names instead (see [uniqueNameInOwner]), or caching the node references into variable.
    */
-  public fun findParent(mask: String): Node? {
-    TransferContext.writeArguments(STRING to mask)
+  public fun findParent(pattern: String): Node? {
+    TransferContext.writeArguments(STRING to pattern)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_PARENT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
@@ -872,9 +941,13 @@ public open class Node : Object() {
 
   /**
    * Returns the relative [godot.core.NodePath] from this node to the specified [node]. Both nodes must be in the same scene or the function will fail.
+   *
+   * If [useUniquePath] is `true`, returns the shortest path considering unique node.
+   *
+   * **Note:** If you get a relative path which starts from a unique node, the path may be longer than a normal relative path due to the addition of the unique node's name.
    */
-  public fun getPathTo(node: Node): NodePath {
-    TransferContext.writeArguments(OBJECT to node)
+  public fun getPathTo(node: Node, useUniquePath: Boolean = false): NodePath {
+    TransferContext.writeArguments(OBJECT to node, BOOL to useUniquePath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH_TO, NODE_PATH)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
@@ -913,8 +986,8 @@ public open class Node : Object() {
    *
    * **Note:** Internal children can only be moved within their expected "internal range" (see `internal` parameter in [addChild]).
    */
-  public fun moveChild(childNode: Node, toPosition: Long): Unit {
-    TransferContext.writeArguments(OBJECT to childNode, LONG to toPosition)
+  public fun moveChild(childNode: Node, toIndex: Long): Unit {
+    TransferContext.writeArguments(OBJECT to childNode, LONG to toIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_MOVE_CHILD, NIL)
   }
 
@@ -961,20 +1034,10 @@ public open class Node : Object() {
    *
    * [/codeblocks]
    */
-  public fun getGroups(): VariantArray<Any?> {
+  public fun getGroups(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_GROUPS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-  }
-
-  public fun raise(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RAISE, NIL)
-  }
-
-  public fun removeAndSkip(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_AND_SKIP, NIL)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>
   }
 
   /**
@@ -1117,6 +1180,25 @@ public open class Node : Object() {
   }
 
   /**
+   * Enables shortcut processing. Enabled automatically if [_shortcutInput] is overridden. Any calls to this before [_ready] will be ignored.
+   */
+  public fun setProcessShortcutInput(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_SHORTCUT_INPUT,
+        NIL)
+  }
+
+  /**
+   * Returns `true` if the node is processing shortcuts (see [setProcessShortcutInput]).
+   */
+  public fun isProcessingShortcutInput(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_SHORTCUT_INPUT,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Enables unhandled input processing. This is not required for GUI controls! It enables the node to receive all input that was not previously handled (usually by a [godot.Control]). Enabled automatically if [_unhandledInput] is overridden. Any calls to this before [_ready] will be ignored.
    */
   public fun setProcessUnhandledInput(enable: Boolean): Unit {
@@ -1161,11 +1243,6 @@ public open class Node : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CAN_PROCESS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun printStrayNodes(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_STRAY_NODES, NIL)
   }
 
   /**
@@ -1388,16 +1465,9 @@ public open class Node : Object() {
    *
    * See [enum MultiplayerAPI.RPCMode] and [enum MultiplayerPeer.TransferMode]. An alternative is annotating methods and properties with the corresponding annotation (`@rpc(any)`, `@rpc(authority)`). By default, methods are not exposed to networking (and RPCs).
    */
-  public fun rpcConfig(
-    method: StringName,
-    rpcMode: RPCMode,
-    callLocal: Boolean = false,
-    transferMode: TransferMode = TransferMode.TRANSFER_MODE_RELIABLE,
-    channel: Long = 0
-  ): Long {
-    TransferContext.writeArguments(STRING_NAME to method, LONG to rpcMode.id, BOOL to callLocal, LONG to transferMode.id, LONG to channel)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_CONFIG, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+  public fun rpcConfig(method: StringName, config: Any): Unit {
+    TransferContext.writeArguments(STRING_NAME to method, ANY to config)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_CONFIG, NIL)
   }
 
   /**
@@ -1405,9 +1475,10 @@ public open class Node : Object() {
    *
    * **Note:** You can only safely use RPCs on clients after you received the `connected_to_server` signal from the [godot.MultiplayerAPI]. You also need to keep track of the connection state, either by the [godot.MultiplayerAPI] signals like `server_disconnected` or by checking `get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`.
    */
-  public fun rpc(method: StringName, vararg __var_args: Any?): Unit {
+  public fun rpc(method: StringName, vararg __var_args: Any?): GodotError {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -1417,9 +1488,10 @@ public open class Node : Object() {
     peerId: Long,
     method: StringName,
     vararg __var_args: Any?
-  ): Unit {
+  ): GodotError {
     TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_ID, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_ID, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -1488,7 +1560,7 @@ public open class Node : Object() {
      *
      * An instance stays linked to the original so when the original changes, the instance changes too.
      */
-    DUPLICATE_USE_INSTANCING(8),
+    DUPLICATE_USE_INSTANTIATION(8),
     ;
 
     public val id: Long
@@ -1585,7 +1657,10 @@ public open class Node : Object() {
      */
     public final const val NOTIFICATION_UNPARENTED: Long = 19
 
-    public final const val NOTIFICATION_INSTANCED: Long = 20
+    /**
+     * Notification received by scene owner when its scene is instantiated.
+     */
+    public final const val NOTIFICATION_SCENE_INSTANTIATED: Long = 20
 
     /**
      * Notification received when a drag operation begins. All nodes receive this notification, not only the dragged one.

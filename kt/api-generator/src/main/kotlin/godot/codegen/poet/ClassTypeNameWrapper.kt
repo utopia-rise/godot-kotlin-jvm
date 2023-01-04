@@ -5,14 +5,9 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeName
 
-class ClassTypeNameWrapper private constructor(
-    val className: ClassName,
-    typeName: TypeName
-) {
-    var typeName: TypeName = typeName
+class ClassTypeNameWrapper(val className: ClassName) {
+    var typeName: TypeName = className
         private set
-
-    constructor(className: ClassName) : this(className, className)
 
     fun parameterizedBy(vararg typeParameters: TypeName): ClassTypeNameWrapper {
         typeName = className.parameterizedBy(*typeParameters)

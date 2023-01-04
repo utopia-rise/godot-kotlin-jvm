@@ -69,5 +69,11 @@ public open class AudioStreamPlayback : RefCounted() {
   public open fun _seek(position: Double): Unit {
   }
 
+  /**
+   *
+   */
+  public open fun _tagUsedStreams(): Unit {
+  }
+
   public companion object
 }

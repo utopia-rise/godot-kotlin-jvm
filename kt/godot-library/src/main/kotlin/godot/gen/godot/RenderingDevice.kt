@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.RenderingDevice
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.GodotError
@@ -60,7 +59,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun textureCreate(
     format: RDTextureFormat,
     view: RDTextureView,
-    `data`: VariantArray<Any?> = godot.core.variantArrayOf()
+    `data`: VariantArray<PackedByteArray> = godot.core.variantArrayOf()
   ): RID {
     TransferContext.writeArguments(OBJECT to format, OBJECT to view, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CREATE,
@@ -87,7 +86,7 @@ public open class RenderingDevice internal constructor() : Object() {
     layer: Long,
     mipmap: Long,
     mipmaps: Long = 1,
-    sliceType: RenderingDevice.TextureSliceType = RenderingDevice.TextureSliceType.TEXTURE_SLICE_2D
+    sliceType: TextureSliceType = RenderingDevice.TextureSliceType.TEXTURE_SLICE_2D
   ): RID {
     TransferContext.writeArguments(OBJECT to view, _RID to withTexture, LONG to layer, LONG to mipmap, LONG to mipmaps, LONG to sliceType.id)
     TransferContext.callMethod(rawPtr,
@@ -104,7 +103,7 @@ public open class RenderingDevice internal constructor() : Object() {
     `data`: PackedByteArray,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_UPDATE,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -123,9 +122,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun textureIsFormatSupportedForUsage(format: RenderingDevice.DataFormat, usageFlags: Long):
-      Boolean {
-    TransferContext.writeArguments(LONG to format.id, LONG to usageFlags)
+  public fun textureIsFormatSupportedForUsage(format: DataFormat, usageFlags: Long): Boolean {
+    TransferContext.writeArguments(LONG to format.id, OBJECT to usageFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_IS_FORMAT_SUPPORTED_FOR_USAGE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -166,7 +164,7 @@ public open class RenderingDevice internal constructor() : Object() {
     dstLayer: Long,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_COPY, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -183,7 +181,7 @@ public open class RenderingDevice internal constructor() : Object() {
     layerCount: Long,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CLEAR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -196,7 +194,7 @@ public open class RenderingDevice internal constructor() : Object() {
     toTexture: RID,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_RESOLVE_MULTISAMPLE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -205,7 +203,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun framebufferFormatCreate(attachments: VariantArray<Any?>, viewCount: Long = 1): Long {
+  public fun framebufferFormatCreate(attachments: VariantArray<RDAttachmentFormat>, viewCount: Long
+      = 1): Long {
     TransferContext.writeArguments(ARRAY to attachments, LONG to viewCount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_CREATE, LONG)
@@ -216,8 +215,8 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun framebufferFormatCreateMultipass(
-    attachments: VariantArray<Any?>,
-    passes: VariantArray<Any?>,
+    attachments: VariantArray<RDAttachmentFormat>,
+    passes: VariantArray<RDFramebufferPass>,
     viewCount: Long = 1
   ): Long {
     TransferContext.writeArguments(ARRAY to attachments, ARRAY to passes, LONG to viewCount)
@@ -229,7 +228,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun framebufferFormatCreateEmpty(samples: RenderingDevice.TextureSamples =
+  public fun framebufferFormatCreateEmpty(samples: TextureSamples =
       RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1): Long {
     TransferContext.writeArguments(LONG to samples.id)
     TransferContext.callMethod(rawPtr,
@@ -241,7 +240,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun framebufferFormatGetTextureSamples(format: Long, renderPass: Long = 0):
-      RenderingDevice.TextureSamples {
+      TextureSamples {
     TransferContext.writeArguments(LONG to format, LONG to renderPass)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_GET_TEXTURE_SAMPLES, LONG)
@@ -252,7 +251,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun framebufferCreate(
-    textures: VariantArray<Any?>,
+    textures: VariantArray<RID>,
     validateWithFormat: Long = -1,
     viewCount: Long = 1
   ): RID {
@@ -266,8 +265,8 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun framebufferCreateMultipass(
-    textures: VariantArray<Any?>,
-    passes: VariantArray<Any?>,
+    textures: VariantArray<RID>,
+    passes: VariantArray<RDFramebufferPass>,
     validateWithFormat: Long = -1,
     viewCount: Long = 1
   ): RID {
@@ -282,7 +281,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun framebufferCreateEmpty(
     size: Vector2i,
-    samples: RenderingDevice.TextureSamples = RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1,
+    samples: TextureSamples = RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1,
     validateWithFormat: Long = -1
   ): RID {
     TransferContext.writeArguments(VECTOR2I to size, LONG to samples.id, LONG to validateWithFormat)
@@ -299,6 +298,16 @@ public open class RenderingDevice internal constructor() : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_GET_FORMAT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   *
+   */
+  public fun framebufferIsValid(framebuffer: RID): Boolean {
+    TransferContext.writeArguments(_RID to framebuffer)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_IS_VALID, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -328,7 +337,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun vertexFormatCreate(vertexDescriptions: VariantArray<Any?>): Long {
+  public fun vertexFormatCreate(vertexDescriptions: VariantArray<RDVertexAttribute>): Long {
     TransferContext.writeArguments(ARRAY to vertexDescriptions)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_VERTEX_FORMAT_CREATE, LONG)
@@ -336,11 +345,26 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
+   * Creates a vertex array based on the specified buffers. Optionally, [offsets] (in bytes) may be defined for each buffer.
+   */
+  public fun vertexArrayCreate(
+    vertexCount: Long,
+    vertexFormat: Long,
+    srcBuffers: VariantArray<RID>,
+    offsets: PackedInt64Array = PackedInt64Array()
+  ): RID {
+    TransferContext.writeArguments(LONG to vertexCount, LONG to vertexFormat, ARRAY to srcBuffers, PACKED_INT_64_ARRAY to offsets)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_VERTEX_ARRAY_CREATE,
+        _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
    *
    */
   public fun indexBufferCreate(
     sizeIndices: Long,
-    format: RenderingDevice.IndexBufferFormat,
+    format: IndexBufferFormat,
     `data`: PackedByteArray = PackedByteArray(),
     useRestartIndices: Boolean = false
   ): RID {
@@ -436,7 +460,7 @@ public open class RenderingDevice internal constructor() : Object() {
     `data`: PackedByteArray = PackedByteArray(),
     usage: Long = 0
   ): RID {
-    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to usage)
+    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, OBJECT to usage)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_STORAGE_BUFFER_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -447,7 +471,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun textureBufferCreate(
     sizeBytes: Long,
-    format: RenderingDevice.DataFormat,
+    format: DataFormat,
     `data`: PackedByteArray = PackedByteArray()
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, LONG to format.id, PACKED_BYTE_ARRAY to data)
@@ -460,7 +484,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun uniformSetCreate(
-    uniforms: VariantArray<Any?>,
+    uniforms: VariantArray<RDUniform>,
     shader: RID,
     shaderSet: Long
   ): RID {
@@ -490,7 +514,7 @@ public open class RenderingDevice internal constructor() : Object() {
     `data`: PackedByteArray,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_UPDATE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -504,7 +528,7 @@ public open class RenderingDevice internal constructor() : Object() {
     sizeBytes: Long,
     postBarrier: Long = 7
   ): GodotError {
-    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_CLEAR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -526,16 +550,17 @@ public open class RenderingDevice internal constructor() : Object() {
     shader: RID,
     framebufferFormat: Long,
     vertexFormat: Long,
-    primitive: RenderingDevice.RenderPrimitive,
+    primitive: RenderPrimitive,
     rasterizationState: RDPipelineRasterizationState,
     multisampleState: RDPipelineMultisampleState,
     stencilState: RDPipelineDepthStencilState,
     colorBlendState: RDPipelineColorBlendState,
     dynamicStateFlags: Long = 0,
     forRenderPass: Long = 0,
-    specializationConstants: VariantArray<Any?> = godot.core.variantArrayOf()
+    specializationConstants: VariantArray<RDPipelineSpecializationConstant> =
+        godot.core.variantArrayOf()
   ): RID {
-    TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, LONG to dynamicStateFlags, LONG to forRenderPass, ARRAY to specializationConstants)
+    TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, OBJECT to dynamicStateFlags, LONG to forRenderPass, ARRAY to specializationConstants)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_RENDER_PIPELINE_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -554,7 +579,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun computePipelineCreate(shader: RID, specializationConstants: VariantArray<Any?> =
+  public fun computePipelineCreate(shader: RID,
+      specializationConstants: VariantArray<RDPipelineSpecializationConstant> =
       godot.core.variantArrayOf()): RID {
     TransferContext.writeArguments(_RID to shader, ARRAY to specializationConstants)
     TransferContext.callMethod(rawPtr,
@@ -618,10 +644,10 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawListBegin(
     framebuffer: RID,
-    initialColorAction: RenderingDevice.InitialAction,
-    finalColorAction: RenderingDevice.FinalAction,
-    initialDepthAction: RenderingDevice.InitialAction,
-    finalDepthAction: RenderingDevice.FinalAction,
+    initialColorAction: InitialAction,
+    finalColorAction: FinalAction,
+    initialDepthAction: InitialAction,
+    finalDepthAction: FinalAction,
     clearColorValues: PackedColorArray = PackedColorArray(),
     clearDepth: Double = 1.0,
     clearStencil: Long = 0,
@@ -640,20 +666,29 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun drawListBeginSplit(
     framebuffer: RID,
     splits: Long,
-    initialColorAction: RenderingDevice.InitialAction,
-    finalColorAction: RenderingDevice.FinalAction,
-    initialDepthAction: RenderingDevice.InitialAction,
-    finalDepthAction: RenderingDevice.FinalAction,
+    initialColorAction: InitialAction,
+    finalColorAction: FinalAction,
+    initialDepthAction: InitialAction,
+    finalDepthAction: FinalAction,
     clearColorValues: PackedColorArray = PackedColorArray(),
     clearDepth: Double = 1.0,
     clearStencil: Long = 0,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
-    storageTextures: VariantArray<Any?> = godot.core.variantArrayOf()
+    storageTextures: VariantArray<RID> = godot.core.variantArrayOf()
   ): PackedInt64Array {
     TransferContext.writeArguments(_RID to framebuffer, LONG to splits, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth, LONG to clearStencil, RECT2 to region, ARRAY to storageTextures)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BEGIN_SPLIT, PACKED_INT_64_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
+  }
+
+  /**
+   * Sets blend constants for draw list, blend constants are used only if the graphics pipeline is created with [DYNAMIC_STATE_BLEND_CONSTANTS] flag set.
+   */
+  public fun drawListSetBlendConstants(drawList: Long, color: Color): Unit {
+    TransferContext.writeArguments(LONG to drawList, COLOR to color)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_SET_BLEND_CONSTANTS, NIL)
   }
 
   /**
@@ -765,7 +800,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun drawListEnd(postBarrier: Long = 7): Unit {
-    TransferContext.writeArguments(LONG to postBarrier)
+    TransferContext.writeArguments(OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_END, NIL)
   }
 
@@ -841,7 +876,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun computeListEnd(postBarrier: Long = 7): Unit {
-    TransferContext.writeArguments(LONG to postBarrier)
+    TransferContext.writeArguments(OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_END,
         NIL)
   }
@@ -916,7 +951,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun limitGet(limit: RenderingDevice.Limit): Long {
+  public fun limitGet(limit: Limit): Long {
     TransferContext.writeArguments(LONG to limit.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_LIMIT_GET, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -952,7 +987,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun barrier(from: Long = 7, to: Long = 7): Unit {
-    TransferContext.writeArguments(LONG to from, LONG to to)
+    TransferContext.writeArguments(OBJECT to from, OBJECT to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BARRIER, NIL)
   }
 
@@ -1043,7 +1078,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun getMemoryUsage(type: RenderingDevice.MemoryType): Long {
+  public fun getMemoryUsage(type: MemoryType): Long {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_MEMORY_USAGE,
         LONG)
@@ -1054,7 +1089,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    */
   public fun getDriverResource(
-    resource: RenderingDevice.DriverResource,
+    resource: DriverResource,
     rid: RID,
     index: Long
   ): Long {
@@ -1064,21 +1099,33 @@ public open class RenderingDevice internal constructor() : Object() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public enum class MemoryType(
+  public enum class DeviceType(
     id: Long
   ) {
     /**
-     *
+     * Rendering device type does not match any of the other enum values or is unknown.
      */
-    MEMORY_TEXTURES(0),
+    DEVICE_TYPE_OTHER(0),
     /**
-     *
+     * Rendering device is an integrated GPU, which is typically *(but not always)* slower than dedicated GPUs ([DEVICE_TYPE_DISCRETE_GPU]). On Android and iOS, the rendering device type is always considered to be [DEVICE_TYPE_INTEGRATED_GPU].
      */
-    MEMORY_BUFFERS(1),
+    DEVICE_TYPE_INTEGRATED_GPU(1),
     /**
-     *
+     * Rendering device is a dedicated GPU, which is typically *(but not always)* faster than integrated GPUs ([DEVICE_TYPE_INTEGRATED_GPU]).
      */
-    MEMORY_TOTAL(2),
+    DEVICE_TYPE_DISCRETE_GPU(2),
+    /**
+     * Rendering device is an emulated GPU in a virtual environment. This is typically much slower than the host GPU, which means the expected performance level on a dedicated GPU will be roughly equivalent to [DEVICE_TYPE_INTEGRATED_GPU]. Virtual machine GPU passthrough (such as VFIO) will not report the device type as [DEVICE_TYPE_VIRTUAL_GPU]. Instead, the host GPU's device type will be reported as if the GPU was not emulated.
+     */
+    DEVICE_TYPE_VIRTUAL_GPU(3),
+    /**
+     * Rendering device is provided by software emulation (such as Lavapipe or [godot.SwiftShader](https://github.com/google/swiftshader)). This is the slowest kind of rendering device available; it's typically much slower than [DEVICE_TYPE_INTEGRATED_GPU].
+     */
+    DEVICE_TYPE_CPU(4),
+    /**
+     * Represents the size of the [enum DeviceType] enum.
+     */
+    DEVICE_TYPE_MAX(5),
     ;
 
     public val id: Long
@@ -1091,275 +1138,61 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public enum class ShaderLanguage(
+  public enum class DriverResource(
     id: Long
   ) {
     /**
      *
      */
-    SHADER_LANGUAGE_GLSL(0),
+    DRIVER_RESOURCE_VULKAN_DEVICE(0),
     /**
      *
      */
-    SHADER_LANGUAGE_HLSL(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ShaderStage(
-    id: Long
-  ) {
+    DRIVER_RESOURCE_VULKAN_PHYSICAL_DEVICE(1),
     /**
      *
      */
-    SHADER_STAGE_VERTEX(0),
+    DRIVER_RESOURCE_VULKAN_INSTANCE(2),
     /**
      *
      */
-    SHADER_STAGE_FRAGMENT(1),
+    DRIVER_RESOURCE_VULKAN_QUEUE(3),
     /**
      *
      */
-    SHADER_STAGE_TESSELATION_CONTROL(2),
+    DRIVER_RESOURCE_VULKAN_QUEUE_FAMILY_INDEX(4),
     /**
      *
      */
-    SHADER_STAGE_TESSELATION_EVALUATION(3),
+    DRIVER_RESOURCE_VULKAN_IMAGE(5),
     /**
      *
      */
-    SHADER_STAGE_COMPUTE(4),
+    DRIVER_RESOURCE_VULKAN_IMAGE_VIEW(6),
     /**
      *
      */
-    SHADER_STAGE_MAX(5),
+    DRIVER_RESOURCE_VULKAN_IMAGE_NATIVE_TEXTURE_FORMAT(7),
     /**
      *
      */
-    SHADER_STAGE_VERTEX_BIT(1),
+    DRIVER_RESOURCE_VULKAN_SAMPLER(8),
     /**
      *
      */
-    SHADER_STAGE_FRAGMENT_BIT(2),
+    DRIVER_RESOURCE_VULKAN_DESCRIPTOR_SET(9),
     /**
      *
      */
-    SHADER_STAGE_TESSELATION_CONTROL_BIT(4),
+    DRIVER_RESOURCE_VULKAN_BUFFER(10),
     /**
      *
      */
-    SHADER_STAGE_TESSELATION_EVALUATION_BIT(8),
+    DRIVER_RESOURCE_VULKAN_COMPUTE_PIPELINE(11),
     /**
      *
      */
-    SHADER_STAGE_COMPUTE_BIT(16),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CompareOperator(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    COMPARE_OP_NEVER(0),
-    /**
-     *
-     */
-    COMPARE_OP_LESS(1),
-    /**
-     *
-     */
-    COMPARE_OP_EQUAL(2),
-    /**
-     *
-     */
-    COMPARE_OP_LESS_OR_EQUAL(3),
-    /**
-     *
-     */
-    COMPARE_OP_GREATER(4),
-    /**
-     *
-     */
-    COMPARE_OP_NOT_EQUAL(5),
-    /**
-     *
-     */
-    COMPARE_OP_GREATER_OR_EQUAL(6),
-    /**
-     *
-     */
-    COMPARE_OP_ALWAYS(7),
-    /**
-     *
-     */
-    COMPARE_OP_MAX(8),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class StencilOperation(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    STENCIL_OP_KEEP(0),
-    /**
-     *
-     */
-    STENCIL_OP_ZERO(1),
-    /**
-     *
-     */
-    STENCIL_OP_REPLACE(2),
-    /**
-     *
-     */
-    STENCIL_OP_INCREMENT_AND_CLAMP(3),
-    /**
-     *
-     */
-    STENCIL_OP_DECREMENT_AND_CLAMP(4),
-    /**
-     *
-     */
-    STENCIL_OP_INVERT(5),
-    /**
-     *
-     */
-    STENCIL_OP_INCREMENT_AND_WRAP(6),
-    /**
-     *
-     */
-    STENCIL_OP_DECREMENT_AND_WRAP(7),
-    /**
-     *
-     */
-    STENCIL_OP_MAX(8),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class IndexBufferFormat(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    INDEX_BUFFER_FORMAT_UINT16(0),
-    /**
-     *
-     */
-    INDEX_BUFFER_FORMAT_UINT32(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TextureSliceType(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    TEXTURE_SLICE_2D(0),
-    /**
-     *
-     */
-    TEXTURE_SLICE_CUBEMAP(1),
-    /**
-     *
-     */
-    TEXTURE_SLICE_3D(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TextureType(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    TEXTURE_TYPE_1D(0),
-    /**
-     *
-     */
-    TEXTURE_TYPE_2D(1),
-    /**
-     *
-     */
-    TEXTURE_TYPE_3D(2),
-    /**
-     *
-     */
-    TEXTURE_TYPE_CUBE(3),
-    /**
-     *
-     */
-    TEXTURE_TYPE_1D_ARRAY(4),
-    /**
-     *
-     */
-    TEXTURE_TYPE_2D_ARRAY(5),
-    /**
-     *
-     */
-    TEXTURE_TYPE_CUBE_ARRAY(6),
-    /**
-     *
-     */
-    TEXTURE_TYPE_MAX(7),
+    DRIVER_RESOURCE_VULKAN_RENDER_PIPELINE(12),
     ;
 
     public val id: Long
@@ -2263,6 +2096,791 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
+  public enum class BarrierMask(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    BARRIER_MASK_RASTER(1),
+    /**
+     *
+     */
+    BARRIER_MASK_COMPUTE(2),
+    /**
+     *
+     */
+    BARRIER_MASK_TRANSFER(4),
+    /**
+     *
+     */
+    BARRIER_MASK_ALL_BARRIERS(7),
+    /**
+     *
+     */
+    BARRIER_MASK_NO_BARRIER(8),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TextureType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    TEXTURE_TYPE_1D(0),
+    /**
+     *
+     */
+    TEXTURE_TYPE_2D(1),
+    /**
+     *
+     */
+    TEXTURE_TYPE_3D(2),
+    /**
+     *
+     */
+    TEXTURE_TYPE_CUBE(3),
+    /**
+     *
+     */
+    TEXTURE_TYPE_1D_ARRAY(4),
+    /**
+     *
+     */
+    TEXTURE_TYPE_2D_ARRAY(5),
+    /**
+     *
+     */
+    TEXTURE_TYPE_CUBE_ARRAY(6),
+    /**
+     *
+     */
+    TEXTURE_TYPE_MAX(7),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TextureSamples(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    TEXTURE_SAMPLES_1(0),
+    /**
+     *
+     */
+    TEXTURE_SAMPLES_2(1),
+    /**
+     *
+     */
+    TEXTURE_SAMPLES_4(2),
+    /**
+     *
+     */
+    TEXTURE_SAMPLES_8(3),
+    /**
+     *
+     */
+    TEXTURE_SAMPLES_16(4),
+    /**
+     *
+     */
+    TEXTURE_SAMPLES_32(5),
+    /**
+     *
+     */
+    TEXTURE_SAMPLES_64(6),
+    /**
+     *
+     */
+    TEXTURE_SAMPLES_MAX(7),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TextureUsageBits(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    TEXTURE_USAGE_SAMPLING_BIT(1),
+    /**
+     *
+     */
+    TEXTURE_USAGE_COLOR_ATTACHMENT_BIT(2),
+    /**
+     *
+     */
+    TEXTURE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(4),
+    /**
+     *
+     */
+    TEXTURE_USAGE_STORAGE_BIT(8),
+    /**
+     *
+     */
+    TEXTURE_USAGE_STORAGE_ATOMIC_BIT(16),
+    /**
+     *
+     */
+    TEXTURE_USAGE_CPU_READ_BIT(32),
+    /**
+     *
+     */
+    TEXTURE_USAGE_CAN_UPDATE_BIT(64),
+    /**
+     *
+     */
+    TEXTURE_USAGE_CAN_COPY_FROM_BIT(128),
+    /**
+     *
+     */
+    TEXTURE_USAGE_CAN_COPY_TO_BIT(256),
+    /**
+     *
+     */
+    TEXTURE_USAGE_INPUT_ATTACHMENT_BIT(512),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TextureSwizzle(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    TEXTURE_SWIZZLE_IDENTITY(0),
+    /**
+     *
+     */
+    TEXTURE_SWIZZLE_ZERO(1),
+    /**
+     *
+     */
+    TEXTURE_SWIZZLE_ONE(2),
+    /**
+     *
+     */
+    TEXTURE_SWIZZLE_R(3),
+    /**
+     *
+     */
+    TEXTURE_SWIZZLE_G(4),
+    /**
+     *
+     */
+    TEXTURE_SWIZZLE_B(5),
+    /**
+     *
+     */
+    TEXTURE_SWIZZLE_A(6),
+    /**
+     *
+     */
+    TEXTURE_SWIZZLE_MAX(7),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TextureSliceType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    TEXTURE_SLICE_2D(0),
+    /**
+     *
+     */
+    TEXTURE_SLICE_CUBEMAP(1),
+    /**
+     *
+     */
+    TEXTURE_SLICE_3D(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SamplerFilter(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    SAMPLER_FILTER_NEAREST(0),
+    /**
+     *
+     */
+    SAMPLER_FILTER_LINEAR(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SamplerRepeatMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    SAMPLER_REPEAT_MODE_REPEAT(0),
+    /**
+     *
+     */
+    SAMPLER_REPEAT_MODE_MIRRORED_REPEAT(1),
+    /**
+     *
+     */
+    SAMPLER_REPEAT_MODE_CLAMP_TO_EDGE(2),
+    /**
+     *
+     */
+    SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER(3),
+    /**
+     *
+     */
+    SAMPLER_REPEAT_MODE_MIRROR_CLAMP_TO_EDGE(4),
+    /**
+     *
+     */
+    SAMPLER_REPEAT_MODE_MAX(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SamplerBorderColor(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    SAMPLER_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK(0),
+    /**
+     *
+     */
+    SAMPLER_BORDER_COLOR_INT_TRANSPARENT_BLACK(1),
+    /**
+     *
+     */
+    SAMPLER_BORDER_COLOR_FLOAT_OPAQUE_BLACK(2),
+    /**
+     *
+     */
+    SAMPLER_BORDER_COLOR_INT_OPAQUE_BLACK(3),
+    /**
+     *
+     */
+    SAMPLER_BORDER_COLOR_FLOAT_OPAQUE_WHITE(4),
+    /**
+     *
+     */
+    SAMPLER_BORDER_COLOR_INT_OPAQUE_WHITE(5),
+    /**
+     *
+     */
+    SAMPLER_BORDER_COLOR_MAX(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VertexFrequency(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VERTEX_FREQUENCY_VERTEX(0),
+    /**
+     *
+     */
+    VERTEX_FREQUENCY_INSTANCE(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class IndexBufferFormat(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    INDEX_BUFFER_FORMAT_UINT16(0),
+    /**
+     *
+     */
+    INDEX_BUFFER_FORMAT_UINT32(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class StorageBufferUsage(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    STORAGE_BUFFER_USAGE_DISPATCH_INDIRECT(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class UniformType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    UNIFORM_TYPE_SAMPLER(0),
+    /**
+     *
+     */
+    UNIFORM_TYPE_SAMPLER_WITH_TEXTURE(1),
+    /**
+     *
+     */
+    UNIFORM_TYPE_TEXTURE(2),
+    /**
+     *
+     */
+    UNIFORM_TYPE_IMAGE(3),
+    /**
+     *
+     */
+    UNIFORM_TYPE_TEXTURE_BUFFER(4),
+    /**
+     *
+     */
+    UNIFORM_TYPE_SAMPLER_WITH_TEXTURE_BUFFER(5),
+    /**
+     *
+     */
+    UNIFORM_TYPE_IMAGE_BUFFER(6),
+    /**
+     *
+     */
+    UNIFORM_TYPE_UNIFORM_BUFFER(7),
+    /**
+     *
+     */
+    UNIFORM_TYPE_STORAGE_BUFFER(8),
+    /**
+     *
+     */
+    UNIFORM_TYPE_INPUT_ATTACHMENT(9),
+    /**
+     *
+     */
+    UNIFORM_TYPE_MAX(10),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class RenderPrimitive(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_POINTS(0),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_LINES(1),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_LINES_WITH_ADJACENCY(2),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_LINESTRIPS(3),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_LINESTRIPS_WITH_ADJACENCY(4),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_TRIANGLES(5),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_TRIANGLES_WITH_ADJACENCY(6),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_TRIANGLE_STRIPS(7),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_TRIANGLE_STRIPS_WITH_AJACENCY(8),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_TRIANGLE_STRIPS_WITH_RESTART_INDEX(9),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_TESSELATION_PATCH(10),
+    /**
+     *
+     */
+    RENDER_PRIMITIVE_MAX(11),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class PolygonCullMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    POLYGON_CULL_DISABLED(0),
+    /**
+     *
+     */
+    POLYGON_CULL_FRONT(1),
+    /**
+     *
+     */
+    POLYGON_CULL_BACK(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class PolygonFrontFace(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    POLYGON_FRONT_FACE_CLOCKWISE(0),
+    /**
+     *
+     */
+    POLYGON_FRONT_FACE_COUNTER_CLOCKWISE(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class StencilOperation(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    STENCIL_OP_KEEP(0),
+    /**
+     *
+     */
+    STENCIL_OP_ZERO(1),
+    /**
+     *
+     */
+    STENCIL_OP_REPLACE(2),
+    /**
+     *
+     */
+    STENCIL_OP_INCREMENT_AND_CLAMP(3),
+    /**
+     *
+     */
+    STENCIL_OP_DECREMENT_AND_CLAMP(4),
+    /**
+     *
+     */
+    STENCIL_OP_INVERT(5),
+    /**
+     *
+     */
+    STENCIL_OP_INCREMENT_AND_WRAP(6),
+    /**
+     *
+     */
+    STENCIL_OP_DECREMENT_AND_WRAP(7),
+    /**
+     *
+     */
+    STENCIL_OP_MAX(8),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CompareOperator(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    COMPARE_OP_NEVER(0),
+    /**
+     *
+     */
+    COMPARE_OP_LESS(1),
+    /**
+     *
+     */
+    COMPARE_OP_EQUAL(2),
+    /**
+     *
+     */
+    COMPARE_OP_LESS_OR_EQUAL(3),
+    /**
+     *
+     */
+    COMPARE_OP_GREATER(4),
+    /**
+     *
+     */
+    COMPARE_OP_NOT_EQUAL(5),
+    /**
+     *
+     */
+    COMPARE_OP_GREATER_OR_EQUAL(6),
+    /**
+     *
+     */
+    COMPARE_OP_ALWAYS(7),
+    /**
+     *
+     */
+    COMPARE_OP_MAX(8),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LogicOperation(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    LOGIC_OP_CLEAR(0),
+    /**
+     *
+     */
+    LOGIC_OP_AND(1),
+    /**
+     *
+     */
+    LOGIC_OP_AND_REVERSE(2),
+    /**
+     *
+     */
+    LOGIC_OP_COPY(3),
+    /**
+     *
+     */
+    LOGIC_OP_AND_INVERTED(4),
+    /**
+     *
+     */
+    LOGIC_OP_NO_OP(5),
+    /**
+     *
+     */
+    LOGIC_OP_XOR(6),
+    /**
+     *
+     */
+    LOGIC_OP_OR(7),
+    /**
+     *
+     */
+    LOGIC_OP_NOR(8),
+    /**
+     *
+     */
+    LOGIC_OP_EQUIVALENT(9),
+    /**
+     *
+     */
+    LOGIC_OP_INVERT(10),
+    /**
+     *
+     */
+    LOGIC_OP_OR_REVERSE(11),
+    /**
+     *
+     */
+    LOGIC_OP_COPY_INVERTED(12),
+    /**
+     *
+     */
+    LOGIC_OP_OR_INVERTED(13),
+    /**
+     *
+     */
+    LOGIC_OP_NAND(14),
+    /**
+     *
+     */
+    LOGIC_OP_SET(15),
+    /**
+     *
+     */
+    LOGIC_OP_MAX(16),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class BlendFactor(
     id: Long
   ) {
@@ -2358,119 +2976,6 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public enum class StorageBufferUsage(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    STORAGE_BUFFER_USAGE_DISPATCH_INDIRECT(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DriverResource(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_DEVICE(0),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_PHYSICAL_DEVICE(1),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_INSTANCE(2),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_QUEUE(3),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_QUEUE_FAMILY_INDEX(4),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_IMAGE(5),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_IMAGE_VIEW(6),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_IMAGE_NATIVE_TEXTURE_FORMAT(7),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_SAMPLER(8),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_DESCRIPTOR_SET(9),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_BUFFER(10),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_COMPUTE_PIPELINE(11),
-    /**
-     *
-     */
-    DRIVER_RESOURCE_VULKAN_RENDER_PIPELINE(12),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class PolygonCullMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    POLYGON_CULL_DISABLED(0),
-    /**
-     *
-     */
-    POLYGON_CULL_FRONT(1),
-    /**
-     *
-     */
-    POLYGON_CULL_BACK(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class BlendOperation(
     id: Long
   ) {
@@ -2510,41 +3015,220 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public enum class TextureSamples(
+  public enum class PipelineDynamicStateFlags(
     id: Long
   ) {
     /**
      *
      */
-    TEXTURE_SAMPLES_1(0),
+    DYNAMIC_STATE_LINE_WIDTH(1),
     /**
      *
      */
-    TEXTURE_SAMPLES_2(1),
+    DYNAMIC_STATE_DEPTH_BIAS(2),
     /**
      *
      */
-    TEXTURE_SAMPLES_4(2),
+    DYNAMIC_STATE_BLEND_CONSTANTS(4),
     /**
      *
      */
-    TEXTURE_SAMPLES_8(3),
+    DYNAMIC_STATE_DEPTH_BOUNDS(8),
     /**
      *
      */
-    TEXTURE_SAMPLES_16(4),
+    DYNAMIC_STATE_STENCIL_COMPARE_MASK(16),
     /**
      *
      */
-    TEXTURE_SAMPLES_32(5),
+    DYNAMIC_STATE_STENCIL_WRITE_MASK(32),
     /**
      *
      */
-    TEXTURE_SAMPLES_64(6),
+    DYNAMIC_STATE_STENCIL_REFERENCE(64),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class InitialAction(
+    id: Long
+  ) {
     /**
      *
      */
-    TEXTURE_SAMPLES_MAX(7),
+    INITIAL_ACTION_CLEAR(0),
+    /**
+     *
+     */
+    INITIAL_ACTION_CLEAR_REGION(1),
+    /**
+     *
+     */
+    INITIAL_ACTION_CLEAR_REGION_CONTINUE(2),
+    /**
+     *
+     */
+    INITIAL_ACTION_KEEP(3),
+    /**
+     *
+     */
+    INITIAL_ACTION_DROP(4),
+    /**
+     *
+     */
+    INITIAL_ACTION_CONTINUE(5),
+    /**
+     *
+     */
+    INITIAL_ACTION_MAX(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class FinalAction(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    FINAL_ACTION_READ(0),
+    /**
+     *
+     */
+    FINAL_ACTION_DISCARD(1),
+    /**
+     *
+     */
+    FINAL_ACTION_CONTINUE(2),
+    /**
+     *
+     */
+    FINAL_ACTION_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ShaderStage(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    SHADER_STAGE_VERTEX(0),
+    /**
+     *
+     */
+    SHADER_STAGE_FRAGMENT(1),
+    /**
+     *
+     */
+    SHADER_STAGE_TESSELATION_CONTROL(2),
+    /**
+     *
+     */
+    SHADER_STAGE_TESSELATION_EVALUATION(3),
+    /**
+     *
+     */
+    SHADER_STAGE_COMPUTE(4),
+    /**
+     *
+     */
+    SHADER_STAGE_MAX(5),
+    /**
+     *
+     */
+    SHADER_STAGE_VERTEX_BIT(1),
+    /**
+     *
+     */
+    SHADER_STAGE_FRAGMENT_BIT(2),
+    /**
+     *
+     */
+    SHADER_STAGE_TESSELATION_CONTROL_BIT(4),
+    /**
+     *
+     */
+    SHADER_STAGE_TESSELATION_EVALUATION_BIT(8),
+    /**
+     *
+     */
+    SHADER_STAGE_COMPUTE_BIT(16),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ShaderLanguage(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    SHADER_LANGUAGE_GLSL(0),
+    /**
+     *
+     */
+    SHADER_LANGUAGE_HLSL(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class PipelineSpecializationConstantType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    PIPELINE_SPECIALIZATION_CONSTANT_TYPE_BOOL(0),
+    /**
+     *
+     */
+    PIPELINE_SPECIALIZATION_CONSTANT_TYPE_INT(1),
+    /**
+     *
+     */
+    PIPELINE_SPECIALIZATION_CONSTANT_TYPE_FLOAT(2),
     ;
 
     public val id: Long
@@ -2700,6 +3384,14 @@ public open class RenderingDevice internal constructor() : Object() {
      *
      */
     LIMIT_MAX_COMPUTE_WORKGROUP_SIZE_Z(34),
+    /**
+     *
+     */
+    LIMIT_MAX_VIEWPORT_DIMENSIONS_X(35),
+    /**
+     *
+     */
+    LIMIT_MAX_VIEWPORT_DIMENSIONS_Y(36),
     ;
 
     public val id: Long
@@ -2712,635 +3404,21 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public enum class LogicOperation(
+  public enum class MemoryType(
     id: Long
   ) {
     /**
      *
      */
-    LOGIC_OP_CLEAR(0),
+    MEMORY_TEXTURES(0),
     /**
      *
      */
-    LOGIC_OP_AND(1),
+    MEMORY_BUFFERS(1),
     /**
      *
      */
-    LOGIC_OP_AND_REVERSE(2),
-    /**
-     *
-     */
-    LOGIC_OP_COPY(3),
-    /**
-     *
-     */
-    LOGIC_OP_AND_INVERTED(4),
-    /**
-     *
-     */
-    LOGIC_OP_NO_OP(5),
-    /**
-     *
-     */
-    LOGIC_OP_XOR(6),
-    /**
-     *
-     */
-    LOGIC_OP_OR(7),
-    /**
-     *
-     */
-    LOGIC_OP_NOR(8),
-    /**
-     *
-     */
-    LOGIC_OP_EQUIVALENT(9),
-    /**
-     *
-     */
-    LOGIC_OP_INVERT(10),
-    /**
-     *
-     */
-    LOGIC_OP_OR_REVERSE(11),
-    /**
-     *
-     */
-    LOGIC_OP_COPY_INVERTED(12),
-    /**
-     *
-     */
-    LOGIC_OP_OR_INVERTED(13),
-    /**
-     *
-     */
-    LOGIC_OP_NAND(14),
-    /**
-     *
-     */
-    LOGIC_OP_SET(15),
-    /**
-     *
-     */
-    LOGIC_OP_MAX(16),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class FinalAction(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    FINAL_ACTION_READ(0),
-    /**
-     *
-     */
-    FINAL_ACTION_DISCARD(1),
-    /**
-     *
-     */
-    FINAL_ACTION_CONTINUE(2),
-    /**
-     *
-     */
-    FINAL_ACTION_MAX(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class InitialAction(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    INITIAL_ACTION_CLEAR(0),
-    /**
-     *
-     */
-    INITIAL_ACTION_CLEAR_REGION(1),
-    /**
-     *
-     */
-    INITIAL_ACTION_CLEAR_REGION_CONTINUE(2),
-    /**
-     *
-     */
-    INITIAL_ACTION_KEEP(3),
-    /**
-     *
-     */
-    INITIAL_ACTION_DROP(4),
-    /**
-     *
-     */
-    INITIAL_ACTION_CONTINUE(5),
-    /**
-     *
-     */
-    INITIAL_ACTION_MAX(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class PolygonFrontFace(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    POLYGON_FRONT_FACE_CLOCKWISE(0),
-    /**
-     *
-     */
-    POLYGON_FRONT_FACE_COUNTER_CLOCKWISE(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class VertexFrequency(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    VERTEX_FREQUENCY_VERTEX(0),
-    /**
-     *
-     */
-    VERTEX_FREQUENCY_INSTANCE(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TextureUsageBits(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    TEXTURE_USAGE_SAMPLING_BIT(1),
-    /**
-     *
-     */
-    TEXTURE_USAGE_COLOR_ATTACHMENT_BIT(2),
-    /**
-     *
-     */
-    TEXTURE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(4),
-    /**
-     *
-     */
-    TEXTURE_USAGE_STORAGE_BIT(8),
-    /**
-     *
-     */
-    TEXTURE_USAGE_STORAGE_ATOMIC_BIT(16),
-    /**
-     *
-     */
-    TEXTURE_USAGE_CPU_READ_BIT(32),
-    /**
-     *
-     */
-    TEXTURE_USAGE_CAN_UPDATE_BIT(64),
-    /**
-     *
-     */
-    TEXTURE_USAGE_CAN_COPY_FROM_BIT(128),
-    /**
-     *
-     */
-    TEXTURE_USAGE_CAN_COPY_TO_BIT(256),
-    /**
-     *
-     */
-    TEXTURE_USAGE_INPUT_ATTACHMENT_BIT(512),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class PipelineSpecializationConstantType(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    PIPELINE_SPECIALIZATION_CONSTANT_TYPE_BOOL(0),
-    /**
-     *
-     */
-    PIPELINE_SPECIALIZATION_CONSTANT_TYPE_INT(1),
-    /**
-     *
-     */
-    PIPELINE_SPECIALIZATION_CONSTANT_TYPE_FLOAT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class PipelineDynamicStateFlags(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    DYNAMIC_STATE_LINE_WIDTH(1),
-    /**
-     *
-     */
-    DYNAMIC_STATE_DEPTH_BIAS(2),
-    /**
-     *
-     */
-    DYNAMIC_STATE_BLEND_CONSTANTS(4),
-    /**
-     *
-     */
-    DYNAMIC_STATE_DEPTH_BOUNDS(8),
-    /**
-     *
-     */
-    DYNAMIC_STATE_STENCIL_COMPARE_MASK(16),
-    /**
-     *
-     */
-    DYNAMIC_STATE_STENCIL_WRITE_MASK(32),
-    /**
-     *
-     */
-    DYNAMIC_STATE_STENCIL_REFERENCE(64),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class RenderPrimitive(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_POINTS(0),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_LINES(1),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_LINES_WITH_ADJACENCY(2),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_LINESTRIPS(3),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_LINESTRIPS_WITH_ADJACENCY(4),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_TRIANGLES(5),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_TRIANGLES_WITH_ADJACENCY(6),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_TRIANGLE_STRIPS(7),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_TRIANGLE_STRIPS_WITH_AJACENCY(8),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_TRIANGLE_STRIPS_WITH_RESTART_INDEX(9),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_TESSELATION_PATCH(10),
-    /**
-     *
-     */
-    RENDER_PRIMITIVE_MAX(11),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class SamplerBorderColor(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    SAMPLER_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK(0),
-    /**
-     *
-     */
-    SAMPLER_BORDER_COLOR_INT_TRANSPARENT_BLACK(1),
-    /**
-     *
-     */
-    SAMPLER_BORDER_COLOR_FLOAT_OPAQUE_BLACK(2),
-    /**
-     *
-     */
-    SAMPLER_BORDER_COLOR_INT_OPAQUE_BLACK(3),
-    /**
-     *
-     */
-    SAMPLER_BORDER_COLOR_FLOAT_OPAQUE_WHITE(4),
-    /**
-     *
-     */
-    SAMPLER_BORDER_COLOR_INT_OPAQUE_WHITE(5),
-    /**
-     *
-     */
-    SAMPLER_BORDER_COLOR_MAX(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class TextureSwizzle(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    TEXTURE_SWIZZLE_IDENTITY(0),
-    /**
-     *
-     */
-    TEXTURE_SWIZZLE_ZERO(1),
-    /**
-     *
-     */
-    TEXTURE_SWIZZLE_ONE(2),
-    /**
-     *
-     */
-    TEXTURE_SWIZZLE_R(3),
-    /**
-     *
-     */
-    TEXTURE_SWIZZLE_G(4),
-    /**
-     *
-     */
-    TEXTURE_SWIZZLE_B(5),
-    /**
-     *
-     */
-    TEXTURE_SWIZZLE_A(6),
-    /**
-     *
-     */
-    TEXTURE_SWIZZLE_MAX(7),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class UniformType(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    UNIFORM_TYPE_SAMPLER(0),
-    /**
-     *
-     */
-    UNIFORM_TYPE_SAMPLER_WITH_TEXTURE(1),
-    /**
-     *
-     */
-    UNIFORM_TYPE_TEXTURE(2),
-    /**
-     *
-     */
-    UNIFORM_TYPE_IMAGE(3),
-    /**
-     *
-     */
-    UNIFORM_TYPE_TEXTURE_BUFFER(4),
-    /**
-     *
-     */
-    UNIFORM_TYPE_SAMPLER_WITH_TEXTURE_BUFFER(5),
-    /**
-     *
-     */
-    UNIFORM_TYPE_IMAGE_BUFFER(6),
-    /**
-     *
-     */
-    UNIFORM_TYPE_UNIFORM_BUFFER(7),
-    /**
-     *
-     */
-    UNIFORM_TYPE_STORAGE_BUFFER(8),
-    /**
-     *
-     */
-    UNIFORM_TYPE_INPUT_ATTACHMENT(9),
-    /**
-     *
-     */
-    UNIFORM_TYPE_MAX(10),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class SamplerRepeatMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    SAMPLER_REPEAT_MODE_REPEAT(0),
-    /**
-     *
-     */
-    SAMPLER_REPEAT_MODE_MIRRORED_REPEAT(1),
-    /**
-     *
-     */
-    SAMPLER_REPEAT_MODE_CLAMP_TO_EDGE(2),
-    /**
-     *
-     */
-    SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER(3),
-    /**
-     *
-     */
-    SAMPLER_REPEAT_MODE_MIRROR_CLAMP_TO_EDGE(4),
-    /**
-     *
-     */
-    SAMPLER_REPEAT_MODE_MAX(5),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class SamplerFilter(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    SAMPLER_FILTER_NEAREST(0),
-    /**
-     *
-     */
-    SAMPLER_FILTER_LINEAR(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class DeviceType(
-    id: Long
-  ) {
-    /**
-     * Rendering device type does not match any of the other enum values or is unknown.
-     */
-    DEVICE_TYPE_OTHER(0),
-    /**
-     * Rendering device is an integrated GPU, which is typically *(but not always)* slower than dedicated GPUs ([DEVICE_TYPE_DISCRETE_GPU]). On Android and iOS, the rendering device type is always considered to be [DEVICE_TYPE_INTEGRATED_GPU].
-     */
-    DEVICE_TYPE_INTEGRATED_GPU(1),
-    /**
-     * Rendering device is a dedicated GPU, which is typically *(but not always)* faster than integrated GPUs ([DEVICE_TYPE_INTEGRATED_GPU]).
-     */
-    DEVICE_TYPE_DISCRETE_GPU(2),
-    /**
-     * Rendering device is an emulated GPU in a virtual environment. This is typically much slower than the host GPU, which means the expected performance level on a dedicated GPU will be roughly equivalent to [DEVICE_TYPE_INTEGRATED_GPU]. Virtual machine GPU passthrough (such as VFIO) will not report the device type as [DEVICE_TYPE_VIRTUAL_GPU]. Instead, the host GPU's device type will be reported as if the GPU was not emulated.
-     */
-    DEVICE_TYPE_VIRTUAL_GPU(3),
-    /**
-     * Rendering device is provided by software emulation (such as Lavapipe or [godot.SwiftShader](https://github.com/google/swiftshader)). This is the slowest kind of rendering device available; it's typically much slower than [DEVICE_TYPE_INTEGRATED_GPU].
-     */
-    DEVICE_TYPE_CPU(4),
-    /**
-     * Represents the size of the [enum DeviceType] enum.
-     */
-    DEVICE_TYPE_MAX(5),
+    MEMORY_TOTAL(2),
     ;
 
     public val id: Long
@@ -3354,31 +3432,6 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public companion object {
-    /**
-     *
-     */
-    public final const val BARRIER_MASK_RASTER: Long = 1
-
-    /**
-     *
-     */
-    public final const val BARRIER_MASK_COMPUTE: Long = 2
-
-    /**
-     *
-     */
-    public final const val BARRIER_MASK_TRANSFER: Long = 4
-
-    /**
-     *
-     */
-    public final const val BARRIER_MASK_ALL: Long = 7
-
-    /**
-     *
-     */
-    public final const val BARRIER_MASK_NO_BARRIER: Long = 8
-
     /**
      *
      */

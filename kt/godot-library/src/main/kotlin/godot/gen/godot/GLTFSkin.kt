@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedInt32Array
+import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DICTIONARY
@@ -48,11 +49,11 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_SET_JOINTS_ORIGINAL, NIL)
     }
 
-  public var inverseBinds: VariantArray<Any?>
+  public var inverseBinds: VariantArray<Transform3D>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_INVERSE_BINDS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Transform3D>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -131,11 +132,11 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_SET_JOINT_I_TO_NAME, NIL)
     }
 
-  public var godotSkin: Object?
+  public var godotSkin: Skin?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_GODOT_SKIN, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Object?
+      return TransferContext.readReturnValue(OBJECT, true) as Skin?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

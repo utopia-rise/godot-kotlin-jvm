@@ -33,7 +33,11 @@ class ClassService(
             val clazz = classRepository.findByClassName(className) ?: throw NoMatchingClassFoundException(className)
             val property = clazz.properties.first { it.name == propertyName }
 
-            val methodName = if (isSetter) property.internal.setter else property.internal.getter
+            val setter = property.internal.setter
+
+            if (isSetter && setter == null) return
+
+            val methodName = if (isSetter) setter!! else property.internal.getter
             val returnType = if (isSetter) "" else property.type
             val arguments = if (isSetter) {
                 listOf(Argument(property.name, property.type, null, null))
@@ -63,6 +67,7 @@ class ClassService(
                     property.shouldUseSuperSetter = true
                 } else {
                     property.shouldUseSuperGetter = true
+                    property.getterMethod = parentClassAndMethod.second
                 }
             }
         }
@@ -81,7 +86,7 @@ class ClassService(
                         property.getter -> {
                             if (method.getTypeClassName().className == UNIT || method.arguments.size > 1 || method.internal.isVirtual) continue
 
-                            if (property.internal.index == -1 && method.arguments.size == 1) continue
+                            if (!property.isIndexed && method.arguments.size == 1) continue
 
                             if (method.arguments.size == 1 && method.arguments[0].type != "int") continue
 
@@ -91,7 +96,7 @@ class ClassService(
                         property.setter -> {
                             if (method.getTypeClassName().className != UNIT || method.arguments.size > 2 || method.internal.isVirtual) continue
 
-                            if (property.internal.index == -1 && method.arguments.size == 2) continue
+                            if (!property.isIndexed && method.arguments.size == 2) continue
 
                             if (method.arguments.size == 2 && method.arguments[0].type != "Long") continue
 

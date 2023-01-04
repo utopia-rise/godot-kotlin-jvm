@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
+import godot.core.PackedVector3Array
 import godot.core.VariantType.NIL
+import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -33,15 +32,15 @@ public open class ConvexPolygonShape3D : Shape3D() {
   /**
    * The list of 3D points forming the convex polygon shape.
    */
-  public var points: VariantArray<Any?>
+  public var points: PackedVector3Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE3D_GET_POINTS,
-          ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+          PACKED_VECTOR3_ARRAY)
+      return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
     }
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
+      TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE3D_SET_POINTS,
           NIL)
     }

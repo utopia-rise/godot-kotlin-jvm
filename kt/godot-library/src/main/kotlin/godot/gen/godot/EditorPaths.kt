@@ -25,7 +25,7 @@ import kotlin.Suppress
  *
  * **Note:** This singleton is not accessible in exported projects. Attempting to access it in an exported project will result in a script error as the singleton won't be declared. To prevent script errors in exported projects, use [godot.Engine.hasSingleton] to check whether the singleton is available before using it.
  *
- * **Note:** Godot complies with the [godot.XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) on *all* platforms. You can override environment variables following the specification to change the editor and project data paths.
+ * **Note:** On the Linux/BSD platform, Godot complies with the [godot.XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html). You can override environment variables following the specification to change the editor and project data paths.
  */
 @GodotBaseType
 public open class EditorPaths internal constructor() : Object() {
@@ -105,6 +105,16 @@ public open class EditorPaths internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_SELF_CONTAINED_FILE,
         STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the project-specific editor settings path. Projects all have a unique subdirectory inside the settings path where project-specific editor settings are saved.
+   */
+  public fun getProjectSettingsDir(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_PROJECT_SETTINGS_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

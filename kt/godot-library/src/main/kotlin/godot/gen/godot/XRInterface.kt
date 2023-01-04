@@ -6,18 +6,21 @@
 
 package godot
 
-import godot.XRInterface
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
+import godot.core.Projection
 import godot.core.StringName
+import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
+import godot.core.VariantType.PROJECTION
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
@@ -65,12 +68,12 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * The play area mode for this interface.
    */
-  public val xrPlayAreaMode: Long
+  public val xrPlayAreaMode: PlayAreaMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return XRInterface.PlayAreaMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
 
   /**
@@ -149,7 +152,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking.
    */
-  public fun getTrackingStatus(): XRInterface.TrackingStatus {
+  public fun getTrackingStatus(): TrackingStatus {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_TRACKING_STATUS,
         LONG)
@@ -198,7 +201,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Call this to find out if a given play area mode is supported by this interface.
    */
-  public fun supportsPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
+  public fun supportsPlayAreaMode(mode: PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SUPPORTS_PLAY_AREA_MODE,
         BOOL)
@@ -208,7 +211,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Sets the active play area mode, will return `false` if the mode can't be used with this interface.
    */
-  public fun setPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
+  public fun setPlayAreaMode(mode: PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_PLAY_AREA_MODE,
         BOOL)
@@ -235,29 +238,105 @@ public open class XRInterface internal constructor() : RefCounted() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public enum class PlayAreaMode(
+  /**
+   * Is `true` if this interface supports passthrough.
+   */
+  public fun isPassthroughSupported(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_PASSTHROUGH_SUPPORTED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Is `true` if passthrough is enabled.
+   */
+  public fun isPassthroughEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_PASSTHROUGH_ENABLED,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Starts passthrough, will return `false` if passthrough couldn't be started.
+   *
+   * **Note:** The viewport used for XR must have a transparent background, otherwise passthrough may not properly render.
+   */
+  public fun startPassthrough(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_START_PASSTHROUGH, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Stops passthrough.
+   */
+  public fun stopPassthrough(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_STOP_PASSTHROUGH, NIL)
+  }
+
+  /**
+   * Returns the transform for a view/eye.
+   *
+   * [view] is the view/eye index.
+   *
+   * [camTransform] is the transform that maps device coordinates to scene coordinates, typically the global_transform of the current XROrigin3D.
+   */
+  public fun getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
+    TransferContext.writeArguments(LONG to view, TRANSFORM3D to camTransform)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_TRANSFORM_FOR_VIEW,
+        TRANSFORM3D)
+    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+  }
+
+  /**
+   * Returns the projection matrix for a view/eye.
+   */
+  public fun getProjectionForView(
+    view: Long,
+    aspect: Double,
+    near: Double,
+    far: Double
+  ): Projection {
+    TransferContext.writeArguments(LONG to view, DOUBLE to aspect, DOUBLE to near, DOUBLE to far)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PROJECTION_FOR_VIEW,
+        PROJECTION)
+    return TransferContext.readReturnValue(PROJECTION, false) as Projection
+  }
+
+  public enum class Capabilities(
     id: Long
   ) {
     /**
-     * Play area mode not set or not available.
+     * No XR capabilities.
      */
-    XR_PLAY_AREA_UNKNOWN(0),
+    XR_NONE(0),
     /**
-     * Play area only supports orientation tracking, no positional tracking, area will center around player.
+     * This interface can work with normal rendering output (non-HMD based AR).
      */
-    XR_PLAY_AREA_3DOF(1),
+    XR_MONO(1),
     /**
-     * Player is in seated position, limited positional tracking, fixed guardian around player.
+     * This interface supports stereoscopic rendering.
      */
-    XR_PLAY_AREA_SITTING(2),
+    XR_STEREO(2),
     /**
-     * Player is free to move around, full positional tracking.
+     * This interface supports quad rendering (not yet supported by Godot).
      */
-    XR_PLAY_AREA_ROOMSCALE(3),
+    XR_QUAD(4),
     /**
-     * Same as roomscale but origin point is fixed to the center of the physical space, XRServer.center_on_hmd disabled.
+     * this interface supports VR.
      */
-    XR_PLAY_AREA_STAGE(4),
+    XR_VR(8),
+    /**
+     * This interface supports AR (video background and real world tracking).
+     */
+    XR_AR(16),
+    /**
+     * This interface outputs to an external device. If the main viewport is used, the on screen output is an unmodified buffer of either the left or right eye (stretched if the viewport size is not changed to the same aspect ratio of [getRenderTargetSize]). Using a separate viewport node frees up the main viewport for other purposes.
+     */
+    XR_EXTERNAL(32),
     ;
 
     public val id: Long
@@ -305,37 +384,29 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
   }
 
-  public enum class Capabilities(
+  public enum class PlayAreaMode(
     id: Long
   ) {
     /**
-     * No XR capabilities.
+     * Play area mode not set or not available.
      */
-    XR_NONE(0),
+    XR_PLAY_AREA_UNKNOWN(0),
     /**
-     * This interface can work with normal rendering output (non-HMD based AR).
+     * Play area only supports orientation tracking, no positional tracking, area will center around player.
      */
-    XR_MONO(1),
+    XR_PLAY_AREA_3DOF(1),
     /**
-     * This interface supports stereoscopic rendering.
+     * Player is in seated position, limited positional tracking, fixed guardian around player.
      */
-    XR_STEREO(2),
+    XR_PLAY_AREA_SITTING(2),
     /**
-     * This interface supports quad rendering (not yet supported by Godot).
+     * Player is free to move around, full positional tracking.
      */
-    XR_QUAD(4),
+    XR_PLAY_AREA_ROOMSCALE(3),
     /**
-     * this interface supports VR.
+     * Same as roomscale but origin point is fixed to the center of the physical space, XRServer.center_on_hmd disabled.
      */
-    XR_VR(8),
-    /**
-     * This interface supports AR (video background and real world tracking).
-     */
-    XR_AR(16),
-    /**
-     * This interface outputs to an external device. If the main viewport is used, the on screen output is an unmodified buffer of either the left or right eye (stretched if the viewport size is not changed to the same aspect ratio of [getRenderTargetSize]). Using a separate viewport node frees up the main viewport for other purposes.
-     */
-    XR_EXTERNAL(32),
+    XR_PLAY_AREA_STAGE(4),
     ;
 
     public val id: Long

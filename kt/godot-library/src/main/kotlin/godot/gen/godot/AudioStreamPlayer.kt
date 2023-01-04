@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -134,12 +135,12 @@ public open class AudioStreamPlayer : Node() {
   /**
    * If the audio configuration has more than two speakers, this sets the target channels. See [enum MixTarget] constants.
    */
-  public var mixTarget: Long
+  public var mixTarget: MixTarget
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_MIX_TARGET,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return AudioStreamPlayer.MixTarget.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

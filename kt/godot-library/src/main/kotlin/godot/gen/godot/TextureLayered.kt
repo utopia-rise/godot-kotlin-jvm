@@ -6,8 +6,6 @@
 
 package godot
 
-import godot.Image
-import godot.TextureLayered
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
@@ -101,7 +99,7 @@ public open class TextureLayered : Texture() {
   /**
    * Returns the [godot.TextureLayered]'s type. The type determines how the data is accessed, with cubemaps having special types.
    */
-  public fun getLayeredType(): TextureLayered.LayeredType {
+  public fun getLayeredType(): LayeredType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYERED_TYPE,
         LONG)

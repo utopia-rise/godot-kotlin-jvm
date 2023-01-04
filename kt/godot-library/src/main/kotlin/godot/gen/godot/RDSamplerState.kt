@@ -9,13 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -26,12 +26,12 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public var magFilter: Long
+  public var magFilter: RenderingDevice.SamplerFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MAG_FILTER,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.SamplerFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -42,12 +42,12 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public var minFilter: Long
+  public var minFilter: RenderingDevice.SamplerFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIN_FILTER,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.SamplerFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -58,12 +58,12 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public var mipFilter: Long
+  public var mipFilter: RenderingDevice.SamplerFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIP_FILTER,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.SamplerFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -74,11 +74,11 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public var repeatU: Long
+  public var repeatU: RenderingDevice.SamplerRepeatMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_U, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.SamplerRepeatMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -88,11 +88,11 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public var repeatV: Long
+  public var repeatV: RenderingDevice.SamplerRepeatMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_V, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.SamplerRepeatMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -102,11 +102,11 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public var repeatW: Long
+  public var repeatW: RenderingDevice.SamplerRepeatMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_W, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.SamplerRepeatMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -179,12 +179,12 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public var compareOp: Long
+  public var compareOp: RenderingDevice.CompareOperator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_COMPARE_OP,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.CompareOperator.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -225,12 +225,12 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public var borderColor: Long
+  public var borderColor: RenderingDevice.SamplerBorderColor
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_BORDER_COLOR,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.SamplerBorderColor.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

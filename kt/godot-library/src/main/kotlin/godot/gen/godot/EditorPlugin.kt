@@ -40,9 +40,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class EditorPlugin internal constructor() : Node() {
   /**
-   * Emitted when user changes the workspace (**2D**, **3D**, **Script**, **AssetLib**). Also works with custom screens defined by plugins.
+   * Emitted when the scene is changed in the editor. The argument will return the root node of the scene that has just become active. If this scene is new and empty, the argument will be `null`.
    */
-  public val mainScreenChanged: Signal1<String> by signal("screenName")
+  public val sceneChanged: Signal1<Node> by signal("sceneRoot")
 
   /**
    * Emitted when user closes a scene. The argument is file path to a closed scene.
@@ -50,19 +50,19 @@ public open class EditorPlugin internal constructor() : Node() {
   public val sceneClosed: Signal1<String> by signal("filepath")
 
   /**
-   * Emitted when the scene is changed in the editor. The argument will return the root node of the scene that has just become active. If this scene is new and empty, the argument will be `null`.
+   * Emitted when user changes the workspace (**2D**, **3D**, **Script**, **AssetLib**). Also works with custom screens defined by plugins.
    */
-  public val sceneChanged: Signal1<Node> by signal("sceneRoot")
-
-  /**
-   * Emitted when any project setting has changed.
-   */
-  public val projectSettingsChanged: Signal0 by signal()
+  public val mainScreenChanged: Signal1<String> by signal("screenName")
 
   /**
    * Emitted when the given [resource] was saved on disc.
    */
   public val resourceSaved: Signal1<Resource> by signal("resource")
+
+  /**
+   * Emitted when any project setting has changed.
+   */
+  public val projectSettingsChanged: Signal0 by signal()
 
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORPLUGIN, scriptIndex)
@@ -592,8 +592,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * When your plugin is deactivated, make sure to remove your custom control with [removeControlFromContainer] and free it with [godot.Node.queueFree].
    */
-  public fun addControlToContainer(container: EditorPlugin.CustomControlContainer,
-      control: Control): Unit {
+  public fun addControlToContainer(container: CustomControlContainer, control: Control): Unit {
     TransferContext.writeArguments(LONG to container.id, OBJECT to control)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_CONTAINER, NIL)
@@ -616,7 +615,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * When your plugin is deactivated, make sure to remove your custom control with [removeControlFromDocks] and free it with [godot.Node.queueFree].
    */
-  public fun addControlToDock(slot: EditorPlugin.DockSlot, control: Control): Unit {
+  public fun addControlToDock(slot: DockSlot, control: Control): Unit {
     TransferContext.writeArguments(LONG to slot.id, OBJECT to control)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_DOCK,
         NIL)
@@ -643,8 +642,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes the control from the specified container. You have to manually [godot.Node.queueFree] the control.
    */
-  public fun removeControlFromContainer(container: EditorPlugin.CustomControlContainer,
-      control: Control): Unit {
+  public fun removeControlFromContainer(container: CustomControlContainer, control: Control): Unit {
     TransferContext.writeArguments(LONG to container.id, OBJECT to control)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_CONTAINER, NIL)
@@ -675,6 +673,16 @@ public open class EditorPlugin internal constructor() : Node() {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_TOOL_MENU_ITEM,
         NIL)
+  }
+
+  /**
+   * Returns the [godot.PopupMenu] under **Scene > Export As...**.
+   */
+  public fun getExportAsMenu(): PopupMenu? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_EXPORT_AS_MENU,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
   }
 
   /**
@@ -754,10 +762,10 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Gets the undo/redo object. Most actions in the editor can be undoable, so use this object to make sure this happens when it's worth it.
    */
-  public fun getUndoRedo(): UndoRedo? {
+  public fun getUndoRedo(): EditorUndoRedoManager? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_UNDO_REDO, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as UndoRedo?
+    return TransferContext.readReturnValue(OBJECT, true) as EditorUndoRedoManager?
   }
 
   /**
@@ -890,16 +898,24 @@ public open class EditorPlugin internal constructor() : Node() {
         NIL)
   }
 
-  public fun addSpatialGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
+  /**
+   * Registers a new [godot.EditorNode3DGizmoPlugin]. Gizmo plugins are used to add custom gizmos to the 3D preview viewport for a [godot.Node3D].
+   *
+   * See [addInspectorPlugin] for an example of how to register a plugin.
+   */
+  public fun addNode3dGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SPATIAL_GIZMO_PLUGIN, NIL)
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_NODE_3D_GIZMO_PLUGIN, NIL)
   }
 
-  public fun removeSpatialGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
+  /**
+   * Removes a gizmo plugin registered by [addNode3dGizmoPlugin].
+   */
+  public fun removeNode3dGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SPATIAL_GIZMO_PLUGIN, NIL)
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_NODE_3D_GIZMO_PLUGIN, NIL)
   }
 
   /**
@@ -991,7 +1007,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Adds a [godot.Script] as debugger plugin to the Debugger. The script must extend [godot.EditorDebuggerPlugin].
    */
-  public fun addDebuggerPlugin(script: Script): Unit {
+  public fun addDebuggerPlugin(script: EditorDebuggerPlugin): Unit {
     TransferContext.writeArguments(OBJECT to script)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_DEBUGGER_PLUGIN,
         NIL)
@@ -1000,45 +1016,108 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes the debugger plugin with given script from the Debugger.
    */
-  public fun removeDebuggerPlugin(script: Script): Unit {
+  public fun removeDebuggerPlugin(script: EditorDebuggerPlugin): Unit {
     TransferContext.writeArguments(OBJECT to script)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_DEBUGGER_PLUGIN,
         NIL)
+  }
+
+  public enum class CustomControlContainer(
+    id: Long
+  ) {
+    /**
+     * Main editor toolbar, next to play buttons.
+     */
+    CONTAINER_TOOLBAR(0),
+    /**
+     * The toolbar that appears when 3D editor is active.
+     */
+    CONTAINER_SPATIAL_EDITOR_MENU(1),
+    /**
+     * Left sidebar of the 3D editor.
+     */
+    CONTAINER_SPATIAL_EDITOR_SIDE_LEFT(2),
+    /**
+     * Right sidebar of the 3D editor.
+     */
+    CONTAINER_SPATIAL_EDITOR_SIDE_RIGHT(3),
+    /**
+     * Bottom panel of the 3D editor.
+     */
+    CONTAINER_SPATIAL_EDITOR_BOTTOM(4),
+    /**
+     * The toolbar that appears when 2D editor is active.
+     */
+    CONTAINER_CANVAS_EDITOR_MENU(5),
+    /**
+     * Left sidebar of the 2D editor.
+     */
+    CONTAINER_CANVAS_EDITOR_SIDE_LEFT(6),
+    /**
+     * Right sidebar of the 2D editor.
+     */
+    CONTAINER_CANVAS_EDITOR_SIDE_RIGHT(7),
+    /**
+     * Bottom panel of the 2D editor.
+     */
+    CONTAINER_CANVAS_EDITOR_BOTTOM(8),
+    /**
+     * Bottom section of the inspector.
+     */
+    CONTAINER_INSPECTOR_BOTTOM(9),
+    /**
+     * Tab of Project Settings dialog, to the left of other tabs.
+     */
+    CONTAINER_PROJECT_SETTING_TAB_LEFT(10),
+    /**
+     * Tab of Project Settings dialog, to the right of other tabs.
+     */
+    CONTAINER_PROJECT_SETTING_TAB_RIGHT(11),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class DockSlot(
     id: Long
   ) {
     /**
-     *
+     * Dock slot, left side, upper-left (empty in default layout).
      */
     DOCK_SLOT_LEFT_UL(0),
     /**
-     *
+     * Dock slot, left side, bottom-left (empty in default layout).
      */
     DOCK_SLOT_LEFT_BL(1),
     /**
-     *
+     * Dock slot, left side, upper-right (in default layout includes Scene and Import docks).
      */
     DOCK_SLOT_LEFT_UR(2),
     /**
-     *
+     * Dock slot, left side, bottom-right (in default layout includes FileSystem dock).
      */
     DOCK_SLOT_LEFT_BR(3),
     /**
-     *
+     * Dock slot, right side, upper-left (empty in default layout).
      */
     DOCK_SLOT_RIGHT_UL(4),
     /**
-     *
+     * Dock slot, right side, bottom-left (empty in default layout).
      */
     DOCK_SLOT_RIGHT_BL(5),
     /**
-     *
+     * Dock slot, right side, upper-right (in default layout includes Inspector, Node and History docks).
      */
     DOCK_SLOT_RIGHT_UR(6),
     /**
-     *
+     * Dock slot, right side, bottom-right (empty in default layout).
      */
     DOCK_SLOT_RIGHT_BR(7),
     /**
@@ -1057,54 +1136,21 @@ public open class EditorPlugin internal constructor() : Node() {
     }
   }
 
-  public enum class CustomControlContainer(
+  public enum class AfterGUIInput(
     id: Long
   ) {
     /**
-     *
+     * Forwards the [godot.InputEvent] to other EditorPlugins.
      */
-    CONTAINER_TOOLBAR(0),
+    AFTER_GUI_INPUT_PASS(0),
     /**
-     *
+     * Prevents the [godot.InputEvent] from reaching other Editor classes.
      */
-    CONTAINER_SPATIAL_EDITOR_MENU(1),
+    AFTER_GUI_INPUT_STOP(1),
     /**
-     *
+     * Pass the [godot.InputEvent] to other editor plugins except the main [godot.Node3D] one. This can be used to prevent node selection changes and work with sub-gizmos instead.
      */
-    CONTAINER_SPATIAL_EDITOR_SIDE_LEFT(2),
-    /**
-     *
-     */
-    CONTAINER_SPATIAL_EDITOR_SIDE_RIGHT(3),
-    /**
-     *
-     */
-    CONTAINER_SPATIAL_EDITOR_BOTTOM(4),
-    /**
-     *
-     */
-    CONTAINER_CANVAS_EDITOR_MENU(5),
-    /**
-     *
-     */
-    CONTAINER_CANVAS_EDITOR_SIDE_LEFT(6),
-    /**
-     *
-     */
-    CONTAINER_CANVAS_EDITOR_SIDE_RIGHT(7),
-    /**
-     *
-     */
-    CONTAINER_CANVAS_EDITOR_BOTTOM(8),
-    CONTAINER_PROPERTY_EDITOR_BOTTOM(9),
-    /**
-     *
-     */
-    CONTAINER_PROJECT_SETTING_TAB_LEFT(10),
-    /**
-     *
-     */
-    CONTAINER_PROJECT_SETTING_TAB_RIGHT(11),
+    AFTER_GUI_INPUT_CUSTOM(2),
     ;
 
     public val id: Long

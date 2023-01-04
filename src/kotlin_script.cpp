@@ -186,7 +186,7 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
 
 // Variant is of type Dictionary
 const Variant KotlinScript::get_rpc_config() const {
-    return kotlin_class->get_rpc_config();
+    return get_kotlin_class()->get_rpc_config();
 }
 
 #ifdef TOOLS_ENABLED

@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -32,6 +33,11 @@ import kotlin.Unit
 @GodotBaseType
 public open class FileDialog : ConfirmationDialog() {
   /**
+   * Emitted when the user selects a file by double-clicking it or pressing the **OK** button.
+   */
+  public val fileSelected: Signal1<String> by signal("path")
+
+  /**
    * Emitted when the user selects multiple files.
    */
   public val filesSelected: Signal1<PackedStringArray> by signal("paths")
@@ -40,11 +46,6 @@ public open class FileDialog : ConfirmationDialog() {
    * Emitted when the user selects a directory.
    */
   public val dirSelected: Signal1<String> by signal("dir")
-
-  /**
-   * Emitted when the user selects a file by double-clicking it or pressing the **OK** button.
-   */
-  public val fileSelected: Signal1<String> by signal("path")
 
   /**
    * If `true`, changing the `Mode` property will set the window title accordingly (e.g. setting mode to [FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
@@ -65,11 +66,11 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode].
    */
-  public var fileMode: Long
+  public var fileMode: FileMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return FileDialog.FileMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -81,15 +82,31 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * **Warning:** Currently, in sandboxed environments such as Web builds or sandboxed macOS apps, FileDialog cannot access the host file system. See [godot-proposals#1123](https://github.com/godotengine/godot-proposals/issues/1123).
    */
-  public var access: Long
+  public var access: Access
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ACCESS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return FileDialog.Access.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_ACCESS, NIL)
+    }
+
+  /**
+   * If non-empty, the given sub-folder will be "root" of this [godot.FileDialog], i.e. user won't be able to go to its parent directory.
+   */
+  public var rootSubfolder: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ROOT_SUBFOLDER,
+          STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_ROOT_SUBFOLDER,
+          NIL)
     }
 
   /**
@@ -188,8 +205,8 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * For example, a [filter] of `"*.png, *.jpg"` and a [description] of `"Images"` results in filter text "Images (*.png, *.jpg)".
    */
-  public fun addFilter(filter: String): Unit {
-    TransferContext.writeArguments(STRING to filter)
+  public fun addFilter(filter: String, description: String = ""): Unit {
+    TransferContext.writeArguments(STRING to filter, STRING to description)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_ADD_FILTER, NIL)
   }
 

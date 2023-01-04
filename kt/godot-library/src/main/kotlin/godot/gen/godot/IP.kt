@@ -6,13 +6,15 @@
 
 package godot
 
-import godot.IP
 import godot.`annotation`.GodotBaseType
+import godot.core.Dictionary
+import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Any
@@ -48,7 +50,7 @@ public object IP : Object() {
   /**
    * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the [enum Type] constant given as [ipType].
    */
-  public fun resolveHostname(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): String {
+  public fun resolveHostname(host: String, ipType: Type = IP.Type.TYPE_ANY): String {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -57,18 +59,18 @@ public object IP : Object() {
   /**
    * Resolves a given hostname in a blocking way. Addresses are returned as an [godot.Array] of IPv4 or IPv6 addresses depending on [ipType].
    */
-  public fun resolveHostnameAddresses(host: String, ipType: IP.Type = IP.Type.TYPE_ANY):
-      VariantArray<Any?> {
+  public fun resolveHostnameAddresses(host: String, ipType: Type = IP.Type.TYPE_ANY):
+      PackedStringArray {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_ADDRESSES,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
    * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as [ipType]. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
    */
-  public fun resolveHostnameQueueItem(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): Long {
+  public fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.TYPE_ANY): Long {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_QUEUE_ITEM,
         LONG)
@@ -78,7 +80,7 @@ public object IP : Object() {
   /**
    * Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue [id].
    */
-  public fun getResolveItemStatus(id: Long): IP.ResolverStatus {
+  public fun getResolveItemStatus(id: Long): ResolverStatus {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_STATUS, LONG)
     return IP.ResolverStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -114,10 +116,11 @@ public object IP : Object() {
   /**
    * Returns all the user's current IPv4 and IPv6 addresses as an array.
    */
-  public fun getLocalAddresses(): VariantArray<Any?> {
+  public fun getLocalAddresses(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_LOCAL_ADDRESSES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_LOCAL_ADDRESSES,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
@@ -134,10 +137,10 @@ public object IP : Object() {
    * 				}
    * 				```
    */
-  public fun getLocalInterfaces(): VariantArray<Any?> {
+  public fun getLocalInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_LOCAL_INTERFACES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**

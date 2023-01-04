@@ -7,12 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
@@ -31,15 +36,15 @@ public open class OpenXRInteractionProfile : Resource() {
           ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_SET_INTERACTION_PROFILE_PATH, NIL)
     }
 
-  public var bindings: OpenXRIPBinding?
+  public var bindings: VariantArray<Any?>?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_GET_BINDINGS, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as OpenXRIPBinding?
+          ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_GET_BINDINGS, ARRAY)
+      return TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_SET_BINDINGS, NIL)
     }
@@ -47,6 +52,20 @@ public open class OpenXRInteractionProfile : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_OPENXRINTERACTIONPROFILE, scriptIndex)
     return true
+  }
+
+  public fun getBindingCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_GET_BINDING_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public fun getBinding(index: Long): OpenXRIPBinding? {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_GET_BINDING, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as OpenXRIPBinding?
   }
 
   public companion object

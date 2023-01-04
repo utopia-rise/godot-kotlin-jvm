@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Window
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedStringArray
@@ -48,46 +47,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class Window : Viewport() {
   /**
-   * Emitted when the mouse cursor exits the [godot.Window]'s area (including when it's hovered over another window on top of this one).
-   */
-  public val mouseExited: Signal0 by signal()
-
-  /**
-   * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
-   */
-  public val themeChanged: Signal0 by signal()
-
-  /**
-   * Emitted when the [godot.Window] gains focus.
-   */
-  public val focusEntered: Signal0 by signal()
-
-  /**
-   * Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right after [godot.Node.NOTIFICATION_WM_GO_BACK_REQUEST].
-   */
-  public val goBackRequested: Signal0 by signal()
-
-  /**
-   * Emitted when the [godot.Window]'s close button is pressed or when [popupWindow] is enabled and user clicks outside the window.
-   *
-   * This signal can be used to handle window closing, e.g. by connecting it to [hide].
-   */
-  public val closeRequested: Signal0 by signal()
-
-  /**
-   * Emitted when the mouse cursor enters the [godot.Window]'s area, regardless if it's currently focused or not.
-   */
-  public val mouseEntered: Signal0 by signal()
-
-  /**
    * Emitted when the [godot.Window] is currently focused and receives any input, passing the received event as an argument. The event's position, if present, is in the embedder's coordinate system.
    */
   public val windowInput: Signal1<InputEvent> by signal("event")
-
-  /**
-   * Emitted right after [popup] call, before the [godot.Window] appears or does anything.
-   */
-  public val aboutToPopup: Signal0 by signal()
 
   /**
    * Emitted when files are dragged from the OS file manager and dropped in the game window. The argument is a list of file paths.
@@ -107,14 +69,56 @@ public open class Window : Viewport() {
   public val filesDropped: Signal1<PackedStringArray> by signal("files")
 
   /**
-   * Emitted when [godot.Window] is made visible or disappears.
+   * Emitted when the mouse cursor enters the [godot.Window]'s area, regardless if it's currently focused or not.
    */
-  public val visibilityChanged: Signal0 by signal()
+  public val mouseEntered: Signal0 by signal()
+
+  /**
+   * Emitted when the mouse cursor exits the [godot.Window]'s area (including when it's hovered over another window on top of this one).
+   */
+  public val mouseExited: Signal0 by signal()
+
+  /**
+   * Emitted when the [godot.Window] gains focus.
+   */
+  public val focusEntered: Signal0 by signal()
 
   /**
    * Emitted when the [godot.Window] loses its focus.
    */
   public val focusExited: Signal0 by signal()
+
+  /**
+   * Emitted when the [godot.Window]'s close button is pressed or when [popupWindow] is enabled and user clicks outside the window.
+   *
+   * This signal can be used to handle window closing, e.g. by connecting it to [hide].
+   */
+  public val closeRequested: Signal0 by signal()
+
+  /**
+   * Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right after [godot.Node.NOTIFICATION_WM_GO_BACK_REQUEST].
+   */
+  public val goBackRequested: Signal0 by signal()
+
+  /**
+   * Emitted when [godot.Window] is made visible or disappears.
+   */
+  public val visibilityChanged: Signal0 by signal()
+
+  /**
+   * Emitted right after [popup] call, before the [godot.Window] appears or does anything.
+   */
+  public val aboutToPopup: Signal0 by signal()
+
+  /**
+   * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
+   */
+  public val themeChanged: Signal0 by signal()
+
+  /**
+   * Emitted when window title bar decorations are changed, e.g. macOS window enter/exit full screen mode, or extend-to-title flag is changed.
+   */
+  public val titlebarChanged: Signal0 by signal()
 
   /**
    * The window's title. If the [godot.Window] is non-embedded, title styles set in [godot.Theme] will have no effect.
@@ -163,11 +167,11 @@ public open class Window : Viewport() {
    *
    * **Note:** Fullscreen mode is not exclusive full screen on Windows and Linux.
    */
-  public var mode: Long
+  public var mode: Mode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Window.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -301,12 +305,12 @@ public open class Window : Viewport() {
   /**
    * Specifies how the content is scaled when the [godot.Window] is resized.
    */
-  public var contentScaleMode: Long
+  public var contentScaleMode: ContentScaleMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Window.ContentScaleMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -317,12 +321,12 @@ public open class Window : Viewport() {
   /**
    * Specifies how the content's aspect behaves when the [godot.Window] is resized. The base aspect is determined by [contentScaleSize].
    */
-  public var contentScaleAspect: Long
+  public var contentScaleAspect: ContentScaleAspect
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_ASPECT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Window.ContentScaleAspect.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -347,9 +351,23 @@ public open class Window : Viewport() {
     }
 
   /**
-   * The [godot.Theme] resource that determines the style of the underlying [godot.Control] nodes.
+   * Toggles if any text should automatically change to its translated version depending on the current locale.
+   */
+  public var autoTranslate: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_AUTO_TRANSLATING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_AUTO_TRANSLATE, NIL)
+    }
+
+  /**
+   * The [godot.Theme] resource this node and all its [godot.Control] and [godot.Window] children use. If a child node has its own [godot.Theme] resource set, theme items are merged with child's definitions having higher priority.
    *
-   * [godot.Window] styles will have no effect unless the window is embedded.
+   * **Note:** [godot.Window] styles will have no effect unless the window is embedded.
    */
   public var theme: Theme?
     get() {
@@ -365,31 +383,17 @@ public open class Window : Viewport() {
   /**
    * The name of a theme type variation used by this [godot.Window] to look up its own theme items. See [godot.Control.themeTypeVariation] for more details.
    */
-  public var themeTypeVariation: String
+  public var themeTypeVariation: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_TYPE_VARIATION,
-          STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+          STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_THEME_TYPE_VARIATION,
           NIL)
-    }
-
-  /**
-   * Toggles if any text should automatically change to its translated version depending on the current locale.
-   */
-  public var autoTranslate: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_AUTO_TRANSLATING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_AUTO_TRANSLATE, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -406,18 +410,29 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the window's position including its border.
+   */
+  public fun getPositionWithDecorations(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WINDOW_GET_POSITION_WITH_DECORATIONS, VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+  }
+
+  /**
    * Returns the window's size including its border.
    */
-  public fun getRealSize(): Vector2i {
+  public fun getSizeWithDecorations(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_REAL_SIZE, VECTOR2I)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_SIZE_WITH_DECORATIONS,
+        VECTOR2I)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
   /**
    * Sets a specified window flag.
    */
-  public fun setFlag(flag: Window.Flags, enabled: Boolean): Unit {
+  public fun setFlag(flag: Flags, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
   }
@@ -425,7 +440,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if the [flag] is set.
    */
-  public fun getFlag(flag: Window.Flags): Boolean {
+  public fun getFlag(flag: Flags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -561,9 +576,144 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the icon at [name] if the theme has [themeType].
+   * Prevents `*_theme_*_override` methods from emitting [NOTIFICATION_THEME_CHANGED] until [endBulkThemeOverride] is called.
+   */
+  public fun beginBulkThemeOverride(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_BEGIN_BULK_THEME_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Ends a bulk theme override update. See [beginBulkThemeOverride].
+   */
+  public fun endBulkThemeOverride(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_END_BULK_THEME_OVERRIDE, NIL)
+  }
+
+  /**
+   * Creates a local override for a theme icon with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeIconOverride].
    *
-   * See [godot.Control.getThemeColor] for more details.
+   * See also [getThemeIcon].
+   */
+  public fun addThemeIconOverride(name: StringName, texture: Texture2D): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_ICON_OVERRIDE, NIL)
+  }
+
+  /**
+   * Creates a local override for a theme [godot.StyleBox] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeStyleboxOverride].
+   *
+   * See also [getThemeStylebox] and [godot.Control.addThemeStyleboxOverride] for more details.
+   */
+  public fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to stylebox)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_STYLEBOX_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Creates a local override for a theme [godot.Font] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontOverride].
+   *
+   * See also [getThemeFont].
+   */
+  public fun addThemeFontOverride(name: StringName, font: Font): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to font)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_FONT_OVERRIDE, NIL)
+  }
+
+  /**
+   * Creates a local override for a theme font size with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontSizeOverride].
+   *
+   * See also [getThemeFontSize].
+   */
+  public fun addThemeFontSizeOverride(name: StringName, fontSize: Long): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, LONG to fontSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_FONT_SIZE_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Creates a local override for a theme [godot.core.Color] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeColorOverride].
+   *
+   * See also [getThemeColor] and [godot.Control.addThemeColorOverride] for more details.
+   */
+  public fun addThemeColorOverride(name: StringName, color: Color): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, COLOR to color)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_COLOR_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Creates a local override for a theme constant with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeConstantOverride].
+   *
+   * See also [getThemeConstant].
+   */
+  public fun addThemeConstantOverride(name: StringName, constant: Long): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, LONG to constant)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_ADD_THEME_CONSTANT_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Removes a local override for a theme icon with the specified [name] previously added by [addThemeIconOverride] or via the Inspector dock.
+   */
+  public fun removeThemeIconOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_ICON_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Removes a local override for a theme [godot.StyleBox] with the specified [name] previously added by [addThemeStyleboxOverride] or via the Inspector dock.
+   */
+  public fun removeThemeStyleboxOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_STYLEBOX_OVERRIDE, NIL)
+  }
+
+  /**
+   * Removes a local override for a theme [godot.Font] with the specified [name] previously added by [addThemeFontOverride] or via the Inspector dock.
+   */
+  public fun removeThemeFontOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_FONT_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Removes a local override for a theme font size with the specified [name] previously added by [addThemeFontSizeOverride] or via the Inspector dock.
+   */
+  public fun removeThemeFontSizeOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_FONT_SIZE_OVERRIDE, NIL)
+  }
+
+  /**
+   * Removes a local override for a theme [godot.core.Color] with the specified [name] previously added by [addThemeColorOverride] or via the Inspector dock.
+   */
+  public fun removeThemeColorOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_COLOR_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Removes a local override for a theme constant with the specified [name] previously added by [addThemeConstantOverride] or via the Inspector dock.
+   */
+  public fun removeThemeConstantOverride(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WINDOW_REMOVE_THEME_CONSTANT_OVERRIDE, NIL)
+  }
+
+  /**
+   * Returns an icon from the first matching [godot.Theme] in the tree if that [godot.Theme] has an icon item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeIcon(name: StringName, themeType: StringName = StringName("")): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -572,9 +722,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the [godot.StyleBox] at [name] if the theme has [themeType].
+   * Returns a [godot.StyleBox] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a stylebox item with the specified [name] and [themeType].
    *
-   * See [godot.Control.getThemeColor] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -583,9 +733,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the [godot.Font] at [name] if the theme has [themeType].
+   * Returns a [godot.Font] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font item with the specified [name] and [themeType].
    *
-   * See [godot.Control.getThemeColor] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -594,9 +744,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the font size at [name] if the theme has [themeType].
+   * Returns a font size from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font size item with the specified [name] and [themeType].
    *
-   * See [godot.Control.getThemeColor] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -605,7 +755,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the [godot.core.Color] at [name] if the theme has [themeType].
+   * Returns a [godot.core.Color] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a color item with the specified [name] and [themeType].
    *
    * See [godot.Control.getThemeColor] for more details.
    */
@@ -616,7 +766,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the constant at [name] if the theme has [themeType].
+   * Returns a constant from the first matching [godot.Theme] in the tree if that [godot.Theme] has a constant item with the specified [name] and [themeType].
    *
    * See [godot.Control.getThemeColor] for more details.
    */
@@ -627,7 +777,81 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if icon with [name] is in [themeType].
+   * Returns `true` if there is a local override for a theme icon with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeIconOverride].
+   */
+  public fun hasThemeIconOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_ICON_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a local override for a theme [godot.StyleBox] with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeStyleboxOverride].
+   */
+  public fun hasThemeStyleboxOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_STYLEBOX_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a local override for a theme [godot.Font] with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeFontOverride].
+   */
+  public fun hasThemeFontOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_FONT_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a local override for a theme font size with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeFontSizeOverride].
+   */
+  public fun hasThemeFontSizeOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_FONT_SIZE_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a local override for a theme [godot.core.Color] with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeColorOverride].
+   */
+  public fun hasThemeColorOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_COLOR_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a local override for a theme constant with the specified [name] in this [godot.Control] node.
+   *
+   * See [addThemeConstantOverride].
+   */
+  public fun hasThemeConstantOverride(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_CONSTANT_OVERRIDE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has an icon item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -636,7 +860,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if [godot.StyleBox] with [name] is in [themeType].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a stylebox item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -645,7 +871,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if [godot.Font] with [name] is in [themeType].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -654,7 +882,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if font size with [name] is in [themeType].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font size item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -663,7 +893,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if [godot.core.Color] with [name] is in [themeType].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a color item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -672,7 +904,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if constant with [name] is in [themeType].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a constant item with the specified [name] and [themeType].
+   *
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -681,9 +915,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the default base scale defined in the attached [godot.Theme].
+   * Returns the default base scale value from the first matching [godot.Theme] in the tree if that [godot.Theme] has a valid [godot.Theme.defaultBaseScale] value.
    *
-   * See [godot.Theme.defaultBaseScale] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeDefaultBaseScale(): Double {
     TransferContext.writeArguments()
@@ -693,9 +927,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the default [godot.Font] defined in the attached [godot.Theme].
+   * Returns the default font from the first matching [godot.Theme] in the tree if that [godot.Theme] has a valid [godot.Theme.defaultFont] value.
    *
-   * See [godot.Theme.defaultFont] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeDefaultFont(): Font? {
     TransferContext.writeArguments()
@@ -705,9 +939,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the default font size defined in the attached [godot.Theme].
+   * Returns the default font size value from the first matching [godot.Theme] in the tree if that [godot.Theme] has a valid [godot.Theme.defaultFontSize] value.
    *
-   * See [godot.Theme.defaultFontSize] for more details.
+   * See [godot.Control.getThemeColor] for details.
    */
   public fun getThemeDefaultFontSize(): Long {
     TransferContext.writeArguments()
@@ -719,7 +953,7 @@ public open class Window : Viewport() {
   /**
    * Sets layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew).
    */
-  public fun setLayoutDirection(direction: Window.LayoutDirection): Unit {
+  public fun setLayoutDirection(direction: LayoutDirection): Unit {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_LAYOUT_DIRECTION, NIL)
   }
@@ -727,7 +961,7 @@ public open class Window : Viewport() {
   /**
    * Returns layout direction and text writing direction.
    */
-  public fun getLayoutDirection(): Window.LayoutDirection {
+  public fun getLayoutDirection(): LayoutDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_LAYOUT_DIRECTION, LONG)
     return Window.LayoutDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -791,29 +1025,35 @@ public open class Window : Viewport() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED_CLAMPED, NIL)
   }
 
-  public enum class ContentScaleAspect(
+  public enum class Mode(
     id: Long
   ) {
     /**
-     * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
+     * Windowed mode, i.e. [godot.Window] doesn't occupy the whole screen (unless set to the size of the screen).
      */
-    CONTENT_SCALE_ASPECT_IGNORE(0),
+    MODE_WINDOWED(0),
     /**
-     * The content's aspect will be preserved. If the target size has different aspect from the base one, the image will be centered and black bars will appear on left and right sides.
+     * Minimized window mode, i.e. [godot.Window] is not visible and available on window manager's window list. Normally happens when the minimize button is pressed.
      */
-    CONTENT_SCALE_ASPECT_KEEP(1),
+    MODE_MINIMIZED(1),
     /**
-     * The content can be expanded vertically. Scaling horizontally will result in keeping the width ratio and then black bars on left and right sides.
+     * Maximized window mode, i.e. [godot.Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the maximize button is pressed.
      */
-    CONTENT_SCALE_ASPECT_KEEP_WIDTH(2),
+    MODE_MAXIMIZED(2),
     /**
-     * The content can be expanded horizontally. Scaling vertically will result in keeping the height ratio and then black bars on top and bottom sides.
+     * Full screen window mode. Note that this is not *exclusive* full screen. On Windows and Linux, a borderless window is used to emulate full screen. On macOS, a new desktop is used to display the running project.
+     *
+     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
-    CONTENT_SCALE_ASPECT_KEEP_HEIGHT(3),
+    MODE_FULLSCREEN(3),
     /**
-     * The content's aspect will be preserved. If the target size has different aspect from the base one, the content will stay in the to-left corner and add an extra visible area in the stretched space.
+     * Exclusive full screen window mode. This mode is implemented on Windows only. On other platforms, it is equivalent to [MODE_FULLSCREEN].
+     *
+     * Only one window in exclusive full screen mode can be visible on a given screen at a time. If multiple windows are in exclusive full screen mode for the same screen, the last one being set to this mode takes precedence.
+     *
+     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
-    CONTENT_SCALE_ASPECT_EXPAND(4),
+    MODE_EXCLUSIVE_FULLSCREEN(4),
     ;
 
     public val id: Long
@@ -856,9 +1096,15 @@ public open class Window : Viewport() {
      */
     FLAG_POPUP(5),
     /**
+     * Window content is expanded to the full size of the window. Unlike borderless window, the frame is left intact and can be used to resize the window, title bar is transparent, but have minimize/maximize/close buttons. Set with [extendToTitle].
+     *
+     * **Note:** This flag is implemented on macOS.
+     */
+    FLAG_EXTEND_TO_TITLE(6),
+    /**
      * Max value of the [enum Flags].
      */
-    FLAG_MAX(6),
+    FLAG_MAX(7),
     ;
 
     public val id: Long
@@ -871,35 +1117,56 @@ public open class Window : Viewport() {
     }
   }
 
-  public enum class Mode(
+  public enum class ContentScaleMode(
     id: Long
   ) {
     /**
-     * Windowed mode, i.e. [godot.Window] doesn't occupy the whole screen (unless set to the size of the screen).
+     * The content will not be scaled to match the [godot.Window]'s size.
      */
-    MODE_WINDOWED(0),
+    CONTENT_SCALE_MODE_DISABLED(0),
     /**
-     * Minimized window mode, i.e. [godot.Window] is not visible and available on window manager's window list. Normally happens when the minimize button is pressed.
+     * The content will be rendered at the target size. This is more performance-expensive than [CONTENT_SCALE_MODE_VIEWPORT], but provides better results.
      */
-    MODE_MINIMIZED(1),
+    CONTENT_SCALE_MODE_CANVAS_ITEMS(1),
     /**
-     * Maximized window mode, i.e. [godot.Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the maximize button is pressed.
+     * The content will be rendered at the base size and then scaled to the target size. More performant than [CONTENT_SCALE_MODE_CANVAS_ITEMS], but results in pixelated image.
      */
-    MODE_MAXIMIZED(2),
+    CONTENT_SCALE_MODE_VIEWPORT(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ContentScaleAspect(
+    id: Long
+  ) {
     /**
-     * Full screen window mode. Note that this is not *exclusive* full screen. On Windows and Linux, a borderless window is used to emulate full screen. On macOS, a new desktop is used to display the running project.
-     *
-     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
+     * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
      */
-    MODE_FULLSCREEN(3),
+    CONTENT_SCALE_ASPECT_IGNORE(0),
     /**
-     * Exclusive full screen window mode. This mode is implemented on Windows only. On other platforms, it is equivalent to [MODE_FULLSCREEN].
-     *
-     * Only one window in exclusive full screen mode can be visible on a given screen at a time. If multiple windows are in exclusive full screen mode for the same screen, the last one being set to this mode takes precedence.
-     *
-     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
+     * The content's aspect will be preserved. If the target size has different aspect from the base one, the image will be centered and black bars will appear on left and right sides.
      */
-    MODE_EXCLUSIVE_FULLSCREEN(4),
+    CONTENT_SCALE_ASPECT_KEEP(1),
+    /**
+     * The content can be expanded vertically. Scaling horizontally will result in keeping the width ratio and then black bars on left and right sides.
+     */
+    CONTENT_SCALE_ASPECT_KEEP_WIDTH(2),
+    /**
+     * The content can be expanded horizontally. Scaling vertically will result in keeping the height ratio and then black bars on top and bottom sides.
+     */
+    CONTENT_SCALE_ASPECT_KEEP_HEIGHT(3),
+    /**
+     * The content's aspect will be preserved. If the target size has different aspect from the base one, the content will stay in the to-left corner and add an extra visible area in the stretched space.
+     */
+    CONTENT_SCALE_ASPECT_EXPAND(4),
     ;
 
     public val id: Long
@@ -943,37 +1210,23 @@ public open class Window : Viewport() {
     }
   }
 
-  public enum class ContentScaleMode(
-    id: Long
-  ) {
-    /**
-     * The content will not be scaled to match the [godot.Window]'s size.
-     */
-    CONTENT_SCALE_MODE_DISABLED(0),
-    /**
-     * The content will be rendered at the target size. This is more performance-expensive than [CONTENT_SCALE_MODE_VIEWPORT], but provides better results.
-     */
-    CONTENT_SCALE_MODE_CANVAS_ITEMS(1),
-    /**
-     * The content will be rendered at the base size and then scaled to the target size. More performant than [CONTENT_SCALE_MODE_CANVAS_ITEMS], but results in pixelated image.
-     */
-    CONTENT_SCALE_MODE_VIEWPORT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public companion object {
     /**
      * Emitted when [godot.Window]'s visibility changes, right before [visibilityChanged].
      */
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 30
+
+    /**
+     * Sent when the node needs to refresh its theme items. This happens in one of the following cases:
+     *
+     * - The [theme] property is changed on this node or any of its ancestors.
+     *
+     * - The [themeTypeVariation] property is changed on this node.
+     *
+     * - The node enters the scene tree.
+     *
+     * **Note:** As an optimization, this notification won't be sent from changes that occur while this node is outside of the scene tree. Instead, all of the theme item updates can be applied at once when the node enters the scene tree.
+     */
+    public final const val NOTIFICATION_THEME_CHANGED: Long = 32
   }
 }

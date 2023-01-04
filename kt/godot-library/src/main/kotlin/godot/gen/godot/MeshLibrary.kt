@@ -81,18 +81,28 @@ public open class MeshLibrary : Resource() {
   /**
    * Sets the item's navigation mesh.
    */
-  public fun setItemNavmesh(id: Long, navmesh: NavigationMesh): Unit {
-    TransferContext.writeArguments(LONG to id, OBJECT to navmesh)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVMESH, NIL)
+  public fun setItemNavigationMesh(id: Long, navigationMesh: NavigationMesh): Unit {
+    TransferContext.writeArguments(LONG to id, OBJECT to navigationMesh)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVIGATION_MESH, NIL)
   }
 
   /**
    * Sets the transform to apply to the item's navigation mesh.
    */
-  public fun setItemNavmeshTransform(id: Long, navmesh: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to id, TRANSFORM3D to navmesh)
+  public fun setItemNavigationMeshTransform(id: Long, navigationMesh: Transform3D): Unit {
+    TransferContext.writeArguments(LONG to id, TRANSFORM3D to navigationMesh)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVMESH_TRANSFORM, NIL)
+        ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVIGATION_MESH_TRANSFORM, NIL)
+  }
+
+  /**
+   * Sets the item's navigation layers bitmask.
+   */
+  public fun setItemNavigationLayers(id: Long, navigationLayers: Long): Unit {
+    TransferContext.writeArguments(LONG to id, LONG to navigationLayers)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVIGATION_LAYERS, NIL)
   }
 
   /**
@@ -144,21 +154,31 @@ public open class MeshLibrary : Resource() {
   /**
    * Returns the item's navigation mesh.
    */
-  public fun getItemNavmesh(id: Long): NavigationMesh? {
+  public fun getItemNavigationMesh(id: Long): NavigationMesh? {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVMESH,
-        OBJECT)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVIGATION_MESH, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?
   }
 
   /**
    * Returns the transform applied to the item's navigation mesh.
    */
-  public fun getItemNavmeshTransform(id: Long): Transform3D {
+  public fun getItemNavigationMeshTransform(id: Long): Transform3D {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVMESH_TRANSFORM, TRANSFORM3D)
+        ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVIGATION_MESH_TRANSFORM, TRANSFORM3D)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+  }
+
+  /**
+   * Returns the item's navigation layers bitmask.
+   */
+  public fun getItemNavigationLayers(id: Long): Long {
+    TransferContext.writeArguments(LONG to id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVIGATION_LAYERS, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**

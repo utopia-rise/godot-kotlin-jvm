@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -154,11 +155,11 @@ public open class InputEventMIDI : InputEvent() {
    *
    * For more information, see the MIDI message status byte list chart linked above.
    */
-  public var message: Long
+  public var message: MIDIMessage
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_GET_MESSAGE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return MIDIMessage.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

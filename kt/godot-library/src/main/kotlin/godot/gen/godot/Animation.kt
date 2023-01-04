@@ -6,10 +6,8 @@
 
 package godot
 
-import godot.Animation
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.PackedInt32Array
 import godot.core.Quaternion
 import godot.core.StringName
 import godot.core.VariantArray
@@ -22,7 +20,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.QUATERNION
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
@@ -30,8 +27,6 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -95,11 +90,6 @@ import kotlin.Unit
 @GodotBaseType
 public open class Animation : Resource() {
   /**
-   * Emitted when there's a change in the list of tracks, e.g. tracks are added, moved or have changed paths.
-   */
-  public val tracksChanged: Signal0 by signal()
-
-  /**
    * The total length of the animation (in seconds).
    *
    * **Note:** Length is not delimited by the last key, as this one may be before or after the end to ensure correct interpolation and looping.
@@ -118,11 +108,11 @@ public open class Animation : Resource() {
   /**
    * Determines the behavior of both ends of the animation timeline during animation playback. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
    */
-  public var loopMode: Long
+  public var loopMode: LoopMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_GET_LOOP_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Animation.LoopMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -151,7 +141,7 @@ public open class Animation : Resource() {
   /**
    * Adds a track to the Animation.
    */
-  public fun addTrack(type: Animation.TrackType, atPosition: Long = -1): Long {
+  public fun addTrack(type: TrackType, atPosition: Long = -1): Long {
     TransferContext.writeArguments(LONG to type.id, LONG to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_ADD_TRACK, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -177,7 +167,7 @@ public open class Animation : Resource() {
   /**
    * Gets the type of a track.
    */
-  public fun trackGetType(trackIdx: Long): Animation.TrackType {
+  public fun trackGetType(trackIdx: Long): TrackType {
     TransferContext.writeArguments(LONG to trackIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_TYPE, LONG)
     return Animation.TrackType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -205,7 +195,7 @@ public open class Animation : Resource() {
   /**
    * Returns the index of the specified track. If the track is not found, return -1.
    */
-  public fun findTrack(path: NodePath, type: Animation.TrackType): Long {
+  public fun findTrack(path: NodePath, type: TrackType): Long {
     TransferContext.writeArguments(NODE_PATH to path, LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_FIND_TRACK, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -341,9 +331,10 @@ public open class Animation : Resource() {
     time: Double,
     key: Any,
     transition: Double = 1.0
-  ): Unit {
+  ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, ANY to key, DOUBLE to transition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_INSERT_KEY, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_INSERT_KEY, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -439,14 +430,14 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Finds the key index by time in a given track. Optionally, only find it if the exact time is given.
+   * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time is given.
    */
   public fun trackFindKey(
     trackIdx: Long,
     time: Double,
-    exact: Boolean = false
+    findMode: FindMode = Animation.FindMode.FIND_MODE_NEAREST
   ): Long {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, BOOL to exact)
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, LONG to findMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_FIND_KEY, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -454,8 +445,7 @@ public open class Animation : Resource() {
   /**
    * Sets the interpolation type of a given track.
    */
-  public fun trackSetInterpolationType(trackIdx: Long, interpolation: Animation.InterpolationType):
-      Unit {
+  public fun trackSetInterpolationType(trackIdx: Long, interpolation: InterpolationType): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to interpolation.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_INTERPOLATION_TYPE, NIL)
@@ -464,7 +454,7 @@ public open class Animation : Resource() {
   /**
    * Returns the interpolation type of a given track.
    */
-  public fun trackGetInterpolationType(trackIdx: Long): Animation.InterpolationType {
+  public fun trackGetInterpolationType(trackIdx: Long): InterpolationType {
     TransferContext.writeArguments(LONG to trackIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_INTERPOLATION_TYPE, LONG)
@@ -502,7 +492,7 @@ public open class Animation : Resource() {
   /**
    * Sets the update mode (see [enum UpdateMode]) of a value track.
    */
-  public fun valueTrackSetUpdateMode(trackIdx: Long, mode: Animation.UpdateMode): Unit {
+  public fun valueTrackSetUpdateMode(trackIdx: Long, mode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_SET_UPDATE_MODE, NIL)
@@ -511,25 +501,11 @@ public open class Animation : Resource() {
   /**
    * Returns the update mode of a value track.
    */
-  public fun valueTrackGetUpdateMode(trackIdx: Long): Animation.UpdateMode {
+  public fun valueTrackGetUpdateMode(trackIdx: Long): UpdateMode {
     TransferContext.writeArguments(LONG to trackIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_GET_UPDATE_MODE, LONG)
     return Animation.UpdateMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Returns all the key indices of a value track, given a position and delta time.
-   */
-  public fun valueTrackGetKeyIndices(
-    trackIdx: Long,
-    timeSec: Double,
-    delta: Double
-  ): PackedInt32Array {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec, DOUBLE to delta)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_GET_KEY_INDICES, PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
   /**
@@ -540,20 +516,6 @@ public open class Animation : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_INTERPOLATE,
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
-   * Returns all the key indices of a method track, given a position and delta time.
-   */
-  public fun methodTrackGetKeyIndices(
-    trackIdx: Long,
-    timeSec: Double,
-    delta: Double
-  ): PackedInt32Array {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec, DOUBLE to delta)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_METHOD_TRACK_GET_KEY_INDICES, PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
   /**
@@ -586,10 +548,9 @@ public open class Animation : Resource() {
     time: Double,
     `value`: Double,
     inHandle: Vector2 = Vector2(0, 0),
-    outHandle: Vector2 = Vector2(0, 0),
-    handleMode: Animation.HandleMode = Animation.HandleMode.HANDLE_MODE_BALANCED
+    outHandle: Vector2 = Vector2(0, 0)
   ): Long {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, DOUBLE to value, VECTOR2 to inHandle, VECTOR2 to outHandle, LONG to handleMode.id)
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, DOUBLE to value, VECTOR2 to inHandle, VECTOR2 to outHandle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_INSERT_KEY,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -767,24 +728,6 @@ public open class Animation : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun bezierTrackSetKeyHandleMode(
-    trackIdx: Long,
-    keyIdx: Long,
-    keyHandleMode: Animation.HandleMode,
-    balancedValueTimeRatio: Double = 1.0
-  ): Unit {
-    TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, LONG to keyHandleMode.id, DOUBLE to balancedValueTimeRatio)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_SET_KEY_HANDLE_MODE, NIL)
-  }
-
-  public fun bezierTrackGetKeyHandleMode(trackIdx: Long, keyIdx: Long): Long {
-    TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_GET_KEY_HANDLE_MODE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
   /**
    * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be the index of an Animation Track.
    */
@@ -852,33 +795,6 @@ public open class Animation : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_COMPRESS, NIL)
   }
 
-  public enum class LoopMode(
-    id: Long
-  ) {
-    /**
-     * At both ends of the animation, the animation will stop playing.
-     */
-    LOOP_NONE(0),
-    /**
-     * At both ends of the animation, the animation will be repeated without changing the playback direction.
-     */
-    LOOP_LINEAR(1),
-    /**
-     * Repeats playback and reverse playback at both ends of the animation.
-     */
-    LOOP_PINGPONG(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class TrackType(
     id: Long
   ) {
@@ -930,54 +846,6 @@ public open class Animation : Resource() {
     }
   }
 
-  public enum class UpdateMode(
-    id: Long
-  ) {
-    /**
-     * Update between keyframes.
-     */
-    UPDATE_CONTINUOUS(0),
-    /**
-     * Update at the keyframes and hold the value.
-     */
-    UPDATE_DISCRETE(1),
-    /**
-     * Update at the keyframes.
-     */
-    UPDATE_TRIGGER(2),
-    /**
-     * Same as linear interpolation, but also interpolates from the current value (i.e. dynamically at runtime) if the first key isn't at 0 seconds.
-     */
-    UPDATE_CAPTURE(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class HandleMode(
-    id: Long
-  ) {
-    HANDLE_MODE_FREE(0),
-    HANDLE_MODE_BALANCED(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class InterpolationType(
     id: Long
   ) {
@@ -993,6 +861,126 @@ public open class Animation : Resource() {
      * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to interpolate. Stick to [INTERPOLATION_LINEAR] for complex 3D animations imported from external software, even if it requires using a higher animation framerate in return.
      */
     INTERPOLATION_CUBIC(2),
+    /**
+     * Linear interpolation with shortest path rotation.
+     *
+     * **Note:** The result value is always normalized and may not match the key value.
+     */
+    INTERPOLATION_LINEAR_ANGLE(3),
+    /**
+     * Cubic interpolation with shortest path rotation.
+     *
+     * **Note:** The result value is always normalized and may not match the key value.
+     */
+    INTERPOLATION_CUBIC_ANGLE(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class UpdateMode(
+    id: Long
+  ) {
+    /**
+     * Update between keyframes and hold the value.
+     */
+    UPDATE_CONTINUOUS(0),
+    /**
+     * Update at the keyframes.
+     */
+    UPDATE_DISCRETE(1),
+    /**
+     * Same as linear interpolation, but also interpolates from the current value (i.e. dynamically at runtime) if the first key isn't at 0 seconds.
+     */
+    UPDATE_CAPTURE(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LoopMode(
+    id: Long
+  ) {
+    /**
+     * At both ends of the animation, the animation will stop playing.
+     */
+    LOOP_NONE(0),
+    /**
+     * At both ends of the animation, the animation will be repeated without changing the playback direction.
+     */
+    LOOP_LINEAR(1),
+    /**
+     * Repeats playback and reverse playback at both ends of the animation.
+     */
+    LOOP_PINGPONG(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LoopedFlag(
+    id: Long
+  ) {
+    /**
+     * This flag indicates that the animation proceeds without any looping.
+     */
+    LOOPED_FLAG_NONE(0),
+    /**
+     * This flag indicates that the animation has reached the end of the animation and just after loop processed.
+     */
+    LOOPED_FLAG_END(1),
+    /**
+     * This flag indicates that the animation has reached the start of the animation and just after loop processed.
+     */
+    LOOPED_FLAG_START(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class FindMode(
+    id: Long
+  ) {
+    /**
+     * Finds the nearest time key.
+     */
+    FIND_MODE_NEAREST(0),
+    /**
+     * Finds only the key with approximating the time.
+     */
+    FIND_MODE_APPROX(1),
+    /**
+     * Finds only the key with matching the time.
+     */
+    FIND_MODE_EXACT(2),
     ;
 
     public val id: Long

@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Shader
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL
@@ -56,32 +55,51 @@ public open class Shader : Resource() {
   /**
    * Returns the shader mode for the shader, either [MODE_CANVAS_ITEM], [MODE_SPATIAL] or [MODE_PARTICLES].
    */
-  public fun getMode(): Shader.Mode {
+  public fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_MODE, LONG)
     return Shader.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun setDefaultTextureParam(
-    `param`: StringName,
+  /**
+   * Sets the default texture to be used with a texture uniform. The default is used if a texture is not set in the [godot.ShaderMaterial].
+   *
+   * **Note:** [name] must match the name of the uniform in the code exactly.
+   *
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  public fun setDefaultTextureParameter(
+    name: StringName,
     texture: Texture2D,
     index: Long = 0
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to param, OBJECT to texture, LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_DEFAULT_TEXTURE_PARAM,
-        NIL)
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture, LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SHADER_SET_DEFAULT_TEXTURE_PARAMETER, NIL)
   }
 
-  public fun getDefaultTextureParam(`param`: StringName, index: Long = 0): Texture2D? {
-    TransferContext.writeArguments(STRING_NAME to param, LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_DEFAULT_TEXTURE_PARAM,
-        OBJECT)
+  /**
+   * Returns the texture that is set as default for the specified parameter.
+   *
+   * **Note:** [name] must match the name of the uniform in the code exactly.
+   *
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  public fun getDefaultTextureParameter(name: StringName, index: Long = 0): Texture2D? {
+    TransferContext.writeArguments(STRING_NAME to name, LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SHADER_GET_DEFAULT_TEXTURE_PARAMETER, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
-  public fun hasParam(name: StringName): Boolean {
+  /**
+   * Returns `true` if the shader has this param defined as a uniform in its code.
+   *
+   * **Note:** [name] must match the name of the uniform in the code exactly.
+   */
+  public fun hasParameter(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_HAS_PARAM, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_HAS_PARAMETER, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

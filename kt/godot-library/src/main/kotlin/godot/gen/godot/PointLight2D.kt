@@ -20,7 +20,12 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
+ * Positional 2D light source.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/2d/2d_lights_and_shadows.html]($DOCS_URL/tutorials/2d/2d_lights_and_shadows.html)
+ *
+ * Casts light in a 2D environment. This light's shape is defined by a (usually grayscale) texture
  */
 @GodotBaseType
 public open class PointLight2D : Light2D() {

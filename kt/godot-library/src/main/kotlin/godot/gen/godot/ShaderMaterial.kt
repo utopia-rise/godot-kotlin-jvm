@@ -9,16 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.ANY
-import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -51,29 +48,23 @@ public open class ShaderMaterial : Material() {
     return true
   }
 
-  public fun setShaderParam(`param`: StringName, `value`: Any): Unit {
+  /**
+   * Changes the value set for this material of a uniform in the shader.
+   *
+   * **Note:** [param] must match the name of the uniform in the code exactly.
+   */
+  public fun setShaderParameter(`param`: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to param, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAMETER,
         NIL)
   }
 
-  public fun getShaderParam(`param`: StringName): Any? {
+  /**
+   * Returns the current value set for this material of a uniform in the shader.
+   */
+  public fun getShaderParameter(`param`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to param)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAM,
-        ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  public fun propertyCanRevert(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_CAN_REVERT,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun propertyGetRevert(name: String): Any? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_GET_REVERT,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAMETER,
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }

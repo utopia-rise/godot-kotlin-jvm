@@ -7,18 +7,19 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.StringName
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 
 /**
@@ -33,14 +34,14 @@ import kotlin.Suppress
 @GodotBaseType
 public open class TouchScreenButton : Node2D() {
   /**
-   * Emitted when the button is released (up).
-   */
-  public val released: Signal0 by signal()
-
-  /**
    * Emitted when the button is pressed (down).
    */
   public val pressed: Signal0 by signal()
+
+  /**
+   * Emitted when the button is released (up).
+   */
+  public val released: Signal0 by signal()
 
   /**
    * The button's texture for the normal state.
@@ -158,27 +159,27 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's action. Actions can be handled with [godot.InputEventAction].
    */
-  public var action: StringName
+  public var action: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_ACTION,
-          STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+          STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
+      TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_ACTION, NIL)
     }
 
   /**
    * The button's visibility mode. See [enum VisibilityMode] for possible values.
    */
-  public var visibilityMode: Long
+  public var visibilityMode: VisibilityMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_VISIBILITY_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TouchScreenButton.VisibilityMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

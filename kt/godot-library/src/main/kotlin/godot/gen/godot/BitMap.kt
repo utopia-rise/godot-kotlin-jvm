@@ -7,7 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.Rect2
+import godot.core.PackedVector2Array
+import godot.core.Rect2i
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -15,11 +16,10 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.RECT2
-import godot.core.VariantType.VECTOR2
-import godot.core.Vector2
+import godot.core.VariantType.RECT2I
+import godot.core.VariantType.VECTOR2I
+import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -42,8 +42,8 @@ public open class BitMap : Resource() {
   /**
    * Creates a bitmap with the specified size, filled with `false`.
    */
-  public fun create(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
+  public fun create(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_CREATE, NIL)
   }
 
@@ -58,16 +58,37 @@ public open class BitMap : Resource() {
   /**
    * Sets the bitmap's element at the specified position, to the specified value.
    */
-  public fun setBit(position: Vector2, bit: Boolean): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, BOOL to bit)
+  public fun setBitv(position: Vector2i, bit: Boolean): Unit {
+    TransferContext.writeArguments(VECTOR2I to position, BOOL to bit)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_SET_BITV, NIL)
+  }
+
+  /**
+   * Sets the bitmap's element at the specified position, to the specified value.
+   */
+  public fun setBit(
+    x: Long,
+    y: Long,
+    bit: Boolean
+  ): Unit {
+    TransferContext.writeArguments(LONG to x, LONG to y, BOOL to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_SET_BIT, NIL)
   }
 
   /**
    * Returns bitmap's value at the specified position.
    */
-  public fun getBit(position: Vector2): Boolean {
-    TransferContext.writeArguments(VECTOR2 to position)
+  public fun getBitv(position: Vector2i): Boolean {
+    TransferContext.writeArguments(VECTOR2I to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GET_BITV, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns bitmap's value at the specified position.
+   */
+  public fun getBit(x: Long, y: Long): Boolean {
+    TransferContext.writeArguments(LONG to x, LONG to y)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GET_BIT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -75,8 +96,8 @@ public open class BitMap : Resource() {
   /**
    * Sets a rectangular portion of the bitmap to the specified value.
    */
-  public fun setBitRect(rect: Rect2, bit: Boolean): Unit {
-    TransferContext.writeArguments(RECT2 to rect, BOOL to bit)
+  public fun setBitRect(rect: Rect2i, bit: Boolean): Unit {
+    TransferContext.writeArguments(RECT2I to rect, BOOL to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_SET_BIT_RECT, NIL)
   }
 
@@ -92,25 +113,25 @@ public open class BitMap : Resource() {
   /**
    * Returns bitmap's dimensions.
    */
-  public fun getSize(): Vector2 {
+  public fun getSize(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GET_SIZE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GET_SIZE, VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
   /**
    * Resizes the image to [newSize].
    */
-  public fun resize(newSize: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to newSize)
+  public fun resize(newSize: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to newSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_RESIZE, NIL)
   }
 
   /**
    * Applies morphological dilation or erosion to the bitmap. If [pixels] is positive, dilation is applied to the bitmap. If [pixels] is negative, erosion is applied to the bitmap. [rect] defines the area where the morphological operation is applied. Pixels located outside the [rect] are unaffected by [growMask].
    */
-  public fun growMask(pixels: Long, rect: Rect2): Unit {
-    TransferContext.writeArguments(LONG to pixels, RECT2 to rect)
+  public fun growMask(pixels: Long, rect: Rect2i): Unit {
+    TransferContext.writeArguments(LONG to pixels, RECT2I to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GROW_MASK, NIL)
   }
 
@@ -134,10 +155,11 @@ public open class BitMap : Resource() {
    *
    * [epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower [epsilon] corresponds to more points in the polygons.
    */
-  public fun opaqueToPolygons(rect: Rect2, epsilon: Double = 2.0): VariantArray<Any?> {
-    TransferContext.writeArguments(RECT2 to rect, DOUBLE to epsilon)
+  public fun opaqueToPolygons(rect: Rect2i, epsilon: Double = 2.0):
+      VariantArray<PackedVector2Array> {
+    TransferContext.writeArguments(RECT2I to rect, DOUBLE to epsilon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_OPAQUE_TO_POLYGONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
   }
 
   public companion object

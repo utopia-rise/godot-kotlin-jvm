@@ -94,7 +94,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * If `true`, audio is playing.
+   * If `true`, audio is playing or is queued to be played (see [play]).
    */
   public val playing: Boolean
     get() {
@@ -185,6 +185,22 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
+   * Scales the panning strength for this node by multiplying the base [godot.ProjectSettings.audio/general/2dPanningStrength] with this factor. Higher values will pan audio from left to right more dramatically than lower values.
+   */
+  public var panningStrength: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_PANNING_STRENGTH, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_PANNING_STRENGTH, NIL)
+    }
+
+  /**
    * Bus on which this audio is playing.
    *
    * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
@@ -223,7 +239,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   /**
-   * Plays the audio from the given position [fromPosition], in seconds.
+   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in seconds.
    */
   public fun play(fromPosition: Double = 0.0): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition)

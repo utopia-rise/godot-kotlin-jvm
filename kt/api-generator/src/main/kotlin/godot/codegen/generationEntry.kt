@@ -42,16 +42,7 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
     val engineIndexFile = FileSpec.builder(godotApiPackage, "EngineIndexes")
     val registrationFileSpec = RegistrationFileSpec()
 
-    for (enrichedClass in classService.getClasses()) {
-        for (property in enrichedClass.properties) {
-            classService.updatePropertyIfShouldUseSuper(enrichedClass.name, property.name)
-        }
-
-        generationService.generateClass(enrichedClass).writeTo(this)
-        generationService.generateEngineIndexesForClass(engineIndexFile, enrichedClass)
-        generationService.generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
-    }
-
+    //We first generate singletons so that their index in engine types and engine singleton lists are same.
     for (singleton in classService.getSingletons()) {
         for (property in singleton.properties) {
             classService.updatePropertyIfShouldUseSuper(singleton.name, property.name)
@@ -60,6 +51,16 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
         generationService.generateSingleton(singleton).writeTo(this)
         generationService.generateEngineIndexesForClass(engineIndexFile, singleton)
         generationService.generateEngineTypesRegistrationForSingleton(registrationFileSpec, singleton)
+    }
+
+    for (enrichedClass in classService.getClasses()) {
+        for (property in enrichedClass.properties) {
+            classService.updatePropertyIfShouldUseSuper(enrichedClass.name, property.name)
+        }
+
+        generationService.generateClass(enrichedClass).writeTo(this)
+        generationService.generateEngineIndexesForClass(engineIndexFile, enrichedClass)
+        generationService.generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
     }
 
     engineIndexFile.build().writeTo(this)

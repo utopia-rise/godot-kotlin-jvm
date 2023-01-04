@@ -11,6 +11,7 @@ import godot.core.Color
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -32,6 +33,22 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Light3D internal constructor() : VisualInstance3D() {
+  /**
+   * Sets the color temperature of the light source, measured in Kelvin. This is used to calculate a correlated color temperature which tints the [lightColor].
+   *
+   * The sun on a cloudy day is approximately 6500 Kelvin, on a clear day it is between 5500 to 6000 Kelvin, and on a clear day at sunrise or sunset it ranges to around 1850 Kelvin.
+   */
+  public var lightTemperature: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_TEMPERATURE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_TEMPERATURE, NIL)
+    }
+
   /**
    * The light's color. An *overbright* color can be used to achieve a result equivalent to increasing the light's [lightEnergy].
    */
@@ -81,11 +98,11 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    *
    * **Note:** Meshes' global illumination mode will also affect the global illumination rendering. See [godot.GeometryInstance3D.giMode].
    */
-  public var lightBakeMode: Long
+  public var lightBakeMode: BakeMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_BAKE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Light3D.BakeMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -230,7 +247,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * Sets the value of the specified [enum Light3D.Param] parameter.
    */
-  public fun setParam(`param`: Light3D.Param, `value`: Double): Unit {
+  public fun setParam(`param`: Param, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
   }
@@ -238,10 +255,122 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * Returns the value of the specified [enum Light3D.Param] parameter.
    */
-  public fun getParam(`param`: Light3D.Param): Double {
+  public fun getParam(`param`: Param): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns the [godot.core.Color] of an idealized blackbody at the given [lightTemperature]. This value is calculated internally based on the [lightTemperature]. This [godot.core.Color] is multiplied by [lightColor] before being sent to the [godot.RenderingServer].
+   */
+  public fun getCorrelatedColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_CORRELATED_COLOR, COLOR)
+    return TransferContext.readReturnValue(COLOR, false) as Color
+  }
+
+  public enum class Param(
+    id: Long
+  ) {
+    /**
+     * Constant for accessing [lightEnergy].
+     */
+    PARAM_ENERGY(0),
+    /**
+     * Constant for accessing [lightIndirectEnergy].
+     */
+    PARAM_INDIRECT_ENERGY(1),
+    /**
+     * Constant for accessing [lightVolumetricFogEnergy].
+     */
+    PARAM_VOLUMETRIC_FOG_ENERGY(2),
+    /**
+     * Constant for accessing [lightSpecular].
+     */
+    PARAM_SPECULAR(3),
+    /**
+     * Constant for accessing [godot.OmniLight3D.omniRange] or [godot.SpotLight3D.spotRange].
+     */
+    PARAM_RANGE(4),
+    /**
+     * Constant for accessing [lightSize].
+     */
+    PARAM_SIZE(5),
+    /**
+     * Constant for accessing [godot.OmniLight3D.omniAttenuation] or [godot.SpotLight3D.spotAttenuation].
+     */
+    PARAM_ATTENUATION(6),
+    /**
+     * Constant for accessing [godot.SpotLight3D.spotAngle].
+     */
+    PARAM_SPOT_ANGLE(7),
+    /**
+     * Constant for accessing [godot.SpotLight3D.spotAngleAttenuation].
+     */
+    PARAM_SPOT_ATTENUATION(8),
+    /**
+     * Constant for accessing [godot.DirectionalLight3D.directionalShadowMaxDistance].
+     */
+    PARAM_SHADOW_MAX_DISTANCE(9),
+    /**
+     * Constant for accessing [godot.DirectionalLight3D.directionalShadowSplit1].
+     */
+    PARAM_SHADOW_SPLIT_1_OFFSET(10),
+    /**
+     * Constant for accessing [godot.DirectionalLight3D.directionalShadowSplit2].
+     */
+    PARAM_SHADOW_SPLIT_2_OFFSET(11),
+    /**
+     * Constant for accessing [godot.DirectionalLight3D.directionalShadowSplit3].
+     */
+    PARAM_SHADOW_SPLIT_3_OFFSET(12),
+    /**
+     * Constant for accessing [godot.DirectionalLight3D.directionalShadowFadeStart].
+     */
+    PARAM_SHADOW_FADE_START(13),
+    /**
+     * Constant for accessing [shadowNormalBias].
+     */
+    PARAM_SHADOW_NORMAL_BIAS(14),
+    /**
+     * Constant for accessing [shadowBias].
+     */
+    PARAM_SHADOW_BIAS(15),
+    /**
+     * Constant for accessing [godot.DirectionalLight3D.directionalShadowPancakeSize].
+     */
+    PARAM_SHADOW_PANCAKE_SIZE(16),
+    /**
+     * Constant for accessing [shadowOpacity].
+     */
+    PARAM_SHADOW_OPACITY(17),
+    /**
+     * Constant for accessing [shadowBlur].
+     */
+    PARAM_SHADOW_BLUR(18),
+    /**
+     * Constant for accessing [shadowTransmittanceBias].
+     */
+    PARAM_TRANSMITTANCE_BIAS(19),
+    /**
+     * Constant for accessing [lightIntensityLumens] and [lightIntensityLux]. Only used when [godot.ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`.
+     */
+    PARAM_INTENSITY(20),
+    /**
+     * Represents the size of the [enum Param] enum.
+     */
+    PARAM_MAX(21),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class BakeMode(
@@ -261,98 +390,6 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * Light is taken into account in dynamic baking ([godot.VoxelGI] and SDFGI ([godot.Environment.sdfgiEnabled]) only). The light can be moved around or modified with global illumination updating in real-time. The light's global illumination appearance will be slightly different compared to [BAKE_STATIC]. This has a greater performance cost compared to [BAKE_STATIC].
      */
     BAKE_DYNAMIC(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class Param(
-    id: Long
-  ) {
-    /**
-     * Constant for accessing [lightEnergy].
-     */
-    PARAM_ENERGY(0),
-    /**
-     * Constant for accessing [lightIndirectEnergy].
-     */
-    PARAM_INDIRECT_ENERGY(1),
-    /**
-     * Constant for accessing [lightSpecular].
-     */
-    PARAM_SPECULAR(2),
-    /**
-     * Constant for accessing [godot.OmniLight3D.omniRange] or [godot.SpotLight3D.spotRange].
-     */
-    PARAM_RANGE(3),
-    /**
-     * Constant for accessing [lightSize].
-     */
-    PARAM_SIZE(4),
-    /**
-     * Constant for accessing [godot.OmniLight3D.omniAttenuation] or [godot.SpotLight3D.spotAttenuation].
-     */
-    PARAM_ATTENUATION(5),
-    /**
-     * Constant for accessing [godot.SpotLight3D.spotAngle].
-     */
-    PARAM_SPOT_ANGLE(6),
-    /**
-     * Constant for accessing [godot.SpotLight3D.spotAngleAttenuation].
-     */
-    PARAM_SPOT_ATTENUATION(7),
-    /**
-     * Constant for accessing [godot.DirectionalLight3D.directionalShadowMaxDistance].
-     */
-    PARAM_SHADOW_MAX_DISTANCE(8),
-    /**
-     * Constant for accessing [godot.DirectionalLight3D.directionalShadowSplit1].
-     */
-    PARAM_SHADOW_SPLIT_1_OFFSET(9),
-    /**
-     * Constant for accessing [godot.DirectionalLight3D.directionalShadowSplit2].
-     */
-    PARAM_SHADOW_SPLIT_2_OFFSET(10),
-    /**
-     * Constant for accessing [godot.DirectionalLight3D.directionalShadowSplit3].
-     */
-    PARAM_SHADOW_SPLIT_3_OFFSET(11),
-    /**
-     * Constant for accessing [godot.DirectionalLight3D.directionalShadowFadeStart].
-     */
-    PARAM_SHADOW_FADE_START(12),
-    /**
-     * Constant for accessing [shadowNormalBias].
-     */
-    PARAM_SHADOW_NORMAL_BIAS(13),
-    /**
-     * Constant for accessing [shadowBias].
-     */
-    PARAM_SHADOW_BIAS(14),
-    /**
-     * Constant for accessing [godot.DirectionalLight3D.directionalShadowPancakeSize].
-     */
-    PARAM_SHADOW_PANCAKE_SIZE(15),
-    /**
-     * Constant for accessing [shadowBlur].
-     */
-    PARAM_SHADOW_BLUR(16),
-    PARAM_SHADOW_VOLUMETRIC_FOG_FADE(17),
-    /**
-     * Constant for accessing [shadowTransmittanceBias].
-     */
-    PARAM_TRANSMITTANCE_BIAS(18),
-    /**
-     * Represents the size of the [enum Param] enum.
-     */
-    PARAM_MAX(19),
     ;
 
     public val id: Long

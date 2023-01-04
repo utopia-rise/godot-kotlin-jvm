@@ -9,17 +9,16 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
-import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -27,18 +26,6 @@ import kotlin.Suppress
 
 @GodotBaseType
 public open class GLTFDocument : Resource() {
-  public var extensions: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GET_EXTENSIONS,
-          ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-    }
-    set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_SET_EXTENSIONS, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFDOCUMENT, scriptIndex)
     return true
@@ -48,10 +35,9 @@ public open class GLTFDocument : Resource() {
     path: String,
     state: GLTFState,
     flags: Long = 0,
-    bakeFps: Long = 30,
     basePath: String = ""
   ): GodotError {
-    TransferContext.writeArguments(STRING to path, OBJECT to state, LONG to flags, LONG to bakeFps, STRING to basePath)
+    TransferContext.writeArguments(STRING to path, OBJECT to state, LONG to flags, STRING to basePath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_FILE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -60,10 +46,9 @@ public open class GLTFDocument : Resource() {
     bytes: PackedByteArray,
     basePath: String,
     state: GLTFState,
-    flags: Long = 0,
-    bakeFps: Long = 30
+    flags: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, STRING to basePath, OBJECT to state, LONG to flags, LONG to bakeFps)
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, STRING to basePath, OBJECT to state, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_BUFFER,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -72,17 +57,20 @@ public open class GLTFDocument : Resource() {
   public fun appendFromScene(
     node: Node,
     state: GLTFState,
-    flags: Long = 0,
-    bakeFps: Long = 30
+    flags: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to node, OBJECT to state, LONG to flags, LONG to bakeFps)
+    TransferContext.writeArguments(OBJECT to node, OBJECT to state, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_SCENE,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun generateScene(state: GLTFState, bakeFps: Long = 30): Node? {
-    TransferContext.writeArguments(OBJECT to state, LONG to bakeFps)
+  public fun generateScene(
+    state: GLTFState,
+    bakeFps: Double = 30.0,
+    trimming: Boolean = false
+  ): Node? {
+    TransferContext.writeArguments(OBJECT to state, DOUBLE to bakeFps, BOOL to trimming)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GENERATE_SCENE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }

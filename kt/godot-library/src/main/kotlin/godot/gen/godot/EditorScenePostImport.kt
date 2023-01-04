@@ -69,17 +69,17 @@ import kotlin.Suppress
  *
  * [godot.Tool]
  *
- * public class NodeRenamer : EditorScenePostImport
+ * public partial class NodeRenamer : EditorScenePostImport
  *
  * {
  *
- *     public override Object PostImport(Object scene)
+ *     public override Object _PostImport(Node scene)
  *
  *     {
  *
  *         // Change all node names to "modified_[oldnodename]"
  *
- *         Iterate(scene as Node);
+ *         Iterate(scene);
  *
  *         return scene; // Remember to return the imported scene
  *

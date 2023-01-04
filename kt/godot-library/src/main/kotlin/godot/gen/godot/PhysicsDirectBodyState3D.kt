@@ -94,6 +94,17 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     }
 
   /**
+   * The inverse of the inertia tensor of the body.
+   */
+  public val inverseInertiaTensor: Basis
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_INVERSE_INERTIA_TENSOR, BASIS)
+      return TransferContext.readReturnValue(BASIS, false) as Basis
+    }
+
+  /**
    * The total gravity vector being currently applied to this body.
    */
   public val totalGravity: Vector3

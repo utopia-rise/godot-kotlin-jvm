@@ -29,17 +29,17 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
   /**
    *
    */
-  public val displayModeChanged: Signal0 by signal()
-
-  /**
-   *
-   */
   public val inherit: Signal1<String> by signal("file")
 
   /**
    *
    */
-  public val filesMoved: Signal2<String, String> by signal("oldFile", "newFile")
+  public val instantiate: Signal1<PackedStringArray> by signal("files")
+
+  /**
+   *
+   */
+  public val fileRemoved: Signal1<String> by signal("file")
 
   /**
    *
@@ -49,17 +49,17 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
   /**
    *
    */
-  public val instance: Signal1<PackedStringArray> by signal("files")
+  public val filesMoved: Signal2<String, String> by signal("oldFile", "newFile")
 
   /**
    *
    */
-  public val folderMoved: Signal2<String, String> by signal("oldFolder", "newFile")
+  public val folderMoved: Signal2<String, String> by signal("oldFolder", "newFolder")
 
   /**
    *
    */
-  public val fileRemoved: Signal1<String> by signal("file")
+  public val displayModeChanged: Signal0 by signal()
 
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FILESYSTEMDOCK, scriptIndex)

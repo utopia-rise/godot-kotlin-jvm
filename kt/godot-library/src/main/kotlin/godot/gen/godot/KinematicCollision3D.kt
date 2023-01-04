@@ -56,6 +56,16 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
+   * Returns the colliding body's length of overlap along the collision normal.
+   */
+  public fun getDepth(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION3D_GET_DEPTH,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Returns the number of detected collisions.
    */
   public fun getCollisionCount(): Long {

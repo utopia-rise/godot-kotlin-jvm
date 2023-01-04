@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Basis
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
+import godot.core.VariantType.BASIS
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -146,6 +148,19 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_COLLISION_MASK, NIL)
     }
 
+  public var collisionPriority: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_COLLISION_PRIORITY,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_COLLISION_PRIORITY,
+          NIL)
+    }
+
   public var bakeNavigation: Boolean
     get() {
       TransferContext.writeArguments()
@@ -156,19 +171,6 @@ public open class GridMap : Node3D() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_BAKE_NAVIGATION, NIL)
-    }
-
-  public var navigationLayers: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_NAVIGATION_LAYERS,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_NAVIGATION_LAYERS,
-          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -202,6 +204,17 @@ public open class GridMap : Node3D() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  public fun setNavigationMap(navigationMap: RID): Unit {
+    TransferContext.writeArguments(_RID to navigationMap)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_NAVIGATION_MAP, NIL)
+  }
+
+  public fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_NAVIGATION_MAP, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
   public fun setCellItem(
     position: Vector3i,
     item: Long,
@@ -224,15 +237,35 @@ public open class GridMap : Node3D() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun worldToMap(worldPosition: Vector3): Vector3i {
-    TransferContext.writeArguments(VECTOR3 to worldPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_WORLD_TO_MAP, VECTOR3I)
+  public fun getCellItemBasis(position: Vector3i): Basis {
+    TransferContext.writeArguments(VECTOR3I to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_CELL_ITEM_BASIS, BASIS)
+    return TransferContext.readReturnValue(BASIS, false) as Basis
+  }
+
+  public fun getBasisWithOrthogonalIndex(index: Long): Basis {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_BASIS_WITH_ORTHOGONAL_INDEX, BASIS)
+    return TransferContext.readReturnValue(BASIS, false) as Basis
+  }
+
+  public fun getOrthogonalIndexFromBasis(basis: Basis): Long {
+    TransferContext.writeArguments(BASIS to basis)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_ORTHOGONAL_INDEX_FROM_BASIS, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public fun localToMap(localPosition: Vector3): Vector3i {
+    TransferContext.writeArguments(VECTOR3 to localPosition)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_LOCAL_TO_MAP, VECTOR3I)
     return TransferContext.readReturnValue(VECTOR3I, false) as Vector3i
   }
 
-  public fun mapToWorld(mapPosition: Vector3i): Vector3 {
+  public fun mapToLocal(mapPosition: Vector3i): Vector3 {
     TransferContext.writeArguments(VECTOR3I to mapPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_MAP_TO_WORLD, VECTOR3)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_MAP_TO_LOCAL, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -246,17 +279,17 @@ public open class GridMap : Node3D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_CLEAR, NIL)
   }
 
-  public fun getUsedCells(): VariantArray<Any?> {
+  public fun getUsedCells(): VariantArray<Vector3i> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_USED_CELLS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3i>
   }
 
-  public fun getUsedCellsByItem(item: Long): VariantArray<Any?> {
+  public fun getUsedCellsByItem(item: Long): VariantArray<Vector3i> {
     TransferContext.writeArguments(LONG to item)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_USED_CELLS_BY_ITEM,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3i>
   }
 
   public fun getMeshes(): VariantArray<Any?> {

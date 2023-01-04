@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.RID
+import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -20,6 +21,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
@@ -39,66 +41,151 @@ import kotlin.Unit
  * Font is the abstract base class for font, so it shouldn't be used directly. Other types of fonts inherit from it.
  */
 @GodotBaseType
-public open class Font : Resource() {
-  public var variationCoordinates: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_VARIATION_COORDINATES,
-          DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_VARIATION_COORDINATES,
-          NIL)
-    }
-
+public open class Font internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FONT, scriptIndex)
     return true
   }
 
-  public fun addData(`data`: FontData): Unit {
-    TransferContext.writeArguments(OBJECT to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_ADD_DATA, NIL)
+  /**
+   * Sets array of fallback [godot.Font]s.
+   */
+  public fun setFallbacks(fallbacks: VariantArray<Font>): Unit {
+    TransferContext.writeArguments(ARRAY to fallbacks)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_FALLBACKS, NIL)
   }
 
-  public fun setData(idx: Long, `data`: FontData): Unit {
-    TransferContext.writeArguments(LONG to idx, OBJECT to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_DATA, NIL)
-  }
-
-  public fun getDataCount(): Long {
+  /**
+   * Returns array of fallback [godot.Font]s.
+   */
+  public fun getFallbacks(): VariantArray<Font> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_FALLBACKS, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Font>
   }
 
-  public fun getData(idx: Long): FontData? {
-    TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as FontData?
-  }
-
-  public fun getDataRid(idx: Long): RID {
-    TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA_RID, _RID)
+  /**
+   * Returns [godot.TextServer] RID of the font cache for specific variation.
+   */
+  public fun findVariation(
+    variationCoordinates: Dictionary<Any?, Any?>,
+    faceIndex: Long = 0,
+    strength: Double = 0.0,
+    transform: Transform2D = Transform2D()
+  ): RID {
+    TransferContext.writeArguments(DICTIONARY to variationCoordinates, LONG to faceIndex, DOUBLE to strength, TRANSFORM2D to transform)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_FIND_VARIATION, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
-  public fun clearData(): Unit {
+  /**
+   * Returns [godot.Array] of valid [godot.Font] [RID]s, which can be passed to the [godot.TextServer] methods.
+   */
+  public fun getRids(): VariantArray<RID> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_CLEAR_DATA, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_RIDS, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
   }
 
-  public fun removeData(idx: Long): Unit {
-    TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_REMOVE_DATA, NIL)
+  /**
+   * Returns the total average font height (ascent plus descent) in pixels.
+   *
+   * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the height of empty line).
+   */
+  public fun getHeight(fontSize: Long = 16): Double {
+    TransferContext.writeArguments(LONG to fontSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_HEIGHT, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun setSpacing(spacing: TextServer.SpacingType, `value`: Long): Unit {
-    TransferContext.writeArguments(LONG to spacing.id, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_SPACING, NIL)
+  /**
+   * Returns the average font ascent (number of pixels above the baseline).
+   *
+   * **Note:** Real ascent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of empty line).
+   */
+  public fun getAscent(fontSize: Long = 16): Double {
+    TransferContext.writeArguments(LONG to fontSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_ASCENT, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns the average font descent (number of pixels below the baseline).
+   *
+   * **Note:** Real descent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the descent of empty line).
+   */
+  public fun getDescent(fontSize: Long = 16): Double {
+    TransferContext.writeArguments(LONG to fontSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DESCENT, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns average pixel offset of the underline below the baseline.
+   *
+   * **Note:** Real underline position of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
+   */
+  public fun getUnderlinePosition(fontSize: Long = 16): Double {
+    TransferContext.writeArguments(LONG to fontSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_POSITION, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns average thickness of the underline.
+   *
+   * **Note:** Real underline thickness of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
+   */
+  public fun getUnderlineThickness(fontSize: Long = 16): Double {
+    TransferContext.writeArguments(LONG to fontSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_THICKNESS,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns font family name.
+   */
+  public fun getFontName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_FONT_NAME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns font style name.
+   */
+  public fun getFontStyleName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_FONT_STYLE_NAME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns font style flags, see [enum TextServer.FontStyle].
+   */
+  public fun getFontStyle(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_FONT_STYLE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, false) as Long
+  }
+
+  /**
+   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   */
+  public fun getFontWeight(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_FONT_WEIGHT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   */
+  public fun getFontStretch(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_FONT_STRETCH, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -111,59 +198,21 @@ public open class Font : Resource() {
   }
 
   /**
-   * Returns the total average font height (ascent plus descent) in pixels.
-   *
-   * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the height of empty line).
+   * Returns a set of OpenType feature tags. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
    */
-  public fun getHeight(size: Long = 16): Double {
-    TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_HEIGHT, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  public fun getOpentypeFeatures(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_OPENTYPE_FEATURES,
+        DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
   /**
-   * Returns the average font ascent (number of pixels above the baseline).
-   *
-   * **Note:** Real ascent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of empty line).
+   * Sets LRU cache capacity for `draw_*` methods.
    */
-  public fun getAscent(size: Long = 16): Double {
-    TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_ASCENT, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns the average font descent (number of pixels below the baseline).
-   *
-   * **Note:** Real descent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the descent of empty line).
-   */
-  public fun getDescent(size: Long = 16): Double {
-    TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DESCENT, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns average pixel offset of the underline below the baseline.
-   *
-   * **Note:** Real underline position of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
-   */
-  public fun getUnderlinePosition(size: Long = 16): Double {
-    TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_POSITION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns average thickness of the underline.
-   *
-   * **Note:** Real underline thickness of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
-   */
-  public fun getUnderlineThickness(size: Long = 16): Double {
-    TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_THICKNESS,
-        DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  public fun setCacheCapacity(singleLine: Long, multiLine: Long): Unit {
+    TransferContext.writeArguments(LONG to singleLine, LONG to multiLine)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_CACHE_CAPACITY, NIL)
   }
 
   /**
@@ -193,12 +242,14 @@ public open class Font : Resource() {
    */
   public fun getStringSize(
     text: String,
-    size: Long = 16,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Double = -1.0,
-    flags: Long = 3
+    fontSize: Long = 16,
+    jstFlags: Long = 3,
+    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
   ): Vector2 {
-    TransferContext.writeArguments(STRING to text, LONG to size, LONG to alignment.id, DOUBLE to width, LONG to flags)
+    TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_STRING_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
@@ -210,11 +261,16 @@ public open class Font : Resource() {
    */
   public fun getMultilineStringSize(
     text: String,
+    alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Double = -1.0,
-    size: Long = 16,
-    flags: Long = 96
+    fontSize: Long = 16,
+    maxLines: Long = -1,
+    brkFlags: Long = 3,
+    jstFlags: Long = 3,
+    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
   ): Vector2 {
-    TransferContext.writeArguments(STRING to text, DOUBLE to width, LONG to size, LONG to flags)
+    TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_MULTILINE_STRING_SIZE,
         VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -231,13 +287,13 @@ public open class Font : Resource() {
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Double = -1.0,
-    size: Long = 16,
+    fontSize: Long = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    outlineSize: Long = 0,
-    outlineModulate: Color = Color(Color(1, 1, 1, 0)),
-    flags: Long = 3
+    jstFlags: Long = 3,
+    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate, LONG to flags)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING, NIL)
   }
 
@@ -252,15 +308,63 @@ public open class Font : Resource() {
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Double = -1.0,
+    fontSize: Long = 16,
     maxLines: Long = -1,
-    size: Long = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    outlineSize: Long = 0,
-    outlineModulate: Color = Color(Color(1, 1, 1, 0)),
-    flags: Long = 99
+    brkFlags: Long = 3,
+    jstFlags: Long = 3,
+    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to maxLines, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate, LONG to flags)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING, NIL)
+  }
+
+  /**
+   * Draw [text] outline into a canvas item using the font, at a given position, with [modulate] color and [size] outline size, optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   *
+   * See also [godot.CanvasItem.drawStringOutline].
+   */
+  public fun drawStringOutline(
+    canvasItem: RID,
+    pos: Vector2,
+    text: String,
+    alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
+    width: Double = -1.0,
+    fontSize: Long = 16,
+    size: Long = 1,
+    modulate: Color = Color(Color(1, 1, 1, 1)),
+    jstFlags: Long = 3,
+    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+  ): Unit {
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to size, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING_OUTLINE, NIL)
+  }
+
+  /**
+   * Breaks [text] to the lines using rules specified by [brkFlags] and draws text outline into a canvas item using the font, at a given position, with [modulate] color and [size] outline size, optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   *
+   * See also [godot.CanvasItem.drawMultilineStringOutline].
+   */
+  public fun drawMultilineStringOutline(
+    canvasItem: RID,
+    pos: Vector2,
+    text: String,
+    alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
+    width: Double = -1.0,
+    fontSize: Long = 16,
+    maxLines: Long = -1,
+    size: Long = 1,
+    modulate: Color = Color(Color(1, 1, 1, 1)),
+    brkFlags: Long = 3,
+    jstFlags: Long = 3,
+    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+  ): Unit {
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, LONG to size, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING_OUTLINE,
+        NIL)
   }
 
   /**
@@ -268,12 +372,8 @@ public open class Font : Resource() {
    *
    * **Note:** Do not use this function to calculate width of the string character by character, use [getStringSize] or [godot.TextLine] instead. The height returned is the font height (see also [getHeight]) and has no relation to the glyph height.
    */
-  public fun getCharSize(
-    char: Long,
-    next: Long = 0,
-    size: Long = 16
-  ): Vector2 {
-    TransferContext.writeArguments(LONG to char, LONG to next, LONG to size)
+  public fun getCharSize(char: Long, fontSize: Long): Vector2 {
+    TransferContext.writeArguments(LONG to char, LONG to fontSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
@@ -287,14 +387,29 @@ public open class Font : Resource() {
     canvasItem: RID,
     pos: Vector2,
     char: Long,
-    next: Long = 0,
-    size: Long = 16,
-    modulate: Color = Color(Color(1, 1, 1, 1)),
-    outlineSize: Long = 0,
-    outlineModulate: Color = Color(Color(1, 1, 1, 0))
+    fontSize: Long,
+    modulate: Color = Color(Color(1, 1, 1, 1))
   ): Double {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to next, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to fontSize, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_CHAR, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Draw a single Unicode character [char] outline into a canvas item using the font, at a given position, with [modulate] color and [size] outline size. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   *
+   * **Note:** Do not use this function to draw strings character by character, use [drawString] or [godot.TextLine] instead.
+   */
+  public fun drawCharOutline(
+    canvasItem: RID,
+    pos: Vector2,
+    char: Long,
+    fontSize: Long,
+    size: Long = -1,
+    modulate: Color = Color(Color(1, 1, 1, 1))
+  ): Double {
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to fontSize, LONG to size, COLOR to modulate)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_CHAR_OUTLINE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -318,18 +433,53 @@ public open class Font : Resource() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public fun updateChanges(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_UPDATE_CHANGES, NIL)
+  /**
+   * Returns `true`, if font supports given language ([godot.ISO 639](https://en.wikipedia.org/wiki/ISO_639-1) code).
+   */
+  public fun isLanguageSupported(language: String): Boolean {
+    TransferContext.writeArguments(STRING to language)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_IS_LANGUAGE_SUPPORTED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns [godot.Array] of valid [godot.Font] [RID]s, which can be passed to the [godot.TextServer] methods.
+   * Returns `true`, if font supports given script ([godot.ISO 15924](https://en.wikipedia.org/wiki/ISO_15924) code).
    */
-  public fun getRids(): VariantArray<Any?> {
+  public fun isScriptSupported(script: String): Boolean {
+    TransferContext.writeArguments(STRING to script)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_IS_SCRIPT_SUPPORTED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns list of OpenType features supported by font.
+   */
+  public fun getSupportedFeatureList(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_RIDS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_SUPPORTED_FEATURE_LIST,
+        DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  }
+
+  /**
+   * Returns list of supported [variation coordinates](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg), each coordinate is returned as `tag: Vector3i(min_value,max_value,default_value)`.
+   *
+   * Font variations allow for continuous change of glyph characteristics along some given design axis, such as weight, width or slant.
+   */
+  public fun getSupportedVariationList(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_SUPPORTED_VARIATION_LIST,
+        DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  }
+
+  /**
+   * Returns number of faces in the TrueType / OpenType collection.
+   */
+  public fun getFaceCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_FACE_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public companion object

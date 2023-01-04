@@ -9,15 +9,16 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.RID
-import godot.core.Rect2
+import godot.core.Rect2i
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.RECT2
+import godot.core.VariantType.RECT2I
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR2I
@@ -27,7 +28,6 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -100,12 +100,12 @@ public open class TileMap : Node2D() {
   /**
    * Show or hide the TileMap's collision shapes. If set to [VISIBILITY_MODE_DEFAULT], this depends on the show collision debug settings.
    */
-  public var collisionVisibilityMode: Long
+  public var collisionVisibilityMode: VisibilityMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_VISIBILITY_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TileMap.VisibilityMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -116,12 +116,12 @@ public open class TileMap : Node2D() {
   /**
    * Show or hide the TileMap's navigation meshes. If set to [VISIBILITY_MODE_DEFAULT], this depends on the show navigation debug settings.
    */
-  public var navigationVisibilityMode: Long
+  public var navigationVisibilityMode: VisibilityMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_VISIBILITY_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TileMap.VisibilityMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -235,8 +235,8 @@ public open class TileMap : Node2D() {
    *
    * If `layer` is negative, the layers are accessed from the last one.
    */
-  public fun setLayerModulate(layer: Long, enabled: Color): Unit {
-    TransferContext.writeArguments(LONG to layer, COLOR to enabled)
+  public fun setLayerModulate(layer: Long, modulate: Color): Unit {
+    TransferContext.writeArguments(LONG to layer, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_MODULATE, NIL)
   }
 
@@ -319,9 +319,11 @@ public open class TileMap : Node2D() {
    *
    * - The source identifier [sourceId] identifies a [godot.TileSetSource] identifier. See [godot.TileSet.setSourceId],
    *
-   * - The atlas coordinates identifier [atlasCoords] identifies a tile coordinates in the atlas (if the source is a [godot.TileSetAtlasSource]. For [godot.TileSetScenesCollectionSource] it should be 0),
+   * - The atlas coordinates identifier [atlasCoords] identifies a tile coordinates in the atlas (if the source is a [godot.TileSetAtlasSource]. For [godot.TileSetScenesCollectionSource] it should always be `Vector2i(0, 0)`),
    *
    * - The alternative tile identifier [alternativeTile] identifies a tile alternative the source is a [godot.TileSetAtlasSource], and the scene for a [godot.TileSetScenesCollectionSource].
+   *
+   * If [sourceId] is set to `-1`, [atlasCoords] to `Vector2i(-1, -1)` or [alternativeTile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
    */
   public fun setCell(
     layer: Long,
@@ -348,7 +350,7 @@ public open class TileMap : Node2D() {
   public fun getCellSourceId(
     layer: Long,
     coords: Vector2i,
-    useProxies: Boolean
+    useProxies: Boolean = false
   ): Long {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_SOURCE_ID, LONG)
@@ -361,7 +363,7 @@ public open class TileMap : Node2D() {
   public fun getCellAtlasCoords(
     layer: Long,
     coords: Vector2i,
-    useProxies: Boolean
+    useProxies: Boolean = false
   ): Vector2i {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ATLAS_COORDS,
@@ -375,12 +377,27 @@ public open class TileMap : Node2D() {
   public fun getCellAlternativeTile(
     layer: Long,
     coords: Vector2i,
-    useProxies: Boolean
+    useProxies: Boolean = false
   ): Long {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ALTERNATIVE_TILE,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the [godot.TileData] object associated with the given cell, or `null` if the cell is not a [godot.TileSetAtlasSource].
+   *
+   * If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   */
+  public fun getCellTileData(
+    layer: Long,
+    coords: Vector2i,
+    useProxies: Boolean = false
+  ): TileData? {
+    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_TILE_DATA, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as TileData?
   }
 
   /**
@@ -396,7 +413,7 @@ public open class TileMap : Node2D() {
   /**
    * Creates a new [godot.TileMapPattern] from the given layer and set of cells.
    */
-  public fun getPattern(layer: Long, coordsArray: VariantArray<Any?>): TileMapPattern? {
+  public fun getPattern(layer: Long, coordsArray: VariantArray<Vector2i>): TileMapPattern? {
     TransferContext.writeArguments(LONG to layer, ARRAY to coordsArray)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_PATTERN, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TileMapPattern?
@@ -427,15 +444,41 @@ public open class TileMap : Node2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_PATTERN, NIL)
   }
 
-  public fun setCellsFromSurroundingTerrains(
+  /**
+   * Update all the cells in the [cells] coordinates array so that they use the given [terrain] for the given [terrainSet]. If an updated cell has the same terrain as one of its neighboring cells, this function tries to join the two. This function might update neighboring tiles if needed to create correct terrain transitions.
+   *
+   * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
+   *
+   * **Note:** To work correctly, `set_cells_terrain_connect` requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+   */
+  public fun setCellsTerrainConnect(
     layer: Long,
-    cells: VariantArray<Any?>,
+    cells: VariantArray<Vector2i>,
     terrainSet: Long,
+    terrain: Long,
     ignoreEmptyTerrains: Boolean = true
   ): Unit {
-    TransferContext.writeArguments(LONG to layer, ARRAY to cells, LONG to terrainSet, BOOL to ignoreEmptyTerrains)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_FROM_SURROUNDING_TERRAINS, NIL)
+    TransferContext.writeArguments(LONG to layer, ARRAY to cells, LONG to terrainSet, LONG to terrain, BOOL to ignoreEmptyTerrains)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_TERRAIN_CONNECT,
+        NIL)
+  }
+
+  /**
+   * Update all the cells in the [path] coordinates array so that they use the given [terrain] for the given [terrainSet]. The function will also connect two successive cell in the path with the same terrain. This function might update neighboring tiles if needed to create correct terrain transitions.
+   *
+   * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
+   *
+   * **Note:** To work correctly, `set_cells_terrain_path` requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+   */
+  public fun setCellsTerrainPath(
+    layer: Long,
+    path: VariantArray<Vector2i>,
+    terrainSet: Long,
+    terrain: Long,
+    ignoreEmptyTerrains: Boolean = true
+  ): Unit {
+    TransferContext.writeArguments(LONG to layer, ARRAY to path, LONG to terrainSet, LONG to terrain, BOOL to ignoreEmptyTerrains)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_TERRAIN_PATH, NIL)
   }
 
   /**
@@ -477,40 +520,48 @@ public open class TileMap : Node2D() {
   /**
    * Returns the list of all neighbourings cells to the one at [coords]
    */
-  public fun getSurroundingTiles(coords: Vector2i): VariantArray<Any?> {
+  public fun getSurroundingCells(coords: Vector2i): VariantArray<Vector2i> {
     TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SURROUNDING_TILES,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SURROUNDING_CELLS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
   }
 
   /**
    * Returns a [godot.core.Vector2] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
    */
-  public fun getUsedCells(layer: Long): VariantArray<Any?> {
+  public fun getUsedCells(layer: Long): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
   }
 
   /**
    * Returns a rectangle enclosing the used (non-empty) tiles of the map, including all layers.
    */
-  public fun getUsedRect(): Rect2 {
+  public fun getUsedRect(): Rect2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_RECT, RECT2)
-    return TransferContext.readReturnValue(RECT2, false) as Rect2
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_RECT, RECT2I)
+    return TransferContext.readReturnValue(RECT2I, false) as Rect2i
   }
 
-  public fun mapToWorld(mapPosition: Vector2i): Vector2 {
+  /**
+   * Returns the centered position of a cell in the TileMap's local coordinate space. To convert the returned value into global coordinates, use [godot.Node2D.toGlobal]. See also [localToMap].
+   *
+   * **Note:** This may not correspond to the visual position of the tile, i.e. it ignores the [godot.TileData.textureOffset] property of individual tiles.
+   */
+  public fun mapToLocal(mapPosition: Vector2i): Vector2 {
     TransferContext.writeArguments(VECTOR2I to mapPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_TO_WORLD, VECTOR2)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_TO_LOCAL, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  public fun worldToMap(worldPosition: Vector2): Vector2i {
-    TransferContext.writeArguments(VECTOR2 to worldPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_WORLD_TO_MAP, VECTOR2I)
+  /**
+   * Returns the map coordinates of the cell containing the given [localPosition]. If [localPosition] is in global coordinates, consider using [godot.Node2D.toLocal] before passing it to this method. See also [mapToLocal].
+   */
+  public fun localToMap(localPosition: Vector2): Vector2i {
+    TransferContext.writeArguments(VECTOR2 to localPosition)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_LOCAL_TO_MAP, VECTOR2I)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 

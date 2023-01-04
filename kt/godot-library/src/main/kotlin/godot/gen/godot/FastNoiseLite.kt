@@ -9,9 +9,9 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
@@ -23,12 +23,12 @@ import kotlin.Suppress
 
 @GodotBaseType
 public open class FastNoiseLite : Noise() {
-  public var noiseType: Long
+  public var noiseType: NoiseType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_NOISE_TYPE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return FastNoiseLite.NoiseType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -58,19 +58,6 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_FREQUENCY, NIL)
     }
 
-  public var in3dSpace: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_IS_IN_3D_SPACE,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_IN_3D_SPACE,
-          NIL)
-    }
-
   public var offset: Vector3
     get() {
       TransferContext.writeArguments()
@@ -82,24 +69,12 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_OFFSET, NIL)
     }
 
-  public var colorRamp: Gradient?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_COLOR_RAMP,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Gradient?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_COLOR_RAMP, NIL)
-    }
-
-  public var fractalType: Long
+  public var fractalType: FractalType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_FRACTAL_TYPE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return FastNoiseLite.FractalType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -172,12 +147,12 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_FRACTAL_PING_PONG_STRENGTH, NIL)
     }
 
-  public var cellularDistanceFunction: Long
+  public var cellularDistanceFunction: CellularDistanceFunction
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_CELLULAR_DISTANCE_FUNCTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return FastNoiseLite.CellularDistanceFunction.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -198,12 +173,12 @@ public open class FastNoiseLite : Noise() {
           NIL)
     }
 
-  public var cellularReturnType: Long
+  public var cellularReturnType: CellularReturnType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_CELLULAR_RETURN_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return FastNoiseLite.CellularReturnType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -224,12 +199,12 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_ENABLED, NIL)
     }
 
-  public var domainWarpType: Long
+  public var domainWarpType: DomainWarpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_DOMAIN_WARP_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return FastNoiseLite.DomainWarpType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -263,12 +238,12 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_FREQUENCY, NIL)
     }
 
-  public var domainWarpFractalType: Long
+  public var domainWarpFractalType: DomainWarpFractalType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_DOMAIN_WARP_FRACTAL_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return FastNoiseLite.DomainWarpFractalType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -320,12 +295,34 @@ public open class FastNoiseLite : Noise() {
     return true
   }
 
-  public enum class DomainWarpType(
+  public enum class NoiseType(
     id: Long
   ) {
-    DOMAIN_WARP_SIMPLEX(0),
-    DOMAIN_WARP_SIMPLEX_REDUCED(1),
-    DOMAIN_WARP_BASIC_GRID(2),
+    TYPE_VALUE(5),
+    TYPE_VALUE_CUBIC(4),
+    TYPE_PERLIN(3),
+    TYPE_CELLULAR(2),
+    TYPE_SIMPLEX(0),
+    TYPE_SIMPLEX_SMOOTH(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class FractalType(
+    id: Long
+  ) {
+    FRACTAL_NONE(0),
+    FRACTAL_FBM(1),
+    FRACTAL_RIDGED(2),
+    FRACTAL_PING_PONG(3),
     ;
 
     public val id: Long
@@ -379,34 +376,12 @@ public open class FastNoiseLite : Noise() {
     }
   }
 
-  public enum class FractalType(
+  public enum class DomainWarpType(
     id: Long
   ) {
-    FRACTAL_NONE(0),
-    FRACTAL_FBM(1),
-    FRACTAL_RIDGED(2),
-    FRACTAL_PING_PONG(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class NoiseType(
-    id: Long
-  ) {
-    TYPE_VALUE(5),
-    TYPE_VALUE_CUBIC(4),
-    TYPE_PERLIN(3),
-    TYPE_CELLULAR(2),
-    TYPE_SIMPLEX(0),
-    TYPE_SIMPLEX_SMOOTH(1),
+    DOMAIN_WARP_SIMPLEX(0),
+    DOMAIN_WARP_SIMPLEX_REDUCED(1),
+    DOMAIN_WARP_BASIC_GRID(2),
     ;
 
     public val id: Long

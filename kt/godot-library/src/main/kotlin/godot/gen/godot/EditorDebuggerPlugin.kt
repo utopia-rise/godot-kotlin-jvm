@@ -7,22 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.Callable
-import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.CALLABLE
-import godot.core.VariantType.NIL
-import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.LONG
+import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.Signal1
-import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -109,64 +103,56 @@ import kotlin.Unit
  * [/codeblocks]
  */
 @GodotBaseType
-public open class EditorDebuggerPlugin internal constructor() : Control() {
-  public val breaked: Signal1<Boolean> by signal("canDebug")
-
-  public val stopped: Signal0 by signal()
-
-  public val started: Signal0 by signal()
-
-  public val continued: Signal0 by signal()
-
+public open class EditorDebuggerPlugin internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORDEBUGGERPLUGIN, scriptIndex)
     return true
   }
 
-  public fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(STRING to message, ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_SEND_MESSAGE,
-        NIL)
+  /**
+   * Override this method to be notified whenever a new [godot.EditorDebuggerSession] is created (the session may be inactive during this stage).
+   */
+  public open fun _setupSession(sessionId: Long): Unit {
   }
 
-  public fun registerMessageCapture(name: StringName, callable: Callable): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_REGISTER_MESSAGE_CAPTURE, NIL)
+  /**
+   * Override this method to enable receiving messages from the debugger. If [capture] is "my_message" then messages starting with "my_message:" will be passes to the [_capture] method.
+   */
+  public open fun _hasCapture(capture: String): Boolean {
+    throw NotImplementedError("_has_capture is not implemented for EditorDebuggerPlugin")
   }
 
-  public fun unregisterMessageCapture(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_UNREGISTER_MESSAGE_CAPTURE, NIL)
+  /**
+   * Override this method to process incoming messages. The [sessionId] is the ID of the [godot.EditorDebuggerSession] that received the message (which you can retrieve via [getSession]).
+   */
+  public open fun _capture(
+    message: String,
+    `data`: VariantArray<Any?>,
+    sessionId: Long
+  ): Boolean {
+    throw NotImplementedError("_capture is not implemented for EditorDebuggerPlugin")
   }
 
-  public fun hasCapture(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_HAS_CAPTURE,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  /**
+   * Returns the [godot.EditorDebuggerSession] with the given [id].
+   */
+  public fun getSession(id: Long): EditorDebuggerSession? {
+    TransferContext.writeArguments(LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_GET_SESSION,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as EditorDebuggerSession?
   }
 
-  public fun isBreaked(): Boolean {
+  /**
+   * Returns an array of [godot.EditorDebuggerSession] currently available to this debugger plugin.
+   *
+   * Note: Not sessions in the array may be inactive, check their state via [godot.EditorDebuggerSession.isActive]
+   */
+  public fun getSessions(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_BREAKED,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun isDebuggable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_DEBUGGABLE,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun isSessionActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_SESSION_ACTIVE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_GET_SESSIONS,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public companion object

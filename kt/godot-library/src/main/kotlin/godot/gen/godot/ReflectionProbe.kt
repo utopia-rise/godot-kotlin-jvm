@@ -11,6 +11,7 @@ import godot.core.Color
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
@@ -39,12 +40,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Sets how frequently the [godot.ReflectionProbe] is updated. Can be [UPDATE_ONCE] or [UPDATE_ALWAYS].
    */
-  public var updateMode: Long
+  public var updateMode: UpdateMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_UPDATE_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return ReflectionProbe.UpdateMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -206,12 +207,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The ambient color to use within the [godot.ReflectionProbe]'s [extents]. The ambient color will smoothly blend with other [godot.ReflectionProbe]s and the rest of the scene (outside the [godot.ReflectionProbe]'s [extents]).
    */
-  public var ambientMode: Long
+  public var ambientMode: AmbientMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return ReflectionProbe.AmbientMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -256,6 +257,29 @@ public open class ReflectionProbe : VisualInstance3D() {
     return true
   }
 
+  public enum class UpdateMode(
+    id: Long
+  ) {
+    /**
+     * Update the probe once on the next frame (recommended for most objects). The corresponding radiance map will be generated over the following six frames. This takes more time to update than [UPDATE_ALWAYS], but it has a lower performance cost and can result in higher-quality reflections. The ReflectionProbe is updated when its transform changes, but not when nearby geometry changes. You can force a [godot.ReflectionProbe] update by moving the [godot.ReflectionProbe] slightly in any direction.
+     */
+    UPDATE_ONCE(0),
+    /**
+     * Update the probe every frame. This provides better results for fast-moving dynamic objects (such as cars). However, it has a significant performance cost. Due to the cost, it's recommended to only use one ReflectionProbe with [UPDATE_ALWAYS] at most per scene. For all other use cases, use [UPDATE_ONCE].
+     */
+    UPDATE_ALWAYS(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class AmbientMode(
     id: Long
   ) {
@@ -271,29 +295,6 @@ public open class ReflectionProbe : VisualInstance3D() {
      * Apply custom ambient lighting inside the [godot.ReflectionProbe]'s [extents]. See [ambientColor] and [ambientColorEnergy].
      */
     AMBIENT_COLOR(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class UpdateMode(
-    id: Long
-  ) {
-    /**
-     * Update the probe once on the next frame (recommended for most objects). The corresponding radiance map will be generated over the following six frames. This takes more time to update than [UPDATE_ALWAYS], but it has a lower performance cost and can result in higher-quality reflections. The ReflectionProbe is updated when its transform changes, but not when nearby geometry changes. You can force a [godot.ReflectionProbe] update by moving the [godot.ReflectionProbe] slightly in any direction.
-     */
-    UPDATE_ONCE(0),
-    /**
-     * Update the probe every frame. This provides better results for fast-moving dynamic objects (such as cars). However, it has a significant performance cost. Due to the cost, it's recommended to only use one ReflectionProbe with [UPDATE_ALWAYS] at most per scene. For all other use cases, use [UPDATE_ONCE].
-     */
-    UPDATE_ALWAYS(1),
     ;
 
     public val id: Long

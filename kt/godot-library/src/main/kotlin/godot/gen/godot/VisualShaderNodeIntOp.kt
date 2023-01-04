@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -25,12 +26,12 @@ public open class VisualShaderNodeIntOp : VisualShaderNode() {
   /**
    * An operator to be applied to the inputs. See [enum Operator] for options.
    */
-  public var `operator`: Long
+  public var `operator`: Operator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTOP_GET_OPERATOR, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeIntOp.Operator.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

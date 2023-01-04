@@ -193,6 +193,14 @@ public open class Range : Control() {
   }
 
   /**
+   * Sets the [godot.Range]'s current value to the specified [value], without emitting the [valueChanged] signal.
+   */
+  public fun setValueNoSignal(`value`: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_VALUE_NO_SIGNAL, NIL)
+  }
+
+  /**
    * Binds two [godot.Range]s together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group.
    */
   public fun share(with: Node): Unit {

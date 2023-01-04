@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.PackedInt32Array
-import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -21,7 +20,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
@@ -59,14 +57,14 @@ public open class CodeEdit : TextEdit() {
   public val codeCompletionRequested: Signal0 by signal()
 
   /**
-   * Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by calling [setSymbolLookupWordAsValid].
-   */
-  public val symbolValidate: Signal1<String> by signal("symbol")
-
-  /**
    * Emitted when the user has clicked on a valid symbol.
    */
   public val symbolLookup: Signal3<String, Long, Long> by signal("symbol", "line", "column")
+
+  /**
+   * Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by calling [setSymbolLookupWordAsValid].
+   */
+  public val symbolValidate: Signal1<String> by signal("symbol")
 
   /**
    * Set when a validated word from [symbolValidate] is clicked, the [symbolLookup] should be emitted.
@@ -103,15 +101,15 @@ public open class CodeEdit : TextEdit() {
   /**
    * Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is draw more prominently
    */
-  public var lineLengthGuidelines: PackedInt32Array
+  public var lineLengthGuidelines: VariantArray<Long>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_LINE_LENGTH_GUIDELINES, PACKED_INT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_LINE_LENGTH_GUIDELINES, ARRAY)
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>
     }
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
+      TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_LENGTH_GUIDELINES, NIL)
     }
@@ -215,15 +213,15 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the string delimiters. All existing string delimiters will be removed.
    */
-  public var delimiterStrings: PackedStringArray
+  public var delimiterStrings: VariantArray<String>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_STRING_DELIMITERS,
-          PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+          ARRAY)
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>
     }
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
+      TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_STRING_DELIMITERS,
           NIL)
     }
@@ -231,15 +229,15 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the comment delimiters. All existing comment delimiters will be removed.
    */
-  public var delimiterComments: PackedStringArray
+  public var delimiterComments: VariantArray<String>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_COMMENT_DELIMITERS,
-          PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+          ARRAY)
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>
     }
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
+      TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_COMMENT_DELIMITERS,
           NIL)
     }
@@ -263,15 +261,15 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets prefixes that will trigger code completion.
    */
-  public var codeCompletionPrefixes: PackedStringArray
+  public var codeCompletionPrefixes: VariantArray<String>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMLETION_PREFIXES, PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMLETION_PREFIXES, ARRAY)
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>
     }
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
+      TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_COMPLETION_PREFIXES, NIL)
     }
@@ -325,15 +323,15 @@ public open class CodeEdit : TextEdit() {
   /**
    * Prefixes to trigger an automatic indent.
    */
-  public var indentAutomaticPrefixes: PackedStringArray
+  public var indentAutomaticPrefixes: VariantArray<String>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_AUTO_INDENT_PREFIXES,
-          PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+          ARRAY)
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>
     }
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
+      TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_INDENT_PREFIXES,
           NIL)
     }
@@ -408,8 +406,8 @@ public open class CodeEdit : TextEdit() {
    *
    * Both [candidates] and the return is a [godot.Array] of [godot.core.Dictionary], see [getCodeCompletionOption] for [godot.core.Dictionary] content.
    */
-  public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Any?>):
-      VariantArray<Any?> {
+  public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Dictionary<Any?, Any?>>):
+      VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_filter_code_completion_candidates is not implemented for CodeEdit")
   }
 
@@ -516,11 +514,11 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets all breakpointed lines.
    */
-  public fun getBreakpointedLines(): VariantArray<Any?> {
+  public fun getBreakpointedLines(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_BREAKPOINTED_LINES,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_INT_32_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
   /**
@@ -553,11 +551,11 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets all bookmarked lines.
    */
-  public fun getBookmarkedLines(): VariantArray<Any?> {
+  public fun getBookmarkedLines(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_BOOKMARKED_LINES,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_INT_32_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
   /**
@@ -588,10 +586,11 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets all executing lines.
    */
-  public fun getExecutingLines(): VariantArray<Any?> {
+  public fun getExecutingLines(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_EXECUTING_LINES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_EXECUTING_LINES,
+        PACKED_INT_32_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
   /**
@@ -655,10 +654,10 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns all lines that are current folded.
    */
-  public fun getFoldedLines(): VariantArray<Any?> {
+  public fun getFoldedLines(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_FOLDED_LINES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>
   }
 
   /**
@@ -848,7 +847,7 @@ public open class CodeEdit : TextEdit() {
    * **Note:** This list will replace all current candidates.
    */
   public fun addCodeCompletionOption(
-    type: CodeEdit.CodeCompletionKind,
+    type: CodeCompletionKind,
     displayText: String,
     insertText: String,
     textColor: Color = Color(Color(1, 1, 1, 1)),
@@ -874,11 +873,11 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets all completion options, see [getCodeCompletionOption] for return content.
    */
-  public fun getCodeCompletionOptions(): VariantArray<Any?> {
+  public fun getCodeCompletionOptions(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_OPTIONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**

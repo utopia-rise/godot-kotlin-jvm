@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -28,11 +29,11 @@ public open class OmniLight3D : Light3D() {
   /**
    * See [enum ShadowMode].
    */
-  public var omniShadowMode: Long
+  public var omniShadowMode: ShadowMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OMNILIGHT3D_GET_SHADOW_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return OmniLight3D.ShadowMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

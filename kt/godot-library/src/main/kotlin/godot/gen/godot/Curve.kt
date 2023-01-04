@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Curve
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -80,15 +79,23 @@ public open class Curve : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_BAKE_RESOLUTION, NIL)
     }
 
+  /**
+   * The number of points describing the curve.
+   */
+  public var pointCount: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_COUNT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_COUNT, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CURVE, scriptIndex)
     return true
-  }
-
-  public fun getPointCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -98,8 +105,8 @@ public open class Curve : Resource() {
     position: Vector2,
     leftTangent: Double = 0.0,
     rightTangent: Double = 0.0,
-    leftMode: Curve.TangentMode = Curve.TangentMode.TANGENT_FREE,
-    rightMode: Curve.TangentMode = Curve.TangentMode.TANGENT_FREE
+    leftMode: TangentMode = Curve.TangentMode.TANGENT_FREE,
+    rightMode: TangentMode = Curve.TangentMode.TANGENT_FREE
   ): Long {
     TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent, DOUBLE to rightTangent, LONG to leftMode.id, LONG to rightMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_ADD_POINT, LONG)
@@ -148,15 +155,21 @@ public open class Curve : Resource() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun interpolate(offset: Double): Double {
+  /**
+   * Returns the Y value for the point that would exist at the X position [offset] along the curve.
+   */
+  public fun sample(offset: Double): Double {
     TransferContext.writeArguments(DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_INTERPOLATE, DOUBLE)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SAMPLE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public fun interpolateBaked(offset: Double): Double {
+  /**
+   * Returns the Y value for the point that would exist at the X position [offset] along the curve using the baked cache. Bakes the curve's points if not already baked.
+   */
+  public fun sampleBaked(offset: Double): Double {
     TransferContext.writeArguments(DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_INTERPOLATE_BAKED, DOUBLE)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SAMPLE_BAKED, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -183,7 +196,7 @@ public open class Curve : Resource() {
   /**
    * Returns the left [enum TangentMode] for the point at [index].
    */
-  public fun getPointLeftMode(index: Long): Curve.TangentMode {
+  public fun getPointLeftMode(index: Long): TangentMode {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_LEFT_MODE, LONG)
     return Curve.TangentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -192,7 +205,7 @@ public open class Curve : Resource() {
   /**
    * Returns the right [enum TangentMode] for the point at [index].
    */
-  public fun getPointRightMode(index: Long): Curve.TangentMode {
+  public fun getPointRightMode(index: Long): TangentMode {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_RIGHT_MODE, LONG)
     return Curve.TangentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -217,7 +230,7 @@ public open class Curve : Resource() {
   /**
    * Sets the left [enum TangentMode] for the point at [index] to [mode].
    */
-  public fun setPointLeftMode(index: Long, mode: Curve.TangentMode): Unit {
+  public fun setPointLeftMode(index: Long, mode: TangentMode): Unit {
     TransferContext.writeArguments(LONG to index, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_LEFT_MODE, NIL)
   }
@@ -225,7 +238,7 @@ public open class Curve : Resource() {
   /**
    * Sets the right [enum TangentMode] for the point at [index] to [mode].
    */
-  public fun setPointRightMode(index: Long, mode: Curve.TangentMode): Unit {
+  public fun setPointRightMode(index: Long, mode: TangentMode): Unit {
     TransferContext.writeArguments(LONG to index, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_RIGHT_MODE, NIL)
   }

@@ -312,6 +312,15 @@ public open class ConfigFile : RefCounted() {
   }
 
   /**
+   * Obtain the text version of this config file (the same text that would be written to a file).
+   */
+  public fun encodeToText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ENCODE_TO_TEXT, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
    * Loads the encrypted config file specified as a parameter, using the provided [key] to decrypt it. The file's contents are parsed and loaded in the [godot.ConfigFile] object which the method was called on.
    *
    * Returns one of the [enum Error] code constants ([OK] on success).

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2I
@@ -79,11 +80,11 @@ public open class SubViewport : Viewport() {
    *
    * **Note:** This property is intended for 2D usage.
    */
-  public var renderTargetClearMode: Long
+  public var renderTargetClearMode: ClearMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_CLEAR_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return SubViewport.ClearMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -93,11 +94,11 @@ public open class SubViewport : Viewport() {
   /**
    * The update mode when the sub-viewport is used as a render target.
    */
-  public var renderTargetUpdateMode: Long
+  public var renderTargetUpdateMode: UpdateMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_UPDATE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return SubViewport.UpdateMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

@@ -6,23 +6,21 @@
 
 package godot
 
-import godot.AudioServer
 import godot.`annotation`.GodotBaseType
+import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -352,7 +350,7 @@ public object AudioServer : Object() {
   /**
    * Returns the speaker configuration.
    */
-  public fun getSpeakerMode(): AudioServer.SpeakerMode {
+  public fun getSpeakerMode(): SpeakerMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_SPEAKER_MODE, LONG)
     return AudioServer.SpeakerMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -370,10 +368,11 @@ public object AudioServer : Object() {
   /**
    * Returns the names of all audio devices detected on the system.
    */
-  public fun getDeviceList(): VariantArray<Any?> {
+  public fun getDeviceList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_DEVICE_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_DEVICE_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   public fun getDevice(): String {
@@ -422,11 +421,11 @@ public object AudioServer : Object() {
    *
    * **Note:** [godot.ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
    */
-  public fun captureGetDeviceList(): VariantArray<Any?> {
+  public fun captureGetDeviceList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_GET_DEVICE_LIST,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   public fun captureGetDevice(): String {
@@ -457,6 +456,15 @@ public object AudioServer : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GENERATE_BUS_LAYOUT,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as AudioBusLayout?
+  }
+
+  /**
+   *
+   */
+  public fun setEnableTaggingUsedAudioStreams(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_ENABLE_TAGGING_USED_AUDIO_STREAMS, NIL)
   }
 
   public enum class SpeakerMode(

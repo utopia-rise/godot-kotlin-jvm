@@ -13,6 +13,7 @@ import godot.core.Transform2D
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -89,22 +90,6 @@ public open class Viewport internal constructor() : Node() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_XR, NIL)
-    }
-
-  /**
-   * If `true`, the viewport will process 3D audio streams.
-   */
-  public var audioListenerEnable3d: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_3D,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_3D,
-          NIL)
     }
 
   /**
@@ -219,30 +204,63 @@ public open class Viewport internal constructor() : Node() {
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_2D_VERTICES_TO_PIXEL, NIL)
     }
 
-  public var msaa: Long
+  /**
+   * The multisample anti-aliasing mode for 2D/Canvas rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. This has no effect on shader-induced aliasing or texture aliasing.
+   */
+  public var msaa2d: MSAA
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_2D, LONG)
+      return Viewport.MSAA.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MSAA, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MSAA_2D, NIL)
+    }
+
+  /**
+   * The multisample anti-aliasing mode for 3D rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. See also bilinear scaling 3d [scaling3dMode] for supersampling, which provides higher quality but is much more expensive. This has no effect on shader-induced aliasing or texture aliasing.
+   */
+  public var msaa3d: MSAA
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_3D, LONG)
+      return Viewport.MSAA.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MSAA_3D, NIL)
     }
 
   /**
    * Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will smooth out specular aliasing, but tend to make scenes appear blurry.
    */
-  public var screenSpaceAa: Long
+  public var screenSpaceAa: ScreenSpaceAA
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_SPACE_AA,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Viewport.ScreenSpaceAA.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCREEN_SPACE_AA, NIL)
+    }
+
+  /**
+   * Enables Temporal Anti-Aliasing for this viewport. TAA works by jittering the camera and accumulating the images of the last rendered frames, motion vector rendering is used to account for camera and object motion.
+   *
+   * **Note:** The implementation is not complete yet, some visual instances such as particles and skinned meshes may show artifacts.
+   */
+  public var useTaa: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_TAA, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_TAA, NIL)
     }
 
   /**
@@ -302,11 +320,11 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The overlay mode for test rendered geometry in debug purposes.
    */
-  public var debugDraw: Long
+  public var debugDraw: DebugDraw
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBUG_DRAW, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Viewport.DebugDraw.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -318,12 +336,12 @@ public open class Viewport internal constructor() : Node() {
    *
    * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/mode] project setting.
    */
-  public var scaling3dMode: Long
+  public var scaling3dMode: Scaling3DMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Viewport.Scaling3DMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -350,16 +368,26 @@ public open class Viewport internal constructor() : Node() {
           NIL)
     }
 
-  public var fsrMipmapBias: Double
+  /**
+   * Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close).
+   *
+   * Enabling temporal antialiasing ([useTaa]) will automatically apply a `-0.5` offset to this value, while enabling FXAA ([screenSpaceAa]) will automatically apply a `-0.25` offset to this value. If both TAA and FXAA are enbled at the same time, an offset of `-0.75` is applied to this value.
+   *
+   * **Note:** If [scaling3dScale] is lower than `1.0` (exclusive), [textureMipmapBias] is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `log2(scaling_3d_scale) + mipmap_bias`.
+   *
+   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/textures/defaultFilters/textureMipmapBias] project setting.
+   */
+  public var textureMipmapBias: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_MIPMAP_BIAS,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TEXTURE_MIPMAP_BIAS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FSR_MIPMAP_BIAS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_TEXTURE_MIPMAP_BIAS,
+          NIL)
     }
 
   /**
@@ -380,14 +408,57 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
+   * The Variable Rate Shading (VRS) mode that is used for this viewport. Note, if hardware does not support VRS this property is ignored.
+   */
+  public var vrsMode: VRSMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VRS_MODE, LONG)
+      return Viewport.VRSMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_VRS_MODE, NIL)
+    }
+
+  /**
+   * Texture to use when [vrsMode] is set to [godot.Viewport.VRS_TEXTURE].
+   *
+   * The texture *must* use a lossless compression format so that colors can be matched precisely. The following VRS densities are mapped to various colors, with brighter colors representing a lower level of shading precision:
+   *
+   * ```
+   * 			- 1x1 = rgb(0, 0, 0)     - #000000
+   * 			- 1x2 = rgb(0, 85, 0)    - #005500
+   * 			- 2x1 = rgb(85, 0, 0)    - #550000
+   * 			- 2x2 = rgb(85, 85, 0)   - #555500
+   * 			- 2x4 = rgb(85, 170, 0)  - #55aa00
+   * 			- 4x2 = rgb(170, 85, 0)  - #aa5500
+   * 			- 4x4 = rgb(170, 170, 0) - #aaaa00
+   * 			- 4x8 = rgb(170, 255, 0) - #aaff00 - Not supported on most hardware
+   * 			- 8x4 = rgb(255, 170, 0) - #ffaa00 - Not supported on most hardware
+   * 			- 8x8 = rgb(255, 255, 0) - #ffff00 - Not supported on most hardware
+   * 			```
+   */
+  public var vrsTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VRS_TEXTURE, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_VRS_TEXTURE, NIL)
+    }
+
+  /**
    * Sets the default filter mode used by [godot.CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureFilter] for options.
    */
-  public var canvasItemDefaultTextureFilter: Long
+  public var canvasItemDefaultTextureFilter: DefaultCanvasItemTextureFilter
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Viewport.DefaultCanvasItemTextureFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -398,12 +469,12 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Sets the default repeat mode used by [godot.CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureRepeat] for options.
    */
-  public var canvasItemDefaultTextureRepeat: Long
+  public var canvasItemDefaultTextureRepeat: DefaultCanvasItemTextureRepeat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Viewport.DefaultCanvasItemTextureRepeat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -424,6 +495,22 @@ public open class Viewport internal constructor() : Node() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_2D,
+          NIL)
+    }
+
+  /**
+   * If `true`, the viewport will process 3D audio streams.
+   */
+  public var audioListenerEnable3d: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_3D,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_3D,
           NIL)
     }
 
@@ -492,11 +579,11 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public var sdfOversize: Long
+  public var sdfOversize: SDFOversize
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_OVERSIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Viewport.SDFOversize.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -506,73 +593,93 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public var sdfScale: Long
+  public var sdfScale: SDFScale
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_SCALE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Viewport.SDFScale.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SDF_SCALE, NIL)
     }
 
-  public var shadowAtlasSize: Long
+  /**
+   * The shadow atlas' resolution (used for omni and spot lights). The value will be rounded up to the nearest power of 2.
+   *
+   * **Note:** If this is set to `0`, no shadows will be visible at all (including directional shadows).
+   */
+  public var positionalShadowAtlasSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_SIZE,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_SIZE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_SIZE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_SIZE, NIL)
     }
 
-  public var shadowAtlas16Bits: Boolean
+  /**
+   *
+   */
+  public var positionalShadowAtlas16Bits: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_16_BITS,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_16_BITS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_16_BITS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_16_BITS, NIL)
     }
 
-  public val shadowAtlasQuad0: Long
+  /**
+   * The subdivision amount of the first quadrant on the shadow atlas.
+   */
+  public val positionalShadowAtlasQuad0: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
 
-  public val shadowAtlasQuad1: Long
+  /**
+   * The subdivision amount of the second quadrant on the shadow atlas.
+   */
+  public val positionalShadowAtlasQuad1: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
 
-  public val shadowAtlasQuad2: Long
+  /**
+   * The subdivision amount of the third quadrant on the shadow atlas.
+   */
+  public val positionalShadowAtlasQuad2: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
 
-  public val shadowAtlasQuad3: Long
+  /**
+   * The subdivision amount of the fourth quadrant on the shadow atlas.
+   */
+  public val positionalShadowAtlasQuad3: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
 
   /**
@@ -607,6 +714,22 @@ public open class Viewport internal constructor() : Node() {
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GLOBAL_CANVAS_TRANSFORM, NIL)
     }
 
+  /**
+   * The rendering layers in which this [godot.Viewport] renders [godot.CanvasItem] nodes.
+   */
+  public var canvasCullMask: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_CULL_MASK,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_CULL_MASK,
+          NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VIEWPORT, scriptIndex)
     return true
@@ -632,6 +755,16 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
+   * Returns the transform from the Viewport's coordinates to the screen coordinates of the containing window manager window.
+   */
+  public fun getScreenTransform(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_TRANSFORM,
+        TRANSFORM2D)
+    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+  }
+
+  /**
    * Returns the visible rectangle in global screen coordinates.
    */
   public fun getVisibleRect(): Rect2 {
@@ -643,7 +776,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public fun getRenderInfo(type: Viewport.RenderInfoType, info: Viewport.RenderInfo): Long {
+  public fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Long {
     TransferContext.writeArguments(LONG to type.id, LONG to info.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_INFO, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -802,11 +935,14 @@ public open class Viewport internal constructor() : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as Control?
   }
 
-  public fun setShadowAtlasQuadrantSubdiv(quadrant: Long,
-      subdiv: Viewport.ShadowAtlasQuadrantSubdiv): Unit {
+  /**
+   * Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
+   */
+  public fun setPositionalShadowAtlasQuadrantSubdiv(quadrant: Long,
+      subdiv: PositionalShadowAtlasQuadrantSubdiv): Unit {
     TransferContext.writeArguments(LONG to quadrant, LONG to subdiv.id)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
+        ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
   }
 
   /**
@@ -831,6 +967,25 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
+   * Set/clear individual bits on the rendering layer mask. This simplifies editing this [godot.Viewport]'s layers.
+   */
+  public fun setCanvasCullMaskBit(layer: Long, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layer, BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_CULL_MASK_BIT,
+        NIL)
+  }
+
+  /**
+   * Returns an individual bit on the rendering layer mask.
+   */
+  public fun getCanvasCullMaskBit(layer: Long): Boolean {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_CULL_MASK_BIT,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns the first valid [godot.World3D] for this viewport, searching the [world3d] property of itself and any Viewport ancestor.
    */
   public fun findWorld3d(): World3D? {
@@ -848,29 +1003,130 @@ public open class Viewport internal constructor() : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as Camera3D?
   }
 
-  public enum class SDFOversize(
+  public enum class PositionalShadowAtlasQuadrantSubdiv(
     id: Long
   ) {
     /**
-     *
+     * This quadrant will not be used.
      */
-    SDF_OVERSIZE_100_PERCENT(0),
+    SHADOW_ATLAS_QUADRANT_SUBDIV_DISABLED(0),
     /**
-     *
+     * This quadrant will only be used by one shadow map.
      */
-    SDF_OVERSIZE_120_PERCENT(1),
+    SHADOW_ATLAS_QUADRANT_SUBDIV_1(1),
     /**
-     *
+     * This quadrant will be split in 4 and used by up to 4 shadow maps.
      */
-    SDF_OVERSIZE_150_PERCENT(2),
+    SHADOW_ATLAS_QUADRANT_SUBDIV_4(2),
     /**
-     *
+     * This quadrant will be split 16 ways and used by up to 16 shadow maps.
      */
-    SDF_OVERSIZE_200_PERCENT(3),
+    SHADOW_ATLAS_QUADRANT_SUBDIV_16(3),
     /**
-     *
+     * This quadrant will be split 64 ways and used by up to 64 shadow maps.
      */
-    SDF_OVERSIZE_MAX(4),
+    SHADOW_ATLAS_QUADRANT_SUBDIV_64(4),
+    /**
+     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
+     */
+    SHADOW_ATLAS_QUADRANT_SUBDIV_256(5),
+    /**
+     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
+     */
+    SHADOW_ATLAS_QUADRANT_SUBDIV_1024(6),
+    /**
+     * Represents the size of the [enum PositionalShadowAtlasQuadrantSubdiv] enum.
+     */
+    SHADOW_ATLAS_QUADRANT_SUBDIV_MAX(7),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class Scaling3DMode(
+    id: Long
+  ) {
+    /**
+     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
+     */
+    SCALING_3D_MODE_BILINEAR(0),
+    /**
+     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
+     */
+    SCALING_3D_MODE_FSR(1),
+    /**
+     * Represents the size of the [enum Scaling3DMode] enum.
+     */
+    SCALING_3D_MODE_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class MSAA(
+    id: Long
+  ) {
+    /**
+     * Multisample antialiasing mode disabled. This is the default value, and is also the fastest setting.
+     */
+    MSAA_DISABLED(0),
+    /**
+     * Use 2× Multisample Antialiasing. This has a moderate performance cost. It helps reduce aliasing noticeably, but 4× MSAA still looks substantially better.
+     */
+    MSAA_2X(1),
+    /**
+     * Use 4× Multisample Antialiasing. This has a significant performance cost, and is generally a good compromise between performance and quality.
+     */
+    MSAA_4X(2),
+    /**
+     * Use 8× Multisample Antialiasing. This has a very high performance cost. The difference between 4× and 8× MSAA may not always be visible in real gameplay conditions. Likely unsupported on low-end and older hardware.
+     */
+    MSAA_8X(3),
+    /**
+     * Represents the size of the [enum MSAA] enum.
+     */
+    MSAA_MAX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ScreenSpaceAA(
+    id: Long
+  ) {
+    /**
+     * Do not perform any antialiasing in the full screen post-process.
+     */
+    SCREEN_SPACE_AA_DISABLED(0),
+    /**
+     * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
+     */
+    SCREEN_SPACE_AA_FXAA(1),
+    /**
+     * Represents the size of the [enum ScreenSpaceAA] enum.
+     */
+    SCREEN_SPACE_AA_MAX(2),
     ;
 
     public val id: Long
@@ -914,25 +1170,21 @@ public open class Viewport internal constructor() : Node() {
     }
   }
 
-  public enum class SDFScale(
+  public enum class RenderInfoType(
     id: Long
   ) {
     /**
      *
      */
-    SDF_SCALE_100_PERCENT(0),
+    RENDER_INFO_TYPE_VISIBLE(0),
     /**
      *
      */
-    SDF_SCALE_50_PERCENT(1),
+    RENDER_INFO_TYPE_SHADOW(1),
     /**
      *
      */
-    SDF_SCALE_25_PERCENT(2),
-    /**
-     *
-     */
-    SDF_SCALE_MAX(3),
+    RENDER_INFO_TYPE_MAX(2),
     ;
 
     public val id: Long
@@ -1048,87 +1300,10 @@ public open class Viewport internal constructor() : Node() {
      *
      */
     DEBUG_DRAW_OCCLUDERS(24),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class Scaling3DMode(
-    id: Long
-  ) {
-    /**
-     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
-     */
-    SCALING_3D_MODE_BILINEAR(0),
-    /**
-     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
-     */
-    SCALING_3D_MODE_FSR(1),
-    /**
-     * Represents the size of the [enum Scaling3DMode] enum.
-     */
-    SCALING_3D_MODE_MAX(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class RenderInfoType(
-    id: Long
-  ) {
     /**
      *
      */
-    RENDER_INFO_TYPE_VISIBLE(0),
-    /**
-     *
-     */
-    RENDER_INFO_TYPE_SHADOW(1),
-    /**
-     *
-     */
-    RENDER_INFO_TYPE_MAX(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ScreenSpaceAA(
-    id: Long
-  ) {
-    /**
-     * Do not perform any antialiasing in the full screen post-process.
-     */
-    SCREEN_SPACE_AA_DISABLED(0),
-    /**
-     * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
-     */
-    SCREEN_SPACE_AA_FXAA(1),
-    /**
-     * Represents the size of the [enum ScreenSpaceAA] enum.
-     */
-    SCREEN_SPACE_AA_MAX(2),
+    DEBUG_DRAW_MOTION_VECTORS(25),
     ;
 
     public val id: Long
@@ -1176,53 +1351,6 @@ public open class Viewport internal constructor() : Node() {
     }
   }
 
-  public enum class ShadowAtlasQuadrantSubdiv(
-    id: Long
-  ) {
-    /**
-     * This quadrant will not be used.
-     */
-    SHADOW_ATLAS_QUADRANT_SUBDIV_DISABLED(0),
-    /**
-     * This quadrant will only be used by one shadow map.
-     */
-    SHADOW_ATLAS_QUADRANT_SUBDIV_1(1),
-    /**
-     * This quadrant will be split in 4 and used by up to 4 shadow maps.
-     */
-    SHADOW_ATLAS_QUADRANT_SUBDIV_4(2),
-    /**
-     * This quadrant will be split 16 ways and used by up to 16 shadow maps.
-     */
-    SHADOW_ATLAS_QUADRANT_SUBDIV_16(3),
-    /**
-     * This quadrant will be split 64 ways and used by up to 64 shadow maps.
-     */
-    SHADOW_ATLAS_QUADRANT_SUBDIV_64(4),
-    /**
-     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
-     */
-    SHADOW_ATLAS_QUADRANT_SUBDIV_256(5),
-    /**
-     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
-     */
-    SHADOW_ATLAS_QUADRANT_SUBDIV_1024(6),
-    /**
-     * Represents the size of the [enum PositionalShadowAtlasQuadrantSubdiv] enum.
-     */
-    SHADOW_ATLAS_QUADRANT_SUBDIV_MAX(7),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class DefaultCanvasItemTextureRepeat(
     id: Long
   ) {
@@ -1254,29 +1382,91 @@ public open class Viewport internal constructor() : Node() {
     }
   }
 
-  public enum class MSAA(
+  public enum class SDFOversize(
     id: Long
   ) {
     /**
-     * Multisample antialiasing mode disabled. This is the default value, and is also the fastest setting.
+     *
      */
-    MSAA_DISABLED(0),
+    SDF_OVERSIZE_100_PERCENT(0),
     /**
-     * Use 2× Multisample Antialiasing. This has a moderate performance cost. It helps reduce aliasing noticeably, but 4× MSAA still looks substantially better.
+     *
      */
-    MSAA_2X(1),
+    SDF_OVERSIZE_120_PERCENT(1),
     /**
-     * Use 4× Multisample Antialiasing. This has a significant performance cost, and is generally a good compromise between performance and quality.
+     *
      */
-    MSAA_4X(2),
+    SDF_OVERSIZE_150_PERCENT(2),
     /**
-     * Use 8× Multisample Antialiasing. This has a very high performance cost. The difference between 4× and 8× MSAA may not always be visible in real gameplay conditions. Likely unsupported on low-end and older hardware.
+     *
      */
-    MSAA_8X(3),
+    SDF_OVERSIZE_200_PERCENT(3),
     /**
-     * Represents the size of the [enum MSAA] enum.
+     *
      */
-    MSAA_MAX(4),
+    SDF_OVERSIZE_MAX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SDFScale(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    SDF_SCALE_100_PERCENT(0),
+    /**
+     *
+     */
+    SDF_SCALE_50_PERCENT(1),
+    /**
+     *
+     */
+    SDF_SCALE_25_PERCENT(2),
+    /**
+     *
+     */
+    SDF_SCALE_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VRSMode(
+    id: Long
+  ) {
+    /**
+     * VRS is disabled.
+     */
+    VRS_DISABLED(0),
+    /**
+     * VRS uses a texture. Note, for stereoscopic use a texture atlas with a texture for each view.
+     */
+    VRS_TEXTURE(1),
+    /**
+     * VRS texture is supplied by the primary [godot.XRInterface].
+     */
+    VRS_XR(2),
+    /**
+     * Represents the size of the [enum VRSMode] enum.
+     */
+    VRS_MAX(3),
     ;
 
     public val id: Long

@@ -76,6 +76,22 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
           NIL)
     }
 
+  /**
+   * If `true`, the touch's state is a double tap.
+   */
+  public var doubleTap: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_IS_DOUBLE_TAP, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_DOUBLE_TAP, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENTOUCH, scriptIndex)
     return true

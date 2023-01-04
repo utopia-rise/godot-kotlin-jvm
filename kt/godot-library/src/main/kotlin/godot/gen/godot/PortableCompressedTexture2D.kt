@@ -6,8 +6,6 @@
 
 package godot
 
-import godot.Image
-import godot.PortableCompressedTexture2D
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -88,7 +86,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    */
   public fun createFromImage(
     image: Image,
-    compressionMode: PortableCompressedTexture2D.CompressionMode,
+    compressionMode: CompressionMode,
     normalMap: Boolean = false,
     lossyQuality: Double = 0.8
   ): Unit {
@@ -110,7 +108,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Return the compression mode used (valid after initialized).
    */
-  public fun getCompressionMode(): PortableCompressedTexture2D.CompressionMode {
+  public fun getCompressionMode(): CompressionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_COMPRESSION_MODE, LONG)

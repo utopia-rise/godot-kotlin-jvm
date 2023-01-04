@@ -32,13 +32,26 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     return true
   }
 
-  public fun initialize(
-    peerId: Long,
-    serverCompatibility: Boolean = false,
-    channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()
-  ): GodotError {
-    TransferContext.writeArguments(LONG to peerId, BOOL to serverCompatibility, ARRAY to channelsConfig)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_INITIALIZE,
+  public fun createServer(channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()):
+      GodotError {
+    TransferContext.writeArguments(ARRAY to channelsConfig)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_CREATE_SERVER,
+        LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public fun createClient(peerId: Long, channelsConfig: VariantArray<Any?> =
+      godot.core.variantArrayOf()): GodotError {
+    TransferContext.writeArguments(LONG to peerId, ARRAY to channelsConfig)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_CREATE_CLIENT,
+        LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public fun createMesh(peerId: Long, channelsConfig: VariantArray<Any?> =
+      godot.core.variantArrayOf()): GodotError {
+    TransferContext.writeArguments(LONG to peerId, ARRAY to channelsConfig)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_CREATE_MESH,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -79,11 +92,6 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_GET_PEERS,
         DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-  }
-
-  public fun close(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_CLOSE, NIL)
   }
 
   public companion object

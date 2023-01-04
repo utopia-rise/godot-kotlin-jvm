@@ -7,6 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.GodotError
+import godot.core.PackedByteArray
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -41,6 +43,20 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   }
 
   /**
+   * Called when a packet needs to be received by the [godot.MultiplayerAPI], if [_getPacket] isn't implemented. Use this when extending this class via GDScript.
+   */
+  public open fun _getPacketScript(): PackedByteArray {
+    throw NotImplementedError("_get_packet_script is not implemented for MultiplayerPeerExtension")
+  }
+
+  /**
+   * Called when a packet needs to be sent by the [godot.MultiplayerAPI], if [_putPacket] isn't implemented. Use this when extending this class via GDScript.
+   */
+  public open fun _putPacketScript(pBuffer: PackedByteArray): GodotError {
+    throw NotImplementedError("_put_packet_script is not implemented for MultiplayerPeerExtension")
+  }
+
+  /**
    * Called when the channel to use is set for this [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.transferChannel]).
    */
   public open fun _setTransferChannel(pChannel: Long): Unit {
@@ -56,13 +72,13 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   /**
    * Called when the transfer mode is set on this [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.transferMode]).
    */
-  public open fun _setTransferMode(pMode: Long): Unit {
+  public open fun _setTransferMode(pMode: MultiplayerPeer.TransferMode): Unit {
   }
 
   /**
    * Called when the transfer mode to use is read on this [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.transferMode]).
    */
-  public open fun _getTransferMode(): Long {
+  public open fun _getTransferMode(): MultiplayerPeer.TransferMode {
     throw NotImplementedError("_get_transfer_mode is not implemented for MultiplayerPeerExtension")
   }
 
@@ -89,8 +105,19 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   /**
    * Called when the [godot.MultiplayerAPI] is polled. See [godot.MultiplayerAPI.poll].
    */
-  public open fun _poll(): Long {
-    throw NotImplementedError("_poll is not implemented for MultiplayerPeerExtension")
+  public open fun _poll(): Unit {
+  }
+
+  /**
+   * Called when the multiplayer peer should be immediately closed (see [godot.MultiplayerPeer.close]).
+   */
+  public open fun _close(): Unit {
+  }
+
+  /**
+   * Called when the connected [pPeer] should be forcibly disconnected (see [godot.MultiplayerPeer.disconnectPeer]).
+   */
+  public open fun _disconnectPeer(pPeer: Long, pForce: Boolean): Unit {
   }
 
   /**
@@ -116,7 +143,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   /**
    * Called when the connection status is requested on the [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.getConnectionStatus]).
    */
-  public open fun _getConnectionStatus(): Long {
+  public open fun _getConnectionStatus(): MultiplayerPeer.ConnectionStatus {
     throw NotImplementedError("_get_connection_status is not implemented for MultiplayerPeerExtension")
   }
 

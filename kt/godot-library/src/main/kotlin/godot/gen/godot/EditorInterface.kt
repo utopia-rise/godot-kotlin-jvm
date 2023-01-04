@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -16,9 +17,9 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -231,11 +232,11 @@ public open class EditorInterface internal constructor() : Node() {
   /**
    * Returns an [godot.Array] with the file paths of the currently opened scenes.
    */
-  public fun getOpenScenes(): VariantArray<Any?> {
+  public fun getOpenScenes(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_OPEN_SCENES,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
@@ -268,21 +269,27 @@ public open class EditorInterface internal constructor() : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystem?
   }
 
-  public fun getEditorMainControl(): Control? {
+  /**
+   * Returns the editor control responsible for main screen plugins and tools. Use it with plugins that implement [godot.EditorPlugin.HasMainScreen].
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
+   */
+  public fun getEditorMainScreen(): VBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_MAIN_CONTROL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Control?
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_MAIN_SCREEN, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
   }
 
   /**
    * Returns mesh previews rendered at the given size as an [godot.Array] of [godot.Texture2D]s.
    */
-  public fun makeMeshPreviews(meshes: VariantArray<Any?>, previewSize: Long): VariantArray<Any?> {
+  public fun makeMeshPreviews(meshes: VariantArray<Mesh>, previewSize: Long):
+      VariantArray<Texture2D> {
     TransferContext.writeArguments(ARRAY to meshes, LONG to previewSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MAKE_MESH_PREVIEWS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Texture2D>
   }
 
   /**
@@ -293,11 +300,14 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SELECT_FILE, NIL)
   }
 
-  public fun getSelectedPath(): String {
+  /**
+   * Returns an array containing the paths of the currently selected files (and directories) in the [godot.FileSystemDock].
+   */
+  public fun getSelectedPaths(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATH,
-        STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATHS,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
@@ -307,6 +317,16 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_PATH,
         STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the current directory being viewed in the [godot.FileSystemDock]. If a file is selected, its base directory will be returned using [godot.String.getBaseDir] instead.
+   */
+  public fun getCurrentDirectory(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_DIRECTORY, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -364,6 +384,25 @@ public open class EditorInterface internal constructor() : Node() {
   }
 
   /**
+   * Sets whether Movie Maker mode is enabled in the editor. See also [isMovieMakerEnabled]. See [godot.MovieWriter] for more information.
+   */
+  public fun setMovieMakerEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MOVIE_MAKER_ENABLED, NIL)
+  }
+
+  /**
+   * Returns `true` if Movie Maker mode is enabled in the editor. See also [setMovieMakerEnabled]. See [godot.MovieWriter] for more information.
+   */
+  public fun isMovieMakerEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_MOVIE_MAKER_ENABLED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns the editor's [godot.EditorInspector] instance.
    *
    * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
@@ -390,6 +429,14 @@ public open class EditorInterface internal constructor() : Node() {
   public fun saveSceneAs(path: String, withPreview: Boolean = true): Unit {
     TransferContext.writeArguments(STRING to path, BOOL to withPreview)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS, NIL)
+  }
+
+  /**
+   * Restarts the editor. This closes the editor and then opens the same project. If [save] is `true`, the project will be saved before restarting.
+   */
+  public fun restartEditor(save: Boolean = true): Unit {
+    TransferContext.writeArguments(BOOL to save)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RESTART_EDITOR, NIL)
   }
 
   /**

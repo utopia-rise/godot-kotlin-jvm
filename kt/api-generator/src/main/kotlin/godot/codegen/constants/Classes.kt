@@ -32,6 +32,7 @@ object GodotTypes {
     const val int = "int"
     const val float = "float"
     const val error = "enum::Error"
+    const val typedArray = "typedarray"
     const val array = "Array"
     const val basis = "Basis"
     const val color = "Color"
@@ -66,10 +67,11 @@ object GodotTypes {
     const val callable = "Callable"
     const val signal = "Signal"
     const val variant = "Variant"
-    const val variantType = "enum::Variant.Type"
+    const val variantType = "Variant.Type"
 
     val coreTypes = listOf(
         error,
+        typedArray,
         array,
         basis,
         color,

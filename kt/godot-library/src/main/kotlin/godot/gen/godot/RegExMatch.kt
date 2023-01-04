@@ -8,11 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.VariantArray
+import godot.core.PackedStringArray
 import godot.core.VariantType.ANY
-import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Any
@@ -38,11 +38,12 @@ public open class RegExMatch : RefCounted() {
       return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
     }
 
-  public val strings: VariantArray<Any?>
+  public val strings: PackedStringArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_STRINGS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_STRINGS,
+          PACKED_STRING_ARRAY)
+      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
     }
 
   public override fun new(scriptIndex: Int): Boolean {

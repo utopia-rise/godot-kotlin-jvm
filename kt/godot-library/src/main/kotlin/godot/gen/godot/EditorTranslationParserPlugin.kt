@@ -222,8 +222,8 @@ public open class EditorTranslationParserPlugin internal constructor() : RefCoun
    */
   public open fun _parseFile(
     path: String,
-    msgids: VariantArray<Any?>,
-    msgidsContextPlural: VariantArray<Any?>
+    msgids: VariantArray<String>,
+    msgidsContextPlural: VariantArray<VariantArray<Any?>>
   ): Unit {
   }
 

@@ -56,16 +56,20 @@ public open class World3D : Resource() {
           NIL)
     }
 
-  public var cameraEffects: CameraEffects?
+  /**
+   * The default [godot.CameraAttributes] resource to use if none set on the [godot.Camera3D].
+   */
+  public var cameraAttributes: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_CAMERA_EFFECTS,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_CAMERA_ATTRIBUTES,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as CameraEffects?
+      return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_CAMERA_EFFECTS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_CAMERA_ATTRIBUTES,
+          NIL)
     }
 
   /**

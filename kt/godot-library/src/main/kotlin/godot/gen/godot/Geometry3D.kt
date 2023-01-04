@@ -41,10 +41,10 @@ public object Geometry3D : Object() {
   /**
    * Returns an array with 6 [godot.core.Plane]s that describe the sides of a box centered at the origin. The box size is defined by [extents], which represents one (positive) corner of the box (i.e. half its actual size).
    */
-  public fun buildBoxPlanes(extents: Vector3): VariantArray<Any?> {
+  public fun buildBoxPlanes(extents: Vector3): VariantArray<Plane> {
     TransferContext.writeArguments(VECTOR3 to extents)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_BOX_PLANES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>
   }
 
   /**
@@ -55,11 +55,11 @@ public object Geometry3D : Object() {
     height: Double,
     sides: Long,
     axis: Vector3.Axis = Vector3.Axis.Z
-  ): VariantArray<Any?> {
+  ): VariantArray<Plane> {
     TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CYLINDER_PLANES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>
   }
 
   /**
@@ -71,11 +71,11 @@ public object Geometry3D : Object() {
     sides: Long,
     lats: Long,
     axis: Vector3.Axis = Vector3.Axis.Z
-  ): VariantArray<Any?> {
+  ): VariantArray<Plane> {
     TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to lats, LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CAPSULE_PLANES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>
   }
 
   /**

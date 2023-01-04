@@ -88,6 +88,13 @@ public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D()
   /**
    *
    */
+  public open fun _getInverseInertiaTensor(): Basis {
+    throw NotImplementedError("_get_inverse_inertia_tensor is not implemented for PhysicsDirectBodyState3DExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _setLinearVelocity(velocity: Vector3): Unit {
   }
 

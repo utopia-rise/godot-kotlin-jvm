@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.BaseButton
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
@@ -31,16 +30,6 @@ import kotlin.Unit
 @GodotBaseType
 public open class BaseButton : Control() {
   /**
-   * Emitted when the button starts being held down.
-   */
-  public val buttonDown: Signal0 by signal()
-
-  /**
-   * Emitted when the button was just toggled between pressed and normal states (only if [toggleMode] is active). The new state is contained in the [buttonPressed] argument.
-   */
-  public val toggled: Signal1<Boolean> by signal("buttonPressed")
-
-  /**
    * Emitted when the button is toggled or pressed. This is on [buttonDown] if [actionMode] is [ACTION_MODE_BUTTON_PRESS] and on [buttonUp] otherwise.
    *
    * If you need to know the button's pressed state (and [toggleMode] is active), use [toggled] instead.
@@ -51,6 +40,16 @@ public open class BaseButton : Control() {
    * Emitted when the button stops being held down.
    */
   public val buttonUp: Signal0 by signal()
+
+  /**
+   * Emitted when the button starts being held down.
+   */
+  public val buttonDown: Signal0 by signal()
+
+  /**
+   * Emitted when the button was just toggled between pressed and normal states (only if [toggleMode] is active). The new state is contained in the [buttonPressed] argument.
+   */
+  public val toggled: Signal1<Boolean> by signal("buttonPressed")
 
   /**
    * If `true`, the button is in disabled state and can't be clicked or toggled.
@@ -115,11 +114,11 @@ public open class BaseButton : Control() {
   /**
    * Determines when the button is considered clicked, one of the [enum ActionMode] constants.
    */
-  public var actionMode: Long
+  public var actionMode: ActionMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_ACTION_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BaseButton.ActionMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -131,11 +130,11 @@ public open class BaseButton : Control() {
    *
    * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT`.
    */
-  public var buttonMask: Long
+  public var buttonMask: MouseButton
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_MASK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return MouseButton.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -175,6 +174,22 @@ public open class BaseButton : Control() {
     }
 
   /**
+   * If `true`, the button will appear pressed when its shortcut is activated. If `false` and [toggleMode] is `false`, the shortcut will activate the button without appearing to press the button.
+   */
+  public var shortcutFeedback: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_SHORTCUT_FEEDBACK,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_SHORTCUT_FEEDBACK,
+          NIL)
+    }
+
+  /**
    * The [godot.ButtonGroup] associated with the button. Not to be confused with node groups.
    */
   public var buttonGroup: ButtonGroup?
@@ -187,19 +202,6 @@ public open class BaseButton : Control() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_BUTTON_GROUP, NIL)
-    }
-
-  public var shortcutContext: Node?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_SHORTCUT_CONTEXT,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Node?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_SHORTCUT_CONTEXT,
-          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -242,33 +244,10 @@ public open class BaseButton : Control() {
   /**
    * Returns the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the [enum DrawMode] enum.
    */
-  public fun getDrawMode(): BaseButton.DrawMode {
+  public fun getDrawMode(): DrawMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_DRAW_MODE, LONG)
     return BaseButton.DrawMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public enum class ActionMode(
-    id: Long
-  ) {
-    /**
-     * Require just a press to consider the button clicked.
-     */
-    ACTION_MODE_BUTTON_PRESS(0),
-    /**
-     * Require a press and a subsequent release before considering the button clicked.
-     */
-    ACTION_MODE_BUTTON_RELEASE(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public enum class DrawMode(
@@ -294,6 +273,29 @@ public open class BaseButton : Control() {
      * The state of buttons are both hovered and pressed.
      */
     DRAW_HOVER_PRESSED(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ActionMode(
+    id: Long
+  ) {
+    /**
+     * Require just a press to consider the button clicked.
+     */
+    ACTION_MODE_BUTTON_PRESS(0),
+    /**
+     * Require a press and a subsequent release before considering the button clicked.
+     */
+    ACTION_MODE_BUTTON_RELEASE(1),
     ;
 
     public val id: Long

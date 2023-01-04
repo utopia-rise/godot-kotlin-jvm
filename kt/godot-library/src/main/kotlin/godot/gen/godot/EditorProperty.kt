@@ -19,6 +19,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
+import godot.signals.Signal4
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
@@ -36,14 +37,21 @@ import kotlin.Unit
 @GodotBaseType
 public open class EditorProperty internal constructor() : Container() {
   /**
-   * Used by sub-inspectors. Emit it if what was selected was an Object ID.
+   * Do not emit this manually, use the [emitChanged] method instead.
    */
-  public val objectIdSelected: Signal2<StringName, Long> by signal("property", "id")
+  public val propertyChanged: Signal4<StringName, Any, StringName, Boolean> by signal("property",
+      "value", "field", "changing")
 
   /**
-   * Emitted when a property was checked. Used internally.
+   * Emit it if you want multiple properties modified at the same time. Do not use if added via [godot.EditorInspectorPlugin.ParseProperty].
    */
-  public val propertyChecked: Signal2<StringName, Boolean> by signal("property", "checked")
+  public val multiplePropertiesChanged: Signal2<PackedStringArray, VariantArray<Any?>> by
+      signal("properties", "value")
+
+  /**
+   * Emit it if you want to add this value as an animation key (check for keying being enabled first).
+   */
+  public val propertyKeyed: Signal1<StringName> by signal("property")
 
   /**
    * Emitted when a property was deleted. Used internally.
@@ -56,14 +64,22 @@ public open class EditorProperty internal constructor() : Container() {
   public val propertyKeyedWithValue: Signal2<StringName, Any> by signal("property", "value")
 
   /**
-   * Emit it if you want to add this value as an animation key (check for keying being enabled first).
+   * Emitted when a property was checked. Used internally.
    */
-  public val propertyKeyed: Signal1<StringName> by signal("property")
+  public val propertyChecked: Signal2<StringName, Boolean> by signal("property", "checked")
 
   /**
-   * Do not emit this manually, use the [emitChanged] method instead.
+   * Emit it if you want to mark (or unmark) the value of a property for being saved regardless of being equal to the default value.
+   *
+   * The default value is the one the property will get when the node is just instantiated and can come from an ancestor scene in the inheritance/instantiation chain, a script or a builtin class.
    */
-  public val propertyChanged: Signal2<StringName, Any> by signal("property", "value")
+  public val propertyPinned: Signal2<StringName, Boolean> by signal("property", "pinned")
+
+  /**
+   * Emitted when the revertability (i.e., whether it has a non-default value and thus is displayed with a revert icon) of a property has changed.
+   */
+  public val propertyCanRevertChanged: Signal2<StringName, Boolean> by signal("property",
+      "canRevert")
 
   /**
    * If you want a sub-resource to be edited, emit this signal with the resource.
@@ -71,22 +87,14 @@ public open class EditorProperty internal constructor() : Container() {
   public val resourceSelected: Signal2<String, Resource> by signal("path", "resource")
 
   /**
+   * Used by sub-inspectors. Emit it if what was selected was an Object ID.
+   */
+  public val objectIdSelected: Signal2<StringName, Long> by signal("property", "id")
+
+  /**
    * Emitted when selected. Used internally.
    */
   public val selected: Signal2<String, Long> by signal("path", "focusableIdx")
-
-  /**
-   * Emit it if you want multiple properties modified at the same time. Do not use if added via [godot.EditorInspectorPlugin.ParseProperty].
-   */
-  public val multiplePropertiesChanged: Signal2<PackedStringArray, VariantArray<Any?>> by
-      signal("properties", "value")
-
-  /**
-   * Emit it if you want to mark (or unmark) the value of a property for being saved regardless of being equal to the default value.
-   *
-   * The default value is the one the property will get when the node is just instantiated and can come from an ancestor scene in the inheritance/instancing chain, a script or a builtin class.
-   */
-  public val propertyPinned: Signal2<StringName, Boolean> by signal("property", "pinned")
 
   /**
    * Set this property to change the label (if you want to show one).
@@ -200,6 +208,12 @@ public open class EditorProperty internal constructor() : Container() {
   }
 
   /**
+   * Called when the read-only status of the property is changed. It may be used to change custom controls into a read-only or modifiable state.
+   */
+  public open fun _setReadOnly(readOnly: Boolean): Unit {
+  }
+
+  /**
    * Gets the edited property. If your editor is for a single property (added via [godot.EditorInspectorPlugin.ParseProperty]), then this will return the property.
    */
   public fun getEditedProperty(): StringName {
@@ -217,13 +231,6 @@ public open class EditorProperty internal constructor() : Container() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_EDITED_OBJECT,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Object?
-  }
-
-  public fun getTooltipText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_TOOLTIP_TEXT,
-        STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**

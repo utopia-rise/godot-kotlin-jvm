@@ -7,6 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
@@ -28,7 +30,7 @@ import kotlin.Suppress
  *
  * If a property's name is path-like (i.e. if it contains forward slashes), [godot.EditorInspector] will create nested sections for "directories" along the path. For example, if a property is named `highlighting/gdscript/node_path_color`, it will be shown as "Node Path Color" inside the "GDScript" section nested inside the "Highlighting" section.
  *
- * If a property has [PROPERTY_USAGE_GROUP] usage, it will group subsequent properties whose name starts with the property's hint string. The group ends when a property does not start with that hint string or when a new group starts. An empty group name effectively ends the current group. [godot.EditorInspector] will create a top-level section for each group. For example, if a property with group usage is named `Collide With` and its hint string is `collide_with_`, a subsequent `collide_with_area` property will be shown as "Area" inside the "Collide With" section.
+ * If a property has [PROPERTY_USAGE_GROUP] usage, it will group subsequent properties whose name starts with the property's hint string. The group ends when a property does not start with that hint string or when a new group starts. An empty group name effectively ends the current group. [godot.EditorInspector] will create a top-level section for each group. For example, if a property with group usage is named `Collide With` and its hint string is `collide_with_`, a subsequent `collide_with_area` property will be shown as "Area" inside the "Collide With" section. There is also a special case: when the hint string contains the name of a property, that property is grouped too. This is mainly to help grouping properties like `font`, `font_color` and `font_size` (using the hint string `font_`).
  *
  * If a property has [PROPERTY_USAGE_SUBGROUP] usage, a subgroup will be created in the same way as a group, and a second-level section will be created for each subgroup.
  *
@@ -37,34 +39,9 @@ import kotlin.Suppress
 @GodotBaseType
 public open class EditorInspector internal constructor() : ScrollContainer() {
   /**
-   * Emitted when a property is edited in the inspector.
-   */
-  public val propertyEdited: Signal1<String> by signal("property")
-
-  /**
-   * Emitted when the Edit button of an [godot.Object] has been pressed in the inspector. This is mainly used in the remote scene tree Inspector.
-   */
-  public val objectIdSelected: Signal1<Long> by signal("id")
-
-  /**
-   * Emitted when a property is removed from the inspector.
-   */
-  public val propertyDeleted: Signal1<String> by signal("property")
-
-  /**
    * Emitted when a property is selected in the inspector.
    */
   public val propertySelected: Signal1<String> by signal("property")
-
-  /**
-   * Emitted when a property that requires a restart to be applied is edited in the inspector. This is only used in the Project Settings and Editor Settings.
-   */
-  public val restartRequested: Signal0 by signal()
-
-  /**
-   * Emitted when the object being edited by the inspector has changed.
-   */
-  public val editedObjectChanged: Signal0 by signal()
 
   /**
    * Emitted when a property is keyed in the inspector. Properties can be keyed by clicking the "key" icon next to a property when the Animation panel is toggled.
@@ -72,9 +49,24 @@ public open class EditorInspector internal constructor() : ScrollContainer() {
   public val propertyKeyed: Signal3<String, Any, Boolean> by signal("property", "value", "advance")
 
   /**
+   * Emitted when a property is removed from the inspector.
+   */
+  public val propertyDeleted: Signal1<String> by signal("property")
+
+  /**
    * Emitted when a resource is selected in the inspector.
    */
   public val resourceSelected: Signal2<Resource, String> by signal("resource", "path")
+
+  /**
+   * Emitted when the Edit button of an [godot.Object] has been pressed in the inspector. This is mainly used in the remote scene tree Inspector.
+   */
+  public val objectIdSelected: Signal1<Long> by signal("id")
+
+  /**
+   * Emitted when a property is edited in the inspector.
+   */
+  public val propertyEdited: Signal1<String> by signal("property")
 
   /**
    * Emitted when a boolean property is toggled in the inspector.
@@ -83,9 +75,29 @@ public open class EditorInspector internal constructor() : ScrollContainer() {
    */
   public val propertyToggled: Signal2<String, Boolean> by signal("property", "checked")
 
+  /**
+   * Emitted when the object being edited by the inspector has changed.
+   */
+  public val editedObjectChanged: Signal0 by signal()
+
+  /**
+   * Emitted when a property that requires a restart to be applied is edited in the inspector. This is only used in the Project Settings and Editor Settings.
+   */
+  public val restartRequested: Signal0 by signal()
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORINSPECTOR, scriptIndex)
     return true
+  }
+
+  /**
+   * Gets the path of the currently selected property.
+   */
+  public fun getSelectedPath(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINSPECTOR_GET_SELECTED_PATH,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   public companion object

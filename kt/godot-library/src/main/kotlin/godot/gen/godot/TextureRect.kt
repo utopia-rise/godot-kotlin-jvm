@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -60,12 +61,12 @@ public open class TextureRect : Control() {
   /**
    * Controls the texture's behavior when resizing the node's bounding rectangle. See [enum StretchMode].
    */
-  public var stretchMode: Long
+  public var stretchMode: StretchMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_STRETCH_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextureRect.StretchMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

@@ -15,6 +15,7 @@ import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
+import godot.codegen.workarounds.sanitizedName
 import org.gradle.kotlin.dsl.support.appendReproducibleNewLine
 
 class GenerationService(
@@ -165,7 +166,7 @@ class GenerationService(
                 .build()
         )
 
-        clazz.methods.forEach { method ->
+        for (method in clazz.methods) {
             if (!jvmMethodToNotGenerate.contains(method.engineIndexName)) {
                 fileSpecBuilder.addProperty(
                     PropertySpec.builder(method.engineIndexName, INT, KModifier.CONST)
@@ -267,7 +268,7 @@ class GenerationService(
 
         val builder = PropertySpec
             .builder(
-                signal.name,
+                signal.sanitizedName(containingClassName),
                 signalClass.typeName
             )
 
@@ -390,7 +391,11 @@ class GenerationService(
             )
         }
 
-        if (property.hasValidGetterInClass) {
+        if (property.shouldUseSuperGetter) {
+            propertySpecBuilder.getter(
+                generateSuperGetter()
+            )
+        } else if (property.hasValidGetterInClass) {
             val argumentStringTemplate = if (property.isIndexed) {
                 "%T to ${property.internal.index}"
             } else {
@@ -405,22 +410,16 @@ class GenerationService(
                     .build()
             )
         } else {
-            if (property.shouldUseSuperGetter) {
-                propertySpecBuilder.getter(
-                    generateSuperGetter()
-                )
-            } else {
-                propertySpecBuilder.getter(
-                    FunSpec.getterBuilder()
-                        .addStatement(
-                            "%L %T(%S)",
-                            "throw",
-                            UninitializedPropertyAccessException::class,
-                            "Cannot access property ${property.name}: has no getter"
-                        )
-                        .build()
-                )
-            }
+            propertySpecBuilder.getter(
+                FunSpec.getterBuilder()
+                    .addStatement(
+                        "%L %T(%S)",
+                        "throw",
+                        UninitializedPropertyAccessException::class,
+                        "Cannot access property ${property.name}: has no getter"
+                    )
+                    .build()
+            )
         }
 
         val kDoc =
@@ -583,10 +582,10 @@ class GenerationService(
 
             val kTypeVariable = TypeVariableName.invoke(
                 "K",
-                bounds = *arrayOf(
+                bounds = arrayOf(
                     LambdaTypeName.get(
                         returnType = UNIT,
-                        parameters = *typeVariablesNames.toTypedArray()
+                        parameters = typeVariablesNames.toTypedArray()
                     )
                 )
             ).copy(reified = true)
@@ -606,13 +605,6 @@ class GenerationService(
                             .build(),
                         ParameterSpec.builder("method", kTypeVariable)
                             .build(),
-                        ParameterSpec.builder(
-                            "binds", GODOT_ARRAY
-                                .parameterizedBy(ANY.copy(nullable = true))
-                                .copy(nullable = true)
-                        )
-                            .defaultValue("null")
-                            .build(),
                         ParameterSpec.builder("flags", Long::class)
                             .defaultValue("0")
                             .build()
@@ -621,7 +613,7 @@ class GenerationService(
             connectFun.addCode(
                 """
                             |val methodName = (method as %T<*>).name.%M().%M()
-                            |return connect(%T(target, methodName), binds, flags)
+                            |return connect(%T(target, methodName), flags)
                             |""".trimMargin(),
                 ClassName("kotlin.reflect", "KCallable"),
                 MemberName(godotUtilPackage, "camelToSnakeCase"),
@@ -743,7 +735,7 @@ class GenerationService(
                 val defaultValueKotlinCode = argument.getDefaultValueKotlinString()
                 val appliedDefault = if (argument.isEnum() && defaultValueKotlinCode != null) {
                     enumService.findEnumValue(
-                        argumentTypeClassName.className.simpleName,
+                        argumentTypeClassName,
                         defaultValueKotlinCode.toInt()
                     ).name
                 } else {
@@ -753,7 +745,7 @@ class GenerationService(
 
                 generatedFunBuilder.addParameter(parameterBuilder.build())
             }
-            if (method.internal.isVararg && length != 0) append(",·")
+            if (method.internal.isVararg && isNotEmpty()) append(",·")
         }
     }
 
@@ -814,7 +806,7 @@ class GenerationService(
         if (methodReturnType.typeName != UNIT) {
             if (callable.isEnum()) {
                 addStatement(
-                    "return·${methodReturnType.className.simpleName}.values()[%T.readReturnValue(%T)·as·%T]",
+                    "return·${methodReturnType.className.simpleNames.joinToString(".")}.values()[%T.readReturnValue(%T)·as·%T]",
                     TRANSFER_CONTEXT,
                     ClassName("godot.core.VariantType", "JVM_INT"),
                     INT
@@ -855,17 +847,9 @@ class GenerationService(
 
         val registerMethodForClassFun = FunSpec.builder("registerEngineTypeMethodFor${clazz.name}")
         registerMethodForClassFun.addModifiers(KModifier.PRIVATE)
-        clazz.methods.filter { !it.isGetterOrSetter }.forEach {
-            if (!jvmMethodToNotGenerate.contains(it.engineIndexName)) {
-                registerMethodForClassFun.addEngineTypeMethod(clazz.engineClassDBIndexName, it.internal.name)
-            }
-        }
-        clazz.properties.forEach {
-            if (it.hasValidGetterInClass) {
-                registerMethodForClassFun.addEngineTypeMethod(clazz.engineClassDBIndexName, it.internal.getter)
-            }
-            if (it.hasValidSetterInClass) {
-                registerMethodForClassFun.addEngineTypeMethod(clazz.engineClassDBIndexName, it.internal.setter)
+        for (method in clazz.methods) {
+            if (!jvmMethodToNotGenerate.contains(method.engineIndexName)) {
+                registerMethodForClassFun.addEngineTypeMethod(clazz.engineClassDBIndexName, method.internal.name)
             }
         }
         registrationFileSpec.registrationFile.addFunction(registerMethodForClassFun.build())

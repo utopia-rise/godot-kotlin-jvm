@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Input
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantArray
@@ -26,7 +25,6 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal2
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -255,10 +253,10 @@ public object Input : Object() {
   /**
    * Returns an [godot.Array] containing the device IDs of all currently connected joypads.
    */
-  public fun getConnectedJoypads(): VariantArray<Any?> {
+  public fun getConnectedJoypads(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CONNECTED_JOYPADS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>
   }
 
   /**
@@ -282,7 +280,7 @@ public object Input : Object() {
   }
 
   /**
-   * Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. [weakMagnitude] is the strength of the weak motor (between 0 and 1) and [strongMagnitude] is the strength of the strong motor (between 0 and 1). [duration] is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely).
+   * Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. [weakMagnitude] is the strength of the weak motor (between 0 and 1) and [strongMagnitude] is the strength of the strong motor (between 0 and 1). [duration] is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely). The vibration can be stopped early by calling [stopJoyVibration].
    *
    * **Note:** Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.
    */
@@ -297,7 +295,7 @@ public object Input : Object() {
   }
 
   /**
-   * Stops the vibration of the joypad.
+   * Stops the vibration of the joypad started with [startJoyVibration].
    */
   public fun stopJoyVibration(device: Long): Unit {
     TransferContext.writeArguments(LONG to device)
@@ -305,15 +303,15 @@ public object Input : Object() {
   }
 
   /**
-   * Vibrate handheld devices.
+   * Vibrate the handheld device for the specified duration in milliseconds.
    *
-   * **Note:** This method is implemented on Android, iOS, and Web.
+   * **Note:** This method is implemented on Android, iOS, and Web. It has no effect on other platforms.
    *
-   * **Note:** For Android, it requires enabling the `VIBRATE` permission in the export preset.
+   * **Note:** For Android, [vibrateHandheld] requires enabling the `VIBRATE` permission in the export preset. Otherwise, [vibrateHandheld] will have no effect.
    *
-   * **Note:** For iOS, specifying the duration is supported in iOS 13 and later.
+   * **Note:** For iOS, specifying the duration is only supported in iOS 13 and later.
    *
-   * **Note:** Some web browsers such as Safari and Firefox for Android do not support this method.
+   * **Note:** Some web browsers such as Safari and Firefox for Android do not support [vibrateHandheld].
    */
   public fun vibrateHandheld(durationMs: Long = 500): Unit {
     TransferContext.writeArguments(LONG to durationMs)
@@ -425,12 +423,12 @@ public object Input : Object() {
     return MouseButton.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun setMouseMode(mode: Input.MouseMode): Unit {
+  public fun setMouseMode(mode: MouseMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MOUSE_MODE, NIL)
   }
 
-  public fun getMouseMode(): Input.MouseMode {
+  public fun getMouseMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG)
     return Input.MouseMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -473,8 +471,7 @@ public object Input : Object() {
    *
    * **Note:** This method generates an [godot.InputEventMouseMotion] to update cursor immediately.
    */
-  public fun setDefaultCursorShape(shape: Input.CursorShape = Input.CursorShape.CURSOR_ARROW):
-      Unit {
+  public fun setDefaultCursorShape(shape: CursorShape = Input.CursorShape.CURSOR_ARROW): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_DEFAULT_CURSOR_SHAPE, NIL)
   }
@@ -482,7 +479,7 @@ public object Input : Object() {
   /**
    * Returns the currently assigned cursor shape (see [enum CursorShape]).
    */
-  public fun getCurrentCursorShape(): Input.CursorShape {
+  public fun getCurrentCursorShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CURRENT_CURSOR_SHAPE,
         LONG)
@@ -502,7 +499,7 @@ public object Input : Object() {
    */
   public fun setCustomMouseCursor(
     image: Resource,
-    shape: Input.CursorShape = Input.CursorShape.CURSOR_ARROW,
+    shape: CursorShape = Input.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to shape.id, VECTOR2 to hotspot)
@@ -551,6 +548,13 @@ public object Input : Object() {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_USE_ACCUMULATED_INPUT,
         NIL)
+  }
+
+  public fun isUsingAccumulatedInput(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_USING_ACCUMULATED_INPUT,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

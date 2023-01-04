@@ -11,11 +11,13 @@ import godot.core.AABB
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -73,6 +75,36 @@ public open class PrimitiveMesh : Mesh() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_FLIP_FACES, NIL)
+    }
+
+  /**
+   * If set, generates UV2 UV coordinates applying a padding using the [uv2Padding] setting. UV2 is needed for lightmapping.
+   */
+  public var addUv2: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_ADD_UV2, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_ADD_UV2, NIL)
+    }
+
+  /**
+   * If [addUv2] is set, specifies the padding in pixels applied along seams of the mesh. If at generation the size of the lightmap texture can't be determined, the UVs are calculated assuming a texture size of 1024x1024.
+   */
+  public var uv2Padding: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_UV2_PADDING,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_UV2_PADDING,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

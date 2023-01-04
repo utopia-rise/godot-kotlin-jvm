@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Mesh
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Dictionary
@@ -84,13 +83,17 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * var vertices = new Godot.Collections.Array<Vector3>();
+ * var vertices = new Vector3[]
  *
- * vertices.Add(new Vector3(0, 1, 0));
+ * {
  *
- * vertices.Add(new Vector3(1, 0, 0));
+ *     new Vector3(0, 1, 0),
  *
- * vertices.Add(new Vector3(0, 0, 1));
+ *     new Vector3(1, 0, 0),
+ *
+ *     new Vector3(0, 0, 1),
+ *
+ * };
  *
  *
  *
@@ -110,7 +113,7 @@ import kotlin.Unit
  *
  * arrMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
  *
- * var m = new MeshInstance();
+ * var m = new MeshInstance3D();
  *
  * m.Mesh = arrMesh;
  *
@@ -129,12 +132,12 @@ public open class ArrayMesh : Mesh() {
   /**
    * Sets the blend shape mode to one of [enum Mesh.BlendShapeMode].
    */
-  public var blendShapeMode: Long
+  public var blendShapeMode: Mesh.BlendShapeMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Mesh.BlendShapeMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -230,7 +233,7 @@ public open class ArrayMesh : Mesh() {
   public fun addSurfaceFromArrays(
     primitive: Mesh.PrimitiveType,
     arrays: VariantArray<Any?>,
-    blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
+    blendShapes: VariantArray<VariantArray<Any?>> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
     compressFlags: Long = 0
   ): Unit {

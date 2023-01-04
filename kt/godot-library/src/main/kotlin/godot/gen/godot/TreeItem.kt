@@ -6,8 +6,6 @@
 
 package godot
 
-import godot.Control
-import godot.TreeItem
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -61,6 +59,22 @@ public open class TreeItem internal constructor() : Object() {
     }
 
   /**
+   * If `true`, the [godot.TreeItem] is visible (default).
+   *
+   * Note that if a [godot.TreeItem] is set to not be visible, none of its children will be visible either.
+   */
+  public var visible: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_VISIBLE, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_VISIBLE, NIL)
+    }
+
+  /**
    * If `true`, folding is disabled for this TreeItem.
    */
   public var disableFolding: Boolean
@@ -99,7 +113,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's cell mode to [mode]. See [enum TreeCellMode] constants.
    */
-  public fun setCellMode(column: Long, mode: TreeItem.TreeCellMode): Unit {
+  public fun setCellMode(column: Long, mode: TreeCellMode): Unit {
     TransferContext.writeArguments(LONG to column, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CELL_MODE, NIL)
   }
@@ -107,7 +121,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Returns the column's cell mode.
    */
-  public fun getCellMode(column: Long): TreeItem.TreeCellMode {
+  public fun getCellMode(column: Long): TreeCellMode {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CELL_MODE, LONG)
     return TreeItem.TreeCellMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -191,31 +205,10 @@ public open class TreeItem internal constructor() : Object() {
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun setOpentypeFeature(
-    column: Long,
-    tag: String,
-    `value`: Long
-  ): Unit {
-    TransferContext.writeArguments(LONG to column, STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_OPENTYPE_FEATURE, NIL)
-  }
-
-  public fun getOpentypeFeature(column: Long, tag: String): Long {
-    TransferContext.writeArguments(LONG to column, STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_OPENTYPE_FEATURE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun clearOpentypeFeatures(column: Long): Unit {
-    TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CLEAR_OPENTYPE_FEATURES,
-        NIL)
-  }
-
   /**
    *
    */
-  public fun setStructuredTextBidiOverride(column: Long, parser: Control.StructuredTextParser):
+  public fun setStructuredTextBidiOverride(column: Long, parser: TextServer.StructuredTextParser):
       Unit {
     TransferContext.writeArguments(LONG to column, LONG to parser.id)
     TransferContext.callMethod(rawPtr,
@@ -225,11 +218,11 @@ public open class TreeItem internal constructor() : Object() {
   /**
    *
    */
-  public fun getStructuredTextBidiOverride(column: Long): Control.StructuredTextParser {
+  public fun getStructuredTextBidiOverride(column: Long): TextServer.StructuredTextParser {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-    return Control.StructuredTextParser.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return TextServer.StructuredTextParser.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -428,6 +421,26 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
+   * Collapses or uncollapses this [godot.TreeItem] and all the descendants of this item.
+   */
+  public fun setCollapsedRecursive(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_COLLAPSED_RECURSIVE,
+        NIL)
+  }
+
+  /**
+   * Returns `true` if this [godot.TreeItem], or any of its descendants, is collapsed.
+   *
+   * If [onlyVisible] is `true` it ignores non-visible [godot.TreeItem]s.
+   */
+  public fun isAnyCollapsed(onlyVisible: Boolean = false): Boolean {
+    TransferContext.writeArguments(BOOL to onlyVisible)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_ANY_COLLAPSED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    *
    */
   public fun uncollapseTree(): Unit {
@@ -608,9 +621,9 @@ public open class TreeItem internal constructor() : Object() {
     button: Texture2D,
     id: Long = -1,
     disabled: Boolean = false,
-    tooltip: String = ""
+    tooltipText: String = ""
   ): Unit {
-    TransferContext.writeArguments(LONG to column, OBJECT to button, LONG to id, BOOL to disabled, STRING to tooltip)
+    TransferContext.writeArguments(LONG to column, OBJECT to button, LONG to id, BOOL to disabled, STRING to tooltipText)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ADD_BUTTON, NIL)
   }
 
@@ -623,14 +636,18 @@ public open class TreeItem internal constructor() : Object() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun getButtonTooltip(column: Long, buttonIdx: Long): String {
+  /**
+   * Returns the tooltip text for the button at index [buttonIdx] in column [column].
+   */
+  public fun getButtonTooltipText(column: Long, buttonIdx: Long): String {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_TOOLTIP, STRING)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_TOOLTIP_TEXT,
+        STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
-   * Returns the id for the button at index [buttonIdx] in column [column].
+   * Returns the ID for the button at index [buttonIdx] in column [column].
    */
   public fun getButtonId(column: Long, buttonIdx: Long): Long {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
@@ -639,7 +656,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the button index if there is a button with id [id] in column [column], otherwise returns -1.
+   * Returns the button index if there is a button with ID [id] in column [column], otherwise returns -1.
    */
   public fun getButtonById(column: Long, id: Long): Long {
     TransferContext.writeArguments(LONG to column, LONG to id)
@@ -689,6 +706,18 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
+   * Sets the given column's button color at index [buttonIdx] to [color].
+   */
+  public fun setButtonColor(
+    column: Long,
+    buttonIdx: Long,
+    color: Color
+  ): Unit {
+    TransferContext.writeArguments(LONG to column, LONG to buttonIdx, COLOR to color)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_COLOR, NIL)
+  }
+
+  /**
    * Returns `true` if the button at index [buttonIdx] for the given [column] is disabled.
    */
   public fun isButtonDisabled(column: Long, buttonIdx: Long): Boolean {
@@ -697,14 +726,20 @@ public open class TreeItem internal constructor() : Object() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public fun setTooltip(column: Long, tooltip: String): Unit {
+  /**
+   * Sets the given column's tooltip text.
+   */
+  public fun setTooltipText(column: Long, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to column, STRING to tooltip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TOOLTIP, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TOOLTIP_TEXT, NIL)
   }
 
-  public fun getTooltip(column: Long): String {
+  /**
+   * Returns the given column's tooltip text.
+   */
+  public fun getTooltipText(column: Long): String {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TOOLTIP, STRING)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TOOLTIP_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -843,10 +878,10 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Returns an array of references to the item's children.
    */
-  public fun getChildren(): VariantArray<Any?> {
+  public fun getChildren(): VariantArray<TreeItem> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILDREN, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<TreeItem>
   }
 
   /**

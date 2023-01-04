@@ -29,34 +29,14 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptEditorBase internal constructor() : VBoxContainer() {
   /**
+   * Emitted after script validation or when the edited resource has changed.
+   */
+  public val nameChanged: Signal0 by signal()
+
+  /**
    * Emitted after script validation.
    */
   public val editedScriptChanged: Signal0 by signal()
-
-  /**
-   * Emitted when the user request to find and replace text in the file system.
-   */
-  public val replaceInFilesRequested: Signal1<String> by signal("text")
-
-  /**
-   * Emitted when the user request to search text in the file system.
-   */
-  public val searchInFilesRequested: Signal1<String> by signal("text")
-
-  /**
-   * Emitted when the user requests a specific documentation page.
-   */
-  public val goToHelp: Signal1<String> by signal("what")
-
-  /**
-   * Emitted when the user contextual goto and the item is in the same script.
-   */
-  public val requestSaveHistory: Signal0 by signal()
-
-  /**
-   * Emitted when the user requests to view a specific line of a script, similar to [goToMethod].
-   */
-  public val requestOpenScriptAtLine: Signal2<Object, Long> by signal("script", "line")
 
   /**
    * Emitted when the user requests contextual help.
@@ -64,9 +44,34 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
   public val requestHelp: Signal1<String> by signal("topic")
 
   /**
-   * Emitted after script validation or when the edited resource has changed.
+   * Emitted when the user requests to view a specific line of a script, similar to [goToMethod].
    */
-  public val nameChanged: Signal0 by signal()
+  public val requestOpenScriptAtLine: Signal2<Object, Long> by signal("script", "line")
+
+  /**
+   * Emitted when the user contextual goto and the item is in the same script.
+   */
+  public val requestSaveHistory: Signal0 by signal()
+
+  /**
+   * Emitted when the user requests a specific documentation page.
+   */
+  public val goToHelp: Signal1<String> by signal("what")
+
+  /**
+   * Emitted when the user request to search text in the file system.
+   */
+  public val searchInFilesRequested: Signal1<String> by signal("text")
+
+  /**
+   * Emitted when the user request to find and replace text in the file system.
+   */
+  public val replaceInFilesRequested: Signal1<String> by signal("text")
+
+  /**
+   * Emitted when the user requests to view a specific method of a script, similar to [requestOpenScriptAtLine].
+   */
+  public val goToMethod: Signal2<Object, String> by signal("script", "method")
 
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SCRIPTEDITORBASE, scriptIndex)

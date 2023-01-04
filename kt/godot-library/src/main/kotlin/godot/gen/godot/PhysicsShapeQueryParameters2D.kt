@@ -21,7 +21,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -52,14 +51,14 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The list of objects or object [RID]s that will be excluded from collisions.
+   * The list of object [RID]s that will be excluded from collisions. Use [godot.CollisionObject2D.getRid] to get the [RID] associated with a [godot.CollisionObject2D]-derived node.
    */
-  public var exclude: VariantArray<Any?>
+  public var exclude: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_GET_EXCLUDE, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -102,12 +101,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The [godot.Shape2D] that will be used for collision/intersection queries. This stores the actual reference which avoids the shape to be released while being used for queries, so always prefer using this over [shapeRid].
    */
-  public var shape: Shape2D?
+  public var shape: Resource?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_GET_SHAPE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
+      return TransferContext.readReturnValue(OBJECT, true) as Resource?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

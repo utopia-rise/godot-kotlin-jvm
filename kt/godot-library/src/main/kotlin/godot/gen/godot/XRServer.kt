@@ -45,9 +45,14 @@ import kotlin.Unit
 @GodotBaseType
 public object XRServer : Object() {
   /**
-   * Emitted when a tracker is removed. You should remove any [godot.XRController3D] or [godot.XRAnchor3D] points if applicable. This is not mandatory, the nodes simply become inactive and will be made active again when a new tracker becomes available (i.e. a new controller is switched on that takes the place of the previous one).
+   * Emitted when a new interface has been added.
    */
-  public val trackerRemoved: Signal2<StringName, Long> by signal("trackerName", "type")
+  public val interfaceAdded: Signal1<StringName> by signal("interfaceName")
+
+  /**
+   * Emitted when an interface is removed.
+   */
+  public val interfaceRemoved: Signal1<StringName> by signal("interfaceName")
 
   /**
    * Emitted when a new tracker has been added. If you don't use a fixed number of controllers or if you're using [godot.XRAnchor3D]s for an AR solution, it is important to react to this signal to add the appropriate [godot.XRController3D] or [godot.XRAnchor3D] nodes related to this new tracker.
@@ -60,14 +65,9 @@ public object XRServer : Object() {
   public val trackerUpdated: Signal2<StringName, Long> by signal("trackerName", "type")
 
   /**
-   * Emitted when an interface is removed.
+   * Emitted when a tracker is removed. You should remove any [godot.XRController3D] or [godot.XRAnchor3D] points if applicable. This is not mandatory, the nodes simply become inactive and will be made active again when a new tracker becomes available (i.e. a new controller is switched on that takes the place of the previous one).
    */
-  public val interfaceRemoved: Signal1<StringName> by signal("interfaceName")
-
-  /**
-   * Emitted when a new interface has been added.
-   */
-  public val interfaceAdded: Signal1<StringName> by signal("interfaceName")
+  public val trackerRemoved: Signal2<StringName, Long> by signal("trackerName", "type")
 
   public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_XRSERVER)
@@ -108,7 +108,7 @@ public object XRServer : Object() {
    *
    * You should call this method after a few seconds have passed. For example, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, or when implementing a teleport mechanism.
    */
-  public fun centerOnHmd(rotationMode: XRServer.RotationMode, keepHeight: Boolean): Unit {
+  public fun centerOnHmd(rotationMode: RotationMode, keepHeight: Boolean): Unit {
     TransferContext.writeArguments(LONG to rotationMode.id, BOOL to keepHeight)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_CENTER_ON_HMD, NIL)
   }
@@ -160,10 +160,10 @@ public object XRServer : Object() {
   /**
    * Returns a list of available interfaces the ID and name of each interface.
    */
-  public fun getInterfaces(): VariantArray<Any?> {
+  public fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**
@@ -221,33 +221,6 @@ public object XRServer : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_PRIMARY_INTERFACE, NIL)
   }
 
-  public enum class RotationMode(
-    id: Long
-  ) {
-    /**
-     * Fully reset the orientation of the HMD. Regardless of what direction the user is looking to in the real world. The user will look dead ahead in the virtual world.
-     */
-    RESET_FULL_ROTATION(0),
-    /**
-     * Resets the orientation but keeps the tilt of the device. So if we're looking down, we keep looking down but heading will be reset.
-     */
-    RESET_BUT_KEEP_TILT(1),
-    /**
-     * Does not reset the orientation of the HMD, only the position of the player gets centered.
-     */
-    DONT_RESET_ROTATION(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class TrackerType(
     id: Long
   ) {
@@ -279,6 +252,33 @@ public object XRServer : Object() {
      * Used internally to select all trackers.
      */
     TRACKER_ANY(255),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class RotationMode(
+    id: Long
+  ) {
+    /**
+     * Fully reset the orientation of the HMD. Regardless of what direction the user is looking to in the real world. The user will look dead ahead in the virtual world.
+     */
+    RESET_FULL_ROTATION(0),
+    /**
+     * Resets the orientation but keeps the tilt of the device. So if we're looking down, we keep looking down but heading will be reset.
+     */
+    RESET_BUT_KEEP_TILT(1),
+    /**
+     * Does not reset the orientation of the HMD, only the position of the player gets centered.
+     */
+    DONT_RESET_ROTATION(2),
     ;
 
     public val id: Long

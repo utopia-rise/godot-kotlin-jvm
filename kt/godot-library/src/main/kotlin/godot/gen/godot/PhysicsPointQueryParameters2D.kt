@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -15,7 +16,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -45,7 +45,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If different from `0`, restricts the query to a specific canvas layer specified by its instance id. See [godot.Object.getInstanceId].
+   * If different from `0`, restricts the query to a specific canvas layer specified by its instance ID. See [godot.Object.getInstanceId].
    */
   public var canvasInstanceId: Long
     get() {
@@ -77,14 +77,14 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The list of objects or object [RID]s that will be excluded from collisions.
+   * The list of object [RID]s that will be excluded from collisions. Use [godot.CollisionObject2D.getRid] to get the [RID] associated with a [godot.CollisionObject2D]-derived node.
    */
-  public var exclude: VariantArray<Any?>
+  public var exclude: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_EXCLUDE, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

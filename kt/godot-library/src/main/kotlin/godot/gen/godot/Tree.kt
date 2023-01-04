@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Control
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -23,6 +22,7 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.Signal3
+import godot.signals.Signal4
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
@@ -93,56 +93,6 @@ import kotlin.Unit
 @GodotBaseType
 public open class Tree : Control() {
   /**
-   * Emitted when an item's label is double-clicked.
-   */
-  public val itemActivated: Signal0 by signal()
-
-  /**
-   * Emitted instead of `item_selected` if `select_mode` is [SELECT_MULTI].
-   */
-  public val multiSelected: Signal3<TreeItem, Long, Boolean> by signal("item", "column", "selected")
-
-  public val columnTitlePressed: Signal1<Long> by signal("column")
-
-  /**
-   * Emitted when a cell with the [godot.TreeItem.CELL_MODE_CUSTOM] is clicked to be edited.
-   */
-  public val customPopupEdited: Signal1<Boolean> by signal("arrowClicked")
-
-  /**
-   * Emitted when [godot.TreeItem.propagateCheck] is called. Connect to this signal to process the items that are affected when [godot.TreeItem.propagateCheck] is invoked. The order that the items affected will be processed is as follows: the item that invoked the method, children of that item, and finally parents of that item.
-   */
-  public val checkPropagatedToItem: Signal2<TreeItem, Long> by signal("item", "column")
-
-  /**
-   * Emitted when an item is collapsed by a click on the folding arrow.
-   */
-  public val itemCollapsed: Signal1<TreeItem> by signal("item")
-
-  public val itemRmbEdited: Signal0 by signal()
-
-  /**
-   * Emitted when an item is edited.
-   */
-  public val itemEdited: Signal0 by signal()
-
-  public val emptyTreeRmbSelected: Signal1<Vector2> by signal("position")
-
-  /**
-   * Emitted when a left mouse button click does not select any item.
-   */
-  public val nothingSelected: Signal0 by signal()
-
-  /**
-   * Emitted when an item's icon is double-clicked.
-   */
-  public val itemDoubleClicked: Signal0 by signal()
-
-  public val emptyRmb: Signal1<Vector2> by signal("position")
-
-  public val itemRmbSelected: Signal1<Vector2> by signal("position")
-
-  /**
    * Emitted when an item is selected.
    */
   public val itemSelected: Signal0 by signal()
@@ -152,12 +102,76 @@ public open class Tree : Control() {
    */
   public val cellSelected: Signal0 by signal()
 
-  public val buttonPressed: Signal3<TreeItem, Long, Long> by signal("item", "column", "id")
+  /**
+   * Emitted instead of `item_selected` if `select_mode` is [SELECT_MULTI].
+   */
+  public val multiSelected: Signal3<TreeItem, Long, Boolean> by signal("item", "column", "selected")
+
+  /**
+   * Emitted when an item is selected with a mouse button.
+   */
+  public val itemMouseSelected: Signal2<Vector2, Long> by signal("position", "mouseButtonIndex")
+
+  /**
+   * Emitted when a mouse button is clicked in the empty space of the tree.
+   */
+  public val emptyClicked: Signal2<Vector2, Long> by signal("position", "mouseButtonIndex")
+
+  /**
+   * Emitted when an item is edited.
+   */
+  public val itemEdited: Signal0 by signal()
+
+  /**
+   * Emitted when an item with [godot.TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button.
+   */
+  public val customItemClicked: Signal1<Long> by signal("mouseButtonIndex")
 
   /**
    * Emitted when a custom button is pressed (i.e. in a [godot.TreeItem.CELL_MODE_CUSTOM] mode cell).
    */
   public val itemCustomButtonPressed: Signal0 by signal()
+
+  /**
+   * Emitted when an item's icon is double-clicked.
+   */
+  public val itemDoubleClicked: Signal0 by signal()
+
+  /**
+   * Emitted when an item is collapsed by a click on the folding arrow.
+   */
+  public val itemCollapsed: Signal1<TreeItem> by signal("item")
+
+  /**
+   * Emitted when [godot.TreeItem.propagateCheck] is called. Connect to this signal to process the items that are affected when [godot.TreeItem.propagateCheck] is invoked. The order that the items affected will be processed is as follows: the item that invoked the method, children of that item, and finally parents of that item.
+   */
+  public val checkPropagatedToItem: Signal2<TreeItem, Long> by signal("item", "column")
+
+  /**
+   * Emitted when a button on the tree was pressed (see [godot.TreeItem.addButton]).
+   */
+  public val buttonClicked: Signal4<TreeItem, Long, Long, Long> by signal("item", "column", "id",
+      "mouseButtonIndex")
+
+  /**
+   * Emitted when a cell with the [godot.TreeItem.CELL_MODE_CUSTOM] is clicked to be edited.
+   */
+  public val customPopupEdited: Signal1<Boolean> by signal("arrowClicked")
+
+  /**
+   * Emitted when an item's label is double-clicked.
+   */
+  public val itemActivated: Signal0 by signal()
+
+  /**
+   * Emitted when a column's title is clicked with either [MOUSE_BUTTON_LEFT] or [MOUSE_BUTTON_RIGHT].
+   */
+  public val columnTitleClicked: Signal2<Long, Long> by signal("column", "mouseButtonIndex")
+
+  /**
+   * Emitted when a left mouse button click does not select any item.
+   */
+  public val nothingSelected: Signal0 by signal()
 
   /**
    * The number of columns.
@@ -232,6 +246,22 @@ public open class Tree : Control() {
     }
 
   /**
+   * If `true`, recursive folding is enabled for this [godot.Tree]. Holding down Shift while clicking the fold arrow collapses or uncollapses the [godot.TreeItem] and all its descendants.
+   */
+  public var enableRecursiveFolding: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_RECURSIVE_FOLDING_ENABLED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_ENABLE_RECURSIVE_FOLDING,
+          NIL)
+    }
+
+  /**
    * If `true`, the tree's root is hidden.
    */
   public var hideRoot: Boolean
@@ -264,11 +294,11 @@ public open class Tree : Control() {
   /**
    * Allows single or multiple selection. See the [enum SelectMode] constants.
    */
-  public var selectMode: Long
+  public var selectMode: SelectMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SELECT_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Tree.SelectMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -348,7 +378,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * If `true`, the column will have the "Expand" flag of [godot.Control]. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [godot.Control.sizeFlagsStretchRatio].
+   * If `true`, the column will have the "Expand" flag of [godot.Control]. Columns that have the "Expand" flag will use their expand ratio in a similar fashion to [godot.Control.sizeFlagsStretchRatio] (see [setColumnExpandRatio]).
    */
   public fun setColumnExpand(column: Long, expand: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to expand)
@@ -356,7 +386,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Sets the relative expand ratio for a column. See [setColumnExpand].
    */
   public fun setColumnExpandRatio(column: Long, ratio: Long): Unit {
     TransferContext.writeArguments(LONG to column, LONG to ratio)
@@ -364,7 +394,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Allows to enable clipping for column's content, making the content size ignored.
    */
   public fun setColumnClipContent(column: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to enable)
@@ -372,7 +402,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Returns `true` if the column has enabled expanding (see [setColumnExpand]).
    */
   public fun isColumnExpanding(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -381,7 +411,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Returns `true` if the column has enabled clipping (see [setColumnClipContent]).
    */
   public fun isColumnClippingContent(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -391,7 +421,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Returns the expand ratio assigned to the column.
    */
   public fun getColumnExpandRatio(column: Long): Long {
     TransferContext.writeArguments(LONG to column)
@@ -430,6 +460,14 @@ public open class Tree : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SELECTED, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+  }
+
+  /**
+   * Selects the specified [godot.TreeItem] and column.
+   */
+  public fun setSelected(item: TreeItem, column: Long): Unit {
+    TransferContext.writeArguments(OBJECT to item, LONG to column)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_SELECTED, NIL)
   }
 
   /**
@@ -533,8 +571,12 @@ public open class Tree : Control() {
   /**
    * Returns the rectangle area for the specified [godot.TreeItem]. If [column] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned.
    */
-  public fun getItemAreaRect(item: TreeItem, column: Long = -1): Rect2 {
-    TransferContext.writeArguments(OBJECT to item, LONG to column)
+  public fun getItemAreaRect(
+    item: TreeItem,
+    column: Long = -1,
+    buttonIndex: Long = -1
+  ): Rect2 {
+    TransferContext.writeArguments(OBJECT to item, LONG to column, LONG to buttonIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_ITEM_AREA_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
@@ -572,7 +614,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the button id at [position], or -1 if no button is there.
+   * Returns the button ID at [position], or -1 if no button is there.
    */
   public fun getButtonIdAtPosition(position: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -627,29 +669,6 @@ public open class Tree : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE_DIRECTION,
         LONG)
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public fun setColumnTitleOpentypeFeature(
-    column: Long,
-    tag: String,
-    `value`: Long
-  ): Unit {
-    TransferContext.writeArguments(LONG to column, STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLE_OPENTYPE_FEATURE, NIL)
-  }
-
-  public fun getColumnTitleOpentypeFeature(column: Long, tag: String): Long {
-    TransferContext.writeArguments(LONG to column, STRING to tag)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE_OPENTYPE_FEATURE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun clearColumnTitleOpentypeFeatures(column: Long): Unit {
-    TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TREE_CLEAR_COLUMN_TITLE_OPENTYPE_FEATURES, NIL)
   }
 
   /**

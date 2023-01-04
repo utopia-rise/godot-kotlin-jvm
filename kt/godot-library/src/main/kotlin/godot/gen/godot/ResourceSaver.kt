@@ -9,8 +9,10 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
+import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Singleton for saving Godot-specific resource types.
@@ -43,11 +46,11 @@ public object ResourceSaver : Object() {
    * Returns [OK] on success.
    */
   public fun save(
-    path: String,
     resource: Resource,
+    path: String = "",
     flags: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(STRING to path, OBJECT to resource, LONG to flags)
+    TransferContext.writeArguments(OBJECT to resource, STRING to path, OBJECT to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_SAVE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -60,6 +63,27 @@ public object ResourceSaver : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_GET_RECOGNIZED_EXTENSIONS, PACKED_STRING_ARRAY)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Registers a new [godot.ResourceFormatSaver]. The ResourceSaver will use the ResourceFormatSaver as described in [save].
+   *
+   * This method is performed implicitly for ResourceFormatSavers written in GDScript (see [godot.ResourceFormatSaver] for more information).
+   */
+  public fun addResourceFormatSaver(formatSaver: ResourceFormatSaver, atFront: Boolean = false):
+      Unit {
+    TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_ADD_RESOURCE_FORMAT_SAVER, NIL)
+  }
+
+  /**
+   * Unregisters the given [godot.ResourceFormatSaver].
+   */
+  public fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver): Unit {
+    TransferContext.writeArguments(OBJECT to formatSaver)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_REMOVE_RESOURCE_FORMAT_SAVER, NIL)
   }
 
   public enum class SaverFlags(

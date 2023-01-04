@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -23,12 +24,12 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   /**
    *
    */
-  public var flags: Long
+  public var flags: EmitFlags
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMIT_GET_FLAGS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeParticleEmit.EmitFlags.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

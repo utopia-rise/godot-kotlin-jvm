@@ -90,9 +90,12 @@ inline fun <reified T : KFunction<*>> Object.connect(
     signal: Signal,
     target: Object,
     function: T,
-    binds: VariantArray<Any?> = VariantArray(),
     flags: Long = 0
-) = connect(signal.name, Callable(target, function.name.camelToSnakeCase().asStringName()), binds, flags)
+) = connect(
+    signal.name,
+    Callable(target, function.name.camelToSnakeCase().asStringName()),
+    flags
+)
 
 /**
  * Same as [connect] but the function name is not converted to snake_case
@@ -102,9 +105,8 @@ inline fun <reified T : KFunction<*>> Object.connectRawName(
     signal: Signal,
     target: Object,
     function: T,
-    binds: VariantArray<Any?> = VariantArray(),
     flags: Long = 0
-) = connect(signal.name, Callable(target, function.name.asStringName()), binds, flags)
+) = connect(signal.name, Callable(target, function.name.asStringName()), flags)
 
 /**
  * **Note:** The function name is converted to snake_case

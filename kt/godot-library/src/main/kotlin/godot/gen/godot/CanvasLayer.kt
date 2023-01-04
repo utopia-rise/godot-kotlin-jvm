@@ -135,12 +135,12 @@ public open class CanvasLayer : Node() {
   /**
    * The custom [godot.Viewport] node assigned to the [godot.CanvasLayer]. If `null`, uses the default viewport instead.
    */
-  public var customViewport: Viewport?
+  public var customViewport: Node?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_CUSTOM_VIEWPORT,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Viewport?
+      return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -148,7 +148,12 @@ public open class CanvasLayer : Node() {
           NIL)
     }
 
-  public var followViewportEnable: Boolean
+  /**
+   * If enabled, the [godot.CanvasLayer] will use the viewport's transform, so it will move when camera moves instead of being anchored in a fixed position on the screen.
+   *
+   * Together with [followViewportScale] it can be used for a pseudo 3D effect.
+   */
+  public var followViewportEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_IS_FOLLOWING_VIEWPORT,
@@ -196,6 +201,16 @@ public open class CanvasLayer : Node() {
   public fun hide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_HIDE, NIL)
+  }
+
+  /**
+   * Returns the transform from the [godot.CanvasLayer]s coordinate system to the [godot.Viewport]s coordinate system.
+   */
+  public fun getFinalTransform(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_FINAL_TRANSFORM,
+        TRANSFORM2D)
+    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
   /**

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.NodePath
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
@@ -17,6 +18,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
@@ -48,9 +50,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class SceneTree : MainLoop() {
   /**
-   * Emitted when a node's configuration changed. Only emitted in `tool` mode.
+   * Emitted whenever the [godot.SceneTree] hierarchy changed (children being moved or renamed, etc.).
    */
-  public val nodeConfigurationWarningChanged: Signal1<Node> by signal("node")
+  public val treeChanged: Signal0 by signal()
 
   /**
    * This signal is only emitted in the editor, it allows the editor to update the visibility of disabled nodes. Emitted whenever any node's [godot.Node.processMode] is changed.
@@ -58,9 +60,9 @@ public open class SceneTree : MainLoop() {
   public val treeProcessModeChanged: Signal0 by signal()
 
   /**
-   * Emitted immediately before [godot.Node.PhysicsProcess] is called on every node in the [godot.SceneTree].
+   * Emitted whenever a node is added to the [godot.SceneTree].
    */
-  public val physicsFrame: Signal0 by signal()
+  public val nodeAdded: Signal1<Node> by signal("node")
 
   /**
    * Emitted whenever a node is removed from the [godot.SceneTree].
@@ -68,9 +70,14 @@ public open class SceneTree : MainLoop() {
   public val nodeRemoved: Signal1<Node> by signal("node")
 
   /**
-   * Emitted whenever a node is added to the [godot.SceneTree].
+   * Emitted whenever a node is renamed.
    */
-  public val nodeAdded: Signal1<Node> by signal("node")
+  public val nodeRenamed: Signal1<Node> by signal("node")
+
+  /**
+   * Emitted when a node's configuration changed. Only emitted in `tool` mode.
+   */
+  public val nodeConfigurationWarningChanged: Signal1<Node> by signal("node")
 
   /**
    * Emitted immediately before [godot.Node.Process] is called on every node in the [godot.SceneTree].
@@ -78,14 +85,45 @@ public open class SceneTree : MainLoop() {
   public val processFrame: Signal0 by signal()
 
   /**
-   * Emitted whenever a node is renamed.
+   * Emitted immediately before [godot.Node.PhysicsProcess] is called on every node in the [godot.SceneTree].
    */
-  public val nodeRenamed: Signal1<Node> by signal("node")
+  public val physicsFrame: Signal0 by signal()
 
   /**
-   * Emitted whenever the [godot.SceneTree] hierarchy changed (children being moved or renamed, etc.).
+   * If `true`, the application automatically accepts quitting.
+   *
+   * For mobile platforms, see [quitOnGoBack].
    */
-  public val treeChanged: Signal0 by signal()
+  public var autoAcceptQuit: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_AUTO_ACCEPT_QUIT,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_AUTO_ACCEPT_QUIT,
+          NIL)
+    }
+
+  /**
+   * If `true`, the application quits automatically on going back (e.g. on Android).
+   *
+   * To handle 'Go Back' button when this option is disabled, use [godot.DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].
+   */
+  public var quitOnGoBack: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_QUIT_ON_GO_BACK,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_QUIT_ON_GO_BACK,
+          NIL)
+    }
 
   /**
    * If `true`, collision shapes will be visible when running the game from the editor for debugging purposes.
@@ -103,6 +141,24 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_DEBUG_COLLISIONS_HINT, NIL)
+    }
+
+  /**
+   * If `true`, curves from [godot.Path2D] and [godot.Path3D] nodes will be visible when running the game from the editor for debugging purposes.
+   *
+   * **Note:** This property is not designed to be changed at run-time. Changing the value of [debugPathsHint] while the project is running will not have the desired effect.
+   */
+  public var debugPathsHint: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_PATHS_HINT,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_DEBUG_PATHS_HINT,
+          NIL)
     }
 
   /**
@@ -175,22 +231,11 @@ public open class SceneTree : MainLoop() {
   /**
    * The [godot.SceneTree]'s root [godot.Window].
    */
-  public val root: Node?
+  public val root: Window?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_ROOT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Node?
-    }
-
-  public var multiplayer: MultiplayerAPI?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_MULTIPLAYER, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_MULTIPLAYER, NIL)
+      return TransferContext.readReturnValue(OBJECT, true) as Window?
     }
 
   /**
@@ -223,16 +268,6 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_HAS_GROUP, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun setAutoAcceptQuit(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_AUTO_ACCEPT_QUIT, NIL)
-  }
-
-  public fun setQuitOnGoBack(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_QUIT_ON_GO_BACK, NIL)
   }
 
   /**
@@ -280,8 +315,13 @@ public open class SceneTree : MainLoop() {
    *
    * The timer will be automatically freed after its time elapses.
    */
-  public fun createTimer(timeSec: Double, processAlways: Boolean = true): SceneTreeTimer? {
-    TransferContext.writeArguments(DOUBLE to timeSec, BOOL to processAlways)
+  public fun createTimer(
+    timeSec: Double,
+    processAlways: Boolean = true,
+    processInPhysics: Boolean = false,
+    ignoreTimeScale: Boolean = false
+  ): SceneTreeTimer? {
+    TransferContext.writeArguments(DOUBLE to timeSec, BOOL to processAlways, BOOL to processInPhysics, BOOL to ignoreTimeScale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TIMER, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as SceneTreeTimer?
   }
@@ -298,11 +338,11 @@ public open class SceneTree : MainLoop() {
   /**
    * Returns an array of currently existing [godot.Tween]s in the [godot.SceneTree] (both running and paused).
    */
-  public fun getProcessedTweens(): VariantArray<Any?> {
+  public fun getProcessedTweens(): VariantArray<Tween> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_PROCESSED_TWEENS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Tween>
   }
 
   /**
@@ -435,10 +475,10 @@ public open class SceneTree : MainLoop() {
   /**
    * Returns a list of all nodes assigned to the given group.
    */
-  public fun getNodesInGroup(group: StringName): VariantArray<Any?> {
+  public fun getNodesInGroup(group: StringName): VariantArray<Node> {
     TransferContext.writeArguments(STRING_NAME to group)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_NODES_IN_GROUP, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>
   }
 
   /**
@@ -451,15 +491,31 @@ public open class SceneTree : MainLoop() {
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
-  public fun changeScene(path: String): GodotError {
+  /**
+   * Changes the running scene to the one at the given [path], after loading it into a [godot.PackedScene] and creating a new instance.
+   *
+   * Returns [OK] on success, [ERR_CANT_OPEN] if the [path] cannot be loaded into a [godot.PackedScene], or [ERR_CANT_CREATE] if that scene cannot be instantiated.
+   *
+   * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeSceneToFile] call.
+   */
+  public fun changeSceneToFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE_TO_FILE,
+        LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun changeSceneTo(packedScene: PackedScene): GodotError {
+  /**
+   * Changes the running scene to a new instance of the given [godot.PackedScene].
+   *
+   * Returns [OK] on success or [ERR_CANT_CREATE] if the scene cannot be instantiated.
+   *
+   * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeSceneToPacked] call.
+   */
+  public fun changeSceneToPacked(packedScene: PackedScene): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE_TO, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE_TO_PACKED,
+        LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -475,6 +531,23 @@ public open class SceneTree : MainLoop() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  /**
+   * Sets a custom [godot.MultiplayerAPI] with the given [rootPath] (controlling also the relative subpaths), or override the default one if [rootPath] is empty.
+   */
+  public fun setMultiplayer(multiplayer: MultiplayerAPI, rootPath: NodePath = NodePath("")): Unit {
+    TransferContext.writeArguments(OBJECT to multiplayer, NODE_PATH to rootPath)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_MULTIPLAYER, NIL)
+  }
+
+  /**
+   * Return the [godot.MultiplayerAPI] configured for the given path, or the default one if [forPath] is empty.
+   */
+  public fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
+    TransferContext.writeArguments(NODE_PATH to forPath)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_MULTIPLAYER, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
+  }
+
   public enum class GroupCallFlags(
     id: Long
   ) {
@@ -486,9 +559,14 @@ public open class SceneTree : MainLoop() {
      * Call a group in reverse scene order.
      */
     GROUP_CALL_REVERSE(1),
-    GROUP_CALL_REALTIME(2),
+    /**
+     * Call a group with a one-frame delay (idle frame, not physics).
+     */
+    GROUP_CALL_DEFERRED(2),
     /**
      * Call a group only once even if the call is executed many times.
+     *
+     * **Note:** Arguments are not taken into account when deciding whether the call is unique or not. Therefore when the same method is called with different arguments, only the first call will be performed.
      */
     GROUP_CALL_UNIQUE(4),
     ;

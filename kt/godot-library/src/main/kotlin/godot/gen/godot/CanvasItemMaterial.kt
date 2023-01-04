@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -26,12 +27,12 @@ public open class CanvasItemMaterial : Material() {
   /**
    * The manner in which a material's rendering is applied to underlying textures.
    */
-  public var blendMode: Long
+  public var blendMode: BlendMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_BLEND_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CanvasItemMaterial.BlendMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -42,12 +43,12 @@ public open class CanvasItemMaterial : Material() {
   /**
    * The manner in which material reacts to lighting.
    */
-  public var lightMode: Long
+  public var lightMode: LightMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_LIGHT_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CanvasItemMaterial.LightMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -132,33 +133,6 @@ public open class CanvasItemMaterial : Material() {
     return true
   }
 
-  public enum class LightMode(
-    id: Long
-  ) {
-    /**
-     * Render the material using both light and non-light sensitive material properties.
-     */
-    LIGHT_MODE_NORMAL(0),
-    /**
-     * Render the material as if there were no light.
-     */
-    LIGHT_MODE_UNSHADED(1),
-    /**
-     * Render the material as if there were only light.
-     */
-    LIGHT_MODE_LIGHT_ONLY(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class BlendMode(
     id: Long
   ) {
@@ -182,6 +156,33 @@ public open class CanvasItemMaterial : Material() {
      * Mix blending mode. Colors are assumed to be premultiplied by the alpha (opacity) value.
      */
     BLEND_MODE_PREMULT_ALPHA(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LightMode(
+    id: Long
+  ) {
+    /**
+     * Render the material using both light and non-light sensitive material properties.
+     */
+    LIGHT_MODE_NORMAL(0),
+    /**
+     * Render the material as if there were no light.
+     */
+    LIGHT_MODE_UNSHADED(1),
+    /**
+     * Render the material as if there were only light.
+     */
+    LIGHT_MODE_LIGHT_ONLY(2),
     ;
 
     public val id: Long

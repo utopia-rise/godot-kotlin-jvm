@@ -11,6 +11,7 @@ import godot.core.NodePath
 import godot.core.PackedVector2Array
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -37,11 +38,11 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_POLYGON, NIL)
     }
 
-  public var mode: Long
+  public var mode: Mode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CSGPolygon3D.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -95,12 +96,12 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_NODE, NIL)
     }
 
-  public var pathIntervalType: Long
+  public var pathIntervalType: PathIntervalType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_PATH_INTERVAL_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CSGPolygon3D.PathIntervalType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -134,12 +135,12 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
           ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_SIMPLIFY_ANGLE, NIL)
     }
 
-  public var pathRotation: Long
+  public var pathRotation: PathRotation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_PATH_ROTATION,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CSGPolygon3D.PathRotation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -224,11 +225,12 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return true
   }
 
-  public enum class PathIntervalType(
+  public enum class Mode(
     id: Long
   ) {
-    PATH_INTERVAL_DISTANCE(0),
-    PATH_INTERVAL_SUBDIVIDE(1),
+    MODE_DEPTH(0),
+    MODE_SPIN(1),
+    MODE_PATH(2),
     ;
 
     public val id: Long
@@ -259,12 +261,11 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
   }
 
-  public enum class Mode(
+  public enum class PathIntervalType(
     id: Long
   ) {
-    MODE_DEPTH(0),
-    MODE_SPIN(1),
-    MODE_PATH(2),
+    PATH_INTERVAL_DISTANCE(0),
+    PATH_INTERVAL_SUBDIVIDE(1),
     ;
 
     public val id: Long

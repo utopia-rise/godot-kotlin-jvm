@@ -11,6 +11,7 @@ import godot.core.Basis
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
 import godot.core.RID
+import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -31,7 +32,6 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -55,14 +55,14 @@ import kotlin.Unit
 @GodotBaseType
 public open class Skeleton3D : Node3D() {
   /**
-   * This signal is emitted when one of the bones in the Skeleton3D node have changed their pose. This is used to inform nodes that rely on bone positions that one of the bones in the Skeleton3D have changed their transform/pose.
-   */
-  public val bonePoseChanged: Signal1<Long> by signal("boneIdx")
-
-  /**
    *
    */
   public val poseUpdated: Signal0 by signal()
+
+  /**
+   * This signal is emitted when one of the bones in the Skeleton3D node have changed their pose. This is used to inform nodes that rely on bone positions that one of the bones in the Skeleton3D have changed their transform/pose.
+   */
+  public val bonePoseChanged: Signal1<Long> by signal("boneIdx")
 
   /**
    *
@@ -73,6 +73,23 @@ public open class Skeleton3D : Node3D() {
    *
    */
   public val showRestOnlyChanged: Signal0 by signal()
+
+  /**
+   * Multiplies the position 3D track animation.
+   *
+   * **Note:** Unless this value is `1.0`, the key value in animation will not match the actual position value.
+   */
+  public var motionScale: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_MOTION_SCALE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_MOTION_SCALE, NIL)
+    }
 
   /**
    *
@@ -194,21 +211,6 @@ public open class Skeleton3D : Node3D() {
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
-  public fun setBoneChildren(boneIdx: Long, boneChildren: PackedInt32Array): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, PACKED_INT_32_ARRAY to boneChildren)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_CHILDREN, NIL)
-  }
-
-  public fun addBoneChild(boneIdx: Long, childBoneIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, LONG to childBoneIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_ADD_BONE_CHILD, NIL)
-  }
-
-  public fun removeBoneChild(boneIdx: Long, childBoneIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, LONG to childBoneIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_REMOVE_BONE_CHILD, NIL)
-  }
-
   /**
    * Returns an array with all of the bones that are parentless. Another way to look at this is that it returns the indexes of all the bones that are not dependent or modified by other bones in the Skeleton.
    */
@@ -235,6 +237,16 @@ public open class Skeleton3D : Node3D() {
   public fun setBoneRest(boneIdx: Long, rest: Transform3D): Unit {
     TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to rest)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_REST, NIL)
+  }
+
+  /**
+   * Returns the global rest transform for [boneIdx].
+   */
+  public fun getBoneGlobalRest(boneIdx: Long): Transform3D {
+    TransferContext.writeArguments(LONG to boneIdx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_GLOBAL_REST,
+        TRANSFORM3D)
+    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
   /**
@@ -336,6 +348,22 @@ public open class Skeleton3D : Node3D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_POSE_SCALE,
         VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Sets the bone pose to rest for [boneIdx].
+   */
+  public fun resetBonePose(boneIdx: Long): Unit {
+    TransferContext.writeArguments(LONG to boneIdx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_RESET_BONE_POSE, NIL)
+  }
+
+  /**
+   * Sets all bone poses to rests.
+   */
+  public fun resetBonePoses(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_RESET_BONE_POSES, NIL)
   }
 
   /**
@@ -549,8 +577,8 @@ public open class Skeleton3D : Node3D() {
    *
    * Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be simulated.
    */
-  public fun physicalBonesStartSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()):
-      Unit {
+  public fun physicalBonesStartSimulation(bones: VariantArray<StringName> =
+      godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_PHYSICAL_BONES_START_SIMULATION, NIL)

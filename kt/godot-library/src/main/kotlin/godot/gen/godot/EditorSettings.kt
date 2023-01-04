@@ -136,20 +136,6 @@ public open class EditorSettings internal constructor() : Resource() {
         NIL)
   }
 
-  public fun propertyCanRevert(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_CAN_REVERT,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public fun propertyGetRevert(name: String): Any? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_GET_REVERT,
-        ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
   /**
    * Adds a custom property info to a property. The dictionary must contain:
    *
@@ -225,13 +211,6 @@ public open class EditorSettings internal constructor() : Resource() {
         NIL)
   }
 
-  public fun getProjectSettingsDir(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_PROJECT_SETTINGS_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
   /**
    * Sets project-specific metadata with the [section], [key] and [data] specified. This metadata is stored outside the project folder and therefore won't be checked into version control. See also [getProjectMetadata].
    */
@@ -298,7 +277,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Overrides the built-in editor action [name] with the input actions defined in [actionsList].
    */
-  public fun setBuiltinActionOverride(name: String, actionsList: VariantArray<Any?>): Unit {
+  public fun setBuiltinActionOverride(name: String, actionsList: VariantArray<InputEvent>): Unit {
     TransferContext.writeArguments(STRING to name, ARRAY to actionsList)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_BUILTIN_ACTION_OVERRIDE, NIL)
@@ -317,11 +296,11 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Gets an array of the settings which have been changed since the last save. Note that internally `changed_settings` is cleared after a successful save, so generally the most appropriate place to use this method is when processing [NOTIFICATION_EDITOR_SETTINGS_CHANGED]
    */
-  public fun getChangedSettings(): VariantArray<Any?> {
+  public fun getChangedSettings(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_CHANGED_SETTINGS,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -25,12 +26,12 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   /**
    * The function to be performed. See [enum Function] for options.
    */
-  public var function: Long
+  public var function: Function
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVECTORFUNC_GET_FUNCTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeVectorFunc.Function.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -62,125 +63,126 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      * Returns `1/vector`.
      */
     FUNC_RECIPROCAL(3),
-    FUNC_RGB2HSV(4),
-    FUNC_HSV2RGB(5),
     /**
      * Returns the absolute value of the parameter.
      */
-    FUNC_ABS(6),
+    FUNC_ABS(4),
     /**
      * Returns the arc-cosine of the parameter.
      */
-    FUNC_ACOS(7),
+    FUNC_ACOS(5),
     /**
      * Returns the inverse hyperbolic cosine of the parameter.
      */
-    FUNC_ACOSH(8),
+    FUNC_ACOSH(6),
     /**
      * Returns the arc-sine of the parameter.
      */
-    FUNC_ASIN(9),
+    FUNC_ASIN(7),
     /**
      * Returns the inverse hyperbolic sine of the parameter.
      */
-    FUNC_ASINH(10),
+    FUNC_ASINH(8),
     /**
      * Returns the arc-tangent of the parameter.
      */
-    FUNC_ATAN(11),
+    FUNC_ATAN(9),
     /**
      * Returns the inverse hyperbolic tangent of the parameter.
      */
-    FUNC_ATANH(12),
+    FUNC_ATANH(10),
     /**
      * Finds the nearest integer that is greater than or equal to the parameter.
      */
-    FUNC_CEIL(13),
+    FUNC_CEIL(11),
     /**
      * Returns the cosine of the parameter.
      */
-    FUNC_COS(14),
+    FUNC_COS(12),
     /**
      * Returns the hyperbolic cosine of the parameter.
      */
-    FUNC_COSH(15),
+    FUNC_COSH(13),
     /**
      * Converts a quantity in radians to degrees.
      */
-    FUNC_DEGREES(16),
+    FUNC_DEGREES(14),
     /**
      * Base-e Exponential.
      */
-    FUNC_EXP(17),
+    FUNC_EXP(15),
     /**
      * Base-2 Exponential.
      */
-    FUNC_EXP2(18),
+    FUNC_EXP2(16),
     /**
      * Finds the nearest integer less than or equal to the parameter.
      */
-    FUNC_FLOOR(19),
-    FUNC_FRAC(20),
+    FUNC_FLOOR(17),
+    /**
+     * Computes the fractional part of the argument.
+     */
+    FUNC_FRACT(18),
     /**
      * Returns the inverse of the square root of the parameter.
      */
-    FUNC_INVERSE_SQRT(21),
+    FUNC_INVERSE_SQRT(19),
     /**
      * Natural logarithm.
      */
-    FUNC_LOG(22),
+    FUNC_LOG(20),
     /**
      * Base-2 logarithm.
      */
-    FUNC_LOG2(23),
+    FUNC_LOG2(21),
     /**
      * Converts a quantity in degrees to radians.
      */
-    FUNC_RADIANS(24),
+    FUNC_RADIANS(22),
     /**
      * Finds the nearest integer to the parameter.
      */
-    FUNC_ROUND(25),
+    FUNC_ROUND(23),
     /**
      * Finds the nearest even integer to the parameter.
      */
-    FUNC_ROUNDEVEN(26),
+    FUNC_ROUNDEVEN(24),
     /**
      * Extracts the sign of the parameter, i.e. returns `-1` if the parameter is negative, `1` if it's positive and `0` otherwise.
      */
-    FUNC_SIGN(27),
+    FUNC_SIGN(25),
     /**
      * Returns the sine of the parameter.
      */
-    FUNC_SIN(28),
+    FUNC_SIN(26),
     /**
      * Returns the hyperbolic sine of the parameter.
      */
-    FUNC_SINH(29),
+    FUNC_SINH(27),
     /**
      * Returns the square root of the parameter.
      */
-    FUNC_SQRT(30),
+    FUNC_SQRT(28),
     /**
      * Returns the tangent of the parameter.
      */
-    FUNC_TAN(31),
+    FUNC_TAN(29),
     /**
      * Returns the hyperbolic tangent of the parameter.
      */
-    FUNC_TANH(32),
+    FUNC_TANH(30),
     /**
      * Returns a value equal to the nearest integer to the parameter whose absolute value is not larger than the absolute value of the parameter.
      */
-    FUNC_TRUNC(33),
+    FUNC_TRUNC(31),
     /**
      * Returns `1.0 - vector`.
      */
-    FUNC_ONEMINUS(34),
+    FUNC_ONEMINUS(32),
     /**
      * Represents the size of the [enum Function] enum.
      */
-    FUNC_MAX(35),
+    FUNC_MAX(33),
     ;
 
     public val id: Long

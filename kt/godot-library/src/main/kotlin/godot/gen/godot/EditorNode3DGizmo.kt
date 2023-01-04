@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
+import godot.core.Plane
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.BOOL
@@ -116,7 +117,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Override this method to allow selecting subgizmos using mouse drag box selection. Given a [camera] and a [frustum], this method should return which subgizmos are contained within the frustum. The [frustum] argument consists of an `Array` with all the `Plane`s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].
    */
-  public open fun _subgizmosIntersectFrustum(camera: Camera3D, frustum: VariantArray<Any?>):
+  public open fun _subgizmosIntersectFrustum(camera: Camera3D, frustum: VariantArray<Plane>):
       PackedInt32Array {
     throw NotImplementedError("_subgizmos_intersect_frustum is not implemented for EditorNode3DGizmo")
   }
@@ -141,7 +142,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public open fun _commitSubgizmos(
     ids: PackedInt32Array,
-    restores: VariantArray<Any?>,
+    restores: VariantArray<Transform3D>,
     cancel: Boolean
   ): Unit {
   }
@@ -221,15 +222,20 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_HANDLES, NIL)
   }
 
-  public fun setSpatialNode(node: Node): Unit {
+  /**
+   * Sets the reference [godot.Node3D] node for the gizmo. [node] must inherit from [godot.Node3D].
+   */
+  public fun setNode3d(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_SPATIAL_NODE,
-        NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_NODE_3D, NIL)
   }
 
-  public fun getSpatialNode(): Node3D? {
+  /**
+   * Returns the [godot.Node3D] node associated with this gizmo.
+   */
+  public fun getNode3d(): Node3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_SPATIAL_NODE,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_NODE_3D,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node3D?
   }

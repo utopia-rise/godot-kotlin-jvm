@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.Dictionary
 import godot.core.PackedFloat32Array
 import godot.core.RID
 import godot.core.Rect2
@@ -17,8 +16,8 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -48,11 +47,11 @@ public open class TextLine : RefCounted() {
   /**
    * Text writing direction.
    */
-  public var direction: Long
+  public var direction: TextServer.Direction
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_DIRECTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.Direction.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -62,11 +61,11 @@ public open class TextLine : RefCounted() {
   /**
    * Text orientation.
    */
-  public var orientation: Long
+  public var orientation: TextServer.Orientation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_ORIENTATION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.Orientation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -122,12 +121,12 @@ public open class TextLine : RefCounted() {
   /**
    * Sets text alignment within the line as if the line was horizontal.
    */
-  public var alignment: Long
+  public var alignment: HorizontalAlignment
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_HORIZONTAL_ALIGNMENT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -141,23 +140,23 @@ public open class TextLine : RefCounted() {
   public var flags: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_FLAGS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_FLAGS, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_SET_FLAGS, NIL)
     }
 
   /**
    * Sets the clipping behavior when the text exceeds the text line's set width. See [enum TextServer.OverrunBehavior] for a description of all modes.
    */
-  public var textOverrunBehavior: Long
+  public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_TEXT_OVERRUN_BEHAVIOR, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TextServer.OverrunBehavior.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -193,13 +192,12 @@ public open class TextLine : RefCounted() {
    */
   public fun addString(
     text: String,
-    fonts: Font,
-    size: Long,
-    opentypeFeatures: Dictionary<Any?, Any?> = Dictionary(),
+    font: Font,
+    fontSize: Long,
     language: String = "",
     meta: Any? = null
   ): Boolean {
-    TransferContext.writeArguments(STRING to text, OBJECT to fonts, LONG to size, DICTIONARY to opentypeFeatures, STRING to language, ANY to meta)
+    TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize, STRING to language, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_ADD_STRING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -211,9 +209,10 @@ public open class TextLine : RefCounted() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    length: Long = 1
+    length: Long = 1,
+    baseline: Double = 0.0
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length)
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_ADD_OBJECT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -224,9 +223,10 @@ public open class TextLine : RefCounted() {
   public fun resizeObject(
     key: Any,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
+    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    baseline: Double = 0.0
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id)
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_RESIZE_OBJECT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -354,26 +354,6 @@ public open class TextLine : RefCounted() {
     TransferContext.writeArguments(DOUBLE to coords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_HIT_TEST, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public enum class OverrunBehavior(
-    id: Long
-  ) {
-    OVERRUN_NO_TRIMMING(0),
-    OVERRUN_TRIM_CHAR(1),
-    OVERRUN_TRIM_WORD(2),
-    OVERRUN_TRIM_ELLIPSIS(3),
-    OVERRUN_TRIM_WORD_ELLIPSIS(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public companion object

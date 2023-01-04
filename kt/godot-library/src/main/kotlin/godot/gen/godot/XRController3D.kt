@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.XRPositionalTracker
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL
@@ -43,14 +42,9 @@ import kotlin.Suppress
 @GodotBaseType
 public open class XRController3D : XRNode3D() {
   /**
-   * Emitted when a thumbstick or thumbpad on this controller is moved.
+   * Emitted when a button on this controller is pressed.
    */
-  public val inputAxisChanged: Signal2<String, Vector2> by signal("name", "value")
-
-  /**
-   * Emitted when a trigger or similar input on this controller changes value.
-   */
-  public val inputValueChanged: Signal2<String, Double> by signal("name", "value")
+  public val buttonPressed: Signal1<String> by signal("name")
 
   /**
    * Emitted when a button on this controller is released.
@@ -58,9 +52,14 @@ public open class XRController3D : XRNode3D() {
   public val buttonReleased: Signal1<String> by signal("name")
 
   /**
-   * Emitted when a button on this controller is pressed.
+   * Emitted when a trigger or similar input on this controller changes value.
    */
-  public val buttonPressed: Signal1<String> by signal("name")
+  public val inputValueChanged: Signal2<String, Double> by signal("name", "value")
+
+  /**
+   * Emitted when a thumbstick or thumbpad on this controller is moved.
+   */
+  public val inputAxisChanged: Signal2<String, Vector2> by signal("name", "value")
 
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_XRCONTROLLER3D, scriptIndex)

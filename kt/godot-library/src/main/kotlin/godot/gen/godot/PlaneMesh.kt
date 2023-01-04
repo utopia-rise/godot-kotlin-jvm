@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -89,9 +90,50 @@ public open class PlaneMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_CENTER_OFFSET, NIL)
     }
 
+  /**
+   * Direction that the [godot.PlaneMesh] is facing. See [enum Orientation] for options.
+   */
+  public var orientation: Orientation
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_ORIENTATION, LONG)
+      return PlaneMesh.Orientation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_ORIENTATION, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PLANEMESH, scriptIndex)
     return true
+  }
+
+  public enum class Orientation(
+    id: Long
+  ) {
+    /**
+     * [godot.PlaneMesh] will face the positive X-axis.
+     */
+    FACE_X(0),
+    /**
+     * [godot.PlaneMesh] will face the positive Y-axis. This matches the behavior of the [godot.PlaneMesh] in Godot 3.x.
+     */
+    FACE_Y(1),
+    /**
+     * [godot.PlaneMesh] will face the positive Z-axis. This matches the behavior of the QuadMesh in Godot 3.x.
+     */
+    FACE_Z(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public companion object

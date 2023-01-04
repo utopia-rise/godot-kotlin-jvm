@@ -7,15 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.PackedInt32Array
 import godot.core.RID
 import godot.core.Transform2D
-import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
@@ -23,7 +24,6 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal3
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -41,9 +41,16 @@ import kotlin.Unit
 @GodotBaseType
 public open class CollisionObject2D internal constructor() : Node2D() {
   /**
-   * Emitted when the mouse pointer exits any of this object's shapes. [shapeIdx] is the child index of the exited [godot.Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set.
+   * Emitted when an input event occurs. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. See [_inputEvent] for details.
    */
-  public val mouseShapeExited: Signal1<Long> by signal("shapeIdx")
+  public val inputEvent: Signal3<Node, InputEvent, Long> by signal("viewport", "event", "shapeIdx")
+
+  /**
+   * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject2D] won't cause this signal to be emitted.
+   *
+   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject2D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject2D] is overlapping the [godot.CollisionObject2D] in question.
+   */
+  public val mouseEntered: Signal0 by signal()
 
   /**
    * Emitted when the mouse pointer exits all this object's shapes. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject2D] won't cause this signal to be emitted.
@@ -58,26 +65,19 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   public val mouseShapeEntered: Signal1<Long> by signal("shapeIdx")
 
   /**
-   * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject2D] won't cause this signal to be emitted.
-   *
-   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject2D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject2D] is overlapping the [godot.CollisionObject2D] in question.
+   * Emitted when the mouse pointer exits any of this object's shapes. [shapeIdx] is the child index of the exited [godot.Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set.
    */
-  public val mouseEntered: Signal0 by signal()
-
-  /**
-   * Emitted when an input event occurs. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. See [_inputEvent] for details.
-   */
-  public val inputEvent: Signal3<Node, InputEvent, Long> by signal("viewport", "event", "shapeIdx")
+  public val mouseShapeExited: Signal1<Long> by signal("shapeIdx")
 
   /**
    * Defines the behavior in physics when [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes.
    */
-  public var disableMode: Long
+  public var disableMode: DisableMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_GET_DISABLE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return CollisionObject2D.DisableMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -122,6 +122,22 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     }
 
   /**
+   * The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level.
+   */
+  public var collisionPriority: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_GET_COLLISION_PRIORITY, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SET_COLLISION_PRIORITY, NIL)
+    }
+
+  /**
    * If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [collisionLayer] bit to be set.
    */
   public var inputPickable: Boolean
@@ -152,6 +168,30 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     event: InputEvent,
     shapeIdx: Long
   ): Unit {
+  }
+
+  /**
+   * Called when the mouse pointer enters any of this object's shapes. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject2D] won't cause this function to be called.
+   */
+  public open fun _mouseEnter(): Unit {
+  }
+
+  /**
+   * Called when the mouse pointer exits all this object's shapes. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject2D] won't cause this function to be called.
+   */
+  public open fun _mouseExit(): Unit {
+  }
+
+  /**
+   * Called when the mouse pointer enters any of this object's shapes or moves from one shape to another. [shapeIdx] is the child index of the newly entered [godot.Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be called.
+   */
+  public open fun _mouseShapeEnter(shapeIdx: Long): Unit {
+  }
+
+  /**
+   * Called when the mouse pointer exits any of this object's shapes. [shapeIdx] is the child index of the exited [godot.Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be called.
+   */
+  public open fun _mouseShapeExit(shapeIdx: Long): Unit {
   }
 
   /**
@@ -223,11 +263,11 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Returns an [godot.Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument.
    */
-  public fun getShapeOwners(): VariantArray<Any?> {
+  public fun getShapeOwners(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_GET_SHAPE_OWNERS,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+        PACKED_INT_32_ARRAY)
+    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
   /**
@@ -336,7 +376,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns the [godot.Shape2D] with the given id from the given shape owner.
+   * Returns the [godot.Shape2D] with the given ID from the given shape owner.
    */
   public fun shapeOwnerGetShape(ownerId: Long, shapeId: Long): Shape2D? {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)
@@ -346,7 +386,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns the child index of the [godot.Shape2D] with the given id from the given shape owner.
+   * Returns the child index of the [godot.Shape2D] with the given ID from the given shape owner.
    */
   public fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Long): Long {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)

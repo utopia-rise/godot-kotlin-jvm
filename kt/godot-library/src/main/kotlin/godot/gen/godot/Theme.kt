@@ -611,7 +611,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
   public fun setThemeItem(
-    dataType: Theme.DataType,
+    dataType: DataType,
     name: StringName,
     themeType: StringName,
     `value`: Any
@@ -628,7 +628,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
   public fun getThemeItem(
-    dataType: Theme.DataType,
+    dataType: DataType,
     name: StringName,
     themeType: StringName
   ): Any? {
@@ -645,7 +645,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
   public fun hasThemeItem(
-    dataType: Theme.DataType,
+    dataType: DataType,
     name: StringName,
     themeType: StringName
   ): Boolean {
@@ -662,7 +662,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
   public fun renameThemeItem(
-    dataType: Theme.DataType,
+    dataType: DataType,
     oldName: StringName,
     name: StringName,
     themeType: StringName
@@ -679,7 +679,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
   public fun clearThemeItem(
-    dataType: Theme.DataType,
+    dataType: DataType,
     name: StringName,
     themeType: StringName
   ): Unit {
@@ -692,7 +692,7 @@ public open class Theme : Resource() {
    *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
-  public fun getThemeItemList(dataType: Theme.DataType, themeType: String): PackedStringArray {
+  public fun getThemeItemList(dataType: DataType, themeType: String): PackedStringArray {
     TransferContext.writeArguments(LONG to dataType.id, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM_LIST,
         PACKED_STRING_ARRAY)
@@ -704,7 +704,7 @@ public open class Theme : Resource() {
    *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
-  public fun getThemeItemTypeList(dataType: Theme.DataType): PackedStringArray {
+  public fun getThemeItemTypeList(dataType: DataType): PackedStringArray {
     TransferContext.writeArguments(LONG to dataType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM_TYPE_LIST,
         PACKED_STRING_ARRAY)

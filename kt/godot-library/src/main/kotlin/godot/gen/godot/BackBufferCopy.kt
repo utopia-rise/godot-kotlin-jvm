@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.RECT2
@@ -20,21 +21,21 @@ import kotlin.Suppress
 /**
  * Copies a region of the screen (or the whole screen) to a buffer so it can be accessed in your shader scripts through the `texture(SCREEN_TEXTURE, ...)` function.
  *
- * Node for back-buffering the currently-displayed screen. The region defined in the BackBufferCopy node is buffered with the content of the screen it covers, or the entire screen according to the copy mode set. Use the `texture(SCREEN_TEXTURE, ...)` function in your shader scripts to access the buffer.
+ * Node for back-buffering the currently-displayed screen. The region defined in the [godot.BackBufferCopy] node is buffered with the content of the screen it covers, or the entire screen according to the copy mode set. Use the `texture(SCREEN_TEXTURE, ...)` function in your shader scripts to access the buffer.
  *
- * **Note:** Since this node inherits from [godot.Node2D] (and not [godot.Control]), anchors and margins won't apply to child [godot.Control]-derived nodes. This can be problematic when resizing the window. To avoid this, add [godot.Control]-derived nodes as *siblings* to the BackBufferCopy node instead of adding them as children.
+ * **Note:** Since this node inherits from [godot.Node2D] (and not [godot.Control]), anchors and margins won't apply to child [godot.Control]-derived nodes. This can be problematic when resizing the window. To avoid this, add [godot.Control]-derived nodes as *siblings* to the [godot.BackBufferCopy] node instead of adding them as children.
  */
 @GodotBaseType
 public open class BackBufferCopy : Node2D() {
   /**
    * Buffer mode. See [enum CopyMode] constants.
    */
-  public var copyMode: Long
+  public var copyMode: CopyMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_COPY_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return BackBufferCopy.CopyMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -42,7 +43,7 @@ public open class BackBufferCopy : Node2D() {
     }
 
   /**
-   * The area covered by the BackBufferCopy. Only used if [copyMode] is [COPY_MODE_RECT].
+   * The area covered by the [godot.BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    */
   public var rect: Rect2
     get() {
@@ -64,15 +65,15 @@ public open class BackBufferCopy : Node2D() {
     id: Long
   ) {
     /**
-     * Disables the buffering mode. This means the BackBufferCopy node will directly use the portion of screen it covers.
+     * Disables the buffering mode. This means the [godot.BackBufferCopy] node will directly use the portion of screen it covers.
      */
     COPY_MODE_DISABLED(0),
     /**
-     * BackBufferCopy buffers a rectangular region.
+     * [godot.BackBufferCopy] buffers a rectangular region.
      */
     COPY_MODE_RECT(1),
     /**
-     * BackBufferCopy buffers the entire screen.
+     * [godot.BackBufferCopy] buffers the entire screen.
      */
     COPY_MODE_VIEWPORT(2),
     ;

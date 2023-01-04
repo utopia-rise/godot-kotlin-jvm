@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.HTTPClient
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
@@ -473,11 +472,11 @@ public open class HTTPRequest : Node() {
   public fun request(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
-    sslValidateDomain: Boolean = true,
+    tlsValidateDomain: Boolean = true,
     method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestData: String = ""
   ): GodotError {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to sslValidateDomain, LONG to method.id, STRING to requestData)
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to tlsValidateDomain, LONG to method.id, STRING to requestData)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -490,11 +489,11 @@ public open class HTTPRequest : Node() {
   public fun requestRaw(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
-    sslValidateDomain: Boolean = true,
+    tlsValidateDomain: Boolean = true,
     method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestDataRaw: PackedByteArray = PackedByteArray()
   ): GodotError {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to sslValidateDomain, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to tlsValidateDomain, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -581,7 +580,10 @@ public open class HTTPRequest : Node() {
      * Request failed due to connection (read/write) error.
      */
     RESULT_CONNECTION_ERROR(4),
-    RESULT_SSL_HANDSHAKE_ERROR(5),
+    /**
+     * Request failed on TLS handshake.
+     */
+    RESULT_TLS_HANDSHAKE_ERROR(5),
     /**
      * Request does not have a response (yet).
      */

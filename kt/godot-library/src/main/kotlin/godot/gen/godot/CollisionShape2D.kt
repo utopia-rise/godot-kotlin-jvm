@@ -7,7 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Color
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -92,6 +94,24 @@ public open class CollisionShape2D : Node2D() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
+    }
+
+  /**
+   * The collision shape debug color.
+   *
+   * **Note:** The default value is [godot.ProjectSettings.debug/shapes/collision/shapeColor]. The `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug color.
+   */
+  public var debugColor: Color
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_GET_DEBUG_COLOR,
+          COLOR)
+      return TransferContext.readReturnValue(COLOR, false) as Color
+    }
+    set(`value`) {
+      TransferContext.writeArguments(COLOR to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_DEBUG_COLOR,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

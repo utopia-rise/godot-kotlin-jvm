@@ -46,7 +46,7 @@ public open class EngineProfiler : RefCounted() {
    */
   public open fun _tick(
     frameTime: Double,
-    idleTime: Double,
+    processTime: Double,
     physicsTime: Double,
     physicsFrameTime: Double
   ): Unit {

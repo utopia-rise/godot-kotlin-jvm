@@ -8,42 +8,29 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.VariantArray
 import godot.core.VariantType.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
-import godot.signals.Signal2
+import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
+import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class MultiplayerSpawner : Node() {
-  public val despawned: Signal2<Long, Node> by signal("sceneId", "node")
+  public val despawned: Signal1<Node> by signal("node")
 
-  public val spawned: Signal2<Long, Node> by signal("sceneId", "node")
-
-  public var replication: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWNABLE_SCENES, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-    }
-    set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWNABLE_SCENES, NIL)
-    }
+  public val spawned: Signal1<Node> by signal("node")
 
   public var spawnPath: NodePath
     get() {
@@ -71,26 +58,39 @@ public open class MultiplayerSpawner : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_LIMIT, NIL)
     }
 
-  public var autoSpawn: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_IS_AUTO_SPAWNING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_AUTO_SPAWNING, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MULTIPLAYERSPAWNER, scriptIndex)
     return true
   }
 
-  public open fun _spawnCustom(`data`: Any): Object? {
+  public open fun _spawnCustom(`data`: Any): Node? {
     throw NotImplementedError("_spawn_custom is not implemented for MultiplayerSpawner")
+  }
+
+  public fun addSpawnableScene(path: String): Unit {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_ADD_SPAWNABLE_SCENE, NIL)
+  }
+
+  public fun getSpawnableSceneCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWNABLE_SCENE_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public fun getSpawnableScene(index: Long): String {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWNABLE_SCENE, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  public fun clearSpawnableScenes(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_CLEAR_SPAWNABLE_SCENES, NIL)
   }
 
   public fun spawn(`data`: Any? = null): Node? {

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -23,12 +24,12 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
   /**
    * A base type.
    */
-  public var opType: Long
+  public var opType: OpType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVECTORBASE_GET_OP_TYPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisualShaderNodeVectorBase.OpType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -53,9 +54,13 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
      */
     OP_TYPE_VECTOR_3D(1),
     /**
+     * A 4D vector type.
+     */
+    OP_TYPE_VECTOR_4D(2),
+    /**
      * Represents the size of the [enum OpType] enum.
      */
-    OP_TYPE_MAX(2),
+    OP_TYPE_MAX(3),
     ;
 
     public val id: Long

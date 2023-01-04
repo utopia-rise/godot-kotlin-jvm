@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedInt32Array
+import godot.core.Plane
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.BOOL
@@ -182,7 +183,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   public open fun _subgizmosIntersectFrustum(
     gizmo: EditorNode3DGizmo,
     camera: Camera3D,
-    frustumPlanes: VariantArray<Any?>
+    frustumPlanes: VariantArray<Plane>
   ): PackedInt32Array {
     throw NotImplementedError("_subgizmos_intersect_frustum is not implemented for EditorNode3DGizmoPlugin")
   }
@@ -212,7 +213,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   public open fun _commitSubgizmos(
     gizmo: EditorNode3DGizmo,
     ids: PackedInt32Array,
-    restores: VariantArray<Any?>,
+    restores: VariantArray<Transform3D>,
     cancel: Boolean
   ): Unit {
   }

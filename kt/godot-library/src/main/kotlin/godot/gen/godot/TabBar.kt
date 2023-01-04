@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Control
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -36,31 +35,6 @@ import kotlin.Unit
 @GodotBaseType
 public open class TabBar : Control() {
   /**
-   * Emitted when a tab is hovered by the mouse.
-   */
-  public val tabHovered: Signal1<Long> by signal("tab")
-
-  /**
-   * Emitted when the active tab is rearranged via mouse drag. See [dragToRearrangeEnabled].
-   */
-  public val activeTabRearranged: Signal1<Long> by signal("idxTo")
-
-  /**
-   * Emitted when a tab is right-clicked. [selectWithRmb] must be enabled.
-   */
-  public val tabRmbClicked: Signal1<Long> by signal("tab")
-
-  /**
-   * Emitted when a tab is clicked, even if it is the current tab.
-   */
-  public val tabClicked: Signal1<Long> by signal("tab")
-
-  /**
-   * Emitted when a tab's right button is pressed. See [setTabButtonIcon].
-   */
-  public val tabButtonPressed: Signal1<Long> by signal("tab")
-
-  /**
    * Emitted when a tab is selected via click or script, even if it is the current tab.
    */
   public val tabSelected: Signal1<Long> by signal("tab")
@@ -69,6 +43,16 @@ public open class TabBar : Control() {
    * Emitted when switching to another tab.
    */
   public val tabChanged: Signal1<Long> by signal("tab")
+
+  /**
+   * Emitted when a tab is clicked, even if it is the current tab.
+   */
+  public val tabClicked: Signal1<Long> by signal("tab")
+
+  /**
+   * Emitted when a tab is right-clicked. [selectWithRmb] must be enabled.
+   */
+  public val tabRmbClicked: Signal1<Long> by signal("tab")
 
   /**
    * Emitted when a tab's close button is pressed.
@@ -94,6 +78,21 @@ public open class TabBar : Control() {
   public val tabClosePressed: Signal1<Long> by signal("tab")
 
   /**
+   * Emitted when a tab's right button is pressed. See [setTabButtonIcon].
+   */
+  public val tabButtonPressed: Signal1<Long> by signal("tab")
+
+  /**
+   * Emitted when a tab is hovered by the mouse.
+   */
+  public val tabHovered: Signal1<Long> by signal("tab")
+
+  /**
+   * Emitted when the active tab is rearranged via mouse drag. See [dragToRearrangeEnabled].
+   */
+  public val activeTabRearranged: Signal1<Long> by signal("idxTo")
+
+  /**
    * Select tab at index `tab_idx`.
    */
   public var currentTab: Long
@@ -110,11 +109,11 @@ public open class TabBar : Control() {
   /**
    * Sets the position at which tabs will be placed. See [enum AlignmentMode] for details.
    */
-  public var tabAlignment: Long
+  public var tabAlignment: AlignmentMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ALIGNMENT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TabBar.AlignmentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -138,12 +137,12 @@ public open class TabBar : Control() {
   /**
    * Sets when the close button will appear on the tabs. See [enum CloseButtonDisplayPolicy] for details.
    */
-  public var tabCloseDisplayPolicy: Long
+  public var tabCloseDisplayPolicy: CloseButtonDisplayPolicy
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_CLOSE_DISPLAY_POLICY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return TabBar.CloseButtonDisplayPolicy.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -247,14 +246,14 @@ public open class TabBar : Control() {
   /**
    * The number of tabs currently in the bar.
    */
-  public var tabCount: Material?
+  public var tabCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_COUNT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_COUNT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_COUNT, NIL)
     }
 
@@ -304,29 +303,6 @@ public open class TabBar : Control() {
     TransferContext.writeArguments(LONG to tabIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_TEXT_DIRECTION, LONG)
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public fun setTabOpentypeFeature(
-    tabIdx: Long,
-    tag: String,
-    values: Long
-  ): Unit {
-    TransferContext.writeArguments(LONG to tabIdx, STRING to tag, LONG to values)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_OPENTYPE_FEATURE,
-        NIL)
-  }
-
-  public fun getTabOpentypeFeature(tabIdx: Long, tag: String): Long {
-    TransferContext.writeArguments(LONG to tabIdx, STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_OPENTYPE_FEATURE,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public fun clearTabOpentypeFeatures(tabIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_CLEAR_TAB_OPENTYPE_FEATURES,
-        NIL)
   }
 
   /**

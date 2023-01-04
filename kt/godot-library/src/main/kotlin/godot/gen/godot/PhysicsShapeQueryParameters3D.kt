@@ -17,11 +17,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM3D
-import godot.core.VariantType.VECTOR2
+import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
-import godot.core.Vector2
+import godot.core.Vector3
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -52,14 +51,14 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     }
 
   /**
-   * The list of objects or object [RID]s that will be excluded from collisions.
+   * The list of object [RID]s that will be excluded from collisions. Use [godot.CollisionObject3D.getRid] to get the [RID] associated with a [godot.CollisionObject3D]-derived node.
    */
-  public var exclude: VariantArray<Any?>
+  public var exclude: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_EXCLUDE, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -86,15 +85,15 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   /**
    * The motion of the shape being queried for.
    */
-  public var motion: Vector2
+  public var motion: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_MOTION, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_MOTION, VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_SET_MOTION, NIL)
     }
@@ -102,12 +101,12 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   /**
    * The [godot.Shape3D] that will be used for collision/intersection queries. This stores the actual reference which avoids the shape to be released while being used for queries, so always prefer using this over [shapeRid].
    */
-  public var shape: Shape3D?
+  public var shape: Resource?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_SHAPE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shape3D?
+      return TransferContext.readReturnValue(OBJECT, true) as Resource?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

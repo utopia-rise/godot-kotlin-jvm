@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -58,12 +59,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public var depthCompareOperator: Long
+  public var depthCompareOperator: RenderingDevice.CompareOperator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_DEPTH_COMPARE_OPERATOR, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.CompareOperator.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -138,12 +139,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public var frontOpFail: Long
+  public var frontOpFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_FAIL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.StencilOperation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -154,12 +155,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public var frontOpPass: Long
+  public var frontOpPass: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_PASS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.StencilOperation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -170,12 +171,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public var frontOpDepthFail: Long
+  public var frontOpDepthFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_DEPTH_FAIL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.StencilOperation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -186,12 +187,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public var frontOpCompare: Long
+  public var frontOpCompare: RenderingDevice.CompareOperator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_COMPARE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.CompareOperator.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -250,12 +251,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public var backOpFail: Long
+  public var backOpFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_FAIL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.StencilOperation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -266,12 +267,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public var backOpPass: Long
+  public var backOpPass: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_PASS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.StencilOperation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -282,12 +283,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public var backOpDepthFail: Long
+  public var backOpDepthFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_DEPTH_FAIL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.StencilOperation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -298,12 +299,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public var backOpCompare: Long
+  public var backOpCompare: RenderingDevice.CompareOperator
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_COMPARE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return RenderingDevice.CompareOperator.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

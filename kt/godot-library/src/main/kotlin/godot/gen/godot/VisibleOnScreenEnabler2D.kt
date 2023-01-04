@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -27,12 +28,12 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   /**
    * Determines how the node is enabled. Corresponds to [enum Node.ProcessMode]. Disabled node uses [godot.Node.PROCESS_MODE_DISABLED].
    */
-  public var enableMode: Long
+  public var enableMode: EnableMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER2D_GET_ENABLE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return VisibleOnScreenEnabler2D.EnableMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

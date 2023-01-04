@@ -6,13 +6,12 @@
 
 package godot
 
-import godot.Image
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedByteArray
-import godot.core.Rect2
+import godot.core.Rect2i
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DICTIONARY
@@ -22,11 +21,9 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.RECT2
+import godot.core.VariantType.RECT2I
 import godot.core.VariantType.STRING
-import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR2I
-import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import kotlin.Any
@@ -78,10 +75,10 @@ public open class Image : Resource() {
   /**
    * Returns the image's size (width and height).
    */
-  public fun getSize(): Vector2 {
+  public fun getSize(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_SIZE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_SIZE, VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
   /**
@@ -96,7 +93,7 @@ public open class Image : Resource() {
   /**
    * Returns the image's format. See [enum Format] constants.
    */
-  public fun getFormat(): Image.Format {
+  public fun getFormat(): Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_FORMAT, LONG)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -114,7 +111,7 @@ public open class Image : Resource() {
   /**
    * Converts the image's format. See [enum Format] constants.
    */
-  public fun convert(format: Image.Format): Unit {
+  public fun convert(format: Format): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CONVERT, NIL)
   }
@@ -131,7 +128,7 @@ public open class Image : Resource() {
   /**
    * Resizes the image to the nearest power of 2 for the width and height. If [square] is `true` then set width and height to be the same. New pixels are calculated using the [interpolation] mode defined via [enum Interpolation] constants.
    */
-  public fun resizeToPo2(square: Boolean = false, interpolation: Image.Interpolation =
+  public fun resizeToPo2(square: Boolean = false, interpolation: Interpolation =
       Image.Interpolation.INTERPOLATE_BILINEAR): Unit {
     TransferContext.writeArguments(BOOL to square, LONG to interpolation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE_TO_PO2, NIL)
@@ -143,7 +140,7 @@ public open class Image : Resource() {
   public fun resize(
     width: Long,
     height: Long,
-    interpolation: Image.Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR
+    interpolation: Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR
   ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, LONG to interpolation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE, NIL)
@@ -199,30 +196,17 @@ public open class Image : Resource() {
   }
 
   /**
-   * Creates an empty image of given size and format. See [enum Format] constants. If [useMipmaps] is `true`, then generate mipmaps for this image. See the [generateMipmaps].
+   * Overwrites data of an existing [godot.Image]. Non-static equivalent of [createFromData].
    */
-  public fun create(
+  public fun setData(
     width: Long,
     height: Long,
     useMipmaps: Boolean,
-    format: Image.Format
-  ): Unit {
-    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to useMipmaps, LONG to format.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE, NIL)
-  }
-
-  /**
-   * Creates a new image of given size and format. See [enum Format] constants. Fills the image with the given raw data. If [useMipmaps] is `true` then loads mipmaps for this image from [data]. See [generateMipmaps].
-   */
-  public fun createFromData(
-    width: Long,
-    height: Long,
-    useMipmaps: Boolean,
-    format: Image.Format,
+    format: Format,
     `data`: PackedByteArray
   ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE_FROM_DATA, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SET_DATA, NIL)
   }
 
   /**
@@ -267,6 +251,29 @@ public open class Image : Resource() {
   }
 
   /**
+   * Saves the image as a JPEG file to [path] with the specified [quality] between `0.01` and `1.0` (inclusive). Higher [quality] values result in better-looking output at the cost of larger file sizes. Recommended [quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG compression remains lossy.
+   *
+   * **Note:** JPEG does not save an alpha channel. If the [godot.Image] contains an alpha channel, the image will still be saved, but the resulting JPEG file won't contain the alpha channel.
+   */
+  public fun saveJpg(path: String, quality: Double = 0.75): GodotError {
+    TransferContext.writeArguments(STRING to path, DOUBLE to quality)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_JPG, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Saves the image as a JPEG file to a byte array with the specified [quality] between `0.01` and `1.0` (inclusive). Higher [quality] values result in better-looking output at the cost of larger byte array sizes (and therefore memory usage). Recommended [quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG compression remains lossy.
+   *
+   * **Note:** JPEG does not save an alpha channel. If the [godot.Image] contains an alpha channel, the image will still be saved, but the resulting byte array won't contain the alpha channel.
+   */
+  public fun saveJpgToBuffer(quality: Double = 0.75): PackedByteArray {
+    TransferContext.writeArguments(DOUBLE to quality)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_JPG_TO_BUFFER,
+        PACKED_BYTE_ARRAY)
+    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+  }
+
+  /**
    * Saves the image as an EXR file to [path]. If [grayscale] is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return [ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.
    *
    * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will return [ERR_UNAVAILABLE] when it is called from an exported project.
@@ -278,9 +285,44 @@ public open class Image : Resource() {
   }
 
   /**
+   * Saves the image as an EXR file to a byte array. If [grayscale] is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return an empty byte array if Godot was compiled without the TinyEXR module.
+   *
+   * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will return an empty byte array when it is called from an exported project.
+   */
+  public fun saveExrToBuffer(grayscale: Boolean = false): PackedByteArray {
+    TransferContext.writeArguments(BOOL to grayscale)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_EXR_TO_BUFFER,
+        PACKED_BYTE_ARRAY)
+    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+  }
+
+  /**
+   * Saves the image as a WebP (Web Picture) file to the file at [path]. By default it will save lossless. If [lossy] is true, the image will be saved lossy, using the [quality] setting between 0.0 and 1.0 (inclusive).
+   */
+  public fun saveWebp(
+    path: String,
+    lossy: Boolean = false,
+    quality: Double = 0.75
+  ): GodotError {
+    TransferContext.writeArguments(STRING to path, BOOL to lossy, DOUBLE to quality)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_WEBP, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless. If [lossy] is true, the image will be saved lossy, using the [quality] setting between 0.0 and 1.0 (inclusive).
+   */
+  public fun saveWebpToBuffer(lossy: Boolean = false, quality: Double = 0.75): PackedByteArray {
+    TransferContext.writeArguments(BOOL to lossy, DOUBLE to quality)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_WEBP_TO_BUFFER,
+        PACKED_BYTE_ARRAY)
+    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+  }
+
+  /**
    * Returns [ALPHA_BLEND] if the image has data for alpha values. Returns [ALPHA_BIT] if all the alpha values are stored in a single bit. Returns [ALPHA_NONE] if no data for alpha values is found.
    */
-  public fun detectAlpha(): Image.AlphaMode {
+  public fun detectAlpha(): AlphaMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_ALPHA, LONG)
     return Image.AlphaMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -298,35 +340,49 @@ public open class Image : Resource() {
   /**
    *
    */
-  public fun detectUsedChannels(source: Image.CompressSource =
-      Image.CompressSource.COMPRESS_SOURCE_GENERIC): Image.UsedChannels {
+  public fun detectUsedChannels(source: CompressSource =
+      Image.CompressSource.COMPRESS_SOURCE_GENERIC): UsedChannels {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_USED_CHANNELS, LONG)
     return Image.UsedChannels.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
-   * Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available. See [enum CompressMode] and [enum CompressSource] constants.
+   * Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.
+   *
+   * The [mode] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.
+   *
+   * The [lossyQuality] parameter is optional for compressors that support it.
+   *
+   * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
   public fun compress(
-    mode: Image.CompressMode,
-    source: Image.CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
-    lossyQuality: Double = 0.7
+    mode: CompressMode,
+    source: CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
+    lossyQuality: Double = 0.7,
+    astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4
   ): GodotError {
-    TransferContext.writeArguments(LONG to mode.id, LONG to source.id, DOUBLE to lossyQuality)
+    TransferContext.writeArguments(LONG to mode.id, LONG to source.id, DOUBLE to lossyQuality, LONG to astcFormat.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
+   * Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.
    *
+   * This is an alternative to [compress] that lets the user supply the channels used in order for the compressor to pick the best DXT and ETC2 formats. For other formats (non DXT or ETC2), this argument is ignored.
+   *
+   * The [lossyQuality] parameter is optional for compressors that support it.
+   *
+   * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
   public fun compressFromChannels(
-    mode: Image.CompressMode,
-    channels: Image.UsedChannels,
-    lossyQuality: Double = 0.7
+    mode: CompressMode,
+    channels: UsedChannels,
+    lossyQuality: Double = 0.7,
+    astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4
   ): GodotError {
-    TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, DOUBLE to lossyQuality)
+    TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, DOUBLE to lossyQuality, LONG to astcFormat.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS_FROM_CHANNELS, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -349,6 +405,22 @@ public open class Image : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_IS_COMPRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Rotates the image in the specified [direction] by `90` degrees. The width and height of the image must be greater than `1`. If the width and height are not equal, the image will be resized.
+   */
+  public fun rotate90(direction: ClockDirection): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_ROTATE_90, NIL)
+  }
+
+  /**
+   * Rotates the image by `180` degrees. The width and height of the image must be greater than `1`.
+   */
+  public fun rotate180(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_ROTATE_180, NIL)
   }
 
   /**
@@ -417,10 +489,10 @@ public open class Image : Resource() {
    */
   public fun blitRect(
     src: Image,
-    srcRect: Rect2,
-    dst: Vector2
+    srcRect: Rect2i,
+    dst: Vector2i
   ): Unit {
-    TransferContext.writeArguments(OBJECT to src, RECT2 to srcRect, VECTOR2 to dst)
+    TransferContext.writeArguments(OBJECT to src, RECT2I to srcRect, VECTOR2I to dst)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLIT_RECT, NIL)
   }
 
@@ -430,10 +502,10 @@ public open class Image : Resource() {
   public fun blitRectMask(
     src: Image,
     mask: Image,
-    srcRect: Rect2,
-    dst: Vector2
+    srcRect: Rect2i,
+    dst: Vector2i
   ): Unit {
-    TransferContext.writeArguments(OBJECT to src, OBJECT to mask, RECT2 to srcRect, VECTOR2 to dst)
+    TransferContext.writeArguments(OBJECT to src, OBJECT to mask, RECT2I to srcRect, VECTOR2I to dst)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLIT_RECT_MASK, NIL)
   }
 
@@ -442,10 +514,10 @@ public open class Image : Resource() {
    */
   public fun blendRect(
     src: Image,
-    srcRect: Rect2,
-    dst: Vector2
+    srcRect: Rect2i,
+    dst: Vector2i
   ): Unit {
-    TransferContext.writeArguments(OBJECT to src, RECT2 to srcRect, VECTOR2 to dst)
+    TransferContext.writeArguments(OBJECT to src, RECT2I to srcRect, VECTOR2I to dst)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLEND_RECT, NIL)
   }
 
@@ -455,10 +527,10 @@ public open class Image : Resource() {
   public fun blendRectMask(
     src: Image,
     mask: Image,
-    srcRect: Rect2,
-    dst: Vector2
+    srcRect: Rect2i,
+    dst: Vector2i
   ): Unit {
-    TransferContext.writeArguments(OBJECT to src, OBJECT to mask, RECT2 to srcRect, VECTOR2 to dst)
+    TransferContext.writeArguments(OBJECT to src, OBJECT to mask, RECT2I to srcRect, VECTOR2I to dst)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLEND_RECT_MASK, NIL)
   }
 
@@ -473,23 +545,26 @@ public open class Image : Resource() {
   /**
    * Fills [rect] with [color].
    */
-  public fun fillRect(rect: Rect2, color: Color): Unit {
-    TransferContext.writeArguments(RECT2 to rect, COLOR to color)
+  public fun fillRect(rect: Rect2i, color: Color): Unit {
+    TransferContext.writeArguments(RECT2I to rect, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FILL_RECT, NIL)
   }
 
   /**
    * Returns a [godot.Rect2i] enclosing the visible portion of the image, considering each pixel with a non-zero alpha channel as visible.
    */
-  public fun getUsedRect(): Rect2 {
+  public fun getUsedRect(): Rect2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_USED_RECT, RECT2)
-    return TransferContext.readReturnValue(RECT2, false) as Rect2
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_USED_RECT, RECT2I)
+    return TransferContext.readReturnValue(RECT2I, false) as Rect2i
   }
 
-  public fun getRect(rect: Rect2): Image? {
-    TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_RECT, OBJECT)
+  /**
+   * Returns a new [godot.Image] that is a copy of this [godot.Image]'s area specified with [region].
+   */
+  public fun getRegion(region: Rect2i): Image? {
+    TransferContext.writeArguments(RECT2I to region)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_REGION, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 
@@ -682,173 +757,6 @@ public open class Image : Resource() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public enum class AlphaMode(
-    id: Long
-  ) {
-    /**
-     * Image does not have alpha.
-     */
-    ALPHA_NONE(0),
-    /**
-     * Image stores alpha in a single bit.
-     */
-    ALPHA_BIT(1),
-    /**
-     * Image uses alpha.
-     */
-    ALPHA_BLEND(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CompressSource(
-    id: Long
-  ) {
-    /**
-     * Source texture (before compression) is a regular texture. Default for all textures.
-     */
-    COMPRESS_SOURCE_GENERIC(0),
-    /**
-     * Source texture (before compression) is in sRGB space.
-     */
-    COMPRESS_SOURCE_SRGB(1),
-    /**
-     * Source texture (before compression) is a normal texture (e.g. it can be compressed into two channels).
-     */
-    COMPRESS_SOURCE_NORMAL(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class UsedChannels(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    USED_CHANNELS_L(0),
-    /**
-     *
-     */
-    USED_CHANNELS_LA(1),
-    /**
-     *
-     */
-    USED_CHANNELS_R(2),
-    /**
-     *
-     */
-    USED_CHANNELS_RG(3),
-    /**
-     *
-     */
-    USED_CHANNELS_RGB(4),
-    /**
-     *
-     */
-    USED_CHANNELS_RGBA(5),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class Interpolation(
-    id: Long
-  ) {
-    /**
-     * Performs nearest-neighbor interpolation. If the image is resized, it will be pixelated.
-     */
-    INTERPOLATE_NEAREST(0),
-    /**
-     * Performs bilinear interpolation. If the image is resized, it will be blurry. This mode is faster than [INTERPOLATE_CUBIC], but it results in lower quality.
-     */
-    INTERPOLATE_BILINEAR(1),
-    /**
-     * Performs cubic interpolation. If the image is resized, it will be blurry. This mode often gives better results compared to [INTERPOLATE_BILINEAR], at the cost of being slower.
-     */
-    INTERPOLATE_CUBIC(2),
-    /**
-     * Performs bilinear separately on the two most-suited mipmap levels, then linearly interpolates between them.
-     *
-     * It's slower than [INTERPOLATE_BILINEAR], but produces higher-quality results with far fewer aliasing artifacts.
-     *
-     * If the image does not have mipmaps, they will be generated and used internally, but no mipmaps will be generated on the resulting image.
-     *
-     * **Note:** If you intend to scale multiple copies of the original image, it's better to call [generateMipmaps]] on it in advance, to avoid wasting processing power in generating them again and again.
-     *
-     * On the other hand, if the image already has mipmaps, they will be used, and a new set will be generated for the resulting image.
-     */
-    INTERPOLATE_TRILINEAR(3),
-    /**
-     * Performs Lanczos interpolation. This is the slowest image resizing mode, but it typically gives the best results, especially when downscalng images.
-     */
-    INTERPOLATE_LANCZOS(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CompressMode(
-    id: Long
-  ) {
-    /**
-     * Use S3TC compression.
-     */
-    COMPRESS_S3TC(0),
-    /**
-     * Use ETC compression.
-     */
-    COMPRESS_ETC(1),
-    /**
-     * Use ETC2 compression.
-     */
-    COMPRESS_ETC2(2),
-    /**
-     * Use BPTC compression.
-     */
-    COMPRESS_BPTC(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
   public enum class Format(
     id: Long
   ) {
@@ -1011,9 +919,215 @@ public open class Image : Resource() {
      */
     FORMAT_DXT5_RA_AS_RG(34),
     /**
+     * [godot.Adaptive Scalable Texutre Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 4x4 (high quality) mode.
+     */
+    FORMAT_ASTC_4x4(35),
+    /**
+     * Same format as [godot.FORMAT_ASTC_4x4], but with the hint to let the GPU know it is used for HDR.
+     */
+    FORMAT_ASTC_4x4_HDR(36),
+    /**
+     * [godot.Adaptive Scalable Texutre Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 8x8 (low quality) mode.
+     */
+    FORMAT_ASTC_8x8(37),
+    /**
+     * Same format as [godot.FORMAT_ASTC_8x8], but with the hint to let the GPU know it is used for HDR.
+     */
+    FORMAT_ASTC_8x8_HDR(38),
+    /**
      * Represents the size of the [enum Format] enum.
      */
-    FORMAT_MAX(35),
+    FORMAT_MAX(39),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class Interpolation(
+    id: Long
+  ) {
+    /**
+     * Performs nearest-neighbor interpolation. If the image is resized, it will be pixelated.
+     */
+    INTERPOLATE_NEAREST(0),
+    /**
+     * Performs bilinear interpolation. If the image is resized, it will be blurry. This mode is faster than [INTERPOLATE_CUBIC], but it results in lower quality.
+     */
+    INTERPOLATE_BILINEAR(1),
+    /**
+     * Performs cubic interpolation. If the image is resized, it will be blurry. This mode often gives better results compared to [INTERPOLATE_BILINEAR], at the cost of being slower.
+     */
+    INTERPOLATE_CUBIC(2),
+    /**
+     * Performs bilinear separately on the two most-suited mipmap levels, then linearly interpolates between them.
+     *
+     * It's slower than [INTERPOLATE_BILINEAR], but produces higher-quality results with far fewer aliasing artifacts.
+     *
+     * If the image does not have mipmaps, they will be generated and used internally, but no mipmaps will be generated on the resulting image.
+     *
+     * **Note:** If you intend to scale multiple copies of the original image, it's better to call [generateMipmaps]] on it in advance, to avoid wasting processing power in generating them again and again.
+     *
+     * On the other hand, if the image already has mipmaps, they will be used, and a new set will be generated for the resulting image.
+     */
+    INTERPOLATE_TRILINEAR(3),
+    /**
+     * Performs Lanczos interpolation. This is the slowest image resizing mode, but it typically gives the best results, especially when downscalng images.
+     */
+    INTERPOLATE_LANCZOS(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class AlphaMode(
+    id: Long
+  ) {
+    /**
+     * Image does not have alpha.
+     */
+    ALPHA_NONE(0),
+    /**
+     * Image stores alpha in a single bit.
+     */
+    ALPHA_BIT(1),
+    /**
+     * Image uses alpha.
+     */
+    ALPHA_BLEND(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CompressMode(
+    id: Long
+  ) {
+    /**
+     * Use S3TC compression.
+     */
+    COMPRESS_S3TC(0),
+    /**
+     * Use ETC compression.
+     */
+    COMPRESS_ETC(1),
+    /**
+     * Use ETC2 compression.
+     */
+    COMPRESS_ETC2(2),
+    /**
+     * Use BPTC compression.
+     */
+    COMPRESS_BPTC(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class UsedChannels(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    USED_CHANNELS_L(0),
+    /**
+     *
+     */
+    USED_CHANNELS_LA(1),
+    /**
+     *
+     */
+    USED_CHANNELS_R(2),
+    /**
+     *
+     */
+    USED_CHANNELS_RG(3),
+    /**
+     *
+     */
+    USED_CHANNELS_RGB(4),
+    /**
+     *
+     */
+    USED_CHANNELS_RGBA(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CompressSource(
+    id: Long
+  ) {
+    /**
+     * Source texture (before compression) is a regular texture. Default for all textures.
+     */
+    COMPRESS_SOURCE_GENERIC(0),
+    /**
+     * Source texture (before compression) is in sRGB space.
+     */
+    COMPRESS_SOURCE_SRGB(1),
+    /**
+     * Source texture (before compression) is a normal texture (e.g. it can be compressed into two channels).
+     */
+    COMPRESS_SOURCE_NORMAL(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ASTCFormat(
+    id: Long
+  ) {
+    /**
+     * Hint to indicate that the high quality 4x4 ASTC compression format should be used.
+     */
+    ASTC_FORMAT_4x4(0),
+    /**
+     * Hint to indicate that the low quality 8x8 ASTC compression format should be used.
+     */
+    ASTC_FORMAT_8x8(1),
     ;
 
     public val id: Long

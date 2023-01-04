@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -41,12 +42,12 @@ public open class Timer : Node() {
   /**
    * Processing callback. See [enum TimerProcessCallback].
    */
-  public var processCallback: Long
+  public var processCallback: TimerProcessCallback
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_TIMER_PROCESS_CALLBACK,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return Timer.TimerProcessCallback.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

@@ -12,6 +12,7 @@ import godot.core.StringName
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -91,12 +92,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The selected shadow casting flag. See [enum ShadowCastingSetting] for possible values.
    */
-  public var castShadow: Long
+  public var castShadow: ShadowCastingSetting
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CAST_SHADOWS_SETTING, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GeometryInstance3D.ShadowCastingSetting.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -118,6 +119,22 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_EXTRA_CULL_MARGIN, NIL)
+    }
+
+  /**
+   * Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [godot.MeshInstance3D] or to have fine control over the [godot.MeshInstance3D]'s bounding box. To remove this, set value to an [AABB] with all fields set to zero.
+   */
+  public var customAabb: AABB
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CUSTOM_AABB, godot.core.VariantType.AABB)
+      return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
+    }
+    set(`value`) {
+      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CUSTOM_AABB, NIL)
     }
 
   /**
@@ -159,12 +176,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
    *
    * **Note:** Lights' bake mode will also affect the global illumination rendering. See [godot.Light3D.lightBakeMode].
    */
-  public var giMode: Long
+  public var giMode: GIMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_GI_MODE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GeometryInstance3D.GIMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -175,12 +192,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The texel density to use for lightmapping in [godot.LightmapGI]. Greater scale values provide higher resolution in the lightmap, which can result in sharper shadows for lights that have both direct and indirect light baked. However, greater scale values will also increase the space taken by the mesh in the lightmap texture, which increases the memory, storage, and bake time requirements. When using a single mesh at different scales, consider adjusting this value to keep the lightmap texel density consistent across meshes.
    */
-  public var giLightmapScale: Long
+  public var giLightmapScale: LightmapScale
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LIGHTMAP_SCALE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GeometryInstance3D.LightmapScale.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -259,12 +276,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values.
    */
-  public var visibilityRangeFadeMode: Long
+  public var visibilityRangeFadeMode: VisibilityRangeFadeMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_FADE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return GeometryInstance3D.VisibilityRangeFadeMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -277,53 +294,23 @@ public open class GeometryInstance3D : VisualInstance3D() {
     return true
   }
 
-  public fun setShaderInstanceUniform(uniform: StringName, `value`: Any): Unit {
-    TransferContext.writeArguments(STRING_NAME to uniform, ANY to value)
+  /**
+   * Set the value of a shader parameter for this instance only.
+   */
+  public fun setInstanceShaderParameter(name: StringName, `value`: Any): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_SHADER_INSTANCE_UNIFORM, NIL)
-  }
-
-  public fun getShaderInstanceUniform(uniform: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to uniform)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_SHADER_INSTANCE_UNIFORM, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+        ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_INSTANCE_SHADER_PARAMETER, NIL)
   }
 
   /**
-   * Overrides the bounding box of this node with a custom one. To remove it, set an [AABB] with all fields set to zero.
+   * Get the value of a shader parameter as set on this instance.
    */
-  public fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CUSTOM_AABB,
-        NIL)
-  }
-
-  public enum class GIMode(
-    id: Long
-  ) {
-    /**
-     * Disabled global illumination mode. Use for dynamic objects that do not contribute to global illumination (such as characters). When using [godot.VoxelGI] and SDFGI, the geometry will *receive* indirect lighting and reflections but the geometry will not be considered in GI baking. When using [godot.LightmapGI], the object will receive indirect lighting using lightmap probes instead of using the baked lightmap texture.
-     */
-    GI_MODE_DISABLED(0),
-    /**
-     * Baked global illumination mode. Use for static objects that contribute to global illumination (such as level geometry). This GI mode is effective when using [godot.VoxelGI], SDFGI and [godot.LightmapGI].
-     */
-    GI_MODE_STATIC(1),
-    /**
-     * Dynamic global illumination mode. Use for dynamic objects that contribute to global illumination. This GI mode is only effective when using [godot.VoxelGI], but it has a higher performance impact than [GI_MODE_STATIC]. When using other GI methods, this will act the same as [GI_MODE_DISABLED].
-     */
-    GI_MODE_DYNAMIC(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
+  public fun getInstanceShaderParameter(name: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_INSTANCE_SHADER_PARAMETER, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   public enum class ShadowCastingSetting(
@@ -351,6 +338,33 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * In other words, the actual mesh will not be visible, only the shadows casted from the mesh will be.
      */
     SHADOW_CASTING_SETTING_SHADOWS_ONLY(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class GIMode(
+    id: Long
+  ) {
+    /**
+     * Disabled global illumination mode. Use for dynamic objects that do not contribute to global illumination (such as characters). When using [godot.VoxelGI] and SDFGI, the geometry will *receive* indirect lighting and reflections but the geometry will not be considered in GI baking. When using [godot.LightmapGI], the object will receive indirect lighting using lightmap probes instead of using the baked lightmap texture.
+     */
+    GI_MODE_DISABLED(0),
+    /**
+     * Baked global illumination mode. Use for static objects that contribute to global illumination (such as level geometry). This GI mode is effective when using [godot.VoxelGI], SDFGI and [godot.LightmapGI].
+     */
+    GI_MODE_STATIC(1),
+    /**
+     * Dynamic global illumination mode. Use for dynamic objects that contribute to global illumination. This GI mode is only effective when using [godot.VoxelGI], but it has a higher performance impact than [GI_MODE_STATIC]. When using other GI methods, this will act the same as [GI_MODE_DISABLED].
+     */
+    GI_MODE_DYNAMIC(2),
     ;
 
     public val id: Long

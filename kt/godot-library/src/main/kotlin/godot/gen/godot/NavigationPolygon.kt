@@ -11,6 +11,7 @@ import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
@@ -42,7 +43,7 @@ import kotlin.Unit
  *
  * polygon.make_polygons_from_outlines()
  *
- * $NavigationRegion2D.navpoly = polygon
+ * $NavigationRegion2D.navigation_polygon = polygon
  *
  * [/gdscript]
  *
@@ -56,7 +57,7 @@ import kotlin.Unit
  *
  * polygon.MakePolygonsFromOutlines();
  *
- * GetNode<NavigationRegion2D>("NavigationRegion2D").Navpoly = polygon;
+ * GetNode<NavigationRegion2D>("NavigationRegion2D").NavigationPolygon = polygon;
  *
  * [/csharp]
  *
@@ -78,7 +79,7 @@ import kotlin.Unit
  *
  * polygon.add_polygon(indices)
  *
- * $NavigationRegion2D.navpoly = polygon
+ * $NavigationRegion2D.navigation_polygon = polygon
  *
  * [/gdscript]
  *
@@ -94,7 +95,7 @@ import kotlin.Unit
  *
  * polygon.AddPolygon(indices);
  *
- * GetNode<NavigationRegion2D>("NavigationRegion2D").Navpoly = polygon;
+ * GetNode<NavigationRegion2D>("NavigationRegion2D").NavigationPolygon = polygon;
  *
  * [/csharp]
  *
@@ -155,6 +156,16 @@ public open class NavigationPolygon : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_CLEAR_POLYGONS,
         NIL)
+  }
+
+  /**
+   * Returns the [godot.NavigationMesh] resulting from this navigation polygon. This navigation mesh can be used to update the navigation mesh of a region with the [godot.NavigationServer3D.regionSetNavigationMesh] API directly (as 2D uses the 3D server behind the scene).
+   */
+  public fun getNavigationMesh(): NavigationMesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_NAVIGATION_MESH, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?
   }
 
   /**

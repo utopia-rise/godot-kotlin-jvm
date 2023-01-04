@@ -108,7 +108,7 @@ public open class ENetConnection : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BROADCAST, NIL)
   }
 
-  public fun compress(mode: ENetConnection.CompressionMode): Unit {
+  public fun compress(mode: CompressionMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_COMPRESS, NIL)
   }
@@ -137,7 +137,7 @@ public open class ENetConnection : RefCounted() {
         ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_REFUSE_NEW_CONNECTIONS, NIL)
   }
 
-  public fun popStatistic(statistic: ENetConnection.HostStatistic): Double {
+  public fun popStatistic(statistic: HostStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_POP_STATISTIC,
         DOUBLE)
@@ -157,10 +157,30 @@ public open class ENetConnection : RefCounted() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public fun getPeers(): VariantArray<Any?> {
+  public fun getPeers(): VariantArray<ENetPacketPeer> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_GET_PEERS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<ENetPacketPeer>
+  }
+
+  public enum class CompressionMode(
+    id: Long
+  ) {
+    COMPRESS_NONE(0),
+    COMPRESS_RANGE_CODER(1),
+    COMPRESS_FASTLZ(2),
+    COMPRESS_ZLIB(3),
+    COMPRESS_ZSTD(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class EventType(
@@ -190,26 +210,6 @@ public open class ENetConnection : RefCounted() {
     HOST_TOTAL_SENT_PACKETS(1),
     HOST_TOTAL_RECEIVED_DATA(2),
     HOST_TOTAL_RECEIVED_PACKETS(3),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CompressionMode(
-    id: Long
-  ) {
-    COMPRESS_NONE(0),
-    COMPRESS_RANGE_CODER(1),
-    COMPRESS_FASTLZ(2),
-    COMPRESS_ZLIB(3),
-    COMPRESS_ZSTD(4),
     ;
 
     public val id: Long

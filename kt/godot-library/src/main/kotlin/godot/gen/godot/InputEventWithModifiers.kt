@@ -24,17 +24,20 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class InputEventWithModifiers internal constructor() : InputEventFromWindow() {
-  public var storeCommand: Boolean
+  /**
+   * Automatically use [kbd]Meta[/kbd] ([kbd]Command[/kbd]) on macOS and [kbd]Ctrl[/kbd] on other platforms. If `true`, [ctrlPressed] and [metaPressed] cannot be set.
+   */
+  public var commandOrControlAutoremap: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_STORING_COMMAND, BOOL)
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_COMMAND_OR_CONTROL_AUTOREMAP, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_STORE_COMMAND, NIL)
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_COMMAND_OR_CONTROL_AUTOREMAP, NIL)
     }
 
   /**
@@ -101,22 +104,21 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_META_PRESSED, NIL)
     }
 
-  public var commandPressed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_COMMAND_PRESSED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_COMMAND_PRESSED, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_INPUTEVENTWITHMODIFIERS, scriptIndex)
     return true
+  }
+
+  /**
+   * On macOS, returns `true` if [kbd]Meta[/kbd] ([kbd]Command[/kbd]) is pressed.
+   *
+   * On other platforms, returns `true` if [kbd]Ctrl[/kbd] is pressed.
+   */
+  public fun isCommandOrControlPressed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_COMMAND_OR_CONTROL_PRESSED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public companion object

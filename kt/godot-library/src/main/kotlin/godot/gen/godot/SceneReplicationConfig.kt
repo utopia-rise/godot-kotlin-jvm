@@ -15,7 +15,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,17 +28,24 @@ public open class SceneReplicationConfig : Resource() {
     return true
   }
 
-  public fun getProperties(): VariantArray<Any?> {
+  public fun getProperties(): VariantArray<NodePath> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_GET_PROPERTIES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<NodePath>
   }
 
   public fun addProperty(path: NodePath, index: Long = -1): Unit {
     TransferContext.writeArguments(NODE_PATH to path, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_ADD_PROPERTY,
         NIL)
+  }
+
+  public fun hasProperty(path: NodePath): Boolean {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_HAS_PROPERTY,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public fun removeProperty(path: NodePath): Unit {
