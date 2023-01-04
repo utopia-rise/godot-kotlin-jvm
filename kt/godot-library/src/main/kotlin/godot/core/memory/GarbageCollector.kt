@@ -4,7 +4,6 @@ import godot.core.KtObject
 import godot.core.NativeCoreType
 import godot.core.ObjectID
 import godot.core.VariantType
-import godot.global.GD.min
 import godot.util.VoidPtr
 import godot.util.info
 import godot.util.warning
@@ -15,6 +14,7 @@ import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import kotlin.math.min
 
 internal object GarbageCollector {
 
