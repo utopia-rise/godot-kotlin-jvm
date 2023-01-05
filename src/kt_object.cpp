@@ -9,6 +9,9 @@ KtObject::KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader) :
 }
 
 KtObject::~KtObject() {
+    if (is_ref_weak()) {
+        return;
+    }
     jni::Env env {jni::Jvm::current_env()};
     jni::MethodId on_destroy_method = get_method_id(env, jni_methods.ON_DESTROY);
     wrapped.call_void_method(env, on_destroy_method);
