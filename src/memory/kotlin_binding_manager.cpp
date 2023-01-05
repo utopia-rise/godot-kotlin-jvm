@@ -111,4 +111,4 @@ KotlinBindingManager& KotlinBindingManager::get_instance() {
     return instance;
 }
 
-KotlinBindingManager::KotlinBindingManager() : spin(), binding_map() {}
+KotlinBindingManager::KotlinBindingManager() : spin() {}
