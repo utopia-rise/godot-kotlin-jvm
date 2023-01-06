@@ -58,7 +58,7 @@ void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong in
 void MemoryBridge::decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
     Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
     RefCounted* ref = reinterpret_cast<RefCounted*>(obj);
-    if (ref && ref->unreference()) { delete ref; }
+    if (ref && ref->unreference()) { memdelete(ref); }
 }
 
 bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
