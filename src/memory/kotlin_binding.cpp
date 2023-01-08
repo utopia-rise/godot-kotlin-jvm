@@ -55,7 +55,3 @@ bool KotlinBinding::is_ready() {
 }
 
 KotlinBinding::KotlinBinding() : kt_object(nullptr), owner(nullptr) {}
-
-KotlinBinding::~KotlinBinding() {
-    delete kt_object;
-}

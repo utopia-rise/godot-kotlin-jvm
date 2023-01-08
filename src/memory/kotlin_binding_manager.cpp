@@ -100,10 +100,15 @@ KotlinBinding* KotlinBindingManager::create_script_binding(Object* p_object, KtO
 
 void KotlinBindingManager::delete_script_binding(KotlinBinding* binding) {
     KotlinBindingManager& manager = get_instance();
+
+    KtObject* binded_kt_object{binding->kt_object};
+
     // We avoid concurrent modification of the map. Before that it should be safe as the destructor of an object is not supposed to be called multiple times.
     manager.spin.lock();
     manager.binding_map.erase(binding->owner);
     manager.spin.unlock();
+
+    delete binded_kt_object;
 }
 
 KotlinBindingManager& KotlinBindingManager::get_instance() {

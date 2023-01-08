@@ -519,6 +519,7 @@ GDKotlin::GDKotlin() :
   bootstrap(nullptr),
   is_gc_started(false),
   configuration(GdKotlinConfiguration::load_gd_kotlin_configuration_or_default(gd_kotlin_configuration_path)),
+  is_initialized(false),
   transfer_context(nullptr) {}
 
 void GDKotlin::register_members(jni::Env& p_env) {
