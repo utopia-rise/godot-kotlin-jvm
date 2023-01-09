@@ -265,7 +265,7 @@ internal object GarbageCollector {
                             }
                             appendLine("Leaked native core types:")
                             for (entry in nativeCoreTypeMap) {
-                                append("    ${entry.key}: ${entry.value}")
+                                append("    ${entry.key}: ${entry.value.get()}")
                                 append(System.lineSeparator())
                             }
                         }

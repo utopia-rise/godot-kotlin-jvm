@@ -19,7 +19,7 @@ private:
 
     KotlinBinding();
 
-    ~KotlinBinding();
+    ~KotlinBinding() = default;
 
     void set_kt_object(KtObject* p_kt_object);
 
