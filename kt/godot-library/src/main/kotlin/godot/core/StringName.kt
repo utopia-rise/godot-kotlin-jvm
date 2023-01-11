@@ -30,6 +30,12 @@ class StringName : NativeCoreType {
         GarbageCollector.registerNativeCoreType(this, VariantType.STRING_NAME)
     }
 
+    override fun toString(): String {
+        TransferContext.writeArguments()
+        Bridge.engine_call_operator_string(_handle)
+        return TransferContext.readReturnValue(VariantType.STRING, false) as String
+    }
+
     //TODO/4.0: Implement
 
     @Suppress("FunctionName")
@@ -37,6 +43,8 @@ class StringName : NativeCoreType {
         external fun engine_call_constructor(): VoidPtr
         external fun engine_call_copy_constructor(): VoidPtr
         external fun engine_call_constructor_string(): VoidPtr
+
+        external fun engine_call_operator_string(_handle: VoidPtr)
     }
 }
 

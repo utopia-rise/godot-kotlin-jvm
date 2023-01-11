@@ -13,6 +13,8 @@ namespace bridges {
         static uintptr_t engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_string(JNIEnv* p_raw_env, jobject p_instance);
 
+        static void engine_call_operator_string(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+
         // clang-format off
         DECLARE_JNI_METHODS()
         // clang-format on
