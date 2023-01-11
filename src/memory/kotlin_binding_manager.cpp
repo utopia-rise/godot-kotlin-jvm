@@ -21,6 +21,8 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     // Called in the destructor of the Object.
     //  It's the very last action done in the destructor so assume variables local to the Object have been cleaned (including script and extension).
     // There are 2 cases, either an Object has been freed, and we have to release its reference OR it's a Refcounted and the JVM instance is already dead.
+    KtObject* binded_kt_object{reinterpret_cast<KotlinBinding*>(p_binding)->kt_object};
+
     KotlinBindingManager& manager = get_instance();
 
     Object* owner = reinterpret_cast<Object*>(p_instance);
@@ -28,6 +30,8 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     manager.spin.lock();
     manager.binding_map.erase(owner);
     manager.spin.unlock();
+
+    delete binded_kt_object;
 }
 
 GDExtensionBool KotlinBindingManager::_instance_binding_reference_callback(void* p_token, void* p_binding, GDExtensionBool p_reference) {
