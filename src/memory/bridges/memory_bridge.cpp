@@ -69,6 +69,10 @@ bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance,
             memdelete(reinterpret_cast<RID*>(p_raw_ptr));
             has_free = true;
             break;
+        case Variant::CALLABLE:
+            memdelete(reinterpret_cast<Callable*>(p_raw_ptr));
+            has_free = true;
+            break;
         case Variant::DICTIONARY:
             memdelete(reinterpret_cast<Dictionary*>(p_raw_ptr));
             has_free = true;
@@ -79,6 +83,7 @@ bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance,
             break;
         case Variant::STRING_NAME:
             memdelete(reinterpret_cast<StringName*>(p_raw_ptr));
+            has_free = true;
             break;
         case Variant::NODE_PATH:
             memdelete(reinterpret_cast<NodePath*>(p_raw_ptr));
