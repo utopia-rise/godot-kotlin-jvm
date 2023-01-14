@@ -9,9 +9,9 @@
 #include <editor/editor_scale.h>
 
 BottomPanel::BottomPanel() :
-  build_button(memnew(Button)),
   log_scroll_container(memnew(ScrollContainer)),
-  log_label(memnew(Label)) {
+  log_label(memnew(Label)),
+  build_button(memnew(Button)) {
     ClassDB::bind_method(D_METHOD("on_build_button_pressed"), &BottomPanel::on_build_button_pressed);
     ClassDB::bind_method(D_METHOD("on_clear_log_button_pressed"), &BottomPanel::on_clear_log_button_pressed);
 

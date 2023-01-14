@@ -29,7 +29,7 @@ static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
 void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     if (p_level == MODULE_INITIALIZATION_LEVEL_SERVERS) {
         GDREGISTER_CLASS(KotlinScript);
-        ScriptServer::register_language(&KotlinLanguage::get_instance());
+        ScriptServer::register_language(KotlinLanguage::get_instance());
         resource_format_loader.instantiate();
         ResourceLoader::add_resource_format_loader(resource_format_loader);
         resource_format_saver.instantiate();
@@ -49,7 +49,10 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
         return;
     }
 
-    ScriptServer::unregister_language(&KotlinLanguage::get_instance());
+    KotlinLanguage* kotlin_language{KotlinLanguage::get_instance()};
+    ScriptServer::unregister_language(kotlin_language);
+    memdelete(kotlin_language);
+    
     ResourceLoader::remove_resource_format_loader((resource_format_loader));
     ResourceSaver::remove_resource_format_saver(resource_format_saver);
     resource_format_loader.unref();

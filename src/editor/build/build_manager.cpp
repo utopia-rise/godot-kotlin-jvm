@@ -12,7 +12,7 @@ void background_trigger_build(void* p_userdata) {
     BuildManager::get_instance().build_blocking();
 }
 
-BuildManager::BuildManager() : build_mutex(), build_thread(), build_finished(false), last_build_exit_code(0) {}
+BuildManager::BuildManager() : build_finished(false), build_mutex(), last_build_exit_code(0) {}
 
 bool BuildManager::build_project_blocking() {
     if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) { return true; }

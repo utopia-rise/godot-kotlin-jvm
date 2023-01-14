@@ -112,7 +112,7 @@ const Variant KotlinInstance::get_rpc_config() const {
 }
 
 ScriptLanguage* KotlinInstance::get_language() {
-    return &KotlinLanguage::get_instance();
+    return KotlinLanguage::get_instance();
 }
 
 bool KotlinInstance::property_can_revert(const StringName& p_name) const {

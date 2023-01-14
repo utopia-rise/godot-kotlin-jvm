@@ -22,7 +22,7 @@ CallableCustom::CompareLessFunc KtCustomCallable::get_compare_less_func() const 
 }
 
 ObjectID KtCustomCallable::get_object() const {
-    static ObjectID custom_callable_middleman_id {KotlinLanguage::get_instance().get_custom_callable_middleman()->get_instance_id()};
+    static ObjectID custom_callable_middleman_id {KotlinLanguage::get_instance()->get_custom_callable_middleman()->get_instance_id()};
     if (target) {
         return target->get_instance_id();
     } else {
