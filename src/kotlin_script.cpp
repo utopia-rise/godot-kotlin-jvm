@@ -99,7 +99,7 @@ bool KotlinScript::is_valid() const {
 }
 
 ScriptLanguage* KotlinScript::get_language() const {
-    return &KotlinLanguage::get_instance();
+    return KotlinLanguage::get_instance();
 }
 
 bool KotlinScript::has_script_signal(const StringName& p_signal) const {
@@ -173,7 +173,7 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
 #else
     String package {p_path.replace("src/main/kotlin/", "")
                       .trim_prefix("res://")
-                      .trim_suffix(get_name() + "." + KotlinLanguage::get_instance().get_extension())
+                      .trim_suffix(get_name() + "." + KotlinLanguage::get_instance()->get_extension())
                       .trim_suffix("/")
                       .replace("/", ".")};
 
@@ -206,7 +206,7 @@ KotlinScript::KotlinScript() : kotlin_class(nullptr) {}
 PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_this) {
 #ifdef TOOLS_ENABLED
     PlaceHolderScriptInstance* placeholder {
-      memnew(PlaceHolderScriptInstance(&KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
+      memnew(PlaceHolderScriptInstance(KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
     p_this->set_script_instance(placeholder);
     placeholders.insert(placeholder);
     _update_exports(placeholder);

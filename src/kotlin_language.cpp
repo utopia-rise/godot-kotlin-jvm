@@ -7,8 +7,8 @@
 
 static const String GODOT_ENTRY_PATH {"res://build/generated/ksp"};
 
-KotlinLanguage& KotlinLanguage::get_instance() {
-    static KotlinLanguage instance;
+KotlinLanguage* KotlinLanguage::get_instance() {
+    static KotlinLanguage* instance{memnew(KotlinLanguage)};
     return instance;
 }
 

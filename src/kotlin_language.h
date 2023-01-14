@@ -10,7 +10,7 @@ public:
     KotlinLanguage(const KotlinLanguage&) = delete;
     void operator=(const KotlinLanguage&) = delete;
 
-    static KotlinLanguage& get_instance();
+    static KotlinLanguage* get_instance();
 
     String get_name() const override;
 
@@ -138,6 +138,8 @@ public:
     const Object* get_custom_callable_middleman() const;
 
 private:
+    KotlinLanguage* instance;
+
     Object* kt_custom_callable_middleman;
 };
 

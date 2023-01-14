@@ -42,13 +42,13 @@ Ref<Resource> KtResourceFormatLoader::load(const String& p_path, const String& p
 }
 
 void KtResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
-    KotlinLanguage::get_instance().get_recognized_extensions(p_extensions);
+    KotlinLanguage::get_instance()->get_recognized_extensions(p_extensions);
 }
 
 bool KtResourceFormatLoader::handles_type(const String& p_type) const {
-    return p_type == "Script" || p_type == KotlinLanguage::get_instance().get_type();
+    return p_type == "Script" || p_type == KotlinLanguage::get_instance()->get_type();
 }
 
 String KtResourceFormatLoader::get_resource_type(const String& p_path) const {
-    return p_path.get_extension().to_lower() == "kt" ? KotlinLanguage::get_instance().get_type() : "";
+    return p_path.get_extension().to_lower() == "kt" ? KotlinLanguage::get_instance()->get_type() : "";
 }
