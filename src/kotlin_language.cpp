@@ -119,6 +119,7 @@ void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
             "sealed",
             "suspend",
             "tailrec",
+            "value",
             "vararg",
 
             //SPECIAL IDENTIFIERS
