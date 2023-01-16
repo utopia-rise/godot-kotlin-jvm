@@ -48,13 +48,13 @@ abstract class KtObject {
             //Native object already exists, so we know the id and ptr without going back to the other side.
             rawPtr = config.ptr
             id = config.id
-            config.reset()
             //Singletons are never initialized from here.
             if (config.needBind) {
                 GarbageCollector.registerObjectAndBind(this)
             } else {
                 GarbageCollector.registerObject(this)
             }
+            config.reset()
         } else {
             //Native object doesn't exist yet, we have to create it.
             val scriptIndex = TypeManager.userTypeToId[this::class] ?: -1
