@@ -18,6 +18,8 @@ import kotlin.Suppress
 
 /**
  * Contains functions to modify texture coordinates (`uv`) to be used within the visual shader graph.
+ *
+ * UV functions are similar to [godot.core.Vector2] functions, but the input port of this node uses the shader's UV value by default.
  */
 @GodotBaseType
 public open class VisualShaderNodeUVFunc : VisualShaderNode() {

@@ -380,12 +380,14 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased. See also [drawMultiline] and [drawPolyline].
+   *
+   * If [width] is negative, then a two-point primitive will be drawn instead of a four-point one. This means that when the CanvasItem is scaled, the line will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
   public fun drawLine(
     from: Vector2,
     to: Vector2,
     color: Color,
-    width: Double = 1.0,
+    width: Double = -1.0,
     antialiased: Boolean = false
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width, BOOL to antialiased)
@@ -394,15 +396,18 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws a dashed line from a 2D point to another, with a given color and width. See also [drawMultiline] and [drawPolyline].
+   *
+   * If [width] is negative, then a two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the line parts will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
   public fun drawDashedLine(
     from: Vector2,
     to: Vector2,
     color: Color,
-    width: Double = 1.0,
-    dash: Double = 2.0
+    width: Double = -1.0,
+    dash: Double = 2.0,
+    aligned: Boolean = true
   ): Unit {
-    TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width, DOUBLE to dash)
+    TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width, DOUBLE to dash, BOOL to aligned)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_DASHED_LINE, NIL)
   }
 
@@ -452,11 +457,13 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws multiple disconnected lines with a uniform [color]. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
+   *
+   * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
   public fun drawMultiline(
     points: PackedVector2Array,
     color: Color,
-    width: Double = 1.0
+    width: Double = -1.0
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, COLOR to color, DOUBLE to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE, NIL)
@@ -464,11 +471,13 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws multiple disconnected lines with a uniform [width] and segment-by-segment coloring. Colors assigned to line segments match by index between [points] and [colors]. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
+   *
+   * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
   public fun drawMultilineColors(
     points: PackedVector2Array,
     colors: PackedColorArray,
-    width: Double = 1.0
+    width: Double = -1.0
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE_COLORS,
@@ -478,13 +487,17 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a rectangle. If [filled] is `true`, the rectangle will be filled with the [color] specified. If [filled] is `false`, the rectangle will be drawn as a stroke with the [color] and [width] specified.
    *
+   * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   *
    * **Note:** [width] is only effective if [filled] is `false`.
+   *
+   * **Note:** Unfilled rectangles drawn with a negative [width] may not display perfectly. For example, corners may be missing or brighter due to overlapping lines (for a translucent [color]).
    */
   public fun drawRect(
     rect: Rect2,
     color: Color,
     filled: Boolean = true,
-    width: Double = 1.0
+    width: Double = -1.0
   ): Unit {
     TransferContext.writeArguments(RECT2 to rect, COLOR to color, BOOL to filled, DOUBLE to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_RECT, NIL)
@@ -603,10 +616,9 @@ public open class CanvasItem internal constructor() : Node() {
     points: PackedVector2Array,
     colors: PackedColorArray,
     uvs: PackedVector2Array,
-    texture: Texture2D? = null,
-    width: Double = 1.0
+    texture: Texture2D? = null
   ): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, OBJECT to texture, DOUBLE to width)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_PRIMITIVE, NIL)
   }
 

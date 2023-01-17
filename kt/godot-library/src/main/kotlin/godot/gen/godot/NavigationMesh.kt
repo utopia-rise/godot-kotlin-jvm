@@ -34,7 +34,7 @@ import kotlin.Unit
  * A mesh to approximate the walkable areas and obstacles.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/124](https://godotengine.org/asset-library/asset/124)
+ * [$DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html)
  *
  * A navigation mesh is a collection of polygons that define which areas of an environment are traversable to aid agents in pathfinding through complicated spaces.
  */

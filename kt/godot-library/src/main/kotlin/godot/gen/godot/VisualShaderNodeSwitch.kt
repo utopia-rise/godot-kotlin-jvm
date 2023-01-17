@@ -56,29 +56,33 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
      */
     OP_TYPE_INT(1),
     /**
+     * An unsigned integer scalar.
+     */
+    OP_TYPE_UINT(2),
+    /**
      * A 2D vector type.
      */
-    OP_TYPE_VECTOR_2D(2),
+    OP_TYPE_VECTOR_2D(3),
     /**
      * A 3D vector type.
      */
-    OP_TYPE_VECTOR_3D(3),
+    OP_TYPE_VECTOR_3D(4),
     /**
      * A 4D vector type.
      */
-    OP_TYPE_VECTOR_4D(4),
+    OP_TYPE_VECTOR_4D(5),
     /**
      * A boolean type.
      */
-    OP_TYPE_BOOLEAN(5),
+    OP_TYPE_BOOLEAN(6),
     /**
      * A transform type.
      */
-    OP_TYPE_TRANSFORM(6),
+    OP_TYPE_TRANSFORM(7),
     /**
      * Represents the size of the [enum OpType] enum.
      */
-    OP_TYPE_MAX(7),
+    OP_TYPE_MAX(8),
     ;
 
     public val id: Long

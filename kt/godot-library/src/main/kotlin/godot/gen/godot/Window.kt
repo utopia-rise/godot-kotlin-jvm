@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedStringArray
+import godot.core.PackedVector2Array
 import godot.core.Rect2i
 import godot.core.StringName
 import godot.core.VariantType.BOOL
@@ -18,6 +19,7 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.RECT2I
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
@@ -121,6 +123,20 @@ public open class Window : Viewport() {
   public val titlebarChanged: Signal0 by signal()
 
   /**
+   *
+   */
+  public var initialPosition: WindowInitialPosition
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_INITIAL_POSITION, LONG)
+      return Window.WindowInitialPosition.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_INITIAL_POSITION, NIL)
+    }
+
+  /**
    * The window's title. If the [godot.Window] is non-embedded, title styles set in [godot.Theme] will have no effect.
    */
   public var title: String
@@ -190,6 +206,74 @@ public open class Window : Viewport() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_CURRENT_SCREEN, NIL)
+    }
+
+  /**
+   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.
+   *
+   * Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * # Set region, using Path2D node.
+   *
+   * $Window.mouse_passthrough_polygon = $Path2D.curve.get_baked_points()
+   *
+   *
+   *
+   * # Set region, using Polygon2D node.
+   *
+   * $Window.mouse_passthrough_polygon = $Polygon2D.polygon
+   *
+   *
+   *
+   * # Reset region to default.
+   *
+   * $Window.mouse_passthrough_polygon = []
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * // Set region, using Path2D node.
+   *
+   * GetNode<Window>("Window").MousePassthrough = GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
+   *
+   *
+   *
+   * // Set region, using Polygon2D node.
+   *
+   * GetNode<Window>("Window").MousePassthrough = GetNode<Polygon2D>("Polygon2D").Polygon;
+   *
+   *
+   *
+   * // Reset region to default.
+   *
+   * GetNode<Window>("Window").MousePassthrough = new Vector2[] {};
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * **Note:** This property is ignored if [mousePassthrough] is set to `true`.
+   *
+   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while on Linux (X11) and macOS it is.
+   *
+   * **Note:** This property is implemented on Linux (X11), macOS and Windows.
+   */
+  public var mousePassthroughPolygon: PackedVector2Array
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MOUSE_PASSTHROUGH_POLYGON, PACKED_VECTOR2_ARRAY)
+      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    }
+    set(`value`) {
+      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_WINDOW_SET_MOUSE_PASSTHROUGH_POLYGON, NIL)
     }
 
   /**
@@ -1102,9 +1186,13 @@ public open class Window : Viewport() {
      */
     FLAG_EXTEND_TO_TITLE(6),
     /**
+     * All mouse events are passed to the underlying window of the same application.
+     */
+    FLAG_MOUSE_PASSTHROUGH(7),
+    /**
      * Max value of the [enum Flags].
      */
-    FLAG_MAX(7),
+    FLAG_MAX(8),
     ;
 
     public val id: Long
@@ -1198,6 +1286,29 @@ public open class Window : Viewport() {
      * Right-to-left layout direction.
      */
     LAYOUT_DIRECTION_RTL(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class WindowInitialPosition(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    WINDOW_INITIAL_POSITION_ABSOLUTE(0),
+    /**
+     *
+     */
+    WINDOW_INITIAL_POSITION_CENTER_SCREEN(1),
     ;
 
     public val id: Long

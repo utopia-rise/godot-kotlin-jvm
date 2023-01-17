@@ -614,7 +614,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Adds a button with [godot.Texture2D] [button] at column [column]. The [id] is used to identify the button. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can be [disabled] and have a [tooltipText].
+   * Adds a button with [godot.Texture2D] [button] at column [column]. The [id] is used to identify the button in the according [godot.Tree.buttonClicked] signal and can be different from the buttons index. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can be [disabled] and have a [tooltipText].
    */
   public fun addButton(
     column: Long,
@@ -637,20 +637,20 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the tooltip text for the button at index [buttonIdx] in column [column].
+   * Returns the tooltip text for the button at index [buttonIndex] in column [column].
    */
-  public fun getButtonTooltipText(column: Long, buttonIdx: Long): String {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
+  public fun getButtonTooltipText(column: Long, buttonIndex: Long): String {
+    TransferContext.writeArguments(LONG to column, LONG to buttonIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_TOOLTIP_TEXT,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
-   * Returns the ID for the button at index [buttonIdx] in column [column].
+   * Returns the ID for the button at index [buttonIndex] in column [column].
    */
-  public fun getButtonId(column: Long, buttonIdx: Long): Long {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
+  public fun getButtonId(column: Long, buttonIndex: Long): Long {
+    TransferContext.writeArguments(LONG to column, LONG to buttonIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -665,63 +665,63 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the [godot.Texture2D] of the button at index [buttonIdx] in column [column].
+   * Returns the [godot.Texture2D] of the button at index [buttonIndex] in column [column].
    */
-  public fun getButton(column: Long, buttonIdx: Long): Texture2D? {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
+  public fun getButton(column: Long, buttonIndex: Long): Texture2D? {
+    TransferContext.writeArguments(LONG to column, LONG to buttonIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
   /**
-   * Sets the given column's button [godot.Texture2D] at index [buttonIdx] to [button].
+   * Sets the given column's button [godot.Texture2D] at index [buttonIndex] to [button].
    */
   public fun setButton(
     column: Long,
-    buttonIdx: Long,
+    buttonIndex: Long,
     button: Texture2D
   ): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIdx, OBJECT to button)
+    TransferContext.writeArguments(LONG to column, LONG to buttonIndex, OBJECT to button)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON, NIL)
   }
 
   /**
-   * Removes the button at index [buttonIdx] in column [column].
+   * Removes the button at index [buttonIndex] in column [column].
    */
-  public fun eraseButton(column: Long, buttonIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
+  public fun eraseButton(column: Long, buttonIndex: Long): Unit {
+    TransferContext.writeArguments(LONG to column, LONG to buttonIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ERASE_BUTTON, NIL)
   }
 
   /**
-   * If `true`, disables the button at index [buttonIdx] in the given [column].
+   * If `true`, disables the button at index [buttonIndex] in the given [column].
    */
   public fun setButtonDisabled(
     column: Long,
-    buttonIdx: Long,
+    buttonIndex: Long,
     disabled: Boolean
   ): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIdx, BOOL to disabled)
+    TransferContext.writeArguments(LONG to column, LONG to buttonIndex, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_DISABLED, NIL)
   }
 
   /**
-   * Sets the given column's button color at index [buttonIdx] to [color].
+   * Sets the given column's button color at index [buttonIndex] to [color].
    */
   public fun setButtonColor(
     column: Long,
-    buttonIdx: Long,
+    buttonIndex: Long,
     color: Color
   ): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIdx, COLOR to color)
+    TransferContext.writeArguments(LONG to column, LONG to buttonIndex, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_COLOR, NIL)
   }
 
   /**
-   * Returns `true` if the button at index [buttonIdx] for the given [column] is disabled.
+   * Returns `true` if the button at index [buttonIndex] for the given [column] is disabled.
    */
-  public fun isButtonDisabled(column: Long, buttonIdx: Long): Boolean {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
+  public fun isButtonDisabled(column: Long, buttonIndex: Long): Boolean {
+    TransferContext.writeArguments(LONG to column, LONG to buttonIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_BUTTON_DISABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -780,10 +780,10 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Creates an item and adds it as a child.
    *
-   * The new item will be inserted as position [idx] (the default value `-1` means the last position), or it will be the last child if [idx] is higher than the child count.
+   * The new item will be inserted as position [index] (the default value `-1` means the last position), or it will be the last child if [index] is higher than the child count.
    */
-  public fun createChild(idx: Long = -1): TreeItem? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun createChild(index: Long = -1): TreeItem? {
+    TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CREATE_CHILD, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
@@ -856,12 +856,12 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns a child item by its index (see [getChildCount]). This method is often used for iterating all children of an item.
+   * Returns a child item by its [index] (see [getChildCount]). This method is often used for iterating all children of an item.
    *
    * Negative indices access the children from the last one.
    */
-  public fun getChild(idx: Long): TreeItem? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getChild(index: Long): TreeItem? {
+    TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILD, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }

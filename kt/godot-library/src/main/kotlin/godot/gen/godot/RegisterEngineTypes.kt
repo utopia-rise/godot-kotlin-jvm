@@ -46,6 +46,7 @@ private fun registerEngineTypeMethodForProjectSettings(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "has_setting")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "set_setting")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "get_setting")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "get_setting_with_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "set_order")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "get_order")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "set_initial_value")
@@ -451,6 +452,7 @@ private fun registerEngineTypeMethodForJavaScriptBridge(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JAVASCRIPTBRIDGE to "download_buffer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_JAVASCRIPTBRIDGE to "pwa_needs_update")
   TypeManager.engineTypeMethod.add(ENGINECLASS_JAVASCRIPTBRIDGE to "pwa_update")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_JAVASCRIPTBRIDGE to "force_fs_sync")
 }
 
 private fun registerEngineTypeMethodForThemeDB(): Unit {
@@ -547,6 +549,8 @@ private fun registerEngineTypeMethodForDisplayServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "get_display_cutouts")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "get_display_safe_area")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "get_screen_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "get_primary_screen")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "get_screen_from_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "screen_get_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "screen_get_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "screen_get_usable_rect")
@@ -1207,6 +1211,7 @@ private fun registerEngineTypeMethodForRenderingServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "get_test_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "get_white_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "set_boot_image")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "get_default_clear_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "set_default_clear_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "has_feature")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "has_os_feature")
@@ -1380,9 +1385,15 @@ private fun registerEngineTypeMethodForPhysicsServer2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "joint_clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "joint_set_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "joint_get_param")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to
+      "joint_disable_collisions_between_bodies")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to
+      "joint_is_disabled_collisions_between_bodies")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "joint_make_pin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "joint_make_groove")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "joint_make_damped_spring")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "pin_joint_set_param")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "pin_joint_get_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "damped_spring_joint_set_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "damped_spring_joint_get_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER2D to "joint_get_type")
@@ -1520,6 +1531,10 @@ private fun registerEngineTypeMethodForPhysicsServer3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3D to "joint_get_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3D to "joint_set_solver_priority")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3D to "joint_get_solver_priority")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3D to
+      "joint_disable_collisions_between_bodies")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3D to
+      "joint_is_disabled_collisions_between_bodies")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3D to "joint_make_generic_6dof")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3D to "generic_6dof_joint_set_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3D to "generic_6dof_joint_get_param")
@@ -1687,6 +1702,7 @@ private fun registerEngineTypeMethodForNavigationServer3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER3D to "free_rid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER3D to "set_active")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER3D to "process")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER3D to "get_process_info")
 }
 
 private fun registerEngineTypeMethodForXRServer(): Unit {
@@ -1797,8 +1813,10 @@ private fun registerEngineTypeMethodForAStarGrid2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "is_jumping_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "set_diagonal_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "get_diagonal_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "set_default_heuristic")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "get_default_heuristic")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "set_default_compute_heuristic")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "get_default_compute_heuristic")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "set_default_estimate_heuristic")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "get_default_estimate_heuristic")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "set_point_solid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "is_point_solid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTARGRID2D to "set_point_weight_scale")
@@ -2217,6 +2235,7 @@ private fun registerEngineTypeMethodForAnimationPlayer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "get_default_blend_time")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "play")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "play_backwards")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "pause")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "stop")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "is_playing")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "set_current_animation")
@@ -2941,12 +2960,12 @@ private fun registerEngineTypeMethodForBaseButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "get_draw_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "set_keep_pressed_outside")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "is_keep_pressed_outside")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "set_shortcut_feedback")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "is_shortcut_feedback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "set_shortcut")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "get_shortcut")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "set_button_group")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "get_button_group")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "set_shortcut_feedback")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "is_shortcut_feedback")
 }
 
 private fun registerEngineTypeMethodForBaseMaterial3D(): Unit {
@@ -3143,8 +3162,6 @@ private fun registerEngineTypeMethodForBoneAttachment3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONEATTACHMENT3D to "on_bone_pose_update")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONEATTACHMENT3D to "set_override_pose")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONEATTACHMENT3D to "get_override_pose")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_BONEATTACHMENT3D to "set_override_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_BONEATTACHMENT3D to "get_override_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONEATTACHMENT3D to "set_use_external_skeleton")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONEATTACHMENT3D to "get_use_external_skeleton")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONEATTACHMENT3D to "set_external_skeleton")
@@ -4006,6 +4023,7 @@ private fun registerEngineTypeMethodForCharacterBody3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_real_velocity")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_floor_angle")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_platform_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_platform_angular_velocity")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_slide_collision_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_slide_collision")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_last_slide_collision")
@@ -4115,7 +4133,7 @@ private fun registerEngineTypeMethodForCodeEdit(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CODEEDIT to "set_code_completion_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CODEEDIT to "is_code_completion_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CODEEDIT to "set_code_completion_prefixes")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CODEEDIT to "get_code_comletion_prefixes")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CODEEDIT to "get_code_completion_prefixes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CODEEDIT to "set_line_length_guidelines")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CODEEDIT to "get_line_length_guidelines")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CODEEDIT to "set_symbol_lookup_on_click_enabled")
@@ -7058,6 +7076,12 @@ private fun registerEngineTypeMethodForInputEventPanGesture(): Unit {
 private fun registerEngineTypeMethodForInputEventScreenDrag(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "set_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "get_index")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "set_tilt")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "get_tilt")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "set_pressure")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "get_pressure")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "set_pen_inverted")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "get_pen_inverted")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "set_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "get_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "set_relative")
@@ -7788,8 +7812,6 @@ private fun registerEngineTypeMethodForMeshInstance2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE2D to "get_mesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE2D to "set_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE2D to "get_texture")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE2D to "set_normal_map")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE2D to "get_normal_map")
 }
 
 private fun registerEngineTypeMethodForMeshInstance3D(): Unit {
@@ -7933,8 +7955,6 @@ private fun registerEngineTypeMethodForMultiMeshInstance2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE2D to "get_multimesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE2D to "set_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE2D to "get_texture")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE2D to "set_normal_map")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE2D to "get_normal_map")
 }
 
 private fun registerEngineTypeMethodForMultiMeshInstance3D(): Unit {
@@ -8020,7 +8040,6 @@ private fun registerEngineTypeMethodForMultiplayerPeerExtension(): Unit {
 }
 
 private fun registerEngineTypeMethodForMultiplayerSpawner(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERSPAWNER to "_spawn_custom")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERSPAWNER to "add_spawnable_scene")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERSPAWNER to "get_spawnable_scene_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERSPAWNER to "get_spawnable_scene")
@@ -8030,6 +8049,8 @@ private fun registerEngineTypeMethodForMultiplayerSpawner(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERSPAWNER to "set_spawn_path")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERSPAWNER to "get_spawn_limit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERSPAWNER to "set_spawn_limit")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERSPAWNER to "get_spawn_function")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERSPAWNER to "set_spawn_function")
 }
 
 private fun registerEngineTypeMethodForMultiplayerSynchronizer(): Unit {
@@ -8434,6 +8455,7 @@ private fun registerEngineTypeMethodForNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "get_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "add_child")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "remove_child")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "reparent")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "get_child_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "get_children")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "get_child")
@@ -8490,6 +8512,7 @@ private fun registerEngineTypeMethodForNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "is_processing_internal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "set_physics_process_internal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "is_physics_processing_internal")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "get_window")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "get_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "create_tween")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "duplicate")
@@ -8753,83 +8776,6 @@ private fun registerEngineTypeMethodForOggPacketSequencePlayback(): Unit {
 private fun registerEngineTypeMethodForOmniLight3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OMNILIGHT3D to "set_shadow_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OMNILIGHT3D to "get_shadow_mode")
-}
-
-private fun registerEngineTypeMethodForOpenXRAction(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "set_localized_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "get_localized_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "set_action_type")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "get_action_type")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "set_toplevel_paths")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "get_toplevel_paths")
-}
-
-private fun registerEngineTypeMethodForOpenXRActionMap(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "set_action_sets")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_action_sets")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_action_set_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "find_action_set")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_action_set")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "add_action_set")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "remove_action_set")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "set_interaction_profiles")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_interaction_profiles")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_interaction_profile_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "find_interaction_profile")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_interaction_profile")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "add_interaction_profile")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "remove_interaction_profile")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "create_default_action_sets")
-}
-
-private fun registerEngineTypeMethodForOpenXRActionSet(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "set_localized_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_localized_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "set_priority")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_priority")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_action_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "set_actions")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_actions")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "add_action")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "remove_action")
-}
-
-private fun registerEngineTypeMethodForOpenXRHand(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "set_hand")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "get_hand")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "set_hand_skeleton")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "get_hand_skeleton")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "set_motion_range")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "get_motion_range")
-}
-
-private fun registerEngineTypeMethodForOpenXRIPBinding(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "set_action")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "get_action")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "get_path_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "set_paths")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "get_paths")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "has_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "add_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "remove_path")
-}
-
-private fun registerEngineTypeMethodForOpenXRInteractionProfile(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to
-      "set_interaction_profile_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to
-      "get_interaction_profile_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "get_binding_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "get_binding")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "set_bindings")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "get_bindings")
-}
-
-private fun registerEngineTypeMethodForOpenXRInterface(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to "get_display_refresh_rate")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to "set_display_refresh_rate")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to
-      "get_available_display_refresh_rates")
 }
 
 private fun registerEngineTypeMethodForOptimizedTranslation(): Unit {
@@ -9294,6 +9240,7 @@ private fun registerEngineTypeMethodForPhysicsDirectBodyState2D(): Unit {
       "get_contact_collider_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE2D to
       "get_contact_collider_velocity_at_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE2D to "get_contact_impulse")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE2D to "get_step")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE2D to "integrate_forces")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE2D to "get_space_state")
@@ -9375,6 +9322,8 @@ private fun registerEngineTypeMethodForPhysicsDirectBodyState2DExtension(): Unit
       "_get_contact_collider_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION to
       "_get_contact_collider_velocity_at_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION to
+      "_get_contact_impulse")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION to "_get_step")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION to
       "_integrate_forces")
@@ -9552,6 +9501,8 @@ private fun registerEngineTypeMethodForPhysicsDirectSpaceState2DExtension(): Uni
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION to
       "_collide_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION to "_rest_info")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION to
+      "is_body_excluded_from_query")
 }
 
 private fun registerEngineTypeMethodForPhysicsDirectSpaceState3D(): Unit {
@@ -9576,6 +9527,8 @@ private fun registerEngineTypeMethodForPhysicsDirectSpaceState3DExtension(): Uni
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION to "_rest_info")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION to
       "_get_closest_point_to_object_volume")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION to
+      "is_body_excluded_from_query")
 }
 
 private fun registerEngineTypeMethodForPhysicsMaterial(): Unit {
@@ -10791,6 +10744,9 @@ private fun registerEngineTypeMethodForResource(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCE to "duplicate")
 }
 
+private fun registerEngineTypeMethodForResourceFormatImporterSaver(): Unit {
+}
+
 private fun registerEngineTypeMethodForResourceFormatLoader(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATLOADER to "_get_recognized_extensions")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATLOADER to "_recognize_path")
@@ -10806,6 +10762,7 @@ private fun registerEngineTypeMethodForResourceFormatLoader(): Unit {
 
 private fun registerEngineTypeMethodForResourceFormatSaver(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATSAVER to "_save")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATSAVER to "_set_uid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATSAVER to "_recognize")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATSAVER to "_get_recognized_extensions")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATSAVER to "_recognize_path")
@@ -11191,6 +11148,7 @@ private fun registerEngineTypeMethodForSceneTree(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "change_scene_to_file")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "change_scene_to_packed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "reload_current_scene")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "unload_current_scene")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "set_multiplayer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "get_multiplayer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "set_multiplayer_poll_enabled")
@@ -11565,6 +11523,7 @@ private fun registerEngineTypeMethodForSkeleton3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_bone_parent")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "set_bone_parent")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_bone_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_version")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "unparent_bone_and_rest")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_bone_children")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_parentless_bones")
@@ -11591,19 +11550,10 @@ private fun registerEngineTypeMethodForSkeleton3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_bone_global_pose_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_bone_global_pose")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_bone_global_pose_no_override")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "clear_bones_local_pose_override")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "set_bone_local_pose_override")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_bone_local_pose_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "force_update_all_bone_transforms")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "force_update_bone_child_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "set_motion_scale")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_motion_scale")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "global_pose_to_world_transform")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "world_transform_to_global_pose")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "global_pose_to_local_pose")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "local_pose_to_global_pose")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to
-      "global_pose_z_forward_to_bone_forward")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "set_show_rest_only")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "is_show_rest_only")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "set_animate_physical_bones")
@@ -11614,9 +11564,6 @@ private fun registerEngineTypeMethodForSkeleton3D(): Unit {
       "physical_bones_add_collision_exception")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to
       "physical_bones_remove_collision_exception")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "set_modification_stack")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "get_modification_stack")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON3D to "execute_modifications")
 }
 
 private fun registerEngineTypeMethodForSkeletonIK3D(): Unit {
@@ -11867,253 +11814,6 @@ private fun registerEngineTypeMethodForSkeletonModification2DTwoBoneIK(): Unit {
       "get_joint_two_bone_idx")
 }
 
-private fun registerEngineTypeMethodForSkeletonModification3D(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3D to "_execute")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3D to "_setup_modification")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3D to "set_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3D to "get_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3D to "get_modification_stack")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3D to "set_is_setup")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3D to "get_is_setup")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3D to "set_execution_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3D to "get_execution_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3D to "clamp_angle")
-}
-
-private fun registerEngineTypeMethodForSkeletonModification3DCCDIK(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to "set_target_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to "get_target_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to "set_tip_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to "get_tip_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "set_use_high_quality_solve")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "get_use_high_quality_solve")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "get_ccdik_joint_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "set_ccdik_joint_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "get_ccdik_joint_bone_index")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "set_ccdik_joint_bone_index")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "get_ccdik_joint_ccdik_axis")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "set_ccdik_joint_ccdik_axis")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "get_ccdik_joint_enable_joint_constraint")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "set_ccdik_joint_enable_joint_constraint")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "get_ccdik_joint_constraint_angle_min")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "set_ccdik_joint_constraint_angle_min")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "get_ccdik_joint_constraint_angle_max")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "set_ccdik_joint_constraint_angle_max")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "get_ccdik_joint_constraint_invert")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "set_ccdik_joint_constraint_invert")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "set_ccdik_data_chain_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DCCDIK to
-      "get_ccdik_data_chain_length")
-}
-
-private fun registerEngineTypeMethodForSkeletonModification3DFABRIK(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to "set_target_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to "get_target_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_fabrik_data_chain_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_fabrik_data_chain_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_chain_tolerance")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_chain_tolerance")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_chain_max_iterations")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_chain_max_iterations")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_fabrik_joint_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_fabrik_joint_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_fabrik_joint_bone_index")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_fabrik_joint_bone_index")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_fabrik_joint_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_fabrik_joint_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_fabrik_joint_magnet")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_fabrik_joint_magnet")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_fabrik_joint_auto_calculate_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_fabrik_joint_auto_calculate_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "fabrik_joint_auto_calculate_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_fabrik_joint_use_tip_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_fabrik_joint_use_tip_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_fabrik_joint_tip_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_fabrik_joint_tip_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "get_fabrik_joint_use_target_basis")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DFABRIK to
-      "set_fabrik_joint_use_target_basis")
-}
-
-private fun registerEngineTypeMethodForSkeletonModification3DJiggle(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "set_target_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "get_target_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "set_jiggle_data_chain_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "get_jiggle_data_chain_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "set_stiffness")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "get_stiffness")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "set_mass")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "get_mass")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "set_damping")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "get_damping")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "set_use_gravity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "get_use_gravity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "set_gravity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "get_gravity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "set_use_colliders")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "get_use_colliders")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "set_collision_mask")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to "get_collision_mask")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "set_jiggle_joint_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "get_jiggle_joint_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "set_jiggle_joint_bone_index")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "get_jiggle_joint_bone_index")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "set_jiggle_joint_override")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "get_jiggle_joint_override")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "set_jiggle_joint_stiffness")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "get_jiggle_joint_stiffness")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "set_jiggle_joint_mass")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "get_jiggle_joint_mass")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "set_jiggle_joint_damping")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "get_jiggle_joint_damping")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "set_jiggle_joint_use_gravity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "get_jiggle_joint_use_gravity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "set_jiggle_joint_gravity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "get_jiggle_joint_gravity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "set_jiggle_joint_roll")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DJIGGLE to
-      "get_jiggle_joint_roll")
-}
-
-private fun registerEngineTypeMethodForSkeletonModification3DLookAt(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to "set_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to "get_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to "set_bone_index")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to "get_bone_index")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to "set_target_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to "get_target_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to
-      "set_additional_rotation")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to
-      "get_additional_rotation")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to
-      "set_lock_rotation_to_plane")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to
-      "get_lock_rotation_to_plane")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to
-      "set_lock_rotation_plane")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT to
-      "get_lock_rotation_plane")
-}
-
-private fun registerEngineTypeMethodForSkeletonModification3DStackHolder(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DSTACKHOLDER to
-      "set_held_modification_stack")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DSTACKHOLDER to
-      "get_held_modification_stack")
-}
-
-private fun registerEngineTypeMethodForSkeletonModification3DTwoBoneIK(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to "set_target_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to "get_target_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_use_pole_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_use_pole_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to "set_pole_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to "get_pole_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_use_tip_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_use_tip_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to "set_tip_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to "get_tip_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_auto_calculate_joint_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_auto_calculate_joint_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_joint_one_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_joint_one_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_joint_one_bone_idx")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_joint_one_bone_idx")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_joint_one_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_joint_one_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_joint_two_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_joint_two_bone_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_joint_two_bone_idx")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_joint_two_bone_idx")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_joint_two_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_joint_two_length")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_joint_one_roll")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_joint_one_roll")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "set_joint_two_roll")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK to
-      "get_joint_two_roll")
-}
-
 private fun registerEngineTypeMethodForSkeletonModificationStack2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK2D to "setup")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK2D to "execute")
@@ -12133,27 +11833,6 @@ private fun registerEngineTypeMethodForSkeletonModificationStack2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK2D to "set_strength")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK2D to "get_strength")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK2D to "get_skeleton")
-}
-
-private fun registerEngineTypeMethodForSkeletonModificationStack3D(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "setup")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "execute")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to
-      "enable_all_modifications")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "get_modification")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "add_modification")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "delete_modification")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "set_modification")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to
-      "set_modification_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to
-      "get_modification_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "get_is_setup")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "set_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "get_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "set_strength")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "get_strength")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONMODIFICATIONSTACK3D to "get_skeleton")
 }
 
 private fun registerEngineTypeMethodForSkeletonProfile(): Unit {
@@ -12427,10 +12106,11 @@ private fun registerEngineTypeMethodForSpriteFrames(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "set_animation_loop")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "get_animation_loop")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "add_frame")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "get_frame_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "get_frame")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "set_frame")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "remove_frame")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "get_frame_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "get_frame_texture")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "get_frame_duration")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "clear_all")
 }
@@ -12778,6 +12458,7 @@ private fun registerEngineTypeMethodForTabBar(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_scroll_to_selected")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "set_select_with_rmb")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_select_with_rmb")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "clear_tabs")
 }
 
 private fun registerEngineTypeMethodForTabContainer(): Unit {
@@ -13732,8 +13413,8 @@ private fun registerEngineTypeMethodForTextureProgressBar(): Unit {
 private fun registerEngineTypeMethodForTextureRect(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "set_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "get_texture")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "set_ignore_texture_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "get_ignore_texture_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "set_expand_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "get_expand_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "set_flip_h")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "is_flipped_h")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "set_flip_v")
@@ -14187,6 +13868,7 @@ private fun registerEngineTypeMethodForTree(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_pressed_button")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_select_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_select_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "deselect_all")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_columns")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_columns")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_edited")
@@ -15216,6 +14898,30 @@ private fun registerEngineTypeMethodForVisualShaderNodeTransformVecMult(): Unit 
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT to "get_operator")
 }
 
+private fun registerEngineTypeMethodForVisualShaderNodeUIntConstant(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUINTCONSTANT to "set_constant")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUINTCONSTANT to "get_constant")
+}
+
+private fun registerEngineTypeMethodForVisualShaderNodeUIntFunc(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUINTFUNC to "set_function")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUINTFUNC to "get_function")
+}
+
+private fun registerEngineTypeMethodForVisualShaderNodeUIntOp(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUINTOP to "set_operator")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUINTOP to "get_operator")
+}
+
+private fun registerEngineTypeMethodForVisualShaderNodeUIntParameter(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUINTPARAMETER to
+      "set_default_value_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUINTPARAMETER to
+      "is_default_value_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUINTPARAMETER to "set_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUINTPARAMETER to "get_default_value")
+}
+
 private fun registerEngineTypeMethodForVisualShaderNodeUVFunc(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUVFUNC to "set_function")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUVFUNC to "get_function")
@@ -15515,6 +15221,8 @@ private fun registerEngineTypeMethodForWebXRInterface(): Unit {
 private fun registerEngineTypeMethodForWindow(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "set_title")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "get_title")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "set_initial_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "get_initial_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "set_current_screen")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "get_current_screen")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "set_position")
@@ -15560,6 +15268,8 @@ private fun registerEngineTypeMethodForWindow(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "get_content_scale_factor")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "set_use_font_oversampling")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "is_using_font_oversampling")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "set_mouse_passthrough_polygon")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "get_mouse_passthrough_polygon")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "set_wrap_controls")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "is_wrapping_controls")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOW to "child_controls_changed")
@@ -16309,13 +16019,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("OggPacketSequence", ::OggPacketSequence)
   TypeManager.registerEngineType("OggPacketSequencePlayback", ::OggPacketSequencePlayback)
   TypeManager.registerEngineType("OmniLight3D", ::OmniLight3D)
-  TypeManager.registerEngineType("OpenXRAction", ::OpenXRAction)
-  TypeManager.registerEngineType("OpenXRActionMap", ::OpenXRActionMap)
-  TypeManager.registerEngineType("OpenXRActionSet", ::OpenXRActionSet)
-  TypeManager.registerEngineType("OpenXRHand", ::OpenXRHand)
-  TypeManager.registerEngineType("OpenXRIPBinding", ::OpenXRIPBinding)
-  TypeManager.registerEngineType("OpenXRInteractionProfile", ::OpenXRInteractionProfile)
-  TypeManager.registerEngineType("OpenXRInterface", ::OpenXRInterface)
   TypeManager.registerEngineType("OptimizedTranslation", ::OptimizedTranslation)
   TypeManager.registerEngineType("OptionButton", ::OptionButton)
   TypeManager.registerEngineType("PCKPacker", ::PCKPacker)
@@ -16426,6 +16129,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RemoteTransform3D", ::RemoteTransform3D)
   TypeManager.registerEngineType("RenderingDevice", ::RenderingDevice)
   TypeManager.registerEngineType("Resource", ::Resource)
+  TypeManager.registerEngineType("ResourceFormatImporterSaver", ::ResourceFormatImporterSaver)
   TypeManager.registerEngineType("ResourceFormatLoader", ::ResourceFormatLoader)
   TypeManager.registerEngineType("ResourceFormatSaver", ::ResourceFormatSaver)
   TypeManager.registerEngineType("ResourceImporter", ::ResourceImporter)
@@ -16478,17 +16182,7 @@ public fun registerEngineTypes(): Unit {
       ::SkeletonModification2DStackHolder)
   TypeManager.registerEngineType("SkeletonModification2DTwoBoneIK",
       ::SkeletonModification2DTwoBoneIK)
-  TypeManager.registerEngineType("SkeletonModification3D", ::SkeletonModification3D)
-  TypeManager.registerEngineType("SkeletonModification3DCCDIK", ::SkeletonModification3DCCDIK)
-  TypeManager.registerEngineType("SkeletonModification3DFABRIK", ::SkeletonModification3DFABRIK)
-  TypeManager.registerEngineType("SkeletonModification3DJiggle", ::SkeletonModification3DJiggle)
-  TypeManager.registerEngineType("SkeletonModification3DLookAt", ::SkeletonModification3DLookAt)
-  TypeManager.registerEngineType("SkeletonModification3DStackHolder",
-      ::SkeletonModification3DStackHolder)
-  TypeManager.registerEngineType("SkeletonModification3DTwoBoneIK",
-      ::SkeletonModification3DTwoBoneIK)
   TypeManager.registerEngineType("SkeletonModificationStack2D", ::SkeletonModificationStack2D)
-  TypeManager.registerEngineType("SkeletonModificationStack3D", ::SkeletonModificationStack3D)
   TypeManager.registerEngineType("SkeletonProfile", ::SkeletonProfile)
   TypeManager.registerEngineType("SkeletonProfileHumanoid", ::SkeletonProfileHumanoid)
   TypeManager.registerEngineType("Skin", ::Skin)
@@ -16698,6 +16392,10 @@ public fun registerEngineTypes(): Unit {
       ::VisualShaderNodeTransformParameter)
   TypeManager.registerEngineType("VisualShaderNodeTransformVecMult",
       ::VisualShaderNodeTransformVecMult)
+  TypeManager.registerEngineType("VisualShaderNodeUIntConstant", ::VisualShaderNodeUIntConstant)
+  TypeManager.registerEngineType("VisualShaderNodeUIntFunc", ::VisualShaderNodeUIntFunc)
+  TypeManager.registerEngineType("VisualShaderNodeUIntOp", ::VisualShaderNodeUIntOp)
+  TypeManager.registerEngineType("VisualShaderNodeUIntParameter", ::VisualShaderNodeUIntParameter)
   TypeManager.registerEngineType("VisualShaderNodeUVFunc", ::VisualShaderNodeUVFunc)
   TypeManager.registerEngineType("VisualShaderNodeUVPolarCoord", ::VisualShaderNodeUVPolarCoord)
   TypeManager.registerEngineType("VisualShaderNodeVarying", ::VisualShaderNodeVarying)
@@ -17185,13 +16883,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OggPacketSequence::class] = OBJECT
   variantMapper[OggPacketSequencePlayback::class] = OBJECT
   variantMapper[OmniLight3D::class] = OBJECT
-  variantMapper[OpenXRAction::class] = OBJECT
-  variantMapper[OpenXRActionMap::class] = OBJECT
-  variantMapper[OpenXRActionSet::class] = OBJECT
-  variantMapper[OpenXRHand::class] = OBJECT
-  variantMapper[OpenXRIPBinding::class] = OBJECT
-  variantMapper[OpenXRInteractionProfile::class] = OBJECT
-  variantMapper[OpenXRInterface::class] = OBJECT
   variantMapper[OptimizedTranslation::class] = OBJECT
   variantMapper[OptionButton::class] = OBJECT
   variantMapper[PCKPacker::class] = OBJECT
@@ -17295,6 +16986,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[RemoteTransform3D::class] = OBJECT
   variantMapper[RenderingDevice::class] = OBJECT
   variantMapper[Resource::class] = OBJECT
+  variantMapper[ResourceFormatImporterSaver::class] = OBJECT
   variantMapper[ResourceFormatLoader::class] = OBJECT
   variantMapper[ResourceFormatSaver::class] = OBJECT
   variantMapper[ResourceImporter::class] = OBJECT
@@ -17344,15 +17036,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[SkeletonModification2DPhysicalBones::class] = OBJECT
   variantMapper[SkeletonModification2DStackHolder::class] = OBJECT
   variantMapper[SkeletonModification2DTwoBoneIK::class] = OBJECT
-  variantMapper[SkeletonModification3D::class] = OBJECT
-  variantMapper[SkeletonModification3DCCDIK::class] = OBJECT
-  variantMapper[SkeletonModification3DFABRIK::class] = OBJECT
-  variantMapper[SkeletonModification3DJiggle::class] = OBJECT
-  variantMapper[SkeletonModification3DLookAt::class] = OBJECT
-  variantMapper[SkeletonModification3DStackHolder::class] = OBJECT
-  variantMapper[SkeletonModification3DTwoBoneIK::class] = OBJECT
   variantMapper[SkeletonModificationStack2D::class] = OBJECT
-  variantMapper[SkeletonModificationStack3D::class] = OBJECT
   variantMapper[SkeletonProfile::class] = OBJECT
   variantMapper[SkeletonProfileHumanoid::class] = OBJECT
   variantMapper[Skin::class] = OBJECT
@@ -17536,6 +17220,10 @@ public fun registerVariantMapping(): Unit {
   variantMapper[VisualShaderNodeTransformOp::class] = OBJECT
   variantMapper[VisualShaderNodeTransformParameter::class] = OBJECT
   variantMapper[VisualShaderNodeTransformVecMult::class] = OBJECT
+  variantMapper[VisualShaderNodeUIntConstant::class] = OBJECT
+  variantMapper[VisualShaderNodeUIntFunc::class] = OBJECT
+  variantMapper[VisualShaderNodeUIntOp::class] = OBJECT
+  variantMapper[VisualShaderNodeUIntParameter::class] = OBJECT
   variantMapper[VisualShaderNodeUVFunc::class] = OBJECT
   variantMapper[VisualShaderNodeUVPolarCoord::class] = OBJECT
   variantMapper[VisualShaderNodeVarying::class] = OBJECT
@@ -18022,13 +17710,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForOggPacketSequence()
   registerEngineTypeMethodForOggPacketSequencePlayback()
   registerEngineTypeMethodForOmniLight3D()
-  registerEngineTypeMethodForOpenXRAction()
-  registerEngineTypeMethodForOpenXRActionMap()
-  registerEngineTypeMethodForOpenXRActionSet()
-  registerEngineTypeMethodForOpenXRHand()
-  registerEngineTypeMethodForOpenXRIPBinding()
-  registerEngineTypeMethodForOpenXRInteractionProfile()
-  registerEngineTypeMethodForOpenXRInterface()
   registerEngineTypeMethodForOptimizedTranslation()
   registerEngineTypeMethodForOptionButton()
   registerEngineTypeMethodForPCKPacker()
@@ -18132,6 +17813,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForRemoteTransform3D()
   registerEngineTypeMethodForRenderingDevice()
   registerEngineTypeMethodForResource()
+  registerEngineTypeMethodForResourceFormatImporterSaver()
   registerEngineTypeMethodForResourceFormatLoader()
   registerEngineTypeMethodForResourceFormatSaver()
   registerEngineTypeMethodForResourceImporter()
@@ -18181,15 +17863,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForSkeletonModification2DPhysicalBones()
   registerEngineTypeMethodForSkeletonModification2DStackHolder()
   registerEngineTypeMethodForSkeletonModification2DTwoBoneIK()
-  registerEngineTypeMethodForSkeletonModification3D()
-  registerEngineTypeMethodForSkeletonModification3DCCDIK()
-  registerEngineTypeMethodForSkeletonModification3DFABRIK()
-  registerEngineTypeMethodForSkeletonModification3DJiggle()
-  registerEngineTypeMethodForSkeletonModification3DLookAt()
-  registerEngineTypeMethodForSkeletonModification3DStackHolder()
-  registerEngineTypeMethodForSkeletonModification3DTwoBoneIK()
   registerEngineTypeMethodForSkeletonModificationStack2D()
-  registerEngineTypeMethodForSkeletonModificationStack3D()
   registerEngineTypeMethodForSkeletonProfile()
   registerEngineTypeMethodForSkeletonProfileHumanoid()
   registerEngineTypeMethodForSkin()
@@ -18373,6 +18047,10 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForVisualShaderNodeTransformOp()
   registerEngineTypeMethodForVisualShaderNodeTransformParameter()
   registerEngineTypeMethodForVisualShaderNodeTransformVecMult()
+  registerEngineTypeMethodForVisualShaderNodeUIntConstant()
+  registerEngineTypeMethodForVisualShaderNodeUIntFunc()
+  registerEngineTypeMethodForVisualShaderNodeUIntOp()
+  registerEngineTypeMethodForVisualShaderNodeUIntParameter()
   registerEngineTypeMethodForVisualShaderNodeUVFunc()
   registerEngineTypeMethodForVisualShaderNodeUVPolarCoord()
   registerEngineTypeMethodForVisualShaderNodeVarying()

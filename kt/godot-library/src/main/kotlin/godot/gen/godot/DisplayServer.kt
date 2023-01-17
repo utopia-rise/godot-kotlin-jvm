@@ -59,6 +59,11 @@ import kotlin.Unit
 @GodotBaseType
 public object DisplayServer : Object() {
   /**
+   * Represents the primary screen.
+   */
+  public final const val SCREEN_PRIMARY: Long = -2
+
+  /**
    * Represents the screen where the main window is located. This is usually the default value in functions that allow specifying one of several screens.
    */
   public final const val SCREEN_OF_MAIN_WINDOW: Long = -1
@@ -1046,11 +1051,11 @@ public object DisplayServer : Object() {
   /**
    * Returns the current state of mouse buttons (whether each button is pressed) as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to [godot.Input.getMouseButtonMask].
    */
-  public fun mouseGetButtonState(): MouseButton {
+  public fun mouseGetButtonState(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_BUTTON_STATE, LONG)
-    return MouseButton.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_BUTTON_STATE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, false) as Long
   }
 
   /**
@@ -1130,6 +1135,26 @@ public object DisplayServer : Object() {
   public fun getScreenCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_SCREEN_COUNT,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns index of the primary screen.
+   */
+  public fun getPrimaryScreen(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_PRIMARY_SCREEN,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns index of the screen which contains specified rectangle.
+   */
+  public fun getScreenFromRect(rect: Rect2): Long {
+    TransferContext.writeArguments(RECT2 to rect)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_SCREEN_FROM_RECT,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -2232,7 +2257,7 @@ public object DisplayServer : Object() {
      */
     MOUSE_MODE_HIDDEN(1),
     /**
-     * Captures the mouse. The mouse will be hidden and its position locked at the center of the screen.
+     * Captures the mouse. The mouse will be hidden and its position locked at the center of the window manager's window.
      *
      * **Note:** If you want to process the mouse's movement in this mode, you need to use [godot.InputEventMouseMotion.relative].
      */
@@ -2527,9 +2552,13 @@ public object DisplayServer : Object() {
      */
     WINDOW_FLAG_EXTEND_TO_TITLE(6),
     /**
+     * All mouse events are passed to the underlying window of the same application.
+     */
+    WINDOW_FLAG_MOUSE_PASSTHROUGH(7),
+    /**
      * Max value of the [enum WindowFlags].
      */
-    WINDOW_FLAG_MAX(7),
+    WINDOW_FLAG_MAX(8),
     ;
 
     public val id: Long

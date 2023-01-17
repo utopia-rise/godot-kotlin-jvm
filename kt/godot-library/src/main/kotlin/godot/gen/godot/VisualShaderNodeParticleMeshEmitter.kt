@@ -18,12 +18,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * A visual shader node that makes particles emitted in a shape defined by a [godot.Mesh].
  *
+ * [godot.VisualShaderNodeParticleEmitter] that makes the particles emitted in a shape of the assigned [mesh]. It will emit from the mesh's surfaces, either all or only the specified one.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticleEmitter() {
   /**
-   *
+   * The [godot.Mesh] that defines emission shape.
    */
   public var mesh: Mesh?
     get() {
@@ -39,7 +41,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     }
 
   /**
-   *
+   * If `true`, the particles will emit from all surfaces of the mesh.
    */
   public var useAllSurfaces: Boolean
     get() {
@@ -55,7 +57,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     }
 
   /**
-   *
+   * Index of the surface that emits particles. [useAllSurfaces] must be `false` for this to take effect.
    */
   public var surfaceIndex: Long
     get() {

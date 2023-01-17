@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
+import godot.core.StringName
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
@@ -16,6 +17,7 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
@@ -107,10 +109,44 @@ public object ProjectSettings : Object() {
    * [/csharp]
    *
    * [/codeblocks]
+   *
+   * **Note:** This method doesn't take potential feature overrides into account automatically. Use [getSettingWithOverride] to handle seamlessly.
    */
   public fun getSetting(name: String, defaultValue: Any? = null): Any? {
     TransferContext.writeArguments(STRING to name, ANY to defaultValue)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   * Similar to [getSetting], but applies feature tag overrides if any exists and is valid.
+   *
+   * **Example:**
+   *
+   * If the following setting override exists "application/config/name.windows", and the following code is executed:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * print(ProjectSettings.get_setting_with_override("application/config/name"))
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * GD.Print(ProjectSettings.GetSettingWithOverride("application/config/name"));
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * Then the overridden setting will be returned instead if the project is running on the *Windows* operating system.
+   */
+  public fun getSettingWithOverride(name: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING_WITH_OVERRIDE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 

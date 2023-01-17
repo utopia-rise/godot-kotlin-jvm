@@ -57,7 +57,7 @@ import kotlin.Unit
  *
  *
  *
- * func _on_MyButton_pressed():
+ * func _on_my_button_pressed():
  *
  *     var node = get_node("MyNode2D")
  *

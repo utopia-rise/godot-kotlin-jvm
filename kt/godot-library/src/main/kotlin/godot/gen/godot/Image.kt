@@ -617,7 +617,7 @@ public open class Image : Resource() {
    *
    *
    *
-   * img.set_pixelv(Vector2i(1, 2), Color.red) # Sets the color at (1, 2) to red.
+   * img.set_pixelv(Vector2i(1, 2), Color.RED) # Sets the color at (1, 2) to red.
    *
    * [/gdscript]
    *
@@ -665,7 +665,7 @@ public open class Image : Resource() {
    *
    *
    *
-   * img.set_pixel(1, 2, Color.red) # Sets the color at (1, 2) to red.
+   * img.set_pixel(1, 2, Color.RED) # Sets the color at (1, 2) to red.
    *
    * [/gdscript]
    *

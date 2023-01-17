@@ -41,7 +41,7 @@ import kotlin.Unit
  * Server interface for low-level 3D navigation access
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/124](https://godotengine.org/asset-library/asset/124)
+ * [$DOCS_URL/tutorials/navigation/navigation_using_navigationservers.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationservers.html)
  *
  * NavigationServer3D is the server responsible for all 3D navigation. It handles several objects, namely maps, regions and agents.
  *
@@ -794,5 +794,66 @@ public object NavigationServer3D : Object() {
   public fun process(deltaTime: Double): Unit {
     TransferContext.writeArguments(DOUBLE to deltaTime)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_PROCESS, NIL)
+  }
+
+  /**
+   * Returns information about the current state of the NavigationServer. See [enum ProcessInfo] for a list of available states.
+   */
+  public fun getProcessInfo(processInfo: ProcessInfo): Long {
+    TransferContext.writeArguments(LONG to processInfo.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_GET_PROCESS_INFO,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public enum class ProcessInfo(
+    id: Long
+  ) {
+    /**
+     * Constant to get the number of active navigation maps.
+     */
+    INFO_ACTIVE_MAPS(0),
+    /**
+     * Constant to get the number of active navigation regions.
+     */
+    INFO_REGION_COUNT(1),
+    /**
+     * Constant to get the number of active navigation agents processing avoidance.
+     */
+    INFO_AGENT_COUNT(2),
+    /**
+     * Constant to get the number of active navigation links.
+     */
+    INFO_LINK_COUNT(3),
+    /**
+     * Constant to get the number of navigation mesh polygons.
+     */
+    INFO_POLYGON_COUNT(4),
+    /**
+     * Constant to get the number of navigation mesh polygon edges.
+     */
+    INFO_EDGE_COUNT(5),
+    /**
+     * Constant to get the number of navigation mesh polygon edges that were merged due to edge key overlap.
+     */
+    INFO_EDGE_MERGE_COUNT(6),
+    /**
+     * Constant to get the number of navigation mesh polygon edges that are considered connected by edge proximity.
+     */
+    INFO_EDGE_CONNECTION_COUNT(7),
+    /**
+     * Constant to get the number of navigation mesh polygon edges that could not be merged but may be still connected by edge proximity or with links.
+     */
+    INFO_EDGE_FREE_COUNT(8),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 }

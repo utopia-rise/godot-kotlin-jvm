@@ -15,7 +15,6 @@ import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
-import godot.codegen.workarounds.sanitizedName
 import org.gradle.kotlin.dsl.support.appendReproducibleNewLine
 
 class GenerationService(
@@ -268,7 +267,7 @@ class GenerationService(
 
         val builder = PropertySpec
             .builder(
-                signal.sanitizedName(containingClassName),
+                signal.name,
                 signalClass.typeName
             )
 

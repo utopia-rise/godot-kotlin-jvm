@@ -40,7 +40,7 @@ import kotlin.Unit
  * Server interface for low-level 2D navigation access
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/117](https://godotengine.org/asset-library/asset/117)
+ * [$DOCS_URL/tutorials/navigation/navigation_using_navigationservers.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationservers.html)
  *
  * NavigationServer2D is the server responsible for all 2D navigation. It handles several objects, namely maps, regions and agents.
  *

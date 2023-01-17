@@ -12,7 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
+ * A visual shader node for remap function.
  *
+ * Remap will transform the input range into output range, e.g. you can change a `0..1` value to `-2..2` etc. See [@GlobalScope.remap] for more details.
  */
 @GodotBaseType
 public open class VisualShaderNodeRemap : VisualShaderNode() {

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.GodotError
 import godot.core.PackedStringArray
 import kotlin.Boolean
 import kotlin.Int
@@ -40,6 +41,13 @@ public open class ResourceFormatSaver : RefCounted() {
     flags: Long
   ): Long {
     throw NotImplementedError("_save is not implemented for ResourceFormatSaver")
+  }
+
+  /**
+   * Sets a new UID for the resource at the given [path]. Returns [OK] on success, or an [enum Error] constant in case of failure.
+   */
+  public open fun _setUid(path: String, uid: Long): GodotError {
+    throw NotImplementedError("_set_uid is not implemented for ResourceFormatSaver")
   }
 
   /**

@@ -351,10 +351,10 @@ public open class Tree : Control() {
    *
    * If [parent] is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.
    *
-   * The new item will be the [idx]th child of parent, or it will be the last child if there are not enough siblings.
+   * The new item will be the [index]-th child of parent, or it will be the last child if there are not enough siblings.
    */
-  public fun createItem(parent: TreeItem? = null, idx: Long = -1): TreeItem? {
-    TransferContext.writeArguments(OBJECT to parent, LONG to idx)
+  public fun createItem(parent: TreeItem? = null, index: Long = -1): TreeItem? {
+    TransferContext.writeArguments(OBJECT to parent, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_CREATE_ITEM, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
@@ -490,6 +490,14 @@ public open class Tree : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_PRESSED_BUTTON, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Deselects all tree items (rows and columns). In [SELECT_MULTI] mode also removes selection cursor.
+   */
+  public fun deselectAll(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_DESELECT_ALL, NIL)
   }
 
   /**

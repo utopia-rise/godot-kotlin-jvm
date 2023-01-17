@@ -237,7 +237,7 @@ public open class ArrayMesh : Mesh() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     compressFlags: Long = 0
   ): Unit {
-    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFlags)
+    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to compressFlags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_SURFACE_FROM_ARRAYS,
         NIL)
   }
@@ -314,8 +314,9 @@ public open class ArrayMesh : Mesh() {
    */
   public fun surfaceGetFormat(surfIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_FORMAT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_FORMAT,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, false) as Long
   }
 
   /**
@@ -356,7 +357,7 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Will regenerate normal maps for the [godot.ArrayMesh].
+   * Regenerates tangents for each of the [godot.ArrayMesh]'s surfaces.
    */
   public fun regenNormalMaps(): Unit {
     TransferContext.writeArguments()
@@ -364,7 +365,7 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Will perform a UV unwrap on the [godot.ArrayMesh] to prepare the mesh for lightmapping.
+   * Performs a UV unwrap on the [godot.ArrayMesh] to prepare the mesh for lightmapping.
    */
   public fun lightmapUnwrap(transform: Transform3D, texelSize: Double): GodotError {
     TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize)

@@ -456,6 +456,16 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   }
 
   /**
+   * Returns the impulse created by the contact.
+   */
+  public fun getContactImpulse(contactIdx: Long): Vector2 {
+    TransferContext.writeArguments(LONG to contactIdx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_IMPULSE, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
    * Calls the built-in force integration code.
    */
   public fun integrateForces(): Unit {

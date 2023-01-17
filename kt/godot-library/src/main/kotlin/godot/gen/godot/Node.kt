@@ -674,6 +674,16 @@ public open class Node : Object() {
   }
 
   /**
+   * Changes the parent of this [godot.Node] to the [newParent]. The node needs to already have a parent.
+   *
+   * If [keepGlobalTransform] is `true`, the node's global transform will be preserved if supported. [godot.Node2D], [godot.Node3D] and [godot.Control] support this argument (but [godot.Control] keeps only position).
+   */
+  public fun reparent(newParent: Node, keepGlobalTransform: Boolean = true): Unit {
+    TransferContext.writeArguments(OBJECT to newParent, BOOL to keepGlobalTransform)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REPARENT, NIL)
+  }
+
+  /**
    * Returns the number of child nodes.
    *
    * If [includeInternal] is `false`, internal children aren't counted (see `internal` parameter in [addChild]).
@@ -1300,6 +1310,15 @@ public open class Node : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING_INTERNAL,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the [godot.Window] that contains this node. If the node is in the main window, this is equivalent to getting the root node (`get_tree().get_root()`).
+   */
+  public fun getWindow(): Window? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_WINDOW, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Window?
   }
 
   /**

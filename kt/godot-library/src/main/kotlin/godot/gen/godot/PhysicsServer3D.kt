@@ -1362,6 +1362,25 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
+   * Sets whether the bodies attached to the [godot.Joint3D] will collide with each other.
+   */
+  public fun jointDisableCollisionsBetweenBodies(joint: RID, disable: Boolean): Unit {
+    TransferContext.writeArguments(_RID to joint, BOOL to disable)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_DISABLE_COLLISIONS_BETWEEN_BODIES, NIL)
+  }
+
+  /**
+   * Returns whether the bodies attached to the [godot.Joint3D] will collide with each other.
+   */
+  public fun jointIsDisabledCollisionsBetweenBodies(joint: RID): Boolean {
+    TransferContext.writeArguments(_RID to joint)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_IS_DISABLED_COLLISIONS_BETWEEN_BODIES, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    *
    */
   public fun jointMakeGeneric6dof(

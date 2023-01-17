@@ -417,10 +417,10 @@ public object Input : Object() {
   /**
    * Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to [godot.DisplayServer.mouseGetButtonState].
    */
-  public fun getMouseButtonMask(): MouseButton {
+  public fun getMouseButtonMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_BUTTON_MASK, LONG)
-    return MouseButton.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_BUTTON_MASK, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, false) as Long
   }
 
   public fun setMouseMode(mode: MouseMode): Unit {
@@ -579,7 +579,7 @@ public object Input : Object() {
      */
     MOUSE_MODE_HIDDEN(1),
     /**
-     * Captures the mouse. The mouse will be hidden and its position locked at the center of the screen.
+     * Captures the mouse. The mouse will be hidden and its position locked at the center of the window manager's window.
      *
      * **Note:** If you want to process the mouse's movement in this mode, you need to use [godot.InputEventMouseMotion.relative].
      */

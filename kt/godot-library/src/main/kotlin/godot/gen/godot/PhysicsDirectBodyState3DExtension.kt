@@ -255,7 +255,7 @@ public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D()
   /**
    *
    */
-  public open fun _getContactImpulse(contactIdx: Long): Double {
+  public open fun _getContactImpulse(contactIdx: Long): Vector3 {
     throw NotImplementedError("_get_contact_impulse is not implemented for PhysicsDirectBodyState3DExtension")
   }
 

@@ -24,6 +24,9 @@ import kotlin.Suppress
 /**
  * Parameters to be sent to a 3D navigation path query.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html)
+ *
  * This class contains the start and target position and other parameters to be used with [godot.NavigationServer3D.queryPath].
  */
 @GodotBaseType

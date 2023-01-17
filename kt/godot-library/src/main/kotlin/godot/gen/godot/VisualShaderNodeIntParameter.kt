@@ -18,12 +18,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * A visual shader node for shader parameter (uniform) of type [int].
  *
+ * A [godot.VisualShaderNodeParameter] of type [int]. Offers additional customization for range of accepted values.
  */
 @GodotBaseType
 public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   /**
-   *
+   * Range hint of this node. Use it to customize valid parameter range.
    */
   public var hint: Hint
     get() {
@@ -39,7 +41,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   *
+   * The minimum value this parameter can take. [hint] must be either [HINT_RANGE] or [HINT_RANGE_STEP] for this to take effect.
    */
   public var min: Long
     get() {
@@ -55,7 +57,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   *
+   * The maximum value this parameter can take. [hint] must be either [HINT_RANGE] or [HINT_RANGE_STEP] for this to take effect.
    */
   public var max: Long
     get() {
@@ -71,7 +73,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   *
+   * The step between parameter's values. Forces the parameter to be a multiple of the given value. [hint] must be [HINT_RANGE_STEP] for this to take effect.
    */
   public var step: Long
     get() {
@@ -87,7 +89,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   *
+   * If `true`, the node will have a custom default value.
    */
   public var defaultValueEnabled: Boolean
     get() {
@@ -103,7 +105,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   *
+   * Default value of this parameter, which will be used if not set externally. [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
    */
   public var defaultValue: Long
     get() {
@@ -127,19 +129,19 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     id: Long
   ) {
     /**
-     *
+     * The parameter will not constrain its value.
      */
     HINT_NONE(0),
     /**
-     *
+     * The parameter's value must be within the specified [min]/[max] range.
      */
     HINT_RANGE(1),
     /**
-     *
+     * The parameter's value must be within the specified range, with the given [step] between values.
      */
     HINT_RANGE_STEP(2),
     /**
-     *
+     * Represents the size of the [enum Hint] enum.
      */
     HINT_MAX(3),
     ;

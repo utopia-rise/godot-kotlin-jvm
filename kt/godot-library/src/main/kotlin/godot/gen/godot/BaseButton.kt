@@ -130,14 +130,15 @@ public open class BaseButton : Control() {
    *
    * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT`.
    */
-  public var buttonMask: MouseButton
+  public var buttonMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_MASK, LONG)
-      return MouseButton.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_MASK,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_BUTTON_MASK, NIL)
     }
 
@@ -174,7 +175,7 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button will appear pressed when its shortcut is activated. If `false` and [toggleMode] is `false`, the shortcut will activate the button without appearing to press the button.
+   * If `true`, the button will highlight for a short amount of time when its shortcut is activated. If `false` and [toggleMode] is `false`, the shortcut will activate without any visual feedback.
    */
   public var shortcutFeedback: Boolean
     get() {

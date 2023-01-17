@@ -17,7 +17,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Visual shader node for randomizing particle values.
  *
+ * Randomness node will output pseudo-random values of the given type based on the specified minimum and maximum values.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
@@ -58,9 +60,13 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
      */
     OP_TYPE_VECTOR_3D(2),
     /**
+     * A 4D vector type.
+     */
+    OP_TYPE_VECTOR_4D(3),
+    /**
      * Represents the size of the [enum OpType] enum.
      */
-    OP_TYPE_MAX(3),
+    OP_TYPE_MAX(4),
     ;
 
     public val id: Long
