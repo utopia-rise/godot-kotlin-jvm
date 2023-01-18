@@ -59,6 +59,9 @@ void KotlinBindingManager::set_instance_binding(Object* p_object, KtObject* ktOb
 
     binding->owner = p_object;
     binding->set_kt_object(ktObject);
+
+    if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->init_ref(); }
+
     p_object->set_instance_binding(&get_instance(), binding, &_instance_binding_callbacks);
 }
 
@@ -73,6 +76,9 @@ KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
         return ret;
     }
     manager.spin.unlock();
+
+    if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->reference(); }
+
     return static_cast<KotlinBinding*>(p_object->get_instance_binding(&get_instance(), &_instance_binding_callbacks));
 }
 
@@ -99,6 +105,9 @@ KotlinBinding* KotlinBindingManager::create_script_binding(Object* p_object, KtO
 
     binding->owner = p_object;
     binding->set_kt_object(ktObject);
+
+    if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->reference(); }
+
     return binding;
 }
 

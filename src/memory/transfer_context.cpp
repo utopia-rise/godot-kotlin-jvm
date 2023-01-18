@@ -174,8 +174,6 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject instance, 
         ptr->set_script_instance(script);
     }
 
-    if (ptr->is_ref_counted()) { reinterpret_cast<RefCounted*>(ptr)->init_ref(); }
-
     id = ptr->get_instance_id();
 
     jni::Env env {p_raw_env};
