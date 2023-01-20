@@ -15,16 +15,20 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
       const_cast<char*>("engine_call_constructor"),
       const_cast<char*>("()J"),
       (void*) VariantArrayBridge::engine_call_constructor};
-    jni::JNativeMethod engine_call_get_size_method {
-      const_cast<char*>("engine_call_get_size"),
+    jni::JNativeMethod engine_call_constructor_typed_method {
+        const_cast<char*>("engine_call_constructor_typed"),
+        const_cast<char*>("()J"),
+        (void*) VariantArrayBridge::engine_call_constructor_typed};
+    jni::JNativeMethod engine_call_size_method {
+      const_cast<char*>("engine_call_size"),
       const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_get_size};
+      (void*) VariantArrayBridge::engine_call_size};
     jni::JNativeMethod engine_call_clear_method {
       const_cast<char*>("engine_call_clear"),
       const_cast<char*>("(J)V"),
       (void*) VariantArrayBridge::engine_call_clear};
     jni::JNativeMethod engine_call_is_empty_method {
-      const_cast<char*>("engine_call_is_empty"),
+      const_cast<char*>("engine_call_isEmpty"),
       const_cast<char*>("(J)V"),
       (void*) VariantArrayBridge::engine_call_is_empty};
     jni::JNativeMethod engine_call_hash_method {
@@ -36,7 +40,7 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
       const_cast<char*>("(J)V"),
       (void*) VariantArrayBridge::engine_call_reverse};
     jni::JNativeMethod engine_call_remove_at_method {
-      const_cast<char*>("engine_call_remove_at"),
+      const_cast<char*>("engine_call_removeAt"),
       const_cast<char*>("(J)V"),
       (void*) VariantArrayBridge::engine_call_remove_at};
     jni::JNativeMethod engine_call_resize_method {
@@ -87,13 +91,22 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
       const_cast<char*>("engine_call_front"),
       const_cast<char*>("(J)V"),
       (void*) VariantArrayBridge::engine_call_front};
-    jni::JNativeMethod engine_call_has_method {const_cast<char*>("engine_call_has"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_has};
+    jni::JNativeMethod engine_call_has_method {
+        const_cast<char*>("engine_call_has"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_has};
     jni::JNativeMethod engine_call_insert_method {
       const_cast<char*>("engine_call_insert"),
       const_cast<char*>("(J)V"),
       (void*) VariantArrayBridge::engine_call_insert};
-    jni::JNativeMethod engine_call_max_method {const_cast<char*>("engine_call_max"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_max};
-    jni::JNativeMethod engine_call_min_method {const_cast<char*>("engine_call_min"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_min};
+    jni::JNativeMethod engine_call_max_method {
+        const_cast<char*>("engine_call_max"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_max};
+    jni::JNativeMethod engine_call_min_method {
+        const_cast<char*>("engine_call_min"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_min};
     jni::JNativeMethod engine_call_popBack_method {
       const_cast<char*>("engine_call_popBack"),
       const_cast<char*>("(J)V"),
@@ -126,11 +139,64 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
       const_cast<char*>("engine_call_operator_get"),
       const_cast<char*>("(J)V"),
       (void*) VariantArrayBridge::engine_call_operator_get};
+    jni::JNativeMethod engine_call_all {
+        const_cast<char*>("engine_call_all"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_all};
+    jni::JNativeMethod engine_call_any {
+            const_cast<char*>("engine_call_any"),
+            const_cast<char*>("(J)V"),
+            (void*) VariantArrayBridge::engine_call_any};
+    jni::JNativeMethod engine_call_appendArray{
+        const_cast<char*>("engine_call_appendArray"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_appendArray};
+    jni::JNativeMethod engine_call_back{
+        const_cast<char*>("engine_call_back"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_back};
+    jni::JNativeMethod engine_call_fill{
+        const_cast<char*>("engine_call_fill"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_fill};
+    jni::JNativeMethod engine_call_filter{
+        const_cast<char*>("engine_call_filter"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_filter};
+    jni::JNativeMethod engine_call_getTypedClassName{
+        const_cast<char*>("engine_call_getTypedClassName"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_getTypedClassName};
+    jni::JNativeMethod engine_call_getTypedScript{
+        const_cast<char*>("engine_call_getTypedScript"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_getTypedScript};
+    jni::JNativeMethod engine_call_isReadOnly{
+        const_cast<char*>("engine_call_isReadOnly"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_isReadOnly};
+    jni::JNativeMethod engine_call_isTyped{
+        const_cast<char*>("engine_call_isTyped"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_isTyped};
+    jni::JNativeMethod engine_call_map{
+        const_cast<char*>("engine_call_map"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_map};
+    jni::JNativeMethod engine_call_pickRandom{
+        const_cast<char*>("engine_call_pickRandom"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_pickRandom};
+    jni::JNativeMethod engine_call_reduce{
+        const_cast<char*>("engine_call_reduce"),
+        const_cast<char*>("(J)V"),
+        (void*) VariantArrayBridge::engine_call_reduce};
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(engine_call_constructor_method);
+    methods.push_back(engine_call_constructor_typed_method);
 
-    methods.push_back(engine_call_get_size_method);
+    methods.push_back(engine_call_size_method);
     methods.push_back(engine_call_clear_method);
     methods.push_back(engine_call_is_empty_method);
     methods.push_back(engine_call_hash_method);
@@ -160,6 +226,19 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
     methods.push_back(engine_call_slice_method);
     methods.push_back(engine_call_operator_set_method);
     methods.push_back(engine_call_operator_get_method);
+    methods.push_back(engine_call_all);
+    methods.push_back(engine_call_any);
+    methods.push_back(engine_call_appendArray);
+    methods.push_back(engine_call_back);
+    methods.push_back(engine_call_fill);
+    methods.push_back(engine_call_filter);
+    methods.push_back(engine_call_getTypedClassName);
+    methods.push_back(engine_call_getTypedScript);
+    methods.push_back(engine_call_isReadOnly);
+    methods.push_back(engine_call_isTyped);
+    methods.push_back(engine_call_map);
+    methods.push_back(engine_call_pickRandom);
+    methods.push_back(engine_call_reduce);
 
     jni::Env env {jni::Jvm::current_env()};
     j_class.register_natives(env, methods);
@@ -170,7 +249,34 @@ uintptr_t VariantArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject
     return reinterpret_cast<uintptr_t>(memnew(Array));
 }
 
-void VariantArrayBridge::engine_call_get_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+uintptr_t VariantArrayBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, jobject p_instance) {
+    jni::Env env {p_raw_env};
+    Variant args[3] = {};
+    GDKotlin::get_instance().transfer_context->read_args(env, args);
+
+    auto ret {memnew(Array)};
+    
+    auto engineTypeIndex {args[1].operator int64_t()};
+    auto userTypeIndex {args[2].operator int64_t()};
+
+    StringName base_class_name;
+    Variant script;
+    if (userTypeIndex != -1) {
+        const Ref<KotlinScript>& kotlin_script {GDKotlin::get_instance().user_scripts[userTypeIndex]};
+        base_class_name = kotlin_script->get_instance_base_type();
+        script = kotlin_script;
+    } else if (engineTypeIndex != -1) {
+        base_class_name = GDKotlin::get_instance().engine_type_names[engineTypeIndex];
+    }
+    ret->set_typed(
+            static_cast<uint32_t>(args[0].operator int64_t()),
+            base_class_name,
+            script
+    );
+    return reinterpret_cast<uintptr_t>(ret);
+}
+
+void VariantArrayBridge::engine_call_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant variant {from_uint_to_ptr<Array>(p_raw_ptr)->size()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
@@ -382,4 +488,99 @@ void VariantArrayBridge::engine_call_operator_get(JNIEnv* p_raw_env, jobject p_i
     transfer_context->read_args(env, args);
     Variant variant {from_uint_to_ptr<Array>(p_raw_ptr)->get(args[0])};
     transfer_context->write_return_value(env, variant);
+}
+
+void VariantArrayBridge::engine_call_all(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant args[1] = {};
+    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
+    transfer_context->read_args(env, args);
+    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->all(args[0])};
+    transfer_context->write_return_value(env, variant);
+}
+
+void VariantArrayBridge::engine_call_any(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant args[1] = {};
+    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
+    transfer_context->read_args(env, args);
+    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->any(args[0])};
+    transfer_context->write_return_value(env, variant);
+}
+
+void VariantArrayBridge::engine_call_appendArray(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant args[1] = {};
+    GDKotlin::get_instance().transfer_context->read_args(env, args);
+    from_uint_to_ptr<Array>(p_raw_ptr)->append_array(args[0]);
+}
+
+void VariantArrayBridge::engine_call_back(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->back()};
+    GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
+}
+
+void VariantArrayBridge::engine_call_fill(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant args[1] = {};
+    GDKotlin::get_instance().transfer_context->read_args(env, args);
+    from_uint_to_ptr<Array>(p_raw_ptr)->fill(args[0]);
+}
+
+void VariantArrayBridge::engine_call_filter(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
+    Variant args[1] = {};
+    transfer_context->read_args(env, args);
+    Variant result {from_uint_to_ptr<Array>(p_raw_ptr)->filter(args[0])};
+    transfer_context->write_return_value(env, result);
+}
+
+void VariantArrayBridge::engine_call_getTypedClassName(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant result {from_uint_to_ptr<Array>(p_raw_ptr)->get_typed_class_name()};
+    GDKotlin::get_instance().transfer_context->write_return_value(env, result);
+}
+
+void VariantArrayBridge::engine_call_getTypedScript(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant result {from_uint_to_ptr<Array>(p_raw_ptr)->get_typed_script()};
+    GDKotlin::get_instance().transfer_context->write_return_value(env, result);
+}
+
+void VariantArrayBridge::engine_call_isReadOnly(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant result {from_uint_to_ptr<Array>(p_raw_ptr)->is_read_only()};
+    GDKotlin::get_instance().transfer_context->write_return_value(env, result);
+}
+
+void VariantArrayBridge::engine_call_isTyped(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant result {from_uint_to_ptr<Array>(p_raw_ptr)->is_typed()};
+    GDKotlin::get_instance().transfer_context->write_return_value(env, result);
+}
+
+void VariantArrayBridge::engine_call_map(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
+    Variant args[1] = {};
+    transfer_context->read_args(env, args);
+    Variant result {from_uint_to_ptr<Array>(p_raw_ptr)->map(args[0])};
+    transfer_context->write_return_value(env, result);
+}
+
+void VariantArrayBridge::engine_call_pickRandom(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant result {from_uint_to_ptr<Array>(p_raw_ptr)->pick_random()};
+    GDKotlin::get_instance().transfer_context->write_return_value(env, result);
+}
+
+void VariantArrayBridge::engine_call_reduce(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
+    Variant args[2] = {};
+    transfer_context->read_args(env, args);
+    Variant result {from_uint_to_ptr<Array>(p_raw_ptr)->reduce(args[0], args[1])};
+    transfer_context->write_return_value(env, result);
 }
