@@ -118,7 +118,7 @@ public open class Timer : Node() {
   /**
    * The timer's remaining time in seconds. Returns 0 if the timer is inactive.
    *
-   * **Note:** You cannot set this value. To change the timer's remaining time, use [start].
+   * **Note:** This value is read-only and cannot be set. It is based on [waitTime], which can be set using [start].
    */
   public val timeLeft: Double
     get() {

@@ -43,19 +43,17 @@ public open class TextureRect : Control() {
     }
 
   /**
-   * If `true`, the size of the texture won't be considered for minimum size calculation, so the [godot.TextureRect] can be shrunk down past the texture size. Useful for preventing [godot.TextureRect]s from breaking GUI layout regardless of their texture size.
+   * Defines how minimum size is determined based on the texture's size. See [enum ExpandMode] for options.
    */
-  public var ignoreTextureSize: Boolean
+  public var expandMode: ExpandMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_IGNORE_TEXTURE_SIZE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_EXPAND_MODE, LONG)
+      return TextureRect.ExpandMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_IGNORE_TEXTURE_SIZE, NIL)
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_EXPAND_MODE, NIL)
     }
 
   /**
@@ -104,6 +102,45 @@ public open class TextureRect : Control() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TEXTURERECT, scriptIndex)
     return true
+  }
+
+  public enum class ExpandMode(
+    id: Long
+  ) {
+    /**
+     * The minimum size will be equal to texture size, i.e. [godot.TextureRect] can't be smaller than the texture.
+     */
+    EXPAND_KEEP_SIZE(0),
+    /**
+     * The size of the texture won't be considered for minimum size calculation, so the [godot.TextureRect] can be shrunk down past the texture size.
+     */
+    EXPAND_IGNORE_SIZE(1),
+    /**
+     * The height of the texture will be ignored. Minimum width will be equal to the current height. Useful for horizontal layouts, e.g. inside [godot.HBoxContainer].
+     */
+    EXPAND_FIT_WIDTH(2),
+    /**
+     * Same as [EXPAND_FIT_WIDTH], but keeps texture's aspect ratio.
+     */
+    EXPAND_FIT_WIDTH_PROPORTIONAL(3),
+    /**
+     * The width of the texture will be ignored. Minimum height will be equal to the current width. Useful for vertical layouts, e.g. inside [godot.VBoxContainer].
+     */
+    EXPAND_FIT_HEIGHT(4),
+    /**
+     * Same as [EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio.
+     */
+    EXPAND_FIT_HEIGHT_PROPORTIONAL(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class StretchMode(

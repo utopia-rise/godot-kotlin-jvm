@@ -7,6 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.RID
+import godot.core.VariantType.BOOL
+import godot.core.VariantType._RID
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -19,6 +23,17 @@ public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION, scriptIndex)
     return true
+  }
+
+  /**
+   *
+   */
+  public fun isBodyExcludedFromQuery(body: RID): Boolean {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION_IS_BODY_EXCLUDED_FROM_QUERY,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public companion object

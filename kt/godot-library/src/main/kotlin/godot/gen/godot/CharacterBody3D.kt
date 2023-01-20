@@ -426,12 +426,22 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Returns the linear velocity of the floor at the last collision point. Only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
+   * Returns the linear velocity of the platform at the last collision point. Only valid after calling [moveAndSlide].
    */
   public fun getPlatformVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_VELOCITY, VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Returns the angular velocity of the platform at the last collision point. Only valid after calling [moveAndSlide].
+   */
+  public fun getPlatformAngularVelocity(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_ANGULAR_VELOCITY, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 

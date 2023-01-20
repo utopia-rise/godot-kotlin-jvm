@@ -295,7 +295,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   /**
-   * Set the value of a shader parameter for this instance only.
+   * Set the value of a shader uniform for this instance only ([per-instance uniform]($DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms)). See also [godot.ShaderMaterial.setShaderParameter] to assign a uniform on all instances using the same [godot.ShaderMaterial].
+   *
+   * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined with `instance uniform ...` rather than `uniform ...` in the shader code.
+   *
+   * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly (not the capitalized name in the inspector).
+   *
+   * **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D equivalent of this method.
    */
   public fun setInstanceShaderParameter(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)

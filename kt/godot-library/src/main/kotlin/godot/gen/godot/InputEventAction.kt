@@ -26,6 +26,8 @@ import kotlin.jvm.JvmName
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * Contains a generic action which can be targeted from several types of inputs. Actions can be created from the **Input Map** tab in the **Project > Project Settings** menu. See [godot.Node.Input].
+ *
+ * **Note:** Unlike the other [godot.InputEvent] subclasses which map to unique physical events, this virtual one is not emitted by the engine. This class is useful to emit actions manually with [godot.Input.parseInputEvent], which are then received in [godot.Node.Input]. To check if a physical event matches an action from the Input Map, use [godot.InputEvent.isAction] and [godot.InputEvent.isActionPressed].
  */
 @GodotBaseType
 public open class InputEventAction : InputEvent() {

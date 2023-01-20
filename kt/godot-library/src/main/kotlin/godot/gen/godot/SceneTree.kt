@@ -496,7 +496,7 @@ public open class SceneTree : MainLoop() {
    *
    * Returns [OK] on success, [ERR_CANT_OPEN] if the [path] cannot be loaded into a [godot.PackedScene], or [ERR_CANT_CREATE] if that scene cannot be instantiated.
    *
-   * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeSceneToFile] call.
+   * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. This ensures that both scenes are never loaded at the same time, which can exhaust system resources if the scenes are too large or if running in a memory constrained environment. As such, you won't be able to access the loaded scene immediately after the [changeSceneToFile] call.
    */
   public fun changeSceneToFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -506,9 +506,9 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Changes the running scene to a new instance of the given [godot.PackedScene].
+   * Changes the running scene to a new instance of the given [godot.PackedScene] (which must be valid).
    *
-   * Returns [OK] on success or [ERR_CANT_CREATE] if the scene cannot be instantiated.
+   * Returns [OK] on success, [ERR_CANT_CREATE] if the scene cannot be instantiated, or [ERR_INVALID_PARAMETER] if the scene is invalid.
    *
    * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeSceneToPacked] call.
    */
@@ -529,6 +529,14 @@ public open class SceneTree : MainLoop() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_RELOAD_CURRENT_SCENE,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * If a current scene is loaded, calling this method will unload it.
+   */
+  public fun unloadCurrentScene(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_UNLOAD_CURRENT_SCENE, NIL)
   }
 
   /**

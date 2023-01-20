@@ -56,21 +56,25 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
      */
     OP_TYPE_INT(1),
     /**
+     * An unsigned integer scalar.
+     */
+    OP_TYPE_UINT(2),
+    /**
      * A 2D vector type.
      */
-    OP_TYPE_VECTOR_2D(2),
+    OP_TYPE_VECTOR_2D(3),
     /**
      * A 3D vector type.
      */
-    OP_TYPE_VECTOR_3D(3),
+    OP_TYPE_VECTOR_3D(4),
     /**
      * A 4D vector type.
      */
-    OP_TYPE_VECTOR_4D(4),
+    OP_TYPE_VECTOR_4D(5),
     /**
      * Represents the size of the [enum OpType] enum.
      */
-    OP_TYPE_MAX(5),
+    OP_TYPE_MAX(6),
     ;
 
     public val id: Long

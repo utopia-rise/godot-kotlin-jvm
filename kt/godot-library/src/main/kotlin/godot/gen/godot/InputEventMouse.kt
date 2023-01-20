@@ -7,14 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -30,15 +30,15 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   /**
    * The mouse button mask identifier, one of or a bitwise combination of the [enum MouseButton] button masks.
    */
-  public var buttonMask: MouseButton
+  public var buttonMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_GET_BUTTON_MASK,
-          LONG)
-      return MouseButton.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_SET_BUTTON_MASK,
           NIL)
     }

@@ -575,7 +575,7 @@ public object RenderingServer : Object() {
     vertexCount: Long,
     arrayIndex: Long
   ): Long {
-    TransferContext.writeArguments(LONG to format, LONG to vertexCount, LONG to arrayIndex)
+    TransferContext.writeArguments(OBJECT to format, LONG to vertexCount, LONG to arrayIndex)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_OFFSET, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -585,7 +585,7 @@ public object RenderingServer : Object() {
    *
    */
   public fun meshSurfaceGetFormatVertexStride(format: Long, vertexCount: Long): Long {
-    TransferContext.writeArguments(LONG to format, LONG to vertexCount)
+    TransferContext.writeArguments(OBJECT to format, LONG to vertexCount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_VERTEX_STRIDE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -595,7 +595,7 @@ public object RenderingServer : Object() {
    *
    */
   public fun meshSurfaceGetFormatAttributeStride(format: Long, vertexCount: Long): Long {
-    TransferContext.writeArguments(LONG to format, LONG to vertexCount)
+    TransferContext.writeArguments(OBJECT to format, LONG to vertexCount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_ATTRIBUTE_STRIDE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -605,7 +605,7 @@ public object RenderingServer : Object() {
    *
    */
   public fun meshSurfaceGetFormatSkinStride(format: Long, vertexCount: Long): Long {
-    TransferContext.writeArguments(LONG to format, LONG to vertexCount)
+    TransferContext.writeArguments(OBJECT to format, LONG to vertexCount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_SKIN_STRIDE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -631,7 +631,7 @@ public object RenderingServer : Object() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     compressFormat: Long = 0
   ): Unit {
-    TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFormat)
+    TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to compressFormat)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_ADD_SURFACE_FROM_ARRAYS, NIL)
   }
@@ -4140,7 +4140,7 @@ public object RenderingServer : Object() {
     from: Vector2,
     to: Vector2,
     color: Color,
-    width: Double = 1.0,
+    width: Double = -1.0,
     antialiased: Boolean = false
   ): Unit {
     TransferContext.writeArguments(_RID to item, VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width, BOOL to antialiased)
@@ -4284,10 +4284,9 @@ public object RenderingServer : Object() {
     points: PackedVector2Array,
     colors: PackedColorArray,
     uvs: PackedVector2Array,
-    texture: RID,
-    width: Double = 1.0
+    texture: RID
   ): Unit {
-    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture, DOUBLE to width)
+    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_PRIMITIVE, NIL)
   }
@@ -5008,6 +5007,16 @@ public object RenderingServer : Object() {
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, COLOR to color, BOOL to scale, BOOL to useFilter)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SET_BOOT_IMAGE, NIL)
+  }
+
+  /**
+   * Returns the default clear color which is used when a specific clear color has not been selected.
+   */
+  public fun getDefaultClearColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GET_DEFAULT_CLEAR_COLOR, COLOR)
+    return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
   /**

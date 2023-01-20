@@ -40,6 +40,11 @@ public open class EditorFileSystem internal constructor() : Node() {
   public val filesystemChanged: Signal0 by signal()
 
   /**
+   * Emitted when the list of global script classes gets updated.
+   */
+  public val scriptClassesUpdated: Signal0 by signal()
+
+  /**
    * Emitted if the source of any imported file changed.
    */
   public val sourcesChanged: Signal1<Boolean> by signal("exist")

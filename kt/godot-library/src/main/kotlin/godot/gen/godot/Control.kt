@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.Color
 import godot.core.NodePath
 import godot.core.Rect2
@@ -14,6 +15,7 @@ import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -300,11 +302,11 @@ public open class Control : CanvasItem() {
   public var sizeFlagsHorizontal: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_H_SIZE_FLAGS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_H_SIZE_FLAGS, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_H_SIZE_FLAGS, NIL)
     }
 
@@ -314,11 +316,11 @@ public open class Control : CanvasItem() {
   public var sizeFlagsVertical: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_V_SIZE_FLAGS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_V_SIZE_FLAGS, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_V_SIZE_FLAGS, NIL)
     }
 
@@ -786,7 +788,7 @@ public open class Control : CanvasItem() {
    *
    * func _make_custom_tooltip(for_text):
    *
-   *     var tooltip = preload("res://SomeTooltipScene.tscn").instantiate()
+   *     var tooltip = preload("res://some_tooltip_scene.tscn").instantiate()
    *
    *     tooltip.get_node("Label").text = for_text
    *
@@ -800,7 +802,7 @@ public open class Control : CanvasItem() {
    *
    * {
    *
-   *     Node tooltip = ResourceLoader.Load<PackedScene>("res://SomeTooltipScene.tscn").Instantiate();
+   *     Node tooltip = ResourceLoader.Load<PackedScene>("res://some_tooltip_scene.tscn").Instantiate();
    *
    *     tooltip.GetNode<Label>("Label").Text = forText;
    *
@@ -1761,126 +1763,18 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Forwards the handling of this control's drag and drop to [target] object.
+   * Forwards the handling of this control's [_getDragData],  [_canDropData] and [_dropData] virtual functions to delegate callables.
    *
-   * Forwarding can be implemented in the target object similar to the methods [_getDragData], [_canDropData], and [_dropData] but with two differences:
+   * For each argument, if not empty, the delegate callable is used, otherwise the local (virtual) function is used.
    *
-   * 1. The function name must be suffixed with **_fw**
-   *
-   * 2. The function must take an extra argument that is the control doing the forwarding
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
-   * # ThisControl.gd
-   *
-   * extends Control
-   *
-   * export(Control) var target_control
-   *
-   *
-   *
-   * func _ready():
-   *
-   *     set_drag_forwarding(target_control)
-   *
-   *
-   *
-   * # TargetControl.gd
-   *
-   * extends Control
-   *
-   *
-   *
-   * func _can_drop_data_fw(position, data, from_control):
-   *
-   *     return true
-   *
-   *
-   *
-   * func _drop_data_fw(position, data, from_control):
-   *
-   *     my_handle_data(data) # Your handler method.
-   *
-   *
-   *
-   * func _get_drag_data_fw(position, from_control):
-   *
-   *     set_drag_preview(my_preview)
-   *
-   *     return my_data()
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
-   * // ThisControl.cs
-   *
-   * public class ThisControl : Control
-   *
-   * {
-   *
-   *     [godot.Export]
-   *
-   *     public Control TargetControl { get; set; }
-   *
-   *     public override void _Ready()
-   *
-   *     {
-   *
-   *         SetDragForwarding(TargetControl);
-   *
-   *     }
-   *
-   * }
-   *
-   *
-   *
-   * // TargetControl.cs
-   *
-   * public class TargetControl : Control
-   *
-   * {
-   *
-   *     public void CanDropDataFw(Vector2 position, object data, Control fromControl)
-   *
-   *     {
-   *
-   *         return true;
-   *
-   *     }
-   *
-   *
-   *
-   *     public void DropDataFw(Vector2 position, object data, Control fromControl)
-   *
-   *     {
-   *
-   *         MyHandleData(data); // Your handler method.
-   *
-   *     }
-   *
-   *
-   *
-   *     public void GetDragDataFw(Vector2 position, Control fromControl)
-   *
-   *     {
-   *
-   *         SetDragPreview(MyPreview);
-   *
-   *         return MyData();
-   *
-   *     }
-   *
-   * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * The function format for each callable should be exactly the same as the virtual functions described above.
    */
-  public fun setDragForwarding(target: Object): Unit {
-    TransferContext.writeArguments(OBJECT to target)
+  public fun setDragForwarding(
+    dragFunc: Callable,
+    canDropFunc: Callable,
+    dropFunc: Callable
+  ): Unit {
+    TransferContext.writeArguments(CALLABLE to dragFunc, CALLABLE to canDropFunc, CALLABLE to dropFunc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_DRAG_FORWARDING, NIL)
   }
 

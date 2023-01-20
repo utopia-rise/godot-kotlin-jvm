@@ -447,12 +447,22 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Stops or pauses the currently playing animation. If [reset] is `true`, the animation position is reset to `0` and the playback speed is reset to `1.0`.
+   * Pauses the currently playing animation. The [currentAnimationPosition] will be kept and calling [play] or [playBackwards] without arguments or with the same animation name as [assignedAnimation] will resume the animation.
    *
-   * If [reset] is `false`, the [currentAnimationPosition] will be kept and calling [play] or [playBackwards] without arguments or with the same animation name as [assignedAnimation] will resume the animation.
+   * See also [stop].
    */
-  public fun stop(reset: Boolean = true): Unit {
-    TransferContext.writeArguments(BOOL to reset)
+  public fun pause(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_PAUSE, NIL)
+  }
+
+  /**
+   * Stops the currently playing animation. The animation position is reset to `0` and the playback speed is reset to `1.0`.
+   *
+   * See also [pause].
+   */
+  public fun stop(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_STOP, NIL)
   }
 

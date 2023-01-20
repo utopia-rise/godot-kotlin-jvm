@@ -459,6 +459,14 @@ public open class TabBar : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_MOVE_TAB, NIL)
   }
 
+  /**
+   * Clears all tabs.
+   */
+  public fun clearTabs(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_CLEAR_TABS, NIL)
+  }
+
   public enum class AlignmentMode(
     id: Long
   ) {

@@ -18,6 +18,9 @@ import kotlin.Unit
 /**
  * Helper class for creating and clearing navigation meshes.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html)
+ *
  * This class is responsible for creating and clearing 3D navigation meshes used as [godot.NavigationMesh] resources inside [godot.NavigationRegion3D]. The [godot.NavigationMeshGenerator] has very limited to no use for 2D as the navigation mesh baking process expects 3D node types and 3D source geometry to parse.
  *
  * The entire navigation mesh baking is best done in a separate thread as the voxelization, collision tests and mesh optimization steps involved are very performance and time hungry operations.

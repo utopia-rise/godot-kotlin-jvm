@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.Basis
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
 import godot.core.RID
@@ -15,7 +14,6 @@ import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BASIS
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -51,6 +49,8 @@ import kotlin.Unit
  * The overall transform of a bone with respect to the skeleton is determined by the following hierarchical order: rest pose, custom pose and pose.
  *
  * Note that "global pose" below refers to the overall transform of the bone with respect to skeleton, so it not the actual global/world transform of the bone.
+ *
+ * To setup different types of inverse kinematics, consider using [godot.SkeletonIK3D], or add a custom IK implementation in [godot.Node.Process] as a child node.
  */
 @GodotBaseType
 public open class Skeleton3D : Node3D() {
@@ -189,6 +189,19 @@ public open class Skeleton3D : Node3D() {
   public fun getBoneCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the number of times the bone hierarchy has changed within this skeleton, including renames.
+   *
+   * The Skeleton version is not serialized: only use within a single instance of Skeleton3D.
+   *
+   * Use for invalidating caches in IK solvers and other nodes which process bones.
+   */
+  public fun getVersion(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_VERSION, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -441,47 +454,6 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Deprecated. Local pose overrides will be removed.
-   *
-   * Removes the local pose override on all bones in the skeleton.
-   */
-  public fun clearBonesLocalPoseOverride(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON3D_CLEAR_BONES_LOCAL_POSE_OVERRIDE, NIL)
-  }
-
-  /**
-   * Deprecated. Local pose overrides will be removed.
-   *
-   * Sets the local pose transform, [pose], for the bone at [boneIdx].
-   *
-   * [amount] is the interpolation strength that will be used when applying the pose, and [persistent] determines if the applied pose will remain.
-   *
-   * **Note:** The pose transform needs to be a local pose! Use [globalPoseToLocalPose] to convert a global pose to a local pose.
-   */
-  public fun setBoneLocalPoseOverride(
-    boneIdx: Long,
-    pose: Transform3D,
-    amount: Double,
-    persistent: Boolean = false
-  ): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to pose, DOUBLE to amount, BOOL to persistent)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_LOCAL_POSE_OVERRIDE, NIL)
-  }
-
-  /**
-   * Returns the local pose override transform for [boneIdx].
-   */
-  public fun getBoneLocalPoseOverride(boneIdx: Long): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_LOCAL_POSE_OVERRIDE, TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
-  }
-
-  /**
    * Force updates the bone transforms/poses for all bones in the skeleton.
    */
   public fun forceUpdateAllBoneTransforms(): Unit {
@@ -497,70 +469,6 @@ public open class Skeleton3D : Node3D() {
     TransferContext.writeArguments(LONG to boneIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_FORCE_UPDATE_BONE_CHILD_TRANSFORM, NIL)
-  }
-
-  /**
-   * Deprecated. Use [godot.Node3D] apis instead.
-   *
-   * Takes the passed-in global pose and converts it to a world transform.
-   *
-   * This can be used to easily convert a global pose from [getBoneGlobalPose] to a global transform usable with a node's transform, like [godot.Node3D.globalTransform] for example.
-   */
-  public fun globalPoseToWorldTransform(globalPose: Transform3D): Transform3D {
-    TransferContext.writeArguments(TRANSFORM3D to globalPose)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON3D_GLOBAL_POSE_TO_WORLD_TRANSFORM, TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
-  }
-
-  /**
-   * Deprecated. Use [godot.Node3D] apis instead.
-   *
-   * Takes the passed-in global transform and converts it to a global pose.
-   *
-   * This can be used to easily convert a global transform from [godot.Node3D.globalTransform] to a global pose usable with [setBoneGlobalPoseOverride], for example.
-   */
-  public fun worldTransformToGlobalPose(worldTransform: Transform3D): Transform3D {
-    TransferContext.writeArguments(TRANSFORM3D to worldTransform)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON3D_WORLD_TRANSFORM_TO_GLOBAL_POSE, TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
-  }
-
-  /**
-   * Takes the passed-in global pose and converts it to local pose transform.
-   *
-   * This can be used to easily convert a global pose from [getBoneGlobalPose] to a global transform in [setBoneLocalPoseOverride].
-   */
-  public fun globalPoseToLocalPose(boneIdx: Long, globalPose: Transform3D): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to globalPose)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON3D_GLOBAL_POSE_TO_LOCAL_POSE, TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
-  }
-
-  /**
-   * Converts the passed-in local pose to a global pose relative to the inputted bone, [boneIdx].
-   *
-   * This could be used to convert [getBonePose] for use with the [setBoneGlobalPoseOverride] function.
-   */
-  public fun localPoseToGlobalPose(boneIdx: Long, localPose: Transform3D): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to localPose)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON3D_LOCAL_POSE_TO_GLOBAL_POSE, TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
-  }
-
-  /**
-   * Rotates the given [godot.core.Basis] so that the forward axis of the Basis is facing in the forward direction of the bone at [boneIdx].
-   *
-   * This is helper function to make using [godot.Transform3D.lookingAt] easier with bone poses.
-   */
-  public fun globalPoseZForwardToBoneForward(boneIdx: Long, basis: Basis): Basis {
-    TransferContext.writeArguments(LONG to boneIdx, BASIS to basis)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON3D_GLOBAL_POSE_Z_FORWARD_TO_BONE_FORWARD, BASIS)
-    return TransferContext.readReturnValue(BASIS, false) as Basis
   }
 
   /**
@@ -604,34 +512,6 @@ public open class Skeleton3D : Node3D() {
     TransferContext.writeArguments(_RID to exception)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_PHYSICAL_BONES_REMOVE_COLLISION_EXCEPTION, NIL)
-  }
-
-  /**
-   * Sets the modification stack for this skeleton to the passed-in modification stack, [modificationStack].
-   */
-  public fun setModificationStack(modificationStack: SkeletonModificationStack3D): Unit {
-    TransferContext.writeArguments(OBJECT to modificationStack)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_MODIFICATION_STACK,
-        NIL)
-  }
-
-  /**
-   * Returns the modification stack attached to this skeleton, if one exists.
-   */
-  public fun getModificationStack(): SkeletonModificationStack3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_MODIFICATION_STACK,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack3D?
-  }
-
-  /**
-   * Executes all the modifications on the [godot.SkeletonModificationStack3D], if the Skeleton3D has one assigned.
-   */
-  public fun executeModifications(delta: Double, executionMode: Long): Unit {
-    TransferContext.writeArguments(DOUBLE to delta, LONG to executionMode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_EXECUTE_MODIFICATIONS,
-        NIL)
   }
 
   public companion object {

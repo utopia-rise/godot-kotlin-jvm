@@ -409,13 +409,13 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Impulse created by the contact. Only implemented for Bullet physics.
+   * Impulse created by the contact.
    */
-  public fun getContactImpulse(contactIdx: Long): Double {
+  public fun getContactImpulse(contactIdx: Long): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_IMPULSE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_IMPULSE, VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
   /**

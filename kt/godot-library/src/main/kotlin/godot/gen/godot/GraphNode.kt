@@ -50,12 +50,12 @@ public open class GraphNode : Container() {
   /**
    * Emitted when the GraphNode is selected.
    */
-  public val signalSelected: Signal0 by signal()
+  public val nodeSelected: Signal0 by signal()
 
   /**
    * Emitted when the GraphNode is deselected.
    */
-  public val deselected: Signal0 by signal()
+  public val nodeDeselected: Signal0 by signal()
 
   /**
    * Emitted when any GraphNode's slot is updated.

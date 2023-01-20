@@ -159,7 +159,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    *     # Draw a circle at cursor position.
    *
-   *     overlay.draw_circle(overlay.get_local_mouse_position(), 64, Color.white)
+   *     overlay.draw_circle(overlay.get_local_mouse_position(), 64, Color.WHITE)
    *
    *
    *
@@ -505,7 +505,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * ```
    * 				func _set_state(data):
    * 				    zoom = data.get("zoom", 1.0)
-   * 				    preferred_color = data.get("my_color", Color.white)
+   * 				    preferred_color = data.get("my_color", Color.WHITE)
    * 				```
    */
   public open fun _setState(state: Dictionary<Any?, Any?>): Unit {
@@ -544,7 +544,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * ```
    * 				func _set_window_layout(configuration):
    * 				    $Window.position = configuration.get_value("MyPlugin", "window_position", Vector2())
-   * 				    $Icon.modulate = configuration.get_value("MyPlugin", "icon_color", Color.white)
+   * 				    $Icon.modulate = configuration.get_value("MyPlugin", "icon_color", Color.WHITE)
    * 				```
    */
   public open fun _setWindowLayout(configuration: ConfigFile): Unit {
@@ -780,7 +780,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Removes a callback previsously added by [addUndoRedoInspectorHookCallback].
+   * Removes a callback previously added by [addUndoRedoInspectorHookCallback].
    */
   public fun removeUndoRedoInspectorHookCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)

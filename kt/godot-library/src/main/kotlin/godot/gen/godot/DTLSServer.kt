@@ -27,7 +27,7 @@ import kotlin.Suppress
  *
  * [gdscript]
  *
- * # ServerNode.gd
+ * # server_node.gd
  *
  * extends Node
  *
@@ -183,7 +183,7 @@ import kotlin.Suppress
  *
  * [gdscript]
  *
- * # ClientNode.gd
+ * # client_node.gd
  *
  * extends Node
  *

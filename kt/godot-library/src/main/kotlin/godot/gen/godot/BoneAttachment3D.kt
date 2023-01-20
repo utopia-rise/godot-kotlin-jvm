@@ -62,6 +62,22 @@ public open class BoneAttachment3D : Node3D() {
           NIL)
     }
 
+  /**
+   * Whether the BoneAttachment3D node will override the bone pose of the bone it is attached to. When set to `true`, the BoneAttachment3D node can change the pose of the bone. When set to `false`, the BoneAttachment3D will always be set to the bone's transform.
+   */
+  public var overridePose: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_OVERRIDE_POSE, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_OVERRIDE_POSE, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_BONEATTACHMENT3D, scriptIndex)
     return true
@@ -74,48 +90,6 @@ public open class BoneAttachment3D : Node3D() {
     TransferContext.writeArguments(LONG to boneIndex)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_ON_BONE_POSE_UPDATE, NIL)
-  }
-
-  /**
-   * Sets whether the BoneAttachment3D node will override the bone pose of the bone it is attached to. When set to `true`, the BoneAttachment3D node can change the pose of the bone.
-   */
-  public fun setOverridePose(overridePose: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to overridePose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_OVERRIDE_POSE,
-        NIL)
-  }
-
-  /**
-   * Returns whether the BoneAttachment3D node is overriding the bone pose of the bone it's attached to.
-   */
-  public fun getOverridePose(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_OVERRIDE_POSE,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Deprecated. Local pose overrides will be removed.
-   *
-   * Sets the override mode for the BoneAttachment3D node (0=global / 1=local). The override mode defines which of the bone poses the BoneAttachment3D node will override.
-   */
-  public fun setOverrideMode(overrideMode: Long): Unit {
-    TransferContext.writeArguments(LONG to overrideMode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_OVERRIDE_MODE,
-        NIL)
-  }
-
-  /**
-   * Deprecated. Local pose overrides will be removed.
-   *
-   * Returns the override mode for the BoneAttachment3D node (0=global / 1=local).
-   */
-  public fun getOverrideMode(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_OVERRIDE_MODE,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**

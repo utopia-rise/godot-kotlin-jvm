@@ -1122,6 +1122,25 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
+   * Sets whether the bodies attached to the [godot.Joint2D] will collide with each other.
+   */
+  public fun jointDisableCollisionsBetweenBodies(joint: RID, disable: Boolean): Unit {
+    TransferContext.writeArguments(_RID to joint, BOOL to disable)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_DISABLE_COLLISIONS_BETWEEN_BODIES, NIL)
+  }
+
+  /**
+   * Returns whether the bodies attached to the [godot.Joint2D] will collide with each other.
+   */
+  public fun jointIsDisabledCollisionsBetweenBodies(joint: RID): Boolean {
+    TransferContext.writeArguments(_RID to joint)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_IS_DISABLED_COLLISIONS_BETWEEN_BODIES, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    *
    */
   public fun jointMakePin(
@@ -1163,6 +1182,29 @@ public object PhysicsServer2D : Object() {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to anchorA, VECTOR2 to anchorB, _RID to bodyA, _RID to bodyB)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_DAMPED_SPRING, NIL)
+  }
+
+  /**
+   * Sets a pin joint parameter. See [enum PinJointParam] for a list of available parameters.
+   */
+  public fun pinJointSetParam(
+    joint: RID,
+    `param`: PinJointParam,
+    `value`: Double
+  ): Unit {
+    TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_PIN_JOINT_SET_PARAM,
+        NIL)
+  }
+
+  /**
+   * Returns the value of a pin joint parameter. See [enum PinJointParam] for a list of available parameters.
+   */
+  public fun pinJointGetParam(joint: RID, `param`: PinJointParam): Double {
+    TransferContext.writeArguments(_RID to joint, LONG to param.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_PIN_JOINT_GET_PARAM,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**

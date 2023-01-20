@@ -1309,7 +1309,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     TRANSPARENCY_ALPHA(1),
     /**
-     * The material will cut off all values below a threshold, the rest will remain opaque. The opaque portions will be rendering in the depth prepass.
+     * The material will cut off all values below a threshold, the rest will remain opaque. The opaque portions will be rendered in the depth prepass.
      */
     TRANSPARENCY_ALPHA_SCISSOR(2),
     /**
@@ -1317,7 +1317,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     TRANSPARENCY_ALPHA_HASH(3),
     /**
-     * The material will use the texture's alpha value for transparency, but will still be rendered in the depth prepass.
+     * The material will use the texture's alpha value for transparency, but will discard fragments with an alpha of less than 0.99 during the depth prepass and fragments with an alpha less than 0.1 during the shadow pass.
      */
     TRANSPARENCY_ALPHA_DEPTH_PRE_PASS(4),
     /**

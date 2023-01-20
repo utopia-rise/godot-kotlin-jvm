@@ -46,11 +46,6 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNode : Resource() {
   /**
-   * Emitted when the node was removed from the graph.
-   */
-  public val removedFromGraph: Signal0 by signal()
-
-  /**
    * Emitted by nodes that inherit from this class and that have an internal tree when one of their nodes changes. The nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], and [godot.AnimationNodeBlendTree].
    */
   public val treeChanged: Signal0 by signal()

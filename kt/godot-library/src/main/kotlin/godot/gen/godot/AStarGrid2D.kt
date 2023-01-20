@@ -136,19 +136,35 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * The default [enum Heuristic] which will be used to calculate the path if [_computeCost] and/or [_estimateCost] were not overridden.
+   * The default [enum Heuristic] which will be used to calculate the cost between two points if [_computeCost] was not overridden.
    */
-  public var defaultHeuristic: Heuristic
+  public var defaultComputeHeuristic: Heuristic
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DEFAULT_HEURISTIC,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DEFAULT_COMPUTE_HEURISTIC, LONG)
       return AStarGrid2D.Heuristic.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_SET_DEFAULT_HEURISTIC,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_SET_DEFAULT_COMPUTE_HEURISTIC, NIL)
+    }
+
+  /**
+   * The default [enum Heuristic] which will be used to calculate the cost between the point and the end point if [_estimateCost] was not overridden.
+   */
+  public var defaultEstimateHeuristic: Heuristic
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DEFAULT_ESTIMATE_HEURISTIC, LONG)
+      return AStarGrid2D.Heuristic.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_SET_DEFAULT_ESTIMATE_HEURISTIC, NIL)
     }
 
   /**

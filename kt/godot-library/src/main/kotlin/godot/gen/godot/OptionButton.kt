@@ -227,7 +227,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   *
+   * Returns `true` if the item at index [idx] is marked as a separator.
    */
   public fun isItemSeparator(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
@@ -309,7 +309,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   *
+   * Returns `true` if this button contains at least one item which is not disabled, or marked as a separator.
    */
   public fun hasSelectableItems(): Boolean {
     TransferContext.writeArguments()
@@ -319,7 +319,9 @@ public open class OptionButton : Button() {
   }
 
   /**
+   * Returns the index of the first item which is not disabled, or marked as a separator. If [fromLast] is `true`, the items will be searched in reverse order.
    *
+   * Returns `-1` if no item is found.
    */
   public fun getSelectableItem(fromLast: Boolean = false): Long {
     TransferContext.writeArguments(BOOL to fromLast)

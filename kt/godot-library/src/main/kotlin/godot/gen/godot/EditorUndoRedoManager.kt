@@ -42,7 +42,7 @@ import kotlin.Unit
  * This guessing can sometimes yield false results, so you can provide a custom context object when creating an action.
  */
 @GodotBaseType
-public open class EditorUndoRedoManager internal constructor() : RefCounted() {
+public open class EditorUndoRedoManager internal constructor() : Object() {
   /**
    * Emitted when the list of actions in any history has changed, either when an action is committed or a history is cleared.
    */

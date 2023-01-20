@@ -36,9 +36,7 @@ import kotlin.Unit
  *
  * After setting up [frames], [play] may be called. It's also possible to select an [animation] and toggle [playing], even within the editor.
  *
- * To pause the current animation, call [stop] or set [playing] to `false`. Alternatively, setting [speedScale] to `0` also preserves the current frame's elapsed time.
- *
- * **Note:** You can associate a set of normal or specular maps by creating additional [godot.SpriteFrames] resources with a `_normal` or `_specular` suffix. For example, having 3 [godot.SpriteFrames] resources `run`, `run_normal`, and `run_specular` will make it so the `run` animation uses normal and specular maps.
+ * To pause the current animation, set [playing] to `false`. Alternatively, setting [speedScale] to `0` also preserves the current frame's elapsed time.
  */
 @GodotBaseType
 public open class AnimatedSprite2D : Node2D() {
@@ -48,7 +46,7 @@ public open class AnimatedSprite2D : Node2D() {
   public val frameChanged: Signal0 by signal()
 
   /**
-   * Emitted when the animation is finished (when it plays the last frame). If the animation is looping, this signal is emitted every time the last frame is drawn.
+   * Emitted when the animation reaches the end, or the start if it is played in reverse. If the animation is looping, this signal is emitted at the end of each loop.
    */
   public val animationFinished: Signal0 by signal()
 
@@ -115,7 +113,11 @@ public open class AnimatedSprite2D : Node2D() {
     }
 
   /**
-   * If `true`, the [animation] is currently playing. Setting this property to `false` is the equivalent of calling [stop].
+   * If `true`, the [animation] is currently playing. Setting this property to `false` pauses the current animation. Use [stop] to stop the animation at the current frame instead.
+   *
+   * **Note:** Unlike [stop], changing this property to `false` preserves the current frame's elapsed time and the `backwards` flag of the current [animation] (if it was previously set by [play]).
+   *
+   * **Note:** After a non-looping animation finishes, the property still remains `true`.
    */
   public var playing: Boolean
     get() {
@@ -196,6 +198,8 @@ public open class AnimatedSprite2D : Node2D() {
 
   /**
    * Plays the animation named [anim]. If no [anim] is provided, the current animation is played. If [backwards] is `true`, the animation is played in reverse.
+   *
+   * **Note:** If [speedScale] is negative, the animation direction specified by [backwards] will be inverted.
    */
   public fun play(anim: StringName = StringName(""), backwards: Boolean = false): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, BOOL to backwards)
@@ -205,7 +209,7 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * Stops the current [animation] at the current [frame].
    *
-   * **Note:** This method resets the current frame's elapsed time. If this behavior is undesired, consider setting [speedScale] to `0`, instead.
+   * **Note:** This method resets the current frame's elapsed time and removes the `backwards` flag from the current [animation] (if it was previously set by [play]). If this behavior is undesired, set [playing] to `false` instead.
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()

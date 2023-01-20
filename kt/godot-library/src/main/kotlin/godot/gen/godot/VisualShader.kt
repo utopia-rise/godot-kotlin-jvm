@@ -125,7 +125,7 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   *
+   * Returns next valid node ID that can be added to the shader graph.
    */
   public fun getValidNodeId(type: Type): Long {
     TransferContext.writeArguments(LONG to type.id)
@@ -241,7 +241,7 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   *
+   * Adds a new varying value node to the shader.
    */
   public fun addVarying(
     name: String,
@@ -253,7 +253,7 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   *
+   * Removes a varying value node with the given [name]. Prints an error if a node with this name is not found.
    */
   public fun removeVarying(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
@@ -261,7 +261,7 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   *
+   * Returns `true` if the shader has a varying with the given [name].
    */
   public fun hasVarying(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -285,27 +285,27 @@ public open class VisualShader : Shader() {
      */
     TYPE_LIGHT(2),
     /**
-     *
+     * A function for the "start" stage of particle shader.
      */
     TYPE_START(3),
     /**
-     *
+     * A function for the "process" stage of particle shader.
      */
     TYPE_PROCESS(4),
     /**
-     *
+     * A function for the "collide" stage (particle collision handler) of particle shader.
      */
     TYPE_COLLIDE(5),
     /**
-     *
+     * A function for the "start" stage of particle shader, with customized output.
      */
     TYPE_START_CUSTOM(6),
     /**
-     *
+     * A function for the "process" stage of particle shader, with customized output.
      */
     TYPE_PROCESS_CUSTOM(7),
     /**
-     *
+     * A shader for 3D environment's sky.
      */
     TYPE_SKY(8),
     /**
@@ -332,15 +332,15 @@ public open class VisualShader : Shader() {
     id: Long
   ) {
     /**
-     *
+     * Varying is passed from `Vertex` function to `Fragment` and `Light` functions.
      */
     VARYING_MODE_VERTEX_TO_FRAG_LIGHT(0),
     /**
-     *
+     * Varying is passed from `Fragment` function to `Light` function.
      */
     VARYING_MODE_FRAG_TO_LIGHT(1),
     /**
-     *
+     * Represents the size of the [enum VaryingMode] enum.
      */
     VARYING_MODE_MAX(2),
     ;
@@ -359,37 +359,41 @@ public open class VisualShader : Shader() {
     id: Long
   ) {
     /**
-     *
+     * Varying is of type [float].
      */
     VARYING_TYPE_FLOAT(0),
     /**
-     *
+     * Varying is of type [int].
      */
     VARYING_TYPE_INT(1),
     /**
-     *
+     * Varying is of type unsigned [int].
      */
-    VARYING_TYPE_VECTOR_2D(2),
+    VARYING_TYPE_UINT(2),
     /**
-     *
+     * Varying is of type [godot.core.Vector2].
      */
-    VARYING_TYPE_VECTOR_3D(3),
+    VARYING_TYPE_VECTOR_2D(3),
     /**
-     *
+     * Varying is of type [godot.core.Vector3].
      */
-    VARYING_TYPE_VECTOR_4D(4),
+    VARYING_TYPE_VECTOR_3D(4),
     /**
-     *
+     * Varying is of type [godot.Vector4].
      */
-    VARYING_TYPE_BOOLEAN(5),
+    VARYING_TYPE_VECTOR_4D(5),
     /**
-     *
+     * Varying is of type [bool].
      */
-    VARYING_TYPE_TRANSFORM(6),
+    VARYING_TYPE_BOOLEAN(6),
     /**
-     *
+     * Varying is of type [godot.Transform3D].
      */
-    VARYING_TYPE_MAX(7),
+    VARYING_TYPE_TRANSFORM(7),
+    /**
+     * Represents the size of the [enum VaryingType] enum.
+     */
+    VARYING_TYPE_MAX(8),
     ;
 
     public val id: Long
@@ -404,12 +408,12 @@ public open class VisualShader : Shader() {
 
   public companion object {
     /**
-     *
+     * Denotes invalid [godot.VisualShader] node.
      */
     public final const val NODE_ID_INVALID: Long = -1
 
     /**
-     *
+     * Denotes output node of [godot.VisualShader].
      */
     public final const val NODE_ID_OUTPUT: Long = 0
   }

@@ -248,89 +248,129 @@ public object Performance : Object() {
      */
     TIME_PHYSICS_PROCESS(2),
     /**
+     * Time it took to complete one navigation step, in seconds. This includes navigation map updates as well as agent avoidance calculations. *Lower is better.*
+     */
+    TIME_NAVIGATION_PROCESS(3),
+    /**
      * Static memory currently used, in bytes. Not available in release builds. *Lower is better.*
      */
-    MEMORY_STATIC(3),
+    MEMORY_STATIC(4),
     /**
      * Available static memory. Not available in release builds. *Lower is better.*
      */
-    MEMORY_STATIC_MAX(4),
+    MEMORY_STATIC_MAX(5),
     /**
      * Largest amount of memory the message queue buffer has used, in bytes. The message queue is used for deferred functions calls and notifications. *Lower is better.*
      */
-    MEMORY_MESSAGE_BUFFER_MAX(5),
+    MEMORY_MESSAGE_BUFFER_MAX(6),
     /**
      * Number of objects currently instantiated (including nodes). *Lower is better.*
      */
-    OBJECT_COUNT(6),
+    OBJECT_COUNT(7),
     /**
      * Number of resources currently used. *Lower is better.*
      */
-    OBJECT_RESOURCE_COUNT(7),
+    OBJECT_RESOURCE_COUNT(8),
     /**
      * Number of nodes currently instantiated in the scene tree. This also includes the root node. *Lower is better.*
      */
-    OBJECT_NODE_COUNT(8),
+    OBJECT_NODE_COUNT(9),
     /**
      * Number of orphan nodes, i.e. nodes which are not parented to a node of the scene tree. *Lower is better.*
      */
-    OBJECT_ORPHAN_NODE_COUNT(9),
+    OBJECT_ORPHAN_NODE_COUNT(10),
     /**
      * The total number of objects in the last rendered frame. This metric doesn't include culled objects (either via hiding nodes, frustum culling or occlusion culling). *Lower is better.*
      */
-    RENDER_TOTAL_OBJECTS_IN_FRAME(10),
+    RENDER_TOTAL_OBJECTS_IN_FRAME(11),
     /**
      * The total number of vertices or indices rendered in the last rendered frame. This metric doesn't include primitives from culled objects (either via hiding nodes, frustum culling or occlusion culling). Due to the depth prepass and shadow passes, the number of primitives is always higher than the actual number of vertices in the scene (typically double or triple the original vertex count). *Lower is better.*
      */
-    RENDER_TOTAL_PRIMITIVES_IN_FRAME(11),
+    RENDER_TOTAL_PRIMITIVES_IN_FRAME(12),
     /**
      * The total number of draw calls performed in the last rendered frame. This metric doesn't include culled objects (either via hiding nodes, frustum culling or occlusion culling), since they do not result in draw calls. *Lower is better.*
      */
-    RENDER_TOTAL_DRAW_CALLS_IN_FRAME(12),
+    RENDER_TOTAL_DRAW_CALLS_IN_FRAME(13),
     /**
      * The amount of video memory used (texture and vertex memory combined, in bytes). Since this metric also includes miscellaneous allocations, this value is always greater than the sum of [RENDER_TEXTURE_MEM_USED] and [RENDER_BUFFER_MEM_USED]. *Lower is better.*
      */
-    RENDER_VIDEO_MEM_USED(13),
+    RENDER_VIDEO_MEM_USED(14),
     /**
      * The amount of texture memory used (in bytes). *Lower is better.*
      */
-    RENDER_TEXTURE_MEM_USED(14),
+    RENDER_TEXTURE_MEM_USED(15),
     /**
      * The amount of render buffer memory used (in bytes). *Lower is better.*
      */
-    RENDER_BUFFER_MEM_USED(15),
+    RENDER_BUFFER_MEM_USED(16),
     /**
      * Number of active [godot.RigidBody2D] nodes in the game. *Lower is better.*
      */
-    PHYSICS_2D_ACTIVE_OBJECTS(16),
+    PHYSICS_2D_ACTIVE_OBJECTS(17),
     /**
      * Number of collision pairs in the 2D physics engine. *Lower is better.*
      */
-    PHYSICS_2D_COLLISION_PAIRS(17),
+    PHYSICS_2D_COLLISION_PAIRS(18),
     /**
      * Number of islands in the 2D physics engine. *Lower is better.*
      */
-    PHYSICS_2D_ISLAND_COUNT(18),
+    PHYSICS_2D_ISLAND_COUNT(19),
     /**
      * Number of active [godot.RigidBody3D] and [godot.VehicleBody3D] nodes in the game. *Lower is better.*
      */
-    PHYSICS_3D_ACTIVE_OBJECTS(19),
+    PHYSICS_3D_ACTIVE_OBJECTS(20),
     /**
      * Number of collision pairs in the 3D physics engine. *Lower is better.*
      */
-    PHYSICS_3D_COLLISION_PAIRS(20),
+    PHYSICS_3D_COLLISION_PAIRS(21),
     /**
      * Number of islands in the 3D physics engine. *Lower is better.*
      */
-    PHYSICS_3D_ISLAND_COUNT(21),
+    PHYSICS_3D_ISLAND_COUNT(22),
     /**
      * Output latency of the [godot.AudioServer]. *Lower is better.*
      */
-    AUDIO_OUTPUT_LATENCY(22),
+    AUDIO_OUTPUT_LATENCY(23),
+    /**
+     * Number of active navigation maps in the [godot.NavigationServer3D]. This also includes the two empty default navigation maps created by World2D and World3D.
+     */
+    NAVIGATION_ACTIVE_MAPS(24),
+    /**
+     * Number of active navigation regions in the [godot.NavigationServer3D].
+     */
+    NAVIGATION_REGION_COUNT(25),
+    /**
+     * Number of active navigation agents processing avoidance in the [godot.NavigationServer3D].
+     */
+    NAVIGATION_AGENT_COUNT(26),
+    /**
+     * Number of active navigation links in the [godot.NavigationServer3D].
+     */
+    NAVIGATION_LINK_COUNT(27),
+    /**
+     * Number of navigation mesh polygons in the [godot.NavigationServer3D].
+     */
+    NAVIGATION_POLYGON_COUNT(28),
+    /**
+     * Number of navigation mesh polygon edges in the [godot.NavigationServer3D].
+     */
+    NAVIGATION_EDGE_COUNT(29),
+    /**
+     * Number of navigation mesh polygon edges that were merged due to edge key overlap in the [godot.NavigationServer3D].
+     */
+    NAVIGATION_EDGE_MERGE_COUNT(30),
+    /**
+     * Number of polygon edges that are considered connected by edge proximity [godot.NavigationServer3D].
+     */
+    NAVIGATION_EDGE_CONNECTION_COUNT(31),
+    /**
+     * Number of navigation mesh polygon edges that could not be merged in the [godot.NavigationServer3D]. The edges still may be connected by edge proximity or with links.
+     */
+    NAVIGATION_EDGE_FREE_COUNT(32),
     /**
      * Represents the size of the [enum Monitor] enum.
      */
-    MONITOR_MAX(23),
+    MONITOR_MAX(33),
     ;
 
     public val id: Long

@@ -17,12 +17,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A base type for the nodes using different vector types within the visual shader graph.
+ * A base type for the nodes that perform vector operations within the visual shader graph.
+ *
+ * This is an abstract class. See the derived types for descriptions of the possible operations.
  */
 @GodotBaseType
 public open class VisualShaderNodeVectorBase internal constructor() : VisualShaderNode() {
   /**
-   * A base type.
+   * A vector type that this operation is performed on.
    */
   public var opType: OpType
     get() {

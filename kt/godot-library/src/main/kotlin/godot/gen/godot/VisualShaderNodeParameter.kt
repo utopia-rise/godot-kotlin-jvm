@@ -42,7 +42,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     }
 
   /**
-   *
+   * Defines the scope of the parameter.
    */
   public var qualifier: Qualifier
     get() {
@@ -66,15 +66,15 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     id: Long
   ) {
     /**
-     *
+     * The parameter will be tied to the [godot.ShaderMaterial] using this shader.
      */
     QUAL_NONE(0),
     /**
-     *
+     * The parameter will use a global value, defined in Project Settings.
      */
     QUAL_GLOBAL(1),
     /**
-     *
+     * The parameter will be tied to the node with attached [godot.ShaderMaterial] using this shader.
      */
     QUAL_INSTANCE(2),
     /**

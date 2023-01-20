@@ -209,12 +209,12 @@ public object OS : Object() {
   }
 
   /**
-   * Reads a user input string from the standard input (usually the terminal).
+   * Reads a user input string from the standard input (usually the terminal). This operation is *blocking*, which causes the window to freeze if [readStringFromStdin] is called on the main thread. The thread calling [readStringFromStdin] will block until the program receives a line break in standard input (usually by the user pressing [kbd]Enter[/kbd]).
    *
-   * **Note:** This method is implemented on Linux, macOS and Windows. Non-blocking reads are not currently supported on any platform.
+   * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public fun readStringFromStdin(block: Boolean = true): String {
-    TransferContext.writeArguments(BOOL to block)
+  public fun readStringFromStdin(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_READ_STRING_FROM_STDIN, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
@@ -1089,112 +1089,6 @@ public object OS : Object() {
      * The OpenGL 3 rendering driver. It uses OpenGL 3.3 Core Profile on desktop platforms, OpenGL ES 3.0 on mobile devices, and WebGL 2.0 on Web.
      */
     RENDERING_DRIVER_OPENGL3(1),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class Weekday(
-    id: Long
-  ) {
-    /**
-     * Sunday.
-     */
-    DAY_SUNDAY(0),
-    /**
-     * Monday.
-     */
-    DAY_MONDAY(1),
-    /**
-     * Tuesday.
-     */
-    DAY_TUESDAY(2),
-    /**
-     * Wednesday.
-     */
-    DAY_WEDNESDAY(3),
-    /**
-     * Thursday.
-     */
-    DAY_THURSDAY(4),
-    /**
-     * Friday.
-     */
-    DAY_FRIDAY(5),
-    /**
-     * Saturday.
-     */
-    DAY_SATURDAY(6),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class Month(
-    id: Long
-  ) {
-    /**
-     * January.
-     */
-    MONTH_JANUARY(1),
-    /**
-     * February.
-     */
-    MONTH_FEBRUARY(2),
-    /**
-     * March.
-     */
-    MONTH_MARCH(3),
-    /**
-     * April.
-     */
-    MONTH_APRIL(4),
-    /**
-     * May.
-     */
-    MONTH_MAY(5),
-    /**
-     * June.
-     */
-    MONTH_JUNE(6),
-    /**
-     * July.
-     */
-    MONTH_JULY(7),
-    /**
-     * August.
-     */
-    MONTH_AUGUST(8),
-    /**
-     * September.
-     */
-    MONTH_SEPTEMBER(9),
-    /**
-     * October.
-     */
-    MONTH_OCTOBER(10),
-    /**
-     * November.
-     */
-    MONTH_NOVEMBER(11),
-    /**
-     * December.
-     */
-    MONTH_DECEMBER(12),
     ;
 
     public val id: Long

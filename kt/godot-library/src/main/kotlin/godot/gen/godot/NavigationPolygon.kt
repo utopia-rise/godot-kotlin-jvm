@@ -25,7 +25,7 @@ import kotlin.Unit
  * A node that has methods to draw outlines or use indices of vertices to create navigation polygons.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/117](https://godotengine.org/asset-library/asset/117)
+ * [$DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html)
  *
  * There are two ways to create polygons. Either by using the [addOutline] method, or using the [addPolygon] method.
  *

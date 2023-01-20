@@ -289,6 +289,13 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
   /**
    *
    */
+  public open fun _getContactImpulse(contactIdx: Long): Vector2 {
+    throw NotImplementedError("_get_contact_impulse is not implemented for PhysicsDirectBodyState2DExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _getStep(): Double {
     throw NotImplementedError("_get_step is not implemented for PhysicsDirectBodyState2DExtension")
   }

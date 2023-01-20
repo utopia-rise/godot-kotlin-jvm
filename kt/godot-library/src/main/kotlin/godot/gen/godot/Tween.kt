@@ -46,7 +46,7 @@ import kotlin.Unit
  *
  * var tween = get_tree().create_tween()
  *
- * tween.tween_property($Sprite, "modulate", Color.red, 1)
+ * tween.tween_property($Sprite, "modulate", Color.RED, 1)
  *
  * tween.tween_property($Sprite, "scale", Vector2(), 1)
  *
@@ -78,7 +78,7 @@ import kotlin.Unit
  *
  * var tween = get_tree().create_tween()
  *
- * tween.tween_property($Sprite, "modulate", Color.red, 1).set_trans(Tween.TRANS_SINE)
+ * tween.tween_property($Sprite, "modulate", Color.RED, 1).set_trans(Tween.TRANS_SINE)
  *
  * tween.tween_property($Sprite, "scale", Vector2(), 1).set_trans(Tween.TRANS_BOUNCE)
  *
@@ -108,7 +108,7 @@ import kotlin.Unit
  *
  * var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_ELASTIC)
  *
- * tween.tween_property($Sprite, "modulate", Color.red, 1)
+ * tween.tween_property($Sprite, "modulate", Color.RED, 1)
  *
  * tween.tween_property($Sprite, "scale", Vector2(), 1)
  *
@@ -410,9 +410,9 @@ public open class Tween : RefCounted() {
    *
    * var tween = get_tree().create_tween()
    *
-   * tween.tween_callback($Sprite.set_modulate.bind(Color.red)).set_delay(2)
+   * tween.tween_callback($Sprite.set_modulate.bind(Color.RED)).set_delay(2)
    *
-   * tween.tween_callback($Sprite.set_modulate.bind(Color.blue)).set_delay(2)
+   * tween.tween_callback($Sprite.set_modulate.bind(Color.BLUE)).set_delay(2)
    *
    * [/gdscript]
    *

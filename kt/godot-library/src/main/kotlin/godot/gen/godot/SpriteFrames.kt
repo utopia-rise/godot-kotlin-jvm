@@ -28,8 +28,6 @@ import kotlin.Unit
  * Sprite frame library for AnimatedSprite2D and AnimatedSprite3D.
  *
  * Sprite frame library for an [godot.AnimatedSprite2D] or [godot.AnimatedSprite3D] node. Contains frames and animation data for playback.
- *
- * **Note:** You can associate a set of normal or specular maps by creating additional [godot.SpriteFrames] resources with a `_normal` or `_specular` suffix. For example, having 3 [godot.SpriteFrames] resources `run`, `run_normal`, and `run_specular` will make it so the `run` animation uses normal and specular maps.
  */
 @GodotBaseType
 public open class SpriteFrames : Resource() {
@@ -39,7 +37,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Adds a new animation to the library.
+   * Adds a new [anim] animation to the library.
    */
   public fun addAnimation(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -47,7 +45,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * If `true`, the named animation exists.
+   * Returns `true` if the [anim] animation exists.
    */
   public fun hasAnimation(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -56,7 +54,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Removes the given animation.
+   * Removes the [anim] animation.
    */
   public fun removeAnimation(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -64,7 +62,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Changes the animation's name to [newname].
+   * Changes the [anim] animation's name to [newname].
    */
   public fun renameAnimation(anim: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, STRING_NAME to newname)
@@ -82,16 +80,16 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * The animation's speed in frames per second.
+   * Sets the speed for the [anim] animation in frames per second.
    */
-  public fun setAnimationSpeed(anim: StringName, speed: Double): Unit {
-    TransferContext.writeArguments(STRING_NAME to anim, DOUBLE to speed)
+  public fun setAnimationSpeed(anim: StringName, fps: Double): Unit {
+    TransferContext.writeArguments(STRING_NAME to anim, DOUBLE to fps)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_ANIMATION_SPEED,
         NIL)
   }
 
   /**
-   * The animation's speed in frames per second.
+   * Returns the speed in frames per second for the [anim] animation.
    */
   public fun getAnimationSpeed(anim: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -101,7 +99,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * If `true`, the animation will loop.
+   * If [loop] is `true`, the [anim] animation will loop when it reaches the end, or the start if it is played in reverse.
    */
   public fun setAnimationLoop(anim: StringName, loop: Boolean): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, BOOL to loop)
@@ -120,19 +118,41 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Adds a frame to the given animation.
+   * Adds a frame to the [anim] animation. If [atPosition] is `-1`, the frame will be added to the end of the animation.
    */
   public fun addFrame(
     anim: StringName,
-    frame: Texture2D,
+    texture: Texture2D,
+    duration: Double = 1.0,
     atPosition: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to anim, OBJECT to frame, LONG to atPosition)
+    TransferContext.writeArguments(STRING_NAME to anim, OBJECT to texture, DOUBLE to duration, LONG to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_ADD_FRAME, NIL)
   }
 
   /**
-   * Returns the number of frames in the animation.
+   * Sets the [texture] and the [duration] of the frame [idx] in the [anim] animation.
+   */
+  public fun setFrame(
+    anim: StringName,
+    idx: Long,
+    texture: Texture2D,
+    duration: Double = 1.0
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx, OBJECT to texture, DOUBLE to duration)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_FRAME, NIL)
+  }
+
+  /**
+   * Removes the [anim] animation's frame [idx].
+   */
+  public fun removeFrame(anim: StringName, idx: Long): Unit {
+    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_REMOVE_FRAME, NIL)
+  }
+
+  /**
+   * Returns the number of frames for the [anim] animation.
    */
   public fun getFrameCount(anim: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -141,36 +161,33 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Returns the animation's selected frame.
+   * Returns the texture of the frame [idx] in the [anim] animation.
    */
-  public fun getFrame(anim: StringName, idx: Long): Texture2D? {
+  public fun getFrameTexture(anim: StringName, idx: Long): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME_TEXTURE,
+        OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
   /**
-   * Sets the texture of the given frame.
+   * Returns a relative duration of the frame [idx] in the [anim] animation (defaults to `1.0`). For example, a frame with a duration of `2.0` is displayed twice as long as a frame with a duration of `1.0`. You can calculate the absolute duration (in seconds) of a frame using the following formula:
+   *
+   * ```
+   * 				absolute_duration = relative_duration / (animation_fps * abs(speed_scale))
+   * 				```
+   *
+   * In this example, `speed_scale` refers to either [godot.AnimatedSprite2D.speedScale] or [godot.AnimatedSprite3D.speedScale].
    */
-  public fun setFrame(
-    anim: StringName,
-    idx: Long,
-    txt: Texture2D
-  ): Unit {
-    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx, OBJECT to txt)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_FRAME, NIL)
-  }
-
-  /**
-   * Removes the animation's selected frame.
-   */
-  public fun removeFrame(anim: StringName, idx: Long): Unit {
+  public fun getFrameDuration(anim: StringName, idx: Long): Double {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_REMOVE_FRAME, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME_DURATION,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
-   * Removes all frames from the given animation.
+   * Removes all frames from the [anim] animation.
    */
   public fun clear(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -178,7 +195,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Removes all animations. A "default" animation will be created.
+   * Removes all animations. An empty `default` animation will be created.
    */
   public fun clearAll(): Unit {
     TransferContext.writeArguments()

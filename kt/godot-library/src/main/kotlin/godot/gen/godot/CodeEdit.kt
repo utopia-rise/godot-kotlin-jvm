@@ -265,7 +265,7 @@ public open class CodeEdit : TextEdit() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMLETION_PREFIXES, ARRAY)
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_PREFIXES, ARRAY)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>
     }
     set(`value`) {

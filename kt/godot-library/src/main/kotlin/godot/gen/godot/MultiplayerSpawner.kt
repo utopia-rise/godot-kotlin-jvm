@@ -7,8 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.NodePath
 import godot.core.VariantType.ANY
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -21,7 +23,6 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -58,13 +59,22 @@ public open class MultiplayerSpawner : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_LIMIT, NIL)
     }
 
+  public var spawnFunction: Callable
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_FUNCTION, CALLABLE)
+      return TransferContext.readReturnValue(CALLABLE, false) as Callable
+    }
+    set(`value`) {
+      TransferContext.writeArguments(CALLABLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_FUNCTION, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MULTIPLAYERSPAWNER, scriptIndex)
     return true
-  }
-
-  public open fun _spawnCustom(`data`: Any): Node? {
-    throw NotImplementedError("_spawn_custom is not implemented for MultiplayerSpawner")
   }
 
   public fun addSpawnableScene(path: String): Unit {

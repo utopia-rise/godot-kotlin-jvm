@@ -88,29 +88,33 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      */
     CTYPE_SCALAR_INT(1),
     /**
+     * An unsigned integer scalar.
+     */
+    CTYPE_SCALAR_UINT(2),
+    /**
      * A 2D vector type.
      */
-    CTYPE_VECTOR_2D(2),
+    CTYPE_VECTOR_2D(3),
     /**
      * A 3D vector type.
      */
-    CTYPE_VECTOR_3D(3),
+    CTYPE_VECTOR_3D(4),
     /**
      * A 4D vector type.
      */
-    CTYPE_VECTOR_4D(4),
+    CTYPE_VECTOR_4D(5),
     /**
      * A boolean type.
      */
-    CTYPE_BOOLEAN(5),
+    CTYPE_BOOLEAN(6),
     /**
      * A transform (`mat4`) type.
      */
-    CTYPE_TRANSFORM(6),
+    CTYPE_TRANSFORM(7),
     /**
      * Represents the size of the [enum ComparisonType] enum.
      */
-    CTYPE_MAX(7),
+    CTYPE_MAX(8),
     ;
 
     public val id: Long
