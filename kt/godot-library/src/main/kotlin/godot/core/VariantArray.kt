@@ -5,6 +5,7 @@ import godot.core.memory.GarbageCollector
 import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
+import kotlin.reflect.KClass
 
 
 @Suppress("unused", "UNCHECKED_CAST")
@@ -20,9 +21,18 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     }
 
     @PublishedApi
-    internal constructor(variantType: VariantType) {
-        this.variantType = variantType;
-        _handle = Bridge.engine_call_constructor()
+    internal constructor(variantType: VariantType, parameterClazz: KClass<*>) {
+        this.variantType = variantType
+        _handle = if (variantType != VariantType.ANY) {
+            TransferContext.writeArguments(
+                VariantType.LONG to variantType.id,
+                VariantType.JVM_INT to (TypeManager.engineTypeToId[parameterClazz] ?: -1),
+                VariantType.JVM_INT to (TypeManager.userTypeToId[parameterClazz] ?: -1)
+            )
+            Bridge.engine_call_constructor_typed()
+        } else {
+            Bridge.engine_call_constructor()
+        }
         GarbageCollector.registerNativeCoreType(this, VariantType.ARRAY)
     }
 
@@ -33,7 +43,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     override val size: Int
         get() {
-            Bridge.engine_call_get_size(_handle)
+            Bridge.engine_call_size(_handle)
             return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
         }
 
@@ -69,8 +79,25 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     /**
      * Returns true if the array is empty.
      */
-    fun empty(): Boolean {
-        Bridge.engine_call_is_empty(_handle)
+    override fun isEmpty(): Boolean {
+        Bridge.engine_call_isEmpty(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
+
+    /**
+     * Returns true if the array is read-only.
+     */
+    fun isReadOnly(): Boolean {
+        Bridge.engine_call_isReadOnly(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
+
+    /**
+     * Returns `true` if the array is typed. Typed arrays can only store elements of their associated type and provide
+     * type safety for the [get] operator.
+     */
+    fun isTyped(): Boolean {
+        Bridge.engine_call_isTyped(_handle)
         return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
@@ -103,7 +130,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun remove(position: Int) {
         TransferContext.writeArguments(VariantType.JVM_INT to position)
-        Bridge.engine_call_remove_at(_handle)
+        Bridge.engine_call_removeAt(_handle)
     }
 
     override fun removeAll(elements: Collection<T>): Boolean {
@@ -165,11 +192,67 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     //API
 
     /**
+     * Calls the provided [Callable] on each element in the array and returns `true` if the Callable returns `true` for
+     * all elements in the array. If the [Callable] returns `false` for one array element or more, this method returns
+     * `false`.
+     *
+     * The callable's method should take one Variant parameter (the current array element) and return a boolean value.
+     *
+     * See also [any], [filter], [map] and [reduce].
+     *
+     * **Note**: Unlike relying on the size of an array returned by [filter], this method will return as early as possible
+     * to improve performance (especially with large arrays).
+     *
+     * **Note**: For an empty array, this method always returns `true`.
+     */
+    fun all(callable: Callable): Boolean {
+        TransferContext.writeArguments(VariantType.CALLABLE to callable)
+        Bridge.engine_call_all(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
+
+    /**
+     * Calls the provided [Callable] on each element in the array and returns `true` if the Callable returns `true` for
+     * one or more elements in the array. If the [Callable] returns `false` for all elements in the array, this method
+     * returns `false`.
+     *
+     * The callable's method should take one Variant parameter (the current array element) and return a boolean value.
+     *
+     * See also [all], [filter], [map] and [reduce].
+     *
+     * Note: Unlike relying on the size of an array returned by filter, this method will return as early as possible to
+     * improve performance (especially with large arrays).
+     *
+     * Note: For an empty array, this method always returns `false`.
+     */
+    fun any(callable: Callable): Boolean {
+        TransferContext.writeArguments(VariantType.CALLABLE to callable)
+        Bridge.engine_call_any(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
+
+    /**
      * Appends an element at the end of the array (alias of push_back).
      */
     fun append(value: T) {
         TransferContext.writeArguments(variantType to value)
         Bridge.engine_call_append(_handle)
+    }
+
+    /**
+     * Appends another array at the end of this array.
+     */
+    fun appendArray(array: VariantArray<T>) {
+        TransferContext.writeArguments(VariantType.ARRAY to array)
+        Bridge.engine_call_appendArray(_handle)
+    }
+
+    /**
+     * Returns the last element of the array. Prints an error and returns `null` if the array is empty.
+     */
+    fun back(): T {
+        Bridge.engine_call_back(_handle)
+        return TransferContext.readReturnValue(variantType) as T
     }
 
     /**
@@ -216,7 +299,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * all nested arrays and dictionaries are duplicated and will not be shared with the original array.
      * If false, a shallow copy is made and references to the original nested arrays and dictionaries are kept, so that modifying a sub-array or dictionary in the copy will also impact those referenced in the source array.
      */
-    fun duplicate(deep: Boolean = false): VariantArray<T> {
+    fun duplicate(deep: Boolean): VariantArray<T> {
         TransferContext.writeArguments(VariantType.BOOL to deep)
         Bridge.engine_call_duplicate(_handle)
         return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<T>).also {
@@ -233,10 +316,38 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     }
 
     /**
+     * Assigns the given value to all elements in the array. This can typically be used together with [resize] to create
+     * an array with a given size and initialized elements.
+     *
+     * **Note**: If value is of a reference type ([Object]-derived, [VariantArray], [Dictionary], etc.) then the array is
+     * filled with the references to the same object, i.e. no duplicates are created.
+     */
+    fun fill(value: T) {
+        TransferContext.writeArguments(variantType to value)
+        Bridge.engine_call_fill(_handle)
+    }
+
+    /**
+     * Calls the provided [Callable] on each element in the array and returns a new array with the elements for which
+     * the method returned `true`.
+     *
+     * The callable's method should take one Variant parameter (the current array element) and return a boolean value.
+     *
+     * See also [any], [all], [map] and [reduce].
+     */
+    fun filter(callable: Callable) : VariantArray<T> {
+        TransferContext.writeArguments(VariantType.CALLABLE to callable)
+        Bridge.engine_call_filter(_handle)
+        return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<T>).also {
+            it.variantType = variantType
+        }
+    }
+
+    /**
      * Searches the array for a value and returns its index or -1 if not found.
      * Optionally, the initial search index can be passed.
      */
-    fun find(what: T, from: Int = 0): Int {
+    fun find(what: T, from: Int): Int {
         TransferContext.writeArguments(variantType to what, VariantType.JVM_INT to from)
         Bridge.engine_call_find(_handle)
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
@@ -248,6 +359,27 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     fun front(): T {
         Bridge.engine_call_front(_handle)
         return TransferContext.readReturnValue(variantType, true) as T
+    }
+
+    /**
+     * Returns the [VariantType] constant for a typed array. If the [VariantArray] is not typed, returns [VariantType.NIL].
+     */
+    fun getTypedBuiltin() = variantType.baseOrdinal
+
+    /**
+     * Returns a class name of a typed [VariantArray] of type [VariantType.OBJECT].
+     */
+    fun getTypedClassName(): StringName {
+        Bridge.engine_call_getTypedClassName(_handle)
+        return TransferContext.readReturnValue(VariantType.STRING_NAME) as StringName
+    }
+
+    /**
+     * Returns the script associated with a typed array tied to a class name.
+     */
+    fun getTypedScript(): Any {
+        Bridge.engine_call_getTypedScript(_handle)
+        return TransferContext.readReturnValue(VariantType.ANY) as Any
     }
 
     /**
@@ -269,6 +401,20 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     }
 
     /**
+     * Calls the provided [Callable] for each element in the array and returns a new array filled with values returned
+     * by the method.
+     *
+     * The callable's method should take one Variant parameter (the current array element) and can return any Variant.
+     */
+    fun map(callable: Callable): VariantArray<Any?> {
+        TransferContext.writeArguments(VariantType.CALLABLE to callable)
+        Bridge.engine_call_map(_handle)
+        return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<Any?>).also {
+            it.variantType = VariantType.ANY
+        }
+    }
+
+    /**
      * Returns the maximum value contained in the array if all elements are of comparable types.
      * If the elements can't be compared, null is returned.
      */
@@ -283,6 +429,14 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun min(): T {
         Bridge.engine_call_min(_handle)
+        return TransferContext.readReturnValue(variantType, true) as T
+    }
+
+    /**
+     * Returns a random value from the target array.
+     */
+    fun pickRandom(): T {
+        Bridge.engine_call_pickRandom(_handle)
         return TransferContext.readReturnValue(variantType, true) as T
     }
 
@@ -320,15 +474,10 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         Bridge.engine_call_pushFront(_handle)
     }
 
-    /**
-     * Searches the array in reverse order.
-     * Optionally, a start search index can be passed.
-     * If negative, the start index is considered relative to the end of the array.
-     */
-    fun rfind(what: T, from: Int = -1): Int {
-        TransferContext.writeArguments(variantType to what, VariantType.JVM_INT to from)
-        Bridge.engine_call_rfind(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+    fun reduce(callable: Callable, accum: Any?): Any? {
+        TransferContext.writeArguments(VariantType.CALLABLE to callable, VariantType.ANY to accum)
+        Bridge.engine_call_reduce(_handle)
+        return TransferContext.readReturnValue(VariantType.ANY, true)
     }
 
     /**
@@ -336,7 +485,24 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Optionally, a start search index can be passed.
      * If negative, the start index is considered relative to the end of the array.
      */
-    fun slice(begin: Int, end: Int, step: Int = 1, deep: Boolean = false): VariantArray<T> {
+    fun rfind(what: T, from: Int): Int {
+        TransferContext.writeArguments(variantType to what, VariantType.JVM_INT to from)
+        Bridge.engine_call_rfind(_handle)
+        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+    }
+
+    /**
+     * Returns the slice of the [VariantArray], from begin (inclusive) to end (exclusive), as a new [VariantArray].
+     *
+     * The absolute value of `begin` and `end` will be clamped to the array size, so the default value for `end makes
+     * it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).
+     *
+     * If either `begin` or `end` are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)`
+     * is a shorthand for `arr.slice(0, arr.size() - 2)`).
+     *
+     * If deep is `true`, each element will be copied by value rather than by reference.
+     */
+    fun slice(begin: Int, end: Int, step: Int, deep: Boolean): VariantArray<T> {
         TransferContext.writeArguments(
             VariantType.JVM_INT to begin, VariantType.JVM_INT to end,
             VariantType.JVM_INT to step, VariantType.BOOL to deep
@@ -381,8 +547,6 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         return true
     }
 
-    override fun isEmpty() = this.empty()
-
     override fun iterator(): MutableIterator<T> {
         return IndexedIterator(this::size, this::get, this::remove)
     }
@@ -413,35 +577,50 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     @Suppress("FunctionName")
     private object Bridge {
         external fun engine_call_constructor(): VoidPtr
+        external fun engine_call_constructor_typed(): VoidPtr
 
-        external fun engine_call_get_size(_handle: VoidPtr)
-        external fun engine_call_clear(_handle: VoidPtr)
-        external fun engine_call_is_empty(_handle: VoidPtr)
-        external fun engine_call_hash(_handle: VoidPtr)
-        external fun engine_call_reverse(_handle: VoidPtr)
-        external fun engine_call_remove_at(_handle: VoidPtr)
-        external fun engine_call_resize(_handle: VoidPtr)
-        external fun engine_call_shuffle(_handle: VoidPtr)
-        external fun engine_call_sort(_handle: VoidPtr)
-        external fun engine_call_sortCustom(_handle: VoidPtr)
+        external fun engine_call_all(_handle: VoidPtr)
+        external fun engine_call_any(_handle: VoidPtr)
         external fun engine_call_append(_handle: VoidPtr)
+        external fun engine_call_appendArray(_handle: VoidPtr)
+        external fun engine_call_back(_handle: VoidPtr)
         external fun engine_call_bsearch(_handle: VoidPtr)
         external fun engine_call_bsearchCustom(_handle: VoidPtr)
+        external fun engine_call_clear(_handle: VoidPtr)
         external fun engine_call_count(_handle: VoidPtr)
         external fun engine_call_duplicate(_handle: VoidPtr)
         external fun engine_call_erase(_handle: VoidPtr)
+        external fun engine_call_fill(_handle: VoidPtr)
+        external fun engine_call_filter(_handle: VoidPtr)
         external fun engine_call_find(_handle: VoidPtr)
         external fun engine_call_front(_handle: VoidPtr)
+        external fun engine_call_getTypedClassName(_handle: VoidPtr)
+        external fun engine_call_getTypedScript(_handle: VoidPtr)
         external fun engine_call_has(_handle: VoidPtr)
+        external fun engine_call_hash(_handle: VoidPtr)
         external fun engine_call_insert(_handle: VoidPtr)
+        external fun engine_call_isEmpty(_handle: VoidPtr)
+        external fun engine_call_isReadOnly(_handle: VoidPtr)
+        external fun engine_call_isTyped(_handle: VoidPtr)
+        external fun engine_call_map(_handle: VoidPtr)
         external fun engine_call_max(_handle: VoidPtr)
         external fun engine_call_min(_handle: VoidPtr)
+        external fun engine_call_pickRandom(_handle: VoidPtr)
+        external fun engine_call_popAt(_handle: VoidPtr)
         external fun engine_call_popBack(_handle: VoidPtr)
         external fun engine_call_popFront(_handle: VoidPtr)
         external fun engine_call_pushBack(_handle: VoidPtr)
         external fun engine_call_pushFront(_handle: VoidPtr)
+        external fun engine_call_reduce(_handle: VoidPtr)
+        external fun engine_call_removeAt(_handle: VoidPtr)
+        external fun engine_call_resize(_handle: VoidPtr)
+        external fun engine_call_reverse(_handle: VoidPtr)
         external fun engine_call_rfind(_handle: VoidPtr)
+        external fun engine_call_shuffle(_handle: VoidPtr)
+        external fun engine_call_size(_handle: VoidPtr)
         external fun engine_call_slice(_handle: VoidPtr)
+        external fun engine_call_sort(_handle: VoidPtr)
+        external fun engine_call_sortCustom(_handle: VoidPtr)
         external fun engine_call_operator_set(_handle: VoidPtr)
         external fun engine_call_operator_get(_handle: VoidPtr)
     }
@@ -456,7 +635,8 @@ inline fun <reified T> VariantArray(): VariantArray<T> {
         "Can't create a VariantArray with generic ${T::class}."
     }
     return VariantArray<T>(
-        variantType
+        variantType,
+        T::class
     )
 }
 

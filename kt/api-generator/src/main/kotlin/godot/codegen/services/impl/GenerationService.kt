@@ -874,15 +874,17 @@ class GenerationService(
 
     private fun RegistrationFileSpec.addRegisterEngineType(clazz: EnrichedClass, isSingleton: Boolean) {
         val formatString = if (isSingleton) {
-            "%T.registerEngineType(%S) { %T }"
+            "%T.registerEngineType(%S, %T::class) { %T }"
         } else {
-            "%T.registerEngineType(%S, ::%T)"
+            "%T.registerEngineType(%S, %T::class, ::%T)"
         }
+        val typeName = clazz.getTypeClassName().typeName
         registerTypesFunBuilder.addStatement(
             formatString,
             TYPE_MANAGER,
             clazz.internal.name,
-            clazz.getTypeClassName().typeName
+            typeName,
+            typeName
         )
     }
 
