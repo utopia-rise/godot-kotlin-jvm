@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.jvm.JvmName
@@ -31,7 +32,7 @@ public open class DirectionalLight2D : Light2D() {
   /**
    * The height of the light. Used with 2D normal mapping. Ranges from 0 (parallel to the plane) to 1 (perpendicular to the plane).
    */
-  public var height: Double
+  public var height: Float
     @JvmName("getHeight_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getHeight()
@@ -44,15 +45,15 @@ public open class DirectionalLight2D : Light2D() {
   /**
    * The maximum distance from the camera center objects can be before their shadows are culled (in pixels). Decreasing this value can prevent objects located outside the camera from casting shadows (while also improving performance). [godot.Camera2D.zoom] is not taken into account by [maxDistance], which means that at higher zoom values, shadows will appear to fade out sooner when zooming onto a given point.
    */
-  public var maxDistance: Double
+  public var maxDistance: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT2D_GET_MAX_DISTANCE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT2D_SET_MAX_DISTANCE, NIL)
     }

@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -18,6 +17,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -40,56 +40,56 @@ public open class Curve : Resource() {
   /**
    * The minimum value the curve can reach.
    */
-  public var minValue: Double
+  public var minValue: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_MIN_VALUE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_MIN_VALUE, NIL)
     }
 
   /**
    * The maximum value the curve can reach.
    */
-  public var maxValue: Double
+  public var maxValue: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_MAX_VALUE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_MAX_VALUE, NIL)
     }
 
   /**
    * The number of points to include in the baked (i.e. cached) curve data.
    */
-  public var bakeResolution: Long
+  public var bakeResolution: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_BAKE_RESOLUTION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_BAKE_RESOLUTION, NIL)
     }
 
   /**
    * The number of points describing the curve.
    */
-  public var pointCount: Long
+  public var pointCount: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_COUNT, NIL)
     }
 
@@ -103,21 +103,21 @@ public open class Curve : Resource() {
    */
   public fun addPoint(
     position: Vector2,
-    leftTangent: Double = 0.0,
-    rightTangent: Double = 0.0,
+    leftTangent: Float = 0.0f,
+    rightTangent: Float = 0.0f,
     leftMode: TangentMode = Curve.TangentMode.TANGENT_FREE,
     rightMode: TangentMode = Curve.TangentMode.TANGENT_FREE,
-  ): Long {
-    TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent, DOUBLE to rightTangent, LONG to leftMode.id, LONG to rightMode.id)
+  ): Int {
+    TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent.toDouble(), DOUBLE to rightTangent.toDouble(), LONG to leftMode.id, LONG to rightMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_ADD_POINT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
-   * Removes the point at [index] from the curve.
+   * Removes the point at `index` from the curve.
    */
-  public fun removePoint(index: Long): Unit {
-    TransferContext.writeArguments(LONG to index)
+  public fun removePoint(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_REMOVE_POINT, NIL)
   }
 
@@ -132,114 +132,114 @@ public open class Curve : Resource() {
   /**
    * Returns the curve coordinates for the point at [index].
    */
-  public fun getPointPosition(index: Long): Vector2 {
-    TransferContext.writeArguments(LONG to index)
+  public fun getPointPosition(index: Int): Vector2 {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_POSITION, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Assigns the vertical position [y] to the point at [index].
    */
-  public fun setPointValue(index: Long, y: Double): Unit {
-    TransferContext.writeArguments(LONG to index, DOUBLE to y)
+  public fun setPointValue(index: Int, y: Float): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to y.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_VALUE, NIL)
   }
 
   /**
    * Sets the offset from `0.5`.
    */
-  public fun setPointOffset(index: Long, offset: Double): Long {
-    TransferContext.writeArguments(LONG to index, DOUBLE to offset)
+  public fun setPointOffset(index: Int, offset: Float): Int {
+    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_OFFSET, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the Y value for the point that would exist at the X position [offset] along the curve.
    */
-  public fun sample(offset: Double): Double {
-    TransferContext.writeArguments(DOUBLE to offset)
+  public fun sample(offset: Float): Float {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SAMPLE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the Y value for the point that would exist at the X position [offset] along the curve using the baked cache. Bakes the curve's points if not already baked.
    */
-  public fun sampleBaked(offset: Double): Double {
-    TransferContext.writeArguments(DOUBLE to offset)
+  public fun sampleBaked(offset: Float): Float {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SAMPLE_BAKED, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the left tangent angle (in degrees) for the point at [index].
    */
-  public fun getPointLeftTangent(index: Long): Double {
-    TransferContext.writeArguments(LONG to index)
+  public fun getPointLeftTangent(index: Int): Float {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_LEFT_TANGENT,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the right tangent angle (in degrees) for the point at [index].
    */
-  public fun getPointRightTangent(index: Long): Double {
-    TransferContext.writeArguments(LONG to index)
+  public fun getPointRightTangent(index: Int): Float {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_RIGHT_TANGENT,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the left [enum TangentMode] for the point at [index].
    */
-  public fun getPointLeftMode(index: Long): TangentMode {
-    TransferContext.writeArguments(LONG to index)
+  public fun getPointLeftMode(index: Int): TangentMode {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_LEFT_MODE, LONG)
-    return Curve.TangentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Curve.TangentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Returns the right [enum TangentMode] for the point at [index].
    */
-  public fun getPointRightMode(index: Long): TangentMode {
-    TransferContext.writeArguments(LONG to index)
+  public fun getPointRightMode(index: Int): TangentMode {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_RIGHT_MODE, LONG)
-    return Curve.TangentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Curve.TangentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Sets the left tangent angle for the point at [index] to [tangent].
    */
-  public fun setPointLeftTangent(index: Long, tangent: Double): Unit {
-    TransferContext.writeArguments(LONG to index, DOUBLE to tangent)
+  public fun setPointLeftTangent(index: Int, tangent: Float): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to tangent.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_LEFT_TANGENT, NIL)
   }
 
   /**
    * Sets the right tangent angle for the point at [index] to [tangent].
    */
-  public fun setPointRightTangent(index: Long, tangent: Double): Unit {
-    TransferContext.writeArguments(LONG to index, DOUBLE to tangent)
+  public fun setPointRightTangent(index: Int, tangent: Float): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to tangent.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_RIGHT_TANGENT, NIL)
   }
 
   /**
    * Sets the left [enum TangentMode] for the point at [index] to [mode].
    */
-  public fun setPointLeftMode(index: Long, mode: TangentMode): Unit {
-    TransferContext.writeArguments(LONG to index, LONG to mode.id)
+  public fun setPointLeftMode(index: Int, mode: TangentMode): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_LEFT_MODE, NIL)
   }
 
   /**
    * Sets the right [enum TangentMode] for the point at [index] to [mode].
    */
-  public fun setPointRightMode(index: Long, mode: TangentMode): Unit {
-    TransferContext.writeArguments(LONG to index, LONG to mode.id)
+  public fun setPointRightMode(index: Int, mode: TangentMode): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_RIGHT_MODE, NIL)
   }
 

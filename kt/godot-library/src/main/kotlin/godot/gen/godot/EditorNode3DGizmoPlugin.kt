@@ -22,14 +22,13 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A class used by the editor to define Node3D gizmo types.
+ * Used by the editor to define Node3D gizmo types.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/plugins/editor/3d_gizmos.html]($DOCS_URL/tutorials/plugins/editor/3d_gizmos.html)
@@ -71,7 +70,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    *
    * All built-in editor gizmos return a priority of `-1`. If not overridden, this method will return `0`, which means custom gizmos will automatically get higher priority than built-in gizmos.
    */
-  public open fun _getPriority(): Long {
+  public open fun _getPriority(): Int {
     throw NotImplementedError("_get_priority is not implemented for EditorNode3DGizmoPlugin")
   }
 
@@ -100,7 +99,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    */
   public open fun _getHandleName(
     gizmo: EditorNode3DGizmo,
-    handleId: Long,
+    handleId: Int,
     secondary: Boolean,
   ): String {
     throw NotImplementedError("_get_handle_name is not implemented for EditorNode3DGizmoPlugin")
@@ -111,7 +110,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    */
   public open fun _isHandleHighlighted(
     gizmo: EditorNode3DGizmo,
-    handleId: Long,
+    handleId: Int,
     secondary: Boolean,
   ): Boolean {
     throw NotImplementedError("_is_handle_highlighted is not implemented for EditorNode3DGizmoPlugin")
@@ -126,7 +125,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    */
   public open fun _getHandleValue(
     gizmo: EditorNode3DGizmo,
-    handleId: Long,
+    handleId: Int,
     secondary: Boolean,
   ): Any? {
     throw NotImplementedError("_get_handle_value is not implemented for EditorNode3DGizmoPlugin")
@@ -141,7 +140,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    */
   public open fun _setHandle(
     gizmo: EditorNode3DGizmo,
-    handleId: Long,
+    handleId: Int,
     secondary: Boolean,
     camera: Camera3D,
     screenPos: Vector2,
@@ -159,7 +158,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    */
   public open fun _commitHandle(
     gizmo: EditorNode3DGizmo,
-    handleId: Long,
+    handleId: Int,
     secondary: Boolean,
     restore: Any,
     cancel: Boolean,
@@ -173,7 +172,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     gizmo: EditorNode3DGizmo,
     camera: Camera3D,
     screenPos: Vector2,
-  ): Long {
+  ): Int {
     throw NotImplementedError("_subgizmos_intersect_ray is not implemented for EditorNode3DGizmoPlugin")
   }
 
@@ -191,7 +190,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   /**
    * Override this method to return the current transform of a subgizmo. As with all subgizmo methods, the transform should be in local space respect to the gizmo's Node3D. This transform will be requested at the start of an edit and used in the `restore` argument in [_commitSubgizmos]. Called for this plugin's active gizmos.
    */
-  public open fun _getSubgizmoTransform(gizmo: EditorNode3DGizmo, subgizmoId: Long): Transform3D {
+  public open fun _getSubgizmoTransform(gizmo: EditorNode3DGizmo, subgizmoId: Int): Transform3D {
     throw NotImplementedError("_get_subgizmo_transform is not implemented for EditorNode3DGizmoPlugin")
   }
 
@@ -200,7 +199,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    */
   public open fun _setSubgizmoTransform(
     gizmo: EditorNode3DGizmo,
-    subgizmoId: Long,
+    subgizmoId: Int,
     transform: Transform3D,
   ): Unit {
   }
@@ -278,7 +277,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     TransferContext.writeArguments(STRING to name, OBJECT to gizmo)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_GET_MATERIAL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as StandardMaterial3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as StandardMaterial3D?)
   }
 
   public companion object

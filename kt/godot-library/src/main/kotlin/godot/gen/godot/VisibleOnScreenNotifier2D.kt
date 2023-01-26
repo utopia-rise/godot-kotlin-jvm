@@ -50,7 +50,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER2D_GET_RECT, RECT2)
-      return TransferContext.readReturnValue(RECT2, false) as Rect2
+      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
     }
     set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
@@ -72,7 +72,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER2D_IS_ON_SCREEN, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

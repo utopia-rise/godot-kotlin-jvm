@@ -20,6 +20,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -69,7 +70,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_SPRITE_FRAMES, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as SpriteFrames?
+      return (TransferContext.readReturnValue(OBJECT, true) as SpriteFrames?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -85,7 +86,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_ANIMATION,
           STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
@@ -101,7 +102,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_AUTOPLAY,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -112,29 +113,29 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * The displayed animation frame's index. Setting this property also resets [frameProgress]. If this is not desired, use [setFrameAndProgress].
    */
-  public var frame: Long
+  public var frame: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_FRAME, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_FRAME, NIL)
     }
 
   /**
    * The progress value between `0.0` and `1.0` until the current frame transitions to the next frame. If the animation is playing backwards, the value transitions from `1.0` to `0.0`.
    */
-  public var frameProgress: Double
+  public var frameProgress: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_FRAME_PROGRESS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_FRAME_PROGRESS, NIL)
     }
@@ -144,15 +145,15 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    *
    * If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.
    */
-  public var speedScale: Double
+  public var speedScale: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_SPEED_SCALE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_SPEED_SCALE,
           NIL)
     }
@@ -168,7 +169,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_IS_PLAYING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -178,10 +179,10 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    */
   public fun play(
     name: StringName = StringName(""),
-    customSpeed: Double = 1.0,
+    customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customSpeed, BOOL to fromEnd)
+    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_PLAY, NIL)
   }
 
@@ -239,8 +240,8 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    *
    * [/codeblocks]
    */
-  public fun setFrameAndProgress(frame: Long, progress: Double): Unit {
-    TransferContext.writeArguments(LONG to frame, DOUBLE to progress)
+  public fun setFrameAndProgress(frame: Int, progress: Float): Unit {
+    TransferContext.writeArguments(LONG to frame.toLong(), DOUBLE to progress.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_FRAME_AND_PROGRESS, NIL)
   }
@@ -250,11 +251,11 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    *
    * Returns a negative value if the current animation is playing backwards.
    */
-  public fun getPlayingSpeed(): Double {
+  public fun getPlayingSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_PLAYING_SPEED,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

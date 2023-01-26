@@ -77,7 +77,7 @@ public object XRServer : Object() {
   public fun getWorldScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_WORLD_SCALE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   public fun setWorldScale(scale: Double): Unit {
@@ -89,7 +89,7 @@ public object XRServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_WORLD_ORIGIN,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   public fun setWorldOrigin(worldOrigin: Transform3D): Unit {
@@ -104,7 +104,7 @@ public object XRServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_REFERENCE_FRAME,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
@@ -132,7 +132,7 @@ public object XRServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_HMD_TRANSFORM,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
@@ -146,10 +146,10 @@ public object XRServer : Object() {
   /**
    * Returns the number of interfaces currently registered with the AR/VR server. If your project supports multiple AR/VR platforms, you can look through the available interface, and either present the user with a selection or simply try to initialize each interface and use the first one that returns `true`.
    */
-  public fun getInterfaceCount(): Long {
+  public fun getInterfaceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -163,10 +163,10 @@ public object XRServer : Object() {
   /**
    * Returns the interface registered at the given [idx] index in the list of interfaces.
    */
-  public fun getInterface(idx: Long): XRInterface? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getInterface(idx: Int): XRInterface? {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as XRInterface?
+    return (TransferContext.readReturnValue(OBJECT, true) as XRInterface?)
   }
 
   /**
@@ -175,7 +175,7 @@ public object XRServer : Object() {
   public fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -184,7 +184,7 @@ public object XRServer : Object() {
   public fun findInterface(name: String): XRInterface? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_FIND_INTERFACE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as XRInterface?
+    return (TransferContext.readReturnValue(OBJECT, true) as XRInterface?)
   }
 
   /**
@@ -206,10 +206,10 @@ public object XRServer : Object() {
   /**
    * Returns a dictionary of trackers for [trackerTypes].
    */
-  public fun getTrackers(trackerTypes: Long): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to trackerTypes)
+  public fun getTrackers(trackerTypes: Int): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(LONG to trackerTypes.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_TRACKERS, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -218,14 +218,14 @@ public object XRServer : Object() {
   public fun getTracker(trackerName: StringName): XRPositionalTracker? {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_TRACKER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as XRPositionalTracker?
+    return (TransferContext.readReturnValue(OBJECT, true) as XRPositionalTracker?)
   }
 
   public fun getPrimaryInterface(): XRInterface? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_PRIMARY_INTERFACE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as XRInterface?
+    return (TransferContext.readReturnValue(OBJECT, true) as XRInterface?)
   }
 
   public fun setPrimaryInterface(_interface: XRInterface): Unit {

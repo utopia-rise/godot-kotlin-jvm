@@ -32,6 +32,7 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -39,16 +40,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node containing a bone hierarchy, used to create a 3D skeletal animation.
+ * Skeleton for characters and animated objects.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * [godot.Skeleton3D] provides an interface for managing a hierarchy of bones, including pose, rest and animation (see [godot.Animation]). It can also use ragdoll physics.
+ * Skeleton3D provides a hierarchical interface for managing bones, including pose, rest and animation (see [godot.Animation]). It can also use ragdoll physics.
  *
- * The overall transform of a bone with respect to the skeleton is determined by bone pose. Bone rest defines the initial transform of the bone pose.
+ * The overall transform of a bone with respect to the skeleton is determined by the following hierarchical order: rest pose, custom pose and pose.
  *
- * Note that "global pose" below refers to the overall transform of the bone with respect to skeleton, so it is not the actual global/world transform of the bone.
+ * Note that "global pose" below refers to the overall transform of the bone with respect to skeleton, so it not the actual global/world transform of the bone.
  *
  * To setup different types of inverse kinematics, consider using [godot.SkeletonIK3D], or add a custom IK implementation in [godot.Node.Process] as a child node.
  */
@@ -75,19 +76,19 @@ public open class Skeleton3D : Node3D() {
   public val showRestOnlyChanged: Signal0 by signal()
 
   /**
-   * Multiplies the 3D position track animation.
+   * Multiplies the position 3D track animation.
    *
    * **Note:** Unless this value is `1.0`, the key value in animation will not match the actual position value.
    */
-  public var motionScale: Double
+  public var motionScale: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_MOTION_SCALE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_MOTION_SCALE, NIL)
     }
 
@@ -99,7 +100,7 @@ public open class Skeleton3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_IS_SHOW_REST_ONLY,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -115,7 +116,7 @@ public open class Skeleton3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_ANIMATE_PHYSICAL_BONES, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -139,26 +140,26 @@ public open class Skeleton3D : Node3D() {
   /**
    * Returns the bone index that matches [name] as its name.
    */
-  public fun findBone(name: String): Long {
+  public fun findBone(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_FIND_BONE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the name of the bone at index [boneIdx].
    */
-  public fun getBoneName(boneIdx: Long): String {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneName(boneIdx: Int): String {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    *
    */
-  public fun setBoneName(boneIdx: Long, name: String): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, STRING to name)
+  public fun setBoneName(boneIdx: Int, name: String): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_NAME, NIL)
   }
 
@@ -167,10 +168,10 @@ public open class Skeleton3D : Node3D() {
    *
    * **Note:** The parent bone returned will always be less than [boneIdx].
    */
-  public fun getBoneParent(boneIdx: Long): Long {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneParent(boneIdx: Int): Int {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_PARENT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -178,18 +179,18 @@ public open class Skeleton3D : Node3D() {
    *
    * **Note:** [parentIdx] must be less than [boneIdx].
    */
-  public fun setBoneParent(boneIdx: Long, parentIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, LONG to parentIdx)
+  public fun setBoneParent(boneIdx: Int, parentIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), LONG to parentIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_PARENT, NIL)
   }
 
   /**
    * Returns the number of bones in the skeleton.
    */
-  public fun getBoneCount(): Long {
+  public fun getBoneCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -202,14 +203,14 @@ public open class Skeleton3D : Node3D() {
   public fun getVersion(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_VERSION, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Unparents the bone at [boneIdx] and sets its rest position to that of its parent prior to being reset.
    */
-  public fun unparentBoneAndRest(boneIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun unparentBoneAndRest(boneIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_UNPARENT_BONE_AND_REST,
         NIL)
   }
@@ -217,11 +218,11 @@ public open class Skeleton3D : Node3D() {
   /**
    * Returns an array containing the bone indexes of all the children node of the passed in bone, [boneIdx].
    */
-  public fun getBoneChildren(boneIdx: Long): PackedInt32Array {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneChildren(boneIdx: Int): PackedInt32Array {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_CHILDREN,
         PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
@@ -231,35 +232,35 @@ public open class Skeleton3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_PARENTLESS_BONES,
         PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
    * Returns the rest transform for a bone [boneIdx].
    */
-  public fun getBoneRest(boneIdx: Long): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneRest(boneIdx: Int): Transform3D {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_REST,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
    * Sets the rest transform for bone [boneIdx].
    */
-  public fun setBoneRest(boneIdx: Long, rest: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to rest)
+  public fun setBoneRest(boneIdx: Int, rest: Transform3D): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to rest)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_REST, NIL)
   }
 
   /**
    * Returns the global rest transform for [boneIdx].
    */
-  public fun getBoneGlobalRest(boneIdx: Long): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneGlobalRest(boneIdx: Int): Transform3D {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_GLOBAL_REST,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
@@ -269,7 +270,7 @@ public open class Skeleton3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_CREATE_SKIN_FROM_REST_TRANSFORMS, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Skin?
+    return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
   }
 
   /**
@@ -278,7 +279,7 @@ public open class Skeleton3D : Node3D() {
   public fun registerSkin(skin: Skin): SkinReference? {
     TransferContext.writeArguments(OBJECT to skin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_REGISTER_SKIN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as SkinReference?
+    return (TransferContext.readReturnValue(OBJECT, true) as SkinReference?)
   }
 
   /**
@@ -298,20 +299,20 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the pose transform of the specified bone.
+   * Returns the pose transform of the specified bone. Pose is applied on top of the custom pose, which is applied on top the rest pose.
    */
-  public fun getBonePose(boneIdx: Long): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBonePose(boneIdx: Int): Transform3D {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_POSE,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
    *
    */
-  public fun setBonePosePosition(boneIdx: Long, position: Vector3): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, VECTOR3 to position)
+  public fun setBonePosePosition(boneIdx: Int, position: Vector3): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_POSE_POSITION,
         NIL)
   }
@@ -319,8 +320,8 @@ public open class Skeleton3D : Node3D() {
   /**
    *
    */
-  public fun setBonePoseRotation(boneIdx: Long, rotation: Quaternion): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, QUATERNION to rotation)
+  public fun setBonePoseRotation(boneIdx: Int, rotation: Quaternion): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), QUATERNION to rotation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_POSE_ROTATION,
         NIL)
   }
@@ -328,46 +329,46 @@ public open class Skeleton3D : Node3D() {
   /**
    *
    */
-  public fun setBonePoseScale(boneIdx: Long, scale: Vector3): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, VECTOR3 to scale)
+  public fun setBonePoseScale(boneIdx: Int, scale: Vector3): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR3 to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_POSE_SCALE, NIL)
   }
 
   /**
    *
    */
-  public fun getBonePosePosition(boneIdx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBonePosePosition(boneIdx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_POSE_POSITION,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    *
    */
-  public fun getBonePoseRotation(boneIdx: Long): Quaternion {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBonePoseRotation(boneIdx: Int): Quaternion {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_POSE_ROTATION,
         QUATERNION)
-    return TransferContext.readReturnValue(QUATERNION, false) as Quaternion
+    return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
 
   /**
    *
    */
-  public fun getBonePoseScale(boneIdx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBonePoseScale(boneIdx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_POSE_SCALE,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Sets the bone pose to rest for [boneIdx].
    */
-  public fun resetBonePose(boneIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun resetBonePose(boneIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_RESET_BONE_POSE, NIL)
   }
 
@@ -382,17 +383,17 @@ public open class Skeleton3D : Node3D() {
   /**
    * Returns whether the bone pose for the bone at [boneIdx] is enabled.
    */
-  public fun isBoneEnabled(boneIdx: Long): Boolean {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun isBoneEnabled(boneIdx: Int): Boolean {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_IS_BONE_ENABLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Disables the pose for the bone at [boneIdx] if `false`, enables the bone pose if `true`.
    */
-  public fun setBoneEnabled(boneIdx: Long, enabled: Boolean = true): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, BOOL to enabled)
+  public fun setBoneEnabled(boneIdx: Int, enabled: Boolean = true): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_ENABLED, NIL)
   }
 
@@ -413,12 +414,12 @@ public open class Skeleton3D : Node3D() {
    * **Note:** The pose transform needs to be a global pose! To convert a world transform from a [godot.Node3D] to a global bone pose, multiply the [godot.Transform3D.affineInverse] of the node's [godot.Node3D.globalTransform] by the desired world transform.
    */
   public fun setBoneGlobalPoseOverride(
-    boneIdx: Long,
+    boneIdx: Int,
     pose: Transform3D,
-    amount: Double,
+    amount: Float,
     persistent: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to pose, DOUBLE to amount, BOOL to persistent)
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to pose, DOUBLE to amount.toDouble(), BOOL to persistent)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_GLOBAL_POSE_OVERRIDE, NIL)
   }
@@ -426,37 +427,35 @@ public open class Skeleton3D : Node3D() {
   /**
    * Returns the global pose override transform for [boneIdx].
    */
-  public fun getBoneGlobalPoseOverride(boneIdx: Long): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneGlobalPoseOverride(boneIdx: Int): Transform3D {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_GLOBAL_POSE_OVERRIDE, TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
    * Returns the overall transform of the specified bone, with respect to the skeleton. Being relative to the skeleton frame, this is not the actual "global" transform of the bone.
    */
-  public fun getBoneGlobalPose(boneIdx: Long): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneGlobalPose(boneIdx: Int): Transform3D {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_GLOBAL_POSE,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
    * Returns the overall transform of the specified bone, with respect to the skeleton, but without any global pose overrides. Being relative to the skeleton frame, this is not the actual "global" transform of the bone.
    */
-  public fun getBoneGlobalPoseNoOverride(boneIdx: Long): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneGlobalPoseNoOverride(boneIdx: Int): Transform3D {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_BONE_GLOBAL_POSE_NO_OVERRIDE, TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
    * Force updates the bone transforms/poses for all bones in the skeleton.
-   *
-   * *Deprecated.* Do not use.
    */
   public fun forceUpdateAllBoneTransforms(): Unit {
     TransferContext.writeArguments()
@@ -467,8 +466,8 @@ public open class Skeleton3D : Node3D() {
   /**
    * Force updates the bone transform for the bone at [boneIdx] and all of its children.
    */
-  public fun forceUpdateBoneChildTransform(boneIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun forceUpdateBoneChildTransform(boneIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_FORCE_UPDATE_BONE_CHILD_TRANSFORM, NIL)
   }

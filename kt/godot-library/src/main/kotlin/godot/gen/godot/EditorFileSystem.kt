@@ -20,6 +20,7 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -71,7 +72,7 @@ public open class EditorFileSystem internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?)
   }
 
   /**
@@ -80,17 +81,17 @@ public open class EditorFileSystem internal constructor() : Node() {
   public fun isScanning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_IS_SCANNING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the scan progress for 0 to 1 if the FS is being scanned.
    */
-  public fun getScanningProgress(): Double {
+  public fun getScanningProgress(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_SCANNING_PROGRESS, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -126,7 +127,7 @@ public open class EditorFileSystem internal constructor() : Node() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM_PATH, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?)
   }
 
   /**
@@ -136,7 +137,7 @@ public open class EditorFileSystem internal constructor() : Node() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILE_TYPE,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**

@@ -23,8 +23,6 @@ import kotlin.Suppress
  * - When running the project exported in dedicated server mode, only the texture's dimensions are kept (as they may be relied upon for gameplay purposes or positioning of other elements). This allows reducing the exported PCK's size significantly.
  *
  * - When this subclass is missing due to using a different engine version or build (e.g. modules disabled).
- *
- * **Note:** This is not intended to be used as an actual texture for rendering. It is not guaranteed to work like one in shaders or materials (for example when calculating UV).
  */
 @GodotBaseType
 public open class PlaceholderTexture3D : Texture3D() {
@@ -36,7 +34,7 @@ public open class PlaceholderTexture3D : Texture3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLACEHOLDERTEXTURE3D_GET_SIZE,
           VECTOR3I)
-      return TransferContext.readReturnValue(VECTOR3I, false) as Vector3i
+      return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3I to value)

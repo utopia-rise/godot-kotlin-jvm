@@ -12,7 +12,6 @@ import godot.core.Rect2
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -20,15 +19,16 @@ import godot.core.VariantType.RECT2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A texture-based nine-patch [godot.StyleBox].
+ * Texture-based nine-patch [godot.StyleBox].
  *
- * A texture-based nine-patch [godot.StyleBox], in a way similar to [godot.NinePatchRect]. This stylebox performs a 3×3 scaling of a texture, where only the center cell is fully stretched. This makes it possible to design bordered styles regardless of the stylebox's size.
+ * Texture-based nine-patch [godot.StyleBox], in a way similar to [godot.NinePatchRect]. This stylebox performs a 3×3 scaling of a texture, where only the center cell is fully stretched. This makes it possible to design bordered styles regardless of the stylebox's size.
  */
 @GodotBaseType
 public open class StyleBoxTexture : StyleBox() {
@@ -40,7 +40,7 @@ public open class StyleBoxTexture : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -55,7 +55,7 @@ public open class StyleBoxTexture : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_H_AXIS_STRETCH_MODE, LONG)
-      return StyleBoxTexture.AxisStretchMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return StyleBoxTexture.AxisStretchMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -71,7 +71,7 @@ public open class StyleBoxTexture : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_V_AXIS_STRETCH_MODE, LONG)
-      return StyleBoxTexture.AxisStretchMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return StyleBoxTexture.AxisStretchMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -91,7 +91,7 @@ public open class StyleBoxTexture : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_REGION_RECT,
           RECT2)
-      return TransferContext.readReturnValue(RECT2, false) as Rect2
+      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
     }
     set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
@@ -107,7 +107,7 @@ public open class StyleBoxTexture : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_MODULATE,
           COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -122,7 +122,7 @@ public open class StyleBoxTexture : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_IS_DRAW_CENTER_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -138,8 +138,8 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the margin to [size] pixels for the specified [enum Side].
    */
-  public fun setTextureMargin(margin: Side, size: Double): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
+  public fun setTextureMargin(margin: Side, size: Float): Unit {
+    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN,
         NIL)
   }
@@ -147,8 +147,8 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the margin to [size] pixels for all sides.
    */
-  public fun setTextureMarginAll(size: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to size)
+  public fun setTextureMarginAll(size: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN_ALL, NIL)
   }
@@ -156,18 +156,18 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Returns the margin size of the specified [enum Side].
    */
-  public fun getTextureMargin(margin: Side): Double {
+  public fun getTextureMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets the expand margin to [size] pixels for the specified [enum Side].
    */
-  public fun setExpandMargin(margin: Side, size: Double): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
+  public fun setExpandMargin(margin: Side, size: Float): Unit {
+    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
         NIL)
   }
@@ -175,8 +175,8 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the expand margin to [size] pixels for all sides.
    */
-  public fun setExpandMarginAll(size: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to size)
+  public fun setExpandMarginAll(size: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN_ALL, NIL)
   }
@@ -184,11 +184,11 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Returns the expand margin size of the specified [enum Side].
    */
-  public fun getExpandMargin(margin: Side): Double {
+  public fun getExpandMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class AxisStretchMode(

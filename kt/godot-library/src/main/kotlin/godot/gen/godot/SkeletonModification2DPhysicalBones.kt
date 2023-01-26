@@ -33,16 +33,16 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   /**
    * The number of [godot.PhysicalBone2D] nodes linked in this modification.
    */
-  public var physicalBoneChainLength: Long
+  public var physicalBoneChainLength: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_GET_PHYSICAL_BONE_CHAIN_LENGTH,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_SET_PHYSICAL_BONE_CHAIN_LENGTH,
           NIL)
@@ -58,8 +58,8 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    *
    * **Note:** This is just the index used for this modification, not the bone index used in the [godot.Skeleton2D].
    */
-  public fun setPhysicalBoneNode(jointIdx: Long, physicalbone2dNode: NodePath): Unit {
-    TransferContext.writeArguments(LONG to jointIdx, NODE_PATH to physicalbone2dNode)
+  public fun setPhysicalBoneNode(jointIdx: Int, physicalbone2dNode: NodePath): Unit {
+    TransferContext.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to physicalbone2dNode)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_SET_PHYSICAL_BONE_NODE, NIL)
   }
@@ -67,16 +67,16 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   /**
    * Returns the [godot.PhysicalBone2D] node at [jointIdx].
    */
-  public fun getPhysicalBoneNode(jointIdx: Long): NodePath {
-    TransferContext.writeArguments(LONG to jointIdx)
+  public fun getPhysicalBoneNode(jointIdx: Int): NodePath {
+    TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_GET_PHYSICAL_BONE_NODE,
         NODE_PATH)
-    return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   /**
-   * Empties the list of [godot.PhysicalBone2D] nodes and populates it with all [godot.PhysicalBone2D] nodes that are children of the [godot.Skeleton2D].
+   * Empties the list of [godot.PhysicalBone2D] nodes and populates it will all [godot.PhysicalBone2D] nodes that are children of the [godot.Skeleton2D].
    */
   public fun fetchPhysicalBones(): Unit {
     TransferContext.writeArguments()

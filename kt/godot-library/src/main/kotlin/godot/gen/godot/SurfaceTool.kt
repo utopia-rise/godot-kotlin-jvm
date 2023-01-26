@@ -21,7 +21,6 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -40,7 +39,7 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -79,7 +78,7 @@ import kotlin.Unit
  *
  * st.SetColor(new Color(1, 0, 0));
  *
- * st.SetUV(new Vector2(0, 0));
+ * st.SetUv(new Vector2(0, 0));
  *
  * st.AddVertex(new Vector3(0, 0, 0));
  *
@@ -128,7 +127,7 @@ public open class SurfaceTool : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_SKIN_WEIGHT_COUNT,
         LONG)
-    return SurfaceTool.SkinWeightCount.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return SurfaceTool.SkinWeightCount.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -136,18 +135,18 @@ public open class SurfaceTool : RefCounted() {
    *
    * Must be invoked after [begin] and should be set before [commit] or [commitToArrays].
    */
-  public fun setCustomFormat(channelIndex: Long, format: CustomFormat): Unit {
-    TransferContext.writeArguments(LONG to channelIndex, LONG to format.id)
+  public fun setCustomFormat(channelIndex: Int, format: CustomFormat): Unit {
+    TransferContext.writeArguments(LONG to channelIndex.toLong(), LONG to format.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM_FORMAT, NIL)
   }
 
   /**
    * Returns the format for custom [channelIndex] (currently up to 4). Returns [CUSTOM_MAX] if this custom channel is unused.
    */
-  public fun getCustomFormat(channelIndex: Long): CustomFormat {
-    TransferContext.writeArguments(LONG to channelIndex)
+  public fun getCustomFormat(channelIndex: Int): CustomFormat {
+    TransferContext.writeArguments(LONG to channelIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_CUSTOM_FORMAT, LONG)
-    return SurfaceTool.CustomFormat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return SurfaceTool.CustomFormat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -229,18 +228,16 @@ public open class SurfaceTool : RefCounted() {
    *
    * [setCustomFormat] must be called first for this [channelIndex]. Formats which are not RGBA will ignore other color channels.
    */
-  public fun setCustom(channelIndex: Long, customColor: Color): Unit {
-    TransferContext.writeArguments(LONG to channelIndex, COLOR to customColor)
+  public fun setCustom(channelIndex: Int, customColor: Color): Unit {
+    TransferContext.writeArguments(LONG to channelIndex.toLong(), COLOR to customColor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM, NIL)
   }
 
   /**
    * Specifies the smooth group to use for the *next* vertex. If this is never called, all vertices will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same group. To produce a mesh with flat normals, set the smooth group to `-1`.
-   *
-   * **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue` instead of `-1` to produce a mesh with flat normals.
    */
-  public fun setSmoothGroup(index: Long): Unit {
-    TransferContext.writeArguments(LONG to index)
+  public fun setSmoothGroup(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SMOOTH_GROUP, NIL)
   }
 
@@ -264,8 +261,8 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Adds a vertex to index array if you are using indexed vertices. Does not need to be called before adding vertices.
    */
-  public fun addIndex(index: Long): Unit {
-    TransferContext.writeArguments(LONG to index)
+  public fun addIndex(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_INDEX, NIL)
   }
 
@@ -321,19 +318,19 @@ public open class SurfaceTool : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_AABB,
         godot.core.VariantType.AABB)
-    return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
   }
 
   /**
    * Generates a LOD for a given [ndThreshold] in linear units (square root of quadric error metric), using at most [targetIndexCount] indices.
    *
-   * *Deprecated.* Unused internally and neglects to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
+   * Deprecated. Unused internally and neglects to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
    */
-  public fun generateLod(ndThreshold: Double, targetIndexCount: Long = 3): PackedInt32Array {
-    TransferContext.writeArguments(DOUBLE to ndThreshold, LONG to targetIndexCount)
+  public fun generateLod(ndThreshold: Float, targetIndexCount: Int = 3): PackedInt32Array {
+    TransferContext.writeArguments(DOUBLE to ndThreshold.toDouble(), LONG to targetIndexCount.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_LOD,
         PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
@@ -351,7 +348,7 @@ public open class SurfaceTool : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_PRIMITIVE_TYPE,
         LONG)
-    return Mesh.PrimitiveType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Mesh.PrimitiveType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -365,8 +362,8 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Creates a vertex array from an existing [godot.Mesh].
    */
-  public fun createFrom(existing: Mesh, surface: Long): Unit {
-    TransferContext.writeArguments(OBJECT to existing, LONG to surface)
+  public fun createFrom(existing: Mesh, surface: Int): Unit {
+    TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM, NIL)
   }
 
@@ -375,10 +372,10 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun createFromBlendShape(
     existing: Mesh,
-    surface: Long,
+    surface: Int,
     blendShape: String,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to existing, LONG to surface, STRING to blendShape)
+    TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong(), STRING to blendShape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM_BLEND_SHAPE,
         NIL)
   }
@@ -388,10 +385,10 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun appendFrom(
     existing: Mesh,
-    surface: Long,
+    surface: Int,
     transform: Transform3D,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to existing, LONG to surface, TRANSFORM3D to transform)
+    TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong(), TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_APPEND_FROM, NIL)
   }
 
@@ -400,10 +397,10 @@ public open class SurfaceTool : RefCounted() {
    *
    * **FIXME:** Document possible values for [flags], it changed in 4.0. Likely some combinations of [enum Mesh.ArrayFormat].
    */
-  public fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
-    TransferContext.writeArguments(OBJECT to existing, LONG to flags)
+  public fun commit(existing: ArrayMesh? = null, flags: Int = 0): ArrayMesh? {
+    TransferContext.writeArguments(OBJECT to existing, LONG to flags.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
+    return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
   }
 
   /**
@@ -412,7 +409,7 @@ public open class SurfaceTool : RefCounted() {
   public fun commitToArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT_TO_ARRAYS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public enum class CustomFormat(

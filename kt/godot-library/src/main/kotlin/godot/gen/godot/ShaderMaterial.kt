@@ -36,7 +36,7 @@ public open class ShaderMaterial : Material() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shader?
+      return (TransferContext.readReturnValue(OBJECT, true) as Shader?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -68,7 +68,7 @@ public open class ShaderMaterial : Material() {
     TransferContext.writeArguments(STRING_NAME to param)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAMETER,
         ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public companion object

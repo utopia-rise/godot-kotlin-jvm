@@ -16,6 +16,7 @@ import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -38,15 +39,15 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Length of the internal ring buffer, in seconds. Setting the buffer length will have no effect if already initialized.
    */
-  public var bufferLength: Double
+  public var bufferLength: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_BUFFER_LENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_SET_BUFFER_LENGTH, NIL)
     }
@@ -59,11 +60,11 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns `true` if at least [frames] audio frames are available to read in the internal ring buffer.
    */
-  public fun canGetBuffer(frames: Long): Boolean {
-    TransferContext.writeArguments(LONG to frames)
+  public fun canGetBuffer(frames: Int): Boolean {
+    TransferContext.writeArguments(LONG to frames.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_CAN_GET_BUFFER,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -71,11 +72,11 @@ public open class AudioEffectCapture : AudioEffect() {
    *
    * Returns a [godot.PackedVector2Array] containing exactly [frames] audio samples if available, or an empty [godot.PackedVector2Array] if insufficient data was available.
    */
-  public fun getBuffer(frames: Long): PackedVector2Array {
-    TransferContext.writeArguments(LONG to frames)
+  public fun getBuffer(frames: Int): PackedVector2Array {
+    TransferContext.writeArguments(LONG to frames.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_BUFFER,
         PACKED_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   /**
@@ -90,11 +91,11 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns the number of frames available to read using [getBuffer].
    */
-  public fun getFramesAvailable(): Long {
+  public fun getFramesAvailable(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_FRAMES_AVAILABLE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -104,17 +105,17 @@ public open class AudioEffectCapture : AudioEffect() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_DISCARDED_FRAMES, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Returns the total size of the internal ring buffer in frames.
    */
-  public fun getBufferLengthFrames(): Long {
+  public fun getBufferLengthFrames(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_BUFFER_LENGTH_FRAMES, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -124,7 +125,7 @@ public open class AudioEffectCapture : AudioEffect() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_PUSHED_FRAMES, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public companion object

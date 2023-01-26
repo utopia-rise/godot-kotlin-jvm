@@ -23,9 +23,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A syntax highlighter intended for code.
+ * A syntax highlighter for code.
  *
- * By adjusting various properties of this resource, you can change the colors of strings, comments, numbers, and other text patterns inside a [godot.TextEdit] control.
+ * A syntax highlighter for code.
  */
 @GodotBaseType
 public open class CodeHighlighter : SyntaxHighlighter() {
@@ -37,7 +37,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_NUMBER_COLOR,
           COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -53,7 +53,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_SYMBOL_COLOR,
           COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -69,7 +69,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_FUNCTION_COLOR, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -85,7 +85,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_MEMBER_VARIABLE_COLOR, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -101,7 +101,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_KEYWORD_COLORS, DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
@@ -117,7 +117,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_MEMBER_KEYWORD_COLORS, DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
@@ -133,7 +133,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_COLOR_REGIONS,
           DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
@@ -173,7 +173,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     TransferContext.writeArguments(STRING to keyword)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_HAS_KEYWORD_COLOR,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -183,7 +183,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     TransferContext.writeArguments(STRING to keyword)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_KEYWORD_COLOR,
         COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
@@ -224,7 +224,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     TransferContext.writeArguments(STRING to memberKeyword)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_HAS_MEMBER_KEYWORD_COLOR, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -234,7 +234,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     TransferContext.writeArguments(STRING to memberKeyword)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_MEMBER_KEYWORD_COLOR, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
@@ -280,7 +280,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     TransferContext.writeArguments(STRING to startKey)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_HAS_COLOR_REGION,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

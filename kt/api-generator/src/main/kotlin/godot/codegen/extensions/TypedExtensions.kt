@@ -1,8 +1,10 @@
 package godot.codegen.extensions
 
 import com.squareup.kotlinpoet.*
+import godot.codegen.constants.GodotMeta
 import godot.codegen.models.enriched.EnrichedSignal
 import godot.codegen.poet.ClassTypeNameWrapper
+import godot.codegen.traits.CastableTrait
 import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait
 import godot.codegen.traits.WithDefaultValueTrait
@@ -20,7 +22,7 @@ fun TypedTrait.isEnum() = type?.startsWith(enumPrefix) ?: false
 fun TypedTrait.isBitField() = type?.startsWith(bitfieldPrefix) ?: false
 fun TypedTrait.isTypedArray() = type?.startsWith(GodotTypes.typedArray) ?: false
 
-fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
+fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
     val typeNameWrapper = when {
         type.isNullOrEmpty() -> ClassTypeNameWrapper(UNIT)
         type == "Signal0" -> ClassTypeNameWrapper(ClassName(signalPackage, type!!))
@@ -30,7 +32,7 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
             ClassTypeNameWrapper(className).parameterizedBy(
                 *arguments
                     .map {
-                        it.getTypeClassName().typeName
+                        it.getCastedType().typeName
                     }
                     .toTypedArray()
             )
@@ -121,7 +123,7 @@ val TypedTrait.jvmVariantTypeValue: ClassName
 fun <T> T.getDefaultValueKotlinString(): String?
         where T : WithDefaultValueTrait,
               T : NullableTrait,
-              T : TypedTrait {
+              T : CastableTrait {
     val defaultValueString = defaultValue
     return if (defaultValueString != null && nullable) {
         "null"
@@ -130,6 +132,7 @@ fun <T> T.getDefaultValueKotlinString(): String?
             type == GodotTypes.color -> "${GodotKotlinJvmTypes.color}($defaultValueString)"
             type == GodotTypes.variant -> defaultValueString
             type == GodotTypes.bool -> defaultValueString.toLowerCase()
+            type == GodotTypes.float && meta == GodotMeta.Float.float -> "${intToFloat(defaultValueString)}f"
             type == GodotTypes.float -> intToFloat(defaultValueString)
             type == GodotTypes.stringName -> "${GodotKotlinJvmTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
             type == GodotTypes.array || isTypedArray() ->

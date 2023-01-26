@@ -19,7 +19,6 @@ import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -52,7 +51,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_BASE_TYPE, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -68,7 +67,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_EDITED_RESOURCE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Resource?
+      return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -84,7 +83,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_IS_EDITABLE,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -100,7 +99,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_IS_TOGGLE_MODE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -124,7 +123,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   /**
    * This virtual method can be implemented to handle context menu items not handled by default. See [_setCreateOptions].
    */
-  public open fun _handleMenuSelected(id: Long): Boolean {
+  public open fun _handleMenuSelected(id: Int): Boolean {
     throw NotImplementedError("_handle_menu_selected is not implemented for EditorResourcePicker")
   }
 
@@ -135,7 +134,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_ALLOWED_TYPES, PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**

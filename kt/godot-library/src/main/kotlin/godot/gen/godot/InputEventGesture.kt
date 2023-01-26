@@ -16,12 +16,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Abstract base class for touch gestures.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
- *
- * InputEventGestures are sent when a user performs a supported gesture on a touch screen. Gestures can't be emulated using mouse, because they typically require multi-touch.
+ * Base class for touch control gestures.
  */
 @GodotBaseType
 public open class InputEventGesture internal constructor() : InputEventWithModifiers() {
@@ -33,7 +28,7 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTGESTURE_GET_POSITION,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)

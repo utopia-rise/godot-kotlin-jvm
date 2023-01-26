@@ -35,7 +35,7 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
   /**
    *
    */
-  public open fun _getImportFlags(): Long {
+  public open fun _getImportFlags(): Int {
     throw NotImplementedError("_get_import_flags is not implemented for EditorSceneFormatImporter")
   }
 
@@ -51,7 +51,7 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
    */
   public open fun _importScene(
     path: String,
-    flags: Long,
+    flags: Int,
     options: Dictionary<Any?, Any?>,
   ): Object? {
     throw NotImplementedError("_import_scene is not implemented for EditorSceneFormatImporter")

@@ -15,7 +15,6 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -90,7 +89,7 @@ public open class SceneTree : MainLoop() {
   public val physicsFrame: Signal0 by signal()
 
   /**
-   * If `true`, the application automatically accepts quitting requests.
+   * If `true`, the application automatically accepts quitting.
    *
    * For mobile platforms, see [quitOnGoBack].
    */
@@ -99,7 +98,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_AUTO_ACCEPT_QUIT,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -108,7 +107,7 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * If `true`, the application quits automatically when navigating back (e.g. using the system "Back" button on Android).
+   * If `true`, the application quits automatically on going back (e.g. on Android).
    *
    * To handle 'Go Back' button when this option is disabled, use [godot.DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].
    */
@@ -117,7 +116,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_QUIT_ON_GO_BACK,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -135,7 +134,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_COLLISIONS_HINT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -153,7 +152,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_PATHS_HINT,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -171,7 +170,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_NAVIGATION_HINT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -190,7 +189,7 @@ public open class SceneTree : MainLoop() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_PAUSED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -205,7 +204,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_EDITED_SCENE_ROOT,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Node?
+      return (TransferContext.readReturnValue(OBJECT, true) as Node?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -221,7 +220,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_CURRENT_SCENE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Node?
+      return (TransferContext.readReturnValue(OBJECT, true) as Node?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -235,7 +234,7 @@ public open class SceneTree : MainLoop() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_ROOT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Window?
+      return (TransferContext.readReturnValue(OBJECT, true) as Window?)
     }
 
   /**
@@ -248,7 +247,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_MULTIPLAYER_POLL_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -267,17 +266,17 @@ public open class SceneTree : MainLoop() {
   public fun hasGroup(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_HAS_GROUP, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
-   * Returns a [godot.SceneTreeTimer] which will emit [godot.SceneTreeTimer.timeout] after the given time in seconds elapsed in this [godot.SceneTree].
+   * Returns a [godot.SceneTreeTimer] which will [godot.SceneTreeTimer.timeout] after the given time in seconds elapsed in this [godot.SceneTree].
    *
-   * If [processAlways] is set to `false`, pausing the [godot.SceneTree] will also pause the timer.
+   * If `process_always` is set to `false`, pausing the [godot.SceneTree] will also pause the timer.
    *
-   * If [processInPhysics] is set to `true`, will update the [godot.SceneTreeTimer] during the physics frame instead of the process frame (fixed framerate processing).
+   * If `process_in_physics` is set to `true`, will update the [godot.SceneTreeTimer] during the physics frame instead of the process frame (fixed framerate processing).
    *
-   * If [ignoreTimeScale] is set to `true`, will ignore [godot.Engine.timeScale] and update the [godot.SceneTreeTimer] with the actual frame delta.
+   * If `ignore_time_scale` is set to `true`, will ignore [godot.Engine.timeScale] and update the [godot.SceneTreeTimer] with the actual frame delta.
    *
    * Commonly used to create a one-shot delay timer as in the following example:
    *
@@ -314,8 +313,6 @@ public open class SceneTree : MainLoop() {
    * [/codeblocks]
    *
    * The timer will be automatically freed after its time elapses.
-   *
-   * **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's [godot.Node.Process] method would be called before the timer (or [godot.Node.PhysicsProcess] if [processInPhysics] is set to `true`).
    */
   public fun createTimer(
     timeSec: Double,
@@ -325,16 +322,16 @@ public open class SceneTree : MainLoop() {
   ): SceneTreeTimer? {
     TransferContext.writeArguments(DOUBLE to timeSec, BOOL to processAlways, BOOL to processInPhysics, BOOL to ignoreTimeScale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TIMER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as SceneTreeTimer?
+    return (TransferContext.readReturnValue(OBJECT, true) as SceneTreeTimer?)
   }
 
   /**
-   * Creates and returns a new [godot.Tween]. The Tween will start automatically on the next process frame or physics frame (depending on [enum Tween.TweenProcessMode]).
+   * Creates and returns a new [godot.Tween].
    */
   public fun createTween(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TWEEN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -344,16 +341,16 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_PROCESSED_TWEENS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Tween>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Tween>)
   }
 
   /**
    * Returns the number of nodes in this [godot.SceneTree].
    */
-  public fun getNodeCount(): Long {
+  public fun getNodeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_NODE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -362,7 +359,7 @@ public open class SceneTree : MainLoop() {
   public fun getFrame(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_FRAME, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -374,13 +371,13 @@ public open class SceneTree : MainLoop() {
    *
    * **Note:** On iOS this method doesn't work. Instead, as recommended by the iOS Human Interface Guidelines, the user is expected to close apps via the Home button.
    */
-  public fun quit(exitCode: Long = 0): Unit {
-    TransferContext.writeArguments(LONG to exitCode)
+  public fun quit(exitCode: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to exitCode.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_QUIT, NIL)
   }
 
   /**
-   * Queues the given object for deletion, delaying the call to [godot.Object.free] to the end of the current frame.
+   * Queues the given object for deletion, delaying the call to [godot.Object.free] to after the current frame.
    */
   public fun queueDelete(obj: Object): Unit {
     TransferContext.writeArguments(OBJECT to obj)
@@ -395,7 +392,7 @@ public open class SceneTree : MainLoop() {
    * 				get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE)
    * 				```
    *
-   * **Note:** Group call flags are used to control the method calling behavior. By default, methods will be called immediately in a way similar to [callGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [flags] argument, methods will be called at the end of the frame in a way similar to [godot.Object.setDeferred].
+   * **Note:** Group call flags are used to control the method calling behavior. By default, methods will be called immediately in a way similar to [callGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [flags] argument, methods will be called with a one-frame delay in a way similar to [godot.Object.setDeferred].
    */
   public fun callGroupFlags(
     flags: Long,
@@ -410,36 +407,36 @@ public open class SceneTree : MainLoop() {
   /**
    * Sends the given notification to all members of the [group], respecting the given [enum GroupCallFlags].
    *
-   * **Note:** Group call flags are used to control the notification sending behavior. By default, notifications will be sent immediately in a way similar to [notifyGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, notifications will be sent at the end of the current frame in a way similar to using `Object.call_deferred("notification", ...)`.
+   * **Note:** Group call flags are used to control the notification sending behavior. By default, notifications will be sent immediately in a way similar to [notifyGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, notifications will be sent with a one-frame delay in a way similar to using `Object.call_deferred("notification", ...)`.
    */
   public fun notifyGroupFlags(
-    callFlags: Long,
+    callFlags: Int,
     group: StringName,
-    notification: Long,
+    notification: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, LONG to notification)
+    TransferContext.writeArguments(LONG to callFlags.toLong(), STRING_NAME to group, LONG to notification.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_NOTIFY_GROUP_FLAGS, NIL)
   }
 
   /**
    * Sets the given [property] to [value] on all members of the given group, respecting the given [enum GroupCallFlags].
    *
-   * **Note:** Group call flags are used to control the property setting behavior. By default, properties will be set immediately in a way similar to [setGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, properties will be set at the end of the frame in a way similar to [godot.Object.callDeferred].
+   * **Note:** Group call flags are used to control the property setting behavior. By default, properties will be set immediately in a way similar to [setGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, properties will be set with a one-frame delay in a way similar to [godot.Object.callDeferred].
    */
   public fun setGroupFlags(
-    callFlags: Long,
+    callFlags: Int,
     group: StringName,
     `property`: String,
     `value`: Any,
   ): Unit {
-    TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, STRING to property, ANY to value)
+    TransferContext.writeArguments(LONG to callFlags.toLong(), STRING_NAME to group, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP_FLAGS, NIL)
   }
 
   /**
    * Calls [method] on each member of the given group. You can pass arguments to [method] by specifying them at the end of the method call. If a node doesn't have the given method or the argument list does not match (either in count or in types), it will be skipped.
    *
-   * **Note:** [callGroup] will call methods immediately on all members at once, which can cause stuttering if an expensive method is called on lots of members.
+   * **Note:** [callGroup] will call methods immediately on all members at once, which can cause stuttering if an expensive method is called on lots of members. To wait for one frame after [callGroup] was called, use [callGroupFlags] with the [GROUP_CALL_DEFERRED] flag.
    */
   public fun callGroup(
     group: StringName,
@@ -453,17 +450,17 @@ public open class SceneTree : MainLoop() {
   /**
    * Sends the given notification to all members of the [group].
    *
-   * **Note:** [notifyGroup] will immediately notify all members at once, which can cause stuttering if an expensive method is called as a result of sending the notification to lots of members.
+   * **Note:** [notifyGroup] will immediately notify all members at once, which can cause stuttering if an expensive method is called as a result of sending the notification lots of members. To wait for one frame, use [notifyGroupFlags] with the [GROUP_CALL_DEFERRED] flag.
    */
-  public fun notifyGroup(group: StringName, notification: Long): Unit {
-    TransferContext.writeArguments(STRING_NAME to group, LONG to notification)
+  public fun notifyGroup(group: StringName, notification: Int): Unit {
+    TransferContext.writeArguments(STRING_NAME to group, LONG to notification.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_NOTIFY_GROUP, NIL)
   }
 
   /**
    * Sets the given [property] to [value] on all members of the given group.
    *
-   * **Note:** [setGroup] will set the property immediately on all members at once, which can cause stuttering if a property with an expensive setter is set on lots of members.
+   * **Note:** [setGroup] will set the property immediately on all members at once, which can cause stuttering if a property with an expensive setter is set on lots of members. To wait for one frame, use [setGroupFlags] with the [GROUP_CALL_DEFERRED] flag.
    */
   public fun setGroup(
     group: StringName,
@@ -480,7 +477,7 @@ public open class SceneTree : MainLoop() {
   public fun getNodesInGroup(group: StringName): VariantArray<Node> {
     TransferContext.writeArguments(STRING_NAME to group)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_NODES_IN_GROUP, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>)
   }
 
   /**
@@ -490,7 +487,7 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments(STRING_NAME to group)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_FIRST_NODE_IN_GROUP,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
+    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
   /**
@@ -498,13 +495,13 @@ public open class SceneTree : MainLoop() {
    *
    * Returns [OK] on success, [ERR_CANT_OPEN] if the [path] cannot be loaded into a [godot.PackedScene], or [ERR_CANT_CREATE] if that scene cannot be instantiated.
    *
-   * **Note:** The scene change is deferred, which means that the new scene node is added to the tree at the end of the frame. This ensures that both scenes aren't running at the same time, while still freeing the previous scene in a safe way similar to [godot.Node.queueFree]. As such, you won't be able to access the loaded scene immediately after the [changeSceneToFile] call.
+   * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. This ensures that both scenes are never loaded at the same time, which can exhaust system resources if the scenes are too large or if running in a memory constrained environment. As such, you won't be able to access the loaded scene immediately after the [changeSceneToFile] call.
    */
   public fun changeSceneToFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE_TO_FILE,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -512,13 +509,13 @@ public open class SceneTree : MainLoop() {
    *
    * Returns [OK] on success, [ERR_CANT_CREATE] if the scene cannot be instantiated, or [ERR_INVALID_PARAMETER] if the scene is invalid.
    *
-   * **Note:** The scene change is deferred, which means that the new scene node is added to the tree at the end of the frame. You won't be able to access it immediately after the [changeSceneToPacked] call.
+   * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeSceneToPacked] call.
    */
   public fun changeSceneToPacked(packedScene: PackedScene): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE_TO_PACKED,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -530,7 +527,7 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_RELOAD_CURRENT_SCENE,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -543,8 +540,6 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Sets a custom [godot.MultiplayerAPI] with the given [rootPath] (controlling also the relative subpaths), or override the default one if [rootPath] is empty.
-   *
-   * **Note:** Only one [godot.MultiplayerAPI] may be configured for any subpath. If one is configured for `"/root/Foo"` setting one for `"/root/Foo/Bar"` will be ignored. See [getMultiplayer].
    */
   public fun setMultiplayer(multiplayer: MultiplayerAPI, rootPath: NodePath = NodePath("")): Unit {
     TransferContext.writeArguments(OBJECT to multiplayer, NODE_PATH to rootPath)
@@ -553,13 +548,11 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Return the [godot.MultiplayerAPI] configured for the given path, or the default one if [forPath] is empty.
-   *
-   * **Note:** Only one [godot.MultiplayerAPI] may be configured for any subpath. If one is configured for `"/root/Foo"` then calling this for `"/root/Foo/Bar"` will return the one configured for `"/root/Foo"`, regardless if one is configured for that path.
    */
   public fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
     TransferContext.writeArguments(NODE_PATH to forPath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_MULTIPLAYER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
+    return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?)
   }
 
   public enum class GroupCallFlags(
@@ -574,7 +567,7 @@ public open class SceneTree : MainLoop() {
      */
     GROUP_CALL_REVERSE(1),
     /**
-     * Call a group at the end of the current frame (process or physics).
+     * Call a group with a one-frame delay (idle frame, not physics).
      */
     GROUP_CALL_DEFERRED(2),
     /**

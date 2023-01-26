@@ -8,22 +8,23 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Represents axis motions (such as joystick or analog triggers) from a gamepad.
+ * Input event type for gamepad joysticks and other motions. For buttons, see `InputEventJoypadButton`.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
- * Stores information about joystick motions. One [godot.InputEventJoypadMotion] represents one axis at a time. For gamepad buttons, see [godot.InputEventJoypadButton].
+ * Stores information about joystick motions. One [godot.InputEventJoypadMotion] represents one axis at a time.
  */
 @GodotBaseType
 public open class InputEventJoypadMotion : InputEvent() {
@@ -35,7 +36,7 @@ public open class InputEventJoypadMotion : InputEvent() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADMOTION_GET_AXIS,
           LONG)
-      return JoyAxis.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return JoyAxis.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -46,15 +47,15 @@ public open class InputEventJoypadMotion : InputEvent() {
   /**
    * Current position of the joystick on the given axis. The value ranges from `-1.0` to `1.0`. A value of `0` means the axis is in its resting position.
    */
-  public var axisValue: Double
+  public var axisValue: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADMOTION_GET_AXIS_VALUE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADMOTION_SET_AXIS_VALUE, NIL)
     }

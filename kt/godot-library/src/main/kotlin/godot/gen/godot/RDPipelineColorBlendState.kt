@@ -12,30 +12,28 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Pipeline color blend state (used by [godot.RenderingDevice]).
  *
- * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineColorBlendState : RefCounted() {
   /**
-   * If `true`, performs the logic operation defined in [logicOp].
+   *
    */
   public var enableLogicOp: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_ENABLE_LOGIC_OP, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -44,14 +42,14 @@ public open class RDPipelineColorBlendState : RefCounted() {
     }
 
   /**
-   * The logic operation to perform for blending. Only effective if [enableLogicOp] is `true`.
+   *
    */
   public var logicOp: RenderingDevice.LogicOperation
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_LOGIC_OP, LONG)
-      return RenderingDevice.LogicOperation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RenderingDevice.LogicOperation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -60,14 +58,14 @@ public open class RDPipelineColorBlendState : RefCounted() {
     }
 
   /**
-   * The constant color to blend with. See also [godot.RenderingDevice.drawListSetBlendConstants].
+   *
    */
   public var blendConstant: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_BLEND_CONSTANT, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -76,15 +74,15 @@ public open class RDPipelineColorBlendState : RefCounted() {
     }
 
   /**
-   * The attachments that are blended together.
+   *
    */
   public var attachments: VariantArray<RDPipelineColorBlendStateAttachment>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_ATTACHMENTS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY,
-          false) as VariantArray<RDPipelineColorBlendStateAttachment>
+      return (TransferContext.readReturnValue(ARRAY,
+          false) as VariantArray<RDPipelineColorBlendStateAttachment>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

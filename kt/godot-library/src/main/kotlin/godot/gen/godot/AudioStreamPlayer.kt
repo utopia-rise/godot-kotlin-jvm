@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -20,6 +19,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -50,7 +50,7 @@ public open class AudioStreamPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_STREAM,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as AudioStream?
+      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -60,15 +60,15 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Volume of sound, in dB.
    */
-  public var volumeDb: Double
+  public var volumeDb: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_VOLUME_DB,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_VOLUME_DB,
           NIL)
     }
@@ -76,15 +76,15 @@ public open class AudioStreamPlayer : Node() {
   /**
    * The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate.
    */
-  public var pitchScale: Double
+  public var pitchScale: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_PITCH_SCALE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_PITCH_SCALE,
           NIL)
     }
@@ -97,7 +97,7 @@ public open class AudioStreamPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_IS_PLAYING,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
 
   /**
@@ -108,7 +108,7 @@ public open class AudioStreamPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_IS_AUTOPLAY_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -124,7 +124,7 @@ public open class AudioStreamPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_STREAM_PAUSED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -140,7 +140,7 @@ public open class AudioStreamPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_MIX_TARGET,
           LONG)
-      return AudioStreamPlayer.MixTarget.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return AudioStreamPlayer.MixTarget.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -151,15 +151,15 @@ public open class AudioStreamPlayer : Node() {
   /**
    * The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds.
    */
-  public var maxPolyphony: Long
+  public var maxPolyphony: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_MAX_POLYPHONY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_MAX_POLYPHONY, NIL)
     }
@@ -174,7 +174,7 @@ public open class AudioStreamPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_BUS,
           STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
@@ -189,16 +189,16 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Plays the audio from the given [fromPosition], in seconds.
    */
-  public fun play(fromPosition: Double = 0.0): Unit {
-    TransferContext.writeArguments(DOUBLE to fromPosition)
+  public fun play(fromPosition: Float = 0.0f): Unit {
+    TransferContext.writeArguments(DOUBLE to fromPosition.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_PLAY, NIL)
   }
 
   /**
    * Sets the position from which audio will be played, in seconds.
    */
-  public fun seek(toPosition: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to toPosition)
+  public fun seek(toPosition: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to toPosition.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SEEK, NIL)
   }
 
@@ -213,11 +213,11 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Returns the position in the [godot.AudioStream] in seconds.
    */
-  public fun getPlaybackPosition(): Double {
+  public fun getPlaybackPosition(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_PLAYBACK_POSITION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -227,7 +227,7 @@ public open class AudioStreamPlayer : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_HAS_STREAM_PLAYBACK, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -237,7 +237,7 @@ public open class AudioStreamPlayer : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_STREAM_PLAYBACK, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?
+    return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?)
   }
 
   public enum class MixTarget(

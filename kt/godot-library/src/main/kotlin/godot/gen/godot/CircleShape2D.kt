@@ -12,29 +12,30 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 2D circle shape used for physics collision.
+ * Circular shape resource for 2D physics.
  *
- * A 2D circle shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape2D].
+ * 2D circular shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. This shape is useful for modeling balls or small characters and its collision detection with everything else is very fast.
  *
- * **Performance:** [godot.CircleShape2D] is fast to check collisions against. It is faster than [godot.RectangleShape2D] and [godot.CapsuleShape2D].
+ * **Performance:** Being a primitive collision shape, [godot.CircleShape2D] is the fastest collision shape to check collisions against, as it only requires a distance check with the shape's origin.
  */
 @GodotBaseType
 public open class CircleShape2D : Shape2D() {
   /**
    * The circle's radius.
    */
-  public var radius: Double
+  public var radius: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CIRCLESHAPE2D_GET_RADIUS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CIRCLESHAPE2D_SET_RADIUS, NIL)
     }
 

@@ -16,17 +16,18 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A joint used with [godot.Skeleton2D] to control and animate other nodes.
+ * Joint used with [godot.Skeleton2D] to control and animate other nodes.
  *
- * A hierarchy of [godot.Bone2D]s can be bound to a [godot.Skeleton2D] to control and animate other [godot.Node2D] nodes.
+ * Use a hierarchy of `Bone2D` bound to a [godot.Skeleton2D] to control, and animate other [godot.Node2D] nodes.
  *
- * You can use [godot.Bone2D] and [godot.Skeleton2D] nodes to animate 2D meshes created with the [godot.Polygon2D] UV editor.
+ * You can use `Bone2D` and `Skeleton2D` nodes to animate 2D meshes created with the Polygon 2D UV editor.
  *
  * Each bone has a [rest] transform that you can reset to with [applyRest]. These rest poses are relative to the bone's parent.
  *
@@ -41,7 +42,7 @@ public open class Bone2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_REST, TRANSFORM2D)
-      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
@@ -68,20 +69,20 @@ public open class Bone2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_SKELETON_REST,
         TRANSFORM2D)
-    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
   /**
    * Returns the node's index as part of the entire skeleton. See [godot.Skeleton2D].
    */
-  public fun getIndexInSkeleton(): Long {
+  public fun getIndexInSkeleton(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_INDEX_IN_SKELETON, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
-   * When set to `true`, the [godot.Bone2D] node will attempt to automatically calculate the bone angle and length using the first child [godot.Bone2D] node, if one exists. If none exist, the [godot.Bone2D] cannot automatically calculate these values and will print a warning.
+   * When set to `true`, the `Bone2D` node will attempt to automatically calculate the bone angle and length using the first child `Bone2D` node, if one exists. If none exist, the `Bone2D` cannot automatically calculate these values and will print a warning.
    */
   public fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autoCalculate)
@@ -90,51 +91,51 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Returns whether this [godot.Bone2D] is going to autocalculate its length and bone angle using its first [godot.Bone2D] child node, if one exists. If there are no [godot.Bone2D] children, then it cannot autocalculate these values and will print a warning.
+   * Returns whether this `Bone2D` node is going to autocalculate its length and bone angle using its first `Bone2D` child node, if one exists. If there are no `Bone2D` children, then it cannot autocalculate these values and will print a warning.
    */
   public fun getAutocalculateLengthAndAngle(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_BONE2D_GET_AUTOCALCULATE_LENGTH_AND_ANGLE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
-   * Sets the length of the bone in the [godot.Bone2D].
+   * Sets the length of the bone in the `Bone2D` node.
    */
-  public fun setLength(length: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to length)
+  public fun setLength(length: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_LENGTH, NIL)
   }
 
   /**
-   * Returns the length of the bone in the [godot.Bone2D] node.
+   * Returns the length of the bone in the `Bone2D` node.
    */
-  public fun getLength(): Double {
+  public fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_LENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
-   * Sets the bone angle for the [godot.Bone2D]. This is typically set to the rotation from the [godot.Bone2D] to a child [godot.Bone2D] node.
+   * Sets the bone angle for the `Bone2D` node. This is typically set to the rotation from the `Bone2D` node to a child `Bone2D` node.
    *
-   * **Note:** **Note:** This is different from the [godot.Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [godot.Bone2D]'s [godot.Node2D.transform].
+   * **Note:** This is different from the `Bone2D`'s rotation. The bone angle is the rotation of the bone shown by the `Bone2D` gizmo, and because `Bone2D` bones are based on positions, this can vary from the actual rotation of the `Bone2D` node.
    */
-  public fun setBoneAngle(angle: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to angle)
+  public fun setBoneAngle(angle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_BONE_ANGLE, NIL)
   }
 
   /**
-   * Returns the angle of the bone in the [godot.Bone2D].
+   * Returns the angle of the bone in the `Bone2D` node.
    *
-   * **Note:** This is different from the [godot.Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [godot.Bone2D]'s [godot.Node2D.transform].
+   * **Note:** This is different from the `Bone2D`'s rotation. The bone angle is the rotation of the bone shown by the `Bone2D` gizmo, and because `Bone2D` bones are based on positions, this can vary from the actual rotation of the `Bone2D` node.
    */
-  public fun getBoneAngle(): Double {
+  public fun getBoneAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_BONE_ANGLE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

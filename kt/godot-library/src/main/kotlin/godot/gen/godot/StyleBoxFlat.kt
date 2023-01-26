@@ -18,15 +18,24 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A customizable [godot.StyleBox] that doesn't use a texture.
+ * Customizable [godot.StyleBox] with a given set of parameters (no texture required).
  *
- * By configuring various properties of this style box, you can achieve many common looks without the need of a texture. This includes optionally rounded borders, antialiasing, shadows, and skew.
+ * This [godot.StyleBox] can be used to achieve all kinds of looks without the need of a texture. The following properties are customizable:
+ *
+ * - Color
+ *
+ * - Border width (individual width for each border)
+ *
+ * - Rounded corners (individual radius for each corner)
+ *
+ * - Shadow (with blur and offset)
  *
  * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will switch to a relative system.
  *
@@ -54,7 +63,7 @@ public open class StyleBoxFlat : StyleBox() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BG_COLOR, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -69,7 +78,7 @@ public open class StyleBoxFlat : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_IS_DRAW_CENTER_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -85,7 +94,7 @@ public open class StyleBoxFlat : StyleBox() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SKEW, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -100,7 +109,7 @@ public open class StyleBoxFlat : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_COLOR,
           COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -116,7 +125,7 @@ public open class StyleBoxFlat : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_BLEND,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -131,15 +140,15 @@ public open class StyleBoxFlat : StyleBox() {
    *
    * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
    */
-  public var cornerDetail: Long
+  public var cornerDetail: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_DETAIL,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_DETAIL,
           NIL)
     }
@@ -152,7 +161,7 @@ public open class StyleBoxFlat : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_COLOR,
           COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -163,15 +172,15 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The shadow size in pixels.
    */
-  public var shadowSize: Long
+  public var shadowSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_SIZE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SHADOW_SIZE, NIL)
     }
 
@@ -183,7 +192,7 @@ public open class StyleBoxFlat : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_OFFSET,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -201,7 +210,7 @@ public open class StyleBoxFlat : StyleBox() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_IS_ANTI_ALIASED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -210,18 +219,16 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * This changes the size of the antialiasing effect. `1.0` is recommended for an optimal result at 100% scale, identical to how rounded rectangles are rendered in web browsers and most vector drawing software.
-   *
-   * **Note:** Higher values may produce a blur effect but can also create undesired artifacts on small boxes with large-radius corners.
+   * This changes the size of the faded ring. Higher values can be used to achieve a "blurry" effect.
    */
-  public var antiAliasingSize: Double
+  public var antiAliasingSize: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_AA_SIZE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_AA_SIZE, NIL)
     }
 
@@ -233,8 +240,8 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the border width to [width] pixels for all sides.
    */
-  public fun setBorderWidthAll(width: Long): Unit {
-    TransferContext.writeArguments(LONG to width)
+  public fun setBorderWidthAll(width: Int): Unit {
+    TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_ALL,
         NIL)
   }
@@ -242,35 +249,35 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the smallest border width out of all four borders.
    */
-  public fun getBorderWidthMin(): Long {
+  public fun getBorderWidthMin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_MIN,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets the specified [enum Side]'s border width to [width] pixels.
    */
-  public fun setBorderWidth(margin: Side, width: Long): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to width)
+  public fun setBorderWidth(margin: Side, width: Int): Unit {
+    TransferContext.writeArguments(LONG to margin.id, LONG to width.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH, NIL)
   }
 
   /**
    * Returns the specified [enum Side]'s border width.
    */
-  public fun getBorderWidth(margin: Side): Long {
+  public fun getBorderWidth(margin: Side): Int {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets the corner radius to [radius] pixels for all corners.
    */
-  public fun setCornerRadiusAll(radius: Long): Unit {
-    TransferContext.writeArguments(LONG to radius)
+  public fun setCornerRadiusAll(radius: Int): Unit {
+    TransferContext.writeArguments(LONG to radius.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_ALL,
         NIL)
   }
@@ -278,34 +285,34 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the corner radius to [radius] pixels for the given [corner]. See [enum Corner] for possible values.
    */
-  public fun setCornerRadius(corner: Corner, radius: Long): Unit {
-    TransferContext.writeArguments(LONG to corner.id, LONG to radius)
+  public fun setCornerRadius(corner: Corner, radius: Int): Unit {
+    TransferContext.writeArguments(LONG to corner.id, LONG to radius.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS, NIL)
   }
 
   /**
    * Returns the given [corner]'s radius. See [enum Corner] for possible values.
    */
-  public fun getCornerRadius(corner: Corner): Long {
+  public fun getCornerRadius(corner: Corner): Int {
     TransferContext.writeArguments(LONG to corner.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets the expand margin to [size] pixels for the specified [enum Side].
    */
-  public fun setExpandMargin(margin: Side, size: Double): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
+  public fun setExpandMargin(margin: Side, size: Float): Unit {
+    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN, NIL)
   }
 
   /**
    * Sets the expand margin to [size] pixels for all sides.
    */
-  public fun setExpandMarginAll(size: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to size)
+  public fun setExpandMarginAll(size: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_ALL,
         NIL)
   }
@@ -313,11 +320,11 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the size of the specified [enum Side]'s expand margin.
    */
-  public fun getExpandMargin(margin: Side): Double {
+  public fun getExpandMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

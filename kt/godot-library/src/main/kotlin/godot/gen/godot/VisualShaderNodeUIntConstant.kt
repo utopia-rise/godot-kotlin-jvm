@@ -25,15 +25,15 @@ public open class VisualShaderNodeUIntConstant : VisualShaderNodeConstant() {
   /**
    * An unsigned integer constant which represents a state of this node.
    */
-  public var constant: Long
+  public var constant: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUINTCONSTANT_GET_CONSTANT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUINTCONSTANT_SET_CONSTANT, NIL)
     }

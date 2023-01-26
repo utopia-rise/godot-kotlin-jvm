@@ -37,7 +37,7 @@ public open class Path3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH3D_GET_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve3D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Curve3D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

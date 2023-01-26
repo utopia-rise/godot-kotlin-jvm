@@ -11,7 +11,6 @@ import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_STRING_ARRAY
@@ -53,7 +52,7 @@ public object IP : Object() {
   public fun resolveHostname(host: String, ipType: Type = IP.Type.TYPE_ANY): String {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -64,52 +63,52 @@ public object IP : Object() {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_ADDRESSES,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
    * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as [ipType]. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
    */
-  public fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.TYPE_ANY): Long {
+  public fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.TYPE_ANY): Int {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_QUEUE_ITEM,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue [id].
    */
-  public fun getResolveItemStatus(id: Long): ResolverStatus {
-    TransferContext.writeArguments(LONG to id)
+  public fun getResolveItemStatus(id: Int): ResolverStatus {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_STATUS, LONG)
-    return IP.ResolverStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return IP.ResolverStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Returns a queued hostname's IP address, given its queue [id]. Returns an empty string on error or if resolution hasn't happened yet (see [getResolveItemStatus]).
    */
-  public fun getResolveItemAddress(id: Long): String {
-    TransferContext.writeArguments(LONG to id)
+  public fun getResolveItemAddress(id: Int): String {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESS, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns resolved addresses, or an empty array if an error happened or resolution didn't happen yet (see [getResolveItemStatus]).
    */
-  public fun getResolveItemAddresses(id: Long): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to id)
+  public fun getResolveItemAddresses(id: Int): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESSES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
    * Removes a given item [id] from the queue. This should be used to free a queue after it has completed to enable more queries to happen.
    */
-  public fun eraseResolveItem(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
+  public fun eraseResolveItem(id: Int): Unit {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_ERASE_RESOLVE_ITEM, NIL)
   }
 
@@ -120,7 +119,7 @@ public object IP : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_LOCAL_ADDRESSES,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -140,7 +139,7 @@ public object IP : Object() {
   public fun getLocalInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_LOCAL_INTERFACES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**

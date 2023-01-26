@@ -38,7 +38,7 @@ public open class ResourceFormatSaver : RefCounted() {
   public open fun _save(
     resource: Resource,
     path: String,
-    flags: Long,
+    flags: Int,
   ): GodotError {
     throw NotImplementedError("_save is not implemented for ResourceFormatSaver")
   }

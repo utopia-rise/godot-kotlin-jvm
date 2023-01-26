@@ -14,7 +14,6 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -72,7 +71,7 @@ public open class AudioStream : Resource() {
   /**
    *
    */
-  public open fun _getBeatCount(): Long {
+  public open fun _getBeatCount(): Int {
     throw NotImplementedError("_get_beat_count is not implemented for AudioStream")
   }
 
@@ -82,7 +81,7 @@ public open class AudioStream : Resource() {
   public fun getLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_GET_LENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
@@ -91,7 +90,7 @@ public open class AudioStream : Resource() {
   public fun isMonophonic(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_IS_MONOPHONIC, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -101,7 +100,7 @@ public open class AudioStream : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_INSTANTIATE_PLAYBACK,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?
+    return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?)
   }
 
   public companion object

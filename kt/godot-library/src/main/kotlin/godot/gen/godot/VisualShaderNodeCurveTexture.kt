@@ -29,7 +29,7 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECURVETEXTURE_GET_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as CurveTexture?
+      return (TransferContext.readReturnValue(OBJECT, true) as CurveTexture?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

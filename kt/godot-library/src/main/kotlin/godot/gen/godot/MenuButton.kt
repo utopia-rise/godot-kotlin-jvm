@@ -21,9 +21,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A button that brings up a [godot.PopupMenu] when clicked.
+ * Special button that brings up a [godot.PopupMenu] when clicked.
  *
- * A button that brings up a [godot.PopupMenu] when clicked. To create new items inside this [godot.PopupMenu], use `get_popup().add_item("My Item Name")`. You can also create them directly from Godot editor's inspector.
+ * Special button that brings up a [godot.PopupMenu] when clicked.
+ *
+ * New items can be created inside this [godot.PopupMenu] using `get_popup().add_item("My Item Name")`. You can also create them directly from the editor. To do so, select the [godot.MenuButton] node, then in the toolbar at the top of the 2D editor, click **Items** then click **Add** in the popup. You will be able to give each item new properties.
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  */
@@ -42,7 +44,7 @@ public open class MenuButton : Button() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_IS_SWITCH_ON_HOVER,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -53,14 +55,14 @@ public open class MenuButton : Button() {
   /**
    * The number of items currently in the list.
    */
-  public var itemCount: Long
+  public var itemCount: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_ITEM_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_ITEM_COUNT, NIL)
     }
 
@@ -77,7 +79,7 @@ public open class MenuButton : Button() {
   public fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_POPUP, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+    return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
   }
 
   /**

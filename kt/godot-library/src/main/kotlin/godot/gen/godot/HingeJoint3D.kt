@@ -14,15 +14,16 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A physics joint that restricts the rotation of a 3D physics body around an axis relative to another physics body.
+ * A hinge between two 3D PhysicsBodies.
  *
- * A physics joint that restricts the rotation of a 3D physics body around an axis relative to another physics body. For example, Body A can be a [godot.StaticBody3D] representing a door hinge that a [godot.RigidBody3D] rotates around.
+ * A HingeJoint3D normally uses the Z axis of body A as the hinge axis, another axis can be specified when adding it manually though. See also [godot.Generic6DOFJoint3D].
  */
 @GodotBaseType
 public open class HingeJoint3D : Joint3D() {
@@ -34,18 +35,18 @@ public open class HingeJoint3D : Joint3D() {
   /**
    * Sets the value of the specified parameter.
    */
-  public fun setParam(`param`: Param, `value`: Double): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
+  public fun setParam(`param`: Param, `value`: Float): Unit {
+    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_SET_PARAM, NIL)
   }
 
   /**
    * Returns the value of the specified parameter.
    */
-  public fun getParam(`param`: Param): Double {
+  public fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_GET_PARAM, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -62,7 +63,7 @@ public open class HingeJoint3D : Joint3D() {
   public fun getFlag(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_GET_FLAG, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class Param(

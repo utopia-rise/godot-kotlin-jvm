@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -45,10 +44,10 @@ public open class TCPServer : RefCounted() {
    *
    * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
    */
-  public fun listen(port: Long, bindAddress: String = "*"): GodotError {
-    TransferContext.writeArguments(LONG to port, STRING to bindAddress)
+  public fun listen(port: Int, bindAddress: String = "*"): GodotError {
+    TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_LISTEN, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -58,7 +57,7 @@ public open class TCPServer : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_IS_CONNECTION_AVAILABLE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -67,16 +66,16 @@ public open class TCPServer : RefCounted() {
   public fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_IS_LISTENING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the local port this server is listening to.
    */
-  public fun getLocalPort(): Long {
+  public fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_GET_LOCAL_PORT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -85,7 +84,7 @@ public open class TCPServer : RefCounted() {
   public fun takeConnection(): StreamPeerTCP? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_TAKE_CONNECTION, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as StreamPeerTCP?
+    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeerTCP?)
   }
 
   /**

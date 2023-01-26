@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -23,11 +22,11 @@ public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
     return true
   }
 
-  public open fun _getAvailablePacketCount(): Long {
+  public open fun _getAvailablePacketCount(): Int {
     throw NotImplementedError("_get_available_packet_count is not implemented for WebRTCDataChannelExtension")
   }
 
-  public open fun _getMaxPacketSize(): Long {
+  public open fun _getMaxPacketSize(): Int {
     throw NotImplementedError("_get_max_packet_size is not implemented for WebRTCDataChannelExtension")
   }
 
@@ -61,15 +60,15 @@ public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
     throw NotImplementedError("_is_ordered is not implemented for WebRTCDataChannelExtension")
   }
 
-  public open fun _getId(): Long {
+  public open fun _getId(): Int {
     throw NotImplementedError("_get_id is not implemented for WebRTCDataChannelExtension")
   }
 
-  public open fun _getMaxPacketLifeTime(): Long {
+  public open fun _getMaxPacketLifeTime(): Int {
     throw NotImplementedError("_get_max_packet_life_time is not implemented for WebRTCDataChannelExtension")
   }
 
-  public open fun _getMaxRetransmits(): Long {
+  public open fun _getMaxRetransmits(): Int {
     throw NotImplementedError("_get_max_retransmits is not implemented for WebRTCDataChannelExtension")
   }
 
@@ -81,7 +80,7 @@ public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
     throw NotImplementedError("_is_negotiated is not implemented for WebRTCDataChannelExtension")
   }
 
-  public open fun _getBufferedAmount(): Long {
+  public open fun _getBufferedAmount(): Int {
     throw NotImplementedError("_get_buffered_amount is not implemented for WebRTCDataChannelExtension")
   }
 

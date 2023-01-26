@@ -17,7 +17,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -28,7 +27,7 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -137,7 +136,7 @@ public open class ArrayMesh : Mesh() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_MODE,
           LONG)
-      return Mesh.BlendShapeMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Mesh.BlendShapeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -153,7 +152,7 @@ public open class ArrayMesh : Mesh() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_CUSTOM_AABB,
           godot.core.VariantType.AABB)
-      return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
+      return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
     }
     set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
@@ -167,7 +166,7 @@ public open class ArrayMesh : Mesh() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_SHADOW_MESH, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
+      return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -190,28 +189,28 @@ public open class ArrayMesh : Mesh() {
   /**
    * Returns the number of blend shapes that the [godot.ArrayMesh] holds.
    */
-  public fun getBlendShapeCount(): Long {
+  public fun getBlendShapeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the name of the blend shape at this index.
    */
-  public fun getBlendShapeName(index: Long): StringName {
-    TransferContext.writeArguments(LONG to index)
+  public fun getBlendShapeName(index: Int): StringName {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_NAME,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
    * Sets the name of the blend shape at this index.
    */
-  public fun setBlendShapeName(index: Long, name: StringName): Unit {
-    TransferContext.writeArguments(LONG to index, STRING_NAME to name)
+  public fun setBlendShapeName(index: Int, name: StringName): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_BLEND_SHAPE_NAME, NIL)
   }
 
@@ -262,11 +261,11 @@ public open class ArrayMesh : Mesh() {
    *
    */
   public fun surfaceUpdateVertexRegion(
-    surfIdx: Long,
-    offset: Long,
+    surfIdx: Int,
+    offset: Int,
     `data`: PackedByteArray,
   ): Unit {
-    TransferContext.writeArguments(LONG to surfIdx, LONG to offset, PACKED_BYTE_ARRAY to data)
+    TransferContext.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_UPDATE_VERTEX_REGION, NIL)
   }
@@ -275,11 +274,11 @@ public open class ArrayMesh : Mesh() {
    *
    */
   public fun surfaceUpdateAttributeRegion(
-    surfIdx: Long,
-    offset: Long,
+    surfIdx: Int,
+    offset: Int,
     `data`: PackedByteArray,
   ): Unit {
-    TransferContext.writeArguments(LONG to surfIdx, LONG to offset, PACKED_BYTE_ARRAY to data)
+    TransferContext.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_UPDATE_ATTRIBUTE_REGION, NIL)
   }
@@ -288,11 +287,11 @@ public open class ArrayMesh : Mesh() {
    *
    */
   public fun surfaceUpdateSkinRegion(
-    surfIdx: Long,
-    offset: Long,
+    surfIdx: Int,
+    offset: Int,
     `data`: PackedByteArray,
   ): Unit {
-    TransferContext.writeArguments(LONG to surfIdx, LONG to offset, PACKED_BYTE_ARRAY to data)
+    TransferContext.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_UPDATE_SKIN_REGION, NIL)
   }
@@ -300,68 +299,68 @@ public open class ArrayMesh : Mesh() {
   /**
    * Returns the length in vertices of the vertex array in the requested surface (see [addSurfaceFromArrays]).
    */
-  public fun surfaceGetArrayLen(surfIdx: Long): Long {
-    TransferContext.writeArguments(LONG to surfIdx)
+  public fun surfaceGetArrayLen(surfIdx: Int): Int {
+    TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_ARRAY_LEN,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the length in indices of the index array in the requested surface (see [addSurfaceFromArrays]).
    */
-  public fun surfaceGetArrayIndexLen(surfIdx: Long): Long {
-    TransferContext.writeArguments(LONG to surfIdx)
+  public fun surfaceGetArrayIndexLen(surfIdx: Int): Int {
+    TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_ARRAY_INDEX_LEN, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the format mask of the requested surface (see [addSurfaceFromArrays]).
    */
-  public fun surfaceGetFormat(surfIdx: Long): Long {
-    TransferContext.writeArguments(LONG to surfIdx)
+  public fun surfaceGetFormat(surfIdx: Int): Long {
+    TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_FORMAT,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, false) as Long
+    return (TransferContext.readReturnValue(OBJECT, false) as Long)
   }
 
   /**
    * Returns the primitive type of the requested surface (see [addSurfaceFromArrays]).
    */
-  public fun surfaceGetPrimitiveType(surfIdx: Long): Mesh.PrimitiveType {
-    TransferContext.writeArguments(LONG to surfIdx)
+  public fun surfaceGetPrimitiveType(surfIdx: Int): Mesh.PrimitiveType {
+    TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_PRIMITIVE_TYPE, LONG)
-    return Mesh.PrimitiveType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Mesh.PrimitiveType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Returns the index of the first surface with this name held within this [godot.ArrayMesh]. If none are found, -1 is returned.
    */
-  public fun surfaceFindByName(name: String): Long {
+  public fun surfaceFindByName(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_FIND_BY_NAME,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets a name for a given surface.
    */
-  public fun surfaceSetName(surfIdx: Long, name: String): Unit {
-    TransferContext.writeArguments(LONG to surfIdx, STRING to name)
+  public fun surfaceSetName(surfIdx: Int, name: String): Unit {
+    TransferContext.writeArguments(LONG to surfIdx.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_SET_NAME, NIL)
   }
 
   /**
    * Gets the name assigned to this surface.
    */
-  public fun surfaceGetName(surfIdx: Long): String {
-    TransferContext.writeArguments(LONG to surfIdx)
+  public fun surfaceGetName(surfIdx: Int): String {
+    TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -375,10 +374,10 @@ public open class ArrayMesh : Mesh() {
   /**
    * Performs a UV unwrap on the [godot.ArrayMesh] to prepare the mesh for lightmapping.
    */
-  public fun lightmapUnwrap(transform: Transform3D, texelSize: Double): GodotError {
-    TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize)
+  public fun lightmapUnwrap(transform: Transform3D, texelSize: Float): GodotError {
+    TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_LIGHTMAP_UNWRAP, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public companion object

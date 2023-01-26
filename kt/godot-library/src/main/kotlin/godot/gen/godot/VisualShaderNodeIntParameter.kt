@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -32,7 +31,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_GET_HINT, LONG)
-      return VisualShaderNodeIntParameter.Hint.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeIntParameter.Hint.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -43,15 +42,15 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   /**
    * The minimum value this parameter can take. [hint] must be either [HINT_RANGE] or [HINT_RANGE_STEP] for this to take effect.
    */
-  public var min: Long
+  public var min: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_GET_MIN, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_MIN, NIL)
     }
@@ -59,15 +58,15 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   /**
    * The maximum value this parameter can take. [hint] must be either [HINT_RANGE] or [HINT_RANGE_STEP] for this to take effect.
    */
-  public var max: Long
+  public var max: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_GET_MAX, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_MAX, NIL)
     }
@@ -75,15 +74,15 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   /**
    * The step between parameter's values. Forces the parameter to be a multiple of the given value. [hint] must be [HINT_RANGE_STEP] for this to take effect.
    */
-  public var step: Long
+  public var step: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_GET_STEP, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_STEP, NIL)
     }
@@ -96,7 +95,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_IS_DEFAULT_VALUE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -107,15 +106,15 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   /**
    * Default value of this parameter, which will be used if not set externally. [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
    */
-  public var defaultValue: Long
+  public var defaultValue: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_GET_DEFAULT_VALUE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_DEFAULT_VALUE, NIL)
     }

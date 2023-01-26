@@ -23,29 +23,30 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Provides parameters for [godot.PhysicsDirectSpaceState3D.intersectShape].
+ * Parameters to be sent to a 3D shape physics query.
  *
- * By changing various properties of this object, such as the shape, you can configure the parameters for [godot.PhysicsDirectSpaceState3D.intersectShape].
+ * This class contains the shape and other parameters for [godot.PhysicsDirectSpaceState3D] intersection/collision queries.
  */
 @GodotBaseType
 public open class PhysicsShapeQueryParameters3D : RefCounted() {
   /**
    * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public var collisionMask: Long
+  public var collisionMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_COLLISION_MASK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_SET_COLLISION_MASK, NIL)
     }
@@ -58,7 +59,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_EXCLUDE, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -69,15 +70,15 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   /**
    * The collision margin for the shape.
    */
-  public var margin: Double
+  public var margin: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_MARGIN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_SET_MARGIN, NIL)
     }
@@ -90,7 +91,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_MOTION, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -106,7 +107,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_SHAPE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Resource?
+      return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -178,7 +179,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_SHAPE_RID, _RID)
-      return TransferContext.readReturnValue(_RID, false) as RID
+      return (TransferContext.readReturnValue(_RID, false) as RID)
     }
     set(`value`) {
       TransferContext.writeArguments(_RID to value)
@@ -194,7 +195,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_TRANSFORM, TRANSFORM3D)
-      return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
@@ -211,7 +212,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_IS_COLLIDE_WITH_BODIES_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -228,7 +229,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_IS_COLLIDE_WITH_AREAS_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

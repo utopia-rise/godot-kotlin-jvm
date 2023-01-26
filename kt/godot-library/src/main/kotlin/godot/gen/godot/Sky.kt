@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -31,7 +30,7 @@ public open class Sky : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_MATERIAL, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -45,7 +44,7 @@ public open class Sky : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_PROCESS_MODE, LONG)
-      return Sky.ProcessMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Sky.ProcessMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -63,7 +62,7 @@ public open class Sky : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_RADIANCE_SIZE, LONG)
-      return Sky.RadianceSize.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Sky.RadianceSize.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -140,7 +139,7 @@ public open class Sky : Resource() {
     /**
      * Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [godot.ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
      *
-     * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [radianceSize] must be set to [godot.RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size is ignored.
+     * **Note:** The fast filtering algorithm is limited to 256x256 cubemaps, so [radianceSize] must be set to [godot.RADIANCE_SIZE_256].
      */
     PROCESS_MODE_REALTIME(3),
     ;

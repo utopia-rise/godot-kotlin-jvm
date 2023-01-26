@@ -20,11 +20,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A singleton that manages the unique identifiers of all resources within a project.
+ * Singleton for managing a cache of resource UIDs within a project.
  *
- * Resource UIDs (Unique IDentifiers) allow the engine to keep references between resources intact, even if files can renamed or moved. They can be accessed with `uid://`.
+ * Resources can not only be referenced using their resource paths `res://`, but alternatively through a unique identifier specified via `uid://`.
  *
- * [godot.ResourceUID] keeps track of all registered resource UIDs in a project, generates new UIDs, and converts between their string and integer representations.
+ * Using UIDs allows for the engine to keep references between resources intact, even if the files get renamed or moved.
+ *
+ * This singleton is responsible for keeping track of all registered resource UIDs of a project, generating new UIDs and converting between the string and integer representation.
  */
 @GodotBaseType
 public object ResourceUID : Object() {
@@ -46,7 +48,7 @@ public object ResourceUID : Object() {
   public fun idToText(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_ID_TO_TEXT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -55,7 +57,7 @@ public object ResourceUID : Object() {
   public fun textToId(textId: String): Long {
     TransferContext.writeArguments(STRING to textId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_TEXT_TO_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -66,7 +68,7 @@ public object ResourceUID : Object() {
   public fun createId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_CREATE_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -75,7 +77,7 @@ public object ResourceUID : Object() {
   public fun hasId(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_HAS_ID, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -106,7 +108,7 @@ public object ResourceUID : Object() {
   public fun getIdPath(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_GET_ID_PATH, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**

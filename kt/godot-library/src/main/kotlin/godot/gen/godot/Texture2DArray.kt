@@ -36,7 +36,7 @@ public open class Texture2DArray : ImageTextureLayered() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2DARRAY_CREATE_PLACEHOLDER,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Resource?
+    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
   public companion object

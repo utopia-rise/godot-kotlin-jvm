@@ -14,7 +14,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -76,7 +75,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_MULTIPLAYER_PEER, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as MultiplayerPeer?
+      return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerPeer?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -96,16 +95,16 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_HAS_MULTIPLAYER_PEER,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the unique peer ID of this MultiplayerAPI's [multiplayerPeer].
    */
-  public fun getUniqueId(): Long {
+  public fun getUniqueId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_UNIQUE_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -114,7 +113,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   public fun isServer(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_SERVER, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -122,11 +121,11 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    *
    * **Note:** If not inside an RPC this method will return 0.
    */
-  public fun getRemoteSenderId(): Long {
+  public fun getRemoteSenderId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_REMOTE_SENDER_ID,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -137,7 +136,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_POLL, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -146,14 +145,14 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * **Note:** Prefer using [godot.Node.rpc], [godot.Node.rpcId], or `my_method.rpc(peer, arg1, arg2, ...)` (in GDScript), since they are faster. This method is mostly useful in conjunction with [godot.MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.
    */
   public fun rpc(
-    peer: Long,
+    peer: Int,
     _object: Object,
     method: StringName,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): GodotError {
-    TransferContext.writeArguments(LONG to peer, OBJECT to _object, STRING_NAME to method, ARRAY to arguments)
+    TransferContext.writeArguments(LONG to peer.toLong(), OBJECT to _object, STRING_NAME to method, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_RPC, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -165,7 +164,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_OBJECT_CONFIGURATION_ADD, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -177,7 +176,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_OBJECT_CONFIGURATION_REMOVE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -187,7 +186,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_PEERS,
         PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   public enum class RPCMode(

@@ -15,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -39,7 +40,7 @@ public open class SkeletonModificationStack2D : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -50,15 +51,15 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * The interpolation strength of the modifications in stack. A value of `0` will make it where the modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1` will allow the modifications to be fully applied and override the [godot.Skeleton2D] [godot.Bone2D] poses.
    */
-  public var strength: Double
+  public var strength: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_STRENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_STRENGTH, NIL)
     }
@@ -66,15 +67,15 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * The number of modifications in the stack.
    */
-  public var modificationCount: Long
+  public var modificationCount: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_MODIFICATION_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_MODIFICATION_COUNT, NIL)
     }
@@ -98,8 +99,8 @@ public open class SkeletonModificationStack2D : Resource() {
    *
    * **Note:** The order of the modifications can matter depending on the modifications. For example, modifications on a spine should operate before modifications on the arms in order to get proper results.
    */
-  public fun execute(delta: Double, executionMode: Long): Unit {
-    TransferContext.writeArguments(DOUBLE to delta, LONG to executionMode)
+  public fun execute(delta: Float, executionMode: Int): Unit {
+    TransferContext.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_EXECUTE,
         NIL)
   }
@@ -116,11 +117,11 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Returns the [godot.SkeletonModification2D] at the passed-in index, [modIdx].
    */
-  public fun getModification(modIdx: Long): SkeletonModification2D? {
-    TransferContext.writeArguments(LONG to modIdx)
+  public fun getModification(modIdx: Int): SkeletonModification2D? {
+    TransferContext.writeArguments(LONG to modIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_MODIFICATION, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as SkeletonModification2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModification2D?)
   }
 
   /**
@@ -135,8 +136,8 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Deletes the [godot.SkeletonModification2D] at the index position [modIdx], if it exists.
    */
-  public fun deleteModification(modIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to modIdx)
+  public fun deleteModification(modIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to modIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_DELETE_MODIFICATION, NIL)
   }
@@ -144,8 +145,8 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Sets the modification at [modIdx] to the passed-in modification, [modification].
    */
-  public fun setModification(modIdx: Long, modification: SkeletonModification2D): Unit {
-    TransferContext.writeArguments(LONG to modIdx, OBJECT to modification)
+  public fun setModification(modIdx: Int, modification: SkeletonModification2D): Unit {
+    TransferContext.writeArguments(LONG to modIdx.toLong(), OBJECT to modification)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_MODIFICATION, NIL)
   }
@@ -157,7 +158,7 @@ public open class SkeletonModificationStack2D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_IS_SETUP, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -167,7 +168,7 @@ public open class SkeletonModificationStack2D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_SKELETON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Skeleton2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Skeleton2D?)
   }
 
   public companion object

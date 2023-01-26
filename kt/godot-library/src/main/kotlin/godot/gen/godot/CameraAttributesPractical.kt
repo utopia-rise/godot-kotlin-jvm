@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
@@ -35,7 +36,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_IS_DOF_BLUR_FAR_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -46,15 +47,15 @@ public open class CameraAttributesPractical : CameraAttributes() {
   /**
    * Objects further from the [godot.Camera3D] by this amount will be blurred by the depth of field effect. Measured in meters.
    */
-  public var dofBlurFarDistance: Double
+  public var dofBlurFarDistance: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_GET_DOF_BLUR_FAR_DISTANCE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_SET_DOF_BLUR_FAR_DISTANCE, NIL)
     }
@@ -62,15 +63,15 @@ public open class CameraAttributesPractical : CameraAttributes() {
   /**
    * When positive, distance over which (starting from [dofBlurFarDistance]) blur effect will scale from 0 to [dofBlurAmount]. When negative, uses physically-based scaling so depth of field effect will scale from 0 at [dofBlurFarDistance] and will increase in a physically accurate way as objects get further from the [godot.Camera3D].
    */
-  public var dofBlurFarTransition: Double
+  public var dofBlurFarTransition: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_GET_DOF_BLUR_FAR_TRANSITION, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_SET_DOF_BLUR_FAR_TRANSITION, NIL)
     }
@@ -85,7 +86,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_IS_DOF_BLUR_NEAR_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -96,15 +97,15 @@ public open class CameraAttributesPractical : CameraAttributes() {
   /**
    * Objects closer from the [godot.Camera3D] by this amount will be blurred by the depth of field effect. Measured in meters.
    */
-  public var dofBlurNearDistance: Double
+  public var dofBlurNearDistance: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_GET_DOF_BLUR_NEAR_DISTANCE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_SET_DOF_BLUR_NEAR_DISTANCE, NIL)
     }
@@ -112,15 +113,15 @@ public open class CameraAttributesPractical : CameraAttributes() {
   /**
    * When positive, distance over which blur effect will scale from 0 to [dofBlurAmount], ending at [dofBlurNearDistance]. When negative, uses physically-based scaling so depth of field effect will scale from 0 at [dofBlurNearDistance] and will increase in a physically accurate way as objects get closer to the [godot.Camera3D].
    */
-  public var dofBlurNearTransition: Double
+  public var dofBlurNearTransition: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_GET_DOF_BLUR_NEAR_TRANSITION, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_SET_DOF_BLUR_NEAR_TRANSITION, NIL)
     }
@@ -128,15 +129,15 @@ public open class CameraAttributesPractical : CameraAttributes() {
   /**
    * Sets the maximum amount of blur. When using physically-based blur amounts, will instead act as a multiplier. High values lead to an increased amount of bluriness, but can be much more expensive to calculate. It is best to keep this as low as possible for a given art style.
    */
-  public var dofBlurAmount: Double
+  public var dofBlurAmount: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_GET_DOF_BLUR_AMOUNT, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_SET_DOF_BLUR_AMOUNT, NIL)
     }
@@ -144,16 +145,16 @@ public open class CameraAttributesPractical : CameraAttributes() {
   /**
    * The minimum sensitivity (in ISO) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing above a certain brightness, resulting in a cut off point where the scene will remain dark.
    */
-  public var autoExposureMinSensitivity: Double
+  public var autoExposureMinSensitivity: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_GET_AUTO_EXPOSURE_MIN_SENSITIVITY,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_SET_AUTO_EXPOSURE_MIN_SENSITIVITY, NIL)
     }
@@ -161,16 +162,16 @@ public open class CameraAttributesPractical : CameraAttributes() {
   /**
    * The maximum sensitivity (in ISO) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing below a certain brightness, resulting in a cut off point where the scene will remain bright.
    */
-  public var autoExposureMaxSensitivity: Double
+  public var autoExposureMaxSensitivity: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_GET_AUTO_EXPOSURE_MAX_SENSITIVITY,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPRACTICAL_SET_AUTO_EXPOSURE_MAX_SENSITIVITY, NIL)
     }

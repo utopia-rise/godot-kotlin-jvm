@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -19,20 +18,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Texture format (used by [godot.RenderingDevice]).
  *
- * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDTextureFormat : RefCounted() {
   /**
-   * The texture's pixel data format.
+   *
    */
   public var format: RenderingDevice.DataFormat
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_FORMAT, LONG)
-      return RenderingDevice.DataFormat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RenderingDevice.DataFormat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -40,86 +37,86 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   * The texture's width (in pixels).
+   *
    */
-  public var width: Long
+  public var width: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_WIDTH, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_WIDTH, NIL)
     }
 
   /**
-   * The texture's height (in pixels).
+   *
    */
-  public var height: Long
+  public var height: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_HEIGHT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_HEIGHT, NIL)
     }
 
   /**
-   * The texture's depth (in pixels). This is always `1` for 2D textures.
+   *
    */
-  public var depth: Long
+  public var depth: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_DEPTH, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_DEPTH, NIL)
     }
 
   /**
-   * The number of layers in the texture. Only relevant for 2D texture arrays.
+   *
    */
-  public var arrayLayers: Long
+  public var arrayLayers: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_ARRAY_LAYERS,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_ARRAY_LAYERS,
           NIL)
     }
 
   /**
-   * The number of mipmaps available in the texture.
+   *
    */
-  public var mipmaps: Long
+  public var mipmaps: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_MIPMAPS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_MIPMAPS, NIL)
     }
 
   /**
-   * The texture type.
+   *
    */
   public var textureType: RenderingDevice.TextureType
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_TEXTURE_TYPE,
           LONG)
-      return RenderingDevice.TextureType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RenderingDevice.TextureType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -128,13 +125,13 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   * The number of samples used when sampling the texture.
+   *
    */
   public var samples: RenderingDevice.TextureSamples
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_SAMPLES, LONG)
-      return RenderingDevice.TextureSamples.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RenderingDevice.TextureSamples.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -142,14 +139,14 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   * The texture's usage bits, which determine what can be done using the texture.
+   *
    */
   public var usageBits: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_USAGE_BITS,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, false) as Long
+      return (TransferContext.readReturnValue(OBJECT, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

@@ -16,7 +16,6 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -34,7 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides access to engine properties.
+ * Access to engine properties.
  *
  * The [godot.Engine] singleton allows you to query and modify the project's run-time parameters, such as frames per second, time scale, and others.
  */
@@ -45,30 +44,30 @@ public object Engine : Object() {
     return false
   }
 
-  public fun setPhysicsTicksPerSecond(physicsTicksPerSecond: Long): Unit {
-    TransferContext.writeArguments(LONG to physicsTicksPerSecond)
+  public fun setPhysicsTicksPerSecond(physicsTicksPerSecond: Int): Unit {
+    TransferContext.writeArguments(LONG to physicsTicksPerSecond.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PHYSICS_TICKS_PER_SECOND,
         NIL)
   }
 
-  public fun getPhysicsTicksPerSecond(): Long {
+  public fun getPhysicsTicksPerSecond(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_TICKS_PER_SECOND,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMaxPhysicsStepsPerFrame(maxPhysicsSteps: Long): Unit {
-    TransferContext.writeArguments(LONG to maxPhysicsSteps)
+  public fun setMaxPhysicsStepsPerFrame(maxPhysicsSteps: Int): Unit {
+    TransferContext.writeArguments(LONG to maxPhysicsSteps.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENGINE_SET_MAX_PHYSICS_STEPS_PER_FRAME, NIL)
   }
 
-  public fun getMaxPhysicsStepsPerFrame(): Long {
+  public fun getMaxPhysicsStepsPerFrame(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENGINE_GET_MAX_PHYSICS_STEPS_PER_FRAME, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun setPhysicsJitterFix(physicsJitterFix: Double): Unit {
@@ -80,7 +79,7 @@ public object Engine : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_JITTER_FIX,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
@@ -90,18 +89,18 @@ public object Engine : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_INTERPOLATION_FRACTION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setMaxFps(maxFps: Long): Unit {
-    TransferContext.writeArguments(LONG to maxFps)
+  public fun setMaxFps(maxFps: Int): Unit {
+    TransferContext.writeArguments(LONG to maxFps.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_MAX_FPS, NIL)
   }
 
-  public fun getMaxFps(): Long {
+  public fun getMaxFps(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_MAX_FPS, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun setTimeScale(timeScale: Double): Unit {
@@ -112,16 +111,16 @@ public object Engine : Object() {
   public fun getTimeScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_TIME_SCALE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
    * Returns the total number of frames drawn. On headless platforms, or if the render loop is disabled with `--disable-render-loop` via command line, [getFramesDrawn] always returns `0`. See [getProcessFrames].
    */
-  public fun getFramesDrawn(): Long {
+  public fun getFramesDrawn(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_FRAMES_DRAWN, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -131,7 +130,7 @@ public object Engine : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_FRAMES_PER_SECOND,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
@@ -178,7 +177,7 @@ public object Engine : Object() {
   public fun getPhysicsFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_FRAMES, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -225,7 +224,7 @@ public object Engine : Object() {
   public fun getProcessFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PROCESS_FRAMES, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -234,7 +233,7 @@ public object Engine : Object() {
   public fun getMainLoop(): MainLoop? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_MAIN_LOOP, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as MainLoop?
+    return (TransferContext.readReturnValue(OBJECT, true) as MainLoop?)
   }
 
   /**
@@ -299,7 +298,7 @@ public object Engine : Object() {
   public fun getVersionInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_VERSION_INFO, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -316,7 +315,7 @@ public object Engine : Object() {
   public fun getAuthorInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_AUTHOR_INFO, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -329,7 +328,7 @@ public object Engine : Object() {
   public fun getCopyrightInfo(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_COPYRIGHT_INFO, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -340,7 +339,7 @@ public object Engine : Object() {
   public fun getDonorInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_DONOR_INFO, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -349,7 +348,7 @@ public object Engine : Object() {
   public fun getLicenseInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_LICENSE_INFO, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -358,7 +357,7 @@ public object Engine : Object() {
   public fun getLicenseText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_LICENSE_TEXT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -400,7 +399,7 @@ public object Engine : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_ARCHITECTURE_NAME,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -409,7 +408,7 @@ public object Engine : Object() {
   public fun isInPhysicsFrame(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_IN_PHYSICS_FRAME, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -418,7 +417,7 @@ public object Engine : Object() {
   public fun hasSingleton(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_HAS_SINGLETON, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -427,7 +426,7 @@ public object Engine : Object() {
   public fun getSingleton(name: StringName): Object? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SINGLETON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Object?
+    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
 
   /**
@@ -453,7 +452,7 @@ public object Engine : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SINGLETON_LIST,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -471,7 +470,7 @@ public object Engine : Object() {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_REGISTER_SCRIPT_LANGUAGE,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -487,26 +486,26 @@ public object Engine : Object() {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_UNREGISTER_SCRIPT_LANGUAGE,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Returns the number of available script languages. Use with [getScriptLanguage].
    */
-  public fun getScriptLanguageCount(): Long {
+  public fun getScriptLanguageCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SCRIPT_LANGUAGE_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns an instance of a [godot.ScriptLanguage] with the given index.
    */
-  public fun getScriptLanguage(index: Long): ScriptLanguage? {
-    TransferContext.writeArguments(LONG to index)
+  public fun getScriptLanguage(index: Int): ScriptLanguage? {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SCRIPT_LANGUAGE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ScriptLanguage?
+    return (TransferContext.readReturnValue(OBJECT, true) as ScriptLanguage?)
   }
 
   /**
@@ -547,7 +546,7 @@ public object Engine : Object() {
   public fun isEditorHint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_EDITOR_HINT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -556,7 +555,7 @@ public object Engine : Object() {
   public fun getWriteMoviePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_WRITE_MOVIE_PATH, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public fun setPrintErrorMessages(enabled: Boolean): Unit {
@@ -569,6 +568,6 @@ public object Engine : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_PRINTING_ERROR_MESSAGES,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 }

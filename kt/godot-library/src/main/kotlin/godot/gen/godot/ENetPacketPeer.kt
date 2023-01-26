@@ -11,7 +11,6 @@ import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
@@ -32,19 +31,19 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     return true
   }
 
-  public fun peerDisconnect(`data`: Long = 0): Unit {
-    TransferContext.writeArguments(LONG to data)
+  public fun peerDisconnect(`data`: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to data.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT, NIL)
   }
 
-  public fun peerDisconnectLater(`data`: Long = 0): Unit {
-    TransferContext.writeArguments(LONG to data)
+  public fun peerDisconnectLater(`data`: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to data.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT_LATER, NIL)
   }
 
-  public fun peerDisconnectNow(`data`: Long = 0): Unit {
-    TransferContext.writeArguments(LONG to data)
+  public fun peerDisconnectNow(`data`: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to data.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT_NOW,
         NIL)
   }
@@ -54,8 +53,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PING, NIL)
   }
 
-  public fun pingInterval(pingInterval: Long): Unit {
-    TransferContext.writeArguments(LONG to pingInterval)
+  public fun pingInterval(pingInterval: Int): Unit {
+    TransferContext.writeArguments(LONG to pingInterval.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PING_INTERVAL, NIL)
   }
 
@@ -65,31 +64,31 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   public fun send(
-    channel: Long,
+    channel: Int,
     packet: PackedByteArray,
-    flags: Long,
+    flags: Int,
   ): GodotError {
-    TransferContext.writeArguments(LONG to channel, PACKED_BYTE_ARRAY to packet, LONG to flags)
+    TransferContext.writeArguments(LONG to channel.toLong(), PACKED_BYTE_ARRAY to packet, LONG to flags.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SEND, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public fun throttleConfigure(
-    interval: Long,
-    acceleration: Long,
-    deceleration: Long,
+    interval: Int,
+    acceleration: Int,
+    deceleration: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to interval, LONG to acceleration, LONG to deceleration)
+    TransferContext.writeArguments(LONG to interval.toLong(), LONG to acceleration.toLong(), LONG to deceleration.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_THROTTLE_CONFIGURE,
         NIL)
   }
 
   public fun setTimeout(
-    timeout: Long,
-    timeoutMin: Long,
-    timeoutMax: Long,
+    timeout: Int,
+    timeoutMin: Int,
+    timeoutMax: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to timeout, LONG to timeoutMin, LONG to timeoutMax)
+    TransferContext.writeArguments(LONG to timeout.toLong(), LONG to timeoutMin.toLong(), LONG to timeoutMax.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SET_TIMEOUT, NIL)
   }
 
@@ -97,39 +96,39 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_REMOTE_ADDRESS,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun getRemotePort(): Long {
+  public fun getRemotePort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_REMOTE_PORT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun getStatistic(statistic: PeerStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATISTIC,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   public fun getState(): PeerState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATE, LONG)
-    return ENetPacketPeer.PeerState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return ENetPacketPeer.PeerState.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
-  public fun getChannels(): Long {
+  public fun getChannels(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_CHANNELS, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_IS_ACTIVE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class PeerState(

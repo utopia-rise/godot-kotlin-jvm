@@ -15,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -47,7 +48,7 @@ public open class OccluderInstance3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_OCCLUDER,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Occluder3D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Occluder3D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -60,15 +61,15 @@ public open class OccluderInstance3D : Node3D() {
    *
    * To improve performance and avoid artifacts, it is recommended to exclude dynamic objects, small objects and fixtures from the baking process by moving them to a separate visual layer and excluding this layer in [bakeMask].
    */
-  public var bakeMask: Long
+  public var bakeMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_MASK,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_MASK,
           NIL)
     }
@@ -82,15 +83,15 @@ public open class OccluderInstance3D : Node3D() {
    *
    * **Note:** This uses the [meshoptimizer](https://meshoptimizer.org/) library under the hood, similar to LOD generation.
    */
-  public var bakeSimplificationDistance: Double
+  public var bakeSimplificationDistance: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_SIMPLIFICATION_DISTANCE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_SIMPLIFICATION_DISTANCE, NIL)
     }
@@ -103,8 +104,8 @@ public open class OccluderInstance3D : Node3D() {
   /**
    * Based on [value], enables or disables the specified layer in the [bakeMask], given a [layerNumber] between 1 and 32.
    */
-  public fun setBakeMaskValue(layerNumber: Long, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
+  public fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_MASK_VALUE, NIL)
   }
@@ -112,11 +113,11 @@ public open class OccluderInstance3D : Node3D() {
   /**
    * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [layerNumber] between 1 and 32.
    */
-  public fun getBakeMaskValue(layerNumber: Long): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber)
+  public fun getBakeMaskValue(layerNumber: Int): Boolean {
+    TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_MASK_VALUE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

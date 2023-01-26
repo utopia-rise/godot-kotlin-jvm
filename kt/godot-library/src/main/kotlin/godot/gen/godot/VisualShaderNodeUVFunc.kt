@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -31,7 +30,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUVFUNC_GET_FUNCTION, LONG)
-      return VisualShaderNodeUVFunc.Function.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeUVFunc.Function.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

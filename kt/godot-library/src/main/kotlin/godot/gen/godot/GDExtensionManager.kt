@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
@@ -38,7 +37,7 @@ public object GDExtensionManager : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_LOAD_EXTENSION,
         LONG)
-    return GDExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GDExtensionManager.LoadStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -48,7 +47,7 @@ public object GDExtensionManager : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_RELOAD_EXTENSION,
         LONG)
-    return GDExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GDExtensionManager.LoadStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -58,7 +57,7 @@ public object GDExtensionManager : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_UNLOAD_EXTENSION,
         LONG)
-    return GDExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GDExtensionManager.LoadStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -68,7 +67,7 @@ public object GDExtensionManager : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_IS_EXTENSION_LOADED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -78,7 +77,7 @@ public object GDExtensionManager : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_GET_LOADED_EXTENSIONS, PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -88,7 +87,7 @@ public object GDExtensionManager : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_GET_EXTENSION,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as GDExtension?
+    return (TransferContext.readReturnValue(OBJECT, true) as GDExtension?)
   }
 
   public enum class LoadStatus(

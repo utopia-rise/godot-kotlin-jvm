@@ -14,7 +14,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -58,7 +57,7 @@ public open class TileMap : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_TILESET, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as TileSet?
+      return (TransferContext.readReturnValue(OBJECT, true) as TileSet?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -68,28 +67,28 @@ public open class TileMap : Node2D() {
   /**
    * The TileMap's quadrant size. Optimizes drawing by batching, using chunks of this size.
    */
-  public var cellQuadrantSize: Long
+  public var cellQuadrantSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_QUADRANT_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_QUADRANT_SIZE, NIL)
     }
 
   /**
    * If enabled, the TileMap will see its collisions synced to the physics tick and change its collision type from static to kinematic. This is required to create TileMap-based moving platform.
    *
-   * **Note:** Enabling [collisionAnimatable] may have a small performance impact, only do it if the TileMap is moving and has colliding tiles.
+   * **Note:** Enabling `collision_animatable` may have a small performance impact, only do it if the TileMap is moving and has colliding tiles.
    */
   public var collisionAnimatable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_COLLISION_ANIMATABLE,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -105,7 +104,7 @@ public open class TileMap : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_VISIBILITY_MODE, LONG)
-      return TileMap.VisibilityMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TileMap.VisibilityMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -121,7 +120,7 @@ public open class TileMap : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_VISIBILITY_MODE, LONG)
-      return TileMap.VisibilityMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TileMap.VisibilityMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -139,7 +138,7 @@ public open class TileMap : Node2D() {
    *
    * **Warning:** Make sure this function only return `true` when needed. Any tile processed at runtime without a need for it will imply a significant performance penalty.
    */
-  public open fun _useTileDataRuntimeUpdate(layer: Long, coords: Vector2i): Boolean {
+  public open fun _useTileDataRuntimeUpdate(layer: Int, coords: Vector2i): Boolean {
     throw NotImplementedError("_use_tile_data_runtime_update is not implemented for TileMap")
   }
 
@@ -153,7 +152,7 @@ public open class TileMap : Node2D() {
    * **Note:** If the properties of [tileData] object should change over time, use [forceUpdate] to trigger a TileMap update.
    */
   public open fun _tileDataRuntimeUpdate(
-    layer: Long,
+    layer: Int,
     coords: Vector2i,
     tileData: TileData,
   ): Unit {
@@ -162,53 +161,53 @@ public open class TileMap : Node2D() {
   /**
    * Returns the number of layers in the TileMap.
    */
-  public fun getLayersCount(): Long {
+  public fun getLayersCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYERS_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Adds a layer at the given position [toPosition] in the array. If [toPosition] is negative, the position is counted from the end, with `-1` adding the layer at the end of the array.
    */
-  public fun addLayer(toPosition: Long): Unit {
-    TransferContext.writeArguments(LONG to toPosition)
+  public fun addLayer(toPosition: Int): Unit {
+    TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_ADD_LAYER, NIL)
   }
 
   /**
    * Moves the layer at index [layer] to the given position [toPosition] in the array.
    */
-  public fun moveLayer(layer: Long, toPosition: Long): Unit {
-    TransferContext.writeArguments(LONG to layer, LONG to toPosition)
+  public fun moveLayer(layer: Int, toPosition: Int): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MOVE_LAYER, NIL)
   }
 
   /**
    * Removes the layer at index [layer].
    */
-  public fun removeLayer(layer: Long): Unit {
-    TransferContext.writeArguments(LONG to layer)
+  public fun removeLayer(layer: Int): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_REMOVE_LAYER, NIL)
   }
 
   /**
    * Sets a layer's name. This is mostly useful in the editor.
    *
-   * If [layer] is negative, the layers are accessed from the last one.
+   * If `layer` is negative, the layers are accessed from the last one.
    */
-  public fun setLayerName(layer: Long, name: String): Unit {
-    TransferContext.writeArguments(LONG to layer, STRING to name)
+  public fun setLayerName(layer: Int, name: String): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_NAME, NIL)
   }
 
   /**
    * Returns a TileMap layer's name.
    */
-  public fun getLayerName(layer: Long): String {
-    TransferContext.writeArguments(LONG to layer)
+  public fun getLayerName(layer: Int): String {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -216,37 +215,37 @@ public open class TileMap : Node2D() {
    *
    * If [layer] is negative, the layers are accessed from the last one.
    */
-  public fun setLayerEnabled(layer: Long, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layer, BOOL to enabled)
+  public fun setLayerEnabled(layer: Int, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_ENABLED, NIL)
   }
 
   /**
    * Returns if a layer is enabled.
    */
-  public fun isLayerEnabled(layer: Long): Boolean {
-    TransferContext.writeArguments(LONG to layer)
+  public fun isLayerEnabled(layer: Int): Boolean {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_LAYER_ENABLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Sets a layer's color. It will be multiplied by tile's color and TileMap's modulate.
    *
-   * If [layer] is negative, the layers are accessed from the last one.
+   * If `layer` is negative, the layers are accessed from the last one.
    */
-  public fun setLayerModulate(layer: Long, modulate: Color): Unit {
-    TransferContext.writeArguments(LONG to layer, COLOR to modulate)
+  public fun setLayerModulate(layer: Int, modulate: Color): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_MODULATE, NIL)
   }
 
   /**
    * Returns a TileMap layer's modulate.
    */
-  public fun getLayerModulate(layer: Long): Color {
-    TransferContext.writeArguments(LONG to layer)
+  public fun getLayerModulate(layer: Int): Color {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_MODULATE, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
@@ -254,10 +253,10 @@ public open class TileMap : Node2D() {
    *
    * Y-sorted layers should usually be on different Z-index values than not Y-sorted layers, otherwise, each of those layer will be Y-sorted as whole with the Y-sorted one. This is usually an undesired behavior.
    *
-   * If [layer] is negative, the layers are accessed from the last one.
+   * If `layer` is negative, the layers are accessed from the last one.
    */
-  public fun setLayerYSortEnabled(layer: Long, ySortEnabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layer, BOOL to ySortEnabled)
+  public fun setLayerYSortEnabled(layer: Int, ySortEnabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), BOOL to ySortEnabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Y_SORT_ENABLED,
         NIL)
   }
@@ -265,11 +264,11 @@ public open class TileMap : Node2D() {
   /**
    * Returns if a layer Y-sorts its tiles.
    */
-  public fun isLayerYSortEnabled(layer: Long): Boolean {
-    TransferContext.writeArguments(LONG to layer)
+  public fun isLayerYSortEnabled(layer: Int): Boolean {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_LAYER_Y_SORT_ENABLED,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -277,10 +276,10 @@ public open class TileMap : Node2D() {
    *
    * This allows, for example, to fake a different height level on each layer. This can be useful for top-down view games.
    *
-   * If [layer] is negative, the layers are accessed from the last one.
+   * If `layer` is negative, the layers are accessed from the last one.
    */
-  public fun setLayerYSortOrigin(layer: Long, ySortOrigin: Long): Unit {
-    TransferContext.writeArguments(LONG to layer, LONG to ySortOrigin)
+  public fun setLayerYSortOrigin(layer: Int, ySortOrigin: Int): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), LONG to ySortOrigin.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Y_SORT_ORIGIN,
         NIL)
   }
@@ -288,30 +287,30 @@ public open class TileMap : Node2D() {
   /**
    * Returns a TileMap layer's Y sort origin.
    */
-  public fun getLayerYSortOrigin(layer: Long): Long {
-    TransferContext.writeArguments(LONG to layer)
+  public fun getLayerYSortOrigin(layer: Int): Int {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_Y_SORT_ORIGIN,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets a layers Z-index value. This Z-index is added to each tile's Z-index value.
    *
-   * If [layer] is negative, the layers are accessed from the last one.
+   * If `layer` is negative, the layers are accessed from the last one.
    */
-  public fun setLayerZIndex(layer: Long, zIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to layer, LONG to zIndex)
+  public fun setLayerZIndex(layer: Int, zIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), LONG to zIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Z_INDEX, NIL)
   }
 
   /**
    * Returns a TileMap layer's Z-index value.
    */
-  public fun getLayerZIndex(layer: Long): Long {
-    TransferContext.writeArguments(LONG to layer)
+  public fun getLayerZIndex(layer: Int): Int {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_Z_INDEX, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -321,8 +320,8 @@ public open class TileMap : Node2D() {
    *
    * In order to make [godot.NavigationAgent2D] switch between TileMap layer navigation maps use [godot.NavigationAgent2D.setNavigationMap] with the navigation map received from [getNavigationMap].
    */
-  public fun setNavigationMap(layer: Long, map: RID): Unit {
-    TransferContext.writeArguments(LONG to layer, _RID to map)
+  public fun setNavigationMap(layer: Int, map: RID): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), _RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_NAVIGATION_MAP, NIL)
   }
 
@@ -333,10 +332,10 @@ public open class TileMap : Node2D() {
    *
    * In order to make [godot.NavigationAgent2D] switch between TileMap layer navigation maps use [godot.NavigationAgent2D.setNavigationMap] with the navigation map received from [getNavigationMap].
    */
-  public fun getNavigationMap(layer: Long): RID {
-    TransferContext.writeArguments(LONG to layer)
+  public fun getNavigationMap(layer: Int): RID {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_MAP, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -351,21 +350,21 @@ public open class TileMap : Node2D() {
    * If [sourceId] is set to `-1`, [atlasCoords] to `Vector2i(-1, -1)` or [alternativeTile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
    */
   public fun setCell(
-    layer: Long,
+    layer: Int,
     coords: Vector2i,
-    sourceId: Long = -1,
+    sourceId: Int = -1,
     atlasCoords: Vector2i = Vector2i(-1, -1),
-    alternativeTile: Long = 0,
+    alternativeTile: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)
+    TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, LONG to sourceId.toLong(), VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL, NIL)
   }
 
   /**
    * Erases the cell on layer [layer] at coordinates [coords].
    */
-  public fun eraseCell(layer: Long, coords: Vector2i): Unit {
-    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords)
+  public fun eraseCell(layer: Int, coords: Vector2i): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_ERASE_CELL, NIL)
   }
 
@@ -375,41 +374,41 @@ public open class TileMap : Node2D() {
    * If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
   public fun getCellSourceId(
-    layer: Long,
+    layer: Int,
     coords: Vector2i,
     useProxies: Boolean = false,
-  ): Long {
-    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
+  ): Int {
+    TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_SOURCE_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the tile atlas coordinates ID of the cell on layer [layer] at coordinates [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
   public fun getCellAtlasCoords(
-    layer: Long,
+    layer: Int,
     coords: Vector2i,
     useProxies: Boolean = false,
   ): Vector2i {
-    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
+    TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ATLAS_COORDS,
         VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
    * Returns the tile alternative ID of the cell on layer [layer] at [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
   public fun getCellAlternativeTile(
-    layer: Long,
+    layer: Int,
     coords: Vector2i,
     useProxies: Boolean = false,
-  ): Long {
-    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
+  ): Int {
+    TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ALTERNATIVE_TILE,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -428,13 +427,13 @@ public open class TileMap : Node2D() {
    * 				```
    */
   public fun getCellTileData(
-    layer: Long,
+    layer: Int,
     coords: Vector2i,
     useProxies: Boolean = false,
   ): TileData? {
-    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
+    TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_TILE_DATA, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TileData?
+    return (TransferContext.readReturnValue(OBJECT, true) as TileData?)
   }
 
   /**
@@ -444,26 +443,23 @@ public open class TileMap : Node2D() {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COORDS_FOR_BODY_RID,
         VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
-  /**
-   * Returns the tilemap layer of the tile for given physics body RID. Such RID can be retrieved from [godot.KinematicCollision2D.getColliderRid], when colliding with a tile.
-   */
-  public fun getLayerForBodyRid(body: RID): Long {
+  public fun getLayerForBodyRid(body: RID): Int {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_FOR_BODY_RID,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Creates a new [godot.TileMapPattern] from the given layer and set of cells.
    */
-  public fun getPattern(layer: Long, coordsArray: VariantArray<Vector2i>): TileMapPattern? {
-    TransferContext.writeArguments(LONG to layer, ARRAY to coordsArray)
+  public fun getPattern(layer: Int, coordsArray: VariantArray<Vector2i>): TileMapPattern? {
+    TransferContext.writeArguments(LONG to layer.toLong(), ARRAY to coordsArray)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_PATTERN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TileMapPattern?
+    return (TransferContext.readReturnValue(OBJECT, true) as TileMapPattern?)
   }
 
   /**
@@ -476,18 +472,18 @@ public open class TileMap : Node2D() {
   ): Vector2i {
     TransferContext.writeArguments(VECTOR2I to positionInTilemap, VECTOR2I to coordsInPattern, OBJECT to pattern)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_PATTERN, VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
    * Paste the given [godot.TileMapPattern] at the given [position] and [layer] in the tile map.
    */
   public fun setPattern(
-    layer: Long,
+    layer: Int,
     position: Vector2i,
     pattern: TileMapPattern,
   ): Unit {
-    TransferContext.writeArguments(LONG to layer, VECTOR2I to position, OBJECT to pattern)
+    TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to position, OBJECT to pattern)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_PATTERN, NIL)
   }
 
@@ -496,16 +492,16 @@ public open class TileMap : Node2D() {
    *
    * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
    *
-   * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+   * **Note:** To work correctly, `set_cells_terrain_connect` requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
   public fun setCellsTerrainConnect(
-    layer: Long,
+    layer: Int,
     cells: VariantArray<Vector2i>,
-    terrainSet: Long,
-    terrain: Long,
+    terrainSet: Int,
+    terrain: Int,
     ignoreEmptyTerrains: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(LONG to layer, ARRAY to cells, LONG to terrainSet, LONG to terrain, BOOL to ignoreEmptyTerrains)
+    TransferContext.writeArguments(LONG to layer.toLong(), ARRAY to cells, LONG to terrainSet.toLong(), LONG to terrain.toLong(), BOOL to ignoreEmptyTerrains)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_TERRAIN_CONNECT,
         NIL)
   }
@@ -515,16 +511,16 @@ public open class TileMap : Node2D() {
    *
    * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
    *
-   * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+   * **Note:** To work correctly, `set_cells_terrain_path` requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
   public fun setCellsTerrainPath(
-    layer: Long,
+    layer: Int,
     path: VariantArray<Vector2i>,
-    terrainSet: Long,
-    terrain: Long,
+    terrainSet: Int,
+    terrain: Int,
     ignoreEmptyTerrains: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(LONG to layer, ARRAY to path, LONG to terrainSet, LONG to terrain, BOOL to ignoreEmptyTerrains)
+    TransferContext.writeArguments(LONG to layer.toLong(), ARRAY to path, LONG to terrainSet.toLong(), LONG to terrain.toLong(), BOOL to ignoreEmptyTerrains)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_TERRAIN_PATH, NIL)
   }
 
@@ -539,8 +535,8 @@ public open class TileMap : Node2D() {
   /**
    * Clears all cells on the given layer.
    */
-  public fun clearLayer(layer: Long): Unit {
-    TransferContext.writeArguments(LONG to layer)
+  public fun clearLayer(layer: Int): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_CLEAR_LAYER, NIL)
   }
 
@@ -559,8 +555,8 @@ public open class TileMap : Node2D() {
    *
    * **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of updates and the tiles they impact (by placing frequently updated tiles in a dedicated layer for example).
    */
-  public fun forceUpdate(layer: Long = -1): Unit {
-    TransferContext.writeArguments(LONG to layer)
+  public fun forceUpdate(layer: Int = -1): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FORCE_UPDATE, NIL)
   }
 
@@ -571,16 +567,16 @@ public open class TileMap : Node2D() {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SURROUNDING_CELLS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
   }
 
   /**
    * Returns a [godot.Vector2i] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
    */
-  public fun getUsedCells(layer: Long): VariantArray<Vector2i> {
-    TransferContext.writeArguments(LONG to layer)
+  public fun getUsedCells(layer: Int): VariantArray<Vector2i> {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
   }
 
   /**
@@ -591,14 +587,14 @@ public open class TileMap : Node2D() {
    * A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
    */
   public fun getUsedCellsById(
-    layer: Long,
-    sourceId: Long = -1,
+    layer: Int,
+    sourceId: Int = -1,
     atlasCoords: Vector2i = Vector2i(-1, -1),
-    alternativeTile: Long = -1,
+    alternativeTile: Int = -1,
   ): VariantArray<Vector2i> {
-    TransferContext.writeArguments(LONG to layer, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)
+    TransferContext.writeArguments(LONG to layer.toLong(), LONG to sourceId.toLong(), VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS_BY_ID, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
   }
 
   /**
@@ -607,7 +603,7 @@ public open class TileMap : Node2D() {
   public fun getUsedRect(): Rect2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_RECT, RECT2I)
-    return TransferContext.readReturnValue(RECT2I, false) as Rect2i
+    return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
   }
 
   /**
@@ -618,7 +614,7 @@ public open class TileMap : Node2D() {
   public fun mapToLocal(mapPosition: Vector2i): Vector2 {
     TransferContext.writeArguments(VECTOR2I to mapPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_TO_LOCAL, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -627,7 +623,7 @@ public open class TileMap : Node2D() {
   public fun localToMap(localPosition: Vector2): Vector2i {
     TransferContext.writeArguments(VECTOR2 to localPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_LOCAL_TO_MAP, VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
@@ -636,7 +632,7 @@ public open class TileMap : Node2D() {
   public fun getNeighborCell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i {
     TransferContext.writeArguments(VECTOR2I to coords, LONG to neighbor.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NEIGHBOR_CELL, VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   public enum class VisibilityMode(

@@ -293,7 +293,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * [/codeblocks]
    */
-  public open fun _forward3dGuiInput(viewportCamera: Camera3D, event: InputEvent): Long {
+  public open fun _forward3dGuiInput(viewportCamera: Camera3D, event: InputEvent): Int {
     throw NotImplementedError("_forward_3d_gui_input is not implemented for EditorPlugin")
   }
 
@@ -613,7 +613,7 @@ public open class EditorPlugin internal constructor() : Node() {
     TransferContext.writeArguments(OBJECT to control, STRING to title)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_BOTTOM_PANEL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Button?
+    return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
   /**
@@ -690,7 +690,7 @@ public open class EditorPlugin internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_EXPORT_AS_MENU,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+    return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
   }
 
   /**
@@ -746,10 +746,10 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Updates the overlays of the 2D and 3D editor viewport. Causes methods [_forwardCanvasDrawOverViewport], [_forwardCanvasForceDrawOverViewport], [_forward3dDrawOverViewport] and [_forward3dForceDrawOverViewport] to be called.
    */
-  public fun updateOverlays(): Long {
+  public fun updateOverlays(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_UPDATE_OVERLAYS, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -775,7 +775,7 @@ public open class EditorPlugin internal constructor() : Node() {
   public fun getUndoRedo(): EditorUndoRedoManager? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_UNDO_REDO, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorUndoRedoManager?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorUndoRedoManager?)
   }
 
   /**
@@ -1011,13 +1011,13 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Returns the [godot.EditorInterface] singleton. It provides access to some parts of the editor GUI as well as various inner states and tools.
+   * Returns the [godot.EditorInterface] object that gives you control over Godot editor's window and its functionalities.
    */
   public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_EDITOR_INTERFACE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorInterface?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorInterface?)
   }
 
   /**
@@ -1031,7 +1031,7 @@ public open class EditorPlugin internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_SCRIPT_CREATE_DIALOG, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ScriptCreateDialog?
+    return (TransferContext.readReturnValue(OBJECT, true) as ScriptCreateDialog?)
   }
 
   /**

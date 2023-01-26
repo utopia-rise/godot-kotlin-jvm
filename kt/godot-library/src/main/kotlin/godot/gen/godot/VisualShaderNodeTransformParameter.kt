@@ -32,7 +32,7 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMPARAMETER_IS_DEFAULT_VALUE_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -50,7 +50,7 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMPARAMETER_GET_DEFAULT_VALUE,
           TRANSFORM3D)
-      return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)

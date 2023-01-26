@@ -16,6 +16,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
@@ -38,7 +39,7 @@ public open class ProceduralSkyMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_TOP_COLOR, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -54,7 +55,7 @@ public open class ProceduralSkyMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_HORIZON_COLOR, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -65,15 +66,15 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * How quickly the [skyHorizonColor] fades into the [skyTopColor].
    */
-  public var skyCurve: Double
+  public var skyCurve: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_CURVE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_CURVE, NIL)
     }
@@ -81,15 +82,15 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Multiplier for sky color. A higher value will make the sky brighter.
    */
-  public var skyEnergyMultiplier: Double
+  public var skyEnergyMultiplier: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_ENERGY_MULTIPLIER, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_ENERGY_MULTIPLIER, NIL)
     }
@@ -102,7 +103,7 @@ public open class ProceduralSkyMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_COVER, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -118,7 +119,7 @@ public open class ProceduralSkyMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_COVER_MODULATE, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -134,7 +135,7 @@ public open class ProceduralSkyMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_BOTTOM_COLOR, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -150,7 +151,7 @@ public open class ProceduralSkyMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_HORIZON_COLOR, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -161,15 +162,15 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * How quickly the [groundHorizonColor] fades into the [groundBottomColor].
    */
-  public var groundCurve: Double
+  public var groundCurve: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_CURVE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_CURVE, NIL)
     }
@@ -177,15 +178,15 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Multiplier for ground color. A higher value will make the ground brighter.
    */
-  public var groundEnergyMultiplier: Double
+  public var groundEnergyMultiplier: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_ENERGY_MULTIPLIER, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_ENERGY_MULTIPLIER, NIL)
     }
@@ -193,15 +194,15 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Distance from center of sun where it fades out completely.
    */
-  public var sunAngleMax: Double
+  public var sunAngleMax: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SUN_ANGLE_MAX, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SUN_ANGLE_MAX, NIL)
     }
@@ -209,15 +210,15 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * How quickly the sun fades away between the edge of the sun disk and [sunAngleMax].
    */
-  public var sunCurve: Double
+  public var sunCurve: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SUN_CURVE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SUN_CURVE, NIL)
     }
@@ -230,7 +231,7 @@ public open class ProceduralSkyMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_USE_DEBANDING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

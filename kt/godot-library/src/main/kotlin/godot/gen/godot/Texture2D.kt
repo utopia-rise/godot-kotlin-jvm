@@ -48,21 +48,21 @@ public open class Texture2D : Texture() {
   /**
    * Called when the [godot.Texture2D]'s width is queried.
    */
-  public open fun _getWidth(): Long {
+  public open fun _getWidth(): Int {
     throw NotImplementedError("_get_width is not implemented for Texture2D")
   }
 
   /**
    * Called when the [godot.Texture2D]'s height is queried.
    */
-  public open fun _getHeight(): Long {
+  public open fun _getHeight(): Int {
     throw NotImplementedError("_get_height is not implemented for Texture2D")
   }
 
   /**
    * Called when a pixel's opaque state in the [godot.Texture2D] is queried at the specified `(x, y)` position.
    */
-  public open fun _isPixelOpaque(x: Long, y: Long): Boolean {
+  public open fun _isPixelOpaque(x: Int, y: Int): Boolean {
     throw NotImplementedError("_is_pixel_opaque is not implemented for Texture2D")
   }
 
@@ -118,19 +118,19 @@ public open class Texture2D : Texture() {
   /**
    * Returns the texture width in pixels.
    */
-  public fun getWidth(): Long {
+  public fun getWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_WIDTH, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the texture height in pixels.
    */
-  public fun getHeight(): Long {
+  public fun getHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_HEIGHT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -139,7 +139,7 @@ public open class Texture2D : Texture() {
   public fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_SIZE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -148,7 +148,7 @@ public open class Texture2D : Texture() {
   public fun hasAlpha(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_HAS_ALPHA, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -201,7 +201,7 @@ public open class Texture2D : Texture() {
   public fun getImage(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_IMAGE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Image?
+    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
   /**
@@ -211,7 +211,7 @@ public open class Texture2D : Texture() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_CREATE_PLACEHOLDER,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Resource?
+    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
   public companion object

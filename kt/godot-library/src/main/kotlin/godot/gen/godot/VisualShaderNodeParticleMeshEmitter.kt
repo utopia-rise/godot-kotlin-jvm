@@ -32,7 +32,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_GET_MESH, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Mesh?
+      return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -48,7 +48,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_IS_USE_ALL_SURFACES, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -59,15 +59,15 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   /**
    * Index of the surface that emits particles. [useAllSurfaces] must be `false` for this to take effect.
    */
-  public var surfaceIndex: Long
+  public var surfaceIndex: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_GET_SURFACE_INDEX, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_SURFACE_INDEX, NIL)
     }

@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
@@ -46,21 +45,21 @@ public open class Texture3D : Texture() {
   /**
    * Called when the [godot.Texture3D]'s width is queried.
    */
-  public open fun _getWidth(): Long {
+  public open fun _getWidth(): Int {
     throw NotImplementedError("_get_width is not implemented for Texture3D")
   }
 
   /**
    * Called when the [godot.Texture3D]'s height is queried.
    */
-  public open fun _getHeight(): Long {
+  public open fun _getHeight(): Int {
     throw NotImplementedError("_get_height is not implemented for Texture3D")
   }
 
   /**
    * Called when the [godot.Texture3D]'s depth is queried.
    */
-  public open fun _getDepth(): Long {
+  public open fun _getDepth(): Int {
     throw NotImplementedError("_get_depth is not implemented for Texture3D")
   }
 
@@ -84,34 +83,34 @@ public open class Texture3D : Texture() {
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_FORMAT, LONG)
-    return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Image.Format.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Returns the [godot.Texture3D]'s width in pixels. Width is typically represented by the X axis.
    */
-  public fun getWidth(): Long {
+  public fun getWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_WIDTH, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the [godot.Texture3D]'s height in pixels. Width is typically represented by the Y axis.
    */
-  public fun getHeight(): Long {
+  public fun getHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_HEIGHT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the [godot.Texture3D]'s depth in pixels. Depth is typically represented by the Z axis (a dimension not present in [godot.Texture2D]).
    */
-  public fun getDepth(): Long {
+  public fun getDepth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DEPTH, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -120,7 +119,7 @@ public open class Texture3D : Texture() {
   public fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_HAS_MIPMAPS, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -129,7 +128,7 @@ public open class Texture3D : Texture() {
   public fun getData(): VariantArray<Image> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DATA, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>)
   }
 
   /**
@@ -139,7 +138,7 @@ public open class Texture3D : Texture() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_CREATE_PLACEHOLDER,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Resource?
+    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
   public companion object

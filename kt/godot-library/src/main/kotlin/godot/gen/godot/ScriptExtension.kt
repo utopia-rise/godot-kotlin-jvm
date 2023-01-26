@@ -14,7 +14,6 @@ import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -199,7 +198,7 @@ public open class ScriptExtension : Script() {
   /**
    *
    */
-  public open fun _getMemberLine(member: StringName): Long {
+  public open fun _getMemberLine(member: StringName): Int {
     throw NotImplementedError("_get_member_line is not implemented for ScriptExtension")
   }
 

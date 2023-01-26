@@ -13,12 +13,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Base class for resource importers.
+ * Base class for the implementation of core resource importers.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/plugins/editor/import_plugins.html]($DOCS_URL/tutorials/plugins/editor/import_plugins.html)
  *
- * This is the base class for Godot's resource importers. To implement your own resource importers using editor plugins, see [godot.EditorImportPlugin].
+ * This is the base class for the resource importers implemented in core. To implement your own resource importers using editor plugins, see [godot.EditorImportPlugin].
  */
 @GodotBaseType
 public open class ResourceImporter internal constructor() : RefCounted() {

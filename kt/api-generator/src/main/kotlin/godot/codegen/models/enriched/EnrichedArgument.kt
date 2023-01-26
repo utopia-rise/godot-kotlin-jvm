@@ -6,11 +6,11 @@ import godot.tools.common.extensions.escapeKotlinReservedNames
 import godot.codegen.extensions.getTypeClassName
 import godot.codegen.workarounds.sanitizeApiType
 import godot.codegen.models.Argument
+import godot.codegen.traits.CastableTrait
 import godot.codegen.traits.NullableTrait
-import godot.codegen.traits.TypedTrait
 import godot.codegen.traits.WithDefaultValueTrait
 
-class EnrichedArgument(val internal: Argument) : TypedTrait, NullableTrait, WithDefaultValueTrait {
+class EnrichedArgument(val internal: Argument) : CastableTrait, NullableTrait, WithDefaultValueTrait {
     val name = internal.name.convertToCamelCase().escapeKotlinReservedNames()
     override val nullable = if (internal.defaultValue == "null") {
         true
@@ -20,6 +20,7 @@ class EnrichedArgument(val internal: Argument) : TypedTrait, NullableTrait, With
 
     override val type = internal.type.sanitizeApiType()
     override val defaultValue = internal.defaultValue
+    override val meta: String? = internal.meta
 }
 
 fun List<Argument>.toEnriched() = map { EnrichedArgument(it) }

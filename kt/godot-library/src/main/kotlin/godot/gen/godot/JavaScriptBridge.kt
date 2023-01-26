@@ -13,7 +13,6 @@ import godot.core.PackedByteArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -25,6 +24,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -59,7 +59,7 @@ public object JavaScriptBridge : Object() {
   public fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to code, BOOL to useGlobalExecutionContext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_EVAL, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -69,7 +69,7 @@ public object JavaScriptBridge : Object() {
     TransferContext.writeArguments(STRING to _interface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_GET_INTERFACE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?
+    return (TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?)
   }
 
   /**
@@ -79,7 +79,7 @@ public object JavaScriptBridge : Object() {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_CREATE_CALLBACK,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?
+    return (TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?)
   }
 
   /**
@@ -88,7 +88,7 @@ public object JavaScriptBridge : Object() {
   public fun createObject(_object: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to _object,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_CREATE_OBJECT, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -119,7 +119,7 @@ public object JavaScriptBridge : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_PWA_NEEDS_UPDATE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -132,7 +132,7 @@ public object JavaScriptBridge : Object() {
   public fun pwaUpdate(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_PWA_UPDATE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**

@@ -12,7 +12,6 @@ import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -80,7 +79,7 @@ import kotlin.Unit
  *
  *     var body = JSON.new().stringify({"name": "Godette"})
  *
- *     error = http_request.request("https://httpbin.org/post", [], HTTPClient.METHOD_POST, body)
+ *     error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
  *
  *     if error != OK:
  *
@@ -150,7 +149,7 @@ import kotlin.Unit
  *
  *     });
  *
- *     error = httpRequest.Request("https://httpbin.org/post", null, HTTPClient.Method.Post, body);
+ *     error = httpRequest.Request("https://httpbin.org/post", null, true, HTTPClient.Method.Post, body);
  *
  *     if (error != Error.Ok)
  *
@@ -346,7 +345,7 @@ public open class HTTPRequest : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_FILE,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -359,15 +358,15 @@ public open class HTTPRequest : Node() {
    *
    * Set this to a lower value (e.g. 4096 for 4 KiB) when downloading small files to decrease memory usage at the cost of download speeds.
    */
-  public var downloadChunkSize: Long
+  public var downloadChunkSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_CHUNK_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_CHUNK_SIZE, NIL)
     }
@@ -380,7 +379,7 @@ public open class HTTPRequest : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_USING_THREADS,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -401,7 +400,7 @@ public open class HTTPRequest : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_ACCEPTING_GZIP,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -411,15 +410,15 @@ public open class HTTPRequest : Node() {
   /**
    * Maximum allowed size for response bodies. If the response body is compressed, this will be used as the maximum allowed size for the decompressed body.
    */
-  public var bodySizeLimit: Long
+  public var bodySizeLimit: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE_LIMIT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_BODY_SIZE_LIMIT,
           NIL)
     }
@@ -427,27 +426,27 @@ public open class HTTPRequest : Node() {
   /**
    * Maximum number of allowed redirects.
    */
-  public var maxRedirects: Long
+  public var maxRedirects: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_MAX_REDIRECTS,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_MAX_REDIRECTS,
           NIL)
     }
 
   /**
-   * The duration to wait in seconds before a request times out. If [timeout] is set to `0.0` then the request will never time out. For simple requests, such as communication with a REST API, it is recommended that [timeout] is set to a value suitable for the server response time (e.g. between `1.0` and `10.0`). This will help prevent unwanted timeouts caused by variation in server response times while still allowing the application to detect when a request has timed out. For larger requests such as file downloads it is suggested the [timeout] be set to `0.0`, disabling the timeout functionality. This will help to prevent large transfers from failing due to exceeding the timeout value.
+   * If set to a value greater than `0.0` before the request starts, the HTTP request will time out after `timeout` seconds have passed and the request is not *completed* yet. For small HTTP requests such as REST API usage, set [timeout] to a value between `10.0` and `30.0` to prevent the application from getting stuck if the request fails to get a response in a timely manner. For file downloads, leave this to `0.0` to prevent the download from failing if it takes too much time.
    */
   public var timeout: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_TIMEOUT, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -476,7 +475,7 @@ public open class HTTPRequest : Node() {
   ): GodotError {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, STRING to requestData)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -492,7 +491,7 @@ public open class HTTPRequest : Node() {
   ): GodotError {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -518,17 +517,17 @@ public open class HTTPRequest : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_HTTP_CLIENT_STATUS,
         LONG)
-    return HTTPClient.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return HTTPClient.Status.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Returns the number of bytes this HTTPRequest downloaded.
    */
-  public fun getDownloadedBytes(): Long {
+  public fun getDownloadedBytes(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOADED_BYTES,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -536,10 +535,10 @@ public open class HTTPRequest : Node() {
    *
    * **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.
    */
-  public fun getBodySize(): Long {
+  public fun getBodySize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -547,8 +546,8 @@ public open class HTTPRequest : Node() {
    *
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
-  public fun setHttpProxy(host: String, port: Long): Unit {
-    TransferContext.writeArguments(STRING to host, LONG to port)
+  public fun setHttpProxy(host: String, port: Int): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTP_PROXY, NIL)
   }
 
@@ -557,8 +556,8 @@ public open class HTTPRequest : Node() {
    *
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
-  public fun setHttpsProxy(host: String, port: Long): Unit {
-    TransferContext.writeArguments(STRING to host, LONG to port)
+  public fun setHttpsProxy(host: String, port: Int): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTPS_PROXY, NIL)
   }
 
@@ -618,7 +617,7 @@ public open class HTTPRequest : Node() {
      */
     RESULT_REDIRECT_LIMIT_REACHED(12),
     /**
-     * Request failed due to a timeout. If you expect requests to take a long time, try increasing the value of [timeout] or setting it to `0.0` to remove the timeout completely.
+     *
      */
     RESULT_TIMEOUT(13),
     ;

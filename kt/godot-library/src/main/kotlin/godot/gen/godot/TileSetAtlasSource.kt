@@ -21,6 +21,7 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -49,7 +50,7 @@ public open class TileSetAtlasSource : TileSetSource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TEXTURE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -65,7 +66,7 @@ public open class TileSetAtlasSource : TileSetSource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_MARGINS,
           VECTOR2I)
-      return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
@@ -81,7 +82,7 @@ public open class TileSetAtlasSource : TileSetSource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_SEPARATION,
           VECTOR2I)
-      return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
@@ -97,7 +98,7 @@ public open class TileSetAtlasSource : TileSetSource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TEXTURE_REGION_SIZE, VECTOR2I)
-      return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
@@ -115,7 +116,7 @@ public open class TileSetAtlasSource : TileSetSource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_USE_TEXTURE_PADDING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -168,7 +169,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_SIZE_IN_ATLAS, VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
@@ -177,15 +178,15 @@ public open class TileSetAtlasSource : TileSetSource() {
   public fun hasRoomForTile(
     atlasCoords: Vector2i,
     size: Vector2i,
-    animationColumns: Long,
+    animationColumns: Int,
     animationSeparation: Vector2i,
-    framesCount: Long,
+    framesCount: Int,
     ignoredTile: Vector2i = Vector2i(-1, -1),
   ): Boolean {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to size, LONG to animationColumns, VECTOR2I to animationSeparation, LONG to framesCount, VECTOR2I to ignoredTile)
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to size, LONG to animationColumns.toLong(), VECTOR2I to animationSeparation, LONG to framesCount.toLong(), VECTOR2I to ignoredTile)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_HAS_ROOM_FOR_TILE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -201,7 +202,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILES_TO_BE_REMOVED_ON_CHANGE,
         PACKED_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   /**
@@ -211,14 +212,14 @@ public open class TileSetAtlasSource : TileSetSource() {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_AT_COORDS, VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
    * Sets the number of columns in the animation layout of the tile at coordinates [atlasCoords]. If set to 0, then the different frames of the animation are laid out as a single horizontal line in the atlas.
    */
-  public fun setTileAnimationColumns(atlasCoords: Vector2i, frameColumns: Long): Unit {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frameColumns)
+  public fun setTileAnimationColumns(atlasCoords: Vector2i, frameColumns: Int): Unit {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frameColumns.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_SET_TILE_ANIMATION_COLUMNS, NIL)
   }
@@ -226,11 +227,11 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Returns how many columns the tile at [atlasCoords] has in its animation layout.
    */
-  public fun getTileAnimationColumns(atlasCoords: Vector2i): Long {
+  public fun getTileAnimationColumns(atlasCoords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_ANIMATION_COLUMNS, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -249,14 +250,14 @@ public open class TileSetAtlasSource : TileSetSource() {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_ANIMATION_SEPARATION, VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
    * Sets the animation speed of the tile at coordinates [atlasCoords] has.
    */
-  public fun setTileAnimationSpeed(atlasCoords: Vector2i, speed: Double): Unit {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, DOUBLE to speed)
+  public fun setTileAnimationSpeed(atlasCoords: Vector2i, speed: Float): Unit {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, DOUBLE to speed.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_SET_TILE_ANIMATION_SPEED, NIL)
   }
@@ -264,18 +265,18 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Returns the animation speed of the tile at coordinates [atlasCoords].
    */
-  public fun getTileAnimationSpeed(atlasCoords: Vector2i): Double {
+  public fun getTileAnimationSpeed(atlasCoords: Vector2i): Float {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_ANIMATION_SPEED, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets how many animation frames the tile at coordinates [atlasCoords] has.
    */
-  public fun setTileAnimationFramesCount(atlasCoords: Vector2i, framesCount: Long): Unit {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to framesCount)
+  public fun setTileAnimationFramesCount(atlasCoords: Vector2i, framesCount: Int): Unit {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to framesCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_SET_TILE_ANIMATION_FRAMES_COUNT, NIL)
   }
@@ -283,11 +284,11 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Returns how many animation frames has the tile at coordinates [atlasCoords].
    */
-  public fun getTileAnimationFramesCount(atlasCoords: Vector2i): Long {
+  public fun getTileAnimationFramesCount(atlasCoords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_ANIMATION_FRAMES_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -295,10 +296,10 @@ public open class TileSetAtlasSource : TileSetSource() {
    */
   public fun setTileAnimationFrameDuration(
     atlasCoords: Vector2i,
-    frameIndex: Long,
-    duration: Double,
+    frameIndex: Int,
+    duration: Float,
   ): Unit {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frameIndex, DOUBLE to duration)
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frameIndex.toLong(), DOUBLE to duration.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_SET_TILE_ANIMATION_FRAME_DURATION, NIL)
   }
@@ -306,21 +307,21 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Returns the animation frame duration of frame [frameIndex] for the tile at coordinates [atlasCoords].
    */
-  public fun getTileAnimationFrameDuration(atlasCoords: Vector2i, frameIndex: Long): Double {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frameIndex)
+  public fun getTileAnimationFrameDuration(atlasCoords: Vector2i, frameIndex: Int): Float {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frameIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_ANIMATION_FRAME_DURATION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the sum of the sum of the frame durations of the tile at coordinates [atlasCoords]. This value needs to be divided by the animation speed to get the actual animation loop duration.
    */
-  public fun getTileAnimationTotalDuration(atlasCoords: Vector2i): Double {
+  public fun getTileAnimationTotalDuration(atlasCoords: Vector2i): Float {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_ANIMATION_TOTAL_DURATION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -328,11 +329,11 @@ public open class TileSetAtlasSource : TileSetSource() {
    *
    * Returns the new alternative identifier, or -1 if the alternative could not be created with a provided [alternativeIdOverride].
    */
-  public fun createAlternativeTile(atlasCoords: Vector2i, alternativeIdOverride: Long = -1): Long {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeIdOverride)
+  public fun createAlternativeTile(atlasCoords: Vector2i, alternativeIdOverride: Int = -1): Int {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeIdOverride.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_CREATE_ALTERNATIVE_TILE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -340,8 +341,8 @@ public open class TileSetAtlasSource : TileSetSource() {
    *
    * Calling this function with [alternativeTile] equals to 0 will fail, as the base tile alternative cannot be removed.
    */
-  public fun removeAlternativeTile(atlasCoords: Vector2i, alternativeTile: Long): Unit {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile)
+  public fun removeAlternativeTile(atlasCoords: Vector2i, alternativeTile: Int): Unit {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_REMOVE_ALTERNATIVE_TILE, NIL)
   }
@@ -353,10 +354,10 @@ public open class TileSetAtlasSource : TileSetSource() {
    */
   public fun setAlternativeTileId(
     atlasCoords: Vector2i,
-    alternativeTile: Long,
-    newId: Long,
+    alternativeTile: Int,
+    newId: Int,
   ): Unit {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile, LONG to newId)
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong(), LONG to newId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_SET_ALTERNATIVE_TILE_ID, NIL)
   }
@@ -364,21 +365,21 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Returns the alternative ID a following call to [createAlternativeTile] would return.
    */
-  public fun getNextAlternativeTileId(atlasCoords: Vector2i): Long {
+  public fun getNextAlternativeTileId(atlasCoords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_NEXT_ALTERNATIVE_TILE_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the [godot.TileData] object for the given atlas coordinates and alternative ID.
    */
-  public fun getTileData(atlasCoords: Vector2i, alternativeTile: Long): TileData? {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile)
+  public fun getTileData(atlasCoords: Vector2i, alternativeTile: Int): TileData? {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_DATA,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TileData?
+    return (TransferContext.readReturnValue(OBJECT, true) as TileData?)
   }
 
   /**
@@ -388,17 +389,17 @@ public open class TileSetAtlasSource : TileSetSource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_ATLAS_GRID_SIZE, VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
    * Returns a tile's texture region in the atlas texture. For animated tiles, a [frame] argument might be provided for the different frames of the animation.
    */
-  public fun getTileTextureRegion(atlasCoords: Vector2i, frame: Long = 0): Rect2i {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frame)
+  public fun getTileTextureRegion(atlasCoords: Vector2i, frame: Int = 0): Rect2i {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frame.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_TEXTURE_REGION, RECT2I)
-    return TransferContext.readReturnValue(RECT2I, false) as Rect2i
+    return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
   }
 
   /**
@@ -408,7 +409,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_RUNTIME_TEXTURE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   /**
@@ -416,11 +417,11 @@ public open class TileSetAtlasSource : TileSetSource() {
    *
    * **Note:** If [useTexturePadding] is `false`, returns the same as [getTileTextureRegion].
    */
-  public fun getRuntimeTileTextureRegion(atlasCoords: Vector2i, frame: Long): Rect2i {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frame)
+  public fun getRuntimeTileTextureRegion(atlasCoords: Vector2i, frame: Int): Rect2i {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frame.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_RUNTIME_TILE_TEXTURE_REGION, RECT2I)
-    return TransferContext.readReturnValue(RECT2I, false) as Rect2i
+    return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
   }
 
   public companion object

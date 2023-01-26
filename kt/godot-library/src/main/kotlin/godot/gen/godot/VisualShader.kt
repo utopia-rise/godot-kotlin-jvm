@@ -14,7 +14,6 @@ import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -49,7 +48,7 @@ public open class VisualShader : Shader() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_GRAPH_OFFSET,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -77,19 +76,19 @@ public open class VisualShader : Shader() {
     type: Type,
     node: VisualShaderNode,
     position: Vector2,
-    id: Long,
+    id: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, OBJECT to node, VECTOR2 to position, LONG to id)
+    TransferContext.writeArguments(LONG to type.id, OBJECT to node, VECTOR2 to position, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_ADD_NODE, NIL)
   }
 
   /**
    * Returns the shader node instance with specified [type] and [id].
    */
-  public fun getNode(type: Type, id: Long): VisualShaderNode? {
-    TransferContext.writeArguments(LONG to type.id, LONG to id)
+  public fun getNode(type: Type, id: Int): VisualShaderNode? {
+    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as VisualShaderNode?
+    return (TransferContext.readReturnValue(OBJECT, true) as VisualShaderNode?)
   }
 
   /**
@@ -97,21 +96,21 @@ public open class VisualShader : Shader() {
    */
   public fun setNodePosition(
     type: Type,
-    id: Long,
+    id: Int,
     position: Vector2,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to id, VECTOR2 to position)
+    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_NODE_POSITION, NIL)
   }
 
   /**
    * Returns the position of the specified node within the shader graph.
    */
-  public fun getNodePosition(type: Type, id: Long): Vector2 {
-    TransferContext.writeArguments(LONG to type.id, LONG to id)
+  public fun getNodePosition(type: Type, id: Int): Vector2 {
+    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_POSITION,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -121,24 +120,24 @@ public open class VisualShader : Shader() {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_LIST,
         PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
    * Returns next valid node ID that can be added to the shader graph.
    */
-  public fun getValidNodeId(type: Type): Long {
+  public fun getValidNodeId(type: Type): Int {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_VALID_NODE_ID,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Removes the specified node from the shader.
    */
-  public fun removeNode(type: Type, id: Long): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to id)
+  public fun removeNode(type: Type, id: Int): Unit {
+    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REMOVE_NODE, NIL)
   }
 
@@ -147,10 +146,10 @@ public open class VisualShader : Shader() {
    */
   public fun replaceNode(
     type: Type,
-    id: Long,
+    id: Int,
     newClass: StringName,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to id, STRING_NAME to newClass)
+    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), STRING_NAME to newClass)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REPLACE_NODE, NIL)
   }
 
@@ -159,15 +158,15 @@ public open class VisualShader : Shader() {
    */
   public fun isNodeConnection(
     type: Type,
-    fromNode: Long,
-    fromPort: Long,
-    toNode: Long,
-    toPort: Long,
+    fromNode: Int,
+    fromPort: Int,
+    toNode: Int,
+    toPort: Int,
   ): Boolean {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
+    TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_IS_NODE_CONNECTION,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -175,15 +174,15 @@ public open class VisualShader : Shader() {
    */
   public fun canConnectNodes(
     type: Type,
-    fromNode: Long,
-    fromPort: Long,
-    toNode: Long,
-    toPort: Long,
+    fromNode: Int,
+    fromPort: Int,
+    toNode: Int,
+    toPort: Int,
   ): Boolean {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
+    TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CAN_CONNECT_NODES,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -191,14 +190,14 @@ public open class VisualShader : Shader() {
    */
   public fun connectNodes(
     type: Type,
-    fromNode: Long,
-    fromPort: Long,
-    toNode: Long,
-    toPort: Long,
+    fromNode: Int,
+    fromPort: Int,
+    toNode: Int,
+    toPort: Int,
   ): GodotError {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
+    TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -206,12 +205,12 @@ public open class VisualShader : Shader() {
    */
   public fun disconnectNodes(
     type: Type,
-    fromNode: Long,
-    fromPort: Long,
-    toNode: Long,
-    toPort: Long,
+    fromNode: Int,
+    fromPort: Int,
+    toNode: Int,
+    toPort: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
+    TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_DISCONNECT_NODES, NIL)
   }
 
@@ -220,12 +219,12 @@ public open class VisualShader : Shader() {
    */
   public fun connectNodesForced(
     type: Type,
-    fromNode: Long,
-    fromPort: Long,
-    toNode: Long,
-    toPort: Long,
+    fromNode: Int,
+    fromPort: Int,
+    toNode: Int,
+    toPort: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
+    TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES_FORCED,
         NIL)
   }
@@ -237,7 +236,7 @@ public open class VisualShader : Shader() {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_CONNECTIONS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -266,7 +265,7 @@ public open class VisualShader : Shader() {
   public fun hasVarying(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_HAS_VARYING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class Type(

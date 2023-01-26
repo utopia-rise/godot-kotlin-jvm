@@ -23,63 +23,64 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides direct access to a physics body in the [godot.PhysicsServer3D].
+ * Direct access object to a physics body in the [godot.PhysicsServer3D].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Provides direct access to a physics body in the [godot.PhysicsServer3D], allowing safe changes to physics properties. This object is passed via the direct state callback of [godot.RigidBody3D], and is intended for changing the direct state of that body. See [godot.RigidBody3D.IntegrateForces].
+ * Provides direct access to a physics body in the [godot.PhysicsServer3D], allowing safe changes to physics properties. This object is passed via the direct state callback of rigid bodies, and is intended for changing the direct state of that body. See [godot.RigidBody3D.IntegrateForces].
  */
 @GodotBaseType
 public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The timestep (delta) used for the simulation.
    */
-  public val step: Double
+  public val step: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_STEP,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
 
   /**
    * The inverse of the mass of the body.
    */
-  public val inverseMass: Double
+  public val inverseMass: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_INVERSE_MASS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
 
   /**
    * The rate at which the body stops rotating, if there are not any other forces moving it.
    */
-  public val totalAngularDamp: Double
+  public val totalAngularDamp: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_TOTAL_ANGULAR_DAMP, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
 
   /**
    * The rate at which the body stops moving, if there are not any other forces moving it.
    */
-  public val totalLinearDamp: Double
+  public val totalLinearDamp: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_TOTAL_LINEAR_DAMP, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
 
   /**
@@ -90,7 +91,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_INVERSE_INERTIA, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
 
   /**
@@ -101,7 +102,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_INVERSE_INERTIA_TENSOR, BASIS)
-      return TransferContext.readReturnValue(BASIS, false) as Basis
+      return (TransferContext.readReturnValue(BASIS, false) as Basis)
     }
 
   /**
@@ -112,7 +113,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_TOTAL_GRAVITY, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
 
   /**
@@ -123,7 +124,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CENTER_OF_MASS, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
 
   /**
@@ -134,7 +135,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CENTER_OF_MASS_LOCAL, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
 
   /**
@@ -145,7 +146,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_PRINCIPAL_INERTIA_AXES, BASIS)
-      return TransferContext.readReturnValue(BASIS, false) as Basis
+      return (TransferContext.readReturnValue(BASIS, false) as Basis)
     }
 
   /**
@@ -156,7 +157,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_ANGULAR_VELOCITY, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -172,7 +173,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_LINEAR_VELOCITY, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -188,7 +189,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_IS_SLEEPING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -204,7 +205,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_TRANSFORM, TRANSFORM3D)
-      return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
@@ -224,7 +225,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     TransferContext.writeArguments(VECTOR3 to localPosition)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_VELOCITY_AT_LOCAL_POSITION, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -350,7 +351,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONSTANT_FORCE, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -373,7 +374,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONSTANT_TORQUE, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -381,123 +382,120 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [godot.RigidBody3D.contactMonitor].
    */
-  public fun getContactCount(): Long {
+  public fun getContactCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
-   * Returns the position of the contact point on the body in the global coordinate system.
+   * Returns the local position of the contact point.
    */
-  public fun getContactLocalPosition(contactIdx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactLocalPosition(contactIdx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_LOCAL_POSITION, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Returns the local normal at the contact point.
    */
-  public fun getContactLocalNormal(contactIdx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactLocalNormal(contactIdx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_LOCAL_NORMAL, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Impulse created by the contact.
    */
-  public fun getContactImpulse(contactIdx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactImpulse(contactIdx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_IMPULSE, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Returns the local shape index of the collision.
    */
-  public fun getContactLocalShape(contactIdx: Long): Long {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactLocalShape(contactIdx: Int): Int {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_LOCAL_SHAPE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  /**
-   * Returns the linear velocity vector at the body's contact point.
-   */
-  public fun getContactLocalVelocityAtPosition(contactIdx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactLocalVelocityAtPosition(contactIdx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_LOCAL_VELOCITY_AT_POSITION,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Returns the collider's [RID].
    */
-  public fun getContactCollider(contactIdx: Long): RID {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactCollider(contactIdx: Int): RID {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
-   * Returns the position of the contact point on the collider in the global coordinate system.
+   * Returns the contact position in the collider.
    */
-  public fun getContactColliderPosition(contactIdx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactColliderPosition(contactIdx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER_POSITION, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Returns the collider's object id.
    */
-  public fun getContactColliderId(contactIdx: Long): Long {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactColliderId(contactIdx: Int): Long {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Returns the collider object.
    */
-  public fun getContactColliderObject(contactIdx: Long): Object? {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactColliderObject(contactIdx: Int): Object? {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER_OBJECT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Object?
+    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
 
   /**
    * Returns the collider's shape index.
    */
-  public fun getContactColliderShape(contactIdx: Long): Long {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactColliderShape(contactIdx: Int): Int {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER_SHAPE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the linear velocity vector at the collider's contact point.
    */
-  public fun getContactColliderVelocityAtPosition(contactIdx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to contactIdx)
+  public fun getContactColliderVelocityAtPosition(contactIdx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER_VELOCITY_AT_POSITION,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -516,7 +514,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_SPACE_STATE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?)
   }
 
   public companion object

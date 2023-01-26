@@ -17,21 +17,21 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * An internal editor class intended for keeping the data of unrecognized nodes.
+ * This is an internal editor class intended for keeping data of nodes of unknown type.
  *
  * This is an internal editor class intended for keeping data of nodes of unknown type (most likely this type was supplied by an extension that is no longer loaded). It can't be manually instantiated or placed in the scene. Ignore it if you don't know what it is.
  */
 @GodotBaseType
 public open class MissingNode : Node() {
   /**
-   * Returns the name of the type this node was originally.
+   *
    */
   public var originalClass: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MISSINGNODE_GET_ORIGINAL_CLASS,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -47,7 +47,7 @@ public open class MissingNode : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MISSINGNODE_IS_RECORDING_PROPERTIES, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

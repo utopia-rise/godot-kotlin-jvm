@@ -12,7 +12,6 @@ import godot.core.GodotError
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -60,7 +59,7 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
 
   public open fun _addIceCandidate(
     pSdpMidName: String,
-    pSdpMlineIndex: Long,
+    pSdpMlineIndex: Int,
     pSdpName: String,
   ): GodotError {
     throw NotImplementedError("_add_ice_candidate is not implemented for WebRTCPeerConnectionExtension")

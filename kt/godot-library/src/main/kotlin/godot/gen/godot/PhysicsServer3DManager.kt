@@ -15,15 +15,14 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A singleton for managing [godot.PhysicsServer3D] implementations.
+ * Manager for 3D physics server implementations.
  *
- * [godot.PhysicsServer3DManager] is the API for registering [godot.PhysicsServer3D] implementations and for setting the default implementation.
+ * [godot.PhysicsServer3DManager] is the API for registering [godot.PhysicsServer3D] implementations, and for setting the default implementation.
  *
  * **Note:** It is not possible to switch physics servers at runtime. This class is only used on startup at the server initialization level, by Godot itself and possibly by GDExtensions.
  */
@@ -46,8 +45,8 @@ public object PhysicsServer3DManager : Object() {
   /**
    * Set the default [godot.PhysicsServer3D] implementation to the one identified by [name], if [priority] is greater than the priority of the current default implementation.
    */
-  public fun setDefaultServer(name: String, priority: Long): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to priority)
+  public fun setDefaultServer(name: String, priority: Int): Unit {
+    TransferContext.writeArguments(STRING to name, LONG to priority.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3DMANAGER_SET_DEFAULT_SERVER, NIL)
   }

@@ -11,7 +11,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -24,6 +23,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -63,7 +63,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_SESSION_MODE,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -76,7 +76,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_REQUIRED_FEATURES, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -89,7 +89,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_OPTIONAL_FEATURES, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -102,7 +102,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_REQUESTED_REFERENCE_SPACE_TYPES, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -115,7 +115,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_REFERENCE_SPACE_TYPE, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
   public val visibilityState: String
@@ -123,7 +123,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_VISIBILITY_STATE, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -137,36 +137,36 @@ public open class WebXRInterface internal constructor() : XRInterface() {
         NIL)
   }
 
-  public fun isInputSourceActive(inputSourceId: Long): Boolean {
-    TransferContext.writeArguments(LONG to inputSourceId)
+  public fun isInputSourceActive(inputSourceId: Int): Boolean {
+    TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_IS_INPUT_SOURCE_ACTIVE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun getInputSourceTracker(inputSourceId: Long): XRPositionalTracker? {
-    TransferContext.writeArguments(LONG to inputSourceId)
+  public fun getInputSourceTracker(inputSourceId: Int): XRPositionalTracker? {
+    TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_INPUT_SOURCE_TRACKER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as XRPositionalTracker?
+    return (TransferContext.readReturnValue(OBJECT, true) as XRPositionalTracker?)
   }
 
-  public fun getInputSourceTargetRayMode(inputSourceId: Long): TargetRayMode {
-    TransferContext.writeArguments(LONG to inputSourceId)
+  public fun getInputSourceTargetRayMode(inputSourceId: Int): TargetRayMode {
+    TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_INPUT_SOURCE_TARGET_RAY_MODE, LONG)
-    return WebXRInterface.TargetRayMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return WebXRInterface.TargetRayMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
-  public fun getDisplayRefreshRate(): Double {
+  public fun getDisplayRefreshRate(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_DISPLAY_REFRESH_RATE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDisplayRefreshRate(refreshRate: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to refreshRate)
+  public fun setDisplayRefreshRate(refreshRate: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to refreshRate.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_SET_DISPLAY_REFRESH_RATE, NIL)
   }
@@ -175,7 +175,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_AVAILABLE_DISPLAY_REFRESH_RATES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public enum class TargetRayMode(

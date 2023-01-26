@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -33,15 +34,15 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   /**
    * If [strength] is negative, particles will be pushed in the reverse direction. Particles will be pushed *away* from the attractor's  origin if [directionality] is `0.0`, or towards local +Z if [directionality] is greater than `0.0`.
    */
-  public var strength: Double
+  public var strength: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTOR3D_GET_STRENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTOR3D_SET_STRENGTH, NIL)
     }
@@ -49,15 +50,15 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   /**
    * The particle attractor's attenuation. Higher values result in more gradual pushing of particles as they come closer to the attractor's origin. Zero or negative values will cause particles to be pushed very fast as soon as the touch the attractor's edges.
    */
-  public var attenuation: Double
+  public var attenuation: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTOR3D_GET_ATTENUATION, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTOR3D_SET_ATTENUATION, NIL)
     }
@@ -67,15 +68,15 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    *
    * **Note:** If [directionality] is greater than `0.0`, the direction in which particles are pushed can be changed by rotating the [godot.GPUParticlesAttractor3D] node.
    */
-  public var directionality: Double
+  public var directionality: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTOR3D_GET_DIRECTIONALITY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTOR3D_SET_DIRECTIONALITY, NIL)
     }
@@ -87,15 +88,15 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    *
    * Particle attraction can also be disabled on a per-process material basis by setting [godot.ParticleProcessMaterial.attractorInteractionEnabled] on the [godot.GPUParticles3D] node.
    */
-  public var cullMask: Long
+  public var cullMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTOR3D_GET_CULL_MASK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTOR3D_SET_CULL_MASK, NIL)
     }

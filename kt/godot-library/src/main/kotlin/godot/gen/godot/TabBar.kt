@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -30,9 +29,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A control that provides a horizontal bar with tabs.
+ * Tab bar control.
  *
- * A control that provides a horizontal bar with tabs. Similar to [godot.TabContainer] but is only in charge of drawing tabs, not interacting with children.
+ * Simple tabs control, similar to [godot.TabContainer] but is only in charge of drawing tabs, not interacting with children.
  */
 @GodotBaseType
 public open class TabBar : Control() {
@@ -97,14 +96,14 @@ public open class TabBar : Control() {
   /**
    * Select tab at index `tab_idx`.
    */
-  public var currentTab: Long
+  public var currentTab: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_CURRENT_TAB, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_CURRENT_TAB, NIL)
     }
 
@@ -115,7 +114,7 @@ public open class TabBar : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ALIGNMENT, LONG)
-      return TabBar.AlignmentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TabBar.AlignmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -129,7 +128,7 @@ public open class TabBar : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_CLIP_TABS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -144,7 +143,7 @@ public open class TabBar : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_CLOSE_DISPLAY_POLICY, LONG)
-      return TabBar.CloseButtonDisplayPolicy.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TabBar.CloseButtonDisplayPolicy.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -155,14 +154,14 @@ public open class TabBar : Control() {
   /**
    * Sets the maximum width which all tabs should be limited to. Unlimited if set to `0`.
    */
-  public var maxTabWidth: Long
+  public var maxTabWidth: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_MAX_TAB_WIDTH, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_MAX_TAB_WIDTH, NIL)
     }
 
@@ -174,7 +173,7 @@ public open class TabBar : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_SCROLLING_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -189,7 +188,7 @@ public open class TabBar : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABBAR_GET_DRAG_TO_REARRANGE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -202,28 +201,28 @@ public open class TabBar : Control() {
    *
    * Setting this to `-1` will disable rearranging between [godot.TabBar]s.
    */
-  public var tabsRearrangeGroup: Long
+  public var tabsRearrangeGroup: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TABS_REARRANGE_GROUP,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TABS_REARRANGE_GROUP,
           NIL)
     }
 
   /**
-   * If `true`, the tab offset will be changed to keep the currently selected tab visible.
+   * If `true`, the tab offset will be changed to keep the the currently selected tab visible.
    */
   public var scrollToSelected: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_SCROLL_TO_SELECTED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -238,7 +237,7 @@ public open class TabBar : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_SELECT_WITH_RMB, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -248,14 +247,14 @@ public open class TabBar : Control() {
   /**
    * The number of tabs currently in the bar.
    */
-  public var tabCount: Long
+  public var tabCount: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_COUNT, NIL)
     }
 
@@ -267,170 +266,158 @@ public open class TabBar : Control() {
   /**
    * Returns the previously active tab index.
    */
-  public fun getPreviousTab(): Long {
+  public fun getPreviousTab(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_PREVIOUS_TAB, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets a [title] for the tab at index [tabIdx].
    */
-  public fun setTabTitle(tabIdx: Long, title: String): Unit {
-    TransferContext.writeArguments(LONG to tabIdx, STRING to title)
+  public fun setTabTitle(tabIdx: Int, title: String): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to title)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_TITLE, NIL)
   }
 
   /**
    * Returns the title of the tab at index [tabIdx].
    */
-  public fun getTabTitle(tabIdx: Long): String {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun getTabTitle(tabIdx: Int): String {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_TITLE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Sets tab title base writing direction.
    */
-  public fun setTabTextDirection(tabIdx: Long, direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to tabIdx, LONG to direction.id)
+  public fun setTabTextDirection(tabIdx: Int, direction: Control.TextDirection): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), LONG to direction.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_TEXT_DIRECTION, NIL)
   }
 
   /**
    * Returns tab title text base writing direction.
    */
-  public fun getTabTextDirection(tabIdx: Long): Control.TextDirection {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun getTabTextDirection(tabIdx: Int): Control.TextDirection {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_TEXT_DIRECTION, LONG)
-    return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Sets language code of tab title used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public fun setTabLanguage(tabIdx: Long, language: String): Unit {
-    TransferContext.writeArguments(LONG to tabIdx, STRING to language)
+  public fun setTabLanguage(tabIdx: Int, language: String): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_LANGUAGE, NIL)
   }
 
   /**
    * Returns tab title language code.
    */
-  public fun getTabLanguage(tabIdx: Long): String {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun getTabLanguage(tabIdx: Int): String {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_LANGUAGE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Sets an [icon] for the tab at index [tabIdx].
    */
-  public fun setTabIcon(tabIdx: Long, icon: Texture2D): Unit {
-    TransferContext.writeArguments(LONG to tabIdx, OBJECT to icon)
+  public fun setTabIcon(tabIdx: Int, icon: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_ICON, NIL)
   }
 
   /**
-   * Returns the icon for the tab at index [tabIdx] or `null` if the tab has no icon.
+   * Returns the [godot.Texture2D] for the tab at index [tabIdx] or `null` if the tab has no [godot.Texture2D].
    */
-  public fun getTabIcon(tabIdx: Long): Texture2D? {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun getTabIcon(tabIdx: Int): Texture2D? {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ICON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  /**
-   * Sets the maximum allowed width of the icon for the tab at index [tabIdx]. This limit is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is adjusted according to the icon's ratio.
-   */
-  public fun setTabIconMaxWidth(tabIdx: Long, width: Long): Unit {
-    TransferContext.writeArguments(LONG to tabIdx, LONG to width)
+  public fun setTabIconMaxWidth(tabIdx: Int, width: Int): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), LONG to width.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_ICON_MAX_WIDTH, NIL)
   }
 
-  /**
-   * Returns the maximum allowed width of the icon for the tab at index [tabIdx].
-   */
-  public fun getTabIconMaxWidth(tabIdx: Long): Long {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun getTabIconMaxWidth(tabIdx: Int): Int {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ICON_MAX_WIDTH, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets an [icon] for the button of the tab at index [tabIdx] (located to the right, before the close button), making it visible and clickable (See [tabButtonPressed]). Giving it a `null` value will hide the button.
    */
-  public fun setTabButtonIcon(tabIdx: Long, icon: Texture2D): Unit {
-    TransferContext.writeArguments(LONG to tabIdx, OBJECT to icon)
+  public fun setTabButtonIcon(tabIdx: Int, icon: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_BUTTON_ICON, NIL)
   }
 
   /**
-   * Returns the icon for the right button of the tab at index [tabIdx] or `null` if the right button has no icon.
+   * Returns the [godot.Texture2D] for the right button of the tab at index [tabIdx] or `null` if the button has no [godot.Texture2D].
    */
-  public fun getTabButtonIcon(tabIdx: Long): Texture2D? {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun getTabButtonIcon(tabIdx: Int): Texture2D? {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_BUTTON_ICON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   /**
    * If [disabled] is `true`, disables the tab at index [tabIdx], making it non-interactable.
    */
-  public fun setTabDisabled(tabIdx: Long, disabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to tabIdx, BOOL to disabled)
+  public fun setTabDisabled(tabIdx: Int, disabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_DISABLED, NIL)
   }
 
   /**
    * Returns `true` if the tab at index [tabIdx] is disabled.
    */
-  public fun isTabDisabled(tabIdx: Long): Boolean {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun isTabDisabled(tabIdx: Int): Boolean {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_IS_TAB_DISABLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * If [hidden] is `true`, hides the tab at index [tabIdx], making it disappear from the tab area.
    */
-  public fun setTabHidden(tabIdx: Long, hidden: Boolean): Unit {
-    TransferContext.writeArguments(LONG to tabIdx, BOOL to hidden)
+  public fun setTabHidden(tabIdx: Int, hidden: Boolean): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to hidden)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_HIDDEN, NIL)
   }
 
   /**
    * Returns `true` if the tab at index [tabIdx] is hidden.
    */
-  public fun isTabHidden(tabIdx: Long): Boolean {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun isTabHidden(tabIdx: Int): Boolean {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_IS_TAB_HIDDEN, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   * Sets the metadata value for the tab at index [tabIdx], which can be retrieved later using [getTabMetadata].
-   */
-  public fun setTabMetadata(tabIdx: Long, metadata: Any): Unit {
-    TransferContext.writeArguments(LONG to tabIdx, ANY to metadata)
+  public fun setTabMetadata(tabIdx: Int, metadata: Any): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_METADATA, NIL)
   }
 
-  /**
-   * Returns the metadata value set to the tab at index [tabIdx] using [setTabMetadata]. If no metadata was previously set, returns `null` by default.
-   */
-  public fun getTabMetadata(tabIdx: Long): Any? {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun getTabMetadata(tabIdx: Int): Any? {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_METADATA, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
    * Removes the tab at index [tabIdx].
    */
-  public fun removeTab(tabIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun removeTab(tabIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_REMOVE_TAB, NIL)
   }
 
@@ -445,19 +432,19 @@ public open class TabBar : Control() {
   /**
    * Returns the index of the tab at local coordinates [point]. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position.
    */
-  public fun getTabIdxAtPoint(point: Vector2): Long {
+  public fun getTabIdxAtPoint(point: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_IDX_AT_POINT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the number of hidden tabs offsetted to the left.
    */
-  public fun getTabOffset(): Long {
+  public fun getTabOffset(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_OFFSET, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -467,31 +454,31 @@ public open class TabBar : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_OFFSET_BUTTONS_VISIBLE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Moves the scroll view to make the tab visible.
    */
-  public fun ensureTabVisible(idx: Long): Unit {
-    TransferContext.writeArguments(LONG to idx)
+  public fun ensureTabVisible(idx: Int): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_ENSURE_TAB_VISIBLE, NIL)
   }
 
   /**
    * Returns tab [godot.core.Rect2] with local position and size.
    */
-  public fun getTabRect(tabIdx: Long): Rect2 {
-    TransferContext.writeArguments(LONG to tabIdx)
+  public fun getTabRect(tabIdx: Int): Rect2 {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_RECT, RECT2)
-    return TransferContext.readReturnValue(RECT2, false) as Rect2
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
   /**
    * Moves a tab from [from] to [to].
    */
-  public fun moveTab(from: Long, to: Long): Unit {
-    TransferContext.writeArguments(LONG to from, LONG to to)
+  public fun moveTab(from: Int, to: Int): Unit {
+    TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_MOVE_TAB, NIL)
   }
 

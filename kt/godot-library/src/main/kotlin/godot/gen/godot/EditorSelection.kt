@@ -71,7 +71,7 @@ public open class EditorSelection internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_SELECTED_NODES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>)
   }
 
   /**
@@ -81,7 +81,7 @@ public open class EditorSelection internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_TRANSFORMABLE_SELECTED_NODES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>)
   }
 
   public companion object

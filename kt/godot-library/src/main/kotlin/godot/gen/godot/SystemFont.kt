@@ -11,20 +11,22 @@ import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * A font loaded from a system font. Falls back to a default theme font if not implemented on the host OS.
+ * Font loaded from a system font.
+ *
+ * **Note:** This class is implemented on iOS, Linux, macOS and Windows, on other platforms it will fallback to default theme font.
  *
  * [godot.SystemFont] loads a font from a system font with the first matching name from [fontNames].
  *
@@ -33,8 +35,6 @@ import kotlin.jvm.JvmName
  * The returned font might be part of a font collection or be a variable font with OpenType "weight", "width" and/or "italic" features set.
  *
  * You can create [godot.FontVariation] of the system font for fine control over its features.
- *
- * **Note:** This class is implemented on iOS, Linux, macOS and Windows, on other platforms it will fallback to default theme font.
  */
 @GodotBaseType
 public open class SystemFont : Font() {
@@ -46,7 +46,7 @@ public open class SystemFont : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_FONT_NAMES,
           PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
@@ -60,7 +60,7 @@ public open class SystemFont : Font() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_FONT_ITALIC, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -70,24 +70,24 @@ public open class SystemFont : Font() {
   /**
    * Preferred weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
    */
-  public var fontWeight: Long
+  public var fontWeight: Int
     @JvmName("getFontWeight_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontWeight()
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FONT_WEIGHT, NIL)
     }
 
   /**
    * Preferred font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
    */
-  public var fontStretch: Long
+  public var fontStretch: Int
     @JvmName("getFontStretch_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontStretch()
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FONT_STRETCH, NIL)
     }
 
@@ -98,7 +98,7 @@ public open class SystemFont : Font() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_ANTIALIASING, LONG)
-      return TextServer.FontAntialiasing.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.FontAntialiasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -113,7 +113,7 @@ public open class SystemFont : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_GENERATE_MIPMAPS,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -129,7 +129,7 @@ public open class SystemFont : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_IS_ALLOW_SYSTEM_FALLBACK, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -145,7 +145,7 @@ public open class SystemFont : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_IS_FORCE_AUTOHINTER,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -160,7 +160,7 @@ public open class SystemFont : Font() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_HINTING, LONG)
-      return TextServer.Hinting.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.Hinting.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -175,7 +175,7 @@ public open class SystemFont : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_SUBPIXEL_POSITIONING, LONG)
-      return TextServer.SubpixelPositioning.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.SubpixelPositioning.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -191,7 +191,7 @@ public open class SystemFont : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_IS_MULTICHANNEL_SIGNED_DISTANCE_FIELD, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -202,15 +202,15 @@ public open class SystemFont : Font() {
   /**
    * The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to look correct.
    */
-  public var msdfPixelRange: Long
+  public var msdfPixelRange: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_MSDF_PIXEL_RANGE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_MSDF_PIXEL_RANGE,
           NIL)
     }
@@ -218,29 +218,29 @@ public open class SystemFont : Font() {
   /**
    * Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering.
    */
-  public var msdfSize: Long
+  public var msdfSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_MSDF_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_MSDF_SIZE, NIL)
     }
 
   /**
    * Font oversampling factor, if set to `0.0` global oversampling factor is used instead.
    */
-  public var oversampling: Double
+  public var oversampling: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_OVERSAMPLING,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_OVERSAMPLING, NIL)
     }
 

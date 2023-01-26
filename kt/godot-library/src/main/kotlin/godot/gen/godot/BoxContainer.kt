@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -19,12 +18,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A container that arranges its child controls horizontally or vertically.
+ * Base class for box containers.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * A container that arranges its child controls horizontally or vertically, rearranging them automatically when their minimum size changes.
+ * Arranges child [godot.Control] nodes vertically or horizontally, and rearranges them automatically when their minimum size changes.
  */
 @GodotBaseType
 public open class BoxContainer : Container() {
@@ -35,7 +34,7 @@ public open class BoxContainer : Container() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_GET_ALIGNMENT, LONG)
-      return BoxContainer.AlignmentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return BoxContainer.AlignmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -51,7 +50,7 @@ public open class BoxContainer : Container() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_IS_VERTICAL, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -69,7 +68,7 @@ public open class BoxContainer : Container() {
   public fun addSpacer(begin: Boolean): Control? {
     TransferContext.writeArguments(BOOL to begin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_ADD_SPACER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Control?
+    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
   public enum class AlignmentMode(

@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -23,9 +22,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract base class for GUI buttons.
+ * Base class for different kinds of buttons.
  *
- * [godot.BaseButton] is an abstract base class for GUI buttons. It doesn't display anything by itself.
+ * BaseButton is the abstract base class for buttons, so it shouldn't be used directly (it doesn't display anything). Other types of buttons inherit from it.
  */
 @GodotBaseType
 public open class BaseButton : Control() {
@@ -58,7 +57,7 @@ public open class BaseButton : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_DISABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -72,7 +71,7 @@ public open class BaseButton : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_TOGGLE_MODE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -88,7 +87,7 @@ public open class BaseButton : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_PRESSED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -102,7 +101,7 @@ public open class BaseButton : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_ACTION_MODE, LONG)
-      return BaseButton.ActionMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return BaseButton.ActionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -119,7 +118,7 @@ public open class BaseButton : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_MASK,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, false) as Long
+      return (TransferContext.readReturnValue(OBJECT, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -136,7 +135,7 @@ public open class BaseButton : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_KEEP_PRESSED_OUTSIDE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -146,15 +145,13 @@ public open class BaseButton : Control() {
 
   /**
    * The [godot.ButtonGroup] associated with the button. Not to be confused with node groups.
-   *
-   * **Note:** The button will be configured as a radio button if a [godot.ButtonGroup] is assigned to it.
    */
   public var buttonGroup: ButtonGroup?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_GROUP,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as ButtonGroup?
+      return (TransferContext.readReturnValue(OBJECT, true) as ButtonGroup?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -168,7 +165,7 @@ public open class BaseButton : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_SHORTCUT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shortcut?
+      return (TransferContext.readReturnValue(OBJECT, true) as Shortcut?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -183,7 +180,7 @@ public open class BaseButton : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_SHORTCUT_FEEDBACK,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -199,7 +196,7 @@ public open class BaseButton : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_SHORTCUT_IN_TOOLTIP_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -241,7 +238,7 @@ public open class BaseButton : Control() {
   public fun isHovered(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_HOVERED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -250,7 +247,7 @@ public open class BaseButton : Control() {
   public fun getDrawMode(): DrawMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_DRAW_MODE, LONG)
-    return BaseButton.DrawMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return BaseButton.DrawMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public enum class DrawMode(

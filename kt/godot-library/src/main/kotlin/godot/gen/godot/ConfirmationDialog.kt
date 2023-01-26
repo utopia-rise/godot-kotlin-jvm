@@ -17,9 +17,9 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A dialog used for confirmation of actions.
+ * Dialog for confirmation of actions.
  *
- * A dialog used for confirmation of actions. This window is similar to [godot.AcceptDialog], but pressing its Cancel button can have a different outcome from pressing the OK button. The order of the two buttons varies depending on the host OS.
+ * Dialog for confirmation of actions. This dialog inherits from [godot.AcceptDialog], but has by default an OK and Cancel button (in host OS order).
  *
  * To get cancel action, you can use:
  *
@@ -49,7 +49,7 @@ public open class ConfirmationDialog : AcceptDialog() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_GET_CANCEL_BUTTON_TEXT, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -71,7 +71,7 @@ public open class ConfirmationDialog : AcceptDialog() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_GET_CANCEL_BUTTON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Button?
+    return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
   public companion object

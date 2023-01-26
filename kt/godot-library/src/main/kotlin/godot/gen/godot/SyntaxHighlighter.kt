@@ -16,17 +16,18 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for syntax highlighters. Provides syntax highlighting data to a [godot.TextEdit].
+ * Base Syntax highlighter resource for [godot.TextEdit].
  *
- * Base class for syntax highlighters. Provides syntax highlighting data to a [godot.TextEdit]. The associated [godot.TextEdit] will call into the [godot.SyntaxHighlighter] on an as-needed basis.
+ * Base syntax highlighter resource all syntax highlighters extend from, provides syntax highlighting data to [godot.TextEdit].
  *
- * **Note:** A [godot.SyntaxHighlighter] instance should not be used across multiple [godot.TextEdit] nodes.
+ * The associated [godot.TextEdit] node will call into the [godot.SyntaxHighlighter] on a as needed basis.
+ *
+ * **Note:** Each Syntax highlighter instance should not be shared across multiple [godot.TextEdit] nodes.
  */
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
@@ -40,7 +41,7 @@ public open class SyntaxHighlighter : Resource() {
    *
    * See [getLineSyntaxHighlighting] for more details.
    */
-  public open fun _getLineSyntaxHighlighting(line: Long): Dictionary<Any?, Any?> {
+  public open fun _getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_line_syntax_highlighting is not implemented for SyntaxHighlighter")
   }
 
@@ -76,11 +77,11 @@ public open class SyntaxHighlighter : Resource() {
    *
    * This will color columns 0-4 red, and columns 5-eol in green.
    */
-  public fun getLineSyntaxHighlighting(line: Long): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_GET_LINE_SYNTAX_HIGHLIGHTING, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -111,7 +112,7 @@ public open class SyntaxHighlighter : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_GET_TEXT_EDIT,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TextEdit?
+    return (TransferContext.readReturnValue(OBJECT, true) as TextEdit?)
   }
 
   public companion object

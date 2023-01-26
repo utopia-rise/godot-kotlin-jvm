@@ -17,17 +17,15 @@ import kotlin.Suppress
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations out of three additively out of three based on the amounmt value.
+ * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations together additively out of three based on a value in the `[-1.0, 1.0]` range.
  *
- * This animation node has three inputs:
+ * This node has three inputs:
  *
  * - The base animation to add to
  *
- * - A "-add" animation to blend with when the blend amount is negative
+ * - A -add animation to blend with when the blend amount is in the `[-1.0, 0.0]` range.
  *
- * - A "+add" animation to blend with when the blend amount is positive
- *
- * If the absolute value of the amount is greater than `1.0`, the animation connected to "in" port is blended with the amplified animation connected to "-add"/"+add" port.
+ * - A +add animation to blend with when the blend amount is in the `[0.0, 1.0]` range
  */
 @GodotBaseType
 public open class AnimationNodeAdd3 : AnimationNodeSync() {

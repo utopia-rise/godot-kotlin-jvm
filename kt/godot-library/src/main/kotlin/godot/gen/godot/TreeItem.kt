@@ -18,7 +18,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -36,13 +35,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An internal control for a single item inside [godot.Tree].
+ * Control for a single item inside a [godot.Tree].
  *
- * A single item of a [godot.Tree] control. It can contain other [godot.TreeItem]s as children, which allows it to create a hierarchy. It can also contain text and buttons. [godot.TreeItem] is not a [godot.Node], it is internal to the [godot.Tree].
+ * Control for a single item inside a [godot.Tree]. May have child [godot.TreeItem]s and be styled as well as contain buttons.
  *
- * To create a [godot.TreeItem], use [godot.Tree.createItem] or [godot.TreeItem.createChild]. To remove a [godot.TreeItem], use [godot.Object.free].
- *
- * **Note:** The ID values used for buttons are 32-bit, unlike [int] which is always 64-bit. They go from `-2147483648` to `2147483647`.
+ * You can remove a [godot.TreeItem] by using [godot.Object.free].
  */
 @GodotBaseType
 public open class TreeItem internal constructor() : Object() {
@@ -53,7 +50,7 @@ public open class TreeItem internal constructor() : Object() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_COLLAPSED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -69,7 +66,7 @@ public open class TreeItem internal constructor() : Object() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_VISIBLE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -84,7 +81,7 @@ public open class TreeItem internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_FOLDING_DISABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -94,15 +91,15 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * The custom minimum height.
    */
-  public var customMinimumHeight: Long
+  public var customMinimumHeight: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_MINIMUM_HEIGHT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_MINIMUM_HEIGHT, NIL)
     }
@@ -115,140 +112,126 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's cell mode to [mode]. See [enum TreeCellMode] constants.
    */
-  public fun setCellMode(column: Long, mode: TreeCellMode): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to mode.id)
+  public fun setCellMode(column: Int, mode: TreeCellMode): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CELL_MODE, NIL)
   }
 
   /**
    * Returns the column's cell mode.
    */
-  public fun getCellMode(column: Long): TreeCellMode {
-    TransferContext.writeArguments(LONG to column)
+  public fun getCellMode(column: Int): TreeCellMode {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CELL_MODE, LONG)
-    return TreeItem.TreeCellMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return TreeItem.TreeCellMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
-  /**
-   * If [multiline] is `true`, the given [column] is multiline editable.
-   *
-   * **Note:** This option only affects the type of control ([godot.LineEdit] or [godot.TextEdit]) that appears when editing the column. You can set multiline values with [setText] even if the column is not multiline editable.
-   */
-  public fun setEditMultiline(column: Long, multiline: Boolean): Unit {
-    TransferContext.writeArguments(LONG to column, BOOL to multiline)
+  public fun setEditMultiline(column: Int, multiline: Boolean): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), BOOL to multiline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_EDIT_MULTILINE, NIL)
   }
 
-  /**
-   * Returns `true` if the given [column] is multiline editable.
-   */
-  public fun isEditMultiline(column: Long): Boolean {
-    TransferContext.writeArguments(LONG to column)
+  public fun isEditMultiline(column: Int): Boolean {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_EDIT_MULTILINE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
-   * If [checked] is `true`, the given [column] is checked. Clears column's indeterminate status.
+   * If `true`, the given [column] is checked. Clears column's indeterminate status.
    */
-  public fun setChecked(column: Long, checked: Boolean): Unit {
-    TransferContext.writeArguments(LONG to column, BOOL to checked)
+  public fun setChecked(column: Int, checked: Boolean): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), BOOL to checked)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CHECKED, NIL)
   }
 
   /**
-   * If [indeterminate] is `true`, the given [column] is marked indeterminate.
+   * If `true`, the given [column] is marked [indeterminate].
    *
    * **Note:** If set `true` from `false`, then column is cleared of checked status.
    */
-  public fun setIndeterminate(column: Long, indeterminate: Boolean): Unit {
-    TransferContext.writeArguments(LONG to column, BOOL to indeterminate)
+  public fun setIndeterminate(column: Int, indeterminate: Boolean): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), BOOL to indeterminate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_INDETERMINATE, NIL)
   }
 
   /**
    * Returns `true` if the given [column] is checked.
    */
-  public fun isChecked(column: Long): Boolean {
-    TransferContext.writeArguments(LONG to column)
+  public fun isChecked(column: Int): Boolean {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_CHECKED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns `true` if the given [column] is indeterminate.
    */
-  public fun isIndeterminate(column: Long): Boolean {
-    TransferContext.writeArguments(LONG to column)
+  public fun isIndeterminate(column: Int): Boolean {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_INDETERMINATE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Propagates this item's checked status to its children and parents for the given [column]. It is possible to process the items affected by this method call by connecting to [godot.Tree.checkPropagatedToItem]. The order that the items affected will be processed is as follows: the item invoking this method, children of that item, and finally parents of that item. If [emitSignal] is `false`, then [godot.Tree.checkPropagatedToItem] will not be emitted.
    */
-  public fun propagateCheck(column: Long, emitSignal: Boolean = true): Unit {
-    TransferContext.writeArguments(LONG to column, BOOL to emitSignal)
+  public fun propagateCheck(column: Int, emitSignal: Boolean = true): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), BOOL to emitSignal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_PROPAGATE_CHECK, NIL)
   }
 
   /**
    * Sets the given column's text value.
    */
-  public fun setText(column: Long, text: String): Unit {
-    TransferContext.writeArguments(LONG to column, STRING to text)
+  public fun setText(column: Int, text: String): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT, NIL)
   }
 
   /**
    * Returns the given column's text.
    */
-  public fun getText(column: Long): String {
-    TransferContext.writeArguments(LONG to column)
+  public fun getText(column: Int): String {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Sets item's text base writing direction.
    */
-  public fun setTextDirection(column: Long, direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to direction.id)
+  public fun setTextDirection(column: Int, direction: Control.TextDirection): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to direction.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT_DIRECTION, NIL)
   }
 
   /**
    * Returns item's text base writing direction.
    */
-  public fun getTextDirection(column: Long): Control.TextDirection {
-    TransferContext.writeArguments(LONG to column)
+  public fun getTextDirection(column: Int): Control.TextDirection {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT_DIRECTION, LONG)
-    return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
-  /**
-   * Sets the autowrap mode in the given [column]. If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the cell's bounding rectangle.
-   */
-  public fun setAutowrapMode(column: Long, autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to autowrapMode.id)
+  public fun setAutowrapMode(column: Int, autowrapMode: TextServer.AutowrapMode): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to autowrapMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_AUTOWRAP_MODE, NIL)
   }
 
-  /**
-   * Returns the text autowrap mode in the given [column]. By default it is [godot.TextServer.AUTOWRAP_OFF].
-   */
-  public fun getAutowrapMode(column: Long): TextServer.AutowrapMode {
-    TransferContext.writeArguments(LONG to column)
+  public fun getAutowrapMode(column: Int): TextServer.AutowrapMode {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_AUTOWRAP_MODE, LONG)
-    return TextServer.AutowrapMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return TextServer.AutowrapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    *
    */
-  public fun setStructuredTextBidiOverride(column: Long, parser: TextServer.StructuredTextParser):
+  public fun setStructuredTextBidiOverride(column: Int, parser: TextServer.StructuredTextParser):
       Unit {
-    TransferContext.writeArguments(LONG to column, LONG to parser.id)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to parser.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
   }
@@ -256,18 +239,18 @@ public open class TreeItem internal constructor() : Object() {
   /**
    *
    */
-  public fun getStructuredTextBidiOverride(column: Long): TextServer.StructuredTextParser {
-    TransferContext.writeArguments(LONG to column)
+  public fun getStructuredTextBidiOverride(column: Int): TextServer.StructuredTextParser {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-    return TextServer.StructuredTextParser.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return TextServer.StructuredTextParser.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    *
    */
-  public fun setStructuredTextBidiOverrideOptions(column: Long, args: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(LONG to column, ARRAY to args)
+  public fun setStructuredTextBidiOverrideOptions(column: Int, args: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), ARRAY to args)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
   }
@@ -275,130 +258,130 @@ public open class TreeItem internal constructor() : Object() {
   /**
    *
    */
-  public fun getStructuredTextBidiOverrideOptions(column: Long): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to column)
+  public fun getStructuredTextBidiOverrideOptions(column: Int): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
    * Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public fun setLanguage(column: Long, language: String): Unit {
-    TransferContext.writeArguments(LONG to column, STRING to language)
+  public fun setLanguage(column: Int, language: String): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_LANGUAGE, NIL)
   }
 
   /**
    * Returns item's text language code.
    */
-  public fun getLanguage(column: Long): String {
-    TransferContext.writeArguments(LONG to column)
+  public fun getLanguage(column: Int): String {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_LANGUAGE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Sets a string to be shown after a column's value (for example, a unit abbreviation).
    */
-  public fun setSuffix(column: Long, text: String): Unit {
-    TransferContext.writeArguments(LONG to column, STRING to text)
+  public fun setSuffix(column: Int, text: String): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_SUFFIX, NIL)
   }
 
   /**
    * Gets the suffix string shown after the column value.
    */
-  public fun getSuffix(column: Long): String {
-    TransferContext.writeArguments(LONG to column)
+  public fun getSuffix(column: Int): String {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_SUFFIX, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Sets the given column's icon [godot.Texture2D].
    */
-  public fun setIcon(column: Long, texture: Texture2D): Unit {
-    TransferContext.writeArguments(LONG to column, OBJECT to texture)
+  public fun setIcon(column: Int, texture: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON, NIL)
   }
 
   /**
    * Returns the given column's icon [godot.Texture2D]. Error if no icon is set.
    */
-  public fun getIcon(column: Long): Texture2D? {
-    TransferContext.writeArguments(LONG to column)
+  public fun getIcon(column: Int): Texture2D? {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   /**
    * Sets the given column's icon's texture region.
    */
-  public fun setIconRegion(column: Long, region: Rect2): Unit {
-    TransferContext.writeArguments(LONG to column, RECT2 to region)
+  public fun setIconRegion(column: Int, region: Rect2): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), RECT2 to region)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON_REGION, NIL)
   }
 
   /**
    * Returns the icon [godot.Texture2D] region as [godot.core.Rect2].
    */
-  public fun getIconRegion(column: Long): Rect2 {
-    TransferContext.writeArguments(LONG to column)
+  public fun getIconRegion(column: Int): Rect2 {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON_REGION, RECT2)
-    return TransferContext.readReturnValue(RECT2, false) as Rect2
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
   /**
-   * Sets the maximum allowed width of the icon in the given [column]. This limit is applied on top of the default size of the icon and on top of [theme_item Tree.icon_max_width]. The height is adjusted according to the icon's ratio.
+   * Sets the given column's icon's maximum width.
    */
-  public fun setIconMaxWidth(column: Long, width: Long): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to width)
+  public fun setIconMaxWidth(column: Int, width: Int): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to width.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON_MAX_WIDTH, NIL)
   }
 
   /**
-   * Returns the maximum allowed width of the icon in the given [column].
+   * Returns the column's icon's maximum width.
    */
-  public fun getIconMaxWidth(column: Long): Long {
-    TransferContext.writeArguments(LONG to column)
+  public fun getIconMaxWidth(column: Int): Int {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON_MAX_WIDTH, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Modulates the given column's icon with [modulate].
    */
-  public fun setIconModulate(column: Long, modulate: Color): Unit {
-    TransferContext.writeArguments(LONG to column, COLOR to modulate)
+  public fun setIconModulate(column: Int, modulate: Color): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON_MODULATE, NIL)
   }
 
   /**
    * Returns the [godot.core.Color] modulating the column's icon.
    */
-  public fun getIconModulate(column: Long): Color {
-    TransferContext.writeArguments(LONG to column)
+  public fun getIconModulate(column: Int): Color {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON_MODULATE, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
    * Sets the value of a [CELL_MODE_RANGE] column.
    */
-  public fun setRange(column: Long, `value`: Double): Unit {
-    TransferContext.writeArguments(LONG to column, DOUBLE to value)
+  public fun setRange(column: Int, `value`: Double): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_RANGE, NIL)
   }
 
   /**
    * Returns the value of a [CELL_MODE_RANGE] column.
    */
-  public fun getRange(column: Long): Double {
-    TransferContext.writeArguments(LONG to column)
+  public fun getRange(column: Int): Double {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_RANGE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
@@ -407,41 +390,41 @@ public open class TreeItem internal constructor() : Object() {
    * If [expr] is `true`, the edit mode slider will use an exponential scale as with [godot.Range.expEdit].
    */
   public fun setRangeConfig(
-    column: Long,
+    column: Int,
     min: Double,
     max: Double,
     step: Double,
     expr: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(LONG to column, DOUBLE to min, DOUBLE to max, DOUBLE to step, BOOL to expr)
+    TransferContext.writeArguments(LONG to column.toLong(), DOUBLE to min, DOUBLE to max, DOUBLE to step, BOOL to expr)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_RANGE_CONFIG, NIL)
   }
 
   /**
    * Returns a dictionary containing the range parameters for a given column. The keys are "min", "max", "step", and "expr".
    */
-  public fun getRangeConfig(column: Long): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to column)
+  public fun getRangeConfig(column: Int): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_RANGE_CONFIG,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
    * Sets the metadata value for the given column, which can be retrieved later using [getMetadata]. This can be used, for example, to store a reference to the original data.
    */
-  public fun setMetadata(column: Long, meta: Any): Unit {
-    TransferContext.writeArguments(LONG to column, ANY to meta)
+  public fun setMetadata(column: Int, meta: Any): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_METADATA, NIL)
   }
 
   /**
    * Returns the metadata value that was set for the given column using [setMetadata].
    */
-  public fun getMetadata(column: Long): Any? {
-    TransferContext.writeArguments(LONG to column)
+  public fun getMetadata(column: Int): Any? {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_METADATA, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -450,11 +433,11 @@ public open class TreeItem internal constructor() : Object() {
    * The [callback] should accept two arguments: the [godot.TreeItem] that is drawn and its position and size as a [godot.core.Rect2].
    */
   public fun setCustomDraw(
-    column: Long,
+    column: Int,
     _object: Object,
     callback: StringName,
   ): Unit {
-    TransferContext.writeArguments(LONG to column, OBJECT to _object, STRING_NAME to callback)
+    TransferContext.writeArguments(LONG to column.toLong(), OBJECT to _object, STRING_NAME to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_DRAW, NIL)
   }
 
@@ -475,7 +458,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun isAnyCollapsed(onlyVisible: Boolean = false): Boolean {
     TransferContext.writeArguments(BOOL to onlyVisible)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_ANY_COLLAPSED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -487,247 +470,247 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If [selectable] is `true`, the given [column] is selectable.
+   * If `true`, the given column is selectable.
    */
-  public fun setSelectable(column: Long, selectable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to column, BOOL to selectable)
+  public fun setSelectable(column: Int, selectable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), BOOL to selectable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_SELECTABLE, NIL)
   }
 
   /**
    * Returns `true` if the given [column] is selectable.
    */
-  public fun isSelectable(column: Long): Boolean {
-    TransferContext.writeArguments(LONG to column)
+  public fun isSelectable(column: Int): Boolean {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_SELECTABLE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns `true` if the given [column] is selected.
    */
-  public fun isSelected(column: Long): Boolean {
-    TransferContext.writeArguments(LONG to column)
+  public fun isSelected(column: Int): Boolean {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_SELECTED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Selects the given [column].
    */
-  public fun select(column: Long): Unit {
-    TransferContext.writeArguments(LONG to column)
+  public fun select(column: Int): Unit {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SELECT, NIL)
   }
 
   /**
    * Deselects the given column.
    */
-  public fun deselect(column: Long): Unit {
-    TransferContext.writeArguments(LONG to column)
+  public fun deselect(column: Int): Unit {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_DESELECT, NIL)
   }
 
   /**
-   * If [enabled] is `true`, the given [column] is editable.
+   * If `true`, the given [column] is editable.
    */
-  public fun setEditable(column: Long, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to column, BOOL to enabled)
+  public fun setEditable(column: Int, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_EDITABLE, NIL)
   }
 
   /**
    * Returns `true` if the given [column] is editable.
    */
-  public fun isEditable(column: Long): Boolean {
-    TransferContext.writeArguments(LONG to column)
+  public fun isEditable(column: Int): Boolean {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_EDITABLE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Sets the given column's custom color.
    */
-  public fun setCustomColor(column: Long, color: Color): Unit {
-    TransferContext.writeArguments(LONG to column, COLOR to color)
+  public fun setCustomColor(column: Int, color: Color): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_COLOR, NIL)
   }
 
   /**
    * Returns the custom color of column [column].
    */
-  public fun getCustomColor(column: Long): Color {
-    TransferContext.writeArguments(LONG to column)
+  public fun getCustomColor(column: Int): Color {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_COLOR, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
    * Resets the color for the given column to default.
    */
-  public fun clearCustomColor(column: Long): Unit {
-    TransferContext.writeArguments(LONG to column)
+  public fun clearCustomColor(column: Int): Unit {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CLEAR_CUSTOM_COLOR, NIL)
   }
 
   /**
    * Sets custom font used to draw text in the given [column].
    */
-  public fun setCustomFont(column: Long, font: Font): Unit {
-    TransferContext.writeArguments(LONG to column, OBJECT to font)
+  public fun setCustomFont(column: Int, font: Font): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), OBJECT to font)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_FONT, NIL)
   }
 
   /**
    * Returns custom font used to draw text in the column [column].
    */
-  public fun getCustomFont(column: Long): Font? {
-    TransferContext.writeArguments(LONG to column)
+  public fun getCustomFont(column: Int): Font? {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_FONT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Font?
+    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
   }
 
   /**
    * Sets custom font size used to draw text in the given [column].
    */
-  public fun setCustomFontSize(column: Long, fontSize: Long): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to fontSize)
+  public fun setCustomFontSize(column: Int, fontSize: Int): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_FONT_SIZE, NIL)
   }
 
   /**
    * Returns custom font size used to draw text in the column [column].
    */
-  public fun getCustomFontSize(column: Long): Long {
-    TransferContext.writeArguments(LONG to column)
+  public fun getCustomFontSize(column: Int): Int {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_FONT_SIZE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets the given column's custom background color and whether to just use it as an outline.
    */
   public fun setCustomBgColor(
-    column: Long,
+    column: Int,
     color: Color,
     justOutline: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(LONG to column, COLOR to color, BOOL to justOutline)
+    TransferContext.writeArguments(LONG to column.toLong(), COLOR to color, BOOL to justOutline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_BG_COLOR, NIL)
   }
 
   /**
    * Resets the background color for the given column to default.
    */
-  public fun clearCustomBgColor(column: Long): Unit {
-    TransferContext.writeArguments(LONG to column)
+  public fun clearCustomBgColor(column: Int): Unit {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CLEAR_CUSTOM_BG_COLOR, NIL)
   }
 
   /**
    * Returns the custom background color of column [column].
    */
-  public fun getCustomBgColor(column: Long): Color {
-    TransferContext.writeArguments(LONG to column)
+  public fun getCustomBgColor(column: Int): Color {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_BG_COLOR, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
    *
    */
-  public fun setCustomAsButton(column: Long, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to column, BOOL to enable)
+  public fun setCustomAsButton(column: Int, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_AS_BUTTON, NIL)
   }
 
   /**
    *
    */
-  public fun isCustomSetAsButton(column: Long): Boolean {
-    TransferContext.writeArguments(LONG to column)
+  public fun isCustomSetAsButton(column: Int): Boolean {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_CUSTOM_SET_AS_BUTTON,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Adds a button with [godot.Texture2D] [button] at column [column]. The [id] is used to identify the button in the according [godot.Tree.buttonClicked] signal and can be different from the buttons index. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can be [disabled] and have a [tooltipText].
    */
   public fun addButton(
-    column: Long,
+    column: Int,
     button: Texture2D,
-    id: Long = -1,
+    id: Int = -1,
     disabled: Boolean = false,
     tooltipText: String = "",
   ): Unit {
-    TransferContext.writeArguments(LONG to column, OBJECT to button, LONG to id, BOOL to disabled, STRING to tooltipText)
+    TransferContext.writeArguments(LONG to column.toLong(), OBJECT to button, LONG to id.toLong(), BOOL to disabled, STRING to tooltipText)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ADD_BUTTON, NIL)
   }
 
   /**
    * Returns the number of buttons in column [column].
    */
-  public fun getButtonCount(column: Long): Long {
-    TransferContext.writeArguments(LONG to column)
+  public fun getButtonCount(column: Int): Int {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the tooltip text for the button at index [buttonIndex] in column [column].
    */
-  public fun getButtonTooltipText(column: Long, buttonIndex: Long): String {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIndex)
+  public fun getButtonTooltipText(column: Int, buttonIndex: Int): String {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_TOOLTIP_TEXT,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns the ID for the button at index [buttonIndex] in column [column].
    */
-  public fun getButtonId(column: Long, buttonIndex: Long): Long {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIndex)
+  public fun getButtonId(column: Int, buttonIndex: Int): Int {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the button index if there is a button with ID [id] in column [column], otherwise returns -1.
    */
-  public fun getButtonById(column: Long, id: Long): Long {
-    TransferContext.writeArguments(LONG to column, LONG to id)
+  public fun getButtonById(column: Int, id: Int): Int {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_BY_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the [godot.Texture2D] of the button at index [buttonIndex] in column [column].
    */
-  public fun getButton(column: Long, buttonIndex: Long): Texture2D? {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIndex)
+  public fun getButton(column: Int, buttonIndex: Int): Texture2D? {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   /**
    * Sets the given column's button [godot.Texture2D] at index [buttonIndex] to [button].
    */
   public fun setButton(
-    column: Long,
-    buttonIndex: Long,
+    column: Int,
+    buttonIndex: Int,
     button: Texture2D,
   ): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIndex, OBJECT to button)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), OBJECT to button)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON, NIL)
   }
 
   /**
    * Removes the button at index [buttonIndex] in column [column].
    */
-  public fun eraseButton(column: Long, buttonIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIndex)
+  public fun eraseButton(column: Int, buttonIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ERASE_BUTTON, NIL)
   }
 
@@ -735,11 +718,11 @@ public open class TreeItem internal constructor() : Object() {
    * If `true`, disables the button at index [buttonIndex] in the given [column].
    */
   public fun setButtonDisabled(
-    column: Long,
-    buttonIndex: Long,
+    column: Int,
+    buttonIndex: Int,
     disabled: Boolean,
   ): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIndex, BOOL to disabled)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_DISABLED, NIL)
   }
 
@@ -747,72 +730,72 @@ public open class TreeItem internal constructor() : Object() {
    * Sets the given column's button color at index [buttonIndex] to [color].
    */
   public fun setButtonColor(
-    column: Long,
-    buttonIndex: Long,
+    column: Int,
+    buttonIndex: Int,
     color: Color,
   ): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIndex, COLOR to color)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_COLOR, NIL)
   }
 
   /**
    * Returns `true` if the button at index [buttonIndex] for the given [column] is disabled.
    */
-  public fun isButtonDisabled(column: Long, buttonIndex: Long): Boolean {
-    TransferContext.writeArguments(LONG to column, LONG to buttonIndex)
+  public fun isButtonDisabled(column: Int, buttonIndex: Int): Boolean {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_BUTTON_DISABLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Sets the given column's tooltip text.
    */
-  public fun setTooltipText(column: Long, tooltip: String): Unit {
-    TransferContext.writeArguments(LONG to column, STRING to tooltip)
+  public fun setTooltipText(column: Int, tooltip: String): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), STRING to tooltip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TOOLTIP_TEXT, NIL)
   }
 
   /**
    * Returns the given column's tooltip text.
    */
-  public fun getTooltipText(column: Long): String {
-    TransferContext.writeArguments(LONG to column)
+  public fun getTooltipText(column: Int): String {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TOOLTIP_TEXT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Sets the given column's text alignment. See [enum HorizontalAlignment] for possible values.
    */
-  public fun setTextAlignment(column: Long, textAlignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to column, LONG to textAlignment.id)
+  public fun setTextAlignment(column: Int, textAlignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to textAlignment.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT_ALIGNMENT, NIL)
   }
 
   /**
    * Returns the given column's text alignment.
    */
-  public fun getTextAlignment(column: Long): HorizontalAlignment {
-    TransferContext.writeArguments(LONG to column)
+  public fun getTextAlignment(column: Int): HorizontalAlignment {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT_ALIGNMENT, LONG)
-    return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
-   * If [enable] is `true`, the given [column] is expanded to the right.
+   * If `true`, the given [column] is expanded to the right.
    */
-  public fun setExpandRight(column: Long, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to column, BOOL to enable)
+  public fun setExpandRight(column: Int, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_EXPAND_RIGHT, NIL)
   }
 
   /**
    * Returns `true` if `expand_right` is set.
    */
-  public fun getExpandRight(column: Long): Boolean {
-    TransferContext.writeArguments(LONG to column)
+  public fun getExpandRight(column: Int): Boolean {
+    TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_EXPAND_RIGHT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -820,24 +803,19 @@ public open class TreeItem internal constructor() : Object() {
    *
    * The new item will be inserted as position [index] (the default value `-1` means the last position), or it will be the last child if [index] is higher than the child count.
    */
-  public fun createChild(index: Long = -1): TreeItem? {
-    TransferContext.writeArguments(LONG to index)
+  public fun createChild(index: Int = -1): TreeItem? {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CREATE_CHILD, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+    return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
-  /**
-   * Adds a previously unparented [godot.TreeItem] as a direct child of this one. The [child] item must not be a part of any [godot.Tree] or parented to any [godot.TreeItem]. See also [removeChild].
-   */
   public fun addChild(child: TreeItem): Unit {
     TransferContext.writeArguments(OBJECT to child)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ADD_CHILD, NIL)
   }
 
   /**
-   * Removes the given child [godot.TreeItem] and all its children from the [godot.Tree]. Note that it doesn't free the item from memory, so it can be reused later (see [addChild]). To completely remove a [godot.TreeItem] use [godot.Object.free].
-   *
-   * **Note:** If you want to move a child from one [godot.Tree] to another, then instead of removing and adding it manually you can use [moveBefore] or [moveAfter].
+   * Removes the given child [godot.TreeItem] and all its children from the [godot.Tree]. Note that it doesn't free the item from memory, so it can be reused later. To completely remove a [godot.TreeItem] use [godot.Object.free].
    */
   public fun removeChild(child: TreeItem): Unit {
     TransferContext.writeArguments(OBJECT to child)
@@ -850,7 +828,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun getTree(): Tree? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TREE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tree?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tree?)
   }
 
   /**
@@ -859,7 +837,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun getNext(): TreeItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_NEXT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+    return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
   /**
@@ -868,7 +846,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun getPrev(): TreeItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PREV, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+    return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
   /**
@@ -877,7 +855,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun getParent(): TreeItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PARENT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+    return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
   /**
@@ -886,51 +864,41 @@ public open class TreeItem internal constructor() : Object() {
   public fun getFirstChild(): TreeItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_FIRST_CHILD, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+    return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
-  /**
-   * Returns the next TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
-   *
-   * If [wrap] is enabled, the method will wrap around to the first element in the tree when called on the last element, otherwise it returns `null`.
-   */
   public fun getNextInTree(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_NEXT_IN_TREE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+    return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
-  /**
-   * Returns the previous TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
-   *
-   * If [wrap] is enabled, the method will wrap around to the last element in the tree when called on the first visible element, otherwise it returns `null`.
-   */
   public fun getPrevInTree(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PREV_IN_TREE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+    return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
   /**
-   * Returns the next visible TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
+   * Returns the next visible sibling TreeItem in the tree or a null object if there is none.
    *
    * If [wrap] is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns `null`.
    */
   public fun getNextVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_NEXT_VISIBLE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+    return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
   /**
-   * Returns the previous visible sibling TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
+   * Returns the previous visible sibling TreeItem in the tree or a null object if there is none.
    *
    * If [wrap] is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns `null`.
    */
   public fun getPrevVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PREV_VISIBLE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+    return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
   /**
@@ -938,19 +906,19 @@ public open class TreeItem internal constructor() : Object() {
    *
    * Negative indices access the children from the last one.
    */
-  public fun getChild(index: Long): TreeItem? {
-    TransferContext.writeArguments(LONG to index)
+  public fun getChild(index: Int): TreeItem? {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILD, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
+    return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
   /**
    * Returns the number of child items.
    */
-  public fun getChildCount(): Long {
+  public fun getChildCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILD_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -959,16 +927,16 @@ public open class TreeItem internal constructor() : Object() {
   public fun getChildren(): VariantArray<TreeItem> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILDREN, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<TreeItem>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<TreeItem>)
   }
 
   /**
    * Returns the node's order in the tree. For example, if called on the first child item the position is `0`.
    */
-  public fun getIndex(): Long {
+  public fun getIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_INDEX, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

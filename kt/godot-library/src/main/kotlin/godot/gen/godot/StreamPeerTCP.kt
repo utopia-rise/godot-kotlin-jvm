@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
@@ -22,9 +21,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A stream peer that handles TCP connections.
+ * TCP stream peer.
  *
- * A stream peer that handles TCP connections. This object can be used to connect to TCP servers, or also is returned by a TCP server.
+ * TCP stream peer. This object can be used to connect to TCP servers, or also is returned by a TCP server.
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
@@ -40,19 +39,19 @@ public open class StreamPeerTCP : StreamPeer() {
    *
    * This method is generally not needed, and only used to force the subsequent call to [connectToHost] to use the specified [host] and [port] as source address. This can be desired in some NAT punchthrough techniques, or when forcing the source network interface.
    */
-  public fun bind(port: Long, host: String = "*"): GodotError {
-    TransferContext.writeArguments(LONG to port, STRING to host)
+  public fun bind(port: Int, host: String = "*"): GodotError {
+    TransferContext.writeArguments(LONG to port.toLong(), STRING to host)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_BIND, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [OK] on success.
    */
-  public fun connectToHost(host: String, port: Long): GodotError {
-    TransferContext.writeArguments(STRING to host, LONG to port)
+  public fun connectToHost(host: String, port: Int): GodotError {
+    TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_CONNECT_TO_HOST, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -61,7 +60,7 @@ public open class StreamPeerTCP : StreamPeer() {
   public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_POLL, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -70,7 +69,7 @@ public open class StreamPeerTCP : StreamPeer() {
   public fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_STATUS, LONG)
-    return StreamPeerTCP.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return StreamPeerTCP.Status.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -80,26 +79,26 @@ public open class StreamPeerTCP : StreamPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_HOST,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns the port of this peer.
    */
-  public fun getConnectedPort(): Long {
+  public fun getConnectedPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_PORT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the local port to which this peer is bound.
    */
-  public fun getLocalPort(): Long {
+  public fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_LOCAL_PORT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

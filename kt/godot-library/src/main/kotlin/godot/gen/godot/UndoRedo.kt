@@ -29,19 +29,19 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides a high-level interface for implementing undo and redo operations.
+ * Helper to manage undo/redo operations in the editor or custom tools.
  *
- * UndoRedo works by registering methods and property changes inside "actions". You can create an action, then provide ways to do and undo this action using function calls and property changes, then commit the action.
+ * Helper to manage undo/redo operations in the editor or custom tools. It works by registering methods and property changes inside "actions".
  *
- * When an action is committed, all of the `do_*` methods will run. If the [undo] method is used, the `undo_*` methods will run. If the [redo] method is used, once again, all of the `do_*` methods will run.
+ * Common behavior is to create an action, then add do/undo calls to functions or property changes, then committing the action.
  *
- * Here's an example on how to add an action:
+ * Here's an example on how to add an action to the Godot editor's own [godot.UndoRedo], from a plugin:
  *
  * [codeblocks]
  *
  * [gdscript]
  *
- * var undo_redo = UndoRedo.new()
+ * var undo_redo = get_undo_redo() # Method of EditorPlugin.
  *
  *
  *
@@ -63,9 +63,9 @@ import kotlin.Unit
  *
  *     undo_redo.create_action("Move the node")
  *
- *     undo_redo.add_do_method(do_something)
+ *     undo_redo.add_do_method(self, "do_something")
  *
- *     undo_redo.add_undo_method(undo_something)
+ *     undo_redo.add_undo_method(self, "undo_something")
  *
  *     undo_redo.add_do_property(node, "position", Vector2(100,100))
  *
@@ -85,7 +85,7 @@ import kotlin.Unit
  *
  * {
  *
- *     _undoRedo = new UndoRedo();
+ *     _undoRedo = GetUndoRedo(); // Method of EditorPlugin.
  *
  * }
  *
@@ -135,69 +135,9 @@ import kotlin.Unit
  *
  * [/codeblocks]
  *
- * Before calling any of the `add_(un)do_*` methods, you need to first call [createAction]. Afterwards you need to call [commitAction].
+ * [createAction], [addDoMethod], [addUndoMethod], [addDoProperty], [addUndoProperty], and [commitAction] should be called one after the other, like in the example. Not doing so could lead to crashes.
  *
  * If you don't need to register a method, you can leave [addDoMethod] and [addUndoMethod] out; the same goes for properties. You can also register more than one method/property.
- *
- * If you are making an [godot.EditorPlugin] and want to integrate into the editor's undo history, use [godot.EditorUndoRedoManager] instead.
- *
- * If you are registering multiple properties/method which depend on one another, be aware that by default undo operation are called in the same order they have been added. Therefore instead of grouping do operation with their undo operations it is better to group do on one side and undo on the other as shown below.
- *
- * [codeblocks]
- *
- * [gdscript]
- *
- * undo_redo.create_action("Add object")
- *
- *
- *
- * # DO
- *
- * undo_redo.add_do_method(_create_object)
- *
- * undo_redo.add_do_method(_add_object_to_singleton)
- *
- *
- *
- * # UNDO
- *
- * undo_redo.add_undo_method(_remove_object_from_singleton)
- *
- * undo_redo.add_undo_method(_destroy_that_object)
- *
- *
- *
- * undo_redo.commit_action()
- *
- * [/gdscript]
- *
- * [csharp]
- *
- * _undo_redo.CreateAction("Add object");
- *
- *
- *
- * // DO
- *
- * _undo_redo.AddDoMethod(new Callable(this, MethodName.CreateObject));
- *
- * _undo_redo.AddDoMethod(new Callable(this, MethodName.AddObjectToSingleton));
- *
- *
- *
- * // UNDO
- *
- * _undo_redo.AddUndoMethod(new Callable(this, MethodName.RemoveObjectFromSingleton));
- *
- * _undo_redo.AddUndoMethod(new Callable(this, MethodName.DestroyThatObject));
- *
- *
- *
- * _undo_redo.CommitAction();
- *
- * [/csharp]
- *
- * [/codeblocks]
  */
 @GodotBaseType
 public open class UndoRedo : Object() {
@@ -215,8 +155,6 @@ public open class UndoRedo : Object() {
    * Create a new action. After this is called, do all your calls to [addDoMethod], [addUndoMethod], [addDoProperty], and [addUndoProperty], then commit the action with [commitAction].
    *
    * The way actions are merged is dictated by [mergeMode]. See [enum MergeMode] for details.
-   *
-   * The way undo operation are ordered in actions is dictated by [backwardUndoOps]. When [backwardUndoOps] is `false` undo option are ordered in the same order they were added. Which means the first operation to be added will be the first to be undone.
    */
   public fun createAction(
     name: String,
@@ -241,7 +179,7 @@ public open class UndoRedo : Object() {
   public fun isCommittingAction(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_IS_COMMITTING_ACTION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -286,15 +224,6 @@ public open class UndoRedo : Object() {
 
   /**
    * Register a reference for "do" that will be erased if the "do" history is lost. This is useful mostly for new nodes created for the "do" call. Do not use for resources.
-   *
-   * ```
-   * 				var node = Node2D.new()
-   * 				undo_redo.create_action("Add node")
-   * 				undo_redo.add_do_method(add_child.bind(node))
-   * 				undo_redo.add_do_reference(node)
-   * 				undo_redo.add_undo_method(remove_child.bind(node))
-   * 				undo_redo.commit_action()
-   * 				```
    */
   public fun addDoReference(_object: Object): Unit {
     TransferContext.writeArguments(OBJECT to _object)
@@ -303,15 +232,6 @@ public open class UndoRedo : Object() {
 
   /**
    * Register a reference for "undo" that will be erased if the "undo" history is lost. This is useful mostly for nodes removed with the "do" call (not the "undo" call!).
-   *
-   * ```
-   * 				var node = $Node2D
-   * 				undo_redo.create_action("Remove node")
-   * 				undo_redo.add_do_method(remove_child.bind(node))
-   * 				undo_redo.add_undo_method(add_child.bind(node))
-   * 				undo_redo.add_undo_reference(node)
-   * 				undo_redo.commit_action()
-   * 				```
    */
   public fun addUndoReference(_object: Object): Unit {
     TransferContext.writeArguments(OBJECT to _object)
@@ -339,28 +259,28 @@ public open class UndoRedo : Object() {
   /**
    * Returns how many elements are in the history.
    */
-  public fun getHistoryCount(): Long {
+  public fun getHistoryCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_HISTORY_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Gets the index of the current action.
    */
-  public fun getCurrentAction(): Long {
+  public fun getCurrentAction(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_CURRENT_ACTION, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Gets the action name from its index.
    */
-  public fun getActionName(id: Long): String {
-    TransferContext.writeArguments(LONG to id)
+  public fun getActionName(id: Int): String {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_ACTION_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -380,7 +300,7 @@ public open class UndoRedo : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_CURRENT_ACTION_NAME,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -389,7 +309,7 @@ public open class UndoRedo : Object() {
   public fun hasUndo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_HAS_UNDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -398,7 +318,7 @@ public open class UndoRedo : Object() {
   public fun hasRedo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_HAS_REDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -409,7 +329,7 @@ public open class UndoRedo : Object() {
   public fun getVersion(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_VERSION, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -418,7 +338,7 @@ public open class UndoRedo : Object() {
   public fun redo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_REDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -427,7 +347,7 @@ public open class UndoRedo : Object() {
   public fun undo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_UNDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class MergeMode(

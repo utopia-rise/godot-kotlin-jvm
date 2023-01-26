@@ -13,15 +13,16 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A physics joint that restricts the movement of a 3D physics body along an axis relative to another physics body.
+ * Slider between two PhysicsBodies in 3D.
  *
- * A physics joint that restricts the movement of a 3D physics body along an axis relative to another physics body. For example, Body A could be a [godot.StaticBody3D] representing a piston base, while Body B could be a [godot.RigidBody3D] representing the piston head, moving up and down.
+ * Slides across the X axis of the pivot object. See also [godot.Generic6DOFJoint3D].
  */
 @GodotBaseType
 public open class SliderJoint3D : Joint3D() {
@@ -33,18 +34,18 @@ public open class SliderJoint3D : Joint3D() {
   /**
    *
    */
-  public fun setParam(`param`: Param, `value`: Double): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
+  public fun setParam(`param`: Param, `value`: Float): Unit {
+    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDERJOINT3D_SET_PARAM, NIL)
   }
 
   /**
    *
    */
-  public fun getParam(`param`: Param): Double {
+  public fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDERJOINT3D_GET_PARAM, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class Param(

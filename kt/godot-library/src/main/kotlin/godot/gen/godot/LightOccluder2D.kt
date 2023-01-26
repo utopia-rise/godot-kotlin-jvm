@@ -35,7 +35,7 @@ public open class LightOccluder2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_OCCLUDER_POLYGON, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -51,7 +51,7 @@ public open class LightOccluder2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_IS_SET_AS_SDF_COLLISION, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -62,15 +62,15 @@ public open class LightOccluder2D : Node2D() {
   /**
    * The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
    */
-  public var occluderLightMask: Long
+  public var occluderLightMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_OCCLUDER_LIGHT_MASK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_OCCLUDER_LIGHT_MASK, NIL)
     }

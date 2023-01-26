@@ -9,12 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -34,15 +34,15 @@ import kotlin.Suppress
  *
  * func _ready():
  *
- *     var key = "supersecret".to_utf8_buffer()
+ *     var key = "supersecret".to_utf8()
  *
  *     var err = ctx.start(HashingContext.HASH_SHA256, key)
  *
  *     assert(err == OK)
  *
- *     var msg1 = "this is ".to_utf8_buffer()
+ *     var msg1 = "this is ".to_utf8()
  *
- *     var msg2 = "super duper secret".to_utf8_buffer()
+ *     var msg2 = "super duper secret".to_utf8()
  *
  *     err = ctx.update(msg1)
  *
@@ -80,15 +80,15 @@ import kotlin.Suppress
  *
  *     {
  *
- *         byte[] key = "supersecret".ToUtf8Buffer();
+ *         byte[] key = "supersecret".ToUtf8();
  *
  *         Error err = _ctx.Start(HashingContext.HashType.Sha256, key);
  *
  *         Debug.Assert(err == Error.Ok);
  *
- *         byte[] msg1 = "this is ".ToUtf8Buffer();
+ *         byte[] msg1 = "this is ".ToUtf8();
  *
- *         byte[] msg2 = "super duper secret".ToUtf8Buffer();
+ *         byte[] msg2 = "super duper secret".ToUtf8();
  *
  *         err = _ctx.Update(msg1);
  *
@@ -123,7 +123,7 @@ public open class HMACContext : RefCounted() {
   public fun start(hashType: HashingContext.HashType, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_START, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -132,7 +132,7 @@ public open class HMACContext : RefCounted() {
   public fun update(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_UPDATE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -142,7 +142,7 @@ public open class HMACContext : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_FINISH,
         PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   public companion object

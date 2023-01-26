@@ -15,15 +15,14 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A singleton for managing [godot.PhysicsServer2D] implementations.
+ * Manager for 2D physics server implementations.
  *
- * [godot.PhysicsServer2DManager] is the API for registering [godot.PhysicsServer2D] implementations and for setting the default implementation.
+ * [godot.PhysicsServer2DManager] is the API for registering [godot.PhysicsServer2D] implementations, and for setting the default implementation.
  *
  * **Note:** It is not possible to switch physics servers at runtime. This class is only used on startup at the server initialization level, by Godot itself and possibly by GDExtensions.
  */
@@ -46,8 +45,8 @@ public object PhysicsServer2DManager : Object() {
   /**
    * Set the default [godot.PhysicsServer2D] implementation to the one identified by [name], if [priority] is greater than the priority of the current default implementation.
    */
-  public fun setDefaultServer(name: String, priority: Long): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to priority)
+  public fun setDefaultServer(name: String, priority: Int): Unit {
+    TransferContext.writeArguments(STRING to name, LONG to priority.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2DMANAGER_SET_DEFAULT_SERVER, NIL)
   }

@@ -38,7 +38,7 @@ public open class MultiMeshInstance2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE2D_GET_MULTIMESH,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as MultiMesh?
+      return (TransferContext.readReturnValue(OBJECT, true) as MultiMesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -54,7 +54,7 @@ public open class MultiMeshInstance2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE2D_GET_TEXTURE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

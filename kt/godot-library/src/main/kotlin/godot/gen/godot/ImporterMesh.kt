@@ -13,7 +13,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -25,6 +24,7 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -56,21 +56,21 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the number of blend shapes that the mesh holds.
    */
-  public fun getBlendShapeCount(): Long {
+  public fun getBlendShapeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the name of the blend shape at this index.
    */
-  public fun getBlendShapeName(blendShapeIdx: Long): String {
-    TransferContext.writeArguments(LONG to blendShapeIdx)
+  public fun getBlendShapeName(blendShapeIdx: Int): String {
+    TransferContext.writeArguments(LONG to blendShapeIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_NAME,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -89,7 +89,7 @@ public open class ImporterMesh : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_MODE,
         LONG)
-    return Mesh.BlendShapeMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Mesh.BlendShapeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -114,125 +114,125 @@ public open class ImporterMesh : Resource() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     material: Material? = null,
     name: String = "",
-    flags: Long = 0,
+    flags: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags)
+    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_ADD_SURFACE, NIL)
   }
 
   /**
    * Returns the number of surfaces that the mesh holds.
    */
-  public fun getSurfaceCount(): Long {
+  public fun getSurfaceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the primitive type of the requested surface (see [addSurface]).
    */
-  public fun getSurfacePrimitiveType(surfaceIdx: Long): Mesh.PrimitiveType {
-    TransferContext.writeArguments(LONG to surfaceIdx)
+  public fun getSurfacePrimitiveType(surfaceIdx: Int): Mesh.PrimitiveType {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_PRIMITIVE_TYPE, LONG)
-    return Mesh.PrimitiveType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Mesh.PrimitiveType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Gets the name assigned to this surface.
    */
-  public fun getSurfaceName(surfaceIdx: Long): String {
-    TransferContext.writeArguments(LONG to surfaceIdx)
+  public fun getSurfaceName(surfaceIdx: Int): String {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_NAME,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns the arrays for the vertices, normals, uvs, etc. that make up the requested surface. See [addSurface].
    */
-  public fun getSurfaceArrays(surfaceIdx: Long): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to surfaceIdx)
+  public fun getSurfaceArrays(surfaceIdx: Int): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_ARRAYS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
    * Returns a single set of blend shape arrays for the requested blend shape index for a surface.
    */
-  public fun getSurfaceBlendShapeArrays(surfaceIdx: Long, blendShapeIdx: Long): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to surfaceIdx, LONG to blendShapeIdx)
+  public fun getSurfaceBlendShapeArrays(surfaceIdx: Int, blendShapeIdx: Int): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong(), LONG to blendShapeIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_BLEND_SHAPE_ARRAYS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
    * Returns the number of lods that the mesh holds on a given surface.
    */
-  public fun getSurfaceLodCount(surfaceIdx: Long): Long {
-    TransferContext.writeArguments(LONG to surfaceIdx)
+  public fun getSurfaceLodCount(surfaceIdx: Int): Int {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the screen ratio which activates a lod for a surface.
    */
-  public fun getSurfaceLodSize(surfaceIdx: Long, lodIdx: Long): Double {
-    TransferContext.writeArguments(LONG to surfaceIdx, LONG to lodIdx)
+  public fun getSurfaceLodSize(surfaceIdx: Int, lodIdx: Int): Float {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong(), LONG to lodIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_SIZE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the index buffer of a lod for a surface.
    */
-  public fun getSurfaceLodIndices(surfaceIdx: Long, lodIdx: Long): PackedInt32Array {
-    TransferContext.writeArguments(LONG to surfaceIdx, LONG to lodIdx)
+  public fun getSurfaceLodIndices(surfaceIdx: Int, lodIdx: Int): PackedInt32Array {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong(), LONG to lodIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_INDICES, PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
    * Returns a [godot.Material] in a given surface. Surface is rendered using this material.
    */
-  public fun getSurfaceMaterial(surfaceIdx: Long): Material? {
-    TransferContext.writeArguments(LONG to surfaceIdx)
+  public fun getSurfaceMaterial(surfaceIdx: Int): Material? {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_MATERIAL,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Material?
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
   /**
    * Returns the format of the surface that the mesh holds.
    */
-  public fun getSurfaceFormat(surfaceIdx: Long): Long {
-    TransferContext.writeArguments(LONG to surfaceIdx)
+  public fun getSurfaceFormat(surfaceIdx: Int): Int {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_FORMAT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets a name for a given surface.
    */
-  public fun setSurfaceName(surfaceIdx: Long, name: String): Unit {
-    TransferContext.writeArguments(LONG to surfaceIdx, STRING to name)
+  public fun setSurfaceName(surfaceIdx: Int, name: String): Unit {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_SURFACE_NAME, NIL)
   }
 
   /**
    * Sets a [godot.Material] for a given surface. Surface will be rendered using this material.
    */
-  public fun setSurfaceMaterial(surfaceIdx: Long, material: Material): Unit {
-    TransferContext.writeArguments(LONG to surfaceIdx, OBJECT to material)
+  public fun setSurfaceMaterial(surfaceIdx: Int, material: Material): Unit {
+    TransferContext.writeArguments(LONG to surfaceIdx.toLong(), OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_SURFACE_MATERIAL,
         NIL)
   }
@@ -247,11 +247,11 @@ public open class ImporterMesh : Resource() {
    * [boneTransformArray] is an [godot.Array] which can be either empty or contain [godot.Transform3D]s which, for each of the mesh's bone IDs, will apply mesh skinning when generating the LOD mesh variations. This is usually used to account for discrepancies in scale between the mesh itself and its skinning data.
    */
   public fun generateLods(
-    normalMergeAngle: Double,
-    normalSplitAngle: Double,
+    normalMergeAngle: Float,
+    normalSplitAngle: Float,
     boneTransformArray: VariantArray<Any?>,
   ): Unit {
-    TransferContext.writeArguments(DOUBLE to normalMergeAngle, DOUBLE to normalSplitAngle, ARRAY to boneTransformArray)
+    TransferContext.writeArguments(DOUBLE to normalMergeAngle.toDouble(), DOUBLE to normalSplitAngle.toDouble(), ARRAY to boneTransformArray)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GENERATE_LODS, NIL)
   }
 
@@ -265,7 +265,7 @@ public open class ImporterMesh : Resource() {
   public fun getMesh(baseMesh: ArrayMesh? = null): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to baseMesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_MESH, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
+    return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
   }
 
   /**
@@ -292,7 +292,7 @@ public open class ImporterMesh : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_LIGHTMAP_SIZE_HINT,
         VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   public companion object

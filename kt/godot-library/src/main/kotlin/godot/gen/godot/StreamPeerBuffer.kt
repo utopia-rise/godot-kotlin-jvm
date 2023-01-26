@@ -20,9 +20,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A stream peer used to handle binary data streams.
+ * Data buffer stream peer.
  *
- * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle binary data from network sessions. To handle binary data stored in files, [godot.FileAccess] can be used directly.
+ * Data buffer stream peer that uses a byte array as the stream. This object can be used to handle binary data from network sessions. To handle binary data stored in files, [godot.FileAccess] can be used directly.
  *
  * A [godot.StreamPeerBuffer] object keeps an internal cursor which is the offset in bytes to the start of the buffer. Get and put operations are performed at the cursor position and will move the cursor accordingly.
  */
@@ -36,7 +36,7 @@ public open class StreamPeerBuffer : StreamPeer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_DATA_ARRAY,
           PACKED_BYTE_ARRAY)
-      return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
@@ -52,34 +52,34 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Moves the cursor to the specified position. [position] must be a valid index of [dataArray].
    */
-  public fun seek(position: Long): Unit {
-    TransferContext.writeArguments(LONG to position)
+  public fun seek(position: Int): Unit {
+    TransferContext.writeArguments(LONG to position.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_SEEK, NIL)
   }
 
   /**
    * Returns the size of [dataArray].
    */
-  public fun getSize(): Long {
+  public fun getSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_SIZE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the current cursor position.
    */
-  public fun getPosition(): Long {
+  public fun getPosition(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_POSITION, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Resizes the [dataArray]. This *doesn't* update the cursor.
    */
-  public fun resize(size: Long): Unit {
-    TransferContext.writeArguments(LONG to size)
+  public fun resize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_RESIZE, NIL)
   }
 
@@ -97,7 +97,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   public fun duplicate(): StreamPeerBuffer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_DUPLICATE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as StreamPeerBuffer?
+    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeerBuffer?)
   }
 
   public companion object

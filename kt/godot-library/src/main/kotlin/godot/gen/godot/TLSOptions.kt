@@ -36,7 +36,7 @@ import kotlin.Suppress
  *
  * var server_key = load("res://my_server_key.key")
  *
- * var server_tls_options = TLSOptions.server(server_key, server_certs)
+ * var server_tls_options = TLSOptions.server(server_certs, server_key)
  *
  * [/gdscript]
  *

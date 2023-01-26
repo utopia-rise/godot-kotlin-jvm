@@ -30,7 +30,6 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -58,7 +57,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the capabilities of this interface.
    */
-  public open fun _getCapabilities(): Long {
+  public open fun _getCapabilities(): Int {
     throw NotImplementedError("_get_capabilities is not implemented for XRInterfaceExtension")
   }
 
@@ -82,9 +81,6 @@ public open class XRInterfaceExtension : XRInterface() {
   public open fun _uninitialize(): Unit {
   }
 
-  /**
-   * Returns a [godot.core.Dictionary] with system informationr elated to this interface.
-   */
   public open fun _getSystemInfo(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_system_info is not implemented for XRInterfaceExtension")
   }
@@ -127,7 +123,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the number of views this interface requires, 1 for mono, 2 for stereoscopic.
    */
-  public open fun _getViewCount(): Long {
+  public open fun _getViewCount(): Int {
     throw NotImplementedError("_get_view_count is not implemented for XRInterfaceExtension")
   }
 
@@ -141,7 +137,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns a [godot.Transform3D] for a given view.
    */
-  public open fun _getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
+  public open fun _getTransformForView(view: Int, camTransform: Transform3D): Transform3D {
     throw NotImplementedError("_get_transform_for_view is not implemented for XRInterfaceExtension")
   }
 
@@ -149,7 +145,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns the projection matrix for the given view as a [godot.PackedFloat64Array].
    */
   public open fun _getProjectionForView(
-    view: Long,
+    view: Int,
     aspect: Double,
     zNear: Double,
     zFar: Double,
@@ -165,13 +161,13 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Called if this [godot.XRInterfaceExtension] is active before our physics and game process is called. Most XR interfaces will update its [godot.XRPositionalTracker]s at this point in time.
+   * Called if this [godot.XRInterfaceExtension] is active before our physics and game process is called. most XR interfaces will update its [godot.XRPositionalTracker]s at this point in time.
    */
   public open fun _process(): Unit {
   }
 
   /**
-   * Called if this [godot.XRInterfaceExtension] is active before rendering starts. Most XR interfaces will sync tracking at this point in time.
+   * Called if this [godot.XRInterfaceExtension] is active before rendering starts, most XR interfaces will sync tracking at this point in time.
    */
   public open fun _preRender(): Unit {
   }
@@ -245,7 +241,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the camera feed ID for the [godot.CameraFeed] registered with the [godot.CameraServer] that should be presented as the background on an AR capable device (if applicable).
    */
-  public open fun _getCameraFeedId(): Long {
+  public open fun _getCameraFeedId(): Int {
     throw NotImplementedError("_get_camera_feed_id is not implemented for XRInterfaceExtension")
   }
 
@@ -277,7 +273,7 @@ public open class XRInterfaceExtension : XRInterface() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_GET_COLOR_TEXTURE, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -287,7 +283,7 @@ public open class XRInterfaceExtension : XRInterface() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_GET_DEPTH_TEXTURE, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -297,7 +293,7 @@ public open class XRInterfaceExtension : XRInterface() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_GET_VELOCITY_TEXTURE, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -308,7 +304,7 @@ public open class XRInterfaceExtension : XRInterface() {
     srcRect: Rect2,
     dstRect: Rect2i,
     useLayer: Boolean,
-    layer: Long,
+    layer: Int,
     applyLensDistortion: Boolean,
     eyeCenter: Vector2,
     k1: Double,
@@ -316,7 +312,7 @@ public open class XRInterfaceExtension : XRInterface() {
     upscale: Double,
     aspectRatio: Double,
   ): Unit {
-    TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
+    TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer.toLong(), BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_ADD_BLIT, NIL)
   }
 
@@ -327,7 +323,7 @@ public open class XRInterfaceExtension : XRInterface() {
     TransferContext.writeArguments(_RID to renderTarget)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_GET_RENDER_TARGET_TEXTURE, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   public companion object

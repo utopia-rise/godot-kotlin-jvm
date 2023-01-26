@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -24,9 +23,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A control that displays a texture by keeping its corners intact, but tiling its edges and center.
+ * Scalable texture-based frame that tiles the texture's centers and sides, but keeps the corners' original size. Perfect for panels and dialog boxes.
  *
- * Also known as 9-slice panels, [godot.NinePatchRect] produces clean panels of any size based on a small texture. To do so, it splits the texture in a 3×3 grid. When you scale the node, it tiles the texture's edges horizontally or vertically, tiles the center on both axes, and leaves the corners unchanged.
+ * Also known as 9-slice panels, NinePatchRect produces clean panels of any size, based on a small texture. To do so, it splits the texture in a 3×3 grid. When you scale the node, it tiles the texture's sides horizontally or vertically, the center on both axes but it doesn't scale or tile the corners.
  */
 @GodotBaseType
 public open class NinePatchRect : Control() {
@@ -42,7 +41,7 @@ public open class NinePatchRect : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -57,7 +56,7 @@ public open class NinePatchRect : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_IS_DRAW_CENTER_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -73,7 +72,7 @@ public open class NinePatchRect : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_REGION_RECT,
           RECT2)
-      return TransferContext.readReturnValue(RECT2, false) as Rect2
+      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
     }
     set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
@@ -89,7 +88,7 @@ public open class NinePatchRect : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_H_AXIS_STRETCH_MODE, LONG)
-      return NinePatchRect.AxisStretchMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return NinePatchRect.AxisStretchMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -105,7 +104,7 @@ public open class NinePatchRect : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_V_AXIS_STRETCH_MODE, LONG)
-      return NinePatchRect.AxisStretchMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return NinePatchRect.AxisStretchMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -121,19 +120,19 @@ public open class NinePatchRect : Control() {
   /**
    * Sets the size of the margin on the specified [enum Side] to [value] pixels.
    */
-  public fun setPatchMargin(margin: Side, `value`: Long): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to value)
+  public fun setPatchMargin(margin: Side, `value`: Int): Unit {
+    TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN, NIL)
   }
 
   /**
    * Returns the size of the margin on the specified [enum Side].
    */
-  public fun getPatchMargin(margin: Side): Long {
+  public fun getPatchMargin(margin: Side): Int {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_PATCH_MARGIN,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public enum class AxisStretchMode(

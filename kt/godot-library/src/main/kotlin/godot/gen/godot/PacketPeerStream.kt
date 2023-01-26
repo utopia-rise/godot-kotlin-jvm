@@ -28,15 +28,15 @@ public open class PacketPeerStream : PacketPeer() {
   /**
    *
    */
-  public var inputBufferMaxSize: Long
+  public var inputBufferMaxSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_GET_INPUT_BUFFER_MAX_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_SET_INPUT_BUFFER_MAX_SIZE, NIL)
     }
@@ -44,15 +44,15 @@ public open class PacketPeerStream : PacketPeer() {
   /**
    *
    */
-  public var outputBufferMaxSize: Long
+  public var outputBufferMaxSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_GET_OUTPUT_BUFFER_MAX_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_SET_OUTPUT_BUFFER_MAX_SIZE, NIL)
     }
@@ -65,7 +65,7 @@ public open class PacketPeerStream : PacketPeer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_GET_STREAM_PEER,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as StreamPeer?
+      return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

@@ -23,12 +23,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for all GUI containers.
+ * Base node for containers.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * Base class for all GUI containers. A [godot.Container] automatically arranges its child controls in a certain way. This class can be inherited to make custom container types.
+ * Base node for containers. A [godot.Container] contains other controls and automatically arranges them in a certain way.
+ *
+ * A Control can inherit this to create custom container classes.
  */
 @GodotBaseType
 public open class Container : Control() {

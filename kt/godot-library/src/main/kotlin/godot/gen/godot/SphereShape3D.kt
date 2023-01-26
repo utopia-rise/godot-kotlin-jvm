@@ -12,32 +12,33 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 3D sphere shape used for physics collision.
+ * Sphere shape resource for 3D collisions.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
  *
- * A 3D sphere shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape3D].
+ * 3D sphere shape to be added as a *direct* child of a [godot.PhysicsBody3D] or [godot.Area3D] using a [godot.CollisionShape3D] node. This shape is useful for modeling sphere-like 3D objects.
  *
- * **Performance:** [godot.SphereShape3D] is fast to check collisions against. It is faster than [godot.BoxShape3D], [godot.CapsuleShape3D], and [godot.CylinderShape3D].
+ * **Performance:** Being a primitive collision shape, [godot.SphereShape3D] is the fastest collision shape to check collisions against, as it only requires a distance check with the shape's origin.
  */
 @GodotBaseType
 public open class SphereShape3D : Shape3D() {
   /**
    * The sphere's radius. The shape's diameter is double the radius.
    */
-  public var radius: Double
+  public var radius: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHERESHAPE3D_GET_RADIUS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHERESHAPE3D_SET_RADIUS, NIL)
     }
 

@@ -12,7 +12,6 @@ import godot.core.Quaternion
 import godot.core.StringName
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -34,12 +33,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node used for advanced animation transitions in an [godot.AnimationPlayer].
+ * A node to be used for advanced animation transitions in an [godot.AnimationPlayer].
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * A node used for advanced animation transitions in an [godot.AnimationPlayer].
+ * A node to be used for advanced animation transitions in an [godot.AnimationPlayer].
  *
  * **Note:** When linked with an [godot.AnimationPlayer], several properties and methods of the corresponding [godot.AnimationPlayer] will not function as expected. Playback and transitions should be handled using only the [godot.AnimationTree] and its constituent [godot.AnimationNode](s). The [godot.AnimationPlayer] node should be used solely for adding, deleting, and editing animations.
  */
@@ -72,7 +71,7 @@ public open class AnimationTree : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_TREE_ROOT,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as AnimationNode?
+      return (TransferContext.readReturnValue(OBJECT, true) as AnimationNode?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -87,7 +86,7 @@ public open class AnimationTree : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ANIMATION_PLAYER, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -103,7 +102,7 @@ public open class AnimationTree : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ADVANCE_EXPRESSION_BASE_NODE, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -118,7 +117,7 @@ public open class AnimationTree : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_IS_ACTIVE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -133,7 +132,7 @@ public open class AnimationTree : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_PROCESS_CALLBACK, LONG)
-      return AnimationTree.AnimationProcessCallback.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return AnimationTree.AnimationProcessCallback.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -146,15 +145,15 @@ public open class AnimationTree : Node() {
    *
    * For example, if this value is `32` and the animation has two audio tracks, the two [godot.AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.
    */
-  public var audioMaxPolyphony: Long
+  public var audioMaxPolyphony: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_AUDIO_MAX_POLYPHONY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_SET_AUDIO_MAX_POLYPHONY, NIL)
     }
@@ -169,7 +168,7 @@ public open class AnimationTree : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_TRACK, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -187,10 +186,10 @@ public open class AnimationTree : Node() {
    */
   public open fun _postProcessKeyValue(
     animation: Animation,
-    track: Long,
+    track: Int,
     `value`: Any,
     _object: Object,
-    objectIdx: Long,
+    objectIdx: Int,
   ): Any? {
     throw NotImplementedError("_post_process_key_value is not implemented for AnimationTree")
   }
@@ -258,7 +257,7 @@ public open class AnimationTree : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_POSITION, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -290,7 +289,7 @@ public open class AnimationTree : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_ROTATION, QUATERNION)
-    return TransferContext.readReturnValue(QUATERNION, false) as Quaternion
+    return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
 
   /**
@@ -334,7 +333,7 @@ public open class AnimationTree : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_SCALE,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -376,7 +375,7 @@ public open class AnimationTree : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_POSITION_ACCUMULATOR, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -420,7 +419,7 @@ public open class AnimationTree : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_ROTATION_ACCUMULATOR, QUATERNION)
-    return TransferContext.readReturnValue(QUATERNION, false) as Quaternion
+    return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
 
   /**
@@ -460,7 +459,7 @@ public open class AnimationTree : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_SCALE_ACCUMULATOR, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -475,11 +474,11 @@ public open class AnimationTree : Node() {
     id: Long,
   ) {
     /**
-     * The animations will progress during physics frames (see [godot.Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * The animations will progress during the physics frame (i.e. [godot.Node.PhysicsProcess]).
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * The animations will progress during process frames (see [godot.Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * The animations will progress during the idle frame (i.e. [godot.Node.Process]).
      */
     ANIMATION_PROCESS_IDLE(1),
     /**

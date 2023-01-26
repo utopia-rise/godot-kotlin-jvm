@@ -99,7 +99,7 @@ public open class EditorScript internal constructor() : RefCounted() {
   public fun getScene(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_SCENE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
+    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
   /**
@@ -109,7 +109,7 @@ public open class EditorScript internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_EDITOR_INTERFACE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorInterface?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorInterface?)
   }
 
   public companion object

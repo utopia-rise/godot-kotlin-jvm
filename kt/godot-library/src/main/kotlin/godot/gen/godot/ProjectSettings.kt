@@ -15,7 +15,6 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
@@ -30,12 +29,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Stores globally-accessible variables.
+ * Contains global variables accessible from everywhere.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
  *
- * Stores variables that can be accessed from everywhere. Use [getSetting], [setSetting] or [hasSetting] to access them. Variables stored in `project.godot` are also loaded into [godot.ProjectSettings], making this object very useful for reading custom game configuration options.
+ * Contains global variables accessible from everywhere. Use [getSetting], [setSetting] or [hasSetting] to access them. Variables stored in `project.godot` are also loaded into ProjectSettings, making this object very useful for reading custom game configuration options.
  *
  * When naming a Project Settings property, use the full path to the setting including the category. For example, `"application/config/name"` for the project name. Category and property names can be viewed in the Project Settings dialog.
  *
@@ -56,7 +55,7 @@ public object ProjectSettings : Object() {
   public fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_HAS_SETTING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -117,7 +116,7 @@ public object ProjectSettings : Object() {
   public fun getSetting(name: String, defaultValue: Any? = null): Any? {
     TransferContext.writeArguments(STRING to name, ANY to defaultValue)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -149,7 +148,7 @@ public object ProjectSettings : Object() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING_WITH_OVERRIDE, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -171,28 +170,28 @@ public object ProjectSettings : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_GLOBAL_CLASS_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
    * Sets the order of a configuration value (influences when saved to the config file).
    */
-  public fun setOrder(name: String, position: Long): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to position)
+  public fun setOrder(name: String, position: Int): Unit {
+    TransferContext.writeArguments(STRING to name, LONG to position.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_ORDER, NIL)
   }
 
   /**
    * Returns the order of a configuration value (influences when saved to the config file).
    */
-  public fun getOrder(name: String): Long {
+  public fun getOrder(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_ORDER, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
-   * Sets the specified setting's initial value. This is the value the setting reverts to.
+   * Sets the specified property's initial value. This is the value the property reverts to.
    */
   public fun setInitialValue(name: String, `value`: Any): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
@@ -200,17 +199,11 @@ public object ProjectSettings : Object() {
         NIL)
   }
 
-  /**
-   * Defines if the specified setting is considered basic or advanced. Basic settings will always be shown in the project settings. Advanced settings will only be shown if the user enables the "Advanced Settings" option.
-   */
   public fun setAsBasic(name: String, basic: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to basic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_AS_BASIC, NIL)
   }
 
-  /**
-   * Defines if the specified setting is considered internal. An internal setting won't show up in the Project Settings dialog. This is mostly useful for addons that need to store their own internal settings without exposing them directly to the user.
-   */
   public fun setAsInternal(name: String, `internal`: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to internal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_AS_INTERNAL,
@@ -220,11 +213,11 @@ public object ProjectSettings : Object() {
   /**
    * Adds a custom property info to a property. The dictionary must contain:
    *
-   * - `"name"`: [godot.String] (the property's name)
+   * - `name`: [godot.String] (the property's name)
    *
-   * - `"type"`: [int] (see [enum Variant.Type])
+   * - `type`: [int] (see [enum Variant.Type])
    *
-   * - optionally `"hint"`: [int] (see [enum PropertyHint]) and `"hint_string"`: [godot.String]
+   * - optionally `hint`: [int] (see [enum PropertyHint]) and `hint_string`: [godot.String]
    *
    * **Example:**
    *
@@ -314,7 +307,7 @@ public object ProjectSettings : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOCALIZE_PATH,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -340,7 +333,7 @@ public object ProjectSettings : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GLOBALIZE_PATH,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -351,7 +344,7 @@ public object ProjectSettings : Object() {
   public fun save(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -364,12 +357,12 @@ public object ProjectSettings : Object() {
   public fun loadResourcePack(
     pack: String,
     replaceFiles: Boolean = true,
-    offset: Long = 0,
+    offset: Int = 0,
   ): Boolean {
-    TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset)
+    TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOAD_RESOURCE_PACK,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -378,6 +371,6 @@ public object ProjectSettings : Object() {
   public fun saveCustom(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE_CUSTOM, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 }

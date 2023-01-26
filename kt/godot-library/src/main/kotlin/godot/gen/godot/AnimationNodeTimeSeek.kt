@@ -12,12 +12,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A time-seeking animation node used in [godot.AnimationTree].
+ * A time-seeking animation node to be used with [godot.AnimationTree].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
- * This animation node can be used to cause a seek command to happen to any sub-children of the animation graph. Use to play an [godot.Animation] from the start or a certain playback position inside the [godot.AnimationNodeBlendTree].
+ * This node can be used to cause a seek command to happen to any sub-children of the animation graph. Use this node type to play an [godot.Animation] from the start or a certain playback position inside the [godot.AnimationNodeBlendTree].
  *
  * After setting the time and changing the animation playback, the time seek node automatically goes into sleep mode on the next process frame by setting its `seek_request` value to `-1.0`.
  *

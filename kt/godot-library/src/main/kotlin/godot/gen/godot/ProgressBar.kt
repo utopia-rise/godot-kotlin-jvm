@@ -17,23 +17,23 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A control used for visual representation of a percentage.
+ * General-purpose progress bar.
  *
- * A control used for visual representation of a percentage. Shows fill percentage from right to left.
+ * General-purpose progress bar. Shows fill percentage from right to left.
  */
 @GodotBaseType
 public open class ProgressBar : Range() {
   /**
    * The fill direction. See [enum FillMode] for possible values.
    */
-  public var fillMode: Long
+  public var fillMode: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROGRESSBAR_GET_FILL_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROGRESSBAR_SET_FILL_MODE, NIL)
     }
 
@@ -45,7 +45,7 @@ public open class ProgressBar : Range() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROGRESSBAR_IS_PERCENTAGE_SHOWN,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

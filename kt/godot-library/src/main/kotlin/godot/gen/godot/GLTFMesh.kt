@@ -24,7 +24,7 @@ public open class GLTFMesh : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_MESH, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?
+      return (TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -36,7 +36,7 @@ public open class GLTFMesh : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_BLEND_WEIGHTS,
           PACKED_FLOAT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
+      return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
@@ -48,7 +48,7 @@ public open class GLTFMesh : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_INSTANCE_MATERIALS,
           ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Material>
+      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Material>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)

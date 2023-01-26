@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -79,7 +78,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **required**. If not overridden, the node has no input ports.
    */
-  public open fun _getInputPortCount(): Long {
+  public open fun _getInputPortCount(): Int {
     throw NotImplementedError("_get_input_port_count is not implemented for VisualShaderNodeCustom")
   }
 
@@ -88,7 +87,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, input ports will return the [godot.VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
-  public open fun _getInputPortType(port: Long): VisualShaderNode.PortType {
+  public open fun _getInputPortType(port: Int): VisualShaderNode.PortType {
     throw NotImplementedError("_get_input_port_type is not implemented for VisualShaderNodeCustom")
   }
 
@@ -97,7 +96,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, input ports are named as `"in" + str(port)`.
    */
-  public open fun _getInputPortName(port: Long): String {
+  public open fun _getInputPortName(port: Int): String {
     throw NotImplementedError("_get_input_port_name is not implemented for VisualShaderNodeCustom")
   }
 
@@ -106,7 +105,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **required**. If not overridden, the node has no output ports.
    */
-  public open fun _getOutputPortCount(): Long {
+  public open fun _getOutputPortCount(): Int {
     throw NotImplementedError("_get_output_port_count is not implemented for VisualShaderNodeCustom")
   }
 
@@ -115,7 +114,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, output ports will return the [godot.VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
-  public open fun _getOutputPortType(port: Long): VisualShaderNode.PortType {
+  public open fun _getOutputPortType(port: Int): VisualShaderNode.PortType {
     throw NotImplementedError("_get_output_port_type is not implemented for VisualShaderNodeCustom")
   }
 
@@ -124,7 +123,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, output ports are named as `"out" + str(port)`.
    */
-  public open fun _getOutputPortName(port: Long): String {
+  public open fun _getOutputPortName(port: Int): String {
     throw NotImplementedError("_get_output_port_name is not implemented for VisualShaderNodeCustom")
   }
 

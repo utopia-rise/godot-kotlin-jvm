@@ -25,12 +25,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Represents the result of a 3D pathfinding query.
+ * Result from a [godot.NavigationPathQueryParameters3D] navigation path query.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html)
  *
- * This class stores the result of a 3D navigation path query from the [godot.NavigationServer3D].
+ * This class contains the result of a navigation path query from [godot.NavigationServer3D.queryPath].
  */
 @GodotBaseType
 public open class NavigationPathQueryResult3D : RefCounted() {
@@ -42,7 +42,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_GET_PATH, PACKED_VECTOR3_ARRAY)
-      return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+      return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
@@ -58,7 +58,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_GET_PATH_TYPES, PACKED_INT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
@@ -74,7 +74,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_GET_PATH_RIDS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -91,7 +91,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_GET_PATH_OWNER_IDS,
           PACKED_INT_64_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
+      return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_64_ARRAY to value)

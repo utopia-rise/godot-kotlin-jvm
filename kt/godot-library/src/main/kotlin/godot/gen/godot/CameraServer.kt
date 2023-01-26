@@ -50,19 +50,19 @@ public object CameraServer : Object() {
   /**
    * Returns the [godot.CameraFeed] corresponding to the camera with the given [index].
    */
-  public fun getFeed(index: Long): CameraFeed? {
-    TransferContext.writeArguments(LONG to index)
+  public fun getFeed(index: Int): CameraFeed? {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as CameraFeed?
+    return (TransferContext.readReturnValue(OBJECT, true) as CameraFeed?)
   }
 
   /**
    * Returns the number of [godot.CameraFeed]s registered.
    */
-  public fun getFeedCount(): Long {
+  public fun getFeedCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -71,7 +71,7 @@ public object CameraServer : Object() {
   public fun feeds(): VariantArray<CameraFeed> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_FEEDS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<CameraFeed>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<CameraFeed>)
   }
 
   /**

@@ -46,8 +46,8 @@ public open class MeshLibrary : Resource() {
    *
    * You can get an unused ID from [getLastUnusedItemId].
    */
-  public fun createItem(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
+  public fun createItem(id: Int): Unit {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_CREATE_ITEM, NIL)
   }
 
@@ -56,24 +56,24 @@ public open class MeshLibrary : Resource() {
    *
    * This name is shown in the editor. It can also be used to look up the item later using [findItemByName].
    */
-  public fun setItemName(id: Long, name: String): Unit {
-    TransferContext.writeArguments(LONG to id, STRING to name)
+  public fun setItemName(id: Int, name: String): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAME, NIL)
   }
 
   /**
    * Sets the item's mesh.
    */
-  public fun setItemMesh(id: Long, mesh: Mesh): Unit {
-    TransferContext.writeArguments(LONG to id, OBJECT to mesh)
+  public fun setItemMesh(id: Int, mesh: Mesh): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), OBJECT to mesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_MESH, NIL)
   }
 
   /**
    * Sets the transform to apply to the item's mesh.
    */
-  public fun setItemMeshTransform(id: Long, meshTransform: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to id, TRANSFORM3D to meshTransform)
+  public fun setItemMeshTransform(id: Int, meshTransform: Transform3D): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), TRANSFORM3D to meshTransform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_MESH_TRANSFORM,
         NIL)
   }
@@ -81,8 +81,8 @@ public open class MeshLibrary : Resource() {
   /**
    * Sets the item's navigation mesh.
    */
-  public fun setItemNavigationMesh(id: Long, navigationMesh: NavigationMesh): Unit {
-    TransferContext.writeArguments(LONG to id, OBJECT to navigationMesh)
+  public fun setItemNavigationMesh(id: Int, navigationMesh: NavigationMesh): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), OBJECT to navigationMesh)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVIGATION_MESH, NIL)
   }
@@ -90,8 +90,8 @@ public open class MeshLibrary : Resource() {
   /**
    * Sets the transform to apply to the item's navigation mesh.
    */
-  public fun setItemNavigationMeshTransform(id: Long, navigationMesh: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to id, TRANSFORM3D to navigationMesh)
+  public fun setItemNavigationMeshTransform(id: Int, navigationMesh: Transform3D): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), TRANSFORM3D to navigationMesh)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVIGATION_MESH_TRANSFORM, NIL)
   }
@@ -99,8 +99,8 @@ public open class MeshLibrary : Resource() {
   /**
    * Sets the item's navigation layers bitmask.
    */
-  public fun setItemNavigationLayers(id: Long, navigationLayers: Long): Unit {
-    TransferContext.writeArguments(LONG to id, LONG to navigationLayers)
+  public fun setItemNavigationLayers(id: Int, navigationLayers: Int): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), LONG to navigationLayers.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVIGATION_LAYERS, NIL)
   }
@@ -110,75 +110,75 @@ public open class MeshLibrary : Resource() {
    *
    * The array should consist of [godot.Shape3D] objects, each followed by a [godot.Transform3D] that will be applied to it. For shapes that should not have a transform, use [godot.Transform3D.IDENTITY].
    */
-  public fun setItemShapes(id: Long, shapes: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(LONG to id, ARRAY to shapes)
+  public fun setItemShapes(id: Int, shapes: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), ARRAY to shapes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_SHAPES, NIL)
   }
 
   /**
    * Sets a texture to use as the item's preview icon in the editor.
    */
-  public fun setItemPreview(id: Long, texture: Texture2D): Unit {
-    TransferContext.writeArguments(LONG to id, OBJECT to texture)
+  public fun setItemPreview(id: Int, texture: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_PREVIEW, NIL)
   }
 
   /**
    * Returns the item's name.
    */
-  public fun getItemName(id: Long): String {
-    TransferContext.writeArguments(LONG to id)
+  public fun getItemName(id: Int): String {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns the item's mesh.
    */
-  public fun getItemMesh(id: Long): Mesh? {
-    TransferContext.writeArguments(LONG to id)
+  public fun getItemMesh(id: Int): Mesh? {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_MESH, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Mesh?
+    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
   }
 
   /**
    * Returns the transform applied to the item's mesh.
    */
-  public fun getItemMeshTransform(id: Long): Transform3D {
-    TransferContext.writeArguments(LONG to id)
+  public fun getItemMeshTransform(id: Int): Transform3D {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_MESH_TRANSFORM,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
    * Returns the item's navigation mesh.
    */
-  public fun getItemNavigationMesh(id: Long): NavigationMesh? {
-    TransferContext.writeArguments(LONG to id)
+  public fun getItemNavigationMesh(id: Int): NavigationMesh? {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVIGATION_MESH, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?
+    return (TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?)
   }
 
   /**
    * Returns the transform applied to the item's navigation mesh.
    */
-  public fun getItemNavigationMeshTransform(id: Long): Transform3D {
-    TransferContext.writeArguments(LONG to id)
+  public fun getItemNavigationMeshTransform(id: Int): Transform3D {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVIGATION_MESH_TRANSFORM, TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
    * Returns the item's navigation layers bitmask.
    */
-  public fun getItemNavigationLayers(id: Long): Long {
-    TransferContext.writeArguments(LONG to id)
+  public fun getItemNavigationLayers(id: Int): Int {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVIGATION_LAYERS, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -186,37 +186,37 @@ public open class MeshLibrary : Resource() {
    *
    * The array consists of each [godot.Shape3D] followed by its [godot.Transform3D].
    */
-  public fun getItemShapes(id: Long): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to id)
+  public fun getItemShapes(id: Int): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_SHAPES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
    * When running in the editor, returns a generated item preview (a 3D rendering in isometric perspective). When used in a running project, returns the manually-defined item preview which can be set using [setItemPreview]. Returns an empty [godot.Texture2D] if no preview was manually set in a running project.
    */
-  public fun getItemPreview(id: Long): Texture2D? {
-    TransferContext.writeArguments(LONG to id)
+  public fun getItemPreview(id: Int): Texture2D? {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_PREVIEW,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   /**
    * Removes the item.
    */
-  public fun removeItem(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
+  public fun removeItem(id: Int): Unit {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_REMOVE_ITEM, NIL)
   }
 
   /**
    * Returns the first item with the given name.
    */
-  public fun findItemByName(name: String): Long {
+  public fun findItemByName(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_FIND_ITEM_BY_NAME, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -234,17 +234,17 @@ public open class MeshLibrary : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_LIST,
         PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
    * Gets an unused ID for a new item.
    */
-  public fun getLastUnusedItemId(): Long {
+  public fun getLastUnusedItemId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_LAST_UNUSED_ITEM_ID,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

@@ -12,42 +12,43 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis.
+ * Groove constraint for 2D physics.
  *
- * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For example, a [godot.StaticBody2D] representing a piston base can be attached to a [godot.RigidBody2D] representing the piston head, moving up and down.
+ * Groove constraint for 2D physics. This is useful for making a body "slide" through a segment placed in another.
  */
 @GodotBaseType
 public open class GrooveJoint2D : Joint2D() {
   /**
    * The groove's length. The groove is from the joint's origin towards [length] along the joint's local Y axis.
    */
-  public var length: Double
+  public var length: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_GET_LENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_SET_LENGTH, NIL)
     }
 
   /**
    * The body B's initial anchor position defined by the joint's origin and a local offset [initialOffset] along the joint's Y axis (along the groove).
    */
-  public var initialOffset: Double
+  public var initialOffset: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_GET_INITIAL_OFFSET,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_SET_INITIAL_OFFSET,
           NIL)
     }

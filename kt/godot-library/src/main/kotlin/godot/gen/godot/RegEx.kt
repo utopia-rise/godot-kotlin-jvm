@@ -12,7 +12,6 @@ import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -41,64 +40,64 @@ public open class RegEx : RefCounted() {
   public fun compile(pattern: String): GodotError {
     TransferContext.writeArguments(STRING to pattern)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_COMPILE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public fun search(
     subject: String,
-    offset: Long = 0,
-    end: Long = -1,
+    offset: Int = 0,
+    end: Int = -1,
   ): RegExMatch? {
-    TransferContext.writeArguments(STRING to subject, LONG to offset, LONG to end)
+    TransferContext.writeArguments(STRING to subject, LONG to offset.toLong(), LONG to end.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SEARCH, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as RegExMatch?
+    return (TransferContext.readReturnValue(OBJECT, true) as RegExMatch?)
   }
 
   public fun searchAll(
     subject: String,
-    offset: Long = 0,
-    end: Long = -1,
+    offset: Int = 0,
+    end: Int = -1,
   ): VariantArray<RegExMatch> {
-    TransferContext.writeArguments(STRING to subject, LONG to offset, LONG to end)
+    TransferContext.writeArguments(STRING to subject, LONG to offset.toLong(), LONG to end.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SEARCH_ALL, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RegExMatch>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RegExMatch>)
   }
 
   public fun sub(
     subject: String,
     replacement: String,
     all: Boolean = false,
-    offset: Long = 0,
-    end: Long = -1,
+    offset: Int = 0,
+    end: Int = -1,
   ): String {
-    TransferContext.writeArguments(STRING to subject, STRING to replacement, BOOL to all, LONG to offset, LONG to end)
+    TransferContext.writeArguments(STRING to subject, STRING to replacement, BOOL to all, LONG to offset.toLong(), LONG to end.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SUB, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_IS_VALID, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun getPattern(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_PATTERN, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun getGroupCount(): Long {
+  public fun getGroupCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_GROUP_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun getNames(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_NAMES,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   public companion object

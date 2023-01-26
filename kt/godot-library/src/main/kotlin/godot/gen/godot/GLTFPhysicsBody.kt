@@ -21,6 +21,7 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -32,7 +33,7 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_GET_BODY_TYPE,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -40,14 +41,14 @@ public open class GLTFPhysicsBody : Resource() {
           NIL)
     }
 
-  public var mass: Double
+  public var mass: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_GET_MASS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_SET_MASS, NIL)
     }
 
@@ -56,7 +57,7 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_GET_LINEAR_VELOCITY, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -69,7 +70,7 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_GET_ANGULAR_VELOCITY, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -82,7 +83,7 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_GET_INERTIA_TENSOR, BASIS)
-      return TransferContext.readReturnValue(BASIS, false) as Basis
+      return (TransferContext.readReturnValue(BASIS, false) as Basis)
     }
     set(`value`) {
       TransferContext.writeArguments(BASIS to value)
@@ -98,14 +99,14 @@ public open class GLTFPhysicsBody : Resource() {
   public fun toNode(): CollisionObject3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_TO_NODE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as CollisionObject3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as CollisionObject3D?)
   }
 
   public fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_TO_DICTIONARY,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   public companion object

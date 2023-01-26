@@ -12,20 +12,23 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 3D physics body that simulates the behavior of a car.
+ * Physics body that simulates the behavior of a car.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/524](https://godotengine.org/asset-library/asset/524)
  *
- * This physics body implements all the physics logic needed to simulate a car. It is based on the raycast vehicle system commonly found in physics engines. Aside from a [godot.CollisionShape3D] for the main body of the vehicle, you must also add a [godot.VehicleWheel3D] node for each wheel. You should also add a [godot.MeshInstance3D] to this node for the 3D model of the vehicle, but this model should generally not include meshes for the wheels. You can control the vehicle by using the [brake], [engineForce], and [steering] properties. The position or orientation of this node shouldn't be changed directly.
+ * This node implements all the physics logic needed to simulate a car. It is based on the raycast vehicle system commonly found in physics engines. You will need to add a [godot.CollisionShape3D] for the main body of your vehicle and add [godot.VehicleWheel3D] nodes for the wheels. You should also add a [godot.MeshInstance3D] to this node for the 3D model of your car but this model should not include meshes for the wheels. You should control the vehicle by using the [brake], [engineForce], and [steering] properties and not change the position or orientation of this node directly.
  *
- * **Note:** The origin point of your VehicleBody3D will determine the center of gravity of your vehicle. To make the vehicle more grounded, the origin point is usually kept low, moving the [godot.CollisionShape3D] and [godot.MeshInstance3D] upwards.
+ * **Note:** The origin point of your VehicleBody3D will determine the center of gravity of your vehicle so it is better to keep this low and move the [godot.CollisionShape3D] and [godot.MeshInstance3D] upwards.
  *
- * **Note:** This class has known issues and isn't designed to provide realistic 3D vehicle physics. If you want advanced vehicle physics, you may have to write your own physics integration using [godot.CharacterBody3D] or [godot.RigidBody3D].
+ * **Note:** This class has known issues and isn't designed to provide realistic 3D vehicle physics. If you want advanced vehicle physics, you will probably have to write your own physics integration using another [godot.PhysicsBody3D] class.
+ *
+ * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
  */
 @GodotBaseType
 public open class VehicleBody3D : RigidBody3D() {
@@ -36,15 +39,15 @@ public open class VehicleBody3D : RigidBody3D() {
    *
    * A negative value will result in the vehicle reversing.
    */
-  public var engineForce: Double
+  public var engineForce: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_ENGINE_FORCE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_ENGINE_FORCE,
           NIL)
     }
@@ -52,14 +55,14 @@ public open class VehicleBody3D : RigidBody3D() {
   /**
    * Slows down the vehicle by applying a braking force. The vehicle is only slowed down if the wheels are in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [godot.RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking.
    */
-  public var brake: Double
+  public var brake: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_BRAKE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_BRAKE, NIL)
     }
 
@@ -68,15 +71,15 @@ public open class VehicleBody3D : RigidBody3D() {
    *
    * **Note:** This property is edited in the inspector in degrees. In code the property is set in radians.
    */
-  public var steering: Double
+  public var steering: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_STEERING,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_STEERING, NIL)
     }
 

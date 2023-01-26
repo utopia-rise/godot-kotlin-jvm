@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
@@ -26,14 +25,14 @@ public open class PacketPeerExtension : PacketPeer() {
   /**
    *
    */
-  public open fun _getAvailablePacketCount(): Long {
+  public open fun _getAvailablePacketCount(): Int {
     throw NotImplementedError("_get_available_packet_count is not implemented for PacketPeerExtension")
   }
 
   /**
    *
    */
-  public open fun _getMaxPacketSize(): Long {
+  public open fun _getMaxPacketSize(): Int {
     throw NotImplementedError("_get_max_packet_size is not implemented for PacketPeerExtension")
   }
 

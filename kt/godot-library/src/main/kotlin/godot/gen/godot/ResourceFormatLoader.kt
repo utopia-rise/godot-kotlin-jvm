@@ -124,7 +124,7 @@ public open class ResourceFormatLoader : RefCounted() {
     path: String,
     originalPath: String,
     useSubThreads: Boolean,
-    cacheMode: Long,
+    cacheMode: Int,
   ): Any? {
     throw NotImplementedError("_load is not implemented for ResourceFormatLoader")
   }

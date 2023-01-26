@@ -28,6 +28,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -53,7 +54,7 @@ public open class TileData : Object() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_FLIP_H, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -67,7 +68,7 @@ public open class TileData : Object() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_FLIP_V, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -81,7 +82,7 @@ public open class TileData : Object() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TRANSPOSE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -96,7 +97,7 @@ public open class TileData : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TEXTURE_ORIGIN,
           VECTOR2I)
-      return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
@@ -110,7 +111,7 @@ public open class TileData : Object() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_MODULATE, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -124,7 +125,7 @@ public open class TileData : Object() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_MATERIAL, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -134,70 +135,70 @@ public open class TileData : Object() {
   /**
    * Ordering index of this tile, relative to [godot.TileMap].
    */
-  public var zIndex: Long
+  public var zIndex: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_Z_INDEX, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_Z_INDEX, NIL)
     }
 
   /**
    * Vertical point of the tile used for determining y-sorted order.
    */
-  public var ySortOrigin: Long
+  public var ySortOrigin: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_Y_SORT_ORIGIN, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_Y_SORT_ORIGIN, NIL)
     }
 
   /**
    * ID of the terrain set that the tile uses.
    */
-  public var terrainSet: Long
+  public var terrainSet: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TERRAIN_SET, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_TERRAIN_SET, NIL)
     }
 
   /**
    * ID of the terrain from the terrain set that the tile uses.
    */
-  public var terrain: Long
+  public var terrain: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TERRAIN, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_TERRAIN, NIL)
     }
 
   /**
    * Relative probability of this tile being selected when drawing a pattern of random tiles.
    */
-  public var probability: Double
+  public var probability: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_PROBABILITY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_PROBABILITY, NIL)
     }
 
@@ -209,25 +210,25 @@ public open class TileData : Object() {
   /**
    * Sets the occluder for the TileSet occlusion layer with index [layerId].
    */
-  public fun setOccluder(layerId: Long, occluderPolygon: OccluderPolygon2D): Unit {
-    TransferContext.writeArguments(LONG to layerId, OBJECT to occluderPolygon)
+  public fun setOccluder(layerId: Int, occluderPolygon: OccluderPolygon2D): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong(), OBJECT to occluderPolygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_OCCLUDER, NIL)
   }
 
   /**
    * Returns the occluder polygon of the tile for the TileSet occlusion layer with index [layerId].
    */
-  public fun getOccluder(layerId: Long): OccluderPolygon2D? {
-    TransferContext.writeArguments(LONG to layerId)
+  public fun getOccluder(layerId: Int): OccluderPolygon2D? {
+    TransferContext.writeArguments(LONG to layerId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_OCCLUDER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?)
   }
 
   /**
    * Sets the constant linear velocity. This does not move the tile. This linear velocity is applied to objects colliding with this tile. This is useful to create conveyor belts.
    */
-  public fun setConstantLinearVelocity(layerId: Long, velocity: Vector2): Unit {
-    TransferContext.writeArguments(LONG to layerId, VECTOR2 to velocity)
+  public fun setConstantLinearVelocity(layerId: Int, velocity: Vector2): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong(), VECTOR2 to velocity)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_CONSTANT_LINEAR_VELOCITY, NIL)
   }
@@ -235,18 +236,18 @@ public open class TileData : Object() {
   /**
    * Returns the constant linear velocity applied to objects colliding with this tile.
    */
-  public fun getConstantLinearVelocity(layerId: Long): Vector2 {
-    TransferContext.writeArguments(LONG to layerId)
+  public fun getConstantLinearVelocity(layerId: Int): Vector2 {
+    TransferContext.writeArguments(LONG to layerId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_CONSTANT_LINEAR_VELOCITY, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Sets the constant angular velocity. This does not rotate the tile. This angular velocity is applied to objects colliding with this tile.
    */
-  public fun setConstantAngularVelocity(layerId: Long, velocity: Double): Unit {
-    TransferContext.writeArguments(LONG to layerId, DOUBLE to velocity)
+  public fun setConstantAngularVelocity(layerId: Int, velocity: Float): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong(), DOUBLE to velocity.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_CONSTANT_ANGULAR_VELOCITY, NIL)
   }
@@ -254,18 +255,18 @@ public open class TileData : Object() {
   /**
    * Returns the constant angular velocity applied to objects colliding with this tile.
    */
-  public fun getConstantAngularVelocity(layerId: Long): Double {
-    TransferContext.writeArguments(LONG to layerId)
+  public fun getConstantAngularVelocity(layerId: Int): Float {
+    TransferContext.writeArguments(LONG to layerId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_CONSTANT_ANGULAR_VELOCITY, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets the polygons count for TileSet physics layer with index [layerId].
    */
-  public fun setCollisionPolygonsCount(layerId: Long, polygonsCount: Long): Unit {
-    TransferContext.writeArguments(LONG to layerId, LONG to polygonsCount)
+  public fun setCollisionPolygonsCount(layerId: Int, polygonsCount: Int): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonsCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_COLLISION_POLYGONS_COUNT, NIL)
   }
@@ -273,26 +274,26 @@ public open class TileData : Object() {
   /**
    * Returns how many polygons the tile has for TileSet physics layer with index [layerId].
    */
-  public fun getCollisionPolygonsCount(layerId: Long): Long {
-    TransferContext.writeArguments(LONG to layerId)
+  public fun getCollisionPolygonsCount(layerId: Int): Int {
+    TransferContext.writeArguments(LONG to layerId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_COLLISION_POLYGONS_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Adds a collision polygon to the tile on the given TileSet physics layer.
    */
-  public fun addCollisionPolygon(layerId: Long): Unit {
-    TransferContext.writeArguments(LONG to layerId)
+  public fun addCollisionPolygon(layerId: Int): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_ADD_COLLISION_POLYGON, NIL)
   }
 
   /**
    * Removes the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
-  public fun removeCollisionPolygon(layerId: Long, polygonIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex)
+  public fun removeCollisionPolygon(layerId: Int, polygonIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_REMOVE_COLLISION_POLYGON,
         NIL)
   }
@@ -301,11 +302,11 @@ public open class TileData : Object() {
    * Sets the points of the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
   public fun setCollisionPolygonPoints(
-    layerId: Long,
-    polygonIndex: Long,
+    layerId: Int,
+    polygonIndex: Int,
     polygon: PackedVector2Array,
   ): Unit {
-    TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex, PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong(), PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_COLLISION_POLYGON_POINTS, NIL)
   }
@@ -313,22 +314,22 @@ public open class TileData : Object() {
   /**
    * Returns the points of the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
-  public fun getCollisionPolygonPoints(layerId: Long, polygonIndex: Long): PackedVector2Array {
-    TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex)
+  public fun getCollisionPolygonPoints(layerId: Int, polygonIndex: Int): PackedVector2Array {
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_COLLISION_POLYGON_POINTS, PACKED_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   /**
    * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
   public fun setCollisionPolygonOneWay(
-    layerId: Long,
-    polygonIndex: Long,
+    layerId: Int,
+    polygonIndex: Int,
     oneWay: Boolean,
   ): Unit {
-    TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex, BOOL to oneWay)
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong(), BOOL to oneWay)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_COLLISION_POLYGON_ONE_WAY, NIL)
   }
@@ -336,22 +337,22 @@ public open class TileData : Object() {
   /**
    * Returns whether one-way collisions are enabled for the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
-  public fun isCollisionPolygonOneWay(layerId: Long, polygonIndex: Long): Boolean {
-    TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex)
+  public fun isCollisionPolygonOneWay(layerId: Int, polygonIndex: Int): Boolean {
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_IS_COLLISION_POLYGON_ONE_WAY, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
   public fun setCollisionPolygonOneWayMargin(
-    layerId: Long,
-    polygonIndex: Long,
-    oneWayMargin: Double,
+    layerId: Int,
+    polygonIndex: Int,
+    oneWayMargin: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex, DOUBLE to oneWayMargin)
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong(), DOUBLE to oneWayMargin.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_COLLISION_POLYGON_ONE_WAY_MARGIN, NIL)
   }
@@ -359,18 +360,18 @@ public open class TileData : Object() {
   /**
    * Returns the one-way margin (for one-way platforms) of the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
-  public fun getCollisionPolygonOneWayMargin(layerId: Long, polygonIndex: Long): Double {
-    TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex)
+  public fun getCollisionPolygonOneWayMargin(layerId: Int, polygonIndex: Int): Float {
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_COLLISION_POLYGON_ONE_WAY_MARGIN, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets the tile's terrain bit for the given [peeringBit] direction.
    */
-  public fun setTerrainPeeringBit(peeringBit: TileSet.CellNeighbor, terrain: Long): Unit {
-    TransferContext.writeArguments(LONG to peeringBit.id, LONG to terrain)
+  public fun setTerrainPeeringBit(peeringBit: TileSet.CellNeighbor, terrain: Int): Unit {
+    TransferContext.writeArguments(LONG to peeringBit.id, LONG to terrain.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_TERRAIN_PEERING_BIT,
         NIL)
   }
@@ -378,18 +379,18 @@ public open class TileData : Object() {
   /**
    * Returns the tile's terrain bit for the given [peeringBit] direction.
    */
-  public fun getTerrainPeeringBit(peeringBit: TileSet.CellNeighbor): Long {
+  public fun getTerrainPeeringBit(peeringBit: TileSet.CellNeighbor): Int {
     TransferContext.writeArguments(LONG to peeringBit.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TERRAIN_PEERING_BIT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets the navigation polygon for the TileSet navigation layer with index [layerId].
    */
-  public fun setNavigationPolygon(layerId: Long, navigationPolygon: NavigationPolygon): Unit {
-    TransferContext.writeArguments(LONG to layerId, OBJECT to navigationPolygon)
+  public fun setNavigationPolygon(layerId: Int, navigationPolygon: NavigationPolygon): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong(), OBJECT to navigationPolygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_NAVIGATION_POLYGON,
         NIL)
   }
@@ -397,11 +398,11 @@ public open class TileData : Object() {
   /**
    * Returns the navigation polygon of the tile for the TileSet navigation layer with index [layerId].
    */
-  public fun getNavigationPolygon(layerId: Long): NavigationPolygon? {
-    TransferContext.writeArguments(LONG to layerId)
+  public fun getNavigationPolygon(layerId: Int): NavigationPolygon? {
+    TransferContext.writeArguments(LONG to layerId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_NAVIGATION_POLYGON,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as NavigationPolygon?
+    return (TransferContext.readReturnValue(OBJECT, true) as NavigationPolygon?)
   }
 
   /**
@@ -418,14 +419,14 @@ public open class TileData : Object() {
   public fun getCustomData(layerName: String): Any? {
     TransferContext.writeArguments(STRING to layerName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_CUSTOM_DATA, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
    * Sets the tile's custom data value for the TileSet custom data layer with index [layerId].
    */
-  public fun setCustomDataByLayerId(layerId: Long, `value`: Any): Unit {
-    TransferContext.writeArguments(LONG to layerId, ANY to value)
+  public fun setCustomDataByLayerId(layerId: Int, `value`: Any): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong(), ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_CUSTOM_DATA_BY_LAYER_ID, NIL)
   }
@@ -433,11 +434,11 @@ public open class TileData : Object() {
   /**
    * Returns the custom data value for custom data layer with index [layerId].
    */
-  public fun getCustomDataByLayerId(layerId: Long): Any? {
-    TransferContext.writeArguments(LONG to layerId)
+  public fun getCustomDataByLayerId(layerId: Int): Any? {
+    TransferContext.writeArguments(LONG to layerId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_CUSTOM_DATA_BY_LAYER_ID, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public companion object

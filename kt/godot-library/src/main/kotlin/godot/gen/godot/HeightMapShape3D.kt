@@ -18,26 +18,26 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A 3D height map shape used for physics collision.
+ * Height map shape resource for 3D physics.
  *
- * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape3D]. This is useful for terrain, but it is limited as overhangs (such as caves) cannot be stored. Holes in a [godot.HeightMapShape3D] are created by assigning very low values to points in the desired area.
+ * Height map shape resource, which can be added to a [godot.PhysicsBody3D] or [godot.Area3D]. Heightmap collision is typically used for colliding with terrains. However, since heightmaps cannot store overhangs, collisions with other structures (such as buildings) must be done with other collision shapes such as [godot.ConcavePolygonShape3D]. If needed, "holes" can be created in an [godot.HeightMapShape3D] by assigning very low points (like `-100000`) in the desired area.
  *
- * **Performance:** [godot.HeightMapShape3D] is faster to check collisions against than [godot.ConcavePolygonShape3D], but it is significantly slower than primitive shapes like [godot.BoxShape3D].
+ * **Performance:** [godot.HeightMapShape3D] is faster to check collisions against compared to [godot.ConcavePolygonShape3D], but it is slower than primitive collision shapes such as [godot.SphereShape3D] or [godot.BoxShape3D].
  */
 @GodotBaseType
 public open class HeightMapShape3D : Shape3D() {
   /**
    * Number of vertices in the width of the height map. Changing this will resize the [mapData].
    */
-  public var mapWidth: Long
+  public var mapWidth: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_WIDTH,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_SET_MAP_WIDTH,
           NIL)
     }
@@ -45,15 +45,15 @@ public open class HeightMapShape3D : Shape3D() {
   /**
    * Number of vertices in the depth of the height map. Changing this will resize the [mapData].
    */
-  public var mapDepth: Long
+  public var mapDepth: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_DEPTH,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_SET_MAP_DEPTH,
           NIL)
     }
@@ -66,7 +66,7 @@ public open class HeightMapShape3D : Shape3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_DATA,
           PACKED_FLOAT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
+      return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)

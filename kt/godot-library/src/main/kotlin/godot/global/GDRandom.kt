@@ -8,20 +8,20 @@ internal interface GDRandom {
     var rng: RandomNumberGenerator?
 
     /** Random range, any floating point value between from and to. */
-    fun randRange(from: Float, to: Float) = randRange(from.toDouble(), to.toDouble()).toFloat()
+    fun randRange(from: Double, to: Double) = randRange(from.toFloat(), to.toFloat()).toDouble()
 
     /** Random range, any floating point value between from and to. */
-    fun randRange(from: Double, to: Double) = rng!!.randfRange(from, to).toDouble()
+    fun randRange(from: Float, to: Float) = rng!!.randfRange(from, to)
 
     /** Random range, any integer value between from and to. */
-    fun randRange(from: Int, to: Int) = rng!!.randiRange(from.toLong(), to.toLong()).toInt()
+    fun randRange(from: Int, to: Int) = rng!!.randiRange(from, to)
 
     /** Random range, any long value between from and to. */
-    fun randRange(from: Long, to: Long) = rng!!.randiRange(from, to)
+    fun randRange(from: Long, to: Long) = rng!!.randiRange(from.toInt(), to.toInt())
 
     /** Random from seed: pass a seed, and an array with both number and new seed is returned. "Seed" here refers to the internal state of the pseudo random number generator.
      * The internal state of the current implementation is 64 bits. */
-    fun randSeed(seed: Long): Pair<Long, Long> {
+    fun randSeed(seed: Long): Pair<Long, Int> {
         rng!!.seed = seed
         //Call to randi() should change the value of the seed, that's why we retrieve it again in the return statement
         val randomValue = rng!!.randi()

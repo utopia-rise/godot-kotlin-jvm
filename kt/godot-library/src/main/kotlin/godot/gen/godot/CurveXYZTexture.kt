@@ -13,7 +13,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 import kotlin.jvm.JvmName
 
@@ -29,12 +28,12 @@ public open class CurveXYZTexture : Texture2D() {
   /**
    * The width of the texture (in pixels). Higher values make it possible to represent high-frequency data better (such as sudden direction changes), at the cost of increased generation time and memory usage.
    */
-  public var width: Long
+  public var width: Int
     @JvmName("getWidth_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getWidth()
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_SET_WIDTH, NIL)
     }
 
@@ -46,7 +45,7 @@ public open class CurveXYZTexture : Texture2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_GET_CURVE_X,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
+      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -61,7 +60,7 @@ public open class CurveXYZTexture : Texture2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_GET_CURVE_Y,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
+      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -76,7 +75,7 @@ public open class CurveXYZTexture : Texture2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_GET_CURVE_Z,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
+      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

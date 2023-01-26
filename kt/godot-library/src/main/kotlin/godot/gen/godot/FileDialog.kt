@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -26,9 +25,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A dialog for selecting files or directories in the filesystem.
+ * Dialog for selecting files or directories in the filesystem.
  *
- * [godot.FileDialog] is a preset dialog used to choose files and directories in the filesystem. It supports filter masks. [godot.FileDialog] automatically sets its window title according to the [fileMode]. If you want to use a custom title, disable this by setting [modeOverridesTitle] to `false`.
+ * FileDialog is a preset dialog used to choose files and directories in the filesystem. It supports filter masks. The FileDialog automatically sets its window title according to the [fileMode]. If you want to use a custom title, disable this by setting [modeOverridesTitle] to `false`.
  */
 @GodotBaseType
 public open class FileDialog : ConfirmationDialog() {
@@ -48,14 +47,14 @@ public open class FileDialog : ConfirmationDialog() {
   public val dirSelected: Signal1<String> by signal("dir")
 
   /**
-   * If `true`, changing the [fileMode] property will set the window title accordingly (e.g. setting [fileMode] to [FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
+   * If `true`, changing the `Mode` property will set the window title accordingly (e.g. setting mode to [FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
    */
   public var modeOverridesTitle: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FILEDIALOG_IS_MODE_OVERRIDING_TITLE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -70,7 +69,7 @@ public open class FileDialog : ConfirmationDialog() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILE_MODE, LONG)
-      return FileDialog.FileMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return FileDialog.FileMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -78,7 +77,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The file system access scope. See [enum Access] constants.
+   * The file system access scope. See enum `Access` constants.
    *
    * **Warning:** Currently, in sandboxed environments such as Web builds or sandboxed macOS apps, FileDialog cannot access the host file system. See [godot-proposals#1123](https://github.com/godotengine/godot-proposals/issues/1123).
    */
@@ -86,7 +85,7 @@ public open class FileDialog : ConfirmationDialog() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ACCESS, LONG)
-      return FileDialog.Access.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return FileDialog.Access.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -101,7 +100,7 @@ public open class FileDialog : ConfirmationDialog() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ROOT_SUBFOLDER,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -117,7 +116,7 @@ public open class FileDialog : ConfirmationDialog() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILTERS,
           PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
@@ -132,7 +131,7 @@ public open class FileDialog : ConfirmationDialog() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FILEDIALOG_IS_SHOWING_HIDDEN_FILES, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -148,7 +147,7 @@ public open class FileDialog : ConfirmationDialog() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_DIR,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -163,7 +162,7 @@ public open class FileDialog : ConfirmationDialog() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_FILE,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -178,7 +177,7 @@ public open class FileDialog : ConfirmationDialog() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_PATH,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -218,7 +217,7 @@ public open class FileDialog : ConfirmationDialog() {
   public fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_VBOX, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
+    return (TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?)
   }
 
   /**
@@ -229,7 +228,7 @@ public open class FileDialog : ConfirmationDialog() {
   public fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_LINE_EDIT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as LineEdit?
+    return (TransferContext.readReturnValue(OBJECT, true) as LineEdit?)
   }
 
   /**
