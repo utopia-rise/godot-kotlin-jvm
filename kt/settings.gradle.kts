@@ -5,6 +5,7 @@ pluginManagement {
         when(requested.id.id) {
             "com.utopia-rise.api-generator" -> useModule("com.utopia-rise:api-generator:0.0.1")
             "com.utopia-rise.godot-publish" -> useModule("com.utopia-rise:godot-publish-gradle-plugin:0.0.1")
+            "org.ajoberstar.grgit" -> useVersion("4.1.1")
         }
     }
 }
@@ -33,6 +34,12 @@ subdir("plugins") {
 
 subdir("utils") {
     include("godot-build-props")
+}
+
+includeBuild("tools-common") {
+    dependencySubstitution {
+        substitute(module("com.utopia-rise:tools-common")).using(project(":")) // assuming api-generator is the root project of api-generator/api-generator
+    }
 }
 
 class IncludeDsl(val root: String) {
