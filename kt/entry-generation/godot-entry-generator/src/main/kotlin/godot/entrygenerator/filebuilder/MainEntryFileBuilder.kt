@@ -3,30 +3,31 @@ package godot.entrygenerator.filebuilder
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import godot.entrygenerator.model.RegisteredClass
+import godot.tools.common.constants.*
 import java.io.BufferedWriter
 import kotlin.reflect.KClass
 
 object MainEntryFileBuilder {
     private val entryFileSpec = FileSpec
-        .builder("godot", "Entry")
-        .addFileComment("THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY! ALL CHANGES TO IT WILL BE OVERWRITTEN ON EACH BUILD")
+        .builder(godotEntryGeneratorBasePackage, "Entry")
+        .addFileComment(GENERATED_COMMENT)
 
     private val initFunctionSpec = FunSpec
         .builder("init")
-        .receiver(ClassName("godot.registration.Entry", "Context"))
+        .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
         .addModifiers(KModifier.OVERRIDE)
 
     private val initEngineTypesFunSpec = FunSpec
         .builder("initEngineTypes")
-        .receiver(ClassName("godot.registration.Entry", "Context"))
+        .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
         .addModifiers(KModifier.OVERRIDE)
-        .addStatement("%M()", MemberName("godot", "registerVariantMapping"))
-        .addStatement("%M()", MemberName("godot", "registerEngineTypes"))
-        .addStatement("%M()", MemberName("godot", "registerEngineTypeMethods"))
+        .addStatement("%M()", MemberName(godotEntryGeneratorBasePackage, "registerVariantMapping"))
+        .addStatement("%M()", MemberName(godotEntryGeneratorBasePackage, "registerEngineTypes"))
+        .addStatement("%M()", MemberName(godotEntryGeneratorBasePackage, "registerEngineTypeMethods"))
 
     private val registerUserTypesVariantMappingsFunSpec = FunSpec
         .builder("getRegisteredClasses")
-        .receiver(ClassName("godot.registration.Entry", "Context"))
+        .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
         .addModifiers(KModifier.OVERRIDE)
         .returns(
             List::class
@@ -41,8 +42,8 @@ object MainEntryFileBuilder {
 
         entryFileSpec.addType(
             TypeSpec
-                .classBuilder(ClassName("godot", "Entry"))
-                .superclass(ClassName("godot.registration", "Entry"))
+                .classBuilder(ClassName(godotEntryGeneratorBasePackage, GodotKotlinJvmTypes.entry))
+                .superclass(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.entry))
                 .addFunction(initFunctionSpec.build())
                 .addFunction(initEngineTypesFunSpec.build())
                 .addFunction(registerUserTypesVariantMappingsFunSpec.build())
@@ -67,7 +68,7 @@ object MainEntryFileBuilder {
         }
         registerUserTypesVariantMappingsFunSpec.addStatement(
             "return %M(${listOfArguments.joinToString { "%T::class" }})",
-            MemberName("kotlin.collections", "listOf"),
+            KOTLIN_LIST_OF,
             *listOfArguments.toTypedArray()
         )
     }

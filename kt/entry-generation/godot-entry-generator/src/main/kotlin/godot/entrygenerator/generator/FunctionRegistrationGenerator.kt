@@ -12,6 +12,7 @@ import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.RpcMode
 import godot.entrygenerator.model.Sync
 import godot.entrygenerator.model.TransferMode
+import godot.tools.common.constants.*
 
 object FunctionRegistrationGenerator {
     fun generate(registeredClass: RegisteredClass, className: ClassName, registerClassControlFlow: FunSpec.Builder) {
@@ -40,11 +41,11 @@ object FunctionRegistrationGenerator {
     }
 
     private fun getTemplateArgs(registeredFunction: RegisteredFunction, className: ClassName): List<Any> {
-        val ktFunctionArgumentClassName = ClassName("godot.registration", "KtFunctionArgument")
+        val ktFunctionArgumentClassName = ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument)
 
         return buildList {
             add(getFunctionReference(registeredFunction, className))
-            add(registeredFunction.returnType?.toKtVariantType() ?: ClassName("godot.core.VariantType", "NIL"))
+            add(registeredFunction.returnType?.toKtVariantType() ?: ClassName("$godotCorePackage.${GodotKotlinJvmTypes.variantType}", "NIL"))
 
             if (registeredFunction.parameters.isNotEmpty()) {
                 registeredFunction.parameters.forEach { parameter ->
@@ -61,8 +62,8 @@ object FunctionRegistrationGenerator {
 
             add(ktFunctionArgumentClassName)
             add(registeredFunction.returnType.toKtVariantType())
-            add(registeredFunction.returnType?.fqName ?: "kotlin.Unit")
-            add(ClassName("godot.core", "KtRpcConfig"))
+            add(registeredFunction.returnType?.fqName ?: requireNotNull(Unit::class.qualifiedName))
+            add(ClassName(godotCorePackage, GodotKotlinJvmTypes.ktRpcConfig))
             add(getRpcModeEnum(registeredFunction))
             add(getRpcCallLocal(registeredFunction))
             add(getRpcTransferModeEnum(registeredFunction))
@@ -79,18 +80,18 @@ object FunctionRegistrationGenerator {
     private fun getRpcModeEnum(registeredFunction: RegisteredFunction): ClassName {
         return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.rpcMode) {
             null,
-            RpcMode.DISABLED -> ClassName("godot.MultiplayerAPI.RPCMode", "RPC_MODE_DISABLED")
-            RpcMode.ANY -> ClassName("godot.MultiplayerAPI.RPCMode", "RPC_MODE_ANY_PEER")
-            RpcMode.AUTHORITY -> ClassName("godot.MultiplayerAPI.RPCMode", "RPC_MODE_AUTHORITY")
+            RpcMode.DISABLED -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "RPC_MODE_DISABLED")
+            RpcMode.ANY -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "RPC_MODE_ANY_PEER")
+            RpcMode.AUTHORITY -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "RPC_MODE_AUTHORITY")
         }
     }
 
     private fun getRpcTransferModeEnum(registeredFunction: RegisteredFunction): ClassName {
         return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.transferMode) {
             null,
-            TransferMode.RELIABLE -> ClassName("godot.MultiplayerPeer.TransferMode", "TRANSFER_MODE_RELIABLE")
-            TransferMode.UNRELIABLE -> ClassName("godot.MultiplayerPeer.TransferMode", "TRANSFER_MODE_UNRELIABLE")
-            TransferMode.UNRELIABLE_ORDERED -> ClassName("godot.MultiplayerPeer.TransferMode", "TRANSFER_MODE_UNRELIABLE_ORDERED")
+            TransferMode.RELIABLE -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_RELIABLE")
+            TransferMode.UNRELIABLE -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_UNRELIABLE")
+            TransferMode.UNRELIABLE_ORDERED -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_UNRELIABLE_ORDERED")
         }
     }
 

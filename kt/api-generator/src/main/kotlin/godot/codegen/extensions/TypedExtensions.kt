@@ -42,7 +42,7 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
                 ClassTypeNameWrapper(
                     ClassName(
                         godotCorePackage,
-                        KotlinTypes.variantType
+                        GodotKotlinJvmTypes.variantType
                     )
                 )
             } else {
@@ -127,11 +127,11 @@ fun <T> T.getDefaultValueKotlinString(): String?
         "null"
     } else if (defaultValueString != null) {
         when {
-            type == GodotTypes.color -> "${KotlinTypes.color}($defaultValueString)"
+            type == GodotTypes.color -> "${GodotKotlinJvmTypes.color}($defaultValueString)"
             type == GodotTypes.variant -> defaultValueString
             type == GodotTypes.bool -> defaultValueString.toLowerCase()
             type == GodotTypes.float -> intToFloat(defaultValueString)
-            type == GodotTypes.stringName -> "${KotlinTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
+            type == GodotTypes.stringName -> "${GodotKotlinJvmTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
             type == GodotTypes.array || isTypedArray() -> "$godotCorePackage.variantArrayOf(".plus(defaultValueString.removePrefix("[").removeSuffix("]")).plus(")")
 
             type == GodotTypes.rect2 -> defaultValueString

@@ -2,7 +2,7 @@ package godot.tools.common.constants
 
 import com.squareup.kotlinpoet.ClassName
 
-object KotlinTypes{
+object GodotKotlinJvmTypes{
     const val color = "Color"
     const val stringName = "StringName"
     const val array = "VariantArray"
@@ -13,17 +13,30 @@ object KotlinTypes{
     const val variant = "Any"
     const val refCounted = "RefCounted"
     const val obj = "Object"
+    const val signal = "Signal"
 
     const val ktObject = "KtObject"
+    const val ktFunctionArgument = "KtFunctionArgument"
+    const val ktRpcConfig = "KtRpcConfig"
 
     const val variantType = "VariantType"
+    const val variantArray = "VariantArray"
     const val transferContext = "TransferContext"
     const val typeManager = "TypeManager"
     const val objectID = "ObjectID"
 
+    const val classRegistry = "ClassRegistry"
+    const val classRegistrar = "ClassRegistrar"
+    const val entry = "Entry"
+    const val context = "Context"
+
+    const val naturalT = "NaturalT"
+    const val realT = "RealT"
+
     object Annotations {
         const val godotBaseType = "GodotBaseType"
         const val coreTypeHelper = "CoreTypeHelper"
+        const val range = "Range"
     }
 }
 
@@ -68,6 +81,9 @@ object GodotTypes {
     const val signal = "Signal"
     const val variant = "Variant"
     const val variantType = "Variant.Type"
+    const val propertyHint = "PropertyHint"
+    const val rpcMode = "MultiplayerAPI.RPCMode"
+    const val transferMode = "MultiplayerPeer.TransferMode"
 
     val coreTypes = listOf(
         error,
@@ -136,12 +152,12 @@ object GodotTypes {
     )
 }
 
-val GODOT_ERROR = ClassName(godotCorePackage, KotlinTypes.error)
-val GODOT_ARRAY = ClassName(godotCorePackage, KotlinTypes.array)
-val GODOT_CALLABLE = ClassName(godotCorePackage, KotlinTypes.callable)
-val GODOT_DICTIONARY = ClassName(godotCorePackage, KotlinTypes.dictionary)
-val GODOT_OBJECT = ClassName(godotApiPackage, KotlinTypes.obj)
-val KT_OBJECT = ClassName(godotCorePackage, KotlinTypes.ktObject)
+val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
+val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
+val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)
+val GODOT_DICTIONARY = ClassName(godotCorePackage, GodotKotlinJvmTypes.dictionary)
+val GODOT_OBJECT = ClassName(godotApiPackage, GodotKotlinJvmTypes.obj)
+val KT_OBJECT = ClassName(godotCorePackage, GodotKotlinJvmTypes.ktObject)
 
 val VARIANT_TYPE_NIL = ClassName(variantTypePackage, "NIL")
 val VARIANT_TYPE_BOOL = ClassName(variantTypePackage, "BOOL")
@@ -149,8 +165,12 @@ val VARIANT_TYPE_LONG = ClassName(variantTypePackage, "LONG")
 val VARIANT_TYPE_DOUBLE = ClassName(variantTypePackage, "DOUBLE")
 val VARIANT_TYPE_NODE_PATH = ClassName(variantTypePackage, "NODE_PATH")
 val VARIANT_TYPE_STRING_NAME = ClassName(variantTypePackage, "STRING_NAME")
+val VARIANT_TYPE_STRING = ClassName(variantTypePackage, "STRING")
 val VARIANT_TYPE__RID = ClassName(variantTypePackage, "_RID")
 val VARIANT_TYPE_ARRAY = ClassName(variantTypePackage, "ARRAY")
+val VARIANT_TYPE_AABB = ClassName(variantTypePackage, "AABB")
+val VARIANT_TYPE_TRANSFORM2D = ClassName(variantTypePackage, "TRANSFORM2D")
+val VARIANT_TYPE_TRANSFORM3D = ClassName(variantTypePackage, "TRANSFORM3D")
 val VARIANT_TYPE_PACKED_BYTE_ARRAY = ClassName(variantTypePackage, "PACKED_BYTE_ARRAY")
 val VARIANT_TYPE_PACKED_INT_32_ARRAY = ClassName(variantTypePackage, "PACKED_INT_32_ARRAY")
 val VARIANT_TYPE_PACKED_INT_64_ARRAY = ClassName(variantTypePackage, "PACKED_INT_64_ARRAY")
@@ -162,11 +182,13 @@ val VARIANT_TYPE_PACKED_VECTOR3_ARRAY = ClassName(variantTypePackage, "PACKED_VE
 val VARIANT_TYPE_PACKED_COLOR_ARRAY = ClassName(variantTypePackage, "PACKED_COLOR_ARRAY")
 val VARIANT_TYPE_OBJECT = ClassName(variantTypePackage, "OBJECT")
 val VARIANT_TYPE_JVM_INT = ClassName(variantTypePackage, "JVM_INT")
+val VARIANT_TYPE_JVM_FLOAT = ClassName(variantTypePackage, "JVM_FLOAT")
+val VARIANT_TYPE_JVM_BYTE = ClassName(variantTypePackage, "JVM_BYTE")
 val VARIANT_TYPE_ANY = ClassName(variantTypePackage, "ANY")
 
-val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, KotlinTypes.Annotations.godotBaseType)
-val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, KotlinTypes.Annotations.coreTypeHelper)
+val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.godotBaseType)
+val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeHelper)
 
-val TRANSFER_CONTEXT = ClassName(godotMemoryPackage, KotlinTypes.transferContext)
-val TYPE_MANAGER = ClassName(godotCorePackage, KotlinTypes.typeManager)
-val OBJECT_ID = ClassName(godotCorePackage, KotlinTypes.objectID)
+val TRANSFER_CONTEXT = ClassName(godotMemoryPackage, GodotKotlinJvmTypes.transferContext)
+val TYPE_MANAGER = ClassName(godotCorePackage, GodotKotlinJvmTypes.typeManager)
+val OBJECT_ID = ClassName(godotCorePackage, GodotKotlinJvmTypes.objectID)

@@ -88,7 +88,7 @@ class GenerationService(
 
         classTypeBuilder.addAnnotation(GODOT_BASE_TYPE)
 
-        if (name == KotlinTypes.obj) {
+        if (name == GodotKotlinJvmTypes.obj) {
             classTypeBuilder.superclass(KT_OBJECT)
             classTypeBuilder.generateSignalExtensions()
         }

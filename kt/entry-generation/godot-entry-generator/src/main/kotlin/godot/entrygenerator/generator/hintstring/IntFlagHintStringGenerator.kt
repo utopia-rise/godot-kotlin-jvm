@@ -9,7 +9,7 @@ class IntFlagHintStringGenerator(
 ) : PropertyHintStringGenerator<IntFlagHintAnnotation>(registeredProperty) {
 
     override fun getHintString(): String {
-        if (registeredProperty.type.fqName != "kotlin.Int") {
+        if (registeredProperty.type.fqName != Int::class.qualifiedName) {
             throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, Int::class.qualifiedName)
         }
 

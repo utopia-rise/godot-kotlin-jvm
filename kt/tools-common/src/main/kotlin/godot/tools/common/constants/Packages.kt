@@ -6,4 +6,11 @@ const val godotCorePackage = "godot.core"
 const val godotMemoryPackage = "godot.core.memory"
 const val godotAnnotationPackage = "godot.annotation"
 const val godotUtilPackage = "godot.util"
-const val variantTypePackage = "$godotCorePackage.${KotlinTypes.variantType}"
+
+const val godotRegistrationPackage = "godot.registration"
+const val godotEntryGeneratorBasePackage = "godot"
+
+const val variantTypePackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantType}"
+
+const val kotlinPackage = "kotlin"
+const val kotlinCollectionsPackage = "$kotlinPackage.collections"

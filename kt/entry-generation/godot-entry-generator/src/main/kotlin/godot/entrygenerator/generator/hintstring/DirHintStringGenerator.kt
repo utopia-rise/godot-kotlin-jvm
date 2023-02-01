@@ -9,8 +9,8 @@ class DirHintStringGenerator(
 ) : PropertyHintStringGenerator<DirHintAnnotation>(registeredProperty) {
 
     override fun getHintString(): String {
-        if (registeredProperty.type.fqName != "kotlin.String") {
-            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, "kotlin.String")
+        if (registeredProperty.type.fqName != String::class.qualifiedName) {
+            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, String::class.qualifiedName)
         }
 
         return "" //hint string is empty for this typehint
