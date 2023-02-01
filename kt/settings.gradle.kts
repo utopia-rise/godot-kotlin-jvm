@@ -14,7 +14,7 @@ pluginManagement {
 
 includeBuild("api-generator") {
     dependencySubstitution {
-        substitute(module("com.utopia-rise:api-generator")).using(project(":")) // assuming api-generator is the root project of api-generator/api-generator
+        substitute(module("com.utopia-rise:api-generator")).using(project(":")) // assuming api-generator is the root project of api-generator
     }
 }
 
@@ -29,13 +29,13 @@ subdir("plugins") {
 
     includeBuild("godot-dependencies-gradle-plugin") {
         dependencySubstitution {
-            substitute(module("com.utopia-rise:godot-dependencies-gradle-plugin")).using(project(":")) // assuming api-generator is the root project of api-generator/api-generator
+            substitute(module("com.utopia-rise:godot-dependencies-gradle-plugin")).using(project(":")) // assuming godot-dependencies-gradle-plugin is the root project of godot-dependencies-gradle-plugin
         }
     }
 
     includeBuild("godot-publish-gradle-plugin") {
         dependencySubstitution {
-            substitute(module("com.utopia-rise:godot-publish-gradle-plugin")).using(project(":")) // assuming api-generator is the root project of api-generator/api-generator
+            substitute(module("com.utopia-rise:godot-publish-gradle-plugin")).using(project(":")) // assuming godot-publish-gradle-plugin is the root project of godot-publish-gradle-plugin
         }
     }
 }
@@ -46,7 +46,7 @@ subdir("utils") {
 
 includeBuild("tools-common") {
     dependencySubstitution {
-        substitute(module("com.utopia-rise:tools-common")).using(project(":")) // assuming api-generator is the root project of api-generator/api-generator
+        substitute(module("com.utopia-rise:tools-common")).using(project(":")) // assuming tools-common is the root project of tools-common
     }
 }
 
