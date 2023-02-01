@@ -1,4 +1,4 @@
-package godot.codegen.constants
+package godot.tools.common.constants
 
 const val signalPackage = "godot.signals"
 const val godotApiPackage = "godot"

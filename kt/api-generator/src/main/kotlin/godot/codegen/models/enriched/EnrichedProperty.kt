@@ -1,7 +1,7 @@
 package godot.codegen.models.enriched
 
 import com.squareup.kotlinpoet.ANY
-import godot.codegen.constants.GodotTypes
+import godot.tools.common.constants.GodotTypes
 import godot.codegen.extensions.convertToCamelCase
 import godot.codegen.extensions.getTypeClassName
 import godot.codegen.extensions.isObjectSubClass

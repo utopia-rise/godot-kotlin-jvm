@@ -15,6 +15,7 @@ import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
+import godot.tools.common.constants.*
 import org.gradle.kotlin.dsl.support.appendReproducibleNewLine
 
 class GenerationService(

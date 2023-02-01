@@ -1,4 +1,4 @@
-package godot.codegen.constants
+package godot.tools.common.constants
 
 import com.squareup.kotlinpoet.ClassName
 
@@ -59,7 +59,7 @@ object GodotTypes {
     const val transform2D = "Transform2D"
     const val vector2 = "Vector2"
     const val vector2i = "Vector2i"
-    val vector3 = CoreTypeTraits.VECTOR3.type!!
+    const val vector3 = "Vector3"
     const val vector3i = "Vector3i"
     const val vector4 = "Vector4"
     const val vector4i = "Vector4i"

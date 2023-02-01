@@ -1,12 +1,12 @@
 package godot.codegen.extensions
 
 import com.squareup.kotlinpoet.*
-import godot.codegen.constants.*
 import godot.codegen.models.enriched.EnrichedSignal
 import godot.codegen.poet.ClassTypeNameWrapper
 import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait
 import godot.codegen.traits.WithDefaultValueTrait
+import godot.tools.common.constants.*
 
 private const val enumPrefix = "enum::"
 private const val bitfieldPrefix = "bitfield::"

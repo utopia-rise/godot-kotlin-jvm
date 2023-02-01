@@ -2,8 +2,8 @@ package godot.codegen.poet
 
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
-import godot.codegen.constants.GENERATED_COMMENT
-import godot.codegen.constants.godotApiPackage
+import godot.tools.common.constants.GENERATED_COMMENT
+import godot.tools.common.constants.godotApiPackage
 
 class RegistrationFileSpec {
     val registrationFile = FileSpec.builder(godotApiPackage, "RegisterEngineTypes")

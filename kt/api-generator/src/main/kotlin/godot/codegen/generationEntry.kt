@@ -3,8 +3,7 @@ package godot.codegen
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.squareup.kotlinpoet.FileSpec
-import godot.codegen.constants.GENERATED_COMMENT
-import godot.codegen.constants.godotApiPackage
+import godot.tools.common.constants.godotApiPackage
 import godot.codegen.models.ApiDescription
 import godot.codegen.models.enriched.toEnriched
 import godot.codegen.poet.RegistrationFileSpec
@@ -13,6 +12,7 @@ import godot.codegen.repositories.impl.*
 import godot.codegen.services.*
 import godot.codegen.services.impl.*
 import godot.docgen.DocGen
+import godot.tools.common.constants.GENERATED_COMMENT
 import java.io.File
 
 fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {

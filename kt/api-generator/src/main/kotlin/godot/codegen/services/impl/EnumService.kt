@@ -1,6 +1,6 @@
 package godot.codegen.services.impl
 
-import godot.codegen.constants.GodotTypes
+import godot.tools.common.constants.GodotTypes
 import godot.codegen.exceptions.NoMatchingEnumFound
 import godot.codegen.models.custom.DefaultEnumValue
 import godot.codegen.poet.ClassTypeNameWrapper
