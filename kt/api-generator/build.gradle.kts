@@ -1,6 +1,9 @@
+import godot.dependencies.gradle.godotKotlinJvmVersion
+
 plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
+    id("com.utopia-rise.godot-dependenices")
 }
 
 buildscript {
@@ -25,7 +28,7 @@ gradlePlugin {
 
 dependencies {
     implementation(kotlin("gradle-plugin", version = "1.7.20"))
-    implementation("com.utopia-rise:tools-common")
+    implementation("com.utopia-rise:tools-common:$godotKotlinJvmVersion")
     implementation("com.squareup:kotlinpoet:1.10.2")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.11.0")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.10.1")

@@ -1,6 +1,8 @@
 import org.jetbrains.changelog.markdownToHTML
 import plugins.intellij.BuildConfig
 import plugins.intellij.VersionRange
+import godot.dependencies.gradle.godotKotlinJvmVersion
+import godot.dependencies.gradle.DependenciesVersions
 
 plugins {
     // Java support
@@ -13,6 +15,7 @@ plugins {
     id("org.jetbrains.changelog") version "1.3.1"
     // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
     id("io.gitlab.arturbosch.detekt") version "1.20.0"
+    id("com.utopia-rise.godot-dependenices")
 }
 
 //sdk version: https://github.com/JetBrains/intellij-community/tags

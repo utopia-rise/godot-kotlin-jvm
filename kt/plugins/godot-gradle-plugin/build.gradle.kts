@@ -1,9 +1,12 @@
+import godot.dependencies.gradle.DependenciesVersions
+
 plugins {
     kotlin("jvm")
     `maven-publish`
     `java-gradle-plugin`
     id("com.gradle.plugin-publish") version "0.14.0"
     id("com.utopia-rise.godot-publish")
+    id("com.utopia-rise.godot-dependenices")
     id("org.ajoberstar.grgit")
 }
 

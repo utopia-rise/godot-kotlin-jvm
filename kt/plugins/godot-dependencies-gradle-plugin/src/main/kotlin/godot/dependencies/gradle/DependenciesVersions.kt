@@ -1,3 +1,5 @@
+package godot.dependencies.gradle
+
 object DependenciesVersions {
     const val godotVersion: String = "4.0.0"
 

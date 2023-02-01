@@ -1,11 +1,14 @@
+
 include("godot-library")
 
 pluginManagement {
     resolutionStrategy.eachPlugin {
         when(requested.id.id) {
+            "com.utopia-rise.godot-dependenices" -> useModule("com.utopia-rise:godot-dependencies-gradle-plugin:0.0.1")
             "com.utopia-rise.api-generator" -> useModule("com.utopia-rise:api-generator:0.0.1")
             "com.utopia-rise.godot-publish" -> useModule("com.utopia-rise:godot-publish-gradle-plugin:0.0.1")
             "org.ajoberstar.grgit" -> useVersion("4.1.1")
+            "com.github.johnrengelman.shadow" -> useVersion("7.1.2")
         }
     }
 }
@@ -24,6 +27,12 @@ subdir("entry-generation") {
 subdir("plugins") {
     include("godot-gradle-plugin")
     include("godot-intellij-plugin")
+
+    includeBuild("godot-dependencies-gradle-plugin") {
+        dependencySubstitution {
+            substitute(module("com.utopia-rise:godot-dependencies-gradle-plugin")).using(project(":")) // assuming api-generator is the root project of api-generator/api-generator
+        }
+    }
 
     includeBuild("godot-publish-gradle-plugin") {
         dependencySubstitution {

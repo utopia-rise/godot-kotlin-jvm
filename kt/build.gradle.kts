@@ -1,8 +1,11 @@
+import godot.dependencies.gradle.DependenciesVersions
 import org.ajoberstar.grgit.Commit
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+import godot.dependencies.gradle.godotKotlinJvmVersion
 
 plugins {
     id("org.ajoberstar.grgit") version "4.1.1"
+    id("com.utopia-rise.godot-dependenices")
 }
 
 val currentCommit: Commit = grgit.head()

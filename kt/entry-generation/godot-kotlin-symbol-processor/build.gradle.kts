@@ -1,8 +1,9 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import godot.dependencies.gradle.DependenciesVersions
 
 plugins {
     kotlin("jvm")
     id("com.utopia-rise.godot-publish")
+    id("com.utopia-rise.godot-dependenices")
 }
 
 repositories {
