@@ -1,8 +1,8 @@
 package godot.codegen.models.enriched
 
 import com.squareup.kotlinpoet.ANY
-import godot.codegen.extensions.convertToCamelCase
-import godot.codegen.extensions.escapeKotlinReservedNames
+import godot.tools.common.extensions.convertToCamelCase
+import godot.tools.common.extensions.escapeKotlinReservedNames
 import godot.codegen.extensions.getTypeClassName
 import godot.codegen.workarounds.sanitizeApiType
 import godot.codegen.models.Argument

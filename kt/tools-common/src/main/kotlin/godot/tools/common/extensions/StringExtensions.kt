@@ -1,4 +1,4 @@
-package godot.codegen.extensions
+package godot.tools.common.extensions
 
 fun String.escapeUnderscore(): String {
     if (this == "") return this

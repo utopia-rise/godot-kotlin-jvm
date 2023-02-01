@@ -1,7 +1,7 @@
 package godot.codegen.models.enriched
 
-import godot.codegen.extensions.convertToCamelCase
-import godot.codegen.extensions.escapeKotlinReservedNames
+import godot.tools.common.extensions.convertToCamelCase
+import godot.tools.common.extensions.escapeKotlinReservedNames
 import godot.codegen.models.Signal
 import godot.codegen.traits.TypedTrait
 
