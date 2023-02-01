@@ -152,7 +152,7 @@ class GenerationService(
         fileBuilder.generateSuppressWarnings()
 
         return fileBuilder
-            .addComment(GENERATED_COMMENT)
+            .addFileComment(GENERATED_COMMENT)
             .build()
     }
 

@@ -71,7 +71,7 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
             .addType(
                 generationService.generateEnum(enum)
             )
-            .addComment(GENERATED_COMMENT)
+            .addFileComment(GENERATED_COMMENT)
             .build()
             .writeTo(this)
     }

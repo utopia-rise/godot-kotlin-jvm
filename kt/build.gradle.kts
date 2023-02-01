@@ -1,23 +1,11 @@
-import godot.dependencies.gradle.DependenciesVersions
-import org.ajoberstar.grgit.Commit
+import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
-import godot.dependencies.gradle.godotKotlinJvmVersion
 
 plugins {
-    id("org.ajoberstar.grgit") version "4.1.1"
     id("com.utopia-rise.godot-dependenices")
 }
 
-val currentCommit: Commit = grgit.head()
-// check if the current commit is tagged
-var tagOnCurrentCommit = grgit.tag.list().firstOrNull { tag -> tag.commit.id == currentCommit.id }
-var releaseMode = tagOnCurrentCommit != null
-
-version = if (!releaseMode) {
-    "$godotKotlinJvmVersion-${DependenciesVersions.godotVersion}-${currentCommit.abbreviatedId}-SNAPSHOT"
-} else {
-    requireNotNull(tagOnCurrentCommit).name
-}
+version = fullGodotKotlinJvmVersion
 
 val versionString = project.version.toString()
 

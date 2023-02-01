@@ -1,5 +1,4 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import godot.dependencies.gradle.DependenciesVersions
 
 plugins {
     kotlin("jvm")

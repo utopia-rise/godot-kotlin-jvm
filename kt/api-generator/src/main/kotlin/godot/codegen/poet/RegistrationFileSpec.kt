@@ -18,6 +18,6 @@ class RegistrationFileSpec {
 
         registrationFile.addFunction(registerMethodsFunBuilder.build())
 
-        return registrationFile.addComment(GENERATED_COMMENT).build()
+        return registrationFile.addFileComment(GENERATED_COMMENT).build()
     }
 }

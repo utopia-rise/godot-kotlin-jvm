@@ -1,8 +1,8 @@
 import org.jetbrains.changelog.markdownToHTML
 import plugins.intellij.BuildConfig
 import plugins.intellij.VersionRange
-import godot.dependencies.gradle.godotKotlinJvmVersion
-import godot.dependencies.gradle.DependenciesVersions
+import godot.dependencies.gradle.fullGodotKotlinJvmVersion
+import godot.dependencies.gradle.isSnapshot
 
 plugins {
     // Java support
@@ -60,23 +60,7 @@ repositories {
     }
 }
 
-val currentCommit: org.ajoberstar.grgit.Commit = grgit.head()
-// check if the current commit is tagged
-var tagOnCurrentCommit = grgit.tag.list().firstOrNull { tag -> tag.commit.id == currentCommit.id }
-var releaseMode = tagOnCurrentCommit != null
-
-val isSnapshot = !releaseMode || requireNotNull(tagOnCurrentCommit).name.contains("-SNAPSHOT")
-
-version = if (!releaseMode) {
-    "$godotKotlinJvmVersion-${DependenciesVersions.godotVersion}-${currentCommit.abbreviatedId}-SNAPSHOT"
-} else {
-    val baseVersion = "$godotKotlinJvmVersion-${DependenciesVersions.godotVersion}"
-    if (isSnapshot) {
-        "$baseVersion-SNAPSHOT"
-    } else {
-        baseVersion
-    }
-}
+version = fullGodotKotlinJvmVersion
 
 group = "com.utopia-rise"
 

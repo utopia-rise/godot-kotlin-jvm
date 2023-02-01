@@ -14,7 +14,6 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         target.plugins.apply("maven-publish")
         target.plugins.apply("signing")
-        target.plugins.apply("org.ajoberstar.grgit")
 
         target.afterEvaluate {
             val ossrhUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME")
