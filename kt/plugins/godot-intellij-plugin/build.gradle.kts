@@ -88,6 +88,7 @@ kotlin {
 }
 
 dependencies {
+    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.20.0")
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
