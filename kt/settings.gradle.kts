@@ -2,8 +2,9 @@ include("godot-library")
 
 pluginManagement {
     resolutionStrategy.eachPlugin {
-        if (requested.id.id == "com.utopia-rise.api-generator") {
-            useModule("com.utopia-rise:api-generator:0.0.1")
+        when(requested.id.id) {
+            "com.utopia-rise.api-generator" -> useModule("com.utopia-rise:api-generator:0.0.1")
+            "com.utopia-rise.godot-publish" -> useModule("com.utopia-rise:godot-publish-gradle-plugin:0.0.1")
         }
     }
 }
@@ -22,6 +23,12 @@ subdir("entry-generation") {
 subdir("plugins") {
     include("godot-gradle-plugin")
     include("godot-intellij-plugin")
+
+    includeBuild("godot-publish-gradle-plugin") {
+        dependencySubstitution {
+            substitute(module("com.utopia-rise:godot-publish-gradle-plugin")).using(project(":")) // assuming api-generator is the root project of api-generator/api-generator
+        }
+    }
 }
 
 subdir("utils") {
@@ -34,6 +41,10 @@ class IncludeDsl(val root: String) {
         settings.project(":$project").also {
             it.projectDir = file("$root/$project")
         }
+    }
+
+    fun includeBuild(project: String, configuration: Action<ConfigurableIncludedBuild>) {
+        settings.includeBuild("$root/$project", configuration)
     }
 }
 
