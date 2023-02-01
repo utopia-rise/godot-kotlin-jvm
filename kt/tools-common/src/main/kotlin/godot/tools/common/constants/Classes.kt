@@ -33,10 +33,38 @@ object GodotKotlinJvmTypes{
     const val naturalT = "NaturalT"
     const val realT = "RealT"
 
+    const val transferMode = "TransferMode"
+    const val rpcMode = "RpcMode"
+
     object Annotations {
         const val godotBaseType = "GodotBaseType"
         const val coreTypeHelper = "CoreTypeHelper"
+
+        const val registerClass = "RegisterClass"
+        const val registerConstructor = "RegisterConstructor"
+        const val registerProperty = "RegisterProperty"
+        const val registerFunction = "RegisterFunction"
+        const val registerSignal = "RegisterSignal"
+
+        const val tool = "Tool"
+        const val export = "Export"
+        const val rpc = "Rpc"
+
         const val range = "Range"
+        const val intRange = "IntRange"
+        const val longRange = "LongRange"
+        const val floatRange = "FloatRange"
+        const val doubleRange = "DoubleRange"
+        const val expRange = "ExpRange"
+        const val expEasing = "ExpEasing"
+        const val enumTypeHint = "EnumTypeHint"
+        const val enumFlag = "EnumFlag"
+        const val intFlag = "IntFlag"
+        const val file = "File"
+        const val dir = "Dir"
+        const val multilineText = "MultilineText"
+        const val placeHolderText = "PlaceHolderText"
+        const val colorNoAlpha = "ColorNoAlpha"
     }
 }
 
@@ -51,6 +79,7 @@ object GodotTypes {
     const val color = "Color"
     const val dictionary = "Dictionary"
     const val nodePath = "NodePath"
+    const val node = "Node"
     const val plane = "Plane"
     const val packedByteArray = "PackedByteArray"
     const val packedInt32Array = "PackedInt32Array"
@@ -149,6 +178,17 @@ object GodotTypes {
         float,
         "", //void
         null //void
+    )
+
+    val notificationFunctions = listOf(
+        "_ready",
+        "_enterTree",
+        "_exitTree",
+        "_process",
+        "_physicsProcess",
+        "_input",
+        "_unhandledInput",
+        "_draw",
     )
 }
 

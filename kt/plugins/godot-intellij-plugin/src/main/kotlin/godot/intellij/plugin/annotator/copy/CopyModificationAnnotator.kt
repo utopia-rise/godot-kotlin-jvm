@@ -9,6 +9,9 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.CORE_TYPE_HELPER_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.descriptors.impl.ClassConstructorDescriptorImpl
 import org.jetbrains.kotlin.idea.caches.resolve.analyze
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -80,8 +83,8 @@ class CopyModificationAnnotator : Annotator {
             is KtDotQualifiedExpression -> {
                 val receiverType = element.receiverExpression.resolveTypeSafe()
 
-                receiverType?.getJetTypeFqName(false) != "godot.core.Dictionary" &&
-                    receiverType?.getJetTypeFqName(false) != "godot.core.VariantArray" &&
+                receiverType?.getJetTypeFqName(false) != "$godotCorePackage.${GodotTypes.dictionary}" &&
+                    receiverType?.getJetTypeFqName(false) != "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" &&
                     receiverType?.isCoreType() == true &&
                     (((element.selectorExpression as? KtCallExpression)?.calleeExpression as? KtReferenceExpression)?.resolve() as? KtAnnotated)?.findAnnotation(FqName(CORE_TYPE_HELPER_ANNOTATION)) != null
             }
@@ -231,7 +234,7 @@ private fun KtExpression.isConstructorCall(): Boolean {
 private fun KotlinType.isCoreType(): Boolean = coreTypes
     .contains(getJetTypeFqName(false).removeSuffix("?"))
 
-private fun KotlinType.isPoolArray(): Boolean = poolArrays
+private fun KotlinType.isPoolArray(): Boolean = packedArrays
     .contains(getJetTypeFqName(false).removeSuffix("?"))
 
 private fun KtExpression.resolveTypeSafe(): KotlinType? {
@@ -243,36 +246,6 @@ private fun KtExpression.resolveTypeSafe(): KotlinType? {
     }
 }
 
-private val coreTypes = listOf(
-    "godot.core.Vector2",
-    "godot.core.Rect2",
-    "godot.core.Vector3",
-    "godot.core.Transform2D",
-    "godot.core.Plane",
-    "godot.core.Quat",
-    "godot.core.AABB",
-    "godot.core.Basis",
-    "godot.core.Transform",
-    "godot.core.Color",
-    "godot.core.NodePath",
-    "godot.core.RID",
-    "godot.core.PoolByteArray",
-    "godot.core.PoolIntArray",
-    "godot.core.PoolRealArray",
-    "godot.core.PoolStringArray",
-    "godot.core.PoolColorArray",
-    "godot.core.PoolVector2Array",
-    "godot.core.PoolVector3Array",
-    "godot.core.Dictionary",
-    "godot.core.VariantArray",
-)
+private val coreTypes = GodotTypes.coreTypes.filter { !it.contains("packed", true) }
 
-private val poolArrays = listOf(
-    "godot.core.PoolByteArray",
-    "godot.core.PoolIntArray",
-    "godot.core.PoolRealArray",
-    "godot.core.PoolStringArray",
-    "godot.core.PoolColorArray",
-    "godot.core.PoolVector2Array",
-    "godot.core.PoolVector3Array",
-)
+private val packedArrays = GodotTypes.coreTypes.filter { it.contains("packed", true) }

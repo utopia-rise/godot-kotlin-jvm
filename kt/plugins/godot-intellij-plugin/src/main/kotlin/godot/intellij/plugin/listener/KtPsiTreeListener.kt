@@ -16,6 +16,8 @@ import godot.intellij.plugin.extension.getKotlinFqName
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.refactor.SceneAction
 import godot.intellij.plugin.wrapper.PsiTreeChangeListenerKt
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.godotAnnotationPackage
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.KotlinLanguage
 import org.jetbrains.kotlin.psi.KtClass
@@ -79,7 +81,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                                 .any { ktClass ->
                                     ktClass
                                         .annotations
-                                        .any { ktAnnotation -> ktAnnotation.qualifiedName == "godot.annotation.RegisterClass" }
+                                        .any { ktAnnotation -> ktAnnotation.qualifiedName == "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerClass}" }
                                 }
                             if (isAnyClassRegisteredInFile) {
                                 SceneAction.scriptMoved(

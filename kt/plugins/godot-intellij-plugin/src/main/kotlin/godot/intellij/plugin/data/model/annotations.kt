@@ -1,11 +1,14 @@
 package godot.intellij.plugin.data.model
 
-const val REGISTER_CLASS_ANNOTATION = "godot.annotation.RegisterClass"
-const val TOOL_ANNOTATION = "godot.annotation.Tool"
-const val REGISTER_CONSTRUCTOR_ANNOTATION = "godot.annotation.RegisterConstructor"
-const val REGISTER_FUNCTION_ANNOTATION = "godot.annotation.RegisterFunction"
-const val REGISTER_PROPERTY_ANNOTATION = "godot.annotation.RegisterProperty"
-const val EXPORT_ANNOTATION = "godot.annotation.Export"
-const val REGISTER_SIGNAL_ANNOTATION = "godot.annotation.RegisterSignal"
-const val CORE_TYPE_HELPER_ANNOTATION = "godot.annotation.CoreTypeHelper"
-const val RPC_ANNOTATION = "godot.annotation.Rpc"
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.godotAnnotationPackage
+
+const val REGISTER_CLASS_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerClass}"
+const val TOOL_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.tool}"
+const val REGISTER_CONSTRUCTOR_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerConstructor}"
+const val REGISTER_FUNCTION_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerFunction}"
+const val REGISTER_PROPERTY_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerProperty}"
+const val EXPORT_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.export}"
+const val REGISTER_SIGNAL_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerSignal}"
+const val CORE_TYPE_HELPER_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.coreTypeHelper}"
+const val RPC_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.rpc}"

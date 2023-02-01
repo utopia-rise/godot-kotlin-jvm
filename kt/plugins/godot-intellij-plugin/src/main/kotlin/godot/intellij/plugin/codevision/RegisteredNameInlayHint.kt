@@ -21,8 +21,8 @@ import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
-import godot.intellij.plugin.extension.camelToSnakeCase
 import godot.intellij.plugin.extension.getRegisteredClassName
+import godot.tools.common.extensions.convertToSnakeCase
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
@@ -106,7 +106,7 @@ class RegisteredNameInlayHint : InlayHintsProvider<Any> {
                         showCodeVision(
                             textOffset = ktFunction.textOffset,
                             startOffset = ktFunction.startOffset,
-                            convertedName = ktFunction.name?.camelToSnakeCase() ?: "<unknown>",
+                            convertedName = ktFunction.name?.convertToSnakeCase() ?: "<unknown>",
                             editor = editor,
                             sink = sink
                         )
@@ -116,7 +116,7 @@ class RegisteredNameInlayHint : InlayHintsProvider<Any> {
                         showCodeVision(
                             textOffset = ktProperty.textOffset,
                             startOffset = ktProperty.startOffset,
-                            convertedName = ktProperty.name?.camelToSnakeCase() ?: "<unknown>",
+                            convertedName = ktProperty.name?.convertToSnakeCase() ?: "<unknown>",
                             editor = editor,
                             sink = sink
                         )
@@ -128,7 +128,7 @@ class RegisteredNameInlayHint : InlayHintsProvider<Any> {
                             startOffset = ktProperty.startOffset,
                             convertedName = ktProperty
                                 .name
-                                ?.camelToSnakeCase()
+                                ?.convertToSnakeCase()
                                 ?: "<unknown>",
                             editor = editor,
                             sink = sink

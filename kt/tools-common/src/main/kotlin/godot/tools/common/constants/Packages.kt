@@ -8,9 +8,11 @@ const val godotAnnotationPackage = "godot.annotation"
 const val godotUtilPackage = "godot.util"
 
 const val godotRegistrationPackage = "godot.registration"
+const val godotSignalsPackage = "godot.signals"
 const val godotEntryGeneratorBasePackage = "godot"
 
 const val variantTypePackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantType}"
 
 const val kotlinPackage = "kotlin"
 const val kotlinCollectionsPackage = "$kotlinPackage.collections"
+const val kotlinTextPackage = "$kotlinPackage.text"

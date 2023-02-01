@@ -10,6 +10,7 @@ import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.FunctionNotRegisteredQuickFix
+import godot.tools.common.constants.GodotTypes
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
@@ -47,18 +48,6 @@ class RegisterFunctionAnnotator : Annotator {
 
     private fun overriddenNotificationFunctionNotRegistered(element: KtNamedFunction) =
         element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
-            notificationFunctions.contains(element.name) &&
+            GodotTypes.notificationFunctions.contains(element.name) &&
             element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null
-
-    // TODO: find a better way of checking all -> maybe add godot-library as a dependency and query notification functions through reflection or generate during compilation of the plugin
-    private val notificationFunctions = listOf(
-        "_ready",
-        "_enterTree",
-        "_exitTree",
-        "_process",
-        "_physicsProcess",
-        "_input",
-        "_unhandledInput",
-        "_draw",
-    )
 }

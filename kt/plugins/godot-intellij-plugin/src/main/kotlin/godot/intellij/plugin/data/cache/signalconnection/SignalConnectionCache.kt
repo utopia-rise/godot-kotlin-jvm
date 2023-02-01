@@ -4,7 +4,7 @@ import com.intellij.openapi.project.Project
 import com.utopiarise.serialization.godot.model.SignalConnection
 import godot.intellij.plugin.data.model.IncomingSignalConnectionDataContainer
 import godot.intellij.plugin.data.model.OutgoingSignalConnectionDataContainer
-import godot.intellij.plugin.extension.snakeToLowerCamelCase
+import godot.tools.common.extensions.convertToCamelCase
 
 class SignalConnectionCache {
     private val incomingSignalConnectionDataContainers: MutableMap<String, MutableMap<String, List<IncomingSignalConnectionDataContainer>>> =
@@ -39,11 +39,11 @@ class SignalConnectionCache {
             }
             .map { signalConnection ->
                 val signalName = if (signalConnection.from.script?.endsWith("kt") == true) {
-                    "signal${signalConnection.signal.snakeToLowerCamelCase().capitalize()}"
+                    "signal${signalConnection.signal.convertToCamelCase().capitalize()}"
                 } else {
                     signalConnection.signal
                 }
-                val toMethodName = signalConnection.method.snakeToLowerCamelCase()
+                val toMethodName = signalConnection.method.convertToCamelCase()
                 val fromNode = signalConnection.from
                 val toNode = signalConnection.to
                 val toKtClassFqName = signalConnection
@@ -74,9 +74,9 @@ class SignalConnectionCache {
             }
             .map { signalConnection ->
                 val toScriptIsAlsoKt = signalConnection.to.script?.endsWith("kt") == true
-                val signalName = "signal${signalConnection.signal.snakeToLowerCamelCase().capitalize()}"
+                val signalName = "signal${signalConnection.signal.convertToCamelCase().capitalize()}"
                 val toMethodName = if (toScriptIsAlsoKt) {
-                    signalConnection.method.snakeToLowerCamelCase()
+                    signalConnection.method.convertToCamelCase()
                 } else {
                     signalConnection.method
                 }
