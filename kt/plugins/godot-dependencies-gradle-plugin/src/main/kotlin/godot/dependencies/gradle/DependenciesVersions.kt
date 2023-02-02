@@ -1,5 +1,7 @@
 package godot.dependencies.gradle
 
+const val godotKotlinJvmVersion = "0.5.1"
+
 object DependenciesVersions {
     const val godotVersion: String = "4.0.0"
 
@@ -19,3 +21,4 @@ object DependenciesVersions {
 
     const val jacksonDataformatXmlVersion: String = "2.10.1"
 }
+

@@ -2,8 +2,6 @@ package godot.dependencies.gradle
 
 import org.ajoberstar.grgit.Commit
 
-const val godotKotlinJvmVersion = "0.5.1"
-
 val fullGodotKotlinJvmVersion: String by lazy {
     provideAssembledVersion()
 }
