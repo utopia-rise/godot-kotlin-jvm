@@ -10,6 +10,7 @@ import godot.entrygenerator.checks.RpcCheck
 import godot.entrygenerator.checks.SignalTypeCheck
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
 import godot.entrygenerator.filebuilder.MainEntryFileBuilder
+import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
 import godot.entrygenerator.utils.Logger
@@ -20,15 +21,22 @@ object EntryGenerator {
     internal val logger: Logger
         get() = _logger ?: throw UninitializedPropertyAccessException("logger not yet initialized. Get logger only after generateEntryFiles was called")
 
+    private var _jvmTypeFqNamesProvider: ((JvmType) -> Set<String>)? = null
+    internal val jvmTypeFqNamesProvider: ((JvmType) -> Set<String>)
+        get() = _jvmTypeFqNamesProvider ?: throw UninitializedPropertyAccessException("jvmTypeFqNamesProvider not yet initialized. Get jvmTypeFqNamesProvider only after generateEntryFiles was called")
+
     fun generateEntryFiles(
         projectDir: String,
         srcDirs: List<String>,
         logger: Logger,
         sourceFiles: List<SourceFile>,
+        jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
         appendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
     ) {
         _logger = logger
+        _jvmTypeFqNamesProvider = jvmTypeFqNamesProvider
+
         executeSanityChecks(projectDir, srcDirs, logger, sourceFiles)
 
         with(MainEntryFileBuilder) {

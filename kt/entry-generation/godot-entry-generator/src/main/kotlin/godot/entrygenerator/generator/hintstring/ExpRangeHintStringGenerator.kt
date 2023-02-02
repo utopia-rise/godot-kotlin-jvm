@@ -1,14 +1,17 @@
 package godot.entrygenerator.generator.hintstring
 
 import godot.entrygenerator.exceptions.WrongAnnotationUsageException
+import godot.entrygenerator.ext.fqName
+import godot.entrygenerator.ext.fqNameIsJvmType
 import godot.entrygenerator.model.ExpRangeHintAnnotation
+import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredProperty
 
 class ExpRangeHintStringGenerator(registeredProperty: RegisteredProperty):
     PropertyHintStringGenerator<ExpRangeHintAnnotation>(registeredProperty) {
     override fun getHintString(): String {
-        if (!listOf(Float::class.qualifiedName, Double::class.qualifiedName).contains(registeredProperty.type.fqName)) {
-            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, Float::class.qualifiedName)
+        if (!registeredProperty.type.fqName.fqNameIsJvmType(JvmType.FLOAT, JvmType.DOUBLE)) {
+            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, JvmType.FLOAT.fqName)
         }
         if (propertyHintAnnotation == null) {
             return ""
