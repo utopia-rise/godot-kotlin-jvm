@@ -1,4 +1,4 @@
-package plugins.intellij
+package godot.dependencies.gradle.helper
 
 data class BuildConfig(
     val sdk: String,

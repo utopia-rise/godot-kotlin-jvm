@@ -1,6 +1,6 @@
 import org.jetbrains.changelog.markdownToHTML
-import plugins.intellij.BuildConfig
-import plugins.intellij.VersionRange
+import godot.dependencies.gradle.helper.BuildConfig
+import godot.dependencies.gradle.helper.VersionRange
 import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 import godot.dependencies.gradle.isSnapshot
 
