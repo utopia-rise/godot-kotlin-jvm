@@ -3,7 +3,7 @@ import godot.dependencies.gradle.DependenciesVersions
 plugins {
     kotlin("jvm")
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependenices")
+    id("com.utopia-rise.godot-dependencies")
 }
 
 repositories {

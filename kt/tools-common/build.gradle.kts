@@ -5,11 +5,11 @@ plugins {
     `kotlin-dsl`
     id("org.ajoberstar.grgit") version "4.1.1"
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependenices")
+    id("com.utopia-rise.godot-dependencies")
 }
 
 // the version is not inherited from the root build.gradle.kts as this here is a separate gradle project. Hence, we set it
-// through the godot-dependenices plugin
+// through the godot-dependencies plugin
 version = fullGodotKotlinJvmVersion
 
 buildscript {

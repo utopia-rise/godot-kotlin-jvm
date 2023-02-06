@@ -16,7 +16,7 @@ repositories {
 gradlePlugin {
     plugins {
         create("godotDependenciesPlugin") {
-            id = "com.utopia-rise.godot-dependenices"
+            id = "com.utopia-rise.godot-dependencies"
             displayName = "Gradle plugin for central dependency version management"
             implementationClass = "godot.dependencies.gradle.DependenciesPlugin"
         }

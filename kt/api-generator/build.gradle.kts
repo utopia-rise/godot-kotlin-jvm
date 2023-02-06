@@ -4,7 +4,7 @@ import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
-    id("com.utopia-rise.godot-dependenices")
+    id("com.utopia-rise.godot-dependencies")
 }
 
 buildscript {

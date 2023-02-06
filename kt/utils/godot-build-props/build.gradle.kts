@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm")
     `maven-publish`
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependenices")
+    id("com.utopia-rise.godot-dependencies")
 }
 
 dependencies {

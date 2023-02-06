@@ -2,7 +2,7 @@ import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
-    id("com.utopia-rise.godot-dependenices")
+    id("com.utopia-rise.godot-dependencies")
 }
 
 version = fullGodotKotlinJvmVersion

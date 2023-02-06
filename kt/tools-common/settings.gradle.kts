@@ -2,7 +2,7 @@
 pluginManagement {
     resolutionStrategy.eachPlugin {
         when (requested.id.id) {
-            "com.utopia-rise.godot-dependenices" -> useModule("com.utopia-rise:godot-dependencies-gradle-plugin:0.0.1")
+            "com.utopia-rise.godot-dependencies" -> useModule("com.utopia-rise:godot-dependencies-gradle-plugin:0.0.1")
         }
     }
 }

@@ -5,7 +5,7 @@ import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 plugins {
     kotlin("jvm")
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependenices")
+    id("com.utopia-rise.godot-dependencies")
 }
 
 dependencies {
