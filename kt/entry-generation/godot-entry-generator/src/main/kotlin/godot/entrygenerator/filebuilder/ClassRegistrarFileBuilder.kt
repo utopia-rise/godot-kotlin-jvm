@@ -12,7 +12,7 @@ import godot.entrygenerator.generator.SignalRegistrationGenerator
 import godot.entrygenerator.model.RegisteredClass
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.godotEntryGeneratorBasePackage
+import godot.tools.common.constants.godotEntryBasePackage
 import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
 
@@ -59,7 +59,7 @@ class ClassRegistrarFileBuilder(
             val inheritedClass = registeredClass.supertypes.first()
             classRegistrarBuilder.superclass(
                 ClassName(
-                    "$godotEntryGeneratorBasePackage.${inheritedClass.containingPackage}",
+                    "$godotEntryBasePackage.${inheritedClass.containingPackage}",
                     "${inheritedClass.name}Registrar"
                 )
             )
@@ -91,7 +91,7 @@ class ClassRegistrarFileBuilder(
 
         appendableProvider(registeredClass).use { bufferedWriter ->
             FileSpec
-                .builder("$godotEntryGeneratorBasePackage.${registeredClass.containingPackage}", "${registeredClass.name}Entry")
+                .builder("$godotEntryBasePackage.${registeredClass.containingPackage}", "${registeredClass.name}Entry")
                 .addFileComment(GENERATED_COMMENT)
                 .addType(classRegistrarBuilder.build())
                 .build()
@@ -100,7 +100,7 @@ class ClassRegistrarFileBuilder(
 
         return "%T().register(registry)" to arrayOf(
             ClassName(
-                "$godotEntryGeneratorBasePackage.${registeredClass.containingPackage}",
+                "$godotEntryBasePackage.${registeredClass.containingPackage}",
                 "${registeredClass.name}Registrar"
             )
         )

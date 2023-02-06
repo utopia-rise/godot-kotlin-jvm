@@ -9,7 +9,7 @@ import kotlin.reflect.KClass
 
 object MainEntryFileBuilder {
     private val entryFileSpec = FileSpec
-        .builder(godotEntryGeneratorBasePackage, "Entry")
+        .builder(godotEntryBasePackage, "Entry")
         .addFileComment(GENERATED_COMMENT)
 
     private val initFunctionSpec = FunSpec
@@ -21,9 +21,9 @@ object MainEntryFileBuilder {
         .builder("initEngineTypes")
         .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
         .addModifiers(KModifier.OVERRIDE)
-        .addStatement("%M()", MemberName(godotEntryGeneratorBasePackage, "registerVariantMapping"))
-        .addStatement("%M()", MemberName(godotEntryGeneratorBasePackage, "registerEngineTypes"))
-        .addStatement("%M()", MemberName(godotEntryGeneratorBasePackage, "registerEngineTypeMethods"))
+        .addStatement("%M()", MemberName(godotEntryBasePackage, "registerVariantMapping"))
+        .addStatement("%M()", MemberName(godotEntryBasePackage, "registerEngineTypes"))
+        .addStatement("%M()", MemberName(godotEntryBasePackage, "registerEngineTypeMethods"))
 
     private val registerUserTypesVariantMappingsFunSpec = FunSpec
         .builder("getRegisteredClasses")
@@ -42,7 +42,7 @@ object MainEntryFileBuilder {
 
         entryFileSpec.addType(
             TypeSpec
-                .classBuilder(ClassName(godotEntryGeneratorBasePackage, GodotKotlinJvmTypes.entry))
+                .classBuilder(ClassName(godotEntryBasePackage, GodotKotlinJvmTypes.entry))
                 .superclass(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.entry))
                 .addFunction(initFunctionSpec.build())
                 .addFunction(initEngineTypesFunSpec.build())
