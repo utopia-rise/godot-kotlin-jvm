@@ -22,6 +22,7 @@ fun Type?.toKtVariantType(): ClassName = when {
     fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> VARIANT_TYPE_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.rid}" -> VARIANT_TYPE__RID
     fqName == "$godotCorePackage.${GodotTypes.aabb}" -> VARIANT_TYPE_AABB
+    fqName == "$godotCorePackage.${GodotTypes.nodePath}" -> VARIANT_TYPE_NODE_PATH
     fqName == "$godotCorePackage.${GodotTypes.transform2D}" -> VARIANT_TYPE_TRANSFORM2D
     fqName == "$godotCorePackage.${GodotTypes.transform3D}" -> VARIANT_TYPE_TRANSFORM3D
     fqName == "$godotCorePackage.${GodotTypes.packedByteArray}" -> VARIANT_TYPE_PACKED_BYTE_ARRAY
@@ -34,7 +35,7 @@ fun Type?.toKtVariantType(): ClassName = when {
     fqName == "$godotCorePackage.${GodotTypes.packedVector3Array}" -> VARIANT_TYPE_PACKED_VECTOR3_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.packedColorArray}" -> VARIANT_TYPE_PACKED_COLOR_ARRAY
     isCoreType() -> ClassName(
-        "$godotCorePackage.${GodotKotlinJvmTypes.variantType}",
+        variantTypePackage,
         fqName.substringAfterLast(".").convertToCamelCase().uppercase(Locale.getDefault())
     )
     fqName == Any::class.qualifiedName -> VARIANT_TYPE_ANY
