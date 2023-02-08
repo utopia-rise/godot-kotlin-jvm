@@ -75,11 +75,3 @@ void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
     jvalue args[1] = {jni::to_jni_arg(instance->get_wrapped())};
     wrapped.call_void_method(env, setCallMethodId, args);
 }
-
-void KtProperty::get_default_value(Variant& r_value) {
-    jni::Env env {jni::Jvm::current_env()};
-    GDKotlin::get_instance().transfer_context->write_args(env, nullptr, 0);
-    jni::MethodId get_default_value_method {get_method_id(env, jni_methods.GET_DEFAULT_VALUE)};
-    wrapped.call_void_method(env, get_default_value_method);
-    GDKotlin::get_instance().transfer_context->read_return_value(env, r_value);
-}

@@ -19,7 +19,7 @@ private:
 public:
     KotlinScript();
 
-    ~KotlinScript() override = default;
+    ~KotlinScript() override;
 
     KtClass* get_kotlin_class() const;
 
@@ -79,9 +79,13 @@ public:
 private:
     HashSet<PlaceHolderScriptInstance*> placeholders;
 
+#ifdef TOOLS_ENABLED
+    HashMap<StringName, Variant> exported_members_default_value_cache;
+#endif
+
     void _placeholder_erased(PlaceHolderScriptInstance* p_placeholder) override;
 
-    void _update_exports(PlaceHolderScriptInstance* placeholder) const;
+    void _update_exports(PlaceHolderScriptInstance* placeholder);
 
 public:
     PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
