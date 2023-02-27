@@ -45,8 +45,12 @@ public:
 
     PropertyInfo get_member_info();
 
-    void callGet(KtObject* instance, Variant& r_ret);
-    void setCall(KtObject* instance, const Variant& p_value);
+    void call_get(KtObject* instance, Variant& r_ret);
+    void call_set(KtObject* instance, const Variant& p_value);
+
+#ifdef TOOLS_ENABLED
+    void safe_call_get(KtObject* instance, Variant& r_ret);
+#endif
 
     // clang-format off
     DECLARE_JNI_METHODS(

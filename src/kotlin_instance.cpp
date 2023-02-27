@@ -23,7 +23,7 @@ bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
 
     KtProperty* ktProperty {kt_class->get_property(p_name)};
     if (ktProperty) {
-        ktProperty->setCall(binding->kt_object, p_value);
+        ktProperty->call_set(binding->kt_object, p_value);
         return true;
     } else {
         return false;
@@ -35,12 +35,26 @@ bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
 
     KtProperty* ktProperty {kt_class->get_property(p_name)};
     if (ktProperty) {
-        ktProperty->callGet(binding->kt_object, r_ret);
+        ktProperty->call_get(binding->kt_object, r_ret);
         return true;
     } else {
         return false;
     }
 }
+
+#ifdef TOOLS_ENABLED
+bool KotlinInstance::get_or_default(const StringName& p_name, Variant& r_ret) const {
+    jni::LocalFrame localFrame(1000);
+
+    KtProperty* ktProperty {kt_class->get_property(p_name)};
+    if (ktProperty) {
+        ktProperty->safe_call_get(binding->kt_object, r_ret);
+        return true;
+    } else {
+        return false;
+    }
+}
+#endif
 
 void KotlinInstance::get_property_list(List<PropertyInfo>* p_properties) const {
     kt_class->get_property_list(p_properties);

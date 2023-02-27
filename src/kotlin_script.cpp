@@ -227,16 +227,18 @@ void KotlinScript::update_exports() {
 
 void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) {
 #ifdef TOOLS_ENABLED
+    exported_members_default_value_cache.clear();
     if (KtClass * kt_class {get_kotlin_class()}) {
         Object* tmp_object {ClassDB::instantiate(kt_class->base_godot_class)};
-        ScriptInstance* script_instance { _instance_create({}, 0, tmp_object) };
-        
+        KotlinInstance* script_instance {
+          dynamic_cast<KotlinInstance*>(_instance_create({}, 0, tmp_object))};
+
         List<PropertyInfo> properties;
         get_script_property_list(&properties);
         for (int i = 0; i < properties.size(); ++i) {
             Variant default_value;
             const String& property_name{ properties[i].name };
-            script_instance->get(property_name, default_value);
+            script_instance->get_or_default(property_name, default_value);
             exported_members_default_value_cache[property_name] = default_value;
         }
         placeholder->update(properties, exported_members_default_value_cache);
