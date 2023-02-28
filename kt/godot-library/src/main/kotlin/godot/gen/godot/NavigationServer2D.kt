@@ -7,28 +7,27 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.PackedVector2Array
 import godot.core.RID
-import godot.core.StringName
 import godot.core.Transform2D
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
-import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -37,7 +36,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Server interface for low-level 2D navigation access
+ * Server interface for low-level 2D navigation access.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationservers.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationservers.html)
@@ -64,6 +63,11 @@ public object NavigationServer2D : Object() {
    * Emitted when a navigation map is updated, when a region moves or is modified.
    */
   public val mapChanged: Signal1<RID> by signal("map")
+
+  /**
+   * Emitted when navigation debug settings are changed. Only available in debug builds.
+   */
+  public val navigationDebugChanged: Signal0 by signal()
 
   public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_NAVIGATIONSERVER2D)
@@ -274,7 +278,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Returns the `enter_cost` of this [region].
+   * Returns the enter cost of this [region].
    */
   public fun regionGetEnterCost(region: RID): Double {
     TransferContext.writeArguments(_RID to region)
@@ -293,7 +297,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Returns the `travel_cost` of this [region].
+   * Returns the travel cost of this [region].
    */
   public fun regionGetTravelCost(region: RID): Double {
     TransferContext.writeArguments(_RID to region)
@@ -422,7 +426,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Create a new link between two locations on a map.
+   * Create a new link between two positions on a map.
    */
   public fun linkCreate(): RID {
     TransferContext.writeArguments()
@@ -489,40 +493,40 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Sets the entry location for this `link`.
+   * Sets the entry position for this `link`.
    */
-  public fun linkSetStartLocation(link: RID, location: Vector2): Unit {
-    TransferContext.writeArguments(_RID to link, VECTOR2 to location)
+  public fun linkSetStartPosition(link: RID, position: Vector2): Unit {
+    TransferContext.writeArguments(_RID to link, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_LINK_SET_START_LOCATION, NIL)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_LINK_SET_START_POSITION, NIL)
   }
 
   /**
-   * Returns the starting location of this `link`.
+   * Returns the starting position of this `link`.
    */
-  public fun linkGetStartLocation(link: RID): Vector2 {
+  public fun linkGetStartPosition(link: RID): Vector2 {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_LINK_GET_START_LOCATION, VECTOR2)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_LINK_GET_START_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
   /**
-   * Sets the exit location for the `link`.
+   * Sets the exit position for the `link`.
    */
-  public fun linkSetEndLocation(link: RID, location: Vector2): Unit {
-    TransferContext.writeArguments(_RID to link, VECTOR2 to location)
+  public fun linkSetEndPosition(link: RID, position: Vector2): Unit {
+    TransferContext.writeArguments(_RID to link, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_LINK_SET_END_LOCATION, NIL)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_LINK_SET_END_POSITION, NIL)
   }
 
   /**
-   * Returns the ending location of this `link`.
+   * Returns the ending position of this `link`.
    */
-  public fun linkGetEndLocation(link: RID): Vector2 {
+  public fun linkGetEndPosition(link: RID): Vector2 {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_LINK_GET_END_LOCATION, VECTOR2)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_LINK_GET_END_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -536,7 +540,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Returns the `enter_cost` of this `link`.
+   * Returns the enter cost of this [link].
    */
   public fun linkGetEnterCost(link: RID): Double {
     TransferContext.writeArguments(_RID to link)
@@ -555,7 +559,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Returns the `travel_cost` of this `link`.
+   * Returns the travel cost of this [link].
    */
   public fun linkGetTravelCost(link: RID): Double {
     TransferContext.writeArguments(_RID to link)
@@ -695,17 +699,12 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Sets the callback [objectId] and [method] that gets called after each avoidance processing step for the [agent]. The calculated `safe_velocity` will be dispatched with a signal to the object just before the physics calculations.
+   * Sets the callback that gets called after each avoidance processing step for the [agent]. The calculated `safe_velocity` will be passed as the first parameter just before the physics calculations.
    *
-   * **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [agentSetCallback] again with a `0` ObjectID as the [objectId].
+   * **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [agentSetCallback] again with an empty [godot.Callable].
    */
-  public fun agentSetCallback(
-    agent: RID,
-    objectId: Long,
-    method: StringName,
-    userdata: Any? = null
-  ): Unit {
-    TransferContext.writeArguments(_RID to agent, LONG to objectId, STRING_NAME to method, ANY to userdata)
+  public fun agentSetCallback(agent: RID, callback: Callable): Unit {
+    TransferContext.writeArguments(_RID to agent, CALLABLE to callback)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_CALLBACK, NIL)
   }
@@ -716,5 +715,24 @@ public object NavigationServer2D : Object() {
   public fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_FREE_RID, NIL)
+  }
+
+  /**
+   * If `true` enables debug mode on the NavigationServer.
+   */
+  public fun setDebugEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_SET_DEBUG_ENABLED, NIL)
+  }
+
+  /**
+   * Returns `true` when the NavigationServer has debug enabled.
+   */
+  public fun getDebugEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_GET_DEBUG_ENABLED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 }

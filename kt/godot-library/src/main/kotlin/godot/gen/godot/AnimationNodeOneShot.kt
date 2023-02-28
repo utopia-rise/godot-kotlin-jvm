@@ -26,11 +26,69 @@ import kotlin.Suppress
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
  * A resource to add to an [godot.AnimationNodeBlendTree]. This node will execute a sub-animation and return once it finishes. Blend times for fading in and out can be customized, as well as filters.
+ *
+ * After setting the request and changing the animation playback, the one-shot node automatically clears the request on the next process frame by setting its `request` value to [ONE_SHOT_REQUEST_NONE].
+ *
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * # Play child animation connected to "shot" port.
+ *
+ * animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+ *
+ * # Alternative syntax (same result as above).
+ *
+ * animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+ *
+ *
+ *
+ * # Abort child animation connected to "shot" port.
+ *
+ * animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+ *
+ * # Alternative syntax (same result as above).
+ *
+ * animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
+ *
+ *
+ *
+ * # Get current state (read-only).
+ *
+ * animation_tree.get("parameters/OneShot/active"))
+ *
+ * # Alternative syntax (same result as above).
+ *
+ * animation_tree["parameters/OneShot/active"]
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * // Play child animation connected to "shot" port.
+ *
+ * animationTree.Set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
+ *
+ *
+ *
+ * // Abort child animation connected to "shot" port.
+ *
+ * animationTree.Set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT);
+ *
+ *
+ *
+ * // Get current state (read-only).
+ *
+ * animationTree.Get("parameters/OneShot/active");
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  */
 @GodotBaseType
 public open class AnimationNodeOneShot : AnimationNodeSync() {
   /**
-   *
+   * The blend type.
    */
   public var mixMode: MixMode
     get() {
@@ -46,7 +104,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   /**
-   *
+   * The fade-in duration. For example, setting this to `1.0` for a 5 second length animation will produce a crossfade that starts at 0 second and ends at 1 second during the animation.
    */
   public var fadeinTime: Double
     get() {
@@ -62,7 +120,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   /**
-   *
+   * The fade-out duration. For example, setting this to `1.0` for a 5 second length animation will produce a crossfade that starts at 4 second and ends at 5 second during the animation.
    */
   public var fadeoutTime: Double
     get() {
@@ -79,6 +137,8 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
   /**
    * If `true`, the sub-animation will restart automatically after finishing.
+   *
+   * In other words, to start auto restarting, the animation must be played once with the [ONE_SHOT_REQUEST_FIRE] request. The [ONE_SHOT_REQUEST_ABORT] request stops the auto restarting, but it does not disable the [autorestart] itself. So, the [ONE_SHOT_REQUEST_FIRE] request will start auto restarting again.
    */
   public var autorestart: Boolean
     get() {
@@ -130,15 +190,42 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     return true
   }
 
+  public enum class OneShotRequest(
+    id: Long
+  ) {
+    /**
+     * The default state of the request. Nothing is done.
+     */
+    ONE_SHOT_REQUEST_NONE(0),
+    /**
+     * The request to play the animation connected to "shot" port.
+     */
+    ONE_SHOT_REQUEST_FIRE(1),
+    /**
+     * The request to stop the animation connected to "shot" port.
+     */
+    ONE_SHOT_REQUEST_ABORT(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class MixMode(
     id: Long
   ) {
     /**
-     *
+     * Blends two animations. See also [godot.AnimationNodeBlend2].
      */
     MIX_MODE_BLEND(0),
     /**
-     *
+     * Blends two animations additively. See also [godot.AnimationNodeAdd2].
      */
     MIX_MODE_ADD(1),
     ;

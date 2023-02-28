@@ -33,11 +33,15 @@ import kotlin.Suppress
  *
  * extends Node
  *
+ *
+ *
  * var crypto = Crypto.new()
  *
  * var key = CryptoKey.new()
  *
  * var cert = X509Certificate.new()
+ *
+ *
  *
  * func _ready():
  *
@@ -85,21 +89,21 @@ import kotlin.Suppress
  *
  * using Godot;
  *
- * using System;
- *
  * using System.Diagnostics;
  *
  *
  *
- * public class CryptoNode : Node
+ * public partial class MyNode : Node
  *
  * {
  *
- *     public Crypto Crypto = new Crypto();
+ *     private Crypto _crypto = new Crypto();
  *
- *     public CryptoKey Key = new CryptoKey();
+ *     private CryptoKey _key = new CryptoKey();
  *
- *     public X509Certificate Cert = new X509Certificate();
+ *     private X509Certificate _cert = new X509Certificate();
+ *
+ *
  *
  *     public override void _Ready()
  *
@@ -107,41 +111,41 @@ import kotlin.Suppress
  *
  *         // Generate new RSA key.
  *
- *         Key = Crypto.GenerateRsa(4096);
+ *         _key = _crypto.GenerateRsa(4096);
  *
  *         // Generate new self-signed certificate with the given key.
  *
- *         Cert = Crypto.GenerateSelfSignedCertificate(Key, "CN=mydomain.com,O=My Game Company,C=IT");
+ *         _cert = _crypto.GenerateSelfSignedCertificate(_key, "CN=mydomain.com,O=My Game Company,C=IT");
  *
  *         // Save key and certificate in the user folder.
  *
- *         Key.Save("user://generated.key");
+ *         _key.Save("user://generated.key");
  *
- *         Cert.Save("user://generated.crt");
+ *         _cert.Save("user://generated.crt");
  *
  *         // Encryption
  *
  *         string data = "Some data";
  *
- *         byte[] encrypted = Crypto.Encrypt(Key, data.ToUTF8());
+ *         byte[] encrypted = _crypto.Encrypt(_key, data.ToUtf8());
  *
  *         // Decryption
  *
- *         byte[] decrypted = Crypto.Decrypt(Key, encrypted);
+ *         byte[] decrypted = _crypto.Decrypt(_key, encrypted);
  *
  *         // Signing
  *
- *         byte[] signature = Crypto.Sign(HashingContext.HashType.Sha256, Data.SHA256Buffer(), Key);
+ *         byte[] signature = _crypto.Sign(HashingContext.HashType.Sha256, Data.Sha256Buffer(), _key);
  *
  *         // Verifying
  *
- *         bool verified = Crypto.Verify(HashingContext.HashType.Sha256, Data.SHA256Buffer(), signature, Key);
+ *         bool verified = _crypto.Verify(HashingContext.HashType.Sha256, Data.Sha256Buffer(), signature, _key);
  *
  *         // Checks
  *
  *         Debug.Assert(verified);
  *
- *         Debug.Assert(data.ToUTF8() == decrypted);
+ *         Debug.Assert(data.ToUtf8() == decrypted);
  *
  *     }
  *

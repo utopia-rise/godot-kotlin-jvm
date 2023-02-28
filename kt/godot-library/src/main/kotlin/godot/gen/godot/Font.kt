@@ -216,7 +216,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns the size of a bounding box of a single-line string, taking kerning and advance into account. See also [getMultilineStringSize] and [drawString].
+   * Returns the size of a bounding box of a single-line string, taking kerning, advance and subpixel positioning into account. See also [getMultilineStringSize] and [drawString].
    *
    * For example, to get the string size as displayed by a single-line Label, use:
    *
@@ -237,6 +237,8 @@ public open class Font internal constructor() : Resource() {
    * [/csharp]
    *
    * [/codeblocks]
+   *
+   * **Note:** Since kerning, advance and subpixel positioning are taken into account by [getStringSize], using separate [getStringSize] calls on substrings of a string then adding the results together will return a different result compared to using a single [getStringSize] call on the full string.
    *
    * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by [getHeight].
    */

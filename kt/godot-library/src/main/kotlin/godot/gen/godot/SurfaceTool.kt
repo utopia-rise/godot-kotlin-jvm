@@ -235,7 +235,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies whether the current vertex (if using only vertex arrays) or current index (if also using index arrays) should use smooth normals for normal calculation.
+   * Specifies the smooth group to use for the *next* vertex. If this is never called, all vertices will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same group. To produce a mesh with flat normals, set the smooth group to `-1`.
    */
   public fun setSmoothGroup(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
@@ -288,7 +288,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** [generateNormals] only works if the primitive type to be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
    *
-   * **Note:** [generateNormals] takes smooth groups into account. If you don't specify any smooth group for each vertex, [generateNormals] will smooth normals for you.
+   * **Note:** [generateNormals] takes smooth groups into account. To generate smooth normals, set the smooth group to a value greater than or equal to `0` using [setSmoothGroup] or leave the smooth group at the default of `0`. To generate flat normals, set the smooth group to `-1` using [setSmoothGroup] prior to adding vertices.
    */
   public fun generateNormals(flip: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to flip)

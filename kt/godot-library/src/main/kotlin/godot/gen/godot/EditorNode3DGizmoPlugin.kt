@@ -178,7 +178,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   }
 
   /**
-   * Override this method to allow selecting subgizmos using mouse drag box selection. Given a [camera] and [frustumPlanes], this method should return which subgizmos are contained within the frustums. The [frustumPlanes] argument consists of an `Array` with all the `Plane`s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, these identifiers can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].  Called for this plugin's active gizmos.
+   * Override this method to allow selecting subgizmos using mouse drag box selection. Given a [camera] and [frustumPlanes], this method should return which subgizmos are contained within the frustums. The [frustumPlanes] argument consists of an `Array` with all the `Plane`s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, these identifiers can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos]. Called for this plugin's active gizmos.
    */
   public open fun _subgizmosIntersectFrustum(
     gizmo: EditorNode3DGizmo,
@@ -196,7 +196,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   }
 
   /**
-   * Override this method to update the node properties during subgizmo editing (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). The [transform] is given in the Node3D's local coordinate system.  Called for this plugin's active gizmos.
+   * Override this method to update the node properties during subgizmo editing (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). The [transform] is given in the Node3D's local coordinate system. Called for this plugin's active gizmos.
    */
   public open fun _setSubgizmoTransform(
     gizmo: EditorNode3DGizmo,

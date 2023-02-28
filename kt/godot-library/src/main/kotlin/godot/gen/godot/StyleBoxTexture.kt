@@ -83,6 +83,8 @@ public open class StyleBoxTexture : StyleBox() {
    * Species a sub-region of the texture to use.
    *
    * This is equivalent to first wrapping the texture in an [godot.AtlasTexture] with the same region.
+   *
+   * If empty (`Rect2(0, 0, 0, 0)`), the whole texture will be used.
    */
   public var regionRect: Rect2
     get() {
@@ -136,27 +138,27 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the margin to [size] pixels for the specified [enum Side].
    */
-  public fun setMarginSize(margin: Side, size: Double): Unit {
+  public fun setTextureMargin(margin: Side, size: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_MARGIN_SIZE,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN,
         NIL)
   }
 
   /**
    * Sets the margin to [size] pixels for all sides.
    */
-  public fun setMarginSizeAll(size: Double): Unit {
+  public fun setTextureMarginAll(size: Double): Unit {
     TransferContext.writeArguments(DOUBLE to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_MARGIN_SIZE_ALL,
-        NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN_ALL, NIL)
   }
 
   /**
    * Returns the margin size of the specified [enum Side].
    */
-  public fun getMarginSize(margin: Side): Double {
+  public fun getTextureMargin(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_MARGIN_SIZE,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
@@ -164,14 +166,14 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the expand margin to [size] pixels for the specified [enum Side].
    */
-  public fun setExpandMarginSize(margin: Side, size: Double): Unit {
+  public fun setExpandMargin(margin: Side, size: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN_SIZE, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
+        NIL)
   }
 
   /**
-   * Sets the expand margin to [size] pixels for all margins.
+   * Sets the expand margin to [size] pixels for all sides.
    */
   public fun setExpandMarginAll(size: Double): Unit {
     TransferContext.writeArguments(DOUBLE to size)
@@ -182,10 +184,10 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Returns the expand margin size of the specified [enum Side].
    */
-  public fun getExpandMarginSize(margin: Side): Double {
+  public fun getExpandMargin(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN_SIZE, DOUBLE)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
+        DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

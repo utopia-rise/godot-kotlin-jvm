@@ -28,7 +28,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.core.Vector2i
+import godot.core.Vector3i
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
@@ -205,7 +205,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The size of the node's bounding rectangle, in pixels. [godot.Container] nodes update this property automatically.
+   * The size of the node's bounding rectangle, in the node's coordinate system. [godot.Container] nodes update this property automatically.
    */
   public val size: Vector2
     get() {
@@ -215,7 +215,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The node's position, relative to its parent. It corresponds to the rectangle's top-left corner. The property is not affected by [pivotOffset].
+   * The node's position, relative to its containing node. It corresponds to the rectangle's top-left corner. The property is not affected by [pivotOffset].
    */
   public val position: Vector2
     get() {
@@ -237,6 +237,8 @@ public open class Control : CanvasItem() {
 
   /**
    * The node's rotation around its pivot, in radians. See [pivotOffset] to change the pivot's position.
+   *
+   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [rotationDegrees].
    */
   public var rotation: Double
     get() {
@@ -267,7 +269,9 @@ public open class Control : CanvasItem() {
   /**
    * The node's scale, relative to its [size]. Change this property to scale the node around its [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
    *
-   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) instead of scaling Controls individually.
+   * **Note:** This property is mainly intended to be used for animation purposes. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) instead of scaling Controls individually.
+   *
+   * **Note:** [godot.FontFile.oversampling] does *not* take [godot.Control] [scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [godot.ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [godot.SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
    *
    * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [scale] property.
    */
@@ -580,23 +584,23 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Virtual method to be implemented by the user. Returns whether the given [position] is inside this control.
+   * Virtual method to be implemented by the user. Returns whether the given [point] is inside this control.
    *
    * If not overridden, default behavior is checking if the point is within control's Rect.
    *
-   * **Note:** If you want to check if a point is inside the control, you can use `get_rect().has_point(point)`.
+   * **Note:** If you want to check if a point is inside the control, you can use `Rect2(Vector2.ZERO, size).has_point(point)`.
    */
-  public open fun _hasPoint(position: Vector2): Boolean {
+  public open fun _hasPoint(point: Vector2): Boolean {
     throw NotImplementedError("_has_point is not implemented for Control")
   }
 
   /**
    * User defined BiDi algorithm override function.
    *
-   * Returns an [godot.Array] of [godot.Vector2i] text ranges, in the left-to-right order. Ranges should cover full source [text] without overlaps. BiDi algorithm will be used on each range separately.
+   * Returns an [godot.Array] of [godot.Vector3i] text ranges and text base directions, in the left-to-right order. Ranges should cover full source [text] without overlaps. BiDi algorithm will be used on each range separately.
    */
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
-      VariantArray<Vector2i> {
+      VariantArray<Vector3i> {
     throw NotImplementedError("_structured_text_parser is not implemented for Control")
   }
 
@@ -632,15 +636,15 @@ public open class Control : CanvasItem() {
    *
    * [csharp]
    *
-   * public override object GetDragData(Vector2 position)
+   * public override Variant _GetDragData(Vector2 atPosition)
    *
    * {
    *
-   *     object mydata = MakeData(); // This is your custom method generating the drag data.
+   *     var myData = MakeData(); // This is your custom method generating the drag data.
    *
-   *     SetDragPreview(MakePreview(mydata)); // This is your custom method generating the preview of the drag data.
+   *     SetDragPreview(MakePreview(myData)); // This is your custom method generating the preview of the drag data.
    *
-   *     return mydata;
+   *     return myData;
    *
    * }
    *
@@ -673,7 +677,7 @@ public open class Control : CanvasItem() {
    *
    * [csharp]
    *
-   * public override bool CanDropData(Vector2 position, object data)
+   * public override bool _CanDropData(Vector2 atPosition, Variant data)
    *
    * {
    *
@@ -681,7 +685,7 @@ public open class Control : CanvasItem() {
    *
    *     // Otherwise, just check data
    *
-   *     return data is Godot.Collections.Dictionary && (data as Godot.Collections.Dictionary).Contains("expected");
+   *     return data.VariantType == Variant.Type.Dictionary && data.AsGodotDictionary().Contains("expected");
    *
    * }
    *
@@ -704,6 +708,8 @@ public open class Control : CanvasItem() {
    *
    *     return typeof(data) == TYPE_DICTIONARY and data.has("color")
    *
+   *
+   *
    * func _drop_data(position, data):
    *
    *     var color = data["color"]
@@ -712,19 +718,21 @@ public open class Control : CanvasItem() {
    *
    * [csharp]
    *
-   * public override bool CanDropData(Vector2 position, object data)
+   * public override bool _CanDropData(Vector2 atPosition, Variant data)
    *
    * {
    *
-   *     return data is Godot.Collections.Dictionary && (data as Godot.Collections.Dictionary).Contains("color");
+   *     return data.VariantType == Variant.Type.Dictionary && dict.AsGodotDictionary().Contains("color");
    *
    * }
    *
-   * public override void DropData(Vector2 position, object data)
+   *
+   *
+   * public override void _DropData(Vector2 atPosition, Variant data)
    *
    * {
    *
-   *     Color color = (Color)(data as Godot.Collections.Dictionary)["color"];
+   *     Color color = data.AsGodotDictionary()["color"].AsColor();
    *
    * }
    *
@@ -764,7 +772,7 @@ public open class Control : CanvasItem() {
    *
    * [csharp]
    *
-   * public override Godot.Control _MakeCustomTooltip(String forText)
+   * public override Control _MakeCustomTooltip(string forText)
    *
    * {
    *
@@ -798,7 +806,7 @@ public open class Control : CanvasItem() {
    *
    * [csharp]
    *
-   * public override Godot.Control _MakeCustomTooltip(String forText)
+   * public override Control _MakeCustomTooltip(string forText)
    *
    * {
    *
@@ -843,13 +851,11 @@ public open class Control : CanvasItem() {
    *
    * {
    *
-   *     if (@event is InputEventMouseButton)
+   *     if (@event is InputEventMouseButton mb)
    *
    *     {
    *
-   *         var mb = @event as InputEventMouseButton;
-   *
-   *         if (mb.ButtonIndex == (int)ButtonList.Left && mb.Pressed)
+   *         if (mb.ButtonIndex == MouseButton.Left && mb.Pressed)
    *
    *         {
    *
@@ -1107,7 +1113,11 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the position and size of the control relative to the top-left corner of the parent Control. See [position] and [size].
+   * Returns the position and size of the control in the coordinate system of the containing node. See [position], [scale] and [size].
+   *
+   * **Note:** If [rotation] is not the default rotation, the resulting size is not meaningful.
+   *
+   * **Note:** Setting [godot.Viewport.guiSnapControlsToPixels] to `true` can lead to rounding inaccuracies between the displayed control and the returned [godot.core.Rect2].
    */
   public fun getRect(): Rect2 {
     TransferContext.writeArguments()
@@ -1116,7 +1126,11 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the position and size of the control relative to the [godot.CanvasLayer]. See [globalPosition] and [size].
+   * Returns the position and size of the control relative to the containing canvas. See [globalPosition] and [size].
+   *
+   * **Note:** If the node itself or any parent [godot.CanvasItem] between the node and the canvas have a non default rotation or skew, the resulting size is likely not meaningful.
+   *
+   * **Note:** Setting [godot.Viewport.guiSnapControlsToPixels] to `true` can lead to rounding inaccuracies between the displayed control and the returned [godot.core.Rect2].
    */
   public fun getGlobalRect(): Rect2 {
     TransferContext.writeArguments()
@@ -1136,7 +1150,7 @@ public open class Control : CanvasItem() {
   /**
    * Steal the focus from another control and become the focused control (see [focusMode]).
    *
-   * **Note**: Using this method together with [godot.Callable.callDeferred] makes it more reliable, especially when called inside [godot.Node.Ready].
+   * **Note:** Using this method together with [godot.Callable.callDeferred] makes it more reliable, especially when called inside [godot.Node.Ready].
    */
   public fun grabFocus(): Unit {
     TransferContext.writeArguments()
@@ -1312,15 +1326,15 @@ public open class Control : CanvasItem() {
    *
    * // Given the child Label node "MyLabel", override its font color with a custom value.
    *
-   * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", new Color(1, 0.5f, 0))
+   * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", new Color(1, 0.5f, 0));
    *
    * // Reset the font color of the child label.
    *
-   * GetNode<Label>("MyLabel").RemoveThemeColorOverride("font_color")
+   * GetNode<Label>("MyLabel").RemoveThemeColorOverride("font_color");
    *
    * // Alternatively it can be overridden with the default value from the Label type.
    *
-   * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", GetThemeColor("font_color", "Label"))
+   * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", GetThemeColor("font_color", "Label"));
    *
    * [/csharp]
    *
@@ -1739,17 +1753,17 @@ public open class Control : CanvasItem() {
    *
    * func _process(delta):
    *
-   *     grab_click_focus() #when clicking another Control node, this node will be clicked instead
+   *     grab_click_focus() # When clicking another Control node, this node will be clicked instead.
    *
    * [/gdscript]
    *
    * [csharp]
    *
-   * public override void _Process(float delta)
+   * public override void _Process(double delta)
    *
    * {
    *
-   *     GrabClickFocus(); //when clicking another Control node, this node will be clicked instead
+   *     GrabClickFocus(); // When clicking another Control node, this node will be clicked instead.
    *
    * }
    *
@@ -1785,7 +1799,7 @@ public open class Control : CanvasItem() {
    *
    * [gdscript]
    *
-   * export (Color, RGBA) var color = Color(1, 0, 0, 1)
+   * @export var color = Color(1, 0, 0, 1)
    *
    *
    *
@@ -1809,11 +1823,11 @@ public open class Control : CanvasItem() {
    *
    * [godot.Export]
    *
-   * public Color Color = new Color(1, 0, 0, 1);
+   * private Color _color = new Color(1, 0, 0, 1);
    *
    *
    *
-   * public override object GetDragData(Vector2 position)
+   * public override Variant _GetDragData(Vector2 atPosition)
    *
    * {
    *
@@ -1821,13 +1835,13 @@ public open class Control : CanvasItem() {
    *
    *     var cpb = new ColorPickerButton();
    *
-   *     cpb.Color = Color;
+   *     cpb.Color = _color;
    *
-   *     cpb.RectSize = new Vector2(50, 50);
+   *     cpb.Size = new Vector2(50, 50);
    *
    *     SetDragPreview(cpb);
    *
-   *     return Color;
+   *     return _color;
    *
    * }
    *
@@ -1853,6 +1867,8 @@ public open class Control : CanvasItem() {
 
   /**
    * Moves the mouse cursor to [position], relative to [position] of this [godot.Control].
+   *
+   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)

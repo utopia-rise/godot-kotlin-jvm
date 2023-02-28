@@ -126,17 +126,19 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * // Consumes InputEventMouseMotion and forwards other InputEvent types.
    *
-   * public override bool ForwardCanvasGuiInput(InputEvent @event)
+   * public override bool _ForwardCanvasGuiInput(InputEvent @event)
    *
    * {
    *
-   *     if (@event is InputEventMouseMotion) {
+   *     if (@event is InputEventMouseMotion)
+   *
+   *     {
    *
    *         return true;
    *
    *     }
    *
-   *     return false
+   *     return false;
    *
    * }
    *
@@ -179,19 +181,19 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * [csharp]
    *
-   * public override void ForwardCanvasDrawOverViewport(Godot.Control overlay)
+   * public override void _ForwardCanvasDrawOverViewport(Control viewportControl)
    *
    * {
    *
    *     // Draw a circle at cursor position.
    *
-   *     overlay.DrawCircle(overlay.GetLocalMousePosition(), 64, Colors.White);
+   *     viewportControl.DrawCircle(viewportControl.GetLocalMousePosition(), 64, Colors.White);
    *
    * }
    *
    *
    *
-   * public override bool ForwardCanvasGuiInput(InputEvent @event)
+   * public override bool _ForwardCanvasGuiInput(InputEvent @event)
    *
    * {
    *
@@ -208,6 +210,8 @@ public open class EditorPlugin internal constructor() : Node() {
    *     }
    *
    *     return false;
+   *
+   * }
    *
    * [/csharp]
    *
@@ -245,11 +249,11 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * // Prevents the InputEvent from reaching other Editor classes.
    *
-   * public override EditorPlugin.AfterGUIInput _Forward3dGuiInput(Camera3D camera, InputEvent @event)
+   * public override EditorPlugin.AfterGuiInput _Forward3DGuiInput(Camera3D camera, InputEvent @event)
    *
    * {
    *
-   *     return EditorPlugin.AFTER_GUI_INPUT_STOP;
+   *     return EditorPlugin.AfterGuiInput.Stop;
    *
    * }
    *
@@ -277,11 +281,11 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * // Consumes InputEventMouseMotion and forwards other InputEvent types.
    *
-   * public override EditorPlugin.AfterGUIInput _Forward3dGuiInput(Camera3D camera, InputEvent @event)
+   * public override EditorPlugin.AfterGuiInput _Forward3DGuiInput(Camera3D camera, InputEvent @event)
    *
    * {
    *
-   *     return @event is InputEventMouseMotion ? EditorPlugin.AFTER_GUI_INPUT_STOP : EditorPlugin.AFTER_GUI_INPUT_PASS;
+   *     return @event is InputEventMouseMotion ? EditorPlugin.AfterGuiInput.Stop : EditorPlugin.AfterGuiInput.Pass;
    *
    * }
    *
@@ -324,19 +328,19 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * [csharp]
    *
-   * public override void _Forward3dDrawOverViewport(Godot.Control overlay)
+   * public override void _Forward3DDrawOverViewport(Control viewportControl)
    *
    * {
    *
    *     // Draw a circle at cursor position.
    *
-   *     overlay.DrawCircle(overlay.GetLocalMousePosition(), 64, Colors.White);
+   *     viewportControl.DrawCircle(viewportControl.GetLocalMousePosition(), 64, Colors.White);
    *
    * }
    *
    *
    *
-   * public override EditorPlugin.AfterGUIInput _Forward3dGuiInput(Godot.Camera3D camera, InputEvent @event)
+   * public override EditorPlugin.AfterGuiInput _Forward3DGuiInput(Camera3D viewportCamera, InputEvent @event)
    *
    * {
    *
@@ -348,11 +352,13 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    *         UpdateOverlays();
    *
-   *         return EditorPlugin.AFTER_GUI_INPUT_STOP;
+   *         return EditorPlugin.AfterGuiInput.Stop;
    *
    *     }
    *
-   *     return EditorPlugin.AFTER_GUI_INPUT_PASS;
+   *     return EditorPlugin.AfterGuiInput.Pass;
+   *
+   * }
    *
    * [/csharp]
    *
@@ -403,7 +409,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * [csharp]
    *
-   * public override Texture2D GetPluginIcon()
+   * public override Texture2D _GetPluginIcon()
    *
    * {
    *
@@ -467,14 +473,16 @@ public open class EditorPlugin internal constructor() : Node() {
 
   /**
    * This function is used for plugins that edit specific object types (nodes or resources). It requests the editor to edit the given object.
+   *
+   * [object] can be `null` if the plugin was editing an object, but there is no longer any selected object handled by this plugin. It can be used to cleanup editing state.
    */
-  public open fun _edit(_object: Any): Unit {
+  public open fun _edit(_object: Object): Unit {
   }
 
   /**
    * Implement this function if your plugin edits a specific type of object (Resource or Node). If you return `true`, then you will get the functions [_edit] and [_makeVisible] called when the editor requests them. If you have declared the methods [_forwardCanvasGuiInput] and [_forward3dGuiInput] these will be called too.
    */
-  public open fun _handles(_object: Any): Boolean {
+  public open fun _handles(_object: Object): Boolean {
     throw NotImplementedError("_handles is not implemented for EditorPlugin")
   }
 
@@ -689,6 +697,8 @@ public open class EditorPlugin internal constructor() : Node() {
    * Adds a custom type, which will appear in the list of nodes or resources. An icon can be optionally passed.
    *
    * When a given node or resource is selected, the base type will be instantiated (e.g. "Node3D", "Control", "Resource"), then the script will be loaded and set to this object.
+   *
+   * **Note:** The base type is the base engine class which this type's class hierarchy inherits, not any custom type parent classes.
    *
    * You can use the virtual method [_handles] to check if your custom object is being edited by checking the script or using the `is` keyword.
    *
@@ -960,6 +970,26 @@ public open class EditorPlugin internal constructor() : Node() {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_INSPECTOR_PLUGIN, NIL)
+  }
+
+  /**
+   * Registers a new [godot.EditorResourceConversionPlugin]. Resource conversion plugins are used to add custom resource converters to the editor inspector.
+   *
+   * See [godot.EditorResourceConversionPlugin] for an example of how to create a resource conversion plugin.
+   */
+  public fun addResourceConversionPlugin(plugin: EditorResourceConversionPlugin): Unit {
+    TransferContext.writeArguments(OBJECT to plugin)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_RESOURCE_CONVERSION_PLUGIN, NIL)
+  }
+
+  /**
+   * Removes a resource conversion plugin registered by [addResourceConversionPlugin].
+   */
+  public fun removeResourceConversionPlugin(plugin: EditorResourceConversionPlugin): Unit {
+    TransferContext.writeArguments(OBJECT to plugin)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_RESOURCE_CONVERSION_PLUGIN, NIL)
   }
 
   /**

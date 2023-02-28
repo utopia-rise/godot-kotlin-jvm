@@ -23,6 +23,8 @@ import kotlin.jvm.JvmName
  * [$DOCS_URL/tutorials/2d/2d_lights_and_shadows.html]($DOCS_URL/tutorials/2d/2d_lights_and_shadows.html)
  *
  * A directional light is a type of [godot.Light2D] node that models an infinite number of parallel rays covering the entire scene. It is used for lights with strong intensity that are located far away from the scene (for example: to model sunlight or moonlight).
+ *
+ * **Note:** [godot.DirectionalLight2D] does not support light cull masks (but it supports shadow cull masks). It will always light up 2D nodes, regardless of the 2D node's [godot.CanvasItem.lightMask].
  */
 @GodotBaseType
 public open class DirectionalLight2D : Light2D() {

@@ -134,6 +134,10 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   *
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
+   *
    * **Note:** This method is implemented on macOS.
    *
    * **Supported system menu IDs:**
@@ -163,6 +167,10 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   *
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
+   *
    * **Note:** This method is implemented on macOS.
    *
    * **Supported system menu IDs:**
@@ -191,6 +199,10 @@ public object DisplayServer : Object() {
    * Adds a new item with text [label] and icon [icon] to the global menu with ID [menuRoot].
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   *
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS.
    *
@@ -222,6 +234,10 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   *
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
+   *
    * **Note:** This method is implemented on macOS.
    *
    * **Supported system menu IDs:**
@@ -252,7 +268,11 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on how to control it.
+   *
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS.
    *
@@ -283,7 +303,11 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on how to control it.
+   *
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS.
    *
@@ -311,13 +335,17 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a new item with text [labe] to the global menu with ID [menuRoot].
+   * Adds a new item with text [label] to the global menu with ID [menuRoot].
    *
    * Contrarily to normal binary items, multistate items can have more than two states, as defined by [maxStates]. Each press or activate of the item will increase the state by one. The default value is defined by [defaultState].
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** By default, there's no indication of the current item state, it should be changed manually.
+   *
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS.
    *
@@ -330,7 +358,7 @@ public object DisplayServer : Object() {
    */
   public fun globalMenuAddMultistateItem(
     menuRoot: String,
-    labe: String,
+    label: String,
     maxStates: Long,
     defaultState: Long,
     callback: Callable = Callable(),
@@ -339,7 +367,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
   ): Long {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to labe, LONG to maxStates, LONG to defaultState, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, LONG to maxStates, LONG to defaultState, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_MULTISTATE_ITEM, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -605,7 +633,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the type of the item at the specified index [idx] to radio button. If `false`, sets the type of the item to plain text
+   * Sets the type of the item at the specified index [idx] to radio button. If `false`, sets the type of the item to plain text.
    *
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
    *
@@ -624,6 +652,8 @@ public object DisplayServer : Object() {
   /**
    * Sets the callback of the item at index [idx]. Callback is emitted when an item is pressed.
    *
+   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the tag parameter when the menu item was created.
+   *
    * **Note:** This method is implemented on macOS.
    */
   public fun globalMenuSetItemCallback(
@@ -638,6 +668,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is activated.
+   *
+   * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the tag parameter when the menu item was created.
    *
    * **Note:** This method is implemented on macOS.
    */
@@ -697,7 +729,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the accelerator of the item at index [idx].
+   * Sets the accelerator of the item at index [idx]. [keycode] can be a single [enum Key], or a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
    * **Note:** This method is implemented on macOS.
    */
@@ -879,6 +911,8 @@ public object DisplayServer : Object() {
    *
    * - `language` is language code in `lang_Variant` format. `lang` part is a 2 or 3-letter code based on the ISO-639 standard, in lowercase. And `Variant` part is an engine dependent string describing country, region or/and dialect.
    *
+   * Note that Godot depends on system libraries for text-to-speech functionality. These libraries are installed by default on Windows and MacOS, but not on all Linux distributions. If they are not present, this method will return an empty list. This applies to both Godot users on Linux, as well as end-users on Linux running Godot games that use text-to-speech.
+   *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
    */
   public fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
@@ -1032,6 +1066,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the mouse cursor position to the given [position] relative to an origin at the upper left corner of the currently focused game Window Manager window.
+   *
+   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.
    */
   public fun warpMouse(position: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to position)
@@ -1397,6 +1433,8 @@ public object DisplayServer : Object() {
   /**
    * Sets the title of the given window to [title].
    *
+   * **Note:** It's recommended to change this value using [godot.Window.title] instead.
+   *
    * **Note:** Avoid changing the window title every frame, as this can cause performance issues on certain window managers. Try to change the window title only a few times per second at most.
    */
   public fun windowSetTitle(title: String, windowId: Long = 0): Unit {
@@ -1515,6 +1553,8 @@ public object DisplayServer : Object() {
    * 				```
    *
    * See also [windowGetPosition] and [windowSetSize].
+   *
+   * **Note:** It's recommended to change this value using [godot.Window.position] instead.
    */
   public fun windowSetPosition(position: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId)
@@ -1534,6 +1574,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the size of the given window to [size] (in pixels). See also [windowGetSize] and [windowGetPosition].
+   *
+   * **Note:** It's recommended to change this value using [godot.Window.size] instead.
    */
   public fun windowSetSize(size: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to size, LONG to windowId)
@@ -1610,6 +1652,8 @@ public object DisplayServer : Object() {
   /**
    * Sets the maximum size of the window specified by [windowId] in pixels. Normally, the user will not be able to drag the window to make it smaller than the specified size. See also [windowGetMaxSize].
    *
+   * **Note:** It's recommended to change this value using [godot.Window.maxSize] instead.
+   *
    * **Note:** Using third-party tools, it is possible for users to disable window geometry restrictions and therefore bypass this limit.
    */
   public fun windowSetMaxSize(maxSize: Vector2i, windowId: Long = 0): Unit {
@@ -1630,6 +1674,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the minimum size for the given window to [minSize] (in pixels). Normally, the user will not be able to drag the window to make it larger than the specified size. See also [windowGetMinSize].
+   *
+   * **Note:** It's recommended to change this value using [godot.Window.minSize] instead.
    *
    * **Note:** By default, the main window has a minimum size of `Vector2i(64, 64)`. This prevents issues that can arise when the window is resized to a near-zero size.
    *
@@ -1742,7 +1788,9 @@ public object DisplayServer : Object() {
   /**
    * Sets window transient parent. Transient window is will be destroyed with its transient parent and will return focus to their parent when closed. The transient window is displayed on top of a non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.
    *
-   * Note that behavior might be different depending on the platform.
+   * **Note:** It's recommended to change this value using [godot.Window.transient] instead.
+   *
+   * **Note:** The behavior might be different depending on the platform.
    */
   public fun windowSetTransient(windowId: Long, parentWindowId: Long): Unit {
     TransferContext.writeArguments(LONG to windowId, LONG to parentWindowId)
@@ -1782,11 +1830,13 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the V-Sync mode of the given window.
+   * Sets the V-Sync mode of the given window. See also [godot.ProjectSettings.display/window/vsync/vsyncMode].
    *
    * See [enum DisplayServer.VSyncMode] for possible values and how they affect the behavior of your application.
    *
-   * Depending on the platform and used renderer, the engine will fall back to [VSYNC_ENABLED], if the desired mode is not supported.
+   * Depending on the platform and used renderer, the engine will fall back to [VSYNC_ENABLED] if the desired mode is not supported.
+   *
+   * **Note:** V-Sync modes other than [VSYNC_ENABLED] are only supported in the Forward+ and Mobile rendering methods, not Compatibility.
    */
   public fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to vsyncMode.id, LONG to windowId)
@@ -2386,7 +2436,7 @@ public object DisplayServer : Object() {
      */
     CURSOR_IBEAM(1),
     /**
-     * Pointing hand cursor shape. This is used by default when hovering a [godot.LinkButton] or an URL tag in a [godot.RichTextLabel].⋅
+     * Pointing hand cursor shape. This is used by default when hovering a [godot.LinkButton] or an URL tag in a [godot.RichTextLabel].
      */
     CURSOR_POINTING_HAND(2),
     /**
@@ -2473,7 +2523,7 @@ public object DisplayServer : Object() {
      */
     WINDOW_MODE_MINIMIZED(1),
     /**
-     * Maximized window mode, i.e. [godot.Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the minimize button is pressed.
+     * Maximized window mode, i.e. [godot.Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the maximize button is pressed.
      */
     WINDOW_MODE_MAXIMIZED(2),
     /**
@@ -2636,13 +2686,13 @@ public object DisplayServer : Object() {
      */
     VSYNC_ENABLED(1),
     /**
-     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (nonwithstanding [godot.Engine.maxFps]).
+     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (nonwithstanding [godot.Engine.maxFps]). Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
      */
     VSYNC_ADAPTIVE(2),
     /**
      * Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (nonwithstanding [godot.Engine.maxFps]).
      *
-     * Although not guaranteed, the images can be rendered as fast as possible, which may reduce input lag (also called "Fast" V-Sync mode). [VSYNC_MAILBOX] works best when at least twice as many frames as the display refresh rate are rendered.
+     * Although not guaranteed, the images can be rendered as fast as possible, which may reduce input lag (also called "Fast" V-Sync mode). [VSYNC_MAILBOX] works best when at least twice as many frames as the display refresh rate are rendered. Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
      */
     VSYNC_MAILBOX(3),
     ;

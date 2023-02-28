@@ -192,7 +192,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
      */
     PARAM_ANGULAR_LIMIT_SOFTNESS(12),
     /**
-     * The amount of rotational damping across the axes. The lower, the more dampening occurs.
+     * The amount of rotational damping across the axes. The lower, the more damping occurs.
      */
     PARAM_ANGULAR_DAMPING(13),
     /**

@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
-import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
@@ -112,12 +111,8 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     return true
   }
 
-  public fun createClient(
-    url: String,
-    verifyTls: Boolean = true,
-    tlsCertificate: X509Certificate? = null
-  ): GodotError {
-    TransferContext.writeArguments(STRING to url, BOOL to verifyTls, OBJECT to tlsCertificate)
+  public fun createClient(url: String, tlsClientOptions: TLSOptions? = null): GodotError {
+    TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_CREATE_CLIENT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -126,10 +121,9 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public fun createServer(
     port: Long,
     bindAddress: String = "*",
-    tlsKey: CryptoKey? = null,
-    tlsCertificate: X509Certificate? = null
+    tlsServerOptions: TLSOptions? = null
   ): GodotError {
-    TransferContext.writeArguments(LONG to port, STRING to bindAddress, OBJECT to tlsKey, OBJECT to tlsCertificate)
+    TransferContext.writeArguments(LONG to port, STRING to bindAddress, OBJECT to tlsServerOptions)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_CREATE_SERVER, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

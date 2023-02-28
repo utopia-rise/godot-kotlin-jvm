@@ -12,6 +12,7 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
+import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
@@ -129,6 +130,16 @@ public open class Texture3D : Texture() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DATA, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>
+  }
+
+  /**
+   * Creates a placeholder version of this resource ([godot.PlaceholderTexture3D]).
+   */
+  public fun createPlaceholder(): Resource? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_CREATE_PLACEHOLDER,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
   public companion object

@@ -54,6 +54,22 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeStateMachine : AnimationRootNode() {
+  /**
+   * If `true`, allows teleport to the self state with [godot.AnimationNodeStateMachinePlayback.travel]. When the reset option is enabled in [godot.AnimationNodeStateMachinePlayback.travel], the animation is restarted. If `false`, nothing happens on the teleportation to the self state.
+   */
+  public var allowTransitionToSelf: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_IS_ALLOW_TRANSITION_TO_SELF, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_ALLOW_TRANSITION_TO_SELF, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINE, scriptIndex)
     return true

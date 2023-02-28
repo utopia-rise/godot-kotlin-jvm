@@ -99,7 +99,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is draw more prominently
+   * Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is draw more prominently.
    */
   public var lineLengthGuidelines: VariantArray<Long>
     get() {
@@ -420,14 +420,6 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Perform an unindent as if the user activated the "ui_text_unindent" action.
-   */
-  public fun doUnindent(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_DO_UNINDENT, NIL)
-  }
-
-  /**
    * Indents selected lines, or in the case of no selection the caret line by one.
    */
   public fun indentLines(): Unit {
@@ -436,7 +428,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Unindents selected lines, or in the case of no selection the caret line by one.
+   * Unindents selected lines, or in the case of no selection the caret line by one. Same as performing "ui_text_unindent" action.
    */
   public fun unindentLines(): Unit {
     TransferContext.writeArguments()
@@ -665,7 +657,7 @@ public open class CodeEdit : TextEdit() {
    *
    * Both the start and end keys must be symbols. Only the start key has to be unique.
    *
-   * Line only denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
+   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
   public fun addStringDelimiter(
     startKey: String,
@@ -717,7 +709,7 @@ public open class CodeEdit : TextEdit() {
    *
    * Both the start and end keys must be symbols. Only the start key has to be unique.
    *
-   * Line only denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
+   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
   public fun addCommentDelimiter(
     startKey: String,

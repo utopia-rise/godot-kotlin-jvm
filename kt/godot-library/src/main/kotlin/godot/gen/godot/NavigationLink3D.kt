@@ -22,12 +22,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Creates a link between two locations that [godot.NavigationServer3D] can route agents through.
+ * Creates a link between two positions that [godot.NavigationServer3D] can route agents through.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationlinks.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationlinks.html)
  *
- * Creates a link between two locations that [godot.NavigationServer3D] can route agents through.  Links can be used to express navigation methods that aren't just traveling along the surface of the navigation mesh, like zip-lines, teleporters, or jumping across gaps.
+ * Creates a link between two positions that [godot.NavigationServer3D] can route agents through. Links can be used to express navigation methods that aren't just traveling along the surface of the navigation mesh, like zip-lines, teleporters, or jumping across gaps.
  */
 @GodotBaseType
 public open class NavigationLink3D : Node3D() {
@@ -46,7 +46,7 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * Whether this link can be traveled in both directions or only from [startLocation] to [endLocation].
+   * Whether this link can be traveled in both directions or only from [startPosition] to [endPosition].
    */
   public var bidirectional: Boolean
     get() {
@@ -84,17 +84,17 @@ public open class NavigationLink3D : Node3D() {
    *
    * The distance the link will search is controlled by [godot.NavigationServer3D.mapSetLinkConnectionRadius].
    */
-  public var startLocation: Vector3
+  public var startPosition: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_GET_START_LOCATION, VECTOR3)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_GET_START_POSITION, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_SET_START_LOCATION, NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_SET_START_POSITION, NIL)
     }
 
   /**
@@ -104,16 +104,16 @@ public open class NavigationLink3D : Node3D() {
    *
    * The distance the link will search is controlled by [godot.NavigationServer3D.mapSetLinkConnectionRadius].
    */
-  public var endLocation: Vector3
+  public var endPosition: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_GET_END_LOCATION,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_GET_END_POSITION,
           VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_SET_END_LOCATION,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_SET_END_POSITION,
           NIL)
     }
 
@@ -171,6 +171,44 @@ public open class NavigationLink3D : Node3D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_GET_NAVIGATION_LAYER_VALUE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the [startPosition] that is relative to the link from a global [position].
+   */
+  public fun setGlobalStartPosition(position: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to position)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_SET_GLOBAL_START_POSITION, NIL)
+  }
+
+  /**
+   * Returns the [startPosition] that is relative to the link as a global position.
+   */
+  public fun getGlobalStartPosition(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_GET_GLOBAL_START_POSITION, VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Sets the [endPosition] that is relative to the link from a global [position].
+   */
+  public fun setGlobalEndPosition(position: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to position)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_SET_GLOBAL_END_POSITION, NIL)
+  }
+
+  /**
+   * Returns the [endPosition] that is relative to the link as a global position.
+   */
+  public fun getGlobalEndPosition(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK3D_GET_GLOBAL_END_POSITION, VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
   public companion object

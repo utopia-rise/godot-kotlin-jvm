@@ -99,7 +99,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     }
 
   /**
-   * The default amount of dampening applied to the Jiggle joints, if they are not overridden. Higher values lead to more of the calculated velocity being applied.
+   * The default amount of damping applied to the Jiggle joints, if they are not overridden. Higher values lead to more of the calculated velocity being applied.
    */
   public var damping: Double
     get() {
@@ -286,7 +286,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   }
 
   /**
-   * Sets the amount of dampening of the Jiggle joint at [jointIdx].
+   * Sets the amount of damping of the Jiggle joint at [jointIdx].
    */
   public fun setJiggleJointDamping(jointIdx: Long, damping: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to damping)

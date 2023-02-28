@@ -159,7 +159,9 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * The layer mask. Only objects with a matching mask will be affected by the Light2D.
+   * The layer mask. Only objects with a matching [godot.CanvasItem.lightMask] will be affected by the Light2D. See also [shadowItemCullMask], which affects which objects can cast shadows.
+   *
+   * **Note:** [rangeItemCullMask] is ignored by [godot.DirectionalLight2D], which will always light a 2D node regardless of the 2D node's [godot.CanvasItem.lightMask].
    */
   public var rangeItemCullMask: Long
     get() {
@@ -229,7 +231,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * The shadow mask. Used with [godot.LightOccluder2D] to cast shadows. Only occluders with a matching light mask will cast shadows.
+   * The shadow mask. Used with [godot.LightOccluder2D] to cast shadows. Only occluders with a matching [godot.CanvasItem.lightMask] will cast shadows. See also [rangeItemCullMask], which affects which objects can *receive* the light.
    */
   public var shadowItemCullMask: Long
     get() {
@@ -278,7 +280,7 @@ public open class Light2D internal constructor() : Node2D() {
      */
     SHADOW_FILTER_PCF5(1),
     /**
-     * Percentage closer filtering (13 samples) applies to the shadow map. This is the slowest shadow filtereing mode, and should be used sparingly. See [shadowFilter].
+     * Percentage closer filtering (13 samples) applies to the shadow map. This is the slowest shadow filtering mode, and should be used sparingly. See [shadowFilter].
      */
     SHADOW_FILTER_PCF13(2),
     ;

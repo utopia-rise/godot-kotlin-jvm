@@ -41,11 +41,11 @@ import kotlin.jvm.JvmName
  *
  * fv.set_base_font(load("res://BarlowCondensed-Regular.ttf"))
  *
- * fv.set_variation_embolden(1.2);
+ * fv.set_variation_embolden(1.2)
  *
- * $"Label".set("custom_fonts/font", fv)
+ * $Label.add_theme_font_override("font", fv)
  *
- * $"Label".set("custom_fonts/font_size", 64)
+ * $Label.add_theme_font_size_override("font_size", 64)
  *
  * [/gdscript]
  *
@@ -57,9 +57,9 @@ import kotlin.jvm.JvmName
  *
  * fv.SetVariationEmbolden(1.2);
  *
- * GetNode("Label").Set("custom_fonts/font", fv);
+ * GetNode("Label").AddThemeFontOverride("font", fv);
  *
- * GetNode("Label").Set("custom_font_sizes/font_size", 64);
+ * GetNode("Label").AddThemeFontSizeOverride("font_size", 64);
  *
  * [/csharp]
  *

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
 import kotlin.Any
@@ -69,6 +70,13 @@ public open class ResourceFormatLoader : RefCounted() {
   }
 
   /**
+   * Returns the script class name associated with the [godot.Resource] under the given [path]. If the resource has no script or the script isn't a named class, it should return `""`.
+   */
+  public open fun _getResourceScriptClass(path: String): String {
+    throw NotImplementedError("_get_resource_script_class is not implemented for ResourceFormatLoader")
+  }
+
+  /**
    *
    */
   public open fun _getResourceUid(path: String): Long {
@@ -89,7 +97,7 @@ public open class ResourceFormatLoader : RefCounted() {
    *
    * Returns [OK] on success, or an [enum Error] constant in case of failure.
    */
-  public open fun _renameDependencies(path: String, renames: Dictionary<Any?, Any?>): Long {
+  public open fun _renameDependencies(path: String, renames: Dictionary<Any?, Any?>): GodotError {
     throw NotImplementedError("_rename_dependencies is not implemented for ResourceFormatLoader")
   }
 

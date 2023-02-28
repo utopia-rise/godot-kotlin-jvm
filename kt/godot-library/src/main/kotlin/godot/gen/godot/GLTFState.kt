@@ -332,6 +332,19 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_ANIMATIONS, NIL)
     }
 
+  public var handleBinaryImage: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_HANDLE_BINARY_IMAGE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_HANDLE_BINARY_IMAGE,
+          NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFSTATE, scriptIndex)
     return true
@@ -373,5 +386,13 @@ public open class GLTFState : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_ADDITIONAL_DATA, NIL)
   }
 
-  public companion object
+  public companion object {
+    public final const val HANDLE_BINARY_DISCARD_TEXTURES: Long = 0
+
+    public final const val HANDLE_BINARY_EXTRACT_TEXTURES: Long = 1
+
+    public final const val HANDLE_BINARY_EMBED_AS_BASISU: Long = 2
+
+    public final const val HANDLE_BINARY_EMBED_AS_UNCOMPRESSED: Long = 3
+  }
 }

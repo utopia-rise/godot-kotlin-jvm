@@ -317,7 +317,7 @@ public open class ShapeCast3D : Node3D() {
   /**
    * Adds a collision exception so the shape does not report collisions with the specified [godot.CollisionObject3D] node.
    */
-  public fun addException(node: Object): Unit {
+  public fun addException(node: CollisionObject3D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST3D_ADD_EXCEPTION, NIL)
   }
@@ -334,7 +334,7 @@ public open class ShapeCast3D : Node3D() {
   /**
    * Removes a collision exception so the shape does report collisions with the specified [godot.CollisionObject3D] node.
    */
-  public fun removeException(node: Object): Unit {
+  public fun removeException(node: CollisionObject3D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST3D_REMOVE_EXCEPTION, NIL)
   }

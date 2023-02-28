@@ -45,6 +45,8 @@ import kotlin.Unit
  * **Note:** Don't change a RigidBody3D's position every frame or very often. Sporadic changes work fine, but physics runs at a different granularity (fixed Hz) than usual rendering (process callback) and maybe even in a separate thread, so changing this from a process loop may result in strange behavior. If you need to directly affect the body's state, use [_integrateForces], which allows you to directly access the physics state.
  *
  * If you need to override the default physics behavior, you can write a custom force integration function. See [customIntegrator].
+ *
+ * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
  */
 @GodotBaseType
 public open class RigidBody3D : PhysicsBody3D() {
@@ -115,6 +117,50 @@ public open class RigidBody3D : PhysicsBody3D() {
    * The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body on each axis. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.
    *
    * If set to `Vector3.ZERO`, inertia is automatically computed (default value).
+   *
+   * **Note:** This value does not change when inertia is automatically computed. Use [godot.PhysicsServer3D] to get the computed inertia.
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * @onready var ball = $Ball
+   *
+   *
+   *
+   * func get_ball_inertia():
+   *
+   *     return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * private RigidBody3D _ball;
+   *
+   *
+   *
+   * public override void _Ready()
+   *
+   * {
+   *
+   *     _ball = GetNode<RigidBody3D>("Ball");
+   *
+   * }
+   *
+   *
+   *
+   * private Vector3 GetBallInertia()
+   *
+   * {
+   *
+   *     return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public var inertia: Vector3
     get() {

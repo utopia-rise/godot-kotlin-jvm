@@ -67,9 +67,10 @@ public open class Noise internal constructor() : Resource() {
     width: Long,
     height: Long,
     invert: Boolean = false,
-    in3dSpace: Boolean = false
+    in3dSpace: Boolean = false,
+    normalize: Boolean = true
   ): Image? {
-    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert, BOOL to in3dSpace)
+    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert, BOOL to in3dSpace, BOOL to normalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_IMAGE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
@@ -79,9 +80,10 @@ public open class Noise internal constructor() : Resource() {
     height: Long,
     invert: Boolean = false,
     in3dSpace: Boolean = false,
-    skirt: Double = 0.1
+    skirt: Double = 0.1,
+    normalize: Boolean = true
   ): Image? {
-    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert, BOOL to in3dSpace, DOUBLE to skirt)
+    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert, BOOL to in3dSpace, DOUBLE to skirt, BOOL to normalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_SEAMLESS_IMAGE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }

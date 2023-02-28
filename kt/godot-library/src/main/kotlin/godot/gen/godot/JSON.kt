@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.ANY
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -66,7 +67,7 @@ import kotlin.Suppress
  * - Certain errors, such as invalid Unicode sequences, do not cause a parser error. Instead, the string is cleansed and an error is logged to the console.
  */
 @GodotBaseType
-public open class JSON : RefCounted() {
+public open class JSON : Resource() {
   /**
    * Contains the parsed JSON data in [Variant] form.
    */
@@ -87,16 +88,27 @@ public open class JSON : RefCounted() {
   }
 
   /**
-   * Attempts to parse the [jsonString] provided.
+   * Attempts to parse the [jsonText] provided.
    *
    * Returns an [enum Error]. If the parse was successful, it returns [OK] and the result can be retrieved using [data]. If unsuccessful, use [getErrorLine] and [getErrorMessage] for identifying the source of the failure.
    *
    * Non-static variant of [parseString], if you want custom error handling.
+   *
+   * The optional [keepText] argument instructs the parser to keep a copy of the original text. This text can be obtained later by using the [getParsedText] function and is used when saving the resource (instead of generating new text from [data]).
    */
-  public fun parse(jsonString: String): GodotError {
-    TransferContext.writeArguments(STRING to jsonString)
+  public fun parse(jsonText: String, keepText: Boolean = false): GodotError {
+    TransferContext.writeArguments(STRING to jsonText, BOOL to keepText)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_PARSE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Return the text parsed by [parse] as long as the function is instructed to keep it.
+   */
+  public fun getParsedText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_PARSED_TEXT, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**

@@ -127,7 +127,7 @@ public object Performance : Object() {
    *
    * {
    *
-   *     var monitorValue = new Callable(this, nameof(GetMonitorValue));
+   *     var monitorValue = new Callable(this, MethodName.GetMonitorValue);
    *
    *
    *

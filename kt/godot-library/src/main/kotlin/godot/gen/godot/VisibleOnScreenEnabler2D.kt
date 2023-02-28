@@ -74,7 +74,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
      */
     ENABLE_MODE_ALWAYS(1),
     /**
-     * Corresponds to [constant Node.PROCESS_MODE_WHEN_PAUSED.
+     * Corresponds to [godot.Node.PROCESS_MODE_WHEN_PAUSED].
      */
     ENABLE_MODE_WHEN_PAUSED(2),
     ;

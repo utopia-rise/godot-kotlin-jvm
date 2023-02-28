@@ -31,7 +31,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * 2D area for detection and physics and audio influence.
+ * 2D area for detection, as well as physics and audio influence.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/120](https://godotengine.org/asset-library/asset/120)
@@ -209,19 +209,21 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The falloff factor for point gravity. The greater the value, the faster gravity decreases with distance.
+   * The distance at which the gravity strength is equal to [gravity]. For example, on a planet 100 pixels in radius with a surface gravity of 4.0 px/s², set the [gravity] to 4.0 and the unit distance to 100.0. The gravity will have falloff according to the inverse square law, so in the example, at 200 pixels from the center the gravity will be 1.0 px/s² (twice the distance, 1/4th the gravity), at 50 pixels it will be 16.0 px/s² (half the distance, 4x the gravity), and so on.
+   *
+   * The above is true only when the unit distance is a positive number. When this is set to 0.0, the gravity will be constant regardless of distance.
    */
-  public var gravityPointDistanceScale: Double
+  public var gravityPointUnitDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_POINT_DISTANCE_SCALE, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_POINT_UNIT_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_POINT_DISTANCE_SCALE, NIL)
+          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_POINT_UNIT_DISTANCE, NIL)
     }
 
   /**

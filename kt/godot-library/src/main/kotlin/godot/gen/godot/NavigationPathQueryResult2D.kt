@@ -105,7 +105,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
   }
 
   /**
-   * Reset the result object to its initial state.  This is useful to reuse the object across multiple queries.
+   * Reset the result object to its initial state. This is useful to reuse the object across multiple queries.
    */
   public fun reset(): Unit {
     TransferContext.writeArguments()

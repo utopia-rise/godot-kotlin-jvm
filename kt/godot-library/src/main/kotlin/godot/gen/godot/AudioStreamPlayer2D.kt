@@ -30,7 +30,7 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/audio/audio_streams.html]($DOCS_URL/tutorials/audio/audio_streams.html)
  *
- * Plays audio that dampens with distance from a given position.
+ * Plays audio that is attenuated with distance to the listener.
  *
  * By default, audio is heard from the screen center. This can be changed by adding an [godot.AudioListener2D] node to the scene and enabling it by calling [godot.AudioListener2D.makeCurrent] on it.
  *
@@ -62,7 +62,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * Base volume without dampening.
+   * Base volume before attenuation.
    */
   public var volumeDb: Double
     get() {
@@ -153,7 +153,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * Dampens audio over distance with this as an exponent.
+   * The volume is attenuated over distance with this as an exponent.
    */
   public var attenuation: Double
     get() {
@@ -270,6 +270,16 @@ public open class AudioStreamPlayer2D : Node2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_PLAYBACK_POSITION, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns whether the [godot.AudioStreamPlayer] can return the [godot.AudioStreamPlayback] object or not.
+   */
+  public fun hasStreamPlayback(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_HAS_STREAM_PLAYBACK, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

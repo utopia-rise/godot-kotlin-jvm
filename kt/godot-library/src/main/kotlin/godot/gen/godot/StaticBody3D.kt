@@ -28,9 +28,11 @@ import kotlin.Suppress
  *
  * They have extra functionalities to move and affect other bodies:
  *
- * **Static transform change:** Static bodies can be moved by animation or script. In this case, they are just teleported and don't affect other bodies on their path.
+ * *Static transform change:* Static bodies can be moved by animation or script. In this case, they are just teleported and don't affect other bodies on their path.
  *
- * **Constant velocity:** When [constantLinearVelocity] or [constantAngularVelocity] is set, static bodies don't move themselves but affect touching bodies as if they were moving. This is useful for simulating conveyor belts or conveyor wheels.
+ * *Constant velocity:* When [constantLinearVelocity] or [constantAngularVelocity] is set, static bodies don't move themselves but affect touching bodies as if they were moving. This is useful for simulating conveyor belts or conveyor wheels.
+ *
+ * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
  */
 @GodotBaseType
 public open class StaticBody3D : PhysicsBody3D() {

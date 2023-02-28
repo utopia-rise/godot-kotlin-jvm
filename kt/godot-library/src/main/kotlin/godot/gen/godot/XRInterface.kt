@@ -11,6 +11,8 @@ import godot.core.PackedVector3Array
 import godot.core.Projection
 import godot.core.StringName
 import godot.core.Transform3D
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -26,6 +28,7 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -306,6 +309,44 @@ public open class XRInterface internal constructor() : RefCounted() {
     return TransferContext.readReturnValue(PROJECTION, false) as Projection
   }
 
+  /**
+   * Returns the an array of supported environment blend modes, see [enum XRInterface.EnvironmentBlendMode].
+   */
+  public fun getSupportedEnvironmentBlendModes(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_SUPPORTED_ENVIRONMENT_BLEND_MODES, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Sets the active environment blend mode.
+   *
+   * [mode] is the [enum XRInterface.EnvironmentBlendMode] starting with the next frame.
+   *
+   * **Note:** Not all runtimes support all environment blend modes, so it is important to check this at startup. For example:
+   *
+   * ```
+   * 				                func _ready():
+   * 				                    var xr_interface : XRInterface = XRServer.find_interface("OpenXR")
+   * 				                    if xr_interface and xr_interface.is_initialized():
+   * 				                        var vp : Viewport = get_viewport()
+   * 				                        vp.use_xr = true
+   * 				                        var acceptable_modes = [ XRInterface.XR_ENV_BLEND_MODE_OPAQUE, XRInterface.XR_ENV_BLEND_MODE_ADDITIVE ]
+   * 				                        var modes = xr_interface.get_supported_environment_blend_modes()
+   * 				                        for mode in acceptable_modes:
+   * 				                            if mode in modes:
+   * 				                                xr_interface.set_environment_blend_mode(mode)
+   * 				                                break
+   * 				```
+   */
+  public fun setEnvironmentBlendMode(mode: EnvironmentBlendMode): Boolean {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_ENVIRONMENT_BLEND_MODE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
   public enum class Capabilities(
     id: Long
   ) {
@@ -326,7 +367,7 @@ public open class XRInterface internal constructor() : RefCounted() {
      */
     XR_QUAD(4),
     /**
-     * this interface supports VR.
+     * This interface supports VR.
      */
     XR_VR(8),
     /**
@@ -407,6 +448,33 @@ public open class XRInterface internal constructor() : RefCounted() {
      * Same as roomscale but origin point is fixed to the center of the physical space, XRServer.center_on_hmd disabled.
      */
     XR_PLAY_AREA_STAGE(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentBlendMode(
+    id: Long
+  ) {
+    /**
+     * Opaque blend mode. This is typically used for VR devices.
+     */
+    XR_ENV_BLEND_MODE_OPAQUE(0),
+    /**
+     * Additive blend mode. This is typically used for AR devices or VR devices with passthrough.
+     */
+    XR_ENV_BLEND_MODE_ADDITIVE(1),
+    /**
+     * Alpha blend mode. This is typically used for AR or VR devices with passthrough capabilities. The alpha channel controls how much of the passthrough is visible. Alpha of 0.0 means the passthrough is visible and this pixel works in ADDITIVE mode. Alpha of 1.0 means that the passthrough is not visible and this pixel works in OPAQUE mode.
+     */
+    XR_ENV_BLEND_MODE_ALPHA_BLEND(2),
     ;
 
     public val id: Long

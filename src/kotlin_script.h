@@ -31,6 +31,8 @@ public:
 
     Ref<Script> get_base_script() const override;
 
+    StringName get_global_name() const override;
+
     StringName get_instance_base_type() const override;
 
     ScriptInstance* instance_create(Object* p_this) override;

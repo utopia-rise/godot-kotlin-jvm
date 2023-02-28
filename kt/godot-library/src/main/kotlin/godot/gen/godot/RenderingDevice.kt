@@ -44,7 +44,17 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Abstraction for working with modern low-level graphics APIs.
  *
+ * [godot.RenderingDevice] is an abstraction for working with modern low-level graphics APIs such as Vulkan.
+ *
+ * On startup, Godot creates a global [godot.RenderingDevice] which can be retrieved using [godot.RenderingServer.getRenderingDevice]. This global RenderingDevice performs drawing to the screen.
+ *
+ * Internally, [godot.RenderingDevice] is used in Godot to provide support for several modern low-level graphics APIs while reducing the amount of code duplication required.
+ *
+ * **Local RenderingDevices:** Using [godot.RenderingServer.createLocalRenderingDevice], you can create "secondary" rendering devices to perform drawing and GPU compute operations on separate threads.
+ *
+ * **Note:** [godot.RenderingDevice] is not available when running in headless mode or when using the Compatibility rendering method.
  */
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
@@ -534,10 +544,14 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   *
+   * Returns a copy of the data of the specified [buffer], optionally [offsetBytes] and [sizeBytes] can be set to copy only a portion of the buffer.
    */
-  public fun bufferGetData(buffer: RID): PackedByteArray {
-    TransferContext.writeArguments(_RID to buffer)
+  public fun bufferGetData(
+    buffer: RID,
+    offsetBytes: Long = 0,
+    sizeBytes: Long = 0
+  ): PackedByteArray {
+    TransferContext.writeArguments(_RID to buffer, LONG to offsetBytes, LONG to sizeBytes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_GET_DATA,
         PACKED_BYTE_ARRAY)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
@@ -2135,35 +2149,35 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long
   ) {
     /**
-     *
+     * 1-dimensional texture.
      */
     TEXTURE_TYPE_1D(0),
     /**
-     *
+     * 2-dimensional texture.
      */
     TEXTURE_TYPE_2D(1),
     /**
-     *
+     * 3-dimensional texture.
      */
     TEXTURE_TYPE_3D(2),
     /**
-     *
+     * [godot.Cubemap] texture.
      */
     TEXTURE_TYPE_CUBE(3),
     /**
-     *
+     * Array of 1-dimensional textures.
      */
     TEXTURE_TYPE_1D_ARRAY(4),
     /**
-     *
+     * Array of 2-dimensional textures.
      */
     TEXTURE_TYPE_2D_ARRAY(5),
     /**
-     *
+     * Array of [godot.Cubemap] textures.
      */
     TEXTURE_TYPE_CUBE_ARRAY(6),
     /**
-     *
+     * Represents the size of the [enum TextureType] enum.
      */
     TEXTURE_TYPE_MAX(7),
     ;
@@ -2210,7 +2224,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     TEXTURE_SAMPLES_64(6),
     /**
-     *
+     * Represents the size of the [enum TextureSamples] enum.
      */
     TEXTURE_SAMPLES_MAX(7),
     ;
@@ -2358,11 +2372,11 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long
   ) {
     /**
-     *
+     * Nearest-neighbor sampler filtering. Sampling at higher resolutions than the source will result in a pixelated look.
      */
     SAMPLER_FILTER_NEAREST(0),
     /**
-     *
+     * Bilinear sampler filtering. Sampling at higher resolutions than the source will result in a blurry look.
      */
     SAMPLER_FILTER_LINEAR(1),
     ;
@@ -2587,11 +2601,11 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long
   ) {
     /**
-     *
+     * Point rendering primitive (with constant size, regardless of distance from camera).
      */
     RENDER_PRIMITIVE_POINTS(0),
     /**
-     *
+     * Line rendering primitive.
      */
     RENDER_PRIMITIVE_LINES(1),
     /**
@@ -2826,7 +2840,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     LOGIC_OP_NO_OP(5),
     /**
-     *
+     * Exclusive or (XOR) logic operation.
      */
     LOGIC_OP_XOR(6),
     /**
@@ -2980,27 +2994,27 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long
   ) {
     /**
-     *
+     * Additive blending operation (`source + destination`).
      */
     BLEND_OP_ADD(0),
     /**
-     *
+     * Subtractive blending operation (`source - destination`).
      */
     BLEND_OP_SUBTRACT(1),
     /**
-     *
+     * Reverse subtractive blending operation (`destination - source`).
      */
     BLEND_OP_REVERSE_SUBTRACT(2),
     /**
-     *
+     * Minimum blending operation (keep the lowest value of the two).
      */
     BLEND_OP_MINIMUM(3),
     /**
-     *
+     * Maximum blending operation (keep the highest value of the two).
      */
     BLEND_OP_MAXIMUM(4),
     /**
-     *
+     * Represents the size of the [enum BlendOperation] enum.
      */
     BLEND_OP_MAX(5),
     ;
@@ -3289,19 +3303,19 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     LIMIT_MAX_TEXTURE_ARRAY_LAYERS(10),
     /**
-     *
+     * Maximum supported 1-dimensional texture size (in pixels on a single axis).
      */
     LIMIT_MAX_TEXTURE_SIZE_1D(11),
     /**
-     *
+     * Maximum supported 2-dimensional texture size (in pixels on a single axis).
      */
     LIMIT_MAX_TEXTURE_SIZE_2D(12),
     /**
-     *
+     * Maximum supported 3-dimensional texture size (in pixels on a single axis).
      */
     LIMIT_MAX_TEXTURE_SIZE_3D(13),
     /**
-     *
+     * Maximum supported cubemap texture size (in pixels on a single axis of a single face).
      */
     LIMIT_MAX_TEXTURE_SIZE_CUBE(14),
     /**
@@ -3408,15 +3422,15 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long
   ) {
     /**
-     *
+     * Memory taken by textures.
      */
     MEMORY_TEXTURES(0),
     /**
-     *
+     * Memory taken by buffers.
      */
     MEMORY_BUFFERS(1),
     /**
-     *
+     * Total memory taken. This is greater than the sum of [MEMORY_TEXTURES] and [MEMORY_BUFFERS], as it also includes miscellaneous memory usage.
      */
     MEMORY_TOTAL(2),
     ;
@@ -3433,12 +3447,12 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public companion object {
     /**
-     *
+     * Returned by functions that return an ID if a value is invalid.
      */
     public final const val INVALID_ID: Long = -1
 
     /**
-     *
+     * Returned by functions that return a format ID if a value is invalid.
      */
     public final const val INVALID_FORMAT_ID: Long = -1
   }

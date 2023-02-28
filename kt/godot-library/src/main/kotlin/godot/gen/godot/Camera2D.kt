@@ -83,21 +83,25 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * If `true`, the camera acts as the active camera for its [godot.Viewport] ancestor. Only one camera can be current in a given viewport, so setting a different camera in the same viewport `current` will disable whatever camera was already active in that viewport.
+   * Controls whether the camera can be active or not. If `true`, the [godot.Camera2D] will become the main camera when it enters the scene tree and there is no active camera currently (see [godot.Viewport.getCamera2d]).
+   *
+   * When the camera is currently active and [enabled] is set to `false`, the next enabled [godot.Camera2D] in the scene tree will become active.
    */
-  public var current: Boolean
+  public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_CURRENT, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_CURRENT, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ENABLED, NIL)
     }
 
   /**
    * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of `Vector(0.5, 0.5)` halves the size seen in the viewport.
+   *
+   * **Note:** [godot.FontFile.oversampling] does *not* take [godot.Camera2D] zoom into account. This means that zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated unless the font is part of a [godot.CanvasLayer] that makes it ignore camera zoom. To ensure text remains crisp regardless of zoom, you can enable MSDF font rendering by enabling [godot.ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [godot.SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
    */
   public var zoom: Vector2
     get() {
@@ -346,6 +350,23 @@ public open class Camera2D : Node2D() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CAMERA2D, scriptIndex)
     return true
+  }
+
+  /**
+   * Forces this [godot.Camera2D] to become the current active one. [enabled] must be `true`.
+   */
+  public fun makeCurrent(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_MAKE_CURRENT, NIL)
+  }
+
+  /**
+   * Returns `true` if this [godot.Camera2D] is the active camera (see [godot.Viewport.getCamera2d]).
+   */
+  public fun isCurrent(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_CURRENT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

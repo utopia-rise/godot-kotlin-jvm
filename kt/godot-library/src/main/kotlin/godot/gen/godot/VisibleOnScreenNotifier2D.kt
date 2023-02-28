@@ -27,6 +27,8 @@ import kotlin.Suppress
  * The VisibleOnScreenNotifier2D detects when it is visible on the screen. It also notifies when its bounding rectangle enters or exits the screen or a viewport.
  *
  * If you want nodes to be disabled automatically when they exit the screen, use [godot.VisibleOnScreenEnabler2D] instead.
+ *
+ * **Note:** VisibleOnScreenNotifier2D uses the render culling code to determine whether it's visible on screen, which also means that its [godot.CanvasItem.visible] must be `true` to work correctly.
  */
 @GodotBaseType
 public open class VisibleOnScreenNotifier2D : Node2D() {

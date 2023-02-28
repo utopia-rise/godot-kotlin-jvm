@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -103,6 +104,22 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     }
 
   /**
+   * Controls the interpolation between animations. See [enum BlendMode] constants.
+   */
+  public var blendMode: BlendMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_MODE, LONG)
+      return AnimationNodeBlendSpace1D.BlendMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_BLEND_MODE, NIL)
+    }
+
+  /**
    * If `false`, the blended animations' frame are stopped when the blend value is `0`.
    *
    * If `true`, forcing the blended animations to advance frame.
@@ -193,6 +210,33 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public enum class BlendMode(
+    id: Long
+  ) {
+    /**
+     * The interpolation between animations is linear.
+     */
+    BLEND_MODE_INTERPOLATED(0),
+    /**
+     * The blend space plays the animation of the node the blending position is closest to. Useful for frame-by-frame 2D animations.
+     */
+    BLEND_MODE_DISCRETE(1),
+    /**
+     * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's playback position.
+     */
+    BLEND_MODE_DISCRETE_CARRY(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public companion object

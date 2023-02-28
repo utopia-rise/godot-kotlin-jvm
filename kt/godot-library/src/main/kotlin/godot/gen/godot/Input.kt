@@ -63,7 +63,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns `true` if you are pressing the key in the current keyboard layout. You can pass a [enum Key] constant.
+   * Returns `true` if you are pressing the Latin key in the current keyboard layout. You can pass a [enum Key] constant.
    *
    * [isKeyPressed] is only recommended over [isPhysicalKeyPressed] in non-game applications. This ensures that shortcut keys behave as expected depending on the user's keyboard layout, as keyboard shortcuts are generally dependent on the keyboard layout in non-game applications. If in doubt, use [isPhysicalKeyPressed].
    *
@@ -85,6 +85,15 @@ public object Input : Object() {
   public fun isPhysicalKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_PHYSICAL_KEY_PRESSED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if you are pressing the key with the [keycode] printed on it. You can pass a [enum Key] constant or any Unicode character code.
+   */
+  public fun isKeyLabelPressed(keycode: Key): Boolean {
+    TransferContext.writeArguments(LONG to keycode.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_KEY_LABEL_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -438,6 +447,8 @@ public object Input : Object() {
    * Sets the mouse position to the specified vector, provided in pixels and relative to an origin at the upper left corner of the currently focused Window Manager game window.
    *
    * Mouse position is clipped to the limits of the screen resolution, or to the limits of the game window if [enum MouseMode] is set to [MOUSE_MODE_CONFINED] or [MOUSE_MODE_CONFINED_HIDDEN].
+   *
+   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -496,6 +507,8 @@ public object Input : Object() {
    * **Note:** [godot.AnimatedTexture]s aren't supported as custom mouse cursors. If using an [godot.AnimatedTexture], only the first frame will be displayed.
    *
    * **Note:** Only images imported with the **Lossless**, **Lossy** or **Uncompressed** compression modes are supported. The **Video RAM** compression mode can't be used for custom cursors.
+   *
+   * **Note:** On the web platform, the maximum allowed cursor image size is 128×128. Cursor images larger than 32×32 will also only be displayed if the mouse cursor image is entirely located within the page for [security reasons](https://chromestatus.com/feature/5825971391299584).
    */
   public fun setCustomMouseCursor(
     image: Resource,

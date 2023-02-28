@@ -352,17 +352,14 @@ public open class Image : Resource() {
    *
    * The [mode] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.
    *
-   * The [lossyQuality] parameter is optional for compressors that support it.
-   *
    * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
   public fun compress(
     mode: CompressMode,
     source: CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
-    lossyQuality: Double = 0.7,
     astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4
   ): GodotError {
-    TransferContext.writeArguments(LONG to mode.id, LONG to source.id, DOUBLE to lossyQuality, LONG to astcFormat.id)
+    TransferContext.writeArguments(LONG to mode.id, LONG to source.id, LONG to astcFormat.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -372,17 +369,14 @@ public open class Image : Resource() {
    *
    * This is an alternative to [compress] that lets the user supply the channels used in order for the compressor to pick the best DXT and ETC2 formats. For other formats (non DXT or ETC2), this argument is ignored.
    *
-   * The [lossyQuality] parameter is optional for compressors that support it.
-   *
    * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
   public fun compressFromChannels(
     mode: CompressMode,
     channels: UsedChannels,
-    lossyQuality: Double = 0.7,
     astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4
   ): GodotError {
-    TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, DOUBLE to lossyQuality, LONG to astcFormat.id)
+    TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, LONG to astcFormat.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS_FROM_CHANNELS, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -611,9 +605,7 @@ public open class Image : Resource() {
    *
    * var img_height = 5
    *
-   * var img = Image.new()
-   *
-   * img.create(img_width, img_height, false, Image.FORMAT_RGBA8)
+   * var img = Image.create(img_width, img_height, false, Image.FORMAT_RGBA8)
    *
    *
    *
@@ -627,13 +619,11 @@ public open class Image : Resource() {
    *
    * int imgHeight = 5;
    *
-   * var img = new Image();
-   *
-   * img.Create(imgWidth, imgHeight, false, Image.Format.Rgba8);
+   * var img = Image.Create(imgWidth, imgHeight, false, Image.Format.Rgba8);
    *
    *
    *
-   * img.SetPixelv(new Vector2i(1, 2), Colors.Red); // Sets the color at (1, 2) to red.
+   * img.SetPixelv(new Vector2I(1, 2), Colors.Red); // Sets the color at (1, 2) to red.
    *
    * [/csharp]
    *
@@ -659,9 +649,7 @@ public open class Image : Resource() {
    *
    * var img_height = 5
    *
-   * var img = Image.new()
-   *
-   * img.create(img_width, img_height, false, Image.FORMAT_RGBA8)
+   * var img = Image.create(img_width, img_height, false, Image.FORMAT_RGBA8)
    *
    *
    *
@@ -675,9 +663,7 @@ public open class Image : Resource() {
    *
    * int imgHeight = 5;
    *
-   * var img = new Image();
-   *
-   * img.Create(imgWidth, imgHeight, false, Image.Format.Rgba8);
+   * var img = Image.Create(imgWidth, imgHeight, false, Image.Format.Rgba8);
    *
    *
    *

@@ -11,10 +11,12 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.jvm.JvmName
 
@@ -25,6 +27,10 @@ import kotlin.jvm.JvmName
  * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Stores key presses on the keyboard. Supports key presses, key releases and [echo] events.
+ *
+ * **Note:** Events received from the keyboard usually have all properties set. Event mappings should have only one of the [keycode], [physicalKeycode] or [unicode] set.
+ *
+ * When events are compared, properties are checked in the following priority - [keycode], [physicalKeycode] and [unicode], events with the first matching value will be considered equal.
  */
 @GodotBaseType
 public open class InputEventKey : InputEventWithModifiers() {
@@ -41,9 +47,16 @@ public open class InputEventKey : InputEventWithModifiers() {
     }
 
   /**
-   * The key keycode, which corresponds to one of the [enum Key] constants. Represent key in the current keyboard layout.
+   * Latin label printed on the key in the current keyboard layout, which corresponds to one of the [enum Key] constants.
    *
    * To get a human-readable representation of the [godot.InputEventKey], use `OS.get_keycode_string(event.keycode)` where `event` is the [godot.InputEventKey].
+   *
+   * ```
+   * 			    +-----+ +-----+
+   * 			    | Q   | | Q   | - "Q" - keycode
+   * 			    |   Й | |  ض | - "Й" and "ض" - key_label
+   * 			    +-----+ +-----+
+   * 			```
    */
   public var keycode: Key
     get() {
@@ -57,7 +70,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     }
 
   /**
-   * Key physical keycode, which corresponds to one of the [enum Key] constants. Represent the physical location of a key on the 101/102-key US QWERTY keyboard.
+   * Represents the physical location of a key on the 101/102-key US QWERTY keyboard, which corresponds to one of the [enum Key] constants.
    *
    * To get a human-readable representation of the [godot.InputEventKey], use `OS.get_keycode_string(event.keycode)` where `event` is the [godot.InputEventKey].
    */
@@ -75,7 +88,32 @@ public open class InputEventKey : InputEventWithModifiers() {
     }
 
   /**
-   * The key Unicode identifier (when relevant). Unicode identifiers for the composite characters and complex scripts may not be available unless IME input mode is active. See [godot.Window.setImeActive] for more information.
+   * Represents the localized label printed on the key in the current keyboard layout, which corresponds to one of the [enum Key] constants or any valid Unicode character.
+   *
+   * For keyboard layouts with a single label on the key, it is equivalent to [keycode].
+   *
+   * To get a human-readable representation of the [godot.InputEventKey], use `OS.get_keycode_string(event.key_label)` where `event` is the [godot.InputEventKey].
+   *
+   * ```
+   * 			    +-----+ +-----+
+   * 			    | Q   | | Q   | - "Q" - keycode
+   * 			    |   Й | |  ض | - "Й" and "ض" - key_label
+   * 			    +-----+ +-----+
+   * 			```
+   */
+  public var keyLabel: Key
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEY_LABEL, LONG)
+      return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_KEY_LABEL, NIL)
+    }
+
+  /**
+   * The key Unicode character code (when relevant), shifted by modifier keys. Unicode character codes for composite characters and complex scripts may not be available unless IME input mode is active. See [godot.Window.setImeActive] for more information.
    */
   public var unicode: Long
     get() {
@@ -106,7 +144,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   }
 
   /**
-   * Returns the keycode combined with modifier keys such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See also [godot.InputEventWithModifiers].
+   * Returns the Latin keycode combined with modifier keys such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See also [godot.InputEventWithModifiers].
    *
    * To get a human-readable representation of the [godot.InputEventKey] with modifiers, use `OS.get_keycode_string(event.get_keycode_with_modifiers())` where `event` is the [godot.InputEventKey].
    */
@@ -127,6 +165,48 @@ public open class InputEventKey : InputEventWithModifiers() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE_WITH_MODIFIERS, LONG)
     return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns the localized key label combined with modifier keys such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See also [godot.InputEventWithModifiers].
+   *
+   * To get a human-readable representation of the [godot.InputEventKey] with modifiers, use `OS.get_keycode_string(event.get_key_label_with_modifiers())` where `event` is the [godot.InputEventKey].
+   */
+  public fun getKeyLabelWithModifiers(): Key {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEY_LABEL_WITH_MODIFIERS, LONG)
+    return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns a [godot.String] representation of the event's [keycode] and modifiers.
+   */
+  public fun asTextKeycode(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_AS_TEXT_KEYCODE,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns a [godot.String] representation of the event's [physicalKeycode] and modifiers.
+   */
+  public fun asTextPhysicalKeycode(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_AS_TEXT_PHYSICAL_KEYCODE, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns a [godot.String] representation of the event's [keyLabel] and modifiers.
+   */
+  public fun asTextKeyLabel(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_AS_TEXT_KEY_LABEL,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   public companion object

@@ -138,7 +138,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Changes how quickly the mesh transitions to a lower level of detail.  A value of 0 will force the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger values will keep the mesh in a higher level of detail at farther distances.
+   * Changes how quickly the mesh transitions to a lower level of detail. A value of 0 will force the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger values will keep the mesh in a higher level of detail at farther distances.
    *
    * Useful for testing level of detail transitions in the editor.
    */
@@ -156,7 +156,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * If `true`, disables occlusion culling for this instance.  Useful for gizmos that must be rendered even when occlusion culling is in use.
+   * If `true`, disables occlusion culling for this instance. Useful for gizmos that must be rendered even when occlusion culling is in use.
    */
   public var ignoreOcclusionCulling: Boolean
     get() {

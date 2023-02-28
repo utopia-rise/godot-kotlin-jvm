@@ -57,6 +57,8 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Gets a Variant. If [allowObjects] is `true`, decoding objects is allowed.
    *
+   * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
+   *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
   public fun getVar(allowObjects: Boolean = false): Any? {
@@ -67,6 +69,8 @@ public open class PacketPeer internal constructor() : RefCounted() {
 
   /**
    * Sends a [Variant] as a packet. If [fullObjects] is `true`, encoding objects is allowed (and can potentially include code).
+   *
+   * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   public fun putVar(_var: Any, fullObjects: Boolean = false): GodotError {
     TransferContext.writeArguments(ANY to _var, BOOL to fullObjects)

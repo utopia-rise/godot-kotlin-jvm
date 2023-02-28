@@ -68,9 +68,10 @@ public open class GLTFDocument : Resource() {
   public fun generateScene(
     state: GLTFState,
     bakeFps: Double = 30.0,
-    trimming: Boolean = false
+    trimming: Boolean = false,
+    removeImmutableTracks: Boolean = true
   ): Node? {
-    TransferContext.writeArguments(OBJECT to state, DOUBLE to bakeFps, BOOL to trimming)
+    TransferContext.writeArguments(OBJECT to state, DOUBLE to bakeFps, BOOL to trimming, BOOL to removeImmutableTracks)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GENERATE_SCENE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }

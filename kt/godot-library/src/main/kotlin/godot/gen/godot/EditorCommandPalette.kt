@@ -45,7 +45,7 @@ import kotlin.Unit
  *
  * // ExternalCommand is a function that will be called with the command is executed.
  *
- * Callable commandCallable = new Callable(this, nameof(ExternalCommand));
+ * Callable commandCallable = new Callable(this, MethodName.ExternalCommand);
  *
  * commandPalette.AddCommand("command", "test/command", commandCallable)
  *

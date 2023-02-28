@@ -170,7 +170,9 @@ public open class Resource : RefCounted() {
   /**
    * Duplicates this resource, returning a new resource with its `export`ed or [PROPERTY_USAGE_STORAGE] properties copied from the original.
    *
-   * If [subresources] is `false`, a shallow copy is returned. Nested resources within subresources are not duplicated and are shared from the original resource. This behavior can be overridden by the [PROPERTY_USAGE_DO_NOT_SHARE_ON_DUPLICATE] flag.
+   * If [subresources] is `false`, a shallow copy is returned; nested resources within subresources are not duplicated and are shared from the original resource. If [subresources] is `true`, a deep copy is returned; nested subresources will be duplicated and are not shared.
+   *
+   * Subresource properties with the [PROPERTY_USAGE_ALWAYS_DUPLICATE] flag are always duplicated even with [subresources] set to `false`, and properties with the [PROPERTY_USAGE_NEVER_DUPLICATE] flag are never duplicated even with [subresources] set to `true`.
    *
    * **Note:** For custom resources, this method will fail if [godot.Object.Init] has been defined with required parameters.
    */

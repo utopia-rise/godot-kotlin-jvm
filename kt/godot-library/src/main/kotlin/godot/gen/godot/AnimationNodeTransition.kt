@@ -12,15 +12,14 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
-import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A generic animation transition node for [godot.AnimationTree].
@@ -29,25 +28,69 @@ import kotlin.Unit
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
  * Simple state machine for cases which don't require a more advanced [godot.AnimationNodeStateMachine]. Animations can be connected to the inputs and transition times can be specified.
+ *
+ * After setting the request and changing the animation playback, the transition node automatically clears the request on the next process frame by setting its `transition_request` value to empty.
+ *
+ * **Note:** When using a cross-fade, `current_state` and `current_index` change to the next state immediately after the cross-fade begins.
+ *
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * # Play child animation connected to "state_2" port.
+ *
+ * animation_tree.set("parameters/Transition/transition_request", "state_2")
+ *
+ * # Alternative syntax (same result as above).
+ *
+ * animation_tree["parameters/Transition/transition_request"] = "state_2"
+ *
+ *
+ *
+ * # Get current state name (read-only).
+ *
+ * animation_tree.get("parameters/Transition/current_state")
+ *
+ * # Alternative syntax (same result as above).
+ *
+ * animation_tree["parameters/Transition/current_state"]
+ *
+ *
+ *
+ * # Get current state index (read-only).
+ *
+ * animation_tree.get("parameters/Transition/current_index"))
+ *
+ * # Alternative syntax (same result as above).
+ *
+ * animation_tree["parameters/Transition/current_index"]
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * // Play child animation connected to "state_2" port.
+ *
+ * animationTree.Set("parameters/Transition/transition_request", "state_2");
+ *
+ *
+ *
+ * // Get current state name (read-only).
+ *
+ * animationTree.Get("parameters/Transition/current_state");
+ *
+ *
+ *
+ * // Get current state index (read-only).
+ *
+ * animationTree.Get("parameters/Transition/current_index");
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  */
 @GodotBaseType
 public open class AnimationNodeTransition : AnimationNodeSync() {
-  /**
-   * The number of enabled input ports for this node.
-   */
-  public var enabledInputs: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_ENABLED_INPUTS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_ENABLED_INPUTS, NIL)
-    }
-
   /**
    * Cross-fading time (in seconds) between each animation connected to the inputs.
    */
@@ -65,7 +108,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   /**
-   *
+   * Determines how cross-fading between animations is eased. If empty, the transition will be linear.
    */
   public var xfadeCurve: Curve?
     get() {
@@ -81,19 +124,32 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   /**
-   * If `true`, the destination animation is played back from the beginning when switched.
+   * If `true`, allows transition to the self state. When the reset option is enabled in input, the animation is restarted. If `false`, nothing happens on the transition to the self state.
    */
-  public var fromStart: Boolean
+  public var allowTransitionToSelf: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_FROM_START, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_ALLOW_TRANSITION_TO_SELF, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_FROM_START, NIL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_ALLOW_TRANSITION_TO_SELF, NIL)
+    }
+
+  /**
+   * The number of enabled input ports for this node.
+   */
+  public var inputCount: Long
+    @JvmName("getInputCount_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getInputCount()
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_COUNT, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -102,7 +158,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   /**
-   *
+   * Enables or disables auto-advance for the given [input] index. If enabled, state changes to the next input after playing the animation once. If enabled for the last input state, it loops to the first.
    */
   public fun setInputAsAutoAdvance(input: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to input, BOOL to enable)
@@ -111,7 +167,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   /**
-   *
+   * Returns `true` if auto-advance is enabled for the given [input] index.
    */
   public fun isInputSetAsAutoAdvance(input: Long): Boolean {
     TransferContext.writeArguments(LONG to input)
@@ -121,22 +177,22 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   /**
-   *
+   * If `true`, the destination animation is restarted when the animation transitions.
    */
-  public fun setInputCaption(input: Long, caption: String): Unit {
-    TransferContext.writeArguments(LONG to input, STRING to caption)
+  public fun setInputReset(input: Long, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to input, BOOL to enable)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_CAPTION, NIL)
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_RESET, NIL)
   }
 
   /**
-   *
+   * Returns whether the animation restarts when the animation transitions from the other animation.
    */
-  public fun getInputCaption(input: Long): String {
+  public fun isInputReset(input: Long): Boolean {
     TransferContext.writeArguments(LONG to input)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_RESET, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public companion object

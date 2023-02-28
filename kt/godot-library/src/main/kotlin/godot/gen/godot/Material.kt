@@ -106,6 +106,15 @@ public open class Material : Resource() {
         NIL)
   }
 
+  /**
+   * Creates a placeholder version of this resource ([godot.PlaceholderMaterial]).
+   */
+  public fun createPlaceholder(): Resource? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_CREATE_PLACEHOLDER, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Resource?
+  }
+
   public companion object {
     /**
      * Maximum value for the [renderPriority] parameter.

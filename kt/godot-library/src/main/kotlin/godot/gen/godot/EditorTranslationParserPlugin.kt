@@ -42,9 +42,7 @@ import kotlin.Unit
  *
  * func _parse_file(path, msgids, msgids_context_plural):
  *
- *     var file = File.new()
- *
- *     file.open(path, File.READ)
+ *     var file = FileAccess.open(path, FileAccess.READ)
  *
  *     var text = file.get_as_text()
  *
@@ -68,35 +66,31 @@ import kotlin.Unit
  *
  * using Godot;
  *
- * using System;
- *
  *
  *
  * [godot.Tool]
  *
- * public class CustomParser : EditorTranslationParserPlugin
+ * public partial class CustomParser : EditorTranslationParserPlugin
  *
  * {
  *
- *     public override void ParseFile(string path, Godot.Collections.Array msgids, Godot.Collections.Array msgidsContextPlural)
+ *     public override void _ParseFile(string path, Godot.Collections.Array<string> msgids, Godot.Collections.Array<Godot.Collections.Array> msgidsContextPlural)
  *
  *     {
  *
- *         var file = new File();
- *
- *         file.Open(path, File.ModeFlags.Read);
+ *         using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
  *
  *         string text = file.GetAsText();
  *
- *         string[] splitStrs = text.Split(",", false);
+ *         string[] splitStrs = text.Split(",", allowEmpty: false);
  *
- *         foreach (var s in splitStrs)
+ *         foreach (string s in splitStrs)
  *
  *         {
  *
  *             msgids.Add(s);
  *
- *             //GD.Print("Extracted string: " + s)
+ *             //GD.Print($"Extracted string: {s}");
  *
  *         }
  *
@@ -104,11 +98,11 @@ import kotlin.Unit
  *
  *
  *
- *     public override Godot.Collections.Array GetRecognizedExtensions()
+ *     public override string[] _GetRecognizedExtensions()
  *
  *     {
  *
- *         return new Godot.Collections.Array{"csv"};
+ *         return new string[] { "csv" };
  *
  *     }
  *
@@ -182,7 +176,7 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * public override void ParseFile(string path, Godot.Collections.Array msgids, Godot.Collections.Array msgidsContextPlural)
+ * public override void _ParseFile(string path, Godot.Collections.Array<string> msgids, Godot.Collections.Array<Godot.Collections.Array> msgidsContextPlural)
  *
  * {
  *
@@ -196,11 +190,11 @@ import kotlin.Unit
  *
  *
  *
- * public override Godot.Collections.Array GetRecognizedExtensions()
+ * public override string[] _GetRecognizedExtensions()
  *
  * {
  *
- *     return new Godot.Collections.Array{"gd"};
+ *     return new string[] { "gd" };
  *
  * }
  *

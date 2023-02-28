@@ -297,13 +297,13 @@ public open class SceneTree : MainLoop() {
    *
    * [csharp]
    *
-   * public async void SomeFunction()
+   * public async Task SomeFunction()
    *
    * {
    *
    *     GD.Print("start");
    *
-   *     await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+   *     await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
    *
    *     GD.Print("end");
    *

@@ -400,7 +400,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighbouring tiles' terrains.
+   * Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighboring tiles' terrains.
    */
   public fun setTerrainSetMode(terrainSet: Long, mode: TerrainMode): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to mode.id)
@@ -549,6 +549,29 @@ public open class TileSet : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NAVIGATION_LAYER_LAYERS,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Based on [value], enables or disables the specified navigation layer of the TileSet navigation data layer identified by the given [layerIndex], given a navigation_layers [layerNumber] between 1 and 32.
+   */
+  public fun setNavigationLayerLayerValue(
+    layerIndex: Long,
+    layerNumber: Long,
+    `value`: Boolean
+  ): Unit {
+    TransferContext.writeArguments(LONG to layerIndex, LONG to layerNumber, BOOL to value)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESET_SET_NAVIGATION_LAYER_LAYER_VALUE, NIL)
+  }
+
+  /**
+   * Returns whether or not the specified navigation layer of the TileSet navigation data layer identified by the given [layerIndex] is enabled, given a navigation_layers [layerNumber] between 1 and 32.
+   */
+  public fun getNavigationLayerLayerValue(layerIndex: Long, layerNumber: Long): Boolean {
+    TransferContext.writeArguments(LONG to layerIndex, LONG to layerNumber)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESET_GET_NAVIGATION_LAYER_LAYER_VALUE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -766,7 +789,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns if there is and alternative-level proxy for the given identifiers.
+   * Returns if there is an alternative-level proxy for the given identifiers.
    */
   public fun hasAlternativeLevelTileProxy(
     sourceFrom: Long,

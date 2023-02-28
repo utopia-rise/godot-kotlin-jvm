@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -47,15 +46,14 @@ public open class PacketPeerDTLS : PacketPeer() {
   }
 
   /**
-   * Connects a [packetPeer] beginning the DTLS handshake using the underlying [godot.PacketPeerUDP] which must be connected (see [godot.PacketPeerUDP.connectToHost]). If [validateCerts] is `true`, [godot.PacketPeerDTLS] will validate that the certificate presented by the remote peer and match it with the [forHostname] argument. You can specify a custom [godot.X509Certificate] to use for validation via the [validCertificate] argument.
+   * Connects a [packetPeer] beginning the DTLS handshake using the underlying [godot.PacketPeerUDP] which must be connected (see [godot.PacketPeerUDP.connectToHost]). You can optionally specify the [clientOptions] to be used while verifying the TLS connections. See [godot.TLSOptions.client] and [godot.TLSOptions.clientUnsafe].
    */
   public fun connectToPeer(
     packetPeer: PacketPeerUDP,
-    validateCerts: Boolean = true,
-    forHostname: String = "",
-    validCertificate: X509Certificate? = null
+    hostname: String,
+    clientOptions: TLSOptions? = null
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to packetPeer, BOOL to validateCerts, STRING to forHostname, OBJECT to validCertificate)
+    TransferContext.writeArguments(OBJECT to packetPeer, STRING to hostname, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_CONNECT_TO_PEER,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

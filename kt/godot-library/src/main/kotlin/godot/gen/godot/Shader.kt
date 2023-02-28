@@ -8,6 +8,8 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
@@ -16,6 +18,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -93,14 +96,15 @@ public open class Shader : Resource() {
   }
 
   /**
-   * Returns `true` if the shader has this param defined as a uniform in its code.
+   * Get the list of shader uniforms that can be assigned to a [godot.ShaderMaterial], for use with [godot.ShaderMaterial.setShaderParameter] and [godot.ShaderMaterial.getShaderParameter]. The parameters returned are contained in dictionaries in a similar format to the ones returned by [godot.Object.getPropertyList].
    *
-   * **Note:** [name] must match the name of the uniform in the code exactly.
+   * If argument [getGroups] is true, parameter grouping hints will be provided.
    */
-  public fun hasParameter(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_HAS_PARAMETER, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  public fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {
+    TransferContext.writeArguments(BOOL to getGroups)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_SHADER_UNIFORM_LIST,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public enum class Mode(

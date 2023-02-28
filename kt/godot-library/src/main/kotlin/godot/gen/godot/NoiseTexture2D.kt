@@ -127,6 +127,18 @@ public open class NoiseTexture2D : Texture2D() {
           NIL)
     }
 
+  public var normalize: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE2D_IS_NORMALIZED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE2D_SET_NORMALIZE, NIL)
+    }
+
   public var colorRamp: Gradient?
     get() {
       TransferContext.writeArguments()

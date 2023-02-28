@@ -29,6 +29,8 @@ import kotlin.Unit
  *
  * [godot.VoxelGI]s are used to provide high-quality real-time indirect light and reflections to scenes. They precompute the effect of objects that emit light and the effect of static geometry to simulate the behavior of complex light in real-time. [godot.VoxelGI]s need to be baked before having a visible effect. However, once baked, dynamic objects will receive light from them. Furthermore, lights can be fully dynamic or baked.
  *
+ * **Note:** [godot.VoxelGI] is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+ *
  * **Procedural generation:** [godot.VoxelGI] can be baked in an exported project, which makes it suitable for procedurally generated or user-built levels as long as all the geometry is generated in advance. For games where geometry is generated at any time during gameplay, SDFGI is more suitable (see [godot.Environment.sdfgiEnabled]).
  *
  * **Performance:** [godot.VoxelGI] is relatively demanding on the GPU and is not suited to low-end hardware such as integrated graphics (consider [godot.LightmapGI] instead). To improve performance, adjust [godot.ProjectSettings.rendering/globalIllumination/voxelGi/quality] and enable [godot.ProjectSettings.rendering/globalIllumination/gi/useHalfResolution] in the Project Settings. To provide a fallback for low-end hardware, consider adding an option to disable [godot.VoxelGI] in your project's options menus. A [godot.VoxelGI] node can be disabled by hiding it.
@@ -52,19 +54,19 @@ public open class VoxelGI : VisualInstance3D() {
     }
 
   /**
-   * The size of the area covered by the [godot.VoxelGI]. If you make the extents larger without increasing the subdivisions with [subdiv], the size of each cell will increase and result in lower detailed lighting.
+   * The size of the area covered by the [godot.VoxelGI]. If you make the size larger without increasing the subdivisions with [subdiv], the size of each cell will increase and result in lower detailed lighting.
    *
-   * **Note:** Extents are clamped to 1.0 unit or more on each axis.
+   * **Note:** Size is clamped to 1.0 unit or more on each axis.
    */
-  public var extents: Vector3
+  public var size: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_EXTENTS, VECTOR3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_SIZE, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_EXTENTS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_SIZE, NIL)
     }
 
   /**

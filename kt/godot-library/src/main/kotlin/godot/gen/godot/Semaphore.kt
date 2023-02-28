@@ -7,9 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
@@ -43,12 +41,12 @@ public open class Semaphore : RefCounted() {
   }
 
   /**
-   * Like [wait], but won't block, so if the value is zero, fails immediately and returns [ERR_BUSY]. If non-zero, it returns [OK] to report success.
+   * Like [wait], but won't block, so if the value is zero, fails immediately and returns `false`. If non-zero, it returns `true` to report success.
    */
-  public fun tryWait(): GodotError {
+  public fun tryWait(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_TRY_WAIT, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_TRY_WAIT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

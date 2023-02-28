@@ -318,7 +318,7 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Returns the capacity of the structure backing the points, useful in conjunction with `reserve_space`.
+   * Returns the capacity of the structure backing the points, useful in conjunction with [reserveSpace].
    */
   public fun getPointCapacity(): Long {
     TransferContext.writeArguments()

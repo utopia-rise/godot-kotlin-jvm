@@ -8,11 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.GodotError
 import godot.core.PackedStringArray
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -24,7 +24,7 @@ public open class GLTFDocumentExtension : Resource() {
     return true
   }
 
-  public open fun _importPreflight(state: GLTFState, extensions: PackedStringArray): Long {
+  public open fun _importPreflight(state: GLTFState, extensions: PackedStringArray): GodotError {
     throw NotImplementedError("_import_preflight is not implemented for GLTFDocumentExtension")
   }
 
@@ -36,7 +36,7 @@ public open class GLTFDocumentExtension : Resource() {
     state: GLTFState,
     gltfNode: GLTFNode,
     extensions: Dictionary<Any?, Any?>
-  ): Long {
+  ): GodotError {
     throw NotImplementedError("_parse_node_extensions is not implemented for GLTFDocumentExtension")
   }
 
@@ -48,7 +48,7 @@ public open class GLTFDocumentExtension : Resource() {
     throw NotImplementedError("_generate_scene_node is not implemented for GLTFDocumentExtension")
   }
 
-  public open fun _importPostParse(state: GLTFState): Long {
+  public open fun _importPostParse(state: GLTFState): GodotError {
     throw NotImplementedError("_import_post_parse is not implemented for GLTFDocumentExtension")
   }
 
@@ -57,15 +57,15 @@ public open class GLTFDocumentExtension : Resource() {
     gltfNode: GLTFNode,
     json: Dictionary<Any?, Any?>,
     node: Node
-  ): Long {
+  ): GodotError {
     throw NotImplementedError("_import_node is not implemented for GLTFDocumentExtension")
   }
 
-  public open fun _importPost(state: GLTFState, root: Node): Long {
+  public open fun _importPost(state: GLTFState, root: Node): GodotError {
     throw NotImplementedError("_import_post is not implemented for GLTFDocumentExtension")
   }
 
-  public open fun _exportPreflight(state: GLTFState, root: Node): Long {
+  public open fun _exportPreflight(state: GLTFState, root: Node): GodotError {
     throw NotImplementedError("_export_preflight is not implemented for GLTFDocumentExtension")
   }
 
@@ -81,11 +81,11 @@ public open class GLTFDocumentExtension : Resource() {
     gltfNode: GLTFNode,
     json: Dictionary<Any?, Any?>,
     node: Node
-  ): Long {
+  ): GodotError {
     throw NotImplementedError("_export_node is not implemented for GLTFDocumentExtension")
   }
 
-  public open fun _exportPost(state: GLTFState): Long {
+  public open fun _exportPost(state: GLTFState): GodotError {
     throw NotImplementedError("_export_post is not implemented for GLTFDocumentExtension")
   }
 

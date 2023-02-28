@@ -110,6 +110,53 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
+   * The hashing scale for Alpha Hash. Recommended values between `0` and `2`.
+   */
+  public var alphaHashScale: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_ALPHA_HASH_SCALE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_ALPHA_HASH_SCALE, NIL)
+    }
+
+  /**
+   * The type of alpha antialiasing to apply. See [enum BaseMaterial3D.AlphaAntiAliasing].
+   */
+  public var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_ALPHA_ANTIALIASING,
+          LONG)
+      return BaseMaterial3D.AlphaAntiAliasing.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_ALPHA_ANTIALIASING,
+          NIL)
+    }
+
+  /**
+   * Threshold at which antialiasing will be applied on the alpha channel.
+   */
+  public var alphaAntialiasingEdge: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_ALPHA_ANTIALIASING_EDGE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_ALPHA_ANTIALIASING_EDGE, NIL)
+    }
+
+  /**
    * Filter flags for the texture. See [enum BaseMaterial3D.TextureFilter] for options.
    */
   public var textureFilter: BaseMaterial3D.TextureFilter
@@ -484,6 +531,10 @@ public open class Label3D : GeometryInstance3D() {
      * **Note:** When using text with overlapping glyphs (e.g., cursive scripts), this mode might have transparency sorting issues between the main text and the outline.
      */
     ALPHA_CUT_OPAQUE_PREPASS(2),
+    /**
+     * This mode draws cuts off all values below a spatially-deterministic threshold, the rest will remain opaque.
+     */
+    ALPHA_CUT_HASH(3),
     ;
 
     public val id: Long

@@ -140,15 +140,6 @@ public open class EditorFileSystem internal constructor() : Node() {
   }
 
   /**
-   * Scans the script files and updates the list of custom class names.
-   */
-  public fun updateScriptClasses(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_SCRIPT_CLASSES, NIL)
-  }
-
-  /**
    * Reimports a set of files. Call this if these files or their `.import` files were directly edited by script or an external program.
    *
    * If the file type changed or the file was newly created, use [updateFile] or [scan].

@@ -93,7 +93,7 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   /**
-   * Sets whether the BoneAttachment3D node will use an extenral [godot.Skeleton3D] node rather than attenpting to use its parent node as the [godot.Skeleton3D]. When set to `true`, the BoneAttachment3D node will use the external [godot.Skeleton3D] node set in `set_external_skeleton`.
+   * Sets whether the BoneAttachment3D node will use an extenral [godot.Skeleton3D] node rather than attenpting to use its parent node as the [godot.Skeleton3D]. When set to `true`, the BoneAttachment3D node will use the external [godot.Skeleton3D] node set in [setExternalSkeleton].
    */
   public fun setUseExternalSkeleton(useExternalSkeleton: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useExternalSkeleton)
@@ -112,7 +112,7 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   /**
-   * Sets the [godot.core.NodePath] to the external skeleton that the BoneAttachment3D node should use. The external [godot.Skeleton3D] node is only used when `use_external_skeleton` is set to `true`.
+   * Sets the [godot.core.NodePath] to the external skeleton that the BoneAttachment3D node should use. See [setUseExternalSkeleton] to enable the external [godot.Skeleton3D] node.
    */
   public fun setExternalSkeleton(externalSkeleton: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to externalSkeleton)

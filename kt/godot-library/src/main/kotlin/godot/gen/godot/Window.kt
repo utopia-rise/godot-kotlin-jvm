@@ -118,6 +118,13 @@ public open class Window : Viewport() {
   public val themeChanged: Signal0 by signal()
 
   /**
+   * Emitted when the [godot.Window]'s DPI changes as a result of OS-level changes (e.g. moving the window from a Retina display to a lower resolution one).
+   *
+   * **Note:** Only implemented on macOS.
+   */
+  public val dpiChanged: Signal0 by signal()
+
+  /**
    * Emitted when window title bar decorations are changed, e.g. macOS window enter/exit full screen mode, or extend-to-title flag is changed.
    */
   public val titlebarChanged: Signal0 by signal()
@@ -1092,6 +1099,8 @@ public open class Window : Viewport() {
    * Popups the [godot.Window] at the center of the current screen, with optionally given minimum size.
    *
    * If the [godot.Window] is embedded, it will be centered in the parent [godot.Viewport] instead.
+   *
+   * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with [size].
    */
   public fun popupCentered(minsize: Vector2i = Vector2i(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2I to minsize)
@@ -1102,6 +1111,8 @@ public open class Window : Viewport() {
    * Popups the [godot.Window] centered inside its parent [godot.Window].
    *
    * `fallback_ratio` determines the maximum size of the [godot.Window], in relation to its parent.
+   *
+   * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with [size].
    */
   public fun popupCenteredClamped(minsize: Vector2i = Vector2i(0, 0), fallbackRatio: Double = 0.75):
       Unit {
@@ -1302,13 +1313,21 @@ public open class Window : Viewport() {
     id: Long
   ) {
     /**
-     *
+     * Initial window position is determined by [position].
      */
     WINDOW_INITIAL_POSITION_ABSOLUTE(0),
     /**
-     *
+     * Initial window position is a center of the primary screen.
      */
-    WINDOW_INITIAL_POSITION_CENTER_SCREEN(1),
+    WINDOW_INITIAL_POSITION_CENTER_PRIMARY_SCREEN(1),
+    /**
+     * Initial window position is a center of the main window screen.
+     */
+    WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN(2),
+    /**
+     * Initial window position is a center of [currentScreen] screen.
+     */
+    WINDOW_INITIAL_POSITION_CENTER_OTHER_SCREEN(3),
     ;
 
     public val id: Long

@@ -27,6 +27,8 @@ import kotlin.Suppress
 public open class CameraAttributesPractical : CameraAttributes() {
   /**
    * Enables depth of field blur for objects further than [dofBlurFarDistance]. Strength of blur is controlled by [dofBlurAmount] and modulated by [dofBlurFarTransition].
+   *
+   * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
    */
   public var dofBlurFarEnabled: Boolean
     get() {
@@ -75,6 +77,8 @@ public open class CameraAttributesPractical : CameraAttributes() {
 
   /**
    * Enables depth of field blur for objects closer than [dofBlurNearDistance]. Strength of blur is controlled by [dofBlurAmount] and modulated by [dofBlurNearTransition].
+   *
+   * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
    */
   public var dofBlurNearEnabled: Boolean
     get() {

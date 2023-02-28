@@ -73,9 +73,9 @@ import kotlin.jvm.JvmName
  *
  * var f = load("res://BarlowCondensed-Bold.ttf")
  *
- * $"Label".set("custom_fonts/font", f)
+ * $Label.add_theme_font_override("font", f)
  *
- * $"Label".set("custom_fonts/font_size", 64)
+ * $Label.add_theme_font_size_override("font_size", 64)
  *
  * [/gdscript]
  *
@@ -83,9 +83,9 @@ import kotlin.jvm.JvmName
  *
  * var f = ResourceLoader.Load<FontFile>("res://BarlowCondensed-Bold.ttf");
  *
- * GetNode("Label").Set("custom_fonts/font", f);
+ * GetNode("Label").AddThemeFontOverride("font", f);
  *
- * GetNode("Label").Set("custom_font_sizes/font_size", 64);
+ * GetNode("Label").AddThemeFontSizeOverride("font_size", 64);
  *
  * [/csharp]
  *
@@ -516,7 +516,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   *
+   * Sets the font ascent (number of pixels above the baseline).
    */
   public fun setCacheAscent(
     cacheIndex: Long,
@@ -537,7 +537,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   *
+   * Sets the font descent (number of pixels below the baseline).
    */
   public fun setCacheDescent(
     cacheIndex: Long,
@@ -549,7 +549,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   *
+   * Returns the font descent (number of pixels below the baseline).
    */
   public fun getCacheDescent(cacheIndex: Long, size: Long): Double {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
@@ -558,7 +558,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   *
+   * Sets pixel offset of the underline below the baseline.
    */
   public fun setCacheUnderlinePosition(
     cacheIndex: Long,
@@ -571,7 +571,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   *
+   * Returns pixel offset of the underline below the baseline.
    */
   public fun getCacheUnderlinePosition(cacheIndex: Long, size: Long): Double {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
@@ -581,7 +581,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   *
+   * Sets thickness of the underline in pixels.
    */
   public fun setCacheUnderlineThickness(
     cacheIndex: Long,
@@ -594,7 +594,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   *
+   * Returns thickness of the underline in pixels.
    */
   public fun getCacheUnderlineThickness(cacheIndex: Long, size: Long): Double {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
@@ -604,7 +604,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   *
+   * Sets scaling factor of the color bitmap font.
    */
   public fun setCacheScale(
     cacheIndex: Long,
@@ -616,7 +616,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   *
+   * Returns scaling factor of the color bitmap font.
    */
   public fun getCacheScale(cacheIndex: Long, size: Long): Double {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)

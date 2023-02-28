@@ -315,13 +315,38 @@ public open class TileMap : Node2D() {
   }
 
   /**
+   * Assigns a [godot.NavigationServer2D] navigation map [RID] to the specified TileMap [layer].
+   *
+   * By default the TileMap uses the default [godot.World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.
+   *
+   * In order to make [godot.NavigationAgent2D] switch between TileMap layer navigation maps use [godot.NavigationAgent2D.setNavigationMap] with the navigation map received from [getNavigationMap].
+   */
+  public fun setNavigationMap(layer: Long, map: RID): Unit {
+    TransferContext.writeArguments(LONG to layer, _RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_NAVIGATION_MAP, NIL)
+  }
+
+  /**
+   * Returns the [godot.NavigationServer2D] navigation map [RID] currently assigned to the specified TileMap [layer].
+   *
+   * By default the TileMap uses the default [godot.World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.
+   *
+   * In order to make [godot.NavigationAgent2D] switch between TileMap layer navigation maps use [godot.NavigationAgent2D.setNavigationMap] with the navigation map received from [getNavigationMap].
+   */
+  public fun getNavigationMap(layer: Long): RID {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_MAP, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
    * Sets the tile indentifiers for the cell on layer [layer] at coordinates [coords]. Each tile of the [godot.TileSet] is identified using three parts:
    *
    * - The source identifier [sourceId] identifies a [godot.TileSetSource] identifier. See [godot.TileSet.setSourceId],
    *
-   * - The atlas coordinates identifier [atlasCoords] identifies a tile coordinates in the atlas (if the source is a [godot.TileSetAtlasSource]. For [godot.TileSetScenesCollectionSource] it should always be `Vector2i(0, 0)`),
+   * - The atlas coordinates identifier [atlasCoords] identifies a tile coordinates in the atlas (if the source is a [godot.TileSetAtlasSource]). For [godot.TileSetScenesCollectionSource] it should always be `Vector2i(0, 0)`),
    *
-   * - The alternative tile identifier [alternativeTile] identifies a tile alternative the source is a [godot.TileSetAtlasSource], and the scene for a [godot.TileSetScenesCollectionSource].
+   * - The alternative tile identifier [alternativeTile] identifies a tile alternative in the atlas (if the source is a [godot.TileSetAtlasSource]), and the scene for a [godot.TileSetScenesCollectionSource].
    *
    * If [sourceId] is set to `-1`, [atlasCoords] to `Vector2i(-1, -1)` or [alternativeTile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
    */
@@ -345,7 +370,9 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the tile source ID of the cell on layer [layer] at coordinates [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   * Returns the tile source ID of the cell on layer [layer] at coordinates [coords]. Returns `-1` if the cell does not exist.
+   *
+   * If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
   public fun getCellSourceId(
     layer: Long,
@@ -386,9 +413,19 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the [godot.TileData] object associated with the given cell, or `null` if the cell is not a [godot.TileSetAtlasSource].
+   * Returns the [godot.TileData] object associated with the given cell, or `null` if the cell does not exist or is not a [godot.TileSetAtlasSource].
    *
    * If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   *
+   * ```
+   * 				func get_clicked_tile_power():
+   * 				    var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
+   * 				    var data = tile_map.get_cell_tile_data(0, clicked_cell)
+   * 				    if data:
+   * 				        return data.get_custom_data("power")
+   * 				    else:
+   * 				        return 0
+   * 				```
    */
   public fun getCellTileData(
     layer: Long,
@@ -420,7 +457,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns for the given coordinate [coordsInPattern] in a [godot.TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the [positionInTilemap] coordinates (see [setPattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`
+   * Returns for the given coordinate [coordsInPattern] in a [godot.TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the [positionInTilemap] coordinates (see [setPattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`.
    */
   public fun mapPattern(
     positionInTilemap: Vector2i,
@@ -518,7 +555,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the list of all neighbourings cells to the one at [coords]
+   * Returns the list of all neighbourings cells to the one at [coords].
    */
   public fun getSurroundingCells(coords: Vector2i): VariantArray<Vector2i> {
     TransferContext.writeArguments(VECTOR2I to coords)
@@ -528,11 +565,29 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns a [godot.core.Vector2] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
+   * Returns a [godot.Vector2i] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
    */
   public fun getUsedCells(layer: Long): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
+  }
+
+  /**
+   * Returns a [godot.Vector2i] array with the positions of all cells containing a tile in the given layer. Tiles may be filtered according to their source ([sourceId]), their atlas coordinates ([atlasCoords]) or alternative id ([alternativeTile]).
+   *
+   * If a parameter has it's value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default value, this method returns the same result as [getUsedCells].
+   *
+   * A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
+   */
+  public fun getUsedCellsById(
+    layer: Long,
+    sourceId: Long = -1,
+    atlasCoords: Vector2i = Vector2i(-1, -1),
+    alternativeTile: Long = -1
+  ): VariantArray<Vector2i> {
+    TransferContext.writeArguments(LONG to layer, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS_BY_ID, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
   }
 
@@ -548,7 +603,7 @@ public open class TileMap : Node2D() {
   /**
    * Returns the centered position of a cell in the TileMap's local coordinate space. To convert the returned value into global coordinates, use [godot.Node2D.toGlobal]. See also [localToMap].
    *
-   * **Note:** This may not correspond to the visual position of the tile, i.e. it ignores the [godot.TileData.textureOffset] property of individual tiles.
+   * **Note:** This may not correspond to the visual position of the tile, i.e. it ignores the [godot.TileData.textureOrigin] property of individual tiles.
    */
   public fun mapToLocal(mapPosition: Vector2i): Vector2 {
     TransferContext.writeArguments(VECTOR2I to mapPosition)

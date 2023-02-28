@@ -95,7 +95,7 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Executes all the modifications on the [godot.SkeletonModificationStack2D], if the Skeleton3D has one assigned.
+   * Executes all the modifications on the [godot.SkeletonModificationStack2D], if the Skeleton2D has one assigned.
    */
   public fun executeModifications(delta: Double, executionMode: Long): Unit {
     TransferContext.writeArguments(DOUBLE to delta, LONG to executionMode)

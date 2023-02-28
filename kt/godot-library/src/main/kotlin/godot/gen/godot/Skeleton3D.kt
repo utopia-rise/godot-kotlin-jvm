@@ -410,7 +410,7 @@ public open class Skeleton3D : Node3D() {
    *
    * [amount] is the interpolation strength that will be used when applying the pose, and [persistent] determines if the applied pose will remain.
    *
-   * **Note:** The pose transform needs to be a global pose! To convert a world transform from a [godot.Node3D] to a global bone pose, multiply the [godot.Transform3D.affineInverse] of the node's [godot.Node3D.globalTransform] by the desired world transform
+   * **Note:** The pose transform needs to be a global pose! To convert a world transform from a [godot.Node3D] to a global bone pose, multiply the [godot.Transform3D.affineInverse] of the node's [godot.Node3D.globalTransform] by the desired world transform.
    */
   public fun setBoneGlobalPoseOverride(
     boneIdx: Long,

@@ -311,7 +311,7 @@ public object Geometry2D : Object() {
    *
    * polygon = Transform2D(0, offset) * polygon
    *
-   * print(polygon) # prints [godot.Vector2(50, 50), Vector2(150, 50), Vector2(150, 150), Vector2(50, 150)]
+   * print(polygon) # prints [(50, 50), (150, 50), (150, 150), (50, 150)]
    *
    * [/gdscript]
    *
@@ -321,11 +321,9 @@ public object Geometry2D : Object() {
    *
    * var offset = new Vector2(50, 50);
    *
-   * // TODO: This code is not valid right now. Ping @aaronfranke about it before Godot 4.0 is out.
+   * polygon = new Transform2D(0, offset) * polygon;
    *
-   * //polygon = (Vector2[]) new Transform2D(0, offset).Xform(polygon);
-   *
-   * //GD.Print(polygon); // prints [godot.Vector2(50, 50), Vector2(150, 50), Vector2(150, 150), Vector2(50, 150)]
+   * GD.Print((Variant)polygon); // prints [(50, 50), (150, 50), (150, 150), (50, 150)]
    *
    * [/csharp]
    *

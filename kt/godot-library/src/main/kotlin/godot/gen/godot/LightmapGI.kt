@@ -35,7 +35,7 @@ import kotlin.Suppress
  *
  * **Note:** Lightmap baking on [godot.CSGShape3D]s and [godot.PrimitiveMesh]es is not supported, as these cannot store UV2 data required for baking.
  *
- * **Note:** If no custom lightmappers are installed, [godot.LightmapGI] can only be baked when using the Vulkan backend (Clustered or Mobile), not OpenGL.
+ * **Note:** If no custom lightmappers are installed, [godot.LightmapGI] can only be baked when using the Vulkan backend (Forward+ or Mobile), not OpenGL.
  */
 @GodotBaseType
 public open class LightmapGI : VisualInstance3D() {
@@ -281,7 +281,7 @@ public open class LightmapGI : VisualInstance3D() {
      */
     BAKE_QUALITY_HIGH(2),
     /**
-     * Highest bake quality (slowest bake times). The quality of this preset can be adjusted by changing [godot.ProjectSettings.rendering/lightmapping/bakeQuality/highQualityRayCount] and [godot.ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityProbeRayCount].
+     * Highest bake quality (slowest bake times). The quality of this preset can be adjusted by changing [godot.ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityRayCount] and [godot.ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityProbeRayCount].
      */
     BAKE_QUALITY_ULTRA(3),
     ;
@@ -339,29 +339,37 @@ public open class LightmapGI : VisualInstance3D() {
      */
     BAKE_ERROR_OK(0),
     /**
+     * Lightmap baking failed because the root node for the edited scene could not be accessed.
+     */
+    BAKE_ERROR_NO_SCENE_ROOT(1),
+    /**
+     * Lightmap baking failed as the lightmap data resource is embedded in a foreign resource.
+     */
+    BAKE_ERROR_FOREIGN_DATA(2),
+    /**
      * Lightmap baking failed as there is no lightmapper available in this Godot build.
      */
-    BAKE_ERROR_NO_LIGHTMAPPER(1),
+    BAKE_ERROR_NO_LIGHTMAPPER(3),
     /**
      * Lightmap baking failed as the [godot.LightmapGIData] save path isn't configured in the resource.
      */
-    BAKE_ERROR_NO_SAVE_PATH(2),
+    BAKE_ERROR_NO_SAVE_PATH(4),
     /**
      * Lightmap baking failed as there are no meshes whose [godot.GeometryInstance3D.giMode] is [godot.GeometryInstance3D.GI_MODE_STATIC] and with valid UV2 mapping in the current scene. You may need to select 3D scenes in the Import dock and change their global illumination mode accordingly.
      */
-    BAKE_ERROR_NO_MESHES(3),
+    BAKE_ERROR_NO_MESHES(5),
     /**
      * Lightmap baking failed as the lightmapper failed to analyze some of the meshes marked as static for baking.
      */
-    BAKE_ERROR_MESHES_INVALID(4),
+    BAKE_ERROR_MESHES_INVALID(6),
     /**
      * Lightmap baking failed as the resulting image couldn't be saved or imported by Godot after it was saved.
      */
-    BAKE_ERROR_CANT_CREATE_IMAGE(5),
+    BAKE_ERROR_CANT_CREATE_IMAGE(7),
     /**
      * The user aborted the lightmap baking operation (typically by clicking the **Cancel** button in the progress dialog).
      */
-    BAKE_ERROR_USER_ABORTED(6),
+    BAKE_ERROR_USER_ABORTED(8),
     ;
 
     public val id: Long

@@ -59,23 +59,25 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * public class MyAStar : AStar3D
+ * public partial class MyAStar : AStar3D
  *
  * {
  *
- *     public override float _ComputeCost(int u, int v)
+ *     public override float _ComputeCost(long fromId, long toId)
  *
  *     {
  *
- *         return Mathf.Abs(u - v);
+ *         return Mathf.Abs((int)(fromId - toId));
  *
  *     }
  *
- *     public override float _EstimateCost(int u, int v)
+ *
+ *
+ *     public override float _EstimateCost(long fromId, long toId)
  *
  *     {
  *
- *         return Mathf.Min(0, Mathf.Abs(u - v) - 1);
+ *         return Mathf.Min(0, Mathf.Abs((int)(fromId - toId)) - 1);
  *
  *     }
  *

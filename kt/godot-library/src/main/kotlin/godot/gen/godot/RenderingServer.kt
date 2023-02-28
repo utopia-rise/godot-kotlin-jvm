@@ -79,13 +79,13 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/performance/using_servers.html]($DOCS_URL/tutorials/performance/using_servers.html)
  *
- * Server for anything visible. The rendering server is the API backend for everything visible. The whole scene system mounts on it to display.
+ * The rendering server is the API backend for everything visible. The whole scene system mounts on it to display.
  *
  * The rendering server is completely opaque, the internals are entirely implementation specific and cannot be accessed.
  *
- * The rendering server can be used to bypass the scene system entirely.
+ * The rendering server can be used to bypass the scene/[godot.Node] system entirely.
  *
- * Resources are created using the `*_create` functions.
+ * Resources are created using the `*_create` functions. These functions return [RID]s which are not references to the objects themselves, but opaque *pointers* towards these objects.
  *
  * All objects are drawn to a viewport. You can use the [godot.Viewport] attached to the [godot.SceneTree] or you can create one yourself with [viewportCreate]. When using a custom scenario or canvas, the scenario or canvas needs to be attached to the viewport using [viewportSetScenario] or [viewportAttachCanvas].
  *
@@ -1378,12 +1378,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the size of the area that the reflection probe will capture. Equivalent to [godot.ReflectionProbe.extents].
+   * Sets the size of the area that the reflection probe will capture. Equivalent to [godot.ReflectionProbe.size].
    */
-  public fun reflectionProbeSetExtents(probe: RID, extents: Vector3): Unit {
-    TransferContext.writeArguments(_RID to probe, VECTOR3 to extents)
+  public fun reflectionProbeSetSize(probe: RID, size: Vector3): Unit {
+    TransferContext.writeArguments(_RID to probe, VECTOR3 to size)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_REFLECTION_PROBE_SET_EXTENTS, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_REFLECTION_PROBE_SET_SIZE, NIL)
   }
 
   /**
@@ -1461,10 +1461,9 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun decalSetExtents(decal: RID, extents: Vector3): Unit {
-    TransferContext.writeArguments(_RID to decal, VECTOR3 to extents)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_DECAL_SET_EXTENTS,
-        NIL)
+  public fun decalSetSize(decal: RID, size: Vector3): Unit {
+    TransferContext.writeArguments(_RID to decal, VECTOR3 to size)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_DECAL_SET_SIZE, NIL)
   }
 
   /**
@@ -1739,7 +1738,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Creates a new [godot.LightmapGI] instance.
    */
   public fun lightmapCreate(): RID {
     TransferContext.writeArguments()
@@ -2289,10 +2288,10 @@ public object RenderingServer : Object() {
   /**
    * Sets the size of the fog volume when shape is [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE], [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX].
    */
-  public fun fogVolumeSetExtents(fogVolume: RID, extents: Vector3): Unit {
-    TransferContext.writeArguments(_RID to fogVolume, VECTOR3 to extents)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_FOG_VOLUME_SET_EXTENTS, NIL)
+  public fun fogVolumeSetSize(fogVolume: RID, size: Vector3): Unit {
+    TransferContext.writeArguments(_RID to fogVolume, VECTOR3 to size)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_FOG_VOLUME_SET_SIZE,
+        NIL)
   }
 
   /**
@@ -2441,7 +2440,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Sets the camera_attributes created with [cameraAttributesCreate] to the given camera.
    */
   public fun cameraSetCameraAttributes(camera: RID, effects: RID): Unit {
     TransferContext.writeArguments(_RID to camera, _RID to effects)
@@ -2544,7 +2543,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, render the contents of the viewport directly to screen. This allows a low-level optimization where you can skip drawing a viewport to the root viewport. While this optimization can result in a significant increase in speed (especially on older devices), it comes at a cost of usability. When this is enabled, you cannot read from the viewport or from the `SCREEN_TEXTURE`. You also lose the benefit of certain window settings, such as the various stretch modes. Another consequence to be aware of is that in 2D the rendering happens in window coordinates, so if you have a viewport that is double the size of the window, and you set this, then only the portion that fits within the window will be drawn, no automatic scaling is possible, even if your game scene is significantly larger than the window size.
+   * If `true`, render the contents of the viewport directly to screen. This allows a low-level optimization where you can skip drawing a viewport to the root viewport. While this optimization can result in a significant increase in speed (especially on older devices), it comes at a cost of usability. When this is enabled, you cannot read from the viewport or from the screen_texture. You also lose the benefit of certain window settings, such as the various stretch modes. Another consequence to be aware of is that in 2D the rendering happens in window coordinates, so if you have a viewport that is double the size of the window, and you set this, then only the portion that fits within the window will be drawn, no automatic scaling is possible, even if your game scene is significantly larger than the window size.
    */
   public fun viewportSetRenderDirectToScreen(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
@@ -2648,12 +2647,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, rendering of a viewport's environment is disabled.
+   * Sets the viewport's environment mode which allows enabling or disabling rendering of 3D environment over 2D canvas. When disabled, 2D will not be affected by the environment. When enabled, 2D will be affected by the environment if the environment background mode is [ENV_BG_CANVAS]. The default behavior is to inherit the setting from the viewport's parent. If the topmost parent is also set to [VIEWPORT_ENVIRONMENT_INHERIT], then the behavior will be the same as if it was set to [VIEWPORT_ENVIRONMENT_ENABLED].
    */
-  public fun viewportSetDisableEnvironment(viewport: RID, disabled: Boolean): Unit {
-    TransferContext.writeArguments(_RID to viewport, BOOL to disabled)
+  public fun viewportSetEnvironmentMode(viewport: RID, mode: ViewportEnvironmentMode): Unit {
+    TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_DISABLE_ENVIRONMENT, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_ENVIRONMENT_MODE, NIL)
   }
 
   /**
@@ -3424,7 +3423,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Sets the quality level of the DOF blur effect to one of the options in [enum DOFBlurQuality]. [useJitter] can be used to jitter samples taken during the blur pass to hide artifacts at the cost of looking more fuzzy.
    */
   public fun cameraAttributesSetDofBlurQuality(quality: DOFBlurQuality, useJitter: Boolean): Unit {
     TransferContext.writeArguments(LONG to quality.id, BOOL to useJitter)
@@ -3433,7 +3432,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Sets the shape of the DOF bokeh pattern. Different shapes may be used to achieve artistic effect, or to meet performance targets. For more detail on available options see [enum DOFBokehShape].
    */
   public fun cameraAttributesSetDofBlurBokehShape(shape: DOFBokehShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
@@ -3442,7 +3441,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Sets the parameters to use with the DOF blur effect. These parameters take on the same meaning as their counterparts in [godot.CameraAttributesPractical].
    */
   public fun cameraAttributesSetDofBlur(
     cameraAttributes: RID,
@@ -3487,7 +3486,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Sets the parameters to use with the auto-exposure effect. These parameters take on the same meaning as their counterparts in [godot.CameraAttributes] and [godot.CameraAttributesPractical].
    */
   public fun cameraAttributesSetAutoExposure(
     cameraAttributes: RID,
@@ -3890,7 +3889,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Bakes the material data of the Mesh passed in the [base] parameter with optional [materialOverrides] to a set of [godot.Image]s of size [imageSize]. Returns an array of [godot.Image]s containing material properties as specified in [enum BakeChannels].
    */
   public fun bakeRenderUv2(
     base: RID,
@@ -4002,7 +4001,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Creates a new [godot.CanvasItem] instance and returns its [RID].
    */
   public fun canvasItemCreate(): RID {
     TransferContext.writeArguments()
@@ -4133,7 +4132,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Draws a line on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawLine].
    */
   public fun canvasItemAddLine(
     item: RID,
@@ -4149,13 +4148,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Draws a 2D polyline on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawPolyline].
    */
   public fun canvasItemAddPolyline(
     item: RID,
     points: PackedVector2Array,
     colors: PackedColorArray,
-    width: Double = 1.0,
+    width: Double = -1.0,
     antialiased: Boolean = false
   ): Unit {
     TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width, BOOL to antialiased)
@@ -4164,7 +4163,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Draws a rectangle on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawRect].
    */
   public fun canvasItemAddRect(
     item: RID,
@@ -4177,7 +4176,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Draws a circle on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawCircle].
    */
   public fun canvasItemAddCircle(
     item: RID,
@@ -4207,7 +4206,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * See also [godot.CanvasItem.drawMsdfTextureRectRegion].
    */
   public fun canvasItemAddMsdfTextureRectRegion(
     item: RID,
@@ -4225,7 +4224,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * See also [godot.CanvasItem.drawLcdTextureRectRegion].
    */
   public fun canvasItemAddLcdTextureRectRegion(
     item: RID,
@@ -4257,7 +4256,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Draws a nine-patch rectangle on the [godot.CanvasItem] pointed to by the [item] [RID].
    */
   public fun canvasItemAddNinePatch(
     item: RID,
@@ -4277,7 +4276,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Draws a 2D primitive on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawPrimitive].
    */
   public fun canvasItemAddPrimitive(
     item: RID,
@@ -4292,7 +4291,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Draws a 2D polygon on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawPolygon].
    */
   public fun canvasItemAddPolygon(
     item: RID,
@@ -4326,7 +4325,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Draws a mesh created with [meshCreate] with given [transform], [modulate] color, and [texture]. This is used internally by [godot.MeshInstance2D].
    */
   public fun canvasItemAddMesh(
     item: RID,
@@ -4341,7 +4340,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Draws a 2D [godot.MultiMesh] on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawMultimesh].
    */
   public fun canvasItemAddMultimesh(
     item: RID,
@@ -4354,7 +4353,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Draws particles on the [godot.CanvasItem] pointed to by the [item] [RID].
    */
   public fun canvasItemAddParticles(
     item: RID,
@@ -4367,7 +4366,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Sets a [godot.core.Transform2D] that will be used to transform subsequent canvas item commands.
    */
   public fun canvasItemAddSetTransform(item: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to item, TRANSFORM2D to transform)
@@ -4376,7 +4375,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * If [ignore] is `true`, ignore clipping on items drawn with this canvas item until this is called again with [ignore] set to false.
    */
   public fun canvasItemAddClipIgnore(item: RID, ignore: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to ignore)
@@ -4686,6 +4685,15 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to light, DOUBLE to smooth)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_LIGHT_SET_SHADOW_SMOOTH, NIL)
+  }
+
+  /**
+   * Sets the blend mode for the given canvas light. See [enum CanvasLightBlendMode] for options. Equivalent to [godot.Light2D.blendMode].
+   */
+  public fun canvasLightSetBlendMode(light: RID, mode: CanvasLightBlendMode): Unit {
+    TransferContext.writeArguments(_RID to light, LONG to mode.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_LIGHT_SET_BLEND_MODE, NIL)
   }
 
   /**
@@ -5449,6 +5457,10 @@ public object RenderingServer : Object() {
      *
      */
     ARRAY_FLAG_USE_8_BONE_WEIGHTS(134217728),
+    /**
+     *
+     */
+    ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY(268435456),
     ;
 
     public val id: Long
@@ -6186,11 +6198,11 @@ public object RenderingServer : Object() {
      */
     FOG_VOLUME_SHAPE_ELLIPSOID(0),
     /**
-     * [godot.FogVolume] will be shaped like a cone pointing upwards (in local coordinates). The cone's angle is set automatically to fill the extents. The cone will be adjusted to fit within the extents. Rotate the [godot.FogVolume] node to reorient the cone. Non-uniform scaling via extents is not supported (scale the [godot.FogVolume] node instead).
+     * [godot.FogVolume] will be shaped like a cone pointing upwards (in local coordinates). The cone's angle is set automatically to fill the size. The cone will be adjusted to fit within the size. Rotate the [godot.FogVolume] node to reorient the cone. Non-uniform scaling via size is not supported (scale the [godot.FogVolume] node instead).
      */
     FOG_VOLUME_SHAPE_CONE(1),
     /**
-     * [godot.FogVolume] will be shaped like an upright cylinder (in local coordinates). Rotate the [godot.FogVolume] node to reorient the cylinder. The cylinder will be adjusted to fit within the extents. Non-uniform scaling via extents is not supported (scale the [godot.FogVolume] node instead).
+     * [godot.FogVolume] will be shaped like an upright cylinder (in local coordinates). Rotate the [godot.FogVolume] node to reorient the cylinder. The cylinder will be adjusted to fit within the size. Non-uniform scaling via size is not supported (scale the [godot.FogVolume] node instead).
      */
     FOG_VOLUME_SHAPE_CYLINDER(2),
     /**
@@ -6294,6 +6306,37 @@ public object RenderingServer : Object() {
      * The viewport is cleared once, then the clear mode is set to [VIEWPORT_CLEAR_NEVER].
      */
     VIEWPORT_CLEAR_ONLY_NEXT_FRAME(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportEnvironmentMode(
+    id: Long
+  ) {
+    /**
+     * Disable rendering of 3D environment over 2D canvas.
+     */
+    VIEWPORT_ENVIRONMENT_DISABLED(0),
+    /**
+     * Enable rendering of 3D environment over 2D canvas.
+     */
+    VIEWPORT_ENVIRONMENT_ENABLED(1),
+    /**
+     * Inherit enable/disable value from parent. If topmost parent is also set to inherit, then this has the same behavior as [VIEWPORT_ENVIRONMENT_ENABLED].
+     */
+    VIEWPORT_ENVIRONMENT_INHERIT(2),
+    /**
+     * Max value of [enum ViewportEnvironmentMode] enum.
+     */
+    VIEWPORT_ENVIRONMENT_MAX(3),
     ;
 
     public val id: Long
@@ -7391,19 +7434,19 @@ public object RenderingServer : Object() {
     id: Long
   ) {
     /**
-     *
+     * Index of [godot.Image] in array of [godot.Image]s returned by [bakeRenderUv2]. Image uses [godot.Image.FORMAT_RGBA8] and contains albedo color in the `.rgb` channels and alpha in the `.a` channel.
      */
     BAKE_CHANNEL_ALBEDO_ALPHA(0),
     /**
-     *
+     * Index of [godot.Image] in array of [godot.Image]s returned by [bakeRenderUv2]. Image uses [godot.Image.FORMAT_RGBA8] and contains the per-pixel normal of the object in the `.rgb` channels and nothing in the `.a` channel. The per-pixel normal is encoded as `normal * 0.5 + 0.5`.
      */
     BAKE_CHANNEL_NORMAL(1),
     /**
-     *
+     * Index of [godot.Image] in array of [godot.Image]s returned by [bakeRenderUv2]. Image uses [godot.Image.FORMAT_RGBA8] and contains ambient occlusion (from material and decals only) in the `.r` channel, roughness in the `.g` channel, metallic in the `.b` channel and sub surface scattering amount in the `.a` channel.
      */
     BAKE_CHANNEL_ORM(2),
     /**
-     *
+     * Index of [godot.Image] in array of [godot.Image]s returned by [bakeRenderUv2]. Image uses [godot.Image.FORMAT_RGBAH] and contains emission color in the `.rgb` channels and nothing in the `.a` channel.
      */
     BAKE_CHANNEL_EMISSION(3),
     ;

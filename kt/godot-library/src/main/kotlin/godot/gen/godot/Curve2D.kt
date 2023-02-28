@@ -256,7 +256,9 @@ public open class Curve2D : Resource() {
   }
 
   /**
+   * Returns a list of points along the curve, with almost uniform density. [maxStages] controls how many subdivisions a curve segment may face before it is considered approximate enough. Each subdivision splits the segment in half, so the default 5 stages may mean up to 32 subdivisions per curve segment. Increase with care!
    *
+   * [toleranceLength] controls the maximal distance between two neighboring points, before the segment has to be subdivided.
    */
   public fun tessellateEvenLength(maxStages: Long = 5, toleranceLength: Double = 20.0):
       PackedVector2Array {

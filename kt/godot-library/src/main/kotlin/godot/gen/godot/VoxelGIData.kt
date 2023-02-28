@@ -164,9 +164,9 @@ public open class VoxelGIData : Resource() {
   }
 
   /**
-   * Returns the bounds of the baked voxel data as an [AABB], which should match [godot.VoxelGI.extents] after being baked (which only contains the size as a [godot.core.Vector3]).
+   * Returns the bounds of the baked voxel data as an [AABB], which should match [godot.VoxelGI.size] after being baked (which only contains the size as a [godot.core.Vector3]).
    *
-   * **Note:** If the extents were modified without baking the VoxelGI data, then the value of [getBounds] and [godot.VoxelGI.extents] will not match.
+   * **Note:** If the size was modified without baking the VoxelGI data, then the value of [getBounds] and [godot.VoxelGI.size] will not match.
    */
   public fun getBounds(): AABB {
     TransferContext.writeArguments()

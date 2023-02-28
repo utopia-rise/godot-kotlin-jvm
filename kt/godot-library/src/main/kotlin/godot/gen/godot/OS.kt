@@ -58,7 +58,7 @@ public object OS : Object() {
   }
 
   /**
-   * Initialises the singleton for the system MIDI driver.
+   * Initializes the singleton for the system MIDI driver.
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
@@ -405,6 +405,17 @@ public object OS : Object() {
   }
 
   /**
+   * Returns `true` if the environment variable with the name [variable] exists.
+   *
+   * **Note:** Double-check the casing of [variable]. Environment variable names are case-sensitive on all platforms except Windows.
+   */
+  public fun hasEnvironment(variable: String): Boolean {
+    TransferContext.writeArguments(STRING to variable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_ENVIRONMENT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns the value of an environment variable. Returns an empty string if the environment variable doesn't exist.
    *
    * **Note:** Double-check the casing of [variable]. Environment variable names are case-sensitive on all platforms except Windows.
@@ -418,23 +429,21 @@ public object OS : Object() {
   /**
    * Sets the value of the environment variable [variable] to [value]. The environment variable will be set for the Godot process and any process executed with [execute] after running [setEnvironment]. The environment variable will *not* persist to processes run after the Godot process was terminated.
    *
-   * **Note:** Double-check the casing of [variable]. Environment variable names are case-sensitive on all platforms except Windows.
+   * **Note:** Environment variable names are case-sensitive on all platforms except Windows. The [variable] name cannot be empty or include the `=` character. On Windows, there is a 32767 characters limit for the combined length of [variable], [value], and the `=` and null terminator characters that will be registered in the environment block.
    */
-  public fun setEnvironment(variable: String, `value`: String): Boolean {
+  public fun setEnvironment(variable: String, `value`: String): Unit {
     TransferContext.writeArguments(STRING to variable, STRING to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_ENVIRONMENT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_ENVIRONMENT, NIL)
   }
 
   /**
-   * Returns `true` if the environment variable with the name [variable] exists.
+   * Removes the environment [variable] from the current environment, if it exists. The environment variable will be removed for the Godot process and any process executed with [execute] after running [unsetEnvironment]. The removal of the environment variable will *not* persist to processes run after the Godot process was terminated.
    *
-   * **Note:** Double-check the casing of [variable]. Environment variable names are case-sensitive on all platforms except Windows.
+   * **Note:** Environment variable names are case-sensitive on all platforms except Windows. The [variable] name cannot be empty or include the `=` character.
    */
-  public fun hasEnvironment(variable: String): Boolean {
+  public fun unsetEnvironment(variable: String): Unit {
     TransferContext.writeArguments(STRING to variable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_ENVIRONMENT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_UNSET_ENVIRONMENT, NIL)
   }
 
   /**
@@ -824,7 +833,7 @@ public object OS : Object() {
    *
    * Returns `false` if the Godot binary used to run the project is a *release* export template.
    *
-   * To check whether the Godot binary used to run the project is an export template (debug or release), use `OS.has_feature("standalone")` instead.
+   * To check whether the Godot binary used to run the project is an export template (debug or release), use `OS.has_feature("template")` instead.
    */
   public fun isDebugBuild(): Boolean {
     TransferContext.writeArguments()
@@ -862,7 +871,7 @@ public object OS : Object() {
    *
    * [gdscript]
    *
-   * var file_to_remove = "user://slot1.sav"
+   * var file_to_remove = "user://slot1.save"
    *
    * OS.move_to_trash(ProjectSettings.globalize_path(file_to_remove))
    *
@@ -870,7 +879,7 @@ public object OS : Object() {
    *
    * [csharp]
    *
-   * var fileToRemove = "user://slot1.sav";
+   * var fileToRemove = "user://slot1.save";
    *
    * OS.MoveToTrash(ProjectSettings.GlobalizePath(fileToRemove));
    *

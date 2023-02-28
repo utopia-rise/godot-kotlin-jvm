@@ -215,6 +215,15 @@ public open class Mesh : Resource() {
   }
 
   /**
+   * Creates a placeholder version of this resource ([godot.PlaceholderMesh]).
+   */
+  public fun createPlaceholder(): Resource? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_PLACEHOLDER, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Resource?
+  }
+
+  /**
    * Calculate a [godot.ConcavePolygonShape3D] from the mesh.
    */
   public fun createTrimeshShape(): ConcavePolygonShape3D? {
@@ -346,11 +355,11 @@ public open class Mesh : Resource() {
      */
     ARRAY_CUSTOM3(9),
     /**
-     * [godot.PackedFloat32Array] or [godot.PackedInt32Array] of bone indices. Each element is a group of 4 numbers.
+     * [godot.PackedFloat32Array] or [godot.PackedInt32Array] of bone indices. Contains either 4 or 8 numbers per vertex depending on the presence of the [godot.ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
      */
     ARRAY_BONES(10),
     /**
-     * [godot.PackedFloat32Array] of bone weights. Each element in groups of 4 floats.
+     * [godot.PackedFloat32Array] or [godot.PackedFloat64Array] of bone weights in the range `0.0` to `1.0` (inclusive). Contains either 4 or 8 numbers per vertex depending on the presence of the [godot.ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
      */
     ARRAY_WEIGHTS(11),
     /**
@@ -395,7 +404,7 @@ public open class Mesh : Resource() {
      */
     ARRAY_CUSTOM_RGBA_HALF(3),
     /**
-     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array]. Only the red green channel is used.
+     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array]. Only the red channel is used.
      */
     ARRAY_CUSTOM_R_FLOAT(4),
     /**
@@ -529,6 +538,10 @@ public open class Mesh : Resource() {
      * Flag used to mark that the mesh contains up to 8 bone influences per vertex. This flag indicates that [ARRAY_BONES] and [ARRAY_WEIGHTS] elements will have double length.
      */
     ARRAY_FLAG_USE_8_BONE_WEIGHTS(134217728),
+    /**
+     * Flag used to mark that the mesh intentionally contains no vertex array.
+     */
+    ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY(268435456),
     ;
 
     public val id: Long

@@ -35,6 +35,8 @@ import kotlin.Unit
  * Base node for collision objects.
  *
  * CollisionObject3D is the base class for physics objects. It can hold any number of collision [godot.Shape3D]s. Each shape must be assigned to a *shape owner*. The CollisionObject3D can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the `shape_owner_*` methods.
+ *
+ * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
  */
 @GodotBaseType
 public open class CollisionObject3D internal constructor() : Node3D() {
@@ -47,14 +49,14 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
    *
-   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject2D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject2D] is overlapping the [godot.CollisionObject2D] in question.
+   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject3D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject3D] is overlapping the [godot.CollisionObject3D] in question.
    */
   public val mouseEntered: Signal0 by signal()
 
   /**
    * Emitted when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
    *
-   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject2D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject2D] is overlapping the [godot.CollisionObject2D] in question.
+   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject3D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject3D] is overlapping the [godot.CollisionObject3D] in question.
    */
   public val mouseExited: Signal0 by signal()
 
@@ -390,7 +392,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
      */
     DISABLE_MODE_REMOVE(0),
     /**
-     * When [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [godot.Area2D]. [godot.PhysicsBody3D] can't be affected by forces or other bodies while static.
+     * When [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [godot.Area3D]. [godot.PhysicsBody3D] can't be affected by forces or other bodies while static.
      *
      * Automatically set [godot.PhysicsBody3D] back to its original mode when the [godot.Node] is processed again.
      */

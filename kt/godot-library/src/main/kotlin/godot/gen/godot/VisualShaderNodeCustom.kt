@@ -70,7 +70,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**. If not overridden, no return icon is shown.
    */
-  public open fun _getReturnIconType(): Long {
+  public open fun _getReturnIconType(): VisualShaderNode.PortType {
     throw NotImplementedError("_get_return_icon_type is not implemented for VisualShaderNodeCustom")
   }
 
@@ -88,7 +88,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, input ports will return the [godot.VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
-  public open fun _getInputPortType(port: Long): Long {
+  public open fun _getInputPortType(port: Long): VisualShaderNode.PortType {
     throw NotImplementedError("_get_input_port_type is not implemented for VisualShaderNodeCustom")
   }
 
@@ -115,7 +115,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, output ports will return the [godot.VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
-  public open fun _getOutputPortType(port: Long): Long {
+  public open fun _getOutputPortType(port: Long): VisualShaderNode.PortType {
     throw NotImplementedError("_get_output_port_type is not implemented for VisualShaderNodeCustom")
   }
 

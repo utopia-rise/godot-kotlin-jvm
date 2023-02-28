@@ -118,6 +118,14 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
+   * Return a [godot.PackedStringArray] of additional features this preset, for the given [platform], should have.
+   */
+  public open fun _getExportFeatures(platform: EditorExportPlatform, debug: Boolean):
+      PackedStringArray {
+    throw NotImplementedError("_get_export_features is not implemented for EditorExportPlugin")
+  }
+
+  /**
    * Return the name identifier of this plugin (for future identification by the exporter).
    */
   public open fun _getName(): String {

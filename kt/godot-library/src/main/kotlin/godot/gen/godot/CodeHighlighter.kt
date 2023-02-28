@@ -251,7 +251,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    *
    * Both the start and end keys must be symbols. Only the start key has to be unique.
    *
-   * Line only denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
+   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
   public fun addColorRegion(
     startKey: String,

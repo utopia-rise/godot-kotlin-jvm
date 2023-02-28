@@ -30,7 +30,7 @@ import kotlin.Unit
  *
  * Signed distance fields (SDF) allow for efficiently representing approximate collision shapes for convex and concave objects of any shape. This is more flexible than [godot.GPUParticlesCollisionHeightField3D], but it requires a baking step.
  *
- * **Baking:** The signed distance field texture can be baked by selecting the [godot.GPUParticlesCollisionSDF3D] node in the editor, then clicking **Bake SDF** at the top of the 3D viewport. Any *visible* [godot.MeshInstance3D]s touching the [extents] will be taken into account for baking, regardless of their [godot.GeometryInstance3D.giMode].
+ * **Baking:** The signed distance field texture can be baked by selecting the [godot.GPUParticlesCollisionSDF3D] node in the editor, then clicking **Bake SDF** at the top of the 3D viewport. Any *visible* [godot.MeshInstance3D]s within the [size] will be taken into account for baking, regardless of their [godot.GeometryInstance3D.giMode].
  *
  * **Note:** Baking a [godot.GPUParticlesCollisionSDF3D]'s [texture] is only possible within the editor, as there is no bake method exposed for use in exported projects. However, it's still possible to load pre-baked [godot.Texture3D]s into its [texture] property in an exported project.
  *
@@ -41,19 +41,19 @@ import kotlin.Unit
 @GodotBaseType
 public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
-   * The collision SDF's extents in 3D units. To improve SDF quality, the [extents] should be set as small as possible while covering the parts of the scene you need.
+   * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small as possible while covering the parts of the scene you need.
    */
-  public var extents: Vector3
+  public var size: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_EXTENTS, VECTOR3)
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_SIZE, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_SET_EXTENTS, NIL)
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_SET_SIZE, NIL)
     }
 
   /**

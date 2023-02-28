@@ -93,7 +93,7 @@ import kotlin.Unit
  *
  * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths]($DOCS_URL/tutorials/io/data_paths.html) documentation.
  *
- * There is no method to close a file in order to free it from use. Instead, [godot.FileAccess] will close when it's freed, which happens when it goes out of scope or when it gets assigned with `null`. In C# the reference must be disposed after we are done using it, this can be done with the `using` statement or calling the `Dispose` method directly.
+ * [godot.FileAccess] will close when it's freed, which happens when it goes out of scope or when it gets assigned with `null`. In C# the reference must be disposed after we are done using it, this can be done with the `using` statement or calling the `Dispose` method directly.
  *
  * [codeblocks]
  *
@@ -382,6 +382,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the next [Variant] value from the file. If [allowObjects] is `true`, decoding objects is allowed.
    *
+   * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
+   *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
   public fun getVar(allowObjects: Boolean = false): Any? {
@@ -463,9 +465,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    *     ushort read2 = f.Get16(); // 121
    *
-   *     short converted1 = BitConverter.ToInt16(BitConverter.GetBytes(read1), 0); // -42
+   *     short converted1 = (short)read1; // -42
    *
-   *     short converted2 = BitConverter.ToInt16(BitConverter.GetBytes(read2), 0); // 121
+   *     short converted2 = (short)read2; // 121
    *
    * }
    *
@@ -563,6 +565,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores any Variant value in the file. If [fullObjects] is `true`, encoding objects is allowed (and can potentially include code).
    *
+   * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
+   *
    * **Note:** Not all properties are included. Only properties that are configured with the [PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property by overriding the [godot.Object.GetPropertyList] method in your class. You can also check how property usage is configured by calling [godot.Object.GetPropertyList]. See [enum PropertyUsageFlags] for the possible usage flags.
    */
   public fun storeVar(`value`: Any, fullObjects: Boolean = false): Unit {
@@ -590,6 +594,16 @@ public open class FileAccess internal constructor() : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_PASCAL_STRING,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Closes the currently opened file and prevents subsequent read/write operations. Use [flush] to persist the data to disk without closing the file.
+   *
+   * **Note:** [godot.FileAccess] will automatically close when it's freed, which happens when it goes out of scope or when it gets assigned with `null`. In C# the reference must be disposed after we are done using it, this can be done with the `using` statement or calling the `Dispose` method directly.
+   */
+  public fun close(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_CLOSE, NIL)
   }
 
   public enum class ModeFlags(

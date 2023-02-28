@@ -399,13 +399,13 @@ public open class Object : KtObject() {
    *
    * [csharp]
    *
-   * var sprite2d = new Sprite2D();
+   * var sprite2D = new Sprite2D();
    *
-   * sprite2d.IsClass("Sprite2D"); // Returns true
+   * sprite2D.IsClass("Sprite2D"); // Returns true
    *
-   * sprite2d.IsClass("Node");     // Returns true
+   * sprite2D.IsClass("Node");     // Returns true
    *
-   * sprite2d.IsClass("Node3D");   // Returns false
+   * sprite2D.IsClass("Node3D");   // Returns false
    *
    * [/csharp]
    *
@@ -519,7 +519,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    *
-   * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot properties.
+   * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun setIndexed(propertyPath: NodePath, `value`: Any): Unit {
     TransferContext.writeArguments(NODE_PATH to propertyPath, ANY to value)
@@ -559,7 +559,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    *
-   * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot properties.
+   * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    *
    * **Note:** This method does not support actual paths to nodes in the [godot.SceneTree], only sub-property paths. In the context of nodes, use [godot.Node.getNodeAndResource] instead.
    */
@@ -672,13 +672,13 @@ public open class Object : KtObject() {
    *
    * player.Notification(NotificationEnterTree);
    *
-   * // The call order is Object -> Node -> Node2D -> player.gd.
+   * // The call order is GodotObject -> Node -> Node2D -> player.gd.
    *
    *
    *
-   * player.notification(NotificationEnterTree, true);
+   * player.Notification(NotificationEnterTree, true);
    *
-   * // The call order is player.gd -> Node2D -> Node -> Object.
+   * // The call order is player.gd -> Node2D -> Node -> GodotObject.
    *
    * [/csharp]
    *
@@ -727,7 +727,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Adds or changes the entry [name] inside the object's metadata. The metadata [value] can be any [Variant], although some types cannot be serialised correctly.
+   * Adds or changes the entry [name] inside the object's metadata. The metadata [value] can be any [Variant], although some types cannot be serialized correctly.
    *
    * If [value] is `null`, the entry is removed. This is the equivalent of using [removeMeta]. See also [hasMeta] and [getMeta].
    *
@@ -861,9 +861,9 @@ public open class Object : KtObject() {
    *
    * [csharp]
    *
-   * EmitSignal("Hit", "sword", 100);
+   * EmitSignal(SignalName.Hit, "sword", 100);
    *
-   * EmitSignal("GameOver");
+   * EmitSignal(SignalName.GameOver);
    *
    * [/csharp]
    *
@@ -894,7 +894,7 @@ public open class Object : KtObject() {
    *
    * var node = new Node3D();
    *
-   * node.Call("rotate", new Vector3(1f, 0f, 0f), 1.571f);
+   * node.Call(Node3D.MethodName.Rotate, new Vector3(1f, 0f, 0f), 1.571f);
    *
    * [/csharp]
    *
@@ -925,7 +925,7 @@ public open class Object : KtObject() {
    *
    * var node = new Node3D();
    *
-   * node.CallDeferred("rotate", new Vector3(1f, 0f, 0f), 1.571f);
+   * node.CallDeferred(Node3D.MethodName.Rotate, new Vector3(1f, 0f, 0f), 1.571f);
    *
    * [/csharp]
    *
@@ -1010,13 +1010,13 @@ public open class Object : KtObject() {
    *
    * var node = new Node3D();
    *
-   * node.Callv("rotate", new Godot.Collections.Array { new Vector3(1f, 0f, 0f), 1.571f });
+   * node.Callv(Node3D.MethodName.Rotate, new Godot.Collections.Array { new Vector3(1f, 0f, 0f), 1.571f });
    *
    * [/csharp]
    *
    * [/codeblocks]
    *
-   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [godot.StringName] on each call
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [godot.StringName] on each call.
    */
   public fun callv(method: StringName, argArray: VariantArray<Any?>): Any? {
     TransferContext.writeArguments(STRING_NAME to method, ARRAY to argArray)
@@ -1062,7 +1062,7 @@ public open class Object : KtObject() {
    *
    * - `signal` is a reference to the [godot.Signal];
    *
-   * - `callable` is a reference to the [godot.Callable];
+   * - `callable` is a reference to the connected [godot.Callable];
    *
    * - `flags` is a combination of [enum ConnectFlags].
    */
@@ -1158,9 +1158,9 @@ public open class Object : KtObject() {
    *
    *     var player = new Player();
    *
-   *     // Signals as events (`player.Hit += OnPlayerHit;`) do not support argument binding. You have to use:
+   *     // We can use lambdas when we need to bind additional parameters.
    *
-   *     player.Hit.Connect(OnPlayerHit, new Godot.Collections.Array {"sword", 100 });
+   *     player.Hit += () => OnPlayerHit("sword", 100);
    *
    * }
    *
@@ -1180,7 +1180,7 @@ public open class Object : KtObject() {
    *
    * {
    *
-   *     GD.Print(String.Format("Hit with weapon {0} for {1} damage.", weaponType, damage));
+   *     GD.Print($"Hit with weapon {weaponType} for {damage} damage.");
    *
    * }
    *
@@ -1232,25 +1232,17 @@ public open class Object : KtObject() {
    *
    *     var button = new Button();
    *
-   *     // Option 1: Object.Connect() with an implicit Callable for the defined function.
-   *
-   *     button.Connect("button_down", OnButtonDown);
-   *
-   *     // Option 2: Object.connect() with a constructed Callable using a target object and method name.
-   *
-   *     button.Connect("button_down", new Callable(self, nameof(OnButtonDown)));
-   *
-   *     // Option 3: Signal.connect() with an implicit Callable for the defined function.
-   *
-   *     button.ButtonDown.Connect(OnButtonDown);
-   *
-   *     // Option 3b: In C#, we can use signals as events and connect with this more idiomatic syntax:
+   *     // Option 1: In C#, we can use signals as events and connect with this idiomatic syntax:
    *
    *     button.ButtonDown += OnButtonDown;
    *
-   *     // Option 4: Signal.connect() with a constructed Callable using a target object and method name.
+   *     // Option 2: GodotObject.Connect() with a constructed Callable from a method group.
    *
-   *     button.ButtonDown.Connect(new Callable(self, nameof(OnButtonDown)));
+   *     button.Connect(Button.SignalName.ButtonDown, Callable.From(OnButtonDown));
+   *
+   *     // Option 3: GodotObject.Connect() with a constructed Callable using a target object and method name.
+   *
+   *     button.Connect(Button.SignalName.ButtonDown, new Callable(this, MethodName.OnButtonDown));
    *
    * }
    *
@@ -1286,6 +1278,8 @@ public open class Object : KtObject() {
    *
    *     var player = Player.new()
    *
+   *     # Using Callable.bind().
+   *
    *     player.hit.connect(_on_player_hit.bind("sword", 100))
    *
    *
@@ -1316,19 +1310,17 @@ public open class Object : KtObject() {
    *
    *     var player = new Player();
    *
-   *     // Option 1: Using Callable.Bind(). This way we can still use signals as events.
+   *     // Using lambda expressions that create a closure that captures the additional parameters.
    *
-   *     player.Hit += OnPlayerHit.Bind("sword", 100);
+   *     // The lambda only receives the parameters defined by the signal's delegate.
    *
-   *     // Option 2: Using a `binds` Array in Signal.Connect().
-   *
-   *     player.Hit.Connect(OnPlayerHit, new Godot.Collections.Array{ "sword", 100 });
+   *     player.Hit += (hitBy, level) => OnPlayerHit(hitBy, level, "sword", 100);
    *
    *
    *
    *     // Parameters added when emitting the signal are passed first.
    *
-   *     player.EmitSignal("hit", "Dark lord", 5);
+   *     player.EmitSignal(SignalName.Hit, "Dark lord", 5);
    *
    * }
    *
@@ -1342,7 +1334,7 @@ public open class Object : KtObject() {
    *
    * {
    *
-   *     GD.Print(String.Format("Hit by {0} (level {1}) with weapon {2} for {3} damage.", hitBy, level, weaponType, damage));
+   *     GD.Print($"Hit by {hitBy} (level {level}) with weapon {weaponType} for {damage} damage.");
    *
    * }
    *

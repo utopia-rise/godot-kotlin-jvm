@@ -32,7 +32,9 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
  *
- * PhysicsBody3D is an abstract base class for implementing a physics body. All *Body types inherit from it.
+ * PhysicsBody3D is an abstract base class for implementing a physics body. All *Body3D types inherit from it.
+ *
+ * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
  */
 @GodotBaseType
 public open class PhysicsBody3D internal constructor() : CollisionObject3D() {

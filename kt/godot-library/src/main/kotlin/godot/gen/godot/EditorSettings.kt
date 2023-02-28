@@ -69,7 +69,7 @@ import kotlin.Unit
  *
  * settings.GetSetting("some/property");
  *
- * Godot.Collections.Array listOfSettings = settings.GetPropertyList();
+ * Godot.Collections.Array<Godot.Collections.Dictionary> listOfSettings = settings.GetPropertyList();
  *
  * [/csharp]
  *

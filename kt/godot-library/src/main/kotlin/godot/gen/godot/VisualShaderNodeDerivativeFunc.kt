@@ -55,6 +55,22 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_SET_FUNCTION, NIL)
     }
 
+  /**
+   * Sets the level of precision to use for the derivative function. See [enum Precision] for options. When using the GL Compatibility renderer, this setting has no effect.
+   */
+  public var precision: Precision
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_GET_PRECISION, LONG)
+      return VisualShaderNodeDerivativeFunc.Precision.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_SET_PRECISION, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC, scriptIndex)
     return true
@@ -114,6 +130,37 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
      * Represents the size of the [enum Function] enum.
      */
     FUNC_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class Precision(
+    id: Long
+  ) {
+    /**
+     * No precision is specified, the GPU driver is allowed to use whatever level of precision it chooses. This is the default option and is equivalent to using `dFdx()` or `dFdy()` in text shaders.
+     */
+    PRECISION_NONE(0),
+    /**
+     * The derivative will be calculated using the current fragment's neighbors (which may not include the current fragment). This tends to be faster than using [PRECISION_FINE], but may not be suitable when more precision is needed. This is equivalent to using `dFdxCoarse()` or `dFdyCoarse()` in text shaders.
+     */
+    PRECISION_COARSE(1),
+    /**
+     * The derivative will be calculated using the current fragment and its immediate neighbors. This tends to be slower than using [PRECISION_COARSE], but may be necessary when more precision is needed. This is equivalent to using `dFdxFine()` or `dFdyFine()` in text shaders.
+     */
+    PRECISION_FINE(2),
+    /**
+     * Represents the size of the [enum Precision] enum.
+     */
+    PRECISION_MAX(3),
     ;
 
     public val id: Long

@@ -13,6 +13,7 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
@@ -141,6 +142,21 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     }
 
   /**
+   * The available file type filters. For example, this shows only `.png` and `.gd` files: `set_filters(PackedStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"]))`. Multiple file types can also be specified in a single filter. `"*.png, *.jpg, *.jpeg ; Supported Images"` will show both PNG and JPEG files when selected.
+   */
+  public var filters: PackedStringArray
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_FILTERS,
+          PACKED_STRING_ARRAY)
+      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    }
+    set(`value`) {
+      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_FILTERS, NIL)
+    }
+
+  /**
    * If `true`, hidden files and directories will be visible in the [godot.EditorFileDialog]. This property is synchronized with [godot.EditorSettings.filesystem/fileDialog/showHiddenFiles].
    */
   public var showHiddenFiles: Boolean
@@ -206,6 +222,18 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_VBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
+  }
+
+  /**
+   * Returns the LineEdit for the selected file.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   */
+  public fun getLineEdit(): LineEdit? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_LINE_EDIT,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as LineEdit?
   }
 
   /**

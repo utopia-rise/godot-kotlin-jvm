@@ -44,13 +44,11 @@ import kotlin.Unit
  *
  * using Godot;
  *
- * using System;
- *
  *
  *
  * [godot.Tool]
  *
- * public class HelloEditor : EditorScript
+ * public partial class HelloEditor : EditorScript
  *
  * {
  *

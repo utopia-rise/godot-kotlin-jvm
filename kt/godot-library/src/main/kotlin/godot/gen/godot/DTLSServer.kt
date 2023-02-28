@@ -87,39 +87,41 @@ import kotlin.Suppress
  *
  * [csharp]
  *
- * using Godot;
- *
- * using System;
- *
  * // ServerNode.cs
  *
- * public class ServerNode : Node
+ * using Godot;
+ *
+ *
+ *
+ * public partial class ServerNode : Node
  *
  * {
  *
- *     public DTLSServer Dtls = new DTLSServer();
+ *     private DtlsServer _dtls = new DtlsServer();
  *
- *     public UDPServer Server = new UDPServer();
+ *     private UdpServer _server = new UdpServer();
  *
- *     public Godot.Collections.Array<PacketPeerDTLS> Peers = new Godot.Collections.Array<PacketPeerDTLS>();
+ *     private Godot.Collections.Array<PacketPeerDTLS> _peers = new Godot.Collections.Array<PacketPeerDTLS>();
+ *
+ *
  *
  *     public override void _Ready()
  *
  *     {
  *
- *         Server.Listen(4242);
+ *         _server.Listen(4242);
  *
  *         var key = GD.Load<CryptoKey>("key.key"); // Your private key.
  *
  *         var cert = GD.Load<X509Certificate>("cert.crt"); // Your X509 certificate.
  *
- *         Dtls.Setup(key, cert);
+ *         _dtls.Setup(key, cert);
  *
  *     }
  *
  *
  *
- *     public override void _Process(float delta)
+ *     public override void _Process(double delta)
  *
  *     {
  *
@@ -127,11 +129,11 @@ import kotlin.Suppress
  *
  *         {
  *
- *             PacketPeerUDP peer = Server.TakeConnection();
+ *             PacketPeerUDP peer = _server.TakeConnection();
  *
- *             PacketPeerDTLS dtlsPeer = Dtls.TakeConnection(peer);
+ *             PacketPeerDTLS dtlsPeer = _dtls.TakeConnection(peer);
  *
- *             if (dtlsPeer.GetStatus() != PacketPeerDTLS.Status.Handshaking)
+ *             if (dtlsPeer.GetStatus() != PacketPeerDtls.Status.Handshaking)
  *
  *             {
  *
@@ -141,19 +143,19 @@ import kotlin.Suppress
  *
  *             GD.Print("Peer connected!");
  *
- *             Peers.Add(dtlsPeer);
+ *             _peers.Add(dtlsPeer);
  *
  *         }
  *
  *
  *
- *         foreach (var p in Peers)
+ *         foreach (var p in _peers)
  *
  *         {
  *
  *             p.Poll(); // Must poll to update the state.
  *
- *             if (p.GetStatus() == PacketPeerDTLS.Status.Connected)
+ *             if (p.GetStatus() == PacketPeerDtls.Status.Connected)
  *
  *             {
  *
@@ -161,9 +163,9 @@ import kotlin.Suppress
  *
  *                 {
  *
- *                     GD.Print("Received Message From Client: " + p.GetPacket().GetStringFromUTF8());
+ *                     GD.Print($"Received Message From Client: {p.GetPacket().GetStringFromUtf8()}");
  *
- *                     p.PutPacket("Hello Dtls Client".ToUTF8());
+ *                     p.PutPacket("Hello DTLS Client".ToUtf8());
  *
  *                 }
  *
@@ -227,61 +229,65 @@ import kotlin.Suppress
  *
  * [csharp]
  *
+ * // ClientNode.cs
+ *
  * using Godot;
  *
  * using System.Text;
  *
- * // ClientNode.cs
  *
- * public class ClientNode : Node
+ *
+ * public partial class ClientNode : Node
  *
  * {
  *
- *     public PacketPeerDTLS Dtls = new PacketPeerDTLS();
+ *     private PacketPeerDtls _dtls = new PacketPeerDtls();
  *
- *     public PacketPeerUDP Udp = new PacketPeerUDP();
+ *     private PacketPeerUdp _udp = new PacketPeerUdp();
  *
- *     public bool Connected = false;
+ *     private bool _connected = false;
+ *
+ *
  *
  *     public override void _Ready()
  *
  *     {
  *
- *         Udp.ConnectToHost("127.0.0.1", 4242);
+ *         _udp.ConnectToHost("127.0.0.1", 4242);
  *
- *         Dtls.ConnectToPeer(Udp, false); // Use true in production for certificate validation!
+ *         _dtls.ConnectToPeer(_udp, validateCerts: false); // Use true in production for certificate validation!
  *
  *     }
  *
  *
  *
- *     public override void _Process(float delta)
+ *     public override void _Process(double delta)
  *
  *     {
  *
- *         Dtls.Poll();
+ *         _dtls.Poll();
  *
- *         if (Dtls.GetStatus() == PacketPeerDTLS.Status.Connected)
+ *         if (_dtls.GetStatus() == PacketPeerDtls.Status.Connected)
  *
  *         {
  *
- *             if (!Connected)
+ *             if (!_connected)
  *
  *             {
  *
  *                 // Try to contact server
  *
- *                 Dtls.PutPacket("The Answer Is..42!".ToUTF8());
+ *                 _dtls.PutPacket("The Answer Is..42!".ToUtf8());
  *
  *             }
  *
- *             while (Dtls.GetAvailablePacketCount() > 0)
+ *             while (_dtls.GetAvailablePacketCount() > 0)
  *
  *             {
  *
- *                 GD.Print("Connected: " + Dtls.GetPacket().GetStringFromUTF8());
+ *                 GD.Print($"Connected: {_dtls.GetPacket().GetStringFromUtf8()}");
  *
- *                 Connected = true;
+ *                 _connected = true;
  *
  *             }
  *
@@ -303,14 +309,10 @@ public open class DTLSServer : RefCounted() {
   }
 
   /**
-   * Setup the DTLS server to use the given [key] and provide the given [certificate] to clients. You can pass the optional [chain] parameter to provide additional CA chain information along with the certificate.
+   * Setup the DTLS server to use the given [serverOptions]. See [godot.TLSOptions.server].
    */
-  public fun setup(
-    key: CryptoKey,
-    certificate: X509Certificate,
-    chain: X509Certificate? = null
-  ): GodotError {
-    TransferContext.writeArguments(OBJECT to key, OBJECT to certificate, OBJECT to chain)
+  public fun setup(serverOptions: TLSOptions): GodotError {
+    TransferContext.writeArguments(OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_SETUP, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
