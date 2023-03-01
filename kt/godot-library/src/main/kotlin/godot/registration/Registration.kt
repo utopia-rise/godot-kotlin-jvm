@@ -1,8 +1,5 @@
 package godot.registration
 
-import godot.annotation.RpcMode
-import godot.annotation.Sync
-import godot.annotation.TransferMode
 import godot.core.CONSTRUCTOR_MAX_ARGS
 import godot.core.KtClass
 import godot.core.KtConstructor
@@ -36,32 +33,6 @@ import kotlin.reflect.KFunction5
 import kotlin.reflect.KFunction6
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty
-
-class KtPropertyInfoBuilderDsl {
-    var type: VariantType? = null
-    var name: String = ""
-    var className: String? = null
-    var hint: PropertyHint = PropertyHint.NONE
-    var hintString: String = ""
-    var visibleInEditor: Boolean = true
-
-    internal fun build() =
-        KtPropertyInfo(checkNotNull(type), name, checkNotNull(className), hint, hintString, visibleInEditor)
-}
-
-class KtRpcConfigBuilderDsl {
-    var mode: RpcMode = RpcMode.DISABLED
-    var sync: Sync = Sync.SYNC
-    var transferMode: TransferMode = TransferMode.RELIABLE
-    var channel: Int = 0
-
-    internal fun build() = KtRpcConfig(
-        rpcModeId = mode.ordinal,
-        rpcCallLocal = sync == Sync.SYNC,
-        rpcTransferModeId = transferMode.ordinal,
-        rpcChannel = channel
-    )
-}
 
 data class KtFunctionArgument(
     val type: VariantType,
@@ -264,25 +235,6 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P : Any?> property(
-        kProperty: KMutableProperty1<T, P>,
-        variantType: VariantType,
-        isRef: Boolean = false,
-        defaultValueProvider: () -> P,
-        visibleInEditor: Boolean = true,
-        pib: KtPropertyInfoBuilderDsl.() -> Unit
-    ) {
-        val builder = KtPropertyInfoBuilderDsl()
-        builder.name = kProperty.name.camelToSnakeCase()
-        builder.pib()
-        builder.visibleInEditor = visibleInEditor
-        val property = builder.build()
-        require(!properties.contains(property.name)) {
-            "Found two properties with name ${property.name} for class $name"
-        }
-        properties[property.name] = KtProperty(property, kProperty, variantType, defaultValueProvider, isRef)
-    }
-
     fun <R : Any?> function(
         func: KFunction1<T, R>,
         variantType: VariantType,
@@ -306,30 +258,6 @@ class ClassBuilderDsl<T : KtObject>(
                 ),
                 func,
                 variantType
-            )
-        )
-    }
-
-    fun <R : Any?> function(
-        func: KFunction1<T, R>,
-        variantType: VariantType,
-        returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
-    ) {
-        val returnBuilder = KtPropertyInfoBuilderDsl()
-        returnBuilder.returns()
-        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
-        rpcConfigBuilder.rpcConfig()
-        appendFunction(
-            KtFunction0(
-                functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
-                    _arguments = listOf(),
-                    returnVal = returnBuilder.build(),
-                    rpcConfig = rpcConfigBuilder.build()
-                ),
-                function = func,
-                variantType = variantType
             )
         )
     }
@@ -359,32 +287,6 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, R : Any?> function(
-        func: KFunction2<T, P0, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        arg: KtPropertyInfoBuilderDsl.() -> Unit,
-        returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
-    ) {
-        val (arguments, returnType) = argumentsAndReturnType(returns, arg)
-        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
-        rpcConfigBuilder.rpcConfig()
-        appendFunction(
-            KtFunction1(
-                functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
-                    _arguments = arguments,
-                    returnVal = returnType,
-                    rpcConfig = rpcConfigBuilder.build()
-                ),
-                function = func,
-                variantType = variantType,
-                p0Type = p0Type
-            )
-        )
-    }
-
     fun <P0, P1, R : Any?> function(
         func: KFunction3<T, P0, P1, R>,
         variantType: VariantType,
@@ -405,37 +307,6 @@ class ClassBuilderDsl<T : KtObject>(
                     ),
                     returnVal = returnType.toKtPropertyInfo(),
                     rpcConfig = rpcConfig
-                ),
-                function = func,
-                variantType = variantType,
-                p0Type = p0Type,
-                p1Type = p1Type
-            )
-        )
-    }
-
-    fun <P0, P1, R : Any?> function(
-        func: KFunction3<T, P0, P1, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
-        returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
-    ) {
-        val (arguments, returnType) = argumentsAndReturnType(returns, *args)
-        require(args.size == 2) {
-            "Function ${func.name.camelToSnakeCase()} should have 2 arguments, found ${args.size}"
-        }
-        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
-        rpcConfigBuilder.rpcConfig()
-        appendFunction(
-            KtFunction2(
-                functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
-                    _arguments = arguments,
-                    returnVal = returnType,
-                    rpcConfig = rpcConfigBuilder.build()
                 ),
                 function = func,
                 variantType = variantType,
@@ -468,39 +339,6 @@ class ClassBuilderDsl<T : KtObject>(
                     ),
                     returnVal = returnType.toKtPropertyInfo(),
                     rpcConfig = rpcConfig
-                ),
-                function = func,
-                variantType = variantType,
-                p0Type = p0Type,
-                p1Type = p1Type,
-                p2Type = p2Type
-            )
-        )
-    }
-
-    fun <P0, P1, P2, R : Any?> function(
-        func: KFunction4<T, P0, P1, P2, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
-        returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
-    ) {
-        val (arguments, returnType) = argumentsAndReturnType(returns, *args)
-        require(args.size == 3) {
-            "Function ${func.name.camelToSnakeCase()} should have 3 arguments, found ${args.size}"
-        }
-        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
-        rpcConfigBuilder.rpcConfig()
-        appendFunction(
-            KtFunction3(
-                functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
-                    _arguments = arguments,
-                    returnVal = returnType,
-                    rpcConfig = rpcConfigBuilder.build()
                 ),
                 function = func,
                 variantType = variantType,
@@ -537,41 +375,6 @@ class ClassBuilderDsl<T : KtObject>(
                     ),
                     returnVal = returnType.toKtPropertyInfo(),
                     rpcConfig = rpcConfig
-                ),
-                function = func,
-                variantType = variantType,
-                p0Type = p0Type,
-                p1Type = p1Type,
-                p2Type = p2Type,
-                p3Type = p3Type
-            )
-        )
-    }
-
-    fun <P0, P1, P2, P3, R : Any?> function(
-        func: KFunction5<T, P0, P1, P2, P3, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
-        returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
-    ) {
-        val (arguments, returnType) = argumentsAndReturnType(returns, *args)
-        require(args.size == 4) {
-            "Function ${func.name.camelToSnakeCase()} should have 4 arguments, found ${args.size}"
-        }
-        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
-        rpcConfigBuilder.rpcConfig()
-        appendFunction(
-            KtFunction4(
-                functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
-                    _arguments = arguments,
-                    returnVal = returnType,
-                    rpcConfig = rpcConfigBuilder.build()
                 ),
                 function = func,
                 variantType = variantType,
@@ -612,43 +415,6 @@ class ClassBuilderDsl<T : KtObject>(
                     ),
                     returnVal = returnType.toKtPropertyInfo(),
                     rpcConfig = rpcConfig
-                ),
-                function = func,
-                variantType = variantType,
-                p0Type = p0Type,
-                p1Type = p1Type,
-                p2Type = p2Type,
-                p3Type = p3Type,
-                p4Type = p4Type
-            )
-        )
-    }
-
-    fun <P0, P1, P2, P3, P4, R : Any?> function(
-        func: KFunction6<T, P0, P1, P2, P3, P4, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
-        returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
-    ) {
-        val (arguments, returnType) = argumentsAndReturnType(returns, *args)
-        require(args.size == 5) {
-            "Function ${func.name.camelToSnakeCase()} should have 5 arguments, found ${args.size}"
-        }
-        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
-        rpcConfigBuilder.rpcConfig()
-        appendFunction(
-            KtFunction5(
-                functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
-                    _arguments = arguments,
-                    returnVal = returnType,
-                    rpcConfig = rpcConfigBuilder.build()
                 ),
                 function = func,
                 variantType = variantType,
@@ -757,23 +523,6 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <T> signal(kProperty: KProperty<T>, args: Array<KtPropertyInfoBuilderDsl.() -> Unit> = arrayOf()) {
-        appendSignal(
-            KtSignalInfo(kProperty.name.removePrefix("signal").camelToSnakeCase(), args.applyArgumentsDsl())
-        )
-    }
-
-    private fun argumentsAndReturnType(
-        returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        vararg args: KtPropertyInfoBuilderDsl.() -> Unit
-    ): Pair<List<KtPropertyInfo>, KtPropertyInfo> {
-        val returnBuilder = KtPropertyInfoBuilderDsl()
-        returnBuilder.returns()
-        val returnInfo = returnBuilder.build()
-
-        return args.applyArgumentsDsl() to returnInfo
-    }
-
     private fun <R : Any?> appendFunction(function: KtFunction<T, R>) {
         require(!functions.containsKey(function.functionInfo.name)) {
             "A method with ${function.functionInfo.name} already exists."
@@ -806,22 +555,6 @@ class ClassBuilderDsl<T : KtObject>(
             signals,
             baseGodotClass
         )
-    }
-
-    @PublishedApi
-    internal fun Array<out KtPropertyInfoBuilderDsl.() -> Unit>.applyArgumentsDsl(): List<KtPropertyInfo> {
-        val argumentsCheckList = mutableSetOf<String>()
-        return map {
-            val builder = KtPropertyInfoBuilderDsl()
-            builder.it()
-            val propertyInfo = builder.build()
-            require(!argumentsCheckList.contains(propertyInfo.name)) {
-                "Cannot have two arguments with name ${propertyInfo.name}"
-            }
-            require(propertyInfo.name.isNotEmpty()) { "Function parameters should have names." }
-            argumentsCheckList.add(propertyInfo.name)
-            propertyInfo
-        }
     }
 }
 
