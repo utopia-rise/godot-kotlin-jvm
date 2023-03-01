@@ -663,6 +663,8 @@ public open class Tween : RefCounted() {
 
   /**
    * Sets the default transition type for [godot.PropertyTweener]s and [godot.MethodTweener]s animated by this [godot.Tween].
+   *
+   * If not specified, the default value is [TRANS_LINEAR].
    */
   public fun setTrans(trans: TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
@@ -672,6 +674,8 @@ public open class Tween : RefCounted() {
 
   /**
    * Sets the default ease type for [godot.PropertyTweener]s and [godot.MethodTweener]s animated by this [godot.Tween].
+   *
+   * If not specified, the default value is [EASE_IN_OUT].
    */
   public fun setEase(ease: EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)

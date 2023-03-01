@@ -20,8 +20,6 @@ public:
 
     String get_extension() const override;
 
-    Error execute_file(const String& p_path) override;
-
     void finish() override;
 
     void get_reserved_words(List<String>* p_words) const override;
@@ -120,14 +118,6 @@ public:
     int profiling_get_accumulated_data(ProfilingInfo* p_info_arr, int p_info_max) override;
 
     int profiling_get_frame_data(ProfilingInfo* p_info_arr, int p_info_max) override;
-
-    void* alloc_instance_binding_data(Object* p_object) override;
-
-    void free_instance_binding_data(void* p_data) override;
-
-    void refcount_incremented_instance_binding(Object* p_object) override;
-
-    bool refcount_decremented_instance_binding(Object* p_object) override;
 
     void frame() override;
 

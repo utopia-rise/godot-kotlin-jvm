@@ -19,7 +19,7 @@ import kotlin.Suppress
  * Editor-only singleton that returns paths to various OS-specific data folders and files.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html](https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html)
+ * [$DOCS_URL/tutorials/io/data_paths.html]($DOCS_URL/tutorials/io/data_paths.html)
  *
  * This editor-only singleton returns OS-specific paths to various data folders and files. It can be used in editor plugins to ensure files are saved in the correct location on each operating system.
  *

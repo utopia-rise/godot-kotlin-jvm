@@ -61,13 +61,6 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    *
    */
-  public open fun _executeFile(path: String): GodotError {
-    throw NotImplementedError("_execute_file is not implemented for ScriptLanguageExtension")
-  }
-
-  /**
-   *
-   */
   public open fun _finish(): Unit {
   }
 
@@ -406,19 +399,6 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    *
    */
   public open fun _profilingStop(): Unit {
-  }
-
-  /**
-   *
-   */
-  public open fun _refcountIncrementedInstanceBinding(_object: Object): Unit {
-  }
-
-  /**
-   *
-   */
-  public open fun _refcountDecrementedInstanceBinding(_object: Object): Boolean {
-    throw NotImplementedError("_refcount_decremented_instance_binding is not implemented for ScriptLanguageExtension")
   }
 
   /**

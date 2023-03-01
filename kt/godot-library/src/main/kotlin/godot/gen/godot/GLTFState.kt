@@ -295,19 +295,6 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_SKELETONS, NIL)
     }
 
-  public var skeletonToNode: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_SKELETON_TO_NODE,
-          DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_SKELETON_TO_NODE,
-          NIL)
-    }
-
   public var createAnimations: Boolean
     get() {
       TransferContext.writeArguments()

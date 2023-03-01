@@ -6296,8 +6296,6 @@ private fun registerEngineTypeMethodForGLTFState(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GLTFSTATE to "set_unique_animation_names")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GLTFSTATE to "get_skeletons")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GLTFSTATE to "set_skeletons")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GLTFSTATE to "get_skeleton_to_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GLTFSTATE to "set_skeleton_to_node")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GLTFSTATE to "get_create_animations")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GLTFSTATE to "set_create_animations")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GLTFSTATE to "get_animations")
@@ -11449,7 +11447,6 @@ private fun registerEngineTypeMethodForScriptLanguageExtension(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_init")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_extension")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_execute_file")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_finish")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_reserved_words")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
@@ -11513,14 +11510,6 @@ private fun registerEngineTypeMethodForScriptLanguageExtension(): Unit {
       "_profiling_get_accumulated_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
       "_profiling_get_frame_data")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
-      "_alloc_instance_binding_data")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
-      "_free_instance_binding_data")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
-      "_refcount_incremented_instance_binding")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
-      "_refcount_decremented_instance_binding")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_frame")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
       "_handles_global_class_type")

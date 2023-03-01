@@ -67,7 +67,9 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Return true if this plugin will customize resources based on the platform and features used.
+   * Return `true` if this plugin will customize resources based on the platform and features used.
+   *
+   * When enabled, [_getCustomizationConfigurationHash], [_customizeResource] and [_customizeScene] will be called and must be implemented.
    */
   public open fun _beginCustomizeResources(platform: EditorExportPlatform,
       features: PackedStringArray): Boolean {
@@ -78,6 +80,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    * Customize a resource. If changes are made to it, return the same or a new resource. Otherwise, return `null`.
    *
    * The *path* argument is only used when customizing an actual file, otherwise this means that this resource is part of another one and it will be empty.
+   *
+   * Implementing this method is required if [_beginCustomizeResources] returns `true`.
    */
   public open fun _customizeResource(resource: Resource, path: String): Resource? {
     throw NotImplementedError("_customize_resource is not implemented for EditorExportPlugin")
@@ -93,6 +97,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
 
   /**
    * Customize a scene. If changes are made to it, return the same or a new scene. Otherwise, return `null`. If a new scene is returned, it is up to you to dispose of the old one.
+   *
+   * Implementing this method is required if [_beginCustomizeResources] returns `true`.
    */
   public open fun _customizeScene(scene: Node, path: String): Node? {
     throw NotImplementedError("_customize_scene is not implemented for EditorExportPlugin")
@@ -100,6 +106,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
 
   /**
    * Return a hash based on the configuration passed (for both scenes and resources). This helps keep separate caches for separate export configurations.
+   *
+   * Implementing this method is required if [_beginCustomizeResources] returns `true`.
    */
   public open fun _getCustomizationConfigurationHash(): Long {
     throw NotImplementedError("_get_customization_configuration_hash is not implemented for EditorExportPlugin")
@@ -126,7 +134,9 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Return the name identifier of this plugin (for future identification by the exporter).
+   * Return the name identifier of this plugin (for future identification by the exporter). The plugins are sorted by name before exporting.
+   *
+   * Implementing this method is required.
    */
   public open fun _getName(): String {
     throw NotImplementedError("_get_name is not implemented for EditorExportPlugin")
