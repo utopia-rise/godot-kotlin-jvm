@@ -3,13 +3,7 @@ package godot.entrygenerator.generator
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.LambdaTypeName
 import com.squareup.kotlinpoet.MemberName.Companion.member
-import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeSpec
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.toGodotVariantType
 import godot.entrygenerator.ext.toKtVariantType
@@ -26,7 +20,6 @@ object PropertyRegistrationGenerator {
         registeredClass: RegisteredClass,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
-        classRegistrarBuilder: TypeSpec.Builder
     ) {
         registeredClass
             .properties
@@ -36,7 +29,6 @@ object PropertyRegistrationGenerator {
                         registeredProperty,
                         className,
                         registerClassControlFlow,
-                        classRegistrarBuilder
                     )
                     registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS &&
@@ -44,28 +36,15 @@ object PropertyRegistrationGenerator {
                         registeredProperty,
                         className,
                         registerClassControlFlow,
-                        classRegistrarBuilder
                     )
                     registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*\$")) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS -> registerEnumList(
                         registeredProperty,
                         className,
                         registerClassControlFlow,
-                        classRegistrarBuilder
                     )
-                    else -> registerProperty(registeredProperty, className, registerClassControlFlow, classRegistrarBuilder)
+                    else -> registerProperty(registeredProperty, className, registerClassControlFlow)
                 }
-            }
-    }
-
-    fun generateForAbstractClass(
-        registeredClass: RegisteredClass,
-        classRegistrarBuilder: TypeSpec.Builder
-    ) {
-        registeredClass
-            .properties
-            .forEach { registeredProperty ->
-                generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
             }
     }
 
@@ -73,9 +52,7 @@ object PropertyRegistrationGenerator {
         registeredProperty: RegisteredProperty,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
-        classRegistrarBuilder: TypeSpec.Builder
     ) {
-        val defaultValueProviderVariableName = generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
         val typeFqNameWithNullability = if (registeredProperty.type.isNullable) {
             "${registeredProperty.type.fqName}?"
         } else {
@@ -102,10 +79,7 @@ object PropertyRegistrationGenerator {
         registeredProperty: RegisteredProperty,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
-        classRegistrarBuilder: TypeSpec.Builder
     ) {
-        val defaultValueProvider = generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
-
         registerClassControlFlow
             .addStatement(
                 "enumListProperty(%L,·%L,·%S)",
@@ -122,10 +96,7 @@ object PropertyRegistrationGenerator {
         registeredProperty: RegisteredProperty,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
-        classRegistrarBuilder: TypeSpec.Builder
     ) {
-        val defaultValueProvider = generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
-
         registerClassControlFlow
             .addStatement(
                 "enumFlagProperty(%L,·%L,·%S)",
@@ -142,10 +113,7 @@ object PropertyRegistrationGenerator {
         registeredProperty: RegisteredProperty,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
-        classRegistrarBuilder: TypeSpec.Builder
     ) {
-        val defaultValueProvider = generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
-
         registerClassControlFlow
             .addStatement(
                 "enumProperty(%L,·%L,·%S)",
@@ -168,57 +136,5 @@ object PropertyRegistrationGenerator {
         return registeredProperty
             .annotations
             .hasAnnotation<ExportAnnotation>()
-    }
-
-    private fun generateAndProvideDefaultValueProvider(
-        registeredProperty: RegisteredProperty,
-        classRegistrarBuilder: TypeSpec.Builder
-    ): String {
-        return if (shouldBeVisibleInEditor(registeredProperty) && !registeredProperty.isLateinit) {
-            generateDefaultValueProvider(registeredProperty, classRegistrarBuilder)
-            "${registeredProperty.name}DefaultValueProvider"
-        } else {
-            "{·null·}"
-        }
-    }
-
-    private fun generateDefaultValueProvider(
-        registeredProperty: RegisteredProperty,
-        classRegistrarBuilder: TypeSpec.Builder
-    ) {
-        val (defaultValueStringTemplate, defaultValueStringTemplateValues) = requireNotNull(registeredProperty.defaultValueTemplateAndArgs()) //Fixme
-
-        val returnTypePackagePath = registeredProperty.type.fqName.substringBeforeLast(".")
-        val returnTypeSimpleName = registeredProperty.type.fqName.substringAfterLast(".")
-        val tmpClassName = ClassName(returnTypePackagePath, returnTypeSimpleName)
-        var returnTypeClassName: TypeName = tmpClassName
-
-        if (registeredProperty.type.arguments().isNotEmpty()) {
-            returnTypeClassName = tmpClassName.parameterizedBy(
-                registeredProperty
-                    .type
-                    .arguments()
-                    .map { typeProjection ->
-                        val fqName = typeProjection.fqName
-                        val isNullable = typeProjection.isNullable
-                        ClassName(fqName.substringBeforeLast("."), fqName.substringAfterLast("."))
-                            .copy(nullable = isNullable)
-                    }
-            )
-        }
-
-        val defaultValuePropertySpec = PropertySpec
-            .builder(
-                "${registeredProperty.name}DefaultValueProvider",
-                LambdaTypeName.get(returnType = returnTypeClassName.copy(nullable = defaultValueStringTemplateValues.all { it is String && it == "null" }))
-            )
-            .addModifiers(KModifier.OPEN)
-            .initializer("{·${defaultValueStringTemplate.replace(" ", "·")}·}", *defaultValueStringTemplateValues)
-
-        if (registeredProperty.isOverridee) {
-            defaultValuePropertySpec.addModifiers(KModifier.OVERRIDE)
-        }
-
-        classRegistrarBuilder.addProperty(defaultValuePropertySpec.build())
     }
 }
