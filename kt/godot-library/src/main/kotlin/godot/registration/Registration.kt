@@ -82,7 +82,6 @@ class ClassBuilderDsl<T : KtObject>(
         className: String,
         hint: PropertyHint = PropertyHint.NONE,
         hintString: String = "",
-        defaultValueProvider: () -> P?,
         visibleInEditor: Boolean = true,
         isRef: Boolean = false
     ) {
@@ -101,14 +100,12 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             variantType,
-            defaultValueProvider,
             isRef
         )
     }
 
     inline fun <reified P : Enum<P>> enumProperty(
         kProperty: KMutableProperty1<T, P>,
-        noinline defaultValueProvider: () -> P,
         visibleInEditor: Boolean,
         hintString: String
     ) {
@@ -127,8 +124,6 @@ class ClassBuilderDsl<T : KtObject>(
                 visibleInEditor,
             ),
             kProperty,
-            //TODO change when nullable enum are here.
-            defaultValueProvider,
             { enum: P? -> enum?.ordinal ?: 1 },
             { i -> enumValues<P>()[i] }
         )
@@ -136,7 +131,6 @@ class ClassBuilderDsl<T : KtObject>(
 
     inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
         kProperty: KMutableProperty1<T, L>,
-        noinline defaultValueProvider: () -> L,
         visibleInEditor: Boolean,
         hintString: String
     ) {
@@ -155,7 +149,6 @@ class ClassBuilderDsl<T : KtObject>(
                 visibleInEditor,
             ),
             kProperty,
-            defaultValueProvider,
             { enumList: Collection<P>? ->
                 enumList
                     ?.map { it.ordinal }
@@ -173,19 +166,16 @@ class ClassBuilderDsl<T : KtObject>(
     @Suppress("UNCHECKED_CAST")
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, MutableSet<P>>,
-        noinline defaultValueProvider: () -> MutableSet<P>,
         visibleInEditor: Boolean,
         hintString: String
     ) = enumFlagProperty(
         kProperty as KMutableProperty1<T, Set<P>>,
-        defaultValueProvider,
         visibleInEditor,
         hintString
     )
 
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, Set<P>>,
-        noinline defaultValueProvider: () -> Set<P>,
         visibleInEditor: Boolean,
         hintString: String
     ) {
@@ -204,8 +194,6 @@ class ClassBuilderDsl<T : KtObject>(
                 visibleInEditor,
             ),
             kProperty,
-            //TODO : Change when null default values are supported
-            defaultValueProvider,
             { enumSet ->
                 var intFlag = 0
                 enumSet?.forEach { enum ->
