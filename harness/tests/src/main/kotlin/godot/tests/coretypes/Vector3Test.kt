@@ -10,10 +10,10 @@ import godot.util.RealT
 class Vector3Test : Node() {
 
     @RegisterFunction
-    fun get(vector3: Vector3, index: Int) = vector3[index]
+    fun getFromVector3(vector3: Vector3, index: Int) = vector3[index]
 
     @RegisterFunction
-    fun set(vector3: Vector3, index: Int, realT: RealT): Vector3 {
+    fun setInVector3(vector3: Vector3, index: Int, realT: RealT): Vector3 {
         vector3[index] = realT
         return vector3
     }

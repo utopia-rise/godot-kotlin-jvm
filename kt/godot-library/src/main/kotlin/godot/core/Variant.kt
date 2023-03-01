@@ -3,6 +3,7 @@ package godot.core
 import godot.core.VariantType.*
 import godot.core.VariantType.AABB
 import godot.core.memory.GarbageCollector
+import godot.signals.Signal
 import godot.util.toRealT
 import java.nio.ByteBuffer
 
@@ -17,9 +18,10 @@ internal val variantMapper = mutableMapOf(
     Byte::class to JVM_BYTE,
     Double::class to DOUBLE,
     String::class to STRING,
-    AABB::class to AABB,
+    godot.core.AABB::class to AABB,
     Basis::class to BASIS,
     Color::class to COLOR,
+    StringName::class to STRING_NAME,
     Dictionary::class to DICTIONARY,
     VariantArray::class to ARRAY,
     Plane::class to PLANE,
@@ -37,6 +39,8 @@ internal val variantMapper = mutableMapOf(
     Vector4::class to VECTOR4,
     Vector4i::class to VECTOR4I,
     Projection::class to PROJECTION,
+    Callable::class to CALLABLE,
+    Signal::class to SIGNAL,
     PackedByteArray::class to PACKED_BYTE_ARRAY,
     PackedColorArray::class to PACKED_COLOR_ARRAY,
     PackedInt32Array::class to PACKED_INT_32_ARRAY,
@@ -667,7 +671,7 @@ enum class VariantType(
     ),
 
     ANY(
-        Long.MAX_VALUE,
+        ANY_VARIANT_TYPE,
         { buffer: ByteBuffer, expectedType: Int ->
             values()[expectedType].toKotlinWithoutNullCheck(buffer, expectedType)
         },
@@ -688,6 +692,8 @@ enum class VariantType(
                 is Vector3 -> VECTOR3.toGodotWithoutNullCheck(buffer, any)
                 is Vector3i -> VECTOR3I.toGodotWithoutNullCheck(buffer, any)
                 is Transform2D -> TRANSFORM2D.toGodotWithoutNullCheck(buffer, any)
+                is Vector4 -> VECTOR4.toGodotWithoutNullCheck(buffer, any)
+                is Vector4i -> VECTOR4I.toGodotWithoutNullCheck(buffer, any)
                 is Plane -> PLANE.toGodotWithoutNullCheck(buffer, any)
                 is Quaternion -> QUATERNION.toGodotWithoutNullCheck(buffer, any)
                 is godot.core.AABB -> AABB.toGodotWithoutNullCheck(buffer, any)
@@ -698,6 +704,8 @@ enum class VariantType(
                 is NodePath -> NODE_PATH.toGodotWithoutNullCheck(buffer, any)
                 is RID -> _RID.toGodotWithoutNullCheck(buffer, any)
                 is VariantArray<*> -> ARRAY.toGodotWithoutNullCheck(buffer, any)
+                is Callable -> CALLABLE.toGodotWithoutNullCheck(buffer, any)
+                is Signal -> SIGNAL.toGodotWithoutNullCheck(buffer, any)
                 is Dictionary<*, *> -> DICTIONARY.toGodotWithoutNullCheck(buffer, any)
                 is PackedByteArray -> PACKED_BYTE_ARRAY.toGodotWithoutNullCheck(buffer, any)
                 is PackedInt32Array -> PACKED_INT_32_ARRAY.toGodotWithoutNullCheck(buffer, any)
@@ -742,7 +750,7 @@ enum class VariantType(
 }
 
 internal fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> Any?): (ByteBuffer, Boolean) -> Any? {
-    return if (this.ordinal == ANY_VARIANT_TYPE) {
+    return if (this.id == ANY_VARIANT_TYPE) {
         { buffer: ByteBuffer, isNullable: Boolean ->
             val variantType = buffer.variantType
             if (variantType == NIL.ordinal) {
@@ -774,4 +782,4 @@ private inline fun <reified T : NativeCoreType> VariantType.toGodotNativeCoreTyp
     buffer.putLong(any._handle)
 }
 
-private const val ANY_VARIANT_TYPE = 31
+private const val ANY_VARIANT_TYPE = Long.MAX_VALUE

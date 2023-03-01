@@ -1,11 +1,11 @@
 extends "res://addons/gut/test.gd"
 
 func test_nullables_are_correctly_set_from_function_lika_a_ready_call():
-	var spatial = Spatial.new()
+	var node3d = Node3D.new()
 	var rpc_tests_script = RPCTests.new()
-	spatial.add_child(rpc_tests_script)
-	get_tree().root.add_child(spatial)
-	var network_peer = NetworkedMultiplayerENet.new()
+	node3d.add_child(rpc_tests_script)
+	get_tree().root.add_child(node3d)
+	var network_peer = ENetMultiplayerPeer.new()
 	network_peer.create_server(9010)
 	get_tree().network_peer = network_peer
 	
@@ -20,6 +20,6 @@ func test_nullables_are_correctly_set_from_function_lika_a_ready_call():
 	assert_eq(rpc_tests_script.remote_sync_property, true, "remote_sync_property should be true after calling the corresponding function")
 	
 	get_tree().network_peer = null
-	spatial.free()
+	node3d.free()
 
 
