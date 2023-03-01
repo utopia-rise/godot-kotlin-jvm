@@ -10,7 +10,6 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
-import godot.entrygenerator.ext.getAnnotationUnsafe
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.toGodotVariantType
 import godot.entrygenerator.ext.toKtVariantType
@@ -18,7 +17,6 @@ import godot.entrygenerator.generator.hintstring.PropertyHintStringGeneratorProv
 import godot.entrygenerator.generator.typehint.PropertyTypeHintProvider
 import godot.entrygenerator.model.EnumAnnotation
 import godot.entrygenerator.model.ExportAnnotation
-import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.TypeKind
@@ -86,7 +84,7 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "property(%L,·%T,·%T,·%S,·%T,·%S,·$defaultValueProviderVariableName,·%L)",
+                "property(%L,·%T,·%T,·%S,·%T,·%S,·%L)",
                 getPropertyReference(registeredProperty, className),
                 registeredProperty.type.toKtVariantType(),
                 registeredProperty.type.toGodotVariantType(),
@@ -110,7 +108,7 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumListProperty(%L,·$defaultValueProvider,·%L,·%S)",
+                "enumListProperty(%L,·%L,·%S)",
                 getPropertyReference(registeredProperty, className),
                 shouldBeVisibleInEditor(registeredProperty),
                 PropertyHintStringGeneratorProvider
@@ -130,7 +128,7 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumFlagProperty(%L,·$defaultValueProvider,·%L,·%S)",
+                "enumFlagProperty(%L,·%L,·%S)",
                 getPropertyReference(registeredProperty, className),
                 shouldBeVisibleInEditor(registeredProperty),
                 PropertyHintStringGeneratorProvider
@@ -150,7 +148,7 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumProperty(%L,·$defaultValueProvider,·%L,·%S)",
+                "enumProperty(%L,·%L,·%S)",
                 getPropertyReference(registeredProperty, className),
                 shouldBeVisibleInEditor(registeredProperty),
                 PropertyHintStringGeneratorProvider
