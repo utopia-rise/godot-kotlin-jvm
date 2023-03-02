@@ -89,7 +89,7 @@ annotation class EnumTypeHint
  */
 @Target(AnnotationTarget.PROPERTY)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class ExpEasing(val attenuation: Boolean = false, val inout: Boolean = true)
+annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly: Boolean = true)
 
 /**
  * Can only be used on Float and Double properties!
