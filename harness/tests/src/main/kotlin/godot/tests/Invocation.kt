@@ -10,7 +10,6 @@ import godot.annotation.DoubleRange
 import godot.annotation.EnumFlag
 import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
-import godot.annotation.ExpRange
 import godot.annotation.Export
 import godot.annotation.File
 import godot.annotation.FloatRange
@@ -222,12 +221,12 @@ class Invocation : Node3D() {
 
 	@Export
 	@RegisterProperty
-	@ExpRange(1f, 2f)
+	@DoubleRange(1.0, 2.0)
 	var p4 = 1.0
 
 	@Export
 	@RegisterProperty
-	@ExpRange(1f, 2f)
+	@FloatRange(1f, 2f)
 	var p5 = 1f
 
 	@Export
@@ -287,7 +286,7 @@ class Invocation : Node3D() {
 	@Export
 	@RegisterProperty
 	@PlaceHolderText
-	var p16 = "someDir"
+	var p16 = "some placeholderText"
 
 	@Export
 	@RegisterProperty
@@ -644,7 +643,7 @@ class Invocation : Node3D() {
 
 	@RegisterFunction
 	fun isSentXrSameInstanceAsJvmSingleton(arvrServer: XRServer) =
-        XRServer.getInstanceId() == arvrServer.getInstanceId()
+		XRServer.getInstanceId() == arvrServer.getInstanceId()
 
 	@RegisterFunction
 	fun nullableStringIsNull(nullableString: String?) = nullableString == null
@@ -656,6 +655,6 @@ class Invocation : Node3D() {
 		"not null"
 	}
 
-    @RegisterFunction
-    fun createVariantArrayOfUserType() = variantArrayOf<OtherScript>()
+	@RegisterFunction
+	fun createVariantArrayOfUserType() = variantArrayOf<OtherScript>()
 }

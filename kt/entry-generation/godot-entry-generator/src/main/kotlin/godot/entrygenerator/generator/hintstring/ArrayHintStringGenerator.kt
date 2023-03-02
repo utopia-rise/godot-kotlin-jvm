@@ -25,7 +25,7 @@ class ArrayHintStringGenerator(
             elementType != null && elementType.fqName == Any::class.qualifiedName -> ""
             elementType != null && elementType.kind == TypeKind.ENUM_CLASS -> {
                 propertyHintAnnotation?.enumValueNames?.joinToString(",")?.let { enumValuesHintString ->
-                    "2/3:$enumValuesHintString" //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
+                    "2/2:$enumValuesHintString" //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
                 } ?: ""
             }
             else -> {
@@ -42,7 +42,7 @@ class ArrayHintStringGenerator(
                     loop@ while (currentElementType != null) {
                         when {
                             currentElementType.isCompatibleList() -> {
-                                append(":19") //variant.type.array.ordinal
+                                append(":28") //variant.type.array.ordinal
                                 currentElementType = currentElementType.arguments().firstOrNull()
                             }
                             currentElementType.isGodotPrimitive() || currentElementType.isCoreType() -> {

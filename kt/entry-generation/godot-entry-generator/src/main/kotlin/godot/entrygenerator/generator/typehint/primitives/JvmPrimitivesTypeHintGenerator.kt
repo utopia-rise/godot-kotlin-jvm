@@ -6,7 +6,6 @@ import godot.entrygenerator.generator.typehint.PropertyTypeHintGenerator
 import godot.entrygenerator.model.DirHintAnnotation
 import godot.entrygenerator.model.DoubleRangeHintAnnotation
 import godot.entrygenerator.model.ExpEasingHintAnnotation
-import godot.entrygenerator.model.ExpRangeHintAnnotation
 import godot.entrygenerator.model.FileHintAnnotation
 import godot.entrygenerator.model.FloatRangeHintAnnotation
 import godot.entrygenerator.model.IntRangeHintAnnotation
@@ -26,7 +25,6 @@ class JvmPrimitivesTypeHintGenerator(
             is FloatRangeHintAnnotation,
             is LongRangeHintAnnotation,
             is DoubleRangeHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "RANGE")
-            is ExpRangeHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "EXP_RANGE")
             is ExpEasingHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "EXP_EASING")
             is FileHintAnnotation -> if (propertyHintAnnotation.global) {
                 ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "GLOBAL_FILE")

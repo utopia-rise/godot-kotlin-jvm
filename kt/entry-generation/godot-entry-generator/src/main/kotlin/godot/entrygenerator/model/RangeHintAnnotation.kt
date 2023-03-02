@@ -33,9 +33,3 @@ class DoubleRangeHintAnnotation(
     override val step: Double,
     val or: Range
 ) : RangeHintAnnotation<Double>()
-
-class ExpRangeHintAnnotation(
-    override val start: Float,
-    override val end: Float,
-    override val step: Float
-) : RangeHintAnnotation<Float>()
