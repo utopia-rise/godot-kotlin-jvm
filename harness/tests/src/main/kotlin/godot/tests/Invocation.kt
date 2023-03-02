@@ -41,6 +41,7 @@ import godot.core.asStringName
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
 import godot.extensions.getNodeAs
+import godot.registration.Range
 import godot.signals.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
@@ -221,7 +222,7 @@ class Invocation : Node3D() {
 
 	@Export
 	@RegisterProperty
-	@DoubleRange(1.0, 2.0)
+	@DoubleRange(min = 1.0, max = 2.0, step = 0.1, or = Range.OR_GREATER, hideSlider = true, isDegrees = true, suffix = "MyCoolSuffix")
 	var p4 = 1.0
 
 	@Export
