@@ -13,9 +13,6 @@ class RpcTests : Node() {
     @RegisterProperty
     var remoteSyncCalled: Boolean = false
 
-    @RegisterProperty
-    var remoteSyncProperty: Boolean = false
-
     @Rpc(sync = Sync.SYNC)
     @RegisterFunction
     fun remoteSyncTest(called: Boolean) {

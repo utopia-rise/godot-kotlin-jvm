@@ -16,7 +16,7 @@ func test_nullables_are_correctly_set_from_function_lika_a_ready_call():
 	node3d.free()
 
 func test_nullables_are_correctly_set_from_inspector():
-	var test_scene = load("res://Spatial.tscn").instance()
+	var test_scene = load("res://Spatial.tscn").instantiate()
 	get_tree().root.add_child(test_scene)
 	assert_eq(test_scene.nullable_long, 2, "nullable_long should have been set in inspector to 2")
 	assert_eq(test_scene.lateinit_string, "works also from inspector", "lateinit_string should have been set in ready to works also from inspector")

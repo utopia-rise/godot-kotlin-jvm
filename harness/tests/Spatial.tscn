@@ -2,35 +2,28 @@
 
 [ext_resource type="Script" path="res://src/main/kotlin/godot/tests/Invocation.kt" id="1"]
 
-[sub_resource type="NavigationMesh" id="4"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_prd4u"]
 
-[sub_resource type="NavigationMesh" id="5"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_tuyoa"]
 
-[sub_resource type="NavigationMesh" id="2"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_bh4po"]
 
-[sub_resource type="NavigationMesh" id="3"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_bdc7j"]
 
-[sub_resource type="NavigationMesh" id="1"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_abcao"]
 
 [node name="Spatial" type="Node3D"]
 script = ExtResource("1")
 nullable_long = 2
 lateinit_string = "works also from inspector"
-register_object_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://src/main/kotlin/godot/tests/subpackage/OtherScript.kt"))
-
-register_object_non_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://src/main/kotlin/godot/tests/subpackage/OtherScript.kt"))
-
-invocation = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://src/main/kotlin/godot/tests/subpackage/OtherScript.kt"))
-
-resource_test = SubResource("4")
-jvm_id = 1654589039
-nav_meshes = Array[NavigationMesh]([SubResource("5")])
-nullable_array = Array[NavigationMesh]([SubResource("2"), null])
+resource_test = SubResource("NavigationMesh_prd4u")
+nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_tuyoa")])
+nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_bh4po"), null])
 nav_meshes_dictionary = {
-"AwesomeNavmesh": SubResource("3")
+"AwesomeNavmesh": SubResource("NavigationMesh_bdc7j")
 }
 nullable_dictionary = {
-"notnull": SubResource("1"),
+"notnull": SubResource("NavigationMesh_abcao"),
 "null": null
 }
 

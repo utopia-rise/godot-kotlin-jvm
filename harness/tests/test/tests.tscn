@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://6n4uuf0d8tyg"]
-
-[ext_resource type="Script" path="res://addons/gut/plugin_control.gd" id="1"]
-
-[node name="Gut" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1")

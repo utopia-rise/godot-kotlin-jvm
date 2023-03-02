@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="Godot Kotlin Tests"
-run/main_scene="res://test/tests.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 

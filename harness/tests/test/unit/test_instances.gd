@@ -7,7 +7,7 @@ func test_parameter_still_same_instance() -> void:
 	invocation_script.free()
 
 func test_script_is_attached_when_scene() -> void:
-	var invocation_script = load("res://Spatial.tscn").instance()
+	var invocation_script = load("res://Spatial.tscn").instantiate()
 	assert_eq(invocation_script.get_script(), godot_tests_Invocation, "Script should be set when creating scene.")
 	invocation_script.free()
 

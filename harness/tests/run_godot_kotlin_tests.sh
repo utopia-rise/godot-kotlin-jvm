@@ -1,7 +1,7 @@
 $1 -d -s --headless --path $PWD addons/gut/gut_cmdln.gd | ( no_error="false"; jvm_closed="false"; while read -r line
 do
     echo "$line"
-    if echo "$line" | grep -q "Failing asserts:  0"; then
+    if echo "$line" | grep -q "Failing tests     0"; then
         no_error="true"
     fi
     if echo "$line" | grep -q "Shutting down JVM ..."; then
