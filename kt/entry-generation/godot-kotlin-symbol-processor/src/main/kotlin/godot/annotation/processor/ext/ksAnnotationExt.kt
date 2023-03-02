@@ -143,10 +143,10 @@ fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotat
         EnumTypeHint::class.qualifiedName -> null
         ExpEasing::class.qualifiedName -> {
             val attenuation = ((arguments.firstOrNull { it.name?.asString() == "attenuation" }?.value ?: arguments.firstOrNull()?.value) as? Boolean) ?: false
-            val inout = ((arguments.firstOrNull { it.name?.asString() == "inout" }?.value ?: arguments[1].value) as? Boolean) ?: false
+            val isPositiveOnly = ((arguments.firstOrNull { it.name?.asString() == "isPositiveOnly" }?.value ?: arguments[1].value) as? Boolean) ?: false
             ExpEasingHintAnnotation(
                 attenuation,
-                inout
+                isPositiveOnly
             )
         }
         godot.annotation.File::class.qualifiedName -> {
