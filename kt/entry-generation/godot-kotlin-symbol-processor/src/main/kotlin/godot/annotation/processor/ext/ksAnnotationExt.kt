@@ -27,7 +27,6 @@ import godot.entrygenerator.model.DirHintAnnotation
 import godot.entrygenerator.model.DoubleRangeHintAnnotation
 import godot.entrygenerator.model.EnumFlagHintStringAnnotation
 import godot.entrygenerator.model.ExpEasingHintAnnotation
-import godot.entrygenerator.model.ExpRangeHintAnnotation
 import godot.entrygenerator.model.ExportAnnotation
 import godot.entrygenerator.model.FileHintAnnotation
 import godot.entrygenerator.model.FloatRangeHintAnnotation
@@ -190,17 +189,6 @@ fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotat
                 end,
                 step,
                 or
-            )
-        }
-        godot.annotation.ExpRange::class.qualifiedName -> {
-            val start = (arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: arguments.first().value) as Float
-            val end = (arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: arguments[1].value) as Float
-            val step = ((arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: arguments[2].value) as? Float) ?: -1f
-
-            ExpRangeHintAnnotation(
-                start,
-                end,
-                step
             )
         }
         EnumTypeHint::class.qualifiedName -> null

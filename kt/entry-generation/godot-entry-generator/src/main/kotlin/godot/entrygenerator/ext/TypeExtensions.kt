@@ -139,7 +139,7 @@ fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     "$godotCorePackage.${GodotTypes.packedVector3Array}" -> 36
     "$godotCorePackage.${GodotTypes.packedColorArray}" -> 37
     else -> if (this.isCompatibleListType()) {
-        19
+        28
     } else {
         null
     }

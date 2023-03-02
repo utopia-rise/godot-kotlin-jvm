@@ -38,13 +38,6 @@ annotation class FloatRange(val start: Float, val end: Float, val step: Float = 
 annotation class DoubleRange(val start: Double, val end: Double, val step: Double = -1.0, val or: Range = Range.NONE)
 
 /**
- * Can only be used on Float and Double properties!
- */
-@Target(AnnotationTarget.PROPERTY)
-@Retention(AnnotationRetention.RUNTIME)
-annotation class ExpRange(val start: Float, val end: Float, val step: Float = -1f)
-
-/**
  * Can only be used on Enum properties!
  */
 @Target(AnnotationTarget.PROPERTY)
