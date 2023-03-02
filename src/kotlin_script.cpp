@@ -112,14 +112,15 @@ void KotlinScript::get_script_signal_list(List<MethodInfo>* r_signals) const {
 }
 
 bool KotlinScript::get_property_default_value(const StringName& p_property, Variant& r_value) const {
-    bool has_default {false};
-    if (KtClass * kt_class {get_kotlin_class()}) {
-        if (KtProperty * property {kt_class->get_property(p_property)}) {
-            property->get_default_value(r_value);
-            has_default = true;
-        }
+#ifdef TOOLS_ENABLED
+    HashMap<StringName, Variant>::ConstIterator it { exported_members_default_value_cache.find(p_property) };
+    if (it) {
+        r_value = it->value;
+        return true;
     }
-    return has_default;
+#endif
+
+    return false;
 }
 
 void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {
@@ -224,18 +225,25 @@ void KotlinScript::update_exports() {
 #endif
 }
 
-void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) const {
+void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) {
 #ifdef TOOLS_ENABLED
-    List<PropertyInfo> properties;
-    HashMap<StringName, Variant> default_values;
-    get_script_property_list(&properties);
-    for (int i = 0; i < properties.size(); ++i) {
-        StringName property_name {properties[i].name};
-        Variant ret;
-        get_property_default_value(property_name, ret);
-        default_values[property_name] = ret;
+    exported_members_default_value_cache.clear();
+    if (KtClass * kt_class {get_kotlin_class()}) {
+        Object* tmp_object {ClassDB::instantiate(kt_class->base_godot_class)};
+        KotlinInstance* script_instance {
+          dynamic_cast<KotlinInstance*>(_instance_create({}, 0, tmp_object))};
+
+        List<PropertyInfo> properties;
+        get_script_property_list(&properties);
+        for (int i = 0; i < properties.size(); ++i) {
+            Variant default_value;
+            const String& property_name{ properties[i].name };
+            script_instance->get_or_default(property_name, default_value);
+            exported_members_default_value_cache[property_name] = default_value;
+        }
+        placeholder->update(properties, exported_members_default_value_cache);
+        memdelete(tmp_object);
     }
-    placeholder->update(properties, default_values);
 #endif
 }
 
@@ -247,4 +255,10 @@ void KotlinScript::_placeholder_erased(PlaceHolderScriptInstance* p_placeholder)
 
 void KotlinScript::_bind_methods() {
     ClassDB::bind_vararg_method(METHOD_FLAGS_DEFAULT, "new", &KotlinScript::_new, MethodInfo("new"));
+}
+
+KotlinScript::~KotlinScript() {
+#ifdef TOOLS_ENABLED
+    exported_members_default_value_cache.clear();
+#endif
 }

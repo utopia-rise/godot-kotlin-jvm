@@ -45,10 +45,12 @@ public:
 
     PropertyInfo get_member_info();
 
-    void callGet(KtObject* instance, Variant& r_ret);
-    void setCall(KtObject* instance, const Variant& p_value);
+    void call_get(KtObject* instance, Variant& r_ret);
+    void call_set(KtObject* instance, const Variant& p_value);
 
-    void get_default_value(Variant& r_value);
+#ifdef TOOLS_ENABLED
+    void safe_call_get(KtObject* instance, Variant& r_ret);
+#endif
 
     // clang-format off
     DECLARE_JNI_METHODS(
@@ -56,7 +58,6 @@ public:
             JNI_METHOD(IS_REF, "isRef", "()Z")
             JNI_METHOD(CALL_GET, "callGet", "(Lgodot/core/KtObject;)V")
             JNI_METHOD(CALL_SET, "callSet", "(Lgodot/core/KtObject;)V")
-            JNI_METHOD(GET_DEFAULT_VALUE, "getDefaultValue", "()V")
     )
     // clang-format on
 };

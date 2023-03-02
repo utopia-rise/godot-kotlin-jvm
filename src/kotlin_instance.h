@@ -21,6 +21,10 @@ public:
 
     bool get(const StringName& p_name, Variant& r_ret) const override;
 
+#ifdef TOOLS_ENABLED
+    bool get_or_default(const StringName& p_name, Variant& r_ret) const;
+#endif
+
     void get_property_list(List<PropertyInfo>* p_properties) const override;
 
     Variant::Type get_property_type(const StringName& p_name, bool* r_is_valid) const override;

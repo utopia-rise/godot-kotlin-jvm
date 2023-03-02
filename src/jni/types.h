@@ -76,6 +76,8 @@ namespace jni {
 
         void call_void_method(Env& env, MethodId method, jvalue* args = {}) const;
 
+        void call_void_method_noexcept(Env& env, MethodId method, jvalue* args = {}) const;
+
         bool is_null();
     };
 

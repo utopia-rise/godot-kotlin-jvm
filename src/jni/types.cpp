@@ -99,6 +99,10 @@ namespace jni {
         env.check_exceptions();
     }
 
+    void JObject::call_void_method_noexcept(Env& env, MethodId method, jvalue* args) const {
+        env.env->CallVoidMethodA((jclass) obj, method, args);
+    }
+
     MethodId JClass::get_method_id(Env& env, const char* name, const char* signature) {
         auto id = env.env->GetMethodID((jclass) obj, name, signature);
         JVM_CRASH_COND_MSG(id == nullptr, vformat("Method not found: %s with signature: %s", name, signature));
