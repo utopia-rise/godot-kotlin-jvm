@@ -11,6 +11,7 @@ import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.PropertyRemoveExportAnnotationQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
+import godot.tools.common.constants.*
 import org.jetbrains.kotlin.idea.intentions.loopToCallChain.isConstant
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
@@ -62,8 +63,8 @@ class RegisterPropertiesAnnotator : Annotator {
                 )
             }
             if (
-                ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "godot.Object" } == true &&
-                ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "godot.RefCounted" } == false
+                ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true &&
+                ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" } == false
             ) {
                 holder.registerProblem(
                     GodotPluginBundle.message("problem.property.export.triedToExportObject"),
@@ -78,8 +79,8 @@ class RegisterPropertiesAnnotator : Annotator {
         val type = ktProperty.type() ?: return
         // enum flag is the only case where registering a kotlin collection is allowed
         if (
-            type.getJetTypeFqName(false).startsWith("kotlin.collections") &&
-            ktProperty.findAnnotation(FqName("godot.annotation.EnumFlag")) == null &&
+            type.getJetTypeFqName(false).startsWith(kotlinCollectionsPackage) &&
+            ktProperty.findAnnotation(FqName("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.enumFlag}")) == null &&
             type.arguments.firstOrNull()?.type?.isEnum() != true
         ) {
             // TODO: add quick fix
@@ -89,7 +90,7 @@ class RegisterPropertiesAnnotator : Annotator {
             )
         }
         if (
-            type.getJetTypeFqName(false).startsWith("godot.core.VariantArray") &&
+            type.getJetTypeFqName(false).startsWith("$godotCorePackage.${GodotKotlinJvmTypes.variantArray}") &&
             type.arguments.firstOrNull()?.type?.isEnum() == true
         ) {
             // TODO: add quick fix

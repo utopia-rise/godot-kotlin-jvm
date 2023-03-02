@@ -1,6 +1,8 @@
 import org.jetbrains.changelog.markdownToHTML
-import plugins.intellij.BuildConfig
-import plugins.intellij.VersionRange
+import godot.dependencies.gradle.helper.BuildConfig
+import godot.dependencies.gradle.helper.VersionRange
+import godot.dependencies.gradle.fullGodotKotlinJvmVersion
+import godot.dependencies.gradle.isSnapshot
 
 plugins {
     // Java support
@@ -11,8 +13,7 @@ plugins {
     id("org.jetbrains.intellij") version "1.7.0"
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
     id("org.jetbrains.changelog") version "1.3.1"
-    // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
-    id("io.gitlab.arturbosch.detekt") version "1.20.0"
+    id("com.utopia-rise.godot-dependencies")
 }
 
 //sdk version: https://github.com/JetBrains/intellij-community/tags
@@ -57,23 +58,7 @@ repositories {
     }
 }
 
-val currentCommit: org.ajoberstar.grgit.Commit = grgit.head()
-// check if the current commit is tagged
-var tagOnCurrentCommit = grgit.tag.list().firstOrNull { tag -> tag.commit.id == currentCommit.id }
-var releaseMode = tagOnCurrentCommit != null
-
-val isSnapshot = !releaseMode || requireNotNull(tagOnCurrentCommit).name.contains("-SNAPSHOT")
-
-version = if (!releaseMode) {
-    "$godotKotlinJvmVersion-${DependenciesVersions.godotVersion}-${currentCommit.abbreviatedId}-SNAPSHOT"
-} else {
-    val baseVersion = "$godotKotlinJvmVersion-${DependenciesVersions.godotVersion}"
-    if (isSnapshot) {
-        "$baseVersion-SNAPSHOT"
-    } else {
-        baseVersion
-    }
-}
+version = fullGodotKotlinJvmVersion
 
 group = "com.utopia-rise"
 
@@ -101,22 +86,9 @@ kotlin {
 }
 
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.20.0")
+    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
-}
-
-// Configure detekt plugin.
-// Read more: https://detekt.github.io/detekt/kotlindsl.html
-detekt {
-    config = files("$projectDir/detekt-config.yml")
-    buildUponDefaultConfig = true
-
-    reports {
-        html.enabled = false
-        xml.enabled = false
-        txt.enabled = false
-    }
 }
 
 tasks {

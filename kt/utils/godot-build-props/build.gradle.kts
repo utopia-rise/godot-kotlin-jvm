@@ -1,9 +1,11 @@
 import org.apache.tools.ant.filters.ReplaceTokens
+import godot.dependencies.gradle.DependenciesVersions
 
 plugins {
     kotlin("jvm")
     `maven-publish`
     id("com.utopia-rise.godot-publish")
+    id("com.utopia-rise.godot-dependencies")
 }
 
 dependencies {

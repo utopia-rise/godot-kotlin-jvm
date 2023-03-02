@@ -13,6 +13,8 @@ import godot.entrygenerator.model.MultilineTextHintAnnotation
 import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.TypeKind
+import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.godotCorePackage
 
 object PropertyTypeHintProvider {
 
@@ -20,21 +22,21 @@ object PropertyTypeHintProvider {
         registeredProperty: RegisteredProperty
     ): ClassName {
         return when {
-            registeredProperty.type.fqName == "kotlin.Int" -> if (registeredProperty.annotations.hasAnnotation<IntFlagHintAnnotation>()) {
-                ClassName("godot.core.PropertyHint", "FLAGS")
+            registeredProperty.type.fqName == Int::class.qualifiedName -> if (registeredProperty.annotations.hasAnnotation<IntFlagHintAnnotation>()) {
+                ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "FLAGS")
             } else {
                 JvmPrimitivesTypeHintGenerator(registeredProperty).getPropertyTypeHint()
             }
-            registeredProperty.type.fqName == "kotlin.String" -> when {
+            registeredProperty.type.fqName == String::class.qualifiedName -> when {
                 registeredProperty.annotations.hasAnnotation<MultilineTextHintAnnotation>() -> {
                     ClassName(
-                        "godot.core.PropertyHint",
+                        "$godotCorePackage.${GodotTypes.propertyHint}",
                         "MULTILINE_TEXT"
                     )
                 }
                 registeredProperty.annotations.hasAnnotation<PlaceHolderTextHintAnnotation>() -> {
                     ClassName(
-                        "godot.core.PropertyHint",
+                        "$godotCorePackage.${GodotTypes.propertyHint}",
                         "PLACEHOLDER_TEXT"
                     )
                 }
@@ -42,10 +44,10 @@ object PropertyTypeHintProvider {
                     JvmPrimitivesTypeHintGenerator(registeredProperty).getPropertyTypeHint()
                 }
             }
-            registeredProperty.type.fqName == "kotlin.Long" ||
-            registeredProperty.type.fqName == "kotlin.Float" ||
-            registeredProperty.type.fqName == "kotlin.Double" ||
-            registeredProperty.type.fqName == "kotlin.Boolean" -> JvmPrimitivesTypeHintGenerator(registeredProperty)
+            registeredProperty.type.fqName == Long::class.qualifiedName ||
+            registeredProperty.type.fqName == Float::class.qualifiedName ||
+            registeredProperty.type.fqName == Double::class.qualifiedName ||
+            registeredProperty.type.fqName == Boolean::class.qualifiedName -> JvmPrimitivesTypeHintGenerator(registeredProperty)
                 .getPropertyTypeHint()
 
             registeredProperty.type.kind == TypeKind.ENUM_CLASS -> throw UnsupportedOperationException("Hint type for enum is always the same, so it is handled by binding at runtime")
@@ -55,17 +57,17 @@ object PropertyTypeHintProvider {
             ).getPropertyTypeHint()
 
             registeredProperty.type.isReference() -> ClassName(
-                "godot.core.PropertyHint",
+                "$godotCorePackage.${GodotTypes.propertyHint}",
                 "RESOURCE_TYPE"
             )
 
             registeredProperty.type.isCompatibleList() -> JvmArrayTypeHintGenerator(registeredProperty).getPropertyTypeHint()
             registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) -> ClassName(
-                "godot.core.PropertyHint",
+                "$godotCorePackage.${GodotTypes.propertyHint}",
                 "RESOURCE_TYPE"
             )
 
-            else -> ClassName("godot.core.PropertyHint", "NONE")
+            else -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "NONE")
         }
     }
 }

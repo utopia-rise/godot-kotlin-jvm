@@ -22,7 +22,7 @@ class ArrayHintStringGenerator(
         val elementType = registeredProperty.type.arguments().firstOrNull()
 
         return when {
-            elementType != null && elementType.fqName == "kotlin.Any" -> ""
+            elementType != null && elementType.fqName == Any::class.qualifiedName -> ""
             elementType != null && elementType.kind == TypeKind.ENUM_CLASS -> {
                 propertyHintAnnotation?.enumValueNames?.joinToString(",")?.let { enumValuesHintString ->
                     "2/3:$enumValuesHintString" //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal

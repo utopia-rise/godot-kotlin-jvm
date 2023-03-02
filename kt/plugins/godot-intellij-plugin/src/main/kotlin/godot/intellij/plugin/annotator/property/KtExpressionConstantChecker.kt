@@ -1,6 +1,9 @@
 package godot.intellij.plugin.annotator.property
 
 import godot.intellij.plugin.extension.getType
+import godot.tools.common.constants.KotlinFunctions
+import godot.tools.common.constants.kotlinCollectionsPackage
+import godot.tools.common.constants.kotlinTextPackage
 import org.jetbrains.kotlin.backend.common.serialization.findPackage
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns
 import org.jetbrains.kotlin.descriptors.impl.ClassConstructorDescriptorImpl
@@ -61,7 +64,7 @@ class KtExpressionConstantChecker {
                     declarationDescriptor is SimpleFunctionDescriptorImpl && (
                         declarationDescriptor.fqNameSafe.asString().matches(Regex("^godot\\.core\\..*(ArrayOf|Array)\$")) ||
                             declarationDescriptor.fqNameSafe.asString().matches(Regex("^godot\\.core\\..*(dictionaryOf|Dictionary)\$")) ||
-                            declarationDescriptor.findPackage().fqName.asString() == "kotlin.collections"
+                            declarationDescriptor.findPackage().fqName.asString() == kotlinCollectionsPackage
                         ) -> true
                     // set's for enum flag registration
                     ktExpression.getType(bindingContext)?.let(KotlinBuiltIns::isSetOrNullableSet) == true -> true
@@ -88,7 +91,7 @@ class KtExpressionConstantChecker {
                 ?.getReferenceTargets(bindingContext)
                 ?.firstOrNull()
 
-            selectorExpression?.fqNameSafe?.asString() == "kotlin.text.trimIndent"
+            selectorExpression?.fqNameSafe?.asString() == "$kotlinTextPackage.${KotlinFunctions.trimIndent}"
         } else false
     }
 

@@ -15,6 +15,7 @@ import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
+import godot.tools.common.constants.*
 import org.gradle.kotlin.dsl.support.appendReproducibleNewLine
 
 class GenerationService(
@@ -87,7 +88,7 @@ class GenerationService(
 
         classTypeBuilder.addAnnotation(GODOT_BASE_TYPE)
 
-        if (name == KotlinTypes.obj) {
+        if (name == GodotKotlinJvmTypes.obj) {
             classTypeBuilder.superclass(KT_OBJECT)
             classTypeBuilder.generateSignalExtensions()
         }
@@ -152,7 +153,7 @@ class GenerationService(
         fileBuilder.generateSuppressWarnings()
 
         return fileBuilder
-            .addComment(GENERATED_COMMENT)
+            .addFileComment(GENERATED_COMMENT)
             .build()
     }
 

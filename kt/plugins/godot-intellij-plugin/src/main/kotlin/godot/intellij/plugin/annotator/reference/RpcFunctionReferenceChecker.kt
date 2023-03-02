@@ -8,6 +8,10 @@ import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.TargetFunctionHasNoRpcAnnotationQuickFix
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.TargetFunctionsRpcAnnotationHasRpcModeDisabled
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.godotAnnotationPackage
+import godot.tools.common.constants.godotApiPackage
 import org.jetbrains.kotlin.idea.base.utils.fqname.getKotlinFqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
@@ -38,7 +42,7 @@ object RpcFunctionReferenceChecker {
         if (
             relevantParent is KtCallExpression &&
             rpcFunctionNames.contains(callReference?.text) &&
-            (callReference?.resolve() as? KtNamedFunction)?.containingClass()?.fqName?.asString() == "godot.Node"
+            (callReference?.resolve() as? KtNamedFunction)?.containingClass()?.fqName?.asString() == "$godotApiPackage.${GodotTypes.node}"
         ) {
             val targetFunction = element
                 .callableReference
@@ -79,7 +83,7 @@ object RpcFunctionReferenceChecker {
                             ?.lastOrNull()
                             ?.resolve()
                             ?.getKotlinFqName()
-                            ?.asString() == "godot.annotation.RpcMode.DISABLED"
+                            ?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.rpcMode}.DISABLED"
                     ) {
                         holder.registerProblem(
                             GodotPluginBundle.message("problem.rpc.calledFunctionNotAccessible"),

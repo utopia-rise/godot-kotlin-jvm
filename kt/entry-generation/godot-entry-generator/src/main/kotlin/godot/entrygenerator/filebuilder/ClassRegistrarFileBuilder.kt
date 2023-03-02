@@ -10,6 +10,10 @@ import godot.entrygenerator.generator.FunctionRegistrationGenerator
 import godot.entrygenerator.generator.PropertyRegistrationGenerator
 import godot.entrygenerator.generator.SignalRegistrationGenerator
 import godot.entrygenerator.model.RegisteredClass
+import godot.tools.common.constants.GENERATED_COMMENT
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.godotEntryBasePackage
+import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
 
 class ClassRegistrarFileBuilder(
@@ -30,7 +34,7 @@ class ClassRegistrarFileBuilder(
     private val registerClassControlFlow = FunSpec
         .builder("register")
         .addModifiers(KModifier.OVERRIDE)
-        .addParameter("registry", ClassName("godot.registration", "ClassRegistry"))
+        .addParameter("registry", ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistry))
         .beginControlFlow("with(registry)") //START: with registry
         .let { funSpecBuilder ->
             if (!registeredClass.isAbstract) {
@@ -55,13 +59,13 @@ class ClassRegistrarFileBuilder(
             val inheritedClass = registeredClass.supertypes.first()
             classRegistrarBuilder.superclass(
                 ClassName(
-                    "godot.${inheritedClass.containingPackage}",
+                    "$godotEntryBasePackage.${inheritedClass.containingPackage}",
                     "${inheritedClass.name}Registrar"
                 )
             )
         } else {
             classRegistrarBuilder.addSuperinterface(
-                ClassName("godot.registration", "ClassRegistrar")
+                ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistrar)
             )
         }
 
@@ -87,8 +91,8 @@ class ClassRegistrarFileBuilder(
 
         appendableProvider(registeredClass).use { bufferedWriter ->
             FileSpec
-                .builder("godot.${registeredClass.containingPackage}", "${registeredClass.name}Entry")
-                .addFileComment("THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY! ALL CHANGES TO IT WILL BE OVERWRITTEN ON EACH BUILD")
+                .builder("$godotEntryBasePackage.${registeredClass.containingPackage}", "${registeredClass.name}Entry")
+                .addFileComment(GENERATED_COMMENT)
                 .addType(classRegistrarBuilder.build())
                 .build()
                 .writeTo(bufferedWriter)
@@ -96,7 +100,7 @@ class ClassRegistrarFileBuilder(
 
         return "%T().register(registry)" to arrayOf(
             ClassName(
-                "godot.${registeredClass.containingPackage}",
+                "$godotEntryBasePackage.${registeredClass.containingPackage}",
                 "${registeredClass.name}Registrar"
             )
         )

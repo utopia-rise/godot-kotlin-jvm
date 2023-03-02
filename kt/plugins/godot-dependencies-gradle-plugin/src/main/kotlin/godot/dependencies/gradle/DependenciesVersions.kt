@@ -1,3 +1,7 @@
+package godot.dependencies.gradle
+
+const val godotKotlinJvmVersion = "0.5.1"
+
 object DependenciesVersions {
     const val godotVersion: String = "4.0.0"
 
@@ -12,4 +16,9 @@ object DependenciesVersions {
 
     // https://kotlinlang.org/docs/releases.html#release-details
     const val supportedKotlinVersion: String = "1.7.20"
+
+    const val jacksonDatabindVersion: String = "2.11.0"
+
+    const val jacksonDataformatXmlVersion: String = "2.10.1"
 }
+

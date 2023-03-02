@@ -4,7 +4,8 @@ plugins {
     kotlin("jvm")
     id("com.utopia-rise.api-generator")
     id("com.utopia-rise.godot-publish")
-    id("com.github.johnrengelman.shadow") version DependenciesVersions.shadowJarPluginVersion
+    id("com.utopia-rise.godot-dependencies")
+    id("com.github.johnrengelman.shadow")
 }
 
 apiGenerator {

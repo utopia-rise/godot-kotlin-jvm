@@ -1,5 +1,6 @@
 package godot.intellij.plugin.extension
 
+import godot.tools.common.constants.GodotKotlinJvmTypes
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
@@ -14,7 +15,7 @@ import org.jetbrains.kotlin.psi.KtValueArgumentName
 fun KtClass.getRegisteredClassName(): Pair<String, String>? {
     // the whole `@RegisterClass(...)` annotation
     val ktAnnotationEntry = annotationEntries
-        .firstOrNull { it.shortName?.asString() == "RegisterClass" }
+        .firstOrNull { it.shortName?.asString() == GodotKotlinJvmTypes.Annotations.registerClass }
 
     val fqName = fqName?.asString()
 

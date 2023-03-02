@@ -1,7 +1,7 @@
 package godot.codegen.repositories.impl
 
 import godot.codegen.constants.CoreTypeTraits
-import godot.codegen.constants.GodotTypes
+import godot.tools.common.constants.GodotTypes
 import godot.codegen.models.Enum
 import godot.codegen.models.EnumValue
 import godot.codegen.models.enriched.toEnriched

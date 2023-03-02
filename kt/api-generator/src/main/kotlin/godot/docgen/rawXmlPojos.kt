@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
-import godot.codegen.extensions.convertToCamelCase
+import godot.tools.common.extensions.convertToCamelCase
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 open class RawClassDoc {

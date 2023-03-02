@@ -7,6 +7,7 @@ import godot.entrygenerator.ext.toKtVariantType
 import godot.entrygenerator.ext.toTypeName
 import godot.entrygenerator.model.RegisterConstructorAnnotation
 import godot.entrygenerator.model.RegisteredClass
+import godot.tools.common.constants.godotCorePackage
 
 object ConstructorRegistrationGenerator {
 
@@ -23,7 +24,7 @@ object ConstructorRegistrationGenerator {
                 if (ctorParamsCount == 0) {
                     registerClassControlFlow.addStatement(
                         "constructor(%T(::%T))",
-                        ClassName("godot.core", "KtConstructor$ctorParamsCount"),
+                        ClassName(godotCorePackage, "KtConstructor$ctorParamsCount"),
                         className
                     )
                 } else {
@@ -87,7 +88,7 @@ object ConstructorRegistrationGenerator {
 
                     registerClassControlFlow.addStatement(
                         "constructor(%T($templateString))",
-                        ClassName("godot.core", "KtConstructor$ctorParamsCount"),
+                        ClassName(godotCorePackage, "KtConstructor$ctorParamsCount"),
                         *templateArgs.toTypedArray()
                     )
                 }

@@ -7,6 +7,8 @@ import com.squareup.kotlinpoet.MemberName.Companion.member
 import godot.entrygenerator.ext.toKtVariantType
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredSignal
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.godotRegistrationPackage
 
 object SignalRegistrationGenerator {
     fun generate(registeredClass: RegisteredClass, className: ClassName, registerClassControlFlow: FunSpec.Builder) {
@@ -40,7 +42,7 @@ object SignalRegistrationGenerator {
 
         //a KtFunctionArgument per signal argument
         registeredSignal.parameterNameToType.entries.forEach { (argumentName, argumentType) ->
-            add(ClassName("godot.registration", "KtFunctionArgument"))
+            add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
             add(argumentType.toKtVariantType())
             add(argumentType.fqName)
             add(argumentName)
