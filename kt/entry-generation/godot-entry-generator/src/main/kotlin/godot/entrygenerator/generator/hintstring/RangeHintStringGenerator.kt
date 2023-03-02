@@ -1,6 +1,9 @@
 package godot.entrygenerator.generator.hintstring
 
 import godot.entrygenerator.exceptions.WrongAnnotationUsageException
+import godot.entrygenerator.ext.fqName
+import godot.entrygenerator.ext.fqNameIsJvmType
+import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.Range
 import godot.entrygenerator.model.RangeHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
@@ -9,10 +12,18 @@ import java.util.*
 class RangeHintStringGenerator(registeredProperty: RegisteredProperty):
     PropertyHintStringGenerator<RangeHintAnnotation<Number>>(registeredProperty) {
     override fun getHintString(): String {
-        //FIXME: once rebased onto language independent branch, add other numeric types
-//        if (registeredProperty.type.fqName != Double::class.qualifiedName) {
-//            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, Double::class.qualifiedName)
-//        }
+        if (!registeredProperty.type.fqName.fqNameIsJvmType(JvmType.DOUBLE, JvmType.FLOAT, JvmType.INT, JvmType.LONG)) {
+            throw WrongAnnotationUsageException(
+                registeredProperty,
+                propertyHintAnnotation,
+                setOf(
+                    *JvmType.DOUBLE.fqName.toTypedArray(),
+                    *JvmType.FLOAT.fqName.toTypedArray(),
+                    *JvmType.INT.fqName.toTypedArray(),
+                    *JvmType.LONG.fqName.toTypedArray()
+                )
+            )
+        }
         if (propertyHintAnnotation == null) {
             return ""
         }
