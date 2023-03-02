@@ -11,44 +11,40 @@ import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.compiler.CompilerDataProvider
-import godot.entrygenerator.model.ClassAnnotation
-import godot.entrygenerator.model.Clazz
-import godot.entrygenerator.model.RegisteredClass
-import godot.entrygenerator.model.RegisteredFunction
-import godot.entrygenerator.model.RegisteredProperty
-import godot.entrygenerator.model.RegisteredSignal
+import godot.entrygenerator.ext.getAnnotation
+import godot.entrygenerator.model.*
 import java.io.File
 
-fun KSClassDeclaration.getResPath(srcDirs: List<String>, projectDir: String): String = containingFile
-    ?.filePath
-    ?.let { filePath ->
-        val srcDir = requireNotNull(
-            srcDirs
-                .map { it.replace(File.separator, "/") }
-                .filter { srcDir ->
-                    filePath.contains(srcDir)
-                }
-                .maxByOrNull { it.length }
-                ?.removePrefix(projectDir)
-                ?.replace(File.separator, "/")
-                ?.removePrefix("/")
-                ?.removeSuffix("/")
-        )
+fun RegisteredClass.getResPath(
+    projectDir: String,
+    dummyFileBaseDir: String,
+    isDummyFileHierarchyEnabled: Boolean
+): String {
+    val relativeBasePath = File(dummyFileBaseDir).relativeTo(File(projectDir))
+    return if (isDummyFileHierarchyEnabled) {
+        val filePath = if (fqName.contains(".")) {
+            "$relativeBasePath/${fqName.substringBeforeLast(".").replace(".", "/")}/$registeredName.gdj"
+        } else {
+            // in this case the class is in the top level package and has no package path
+            "$relativeBasePath/$registeredName.gdj"
+        }
+        "res://$filePath"
+    } else {
+        "res://$relativeBasePath/$registeredName.gdj"
+    }
+}
 
-        val relativeFilePath = filePath
-            .substringAfterLast(srcDir)
-            .removePrefix("/")
-
-        "res://$srcDir/$relativeFilePath"
-    } ?: throw IllegalStateException("Cannot get res path for declaration: ${qualifiedName?.asString()}")
-
-fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
+fun KSClassDeclaration.mapToClazz(
+    projectDir: String,
+    dummyFileBaseDir: String,
+    isDummyFileHierarchyEnabled: Boolean
+): Clazz {
     val fqName = requireNotNull(qualifiedName?.asString()) {
         "Qualified name for class declaration of a registered type or it's super types cannot be null! KSClassDeclaration: $this"
     }
     val supertypeDeclarations = getAllSuperTypes()
         .mapNotNull { it.declaration as? KSClassDeclaration } //we're only interested in classes not interfaces
-        .map { it.mapToClazz(projectDir) }
+        .map { it.mapToClazz(projectDir, dummyFileBaseDir, isDummyFileHierarchyEnabled) }
         .toList()
     val mappedAnnotations = annotations
         .mapNotNull { it.mapToAnnotation(this) as? ClassAnnotation }
@@ -94,7 +90,7 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
         RegisteredClass(
             fqName = fqName,
             supertypes = supertypeDeclarations,
-            resPath = getResPath(CompilerDataProvider.srcDirs, projectDir),
+            resPathProvider = { getResPath(projectDir, dummyFileBaseDir, isDummyFileHierarchyEnabled) },
             annotations = mappedAnnotations,
             constructors = registeredConstructors,
             functions = registeredFunctions,

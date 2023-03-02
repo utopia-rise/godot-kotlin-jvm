@@ -9,7 +9,7 @@ const val godotUtilPackage = "godot.util"
 
 const val godotRegistrationPackage = "godot.registration"
 const val godotSignalsPackage = "godot.signals"
-const val godotEntryBasePackage = "godot"
+const val godotEntryBasePackage = "godot.entry"
 
 const val variantTypePackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantType}"
 

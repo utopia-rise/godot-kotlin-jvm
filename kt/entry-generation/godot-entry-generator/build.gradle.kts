@@ -10,6 +10,7 @@ plugins {
 
 dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    implementation("com.utopia-rise:godot-library:$fullGodotKotlinJvmVersion")
     implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
 }
 

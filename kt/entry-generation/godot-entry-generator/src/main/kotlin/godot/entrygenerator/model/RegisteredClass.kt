@@ -6,7 +6,7 @@ import godot.entrygenerator.ext.hasAnnotation
 data class RegisteredClass(
     override val fqName: String,
     override val supertypes: List<Clazz>,
-    val resPath: String,
+    val resPathProvider: RegisteredClass.() -> String,
     override val annotations: List<ClassAnnotation> = emptyList(),
     val constructors: List<RegisteredConstructor> = emptyList(),
     val functions: List<RegisteredFunction> = emptyList(),
@@ -14,7 +14,7 @@ data class RegisteredClass(
     val properties: List<RegisteredProperty> = emptyList(),
     override val isAbstract: Boolean = false
 ) : Clazz(fqName, supertypes, isAbstract = isAbstract) {
-    internal val registeredName: String
+    val registeredName: String
         get() {
             val customName = annotations
                 .getAnnotation<RegisterClassAnnotation>()

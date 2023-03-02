@@ -5,6 +5,9 @@ import org.gradle.api.provider.Property
 import java.io.File
 
 open class GodotExtension(objects: ObjectFactory) {
+    val classPrefix: Property<String> = objects.property(String::class.java)
+    val dummyFileBaseDir = objects.fileProperty()
+    val isDummyFileHierarchyEnabled: Property<Boolean> = objects.property(Boolean::class.java)
     /**
      * enable android export
      *
@@ -84,6 +87,8 @@ open class GodotExtension(objects: ObjectFactory) {
         val androidCompileSdkDirFile = platformsDir
             ?.listFiles()
             ?.last { it.isDirectory }
+
+        isDummyFileHierarchyEnabled.set(true)
 
         isAndroidExportEnabled.set(false)
 

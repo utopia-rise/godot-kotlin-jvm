@@ -9,6 +9,10 @@ repositories {
 }
 
 godot {
+    classPrefix.set("TestPrefix")
+    dummyFileBaseDir.set(projectDir.resolve("dummyTest").also { it.mkdirs() })
+    isDummyFileHierarchyEnabled.set(true)
+
     //uncomment to test android
 //    isAndroidExportEnabled.set(true)
 //    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/30.0.3/d8"))

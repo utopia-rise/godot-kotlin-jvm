@@ -30,6 +30,18 @@ fun Project.configureThirdPartyPlugins() {
                 "projectBasePath",
                 projectDir.absolutePath.replace(File.separator, "/")
             )
+            arg(
+                "dummyFileBaseDir",
+                (godotJvmExtension.dummyFileBaseDir.orNull?.asFile ?: projectDir.resolve("gdj")).absolutePath.replace(File.separator, "/")
+            )
+            arg(
+                "classPrefix",
+                godotJvmExtension.classPrefix.orNull.toString()
+            )
+            arg(
+                "isDummyFileHierarchyEnabled",
+                godotJvmExtension.isDummyFileHierarchyEnabled.get().toString()
+            )
         }
 
         ideaExtension.apply {

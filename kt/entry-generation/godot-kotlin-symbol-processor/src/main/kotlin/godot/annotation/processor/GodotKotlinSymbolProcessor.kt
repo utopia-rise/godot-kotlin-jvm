@@ -1,5 +1,6 @@
 package godot.annotation.processor
 
+import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.KSPLogger
@@ -10,10 +11,13 @@ import com.google.devtools.ksp.symbol.KSFile
 import godot.annotation.processor.compiler.CompilerDataProvider
 import godot.annotation.processor.utils.JvmTypeProvider
 import godot.annotation.processor.utils.LoggerWrapper
+import godot.annotation.processor.visitor.MetadataAnnotationVisitor
 import godot.annotation.processor.visitor.RegistrationAnnotationVisitor
 import godot.entrygenerator.EntryGenerator
 import godot.entrygenerator.model.RegisteredClass
+import godot.entrygenerator.model.RegisteredClassMetadataContainer
 import godot.entrygenerator.model.SourceFile
+import godot.tools.common.constants.godotEntryBasePackage
 import java.io.File
 
 /**
@@ -28,62 +32,128 @@ class GodotKotlinSymbolProcessor(
     private val logger: KSPLogger
 ) : SymbolProcessor {
     private val registeredClassToKSFileMap = mutableMapOf<RegisteredClass, KSFile>()
+    private val registeredClassMetadataContainers = mutableListOf<RegisteredClassMetadataContainer>()
     private val sourceFilesContainingRegisteredClasses = mutableListOf<SourceFile>()
 
     private lateinit var projectBasePath: String
+    private lateinit var dummyFileBaseDir: File
+    private var classPrefix: String? = null
+    private var isDummyFileHierarchyEnabled: Boolean = true
 
+    @OptIn(KspExperimental::class)
     override fun process(resolver: Resolver): List<KSAnnotated> {
+        val shouldGenerateRegistrars = registeredClassToKSFileMap.isEmpty()
+        val shouldGenerateDummyFiles = registeredClassMetadataContainers.isEmpty()
+
         CompilerDataProvider.init(
             resolver,
             options["srcDirs"]
                 ?.split(File.pathSeparator)
                 ?: throw IllegalStateException("No srcDirs option provided")
         )
+
         projectBasePath = options["projectBasePath"]
             ?: throw IllegalStateException("No projectBasePath option provided")
+
+        dummyFileBaseDir = options["dummyFileBaseDir"]?.let { absolutePath -> File(absolutePath) }
+            ?: throw IllegalStateException("No dummyFileBaseDir option provided")
+
+        classPrefix = options["classPrefix"]?.let { prefix ->
+            if (prefix == "null") {
+                null
+            } else {
+                prefix
+            }
+        } ?: throw IllegalStateException("No classPrefix option provided")
+
+        isDummyFileHierarchyEnabled = options["isDummyFileHierarchyEnabled"]?.toBooleanStrictOrNull()
+            ?: throw IllegalStateException("No isDummyFileHierarchyEnabled option provided or not a boolean")
 
         val registerAnnotationVisitor = RegistrationAnnotationVisitor(
             projectBasePath,
             registeredClassToKSFileMap,
-            sourceFilesContainingRegisteredClasses
+            sourceFilesContainingRegisteredClasses,
+            dummyFileBaseDir,
+            isDummyFileHierarchyEnabled
         )
 
-        resolver.getAllFiles().toList().map {
+        resolver.getNewFiles().ifEmpty { resolver.getAllFiles() }.toList().map {
             it.accept(registerAnnotationVisitor, Unit)
         }
+
+        val metadataAnnotationVisitor = MetadataAnnotationVisitor(registeredClassMetadataContainers)
+
+        resolver.getDeclarationsFromPackage(godotEntryBasePackage).forEach { declaration ->
+            declaration.accept(metadataAnnotationVisitor, Unit)
+        }
+
+        if (shouldGenerateRegistrars) {
+            EntryGenerator.generateEntryFiles(
+                projectDir = projectBasePath,
+                srcDirs = CompilerDataProvider.srcDirs,
+                logger = LoggerWrapper(logger),
+                sourceFiles = sourceFilesContainingRegisteredClasses,
+
+                jvmTypeFqNamesProvider = JvmTypeProvider(),
+                classRegistrarAppendableProvider = { registeredClass ->
+                    codeGenerator.createNewFile(
+                        Dependencies(
+                            true,
+                            requireNotNull(registeredClassToKSFileMap[registeredClass]) {
+                                "No KSFile found for $registeredClass. This should never happen"
+                            }
+                        ),
+                        godotEntryBasePackage,
+                        "${registeredClass.registeredName}Registrar"
+                    ).bufferedWriter()
+                },
+                mainBufferedWriterProvider = {
+                    codeGenerator.createNewFile(
+                        Dependencies(
+                            true,
+                            *registeredClassToKSFileMap.map { it.value }.toTypedArray()
+                        ),
+                        "godot",
+                        "Entry"
+                    ).bufferedWriter()
+                }
+            )
+        }
+        if (shouldGenerateDummyFiles) {
+            EntryGenerator.generateDummyFiles(
+                registeredClassMetadataContainers = registeredClassMetadataContainers,
+                dummyFileAppendableProvider = { metadata ->
+                    codeGenerator.createNewFileByPath(
+                        Dependencies.ALL_FILES,
+                        "entryFiles/${metadata.resPath.removePrefix("res://").removeSuffix(".gdj")}",
+                        "gdj"
+                    ).bufferedWriter()
+                }
+            )
+        }
+
         return emptyList()
     }
 
     override fun finish() {
         super.finish()
-        EntryGenerator.generateEntryFiles(
-            projectDir = projectBasePath,
-            srcDirs = CompilerDataProvider.srcDirs,
-            logger = LoggerWrapper(logger),
-            sourceFiles = sourceFilesContainingRegisteredClasses,
-            jvmTypeFqNamesProvider = JvmTypeProvider(),
-            appendableProvider = { registeredClass ->
-                codeGenerator.createNewFile(
-                    Dependencies(
-                        false,
-                        requireNotNull(registeredClassToKSFileMap[registeredClass]) {
-                            "No KSFile found for $registeredClass. This should never happen"
-                        }
-                    ),
-                    "godot.${registeredClass.containingPackage}",
-                    "${registeredClass.name}Registrar"
-                ).bufferedWriter()
-            },
-            mainBufferedWriterProvider = {
-                codeGenerator.createNewFile(
-                    Dependencies(
-                        true,
-                        *registeredClassToKSFileMap.map { it.value }.toTypedArray()
-                    ),
-                    "godot",
-                    "Entry"
-                ).bufferedWriter()
+
+        dummyFileBaseDir
+            .walkBottomUp()
+            .forEach { file ->
+                if (file.isFile && file.extension == "gdj") {
+                    file.delete()
+                }
+                if (file.isDirectory && (file.listFiles() ?: arrayOf()).isEmpty()) {
+                    file.delete()
+                }
             }
-        )
+
+        File(projectBasePath)
+            .resolve("build/generated/ksp/main/resources/entryFiles")
+            .copyRecursively(
+                target = File(projectBasePath),
+                overwrite = true
+            )
     }
 }

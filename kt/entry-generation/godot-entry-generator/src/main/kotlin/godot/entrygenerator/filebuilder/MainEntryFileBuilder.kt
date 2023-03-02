@@ -21,9 +21,9 @@ object MainEntryFileBuilder {
         .builder("initEngineTypes")
         .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
         .addModifiers(KModifier.OVERRIDE)
-        .addStatement("%M()", MemberName(godotEntryBasePackage, "registerVariantMapping"))
-        .addStatement("%M()", MemberName(godotEntryBasePackage, "registerEngineTypes"))
-        .addStatement("%M()", MemberName(godotEntryBasePackage, "registerEngineTypeMethods"))
+        .addStatement("%M()", MemberName(godotApiPackage, "registerVariantMapping"))
+        .addStatement("%M()", MemberName(godotApiPackage, "registerEngineTypes"))
+        .addStatement("%M()", MemberName(godotApiPackage, "registerEngineTypeMethods"))
 
     private val registerUserTypesVariantMappingsFunSpec = FunSpec
         .builder("getRegisteredClasses")
