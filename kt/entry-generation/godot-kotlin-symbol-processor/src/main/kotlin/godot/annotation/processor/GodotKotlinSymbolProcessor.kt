@@ -8,6 +8,7 @@ import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSFile
 import godot.annotation.processor.compiler.CompilerDataProvider
+import godot.annotation.processor.utils.JvmTypeProvider
 import godot.annotation.processor.utils.LoggerWrapper
 import godot.annotation.processor.visitor.RegistrationAnnotationVisitor
 import godot.entrygenerator.EntryGenerator
@@ -56,11 +57,12 @@ class GodotKotlinSymbolProcessor(
     override fun finish() {
         super.finish()
         EntryGenerator.generateEntryFiles(
-            projectBasePath,
-            CompilerDataProvider.srcDirs,
-            LoggerWrapper(logger),
-            sourceFilesContainingRegisteredClasses,
-            { registeredClass ->
+            projectDir = projectBasePath,
+            srcDirs = CompilerDataProvider.srcDirs,
+            logger = LoggerWrapper(logger),
+            sourceFiles = sourceFilesContainingRegisteredClasses,
+            jvmTypeFqNamesProvider = JvmTypeProvider(),
+            appendableProvider = { registeredClass ->
                 codeGenerator.createNewFile(
                     Dependencies(
                         false,
@@ -71,16 +73,17 @@ class GodotKotlinSymbolProcessor(
                     "godot.${registeredClass.containingPackage}",
                     "${registeredClass.name}Registrar"
                 ).bufferedWriter()
+            },
+            mainBufferedWriterProvider = {
+                codeGenerator.createNewFile(
+                    Dependencies(
+                        true,
+                        *registeredClassToKSFileMap.map { it.value }.toTypedArray()
+                    ),
+                    "godot",
+                    "Entry"
+                ).bufferedWriter()
             }
-        ) {
-            codeGenerator.createNewFile(
-                Dependencies(
-                    true,
-                    *registeredClassToKSFileMap.map { it.value }.toTypedArray()
-                ),
-                "godot",
-                "Entry"
-            ).bufferedWriter()
-        }
+        )
     }
 }

@@ -1,7 +1,10 @@
 package godot.entrygenerator.generator.hintstring
 
 import godot.entrygenerator.exceptions.WrongAnnotationUsageException
+import godot.entrygenerator.ext.fqName
+import godot.entrygenerator.ext.fqNameIsJvmType
 import godot.entrygenerator.model.DoubleRangeHintAnnotation
+import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.Range
 import godot.entrygenerator.model.RegisteredProperty
 import java.util.*
@@ -9,8 +12,8 @@ import java.util.*
 class DoubleRangeHintStringGenerator(registeredProperty: RegisteredProperty):
     PropertyHintStringGenerator<DoubleRangeHintAnnotation>(registeredProperty) {
     override fun getHintString(): String {
-        if (registeredProperty.type.fqName != Double::class.qualifiedName) {
-            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, Double::class.qualifiedName)
+        if (!registeredProperty.type.fqName.fqNameIsJvmType(JvmType.DOUBLE)) {
+            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, JvmType.DOUBLE.fqName)
         }
         if (propertyHintAnnotation == null) {
             return ""

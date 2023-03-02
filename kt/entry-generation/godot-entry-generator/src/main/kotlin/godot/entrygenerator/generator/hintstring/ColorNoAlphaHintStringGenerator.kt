@@ -12,7 +12,7 @@ class ColorNoAlphaHintStringGenerator(
 
     override fun getHintString(): String {
         if (registeredProperty.type.fqName != "$godotCorePackage.${GodotTypes.color}") {
-            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, GodotTypes.color)
+            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, setOf("${godotCorePackage}.${GodotTypes.color}"))
         }
         return "" //hint string is empty for this typehint
     }
