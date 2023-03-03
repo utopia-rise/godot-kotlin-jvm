@@ -40,7 +40,9 @@ object EntryGenerator {
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
     ) {
+        // the package path for an entry file needs to be unique over all possible dependencies otherwise they'll override each other and only one will be used/loaded
         val randomPackageForEntryFile = randomPackageName()
+
         _logger = logger
         _jvmTypeFqNamesProvider = jvmTypeFqNamesProvider
 

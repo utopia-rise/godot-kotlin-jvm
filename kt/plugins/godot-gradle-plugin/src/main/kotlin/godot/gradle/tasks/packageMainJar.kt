@@ -18,6 +18,8 @@ fun Project.packageMainJarTask(
             archiveVersion.set("")
             archiveClassifier.set("")
 
+            // merges all service files from all dependencies into on
+            // needed so we can loop over and load all entry files from within Bootstrap.kt
             mergeServiceFiles()
 
             dependencies {
