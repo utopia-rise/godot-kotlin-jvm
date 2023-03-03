@@ -115,12 +115,15 @@ internal class Bootstrap {
         if (!entryIterator.hasNext()) {
             err("Unable to find Entry class, no classes will be loaded")
         }
-        var mainDependencyRebinds: Map<String, String>? = null
+        var dependencyResourcePathRebinds: Map<String, String>? = null
         while (entryIterator.hasNext()) {
             with(entryIterator.next()) {
                 val context = Entry.Context(registry!!)
-                if (mainDependencyRebinds == null || context.dependencyRebinds().size > mainDependencyRebinds!!.size) {
-                    mainDependencyRebinds = context.dependencyRebinds()
+
+                // the entry with the most rebind definitions is always the "main" entry. All other entries are from dependencies
+                // reason: the "main" entry file combines all needed rebinds from all dependencies. Hence, it will always be the one with the most rebinds or 0 in case there are no dependencies which require rebinds
+                if (dependencyResourcePathRebinds == null || context.dependencyRebinds().size > dependencyResourcePathRebinds!!.size) {
+                    dependencyResourcePathRebinds = context.dependencyRebinds()
                 }
 
                 if (!engineTypesRegistered) {
@@ -140,20 +143,30 @@ internal class Bootstrap {
                 context.init()
             }
         }
-        rebindClasses(mainDependencyRebinds)
+
+
+        // START: order matters!
+        rebindClasses(dependencyResourcePathRebinds) // has to be the firs step!
         loadClasses(registry!!.classes.toTypedArray())
         registerUserTypesNames(
             TypeManager
                 .userTypes
                 .map { resPath ->
-                    mainDependencyRebinds?.get(resPath) ?: resPath
+                    // rebinds the resource path for dependencies where necessary
+                    dependencyResourcePathRebinds?.get(resPath) ?: resPath
                 }
                 .toTypedArray()
         )
         registerUserTypesMembers()
         forceJvmInitializationOfSingletons()
+        // END: order matters!
     }
 
+    /**
+     * This rebinds the registered resource path from dependencies to a new one defined by the "main" compilation
+     *
+     * This has to be done BEFORE any load/reload logic takes place so the cpp side only sees the "new"/"correct" resource path's
+     */
     private fun rebindClasses(resourcePathRebindings: Map<String, String>?) {
         val reboundClasses = registry!!.classes.map { ktClass ->
             val rebind = resourcePathRebindings?.get(ktClass.name)
