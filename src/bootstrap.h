@@ -15,7 +15,6 @@ public:
       );
     typedef void (*RegisterUserTypesNamesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes_names);
     typedef void (*RegisterUserTypesMembersHook)(JNIEnv* p_env, jobject p_this);
-    typedef void (*RebindDependencyResourcePathsHook)(JNIEnv* p_env, jobject p_this, jobjectArray old_res, jobjectArray new_res);
     // clang-format on
 
     Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader);
@@ -27,8 +26,7 @@ public:
       UnloadClassesHook p_unload_classes_hook,
       RegisterManagedEngineTypesHook p_register_managed_engine_types_hook,
       RegisterUserTypesNamesHook p_user_types_names_hook,
-      RegisterUserTypesMembersHook p_user_types_nmembers_hook,
-      RebindDependencyResourcePathsHook p_rebind_dependency_resource_paths_hook
+      RegisterUserTypesMembersHook p_user_types_nmembers_hook
     );
     void init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file, const jni::JObject& p_class_loader);
     void finish(jni::Env& p_env);

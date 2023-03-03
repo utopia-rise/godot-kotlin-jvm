@@ -59,8 +59,6 @@ public:
 
     void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 
-    void rebind_resource_path(const String& old_resource_path, const String& new_resource_path);
-
     KtClass* find_class(const StringName& p_script_path);
 
     const GdKotlinConfiguration& get_configuration();

@@ -2,35 +2,33 @@
 
 [ext_resource type="Script" path="res://dummyTest/godot/tests/godot_tests_Invocation.gdj" id="1"]
 
-[sub_resource type="NavigationMesh" id="4"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_bftla"]
 
-[sub_resource type="NavigationMesh" id="5"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_udfm1"]
 
-[sub_resource type="NavigationMesh" id="2"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_syioq"]
 
-[sub_resource type="NavigationMesh" id="3"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_xll7i"]
 
-[sub_resource type="NavigationMesh" id="1"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_jwfm1"]
 
 [node name="Spatial" type="Node3D"]
 script = ExtResource("1")
-nullable_long = 2
-lateinit_string = "works also from inspector"
 register_object_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/godot_tests_subpackage_OtherScript.gdj"))
 
 register_object_non_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/godot_tests_subpackage_OtherScript.gdj"))
 
 invocation = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/godot_tests_subpackage_OtherScript.gdj"))
 
-resource_test = SubResource("4")
-jvm_id = 1260127127
-nav_meshes = [SubResource("5")]
-nullable_array = [SubResource("2"), null]
+resource_test = SubResource("NavigationMesh_bftla")
+jvm_id = 440472115
+nav_meshes = [SubResource("NavigationMesh_udfm1")]
+nullable_array = [SubResource("NavigationMesh_syioq"), null]
 nav_meshes_dictionary = {
-"AwesomeNavmesh": SubResource("3")
+"AwesomeNavmesh": SubResource("NavigationMesh_xll7i")
 }
 nullable_dictionary = {
-"notnull": SubResource("1"),
+"notnull": SubResource("NavigationMesh_jwfm1"),
 "null": null
 }
 

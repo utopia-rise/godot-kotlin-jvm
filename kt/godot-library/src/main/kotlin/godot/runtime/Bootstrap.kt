@@ -140,24 +140,7 @@ internal class Bootstrap {
                 context.init()
             }
         }
-
-        // start: rebind
-        registry!!.classes.apply {
-            val registeredClasses = this
-            clear()
-            this.addAll(
-                registeredClasses.map { ktClass ->
-                    val rebind = mainDependencyRebinds?.get(ktClass.name)
-                    if (rebind != null) {
-                        ktClass.copy(name = rebind)
-                    } else {
-                        ktClass
-                    }
-                }
-            )
-        }
-        // end: rebind
-
+        rebindClasses(mainDependencyRebinds)
         loadClasses(registry!!.classes.toTypedArray())
         registerUserTypesNames(
             TypeManager
@@ -169,6 +152,22 @@ internal class Bootstrap {
         )
         registerUserTypesMembers()
         forceJvmInitializationOfSingletons()
+    }
+
+    private fun rebindClasses(resourcePathRebindings: Map<String, String>?) {
+        val reboundClasses = registry!!.classes.map { ktClass ->
+            val rebind = resourcePathRebindings?.get(ktClass.name)
+            if (rebind != null) {
+                ktClass.copy(name = rebind)
+            } else {
+                ktClass
+            }
+        }
+
+        registry!!.classes.apply {
+            clear()
+            addAll(reboundClasses)
+        }
     }
 
     private fun getBuildLockDir(projectDir: String): File {
@@ -210,5 +209,4 @@ internal class Bootstrap {
 
     private external fun registerUserTypesNames(userTypesNames: Array<String>)
     private external fun registerUserTypesMembers()
-    private external fun rebindDependencyResourcePaths(rebindKeys: Array<String>, rebindValues: Array<String>)
 }

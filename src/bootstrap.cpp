@@ -11,8 +11,7 @@ void Bootstrap::register_hooks(
   UnloadClassesHook p_unload_classes_hook,
   RegisterManagedEngineTypesHook p_register_managed_engine_types_hook,
   RegisterUserTypesNamesHook p_user_types_names_hook,
-  RegisterUserTypesMembersHook p_user_types_nmembers_hook,
-  RebindDependencyResourcePathsHook p_rebind_dependency_resource_paths_hook
+  RegisterUserTypesMembersHook p_user_types_nmembers_hook
 ) {
     jni::JNativeMethod load_class_hook_method {
       const_cast<char*>("loadClasses"),
@@ -39,18 +38,12 @@ void Bootstrap::register_hooks(
       const_cast<char*>("()V"),
       (void*) p_user_types_nmembers_hook};
 
-    jni::JNativeMethod rebind_dependency_resource_paths {
-            const_cast<char*>("rebindDependencyResourcePaths"),
-            const_cast<char*>("([Ljava/lang/String;[Ljava/lang/String;)V"),
-            (void*) p_rebind_dependency_resource_paths_hook};
-
     Vector<jni::JNativeMethod> methods;
     methods.push_back(load_class_hook_method);
     methods.push_back(unload_class_hook_method);
     methods.push_back(register_managed_engine_types_method);
     methods.push_back(register_user_types_names);
     methods.push_back(register_user_types_members);
-    methods.push_back(rebind_dependency_resource_paths);
     j_class.register_natives(p_env, methods);
 }
 
