@@ -15,36 +15,16 @@ import godot.entrygenerator.ext.getAnnotation
 import godot.entrygenerator.model.*
 import java.io.File
 
-fun RegisteredClass.getResPath(
-    projectDir: String,
-    dummyFileBaseDir: String,
-    isDummyFileHierarchyEnabled: Boolean
-): String {
-    val relativeBasePath = File(dummyFileBaseDir).relativeTo(File(projectDir))
-    return if (isDummyFileHierarchyEnabled) {
-        val filePath = if (fqName.contains(".")) {
-            "$relativeBasePath/${fqName.substringBeforeLast(".").replace(".", "/")}/$registeredName.gdj"
-        } else {
-            // in this case the class is in the top level package and has no package path
-            "$relativeBasePath/$registeredName.gdj"
-        }
-        "res://$filePath"
-    } else {
-        "res://$relativeBasePath/$registeredName.gdj"
-    }
-}
-
 fun KSClassDeclaration.mapToClazz(
-    projectDir: String,
-    dummyFileBaseDir: String,
-    isDummyFileHierarchyEnabled: Boolean
+    isFqNameRegistrationEnabled: Boolean,
+    resPathProvider: (fqName: String, registeredName: String) -> String,
 ): Clazz {
     val fqName = requireNotNull(qualifiedName?.asString()) {
         "Qualified name for class declaration of a registered type or it's super types cannot be null! KSClassDeclaration: $this"
     }
     val supertypeDeclarations = getAllSuperTypes()
         .mapNotNull { it.declaration as? KSClassDeclaration } //we're only interested in classes not interfaces
-        .map { it.mapToClazz(projectDir, dummyFileBaseDir, isDummyFileHierarchyEnabled) }
+        .map { it.mapToClazz(isFqNameRegistrationEnabled, resPathProvider) }
         .toList()
     val mappedAnnotations = annotations
         .mapNotNull { it.mapToAnnotation(this) as? ClassAnnotation }
@@ -90,13 +70,14 @@ fun KSClassDeclaration.mapToClazz(
         RegisteredClass(
             fqName = fqName,
             supertypes = supertypeDeclarations,
-            resPathProvider = { getResPath(projectDir, dummyFileBaseDir, isDummyFileHierarchyEnabled) },
+            resPathProvider = { resPathProvider(fqName, registeredName) },
             annotations = mappedAnnotations,
             constructors = registeredConstructors,
             functions = registeredFunctions,
             signals = registeredSignals,
             properties = registeredProperties,
-            isAbstract = isAbstract()
+            isAbstract = isAbstract(),
+            isFqNameRegistrationEnabled = isFqNameRegistrationEnabled
         )
     } else {
         Clazz(

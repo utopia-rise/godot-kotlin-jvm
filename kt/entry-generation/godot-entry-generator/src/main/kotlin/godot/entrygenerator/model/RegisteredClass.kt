@@ -12,14 +12,28 @@ data class RegisteredClass(
     val functions: List<RegisteredFunction> = emptyList(),
     val signals: List<RegisteredSignal> = emptyList(),
     val properties: List<RegisteredProperty> = emptyList(),
-    override val isAbstract: Boolean = false
+    override val isAbstract: Boolean = false,
+    private val isFqNameRegistrationEnabled: Boolean = false,
 ) : Clazz(fqName, supertypes, isAbstract = isAbstract) {
     val registeredName: String
         get() {
             val customName = annotations
                 .getAnnotation<RegisterClassAnnotation>()
                 ?.customName
-            return if (customName.isNullOrEmpty()) fqName.replace(".", "_") else customName
+
+            return if (customName.isNullOrEmpty()) {
+                if (isFqNameRegistrationEnabled) {
+                    fqName.replace(".", "_")
+                } else {
+                    if (fqName.contains(".")) {
+                        fqName.substringAfterLast(".")
+                    } else {
+                        fqName
+                    }
+                }
+            } else {
+                customName
+            }
         }
 
     internal val isTool: Boolean

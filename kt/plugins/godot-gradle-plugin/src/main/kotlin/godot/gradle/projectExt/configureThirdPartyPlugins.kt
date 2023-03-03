@@ -40,7 +40,11 @@ fun Project.configureThirdPartyPlugins() {
             )
             arg(
                 "isDummyFileHierarchyEnabled",
-                godotJvmExtension.isDummyFileHierarchyEnabled.get().toString()
+                godotJvmExtension.isDummyFileHierarchyEnabled.getOrElse(true).toString()
+            )
+            arg(
+                "isFqNameRegistrationEnabled",
+                godotJvmExtension.isFqNameRegistrationEnabled.getOrElse(false).toString()
             )
         }
 

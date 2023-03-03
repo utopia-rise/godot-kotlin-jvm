@@ -15,11 +15,10 @@ import godot.entrygenerator.model.SourceFile
 import java.io.File
 
 class RegistrationAnnotationVisitor(
-    private val projectBasePath: String,
+    private val isFqNameRegistrationEnabled: Boolean,
     private val registeredClassToKSFileMap: MutableMap<RegisteredClass, KSFile>,
     private val sourceFilesContainingRegisteredClasses: MutableList<SourceFile>,
-    private val dummyFileBaseDir: File,
-    private val isDummyFileHierarchyEnabled: Boolean
+    private val resPathProvider: (fqName: String, registeredName: String) -> String,
 ) : KSVisitorVoid() {
 
     private val registerAnnotations = listOf(
@@ -37,7 +36,7 @@ class RegistrationAnnotationVisitor(
             .mapNotNull { declaration ->
                 when (declaration) {
                     is KSClassDeclaration -> {
-                        val clazz = declaration.mapToClazz(projectBasePath, dummyFileBaseDir.absolutePath, isDummyFileHierarchyEnabled)
+                        val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, resPathProvider)
                         if (clazz is RegisteredClass) {
                             clazz
                         } else null
