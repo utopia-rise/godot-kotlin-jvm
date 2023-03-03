@@ -1,29 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnqp52df0ln8e"]
+[gd_scene load_steps=7 format=3 uid="uid://dmsspoonj4fgf"]
 
-[ext_resource type="Script" path="res://src/main/kotlin/godot/tests/Invocation.kt" id="1"]
+[ext_resource type="Script" path="res://dummyTest/godot/tests/godot_tests_Invocation.gdj" id="1"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_prd4u"]
+[sub_resource type="NavigationMesh" id="4"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_tuyoa"]
+[sub_resource type="NavigationMesh" id="5"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_bh4po"]
+[sub_resource type="NavigationMesh" id="2"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_bdc7j"]
+[sub_resource type="NavigationMesh" id="3"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_abcao"]
+[sub_resource type="NavigationMesh" id="1"]
 
 [node name="Spatial" type="Node3D"]
 script = ExtResource("1")
 nullable_long = 2
 lateinit_string = "works also from inspector"
-resource_test = SubResource("NavigationMesh_prd4u")
-nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_tuyoa")])
-nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_bh4po"), null])
+register_object_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/godot_tests_subpackage_OtherScript.gdj"))
+
+register_object_non_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/godot_tests_subpackage_OtherScript.gdj"))
+
+invocation = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/godot_tests_subpackage_OtherScript.gdj"))
+
+resource_test = SubResource("4")
+jvm_id = 1260127127
+nav_meshes = [SubResource("5")]
+nullable_array = [SubResource("2"), null]
 nav_meshes_dictionary = {
-"AwesomeNavmesh": SubResource("NavigationMesh_bdc7j")
+"AwesomeNavmesh": SubResource("3")
 }
 nullable_dictionary = {
-"notnull": SubResource("NavigationMesh_abcao"),
+"notnull": SubResource("1"),
 "null": null
 }
 

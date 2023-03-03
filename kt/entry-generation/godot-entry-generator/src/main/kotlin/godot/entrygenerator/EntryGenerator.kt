@@ -14,7 +14,11 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredClassMetadataContainer
 import godot.entrygenerator.model.SourceFile
 import godot.entrygenerator.utils.Logger
+import godot.tools.common.constants.godotEntryBasePackage
+import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
+import java.io.File
+import kotlin.random.Random
 
 object EntryGenerator {
     private var _logger: Logger? = null
@@ -27,17 +31,20 @@ object EntryGenerator {
 
     fun generateEntryFiles(
         projectDir: String,
-        srcDirs: List<String>,
         logger: Logger,
         sourceFiles: List<SourceFile>,
+        dependencyRegisteredClassMetadataContainers: List<RegisteredClassMetadataContainer>,
+        dummyFileBaseDir: String,
+        isDummyFileHierarchyEnabled: Boolean,
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
     ) {
+        val randomPackageForEntryFile = randomPackageName()
         _logger = logger
         _jvmTypeFqNamesProvider = jvmTypeFqNamesProvider
 
-        executeSanityChecks(projectDir, srcDirs, logger, sourceFiles)
+        executeSanityChecks(logger, sourceFiles)
 
         with(MainEntryFileBuilder) {
             sourceFiles.forEach { sourceFile ->
@@ -51,8 +58,27 @@ object EntryGenerator {
                 }
             }
             registerUserTypesVariantMappings(sourceFiles.flatMap { it.registeredClasses })
-            build(mainBufferedWriterProvider)
+            registerDependencyRebinds(
+                dependencyRegisteredClassMetadataContainers.associate { dependencyRegisteredClassMetadataContainer ->
+                    val relativeBasePath = File(dummyFileBaseDir).relativeTo(File(projectDir))
+                    val newResPath = if (isDummyFileHierarchyEnabled) {
+                        val filePath = if (dependencyRegisteredClassMetadataContainer.fqName.contains(".")) {
+                            "$relativeBasePath/${dependencyRegisteredClassMetadataContainer.fqName.substringBeforeLast(".").replace(".", "/")}/${dependencyRegisteredClassMetadataContainer.registeredName}.gdj"
+                        } else {
+                            // in this case the class is in the top level package and has no package path
+                            "$relativeBasePath/${dependencyRegisteredClassMetadataContainer.registeredName}.gdj"
+                        }
+                        "res://$filePath"
+                    } else {
+                        "res://$relativeBasePath/${dependencyRegisteredClassMetadataContainer.registeredName}.gdj"
+                    }
+                    dependencyRegisteredClassMetadataContainer.resPath to newResPath
+                }
+            )
+            build(randomPackageForEntryFile, mainBufferedWriterProvider)
         }
+
+        generateServiceFile(randomPackageForEntryFile, projectDir)
     }
 
     fun generateDummyFiles(
@@ -67,9 +93,17 @@ object EntryGenerator {
         }
     }
 
+    private fun generateServiceFile(randomPackagePathForEntryFile: String, projectDir: String) {
+        File(projectDir)
+            .resolve("src/main/resources/META-INF/services")
+            .apply { mkdirs() }
+            .resolve("$godotRegistrationPackage.Entry")
+            .apply {
+                writeText("$godotEntryBasePackage.$randomPackagePathForEntryFile.Entry")
+            }
+    }
+
     private fun executeSanityChecks(
-        projectDir: String,
-        srcDirs: List<String>,
         logger: Logger,
         sourceFiles: List<SourceFile>
     ) {
@@ -83,4 +117,12 @@ object EntryGenerator {
 
         RpcCheck(logger, sourceFiles).execute()
     }
+
+    private fun randomPackageName(length: Int = 20): String {
+        val allowedChars = ('A'..'Z') + ('a'..'z')
+        return (1..length)
+            .map { allowedChars.random() }
+            .joinToString("")
+    }
+
 }

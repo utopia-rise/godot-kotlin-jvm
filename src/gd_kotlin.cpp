@@ -122,6 +122,23 @@ void register_user_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_type
     LOG_VERBOSE("Done registering user types.");
 }
 
+void rebind_dependency_resource_paths_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_old_res, jobjectArray p_new_res) {
+    print_verbose("Starting to rebind dependency resource paths...");
+    jni::Env env(p_env);
+    jni::JObjectArray old_res {p_old_res};
+    jni::JObjectArray new_res {p_new_res};
+    for (int i = 0; i < old_res.length(env); ++i) {
+        const String& old_resource_path {env.from_jstring(static_cast<jni::JString>(old_res.get(env, i)))};
+        const String& new_resource_path {env.from_jstring(static_cast<jni::JString>(new_res.get(env, i)))};
+
+        GDKotlin::get_instance().rebind_resource_path(old_resource_path, new_resource_path);
+#ifdef DEBUG_ENABLED
+        LOG_VERBOSE(vformat("Rebound dependency resource path from %s to %s.", old_resource_path, new_resource_path));
+#endif
+    }
+    LOG_VERBOSE("Done rebinding dependency resource paths.");
+}
+
 void register_user_types_members_hook(JNIEnv* p_env, jobject p_this) {
     jni::Env env(p_env);
     GDKotlin::get_instance().register_members(env);
@@ -333,7 +350,7 @@ void GDKotlin::init() {
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
 
-    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook, register_user_types_hook, register_user_types_members_hook);
+    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook, register_user_types_hook, register_user_types_members_hook, rebind_dependency_resource_paths_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
 
 #ifdef TOOLS_ENABLED
@@ -443,6 +460,13 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
         delete kt_class;
     }
     classes.clear();
+}
+
+void GDKotlin::rebind_resource_path(const String& old_resource_path, const String& new_resource_path) {
+    auto* kt_class = classes[old_resource_path];
+    classes.erase(old_resource_path);
+    kt_class->name = new_resource_path;
+    classes[new_resource_path] = kt_class;
 }
 
 KtClass* GDKotlin::find_class(const StringName& p_script_path) {

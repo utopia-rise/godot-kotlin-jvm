@@ -26,7 +26,7 @@ String KotlinLanguage::get_type() const {
 }
 
 String KotlinLanguage::get_extension() const {
-    return "kt";
+    return "gdj";
 }
 
 void KotlinLanguage::finish() {
@@ -340,7 +340,7 @@ void KotlinLanguage::reload_all_scripts() {}
 void KotlinLanguage::reload_tool_script(const Ref<Script>& p_script, bool p_soft_reload) {}
 
 void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const {
-    p_extensions->push_back("kt");
+    p_extensions->push_back("gdj");
 }
 
 void KotlinLanguage::get_public_functions(List<MethodInfo>* p_functions) const {}

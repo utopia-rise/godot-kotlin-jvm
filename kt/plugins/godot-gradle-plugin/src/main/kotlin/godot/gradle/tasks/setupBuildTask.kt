@@ -8,7 +8,6 @@ import org.gradle.api.tasks.TaskProvider
 fun Project.setupBuildTask(
     packageBootstrapJarTask: TaskProvider<out Task>,
     packageMainJarTask: TaskProvider<out Task>,
-    generateEntryServiceFileTask: TaskProvider<out Task>,
     deleteBuildLockTask: TaskProvider<out Task>,
     packageBootstrapDexJarTask: TaskProvider<out Task>,
     packageMainDexJarTask: TaskProvider<out Task>,
@@ -17,7 +16,7 @@ fun Project.setupBuildTask(
 ) {
     tasks.named("build") {
         with(it) {
-            dependsOn(createBuildLockTask, packageBootstrapJarTask, packageMainJarTask, generateEntryServiceFileTask)
+            dependsOn(createBuildLockTask, packageBootstrapJarTask, packageMainJarTask)
             finalizedBy(deleteBuildLockTask)
             if (godotJvmExtension.isAndroidExportEnabled.get()) {
                 finalizedBy(packageBootstrapDexJarTask, packageMainDexJarTask)

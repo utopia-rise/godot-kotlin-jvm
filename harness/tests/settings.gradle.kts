@@ -14,6 +14,12 @@ includeBuild("../../kt") {
     }
 }
 
+includeBuild("../../harness/library-tests") {
+    dependencySubstitution {
+        substitute(module("com.godot.tests:library")).with(project(":"))
+    }
+}
+
 pluginManagement {
     repositories {
         mavenCentral()

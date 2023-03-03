@@ -537,7 +537,7 @@ class ClassBuilderDsl<T : KtObject>(
             name,
             registeredName,
             superClass,
-            constructorArray,
+            constructorArray.toList(),
             properties,
             functions,
             signals,

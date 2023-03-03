@@ -40,10 +40,12 @@ class GodotKotlinSymbolProcessor(
     private var classPrefix: String? = null
     private var isDummyFileHierarchyEnabled: Boolean = true
 
+    private val alreadyGeneratedDummyFiles = mutableListOf<String>()
+
     @OptIn(KspExperimental::class)
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val shouldGenerateRegistrars = registeredClassToKSFileMap.isEmpty()
-        val shouldGenerateDummyFiles = registeredClassMetadataContainers.isEmpty()
+        registeredClassMetadataContainers.clear()
 
         CompilerDataProvider.init(
             resolver,
@@ -87,13 +89,18 @@ class GodotKotlinSymbolProcessor(
             declaration.accept(metadataAnnotationVisitor, Unit)
         }
 
+        val metadataToGenerateFor = registeredClassMetadataContainers
+            .filter { !alreadyGeneratedDummyFiles.contains(it.resPath) }
+
         if (shouldGenerateRegistrars) {
             EntryGenerator.generateEntryFiles(
                 projectDir = projectBasePath,
-                srcDirs = CompilerDataProvider.srcDirs,
                 logger = LoggerWrapper(logger),
                 sourceFiles = sourceFilesContainingRegisteredClasses,
-
+                // in the first round, only metadata from dependencies are present
+                dependencyRegisteredClassMetadataContainers = metadataToGenerateFor,
+                dummyFileBaseDir = dummyFileBaseDir.absolutePath,
+                isDummyFileHierarchyEnabled = isDummyFileHierarchyEnabled,
                 jvmTypeFqNamesProvider = JvmTypeProvider(),
                 classRegistrarAppendableProvider = { registeredClass ->
                     codeGenerator.createNewFile(
@@ -119,18 +126,31 @@ class GodotKotlinSymbolProcessor(
                 }
             )
         }
-        if (shouldGenerateDummyFiles) {
-            EntryGenerator.generateDummyFiles(
-                registeredClassMetadataContainers = registeredClassMetadataContainers,
-                dummyFileAppendableProvider = { metadata ->
-                    codeGenerator.createNewFileByPath(
-                        Dependencies.ALL_FILES,
-                        "entryFiles/${metadata.resPath.removePrefix("res://").removeSuffix(".gdj")}",
-                        "gdj"
-                    ).bufferedWriter()
+
+        EntryGenerator.generateDummyFiles(
+            registeredClassMetadataContainers = metadataToGenerateFor,
+            dummyFileAppendableProvider = { metadata ->
+                alreadyGeneratedDummyFiles.add(metadata.resPath)
+                val relativeBasePath = dummyFileBaseDir.relativeTo(File(projectBasePath))
+
+                val newResPath = if (isDummyFileHierarchyEnabled) {
+                    val filePath = if (metadata.fqName.contains(".")) {
+                        "$relativeBasePath/${metadata.fqName.substringBeforeLast(".").replace(".", "/")}/${metadata.registeredName}.gdj"
+                    } else {
+                        // in this case the class is in the top level package and has no package path
+                        "$relativeBasePath/${metadata.registeredName}.gdj"
+                    }
+                    "res://$filePath"
+                } else {
+                    "res://$relativeBasePath/${metadata.registeredName}.gdj"
                 }
-            )
-        }
+                codeGenerator.createNewFileByPath(
+                    Dependencies.ALL_FILES,
+                    "entryFiles/${newResPath.removePrefix("res://").removeSuffix(".gdj")}",
+                    "gdj"
+                ).bufferedWriter()
+            }
+        )
 
         return emptyList()
     }

@@ -1,4 +1,5 @@
 import godot.dependencies.gradle.DependenciesVersions
+import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 
 plugins {
     kotlin("jvm")
@@ -36,6 +37,7 @@ dependencies {
     implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${DependenciesVersions.kspVersion}")
 
     implementation(project(":godot-build-props"))
+    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
 }
 
 tasks {

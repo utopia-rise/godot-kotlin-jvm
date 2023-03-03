@@ -26,6 +26,7 @@ godot {
 
 dependencies {
     implementation("joda-time:joda-time:2.10.6") //external dependency to test dependency inclusion in dummyCompilation
+    implementation("com.godot.tests:library")
 }
 
 

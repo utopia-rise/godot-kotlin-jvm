@@ -112,9 +112,16 @@ internal class Bootstrap {
 
     private fun initializeUsingEntry() {
         val entryIterator = serviceLoader.iterator()
-        if (entryIterator.hasNext()) {
+        if (!entryIterator.hasNext()) {
+            err("Unable to find Entry class, no classes will be loaded")
+        }
+        var mainDependencyRebinds: Map<String, String>? = null
+        while (entryIterator.hasNext()) {
             with(entryIterator.next()) {
                 val context = Entry.Context(registry!!)
+                if (mainDependencyRebinds == null || context.dependencyRebinds().size > mainDependencyRebinds!!.size) {
+                    mainDependencyRebinds = context.dependencyRebinds()
+                }
 
                 if (!engineTypesRegistered) {
                     context.initEngineTypes()
@@ -132,12 +139,35 @@ internal class Bootstrap {
 
                 context.init()
             }
-            loadClasses(registry!!.classes.toTypedArray())
-            registerUserTypesNames(TypeManager.userTypes.toTypedArray())
-            registerUserTypesMembers()
-        } else {
-            err("Unable to find Entry class, no classes will be loaded")
         }
+
+        // start: rebind
+        registry!!.classes.apply {
+            val registeredClasses = this
+            clear()
+            this.addAll(
+                registeredClasses.map { ktClass ->
+                    val rebind = mainDependencyRebinds?.get(ktClass.name)
+                    if (rebind != null) {
+                        ktClass.copy(name = rebind)
+                    } else {
+                        ktClass
+                    }
+                }
+            )
+        }
+        // end: rebind
+
+        loadClasses(registry!!.classes.toTypedArray())
+        registerUserTypesNames(
+            TypeManager
+                .userTypes
+                .map { resPath ->
+                    mainDependencyRebinds?.get(resPath) ?: resPath
+                }
+                .toTypedArray()
+        )
+        registerUserTypesMembers()
         forceJvmInitializationOfSingletons()
     }
 
@@ -180,4 +210,5 @@ internal class Bootstrap {
 
     private external fun registerUserTypesNames(userTypesNames: Array<String>)
     private external fun registerUserTypesMembers()
+    private external fun rebindDependencyResourcePaths(rebindKeys: Array<String>, rebindValues: Array<String>)
 }

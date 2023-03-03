@@ -8,10 +8,6 @@ import java.io.BufferedWriter
 import kotlin.reflect.KClass
 
 object MainEntryFileBuilder {
-    private val entryFileSpec = FileSpec
-        .builder(godotEntryBasePackage, "Entry")
-        .addFileComment(GENERATED_COMMENT)
-
     private val initFunctionSpec = FunSpec
         .builder("init")
         .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
@@ -38,15 +34,32 @@ object MainEntryFileBuilder {
                 )
         )
 
-    fun build(outAppendable: () -> BufferedWriter) {
+    private val dependencyRebindsFunSpec = FunSpec
+        .builder("dependencyRebinds")
+        .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
+        .addModifiers(KModifier.OVERRIDE)
+        .returns(
+            Map::class
+                .asTypeName()
+                .parameterizedBy(
+                    String::class.asTypeName(),
+                    String::class.asTypeName(),
+                )
+        )
+
+    fun build(randomPackageForEntryFile: String, outAppendable: () -> BufferedWriter) {
+        val entryFileSpec = FileSpec
+            .builder("$godotEntryBasePackage.$randomPackageForEntryFile", "Entry")
+            .addFileComment(GENERATED_COMMENT)
 
         entryFileSpec.addType(
             TypeSpec
-                .classBuilder(ClassName(godotEntryBasePackage, GodotKotlinJvmTypes.entry))
+                .classBuilder(ClassName("$godotEntryBasePackage.$randomPackageForEntryFile", GodotKotlinJvmTypes.entry))
                 .superclass(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.entry))
                 .addFunction(initFunctionSpec.build())
                 .addFunction(initEngineTypesFunSpec.build())
                 .addFunction(registerUserTypesVariantMappingsFunSpec.build())
+                .addFunction(dependencyRebindsFunSpec.build())
                 .build()
         )
         outAppendable().use {
@@ -70,6 +83,13 @@ object MainEntryFileBuilder {
             "return %M(${listOfArguments.joinToString { "%T::class" }})",
             KOTLIN_LIST_OF,
             *listOfArguments.toTypedArray()
+        )
+    }
+
+    fun registerDependencyRebinds(rebinds: Map<String, String>) {
+        dependencyRebindsFunSpec.addStatement(
+            "return %M(${rebinds.entries.joinToString { (originalResPath, newResPath) -> "\"$originalResPath\"·to·\"$newResPath\"" }})",
+            KOTLIN_MAP_OF
         )
     }
 }
