@@ -54,6 +54,13 @@ public open class ScriptExtension : Script() {
   /**
    *
    */
+  public open fun _getGlobalName(): StringName {
+    throw NotImplementedError("_get_global_name is not implemented for ScriptExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _inheritsScript(script: Script): Boolean {
     throw NotImplementedError("_inherits_script is not implemented for ScriptExtension")
   }

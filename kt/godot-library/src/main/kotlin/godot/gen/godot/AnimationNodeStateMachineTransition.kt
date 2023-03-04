@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
@@ -26,10 +27,14 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- *
+ * A resource to connect each node to make a path for [godot.AnimationNodeStateMachine].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
+ *
+ * The path generated when using [godot.AnimationNodeStateMachinePlayback.travel] is limited to the nodes connected by [godot.AnimationNodeStateMachineTransition].
+ *
+ * You can set the timing and conditions of the transition in detail.
  */
 @GodotBaseType
 public open class AnimationNodeStateMachineTransition : Resource() {
@@ -68,6 +73,22 @@ public open class AnimationNodeStateMachineTransition : Resource() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_XFADE_CURVE, NIL)
+    }
+
+  /**
+   * If `true`, the destination animation is played back from the beginning when switched.
+   */
+  public var reset: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_IS_RESET, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_RESET, NIL)
     }
 
   /**
@@ -131,7 +152,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    *
    * [csharp]
    *
-   * GetNode<AnimationTree>("animation_tree").Set("parameters/conditions/idle", IsOnFloor && (LinearVelocity.x == 0));
+   * GetNode<AnimationTree>("animation_tree").Set("parameters/conditions/idle", IsOnFloor && (LinearVelocity.X == 0));
    *
    * [/csharp]
    *

@@ -466,13 +466,13 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * [csharp]
    *
-   * for (int i = 0; i < GetSlideCount(); i++)
+   * for (int i = 0; i < GetSlideCollisionCount(); i++)
    *
    * {
    *
    *     KinematicCollision2D collision = GetSlideCollision(i);
    *
-   *     GD.Print("Collided with: ", (collision.Collider as Node).Name);
+   *     GD.Print("Collided with: ", (collision.GetCollider() as Node).Name);
    *
    * }
    *

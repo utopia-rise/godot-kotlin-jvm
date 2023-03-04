@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
  *
  * If you want nodes to be disabled automatically when they exit the screen, use [godot.VisibleOnScreenEnabler3D] instead.
  *
- * **Note:** VisibleOnScreenNotifier3D uses an approximate heuristic for performance reasons. It doesn't take walls and other occlusion into account. The heuristic is an implementation detail and may change in future versions. If you need precise visibility checking, use another method such as adding an [godot.Area3D] node as a child of a [godot.Camera3D] node and/or [godot.Vector3.dot].
+ * **Note:** VisibleOnScreenNotifier3D uses the render culling code to determine whether it's visible on screen, which also means that its [godot.Node3D.visible] must be `true` to work correctly.
  */
 @GodotBaseType
 public open class VisibleOnScreenNotifier3D : VisualInstance3D() {

@@ -98,12 +98,8 @@ public open class WebSocketPeer : PacketPeer() {
     return true
   }
 
-  public fun connectToUrl(
-    url: String,
-    verifyTls: Boolean = true,
-    trustedTlsCertificate: X509Certificate? = null
-  ): GodotError {
-    TransferContext.writeArguments(STRING to url, BOOL to verifyTls, OBJECT to trustedTlsCertificate)
+  public fun connectToUrl(url: String, tlsClientOptions: TLSOptions? = null): GodotError {
+    TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_CONNECT_TO_URL, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }

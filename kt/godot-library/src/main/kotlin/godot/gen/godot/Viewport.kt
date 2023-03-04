@@ -531,6 +531,24 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
+   * If `true`, objects receive mouse picking events sorted primarily by their [godot.CanvasItem.zIndex] and secondarily by their position in the scene tree. If `false`, the order is undetermined.
+   *
+   * **Note:** This setting is disabled by default because of its potential expensive computational cost.
+   */
+  public var physicsObjectPickingSort: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_PHYSICS_OBJECT_PICKING_SORT, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_PHYSICS_OBJECT_PICKING_SORT, NIL)
+    }
+
+  /**
    * If `true`, the viewport will not receive input events.
    */
   public var guiDisableInput: Boolean
@@ -745,7 +763,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the total transform of the viewport.
+   * Returns the transform from the viewport's coordinate system to the embedder's coordinate system.
    */
   public fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -881,6 +899,8 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Moves the mouse pointer to the specified position in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
+   *
+   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)

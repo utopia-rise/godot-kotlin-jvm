@@ -49,7 +49,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     }
 
   /**
-   * Sets the skin to be used by this instance.
+   * The [godot.Skin] to be used by this instance.
    */
   public var skin: Skin?
     get() {
@@ -94,7 +94,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the override [godot.Material] for the specified surface of the [godot.Mesh] resource. This material is associated with this [godot.MeshInstance3D] rather than with the [godot.Mesh] resource.
+   * Sets the override [material] for the specified [surface] of the [godot.Mesh] resource. This material is associated with this [godot.MeshInstance3D] rather than with [mesh].
    */
   public fun setSurfaceOverrideMaterial(surface: Long, material: Material): Unit {
     TransferContext.writeArguments(LONG to surface, OBJECT to material)
@@ -103,7 +103,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the override [godot.Material] for the specified surface of the [godot.Mesh] resource.
+   * Returns the override [godot.Material] for the specified [surface] of the [godot.Mesh] resource.
    */
   public fun getSurfaceOverrideMaterial(surface: Long): Material? {
     TransferContext.writeArguments(LONG to surface)
@@ -113,7 +113,9 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the [godot.Material] that will be used by the [godot.Mesh] when drawing. This can return the [godot.GeometryInstance3D.materialOverride], the surface override [godot.Material] defined in this [godot.MeshInstance3D], or the surface [godot.Material] defined in the [godot.Mesh]. For example, if [godot.GeometryInstance3D.materialOverride] is used, all surfaces will return the override material.
+   * Returns the [godot.Material] that will be used by the [godot.Mesh] when drawing. This can return the [godot.GeometryInstance3D.materialOverride], the surface override [godot.Material] defined in this [godot.MeshInstance3D], or the surface [godot.Material] defined in the [mesh]. For example, if [godot.GeometryInstance3D.materialOverride] is used, all surfaces will return the override material.
+   *
+   * Returns `null` if no material is active, including when [mesh] is `null`.
    */
   public fun getActiveMaterial(surface: Long): Material? {
     TransferContext.writeArguments(LONG to surface)
@@ -154,7 +156,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   *
+   * Returns the number of blend shapes available. Produces an error if [mesh] is `null`.
    */
   public fun getBlendShapeCount(): Long {
     TransferContext.writeArguments()
@@ -164,7 +166,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   *
+   * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with this name exists, including when [mesh] is `null`.
    */
   public fun findBlendShapeByName(name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -174,7 +176,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   *
+   * Returns the value of the blend shape at the given [blendShapeIdx]. Returns `0.0` and produces an error if [mesh] is `null` or doesn't have a blend shape at that index.
    */
   public fun getBlendShapeValue(blendShapeIdx: Long): Double {
     TransferContext.writeArguments(LONG to blendShapeIdx)
@@ -184,7 +186,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   *
+   * Sets the value of the blend shape at [blendShapeIdx] to [value]. Produces an error if [mesh] is `null` or doesn't have a blend shape at that index.
    */
   public fun setBlendShapeValue(blendShapeIdx: Long, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to blendShapeIdx, DOUBLE to value)

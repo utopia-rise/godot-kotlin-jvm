@@ -31,8 +31,8 @@ func test_should_return_right_plane():
 
 func test_should_return_right_quat():
 	var instance = godot_tests_CoreTypesIdentityTest.new()
-	var expected_quat = Quat(1, 2, 3, 4)
-	assert_eq(instance.quat, expected_quat, "Should get same quat")
+	var expected_quat = Quaternion(1, 2, 3, 4)
+	assert_eq(instance.quaternion, expected_quat, "Should get same quat")
 	assert_eq(instance.quat(expected_quat), expected_quat, "Buffer should not change Quat")
 	instance.free()
 
@@ -45,8 +45,8 @@ func test_should_return_right_rect2():
 
 func test_should_return_right_transform():
 	var instance = godot_tests_CoreTypesIdentityTest.new()
-	var expected_transform = Transform(Vector3(0, 1, 2), Vector3(3, 4, 5), Vector3(6, 7, 8), Vector3(9, 10, 11))
-	assert_eq(instance.transform, expected_transform, "Should get same transform")
+	var expected_transform = Transform3D(Vector3(0, 1, 2), Vector3(3, 4, 5), Vector3(6, 7, 8), Vector3(9, 10, 11))
+	assert_eq(instance.transform3_d, expected_transform, "Should get same transform")
 	assert_eq(instance.transform(expected_transform), expected_transform, "Buffer should not change Transform")
 	instance.free()
 

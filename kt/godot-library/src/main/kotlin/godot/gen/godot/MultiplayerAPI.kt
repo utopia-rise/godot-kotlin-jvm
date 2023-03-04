@@ -198,11 +198,11 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      */
     RPC_MODE_DISABLED(0),
     /**
-     * Used with [godot.Node.rpcConfig] to set a method to be callable remotely by any peer. Analogous to the `@rpc(any)` annotation. Calls are accepted from all remote peers, no matter if they are node's authority or not.
+     * Used with [godot.Node.rpcConfig] to set a method to be callable remotely by any peer. Analogous to the `@rpc("any_peer")` annotation. Calls are accepted from all remote peers, no matter if they are node's authority or not.
      */
     RPC_MODE_ANY_PEER(1),
     /**
-     * Used with [godot.Node.rpcConfig] to set a method to be callable remotely only by the current multiplayer authority (which is the server by default). Analogous to the `@rpc(authority)` annotation. See [godot.Node.setMultiplayerAuthority].
+     * Used with [godot.Node.rpcConfig] to set a method to be callable remotely only by the current multiplayer authority (which is the server by default). Analogous to the `@rpc("authority")` annotation. See [godot.Node.setMultiplayerAuthority].
      */
     RPC_MODE_AUTHORITY(2),
     ;

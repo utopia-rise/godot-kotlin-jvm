@@ -46,6 +46,8 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
 
   /**
    * If different from `0`, restricts the query to a specific canvas layer specified by its instance ID. See [godot.Object.getInstanceId].
+   *
+   * If `0`, restricts the query to the Viewport's default canvas layer.
    */
   public var canvasInstanceId: Long
     get() {

@@ -121,7 +121,7 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if this input event is an echo event (only for events of type [godot.InputEventKey]).
+   * Returns `true` if this input event is an echo event (only for events of type [godot.InputEventKey]). Any other event type returns `false`.
    */
   public fun isEcho(): Boolean {
     TransferContext.writeArguments()

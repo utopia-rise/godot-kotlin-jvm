@@ -30,9 +30,11 @@ import kotlin.Suppress
  *
  * Character bodies are special types of bodies that are meant to be user-controlled. They are not affected by physics at all; to other types of bodies, such as a rigid body, these are the same as a [godot.AnimatableBody3D]. However, they have two main uses:
  *
- * **Kinematic characters:** Character bodies have an API for moving objects with walls and slopes detection ([moveAndSlide] method), in addition to collision detection (also done with [godot.PhysicsBody3D.moveAndCollide]). This makes them really useful to implement characters that move in specific ways and collide with the world, but don't require advanced physics.
+ * *Kinematic characters:* Character bodies have an API for moving objects with walls and slopes detection ([moveAndSlide] method), in addition to collision detection (also done with [godot.PhysicsBody3D.moveAndCollide]). This makes them really useful to implement characters that move in specific ways and collide with the world, but don't require advanced physics.
  *
- * **Kinematic motion:** Character bodies can also be used for kinematic motion (same functionality as [godot.AnimatableBody3D]), which allows them to be moved by code and push other bodies on their path.
+ * *Kinematic motion:* Character bodies can also be used for kinematic motion (same functionality as [godot.AnimatableBody3D]), which allows them to be moved by code and push other bodies on their path.
+ *
+ * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
  */
 @GodotBaseType
 public open class CharacterBody3D : PhysicsBody3D() {

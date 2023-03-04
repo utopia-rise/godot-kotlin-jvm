@@ -24,6 +24,8 @@ import kotlin.Suppress
  * Allows editing a concave or convex collision polygon's vertices on a selected plane. Can also set a depth perpendicular to that plane. This class is only available in the editor. It will not appear in the scene tree at run-time. Creates several [godot.ConvexPolygonShape3D]s at run-time to represent the original polygon using convex decomposition.
  *
  * **Note:** Since this is an editor-only helper, properties modified during gameplay will have no effect.
+ *
+ * **Warning:** A non-uniformly scaled CollisionPolygon3D node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change its [polygon]'s vertices instead.
  */
 @GodotBaseType
 public open class CollisionPolygon3D : Node3D() {

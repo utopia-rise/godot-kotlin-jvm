@@ -729,6 +729,25 @@ public open class Animation : Resource() {
   }
 
   /**
+   * Sets whether the track will be blended with other animations. If `true`, the audio playback volume changes depending on the blend value.
+   */
+  public fun audioTrackSetUseBlend(trackIdx: Long, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to trackIdx, BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_SET_USE_BLEND,
+        NIL)
+  }
+
+  /**
+   * Returns `true` if the track at [trackIdx] will be blended with other animations.
+   */
+  public fun audioTrackIsUseBlend(trackIdx: Long): Boolean {
+    TransferContext.writeArguments(LONG to trackIdx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_IS_USE_BLEND,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be the index of an Animation Track.
    */
   public fun animationTrackInsertKey(

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -19,6 +20,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -54,12 +56,12 @@ public open class XRController3D : XRNode3D() {
   /**
    * Emitted when a trigger or similar input on this controller changes value.
    */
-  public val inputValueChanged: Signal2<String, Double> by signal("name", "value")
+  public val inputFloatChanged: Signal2<String, Double> by signal("name", "value")
 
   /**
    * Emitted when a thumbstick or thumbpad on this controller is moved.
    */
-  public val inputAxisChanged: Signal2<String, Vector2> by signal("name", "value")
+  public val inputVector2Changed: Signal2<String, Vector2> by signal("name", "value")
 
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_XRCONTROLLER3D, scriptIndex)
@@ -77,20 +79,29 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
+   * Returns a [Variant] for the input with the given [name]. This works for any input type, the variant will be typed according to the actions configuration.
+   */
+  public fun getInput(name: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_INPUT, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
    * Returns a numeric value for the input with the given [name]. This is used for triggers and grip sensors.
    */
-  public fun getValue(name: StringName): Double {
+  public fun getFloat(name: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_VALUE, DOUBLE)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_FLOAT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
    * Returns a [godot.core.Vector2] for the input with the given [name]. This is used for thumbsticks and thumbpads found on many controllers.
    */
-  public fun getAxis(name: StringName): Vector2 {
+  public fun getVector2(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_AXIS, VECTOR2)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_VECTOR2, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 

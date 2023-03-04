@@ -32,6 +32,8 @@ import kotlin.Unit
 /**
  * GraphNode is a [godot.Container] control that represents a single data unit in a [godot.GraphEdit] graph. You can customize the number, type, and color of left- and right-side connection ports.
  *
+ * **Note:** Please be aware that this node will undergo extensive refactoring in a future 4.x version involving compatibility-breaking API changes.
+ *
  * GraphNode allows to create nodes for a [godot.GraphEdit] graph with customizable content based on its child [godot.Control]s. GraphNode is a [godot.Container] and is responsible for placing its children on screen. This works similar to [godot.VBoxContainer]. Children, in turn, provide GraphNode with so-called slots, each of which can have a connection port on either side. This is similar to how [godot.TabContainer] uses children to create the tabs.
  *
  * Each GraphNode slot is defined by its index and can provide the node with up to two ports: one on the left, and one on the right. By convention the left port is also referred to as the input port and the right port is referred to as the output port. Each port can be enabled and configured individually, using different type and color. The type is an arbitrary value that you can define using your own considerations. The parent [godot.GraphEdit] will receive this information on each connect and disconnect request.

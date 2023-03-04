@@ -37,7 +37,7 @@ public open class AcceptDialog : Window() {
   /**
    * Emitted when the dialog is closed or the button created with [addCancelButton] is pressed.
    */
-  public val cancelled: Signal0 by signal()
+  public val canceled: Signal0 by signal()
 
   /**
    * Emitted when a custom button is pressed. See [addButton].
@@ -177,7 +177,7 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Removes the [button] from the dialog. Does NOT free the [button]. The [button] must be a [godot.Button] added with [addButton] or [addCancelButton] method. After removal, pressing the [button] will no longer emit this dialog's [customAction] or [cancelled] signals.
+   * Removes the [button] from the dialog. Does NOT free the [button]. The [button] must be a [godot.Button] added with [addButton] or [addCancelButton] method. After removal, pressing the [button] will no longer emit this dialog's [customAction] or [canceled] signals.
    */
   public fun removeButton(button: Control): Unit {
     TransferContext.writeArguments(OBJECT to button)

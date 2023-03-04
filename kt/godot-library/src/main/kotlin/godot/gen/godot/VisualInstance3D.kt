@@ -51,7 +51,7 @@ public open class VisualInstance3D : Node3D() {
     }
 
   /**
-   * The sorting offset used by this [godot.VisualInstance3D]. Adjusting it to a higher value will make the [godot.VisualInstance3D] reliably draw on top of other [godot.VisualInstance3D]s that are otherwise positioned at the same spot.
+   * The amount by which the depth of this [godot.VisualInstance3D] will be adjusted when sorting by depth. Uses the same units as the engine (which are typically meters). Adjusting it to a higher value will make the [godot.VisualInstance3D] reliably draw on top of other [godot.VisualInstance3D]s that are otherwise positioned at the same spot. To ensure it always draws on top of other objects around it (not positioned at the same spot), set the value to be greater than the distance between this [godot.VisualInstance3D] and the other nearby [godot.VisualInstance3D]s.
    */
   public var sortingOffset: Double
     get() {

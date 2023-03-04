@@ -93,17 +93,15 @@ import kotlin.Unit
  *
  * using Godot;
  *
- * using System;
- *
  * using System.Diagnostics;
  *
  *
  *
- * public class Example : Node
+ * public partial class MyNode : Node
  *
  * {
  *
- *     public AESContext Aes = new AESContext();
+ *     private AesContext _aes = new AesContext();
  *
  *
  *
@@ -117,23 +115,23 @@ import kotlin.Unit
  *
  *         // Encrypt ECB
  *
- *         Aes.Start(AESContext.Mode.EcbEncrypt, key.ToUTF8());
+ *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8());
  *
- *         byte[] encrypted = Aes.Update(data.ToUTF8());
+ *         byte[] encrypted = _aes.Update(data.ToUtf8());
  *
- *         Aes.Finish();
+ *         _aes.Finish();
  *
  *         // Decrypt ECB
  *
- *         Aes.Start(AESContext.Mode.EcbDecrypt, key.ToUTF8());
+ *         _aes.Start(AesContext.Mode.EcbDecrypt, key.ToUtf8());
  *
- *         byte[] decrypted = Aes.Update(encrypted);
+ *         byte[] decrypted = _aes.Update(encrypted);
  *
- *         Aes.Finish();
+ *         _aes.Finish();
  *
  *         // Check ECB
  *
- *         Debug.Assert(decrypted == data.ToUTF8());
+ *         Debug.Assert(decrypted == data.ToUtf8());
  *
  *
  *
@@ -141,23 +139,23 @@ import kotlin.Unit
  *
  *         // Encrypt CBC
  *
- *         Aes.Start(AESContext.Mode.EcbEncrypt, key.ToUTF8(), iv.ToUTF8());
+ *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8(), iv.ToUtf8());
  *
- *         encrypted = Aes.Update(data.ToUTF8());
+ *         encrypted = _aes.Update(data.ToUtf8());
  *
- *         Aes.Finish();
+ *         _aes.Finish();
  *
  *         // Decrypt CBC
  *
- *         Aes.Start(AESContext.Mode.EcbDecrypt, key.ToUTF8(), iv.ToUTF8());
+ *         _aes.Start(AesContext.Mode.EcbDecrypt, key.ToUtf8(), iv.ToUtf8());
  *
- *         decrypted = Aes.Update(encrypted);
+ *         decrypted = _aes.Update(encrypted);
  *
- *         Aes.Finish();
+ *         _aes.Finish();
  *
  *         // Check CBC
  *
- *         Debug.Assert(decrypted == data.ToUTF8());
+ *         Debug.Assert(decrypted == data.ToUtf8());
  *
  *     }
  *

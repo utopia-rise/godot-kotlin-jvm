@@ -11,10 +11,10 @@ import godot.core.Vector3
 class BasisTest : Node() {
 
     @RegisterFunction
-    fun get(basis: Basis, index: Int) = basis[index]
+    fun getFromBasis(basis: Basis, index: Int) = basis[index]
 
     @RegisterFunction
-    fun set(basis: Basis, index: Int, vector3: Vector3): Basis {
+    fun setInBasis(basis: Basis, index: Int, vector3: Vector3): Basis {
         basis[index] = vector3
         return basis
     }

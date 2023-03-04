@@ -113,19 +113,15 @@ public open class ENetConnection : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_COMPRESS, NIL)
   }
 
-  public fun dtlsServerSetup(key: CryptoKey, certificate: X509Certificate): GodotError {
-    TransferContext.writeArguments(OBJECT to key, OBJECT to certificate)
+  public fun dtlsServerSetup(serverOptions: TLSOptions): GodotError {
+    TransferContext.writeArguments(OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DTLS_SERVER_SETUP,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public fun dtlsClientSetup(
-    certificate: X509Certificate,
-    hostname: String,
-    verify: Boolean = true
-  ): GodotError {
-    TransferContext.writeArguments(OBJECT to certificate, STRING to hostname, BOOL to verify)
+  public fun dtlsClientSetup(hostname: String, clientOptions: TLSOptions? = null): GodotError {
+    TransferContext.writeArguments(STRING to hostname, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DTLS_CLIENT_SETUP,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

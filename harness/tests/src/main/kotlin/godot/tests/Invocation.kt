@@ -4,6 +4,7 @@ import godot.Button
 import godot.NavigationMesh
 import godot.Node3D
 import godot.XRServer
+import godot.Object
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
@@ -118,6 +119,7 @@ class Invocation : Node3D() {
 	//references in default values are allowed if the property is NOT exported
 	private val otherScriptReference = OtherScript()
 	private fun provideOtherScriptReference() = otherScriptReference
+
 	@RegisterProperty
 	var invocation = provideOtherScriptReference()
 
@@ -319,6 +321,28 @@ class Invocation : Node3D() {
 	@RegisterSignal
 	val twoParam by signal<String, Invocation>("str", "inv")
 
+	@RegisterSignal
+	val signalWithMultipleTargets by signal<Vector2>("vector2")
+
+	//To store values emitted by signals
+	@RegisterProperty
+	var array: VariantArray<Vector2> = VariantArray()
+
+	@RegisterFunction
+	fun targetFunctionOne(vector2: Vector2) {
+		array.append(vector2)
+		//call GodotAPI to insert different parameters in the stack.
+		this.setMeta("Random".asStringName(), "Value")
+		val size = array.size
+		if(size < 8)
+		//Call signal inside another signal
+			signalWithMultipleTargets.emit(Vector2(1, size))
+	}
+	@RegisterFunction
+	fun targetFunctionTwo(vector2: Vector2) {
+		array.append(vector2)
+	}
+
 	@RegisterFunction
 	fun intValue(value: Int) = value
 
@@ -381,6 +405,9 @@ class Invocation : Node3D() {
 		oneParam.connect(invocation, invocation::hookOneParam)
 		twoParam.connect(invocation, invocation::hookTwoParam)
 
+		signalWithMultipleTargets.connect(this, ::targetFunctionOne)
+		signalWithMultipleTargets.connect(this, ::targetFunctionTwo)
+
 		(getNodeOrNull(path) as Button?)?.pressed?.connect(
 			invocation,
 			invocation::hookNoParam
@@ -388,6 +415,8 @@ class Invocation : Node3D() {
 		noParam.emit()
 		oneParam.emit(false)
 		twoParam.emit("My Awesome param !", this)
+
+		signalWithMultipleTargets.emit(Vector2(0,0))
 
 		println("NavMesh instance id before re-assign: ${resourceTest.getInstanceId()}")
 		resourceTest = NavigationMesh()
@@ -551,6 +580,16 @@ class Invocation : Node3D() {
 	fun getByteFromPoolArray(index: Int) = packedByteArray[index]
 
 	@RegisterFunction
+	fun setByteInPoolArray(index: Int, value: Byte) {
+		packedByteArray[index] = value
+	}
+
+	@RegisterFunction
+	fun resizeBytePoolArray(newSize: Int) {
+		packedByteArray.resize(newSize)
+	}
+
+	@RegisterFunction
 	fun addColorToPoolArray(color: Color) = packedColorArray.append(color)
 
 	@RegisterFunction
@@ -563,6 +602,16 @@ class Invocation : Node3D() {
 	fun getColorFromPoolArray(index: Int) = packedColorArray[index]
 
 	@RegisterFunction
+	fun setColorInPoolArray(index: Int, color: Color) {
+		packedColorArray[index] = color
+	}
+
+	@RegisterFunction
+	fun resizeColorPoolArray(newSize: Int) {
+		packedColorArray.resize(newSize)
+	}
+
+	@RegisterFunction
 	fun addIntToPoolArray(int: Int) = packedInt32Array.append(int)
 
 	@RegisterFunction
@@ -573,6 +622,16 @@ class Invocation : Node3D() {
 
 	@RegisterFunction
 	fun getIntFromPoolArray(index: Int) = packedInt32Array[index]
+
+	@RegisterFunction
+	fun setIntInPoolArray(index: Int, value: Int) {
+		packedInt32Array[index] = value
+	}
+
+	@RegisterFunction
+	fun resizeIntPoolArray(newSize: Int) {
+		packedInt32Array.resize(newSize)
+	}
 
 	@RegisterFunction
 	fun addRealToPoolArray(realT: RealT) = packedFloat64Array.append(realT)
@@ -605,6 +664,16 @@ class Invocation : Node3D() {
 	fun getRealFromPoolArray(index: Int) = packedFloat64Array[index]
 
 	@RegisterFunction
+	fun setRealInPoolArray(index: Int, value: Double) {
+		packedFloat64Array[index] = value
+	}
+
+	@RegisterFunction
+	fun resizeRealPoolArray(newSize: Int) {
+		packedFloat64Array.resize(newSize)
+	}
+
+	@RegisterFunction
 	fun addStringToPoolArray(string: String) = packedStringArray.append(string)
 
 	@RegisterFunction
@@ -615,6 +684,16 @@ class Invocation : Node3D() {
 
 	@RegisterFunction
 	fun getStringFromPoolArray(index: Int) = packedStringArray[index]
+
+	@RegisterFunction
+	fun setStringInPoolArray(index: Int, value: String) {
+		packedStringArray[index] = value
+	}
+
+	@RegisterFunction
+	fun resizeStringPoolArray(newSize: Int) {
+		packedStringArray.resize(newSize)
+	}
 
 	@RegisterFunction
 	fun addVector2ToPoolArray(vector2: Vector2) = packedVector2Array.append(vector2)
@@ -629,6 +708,16 @@ class Invocation : Node3D() {
 	fun getVector2FromPoolArray(index: Int) = packedVector2Array[index]
 
 	@RegisterFunction
+	fun setVector2InPoolArray(index: Int, vector2: Vector2) {
+		packedVector2Array[index] = vector2
+	}
+
+	@RegisterFunction
+	fun resizeVector2PoolArray(newSize: Int) {
+		packedVector2Array.resize(newSize)
+	}
+
+	@RegisterFunction
 	fun addVector3ToPoolArray(vector3: Vector3) = packedVector3Array.append(vector3)
 
 	@RegisterFunction
@@ -640,11 +729,21 @@ class Invocation : Node3D() {
 	@RegisterFunction
 	fun getVector3FromPoolArray(index: Int) = packedVector3Array[index]
 
+	@RegisterFunction
+	fun setVector3InPoolArray(index: Int, vector3: Vector3) {
+		packedVector3Array[index] = vector3
+	}
+
+	@RegisterFunction
+	fun resizeVector3PoolArray(newSize: Int) {
+		packedVector3Array.resize(newSize)
+	}
+
 	// Singleton tests
 
 	@RegisterFunction
 	fun isSentXrSameInstanceAsJvmSingleton(arvrServer: XRServer) =
-        XRServer.getInstanceId() == arvrServer.getInstanceId()
+		XRServer.getInstanceId() == arvrServer.getInstanceId()
 
 	@RegisterFunction
 	fun nullableStringIsNull(nullableString: String?) = nullableString == null
@@ -656,6 +755,6 @@ class Invocation : Node3D() {
 		"not null"
 	}
 
-    @RegisterFunction
-    fun createVariantArrayOfUserType() = variantArrayOf<OtherScript>()
+	@RegisterFunction
+	fun createVariantArrayOfUserType() = variantArrayOf<OtherScript>()
 }

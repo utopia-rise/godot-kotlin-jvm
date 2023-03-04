@@ -34,6 +34,13 @@ Ref<Script> KotlinScript::get_base_script() const {
     return Ref<Script>();
 }
 
+StringName KotlinScript::get_global_name() const {
+    if (KtClass* kt_class {get_kotlin_class()}) {
+        return kt_class->registered_class_name;
+    }
+    return StringName();
+}
+
 StringName KotlinScript::get_instance_base_type() const {
     if (KtClass * kt_class {get_kotlin_class()}) { return kt_class->base_godot_class; }
     // not found

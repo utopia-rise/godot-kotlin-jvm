@@ -2,7 +2,7 @@ extends "res://addons/gut/test.gd"
 
 
 func test_script_is_attached() -> void:
-	var invocation_scene = load("res://Spatial.tscn").instance()
+	var invocation_scene = load("res://Spatial.tscn").instantiate()
 	assert_eq(invocation_scene.get_script().get_path(), "res://src/main/kotlin/godot/tests/Invocation.kt", "Scene script path should be res://src/main/kotlin/godot/tests/Invocation.kt")
 	invocation_scene.free()
 

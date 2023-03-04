@@ -412,12 +412,14 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform [color] and [width] and optional antialiasing. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
+   * Draws interconnected line segments with a uniform [color] and [width] and optional antialiasing (supported only for positive [width]). When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
+   *
+   * If [width] is negative, the polyline is drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
   public fun drawPolyline(
     points: PackedVector2Array,
     color: Color,
-    width: Double = 1.0,
+    width: Double = -1.0,
     antialiased: Boolean = false
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, COLOR to color, DOUBLE to width, BOOL to antialiased)
@@ -425,12 +427,14 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform [width] and segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between [points] and [colors]. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
+   * Draws interconnected line segments with a uniform [width] and segment-by-segment coloring, and optional antialiasing (supported only for positive [width]). Colors assigned to line segments match by index between [points] and [colors]. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
+   *
+   * If [width] is negative, then the polyline is drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
   public fun drawPolylineColors(
     points: PackedVector2Array,
     colors: PackedColorArray,
-    width: Double = 1.0,
+    width: Double = -1.0,
     antialiased: Boolean = false
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width, BOOL to antialiased)
@@ -439,7 +443,11 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a unfilled arc between the given angles. The larger the value of [pointCount], the smoother the curve. See also [drawCircle].
+   * Draws an unfilled arc between the given angles with a uniform [color] and [width] and optional antialiasing (supported only for positive [width]). The larger the value of [pointCount], the smoother the curve. See also [drawCircle].
+   *
+   * If [width] is negative, then the arc is drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   *
+   * The arc is drawn from [startAngle] towards the value of [endAngle] so in clockwise direction if `start_angle < end_angle` and counter-clockwise otherwise. Passing the same angles but in reversed order will produce the same arc. If absolute difference of [startAngle] and [endAngle] is greater than [@GDScript.TAU] radians, then a full circle arc is drawn (i.e. arc will not overlap itself).
    */
   public fun drawArc(
     center: Vector2,
@@ -448,7 +456,7 @@ public open class CanvasItem internal constructor() : Node() {
     endAngle: Double,
     pointCount: Long,
     color: Color,
-    width: Double = 1.0,
+    width: Double = -1.0,
     antialiased: Boolean = false
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to center, DOUBLE to radius, DOUBLE to startAngle, DOUBLE to endAngle, LONG to pointCount, COLOR to color, DOUBLE to width, BOOL to antialiased)
@@ -825,6 +833,8 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Sets a custom transform for drawing via components. Anything drawn afterwards will be transformed by this.
+   *
+   * **Note:** [godot.FontFile.oversampling] does *not* take [scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [godot.ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [godot.SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
    */
   public fun drawSetTransform(
     position: Vector2,

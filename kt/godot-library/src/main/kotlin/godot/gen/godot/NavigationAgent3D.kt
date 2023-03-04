@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Color
 import godot.core.Dictionary
 import godot.core.PackedVector3Array
 import godot.core.RID
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -37,9 +39,9 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationagents.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationagents.html)
  *
- * 3D Agent that is used in navigation to reach a location while avoiding static and dynamic obstacles. The dynamic obstacles are avoided using RVO collision avoidance. The agent needs navigation data to work correctly. [godot.NavigationAgent3D] is physics safe.
+ * 3D Agent that is used in navigation to reach a position while avoiding static and dynamic obstacles. The dynamic obstacles are avoided using RVO collision avoidance. The agent needs navigation data to work correctly. [godot.NavigationAgent3D] is physics safe.
  *
- * **Note:** After setting [targetLocation] it is required to use the [getNextLocation] function once every physics frame to update the internal path logic of the NavigationAgent. The returned vector position from this function should be used as the next movement position for the agent's parent Node.
+ * **Note:** After setting [targetPosition] it is required to use the [getNextPathPosition] function once every physics frame to update the internal path logic of the NavigationAgent. The returned vector position from this function should be used as the next movement position for the agent's parent Node.
  */
 @GodotBaseType
 public open class NavigationAgent3D : Node() {
@@ -49,7 +51,7 @@ public open class NavigationAgent3D : Node() {
   public val pathChanged: Signal0 by signal()
 
   /**
-   * Notifies when the player-defined [targetLocation] is reached.
+   * Notifies when the player-defined [targetPosition] is reached.
    */
   public val targetReached: Signal0 by signal()
 
@@ -58,7 +60,7 @@ public open class NavigationAgent3D : Node() {
    *
    * The details dictionary may contain the following keys depending on the value of [pathMetadataFlags]:
    *
-   * - `location`: The location of the waypoint that was reached.
+   * - `position`: The position of the waypoint that was reached.
    *
    * - `type`: The type of navigation primitive (region or link) that contains this waypoint.
    *
@@ -73,18 +75,22 @@ public open class NavigationAgent3D : Node() {
    *
    * The details dictionary may contain the following keys depending on the value of [pathMetadataFlags]:
    *
-   * - `location`: The start location of the link that was reached.
+   * - `position`: The start position of the link that was reached.
    *
    * - `type`: Always [godot.NavigationPathQueryResult3D.PATH_SEGMENT_TYPE_LINK].
    *
    * - `rid`: The [RID] of the link.
    *
    * - `owner`: The object which manages the link (usually [godot.NavigationLink3D]).
+   *
+   * - `link_entry_position`: If `owner` is available and the owner is a [godot.NavigationLink2D], it will contain the global position of the link's point the agent is entering.
+   *
+   * - `link_exit_position`: If `owner` is available and the owner is a [godot.NavigationLink2D], it will contain the global position of the link's point which the agent is exiting.
    */
   public val linkReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
 
   /**
-   * Notifies when the final location is reached.
+   * Notifies when the final position is reached.
    */
   public val navigationFinished: Signal0 by signal()
 
@@ -94,19 +100,19 @@ public open class NavigationAgent3D : Node() {
   public val velocityComputed: Signal1<Vector3> by signal("safeVelocity")
 
   /**
-   * The user-defined target location. Setting this property will clear the current navigation path.
+   * The user-defined target position. Setting this property will clear the current navigation path.
    */
-  public var targetLocation: Vector3
+  public var targetPosition: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_TARGET_LOCATION, VECTOR3)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_TARGET_POSITION, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_TARGET_LOCATION, NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_TARGET_POSITION, NIL)
     }
 
   /**
@@ -158,7 +164,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The maximum distance the agent is allowed away from the ideal path to the final location. This can happen due to trying to avoid collisions. When the maximum distance is exceeded, it recalculates the ideal path.
+   * The maximum distance the agent is allowed away from the ideal path to the final position. This can happen due to trying to avoid collisions. When the maximum distance is exceeded, it recalculates the ideal path.
    */
   public var pathMaxDistance: Double
     get() {
@@ -318,6 +324,70 @@ public open class NavigationAgent3D : Node() {
           NIL)
     }
 
+  /**
+   * If `true` shows debug visuals for this agent.
+   */
+  public var debugEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_DEBUG_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_DEBUG_ENABLED, NIL)
+    }
+
+  /**
+   * If `true` uses the defined [debugPathCustomColor] for this agent instead of global color.
+   */
+  public var debugUseCustom: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_DEBUG_USE_CUSTOM, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_DEBUG_USE_CUSTOM, NIL)
+    }
+
+  /**
+   * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
+   */
+  public var debugPathCustomColor: Color
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_DEBUG_PATH_CUSTOM_COLOR, COLOR)
+      return TransferContext.readReturnValue(COLOR, false) as Color
+    }
+    set(`value`) {
+      TransferContext.writeArguments(COLOR to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_DEBUG_PATH_CUSTOM_COLOR, NIL)
+    }
+
+  /**
+   * If [debugUseCustom] is `true` uses this rasterized point size for rendering path points for this agent instead of global point size.
+   */
+  public var debugPathCustomPointSize: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_DEBUG_PATH_CUSTOM_POINT_SIZE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_DEBUG_PATH_CUSTOM_POINT_SIZE, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_NAVIGATIONAGENT3D, scriptIndex)
     return true
@@ -371,17 +441,17 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the next location in global coordinates that can be moved to, making sure that there are no static objects in the way. If the agent does not have a navigation path, it will return the position of the agent's parent. The use of this function once every physics frame is required to update the internal path logic of the NavigationAgent.
+   * Returns the next position in global coordinates that can be moved to, making sure that there are no static objects in the way. If the agent does not have a navigation path, it will return the position of the agent's parent. The use of this function once every physics frame is required to update the internal path logic of the NavigationAgent.
    */
-  public fun getNextLocation(): Vector3 {
+  public fun getNextPathPosition(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_NEXT_LOCATION,
-        VECTOR3)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_NEXT_PATH_POSITION, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
   /**
-   * Returns the distance to the target location, using the agent's global position. The user must set [targetLocation] in order for this to be accurate.
+   * Returns the distance to the target position, using the agent's global position. The user must set [targetPosition] in order for this to be accurate.
    */
   public fun distanceToTarget(): Double {
     TransferContext.writeArguments()
@@ -409,7 +479,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns this agent's current path from start to finish in global coordinates. The path only updates when the target location is changed or the agent requires a repath. The path array is not intended to be used in direct path movement as the agent has its own internal path logic that would get corrupted by changing the path array manually. Use the intended [getNextLocation] once every physics frame to receive the next path point for the agents movement as this function also updates the internal path logic.
+   * Returns this agent's current path from start to finish in global coordinates. The path only updates when the target position is changed or the agent requires a repath. The path array is not intended to be used in direct path movement as the agent has its own internal path logic that would get corrupted by changing the path array manually. Use the intended [getNextPathPosition] once every physics frame to receive the next path point for the agents movement as this function also updates the internal path logic.
    */
   public fun getCurrentNavigationPath(): PackedVector3Array {
     TransferContext.writeArguments()
@@ -430,7 +500,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns true if [targetLocation] is reached. It may not always be possible to reach the target location. It should always be possible to reach the final location though. See [getFinalLocation].
+   * Returns true if [targetPosition] is reached. It may not always be possible to reach the target position. It should always be possible to reach the final position though. See [getFinalPosition].
    */
   public fun isTargetReached(): Boolean {
     TransferContext.writeArguments()
@@ -440,7 +510,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns true if [targetLocation] is reachable.
+   * Returns true if [targetPosition] is reachable.
    */
   public fun isTargetReachable(): Boolean {
     TransferContext.writeArguments()
@@ -450,7 +520,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns true if the navigation path's final location has been reached.
+   * Returns true if the navigation path's final position has been reached.
    */
   public fun isNavigationFinished(): Boolean {
     TransferContext.writeArguments()
@@ -460,12 +530,12 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the reachable final location in global coordinates. This can change if the navigation path is altered in any way. Because of this, it would be best to check this each frame.
+   * Returns the reachable final position in global coordinates. This can change if the navigation path is altered in any way. Because of this, it would be best to check this each frame.
    */
-  public fun getFinalLocation(): Vector3 {
+  public fun getFinalPosition(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_FINAL_LOCATION, VECTOR3)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_FINAL_POSITION, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 

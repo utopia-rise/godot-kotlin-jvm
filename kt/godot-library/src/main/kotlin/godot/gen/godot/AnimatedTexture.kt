@@ -30,6 +30,8 @@ import kotlin.Unit
  * [godot.AnimatedTexture] currently requires all frame textures to have the same size, otherwise the bigger ones will be cropped to match the smallest one.
  *
  * **Note:** AnimatedTexture doesn't support using [godot.AtlasTexture]s. Each frame needs to be a separate [godot.Texture2D].
+ *
+ * **Warning:** AnimatedTexture is deprecated, and might be removed in a future release. Its current implementation is not efficient for the modern renderers.
  */
 @GodotBaseType
 public open class AnimatedTexture : Texture2D() {
@@ -48,7 +50,7 @@ public open class AnimatedTexture : Texture2D() {
     }
 
   /**
-   * Sets the currently visible frame of the texture.
+   * Sets the currently visible frame of the texture. Setting this frame while playing resets the current frame time, so the newly selected frame plays for its whole configured frame duration.
    */
   public var currentFrame: Long
     get() {

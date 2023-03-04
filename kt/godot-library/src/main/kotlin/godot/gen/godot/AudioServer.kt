@@ -366,24 +366,25 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the names of all audio devices detected on the system.
+   * Returns the names of all audio output devices detected on the system.
    */
-  public fun getDeviceList(): PackedStringArray {
+  public fun getOutputDeviceList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_DEVICE_LIST,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_OUTPUT_DEVICE_LIST,
         PACKED_STRING_ARRAY)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
-  public fun getDevice(): String {
+  public fun getOutputDevice(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_DEVICE, STRING)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_OUTPUT_DEVICE,
+        STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public fun setDevice(device: String): Unit {
-    TransferContext.writeArguments(STRING to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_DEVICE, NIL)
+  public fun setOutputDevice(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_OUTPUT_DEVICE, NIL)
   }
 
   /**
@@ -421,23 +422,23 @@ public object AudioServer : Object() {
    *
    * **Note:** [godot.ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
    */
-  public fun captureGetDeviceList(): PackedStringArray {
+  public fun getInputDeviceList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_GET_DEVICE_LIST,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_INPUT_DEVICE_LIST,
         PACKED_STRING_ARRAY)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
-  public fun captureGetDevice(): String {
+  public fun getInputDevice(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_GET_DEVICE,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_INPUT_DEVICE,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public fun captureSetDevice(name: String): Unit {
+  public fun setInputDevice(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_SET_DEVICE, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_INPUT_DEVICE, NIL)
   }
 
   /**

@@ -308,7 +308,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the expand margin to [size] pixels for all margins.
+   * Sets the expand margin to [size] pixels for all sides.
    */
   public fun setExpandMarginAll(size: Double): Unit {
     TransferContext.writeArguments(DOUBLE to size)

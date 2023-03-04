@@ -103,7 +103,7 @@ import kotlin.Unit
  *
  *             {
  *
- *                 GD.Print("Found directory: " + fileName);
+ *                 GD.Print($"Found directory: {fileName}");
  *
  *             }
  *
@@ -111,7 +111,7 @@ import kotlin.Unit
  *
  *             {
  *
- *                 GD.Print("Found file: " + fileName);
+ *                 GD.Print($"Found file: {fileName}");
  *
  *             }
  *

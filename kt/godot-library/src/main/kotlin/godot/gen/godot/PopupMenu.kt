@@ -165,7 +165,7 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new item with text [label].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    *
    * **Note:** The provided [id] is used only in [idPressed] and [idFocused] signals. It's not related to the `index` arguments in e.g. [setItemChecked].
    */
@@ -181,7 +181,7 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new item with text [label] and icon [texture].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    */
   public fun addIconItem(
     texture: Texture2D,
@@ -196,7 +196,7 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new checkable item with text [label].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
@@ -212,7 +212,7 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new checkable item with text [label] and icon [texture].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
@@ -229,7 +229,7 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new radio check button with text [label].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
@@ -261,7 +261,7 @@ public open class PopupMenu : Popup() {
    *
    * Contrarily to normal binary items, multistate items can have more than two states, as defined by [maxStates]. Each press or activate of the item will increase the state by one. The default value is defined by [defaultState].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    */
   public fun addMultistateItem(
     label: String,
@@ -434,7 +434,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the accelerator of the item at the given [index]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
+   * Sets the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. [accel] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    */
   public fun setItemAccelerator(index: Long, accel: Key): Unit {
     TransferContext.writeArguments(LONG to index, LONG to accel.id)
@@ -621,7 +621,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the accelerator of the item at the given [index]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
+   * Returns the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The return value is an integer which is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is defined for the specified [index], [getItemAccelerator] returns `0` (corresponding to [@GlobalScope.KEY_NONE]).
    */
   public fun getItemAccelerator(index: Long): Key {
     TransferContext.writeArguments(LONG to index)

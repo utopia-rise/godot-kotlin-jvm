@@ -27,13 +27,17 @@ import kotlin.Suppress
  * Captures its surroundings to create fast, accurate reflections from a given point.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/3d/reflection_probes.html]($DOCS_URL/tutorials/3d/reflection_probes.html)
+ * [$DOCS_URL/tutorials/3d/global_illumination/reflection_probes.html]($DOCS_URL/tutorials/3d/global_illumination/reflection_probes.html)
  *
  * Captures its surroundings as a cubemap, and stores versions of it with increasing levels of blur to simulate different material roughnesses.
  *
  * The [godot.ReflectionProbe] is used to create high-quality reflections at a low performance cost (when [updateMode] is [UPDATE_ONCE]). [godot.ReflectionProbe]s can be blended together and with the rest of the scene smoothly. [godot.ReflectionProbe]s can also be combined with [godot.VoxelGI], SDFGI ([godot.Environment.sdfgiEnabled]) and screen-space reflections ([godot.Environment.ssrEnabled]) to get more accurate reflections in specific areas. [godot.ReflectionProbe]s render all objects within their [cullMask], so updating them can be quite expensive. It is best to update them once with the important static objects and then leave them as-is.
  *
  * **Note:** Unlike [godot.VoxelGI] and SDFGI, [godot.ReflectionProbe]s only source their environment from a [godot.WorldEnvironment] node. If you specify an [godot.Environment] resource within a [godot.Camera3D] node, it will be ignored by the [godot.ReflectionProbe]. This can lead to incorrect lighting within the [godot.ReflectionProbe].
+ *
+ * **Note:** Reflection probes are only supported in the Forward+ and Mobile rendering methods, not Compatibility. When using the Mobile rendering method, only 8 reflection probes can be displayed on each mesh resource. Attempting to display more than 8 reflection probes on a single mesh resource will result in reflection probes flickering in and out as the camera moves.
+ *
+ * **Note:** When using the Mobile rendering method, reflection probes will only correctly affect meshes whose visibility AABB intersects with the reflection probe's AABB. If using a shader to deform the mesh in a way that makes it go outside its AABB, [godot.GeometryInstance3D.extraCullMargin] must be increased on the mesh. Otherwise, the reflection probe may not be visible on the mesh.
  */
 @GodotBaseType
 public open class ReflectionProbe : VisualInstance3D() {
@@ -72,7 +76,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The maximum distance away from the [godot.ReflectionProbe] an object can be before it is culled. Decrease this to improve performance, especially when using the [UPDATE_ALWAYS] [updateMode].
    *
-   * **Note:** The maximum reflection distance is always at least equal to the [extents]. This means that decreasing [maxDistance] will not always cull objects from reflections, especially if the reflection probe's [extents] are already large.
+   * **Note:** The maximum reflection distance is always at least equal to the probe's extents. This means that decreasing [maxDistance] will not always cull objects from reflections, especially if the reflection probe's [size] is already large.
    */
   public var maxDistance: Double
     get() {
@@ -88,20 +92,19 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   /**
-   * The size of the reflection probe. The larger the extents, the more space covered by the probe, which will lower the perceived resolution. It is best to keep the extents only as large as you need them.
+   * The size of the reflection probe. The larger the size, the more space covered by the probe, which will lower the perceived resolution. It is best to keep the size only as large as you need it.
    *
    * **Note:** To better fit areas that are not aligned to the grid, you can rotate the [godot.ReflectionProbe] node.
    */
-  public var extents: Vector3
+  public var size: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_EXTENTS,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_SIZE, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_EXTENTS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_SIZE, NIL)
     }
 
   /**
@@ -205,7 +208,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   /**
-   * The ambient color to use within the [godot.ReflectionProbe]'s [extents]. The ambient color will smoothly blend with other [godot.ReflectionProbe]s and the rest of the scene (outside the [godot.ReflectionProbe]'s [extents]).
+   * The ambient color to use within the [godot.ReflectionProbe]'s [size]. The ambient color will smoothly blend with other [godot.ReflectionProbe]s and the rest of the scene (outside the [godot.ReflectionProbe]'s [size]).
    */
   public var ambientMode: AmbientMode
     get() {
@@ -221,7 +224,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   /**
-   * The custom ambient color to use within the [godot.ReflectionProbe]'s [extents]. Only effective if [ambientMode] is [AMBIENT_COLOR].
+   * The custom ambient color to use within the [godot.ReflectionProbe]'s [size]. Only effective if [ambientMode] is [AMBIENT_COLOR].
    */
   public var ambientColor: Color
     get() {
@@ -237,7 +240,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   /**
-   * The custom ambient color energy to use within the [godot.ReflectionProbe]'s [extents]. Only effective if [ambientMode] is [AMBIENT_COLOR].
+   * The custom ambient color energy to use within the [godot.ReflectionProbe]'s [size]. Only effective if [ambientMode] is [AMBIENT_COLOR].
    */
   public var ambientColorEnergy: Double
     get() {
@@ -284,15 +287,15 @@ public open class ReflectionProbe : VisualInstance3D() {
     id: Long
   ) {
     /**
-     * Do not apply any ambient lighting inside the [godot.ReflectionProbe]'s [extents].
+     * Do not apply any ambient lighting inside the [godot.ReflectionProbe]'s [size].
      */
     AMBIENT_DISABLED(0),
     /**
-     * Apply automatically-sourced environment lighting inside the [godot.ReflectionProbe]'s [extents].
+     * Apply automatically-sourced environment lighting inside the [godot.ReflectionProbe]'s [size].
      */
     AMBIENT_ENVIRONMENT(1),
     /**
-     * Apply custom ambient lighting inside the [godot.ReflectionProbe]'s [extents]. See [ambientColor] and [ambientColorEnergy].
+     * Apply custom ambient lighting inside the [godot.ReflectionProbe]'s [size]. See [ambientColor] and [ambientColorEnergy].
      */
     AMBIENT_COLOR(2),
     ;

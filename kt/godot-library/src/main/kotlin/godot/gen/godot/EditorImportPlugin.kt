@@ -8,9 +8,16 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
+import godot.core.VariantType.ANY
+import godot.core.VariantType.DICTIONARY
+import godot.core.VariantType.JVM_INT
+import godot.core.VariantType.LONG
+import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -92,9 +99,9 @@ import kotlin.Suppress
  *
  * func _import(source_file, save_path, options, platform_variants, gen_files):
  *
- *     var file = File.new()
+ *     var file = FileAccess.open(source_file, FileAccess.READ)
  *
- *     if file.open(source_file, File.READ) != OK:
+ *     if file == null:
  *
  *         return FAILED
  *
@@ -114,15 +121,13 @@ import kotlin.Suppress
  *
  * using Godot;
  *
- * using System;
  *
  *
- *
- * public class MySpecialPlugin : EditorImportPlugin
+ * public partial class MySpecialPlugin : EditorImportPlugin
  *
  * {
  *
- *     public override String GetImporterName()
+ *     public override string _GetImporterName()
  *
  *     {
  *
@@ -132,7 +137,7 @@ import kotlin.Suppress
  *
  *
  *
- *     public override String GetVisibleName()
+ *     public override string _GetVisibleName()
  *
  *     {
  *
@@ -142,17 +147,17 @@ import kotlin.Suppress
  *
  *
  *
- *     public override Godot.Collections.Array GetRecognizedExtensions()
+ *     public override string[] _GetRecognizedExtensions()
  *
  *     {
  *
- *         return new Godot.Collections.Array{"special", "spec"};
+ *         return new string[] { "special", "spec" };
  *
  *     }
  *
  *
  *
- *     public override String GetSaveExtension()
+ *     public override string _GetSaveExtension()
  *
  *     {
  *
@@ -162,7 +167,7 @@ import kotlin.Suppress
  *
  *
  *
- *     public override String GetResourceType()
+ *     public override string _GetResourceType()
  *
  *     {
  *
@@ -172,7 +177,7 @@ import kotlin.Suppress
  *
  *
  *
- *     public override int GetPresetCount()
+ *     public override int _GetPresetCount()
  *
  *     {
  *
@@ -182,7 +187,7 @@ import kotlin.Suppress
  *
  *
  *
- *     public override String GetPresetName(int i)
+ *     public override string _GetPresetName(int presetIndex)
  *
  *     {
  *
@@ -192,23 +197,37 @@ import kotlin.Suppress
  *
  *
  *
- *     public override Godot.Collections.Array GetImportOptions(int i)
+ *     public override Godot.Collections.Array<Godot.Collections.Dictionary> _GetImportOptions(string path, int presetIndex)
  *
  *     {
  *
- *         return new Godot.Collections.Array{new Godot.Collections.Dictionary{{"name", "myOption"}, {"defaultValue", false}}};
+ *         return new Godot.Collections.Array<Godot.Collections.Dictionary>
+ *
+ *         {
+ *
+ *             new Godot.Collections.Dictionary
+ *
+ *             {
+ *
+ *                 { "name", "myOption" },
+ *
+ *                 { "defaultValue", false },
+ *
+ *             }
+ *
+ *         };
  *
  *     }
  *
  *
  *
- *     public override int Import(String sourceFile, String savePath, Godot.Collections.Dictionary options, Godot.Collections.Array platformVariants, Godot.Collections.Array genFiles)
+ *     public override int _Import(string sourceFile, string savePath, Godot.Collections.Dictionary options, Godot.Collections.Array<string> platformVariants, Godot.Collections.Array<string> genFiles)
  *
  *     {
  *
- *         var file = new File();
+ *         using var file = FileAccess.Open(sourceFile, FileAccess.ModeFlags.Read);
  *
- *         if (file.Open(sourceFile, File.ModeFlags.Read) != Error.Ok)
+ *         if (file.GetError() != Error.Ok)
  *
  *         {
  *
@@ -222,7 +241,7 @@ import kotlin.Suppress
  *
  *         // Fill the Mesh with data read in "file", left as an exercise to the reader.
  *
- *         String filename = savePath + "." + GetSaveExtension();
+ *         string filename = $"{savePath}.{_GetSaveExtension()}";
  *
  *         return (int)ResourceSaver.Save(mesh, filename);
  *
@@ -382,8 +401,23 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
     options: Dictionary<Any?, Any?>,
     platformVariants: VariantArray<String>,
     genFiles: VariantArray<String>
-  ): Long {
+  ): GodotError {
     throw NotImplementedError("_import is not implemented for EditorImportPlugin")
+  }
+
+  /**
+   * This function can only be called during the [_import] callback and it allows manually importing resources from it. This is useful when the imported file generates external resources that require importing (as example, images). Custom parameters for the ".import" file can be passed via the [customOptions]. Additionally, in cases where multiple importers can handle a file, the [customImporter] ca be specified to force a specific one. This function performs a resource import and returns immediately with a success or error code. [generatorParameters] defines optional extra metadata which will be stored as `generator_parameters` in the `remap` section of the `.import` file, for example to store a md5 hash of the source data.
+   */
+  public fun appendImportExternalResource(
+    path: String,
+    customOptions: Dictionary<Any?, Any?> = Dictionary(),
+    customImporter: String = "",
+    generatorParameters: Any? = null
+  ): GodotError {
+    TransferContext.writeArguments(STRING to path, DICTIONARY to customOptions, STRING to customImporter, ANY to generatorParameters)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORIMPORTPLUGIN_APPEND_IMPORT_EXTERNAL_RESOURCE, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public companion object

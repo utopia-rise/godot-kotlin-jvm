@@ -31,7 +31,7 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/audio/audio_streams.html]($DOCS_URL/tutorials/audio/audio_streams.html)
  *
- * Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space. For greater realism, a low-pass filter is automatically applied to distant sounds. This can be disabled by setting [attenuationFilterCutoffHz] to `20500`.
+ * Plays audio with positional sound effects, based on the relative position of the audio listener. Positional effects include distance attenuation, directionality, and the Doppler effect. For greater realism, a low-pass filter is applied to distant sounds. This can be disabled by setting [attenuationFilterCutoffHz] to `20500`.
  *
  * By default, audio is heard from the camera position. This can be changed by adding an [godot.AudioListener3D] node to the scene and enabling it by calling [godot.AudioListener3D.makeCurrent] on it.
  *
@@ -79,7 +79,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * The base sound level unaffected by dampening, in decibels.
+   * The base sound level before attenuation, in decibels.
    */
   public var volumeDb: Double
     get() {
@@ -267,7 +267,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * If `true`, the audio should be dampened according to the direction of the sound.
+   * If `true`, the audio should be attenuated according to the direction of the sound.
    */
   public var emissionAngleEnabled: Boolean
     get() {
@@ -283,7 +283,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * The angle in which the audio reaches cameras undampened.
+   * The angle in which the audio reaches a listener unattenuated.
    */
   public var emissionAngleDegrees: Double
     get() {
@@ -299,7 +299,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * Dampens audio if camera is outside of [emissionAngleDegrees] and [emissionAngleEnabled] is set by this factor, in decibels.
+   * Attenuation factor used if listener is outside of [emissionAngleDegrees] and [emissionAngleEnabled] is set, in decibels.
    */
   public var emissionAngleFilterAttenuationDb: Double
     get() {
@@ -317,7 +317,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * Dampens audio using a low-pass filter above this frequency, in Hz. To disable the dampening effect entirely, set this to `20500` as this frequency is above the human hearing limit.
+   * The cutoff frequency of the attenuation low-pass filter, in Hz. A sound above this frequency is attenuated more than a sound below this frequency. To disable this effect, set this to `20500` as this frequency is above the human hearing limit.
    */
   public var attenuationFilterCutoffHz: Double
     get() {
@@ -404,6 +404,16 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   /**
+   * Returns whether the [godot.AudioStreamPlayer] can return the [godot.AudioStreamPlayback] object or not.
+   */
+  public fun hasStreamPlayback(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_HAS_STREAM_PLAYBACK, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns the [godot.AudioStreamPlayback] object associated with this [godot.AudioStreamPlayer3D].
    */
   public fun getStreamPlayback(): AudioStreamPlayback? {
@@ -417,19 +427,19 @@ public open class AudioStreamPlayer3D : Node3D() {
     id: Long
   ) {
     /**
-     * Linear dampening of loudness according to distance.
+     * Attenuation of loudness according to linear distance.
      */
     ATTENUATION_INVERSE_DISTANCE(0),
     /**
-     * Squared dampening of loudness according to distance.
+     * Attenuation of loudness according to squared distance.
      */
     ATTENUATION_INVERSE_SQUARE_DISTANCE(1),
     /**
-     * Logarithmic dampening of loudness according to distance.
+     * Attenuation of loudness according to logarithmic distance.
      */
     ATTENUATION_LOGARITHMIC(2),
     /**
-     * No dampening of loudness according to distance. The sound will still be heard positionally, unlike an [godot.AudioStreamPlayer]. [ATTENUATION_DISABLED] can be combined with a [maxDistance] value greater than `0.0` to achieve linear attenuation clamped to a sphere of a defined size.
+     * No attenuation of loudness according to distance. The sound will still be heard positionally, unlike an [godot.AudioStreamPlayer]. [ATTENUATION_DISABLED] can be combined with a [maxDistance] value greater than `0.0` to achieve linear attenuation clamped to a sphere of a defined size.
      */
     ATTENUATION_DISABLED(3),
     ;

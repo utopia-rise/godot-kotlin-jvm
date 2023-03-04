@@ -145,14 +145,10 @@ public open class NinePatchRect : Control() {
     AXIS_STRETCH_MODE_STRETCH(0),
     /**
      * Repeats the center texture across the NinePatchRect. This won't cause any visible distortion. The texture must be seamless for this to work without displaying artifacts between edges.
-     *
-     * **Note:** Only supported when using the Vulkan renderer. When using the OpenGL renderer, this will behave like [AXIS_STRETCH_MODE_STRETCH].
      */
     AXIS_STRETCH_MODE_TILE(1),
     /**
      * Repeats the center texture across the NinePatchRect, but will also stretch the texture to make sure each tile is visible in full. This may cause the texture to be distorted, but less than [AXIS_STRETCH_MODE_STRETCH]. The texture must be seamless for this to work without displaying artifacts between edges.
-     *
-     * **Note:** Only supported when using the Vulkan renderer. When using the OpenGL renderer, this will behave like [AXIS_STRETCH_MODE_STRETCH].
      */
     AXIS_STRETCH_MODE_TILE_FIT(2),
     ;

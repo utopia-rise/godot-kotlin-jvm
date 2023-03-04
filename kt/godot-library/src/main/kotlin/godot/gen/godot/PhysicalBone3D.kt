@@ -26,6 +26,8 @@ import kotlin.Unit
 
 /**
  *
+ *
+ * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
  */
 @GodotBaseType
 public open class PhysicalBone3D : PhysicsBody3D() {

@@ -87,7 +87,7 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Returns the [godot.SkeletonModificationStack2D] that this modification is bound to. Through the modification stack, you can access the Skeleton3D the modification is operating on.
+   * Returns the [godot.SkeletonModificationStack2D] that this modification is bound to. Through the modification stack, you can access the Skeleton2D the modification is operating on.
    */
   public fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()

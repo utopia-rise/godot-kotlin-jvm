@@ -115,6 +115,50 @@ public open class RigidBody2D : PhysicsBody2D() {
    * The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.
    *
    * If set to `0`, inertia is automatically computed (default value).
+   *
+   * **Note:** This value does not change when inertia is automatically computed. Use [godot.PhysicsServer2D] to get the computed inertia.
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * @onready var ball = $Ball
+   *
+   *
+   *
+   * func get_ball_inertia():
+   *
+   *     return 1.0 / PhysicsServer2D.body_get_direct_state(ball.get_rid()).inverse_inertia
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * private RigidBody2D _ball;
+   *
+   *
+   *
+   * public override void _Ready()
+   *
+   * {
+   *
+   *     _ball = GetNode<RigidBody2D>("Ball");
+   *
+   * }
+   *
+   *
+   *
+   * private float GetBallInertia()
+   *
+   * {
+   *
+   *     return 1.0f / PhysicsServer2D.BodyGetDirectState(_ball.GetRid()).InverseInertia;
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public var inertia: Double
     get() {

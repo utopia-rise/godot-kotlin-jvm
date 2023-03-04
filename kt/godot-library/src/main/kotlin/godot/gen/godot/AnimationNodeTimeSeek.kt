@@ -17,7 +17,9 @@ import kotlin.Suppress
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
- * This node can be used to cause a seek command to happen to any sub-children of the animation graph. Use this node type to play an [godot.Animation] from the start or a certain playback position inside the [godot.AnimationNodeBlendTree]. After setting the time and changing the animation playback, the seek node automatically goes into sleep mode on the next process frame by setting its `seek_position` value to `-1.0`.
+ * This node can be used to cause a seek command to happen to any sub-children of the animation graph. Use this node type to play an [godot.Animation] from the start or a certain playback position inside the [godot.AnimationNodeBlendTree].
+ *
+ * After setting the time and changing the animation playback, the time seek node automatically goes into sleep mode on the next process frame by setting its `seek_request` value to `-1.0`.
  *
  * [codeblocks]
  *
@@ -25,21 +27,21 @@ import kotlin.Suppress
  *
  * # Play child animation from the start.
  *
- * animation_tree.set("parameters/Seek/seek_position", 0.0)
+ * animation_tree.set("parameters/TimeSeek/seek_request", 0.0)
  *
  * # Alternative syntax (same result as above).
  *
- * animation_tree["parameters/Seek/seek_position"] = 0.0
+ * animation_tree["parameters/TimeSeek/seek_request"] = 0.0
  *
  *
  *
  * # Play child animation from 12 second timestamp.
  *
- * animation_tree.set("parameters/Seek/seek_position", 12.0)
+ * animation_tree.set("parameters/TimeSeek/seek_request", 12.0)
  *
  * # Alternative syntax (same result as above).
  *
- * animation_tree["parameters/Seek/seek_position"] = 12.0
+ * animation_tree["parameters/TimeSeek/seek_request"] = 12.0
  *
  * [/gdscript]
  *
@@ -47,13 +49,13 @@ import kotlin.Suppress
  *
  * // Play child animation from the start.
  *
- * animationTree.Set("parameters/Seek/seek_position", 0.0);
+ * animationTree.Set("parameters/TimeSeek/seek_request", 0.0);
  *
  *
  *
  * // Play child animation from 12 second timestamp.
  *
- * animationTree.Set("parameters/Seek/seek_position", 12.0);
+ * animationTree.Set("parameters/TimeSeek/seek_request", 12.0);
  *
  * [/csharp]
  *

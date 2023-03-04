@@ -66,12 +66,12 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Emitted when a trigger or similar input on this tracker changes value.
    */
-  public val inputValueChanged: Signal2<String, Double> by signal("name", "value")
+  public val inputFloatChanged: Signal2<String, Double> by signal("name", "value")
 
   /**
    * Emitted when a thumbstick or thumbpad on this tracker moves.
    */
-  public val inputAxisChanged: Signal2<String, Vector2> by signal("name", "vector")
+  public val inputVector2Changed: Signal2<String, Vector2> by signal("name", "vector")
 
   /**
    * Emitted when the profile of our tracker changes.

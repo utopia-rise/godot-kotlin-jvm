@@ -90,14 +90,14 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the [enum XRInterface.PlayAreaMode] that sets up our play area.
    */
-  public open fun _getPlayAreaMode(): Long {
+  public open fun _getPlayAreaMode(): XRInterface.PlayAreaMode {
     throw NotImplementedError("_get_play_area_mode is not implemented for XRInterfaceExtension")
   }
 
   /**
    * Set the play area mode for this interface.
    */
-  public open fun _setPlayAreaMode(mode: Long): Boolean {
+  public open fun _setPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
     throw NotImplementedError("_set_play_area_mode is not implemented for XRInterfaceExtension")
   }
 
@@ -203,7 +203,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns a [enum XRInterface.TrackingStatus] specifying the current status of our tracking.
    */
-  public open fun _getTrackingStatus(): Long {
+  public open fun _getTrackingStatus(): XRInterface.TrackingStatus {
     throw NotImplementedError("_get_tracking_status is not implemented for XRInterfaceExtension")
   }
 

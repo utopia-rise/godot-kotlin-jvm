@@ -221,6 +221,16 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
+   * Returns whether the [godot.AudioStreamPlayer] can return the [godot.AudioStreamPlayback] object or not.
+   */
+  public fun hasStreamPlayback(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_HAS_STREAM_PLAYBACK, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns the [godot.AudioStreamPlayback] object associated with this [godot.AudioStreamPlayer].
    */
   public fun getStreamPlayback(): AudioStreamPlayback? {

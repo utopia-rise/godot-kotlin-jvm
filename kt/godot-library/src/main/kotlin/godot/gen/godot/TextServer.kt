@@ -41,6 +41,7 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.Vector2i
+import godot.core.Vector3i
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
@@ -178,7 +179,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Creates new, empty font cache entry resource. To free the resulting resourec, use [freeRid] method.
+   * Creates new, empty font cache entry resource. To free the resulting resource, use [freeRid] method.
    */
   public fun createFont(): RID {
     TransferContext.writeArguments()
@@ -2188,11 +2189,11 @@ public open class TextServer internal constructor() : RefCounted() {
     parserType: StructuredTextParser,
     args: VariantArray<Any?>,
     text: String
-  ): VariantArray<Vector2i> {
+  ): VariantArray<Vector3i> {
     TransferContext.writeArguments(LONG to parserType.id, ARRAY to args, STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_PARSE_STRUCTURED_TEXT,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3i>
   }
 
   public enum class FontAntialiasing(
@@ -2280,6 +2281,10 @@ public open class TextServer internal constructor() : RefCounted() {
      * Text is written from right to left.
      */
     DIRECTION_RTL(2),
+    /**
+     * Text writing direction is the same as base string writing direction. Used for BiDi override only.
+     */
+    DIRECTION_INHERITED(3),
     ;
 
     public val id: Long
@@ -2840,7 +2845,7 @@ public open class TextServer internal constructor() : RefCounted() {
     id: Long
   ) {
     /**
-     * Use default behavior. Same as [STRUCTURED_TEXT_NONE] unless specified otherwise in the control description.
+     * Use default Unicode BiDi algorithm.
      */
     STRUCTURED_TEXT_DEFAULT(0),
     /**
@@ -2862,9 +2867,9 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     STRUCTURED_TEXT_LIST(4),
     /**
-     * Use default Unicode BiDi algorithm.
+     * BiDi override for GDScript.
      */
-    STRUCTURED_TEXT_NONE(5),
+    STRUCTURED_TEXT_GDSCRIPT(5),
     /**
      * User defined structured text BiDi override function.
      */

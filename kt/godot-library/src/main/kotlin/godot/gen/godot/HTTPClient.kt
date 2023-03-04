@@ -110,19 +110,14 @@ public open class HTTPClient : RefCounted() {
   /**
    * Connects to a host. This needs to be done before any requests are sent.
    *
-   * The host should not have http:// prepended but will strip the protocol identifier if provided.
-   *
-   * If no [port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for HTTPS (if [useTls] is enabled).
-   *
-   * [verifyHost] will check the TLS identity of the host if set to `true`.
+   * If no [port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for HTTPS. You can pass the optional [tlsOptions] parameter to customize the trusted certification authorities, or the common name verification when using HTTPS. See [godot.TLSOptions.client] and [godot.TLSOptions.clientUnsafe].
    */
   public fun connectToHost(
     host: String,
     port: Long = -1,
-    useTls: Boolean = false,
-    verifyHost: Boolean = true
+    tlsOptions: TLSOptions? = null
   ): GodotError {
-    TransferContext.writeArguments(STRING to host, LONG to port, BOOL to useTls, BOOL to verifyHost)
+    TransferContext.writeArguments(STRING to host, LONG to port, OBJECT to tlsOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CONNECT_TO_HOST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -176,7 +171,7 @@ public open class HTTPClient : RefCounted() {
    *
    * string queryString = new HTTPClient().QueryStringFromDict(fields);
    *
-   * string[] headers = {"Content-Type: application/x-www-form-urlencoded", "Content-Length: " + queryString.Length};
+   * string[] headers = { "Content-Type: application/x-www-form-urlencoded", $"Content-Length: {queryString.Length}" };
    *
    * var result = new HTTPClient().Request(HTTPClient.Method.Post, "index.php", headers, queryString);
    *
@@ -341,7 +336,7 @@ public open class HTTPClient : RefCounted() {
    *
    * var fields = new Godot.Collections.Dictionary { { "username", "user" }, { "password", "pass" } };
    *
-   * string queryString = new HTTPClient().QueryStringFromDict(fields);
+   * string queryString = httpClient.QueryStringFromDict(fields);
    *
    * // Returns "username=user&password=pass"
    *
@@ -365,9 +360,19 @@ public open class HTTPClient : RefCounted() {
    *
    * [csharp]
    *
-   * var fields = new Godot.Collections.Dictionary{{"single", 123}, {"notValued", null}, {"multiple", new Godot.Collections.Array{22, 33, 44}}};
+   * var fields = new Godot.Collections.Dictionary
    *
-   * string queryString = new HTTPClient().QueryStringFromDict(fields);
+   * {
+   *
+   *     { "single", 123 },
+   *
+   *     { "notValued", default },
+   *
+   *     { "multiple", new Godot.Collections.Array { 22, 33, 44 } },
+   *
+   * };
+   *
+   * string queryString = httpClient.QueryStringFromDict(fields);
    *
    * // Returns "single=123&not_valued&multiple=22&multiple=33&multiple=44"
    *

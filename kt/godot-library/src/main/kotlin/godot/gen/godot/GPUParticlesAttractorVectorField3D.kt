@@ -28,25 +28,25 @@ import kotlin.Suppress
 @GodotBaseType
 public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D() {
   /**
-   * The extents of the vector field box in 3D units.
+   * The size of the vector field box in 3D units.
    */
-  public var extents: Vector3
+  public var size: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_GET_EXTENTS, VECTOR3)
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_GET_SIZE, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_SET_EXTENTS, NIL)
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_SET_SIZE, NIL)
     }
 
   /**
    * The 3D texture to be used. Values are linearly interpolated between the texture's pixels.
    *
-   * **Note:** To get better performance, the 3D texture's resolution should reflect the [extents] of the attractor. Since particle attraction is usually low-frequency data, the texture can be kept at a low resolution such as 64×64×64.
+   * **Note:** To get better performance, the 3D texture's resolution should reflect the [size] of the attractor. Since particle attraction is usually low-frequency data, the texture can be kept at a low resolution such as 64×64×64.
    */
   public var texture: Texture3D?
     get() {

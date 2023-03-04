@@ -80,22 +80,6 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button will add information about its shortcut in the tooltip.
-   */
-  public var shortcutInTooltip: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_SHORTCUT_IN_TOOLTIP_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_SHORTCUT_IN_TOOLTIP, NIL)
-    }
-
-  /**
    * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if [toggleMode] is active). Only works if [toggleMode] is `true`.
    *
    * **Note:** Setting [buttonPressed] will result in [toggled] to be emitted. If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
@@ -161,6 +145,21 @@ public open class BaseButton : Control() {
     }
 
   /**
+   * The [godot.ButtonGroup] associated with the button. Not to be confused with node groups.
+   */
+  public var buttonGroup: ButtonGroup?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_GROUP,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as ButtonGroup?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_BUTTON_GROUP, NIL)
+    }
+
+  /**
    * [godot.Shortcut] associated to the button.
    */
   public var shortcut: Shortcut?
@@ -191,18 +190,19 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * The [godot.ButtonGroup] associated with the button. Not to be confused with node groups.
+   * If `true`, the button will add information about its shortcut in the tooltip.
    */
-  public var buttonGroup: ButtonGroup?
+  public var shortcutInTooltip: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_GROUP,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as ButtonGroup?
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_SHORTCUT_IN_TOOLTIP_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_BUTTON_GROUP, NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_SHORTCUT_IN_TOOLTIP, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

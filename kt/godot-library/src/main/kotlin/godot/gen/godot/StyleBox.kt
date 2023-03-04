@@ -43,22 +43,7 @@ public open class StyleBox : Resource() {
   /**
    *
    */
-  public open fun _getStyleMargin(side: Side): Double {
-    throw NotImplementedError("_get_style_margin is not implemented for StyleBox")
-  }
-
-  /**
-   *
-   */
-  public open fun _testMask(point: Vector2, rect: Rect2): Boolean {
-    throw NotImplementedError("_test_mask is not implemented for StyleBox")
-  }
-
-  /**
-   *
-   */
-  public open fun _getCenterSize(): Vector2 {
-    throw NotImplementedError("_get_center_size is not implemented for StyleBox")
+  public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
   }
 
   /**
@@ -69,43 +54,51 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   *
+   * Virtual method to be implemented by the user. Returns a custom minimum size that the stylebox must respect when drawing. By default [getMinimumSize] only takes content margins into account. This method can be overridden to add another size restriction. A combination of the default behavior and the output of this method will be used, to account for both sizes.
    */
-  public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
+  public open fun _getMinimumSize(): Vector2 {
+    throw NotImplementedError("_get_minimum_size is not implemented for StyleBox")
   }
 
   /**
-   * Test a position in a rectangle, return whether it passes the mask test.
+   *
    */
-  public fun testMask(point: Vector2, rect: Rect2): Boolean {
-    TransferContext.writeArguments(VECTOR2 to point, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_TEST_MASK, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  public open fun _testMask(point: Vector2, rect: Rect2): Boolean {
+    throw NotImplementedError("_test_mask is not implemented for StyleBox")
+  }
+
+  /**
+   * Returns the minimum size that this stylebox can be shrunk to.
+   */
+  public fun getMinimumSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_MINIMUM_SIZE, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
   /**
    * Sets the default value of the specified [enum Side] to [offset] pixels.
    */
-  public fun setDefaultMargin(margin: Side, offset: Double): Unit {
+  public fun setContentMargin(margin: Side, offset: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_DEFAULT_MARGIN, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN, NIL)
   }
 
   /**
    * Sets the default margin to [offset] pixels for all sides.
    */
-  public fun setDefaultMarginAll(offset: Double): Unit {
+  public fun setContentMarginAll(offset: Double): Unit {
     TransferContext.writeArguments(DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_DEFAULT_MARGIN_ALL,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN_ALL,
         NIL)
   }
 
   /**
    * Returns the default margin of the specified [enum Side].
    */
-  public fun getDefaultMargin(margin: Side): Double {
+  public fun getContentMargin(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_DEFAULT_MARGIN, DOUBLE)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -121,30 +114,22 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   * Returns the minimum size that this stylebox can be shrunk to.
-   */
-  public fun getMinimumSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_MINIMUM_SIZE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-  }
-
-  /**
-   * Returns the size of this [godot.StyleBox] without the margins.
-   */
-  public fun getCenterSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CENTER_SIZE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-  }
-
-  /**
    * Returns the "offset" of a stylebox. This helper function returns a value equivalent to `Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))`.
    */
   public fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_OFFSET, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Draws this stylebox using a canvas item identified by the given [RID].
+   *
+   * The [RID] value can either be the result of [godot.CanvasItem.getCanvasItem] called on an existing [godot.CanvasItem]-derived node, or directly from creating a canvas item in the [godot.RenderingServer] with [godot.RenderingServer.canvasItemCreate].
+   */
+  public fun draw(canvasItem: RID, rect: Rect2): Unit {
+    TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_DRAW, NIL)
   }
 
   /**
@@ -158,13 +143,12 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   * Draws this stylebox using a canvas item identified by the given [RID].
-   *
-   * The [RID] value can either be the result of [godot.CanvasItem.getCanvasItem] called on an existing [godot.CanvasItem]-derived node, or directly from creating a canvas item in the [godot.RenderingServer] with [godot.RenderingServer.canvasItemCreate].
+   * Test a position in a rectangle, return whether it passes the mask test.
    */
-  public fun draw(canvasItem: RID, rect: Rect2): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_DRAW, NIL)
+  public fun testMask(point: Vector2, rect: Rect2): Boolean {
+    TransferContext.writeArguments(VECTOR2 to point, RECT2 to rect)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_TEST_MASK, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public companion object

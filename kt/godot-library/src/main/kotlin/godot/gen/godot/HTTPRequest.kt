@@ -15,6 +15,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
@@ -141,7 +142,7 @@ import kotlin.Unit
  *
  *     // The snippet below is provided for reference only.
  *
- *     string body = new JSON().Stringify(new Godot.Collections.Dictionary
+ *     string body = new Json().Stringify(new Godot.Collections.Dictionary
  *
  *     {
  *
@@ -165,21 +166,21 @@ import kotlin.Unit
  *
  * // Called when the HTTP request is completed.
  *
- * private void HttpRequestCompleted(int result, int response_code, string[] headers, byte[] body)
+ * private void HttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
  *
  * {
  *
- *     var json = new JSON();
+ *     var json = new Json();
  *
- *     json.Parse(body.GetStringFromUTF8());
+ *     json.Parse(body.GetStringFromUtf8());
  *
- *     var response = json.GetData() as Godot.Collections.Dictionary;
+ *     var response = json.GetData().AsGodotDictionary();
  *
  *
  *
  *     // Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
  *
- *     GD.Print((response["headers"] as Godot.Collections.Dictionary)["User-Agent"]);
+ *     GD.Print((response["headers"].AsGodotDictionary())["User-Agent"]);
  *
  * }
  *
@@ -283,11 +284,11 @@ import kotlin.Unit
  *
  * // Called when the HTTP request is completed.
  *
- * private void HttpRequestCompleted(int result, int response_code, string[] headers, byte[] body)
+ * private void HttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
  *
  * {
  *
- *     if (result != (int)HTTPRequest.Result.Success)
+ *     if (result != (long)HTTPRequest.Result.Success)
  *
  *     {
  *
@@ -309,9 +310,7 @@ import kotlin.Unit
  *
  *
  *
- *     var texture = new ImageTexture();
- *
- *     texture.CreateFromImage(image);
+ *     var texture = ImageTexture.CreateFromImage(image);
  *
  *
  *
@@ -472,11 +471,10 @@ public open class HTTPRequest : Node() {
   public fun request(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
-    tlsValidateDomain: Boolean = true,
     method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestData: String = ""
   ): GodotError {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to tlsValidateDomain, LONG to method.id, STRING to requestData)
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, STRING to requestData)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -489,11 +487,10 @@ public open class HTTPRequest : Node() {
   public fun requestRaw(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
-    tlsValidateDomain: Boolean = true,
     method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestDataRaw: PackedByteArray = PackedByteArray()
   ): GodotError {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to tlsValidateDomain, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -504,6 +501,14 @@ public open class HTTPRequest : Node() {
   public fun cancelRequest(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_CANCEL_REQUEST, NIL)
+  }
+
+  /**
+   * Sets the [godot.TLSOptions] to be used when connecting to an HTTPS server. See [godot.TLSOptions.client].
+   */
+  public fun setTlsOptions(clientOptions: TLSOptions): Unit {
+    TransferContext.writeArguments(OBJECT to clientOptions)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TLS_OPTIONS, NIL)
   }
 
   /**

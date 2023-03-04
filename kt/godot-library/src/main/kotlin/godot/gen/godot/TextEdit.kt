@@ -1003,7 +1003,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the last tagged saved version from [tagSavedVersion]
+   * Returns the last tagged saved version from [tagSavedVersion].
    */
   public fun getSavedVersion(): Long {
     TransferContext.writeArguments()
@@ -1038,7 +1038,7 @@ public open class TextEdit : Control() {
    *
    * var result = search("print", SEARCH_WHOLE_WORDS, 0, 0)
    *
-   * if  result.x != -1:
+   * if result.x != -1:
    *
    *     # Result found.
    *
@@ -1050,17 +1050,17 @@ public open class TextEdit : Control() {
    *
    * [csharp]
    *
-   * Vector2i result = Search("print", (uint)TextEdit.SearchFlags.WholeWords, 0, 0);
+   * Vector2I result = Search("print", (uint)TextEdit.SearchFlags.WholeWords, 0, 0);
    *
-   * if (result.Length > 0)
+   * if (result.X != -1)
    *
    * {
    *
    *     // Result found.
    *
-   *     int lineNumber = result.y;
+   *     int lineNumber = result.Y;
    *
-   *     int columnNumber = result.x;
+   *     int columnNumber = result.X;
    *
    * }
    *
@@ -1080,7 +1080,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Provide custom tooltip text. The callback method must take the following args: `hovered_word: String`
+   * Provide custom tooltip text. The callback method must take the following args: `hovered_word: String`.
    */
   public fun setTooltipRequestFunc(callback: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callback)
@@ -1142,7 +1142,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the equivalent minimap line at [position]
+   * Returns the equivalent minimap line at [position].
    */
   public fun getMinimapLineAtPos(position: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to position)
@@ -1199,7 +1199,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Merges any overlapping carets. Will favour the newest caret, or the caret with a selection.
+   * Merges any overlapping carets. Will favor the newest caret, or the caret with a selection.
    *
    * **Note:** This is not called when a caret changes position but after certain actions, so it is possible to get into a state where carets overlap.
    */
@@ -1973,6 +1973,84 @@ public open class TextEdit : Control() {
   /**
    * Returns the [godot.PopupMenu] of this [godot.TextEdit]. By default, this menu is displayed when right-clicking on the [godot.TextEdit].
    *
+   * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [enum MenuItems]). For example:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * func _ready():
+   *
+   *     var menu = get_menu()
+   *
+   *     # Remove all items after "Redo".
+   *
+   *     menu.item_count = menu.get_item_index(MENU_REDO) + 1
+   *
+   *     # Add custom items.
+   *
+   *     menu.add_separator()
+   *
+   *     menu.add_item("Insert Date", MENU_MAX + 1)
+   *
+   *     # Connect callback.
+   *
+   *     menu.id_pressed.connect(_on_item_pressed)
+   *
+   *
+   *
+   * func _on_item_pressed(id):
+   *
+   *     if id == MENU_MAX + 1:
+   *
+   *         insert_text_at_caret(Time.get_date_string_from_system())
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * public override void _Ready()
+   *
+   * {
+   *
+   *     var menu = GetMenu();
+   *
+   *     // Remove all items after "Redo".
+   *
+   *     menu.ItemCount = menu.GetItemIndex(TextEdit.MenuItems.Redo) + 1;
+   *
+   *     // Add custom items.
+   *
+   *     menu.AddSeparator();
+   *
+   *     menu.AddItem("Insert Date", TextEdit.MenuItems.Max + 1);
+   *
+   *     // Add event handler.
+   *
+   *     menu.IdPressed += OnItemPressed;
+   *
+   * }
+   *
+   *
+   *
+   * public void OnItemPressed(int id)
+   *
+   * {
+   *
+   *     if (id == TextEdit.MenuItems.Max + 1)
+   *
+   *     {
+   *
+   *         InsertTextAtCaret(Time.GetDateStringFromSystem());
+   *
+   *     }
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
    */
   public fun getMenu(): PopupMenu? {
@@ -1991,7 +2069,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Triggers a right-click menu action by the specified index. See [enum MenuItems] for a list of available indexes.
+   * Executes a given action as defined in the [enum MenuItems] enum.
    */
   public fun menuOption(option: Long): Unit {
     TransferContext.writeArguments(LONG to option)
@@ -2030,93 +2108,101 @@ public open class TextEdit : Control() {
      */
     MENU_REDO(6),
     /**
+     * ID of "Text Writing Direction" submenu.
+     */
+    MENU_SUBMENU_TEXT_DIR(7),
+    /**
      * Sets text direction to inherited.
      */
-    MENU_DIR_INHERITED(7),
+    MENU_DIR_INHERITED(8),
     /**
      * Sets text direction to automatic.
      */
-    MENU_DIR_AUTO(8),
+    MENU_DIR_AUTO(9),
     /**
      * Sets text direction to left-to-right.
      */
-    MENU_DIR_LTR(9),
+    MENU_DIR_LTR(10),
     /**
      * Sets text direction to right-to-left.
      */
-    MENU_DIR_RTL(10),
+    MENU_DIR_RTL(11),
     /**
      * Toggles control character display.
      */
-    MENU_DISPLAY_UCC(11),
+    MENU_DISPLAY_UCC(12),
+    /**
+     * ID of "Insert Control Character" submenu.
+     */
+    MENU_SUBMENU_INSERT_UCC(13),
     /**
      * Inserts left-to-right mark (LRM) character.
      */
-    MENU_INSERT_LRM(12),
+    MENU_INSERT_LRM(14),
     /**
      * Inserts right-to-left mark (RLM) character.
      */
-    MENU_INSERT_RLM(13),
+    MENU_INSERT_RLM(15),
     /**
      * Inserts start of left-to-right embedding (LRE) character.
      */
-    MENU_INSERT_LRE(14),
+    MENU_INSERT_LRE(16),
     /**
      * Inserts start of right-to-left embedding (RLE) character.
      */
-    MENU_INSERT_RLE(15),
+    MENU_INSERT_RLE(17),
     /**
      * Inserts start of left-to-right override (LRO) character.
      */
-    MENU_INSERT_LRO(16),
+    MENU_INSERT_LRO(18),
     /**
      * Inserts start of right-to-left override (RLO) character.
      */
-    MENU_INSERT_RLO(17),
+    MENU_INSERT_RLO(19),
     /**
      * Inserts pop direction formatting (PDF) character.
      */
-    MENU_INSERT_PDF(18),
+    MENU_INSERT_PDF(20),
     /**
      * Inserts Arabic letter mark (ALM) character.
      */
-    MENU_INSERT_ALM(19),
+    MENU_INSERT_ALM(21),
     /**
      * Inserts left-to-right isolate (LRI) character.
      */
-    MENU_INSERT_LRI(20),
+    MENU_INSERT_LRI(22),
     /**
      * Inserts right-to-left isolate (RLI) character.
      */
-    MENU_INSERT_RLI(21),
+    MENU_INSERT_RLI(23),
     /**
      * Inserts first strong isolate (FSI) character.
      */
-    MENU_INSERT_FSI(22),
+    MENU_INSERT_FSI(24),
     /**
      * Inserts pop direction isolate (PDI) character.
      */
-    MENU_INSERT_PDI(23),
+    MENU_INSERT_PDI(25),
     /**
      * Inserts zero width joiner (ZWJ) character.
      */
-    MENU_INSERT_ZWJ(24),
+    MENU_INSERT_ZWJ(26),
     /**
      * Inserts zero width non-joiner (ZWNJ) character.
      */
-    MENU_INSERT_ZWNJ(25),
+    MENU_INSERT_ZWNJ(27),
     /**
      * Inserts word joiner (WJ) character.
      */
-    MENU_INSERT_WJ(26),
+    MENU_INSERT_WJ(28),
     /**
      * Inserts soft hyphen (SHY) character.
      */
-    MENU_INSERT_SHY(27),
+    MENU_INSERT_SHY(29),
     /**
      * Represents the size of the [enum MenuItems] enum.
      */
-    MENU_MAX(28),
+    MENU_MAX(30),
     ;
 
     public val id: Long

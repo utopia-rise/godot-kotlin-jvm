@@ -36,7 +36,7 @@ import kotlin.Suppress
  *
  * // The RichTextEffect will be usable like this: `[example]Some text[/example]`
  *
- * public string bbcode = "example";
+ * string bbcode = "example";
  *
  * [/csharp]
  *

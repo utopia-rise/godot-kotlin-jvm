@@ -18,6 +18,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
@@ -29,6 +30,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class MultiplayerSynchronizer : Node() {
+  public val synchronized: Signal0 by signal()
+
   public val visibilityChanged: Signal1<Long> by signal("forPeer")
 
   public var rootPath: NodePath

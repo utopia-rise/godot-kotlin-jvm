@@ -33,6 +33,8 @@ import kotlin.Suppress
  *
  * extends EditorScenePostImport
  *
+ *
+ *
  * # This sample changes all node names.
  *
  * # Called right after the scene is imported and gets the root node.
@@ -44,6 +46,8 @@ import kotlin.Suppress
  *     iterate(scene)
  *
  *     return scene # Remember to return the imported scene
+ *
+ *
  *
  * func iterate(node):
  *
@@ -73,7 +77,7 @@ import kotlin.Suppress
  *
  * {
  *
- *     public override Object _PostImport(Node scene)
+ *     public override GodotObject _PostImport(Node scene)
  *
  *     {
  *
@@ -85,6 +89,8 @@ import kotlin.Suppress
  *
  *     }
  *
+ *
+ *
  *     public void Iterate(Node node)
  *
  *     {
@@ -93,7 +99,7 @@ import kotlin.Suppress
  *
  *         {
  *
- *             node.Name = "modified_" + node.Name;
+ *             node.Name = $"modified_{node.Name}";
  *
  *             foreach (Node child in node.GetChildren())
  *

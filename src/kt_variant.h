@@ -504,7 +504,11 @@ namespace ktvariant {
         const Vector3& row0 = to_godot_vector3(byte_buffer);
         const Vector3& row1 = to_godot_vector3(byte_buffer);
         const Vector3& row2 = to_godot_vector3(byte_buffer);
-        return {row0, row1, row2};
+        Basis basis;
+        basis.rows[0] = row0;
+        basis.rows[1] = row1;
+        basis.rows[2] = row2;
+        return basis;
     }
 
     static Variant from_kvariant_tokBasisValue(SharedBuffer* byte_buffer) {

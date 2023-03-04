@@ -174,10 +174,10 @@ public open class SpriteFrames : Resource() {
    * Returns a relative duration of the frame [idx] in the [anim] animation (defaults to `1.0`). For example, a frame with a duration of `2.0` is displayed twice as long as a frame with a duration of `1.0`. You can calculate the absolute duration (in seconds) of a frame using the following formula:
    *
    * ```
-   * 				absolute_duration = relative_duration / (animation_fps * abs(speed_scale))
+   * 				absolute_duration = relative_duration / (animation_fps * abs(playing_speed))
    * 				```
    *
-   * In this example, `speed_scale` refers to either [godot.AnimatedSprite2D.speedScale] or [godot.AnimatedSprite3D.speedScale].
+   * In this example, `playing_speed` refers to either [godot.AnimatedSprite2D.getPlayingSpeed] or [godot.AnimatedSprite3D.getPlayingSpeed].
    */
   public fun getFrameDuration(anim: StringName, idx: Long): Double {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)

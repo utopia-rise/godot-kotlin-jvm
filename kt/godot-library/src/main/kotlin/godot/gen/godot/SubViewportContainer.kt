@@ -29,6 +29,8 @@ import kotlin.Suppress
 public open class SubViewportContainer : Container() {
   /**
    * If `true`, the sub-viewport will be automatically resized to the control's size.
+   *
+   * **Note:** If `true`, this will prohibit changing [godot.SubViewport.size] of its children manually.
    */
   public var stretch: Boolean
     get() {

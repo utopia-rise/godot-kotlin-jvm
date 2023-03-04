@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- *
+ * The [godot.AnimationNode] which can be set as the root of an [godot.AnimationTree].
  */
 @GodotBaseType
 public open class AnimationRootNode : AnimationNode() {

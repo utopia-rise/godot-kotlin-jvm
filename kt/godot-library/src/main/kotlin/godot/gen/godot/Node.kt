@@ -1482,7 +1482,7 @@ public open class Node : Object() {
    * 				}
    * 				```
    *
-   * See [enum MultiplayerAPI.RPCMode] and [enum MultiplayerPeer.TransferMode]. An alternative is annotating methods and properties with the corresponding annotation (`@rpc(any)`, `@rpc(authority)`). By default, methods are not exposed to networking (and RPCs).
+   * See [enum MultiplayerAPI.RPCMode] and [enum MultiplayerPeer.TransferMode]. An alternative is annotating methods and properties with the corresponding [annotation @GDScript.@rpc] annotation (`@rpc("any_peer")`, `@rpc("authority")`). By default, methods are not exposed to networking (and RPCs).
    */
   public fun rpcConfig(method: StringName, config: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to method, ANY to config)
@@ -1490,7 +1490,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Sends a remote procedure call request for the given [method] to peers on the network (and locally), optionally sending all additional arguments as arguments to the method called by the RPC. The call request will only be received by nodes with the same [godot.core.NodePath], including the exact same node name. Behavior depends on the RPC configuration for the given method, see [rpcConfig]. Methods are not exposed to RPCs by default. Returns `null`.
+   * Sends a remote procedure call request for the given [method] to peers on the network (and locally), optionally sending all additional arguments as arguments to the method called by the RPC. The call request will only be received by nodes with the same [godot.core.NodePath], including the exact same node name. Behavior depends on the RPC configuration for the given method, see [rpcConfig] and [annotation @GDScript.@rpc]. Methods are not exposed to RPCs by default. Returns `null`.
    *
    * **Note:** You can only safely use RPCs on clients after you received the `connected_to_server` signal from the [godot.MultiplayerAPI]. You also need to keep track of the connection state, either by the [godot.MultiplayerAPI] signals like `server_disconnected` or by checking `get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`.
    */
@@ -1726,6 +1726,11 @@ public open class Node : Object() {
      * Notification received when the node is enabled again after being disabled. See [PROCESS_MODE_DISABLED].
      */
     public final const val NOTIFICATION_ENABLED: Long = 29
+
+    /**
+     * Notification received when other nodes in the tree may have been removed/replaced and node pointers may require re-caching.
+     */
+    public final const val NOTIFICATION_NODE_RECACHE_REQUESTED: Long = 30
 
     /**
      * Notification received right before the scene with the node is saved in the editor. This notification is only sent in the Godot editor and will not occur in exported projects.

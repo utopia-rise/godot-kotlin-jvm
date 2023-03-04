@@ -29,11 +29,6 @@ String KotlinLanguage::get_extension() const {
     return "kt";
 }
 
-Error KotlinLanguage::execute_file(const String& p_path) {
-    //??
-    return OK;
-}
-
 void KotlinLanguage::finish() {
     GDKotlin::get_instance().finish();
     memdelete(kt_custom_callable_middleman);
@@ -364,24 +359,6 @@ int KotlinLanguage::profiling_get_accumulated_data(ScriptLanguage::ProfilingInfo
 
 int KotlinLanguage::profiling_get_frame_data(ScriptLanguage::ProfilingInfo* p_info_arr, int p_info_max) {
     return 0;
-}
-
-// The next 4 functions are in an odd spot, they are part of the Godot API, so we override them, but they don't
-// accomplish anything Nowhere in Godot those functions are ever called.
-void* KotlinLanguage::alloc_instance_binding_data(Object* p_object) {
-    return ScriptLanguage::alloc_instance_binding_data(p_object);
-}
-
-void KotlinLanguage::free_instance_binding_data(void* p_data) {
-    ScriptLanguage::free_instance_binding_data(p_data);
-}
-
-void KotlinLanguage::refcount_incremented_instance_binding(Object* p_object) {
-    ScriptLanguage::refcount_incremented_instance_binding(p_object);
-}
-
-bool KotlinLanguage::refcount_decremented_instance_binding(Object* p_object) {
-    return ScriptLanguage::refcount_decremented_instance_binding(p_object);
 }
 
 void KotlinLanguage::frame() {

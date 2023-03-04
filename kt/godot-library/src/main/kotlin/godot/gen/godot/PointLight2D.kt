@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
  * Tutorials:
  * [$DOCS_URL/tutorials/2d/2d_lights_and_shadows.html]($DOCS_URL/tutorials/2d/2d_lights_and_shadows.html)
  *
- * Casts light in a 2D environment. This light's shape is defined by a (usually grayscale) texture
+ * Casts light in a 2D environment. This light's shape is defined by a (usually grayscale) texture.
  */
 @GodotBaseType
 public open class PointLight2D : Light2D() {

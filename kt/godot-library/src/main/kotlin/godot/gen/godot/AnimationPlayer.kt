@@ -28,10 +28,12 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -237,9 +239,11 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * The speed scaling ratio. For example, if this value is 1, then the animation plays at normal speed. If it's 0.5, then it plays at half speed. If it's 2, then it plays at double speed.
+   * The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.
+   *
+   * If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.
    */
-  public var playbackSpeed: Double
+  public var speedScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_SPEED_SCALE,
@@ -269,6 +273,24 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
+   * The number of possible simultaneous sounds for each of the assigned AudioStreamPlayers.
+   *
+   * For example, if this value is `32` and the animation has two audio tracks, the two [godot.AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.
+   */
+  public var audioMaxPolyphony: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_AUDIO_MAX_POLYPHONY, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_AUDIO_MAX_POLYPHONY, NIL)
+    }
+
+  /**
    * If `true` and the engine is running in Movie Maker mode (see [godot.MovieWriter]), exits the engine with [godot.SceneTree.quit] as soon as an animation is done playing in this [godot.AnimationPlayer]. A message is printed when the engine quits for this reason.
    *
    * **Note:** This obeys the same logic as the [animationFinished] signal, so it will not quit the engine if the animation is set to be looping.
@@ -289,6 +311,19 @@ public open class AnimationPlayer : Node() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONPLAYER, scriptIndex)
     return true
+  }
+
+  /**
+   * A virtual function for processing after key getting during playback.
+   */
+  public open fun _postProcessKeyValue(
+    animation: Animation,
+    track: Long,
+    `value`: Any,
+    _object: Object,
+    objectIdx: Long
+  ): Any? {
+    throw NotImplementedError("_post_process_key_value is not implemented for AnimationPlayer")
   }
 
   /**
@@ -410,7 +445,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Gets the blend time (in seconds) between two animations, referenced by their keys.
+   * Returns the blend time (in seconds) between two animations, referenced by their keys.
    */
   public fun getBlendTime(animFrom: StringName, animTo: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo)
@@ -422,7 +457,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Plays the animation with key [name]. Custom blend times and speed can be set. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards (which is equivalent to calling [playBackwards]).
    *
-   * The [godot.AnimationPlayer] keeps track of its current or last played animation with [assignedAnimation]. If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused, or restart if it was stopped (see [stop] for both pause and stop). If the animation was already playing, it will keep playing.
+   * The [godot.AnimationPlayer] keeps track of its current or last played animation with [assignedAnimation]. If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused.
    *
    * **Note:** The animation will be updated the next time the [godot.AnimationPlayer] is processed. If other variables are updated at the same time this is called, they may be updated too early. To perform the update immediately, call `advance(0)`.
    */
@@ -457,17 +492,19 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Stops the currently playing animation. The animation position is reset to `0` and the playback speed is reset to `1.0`.
+   * Stops the currently playing animation. The animation position is reset to `0` and the `custom_speed` is reset to `1.0`. See also [pause].
    *
-   * See also [pause].
+   * If [keepState] is `true`, the animation state is not updated visually.
+   *
+   * **Note:** The method / audio / animation playback tracks will not be processed by this method.
    */
-  public fun stop(): Unit {
-    TransferContext.writeArguments()
+  public fun stop(keepState: Boolean = false): Unit {
+    TransferContext.writeArguments(BOOL to keepState)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_STOP, NIL)
   }
 
   /**
-   * Returns `true` if playing an animation.
+   * Returns `true` if an animation is currently playing (even if [speedScale] and/or `custom_speed` are `0`).
    */
   public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
@@ -504,7 +541,9 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Gets the actual playing speed of current animation or 0 if not playing. This speed is the [playbackSpeed] property multiplied by `custom_speed` argument specified when calling the [play] method.
+   * Returns the actual playing speed of current animation or `0` if not playing. This speed is the [speedScale] property multiplied by `custom_speed` argument specified when calling the [play] method.
+   *
+   * Returns a negative value if the current animation is playing backwards.
    */
   public fun getPlayingSpeed(): Double {
     TransferContext.writeArguments()

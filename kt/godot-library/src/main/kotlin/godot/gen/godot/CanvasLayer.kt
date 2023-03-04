@@ -46,7 +46,7 @@ public open class CanvasLayer : Node() {
   public val visibilityChanged: Signal0 by signal()
 
   /**
-   * Layer index for draw order. Lower values are drawn first.
+   * Layer index for draw order. Lower values are drawn behind higher values.
    */
   public var layer: Long
     get() {

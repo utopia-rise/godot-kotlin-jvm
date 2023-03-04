@@ -253,15 +253,15 @@ public open class Sprite2D : Node2D() {
    *
    * [csharp]
    *
-   * public override void _Input(InputEvent inputEvent)
+   * public override void _Input(InputEvent @event)
    *
    * {
    *
-   *     if (inputEvent is InputEventMouseButton inputEventMouse)
+   *     if (@event is InputEventMouseButton inputEventMouse)
    *
    *     {
    *
-   *         if (inputEventMouse.Pressed && inputEventMouse.ButtonIndex == (int)ButtonList.Left)
+   *         if (inputEventMouse.Pressed && inputEventMouse.ButtonIndex == MouseButton.Left)
    *
    *         {
    *

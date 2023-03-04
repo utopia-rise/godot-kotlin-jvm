@@ -54,7 +54,7 @@ import kotlin.Unit
  *
  * **Note:** `push_* / pop` functions won't affect BBCode.
  *
- * **Note:** Unlike [godot.Label], RichTextLabel doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a `[center]` tag as follows: `[center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContentHeight] property.
+ * **Note:** Unlike [godot.Label], RichTextLabel doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a `[center]` tag as follows: `[center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContent] property.
  */
 @GodotBaseType
 public open class RichTextLabel : Control() {
@@ -110,21 +110,19 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, the label's height will be automatically updated to fit its content.
-   *
-   * **Note:** This property is used as a workaround to fix issues with [godot.RichTextLabel] in [godot.Container]s, but it's unreliable in some cases and will be removed in future versions.
+   * If `true`, the label's minimum size will be automatically updated to fit its content, matching the behavior of [godot.Label].
    */
-  public var fitContentHeight: Boolean
+  public var fitContent: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_FIT_CONTENT_HEIGHT_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_FIT_CONTENT_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_FIT_CONTENT_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_FIT_CONTENT,
+          NIL)
     }
 
   /**
@@ -519,7 +517,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   *
+   * Adds a `[font_size]` tag to the tag stack. Overrides default font size for its duration.
    */
   public fun pushFontSize(fontSize: Long): Unit {
     TransferContext.writeArguments(LONG to fontSize)
@@ -628,7 +626,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[meta]` tag to the tag stack. Similar to the BBCode `[{text}](something)`, but supports non-[godot.String] metadata types.
+   * Adds a meta tag to the tag stack. Similar to the BBCode `[{text}](something)`, but supports non-[godot.String] metadata types.
    */
   public fun pushMeta(`data`: Any): Unit {
     TransferContext.writeArguments(ANY to data)
@@ -762,6 +760,14 @@ public open class RichTextLabel : Control() {
   public fun pushBgcolor(bgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to bgcolor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_BGCOLOR, NIL)
+  }
+
+  /**
+   * Adds a custom effect tag to the tag stack. The effect does not need to be in [customEffects]. The environment is directly passed to the effect.
+   */
+  public fun pushCustomfx(effect: RichTextEffect, env: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(OBJECT to effect, DICTIONARY to env)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_CUSTOMFX, NIL)
   }
 
   /**
@@ -1041,6 +1047,84 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the [godot.PopupMenu] of this [godot.RichTextLabel]. By default, this menu is displayed when right-clicking on the [godot.RichTextLabel].
    *
+   * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [enum MenuItems]). For example:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * func _ready():
+   *
+   *     var menu = get_menu()
+   *
+   *     # Remove "Select All" item.
+   *
+   *     menu.remove_item(MENU_SELECT_ALL)
+   *
+   *     # Add custom items.
+   *
+   *     menu.add_separator()
+   *
+   *     menu.add_item("Duplicate Text", MENU_MAX + 1)
+   *
+   *     # Connect callback.
+   *
+   *     menu.id_pressed.connect(_on_item_pressed)
+   *
+   *
+   *
+   * func _on_item_pressed(id):
+   *
+   *     if id == MENU_MAX + 1:
+   *
+   *         add_text("\n" + get_parsed_text())
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * public override void _Ready()
+   *
+   * {
+   *
+   *     var menu = GetMenu();
+   *
+   *     // Remove "Select All" item.
+   *
+   *     menu.RemoveItem(RichTextLabel.MenuItems.SelectAll);
+   *
+   *     // Add custom items.
+   *
+   *     menu.AddSeparator();
+   *
+   *     menu.AddItem("Duplicate Text", RichTextLabel.MenuItems.Max + 1);
+   *
+   *     // Add event handler.
+   *
+   *     menu.IdPressed += OnItemPressed;
+   *
+   * }
+   *
+   *
+   *
+   * public void OnItemPressed(int id)
+   *
+   * {
+   *
+   *     if (id == TextEdit.MenuItems.Max + 1)
+   *
+   *     {
+   *
+   *         AddText("\n" + GetParsedText());
+   *
+   *     }
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
    */
   public fun getMenu(): PopupMenu? {
@@ -1056,6 +1140,14 @@ public open class RichTextLabel : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_MENU_VISIBLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Executes a given action as defined in the [enum MenuItems] enum.
+   */
+  public fun menuOption(option: Long): Unit {
+    TransferContext.writeArguments(LONG to option)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_MENU_OPTION, NIL)
   }
 
   public enum class ListType(
@@ -1089,117 +1181,21 @@ public open class RichTextLabel : Control() {
     }
   }
 
-  public enum class ItemType(
+  public enum class MenuItems(
     id: Long
   ) {
     /**
-     *
+     * Copies the selected text.
      */
-    ITEM_FRAME(0),
+    MENU_COPY(0),
     /**
-     *
+     * Selects the whole [godot.RichTextLabel] text.
      */
-    ITEM_TEXT(1),
+    MENU_SELECT_ALL(1),
     /**
-     *
+     * Represents the size of the [enum MenuItems] enum.
      */
-    ITEM_IMAGE(2),
-    /**
-     *
-     */
-    ITEM_NEWLINE(3),
-    /**
-     *
-     */
-    ITEM_FONT(4),
-    /**
-     *
-     */
-    ITEM_FONT_SIZE(5),
-    /**
-     *
-     */
-    ITEM_FONT_FEATURES(6),
-    /**
-     *
-     */
-    ITEM_COLOR(7),
-    /**
-     *
-     */
-    ITEM_OUTLINE_SIZE(8),
-    /**
-     *
-     */
-    ITEM_OUTLINE_COLOR(9),
-    /**
-     *
-     */
-    ITEM_UNDERLINE(10),
-    /**
-     *
-     */
-    ITEM_STRIKETHROUGH(11),
-    /**
-     *
-     */
-    ITEM_PARAGRAPH(12),
-    /**
-     *
-     */
-    ITEM_INDENT(13),
-    /**
-     *
-     */
-    ITEM_LIST(14),
-    /**
-     *
-     */
-    ITEM_TABLE(15),
-    /**
-     *
-     */
-    ITEM_FADE(16),
-    /**
-     *
-     */
-    ITEM_SHAKE(17),
-    /**
-     *
-     */
-    ITEM_WAVE(18),
-    /**
-     *
-     */
-    ITEM_TORNADO(19),
-    /**
-     *
-     */
-    ITEM_RAINBOW(20),
-    /**
-     *
-     */
-    ITEM_BGCOLOR(21),
-    /**
-     *
-     */
-    ITEM_FGCOLOR(22),
-    /**
-     *
-     */
-    ITEM_META(23),
-    /**
-     *
-     */
-    ITEM_HINT(24),
-    /**
-     *
-     */
-    ITEM_DROPCAP(25),
-    /**
-     *
-     */
-    ITEM_CUSTOMFX(26),
+    MENU_MAX(2),
     ;
 
     public val id: Long

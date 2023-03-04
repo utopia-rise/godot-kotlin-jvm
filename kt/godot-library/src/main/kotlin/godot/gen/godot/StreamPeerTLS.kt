@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -34,22 +33,6 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class StreamPeerTLS : StreamPeer() {
-  /**
-   *
-   */
-  public var blockingHandshake: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_IS_BLOCKING_HANDSHAKE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_SET_BLOCKING_HANDSHAKE_ENABLED, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_STREAMPEERTLS, scriptIndex)
     return true
@@ -64,31 +47,23 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Accepts a peer connection as a server using the given [privateKey] and providing the given [certificate] to the client. You can pass the optional [chain] parameter to provide additional CA chain information along with the certificate.
+   * Accepts a peer connection as a server using the given [serverOptions]. See [godot.TLSOptions.server].
    */
-  public fun acceptStream(
-    stream: StreamPeer,
-    privateKey: CryptoKey,
-    certificate: X509Certificate,
-    chain: X509Certificate? = null
-  ): GodotError {
-    TransferContext.writeArguments(OBJECT to stream, OBJECT to privateKey, OBJECT to certificate, OBJECT to chain)
+  public fun acceptStream(stream: StreamPeer, serverOptions: TLSOptions): GodotError {
+    TransferContext.writeArguments(OBJECT to stream, OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_ACCEPT_STREAM, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
-   * Connects to a peer using an underlying [godot.StreamPeer] [stream]. If [validateCerts] is `true`, [godot.StreamPeerTLS] will validate that the certificate presented by the peer matches the [forHostname].
-   *
-   * **Note:** Specifying a custom [validCertificate] is not supported in Web exports due to browsers restrictions.
+   * Connects to a peer using an underlying [godot.StreamPeer] [stream] and verifying the remote certificate is correctly signed for the given [commonName]. You can pass the optional [clientOptions] parameter to customize the trusted certification authorities, or disable the common name verification. See [godot.TLSOptions.client] and [godot.TLSOptions.clientUnsafe].
    */
   public fun connectToStream(
     stream: StreamPeer,
-    validateCerts: Boolean = false,
-    forHostname: String = "",
-    validCertificate: X509Certificate? = null
+    commonName: String,
+    clientOptions: TLSOptions? = null
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to stream, BOOL to validateCerts, STRING to forHostname, OBJECT to validCertificate)
+    TransferContext.writeArguments(OBJECT to stream, STRING to commonName, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_CONNECT_TO_STREAM,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

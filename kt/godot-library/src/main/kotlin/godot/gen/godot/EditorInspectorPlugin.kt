@@ -8,13 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.core.VariantType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -53,7 +53,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   /**
    * Returns `true` if this object can be handled by this plugin.
    */
-  public open fun _canHandle(_object: Any): Boolean {
+  public open fun _canHandle(_object: Object): Boolean {
     throw NotImplementedError("_can_handle is not implemented for EditorInspectorPlugin")
   }
 
@@ -80,9 +80,9 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
    */
   public open fun _parseProperty(
     _object: Object,
-    type: Long,
+    type: VariantType,
     name: String,
-    hintType: Long,
+    hintType: PropertyHint,
     hintString: String,
     usageFlags: Long,
     wide: Boolean

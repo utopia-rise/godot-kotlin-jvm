@@ -71,15 +71,13 @@ import kotlin.Unit
  *
  * using Godot;
  *
- * using System;
  *
  *
- *
- * public class CustomMainLoop : MainLoop
+ * public partial class CustomMainLoop : MainLoop
  *
  * {
  *
- *     public float TimeElapsed = 0;
+ *     private double _timeElapsed = 0;
  *
  *
  *
@@ -89,21 +87,21 @@ import kotlin.Unit
  *
  *         GD.Print("Initialized:");
  *
- *         GD.Print($"  Starting Time: {TimeElapsed}");
+ *         GD.Print($"  Starting Time: {_timeElapsed}");
  *
  *     }
  *
  *
  *
- *     public override bool _Process(float delta)
+ *     public override bool _Process(double delta)
  *
  *     {
  *
- *         TimeElapsed += delta;
+ *         _timeElapsed += delta;
  *
  *         // Return true to end the main loop.
  *
- *         return Input.GetMouseButtonMask() != 0 || Input.IsKeyPressed((int)KeyList.Escape);
+ *         return Input.GetMouseButtonMask() != 0 || Input.IsKeyPressed(Key.Escape);
  *
  *     }
  *
@@ -115,7 +113,7 @@ import kotlin.Unit
  *
  *         GD.Print("Finalized:");
  *
- *         GD.Print($"  End Time: {TimeElapsed}");
+ *         GD.Print($"  End Time: {_timeElapsed}");
  *
  *     }
  *

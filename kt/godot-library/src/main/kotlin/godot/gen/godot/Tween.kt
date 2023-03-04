@@ -62,7 +62,7 @@ import kotlin.Unit
  *
  * tween.TweenProperty(GetNode("Sprite"), "scale", Vector2.Zero, 1.0f);
  *
- * tween.TweenCallback(new Callable(GetNode("Sprite").QueueFree));
+ * tween.TweenCallback(Callable.From(GetNode("Sprite").QueueFree));
  *
  * [/csharp]
  *
@@ -94,7 +94,7 @@ import kotlin.Unit
  *
  * tween.TweenProperty(GetNode("Sprite"), "scale", Vector2.Zero, 1.0f).SetTrans(Tween.TransitionType.Bounce);
  *
- * tween.TweenCallback(new Callable(GetNode("Sprite").QueueFree));
+ * tween.TweenCallback(Callable.From(GetNode("Sprite").QueueFree));
  *
  * [/csharp]
  *
@@ -124,7 +124,7 @@ import kotlin.Unit
  *
  * tween.TweenProperty(GetNode("Sprite"), "scale", Vector2.Zero, 1.0f);
  *
- * tween.TweenCallback(new Callable(GetNode("Sprite").QueueFree));
+ * tween.TweenCallback(Callable.From(GetNode("Sprite").QueueFree));
  *
  * [/csharp]
  *
@@ -178,7 +178,7 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * private Tween tween;
+ * private Tween _tween;
  *
  *
  *
@@ -186,11 +186,11 @@ import kotlin.Unit
  *
  * {
  *
- *     if (tween != null)
+ *     if (_tween != null)
  *
- *         tween.Kill(); // Abort the previous animation
+ *         _tween.Kill(); // Abort the previous animation
  *
- *     tween = CreateTween();
+ *     _tween = CreateTween();
  *
  * }
  *
@@ -357,13 +357,13 @@ public open class Tween : RefCounted() {
    *
    * tween.TweenProperty(GetNode("Sprite"), "position:x", 200.0f, 1.0f).AsRelative();
    *
-   * tween.TweenCallback(new Callable(Jump));
+   * tween.TweenCallback(Callable.From(Jump));
    *
    * tween.TweenInterval(2.0f);
    *
    * tween.TweenProperty(GetNode("Sprite"), "position:x", -200.0f, 1.0f).AsRelative();
    *
-   * tween.TweenCallback(new Callable(Jump));
+   * tween.TweenCallback(Callable.From(Jump));
    *
    * tween.TweenInterval(2.0f);
    *
@@ -396,7 +396,7 @@ public open class Tween : RefCounted() {
    *
    * Tween tween = GetTree().CreateTween().SetLoops();
    *
-   * tween.TweenCallback(new Callable(Shoot)).SetDelay(1.0f);
+   * tween.TweenCallback(Callable.From(Shoot)).SetDelay(1.0f);
    *
    * [/csharp]
    *
@@ -422,9 +422,9 @@ public open class Tween : RefCounted() {
    *
    * Sprite2D sprite = GetNode<Sprite2D>("Sprite");
    *
-   * tween.TweenCallback(new Callable(() => sprite.Modulate = Colors.Red)).SetDelay(2.0f);
+   * tween.TweenCallback(Callable.From(() => sprite.Modulate = Colors.Red)).SetDelay(2.0f);
    *
-   * tween.TweenCallback(new Callable(() => sprite.Modulate = Colors.Blue)).SetDelay(2.0f);
+   * tween.TweenCallback(Callable.From(() => sprite.Modulate = Colors.Blue)).SetDelay(2.0f);
    *
    * [/csharp]
    *
@@ -455,7 +455,7 @@ public open class Tween : RefCounted() {
    *
    * Tween tween = CreateTween();
    *
-   * tween.TweenMethod(new Callable(() => LookAt(Vector3.Up)), new Vector3(-1.0f, 0.0f, -1.0f), new Vector3(1.0f, 0.0f, -1.0f), 1.0f); // The LookAt() method takes up vector as second argument.
+   * tween.TweenMethod(Callable.From(() => LookAt(Vector3.Up)), new Vector3(-1.0f, 0.0f, -1.0f), new Vector3(1.0f, 0.0f, -1.0f), 1.0f); // The LookAt() method takes up vector as second argument.
    *
    * [/csharp]
    *
@@ -493,7 +493,7 @@ public open class Tween : RefCounted() {
    *
    *     Tween tween = CreateTween();
    *
-   *     tween.TweenMethod(new Callable(SetLabelText), 0.0f, 10.0f, 1.0f).SetDelay(1.0f);
+   *     tween.TweenMethod(Callable.From<int>(SetLabelText), 0.0f, 10.0f, 1.0f).SetDelay(1.0f);
    *
    * }
    *
@@ -663,6 +663,8 @@ public open class Tween : RefCounted() {
 
   /**
    * Sets the default transition type for [godot.PropertyTweener]s and [godot.MethodTweener]s animated by this [godot.Tween].
+   *
+   * If not specified, the default value is [TRANS_LINEAR].
    */
   public fun setTrans(trans: TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
@@ -672,6 +674,8 @@ public open class Tween : RefCounted() {
 
   /**
    * Sets the default ease type for [godot.PropertyTweener]s and [godot.MethodTweener]s animated by this [godot.Tween].
+   *
+   * If not specified, the default value is [EASE_IN_OUT].
    */
   public fun setEase(ease: EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)

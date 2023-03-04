@@ -35,7 +35,7 @@ public object PhysicsServer3DManager : Object() {
   }
 
   /**
-   * Register a [godot.PhysicsServer3D] implementation by passing a [name] and a [godot.Callable] that returns a [godot.PhysicsServer2D] object.
+   * Register a [godot.PhysicsServer3D] implementation by passing a [name] and a [godot.Callable] that returns a [godot.PhysicsServer3D] object.
    */
   public fun registerServer(name: String, createCallback: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to createCallback)

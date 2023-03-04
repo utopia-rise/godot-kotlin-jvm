@@ -128,14 +128,9 @@ public open class Tree : Control() {
   public val customItemClicked: Signal1<Long> by signal("mouseButtonIndex")
 
   /**
-   * Emitted when a custom button is pressed (i.e. in a [godot.TreeItem.CELL_MODE_CUSTOM] mode cell).
+   * Emitted when an item's icon is double-clicked. For a signal that emits when any part of the item is double-clicked, see [itemActivated].
    */
-  public val itemCustomButtonPressed: Signal0 by signal()
-
-  /**
-   * Emitted when an item's icon is double-clicked.
-   */
-  public val itemDoubleClicked: Signal0 by signal()
+  public val itemIconDoubleClicked: Signal0 by signal()
 
   /**
    * Emitted when an item is collapsed by a click on the folding arrow.
@@ -159,7 +154,7 @@ public open class Tree : Control() {
   public val customPopupEdited: Signal1<Boolean> by signal("arrowClicked")
 
   /**
-   * Emitted when an item's label is double-clicked.
+   * Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard).
    */
   public val itemActivated: Signal0 by signal()
 

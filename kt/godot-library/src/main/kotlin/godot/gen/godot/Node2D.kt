@@ -49,6 +49,8 @@ public open class Node2D : CanvasItem() {
 
   /**
    * Rotation in radians, relative to the node's parent.
+   *
+   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [rotationDegrees].
    */
   public var rotation: Double
     get() {

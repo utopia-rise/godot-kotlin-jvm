@@ -18,18 +18,18 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.QUATERNION
-import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
-import kotlin.String
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -142,9 +142,27 @@ public open class AnimationTree : Node() {
     }
 
   /**
+   * The number of possible simultaneous sounds for each of the assigned AudioStreamPlayers.
+   *
+   * For example, if this value is `32` and the animation has two audio tracks, the two [godot.AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.
+   */
+  public var audioMaxPolyphony: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_AUDIO_MAX_POLYPHONY, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_SET_AUDIO_MAX_POLYPHONY, NIL)
+    }
+
+  /**
    * The path to the Animation track used for root motion. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. To specify a track that controls properties or bones, append its name after the path, separated by `":"`. For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    *
-   * If the track has type [godot.Animation.TYPE_POSITION_3D], [godot.Animation.TYPE_ROTATION_3D] or [godot.Animation.TYPE_SCALE_3D] the transformation will be cancelled visually, and the animation will appear to stay in place. See also [getRootMotionPosition], [getRootMotionRotation], [getRootMotionScale] and [godot.RootMotionView].
+   * If the track has type [godot.Animation.TYPE_POSITION_3D], [godot.Animation.TYPE_ROTATION_3D] or [godot.Animation.TYPE_SCALE_3D] the transformation will be canceled visually, and the animation will appear to stay in place. See also [getRootMotionPosition], [getRootMotionRotation], [getRootMotionScale] and [godot.RootMotionView].
    */
   public var rootMotionTrack: NodePath
     get() {
@@ -165,7 +183,20 @@ public open class AnimationTree : Node() {
   }
 
   /**
-   * Retrieve the motion of position with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
+   * A virtual function for processing after key getting during playback.
+   */
+  public open fun _postProcessKeyValue(
+    animation: Animation,
+    track: Long,
+    `value`: Any,
+    _object: Object,
+    objectIdx: Long
+  ): Any? {
+    throw NotImplementedError("_post_process_key_value is not implemented for AnimationTree")
+  }
+
+  /**
+   * Retrieve the motion delta of position with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
    *
    * If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_POSITION_3D], returns `Vector3(0, 0, 0)`.
    *
@@ -198,6 +229,30 @@ public open class AnimationTree : Node() {
    * [/gdscript]
    *
    * [/codeblocks]
+   *
+   * By using this in combination with [getRootMotionPositionAccumulator], you can apply the root motion position more correctly to account for the rotation of the node.
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * func _process(delta):
+   *
+   *     if Input.is_action_just_pressed("animate"):
+   *
+   *         state_machine.travel("Animate")
+   *
+   *     set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
+   *
+   *     var velocity: Vector3 = (animation_tree.get_root_motion_rotation_accumulator().inverse() * get_quaternion()) * animation_tree.get_root_motion_position() / delta
+   *
+   *     set_velocity(velocity)
+   *
+   *     move_and_slide()
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
    */
   public fun getRootMotionPosition(): Vector3 {
     TransferContext.writeArguments()
@@ -207,7 +262,7 @@ public open class AnimationTree : Node() {
   }
 
   /**
-   * Retrieve the motion of rotation with the [rootMotionTrack] as a [godot.Quaternion] that can be used elsewhere.
+   * Retrieve the motion delta of rotation with the [rootMotionTrack] as a [godot.Quaternion] that can be used elsewhere.
    *
    * If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_ROTATION_3D], returns `Quaternion(0, 0, 0, 1)`.
    *
@@ -239,7 +294,7 @@ public open class AnimationTree : Node() {
   }
 
   /**
-   * Retrieve the motion of scale with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
+   * Retrieve the motion delta of scale with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
    *
    * If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_SCALE_3D], returns `Vector3(0, 0, 0)`.
    *
@@ -283,11 +338,129 @@ public open class AnimationTree : Node() {
   }
 
   /**
+   * Retrieve the blended value of the position tracks with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
    *
+   * This is useful in cases where you want to respect the initial key values of the animation.
+   *
+   * For example, if an animation with only one key `Vector3(0, 0, 0)` is played in the previous frame and then an animation with only one key `Vector3(1, 0, 1)` is played in the next frame, the difference can be calculated as follows:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var prev_root_motion_position_accumulator: Vector3
+   *
+   *
+   *
+   * func _process(delta):
+   *
+   *     if Input.is_action_just_pressed("animate"):
+   *
+   *         state_machine.travel("Animate")
+   *
+   *     var current_root_motion_position_accumulator: Vector3 = animation_tree.get_root_motion_position_accumulator()
+   *
+   *     var difference: Vector3 = current_root_motion_position_accumulator - prev_root_motion_position_accumulator
+   *
+   *     prev_root_motion_position_accumulator = current_root_motion_position_accumulator
+   *
+   *     transform.origin += difference
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
+   *
+   * However, if the animation loops, an unintended discrete change may occur, so this is only useful for some simple use cases.
    */
-  public fun renameParameter(oldName: String, newName: String): Unit {
-    TransferContext.writeArguments(STRING to oldName, STRING to newName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_RENAME_PARAMETER, NIL)
+  public fun getRootMotionPositionAccumulator(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_POSITION_ACCUMULATOR, VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Retrieve the blended value of the rotation tracks with the [rootMotionTrack] as a [godot.Quaternion] that can be used elsewhere.
+   *
+   * This is necessary to apply the root motion position correctly, taking rotation into account. See also [getRootMotionPosition].
+   *
+   * Also, this is useful in cases where you want to respect the initial key values of the animation.
+   *
+   * For example, if an animation with only one key `Quaternion(0, 0, 0, 1)` is played in the previous frame and then an animation with only one key `Quaternion(0, 0.707, 0, 0.707)` is played in the next frame, the difference can be calculated as follows:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var prev_root_motion_rotation_accumulator: Quaternion
+   *
+   *
+   *
+   * func _process(delta):
+   *
+   *     if Input.is_action_just_pressed("animate"):
+   *
+   *         state_machine.travel("Animate")
+   *
+   *     var current_root_motion_rotation_accumulator: Quaternion = animation_tree.get_root_motion_Quaternion_accumulator()
+   *
+   *     var difference: Quaternion = prev_root_motion_rotation_accumulator.inverse() * current_root_motion_rotation_accumulator
+   *
+   *     prev_root_motion_rotation_accumulator = current_root_motion_rotation_accumulator
+   *
+   *     transform.basis *= difference
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
+   *
+   * However, if the animation loops, an unintended discrete change may occur, so this is only useful for some simple use cases.
+   */
+  public fun getRootMotionRotationAccumulator(): Quaternion {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_ROTATION_ACCUMULATOR, QUATERNION)
+    return TransferContext.readReturnValue(QUATERNION, false) as Quaternion
+  }
+
+  /**
+   * Retrieve the blended value of the scale tracks with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
+   *
+   * For example, if an animation with only one key `Vector3(1, 1, 1)` is played in the previous frame and then an animation with only one key `Vector3(2, 2, 2)` is played in the next frame, the difference can be calculated as follows:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var prev_root_motion_scale_accumulator: Vector3
+   *
+   *
+   *
+   * func _process(delta):
+   *
+   *     if Input.is_action_just_pressed("animate"):
+   *
+   *         state_machine.travel("Animate")
+   *
+   *     var current_root_motion_scale_accumulator: Vector3 = animation_tree.get_root_motion_scale_accumulator()
+   *
+   *     var difference: Vector3 = current_root_motion_scale_accumulator - prev_root_motion_scale_accumulator
+   *
+   *     prev_root_motion_scale_accumulator = current_root_motion_scale_accumulator
+   *
+   *     transform.basis = transform.basis.scaled(difference)
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
+   *
+   * However, if the animation loops, an unintended discrete change may occur, so this is only useful for some simple use cases.
+   */
+  public fun getRootMotionScaleAccumulator(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_SCALE_ACCUMULATOR, VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
   /**

@@ -20,6 +20,7 @@ import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.Vector2i
+import godot.core.Vector3i
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -1538,7 +1539,7 @@ public open class TextServerExtension : TextServer() {
     parserType: TextServer.StructuredTextParser,
     args: VariantArray<Any?>,
     text: String
-  ): VariantArray<Vector2i> {
+  ): VariantArray<Vector3i> {
     throw NotImplementedError("_parse_structured_text is not implemented for TextServerExtension")
   }
 

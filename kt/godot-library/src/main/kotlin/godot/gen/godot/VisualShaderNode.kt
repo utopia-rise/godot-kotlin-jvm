@@ -13,8 +13,6 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -32,11 +30,6 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class VisualShaderNode internal constructor() : Resource() {
-  /**
-   * Emitted when the node requests an editor refresh. Currently called only in setter of [godot.VisualShaderNodeTexture.source], [godot.VisualShaderNodeTexture], and [godot.VisualShaderNodeCubemap] (and their derivatives).
-   */
-  public val editorRefreshRequest: Signal0 by signal()
-
   /**
    * Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview.
    */

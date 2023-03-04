@@ -43,7 +43,7 @@ public object Time : Object() {
   }
 
   /**
-   * Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, and `weekday`.
+   * Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.
    *
    * The returned Dictionary's values will be the same as the [getDatetimeDictFromSystem] if the Unix timestamp is the current time, with the exception of Daylight Savings Time as it cannot be determined from the epoch.
    */

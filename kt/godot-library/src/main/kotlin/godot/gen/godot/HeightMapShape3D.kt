@@ -27,7 +27,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class HeightMapShape3D : Shape3D() {
   /**
-   * Width of the height map data. Changing this will resize the [mapData].
+   * Number of vertices in the width of the height map. Changing this will resize the [mapData].
    */
   public var mapWidth: Long
     get() {
@@ -43,7 +43,7 @@ public open class HeightMapShape3D : Shape3D() {
     }
 
   /**
-   * Depth of the height map data. Changing this will resize the [mapData].
+   * Number of vertices in the depth of the height map. Changing this will resize the [mapData].
    */
   public var mapDepth: Long
     get() {

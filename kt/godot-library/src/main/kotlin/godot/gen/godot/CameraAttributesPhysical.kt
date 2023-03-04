@@ -23,6 +23,8 @@ import kotlin.Suppress
  * When used in a [godot.WorldEnvironment] it provides default settings for exposure, auto-exposure, and depth of field that will be used by all cameras without their own [godot.CameraAttributes], including the editor camera. When used in a [godot.Camera3D] it will override any [godot.CameraAttributes] set in the [godot.WorldEnvironment] and will override the [godot.Camera3D]s [godot.Camera3D.far], [godot.Camera3D.near], [godot.Camera3D.fov], and [godot.Camera3D.keepAspect] properties. When used in [godot.VoxelGI] or [godot.LightmapGI], only the exposure settings will be used.
  *
  * The default settings are intended for use in an outdoor environment, tips for settings for use in an indoor environment can be found in each setting's documentation.
+ *
+ * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
  */
 @GodotBaseType
 public open class CameraAttributesPhysical : CameraAttributes() {

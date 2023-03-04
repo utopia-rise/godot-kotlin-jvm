@@ -1,42 +1,35 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://cnqp52df0ln8e"]
 
-[ext_resource path="res://src/main/kotlin/godot/tests/Invocation.kt" type="Script" id=1]
+[ext_resource type="Script" path="res://src/main/kotlin/godot/tests/Invocation.kt" id="1"]
 
-[sub_resource type="NavigationMesh" id=1]
+[sub_resource type="NavigationMesh" id="NavigationMesh_prd4u"]
 
-[sub_resource type="NavigationMesh" id=2]
+[sub_resource type="NavigationMesh" id="NavigationMesh_tuyoa"]
 
-[sub_resource type="NavigationMesh" id=3]
+[sub_resource type="NavigationMesh" id="NavigationMesh_bh4po"]
 
-[sub_resource type="NavigationMesh" id=4]
+[sub_resource type="NavigationMesh" id="NavigationMesh_bdc7j"]
 
-[sub_resource type="NavigationMesh" id=5]
+[sub_resource type="NavigationMesh" id="NavigationMesh_abcao"]
 
-[node name="Spatial" type="Spatial"]
-script = ExtResource( 1 )
+[node name="Spatial" type="Node3D"]
+script = ExtResource("1")
+nullable_long = 2
+lateinit_string = "works also from inspector"
+resource_test = SubResource("NavigationMesh_prd4u")
+nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_tuyoa")])
+nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_bh4po"), null])
+nav_meshes_dictionary = {
+"AwesomeNavmesh": SubResource("NavigationMesh_bdc7j")
+}
 nullable_dictionary = {
-"notnull": SubResource( 1 ),
+"notnull": SubResource("NavigationMesh_abcao"),
 "null": null
 }
-nullable_array = [ SubResource( 2 ), null ]
-nav_meshes_dictionary = {
-"AwesomeNavmesh": SubResource( 3 )
-}
-any_to_any_dictionary = {
-}
-nullable_long = 2
-resource_test = SubResource( 4 )
-lateinit_string = "works also from inspector"
-nav_meshes = [ SubResource( 5 ) ]
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.974354, 0.225019, 0, -0.225019, 0.974354, 0, 1.2131, 2.47241 )
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.974354, 0.225019, 0, -0.225019, 0.974354, 0, 1.2131, 2.47241)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-margin_right = 12.0
-margin_bottom = 20.0
-__meta__ = {
-"_edit_use_anchors_": false
-}

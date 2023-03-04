@@ -25,19 +25,19 @@ import kotlin.Suppress
 @GodotBaseType
 public open class GPUParticlesAttractorBox3D : GPUParticlesAttractor3D() {
   /**
-   * The attractor box's extents in 3D units.
+   * The attractor box's size in 3D units.
    */
-  public var extents: Vector3
+  public var size: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORBOX3D_GET_EXTENTS, VECTOR3)
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORBOX3D_GET_SIZE, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORBOX3D_SET_EXTENTS, NIL)
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORBOX3D_SET_SIZE, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

@@ -22,6 +22,8 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
+import godot.signals.Signal2
+import godot.signals.Signal3
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
@@ -46,9 +48,20 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNode : Resource() {
   /**
-   * Emitted by nodes that inherit from this class and that have an internal tree when one of their nodes changes. The nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], and [godot.AnimationNodeBlendTree].
+   * Emitted by nodes that inherit from this class and that have an internal tree when one of their nodes changes. The nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], [godot.AnimationNodeBlendTree] and [godot.AnimationNodeTransition].
    */
   public val treeChanged: Signal0 by signal()
+
+  /**
+   * Emitted by nodes that inherit from this class and that have an internal tree when one of their node names changes. The nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], and [godot.AnimationNodeBlendTree].
+   */
+  public val animationNodeRenamed: Signal3<Long, String, String> by signal("objectId", "oldName",
+      "newName")
+
+  /**
+   * Emitted by nodes that inherit from this class and that have an internal tree when one of their nodes removes. The nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], and [godot.AnimationNodeBlendTree].
+   */
+  public val animationNodeRemoved: Signal2<Long, String> by signal("objectId", "name")
 
   /**
    * If `true`, filtering is enabled.
@@ -100,6 +113,13 @@ public open class AnimationNode : Resource() {
   }
 
   /**
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return whether the [parameter] is read-only. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
+   */
+  public open fun _isParameterReadOnly(parameter: StringName): Boolean {
+    throw NotImplementedError("_is_parameter_read_only is not implemented for AnimationNode")
+  }
+
+  /**
    * When inheriting from [godot.AnimationRootNode], implement this virtual method to run some code when this node is processed. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute.
    *
    * Here, call the [blendInput], [blendNode] or [blendAnimation] functions. You can also use [getParameter] and [setParameter] to modify local memory.
@@ -129,12 +149,29 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Amount of inputs in this node, only useful for nodes that go into [godot.AnimationNodeBlendTree].
+   * Adds an input to the node. This is only useful for nodes created for use in an [godot.AnimationNodeBlendTree]. If the addition fails, returns `false`.
    */
-  public fun getInputCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_INPUT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+  public fun addInput(name: String): Boolean {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_ADD_INPUT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Removes an input, call this only when inactive.
+   */
+  public fun removeInput(index: Long): Unit {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_REMOVE_INPUT, NIL)
+  }
+
+  /**
+   * Sets the name of the input at the given [input] index. If the setting fails, returns `false`.
+   */
+  public fun setInputName(input: Long, name: String): Boolean {
+    TransferContext.writeArguments(LONG to input, STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_SET_INPUT_NAME, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -148,19 +185,21 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Adds an input to the node. This is only useful for nodes created for use in an [godot.AnimationNodeBlendTree].
+   * Amount of inputs in this node, only useful for nodes that go into [godot.AnimationNodeBlendTree].
    */
-  public fun addInput(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_ADD_INPUT, NIL)
+  public fun getInputCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_INPUT_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Removes an input, call this only when inactive.
+   * Returns the input index which corresponds to [name]. If not found, returns `-1`.
    */
-  public fun removeInput(index: Long): Unit {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_REMOVE_INPUT, NIL)
+  public fun findInput(name: String): Long {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_FIND_INPUT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**

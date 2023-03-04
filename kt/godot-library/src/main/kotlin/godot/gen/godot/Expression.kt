@@ -68,7 +68,7 @@ import kotlin.Suppress
  *
  * [csharp]
  *
- * public Expression expression = new Expression();
+ * private Expression _expression = new Expression();
  *
  *
  *
@@ -76,7 +76,7 @@ import kotlin.Suppress
  *
  * {
  *
- *     GetNode("LineEdit").TextSubmitted += OnTextEntered;
+ *     GetNode<LineEdit>("LineEdit").TextSubmitted += OnTextEntered;
  *
  * }
  *
@@ -86,21 +86,21 @@ import kotlin.Suppress
  *
  * {
  *
- *     Error error = expression.Parse(command);
+ *     Error error = _expression.Parse(command);
  *
  *     if (error != Error.Ok)
  *
  *     {
  *
- *         GD.Print(expression.GetErrorText());
+ *         GD.Print(_expression.GetErrorText());
  *
  *         return;
  *
  *     }
  *
- *     object result = expression.Execute();
+ *     Variant result = _expression.Execute();
  *
- *     if (!expression.HasExecuteFailed())
+ *     if (!_expression.HasExecuteFailed())
  *
  *     {
  *
@@ -159,7 +159,7 @@ public open class Expression : RefCounted() {
   }
 
   /**
-   * Returns the error text if [parse] has failed.
+   * Returns the error text if [parse] or [execute] has failed.
    */
   public fun getErrorText(): String {
     TransferContext.writeArguments()

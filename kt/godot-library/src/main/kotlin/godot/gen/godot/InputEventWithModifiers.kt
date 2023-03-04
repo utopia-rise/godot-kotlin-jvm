@@ -9,9 +9,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -119,6 +121,16 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_COMMAND_OR_CONTROL_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the keycode combination of modifier keys.
+   */
+  public fun getModifiersMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_GET_MODIFIERS_MASK, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, false) as Long
   }
 
   public companion object

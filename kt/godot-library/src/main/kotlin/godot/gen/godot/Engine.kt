@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
@@ -15,6 +16,7 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -456,11 +458,36 @@ public object Engine : Object() {
 
   /**
    * Registers a [godot.ScriptLanguage] instance to be available with `ScriptServer`.
+   *
+   * Returns:
+   *
+   * - [OK] on success
+   *
+   * - [ERR_UNAVAILABLE] if `ScriptServer` has reached it limit and cannot register any new language
+   *
+   * - [ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar extension/name/type
    */
-  public fun registerScriptLanguage(language: ScriptLanguage): Unit {
+  public fun registerScriptLanguage(language: ScriptLanguage): GodotError {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_REGISTER_SCRIPT_LANGUAGE,
-        NIL)
+        LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Unregisters the [godot.ScriptLanguage] instance from `ScriptServer`.
+   *
+   * Returns:
+   *
+   * - [OK] on success
+   *
+   * - [ERR_DOES_NOT_EXIST] if the language is already not registered in `ScriptServer`
+   */
+  public fun unregisterScriptLanguage(language: ScriptLanguage): GodotError {
+    TransferContext.writeArguments(OBJECT to language)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_UNREGISTER_SCRIPT_LANGUAGE,
+        LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**

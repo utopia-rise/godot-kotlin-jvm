@@ -39,7 +39,9 @@ import kotlin.Unit
  *
  * 2D particle node used to create a variety of particle systems and effects. [godot.GPUParticles2D] features an emitter that generates some number of particles at a given rate.
  *
- * Use the `process_material` property to add a [godot.ParticleProcessMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
+ * Use the [processMaterial] property to add a [godot.ParticleProcessMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
+ *
+ * 2D particles can optionally collide with [godot.LightOccluder2D] nodes (note: they don't collide with [godot.PhysicsBody2D] nodes).
  */
 @GodotBaseType
 public open class GPUParticles2D : Node2D() {
@@ -259,7 +261,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   *
+   * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite.
    */
   public var collisionBaseSize: Double
     get() {

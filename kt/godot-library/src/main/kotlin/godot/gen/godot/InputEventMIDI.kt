@@ -84,11 +84,11 @@ import kotlin.Suppress
  *
  *
  *
- * public override void _Input(InputEvent inputEvent)
+ * public override void _Input(InputEvent @event)
  *
  * {
  *
- *     if (inputEvent is InputEventMIDI midiEvent)
+ *     if (@event is InputEventMIDI midiEvent)
  *
  *     {
  *
@@ -106,21 +106,21 @@ import kotlin.Suppress
  *
  *     GD.Print(midiEvent);
  *
- *     GD.Print("Channel " + midiEvent.Channel);
+ *     GD.Print($"Channel {midiEvent.Channel}");
  *
- *     GD.Print("Message " + midiEvent.Message);
+ *     GD.Print($"Message {midiEvent.Message}");
  *
- *     GD.Print("Pitch " + midiEvent.Pitch);
+ *     GD.Print($"Pitch {midiEvent.Pitch}");
  *
- *     GD.Print("Velocity " + midiEvent.Velocity);
+ *     GD.Print($"Velocity {midiEvent.Velocity}");
  *
- *     GD.Print("Instrument " + midiEvent.Instrument);
+ *     GD.Print($"Instrument {midiEvent.Instrument}");
  *
- *     GD.Print("Pressure " + midiEvent.Pressure);
+ *     GD.Print($"Pressure {midiEvent.Pressure}");
  *
- *     GD.Print("Controller number: " + midiEvent.ControllerNumber);
+ *     GD.Print($"Controller number: {midiEvent.ControllerNumber}");
  *
- *     GD.Print("Controller value: " + midiEvent.ControllerValue);
+ *     GD.Print($"Controller value: {midiEvent.ControllerValue}");
  *
  * }
  *

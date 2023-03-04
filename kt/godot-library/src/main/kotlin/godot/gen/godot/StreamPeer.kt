@@ -225,7 +225,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    *
    * [csharp]
    *
-   * PutData("Hello World".ToUTF8());
+   * PutData("Hello World".ToUtf8());
    *
    * [/csharp]
    *
@@ -238,6 +238,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
 
   /**
    * Puts a Variant into the stream. If [fullObjects] is `true` encoding objects is allowed (and can potentially include code).
+   *
+   * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   public fun putVar(`value`: Any, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
@@ -354,6 +356,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
 
   /**
    * Gets a Variant from the stream. If [allowObjects] is `true`, decoding objects is allowed.
+   *
+   * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */

@@ -35,7 +35,9 @@ import kotlin.Unit
  *
  * [gdscript]
  *
- * class_name Server
+ * # server_node.gd
+ *
+ * class_name ServerNode
  *
  * extends Node
  *
@@ -85,21 +87,21 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * using Godot;
+ * // ServerNode.cs
  *
- * using System;
+ * using Godot;
  *
  * using System.Collections.Generic;
  *
  *
  *
- * public class Server : Node
+ * public partial class ServerNode : Node
  *
  * {
  *
- *     public UDPServer Server = new UDPServer();
+ *     private UdpServer _server = new UdpServer();
  *
- *     public List<PacketPeerUDP> Peers = new List<PacketPeerUDP>();
+ *     private List<PacketPeerUdp> _peers  = new List<PacketPeerUdp>();
  *
  *
  *
@@ -107,29 +109,29 @@ import kotlin.Unit
  *
  *     {
  *
- *         Server.Listen(4242);
+ *         _server.Listen(4242);
  *
  *     }
  *
  *
  *
- *     public override void _Process(float delta)
+ *     public override void _Process(double delta)
  *
  *     {
  *
- *         Server.Poll(); // Important!
+ *         _server.Poll(); // Important!
  *
- *         if (Server.IsConnectionAvailable())
+ *         if (_server.IsConnectionAvailable())
  *
  *         {
  *
- *             PacketPeerUDP peer = Server.TakeConnection();
+ *             PacketPeerUdp peer = _server.TakeConnection();
  *
  *             byte[] packet = peer.GetPacket();
  *
- *             GD.Print($"Accepted Peer: {peer.GetPacketIp()}:{peer.GetPacketPort()}");
+ *             GD.Print($"Accepted Peer: {peer.GetPacketIP()}:{peer.GetPacketPort()}");
  *
- *             GD.Print($"Received Data: {packet.GetStringFromUTF8()}");
+ *             GD.Print($"Received Data: {packet.GetStringFromUtf8()}");
  *
  *             // Reply so it knows we received the message.
  *
@@ -137,11 +139,11 @@ import kotlin.Unit
  *
  *             // Keep a reference so we can keep contacting the remote peer.
  *
- *             Peers.Add(peer);
+ *             _peers.Add(peer);
  *
  *         }
  *
- *         foreach (var peer in Peers)
+ *         foreach (var peer in _peers)
  *
  *         {
  *
@@ -161,7 +163,9 @@ import kotlin.Unit
  *
  * [gdscript]
  *
- * class_name Client
+ * # client_node.gd
+ *
+ * class_name ClientNode
  *
  * extends Node
  *
@@ -197,19 +201,19 @@ import kotlin.Unit
  *
  * [csharp]
  *
+ * // ClientNode.cs
+ *
  * using Godot;
  *
- * using System;
  *
  *
- *
- * public class Client : Node
+ * public partial class ClientNode : Node
  *
  * {
  *
- *     public PacketPeerUDP Udp = new PacketPeerUDP();
+ *     private PacketPeerUdp _udp = new PacketPeerUdp();
  *
- *     public bool Connected = false;
+ *     private bool _connected = false;
  *
  *
  *
@@ -217,33 +221,33 @@ import kotlin.Unit
  *
  *     {
  *
- *         Udp.ConnectToHost("127.0.0.1", 4242);
+ *         _udp.ConnectToHost("127.0.0.1", 4242);
  *
  *     }
  *
  *
  *
- *     public override void _Process(float delta)
+ *     public override void _Process(double delta)
  *
  *     {
  *
- *         if (!Connected)
+ *         if (!_connected)
  *
  *         {
  *
  *             // Try to contact server
  *
- *             Udp.PutPacket("The Answer Is..42!".ToUTF8());
+ *             _udp.PutPacket("The Answer Is..42!".ToUtf8());
  *
  *         }
  *
- *         if (Udp.GetAvailablePacketCount() > 0)
+ *         if (_udp.GetAvailablePacketCount() > 0)
  *
  *         {
  *
- *             GD.Print($"Connected: {Udp.GetPacket().GetStringFromUTF8()}");
+ *             GD.Print($"Connected: {_udp.GetPacket().GetStringFromUtf8()}");
  *
- *             Connected = true;
+ *             _connected = true;
  *
  *         }
  *

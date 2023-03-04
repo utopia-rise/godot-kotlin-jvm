@@ -26,6 +26,8 @@ import kotlin.Suppress
  * **Note:** The origin point of your VehicleBody3D will determine the center of gravity of your vehicle so it is better to keep this low and move the [godot.CollisionShape3D] and [godot.MeshInstance3D] upwards.
  *
  * **Note:** This class has known issues and isn't designed to provide realistic 3D vehicle physics. If you want advanced vehicle physics, you will probably have to write your own physics integration using another [godot.PhysicsBody3D] class.
+ *
+ * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
  */
 @GodotBaseType
 public open class VehicleBody3D : RigidBody3D() {
@@ -64,7 +66,9 @@ public open class VehicleBody3D : RigidBody3D() {
     }
 
   /**
-   * The steering angle for the vehicle, in radians. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [godot.VehicleWheel3D.useAsSteering] set to `true` will automatically be rotated.
+   * The steering angle for the vehicle. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [godot.VehicleWheel3D.useAsSteering] set to `true` will automatically be rotated.
+   *
+   * **Note:** This property is edited in the inspector in degrees. In code the property is set in radians.
    */
   public var steering: Double
     get() {

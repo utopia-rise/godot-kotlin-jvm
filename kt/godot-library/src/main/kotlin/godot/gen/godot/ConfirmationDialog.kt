@@ -27,13 +27,13 @@ import kotlin.Suppress
  *
  * [gdscript]
  *
- * get_cancel_button().pressed.connect(self.cancelled)
+ * get_cancel_button().pressed.connect(self.canceled)
  *
  * [/gdscript]
  *
  * [csharp]
  *
- * GetCancelButton().Pressed += Cancelled;
+ * GetCancelButton().Pressed += Canceled;
  *
  * [/csharp]
  *

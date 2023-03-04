@@ -5,9 +5,9 @@ func test_should_get_right_vector3_using_operator_get():
 	var basis_test = godot_tests_coretypes_BasisTest.new()
 	var engine_basis = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
 	var jvm_basis = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
-	assert_eq(engine_basis[0], basis_test.get(jvm_basis, 0), "Basis get operator on JVM side should be same as gdscript one.")
-	assert_eq(engine_basis[1], basis_test.get(jvm_basis, 1), "Basis get operator on JVM side should be same as gdscript one.")
-	assert_eq(engine_basis[2], basis_test.get(jvm_basis, 2), "Basis get operator on JVM side should be same as gdscript one.")
+	assert_eq(engine_basis[0], basis_test.get_from_basis(jvm_basis, 0), "Basis get operator on JVM side should be same as gdscript one.")
+	assert_eq(engine_basis[1], basis_test.get_from_basis(jvm_basis, 1), "Basis get operator on JVM side should be same as gdscript one.")
+	assert_eq(engine_basis[2], basis_test.get_from_basis(jvm_basis, 2), "Basis get operator on JVM side should be same as gdscript one.")
 	basis_test.free()
 
 func test_should_set_right_vector3_using_operator_set():
@@ -17,9 +17,9 @@ func test_should_set_right_vector3_using_operator_set():
 	engine_basis[0] = Vector3(10, 20, 30)
 	engine_basis[1] = Vector3(60, 80, 100)
 	engine_basis[2] = Vector3(50, 90, 70)
-	jvm_basis = basis_test.set(jvm_basis, 0, Vector3(10, 20, 30))
-	jvm_basis = basis_test.set(jvm_basis, 1, Vector3(60, 80, 100))
-	jvm_basis = basis_test.set(jvm_basis, 2, Vector3(50, 90, 70))
+	jvm_basis = basis_test.set_in_basis(jvm_basis, 0, Vector3(10, 20, 30))
+	jvm_basis = basis_test.set_in_basis(jvm_basis, 1, Vector3(60, 80, 100))
+	jvm_basis = basis_test.set_in_basis(jvm_basis, 2, Vector3(50, 90, 70))
 	assert_eq(engine_basis, jvm_basis, "Basis set operator on JVM side should be same as gdscript one.")
 	basis_test.free()
 
@@ -33,7 +33,7 @@ func test_jvm_basis_get_rotation_quat():
 		.rotated(Vector3(0, 0, 1), 5.0 * PI / 180.0) \
 		.scaled(Vector3(1, 2, 3))
 
-	var jvm_quat = basis.get_rotation_quat()
+	var jvm_quat = basis.get_rotation_quaternion()
 	var engine_quat = basis_test.get_rotation_quat(basis)
 	assert_true(engine_quat.is_equal_approx(jvm_quat), "Quat from Basis in JVM should equal expected Quat")
 	basis_test.free()

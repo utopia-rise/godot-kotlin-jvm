@@ -33,6 +33,8 @@ import kotlin.Unit
  * [$DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html]($DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html)
  *
  * This resource is used in [godot.EditorScenePostImport]. Some parameters are referring to bones in [godot.Skeleton3D], [godot.Skin], [godot.Animation], and some other nodes are rewritten based on the parameters of [godot.SkeletonProfile].
+ *
+ * **Note:** These parameters need to be set only when creating a custom profile. In [godot.SkeletonProfileHumanoid], they are defined internally as read-only values.
  */
 @GodotBaseType
 public open class SkeletonProfile : Resource() {
@@ -44,9 +46,7 @@ public open class SkeletonProfile : Resource() {
   public val profileUpdated: Signal0 by signal()
 
   /**
-   * A name of bone that will be used as the root bone in [godot.AnimationTree].
-   *
-   * **Note:** In most cases, it is the bone of the parent of the hips that exists at the world origin in the humanoid model.
+   * A bone name that will be used as the root bone in [godot.AnimationTree]. This should be the bone of the parent of hips that exists at the world origin.
    */
   public var rootBone: StringName
     get() {
@@ -62,9 +62,7 @@ public open class SkeletonProfile : Resource() {
     }
 
   /**
-   * A name of bone which height will be used as the coefficient for normalization.
-   *
-   * **Note:** In most cases, it is hips in the humanoid model.
+   * A bone name which will use model's height as the coefficient for normalization. For example, [godot.SkeletonProfileHumanoid] defines it as `Hips`.
    */
   public var scaleBaseBone: StringName
     get() {
@@ -80,7 +78,9 @@ public open class SkeletonProfile : Resource() {
     }
 
   /**
+   * The amount of groups of bones in retargeting section's [godot.BoneMap] editor. For example, [godot.SkeletonProfileHumanoid] has 4 groups.
    *
+   * This property exists to separate the bone list into several sections in the editor.
    */
   public var groupSize: Long
     get() {
@@ -96,7 +96,9 @@ public open class SkeletonProfile : Resource() {
     }
 
   /**
+   * The amount of bones in retargeting section's [godot.BoneMap] editor. For example, [godot.SkeletonProfileHumanoid] has 56 bones.
    *
+   * The size of elements in [godot.BoneMap] updates when changing this property in it's assigned [godot.SkeletonProfile].
    */
   public var boneSize: Long
     get() {

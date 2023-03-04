@@ -7,6 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -29,6 +31,16 @@ public open class CubemapArray : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CUBEMAPARRAY, scriptIndex)
     return true
+  }
+
+  /**
+   * Creates a placeholder version of this resource ([godot.PlaceholderCubemapArray]).
+   */
+  public fun createPlaceholder(): Resource? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CUBEMAPARRAY_CREATE_PLACEHOLDER,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
   public companion object

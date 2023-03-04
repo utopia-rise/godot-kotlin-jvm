@@ -7,9 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PackedByteArray
 import godot.core.VariantType.ANY
-import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
@@ -27,13 +25,6 @@ public open class GDScript : Script() {
     TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPT_NEW, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  public fun getAsByteCode(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPT_GET_AS_BYTE_CODE,
-        PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
   public companion object

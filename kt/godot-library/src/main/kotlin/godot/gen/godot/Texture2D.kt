@@ -204,5 +204,15 @@ public open class Texture2D : Texture() {
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 
+  /**
+   * Creates a placeholder version of this resource ([godot.PlaceholderTexture2D]).
+   */
+  public fun createPlaceholder(): Resource? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_CREATE_PLACEHOLDER,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Resource?
+  }
+
   public companion object
 }

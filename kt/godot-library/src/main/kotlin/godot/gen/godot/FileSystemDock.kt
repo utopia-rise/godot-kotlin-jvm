@@ -39,6 +39,11 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
   /**
    *
    */
+  public val resourceRemoved: Signal1<Resource> by signal("resource")
+
+  /**
+   *
+   */
   public val fileRemoved: Signal1<String> by signal("file")
 
   /**

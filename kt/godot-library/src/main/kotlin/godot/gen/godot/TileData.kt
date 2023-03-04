@@ -91,16 +91,16 @@ public open class TileData : Object() {
   /**
    * Offsets the position of where the tile is drawn.
    */
-  public var textureOffset: Vector2i
+  public var textureOrigin: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TEXTURE_OFFSET,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_GET_TEXTURE_ORIGIN,
           VECTOR2I)
       return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_TEXTURE_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_TEXTURE_ORIGIN, NIL)
     }
 
   /**

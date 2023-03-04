@@ -36,7 +36,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class BaseMaterial3D internal constructor() : Material() {
   /**
-   * If `true`, transparency is enabled on the body. See also [blendMode].
+   * If `true`, transparency is enabled on the body. Some transparency modes will disable shadow casting. Any transparency mode other than Disabled has a greater performance impact compared to opaque rendering. See also [blendMode].
    */
   public var transparency: Transparency
     get() {
@@ -165,7 +165,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Sets whether the shading takes place per-pixel or per-vertex. Per-vertex lighting is faster, making it the best choice for mobile applications, however it looks considerably worse than per-pixel.
+   * Sets whether the shading takes place, per-pixel, per-vertex or unshaded. Per-vertex lighting is faster, making it the best choice for mobile applications, however it looks considerably worse than per-pixel. Unshaded rendering is the fastest, but disables all interactions with lights.
+   *
+   * **Note:** Setting the shading mode vertex shading currently has no effect, as vertex shading is not implemented yet.
    */
   public var shadingMode: ShadingMode
     get() {
@@ -923,7 +925,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, enables the vertex grow setting. See [growAmount].
+   * If `true`, enables the vertex grow setting. This can be used to create mesh-based outlines using a second material pass and its [cullMode] set to [CULL_FRONT]. See also [growAmount].
+   *
+   * **Note:** Vertex growth cannot create new vertices, which means that visible gaps may occur in sharp corners. This can be alleviated by designing the mesh to use smooth normals exclusively using [face weighted normals](https://wiki.polycount.com/wiki/Face_weighted_normals) in the 3D authoring software. In this case, grow will be able to join every outline together, just like in the original mesh.
    */
   public var grow: Boolean
     get() {
@@ -939,7 +943,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Grows object vertices in the direction of their normals.
+   * Grows object vertices in the direction of their normals. Only effective if [grow] is `true`.
    */
   public var growAmount: Double
     get() {
@@ -1301,23 +1305,23 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long
   ) {
     /**
-     * The material will not use transparency.
+     * The material will not use transparency. This is the fastest to render.
      */
     TRANSPARENCY_DISABLED(0),
     /**
-     * The material will use the texture's alpha values for transparency.
+     * The material will use the texture's alpha values for transparency. This is the slowest to render, and disables shadow casting.
      */
     TRANSPARENCY_ALPHA(1),
     /**
-     * The material will cut off all values below a threshold, the rest will remain opaque. The opaque portions will be rendered in the depth prepass.
+     * The material will cut off all values below a threshold, the rest will remain opaque. The opaque portions will be rendered in the depth prepass. This is faster to render than alpha blending, but slower than opaque rendering. This also supports casting shadows.
      */
     TRANSPARENCY_ALPHA_SCISSOR(2),
     /**
-     * The material will cut off all values below a spatially-deterministic threshold, the rest will remain opaque.
+     * The material will cut off all values below a spatially-deterministic threshold, the rest will remain opaque. This is faster to render than alpha blending, but slower than opaque rendering. This also supports casting shadows. Alpha hashing is suited for hair rendering.
      */
     TRANSPARENCY_ALPHA_HASH(3),
     /**
-     * The material will use the texture's alpha value for transparency, but will discard fragments with an alpha of less than 0.99 during the depth prepass and fragments with an alpha less than 0.1 during the shadow pass.
+     * The material will use the texture's alpha value for transparency, but will discard fragments with an alpha of less than 0.99 during the depth prepass and fragments with an alpha less than 0.1 during the shadow pass. This also supports casting shadows.
      */
     TRANSPARENCY_ALPHA_DEPTH_PRE_PASS(4),
     /**
@@ -1340,15 +1344,15 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long
   ) {
     /**
-     * The object will not receive shadows.
+     * The object will not receive shadows. This is the fastest to render, but it disables all interactions with lights.
      */
     SHADING_MODE_UNSHADED(0),
     /**
-     * The object will be shaded per pixel. Useful for realistic shading effect.
+     * The object will be shaded per pixel. Useful for realistic shading effects.
      */
     SHADING_MODE_PER_PIXEL(1),
     /**
-     * The object will be shaded per vertex. Useful when you want cheaper shaders and do not care about visual quality.
+     * The object will be shaded per vertex. Useful when you want cheaper shaders and do not care about visual quality. Not implemented yet (this mode will act like [SHADING_MODE_PER_PIXEL]).
      */
     SHADING_MODE_PER_VERTEX(2),
     /**
@@ -1525,15 +1529,15 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long
   ) {
     /**
-     * Default cull mode. The back of the object is culled when not visible. Back face triangles will be culled when facing the camera. This results in only the front side of triangles being drawn. For closed-surface meshes this means that only the exterior of the mesh will be visible.
+     * Default cull mode. The back of the object is culled when not visible. Back face triangles will be culled when facing the camera. This results in only the front side of triangles being drawn. For closed-surface meshes, this means that only the exterior of the mesh will be visible.
      */
     CULL_BACK(0),
     /**
-     * Front face triangles will be culled when facing the camera. This results in only the back side of triangles being drawn. For closed-surface meshes this means that the interior of the mesh will be drawn instead of the exterior.
+     * Front face triangles will be culled when facing the camera. This results in only the back side of triangles being drawn. For closed-surface meshes, this means that the interior of the mesh will be drawn instead of the exterior.
      */
     CULL_FRONT(1),
     /**
-     * No culling is performed.
+     * No face culling is performed; both the front face and back face will be visible.
      */
     CULL_DISABLED(2),
     ;
@@ -1562,7 +1566,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     /**
      * Vertex colors are considered to be stored in sRGB color space and are converted to linear color space during rendering. See also [vertexColorIsSrgb].
      *
-     * **Note:** Only effective when using the Vulkan Clustered or Vulkan Mobile backends.
+     * **Note:** Only effective when using the Forward+ and Mobile rendering methods.
      */
     FLAG_SRGB_VERTEX_COLOR(2),
     /**
@@ -1696,7 +1700,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     SPECULAR_TOON(1),
     /**
-     * No specular blob.
+     * No specular blob. This is slightly faster to render than other specular modes.
      */
     SPECULAR_DISABLED(2),
     ;
@@ -1814,11 +1818,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     DISTANCE_FADE_PIXEL_ALPHA(1),
     /**
-     * Smoothly fades the object out based on each pixel's distance from the camera using a dither approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware this can be faster than [DISTANCE_FADE_PIXEL_ALPHA].
+     * Smoothly fades the object out based on each pixel's distance from the camera using a dithering approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware, this can be faster than [DISTANCE_FADE_PIXEL_ALPHA].
      */
     DISTANCE_FADE_PIXEL_DITHER(2),
     /**
-     * Smoothly fades the object out based on the object's distance from the camera using a dither approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware this can be faster than [DISTANCE_FADE_PIXEL_ALPHA].
+     * Smoothly fades the object out based on the object's distance from the camera using a dithering approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware, this can be faster than [DISTANCE_FADE_PIXEL_ALPHA] and [DISTANCE_FADE_PIXEL_DITHER].
      */
     DISTANCE_FADE_OBJECT_DITHER(3),
     ;

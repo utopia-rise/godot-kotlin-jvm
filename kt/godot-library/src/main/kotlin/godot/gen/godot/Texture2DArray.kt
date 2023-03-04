@@ -7,6 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -25,6 +27,16 @@ public open class Texture2DArray : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TEXTURE2DARRAY, scriptIndex)
     return true
+  }
+
+  /**
+   * Creates a placeholder version of this resource ([godot.PlaceholderTexture2DArray]).
+   */
+  public fun createPlaceholder(): Resource? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2DARRAY_CREATE_PLACEHOLDER,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
   public companion object

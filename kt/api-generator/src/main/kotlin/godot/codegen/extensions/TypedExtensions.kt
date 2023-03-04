@@ -132,7 +132,17 @@ fun <T> T.getDefaultValueKotlinString(): String?
             type == GodotTypes.bool -> defaultValueString.toLowerCase()
             type == GodotTypes.float -> intToFloat(defaultValueString)
             type == GodotTypes.stringName -> "${GodotKotlinJvmTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
-            type == GodotTypes.array || isTypedArray() -> "$godotCorePackage.variantArrayOf(".plus(defaultValueString.removePrefix("[").removeSuffix("]")).plus(")")
+            type == GodotTypes.array || isTypedArray() ->
+                if (defaultValueString.startsWith("Array")) {
+                    val defaultArrayValues = defaultValueString
+                        .replace("Array.*\\(\\[".toRegex(), "")
+                        .removeSuffix("])")
+                    "$godotCorePackage.variantArrayOf(".plus(defaultArrayValues).plus(")")
+                } else {
+                    "$godotCorePackage.variantArrayOf("
+                        .plus(defaultValueString.removePrefix("[").removeSuffix("]"))
+                        .plus(")")
+                }
 
             type == GodotTypes.rect2 -> defaultValueString
                 .replace(",", ".0,")

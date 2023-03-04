@@ -88,6 +88,22 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_TEXTURE_REPEAT, NIL)
     }
 
+  /**
+   * Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness texture. see [enum TextureSource] for options.
+   */
+  public var textureSource: TextureSource
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_SOURCE, LONG)
+      return VisualShaderNodeTextureParameter.TextureSource.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_TEXTURE_SOURCE, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER, scriptIndex)
     return true
@@ -229,6 +245,41 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * Represents the size of the [enum TextureRepeat] enum.
      */
     REPEAT_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class TextureSource(
+    id: Long
+  ) {
+    /**
+     * The texture source is not specified in the shader.
+     */
+    SOURCE_NONE(0),
+    /**
+     * The texture source is the screen texture which captures all opaque objects drawn this frame.
+     */
+    SOURCE_SCREEN(1),
+    /**
+     * The texture source is the depth texture from the depth prepass.
+     */
+    SOURCE_DEPTH(2),
+    /**
+     * The texture source is the normal-roughness buffer from the depth prepass.
+     */
+    SOURCE_NORMAL_ROUGHNESS(3),
+    /**
+     * Represents the size of the [enum TextureSource] enum.
+     */
+    SOURCE_MAX(4),
     ;
 
     public val id: Long

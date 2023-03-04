@@ -10,7 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.StringName
+import godot.core.VariantArray
 import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.JVM_INT
@@ -148,6 +150,28 @@ public object ProjectSettings : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING_WITH_OVERRIDE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   * Returns an [godot.Array] of registered global classes. Each global class is represented as a [godot.core.Dictionary] that contains the following entries:
+   *
+   * - `base` is a name of the base class;
+   *
+   * - `class` is a name of the registered global class;
+   *
+   * - `icon` is a path to a custom icon of the global class, if it has any;
+   *
+   * - `language` is a name of a programming language in which the global class is written;
+   *
+   * - `path` is a path to a file containing the global class.
+   *
+   * **Note:** Both the script and the icon paths are local to the project filesystem, i.e. they start with `res://`.
+   */
+  public fun getGlobalClassList(): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_GLOBAL_CLASS_LIST, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
   }
 
   /**

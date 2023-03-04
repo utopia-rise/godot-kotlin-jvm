@@ -7,9 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
@@ -43,14 +41,14 @@ public open class Mutex : RefCounted() {
   }
 
   /**
-   * Tries locking this [godot.Mutex], but does not block. Returns [OK] on success, [ERR_BUSY] otherwise.
+   * Tries locking this [godot.Mutex], but does not block. Returns `true` on success, `false` otherwise.
    *
    * **Note:** This function returns [OK] if the thread already has ownership of the mutex.
    */
-  public fun tryLock(): GodotError {
+  public fun tryLock(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MUTEX_TRY_LOCK, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MUTEX_TRY_LOCK, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

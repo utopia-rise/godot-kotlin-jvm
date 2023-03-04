@@ -62,96 +62,96 @@ public open class Mesh : Resource() {
   }
 
   /**
-   *
+   * Virtual method to override the surface count for a custom class extending [godot.Mesh].
    */
   public open fun _getSurfaceCount(): Long {
     throw NotImplementedError("_get_surface_count is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the surface array length for a custom class extending [godot.Mesh].
    */
   public open fun _surfaceGetArrayLen(index: Long): Long {
     throw NotImplementedError("_surface_get_array_len is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the surface array index length for a custom class extending [godot.Mesh].
    */
   public open fun _surfaceGetArrayIndexLen(index: Long): Long {
     throw NotImplementedError("_surface_get_array_index_len is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the surface arrays for a custom class extending [godot.Mesh].
    */
   public open fun _surfaceGetArrays(index: Long): VariantArray<Any?> {
     throw NotImplementedError("_surface_get_arrays is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the blend shape arrays for a custom class extending [godot.Mesh].
    */
   public open fun _surfaceGetBlendShapeArrays(index: Long): VariantArray<VariantArray<Any?>> {
     throw NotImplementedError("_surface_get_blend_shape_arrays is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the surface LODs for a custom class extending [godot.Mesh].
    */
   public open fun _surfaceGetLods(index: Long): Dictionary<Any?, Any?> {
     throw NotImplementedError("_surface_get_lods is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the surface format for a custom class extending [godot.Mesh].
    */
   public open fun _surfaceGetFormat(index: Long): Long {
     throw NotImplementedError("_surface_get_format is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the surface primitive type for a custom class extending [godot.Mesh].
    */
   public open fun _surfaceGetPrimitiveType(index: Long): Long {
     throw NotImplementedError("_surface_get_primitive_type is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the setting of a [material] at the given [index] for a custom class extending [godot.Mesh].
    */
   public open fun _surfaceSetMaterial(index: Long, material: Material): Unit {
   }
 
   /**
-   *
+   * Virtual method to override the surface material for a custom class extending [godot.Mesh].
    */
   public open fun _surfaceGetMaterial(index: Long): Material? {
     throw NotImplementedError("_surface_get_material is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the number of blend shapes for a custom class extending [godot.Mesh].
    */
   public open fun _getBlendShapeCount(): Long {
     throw NotImplementedError("_get_blend_shape_count is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the retrieval of blend shape names for a custom class extending [godot.Mesh].
    */
   public open fun _getBlendShapeName(index: Long): StringName {
     throw NotImplementedError("_get_blend_shape_name is not implemented for Mesh")
   }
 
   /**
-   *
+   * Virtual method to override the names of blend shapes for a custom class extending [godot.Mesh].
    */
   public open fun _setBlendShapeName(index: Long, name: StringName): Unit {
   }
 
   /**
-   *
+   * Virtual method to override the [AABB] for a custom class extending [godot.Mesh].
    */
   public open fun _getAabb(): AABB {
     throw NotImplementedError("_get_aabb is not implemented for Mesh")
@@ -212,6 +212,15 @@ public open class Mesh : Resource() {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_MATERIAL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Material?
+  }
+
+  /**
+   * Creates a placeholder version of this resource ([godot.PlaceholderMesh]).
+   */
+  public fun createPlaceholder(): Resource? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_PLACEHOLDER, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
   /**
@@ -346,11 +355,11 @@ public open class Mesh : Resource() {
      */
     ARRAY_CUSTOM3(9),
     /**
-     * [godot.PackedFloat32Array] or [godot.PackedInt32Array] of bone indices. Each element is a group of 4 numbers.
+     * [godot.PackedFloat32Array] or [godot.PackedInt32Array] of bone indices. Contains either 4 or 8 numbers per vertex depending on the presence of the [godot.ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
      */
     ARRAY_BONES(10),
     /**
-     * [godot.PackedFloat32Array] of bone weights. Each element in groups of 4 floats.
+     * [godot.PackedFloat32Array] or [godot.PackedFloat64Array] of bone weights in the range `0.0` to `1.0` (inclusive). Contains either 4 or 8 numbers per vertex depending on the presence of the [godot.ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
      */
     ARRAY_WEIGHTS(11),
     /**
@@ -395,7 +404,7 @@ public open class Mesh : Resource() {
      */
     ARRAY_CUSTOM_RGBA_HALF(3),
     /**
-     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array]. Only the red green channel is used.
+     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array]. Only the red channel is used.
      */
     ARRAY_CUSTOM_R_FLOAT(4),
     /**
@@ -529,6 +538,10 @@ public open class Mesh : Resource() {
      * Flag used to mark that the mesh contains up to 8 bone influences per vertex. This flag indicates that [ARRAY_BONES] and [ARRAY_WEIGHTS] elements will have double length.
      */
     ARRAY_FLAG_USE_8_BONE_WEIGHTS(134217728),
+    /**
+     * Flag used to mark that the mesh intentionally contains no vertex array.
+     */
+    ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY(268435456),
     ;
 
     public val id: Long

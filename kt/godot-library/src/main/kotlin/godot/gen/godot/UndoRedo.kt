@@ -77,7 +77,7 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * public UndoRedo UndoRedo;
+ * private UndoRedo _undoRedo;
  *
  *
  *
@@ -85,7 +85,7 @@ import kotlin.Unit
  *
  * {
  *
- *     UndoRedo = GetUndoRedo(); // Method of EditorPlugin.
+ *     _undoRedo = GetUndoRedo(); // Method of EditorPlugin.
  *
  * }
  *
@@ -117,17 +117,17 @@ import kotlin.Unit
  *
  *     var node = GetNode<Node2D>("MyNode2D");
  *
- *     UndoRedo.CreateAction("Move the node");
+ *     _undoRedo.CreateAction("Move the node");
  *
- *     UndoRedo.AddDoMethod(this, nameof(DoSomething));
+ *     _undoRedo.AddDoMethod(new Callable(this, MethodName.DoSomething));
  *
- *     UndoRedo.AddUndoMethod(this, nameof(UndoSomething));
+ *     _undoRedo.AddUndoMethod(new Callable(this, MethodName.UndoSomething));
  *
- *     UndoRedo.AddDoProperty(node, "position", new Vector2(100, 100));
+ *     _undoRedo.AddDoProperty(node, "position", new Vector2(100, 100));
  *
- *     UndoRedo.AddUndoProperty(node, "position", node.Position);
+ *     _undoRedo.AddUndoProperty(node, "position", node.Position);
  *
- *     UndoRedo.CommitAction();
+ *     _undoRedo.CommitAction();
  *
  * }
  *

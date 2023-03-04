@@ -135,26 +135,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: caacade569eb7a541aaa7a8cdc3eedffca1422d9
+          ref: 4.0-stable
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
           path: modules/kotlin_jvm
           submodules: recursive
-
-      - name: Linux dependencies
-        if: matrix.platform == 'x11'
-        shell: bash
-        run: |
-          # Azure repositories are not reliable, we need to prevent azure giving us packages.
-          sudo rm -f /etc/apt/sources.list.d/*
-          sudo cp -f misc/ci/sources.list /etc/apt/sources.list
-          sudo apt-get update
-          # The actual dependencies
-          sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
-              libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev \
-              libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip
 
       - name: Setup Godot dependencies
         uses: ./.github/actions/godot-deps
@@ -262,7 +249,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: caacade569eb7a541aaa7a8cdc3eedffca1422d9
+          ref: 4.0-stable
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
@@ -361,7 +348,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: caacade569eb7a541aaa7a8cdc3eedffca1422d9
+          ref: 4.0-stable
 
       - name: Get release export template binary
         uses: actions/download-artifact@v3

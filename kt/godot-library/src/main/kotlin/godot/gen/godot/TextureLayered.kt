@@ -29,7 +29,7 @@ import kotlin.Suppress
  *
  * A [godot.TextureLayered] can be loaded with [godot.ResourceLoader.load].
  *
- * Internally, Godot maps these files to their respective counterparts in the target rendering driver (Vulkan, GLES3).
+ * Internally, Godot maps these files to their respective counterparts in the target rendering driver (Vulkan, OpenGL3).
  */
 @GodotBaseType
 public open class TextureLayered : Texture() {

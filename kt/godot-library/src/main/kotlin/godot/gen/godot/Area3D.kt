@@ -33,7 +33,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * 3D area for detection and physics and audio influence.
+ * 3D area for detection, as well as physics and audio influence.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/127](https://godotengine.org/asset-library/asset/127)
@@ -43,6 +43,8 @@ import kotlin.Suppress
  * To give the area its shape, add a [godot.CollisionShape3D] or a [godot.CollisionPolygon3D] node as a *direct* child (or add multiple such nodes as direct children) of the area.
  *
  * **Warning:** See [godot.ConcavePolygonShape3D] (also called "trimesh") for a warning about possibly unexpected behavior when using that shape for an area.
+ *
+ * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
  */
 @GodotBaseType
 public open class Area3D : CollisionObject3D() {
@@ -211,19 +213,21 @@ public open class Area3D : CollisionObject3D() {
     }
 
   /**
-   * The falloff factor for point gravity. The greater the value, the faster gravity decreases with distance.
+   * The distance at which the gravity strength is equal to [gravity]. For example, on a planet 100 meters in radius with a surface gravity of 4.0 m/s², set the [gravity] to 4.0 and the unit distance to 100.0. The gravity will have falloff according to the inverse square law, so in the example, at 200 meters from the center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it will be 16.0 m/s² (half the distance, 4x the gravity), and so on.
+   *
+   * The above is true only when the unit distance is a positive number. When this is set to 0.0, the gravity will be constant regardless of distance.
    */
-  public var gravityPointDistanceScale: Double
+  public var gravityPointUnitDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_POINT_DISTANCE_SCALE, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_POINT_UNIT_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_POINT_DISTANCE_SCALE, NIL)
+          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_POINT_UNIT_DISTANCE, NIL)
     }
 
   /**

@@ -81,23 +81,6 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Deprecated. Please use `set_length` instead.
-   */
-  public fun setDefaultLength(defaultLength: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to defaultLength)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_DEFAULT_LENGTH, NIL)
-  }
-
-  /**
-   * Deprecated. Please use  `get_length` instead.
-   */
-  public fun getDefaultLength(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_DEFAULT_LENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
    * When set to `true`, the `Bone2D` node will attempt to automatically calculate the bone angle and length using the first child `Bone2D` node, if one exists. If none exist, the `Bone2D` cannot automatically calculate these values and will print a warning.
    */
   public fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {

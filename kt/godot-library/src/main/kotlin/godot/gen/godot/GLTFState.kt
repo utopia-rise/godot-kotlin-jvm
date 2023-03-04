@@ -295,19 +295,6 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_SKELETONS, NIL)
     }
 
-  public var skeletonToNode: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_SKELETON_TO_NODE,
-          DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_SKELETON_TO_NODE,
-          NIL)
-    }
-
   public var createAnimations: Boolean
     get() {
       TransferContext.writeArguments()
@@ -330,6 +317,19 @@ public open class GLTFState : Resource() {
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_ANIMATIONS, NIL)
+    }
+
+  public var handleBinaryImage: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_HANDLE_BINARY_IMAGE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_HANDLE_BINARY_IMAGE,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -373,5 +373,13 @@ public open class GLTFState : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_ADDITIONAL_DATA, NIL)
   }
 
-  public companion object
+  public companion object {
+    public final const val HANDLE_BINARY_DISCARD_TEXTURES: Long = 0
+
+    public final const val HANDLE_BINARY_EXTRACT_TEXTURES: Long = 1
+
+    public final const val HANDLE_BINARY_EMBED_AS_BASISU: Long = 2
+
+    public final const val HANDLE_BINARY_EMBED_AS_UNCOMPRESSED: Long = 3
+  }
 }

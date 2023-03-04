@@ -15,7 +15,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- *
+ * The base class for [godot.AnimationNode] which has more than two input ports and needs to synchronize them.
  */
 @GodotBaseType
 public open class AnimationNodeSync : AnimationNode() {

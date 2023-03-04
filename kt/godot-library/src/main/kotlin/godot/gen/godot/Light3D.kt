@@ -67,6 +67,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * [godot.Texture2D] projected by light. [shadowEnabled] must be on for the projector to work. Light projectors make the light appear as if it is shining through a colored but transparent object, almost like light shining through stained-glass.
    *
    * **Note:** Unlike [godot.BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for light projector textures is set globally with [godot.ProjectSettings.rendering/textures/lightProjectors/filter].
+   *
+   * **Note:** Light projector textures are only supported in the Forward+ and Mobile rendering methods, not Compatibility.
    */
   public var lightProjector: Texture2D?
     get() {
