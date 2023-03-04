@@ -1,0 +1,23 @@
+// dummy file
+registeredName = BasisTest
+fqName = godot.tests.coretypes.BasisTest
+baseType = Node
+supertypes = [
+    godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    
+]
+properties = [
+    
+]
+functions = [
+    getFromBasis,
+	setInBasis,
+	getRotationQuat,
+	newJvmBasis,
+	isEqualApproxJvm
+]

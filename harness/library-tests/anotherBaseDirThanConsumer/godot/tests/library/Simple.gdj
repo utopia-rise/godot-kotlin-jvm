@@ -1,0 +1,20 @@
+// dummy file
+registeredName = Simple
+fqName = godot.tests.library.Simple
+baseType = Node3D
+supertypes = [
+    godot.Node3D,
+	godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    
+]
+properties = [
+    testProperty
+]
+functions = [
+    provideGreeting
+]

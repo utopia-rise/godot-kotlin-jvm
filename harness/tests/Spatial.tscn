@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmsspoonj4fgf"]
 
-[ext_resource type="Script" path="res://dummyTest/godot/tests/Invocation.gdj" id="1_htlyd"]
+[sub_resource type="KotlinScript" id="KotlinScript_sqb0u"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_683q2"]
 
@@ -13,17 +13,32 @@
 [sub_resource type="NavigationMesh" id="NavigationMesh_65fa3"]
 
 [node name="Spatial" type="Node3D"]
-script = ExtResource("1_htlyd")
+script = SubResource("KotlinScript_sqb0u")
+enum_list = null
+vector_list = null
+enum_list_mutable = null
+nullable_long = null
+lateinit_string = null
+register_object = null
+register_object_nullable = null
 register_object_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/OtherScript.gdj"))
 
 register_object_non_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/OtherScript.gdj"))
 
+vector = null
+x = null
+y = null
+z = null
+custom_name = null
 invocation = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/OtherScript.gdj"))
 
+enum_test = null
 resource_test = SubResource("NavigationMesh_683q2")
 jvm_id = 232726781
+test_array_any = null
 nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_awpk6")])
 nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_ee3tj"), null])
+any_to_any_dictionary = null
 nav_meshes_dictionary = {
 "AwesomeNavmesh": SubResource("NavigationMesh_6h2a2")
 }
@@ -31,6 +46,38 @@ nullable_dictionary = {
 "notnull": SubResource("NavigationMesh_65fa3"),
 "null": null
 }
+color = null
+rid = null
+packed_byte_array = null
+packed_int32_array = null
+packed_float64_array = null
+packed_color_array = null
+packed_string_array = null
+packed_vector2_array = null
+packed_vector3_array = null
+p1 = null
+p1_1 = null
+p2 = null
+p3 = null
+p4 = null
+p5 = null
+p6 = null
+p7 = null
+p8 = null
+p9 = null
+p10 = null
+p11 = null
+p12 = null
+p13 = null
+p14 = null
+p15 = null
+p16 = null
+p17 = null
+stringtemplation = null
+test_string = null
+ascii_string = null
+utf8_string = null
+array = null
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.974354, 0.225019, 0, -0.225019, 0.974354, 0, 1.2131, 2.47241)

@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 
 
 internal class Bootstrap {
-    private var registry: ClassRegistry? = null
+    private val classRegistries: MutableList<ClassRegistry> = mutableListOf()
     private lateinit var classloader: ClassLoader
     private lateinit var serviceLoader: ServiceLoader<Entry>
     private var executor: ScheduledExecutorService? = null
@@ -71,6 +71,7 @@ internal class Bootstrap {
                         }
                         info("Changes detected, reloading classes ...")
                         clearClassesCache()
+                        serviceLoader.reload()
 
                         if (File(mainJarPath.toString()).exists()) {
                             doInit(mainJarPath.toUri().toURL(), null) //no classloader so new main jar get's loaded
@@ -87,6 +88,7 @@ internal class Bootstrap {
         executor?.shutdown()
         watchService?.close()
         clearClassesCache()
+        serviceLoader.reload()
     }
 
     /**
@@ -97,7 +99,6 @@ internal class Bootstrap {
     }
 
     private fun doInit(mainJar: URL, classLoader: ClassLoader?) {
-        registry = ClassRegistry()
         classloader = classLoader ?: URLClassLoader(arrayOf(mainJar), this::class.java.classLoader)
         Thread.currentThread().contextClassLoader = classloader
         serviceLoader = ServiceLoader.load(Entry::class.java, classloader)
@@ -105,7 +106,6 @@ internal class Bootstrap {
     }
 
     private fun doInitGraal() {
-        registry = ClassRegistry()
         serviceLoader = ServiceLoader.load(Entry::class.java)
         initializeUsingEntry()
     }
@@ -115,17 +115,30 @@ internal class Bootstrap {
         if (!entryIterator.hasNext()) {
             err("Unable to find Entry class, no classes will be loaded")
         }
-        var dependencyResourcePathRebinds: Map<String, String>? = null
-        while (entryIterator.hasNext()) {
-            with(entryIterator.next()) {
-                val context = Entry.Context(registry!!)
 
-                // the entry with the most rebind definitions is always the "main" entry. All other entries are from dependencies
-                // reason: the "main" entry file combines all needed rebinds from all dependencies. Hence, it will always be the one with the most rebinds or 0 in case there are no dependencies which require rebinds
-                if (dependencyResourcePathRebinds == null || context.dependencyRebinds().size > dependencyResourcePathRebinds!!.size) {
-                    dependencyResourcePathRebinds = context.dependencyRebinds()
-                }
+        val entries = buildList {
+            while (entryIterator.hasNext()) {
+                add(entryIterator.next())
+            }
+        }
 
+        // the entry with the most dependencies is always the "main" entry. All other entries are from dependencies
+        // reason: the "main" entry file combines all dependencies. Hence, it will always be the one with the highest dependency count
+        val mainEntry = entries.maxBy { entry -> entry.dependencyCount }
+
+        entries.forEach { entry ->
+            val isMainEntry = entry == mainEntry
+
+            val registry = ClassRegistry(
+                projectName = entry.projectName,
+                isDependency = !isMainEntry,
+                baseResourcePath = mainEntry.userScriptResourcePathPrefix
+            )
+            classRegistries.add(registry)
+
+            val context = Entry.Context(registry)
+
+            with(entry) {
                 if (!engineTypesRegistered) {
                     context.initEngineTypes()
                     for (clazz in context.getRegisteredClasses()) {
@@ -144,43 +157,16 @@ internal class Bootstrap {
             }
         }
 
+        val classes = classRegistries
+            .flatMap { registry -> registry.classes }
+            .toTypedArray()
 
         // START: order matters!
-        rebindClasses(dependencyResourcePathRebinds) // has to be the firs step!
-        loadClasses(registry!!.classes.toTypedArray())
-        registerUserTypesNames(
-            TypeManager
-                .userTypes
-                .map { resPath ->
-                    // rebinds the resource path for dependencies where necessary
-                    dependencyResourcePathRebinds?.get(resPath) ?: resPath
-                }
-                .toTypedArray()
-        )
+        loadClasses(classes)
+        registerUserTypesNames(TypeManager.userTypes.toTypedArray())
         registerUserTypesMembers()
         forceJvmInitializationOfSingletons()
         // END: order matters!
-    }
-
-    /**
-     * This rebinds the registered resource path from dependencies to a new one defined by the "main" compilation
-     *
-     * This has to be done BEFORE any load/reload logic takes place so the cpp side only sees the "new"/"correct" resource path's
-     */
-    private fun rebindClasses(resourcePathRebindings: Map<String, String>?) {
-        val reboundClasses = registry!!.classes.map { ktClass ->
-            val rebind = resourcePathRebindings?.get(ktClass.name)
-            if (rebind != null) {
-                ktClass.copy(name = rebind)
-            } else {
-                ktClass
-            }
-        }
-
-        registry!!.classes.apply {
-            clear()
-            addAll(reboundClasses)
-        }
     }
 
     private fun getBuildLockDir(projectDir: String): File {
@@ -198,10 +184,12 @@ internal class Bootstrap {
     }
 
     private fun clearClassesCache() {
-        registry?.let {
-            unloadClasses(it.classes.toTypedArray())
-            it.classes.clear()
-        }
+        val classes = classRegistries
+            .flatMap { registry -> registry.classes }
+            .toTypedArray()
+
+        unloadClasses(classes)
+        classRegistries.clear()
     }
 
     private fun forceJvmInitializationOfSingletons() {

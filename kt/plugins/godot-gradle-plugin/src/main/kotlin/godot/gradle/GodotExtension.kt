@@ -9,6 +9,7 @@ open class GodotExtension(objects: ObjectFactory) {
     val dummyFileBaseDir = objects.fileProperty()
     val isDummyFileHierarchyEnabled: Property<Boolean> = objects.property(Boolean::class.java)
     val isFqNameRegistrationEnabled: Property<Boolean> = objects.property(Boolean::class.java)
+    val projectName: Property<String> = objects.property(String::class.java)
     /**
      * enable android export
      *

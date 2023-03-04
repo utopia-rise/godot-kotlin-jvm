@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://d34upfxn8p0sj"]
 
 [ext_resource type="Script" path="res://LibraryTest.gd" id="1_aqgt5"]
-[ext_resource type="Script" path="res://dummyTest/godot/tests/library/Simple.gdj" id="2_y5xkp"]
+[ext_resource type="Script" path="res://dummyTest/dependencies/library-tests/godot/tests/library/Simple.gdj" id="2_j18t1"]
 
 [node name="LibraryTest" type="Node3D"]
 script = ExtResource("1_aqgt5")
 
 [node name="NodeWithScriptFromLibrary" type="Node3D" parent="."]
-script = ExtResource("2_y5xkp")
+script = ExtResource("2_j18t1")

@@ -12,13 +12,12 @@ import godot.annotation.processor.ext.fqNameUnsafe
 import godot.annotation.processor.ext.mapToClazz
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
-import java.io.File
 
 class RegistrationAnnotationVisitor(
     private val isFqNameRegistrationEnabled: Boolean,
     private val registeredClassToKSFileMap: MutableMap<RegisteredClass, KSFile>,
     private val sourceFilesContainingRegisteredClasses: MutableList<SourceFile>,
-    private val resPathProvider: (fqName: String, registeredName: String) -> String,
+    private val localResourcePathProvider: (fqName: String, registeredName: String) -> String,
 ) : KSVisitorVoid() {
 
     private val registerAnnotations = listOf(
@@ -36,7 +35,7 @@ class RegistrationAnnotationVisitor(
             .mapNotNull { declaration ->
                 when (declaration) {
                     is KSClassDeclaration -> {
-                        val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, resPathProvider)
+                        val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, localResourcePathProvider)
                         if (clazz is RegisteredClass) {
                             clazz
                         } else null

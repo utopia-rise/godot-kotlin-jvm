@@ -16,7 +16,7 @@ const int MAX_CONSTRUCTOR_SIZE = CONSTRUCTOR_MAX_ARGS_SIZE + 1;
 
 class KtClass : public JavaInstanceWrapper<KtClass> {
 public:
-    StringName name;
+    StringName resource_path;
     String registered_class_name;
     StringName super_class;
     StringName base_godot_class;
@@ -51,7 +51,7 @@ private:
     HashMap<StringName, KtSignalInfo*> signal_infos;
     KtConstructor* constructors[MAX_CONSTRUCTOR_SIZE];
 
-    StringName get_name(jni::Env& env);
+    StringName get_resource_path(jni::Env& env);
 
     String get_registered_name(jni::Env& env);
 
@@ -84,7 +84,7 @@ private:
 
     // clang-format off
     DECLARE_JNI_METHODS(
-            JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+            JNI_METHOD(GET_RESOURCE_PATH, "getResourcePath", "()Ljava/lang/String;")
             JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
             JNI_METHOD(GET_SUPER_CLASS, "getSuperClass", "()Ljava/lang/String;")
             JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")

@@ -1,0 +1,20 @@
+// dummy file
+registeredName = RPCTests
+fqName = godot.tests.rpctests.RpcTests
+baseType = Node
+supertypes = [
+    godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    
+]
+properties = [
+    remoteSyncCalled
+]
+functions = [
+    remoteSyncTest,
+	triggerFunctionRemoteSyncCall
+]

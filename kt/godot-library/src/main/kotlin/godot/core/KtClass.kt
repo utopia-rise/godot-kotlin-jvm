@@ -2,7 +2,7 @@ package godot.core
 
 @Suppress("unused")
 data class KtClass<T : KtObject>(
-    val name: String,
+    val resourcePath: String,
     val registeredName: String,
     val superClass: String,
     private val _constructors: List<KtConstructor<T>?>,

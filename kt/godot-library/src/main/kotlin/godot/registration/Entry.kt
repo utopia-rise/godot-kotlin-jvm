@@ -7,5 +7,8 @@ abstract class Entry {
     abstract fun Context.init()
     abstract fun Context.initEngineTypes()
     abstract fun Context.getRegisteredClasses(): List<KClass<*>>
-    abstract fun Context.dependencyRebinds(): Map<String, String>
+
+    abstract val userScriptResourcePathPrefix: String
+    abstract val dependencyCount: Int
+    abstract val projectName: String
 }

@@ -1,0 +1,37 @@
+// dummy file
+registeredName = CoreTypesIdentityTest
+fqName = godot.tests.CoreTypesIdentityTest
+baseType = Node
+supertypes = [
+    godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    
+]
+properties = [
+    aabb,
+	basis,
+	color,
+	plane,
+	quaternion,
+	rect2,
+	transform3D,
+	transform2D,
+	vector2,
+	vector3
+]
+functions = [
+    aabb,
+	basis,
+	color,
+	plane,
+	quat,
+	rect2,
+	transform,
+	transform2D,
+	vector2,
+	vector3
+]

@@ -1,0 +1,26 @@
+// dummy file
+registeredName = StringTest
+fqName = godot.tests.coretypes.StringTest
+baseType = Node
+supertypes = [
+    godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    
+]
+properties = [
+    
+]
+functions = [
+    identity,
+	fillTheBuffer,
+	mixStringAndVariant,
+	getShortString,
+	getLongestShortString,
+	getShortestLongString,
+	getLongString,
+	getLength
+]

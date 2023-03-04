@@ -35,8 +35,9 @@ class GodotKotlinSymbolProcessor(
     private val registeredClassMetadataContainers = mutableListOf<RegisteredClassMetadataContainer>()
     private val sourceFilesContainingRegisteredClasses = mutableListOf<SourceFile>()
 
+    private lateinit var projectName: String
     private lateinit var projectBasePath: File
-    private lateinit var dummyFileBaseDir: File
+    private lateinit var projectRelativeDummyFilesBaseDirPath: String
     private var classPrefix: String? = null
     private var isFqNameRegistrationEnabled: Boolean = false
     private var isDummyFileHierarchyEnabled: Boolean = true
@@ -55,11 +56,14 @@ class GodotKotlinSymbolProcessor(
                 ?: throw IllegalStateException("No srcDirs option provided")
         )
 
+        projectName = options["projectName"]
+            ?: throw IllegalStateException("No projectName option provided")
+
         projectBasePath = options["projectBasePath"]?.let { absolutePath -> File(absolutePath) }
             ?: throw IllegalStateException("No projectBasePath option provided")
 
-        dummyFileBaseDir = options["dummyFileBaseDir"]?.let { absolutePath -> File(absolutePath) }
-            ?: throw IllegalStateException("No dummyFileBaseDir option provided")
+        projectRelativeDummyFilesBaseDirPath = options["projectRelativeDummyFilesBaseDirPath"]
+            ?: throw IllegalStateException("No projectRelativeDummyFilesBaseDirPath option provided")
 
         classPrefix = options["classPrefix"]?.let { prefix ->
             if (prefix == "null") {
@@ -79,15 +83,13 @@ class GodotKotlinSymbolProcessor(
             isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
             registeredClassToKSFileMap = registeredClassToKSFileMap,
             sourceFilesContainingRegisteredClasses = sourceFilesContainingRegisteredClasses,
-            resPathProvider = { fqName, registeredName ->
-                resPathFromFqNameAndRegisteredName(
-                    fqName = fqName,
-                    registeredName = registeredName,
-                    isDummyFileHierarchyEnabled = isDummyFileHierarchyEnabled,
-                    isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
-                    projectBasePath = projectBasePath,
-                    dummyFileBaseDir = dummyFileBaseDir
-                )
+            localResourcePathProvider = { fqName, registeredName ->
+                //  if the fqName does not contain a . it means the class is in the root package
+                if (isDummyFileHierarchyEnabled && fqName.contains(".")) {
+                    "${fqName.substringBeforeLast(".").replace(".", "/")}/$registeredName"
+                } else {
+                    registeredName
+                }.let { localPath -> "$localPath.gdj" }
             }
         )
 
@@ -101,18 +103,20 @@ class GodotKotlinSymbolProcessor(
             declaration.accept(metadataAnnotationVisitor, Unit)
         }
 
-        val metadataToGenerateFor = registeredClassMetadataContainers
-            .filter { !alreadyGeneratedDummyFiles.contains(it.resPath) }
+        // first round: dependencies
+        // second round: user scripts
+        // third round: empty
+        val metadataToGenerateDummyFilesFor = registeredClassMetadataContainers
+            .filter { !alreadyGeneratedDummyFiles.contains(it.localResPath) }
 
         if (shouldGenerateRegistrars) {
             EntryGenerator.generateEntryFiles(
+                projectName = projectName,
                 projectDir = projectBasePath.absolutePath,
+                dependencyCount = metadataToGenerateDummyFilesFor.size,
                 logger = LoggerWrapper(logger),
                 sourceFiles = sourceFilesContainingRegisteredClasses,
-                // in the first round, only metadata from dependencies are present
-                dependencyRegisteredClassMetadataContainers = metadataToGenerateFor,
-                dummyFileBaseDir = dummyFileBaseDir.absolutePath,
-                isDummyFileHierarchyEnabled = isDummyFileHierarchyEnabled,
+                projectRelativeDummyFilesBaseDirPath = projectRelativeDummyFilesBaseDirPath,
                 jvmTypeFqNamesProvider = JvmTypeProvider(),
                 classRegistrarAppendableProvider = { registeredClass ->
                     codeGenerator.createNewFile(
@@ -140,56 +144,26 @@ class GodotKotlinSymbolProcessor(
         }
 
         EntryGenerator.generateDummyFiles(
-            registeredClassMetadataContainers = metadataToGenerateFor,
+            registeredClassMetadataContainers = metadataToGenerateDummyFilesFor,
             dummyFileAppendableProvider = { metadata ->
-                alreadyGeneratedDummyFiles.add(metadata.resPath)
-                val newResPath = resPathFromFqNameAndRegisteredName(
-                    fqName = metadata.fqName,
-                    registeredName = metadata.registeredName,
-                    isDummyFileHierarchyEnabled = isDummyFileHierarchyEnabled,
-                    isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
-                    projectBasePath = projectBasePath,
-                    dummyFileBaseDir = dummyFileBaseDir,
-                )
+                alreadyGeneratedDummyFiles.add(metadata.localResPath)
+
+                // keep in sync with ClassRegistry!
+                val resourcePathFromProjectRoot = if (metadata.projectName == projectName) {
+                    "$projectRelativeDummyFilesBaseDirPath/${metadata.localResPath}"
+                } else {
+                    "$projectRelativeDummyFilesBaseDirPath/dependencies/${metadata.projectName}/${metadata.localResPath}"
+                }
+
                 codeGenerator.createNewFileByPath(
                     Dependencies.ALL_FILES,
-                    "entryFiles/${newResPath.removePrefix("res://").removeSuffix(".gdj")}",
+                    "entryFiles/${resourcePathFromProjectRoot.removeSuffix(".gdj")}", // suffix will be added by the codeGenerator of KSP and is defined one line below
                     "gdj"
                 ).bufferedWriter()
             }
         )
 
         return emptyList()
-    }
-
-    private fun resPathFromFqNameAndRegisteredName(
-        fqName: String,
-        registeredName: String,
-        isDummyFileHierarchyEnabled: Boolean,
-        isFqNameRegistrationEnabled: Boolean,
-        projectBasePath: File,
-        dummyFileBaseDir: File,
-    ): String {
-        val relativeBasePath = dummyFileBaseDir.relativeTo(projectBasePath)
-
-        val fileName = if (isFqNameRegistrationEnabled) {
-            fqName.replace(".", "_")
-        } else {
-            registeredName
-        }
-
-        return if (isDummyFileHierarchyEnabled) {
-            val filePath = if (fqName.contains(".")) {
-                "$relativeBasePath/${fqName.substringBeforeLast(".").replace(".", "/")}/${fileName}.gdj"
-            } else {
-                // in this case the class is in the top level package and has no package path
-                "$relativeBasePath/${fileName}.gdj"
-            }
-
-            "res://$filePath"
-        } else {
-            "res://$relativeBasePath/${fileName}.gdj"
-        }
     }
 
     override fun finish() {
@@ -200,7 +174,8 @@ class GodotKotlinSymbolProcessor(
     }
 
     private fun cleanupOldDummyFiles() {
-        dummyFileBaseDir
+        projectBasePath
+            .resolve(projectRelativeDummyFilesBaseDirPath)
             .walkBottomUp()
             .forEach { file ->
                 if (file.isFile && file.extension == "gdj") {

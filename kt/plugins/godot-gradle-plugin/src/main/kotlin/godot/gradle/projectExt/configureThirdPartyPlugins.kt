@@ -31,8 +31,17 @@ fun Project.configureThirdPartyPlugins() {
                 projectDir.absolutePath.replace(File.separator, "/")
             )
             arg(
-                "dummyFileBaseDir",
-                (godotJvmExtension.dummyFileBaseDir.orNull?.asFile ?: projectDir.resolve("gdj")).absolutePath.replace(File.separator, "/")
+                "projectName",
+                (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_")
+            )
+            arg(
+                "projectRelativeDummyFilesBaseDirPath",
+                (godotJvmExtension.dummyFileBaseDir.orNull?.asFile ?: projectDir.resolve("gdj").apply { mkdirs() })
+                    .relativeTo(projectDir)
+                    .path
+                    .replace(File.separator, "/")
+                    .removePrefix("/")
+                    .removeSuffix("/")
             )
             arg(
                 "classPrefix",

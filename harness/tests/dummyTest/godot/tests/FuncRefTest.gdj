@@ -1,0 +1,30 @@
+// dummy file
+registeredName = FuncRefTest
+fqName = godot.tests.FuncRefTest
+baseType = Node
+supertypes = [
+    godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    test
+]
+properties = [
+    blubb,
+	callFlag,
+	callWithParamFlag,
+	signalCallFlag
+]
+functions = [
+    _ready,
+	testSignalCallback,
+	testSignalCall,
+	withoutParamCallback,
+	testCallWithoutParam,
+	testCallDeferredWithoutParam,
+	withParamCallback,
+	testCallWithParam,
+	testCallDeferredWithParam
+]

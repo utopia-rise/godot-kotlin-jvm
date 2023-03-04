@@ -10,21 +10,23 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.annotation.processor.compiler.CompilerDataProvider
-import godot.entrygenerator.ext.getAnnotation
-import godot.entrygenerator.model.*
-import java.io.File
+import godot.entrygenerator.model.ClassAnnotation
+import godot.entrygenerator.model.Clazz
+import godot.entrygenerator.model.RegisteredClass
+import godot.entrygenerator.model.RegisteredFunction
+import godot.entrygenerator.model.RegisteredProperty
+import godot.entrygenerator.model.RegisteredSignal
 
 fun KSClassDeclaration.mapToClazz(
     isFqNameRegistrationEnabled: Boolean,
-    resPathProvider: (fqName: String, registeredName: String) -> String,
+    localResourcePathProvider: (fqName: String, registeredName: String) -> String,
 ): Clazz {
     val fqName = requireNotNull(qualifiedName?.asString()) {
         "Qualified name for class declaration of a registered type or it's super types cannot be null! KSClassDeclaration: $this"
     }
     val supertypeDeclarations = getAllSuperTypes()
         .mapNotNull { it.declaration as? KSClassDeclaration } //we're only interested in classes not interfaces
-        .map { it.mapToClazz(isFqNameRegistrationEnabled, resPathProvider) }
+        .map { it.mapToClazz(isFqNameRegistrationEnabled, localResourcePathProvider) }
         .toList()
     val mappedAnnotations = annotations
         .mapNotNull { it.mapToAnnotation(this) as? ClassAnnotation }
@@ -70,7 +72,7 @@ fun KSClassDeclaration.mapToClazz(
         RegisteredClass(
             fqName = fqName,
             supertypes = supertypeDeclarations,
-            resPathProvider = { resPathProvider(fqName, registeredName) },
+            localResourcePathProvider = { localResourcePathProvider(fqName, registeredName) },
             annotations = mappedAnnotations,
             constructors = registeredConstructors,
             functions = registeredFunctions,

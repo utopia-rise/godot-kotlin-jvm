@@ -20,6 +20,7 @@ import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
 
 class ClassRegistrarFileBuilder(
+    projectName: String,
     private val registeredClass: RegisteredClass,
     private val registrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
 ) {
@@ -32,7 +33,8 @@ class ClassRegistrarFileBuilder(
                 .addMember("\"${registeredClass.registeredName}\"")
                 .addMember("\"${registeredClass.godotBaseClass}\"")
                 .addMember("\"${registeredClass.fqName}\"")
-                .addMember("\"${registeredClass.resPathProvider(registeredClass)}\"")
+                .addMember("\"${registeredClass.localResourcePathProvider(registeredClass)}\"")
+                .addMember("\"$projectName\"")
                 .addMember("\"${registeredClass.supertypes.joinToString(",") { it.fqName }}\"")
                 .addMember("\"${registeredClass.signals.joinToString(",") { it.fqName }}\"")
                 .addMember("\"${registeredClass.properties.joinToString(",") { it.fqName }}\"")
@@ -57,7 +59,7 @@ class ClassRegistrarFileBuilder(
                 funSpecBuilder.beginControlFlow(
                     "registerClass<%T>(%S,·%S,·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
                     className,
-                    registeredClass.resPathProvider(registeredClass),
+                    registeredClass.localResourcePathProvider(registeredClass),
                     registeredClass.supertypes.first().fqName,
                     className,
                     registeredClass.godotBaseClass,

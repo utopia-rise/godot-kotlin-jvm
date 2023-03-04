@@ -1,10 +1,24 @@
 package godot.entrygenerator.filebuilder
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.STAR
+import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.asTypeName
 import godot.entrygenerator.model.RegisteredClass
-import godot.tools.common.constants.*
+import godot.tools.common.constants.GENERATED_COMMENT
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.KOTLIN_LIST_OF
+import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotEntryBasePackage
+import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
+import java.io.File
 import kotlin.reflect.KClass
 
 object MainEntryFileBuilder {
@@ -34,18 +48,17 @@ object MainEntryFileBuilder {
                 )
         )
 
-    private val dependencyRebindsFunSpec = FunSpec
-        .builder("dependencyRebinds")
-        .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
+    private val userScriptResourcePathPrefixPropertySpec = PropertySpec
+        .builder("userScriptResourcePathPrefix", String::class.asTypeName())
         .addModifiers(KModifier.OVERRIDE)
-        .returns(
-            Map::class
-                .asTypeName()
-                .parameterizedBy(
-                    String::class.asTypeName(),
-                    String::class.asTypeName(),
-                )
-        )
+
+    private val dependencyCountPropertySpec = PropertySpec
+        .builder("dependencyCount", Int::class.asTypeName())
+        .addModifiers(KModifier.OVERRIDE)
+
+    private val projectNamePropertySpec = PropertySpec
+        .builder("projectName", String::class.asTypeName())
+        .addModifiers(KModifier.OVERRIDE)
 
     fun build(randomPackageForEntryFile: String, outAppendable: () -> BufferedWriter) {
         val entryFileSpec = FileSpec
@@ -59,7 +72,9 @@ object MainEntryFileBuilder {
                 .addFunction(initFunctionSpec.build())
                 .addFunction(initEngineTypesFunSpec.build())
                 .addFunction(registerUserTypesVariantMappingsFunSpec.build())
-                .addFunction(dependencyRebindsFunSpec.build())
+                .addProperty(userScriptResourcePathPrefixPropertySpec.build())
+                .addProperty(dependencyCountPropertySpec.build())
+                .addProperty(projectNamePropertySpec.build())
                 .build()
         )
         outAppendable().use {
@@ -86,10 +101,29 @@ object MainEntryFileBuilder {
         )
     }
 
-    fun registerDependencyRebinds(rebinds: Map<String, String>) {
-        dependencyRebindsFunSpec.addStatement(
-            "return %M(${rebinds.entries.joinToString { (originalResPath, newResPath) -> "\"$originalResPath\"·to·\"$newResPath\"" }})",
-            KOTLIN_MAP_OF
+    fun registerUserScriptsResourcePathPrefix(userScriptsResourcePathPrefix: String) {
+        val resDir = userScriptsResourcePathPrefix
+            .replace(File.separator, "/")
+            .removePrefix("/")
+            .removeSuffix("/")
+            .let { resPath ->
+                if (resPath.startsWith("res://")) {
+                    resPath
+                } else {
+                    "res://$resPath"
+                }
+            }
+        userScriptResourcePathPrefixPropertySpec.initializer(
+            "%S",
+            resDir
         )
+    }
+
+    fun registerProjectName(projectName: String) {
+        projectNamePropertySpec.initializer("%S", projectName)
+    }
+
+    fun registerDependencyCount(dependencyCount: Int) {
+        dependencyCountPropertySpec.initializer("%L", dependencyCount)
     }
 }

@@ -1,0 +1,20 @@
+// dummy file
+registeredName = Vector3Test
+fqName = godot.tests.coretypes.Vector3Test
+baseType = Node
+supertypes = [
+    godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    
+]
+properties = [
+    
+]
+functions = [
+    getFromVector3,
+	setInVector3
+]
