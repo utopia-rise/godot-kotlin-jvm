@@ -9,8 +9,7 @@ repositories {
 }
 
 godot {
-    classPrefix.set("TestPrefix")
-    dummyFileBaseDir.set(projectDir.resolve("dummyTest").also { it.mkdirs() })
+    dummyFileBaseDir.set(projectDir.resolve("scripts").also { it.mkdirs() })
     isDummyFileHierarchyEnabled.set(true)
 
     //uncomment to test android
@@ -26,10 +25,13 @@ godot {
 
 dependencies {
     implementation("joda-time:joda-time:2.10.6") //external dependency to test dependency inclusion in dummyCompilation
-    implementation("com.godot.tests:library")
+
+    implementation("com.godot.tests:hierarchical-library")
+    implementation("com.godot.tests:flattened-library")
+    implementation("com.godot.tests:fqname-library")
 }
 
 
 kotlin.sourceSets.main {
-    kotlin.srcDirs("scripts")
+    kotlin.srcDirs("otherSourceDir")
 }

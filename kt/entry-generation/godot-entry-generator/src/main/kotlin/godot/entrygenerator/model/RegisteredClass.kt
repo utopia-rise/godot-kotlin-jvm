@@ -14,6 +14,7 @@ data class RegisteredClass(
     val properties: List<RegisteredProperty> = emptyList(),
     override val isAbstract: Boolean = false,
     private val isFqNameRegistrationEnabled: Boolean = false,
+    private val classNamePrefix: String? = null
 ) : Clazz(fqName, supertypes, isAbstract = isAbstract) {
     val registeredName: String
         get() {
@@ -21,7 +22,7 @@ data class RegisteredClass(
                 .getAnnotation<RegisterClassAnnotation>()
                 ?.customName
 
-            return if (customName.isNullOrEmpty()) {
+            val registeredName = if (customName.isNullOrEmpty()) {
                 if (isFqNameRegistrationEnabled) {
                     fqName.replace(".", "_")
                 } else {
@@ -33,6 +34,21 @@ data class RegisteredClass(
                 }
             } else {
                 customName
+            }
+
+            return if (classNamePrefix != null) {
+                if (registeredName.contains("_")) {
+                    val packageName = registeredName.substringBeforeLast("_")
+                    val classNameWithPrefix = registeredName
+                        .substringAfterLast("_")
+                        .let { className -> "${classNamePrefix.uppercase()}$className" }
+
+                    "${packageName}_$classNameWithPrefix"
+                } else {
+                    "${classNamePrefix.uppercase()}$registeredName"
+                }
+            } else {
+                registeredName
             }
         }
 

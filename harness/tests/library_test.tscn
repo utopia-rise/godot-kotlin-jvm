@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://d34upfxn8p0sj"]
+[gd_scene load_steps=5 format=3 uid="uid://d34upfxn8p0sj"]
 
 [ext_resource type="Script" path="res://LibraryTest.gd" id="1_aqgt5"]
-[ext_resource type="Script" path="res://dummyTest/dependencies/library-tests/godot/tests/library/Simple.gdj" id="2_j18t1"]
+[ext_resource type="Script" path="res://scripts/dependencies/hierarchical-library-tests/godot/tests/library/hierarchical/HLSimple.gdj" id="2_rn0ft"]
+[ext_resource type="Script" path="res://scripts/dependencies/flattened-library-tests/FLSimple.gdj" id="3_q2wj6"]
+[ext_resource type="Script" path="res://scripts/dependencies/fqname-library-tests/godot/tests/library/fqname/godot_tests_library_fqname_FQNLSimple.gdj" id="4_vqibd"]
 
 [node name="LibraryTest" type="Node3D"]
 script = ExtResource("1_aqgt5")
 
-[node name="NodeWithScriptFromLibrary" type="Node3D" parent="."]
-script = ExtResource("2_j18t1")
+[node name="HierarchicalLibrary" type="Node3D" parent="."]
+script = ExtResource("2_rn0ft")
+
+[node name="FlattenedLibrary" type="Node3D" parent="."]
+script = ExtResource("3_q2wj6")
+
+[node name="FqNameLibrary" type="Node3D" parent="."]
+script = ExtResource("4_vqibd")

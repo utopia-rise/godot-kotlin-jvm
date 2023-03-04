@@ -15,6 +15,7 @@ import godot.entrygenerator.model.SourceFile
 
 class RegistrationAnnotationVisitor(
     private val isFqNameRegistrationEnabled: Boolean,
+    private val classNamePrefix: String?,
     private val registeredClassToKSFileMap: MutableMap<RegisteredClass, KSFile>,
     private val sourceFilesContainingRegisteredClasses: MutableList<SourceFile>,
     private val localResourcePathProvider: (fqName: String, registeredName: String) -> String,
@@ -35,7 +36,7 @@ class RegistrationAnnotationVisitor(
             .mapNotNull { declaration ->
                 when (declaration) {
                     is KSClassDeclaration -> {
-                        val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, localResourcePathProvider)
+                        val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, localResourcePathProvider)
                         if (clazz is RegisteredClass) {
                             clazz
                         } else null

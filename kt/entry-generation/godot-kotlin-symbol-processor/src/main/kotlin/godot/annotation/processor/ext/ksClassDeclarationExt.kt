@@ -19,6 +19,7 @@ import godot.entrygenerator.model.RegisteredSignal
 
 fun KSClassDeclaration.mapToClazz(
     isFqNameRegistrationEnabled: Boolean,
+    classNamePrefix: String?,
     localResourcePathProvider: (fqName: String, registeredName: String) -> String,
 ): Clazz {
     val fqName = requireNotNull(qualifiedName?.asString()) {
@@ -26,7 +27,7 @@ fun KSClassDeclaration.mapToClazz(
     }
     val supertypeDeclarations = getAllSuperTypes()
         .mapNotNull { it.declaration as? KSClassDeclaration } //we're only interested in classes not interfaces
-        .map { it.mapToClazz(isFqNameRegistrationEnabled, localResourcePathProvider) }
+        .map { it.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, localResourcePathProvider) }
         .toList()
     val mappedAnnotations = annotations
         .mapNotNull { it.mapToAnnotation(this) as? ClassAnnotation }
@@ -79,7 +80,8 @@ fun KSClassDeclaration.mapToClazz(
             signals = registeredSignals,
             properties = registeredProperties,
             isAbstract = isAbstract(),
-            isFqNameRegistrationEnabled = isFqNameRegistrationEnabled
+            isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
+            classNamePrefix = classNamePrefix
         )
     } else {
         Clazz(

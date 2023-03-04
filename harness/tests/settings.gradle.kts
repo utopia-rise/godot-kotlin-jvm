@@ -14,9 +14,21 @@ includeBuild("../../kt") {
     }
 }
 
-includeBuild("../../harness/library-tests") {
+includeBuild("../../harness/hierarchical-library-tests") {
     dependencySubstitution {
-        substitute(module("com.godot.tests:library")).with(project(":"))
+        substitute(module("com.godot.tests:hierarchical-library")).using(project(":"))
+    }
+}
+
+includeBuild("../../harness/flattened-library-tests") {
+    dependencySubstitution {
+        substitute(module("com.godot.tests:flattened-library")).using(project(":"))
+    }
+}
+
+includeBuild("../../harness/fqname-library-tests") {
+    dependencySubstitution {
+        substitute(module("com.godot.tests:fqname-library")).using(project(":"))
     }
 }
 

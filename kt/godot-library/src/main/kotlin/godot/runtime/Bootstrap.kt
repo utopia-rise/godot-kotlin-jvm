@@ -139,7 +139,7 @@ internal class Bootstrap {
             val context = Entry.Context(registry)
 
             with(entry) {
-                if (!engineTypesRegistered) {
+                if (!engineTypesRegistered && isMainEntry) {
                     context.initEngineTypes()
                     for (clazz in context.getRegisteredClasses()) {
                         variantMapper[clazz] = VariantType.OBJECT

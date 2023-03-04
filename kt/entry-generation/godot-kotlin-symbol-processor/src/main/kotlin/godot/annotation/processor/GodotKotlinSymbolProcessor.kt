@@ -71,7 +71,7 @@ class GodotKotlinSymbolProcessor(
             } else {
                 prefix
             }
-        } ?: throw IllegalStateException("No classPrefix option provided")
+        }
 
         isDummyFileHierarchyEnabled = options["isDummyFileHierarchyEnabled"]?.toBooleanStrictOrNull()
             ?: throw IllegalStateException("No isDummyFileHierarchyEnabled option provided or not a boolean")
@@ -81,6 +81,7 @@ class GodotKotlinSymbolProcessor(
 
         val registerAnnotationVisitor = RegistrationAnnotationVisitor(
             isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
+            classNamePrefix = classPrefix,
             registeredClassToKSFileMap = registeredClassToKSFileMap,
             sourceFilesContainingRegisteredClasses = sourceFilesContainingRegisteredClasses,
             localResourcePathProvider = { fqName, registeredName ->
