@@ -10,17 +10,17 @@ supertypes = [
 	kotlin.Any
 ]
 signals = [
-    testOverridden,
-	testNotOverridden
+    test_overridden,
+	test_not_overridden
 ]
 properties = [
-    childOpenFunctionHasBeenCalled,
-	openVar,
-	closedFunctionHasBeenCalled,
-	parentOpenFunctionHasBeenCalled,
-	closedVar
+    child_open_function_has_been_called,
+	open_var,
+	closed_function_has_been_called,
+	parent_open_function_has_been_called,
+	closed_var
 ]
 functions = [
-    openFunction,
-	closedFunction
+    open_function,
+	closed_function
 ]

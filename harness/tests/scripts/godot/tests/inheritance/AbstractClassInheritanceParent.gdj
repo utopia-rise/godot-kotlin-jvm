@@ -9,16 +9,16 @@ supertypes = [
 	kotlin.Any
 ]
 signals = [
-    testNotOverridden,
-	testOverridden
+    test_not_overridden,
+	test_overridden
 ]
 properties = [
-    registeredExportedPropertyInParent,
-	closedFunctionHasBeenCalled,
-	closedVar,
-	openVar
+    registered_exported_property_in_parent,
+	closed_function_has_been_called,
+	closed_var,
+	open_var
 ]
 functions = [
-    closedFunction,
-	openFunction
+    closed_function,
+	open_function
 ]

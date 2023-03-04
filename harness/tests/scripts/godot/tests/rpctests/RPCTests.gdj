@@ -12,9 +12,9 @@ signals = [
     
 ]
 properties = [
-    remoteSyncCalled
+    remote_sync_called
 ]
 functions = [
-    remoteSyncTest,
-	triggerFunctionRemoteSyncCall
+    remote_sync_test,
+	trigger_function_remote_sync_call
 ]

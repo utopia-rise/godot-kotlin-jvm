@@ -15,9 +15,9 @@ properties = [
     
 ]
 functions = [
-    getFromBasis,
-	setInBasis,
-	getRotationQuat,
-	newJvmBasis,
-	isEqualApproxJvm
+    get_from_basis,
+	set_in_basis,
+	get_rotation_quat,
+	new_jvm_basis,
+	is_equal_approx_jvm
 ]

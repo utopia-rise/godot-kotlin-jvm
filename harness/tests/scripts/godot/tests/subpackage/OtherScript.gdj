@@ -15,7 +15,7 @@ properties = [
     
 ]
 functions = [
-    hookNoParam,
-	hookOneParam,
-	hookTwoParam
+    hook_no_param,
+	hook_one_param,
+	hook_two_param
 ]

@@ -12,9 +12,9 @@ signals = [
     
 ]
 properties = [
-    defaultConstructorHasBeenCalled,
-	oneArgConstructorHasBeenCalled,
-	threeArgsConstructorHasBeenCalled
+    default_constructor_has_been_called,
+	one_arg_constructor_has_been_called,
+	three_args_constructor_has_been_called
 ]
 functions = [
     

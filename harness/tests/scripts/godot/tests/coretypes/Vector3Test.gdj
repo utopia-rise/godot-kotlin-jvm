@@ -15,6 +15,6 @@ properties = [
     
 ]
 functions = [
-    getFromVector3,
-	setInVector3
+    get_from_vector3,
+	set_in_vector3
 ]

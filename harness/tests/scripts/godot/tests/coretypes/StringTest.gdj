@@ -16,11 +16,11 @@ properties = [
 ]
 functions = [
     identity,
-	fillTheBuffer,
-	mixStringAndVariant,
-	getShortString,
-	getLongestShortString,
-	getShortestLongString,
-	getLongString,
-	getLength
+	fill_the_buffer,
+	mix_string_and_variant,
+	get_short_string,
+	get_longest_short_string,
+	get_shortest_long_string,
+	get_long_string,
+	get_length
 ]

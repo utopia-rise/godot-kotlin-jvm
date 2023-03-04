@@ -13,8 +13,8 @@ signals = [
     
 ]
 properties = [
-    testProperty
+    test_property
 ]
 functions = [
-    provideGreeting
+    provide_greeting
 ]

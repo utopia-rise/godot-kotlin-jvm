@@ -18,8 +18,8 @@ properties = [
 	plane,
 	quaternion,
 	rect2,
-	transform3D,
-	transform2D,
+	transform3_d,
+	transform2_d,
 	vector2,
 	vector3
 ]
@@ -31,7 +31,7 @@ functions = [
 	quat,
 	rect2,
 	transform,
-	transform2D,
+	transform2_d,
 	vector2,
 	vector3
 ]

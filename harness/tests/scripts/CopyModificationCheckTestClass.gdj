@@ -13,7 +13,7 @@ signals = [
     
 ]
 properties = [
-    node3D
+    node3_d
 ]
 functions = [
     
