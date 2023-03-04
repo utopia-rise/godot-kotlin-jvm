@@ -1,34 +1,34 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmsspoonj4fgf"]
 
-[ext_resource type="Script" path="res://dummyTest/godot/tests/godot_tests_Invocation.gdj" id="1"]
+[ext_resource type="Script" path="res://dummyTest/godot/tests/Invocation.gdj" id="1_htlyd"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_bftla"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_683q2"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_udfm1"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_awpk6"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_syioq"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_ee3tj"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_xll7i"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_6h2a2"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_jwfm1"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_65fa3"]
 
 [node name="Spatial" type="Node3D"]
-script = ExtResource("1")
-register_object_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/godot_tests_subpackage_OtherScript.gdj"))
+script = ExtResource("1_htlyd")
+register_object_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/OtherScript.gdj"))
 
-register_object_non_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/godot_tests_subpackage_OtherScript.gdj"))
+register_object_non_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/OtherScript.gdj"))
 
-invocation = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/godot_tests_subpackage_OtherScript.gdj"))
+invocation = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://dummyTest/godot/tests/subpackage/OtherScript.gdj"))
 
-resource_test = SubResource("NavigationMesh_bftla")
-jvm_id = 440472115
-nav_meshes = [SubResource("NavigationMesh_udfm1")]
-nullable_array = [SubResource("NavigationMesh_syioq"), null]
+resource_test = SubResource("NavigationMesh_683q2")
+jvm_id = 232726781
+nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_awpk6")])
+nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_ee3tj"), null])
 nav_meshes_dictionary = {
-"AwesomeNavmesh": SubResource("NavigationMesh_xll7i")
+"AwesomeNavmesh": SubResource("NavigationMesh_6h2a2")
 }
 nullable_dictionary = {
-"notnull": SubResource("NavigationMesh_jwfm1"),
+"notnull": SubResource("NavigationMesh_65fa3"),
 "null": null
 }
 
