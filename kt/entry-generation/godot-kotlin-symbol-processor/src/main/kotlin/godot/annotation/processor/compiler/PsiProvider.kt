@@ -6,19 +6,9 @@ import org.jetbrains.kotlin.com.intellij.openapi.vfs.VirtualFileManager
 import org.jetbrains.kotlin.com.intellij.psi.PsiManager
 import org.jetbrains.kotlin.extensions.PreprocessedFileCreator
 import org.jetbrains.kotlin.idea.KotlinFileType
-import org.jetbrains.kotlin.psi.KtBinaryExpression
-import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtConstantExpression
-import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.psi.KtLambdaExpression
-import org.jetbrains.kotlin.psi.KtNameReferenceExpression
-import org.jetbrains.kotlin.psi.KtOperationReferenceExpression
-import org.jetbrains.kotlin.psi.KtPrefixExpression
-import org.jetbrains.kotlin.psi.KtStringTemplateExpression
-import org.jetbrains.kotlin.psi.psiUtil.parents
 import java.io.File
 
 /**
@@ -27,58 +17,6 @@ import java.io.File
  * Abstracted here rather than in the entry gen to keep it independent of compiler and psi classes
  */
 object PsiProvider {
-    fun providePropertyInitializer(propertyFqName: String): Pair<String, Array<out Any>>? {
-        val propertyInitializerExpression =
-            getPropertyInitializerExpression(propertyFqName) ?: return "%L" to arrayOf("null")
-        return getDefaultValueTemplateStringWithTemplateArguments(propertyInitializerExpression)
-    }
-
-    private fun getDefaultValueTemplateStringWithTemplateArguments(
-        expression: KtExpression
-    ): Pair<String, Array<out Any>>? {
-        return when {
-            //normal constant expression like: val foo = 1
-            expression is KtConstantExpression -> KtConstantExpressionExtractor.extract(expression)
-            //an example would be a negative number like: val foo = -1
-            expression is KtPrefixExpression && expression.baseExpression?.let {
-                getDefaultValueTemplateStringWithTemplateArguments(
-                    it
-                )
-            } != null -> KtPrefixExpressionExtractor.extract(expression)
-            //string assignments but no string templations like ("${someVarToPutInString}"): val foo = "this is awesome"
-            expression is KtStringTemplateExpression -> KtStringTemplateExpressionExtractor.extract(expression)
-            expression is KtDotQualifiedExpression -> KtDotQualifiedExpressionExtractor.extract(
-                CompilerDataProvider.bindingContext,
-                expression
-            )
-            //call expressions like constructor calls or function calls
-            expression is KtCallExpression -> KtCallExpressionExtractor.extract(
-                CompilerDataProvider.bindingContext,
-                expression,
-                ::getDefaultValueTemplateStringWithTemplateArguments
-            )
-            //used for flags: val foo = 1 or 3 and 5
-            expression is KtBinaryExpression -> KtBinaryExpressionExtractor.extract(
-                expression,
-                ::getDefaultValueTemplateStringWithTemplateArguments
-            )
-            //static named reference to a global const for example
-            expression is KtNameReferenceExpression -> KtNameReferenceExpressionExtractor.extract(
-                CompilerDataProvider.bindingContext,
-                expression,
-                "propertyDescriptor"
-            )
-            //operators like the `or` operator
-            expression is KtOperationReferenceExpression -> KtOperationReferenceExpressionExtractor.extract(expression)
-            //EnumArray -> int to enum mapping function
-            expression is KtLambdaExpression && expression.parents.firstOrNull { it is KtNameReferenceExpression || it is KtCallExpression } != null -> KtLambdaExpressionExtractor.extract(
-                CompilerDataProvider.bindingContext,
-                expression
-            )
-            else -> null
-        }
-    }
-
     fun provideSignalArgumentNames(signalFqName: String): List<String> {
         return requireNotNull(getPropertyInitializerExpression(signalFqName)) {
             "signal $signalFqName does not have an initializer expression"

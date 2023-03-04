@@ -7,7 +7,6 @@ import com.google.devtools.ksp.symbol.Modifier
 import godot.annotation.processor.compiler.PsiProvider
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.model.EnumAnnotation
-import godot.entrygenerator.model.EnumFlagHintStringAnnotation
 import godot.entrygenerator.model.EnumHintStringAnnotation
 import godot.entrygenerator.model.EnumListHintStringAnnotation
 import godot.entrygenerator.model.PropertyAnnotation
@@ -72,11 +71,6 @@ fun KSPropertyDeclaration.mapToRegisteredProperty(declaredProperties: List<KSPro
         "type of property $fqName cannot be null"
     }
 
-    val isInheritedButNotOverridden = !declaredProperties.map { it.qualifiedName?.asString() }.contains(fqName)
-    val defaultValueProviderFqName = if (isInheritedButNotOverridden) {
-        "${findOverridee()?.qualifiedName?.asString()}"
-    } else fqName
-
     return RegisteredProperty(
         fqName,
         mappedType,
@@ -84,9 +78,7 @@ fun KSPropertyDeclaration.mapToRegisteredProperty(declaredProperties: List<KSPro
         modifiers.contains(Modifier.LATEINIT),
         findOverridee() != null,
         annotations.toList()
-    ) {
-        PsiProvider.providePropertyInitializer(defaultValueProviderFqName)
-    }
+    )
 }
 
 fun KSPropertyDeclaration.mapToRegisteredSignal(declaredProperties: List<KSPropertyDeclaration>): RegisteredSignal {

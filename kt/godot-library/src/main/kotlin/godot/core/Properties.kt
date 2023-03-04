@@ -22,13 +22,8 @@ open class KtProperty<T : KtObject, P : Any?>(
     val ktPropertyInfo: KtPropertyInfo,
     protected val kProperty: KMutableProperty1<T, P>,
     protected val variantType: VariantType,
-    internal val _defaultValueProvider: () -> P?,
     val isRef: Boolean
 ) {
-    open fun getDefaultValue() {
-        TransferContext.writeReturnValue(_defaultValueProvider(), variantType)
-    }
-
     open fun callGet(instance: T) {
         TransferContext.writeReturnValue(kProperty.get(instance), variantType)
     }
@@ -52,20 +47,14 @@ open class KtProperty<T : KtObject, P : Any?>(
 class KtEnumProperty<T : KtObject, P : Any>(
     ktPropertyInfo: KtPropertyInfo,
     kProperty: KMutableProperty1<T, P>,
-    defaultValue: () -> P,
     val getValueConverter: (P?) -> Int,
     val setValueConverter: (Int) -> P
 ) : KtProperty<T, P>(
     ktPropertyInfo,
     kProperty,
     VariantType.JVM_INT,
-    defaultValue,
     false
 ) {
-    override fun getDefaultValue() {
-        TransferContext.writeReturnValue(getValueConverter(_defaultValueProvider()), VariantType.JVM_INT)
-    }
-
     override fun callGet(instance: T) {
         TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantType.JVM_INT)
     }
@@ -79,20 +68,14 @@ class KtEnumProperty<T : KtObject, P : Any>(
 class KtEnumListProperty<T : KtObject, P : Enum<P>, L : Collection<P>>(
     ktPropertyInfo: KtPropertyInfo,
     kProperty: KMutableProperty1<T, L>,
-    defaultValueProvider: () -> L,
     val getValueConverter: (L?) -> VariantArray<Int>,
     val setValueConverter: (VariantArray<Int>) -> L
 ) : KtProperty<T, L>(
     ktPropertyInfo,
     kProperty,
     VariantType.ARRAY,
-    defaultValueProvider,
     false
 ) {
-    override fun getDefaultValue() {
-        TransferContext.writeReturnValue(getValueConverter(_defaultValueProvider()), VariantType.ARRAY)
-    }
-
     override fun callGet(instance: T) {
         TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantType.ARRAY)
     }
