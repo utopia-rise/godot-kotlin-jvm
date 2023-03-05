@@ -59,7 +59,7 @@ public open class ZIPPacker : RefCounted() {
   }
 
   public enum class ZipAppend(
-    id: Long
+    id: Long,
   ) {
     APPEND_CREATE(0),
     APPEND_CREATEAFTER(1),

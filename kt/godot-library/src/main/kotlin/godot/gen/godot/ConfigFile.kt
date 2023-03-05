@@ -205,7 +205,7 @@ public open class ConfigFile : RefCounted() {
   public fun setValue(
     section: String,
     key: String,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SET_VALUE, NIL)
@@ -217,7 +217,7 @@ public open class ConfigFile : RefCounted() {
   public fun getValue(
     section: String,
     key: String,
-    default: Any? = null
+    default: Any? = null,
   ): Any? {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to default)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_VALUE, ANY)

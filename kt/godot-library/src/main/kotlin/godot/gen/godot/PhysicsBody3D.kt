@@ -61,7 +61,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     testOnly: Boolean = false,
     safeMargin: Double = 0.001,
     recoveryAsCollision: Boolean = false,
-    maxCollisions: Long = 1
+    maxCollisions: Long = 1,
   ): KinematicCollision3D? {
     TransferContext.writeArguments(VECTOR3 to motion, BOOL to testOnly, DOUBLE to safeMargin, BOOL to recoveryAsCollision, LONG to maxCollisions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_MOVE_AND_COLLIDE,
@@ -88,7 +88,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     collision: KinematicCollision3D? = null,
     safeMargin: Double = 0.001,
     recoveryAsCollision: Boolean = false,
-    maxCollisions: Long = 1
+    maxCollisions: Long = 1,
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM3D to from, VECTOR3 to motion, OBJECT to collision, DOUBLE to safeMargin, BOOL to recoveryAsCollision, LONG to maxCollisions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_TEST_MOVE, BOOL)

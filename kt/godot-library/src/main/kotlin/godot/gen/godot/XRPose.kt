@@ -145,7 +145,7 @@ public open class XRPose : RefCounted() {
   }
 
   public enum class TrackingConfidence(
-    id: Long
+    id: Long,
   ) {
     /**
      * No tracking information is available for this pose.

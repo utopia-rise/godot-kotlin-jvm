@@ -27,7 +27,7 @@ import kotlin.Suppress
 @GodotBaseType
 public object GDExtensionManager : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_GDEXTENSIONMANAGER)
+    getSingleton(ENGINECLASS_GDEXTENSIONMANAGER)
     return false
   }
 
@@ -92,7 +92,7 @@ public object GDExtensionManager : Object() {
   }
 
   public enum class LoadStatus(
-    id: Long
+    id: Long,
   ) {
     /**
      *

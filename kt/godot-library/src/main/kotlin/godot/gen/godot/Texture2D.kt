@@ -82,7 +82,7 @@ public open class Texture2D : Texture() {
     toCanvasItem: RID,
     pos: Vector2,
     modulate: Color,
-    transpose: Boolean
+    transpose: Boolean,
   ): Unit {
   }
 
@@ -96,7 +96,7 @@ public open class Texture2D : Texture() {
     rect: Rect2,
     tile: Boolean,
     modulate: Color,
-    transpose: Boolean
+    transpose: Boolean,
   ): Unit {
   }
 
@@ -111,7 +111,7 @@ public open class Texture2D : Texture() {
     srcRect: Rect2,
     modulate: Color,
     transpose: Boolean,
-    clipUv: Boolean
+    clipUv: Boolean,
   ): Unit {
   }
 
@@ -158,7 +158,7 @@ public open class Texture2D : Texture() {
     canvasItem: RID,
     position: Vector2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    transpose: Boolean = false
+    transpose: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to position, COLOR to modulate, BOOL to transpose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW, NIL)
@@ -172,7 +172,7 @@ public open class Texture2D : Texture() {
     rect: Rect2,
     tile: Boolean,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    transpose: Boolean = false
+    transpose: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, BOOL to tile, COLOR to modulate, BOOL to transpose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW_RECT, NIL)
@@ -187,7 +187,7 @@ public open class Texture2D : Texture() {
     srcRect: Rect2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     transpose: Boolean = false,
-    clipUv: Boolean = true
+    clipUv: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW_RECT_REGION, NIL)

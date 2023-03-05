@@ -935,7 +935,7 @@ public open class Control : CanvasItem() {
   public fun setOffsetsPreset(
     preset: LayoutPreset,
     resizeMode: LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
-    margin: Long = 0
+    margin: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to preset.id, LONG to resizeMode.id, LONG to margin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_OFFSETS_PRESET, NIL)
@@ -947,7 +947,7 @@ public open class Control : CanvasItem() {
   public fun setAnchorsAndOffsetsPreset(
     preset: LayoutPreset,
     resizeMode: LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
-    margin: Long = 0
+    margin: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to preset.id, LONG to resizeMode.id, LONG to margin)
     TransferContext.callMethod(rawPtr,
@@ -965,7 +965,7 @@ public open class Control : CanvasItem() {
     side: Side,
     anchor: Double,
     keepOffset: Boolean = false,
-    pushOppositeAnchor: Boolean = true
+    pushOppositeAnchor: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(LONG to side.id, DOUBLE to anchor, BOOL to keepOffset, BOOL to pushOppositeAnchor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_ANCHOR, NIL)
@@ -1004,7 +1004,7 @@ public open class Control : CanvasItem() {
     side: Side,
     anchor: Double,
     offset: Double,
-    pushOppositeAnchor: Boolean = false
+    pushOppositeAnchor: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(LONG to side.id, DOUBLE to anchor, DOUBLE to offset, BOOL to pushOppositeAnchor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_ANCHOR_AND_OFFSET, NIL)
@@ -1786,7 +1786,7 @@ public open class Control : CanvasItem() {
   public fun setDragForwarding(
     dragFunc: Callable,
     canDropFunc: Callable,
-    dropFunc: Callable
+    dropFunc: Callable,
   ): Unit {
     TransferContext.writeArguments(CALLABLE to dragFunc, CALLABLE to canDropFunc, CALLABLE to dropFunc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_DRAG_FORWARDING, NIL)
@@ -1893,7 +1893,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class FocusMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The node cannot grab focus. Use with [focusMode].
@@ -1920,7 +1920,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class CursorShape(
-    id: Long
+    id: Long,
   ) {
     /**
      * Show the system's arrow mouse cursor when the user hovers the node. Use with [mouseDefaultCursorShape].
@@ -2003,7 +2003,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class LayoutPreset(
-    id: Long
+    id: Long,
   ) {
     /**
      * Snap all 4 anchors to the top-left of the parent control's bounds. Use with [setAnchorsPreset].
@@ -2082,7 +2082,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class LayoutPresetMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The control will be resized to its minimum size.
@@ -2113,7 +2113,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class SizeFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Tells the parent [godot.Container] to align the node with its start, either the top or the left edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
@@ -2154,7 +2154,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class MouseFilter(
-    id: Long
+    id: Long,
   ) {
     /**
      * The control will receive mouse button input events through [_guiInput] if clicked on. And the control will receive the [mouseEntered] and [mouseExited] signals. These events are automatically marked as handled, and they will not propagate further to other controls. This also results in blocking signals in other controls.
@@ -2181,7 +2181,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class GrowDirection(
-    id: Long
+    id: Long,
   ) {
     /**
      * The control will grow to the left or top to make up if its minimum size is changed to be greater than its current size on the respective axis.
@@ -2208,7 +2208,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class Anchor(
-    id: Long
+    id: Long,
   ) {
     /**
      * Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once, use [setAnchorsPreset].
@@ -2231,7 +2231,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class LayoutDirection(
-    id: Long
+    id: Long,
   ) {
     /**
      * Automatic layout direction, determined from the parent control layout direction.
@@ -2262,7 +2262,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class TextDirection(
-    id: Long
+    id: Long,
   ) {
     /**
      * Text writing direction is the same as layout direction.

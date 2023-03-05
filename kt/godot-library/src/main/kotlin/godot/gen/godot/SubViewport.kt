@@ -113,7 +113,7 @@ public open class SubViewport : Viewport() {
   }
 
   public enum class ClearMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Always clear the render target before drawing.
@@ -140,7 +140,7 @@ public open class SubViewport : Viewport() {
   }
 
   public enum class UpdateMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Do not update the render target.

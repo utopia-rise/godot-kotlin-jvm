@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class Orientation(
-  id: Long
+  id: Long,
 ) {
   VERTICAL(1),
   HORIZONTAL(0),

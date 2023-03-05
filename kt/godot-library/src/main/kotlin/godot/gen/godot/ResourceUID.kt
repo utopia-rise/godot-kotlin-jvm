@@ -38,7 +38,7 @@ public object ResourceUID : Object() {
   public final const val INVALID_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_RESOURCEUID)
+    getSingleton(ENGINECLASS_RESOURCEUID)
     return false
   }
 

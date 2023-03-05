@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class VariantOperator(
-  id: Long
+  id: Long,
 ) {
   OP_EQUAL(0),
   OP_NOT_EQUAL(1),

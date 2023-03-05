@@ -76,7 +76,7 @@ public open class GDExtension : Resource() {
   }
 
   public enum class InitializationLevel(
-    id: Long
+    id: Long,
   ) {
     /**
      *

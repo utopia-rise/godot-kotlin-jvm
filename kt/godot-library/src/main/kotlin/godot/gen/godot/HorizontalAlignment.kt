@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class HorizontalAlignment(
-  id: Long
+  id: Long,
 ) {
   HORIZONTAL_ALIGNMENT_LEFT(0),
   HORIZONTAL_ALIGNMENT_CENTER(1),

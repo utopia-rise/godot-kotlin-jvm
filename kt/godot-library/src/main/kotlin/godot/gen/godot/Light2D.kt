@@ -269,7 +269,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public enum class ShadowFilter(
-    id: Long
+    id: Long,
   ) {
     /**
      * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to render. See [shadowFilter].
@@ -296,7 +296,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public enum class BlendMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This is the common behavior of a light.

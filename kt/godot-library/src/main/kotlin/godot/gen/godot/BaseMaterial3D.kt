@@ -1145,7 +1145,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class TextureParam(
-    id: Long
+    id: Long,
   ) {
     /**
      * Texture specifying per-pixel color.
@@ -1236,7 +1236,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class TextureFilter(
-    id: Long
+    id: Long,
   ) {
     /**
      * The texture filter reads from the nearest pixel only. The simplest and fastest method of filtering, but the texture will look pixelized.
@@ -1279,7 +1279,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class DetailUV(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use `UV` with the detail texture.
@@ -1302,7 +1302,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class Transparency(
-    id: Long
+    id: Long,
   ) {
     /**
      * The material will not use transparency. This is the fastest to render.
@@ -1341,7 +1341,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class ShadingMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The object will not receive shadows. This is the fastest to render, but it disables all interactions with lights.
@@ -1372,7 +1372,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class Feature(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant for setting [emissionEnabled].
@@ -1439,7 +1439,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class BlendMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Default blend mode. The color of the object is blended over the background based on the object's alpha value.
@@ -1470,7 +1470,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class AlphaAntiAliasing(
-    id: Long
+    id: Long,
   ) {
     /**
      * Disables Alpha AntiAliasing for the material.
@@ -1497,7 +1497,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class DepthDrawMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Default depth draw mode. Depth is drawn only for opaque objects during the opaque prepass (if any) and during the opaque pass.
@@ -1526,7 +1526,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class CullMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Default cull mode. The back of the object is culled when not visible. Back face triangles will be culled when facing the camera. This results in only the front side of triangles being drawn. For closed-surface meshes, this means that only the exterior of the mesh will be visible.
@@ -1553,7 +1553,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class Flags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Disables the depth test, so this object is drawn on top of all others drawn before it. This puts the object in the transparent draw pass where it is sorted based on distance to camera. Objects drawn after it in the draw order may cover it. This also disables writing to depth.
@@ -1658,7 +1658,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class DiffuseMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Default diffuse scattering algorithm.
@@ -1689,7 +1689,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class SpecularMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Default specular blob.
@@ -1716,7 +1716,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class BillboardMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Billboard mode is disabled.
@@ -1749,7 +1749,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class TextureChannel(
-    id: Long
+    id: Long,
   ) {
     /**
      * Used to read from the red channel of a texture.
@@ -1784,7 +1784,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class EmissionOperator(
-    id: Long
+    id: Long,
   ) {
     /**
      * Adds the emission color to the color from the emission texture.
@@ -1807,7 +1807,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class DistanceFadeMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Do not use distance fade.

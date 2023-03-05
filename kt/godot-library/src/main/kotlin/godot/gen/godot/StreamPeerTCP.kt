@@ -122,7 +122,7 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   public enum class Status(
-    id: Long
+    id: Long,
   ) {
     /**
      * The initial status of the [godot.StreamPeerTCP]. This is also the status after disconnecting.

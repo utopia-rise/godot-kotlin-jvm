@@ -152,7 +152,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   }
 
   public enum class TargetRayMode(
-    id: Long
+    id: Long,
   ) {
     TARGET_RAY_MODE_UNKNOWN(0),
     TARGET_RAY_MODE_GAZE(1),

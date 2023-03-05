@@ -38,7 +38,7 @@ import kotlin.Suppress
 @GodotBaseType
 public object Time : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_TIME)
+    getSingleton(ENGINECLASS_TIME)
     return false
   }
 
@@ -297,7 +297,7 @@ public object Time : Object() {
   }
 
   public enum class Month(
-    id: Long
+    id: Long,
   ) {
     /**
      * The month of January, represented numerically as `01`.
@@ -360,7 +360,7 @@ public object Time : Object() {
   }
 
   public enum class Weekday(
-    id: Long
+    id: Long,
   ) {
     /**
      * The day of the week Sunday, represented numerically as `0`.

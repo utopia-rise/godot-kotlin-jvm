@@ -200,7 +200,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   public enum class WriteMode(
-    id: Long
+    id: Long,
   ) {
     WRITE_MODE_TEXT(0),
     WRITE_MODE_BINARY(1),
@@ -217,7 +217,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   public enum class State(
-    id: Long
+    id: Long,
   ) {
     STATE_CONNECTING(0),
     STATE_OPEN(1),

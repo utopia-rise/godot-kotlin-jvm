@@ -261,7 +261,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public enum class UpdateMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Update the probe once on the next frame (recommended for most objects). The corresponding radiance map will be generated over the following six frames. This takes more time to update than [UPDATE_ALWAYS], but it has a lower performance cost and can result in higher-quality reflections. The ReflectionProbe is updated when its transform changes, but not when nearby geometry changes. You can force a [godot.ReflectionProbe] update by moving the [godot.ReflectionProbe] slightly in any direction.
@@ -284,7 +284,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public enum class AmbientMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Do not apply any ambient lighting inside the [godot.ReflectionProbe]'s [size].

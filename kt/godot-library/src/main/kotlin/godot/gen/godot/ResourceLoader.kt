@@ -42,7 +42,7 @@ import kotlin.Unit
 @GodotBaseType
 public object ResourceLoader : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_RESOURCELOADER)
+    getSingleton(ENGINECLASS_RESOURCELOADER)
     return false
   }
 
@@ -55,7 +55,7 @@ public object ResourceLoader : Object() {
     path: String,
     typeHint: String = "",
     useSubThreads: Boolean = false,
-    cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
+    cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE,
   ): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads, LONG to cacheMode.id)
     TransferContext.callMethod(rawPtr,
@@ -104,7 +104,7 @@ public object ResourceLoader : Object() {
   public fun load(
     path: String,
     typeHint: String = "",
-    cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
+    cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE,
   ): Resource? {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, LONG to cacheMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD, OBJECT)
@@ -195,7 +195,7 @@ public object ResourceLoader : Object() {
   }
 
   public enum class ThreadLoadStatus(
-    id: Long
+    id: Long,
   ) {
     /**
      * The resource is invalid, or has not been loaded with [loadThreadedRequest].
@@ -226,7 +226,7 @@ public object ResourceLoader : Object() {
   }
 
   public enum class CacheMode(
-    id: Long
+    id: Long,
   ) {
     /**
      *

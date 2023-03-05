@@ -145,7 +145,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   }
 
   public enum class Resolution(
-    id: Long
+    id: Long,
   ) {
     /**
      * Bake a 16×16×16 signed distance field. This is the fastest option, but also the least precise.

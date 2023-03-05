@@ -94,7 +94,7 @@ public open class Curve3D : Resource() {
     position: Vector3,
     _in: Vector3 = Vector3(0, 0, 0),
     `out`: Vector3 = Vector3(0, 0, 0),
-    index: Long = -1
+    index: Long = -1,
   ): Unit {
     TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to _in, VECTOR3 to out, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_ADD_POINT, NIL)
@@ -234,7 +234,7 @@ public open class Curve3D : Resource() {
   public fun sampleBakedWithRotation(
     offset: Double = 0.0,
     cubic: Boolean = false,
-    applyTilt: Boolean = false
+    applyTilt: Boolean = false,
   ): Transform3D {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic, BOOL to applyTilt)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE_BAKED_WITH_ROTATION,

@@ -39,6 +39,9 @@ internal object GarbageCollector {
     /** Pointers to Godot objects.*/
     private val ObjectDB = Array<GodotWeakReference?>(OBJECTDB_SIZE) { null }
 
+    /** Indexes of singletons in [ObjectDB] */
+    private val singletonIndexes = mutableListOf<Int>()
+
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
 
@@ -79,6 +82,14 @@ internal object GarbageCollector {
         synchronized(ObjectDB) {
             val index = instance.id.index
             ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.id)
+        }
+    }
+
+    fun registerSingleton(instance: KtObject) {
+        synchronized(ObjectDB) {
+            val index = instance.id.index
+            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.id)
+            singletonIndexes.add(index)
         }
     }
 
@@ -234,6 +245,10 @@ internal object GarbageCollector {
 
     @Suppress("unused")
     fun cleanUp() {
+        for (singletonIndex in singletonIndexes) {
+            ObjectDB[singletonIndex] = null
+        }
+
         while (staticInstances.size > 0) {
             val iterator = staticInstances.iterator()
             staticInstances = mutableSetOf()

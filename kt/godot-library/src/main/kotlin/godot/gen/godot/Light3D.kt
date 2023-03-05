@@ -273,7 +273,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public enum class Param(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant for accessing [lightEnergy].
@@ -376,7 +376,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public enum class BakeMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Light is ignored when baking. This is the fastest mode, but the light will be taken into account when baking global illumination. This mode should generally be used for dynamic lights that change quickly, as the effect of global illumination is less noticeable on those lights.

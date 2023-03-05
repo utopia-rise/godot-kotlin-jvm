@@ -76,7 +76,7 @@ public open class Sky : Resource() {
   }
 
   public enum class RadianceSize(
-    id: Long
+    id: Long,
   ) {
     /**
      * Radiance texture size is 32×32 pixels.
@@ -123,7 +123,7 @@ public open class Sky : Resource() {
   }
 
   public enum class ProcessMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [PROCESS_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [PROCESS_MODE_INCREMENTAL]. Otherwise, this defaults to [PROCESS_MODE_QUALITY].

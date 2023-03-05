@@ -122,7 +122,7 @@ public open class SkeletonModification2D : Resource() {
     angle: Double,
     min: Double,
     max: Double,
-    invert: Boolean
+    invert: Boolean,
   ): Double {
     TransferContext.writeArguments(DOUBLE to angle, DOUBLE to min, DOUBLE to max, BOOL to invert)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_CLAMP_ANGLE,

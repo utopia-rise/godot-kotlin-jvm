@@ -81,7 +81,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   public fun setDisableClassProperty(
     className: StringName,
     `property`: StringName,
-    disable: Boolean
+    disable: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to className, STRING_NAME to property, BOOL to disable)
     TransferContext.callMethod(rawPtr,
@@ -148,7 +148,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   }
 
   public enum class Feature(
-    id: Long
+    id: Long,
   ) {
     /**
      * The 3D editor. If this feature is disabled, the 3D editor won't display but 3D nodes will still display in the Create New Node dialog.

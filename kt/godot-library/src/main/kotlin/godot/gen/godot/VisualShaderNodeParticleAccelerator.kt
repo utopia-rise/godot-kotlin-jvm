@@ -45,7 +45,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   }
 
   public enum class Mode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The particles will be accelerated based on their velocity.

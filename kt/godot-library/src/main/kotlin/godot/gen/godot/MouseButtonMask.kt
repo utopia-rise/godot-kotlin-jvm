@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class MouseButtonMask(
-  id: Long
+  id: Long,
 ) {
   MOUSE_BUTTON_MASK_LEFT(1),
   MOUSE_BUTTON_MASK_RIGHT(2),

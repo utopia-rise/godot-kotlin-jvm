@@ -78,7 +78,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public enum class Source(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use the texture given as an argument for this function.
@@ -129,7 +129,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public enum class TextureType(
-    id: Long
+    id: Long,
   ) {
     /**
      * No hints are added to the uniform declaration.

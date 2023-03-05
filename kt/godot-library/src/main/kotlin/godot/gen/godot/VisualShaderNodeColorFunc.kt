@@ -45,7 +45,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long
+    id: Long,
   ) {
     /**
      * Converts the color to grayscale using the following formula:

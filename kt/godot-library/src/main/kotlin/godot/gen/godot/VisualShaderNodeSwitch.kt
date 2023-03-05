@@ -45,7 +45,7 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
   }
 
   public enum class OpType(
-    id: Long
+    id: Long,
   ) {
     /**
      * A floating-point scalar.

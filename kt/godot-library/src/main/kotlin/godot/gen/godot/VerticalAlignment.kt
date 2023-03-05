@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class VerticalAlignment(
-  id: Long
+  id: Long,
 ) {
   VERTICAL_ALIGNMENT_TOP(0),
   VERTICAL_ALIGNMENT_CENTER(1),

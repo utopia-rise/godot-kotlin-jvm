@@ -43,7 +43,7 @@ public object IP : Object() {
   public final const val RESOLVER_INVALID_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_IP)
+    getSingleton(ENGINECLASS_IP)
     return false
   }
 
@@ -152,7 +152,7 @@ public object IP : Object() {
   }
 
   public enum class ResolverStatus(
-    id: Long
+    id: Long,
   ) {
     /**
      * DNS hostname resolver status: No status.
@@ -183,7 +183,7 @@ public object IP : Object() {
   }
 
   public enum class Type(
-    id: Long
+    id: Long,
   ) {
     /**
      * Address type: None.

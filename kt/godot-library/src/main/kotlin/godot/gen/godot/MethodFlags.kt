@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class MethodFlags(
-  id: Long
+  id: Long,
 ) {
   METHOD_FLAG_NORMAL(1),
   METHOD_FLAG_EDITOR(2),

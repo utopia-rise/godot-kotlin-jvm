@@ -66,7 +66,7 @@ public open class HingeJoint3D : Joint3D() {
   }
 
   public enum class Param(
-    id: Long
+    id: Long,
   ) {
     /**
      * The speed with which the two bodies get pulled together when they move in different directions.
@@ -117,7 +117,7 @@ public open class HingeJoint3D : Joint3D() {
   }
 
   public enum class Flag(
-    id: Long
+    id: Long,
   ) {
     /**
      * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and [angularLimit/upper] has effects.

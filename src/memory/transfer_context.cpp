@@ -20,7 +20,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
       const_cast<char*>("(ILgodot/core/KtObject;Ljava/lang/ClassLoader;I)V"),
       (void*) TransferContext::create_native_object};
 
-    jni::JNativeMethod get_singleton_method {const_cast<char*>("getSingleton"), const_cast<char*>("(I)J"), (void*) TransferContext::get_singleton};
+    jni::JNativeMethod get_singleton_method {const_cast<char*>("getSingleton"), const_cast<char*>("(I)V"), (void*) TransferContext::get_singleton};
 
     jni::JNativeMethod free_object_method {const_cast<char*>("freeObject"), const_cast<char*>("(J)V"), (void*) TransferContext::free_object};
 
@@ -185,10 +185,16 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject instance, 
     buffer->rewind();
 }
 
-jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
-    return reinterpret_cast<uintptr_t>(Engine::get_singleton()->get_singleton_object(
-      GDKotlin::get_instance().engine_singleton_names[static_cast<int>(p_class_index)]
-    ));
+void TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
+    Object* singleton {Engine::get_singleton()->get_singleton_object(
+            GDKotlin::get_instance().engine_singleton_names[static_cast<int>(p_class_index)]
+    )};
+    jni::Env env {p_raw_env};
+
+    SharedBuffer* buffer {GDKotlin::get_instance().transfer_context->get_buffer(env)};
+    buffer->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(singleton), buffer->get_cursor()));
+    buffer->increment_position(encode_uint64(singleton->get_instance_id(), buffer->get_cursor()));
+    buffer->rewind();
 }
 
 void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

@@ -302,7 +302,7 @@ public open class ItemList : Control() {
   public fun addItem(
     text: String,
     icon: Texture2D? = null,
-    selectable: Boolean = true
+    selectable: Boolean = true,
   ): Long {
     TransferContext.writeArguments(STRING to text, OBJECT to icon, BOOL to selectable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ADD_ITEM, LONG)
@@ -689,7 +689,7 @@ public open class ItemList : Control() {
   }
 
   public enum class IconMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Icon is drawn above the text.
@@ -712,7 +712,7 @@ public open class ItemList : Control() {
   }
 
   public enum class SelectMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Only allow selecting a single item.

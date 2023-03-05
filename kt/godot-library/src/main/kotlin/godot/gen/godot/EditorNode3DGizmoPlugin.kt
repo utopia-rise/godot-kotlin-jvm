@@ -101,7 +101,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   public open fun _getHandleName(
     gizmo: EditorNode3DGizmo,
     handleId: Long,
-    secondary: Boolean
+    secondary: Boolean,
   ): String {
     throw NotImplementedError("_get_handle_name is not implemented for EditorNode3DGizmoPlugin")
   }
@@ -112,7 +112,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   public open fun _isHandleHighlighted(
     gizmo: EditorNode3DGizmo,
     handleId: Long,
-    secondary: Boolean
+    secondary: Boolean,
   ): Boolean {
     throw NotImplementedError("_is_handle_highlighted is not implemented for EditorNode3DGizmoPlugin")
   }
@@ -127,7 +127,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   public open fun _getHandleValue(
     gizmo: EditorNode3DGizmo,
     handleId: Long,
-    secondary: Boolean
+    secondary: Boolean,
   ): Any? {
     throw NotImplementedError("_get_handle_value is not implemented for EditorNode3DGizmoPlugin")
   }
@@ -144,7 +144,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     handleId: Long,
     secondary: Boolean,
     camera: Camera3D,
-    screenPos: Vector2
+    screenPos: Vector2,
   ): Unit {
   }
 
@@ -162,7 +162,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     handleId: Long,
     secondary: Boolean,
     restore: Any,
-    cancel: Boolean
+    cancel: Boolean,
   ): Unit {
   }
 
@@ -172,7 +172,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   public open fun _subgizmosIntersectRay(
     gizmo: EditorNode3DGizmo,
     camera: Camera3D,
-    screenPos: Vector2
+    screenPos: Vector2,
   ): Long {
     throw NotImplementedError("_subgizmos_intersect_ray is not implemented for EditorNode3DGizmoPlugin")
   }
@@ -183,7 +183,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   public open fun _subgizmosIntersectFrustum(
     gizmo: EditorNode3DGizmo,
     camera: Camera3D,
-    frustumPlanes: VariantArray<Plane>
+    frustumPlanes: VariantArray<Plane>,
   ): PackedInt32Array {
     throw NotImplementedError("_subgizmos_intersect_frustum is not implemented for EditorNode3DGizmoPlugin")
   }
@@ -201,7 +201,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   public open fun _setSubgizmoTransform(
     gizmo: EditorNode3DGizmo,
     subgizmoId: Long,
-    transform: Transform3D
+    transform: Transform3D,
   ): Unit {
   }
 
@@ -214,7 +214,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     gizmo: EditorNode3DGizmo,
     ids: PackedInt32Array,
     restores: VariantArray<Transform3D>,
-    cancel: Boolean
+    cancel: Boolean,
   ): Unit {
   }
 
@@ -226,7 +226,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     color: Color,
     billboard: Boolean = false,
     onTop: Boolean = false,
-    useVertexColor: Boolean = false
+    useVertexColor: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING to name, COLOR to color, BOOL to billboard, BOOL to onTop, BOOL to useVertexColor)
     TransferContext.callMethod(rawPtr,
@@ -240,7 +240,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     name: String,
     texture: Texture2D,
     onTop: Boolean = false,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to texture, BOOL to onTop, COLOR to color)
     TransferContext.callMethod(rawPtr,
@@ -255,7 +255,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   public fun createHandleMaterial(
     name: String,
     billboard: Boolean = false,
-    texture: Texture2D? = null
+    texture: Texture2D? = null,
   ): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to billboard, OBJECT to texture)
     TransferContext.callMethod(rawPtr,

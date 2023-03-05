@@ -77,7 +77,7 @@ public open class VisualShader : Shader() {
     type: Type,
     node: VisualShaderNode,
     position: Vector2,
-    id: Long
+    id: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, OBJECT to node, VECTOR2 to position, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_ADD_NODE, NIL)
@@ -98,7 +98,7 @@ public open class VisualShader : Shader() {
   public fun setNodePosition(
     type: Type,
     id: Long,
-    position: Vector2
+    position: Vector2,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to id, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_NODE_POSITION, NIL)
@@ -148,7 +148,7 @@ public open class VisualShader : Shader() {
   public fun replaceNode(
     type: Type,
     id: Long,
-    newClass: StringName
+    newClass: StringName,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to id, STRING_NAME to newClass)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REPLACE_NODE, NIL)
@@ -162,7 +162,7 @@ public open class VisualShader : Shader() {
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
-    toPort: Long
+    toPort: Long,
   ): Boolean {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_IS_NODE_CONNECTION,
@@ -178,7 +178,7 @@ public open class VisualShader : Shader() {
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
-    toPort: Long
+    toPort: Long,
   ): Boolean {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CAN_CONNECT_NODES,
@@ -194,7 +194,7 @@ public open class VisualShader : Shader() {
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
-    toPort: Long
+    toPort: Long,
   ): GodotError {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES, LONG)
@@ -209,7 +209,7 @@ public open class VisualShader : Shader() {
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
-    toPort: Long
+    toPort: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_DISCONNECT_NODES, NIL)
@@ -223,7 +223,7 @@ public open class VisualShader : Shader() {
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
-    toPort: Long
+    toPort: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES_FORCED,
@@ -246,7 +246,7 @@ public open class VisualShader : Shader() {
   public fun addVarying(
     name: String,
     mode: VaryingMode,
-    type: VaryingType
+    type: VaryingType,
   ): Unit {
     TransferContext.writeArguments(STRING to name, LONG to mode.id, LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_ADD_VARYING, NIL)
@@ -270,7 +270,7 @@ public open class VisualShader : Shader() {
   }
 
   public enum class Type(
-    id: Long
+    id: Long,
   ) {
     /**
      * A vertex shader, operating on vertices.
@@ -329,7 +329,7 @@ public open class VisualShader : Shader() {
   }
 
   public enum class VaryingMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Varying is passed from `Vertex` function to `Fragment` and `Light` functions.
@@ -356,7 +356,7 @@ public open class VisualShader : Shader() {
   }
 
   public enum class VaryingType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Varying is of type [float].

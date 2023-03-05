@@ -194,7 +194,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     frequency: Double,
     amplitude: Double,
     durationSec: Double,
-    delaySec: Double
+    delaySec: Double,
   ): Unit {
     TransferContext.writeArguments(STRING to actionName, STRING_NAME to trackerName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_TRIGGER_HAPTIC_PULSE,
@@ -301,7 +301,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     view: Long,
     aspect: Double,
     near: Double,
-    far: Double
+    far: Double,
   ): Projection {
     TransferContext.writeArguments(LONG to view, DOUBLE to aspect, DOUBLE to near, DOUBLE to far)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PROJECTION_FOR_VIEW,
@@ -348,7 +348,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   public enum class Capabilities(
-    id: Long
+    id: Long,
   ) {
     /**
      * No XR capabilities.
@@ -391,7 +391,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   public enum class TrackingStatus(
-    id: Long
+    id: Long,
   ) {
     /**
      * Tracking is behaving as expected.
@@ -426,7 +426,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   public enum class PlayAreaMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Play area mode not set or not available.
@@ -461,7 +461,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   public enum class EnvironmentBlendMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Opaque blend mode. This is typically used for VR devices.

@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class Error(
-  id: Long
+  id: Long,
 ) {
   OK(0),
   FAILED(1),

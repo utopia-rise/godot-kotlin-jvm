@@ -64,7 +64,7 @@ public open class EditorInterface internal constructor() : Node() {
   public fun inspectObject(
     _object: Object,
     forProperty: String = "",
-    inspectorOnly: Boolean = false
+    inspectorOnly: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING to forProperty, BOOL to inspectorOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_INSPECT_OBJECT, NIL)
@@ -149,7 +149,7 @@ public open class EditorInterface internal constructor() : Node() {
     script: Script,
     line: Long = -1,
     column: Long = 0,
-    grabFocus: Boolean = true
+    grabFocus: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(OBJECT to script, LONG to line, LONG to column, BOOL to grabFocus)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_SCRIPT, NIL)

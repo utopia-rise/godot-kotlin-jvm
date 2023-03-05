@@ -104,7 +104,7 @@ public open class Theme : Resource() {
   public fun setIcon(
     name: StringName,
     themeType: StringName,
-    texture: Texture2D
+    texture: Texture2D,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_ICON, NIL)
@@ -140,7 +140,7 @@ public open class Theme : Resource() {
   public fun renameIcon(
     oldName: StringName,
     name: StringName,
-    themeType: StringName
+    themeType: StringName,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_ICON, NIL)
@@ -182,7 +182,7 @@ public open class Theme : Resource() {
   public fun setStylebox(
     name: StringName,
     themeType: StringName,
-    texture: StyleBox
+    texture: StyleBox,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_STYLEBOX, NIL)
@@ -218,7 +218,7 @@ public open class Theme : Resource() {
   public fun renameStylebox(
     oldName: StringName,
     name: StringName,
-    themeType: StringName
+    themeType: StringName,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_STYLEBOX, NIL)
@@ -260,7 +260,7 @@ public open class Theme : Resource() {
   public fun setFont(
     name: StringName,
     themeType: StringName,
-    font: Font
+    font: Font,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to font)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_FONT, NIL)
@@ -298,7 +298,7 @@ public open class Theme : Resource() {
   public fun renameFont(
     oldName: StringName,
     name: StringName,
-    themeType: StringName
+    themeType: StringName,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT, NIL)
@@ -340,7 +340,7 @@ public open class Theme : Resource() {
   public fun setFontSize(
     name: StringName,
     themeType: StringName,
-    fontSize: Long
+    fontSize: Long,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, LONG to fontSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_FONT_SIZE, NIL)
@@ -378,7 +378,7 @@ public open class Theme : Resource() {
   public fun renameFontSize(
     oldName: StringName,
     name: StringName,
-    themeType: StringName
+    themeType: StringName,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT_SIZE, NIL)
@@ -420,7 +420,7 @@ public open class Theme : Resource() {
   public fun setColor(
     name: StringName,
     themeType: StringName,
-    color: Color
+    color: Color,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_COLOR, NIL)
@@ -456,7 +456,7 @@ public open class Theme : Resource() {
   public fun renameColor(
     oldName: StringName,
     name: StringName,
-    themeType: StringName
+    themeType: StringName,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_COLOR, NIL)
@@ -498,7 +498,7 @@ public open class Theme : Resource() {
   public fun setConstant(
     name: StringName,
     themeType: StringName,
-    constant: Long
+    constant: Long,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, LONG to constant)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_CONSTANT, NIL)
@@ -534,7 +534,7 @@ public open class Theme : Resource() {
   public fun renameConstant(
     oldName: StringName,
     name: StringName,
-    themeType: StringName
+    themeType: StringName,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_CONSTANT, NIL)
@@ -614,7 +614,7 @@ public open class Theme : Resource() {
     dataType: DataType,
     name: StringName,
     themeType: StringName,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_THEME_ITEM, NIL)
@@ -630,7 +630,7 @@ public open class Theme : Resource() {
   public fun getThemeItem(
     dataType: DataType,
     name: StringName,
-    themeType: StringName
+    themeType: StringName,
   ): Any? {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM, ANY)
@@ -647,7 +647,7 @@ public open class Theme : Resource() {
   public fun hasThemeItem(
     dataType: DataType,
     name: StringName,
-    themeType: StringName
+    themeType: StringName,
   ): Boolean {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_THEME_ITEM, BOOL)
@@ -665,7 +665,7 @@ public open class Theme : Resource() {
     dataType: DataType,
     oldName: StringName,
     name: StringName,
-    themeType: StringName
+    themeType: StringName,
   ): Unit {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_THEME_ITEM, NIL)
@@ -681,7 +681,7 @@ public open class Theme : Resource() {
   public fun clearThemeItem(
     dataType: DataType,
     name: StringName,
-    themeType: StringName
+    themeType: StringName,
   ): Unit {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_THEME_ITEM, NIL)
@@ -809,7 +809,7 @@ public open class Theme : Resource() {
   }
 
   public enum class DataType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Theme's [godot.core.Color] item type.

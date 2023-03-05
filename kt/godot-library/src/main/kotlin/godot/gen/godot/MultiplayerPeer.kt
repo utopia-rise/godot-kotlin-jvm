@@ -205,7 +205,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   public enum class ConnectionStatus(
-    id: Long
+    id: Long,
   ) {
     /**
      * The MultiplayerPeer is disconnected.
@@ -232,7 +232,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   public enum class TransferMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Packets are not acknowledged, no resend attempts are made for lost packets. Packets may arrive in any order. Potentially faster than [TRANSFER_MODE_UNRELIABLE_ORDERED]. Use for non-critical data, and always consider whether the order matters.

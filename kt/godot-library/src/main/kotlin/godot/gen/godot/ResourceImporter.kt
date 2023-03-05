@@ -28,7 +28,7 @@ public open class ResourceImporter internal constructor() : RefCounted() {
   }
 
   public enum class ImportOrder(
-    id: Long
+    id: Long,
   ) {
     /**
      * The default import order.

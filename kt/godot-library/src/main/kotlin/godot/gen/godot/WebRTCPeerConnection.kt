@@ -80,7 +80,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public fun addIceCandidate(
     media: String,
     index: Long,
-    name: String
+    name: String,
   ): GodotError {
     TransferContext.writeArguments(STRING to media, LONG to index, STRING to name)
     TransferContext.callMethod(rawPtr,
@@ -121,7 +121,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   }
 
   public enum class ConnectionState(
-    id: Long
+    id: Long,
   ) {
     STATE_NEW(0),
     STATE_CONNECTING(1),
@@ -142,7 +142,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   }
 
   public enum class GatheringState(
-    id: Long
+    id: Long,
   ) {
     GATHERING_STATE_NEW(0),
     GATHERING_STATE_GATHERING(1),
@@ -160,7 +160,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   }
 
   public enum class SignalingState(
-    id: Long
+    id: Long,
   ) {
     SIGNALING_STATE_STABLE(0),
     SIGNALING_STATE_HAVE_LOCAL_OFFER(1),

@@ -110,7 +110,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public enum class TextureType(
-    id: Long
+    id: Long,
   ) {
     /**
      * No hints are added to the uniform declaration.
@@ -145,7 +145,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public enum class ColorDefault(
-    id: Long
+    id: Long,
   ) {
     /**
      * Defaults to fully opaque white color.
@@ -176,7 +176,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public enum class TextureFilter(
-    id: Long
+    id: Long,
   ) {
     /**
      * Sample the texture using the filter determined by the node this shader is attached to.
@@ -227,7 +227,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public enum class TextureRepeat(
-    id: Long
+    id: Long,
   ) {
     /**
      * Sample the texture using the repeat mode determined by the node this shader is attached to.
@@ -258,7 +258,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public enum class TextureSource(
-    id: Long
+    id: Long,
   ) {
     /**
      * The texture source is not specified in the shader.

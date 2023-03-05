@@ -282,7 +282,7 @@ public open class Line2D : Node2D() {
   }
 
   public enum class LineJointMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The line's joints will be pointy. If `sharp_limit` is greater than the rotation of a joint, it becomes a bevel joint instead.
@@ -309,7 +309,7 @@ public open class Line2D : Node2D() {
   }
 
   public enum class LineCapMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Don't draw a line cap.
@@ -336,7 +336,7 @@ public open class Line2D : Node2D() {
   }
 
   public enum class LineTextureMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Takes the left pixels of the texture and renders it over the whole line.

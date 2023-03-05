@@ -191,7 +191,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public enum class OneShotRequest(
-    id: Long
+    id: Long,
   ) {
     /**
      * The default state of the request. Nothing is done.
@@ -218,7 +218,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public enum class MixMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Blends two animations. See also [godot.AnimationNodeBlend2].

@@ -193,7 +193,7 @@ public open class TextureButton : BaseButton() {
   }
 
   public enum class StretchMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Scale to fit the node's bounding rectangle.

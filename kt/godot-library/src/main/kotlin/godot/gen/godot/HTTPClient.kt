@@ -115,7 +115,7 @@ public open class HTTPClient : RefCounted() {
   public fun connectToHost(
     host: String,
     port: Long = -1,
-    tlsOptions: TLSOptions? = null
+    tlsOptions: TLSOptions? = null,
   ): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port, OBJECT to tlsOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CONNECT_TO_HOST, LONG)
@@ -135,7 +135,7 @@ public open class HTTPClient : RefCounted() {
     method: Method,
     url: String,
     headers: PackedStringArray,
-    body: PackedByteArray
+    body: PackedByteArray,
   ): GodotError {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, PACKED_BYTE_ARRAY to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST_RAW, LONG)
@@ -185,7 +185,7 @@ public open class HTTPClient : RefCounted() {
     method: Method,
     url: String,
     headers: PackedStringArray,
-    body: String = ""
+    body: String = "",
   ): GodotError {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, STRING to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST, LONG)
@@ -388,7 +388,7 @@ public open class HTTPClient : RefCounted() {
   }
 
   public enum class Method(
-    id: Long
+    id: Long,
   ) {
     /**
      * HTTP GET method. The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
@@ -443,7 +443,7 @@ public open class HTTPClient : RefCounted() {
   }
 
   public enum class Status(
-    id: Long
+    id: Long,
   ) {
     /**
      * Status: Disconnected from the server.
@@ -498,7 +498,7 @@ public open class HTTPClient : RefCounted() {
   }
 
   public enum class ResponseCode(
-    id: Long
+    id: Long,
   ) {
     /**
      * HTTP status code `100 Continue`. Interim response that indicates everything so far is OK and that the client should continue with the request (or ignore this status if already finished).

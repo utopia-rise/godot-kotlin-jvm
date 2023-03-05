@@ -373,7 +373,7 @@ public open class TreeItem internal constructor() : Object() {
     min: Double,
     max: Double,
     step: Double,
-    expr: Boolean = false
+    expr: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(LONG to column, DOUBLE to min, DOUBLE to max, DOUBLE to step, BOOL to expr)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_RANGE_CONFIG, NIL)
@@ -414,7 +414,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun setCustomDraw(
     column: Long,
     _object: Object,
-    callback: StringName
+    callback: StringName,
   ): Unit {
     TransferContext.writeArguments(LONG to column, OBJECT to _object, STRING_NAME to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_DRAW, NIL)
@@ -572,7 +572,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun setCustomBgColor(
     column: Long,
     color: Color,
-    justOutline: Boolean = false
+    justOutline: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(LONG to column, COLOR to color, BOOL to justOutline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_BG_COLOR, NIL)
@@ -621,7 +621,7 @@ public open class TreeItem internal constructor() : Object() {
     button: Texture2D,
     id: Long = -1,
     disabled: Boolean = false,
-    tooltipText: String = ""
+    tooltipText: String = "",
   ): Unit {
     TransferContext.writeArguments(LONG to column, OBJECT to button, LONG to id, BOOL to disabled, STRING to tooltipText)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ADD_BUTTON, NIL)
@@ -679,7 +679,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun setButton(
     column: Long,
     buttonIndex: Long,
-    button: Texture2D
+    button: Texture2D,
   ): Unit {
     TransferContext.writeArguments(LONG to column, LONG to buttonIndex, OBJECT to button)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON, NIL)
@@ -699,7 +699,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun setButtonDisabled(
     column: Long,
     buttonIndex: Long,
-    disabled: Boolean
+    disabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(LONG to column, LONG to buttonIndex, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_DISABLED, NIL)
@@ -711,7 +711,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun setButtonColor(
     column: Long,
     buttonIndex: Long,
-    color: Color
+    color: Color,
   ): Unit {
     TransferContext.writeArguments(LONG to column, LONG to buttonIndex, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_COLOR, NIL)
@@ -930,7 +930,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   public enum class TreeCellMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Cell contains a string.

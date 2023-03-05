@@ -47,7 +47,7 @@ public open class PacketPeerUDP : PacketPeer() {
   public fun bind(
     port: Long,
     bindAddress: String = "*",
-    recvBufSize: Long = 65536
+    recvBufSize: Long = 65536,
   ): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress, LONG to recvBufSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_BIND, LONG)

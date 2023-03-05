@@ -75,7 +75,7 @@ public open class CurveTexture : Texture2D() {
   }
 
   public enum class TextureMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Store the curve equally across the red, green and blue channels. This uses more video memory, but is more compatible with shaders that only read the green and blue values.

@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class EulerOrder(
-  id: Long
+  id: Long,
 ) {
   EULER_ORDER_XYZ(0),
   EULER_ORDER_XZY(1),

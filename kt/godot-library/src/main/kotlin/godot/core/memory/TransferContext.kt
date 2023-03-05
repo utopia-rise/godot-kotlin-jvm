@@ -65,7 +65,7 @@ internal object TransferContext {
     }
 
     external fun createNativeObject(classIndex: Int, instance: KtObject, classLoader: ClassLoader, scriptIndex: Int)
-    external fun getSingleton(classIndex: Int): VoidPtr
+    external fun getSingleton(classIndex: Int)
     external fun freeObject(rawPtr: VoidPtr)
 
     private external fun icall(ptr: VoidPtr, methodIndex: Int, expectedReturnType: Int)

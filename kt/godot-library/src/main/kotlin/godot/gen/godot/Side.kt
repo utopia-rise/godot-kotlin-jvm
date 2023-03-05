@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class Side(
-  id: Long
+  id: Long,
 ) {
   SIDE_LEFT(0),
   SIDE_TOP(1),

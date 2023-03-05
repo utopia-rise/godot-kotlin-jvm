@@ -63,7 +63,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   }
 
   public enum class Qualifier(
-    id: Long
+    id: Long,
   ) {
     /**
      * The parameter will be tied to the [godot.ShaderMaterial] using this shader.

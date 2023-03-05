@@ -41,7 +41,7 @@ import kotlin.Unit
 @GodotBaseType
 public object Engine : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_ENGINE)
+    getSingleton(ENGINECLASS_ENGINE)
     return false
   }
 

@@ -34,7 +34,7 @@ import kotlin.Suppress
 @GodotBaseType
 public object Geometry3D : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_GEOMETRY3D)
+    getSingleton(ENGINECLASS_GEOMETRY3D)
     return false
   }
 
@@ -54,7 +54,7 @@ public object Geometry3D : Object() {
     radius: Double,
     height: Double,
     sides: Long,
-    axis: Vector3.Axis = Vector3.Axis.Z
+    axis: Vector3.Axis = Vector3.Axis.Z,
   ): VariantArray<Plane> {
     TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CYLINDER_PLANES,
@@ -70,7 +70,7 @@ public object Geometry3D : Object() {
     height: Double,
     sides: Long,
     lats: Long,
-    axis: Vector3.Axis = Vector3.Axis.Z
+    axis: Vector3.Axis = Vector3.Axis.Z,
   ): VariantArray<Plane> {
     TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to lats, LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CAPSULE_PLANES,
@@ -85,7 +85,7 @@ public object Geometry3D : Object() {
     p1: Vector3,
     p2: Vector3,
     q1: Vector3,
-    q2: Vector3
+    q2: Vector3,
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to p1, VECTOR3 to p2, VECTOR3 to q1, VECTOR3 to q2)
     TransferContext.callMethod(rawPtr,
@@ -100,7 +100,7 @@ public object Geometry3D : Object() {
   public fun getClosestPointToSegment(
     point: Vector3,
     s1: Vector3,
-    s2: Vector3
+    s2: Vector3,
   ): Vector3 {
     TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
     TransferContext.callMethod(rawPtr,
@@ -114,7 +114,7 @@ public object Geometry3D : Object() {
   public fun getClosestPointToSegmentUncapped(
     point: Vector3,
     s1: Vector3,
-    s2: Vector3
+    s2: Vector3,
   ): Vector3 {
     TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
     TransferContext.callMethod(rawPtr,
@@ -130,7 +130,7 @@ public object Geometry3D : Object() {
     dir: Vector3,
     a: Vector3,
     b: Vector3,
-    c: Vector3
+    c: Vector3,
   ): Any? {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to dir, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_RAY_INTERSECTS_TRIANGLE,
@@ -146,7 +146,7 @@ public object Geometry3D : Object() {
     to: Vector3,
     a: Vector3,
     b: Vector3,
-    c: Vector3
+    c: Vector3,
   ): Any? {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
     TransferContext.callMethod(rawPtr,
@@ -161,7 +161,7 @@ public object Geometry3D : Object() {
     from: Vector3,
     to: Vector3,
     spherePosition: Vector3,
-    sphereRadius: Double
+    sphereRadius: Double,
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to spherePosition, DOUBLE to sphereRadius)
     TransferContext.callMethod(rawPtr,
@@ -176,7 +176,7 @@ public object Geometry3D : Object() {
     from: Vector3,
     to: Vector3,
     height: Double,
-    radius: Double
+    radius: Double,
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, DOUBLE to height, DOUBLE to radius)
     TransferContext.callMethod(rawPtr,
@@ -190,7 +190,7 @@ public object Geometry3D : Object() {
   public fun segmentIntersectsConvex(
     from: Vector3,
     to: Vector3,
-    planes: VariantArray<Any?>
+    planes: VariantArray<Any?>,
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, ARRAY to planes)
     TransferContext.callMethod(rawPtr,

@@ -108,7 +108,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public enum class Resolution(
-    id: Long
+    id: Long,
   ) {
     /**
      * Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no distant particles.
@@ -151,7 +151,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public enum class UpdateMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Only update the heightmap when the [godot.GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [followCameraEnabled] is `true`. An update can be forced by slightly moving the [godot.GPUParticlesCollisionHeightField3D] in any direction.

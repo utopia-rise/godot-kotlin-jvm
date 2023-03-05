@@ -96,7 +96,7 @@ public open class AStar2D : RefCounted() {
   public fun addPoint(
     id: Long,
     position: Vector2,
-    weightScale: Double = 1.0
+    weightScale: Double = 1.0,
   ): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to position, DOUBLE to weightScale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_ADD_POINT, NIL)
@@ -277,7 +277,7 @@ public open class AStar2D : RefCounted() {
   public fun connectPoints(
     id: Long,
     toId: Long,
-    bidirectional: Boolean = true
+    bidirectional: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_CONNECT_POINTS, NIL)
@@ -289,7 +289,7 @@ public open class AStar2D : RefCounted() {
   public fun disconnectPoints(
     id: Long,
     toId: Long,
-    bidirectional: Boolean = true
+    bidirectional: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_DISCONNECT_POINTS, NIL)
@@ -301,7 +301,7 @@ public open class AStar2D : RefCounted() {
   public fun arePointsConnected(
     id: Long,
     toId: Long,
-    bidirectional: Boolean = true
+    bidirectional: Boolean = true,
   ): Boolean {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_ARE_POINTS_CONNECTED, BOOL)

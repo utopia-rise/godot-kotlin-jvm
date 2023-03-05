@@ -202,7 +202,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public enum class VisibilityMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Always visible.

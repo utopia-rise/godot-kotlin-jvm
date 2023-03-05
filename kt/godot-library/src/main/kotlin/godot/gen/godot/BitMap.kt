@@ -69,7 +69,7 @@ public open class BitMap : Resource() {
   public fun setBit(
     x: Long,
     y: Long,
-    bit: Boolean
+    bit: Boolean,
   ): Unit {
     TransferContext.writeArguments(LONG to x, LONG to y, BOOL to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_SET_BIT, NIL)

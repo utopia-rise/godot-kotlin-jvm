@@ -266,7 +266,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public enum class BakeQuality(
-    id: Long
+    id: Long,
   ) {
     /**
      * Low bake quality (fastest bake times). The quality of this preset can be adjusted by changing [godot.ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityRayCount] and [godot.ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityProbeRayCount].
@@ -297,7 +297,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public enum class GenerateProbes(
-    id: Long
+    id: Long,
   ) {
     /**
      * Don't generate lightmap probes for lighting dynamic objects.
@@ -332,7 +332,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public enum class BakeError(
-    id: Long
+    id: Long,
   ) {
     /**
      * Lightmap baking was successful.
@@ -383,7 +383,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public enum class EnvironmentMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Ignore environment lighting when baking lightmaps.

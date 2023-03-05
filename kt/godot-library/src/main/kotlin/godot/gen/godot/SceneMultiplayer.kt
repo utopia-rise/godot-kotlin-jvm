@@ -158,7 +158,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     bytes: PackedByteArray,
     id: Long = 0,
     mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE,
-    channel: Long = 0
+    channel: Long = 0,
   ): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id, LONG to mode.id, LONG to channel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SEND_BYTES, LONG)

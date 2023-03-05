@@ -47,7 +47,7 @@ public open class RegEx : RefCounted() {
   public fun search(
     subject: String,
     offset: Long = 0,
-    end: Long = -1
+    end: Long = -1,
   ): RegExMatch? {
     TransferContext.writeArguments(STRING to subject, LONG to offset, LONG to end)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SEARCH, OBJECT)
@@ -57,7 +57,7 @@ public open class RegEx : RefCounted() {
   public fun searchAll(
     subject: String,
     offset: Long = 0,
-    end: Long = -1
+    end: Long = -1,
   ): VariantArray<RegExMatch> {
     TransferContext.writeArguments(STRING to subject, LONG to offset, LONG to end)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SEARCH_ALL, ARRAY)
@@ -69,7 +69,7 @@ public open class RegEx : RefCounted() {
     replacement: String,
     all: Boolean = false,
     offset: Long = 0,
-    end: Long = -1
+    end: Long = -1,
   ): String {
     TransferContext.writeArguments(STRING to subject, STRING to replacement, BOOL to all, LONG to offset, LONG to end)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SUB, STRING)

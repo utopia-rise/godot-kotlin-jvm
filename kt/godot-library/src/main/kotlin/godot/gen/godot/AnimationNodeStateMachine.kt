@@ -81,7 +81,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public fun addNode(
     name: StringName,
     node: AnimationNode,
-    position: Vector2 = Vector2(0, 0)
+    position: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_ADD_NODE,
@@ -180,7 +180,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public fun addTransition(
     from: StringName,
     to: StringName,
-    transition: AnimationNodeStateMachineTransition
+    transition: AnimationNodeStateMachineTransition,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to from, STRING_NAME to to, OBJECT to transition)
     TransferContext.callMethod(rawPtr,

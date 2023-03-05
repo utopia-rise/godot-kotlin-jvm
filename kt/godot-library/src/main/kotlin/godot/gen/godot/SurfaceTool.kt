@@ -253,7 +253,7 @@ public open class SurfaceTool : RefCounted() {
     colors: PackedColorArray = PackedColorArray(),
     uv2s: PackedVector2Array = PackedVector2Array(),
     normals: PackedVector3Array = PackedVector3Array(),
-    tangents: VariantArray<Any?> = godot.core.variantArrayOf()
+    tangents: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_VECTOR2_ARRAY to uvs, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uv2s, PACKED_VECTOR3_ARRAY to normals, ARRAY to tangents)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_TRIANGLE_FAN, NIL)
@@ -374,7 +374,7 @@ public open class SurfaceTool : RefCounted() {
   public fun createFromBlendShape(
     existing: Mesh,
     surface: Long,
-    blendShape: String
+    blendShape: String,
   ): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface, STRING to blendShape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM_BLEND_SHAPE,
@@ -387,7 +387,7 @@ public open class SurfaceTool : RefCounted() {
   public fun appendFrom(
     existing: Mesh,
     surface: Long,
-    transform: Transform3D
+    transform: Transform3D,
   ): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_APPEND_FROM, NIL)
@@ -414,7 +414,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   public enum class CustomFormat(
-    id: Long
+    id: Long,
   ) {
     /**
      * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per channel. See [godot.Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
@@ -465,7 +465,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   public enum class SkinWeightCount(
-    id: Long
+    id: Long,
   ) {
     /**
      * Each individual vertex can be influenced by only 4 bone weights.

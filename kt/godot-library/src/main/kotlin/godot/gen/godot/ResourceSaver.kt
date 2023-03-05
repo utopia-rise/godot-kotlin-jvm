@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public object ResourceSaver : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_RESOURCESAVER)
+    getSingleton(ENGINECLASS_RESOURCESAVER)
     return false
   }
 
@@ -48,7 +48,7 @@ public object ResourceSaver : Object() {
   public fun save(
     resource: Resource,
     path: String = "",
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     TransferContext.writeArguments(OBJECT to resource, STRING to path, OBJECT to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_SAVE, LONG)
@@ -87,7 +87,7 @@ public object ResourceSaver : Object() {
   }
 
   public enum class SaverFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * No resource saving option.

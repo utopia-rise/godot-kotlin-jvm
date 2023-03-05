@@ -71,7 +71,7 @@ public open class Shape2D internal constructor() : Resource() {
   public fun collide(
     localXform: Transform2D,
     withShape: Shape2D,
-    shapeXform: Transform2D
+    shapeXform: Transform2D,
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE, BOOL)
@@ -88,7 +88,7 @@ public open class Shape2D internal constructor() : Resource() {
     localMotion: Vector2,
     withShape: Shape2D,
     shapeXform: Transform2D,
-    shapeMotion: Vector2
+    shapeMotion: Vector2,
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_WITH_MOTION, BOOL)
@@ -107,7 +107,7 @@ public open class Shape2D internal constructor() : Resource() {
   public fun collideAndGetContacts(
     localXform: Transform2D,
     withShape: Shape2D,
-    shapeXform: Transform2D
+    shapeXform: Transform2D,
   ): PackedVector2Array {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_AND_GET_CONTACTS,
@@ -129,7 +129,7 @@ public open class Shape2D internal constructor() : Resource() {
     localMotion: Vector2,
     withShape: Shape2D,
     shapeXform: Transform2D,
-    shapeMotion: Vector2
+    shapeMotion: Vector2,
   ): PackedVector2Array {
     TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
     TransferContext.callMethod(rawPtr,

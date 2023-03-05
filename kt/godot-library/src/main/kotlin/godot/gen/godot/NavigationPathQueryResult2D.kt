@@ -114,7 +114,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
   }
 
   public enum class PathSegmentType(
-    id: Long
+    id: Long,
   ) {
     /**
      * This segment of the path goes through a region.

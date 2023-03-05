@@ -128,7 +128,7 @@ public open class EditorDebuggerPlugin internal constructor() : RefCounted() {
   public open fun _capture(
     message: String,
     `data`: VariantArray<Any?>,
-    sessionId: Long
+    sessionId: Long,
   ): Boolean {
     throw NotImplementedError("_capture is not implemented for EditorDebuggerPlugin")
   }

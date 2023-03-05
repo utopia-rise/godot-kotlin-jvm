@@ -47,7 +47,7 @@ public object JavaScriptBridge : Object() {
   public val pwaUpdateAvailable: Signal0 by signal()
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_JAVASCRIPTBRIDGE)
+    getSingleton(ENGINECLASS_JAVASCRIPTBRIDGE)
     return false
   }
 
@@ -103,7 +103,7 @@ public object JavaScriptBridge : Object() {
   public fun downloadBuffer(
     buffer: PackedByteArray,
     name: String,
-    mime: String = "application/octet-stream"
+    mime: String = "application/octet-stream",
   ): Unit {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer, STRING to name, STRING to mime)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_DOWNLOAD_BUFFER,

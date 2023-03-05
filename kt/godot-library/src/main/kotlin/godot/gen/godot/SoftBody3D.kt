@@ -311,7 +311,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public fun setPointPinned(
     pointIndex: Long,
     pinned: Boolean,
-    attachmentPath: NodePath = NodePath("")
+    attachmentPath: NodePath = NodePath(""),
   ): Unit {
     TransferContext.writeArguments(LONG to pointIndex, BOOL to pinned, NODE_PATH to attachmentPath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY3D_SET_POINT_PINNED, NIL)
@@ -327,7 +327,7 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   public enum class DisableMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * When [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [godot.SoftBody3D].

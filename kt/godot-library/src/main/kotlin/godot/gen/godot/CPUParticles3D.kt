@@ -685,7 +685,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public enum class DrawOrder(
-    id: Long
+    id: Long,
   ) {
     /**
      * Particles are drawn in the order emitted.
@@ -712,7 +712,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public enum class Parameter(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity properties.
@@ -779,7 +779,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public enum class ParticleFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
@@ -810,7 +810,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public enum class EmissionShape(
-    id: Long
+    id: Long,
   ) {
     /**
      * All particles will be emitted from a single point.

@@ -241,7 +241,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public enum class MixTarget(
-    id: Long
+    id: Long,
   ) {
     /**
      * The audio will be played only on the first channel.

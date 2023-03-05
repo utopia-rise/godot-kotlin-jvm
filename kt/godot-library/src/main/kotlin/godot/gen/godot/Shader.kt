@@ -74,7 +74,7 @@ public open class Shader : Resource() {
   public fun setDefaultTextureParameter(
     name: StringName,
     texture: Texture2D,
-    index: Long = 0
+    index: Long = 0,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture, LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -108,7 +108,7 @@ public open class Shader : Resource() {
   }
 
   public enum class Mode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Mode used to draw all 3D objects.

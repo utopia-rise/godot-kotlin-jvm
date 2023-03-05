@@ -310,7 +310,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public enum class DrawFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * If set, the texture's transparency and the opacity are used to make those parts of the sprite invisible.
@@ -349,7 +349,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public enum class AlphaCutMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * This mode performs standard alpha blending. It can display translucent areas, but transparency sorting issues may be visible when multiple transparent materials are overlapping.

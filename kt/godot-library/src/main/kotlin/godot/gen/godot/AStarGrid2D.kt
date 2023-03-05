@@ -321,7 +321,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public enum class Heuristic(
-    id: Long
+    id: Long,
   ) {
     /**
      * The [godot.Euclidean heuristic](https://en.wikipedia.org/wiki/Euclidean_distance) to be used for the pathfinding using the following formula:
@@ -385,7 +385,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public enum class DiagonalMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The pathfinding algorithm will ignore solid neighbors around the target cell and allow passing using diagonals.

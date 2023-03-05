@@ -154,7 +154,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   public fun moveTileInAtlas(
     atlasCoords: Vector2i,
     newAtlasCoords: Vector2i = Vector2i(-1, -1),
-    newSize: Vector2i = Vector2i(-1, -1)
+    newSize: Vector2i = Vector2i(-1, -1),
   ): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to newAtlasCoords, VECTOR2I to newSize)
     TransferContext.callMethod(rawPtr,
@@ -180,7 +180,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     animationColumns: Long,
     animationSeparation: Vector2i,
     framesCount: Long,
-    ignoredTile: Vector2i = Vector2i(-1, -1)
+    ignoredTile: Vector2i = Vector2i(-1, -1),
   ): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to size, LONG to animationColumns, VECTOR2I to animationSeparation, LONG to framesCount, VECTOR2I to ignoredTile)
     TransferContext.callMethod(rawPtr,
@@ -195,7 +195,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     texture: Texture2D,
     margins: Vector2i,
     separation: Vector2i,
-    textureRegionSize: Vector2i
+    textureRegionSize: Vector2i,
   ): PackedVector2Array {
     TransferContext.writeArguments(OBJECT to texture, VECTOR2I to margins, VECTOR2I to separation, VECTOR2I to textureRegionSize)
     TransferContext.callMethod(rawPtr,
@@ -296,7 +296,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   public fun setTileAnimationFrameDuration(
     atlasCoords: Vector2i,
     frameIndex: Long,
-    duration: Double
+    duration: Double,
   ): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frameIndex, DOUBLE to duration)
     TransferContext.callMethod(rawPtr,
@@ -354,7 +354,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   public fun setAlternativeTileId(
     atlasCoords: Vector2i,
     alternativeTile: Long,
-    newId: Long
+    newId: Long,
   ): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile, LONG to newId)
     TransferContext.callMethod(rawPtr,

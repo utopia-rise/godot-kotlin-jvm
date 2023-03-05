@@ -77,7 +77,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   }
 
   public enum class OpType(
-    id: Long
+    id: Long,
   ) {
     /**
      * A floating-point scalar.
@@ -112,7 +112,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long
+    id: Long,
   ) {
     /**
      * Sum of absolute derivative in `x` and `y`.
@@ -143,7 +143,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   }
 
   public enum class Precision(
-    id: Long
+    id: Long,
   ) {
     /**
      * No precision is specified, the GPU driver is allowed to use whatever level of precision it chooses. This is the default option and is equivalent to using `dFdx()` or `dFdy()` in text shaders.

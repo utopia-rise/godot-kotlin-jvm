@@ -218,7 +218,7 @@ public open class GridMap : Node3D() {
   public fun setCellItem(
     position: Vector3i,
     item: Long,
-    orientation: Long = 0
+    orientation: Long = 0,
   ): Unit {
     TransferContext.writeArguments(VECTOR3I to position, LONG to item, LONG to orientation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_CELL_ITEM, NIL)

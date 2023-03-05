@@ -136,7 +136,7 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   public enum class VisibilityUpdateMode(
-    id: Long
+    id: Long,
   ) {
     VISIBILITY_PROCESS_IDLE(0),
     VISIBILITY_PROCESS_PHYSICS(1),

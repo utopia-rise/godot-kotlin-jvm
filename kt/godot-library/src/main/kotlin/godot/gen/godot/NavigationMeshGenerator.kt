@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public object NavigationMeshGenerator : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_NAVIGATIONMESHGENERATOR)
+    getSingleton(ENGINECLASS_NAVIGATIONMESHGENERATOR)
     return false
   }
 

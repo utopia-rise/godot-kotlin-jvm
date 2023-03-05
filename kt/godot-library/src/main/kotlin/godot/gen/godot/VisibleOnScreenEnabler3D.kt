@@ -69,7 +69,7 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
   }
 
   public enum class EnableMode(
-    id: Long
+    id: Long,
   ) {
     /**
      *

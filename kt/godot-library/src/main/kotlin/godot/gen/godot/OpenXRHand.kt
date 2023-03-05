@@ -60,7 +60,7 @@ public open class OpenXRHand : Node3D() {
   }
 
   public enum class Hands(
-    id: Long
+    id: Long,
   ) {
     HAND_LEFT(0),
     HAND_RIGHT(1),
@@ -78,7 +78,7 @@ public open class OpenXRHand : Node3D() {
   }
 
   public enum class MotionRange(
-    id: Long
+    id: Long,
   ) {
     MOTION_RANGE_UNOBSTRUCTED(0),
     MOTION_RANGE_CONFORM_TO_CONTROLLER(1),

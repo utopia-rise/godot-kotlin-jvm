@@ -252,7 +252,7 @@ public open class TextureProgressBar : Range() {
   }
 
   public enum class FillMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The [textureProgress] fills from left to right.

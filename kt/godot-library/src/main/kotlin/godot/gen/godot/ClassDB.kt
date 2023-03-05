@@ -36,7 +36,7 @@ import kotlin.Suppress
 @GodotBaseType
 public object ClassDB : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_CLASSDB)
+    getSingleton(ENGINECLASS_CLASSDB)
     return false
   }
 
@@ -162,7 +162,7 @@ public object ClassDB : Object() {
   public fun classSetProperty(
     _object: Object,
     `property`: StringName,
-    `value`: Any
+    `value`: Any,
   ): GodotError {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_SET_PROPERTY, LONG)
@@ -175,7 +175,7 @@ public object ClassDB : Object() {
   public fun classHasMethod(
     _class: StringName,
     method: StringName,
-    noInheritance: Boolean = false
+    noInheritance: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to method, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_METHOD, BOOL)
@@ -232,7 +232,7 @@ public object ClassDB : Object() {
   public fun classHasEnum(
     _class: StringName,
     name: StringName,
-    noInheritance: Boolean = false
+    noInheritance: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_ENUM, BOOL)
@@ -256,7 +256,7 @@ public object ClassDB : Object() {
   public fun classGetEnumConstants(
     _class: StringName,
     _enum: StringName,
-    noInheritance: Boolean = false
+    noInheritance: Boolean = false,
   ): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to _enum, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_ENUM_CONSTANTS,
@@ -270,7 +270,7 @@ public object ClassDB : Object() {
   public fun classGetIntegerConstantEnum(
     _class: StringName,
     name: StringName,
-    noInheritance: Boolean = false
+    noInheritance: Boolean = false,
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr,

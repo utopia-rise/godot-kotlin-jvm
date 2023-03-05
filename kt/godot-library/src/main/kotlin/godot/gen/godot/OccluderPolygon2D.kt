@@ -80,7 +80,7 @@ public open class OccluderPolygon2D : Resource() {
   }
 
   public enum class CullMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Culling is disabled. See [cullMode].

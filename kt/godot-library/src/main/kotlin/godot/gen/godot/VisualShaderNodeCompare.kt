@@ -77,7 +77,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public enum class ComparisonType(
-    id: Long
+    id: Long,
   ) {
     /**
      * A floating-point scalar.
@@ -128,7 +128,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long
+    id: Long,
   ) {
     /**
      * Comparison for equality (`a == b`).
@@ -171,7 +171,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public enum class Condition(
-    id: Long
+    id: Long,
   ) {
     /**
      * The result will be true if all of component in vector satisfy the comparison condition.

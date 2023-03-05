@@ -226,7 +226,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   }
 
   public enum class Mode(
-    id: Long
+    id: Long,
   ) {
     MODE_DEPTH(0),
     MODE_SPIN(1),
@@ -244,7 +244,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   }
 
   public enum class PathRotation(
-    id: Long
+    id: Long,
   ) {
     PATH_ROTATION_POLYGON(0),
     PATH_ROTATION_PATH(1),
@@ -262,7 +262,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   }
 
   public enum class PathIntervalType(
-    id: Long
+    id: Long,
   ) {
     PATH_INTERVAL_DISTANCE(0),
     PATH_INTERVAL_SUBDIVIDE(1),

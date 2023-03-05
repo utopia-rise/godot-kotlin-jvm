@@ -70,7 +70,7 @@ public object XRServer : Object() {
   public val trackerRemoved: Signal2<StringName, Long> by signal("trackerName", "type")
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_XRSERVER)
+    getSingleton(ENGINECLASS_XRSERVER)
     return false
   }
 
@@ -222,7 +222,7 @@ public object XRServer : Object() {
   }
 
   public enum class TrackerType(
-    id: Long
+    id: Long,
   ) {
     /**
      * The tracker tracks the location of the players head. This is usually a location centered between the players eyes. Note that for handheld AR devices this can be the current location of the device.
@@ -265,7 +265,7 @@ public object XRServer : Object() {
   }
 
   public enum class RotationMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Fully reset the orientation of the HMD. Regardless of what direction the user is looking to in the real world. The user will look dead ahead in the virtual world.

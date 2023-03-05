@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class MIDIMessage(
-  id: Long
+  id: Long,
 ) {
   MIDI_MESSAGE_NONE(0),
   MIDI_MESSAGE_NOTE_OFF(8),

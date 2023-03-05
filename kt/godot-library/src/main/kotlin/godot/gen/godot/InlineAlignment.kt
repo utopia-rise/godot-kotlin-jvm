@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class InlineAlignment(
-  id: Long
+  id: Long,
 ) {
   INLINE_ALIGNMENT_TOP_TO(0),
   INLINE_ALIGNMENT_CENTER_TO(1),

@@ -40,7 +40,7 @@ import kotlin.Unit
 @GodotBaseType
 public object PhysicsServer3D : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_PHYSICSSERVER3D)
+    getSingleton(ENGINECLASS_PHYSICSSERVER3D)
     return false
   }
 
@@ -205,7 +205,7 @@ public object PhysicsServer3D : Object() {
   public fun spaceSetParam(
     space: RID,
     `param`: SpaceParameter,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to space, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_SET_PARAM,
@@ -266,7 +266,7 @@ public object PhysicsServer3D : Object() {
     area: RID,
     shape: RID,
     transform: Transform3D = Transform3D(),
-    disabled: Boolean = false
+    disabled: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to area, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_ADD_SHAPE, NIL)
@@ -278,7 +278,7 @@ public object PhysicsServer3D : Object() {
   public fun areaSetShape(
     area: RID,
     shapeIdx: Long,
-    shape: RID
+    shape: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, _RID to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_SHAPE, NIL)
@@ -290,7 +290,7 @@ public object PhysicsServer3D : Object() {
   public fun areaSetShapeTransform(
     area: RID,
     shapeIdx: Long,
-    transform: Transform3D
+    transform: Transform3D,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr,
@@ -303,7 +303,7 @@ public object PhysicsServer3D : Object() {
   public fun areaSetShapeDisabled(
     area: RID,
     shapeIdx: Long,
-    disabled: Boolean
+    disabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, BOOL to disabled)
     TransferContext.callMethod(rawPtr,
@@ -402,7 +402,7 @@ public object PhysicsServer3D : Object() {
   public fun areaSetParam(
     area: RID,
     `param`: AreaParameter,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_PARAM, NIL)
@@ -609,7 +609,7 @@ public object PhysicsServer3D : Object() {
     body: RID,
     shape: RID,
     transform: Transform3D = Transform3D(),
-    disabled: Boolean = false
+    disabled: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to body, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_SHAPE, NIL)
@@ -621,7 +621,7 @@ public object PhysicsServer3D : Object() {
   public fun bodySetShape(
     body: RID,
     shapeIdx: Long,
-    shape: RID
+    shape: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, _RID to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_SHAPE, NIL)
@@ -633,7 +633,7 @@ public object PhysicsServer3D : Object() {
   public fun bodySetShapeTransform(
     body: RID,
     shapeIdx: Long,
-    transform: Transform3D
+    transform: Transform3D,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr,
@@ -646,7 +646,7 @@ public object PhysicsServer3D : Object() {
   public fun bodySetShapeDisabled(
     body: RID,
     shapeIdx: Long,
-    disabled: Boolean
+    disabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, BOOL to disabled)
     TransferContext.callMethod(rawPtr,
@@ -749,7 +749,7 @@ public object PhysicsServer3D : Object() {
   public fun bodySetParam(
     body: RID,
     `param`: BodyParameter,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_PARAM, NIL)
@@ -779,7 +779,7 @@ public object PhysicsServer3D : Object() {
   public fun bodySetState(
     body: RID,
     state: BodyState,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_STATE, NIL)
@@ -817,7 +817,7 @@ public object PhysicsServer3D : Object() {
   public fun bodyApplyImpulse(
     body: RID,
     impulse: Vector3,
-    position: Vector3 = Vector3(0, 0, 0)
+    position: Vector3 = Vector3(0, 0, 0),
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_IMPULSE,
@@ -854,7 +854,7 @@ public object PhysicsServer3D : Object() {
   public fun bodyApplyForce(
     body: RID,
     force: Vector3,
-    position: Vector3 = Vector3(0, 0, 0)
+    position: Vector3 = Vector3(0, 0, 0),
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_FORCE,
@@ -889,7 +889,7 @@ public object PhysicsServer3D : Object() {
   public fun bodyAddConstantForce(
     body: RID,
     force: Vector3,
-    position: Vector3 = Vector3(0, 0, 0)
+    position: Vector3 = Vector3(0, 0, 0),
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
@@ -966,7 +966,7 @@ public object PhysicsServer3D : Object() {
   public fun bodySetAxisLock(
     body: RID,
     axis: BodyAxis,
-    lock: Boolean
+    lock: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to axis.id, BOOL to lock)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_AXIS_LOCK,
@@ -1053,7 +1053,7 @@ public object PhysicsServer3D : Object() {
   public fun bodySetForceIntegrationCallback(
     body: RID,
     callable: Callable,
-    userdata: Any? = null
+    userdata: Any? = null,
   ): Unit {
     TransferContext.writeArguments(_RID to body, CALLABLE to callable, ANY to userdata)
     TransferContext.callMethod(rawPtr,
@@ -1075,7 +1075,7 @@ public object PhysicsServer3D : Object() {
   public fun bodyTestMotion(
     body: RID,
     parameters: PhysicsTestMotionParameters3D,
-    result: PhysicsTestMotionResult3D? = null
+    result: PhysicsTestMotionResult3D? = null,
   ): Boolean {
     TransferContext.writeArguments(_RID to body, OBJECT to parameters, OBJECT to result)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_TEST_MOTION,
@@ -1128,7 +1128,7 @@ public object PhysicsServer3D : Object() {
     bodyA: RID,
     localA: Vector3,
     bodyB: RID,
-    localB: Vector3
+    localB: Vector3,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, VECTOR3 to localA, _RID to bodyB, VECTOR3 to localB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_PIN, NIL)
@@ -1140,7 +1140,7 @@ public object PhysicsServer3D : Object() {
   public fun pinJointSetParam(
     joint: RID,
     `param`: PinJointParam,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_SET_PARAM,
@@ -1203,7 +1203,7 @@ public object PhysicsServer3D : Object() {
     bodyA: RID,
     hingeA: Transform3D,
     bodyB: RID,
-    hingeB: Transform3D
+    hingeB: Transform3D,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to hingeA, _RID to bodyB, TRANSFORM3D to hingeB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_HINGE,
@@ -1216,7 +1216,7 @@ public object PhysicsServer3D : Object() {
   public fun hingeJointSetParam(
     joint: RID,
     `param`: HingeJointParam,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr,
@@ -1239,7 +1239,7 @@ public object PhysicsServer3D : Object() {
   public fun hingeJointSetFlag(
     joint: RID,
     flag: HingeJointFlag,
-    enabled: Boolean
+    enabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(rawPtr,
@@ -1264,7 +1264,7 @@ public object PhysicsServer3D : Object() {
     bodyA: RID,
     localRefA: Transform3D,
     bodyB: RID,
-    localRefB: Transform3D
+    localRefB: Transform3D,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_SLIDER,
@@ -1277,7 +1277,7 @@ public object PhysicsServer3D : Object() {
   public fun sliderJointSetParam(
     joint: RID,
     `param`: SliderJointParam,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr,
@@ -1302,7 +1302,7 @@ public object PhysicsServer3D : Object() {
     bodyA: RID,
     localRefA: Transform3D,
     bodyB: RID,
-    localRefB: Transform3D
+    localRefB: Transform3D,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
     TransferContext.callMethod(rawPtr,
@@ -1315,7 +1315,7 @@ public object PhysicsServer3D : Object() {
   public fun coneTwistJointSetParam(
     joint: RID,
     `param`: ConeTwistJointParam,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr,
@@ -1388,7 +1388,7 @@ public object PhysicsServer3D : Object() {
     bodyA: RID,
     localRefA: Transform3D,
     bodyB: RID,
-    localRefB: Transform3D
+    localRefB: Transform3D,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
     TransferContext.callMethod(rawPtr,
@@ -1402,7 +1402,7 @@ public object PhysicsServer3D : Object() {
     joint: RID,
     axis: Vector3.Axis,
     `param`: G6DOFJointAxisParam,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr,
@@ -1415,7 +1415,7 @@ public object PhysicsServer3D : Object() {
   public fun generic6dofJointGetParam(
     joint: RID,
     axis: Vector3.Axis,
-    `param`: G6DOFJointAxisParam
+    `param`: G6DOFJointAxisParam,
   ): Double {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id)
     TransferContext.callMethod(rawPtr,
@@ -1430,7 +1430,7 @@ public object PhysicsServer3D : Object() {
     joint: RID,
     axis: Vector3.Axis,
     flag: G6DOFJointAxisFlag,
-    enable: Boolean
+    enable: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to flag.id, BOOL to enable)
     TransferContext.callMethod(rawPtr,
@@ -1443,7 +1443,7 @@ public object PhysicsServer3D : Object() {
   public fun generic6dofJointGetFlag(
     joint: RID,
     axis: Vector3.Axis,
-    flag: G6DOFJointAxisFlag
+    flag: G6DOFJointAxisFlag,
   ): Boolean {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to flag.id)
     TransferContext.callMethod(rawPtr,
@@ -1478,7 +1478,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class JointType(
-    id: Long
+    id: Long,
   ) {
     /**
      * The [godot.Joint3D] is a [godot.PinJoint3D].
@@ -1517,7 +1517,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class PinJointParam(
-    id: Long
+    id: Long,
   ) {
     /**
      * The strength with which the pinned objects try to stay in positional relation to each other.
@@ -1548,7 +1548,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class HingeJointParam(
-    id: Long
+    id: Long,
   ) {
     /**
      * The speed with which the two bodies get pulled together when they move in different directions.
@@ -1595,7 +1595,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class HingeJointFlag(
-    id: Long
+    id: Long,
   ) {
     /**
      * If `true`, the Hinge has a maximum and a minimum rotation.
@@ -1618,7 +1618,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class SliderJointParam(
-    id: Long
+    id: Long,
   ) {
     /**
      * The maximum difference between the pivot points on their X axis before damping happens.
@@ -1725,7 +1725,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class ConeTwistJointParam(
-    id: Long
+    id: Long,
   ) {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
@@ -1770,7 +1770,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class G6DOFJointAxisParam(
-    id: Long
+    id: Long,
   ) {
     /**
      * The minimum difference between the pivot points' axes.
@@ -1849,7 +1849,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class G6DOFJointAxisFlag(
-    id: Long
+    id: Long,
   ) {
     /**
      * If set, linear motion is possible within the given limits.
@@ -1880,7 +1880,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class ShapeType(
-    id: Long
+    id: Long,
   ) {
     /**
      * The [godot.Shape3D] is a [godot.WorldBoundaryShape3D].
@@ -1939,7 +1939,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class AreaParameter(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to set/get gravity override mode in an area. See [enum AreaSpaceOverrideMode] for possible values.
@@ -2012,7 +2012,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class AreaSpaceOverrideMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * This area does not affect gravity/damp. These are generally areas that exist only to detect collisions, and objects entering or exiting them.
@@ -2047,7 +2047,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class BodyMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't collide with other bodies along its path when moved.
@@ -2078,7 +2078,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class BodyParameter(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to set/get a body's bounce factor.
@@ -2137,7 +2137,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class BodyDampMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The body's damping value is added to any value set in areas or the default value.
@@ -2160,7 +2160,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class BodyState(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to set/get the current transform matrix of the body.
@@ -2195,7 +2195,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class AreaBodyStatus(
-    id: Long
+    id: Long,
   ) {
     /**
      * The value of the first parameter and area callback function receives, when an object enters one of its shapes.
@@ -2218,7 +2218,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class ProcessInfo(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to get the number of objects that are not sleeping.
@@ -2245,7 +2245,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class SpaceParameter(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated.
@@ -2292,7 +2292,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class BodyAxis(
-    id: Long
+    id: Long,
   ) {
     /**
      *

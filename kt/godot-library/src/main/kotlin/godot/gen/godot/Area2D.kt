@@ -441,7 +441,7 @@ public open class Area2D : CollisionObject2D() {
   }
 
   public enum class SpaceOverride(
-    id: Long
+    id: Long,
   ) {
     /**
      * This area does not affect gravity/damping.

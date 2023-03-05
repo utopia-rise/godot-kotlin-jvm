@@ -33,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public object InputMap : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_INPUTMAP)
+    getSingleton(ENGINECLASS_INPUTMAP)
     return false
   }
 
@@ -143,7 +143,7 @@ public object InputMap : Object() {
   public fun eventIsAction(
     event: InputEvent,
     action: StringName,
-    exactMatch: Boolean = false
+    exactMatch: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(OBJECT to event, STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_EVENT_IS_ACTION, BOOL)

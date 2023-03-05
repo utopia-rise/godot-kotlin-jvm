@@ -157,7 +157,7 @@ public open class HashingContext : RefCounted() {
   }
 
   public enum class HashType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Hashing algorithm: MD5.

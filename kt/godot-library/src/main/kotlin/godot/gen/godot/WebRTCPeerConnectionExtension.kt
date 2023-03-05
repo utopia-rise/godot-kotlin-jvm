@@ -60,7 +60,7 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
   public open fun _addIceCandidate(
     pSdpMidName: String,
     pSdpMlineIndex: Long,
-    pSdpName: String
+    pSdpName: String,
   ): GodotError {
     throw NotImplementedError("_add_ice_candidate is not implemented for WebRTCPeerConnectionExtension")
   }

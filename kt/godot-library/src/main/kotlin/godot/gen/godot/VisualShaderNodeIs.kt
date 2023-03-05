@@ -45,7 +45,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long
+    id: Long,
   ) {
     /**
      * Comparison with `INF` (Infinity).

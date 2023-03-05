@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class Key(
-  id: Long
+  id: Long,
 ) {
   KEY_NONE(0),
   KEY_SPECIAL(4194304),

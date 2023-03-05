@@ -273,7 +273,7 @@ public open class Animation : Resource() {
   public fun positionTrackInsertKey(
     trackIdx: Long,
     time: Double,
-    position: Vector3
+    position: Vector3,
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_POSITION_TRACK_INSERT_KEY,
@@ -287,7 +287,7 @@ public open class Animation : Resource() {
   public fun rotationTrackInsertKey(
     trackIdx: Long,
     time: Double,
-    rotation: Quaternion
+    rotation: Quaternion,
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, QUATERNION to rotation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_ROTATION_TRACK_INSERT_KEY,
@@ -301,7 +301,7 @@ public open class Animation : Resource() {
   public fun scaleTrackInsertKey(
     trackIdx: Long,
     time: Double,
-    scale: Vector3
+    scale: Vector3,
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, VECTOR3 to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_SCALE_TRACK_INSERT_KEY,
@@ -315,7 +315,7 @@ public open class Animation : Resource() {
   public fun blendShapeTrackInsertKey(
     trackIdx: Long,
     time: Double,
-    amount: Double
+    amount: Double,
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, DOUBLE to amount)
     TransferContext.callMethod(rawPtr,
@@ -330,7 +330,7 @@ public open class Animation : Resource() {
     trackIdx: Long,
     time: Double,
     key: Any,
-    transition: Double = 1.0
+    transition: Double = 1.0,
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, ANY to key, DOUBLE to transition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_INSERT_KEY, LONG)
@@ -360,7 +360,7 @@ public open class Animation : Resource() {
   public fun trackSetKeyValue(
     trackIdx: Long,
     key: Long,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to key, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_KEY_VALUE, NIL)
@@ -372,7 +372,7 @@ public open class Animation : Resource() {
   public fun trackSetKeyTransition(
     trackIdx: Long,
     keyIdx: Long,
-    transition: Double
+    transition: Double,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, DOUBLE to transition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_KEY_TRANSITION,
@@ -385,7 +385,7 @@ public open class Animation : Resource() {
   public fun trackSetKeyTime(
     trackIdx: Long,
     keyIdx: Long,
-    time: Double
+    time: Double,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, DOUBLE to time)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_KEY_TIME, NIL)
@@ -435,7 +435,7 @@ public open class Animation : Resource() {
   public fun trackFindKey(
     trackIdx: Long,
     time: Double,
-    findMode: FindMode = Animation.FindMode.FIND_MODE_NEAREST
+    findMode: FindMode = Animation.FindMode.FIND_MODE_NEAREST,
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, LONG to findMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_FIND_KEY, LONG)
@@ -548,7 +548,7 @@ public open class Animation : Resource() {
     time: Double,
     `value`: Double,
     inHandle: Vector2 = Vector2(0, 0),
-    outHandle: Vector2 = Vector2(0, 0)
+    outHandle: Vector2 = Vector2(0, 0),
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, DOUBLE to value, VECTOR2 to inHandle, VECTOR2 to outHandle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_INSERT_KEY,
@@ -562,7 +562,7 @@ public open class Animation : Resource() {
   public fun bezierTrackSetKeyValue(
     trackIdx: Long,
     keyIdx: Long,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, DOUBLE to value)
     TransferContext.callMethod(rawPtr,
@@ -576,7 +576,7 @@ public open class Animation : Resource() {
     trackIdx: Long,
     keyIdx: Long,
     inHandle: Vector2,
-    balancedValueTimeRatio: Double = 1.0
+    balancedValueTimeRatio: Double = 1.0,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, VECTOR2 to inHandle, DOUBLE to balancedValueTimeRatio)
     TransferContext.callMethod(rawPtr,
@@ -590,7 +590,7 @@ public open class Animation : Resource() {
     trackIdx: Long,
     keyIdx: Long,
     outHandle: Vector2,
-    balancedValueTimeRatio: Double = 1.0
+    balancedValueTimeRatio: Double = 1.0,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, VECTOR2 to outHandle, DOUBLE to balancedValueTimeRatio)
     TransferContext.callMethod(rawPtr,
@@ -647,7 +647,7 @@ public open class Animation : Resource() {
     time: Double,
     stream: Resource,
     startOffset: Double = 0.0,
-    endOffset: Double = 0.0
+    endOffset: Double = 0.0,
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, OBJECT to stream, DOUBLE to startOffset, DOUBLE to endOffset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_INSERT_KEY,
@@ -661,7 +661,7 @@ public open class Animation : Resource() {
   public fun audioTrackSetKeyStream(
     trackIdx: Long,
     keyIdx: Long,
-    stream: Resource
+    stream: Resource,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, OBJECT to stream)
     TransferContext.callMethod(rawPtr,
@@ -674,7 +674,7 @@ public open class Animation : Resource() {
   public fun audioTrackSetKeyStartOffset(
     trackIdx: Long,
     keyIdx: Long,
-    offset: Double
+    offset: Double,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, DOUBLE to offset)
     TransferContext.callMethod(rawPtr,
@@ -687,7 +687,7 @@ public open class Animation : Resource() {
   public fun audioTrackSetKeyEndOffset(
     trackIdx: Long,
     keyIdx: Long,
-    offset: Double
+    offset: Double,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, DOUBLE to offset)
     TransferContext.callMethod(rawPtr,
@@ -753,7 +753,7 @@ public open class Animation : Resource() {
   public fun animationTrackInsertKey(
     trackIdx: Long,
     time: Double,
-    animation: StringName
+    animation: StringName,
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, STRING_NAME to animation)
     TransferContext.callMethod(rawPtr,
@@ -767,7 +767,7 @@ public open class Animation : Resource() {
   public fun animationTrackSetKeyAnimation(
     trackIdx: Long,
     keyIdx: Long,
-    animation: StringName
+    animation: StringName,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, STRING_NAME to animation)
     TransferContext.callMethod(rawPtr,
@@ -808,14 +808,14 @@ public open class Animation : Resource() {
   public fun compress(
     pageSize: Long = 8192,
     fps: Long = 120,
-    splitTolerance: Double = 4.0
+    splitTolerance: Double = 4.0,
   ): Unit {
     TransferContext.writeArguments(LONG to pageSize, LONG to fps, DOUBLE to splitTolerance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_COMPRESS, NIL)
   }
 
   public enum class TrackType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Value tracks set values in node properties, but only those which can be interpolated. For 3D position/rotation/scale, using the dedicated [godot.TYPE_POSITION_3D], [godot.TYPE_ROTATION_3D] and [godot.TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for performance reasons.
@@ -866,7 +866,7 @@ public open class Animation : Resource() {
   }
 
   public enum class InterpolationType(
-    id: Long
+    id: Long,
   ) {
     /**
      * No interpolation (nearest value).
@@ -905,7 +905,7 @@ public open class Animation : Resource() {
   }
 
   public enum class UpdateMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Update between keyframes and hold the value.
@@ -932,7 +932,7 @@ public open class Animation : Resource() {
   }
 
   public enum class LoopMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * At both ends of the animation, the animation will stop playing.
@@ -959,7 +959,7 @@ public open class Animation : Resource() {
   }
 
   public enum class LoopedFlag(
-    id: Long
+    id: Long,
   ) {
     /**
      * This flag indicates that the animation proceeds without any looping.
@@ -986,7 +986,7 @@ public open class Animation : Resource() {
   }
 
   public enum class FindMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Finds the nearest time key.

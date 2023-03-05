@@ -46,7 +46,7 @@ import kotlin.Unit
 @GodotBaseType
 public object ProjectSettings : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_PROJECTSETTINGS)
+    getSingleton(ENGINECLASS_PROJECTSETTINGS)
     return false
   }
 
@@ -347,7 +347,7 @@ public object ProjectSettings : Object() {
   public fun loadResourcePack(
     pack: String,
     replaceFiles: Boolean = true,
-    offset: Long = 0
+    offset: Long = 0,
   ): Boolean {
     TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOAD_RESOURCE_PACK,

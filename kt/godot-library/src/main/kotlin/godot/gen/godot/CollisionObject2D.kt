@@ -166,7 +166,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   public open fun _inputEvent(
     viewport: Viewport,
     event: InputEvent,
-    shapeIdx: Long
+    shapeIdx: Long,
   ): Unit {
   }
 
@@ -424,7 +424,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   public enum class DisableMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * When [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [godot.CollisionObject2D].

@@ -45,7 +45,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
   }
 
   public enum class OpType(
-    id: Long
+    id: Long,
   ) {
     /**
      * A 2D vector type.

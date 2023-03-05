@@ -614,7 +614,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontSetAscent(
     fontRid: RID,
     size: Long,
-    ascent: Double
+    ascent: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, DOUBLE to ascent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_ASCENT, NIL)
@@ -635,7 +635,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontSetDescent(
     fontRid: RID,
     size: Long,
-    descent: Double
+    descent: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, DOUBLE to descent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_DESCENT, NIL)
@@ -656,7 +656,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontSetUnderlinePosition(
     fontRid: RID,
     size: Long,
-    underlinePosition: Double
+    underlinePosition: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, DOUBLE to underlinePosition)
     TransferContext.callMethod(rawPtr,
@@ -679,7 +679,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontSetUnderlineThickness(
     fontRid: RID,
     size: Long,
-    underlineThickness: Double
+    underlineThickness: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, DOUBLE to underlineThickness)
     TransferContext.callMethod(rawPtr,
@@ -702,7 +702,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontSetScale(
     fontRid: RID,
     size: Long,
-    scale: Double
+    scale: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, DOUBLE to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_SCALE, NIL)
@@ -745,7 +745,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontRemoveTexture(
     fontRid: RID,
     size: Vector2i,
-    textureIndex: Long
+    textureIndex: Long,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_REMOVE_TEXTURE, NIL)
@@ -758,7 +758,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
-    image: Image
+    image: Image,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex, OBJECT to image)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_TEXTURE_IMAGE,
@@ -771,7 +771,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetTextureImage(
     fontRid: RID,
     size: Vector2i,
-    textureIndex: Long
+    textureIndex: Long,
   ): Image? {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_TEXTURE_IMAGE,
@@ -786,7 +786,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
-    offset: PackedInt32Array
+    offset: PackedInt32Array,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex, PACKED_INT_32_ARRAY to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_TEXTURE_OFFSETS,
@@ -799,7 +799,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetTextureOffsets(
     fontRid: RID,
     size: Vector2i,
-    textureIndex: Long
+    textureIndex: Long,
   ): PackedInt32Array {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_TEXTURE_OFFSETS,
@@ -835,7 +835,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontRemoveGlyph(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_REMOVE_GLYPH, NIL)
@@ -849,7 +849,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetGlyphAdvance(
     fontRid: RID,
     size: Long,
-    glyph: Long
+    glyph: Long,
   ): Vector2 {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_ADVANCE,
@@ -866,7 +866,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Long,
     glyph: Long,
-    advance: Vector2
+    advance: Vector2,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to glyph, VECTOR2 to advance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_GLYPH_ADVANCE,
@@ -879,7 +879,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetGlyphOffset(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Vector2 {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_OFFSET,
@@ -894,7 +894,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
-    offset: Vector2
+    offset: Vector2,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_GLYPH_OFFSET,
@@ -907,7 +907,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetGlyphSize(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Vector2 {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_SIZE,
@@ -922,7 +922,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
-    glSize: Vector2
+    glSize: Vector2,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, VECTOR2 to glSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_GLYPH_SIZE, NIL)
@@ -934,7 +934,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetGlyphUvRect(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Rect2 {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_UV_RECT,
@@ -949,7 +949,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
-    uvRect: Rect2
+    uvRect: Rect2,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, RECT2 to uvRect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_GLYPH_UV_RECT,
@@ -962,7 +962,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetGlyphTextureIdx(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Long {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr,
@@ -977,7 +977,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
-    textureIdx: Long
+    textureIdx: Long,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, LONG to textureIdx)
     TransferContext.callMethod(rawPtr,
@@ -992,7 +992,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetGlyphTextureRid(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): RID {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr,
@@ -1008,7 +1008,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetGlyphTextureSize(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Vector2 {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr,
@@ -1028,7 +1028,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetGlyphContours(
     font: RID,
     size: Long,
-    index: Long
+    index: Long,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to font, LONG to size, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_CONTOURS,
@@ -1061,7 +1061,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontRemoveKerning(
     fontRid: RID,
     size: Long,
-    glyphPair: Vector2i
+    glyphPair: Vector2i,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, VECTOR2I to glyphPair)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_REMOVE_KERNING, NIL)
@@ -1074,7 +1074,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Long,
     glyphPair: Vector2i,
-    kerning: Vector2
+    kerning: Vector2,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, VECTOR2I to glyphPair, VECTOR2 to kerning)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_KERNING, NIL)
@@ -1086,7 +1086,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetKerning(
     fontRid: RID,
     size: Long,
-    glyphPair: Vector2i
+    glyphPair: Vector2i,
   ): Vector2 {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, VECTOR2I to glyphPair)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_KERNING,
@@ -1101,7 +1101,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Long,
     char: Long,
-    variationSelector: Long
+    variationSelector: Long,
   ): Long {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to char, LONG to variationSelector)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_INDEX,
@@ -1135,7 +1135,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Vector2i,
     start: Long,
-    end: Long
+    end: Long,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to start, LONG to end)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_RENDER_RANGE, NIL)
@@ -1147,7 +1147,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontRenderGlyph(
     fontRid: RID,
     size: Vector2i,
-    index: Long
+    index: Long,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_RENDER_GLYPH, NIL)
@@ -1166,7 +1166,7 @@ public open class TextServer internal constructor() : RefCounted() {
     size: Long,
     pos: Vector2,
     index: Long,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, _RID to canvas, LONG to size, VECTOR2 to pos, LONG to index, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_DRAW_GLYPH, NIL)
@@ -1186,7 +1186,7 @@ public open class TextServer internal constructor() : RefCounted() {
     outlineSize: Long,
     pos: Vector2,
     index: Long,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, _RID to canvas, LONG to size, LONG to outlineSize, VECTOR2 to pos, LONG to index, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_DRAW_GLYPH_OUTLINE,
@@ -1209,7 +1209,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontSetLanguageSupportOverride(
     fontRid: RID,
     language: String,
-    supported: Boolean
+    supported: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, STRING to language, BOOL to supported)
     TransferContext.callMethod(rawPtr,
@@ -1262,7 +1262,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontSetScriptSupportOverride(
     fontRid: RID,
     script: String,
-    supported: Boolean
+    supported: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, STRING to script, BOOL to supported)
     TransferContext.callMethod(rawPtr,
@@ -1377,7 +1377,7 @@ public open class TextServer internal constructor() : RefCounted() {
     size: Long,
     pos: Vector2,
     index: Long,
-    color: Color
+    color: Color,
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, LONG to size, VECTOR2 to pos, LONG to index, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_DRAW_HEX_CODE_BOX, NIL)
@@ -1535,7 +1535,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun shapedTextSetSpacing(
     shaped: RID,
     spacing: SpacingType,
-    `value`: Long
+    `value`: Long,
   ): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to spacing.id, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_SET_SPACING,
@@ -1562,7 +1562,7 @@ public open class TextServer internal constructor() : RefCounted() {
     size: Long,
     opentypeFeatures: Dictionary<Any?, Any?> = Dictionary(),
     language: String = "",
-    meta: Any? = null
+    meta: Any? = null,
   ): Boolean {
     TransferContext.writeArguments(_RID to shaped, STRING to text, ARRAY to fonts, LONG to size, DICTIONARY to opentypeFeatures, STRING to language, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_ADD_STRING,
@@ -1579,7 +1579,7 @@ public open class TextServer internal constructor() : RefCounted() {
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     length: Long = 1,
-    baseline: Double = 0.0
+    baseline: Double = 0.0,
   ): Boolean {
     TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_ADD_OBJECT,
@@ -1595,7 +1595,7 @@ public open class TextServer internal constructor() : RefCounted() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    baseline: Double = 0.0
+    baseline: Double = 0.0,
   ): Boolean {
     TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr,
@@ -1631,7 +1631,7 @@ public open class TextServer internal constructor() : RefCounted() {
     index: Long,
     fonts: VariantArray<RID>,
     size: Long,
-    opentypeFeatures: Dictionary<Any?, Any?> = Dictionary()
+    opentypeFeatures: Dictionary<Any?, Any?> = Dictionary(),
   ): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to index, ARRAY to fonts, LONG to size, DICTIONARY to opentypeFeatures)
     TransferContext.callMethod(rawPtr,
@@ -1644,7 +1644,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun shapedTextSubstr(
     shaped: RID,
     start: Long,
-    length: Long
+    length: Long,
   ): RID {
     TransferContext.writeArguments(_RID to shaped, LONG to start, LONG to length)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_SUBSTR, _RID)
@@ -1667,7 +1667,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun shapedTextFitToWidth(
     shaped: RID,
     width: Double,
-    jstFlags: Long = 3
+    jstFlags: Long = 3,
   ): Double {
     TransferContext.writeArguments(_RID to shaped, DOUBLE to width, OBJECT to jstFlags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_FIT_TO_WIDTH,
@@ -1754,7 +1754,7 @@ public open class TextServer internal constructor() : RefCounted() {
     width: PackedFloat32Array,
     start: Long = 0,
     once: Boolean = true,
-    breakFlags: Long = 3
+    breakFlags: Long = 3,
   ): PackedInt32Array {
     TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start, BOOL to once, OBJECT to breakFlags)
     TransferContext.callMethod(rawPtr,
@@ -1769,7 +1769,7 @@ public open class TextServer internal constructor() : RefCounted() {
     shaped: RID,
     width: Double,
     start: Long = 0,
-    breakFlags: Long = 3
+    breakFlags: Long = 3,
   ): PackedInt32Array {
     TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to start, OBJECT to breakFlags)
     TransferContext.callMethod(rawPtr,
@@ -1833,7 +1833,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun shapedTextOverrunTrimToWidth(
     shaped: RID,
     width: Double = 0.0,
-    overrunTrimFlags: Long = 0
+    overrunTrimFlags: Long = 0,
   ): Unit {
     TransferContext.writeArguments(_RID to shaped, DOUBLE to width, OBJECT to overrunTrimFlags)
     TransferContext.callMethod(rawPtr,
@@ -1940,7 +1940,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun shapedTextGetSelection(
     shaped: RID,
     start: Long,
-    end: Long
+    end: Long,
   ): PackedVector2Array {
     TransferContext.writeArguments(_RID to shaped, LONG to start, LONG to end)
     TransferContext.callMethod(rawPtr,
@@ -2007,7 +2007,7 @@ public open class TextServer internal constructor() : RefCounted() {
     pos: Vector2,
     clipL: Double = -1.0,
     clipR: Double = -1.0,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to shaped, _RID to canvas, VECTOR2 to pos, DOUBLE to clipL, DOUBLE to clipR, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_DRAW, NIL)
@@ -2023,7 +2023,7 @@ public open class TextServer internal constructor() : RefCounted() {
     clipL: Double = -1.0,
     clipR: Double = -1.0,
     outlineSize: Long = 1,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to shaped, _RID to canvas, VECTOR2 to pos, DOUBLE to clipL, DOUBLE to clipR, LONG to outlineSize, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_DRAW_OUTLINE,
@@ -2036,7 +2036,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun shapedTextGetDominantDirectionInRange(
     shaped: RID,
     start: Long,
-    end: Long
+    end: Long,
   ): Direction {
     TransferContext.writeArguments(_RID to shaped, LONG to start, LONG to end)
     TransferContext.callMethod(rawPtr,
@@ -2087,7 +2087,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun stringGetWordBreaks(
     string: String,
     language: String = "",
-    charsPerLine: Long = 0
+    charsPerLine: Long = 0,
   ): PackedInt32Array {
     TransferContext.writeArguments(STRING to string, STRING to language, LONG to charsPerLine)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_STRING_GET_WORD_BREAKS,
@@ -2188,7 +2188,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun parseStructuredText(
     parserType: StructuredTextParser,
     args: VariantArray<Any?>,
-    text: String
+    text: String,
   ): VariantArray<Vector3i> {
     TransferContext.writeArguments(LONG to parserType.id, ARRAY to args, STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_PARSE_STRUCTURED_TEXT,
@@ -2197,7 +2197,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class FontAntialiasing(
-    id: Long
+    id: Long,
   ) {
     /**
      * Font glyphs are rasterized as 1-bit bitmaps.
@@ -2228,7 +2228,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class FontLCDSubpixelLayout(
-    id: Long
+    id: Long,
   ) {
     /**
      * Unknown or unsupported subpixel layout, LCD subpixel antialiasing is disabled.
@@ -2267,7 +2267,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class Direction(
-    id: Long
+    id: Long,
   ) {
     /**
      * Text direction is determined based on contents and current locale.
@@ -2298,7 +2298,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class Orientation(
-    id: Long
+    id: Long,
   ) {
     /**
      * Text is written horizontally.
@@ -2323,7 +2323,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class JustificationFlag(
-    id: Long
+    id: Long,
   ) {
     /**
      * Do not justify text.
@@ -2362,7 +2362,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class AutowrapMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Autowrap is disabled.
@@ -2393,7 +2393,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class LineBreakFlag(
-    id: Long
+    id: Long,
   ) {
     /**
      * Do not break the line.
@@ -2432,7 +2432,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class VisibleCharactersBehavior(
-    id: Long
+    id: Long,
   ) {
     /**
      * Trims text before the shaping. e.g, increasing [godot.Label.visibleCharacters] or [godot.RichTextLabel.visibleCharacters] value is visually identical to typing the text.
@@ -2467,7 +2467,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class OverrunBehavior(
-    id: Long
+    id: Long,
   ) {
     /**
      * No text trimming is performed.
@@ -2502,7 +2502,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class TextOverrunFlag(
-    id: Long
+    id: Long,
   ) {
     /**
      * No trimming is performed.
@@ -2541,7 +2541,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class GraphemeFlag(
-    id: Long
+    id: Long,
   ) {
     /**
      * Grapheme is supported by the font, and can be drawn.
@@ -2604,7 +2604,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class Hinting(
-    id: Long
+    id: Long,
   ) {
     /**
      * Disables font hinting (smoother but less crisp).
@@ -2633,7 +2633,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class SubpixelPositioning(
-    id: Long
+    id: Long,
   ) {
     /**
      * Glyph horizontal position is rounded to the whole pixel size, each glyph is rasterized once.
@@ -2678,7 +2678,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class Feature(
-    id: Long
+    id: Long,
   ) {
     /**
      * TextServer supports simple text layouts.
@@ -2753,7 +2753,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class ContourPointTag(
-    id: Long
+    id: Long,
   ) {
     /**
      * Contour point is on the curve.
@@ -2780,7 +2780,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class SpacingType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Spacing for each glyph.
@@ -2815,7 +2815,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class FontStyle(
-    id: Long
+    id: Long,
   ) {
     /**
      * Font is bold.
@@ -2842,7 +2842,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class StructuredTextParser(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use default Unicode BiDi algorithm.

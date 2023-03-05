@@ -126,7 +126,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public enum class Hint(
-    id: Long
+    id: Long,
   ) {
     /**
      * The parameter will not constrain its value.

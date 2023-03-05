@@ -282,7 +282,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public enum class ColorModeType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Allows editing the color with Red/Green/Blue sliders.
@@ -317,7 +317,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public enum class PickerShapeType(
-    id: Long
+    id: Long,
   ) {
     /**
      * HSV Color Model rectangle color space.

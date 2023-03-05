@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public object PhysicsServer2DManager : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_PHYSICSSERVER2DMANAGER)
+    getSingleton(ENGINECLASS_PHYSICSSERVER2DMANAGER)
     return false
   }
 

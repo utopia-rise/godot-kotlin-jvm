@@ -45,7 +45,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
     stream: AudioStream,
     fromOffset: Double = 0.0,
     volumeDb: Double = 0.0,
-    pitchScale: Double = 1.0
+    pitchScale: Double = 1.0,
   ): Long {
     TransferContext.writeArguments(OBJECT to stream, DOUBLE to fromOffset, DOUBLE to volumeDb, DOUBLE to pitchScale)
     TransferContext.callMethod(rawPtr,

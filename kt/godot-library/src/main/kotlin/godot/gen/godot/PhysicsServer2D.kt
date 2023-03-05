@@ -53,7 +53,7 @@ import kotlin.Unit
 @GodotBaseType
 public object PhysicsServer2D : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_PHYSICSSERVER2D)
+    getSingleton(ENGINECLASS_PHYSICSSERVER2D)
     return false
   }
 
@@ -216,7 +216,7 @@ public object PhysicsServer2D : Object() {
   public fun spaceSetParam(
     space: RID,
     `param`: SpaceParameter,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to space, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_SET_PARAM,
@@ -279,7 +279,7 @@ public object PhysicsServer2D : Object() {
     area: RID,
     shape: RID,
     transform: Transform2D = Transform2D(),
-    disabled: Boolean = false
+    disabled: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to area, _RID to shape, TRANSFORM2D to transform, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_ADD_SHAPE, NIL)
@@ -291,7 +291,7 @@ public object PhysicsServer2D : Object() {
   public fun areaSetShape(
     area: RID,
     shapeIdx: Long,
-    shape: RID
+    shape: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, _RID to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_SHAPE, NIL)
@@ -303,7 +303,7 @@ public object PhysicsServer2D : Object() {
   public fun areaSetShapeTransform(
     area: RID,
     shapeIdx: Long,
-    transform: Transform2D
+    transform: Transform2D,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr,
@@ -316,7 +316,7 @@ public object PhysicsServer2D : Object() {
   public fun areaSetShapeDisabled(
     area: RID,
     shapeIdx: Long,
-    disabled: Boolean
+    disabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, BOOL to disabled)
     TransferContext.callMethod(rawPtr,
@@ -415,7 +415,7 @@ public object PhysicsServer2D : Object() {
   public fun areaSetParam(
     area: RID,
     `param`: AreaParameter,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_PARAM, NIL)
@@ -595,7 +595,7 @@ public object PhysicsServer2D : Object() {
     body: RID,
     shape: RID,
     transform: Transform2D = Transform2D(),
-    disabled: Boolean = false
+    disabled: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to body, _RID to shape, TRANSFORM2D to transform, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_SHAPE, NIL)
@@ -607,7 +607,7 @@ public object PhysicsServer2D : Object() {
   public fun bodySetShape(
     body: RID,
     shapeIdx: Long,
-    shape: RID
+    shape: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, _RID to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SHAPE, NIL)
@@ -619,7 +619,7 @@ public object PhysicsServer2D : Object() {
   public fun bodySetShapeTransform(
     body: RID,
     shapeIdx: Long,
-    transform: Transform2D
+    transform: Transform2D,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr,
@@ -680,7 +680,7 @@ public object PhysicsServer2D : Object() {
   public fun bodySetShapeDisabled(
     body: RID,
     shapeIdx: Long,
-    disabled: Boolean
+    disabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, BOOL to disabled)
     TransferContext.callMethod(rawPtr,
@@ -694,7 +694,7 @@ public object PhysicsServer2D : Object() {
     body: RID,
     shapeIdx: Long,
     enable: Boolean,
-    margin: Double
+    margin: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, BOOL to enable, DOUBLE to margin)
     TransferContext.callMethod(rawPtr,
@@ -823,7 +823,7 @@ public object PhysicsServer2D : Object() {
   public fun bodySetParam(
     body: RID,
     `param`: BodyParameter,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_PARAM, NIL)
@@ -855,7 +855,7 @@ public object PhysicsServer2D : Object() {
   public fun bodySetState(
     body: RID,
     state: BodyState,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_STATE, NIL)
@@ -904,7 +904,7 @@ public object PhysicsServer2D : Object() {
   public fun bodyApplyImpulse(
     body: RID,
     impulse: Vector2,
-    position: Vector2 = Vector2(0, 0)
+    position: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to impulse, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_IMPULSE,
@@ -930,7 +930,7 @@ public object PhysicsServer2D : Object() {
   public fun bodyApplyForce(
     body: RID,
     force: Vector2,
-    position: Vector2 = Vector2(0, 0)
+    position: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_FORCE,
@@ -965,7 +965,7 @@ public object PhysicsServer2D : Object() {
   public fun bodyAddConstantForce(
     body: RID,
     force: Vector2,
-    position: Vector2 = Vector2(0, 0)
+    position: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
@@ -1106,7 +1106,7 @@ public object PhysicsServer2D : Object() {
   public fun bodySetForceIntegrationCallback(
     body: RID,
     callable: Callable,
-    userdata: Any? = null
+    userdata: Any? = null,
   ): Unit {
     TransferContext.writeArguments(_RID to body, CALLABLE to callable, ANY to userdata)
     TransferContext.callMethod(rawPtr,
@@ -1119,7 +1119,7 @@ public object PhysicsServer2D : Object() {
   public fun bodyTestMotion(
     body: RID,
     parameters: PhysicsTestMotionParameters2D,
-    result: PhysicsTestMotionResult2D? = null
+    result: PhysicsTestMotionResult2D? = null,
   ): Boolean {
     TransferContext.writeArguments(_RID to body, OBJECT to parameters, OBJECT to result)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_TEST_MOTION,
@@ -1160,7 +1160,7 @@ public object PhysicsServer2D : Object() {
   public fun jointSetParam(
     joint: RID,
     `param`: JointParam,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_SET_PARAM,
@@ -1203,7 +1203,7 @@ public object PhysicsServer2D : Object() {
     joint: RID,
     anchor: Vector2,
     bodyA: RID,
-    bodyB: RID = RID()
+    bodyB: RID = RID(),
   ): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to anchor, _RID to bodyA, _RID to bodyB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_PIN, NIL)
@@ -1218,7 +1218,7 @@ public object PhysicsServer2D : Object() {
     groove2A: Vector2,
     anchorB: Vector2,
     bodyA: RID = RID(),
-    bodyB: RID = RID()
+    bodyB: RID = RID(),
   ): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to groove1A, VECTOR2 to groove2A, VECTOR2 to anchorB, _RID to bodyA, _RID to bodyB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_GROOVE,
@@ -1233,7 +1233,7 @@ public object PhysicsServer2D : Object() {
     anchorA: Vector2,
     anchorB: Vector2,
     bodyA: RID,
-    bodyB: RID = RID()
+    bodyB: RID = RID(),
   ): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to anchorA, VECTOR2 to anchorB, _RID to bodyA, _RID to bodyB)
     TransferContext.callMethod(rawPtr,
@@ -1246,7 +1246,7 @@ public object PhysicsServer2D : Object() {
   public fun pinJointSetParam(
     joint: RID,
     `param`: PinJointParam,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_PIN_JOINT_SET_PARAM,
@@ -1269,7 +1269,7 @@ public object PhysicsServer2D : Object() {
   public fun dampedSpringJointSetParam(
     joint: RID,
     `param`: DampedSpringParam,
-    `value`: Double
+    `value`: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr,
@@ -1323,7 +1323,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class SpaceParameter(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated. The default value of this parameter is [godot.ProjectSettings.physics/2d/solver/contactRecycleRadius].
@@ -1374,7 +1374,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class ShapeType(
-    id: Long
+    id: Long,
   ) {
     /**
      * This is the constant for creating world boundary shapes. A world boundary shape is an *infinite* line with an origin point, and a normal. Thus, it can be used for front/behind checks.
@@ -1425,7 +1425,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class AreaParameter(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to set/get gravity override mode in an area. See [enum AreaSpaceOverrideMode] for possible values. The default value of this parameter is [AREA_SPACE_OVERRIDE_DISABLED].
@@ -1482,7 +1482,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class AreaSpaceOverrideMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * This area does not affect gravity/damp. These are generally areas that exist only to detect collisions, and objects entering or exiting them.
@@ -1517,7 +1517,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class BodyMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't collide with other bodies along its path when moved.
@@ -1548,7 +1548,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class BodyParameter(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to set/get a body's bounce factor. The default value of this parameter is `0.0`.
@@ -1611,7 +1611,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class BodyDampMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The body's damping value is added to any value set in areas or the default value.
@@ -1634,7 +1634,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class BodyState(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to set/get the current transform matrix of the body.
@@ -1669,7 +1669,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class JointType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to create pin joints.
@@ -1700,7 +1700,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class JointParam(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to set/get how fast the joint pulls the bodies back to satisfy the joint constraint. The lower the value, the more the two bodies can pull on the joint. The default value of this parameter is `0.0`.
@@ -1733,7 +1733,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class PinJointParam(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to set/get a how much the bond of the pin joint can flex. The default value of this parameter is `0.0`.
@@ -1752,7 +1752,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class DampedSpringParam(
-    id: Long
+    id: Long,
   ) {
     /**
      * Sets the resting length of the spring joint. The joint will always try to go to back this length when pulled apart. The default value of this parameter is the distance between the joint's anchor points.
@@ -1779,7 +1779,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class CCDMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Disables continuous collision detection. This is the fastest way to detect body collisions, but it can miss small and/or fast-moving objects.
@@ -1806,7 +1806,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class AreaBodyStatus(
-    id: Long
+    id: Long,
   ) {
     /**
      * The value of the first parameter and area callback function receives, when an object enters one of its shapes.
@@ -1829,7 +1829,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class ProcessInfo(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to get the number of objects that are not sleeping.

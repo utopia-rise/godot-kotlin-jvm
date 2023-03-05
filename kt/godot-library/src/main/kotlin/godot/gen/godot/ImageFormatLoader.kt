@@ -25,7 +25,7 @@ public open class ImageFormatLoader internal constructor() : RefCounted() {
   }
 
   public enum class LoaderFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      *

@@ -45,7 +45,7 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long
+    id: Long,
   ) {
     /**
      * Returns the absolute value of the parameter. Translates to `abs(x)` in the Godot Shader Language.

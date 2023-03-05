@@ -682,7 +682,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   public enum class Parameter(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set initial velocity properties.
@@ -761,7 +761,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   public enum class ParticleFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
@@ -792,7 +792,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   public enum class EmissionShape(
-    id: Long
+    id: Long,
   ) {
     /**
      * All particles will be emitted from a single point.
@@ -839,7 +839,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   public enum class SubEmitterMode(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -874,7 +874,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   public enum class CollisionMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * No collision for particles. Particles will go through [godot.GPUParticlesCollision3D] nodes.

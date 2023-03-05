@@ -110,7 +110,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   }
 
   public enum class Orientation(
-    id: Long
+    id: Long,
   ) {
     /**
      * [godot.PlaneMesh] will face the positive X-axis.

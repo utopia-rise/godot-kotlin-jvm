@@ -156,7 +156,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public enum class Format(
-    id: Long
+    id: Long,
   ) {
     /**
      * 8-bit audio codec.
@@ -183,7 +183,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public enum class LoopMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Audio does not loop.

@@ -45,7 +45,7 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   }
 
   public enum class EmitFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * If enabled, the particle starts with the position defined by this node.

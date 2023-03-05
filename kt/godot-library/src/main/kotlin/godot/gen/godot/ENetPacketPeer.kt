@@ -67,7 +67,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public fun send(
     channel: Long,
     packet: PackedByteArray,
-    flags: Long
+    flags: Long,
   ): GodotError {
     TransferContext.writeArguments(LONG to channel, PACKED_BYTE_ARRAY to packet, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SEND, LONG)
@@ -77,7 +77,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public fun throttleConfigure(
     interval: Long,
     acceleration: Long,
-    deceleration: Long
+    deceleration: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to interval, LONG to acceleration, LONG to deceleration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_THROTTLE_CONFIGURE,
@@ -87,7 +87,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public fun setTimeout(
     timeout: Long,
     timeoutMin: Long,
-    timeoutMax: Long
+    timeoutMax: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to timeout, LONG to timeoutMin, LONG to timeoutMax)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SET_TIMEOUT, NIL)
@@ -133,7 +133,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   public enum class PeerState(
-    id: Long
+    id: Long,
   ) {
     STATE_DISCONNECTED(0),
     STATE_CONNECTING(1),
@@ -158,7 +158,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   public enum class PeerStatistic(
-    id: Long
+    id: Long,
   ) {
     PEER_PACKET_LOSS(0),
     PEER_PACKET_LOSS_VARIANCE(1),

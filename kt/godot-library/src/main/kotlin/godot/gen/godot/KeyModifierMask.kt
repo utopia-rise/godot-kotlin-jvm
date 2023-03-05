@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class KeyModifierMask(
-  id: Long
+  id: Long,
 ) {
   KEY_CODE_MASK(8388607),
   KEY_MODIFIER_MASK(532676608),

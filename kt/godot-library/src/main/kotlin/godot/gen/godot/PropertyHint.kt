@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class PropertyHint(
-  id: Long
+  id: Long,
 ) {
   PROPERTY_HINT_NONE(0),
   PROPERTY_HINT_RANGE(1),

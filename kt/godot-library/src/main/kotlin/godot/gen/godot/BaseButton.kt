@@ -252,7 +252,7 @@ public open class BaseButton : Control() {
   }
 
   public enum class DrawMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The normal state (i.e. not pressed, not hovered, not toggled and enabled) of buttons.
@@ -287,7 +287,7 @@ public open class BaseButton : Control() {
   }
 
   public enum class ActionMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Require just a press to consider the button clicked.

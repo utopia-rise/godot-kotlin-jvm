@@ -118,7 +118,7 @@ public open class CollisionPolygon2D : Node2D() {
   }
 
   public enum class BuildMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Collisions will include the polygon and its contained area.

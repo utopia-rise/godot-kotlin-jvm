@@ -121,7 +121,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public fun createServer(
     port: Long,
     bindAddress: String = "*",
-    tlsServerOptions: TLSOptions? = null
+    tlsServerOptions: TLSOptions? = null,
   ): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress, OBJECT to tlsServerOptions)
     TransferContext.callMethod(rawPtr,

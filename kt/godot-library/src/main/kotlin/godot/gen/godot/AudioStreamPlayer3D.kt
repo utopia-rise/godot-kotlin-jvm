@@ -424,7 +424,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   public enum class AttenuationModel(
-    id: Long
+    id: Long,
   ) {
     /**
      * Attenuation of loudness according to linear distance.
@@ -455,7 +455,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   public enum class DopplerTracking(
-    id: Long
+    id: Long,
   ) {
     /**
      * Disables doppler tracking.

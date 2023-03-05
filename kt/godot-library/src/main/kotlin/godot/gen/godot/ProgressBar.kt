@@ -59,7 +59,7 @@ public open class ProgressBar : Range() {
   }
 
   public enum class FillMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The progress bar fills from begin to end horizontally, according to the language direction. If [godot.Control.isLayoutRtl] returns `false`, it fills from left to right, and if it returns `true`, it fills from right to left.

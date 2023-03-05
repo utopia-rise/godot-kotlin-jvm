@@ -138,6 +138,7 @@ internal class Bootstrap {
         } else {
             err("Unable to find Entry class, no classes will be loaded")
         }
+        forceJvmInitializationOfSingletons()
     }
 
     private fun getBuildLockDir(projectDir: String): File {
@@ -158,6 +159,12 @@ internal class Bootstrap {
         registry?.let {
             unloadClasses(it.classes.toTypedArray())
             it.classes.clear()
+        }
+    }
+
+    private fun forceJvmInitializationOfSingletons() {
+        TypeManager.engineSingletonsNames.forEachIndexed { index, _ ->
+            TypeManager.engineTypesConstructors[index]()
         }
     }
 

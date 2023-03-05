@@ -662,7 +662,7 @@ public open class CodeEdit : TextEdit() {
   public fun addStringDelimiter(
     startKey: String,
     endKey: String,
-    lineOnly: Boolean = false
+    lineOnly: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING to startKey, STRING to endKey, BOOL to lineOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_STRING_DELIMITER, NIL)
@@ -714,7 +714,7 @@ public open class CodeEdit : TextEdit() {
   public fun addCommentDelimiter(
     startKey: String,
     endKey: String,
-    lineOnly: Boolean = false
+    lineOnly: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING to startKey, STRING to endKey, BOOL to lineOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_COMMENT_DELIMITER, NIL)
@@ -844,7 +844,7 @@ public open class CodeEdit : TextEdit() {
     insertText: String,
     textColor: Color = Color(Color(1, 1, 1, 1)),
     icon: Resource? = null,
-    `value`: Any = 0
+    `value`: Any = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, STRING to displayText, STRING to insertText, COLOR to textColor, OBJECT to icon, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_CODE_COMPLETION_OPTION,
@@ -951,7 +951,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   public enum class CodeCompletionKind(
-    id: Long
+    id: Long,
   ) {
     /**
      * Marks the option as a class.

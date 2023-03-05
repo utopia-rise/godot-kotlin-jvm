@@ -195,7 +195,7 @@ public open class TextLine : RefCounted() {
     font: Font,
     fontSize: Long,
     language: String = "",
-    meta: Any? = null
+    meta: Any? = null,
   ): Boolean {
     TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize, STRING to language, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_ADD_STRING, BOOL)
@@ -210,7 +210,7 @@ public open class TextLine : RefCounted() {
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     length: Long = 1,
-    baseline: Double = 0.0
+    baseline: Double = 0.0,
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_ADD_OBJECT, BOOL)
@@ -224,7 +224,7 @@ public open class TextLine : RefCounted() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    baseline: Double = 0.0
+    baseline: Double = 0.0,
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_RESIZE_OBJECT, BOOL)
@@ -328,7 +328,7 @@ public open class TextLine : RefCounted() {
   public fun draw(
     canvas: RID,
     pos: Vector2,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_DRAW, NIL)
@@ -341,7 +341,7 @@ public open class TextLine : RefCounted() {
     canvas: RID,
     pos: Vector2,
     outlineSize: Long = 1,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_DRAW_OUTLINE, NIL)

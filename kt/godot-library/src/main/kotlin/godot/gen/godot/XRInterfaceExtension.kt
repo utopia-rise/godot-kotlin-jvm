@@ -143,7 +143,7 @@ public open class XRInterfaceExtension : XRInterface() {
     view: Long,
     aspect: Double,
     zNear: Double,
-    zFar: Double
+    zFar: Double,
   ): PackedFloat64Array {
     throw NotImplementedError("_get_projection_for_view is not implemented for XRInterfaceExtension")
   }
@@ -216,7 +216,7 @@ public open class XRInterfaceExtension : XRInterface() {
     frequency: Double,
     amplitude: Double,
     durationSec: Double,
-    delaySec: Double
+    delaySec: Double,
   ): Unit {
   }
 
@@ -305,7 +305,7 @@ public open class XRInterfaceExtension : XRInterface() {
     k1: Double,
     k2: Double,
     upscale: Double,
-    aspectRatio: Double
+    aspectRatio: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_ADD_BLIT, NIL)

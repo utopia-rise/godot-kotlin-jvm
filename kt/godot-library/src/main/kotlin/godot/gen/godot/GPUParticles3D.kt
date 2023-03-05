@@ -474,14 +474,14 @@ public open class GPUParticles3D : GeometryInstance3D() {
     velocity: Vector3,
     color: Color,
     custom: Color,
-    flags: Long
+    flags: Long,
   ): Unit {
     TransferContext.writeArguments(TRANSFORM3D to xform, VECTOR3 to velocity, COLOR to color, COLOR to custom, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_EMIT_PARTICLE, NIL)
   }
 
   public enum class DrawOrder(
-    id: Long
+    id: Long,
   ) {
     /**
      * Particles are drawn in the order emitted.
@@ -512,7 +512,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   }
 
   public enum class EmitFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Particle starts at the specified position.
@@ -547,7 +547,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   }
 
   public enum class TransformAlign(
-    id: Long
+    id: Long,
   ) {
     /**
      *

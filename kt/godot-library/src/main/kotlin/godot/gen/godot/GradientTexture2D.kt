@@ -151,7 +151,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public enum class Fill(
-    id: Long
+    id: Long,
   ) {
     /**
      * The colors are linearly interpolated in a straight line.
@@ -174,7 +174,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public enum class Repeat(
-    id: Long
+    id: Long,
   ) {
     /**
      * The gradient fill is restricted to the range defined by [fillFrom] to [fillTo] offsets.

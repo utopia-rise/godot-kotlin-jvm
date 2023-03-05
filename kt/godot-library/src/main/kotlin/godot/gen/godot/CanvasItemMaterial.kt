@@ -134,7 +134,7 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public enum class BlendMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Mix blending mode. Colors are assumed to be independent of the alpha (opacity) value.
@@ -169,7 +169,7 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public enum class LightMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Render the material using both light and non-light sensitive material properties.

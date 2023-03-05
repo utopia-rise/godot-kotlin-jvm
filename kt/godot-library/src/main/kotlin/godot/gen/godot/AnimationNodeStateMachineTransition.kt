@@ -195,7 +195,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public enum class SwitchMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Switch to the next state immediately. The current state will end and blend into the beginning of the new one.
@@ -222,7 +222,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public enum class AdvanceMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Don't use this transition.

@@ -45,7 +45,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   public open fun _exportFile(
     path: String,
     type: String,
-    features: PackedStringArray
+    features: PackedStringArray,
   ): Unit {
   }
 
@@ -56,7 +56,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
     features: PackedStringArray,
     isDebug: Boolean,
     path: String,
-    flags: Long
+    flags: Long,
   ): Unit {
   }
 
@@ -152,7 +152,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   public fun addSharedObject(
     path: String,
     tags: PackedStringArray,
-    target: String
+    target: String,
   ): Unit {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to tags, STRING to target)
     TransferContext.callMethod(rawPtr,
@@ -174,7 +174,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   public fun addFile(
     path: String,
     `file`: PackedByteArray,
-    remap: Boolean
+    remap: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to file, BOOL to remap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_FILE, NIL)

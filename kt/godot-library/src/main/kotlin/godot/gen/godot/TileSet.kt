@@ -439,7 +439,7 @@ public open class TileSet : Resource() {
   public fun moveTerrain(
     terrainSet: Long,
     terrainIndex: Long,
-    toPosition: Long
+    toPosition: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex, LONG to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_TERRAIN, NIL)
@@ -459,7 +459,7 @@ public open class TileSet : Resource() {
   public fun setTerrainName(
     terrainSet: Long,
     terrainIndex: Long,
-    name: String
+    name: String,
   ): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex, STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_NAME, NIL)
@@ -480,7 +480,7 @@ public open class TileSet : Resource() {
   public fun setTerrainColor(
     terrainSet: Long,
     terrainIndex: Long,
-    color: Color
+    color: Color,
   ): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_COLOR, NIL)
@@ -557,7 +557,7 @@ public open class TileSet : Resource() {
   public fun setNavigationLayerLayerValue(
     layerIndex: Long,
     layerNumber: Long,
-    `value`: Boolean
+    `value`: Boolean,
   ): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr,
@@ -714,7 +714,7 @@ public open class TileSet : Resource() {
     pSourceFrom: Long,
     coordsFrom: Vector2i,
     sourceTo: Long,
-    coordsTo: Vector2i
+    coordsTo: Vector2i,
   ): Unit {
     TransferContext.writeArguments(LONG to pSourceFrom, VECTOR2I to coordsFrom, LONG to sourceTo, VECTOR2I to coordsTo)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_COORDS_LEVEL_TILE_PROXY,
@@ -765,7 +765,7 @@ public open class TileSet : Resource() {
     alternativeFrom: Long,
     sourceTo: Long,
     coordsTo: Vector2i,
-    alternativeTo: Long
+    alternativeTo: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom, LONG to sourceTo, VECTOR2I to coordsTo, LONG to alternativeTo)
     TransferContext.callMethod(rawPtr,
@@ -780,7 +780,7 @@ public open class TileSet : Resource() {
   public fun getAlternativeLevelTileProxy(
     sourceFrom: Long,
     coordsFrom: Vector2i,
-    alternativeFrom: Long
+    alternativeFrom: Long,
   ): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
     TransferContext.callMethod(rawPtr,
@@ -794,7 +794,7 @@ public open class TileSet : Resource() {
   public fun hasAlternativeLevelTileProxy(
     sourceFrom: Long,
     coordsFrom: Vector2i,
-    alternativeFrom: Long
+    alternativeFrom: Long,
   ): Boolean {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
     TransferContext.callMethod(rawPtr,
@@ -808,7 +808,7 @@ public open class TileSet : Resource() {
   public fun removeAlternativeLevelTileProxy(
     sourceFrom: Long,
     coordsFrom: Vector2i,
-    alternativeFrom: Long
+    alternativeFrom: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
     TransferContext.callMethod(rawPtr,
@@ -825,7 +825,7 @@ public open class TileSet : Resource() {
   public fun mapTileProxy(
     sourceFrom: Long,
     coordsFrom: Vector2i,
-    alternativeFrom: Long
+    alternativeFrom: Long,
   ): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MAP_TILE_PROXY, ARRAY)
@@ -885,7 +885,7 @@ public open class TileSet : Resource() {
   }
 
   public enum class TileShape(
-    id: Long
+    id: Long,
   ) {
     /**
      * Rectangular tile shape.
@@ -918,7 +918,7 @@ public open class TileSet : Resource() {
   }
 
   public enum class TileLayout(
-    id: Long
+    id: Long,
   ) {
     /**
      * Tile coordinates layout where both axis stay consistent with their respective local horizontal and vertical axis.
@@ -957,7 +957,7 @@ public open class TileSet : Resource() {
   }
 
   public enum class TileOffsetAxis(
-    id: Long
+    id: Long,
   ) {
     /**
      * Horizontal half-offset.
@@ -980,7 +980,7 @@ public open class TileSet : Resource() {
   }
 
   public enum class CellNeighbor(
-    id: Long
+    id: Long,
   ) {
     /**
      * Neighbor on the right side.
@@ -1059,7 +1059,7 @@ public open class TileSet : Resource() {
   }
 
   public enum class TerrainMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Requires both corners and side to match with neighboring tiles' terrains.

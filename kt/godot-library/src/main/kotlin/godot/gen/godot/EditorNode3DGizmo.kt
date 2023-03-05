@@ -88,7 +88,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     id: Long,
     secondary: Boolean,
     camera: Camera3D,
-    point: Vector2
+    point: Vector2,
   ): Unit {
   }
 
@@ -103,7 +103,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     id: Long,
     secondary: Boolean,
     restore: Any,
-    cancel: Boolean
+    cancel: Boolean,
   ): Unit {
   }
 
@@ -143,7 +143,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   public open fun _commitSubgizmos(
     ids: PackedInt32Array,
     restores: VariantArray<Transform3D>,
-    cancel: Boolean
+    cancel: Boolean,
   ): Unit {
   }
 
@@ -154,7 +154,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     lines: PackedVector3Array,
     material: Material,
     billboard: Boolean = false,
-    modulate: Color = Color(Color(1, 1, 1, 1))
+    modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to lines, OBJECT to material, BOOL to billboard, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_LINES, NIL)
@@ -167,7 +167,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     mesh: Mesh,
     material: Material? = null,
     transform: Transform3D = Transform3D(),
-    skeleton: SkinReference? = null
+    skeleton: SkinReference? = null,
   ): Unit {
     TransferContext.writeArguments(OBJECT to mesh, OBJECT to material, TRANSFORM3D to transform, OBJECT to skeleton)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_MESH, NIL)
@@ -197,7 +197,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   public fun addUnscaledBillboard(
     material: Material,
     defaultScale: Double = 1.0,
-    modulate: Color = Color(Color(1, 1, 1, 1))
+    modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(OBJECT to material, DOUBLE to defaultScale, COLOR to modulate)
     TransferContext.callMethod(rawPtr,
@@ -216,7 +216,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     material: Material,
     ids: PackedInt32Array,
     billboard: Boolean = false,
-    secondary: Boolean = false
+    secondary: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to handles, OBJECT to material, PACKED_INT_32_ARRAY to ids, BOOL to billboard, BOOL to secondary)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_HANDLES, NIL)

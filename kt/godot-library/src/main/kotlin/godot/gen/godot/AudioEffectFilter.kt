@@ -94,7 +94,7 @@ public open class AudioEffectFilter : AudioEffect() {
   }
 
   public enum class FilterDB(
-    id: Long
+    id: Long,
   ) {
     /**
      *

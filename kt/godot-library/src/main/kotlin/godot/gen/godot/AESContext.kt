@@ -178,7 +178,7 @@ public open class AESContext : RefCounted() {
   public fun start(
     mode: Mode,
     key: PackedByteArray,
-    iv: PackedByteArray = PackedByteArray()
+    iv: PackedByteArray = PackedByteArray(),
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_START, LONG)
@@ -218,7 +218,7 @@ public open class AESContext : RefCounted() {
   }
 
   public enum class Mode(
-    id: Long
+    id: Long,
   ) {
     /**
      * AES electronic codebook encryption mode.

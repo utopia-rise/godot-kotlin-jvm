@@ -155,7 +155,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public enum class Operation(
-    id: Long
+    id: Long,
   ) {
     OPERATION_UNION(0),
     OPERATION_INTERSECTION(1),

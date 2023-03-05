@@ -822,7 +822,7 @@ public open class LineEdit : Control() {
   }
 
   public enum class MenuItems(
-    id: Long
+    id: Long,
   ) {
     /**
      * Cuts (copies and clears) the selected text.
@@ -963,7 +963,7 @@ public open class LineEdit : Control() {
   }
 
   public enum class VirtualKeyboardType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Default text virtual keyboard.

@@ -124,7 +124,7 @@ public open class SpriteFrames : Resource() {
     anim: StringName,
     texture: Texture2D,
     duration: Double = 1.0,
-    atPosition: Long = -1
+    atPosition: Long = -1,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, OBJECT to texture, DOUBLE to duration, LONG to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_ADD_FRAME, NIL)
@@ -137,7 +137,7 @@ public open class SpriteFrames : Resource() {
     anim: StringName,
     idx: Long,
     texture: Texture2D,
-    duration: Double = 1.0
+    duration: Double = 1.0,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx, OBJECT to texture, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_FRAME, NIL)

@@ -81,7 +81,7 @@ public open class DirectionalLight3D : Light3D() {
   }
 
   public enum class ShadowMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Renders the entire scene's shadow map from an orthogonal point of view. This is the fastest directional shadow mode. May result in blurrier shadows on close objects.
@@ -108,7 +108,7 @@ public open class DirectionalLight3D : Light3D() {
   }
 
   public enum class SkyMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Makes the light visible in both scene lighting and sky rendering.

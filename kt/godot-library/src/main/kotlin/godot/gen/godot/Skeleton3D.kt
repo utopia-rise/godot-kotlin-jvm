@@ -416,7 +416,7 @@ public open class Skeleton3D : Node3D() {
     boneIdx: Long,
     pose: Transform3D,
     amount: Double,
-    persistent: Boolean = false
+    persistent: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to pose, DOUBLE to amount, BOOL to persistent)
     TransferContext.callMethod(rawPtr,

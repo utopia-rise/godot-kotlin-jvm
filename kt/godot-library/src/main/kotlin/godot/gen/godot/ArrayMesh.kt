@@ -243,7 +243,7 @@ public open class ArrayMesh : Mesh() {
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<VariantArray<Any?>> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
-    flags: Long = 0
+    flags: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_SURFACE_FROM_ARRAYS,
@@ -264,7 +264,7 @@ public open class ArrayMesh : Mesh() {
   public fun surfaceUpdateVertexRegion(
     surfIdx: Long,
     offset: Long,
-    `data`: PackedByteArray
+    `data`: PackedByteArray,
   ): Unit {
     TransferContext.writeArguments(LONG to surfIdx, LONG to offset, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
@@ -277,7 +277,7 @@ public open class ArrayMesh : Mesh() {
   public fun surfaceUpdateAttributeRegion(
     surfIdx: Long,
     offset: Long,
-    `data`: PackedByteArray
+    `data`: PackedByteArray,
   ): Unit {
     TransferContext.writeArguments(LONG to surfIdx, LONG to offset, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
@@ -290,7 +290,7 @@ public open class ArrayMesh : Mesh() {
   public fun surfaceUpdateSkinRegion(
     surfIdx: Long,
     offset: Long,
-    `data`: PackedByteArray
+    `data`: PackedByteArray,
   ): Unit {
     TransferContext.writeArguments(LONG to surfIdx, LONG to offset, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,

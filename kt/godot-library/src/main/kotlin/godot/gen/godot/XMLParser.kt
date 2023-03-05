@@ -192,7 +192,7 @@ public open class XMLParser : RefCounted() {
   }
 
   public enum class NodeType(
-    id: Long
+    id: Long,
   ) {
     /**
      * There's no node (no file or buffer opened).

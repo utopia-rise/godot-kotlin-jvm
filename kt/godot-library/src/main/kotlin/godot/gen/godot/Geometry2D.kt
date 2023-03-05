@@ -37,7 +37,7 @@ import kotlin.Suppress
 @GodotBaseType
 public object Geometry2D : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_GEOMETRY2D)
+    getSingleton(ENGINECLASS_GEOMETRY2D)
     return false
   }
 
@@ -47,7 +47,7 @@ public object Geometry2D : Object() {
   public fun isPointInCircle(
     point: Vector2,
     circlePosition: Vector2,
-    circleRadius: Double
+    circleRadius: Double,
   ): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to circlePosition, DOUBLE to circleRadius)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_IS_POINT_IN_CIRCLE, BOOL)
@@ -61,7 +61,7 @@ public object Geometry2D : Object() {
     segmentFrom: Vector2,
     segmentTo: Vector2,
     circlePosition: Vector2,
-    circleRadius: Double
+    circleRadius: Double,
   ): Double {
     TransferContext.writeArguments(VECTOR2 to segmentFrom, VECTOR2 to segmentTo, VECTOR2 to circlePosition, DOUBLE to circleRadius)
     TransferContext.callMethod(rawPtr,
@@ -76,7 +76,7 @@ public object Geometry2D : Object() {
     fromA: Vector2,
     toA: Vector2,
     fromB: Vector2,
-    toB: Vector2
+    toB: Vector2,
   ): Any? {
     TransferContext.writeArguments(VECTOR2 to fromA, VECTOR2 to toA, VECTOR2 to fromB, VECTOR2 to toB)
     TransferContext.callMethod(rawPtr,
@@ -93,7 +93,7 @@ public object Geometry2D : Object() {
     fromA: Vector2,
     dirA: Vector2,
     fromB: Vector2,
-    dirB: Vector2
+    dirB: Vector2,
   ): Any? {
     TransferContext.writeArguments(VECTOR2 to fromA, VECTOR2 to dirA, VECTOR2 to fromB, VECTOR2 to dirB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_LINE_INTERSECTS_LINE,
@@ -108,7 +108,7 @@ public object Geometry2D : Object() {
     p1: Vector2,
     q1: Vector2,
     p2: Vector2,
-    q2: Vector2
+    q2: Vector2,
   ): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to p1, VECTOR2 to q1, VECTOR2 to p2, VECTOR2 to q2)
     TransferContext.callMethod(rawPtr,
@@ -123,7 +123,7 @@ public object Geometry2D : Object() {
   public fun getClosestPointToSegment(
     point: Vector2,
     s1: Vector2,
-    s2: Vector2
+    s2: Vector2,
   ): Vector2 {
     TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to s1, VECTOR2 to s2)
     TransferContext.callMethod(rawPtr,
@@ -137,7 +137,7 @@ public object Geometry2D : Object() {
   public fun getClosestPointToSegmentUncapped(
     point: Vector2,
     s1: Vector2,
-    s2: Vector2
+    s2: Vector2,
   ): Vector2 {
     TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to s1, VECTOR2 to s2)
     TransferContext.callMethod(rawPtr,
@@ -152,7 +152,7 @@ public object Geometry2D : Object() {
     point: Vector2,
     a: Vector2,
     b: Vector2,
-    c: Vector2
+    c: Vector2,
   ): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to a, VECTOR2 to b, VECTOR2 to c)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_POINT_IS_INSIDE_TRIANGLE,
@@ -332,7 +332,7 @@ public object Geometry2D : Object() {
   public fun offsetPolygon(
     polygon: PackedVector2Array,
     delta: Double,
-    joinType: PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE
+    joinType: PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
   ): VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta, LONG to joinType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYGON, ARRAY)
@@ -352,7 +352,7 @@ public object Geometry2D : Object() {
     polyline: PackedVector2Array,
     delta: Double,
     joinType: PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
-    endType: PolyEndType = Geometry2D.PolyEndType.END_SQUARE
+    endType: PolyEndType = Geometry2D.PolyEndType.END_SQUARE,
   ): VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta, LONG to joinType.id, LONG to endType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYLINE, ARRAY)
@@ -369,7 +369,7 @@ public object Geometry2D : Object() {
   }
 
   public enum class PolyBooleanOperation(
-    id: Long
+    id: Long,
   ) {
     /**
      * Create regions where either subject or clip polygons (or both) are filled.
@@ -400,7 +400,7 @@ public object Geometry2D : Object() {
   }
 
   public enum class PolyJoinType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Squaring is applied uniformally at all convex edge joins at `1 * delta`.
@@ -427,7 +427,7 @@ public object Geometry2D : Object() {
   }
 
   public enum class PolyEndType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polygon.

@@ -68,7 +68,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   public fun createAction(
     name: String,
     mergeMode: UndoRedo.MergeMode = UndoRedo.MergeMode.MERGE_DISABLE,
-    customContext: Object? = null
+    customContext: Object? = null,
   ): Unit {
     TransferContext.writeArguments(STRING to name, LONG to mergeMode.id, OBJECT to customContext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_CREATE_ACTION,
@@ -102,7 +102,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   public fun addDoMethod(
     _object: Object,
     method: StringName,
-    vararg __var_args: Any?
+    vararg __var_args: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_ADD_DO_METHOD,
@@ -117,7 +117,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   public fun addUndoMethod(
     _object: Object,
     method: StringName,
-    vararg __var_args: Any?
+    vararg __var_args: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr,
@@ -132,7 +132,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   public fun addDoProperty(
     _object: Object,
     `property`: StringName,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr,
@@ -147,7 +147,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   public fun addUndoProperty(
     _object: Object,
     `property`: StringName,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr,
@@ -197,7 +197,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   }
 
   public enum class SpecialHistory(
-    id: Long
+    id: Long,
   ) {
     /**
      * Global history not associated with any scene, but with external resources etc.

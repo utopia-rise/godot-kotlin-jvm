@@ -70,7 +70,7 @@ public object NavigationServer2D : Object() {
   public val navigationDebugChanged: Signal0 by signal()
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_NAVIGATIONSERVER2D)
+    getSingleton(ENGINECLASS_NAVIGATIONSERVER2D)
     return false
   }
 
@@ -176,7 +176,7 @@ public object NavigationServer2D : Object() {
     origin: Vector2,
     destination: Vector2,
     optimize: Boolean,
-    navigationLayers: Long = 1
+    navigationLayers: Long = 1,
   ): PackedVector2Array {
     TransferContext.writeArguments(_RID to map, VECTOR2 to origin, VECTOR2 to destination, BOOL to optimize, LONG to navigationLayers)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_GET_PATH,

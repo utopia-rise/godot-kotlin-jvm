@@ -296,7 +296,7 @@ public open class FastNoiseLite : Noise() {
   }
 
   public enum class NoiseType(
-    id: Long
+    id: Long,
   ) {
     TYPE_VALUE(5),
     TYPE_VALUE_CUBIC(4),
@@ -317,7 +317,7 @@ public open class FastNoiseLite : Noise() {
   }
 
   public enum class FractalType(
-    id: Long
+    id: Long,
   ) {
     FRACTAL_NONE(0),
     FRACTAL_FBM(1),
@@ -336,7 +336,7 @@ public open class FastNoiseLite : Noise() {
   }
 
   public enum class CellularDistanceFunction(
-    id: Long
+    id: Long,
   ) {
     DISTANCE_EUCLIDEAN(0),
     DISTANCE_EUCLIDEAN_SQUARED(1),
@@ -355,7 +355,7 @@ public open class FastNoiseLite : Noise() {
   }
 
   public enum class CellularReturnType(
-    id: Long
+    id: Long,
   ) {
     RETURN_CELL_VALUE(0),
     RETURN_DISTANCE(1),
@@ -377,7 +377,7 @@ public open class FastNoiseLite : Noise() {
   }
 
   public enum class DomainWarpType(
-    id: Long
+    id: Long,
   ) {
     DOMAIN_WARP_SIMPLEX(0),
     DOMAIN_WARP_SIMPLEX_REDUCED(1),
@@ -395,7 +395,7 @@ public open class FastNoiseLite : Noise() {
   }
 
   public enum class DomainWarpFractalType(
-    id: Long
+    id: Long,
   ) {
     DOMAIN_WARP_FRACTAL_NONE(0),
     DOMAIN_WARP_FRACTAL_PROGRESSIVE(1),

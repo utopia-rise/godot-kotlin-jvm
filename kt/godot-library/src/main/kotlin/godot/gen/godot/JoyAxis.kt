@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class JoyAxis(
-  id: Long
+  id: Long,
 ) {
   JOY_AXIS_INVALID(-1),
   JOY_AXIS_LEFT_X(0),

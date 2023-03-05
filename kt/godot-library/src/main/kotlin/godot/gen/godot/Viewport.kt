@@ -1024,7 +1024,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class PositionalShadowAtlasQuadrantSubdiv(
-    id: Long
+    id: Long,
   ) {
     /**
      * This quadrant will not be used.
@@ -1071,7 +1071,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class Scaling3DMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
@@ -1098,7 +1098,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class MSAA(
-    id: Long
+    id: Long,
   ) {
     /**
      * Multisample antialiasing mode disabled. This is the default value, and is also the fastest setting.
@@ -1133,7 +1133,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class ScreenSpaceAA(
-    id: Long
+    id: Long,
   ) {
     /**
      * Do not perform any antialiasing in the full screen post-process.
@@ -1160,7 +1160,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class RenderInfo(
-    id: Long
+    id: Long,
   ) {
     /**
      * Amount of objects in frame.
@@ -1191,7 +1191,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class RenderInfoType(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -1218,7 +1218,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class DebugDraw(
-    id: Long
+    id: Long,
   ) {
     /**
      * Objects are displayed normally.
@@ -1337,7 +1337,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class DefaultCanvasItemTextureFilter(
-    id: Long
+    id: Long,
   ) {
     /**
      * The texture filter reads from the nearest pixel only. The simplest and fastest method of filtering, but the texture will look pixelized.
@@ -1372,7 +1372,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class DefaultCanvasItemTextureRepeat(
-    id: Long
+    id: Long,
   ) {
     /**
      * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will be clamped to the edge of the texture, resulting in a stretched out look at the borders of the texture.
@@ -1403,7 +1403,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class SDFOversize(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -1438,7 +1438,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class SDFScale(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -1469,7 +1469,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class VRSMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * VRS is disabled.

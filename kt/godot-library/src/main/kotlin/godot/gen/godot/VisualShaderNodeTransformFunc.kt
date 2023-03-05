@@ -45,7 +45,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long
+    id: Long,
   ) {
     /**
      * Perform the inverse operation on the [godot.Transform3D] matrix.

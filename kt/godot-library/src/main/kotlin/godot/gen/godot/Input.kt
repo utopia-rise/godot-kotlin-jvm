@@ -49,7 +49,7 @@ public object Input : Object() {
   public val joyConnectionChanged: Signal2<Long, Boolean> by signal("device", "connected")
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_INPUT)
+    getSingleton(ENGINECLASS_INPUT)
     return false
   }
 
@@ -200,7 +200,7 @@ public object Input : Object() {
     positiveX: StringName,
     negativeY: StringName,
     positiveY: StringName,
-    deadzone: Double = -1.0
+    deadzone: Double = -1.0,
   ): Vector2 {
     TransferContext.writeArguments(STRING_NAME to negativeX, STRING_NAME to positiveX, STRING_NAME to negativeY, STRING_NAME to positiveY, DOUBLE to deadzone)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_VECTOR, VECTOR2)
@@ -297,7 +297,7 @@ public object Input : Object() {
     device: Long,
     weakMagnitude: Double,
     strongMagnitude: Double,
-    duration: Double = 0.0
+    duration: Double = 0.0,
   ): Unit {
     TransferContext.writeArguments(LONG to device, DOUBLE to weakMagnitude, DOUBLE to strongMagnitude, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_START_JOY_VIBRATION, NIL)
@@ -513,7 +513,7 @@ public object Input : Object() {
   public fun setCustomMouseCursor(
     image: Resource,
     shape: CursorShape = Input.CursorShape.CURSOR_ARROW,
-    hotspot: Vector2 = Vector2(0, 0)
+    hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to shape.id, VECTOR2 to hotspot)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_CUSTOM_MOUSE_CURSOR, NIL)
@@ -581,7 +581,7 @@ public object Input : Object() {
   }
 
   public enum class MouseMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Makes the mouse cursor visible if it is hidden.
@@ -618,7 +618,7 @@ public object Input : Object() {
   }
 
   public enum class CursorShape(
-    id: Long
+    id: Long,
   ) {
     /**
      * Arrow cursor. Standard, default pointing cursor.

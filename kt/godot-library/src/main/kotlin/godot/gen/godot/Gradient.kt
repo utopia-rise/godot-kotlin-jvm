@@ -162,7 +162,7 @@ public open class Gradient : Resource() {
   }
 
   public enum class InterpolationMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Linear interpolation.
