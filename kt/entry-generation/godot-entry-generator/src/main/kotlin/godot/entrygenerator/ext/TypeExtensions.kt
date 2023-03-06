@@ -99,7 +99,7 @@ fun Type.toTypeName(): TypeName = ClassName(
 
 fun Type.isCompatibleList(): Boolean = when (fqName) {
     "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> true
-    else -> supertypes.any { it.fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" }
+    else -> supertypes.any { it.isCompatibleList() }
 }
 
 fun Type.isReference(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" ||
