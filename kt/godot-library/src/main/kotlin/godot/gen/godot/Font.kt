@@ -6,34 +6,10 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
-import godot.core.Color
-import godot.core.Dictionary
-import godot.core.RID
-import godot.core.Transform2D
-import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
-import godot.core.VariantType.TRANSFORM2D
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType._RID
-import godot.core.Vector2
+import godot.annotation.GodotBaseType
+import godot.core.*
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
-import kotlin.Any
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for fonts and font variations.
@@ -237,8 +213,6 @@ public open class Font internal constructor() : Resource() {
    * [/csharp]
    *
    * [/codeblocks]
-   *
-   * **Note:** Since kerning, advance and subpixel positioning are taken into account by [getStringSize], using separate [getStringSize] calls on substrings of a string then adding the results together will return a different result compared to using a single [getStringSize] call on the full string.
    *
    * **Note:** Since kerning, advance and subpixel positioning are taken into account by [getStringSize], using separate [getStringSize] calls on substrings of a string then adding the results together will return a different result compared to using a single [getStringSize] call on the full string.
    *
