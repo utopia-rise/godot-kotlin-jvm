@@ -39,8 +39,8 @@ object MainEntryFileBuilder {
         .builder("userScriptResourcePathPrefix", String::class.asTypeName())
         .addModifiers(KModifier.OVERRIDE)
 
-    private val classRegistrarFromDependencyCountPropertySpec = PropertySpec
-        .builder("classRegistrarFromDependencyCount", Int::class.asTypeName())
+    private val classRegistrarCountPropertySpec = PropertySpec
+        .builder("classRegistrarCount", Int::class.asTypeName())
         .addModifiers(KModifier.OVERRIDE)
 
     private val projectNamePropertySpec = PropertySpec
@@ -60,7 +60,7 @@ object MainEntryFileBuilder {
                 .addFunction(initEngineTypesFunSpec.build())
                 .addFunction(registerUserTypesVariantMappingsFunSpec.build())
                 .addProperty(userScriptResourcePathPrefixPropertySpec.build())
-                .addProperty(classRegistrarFromDependencyCountPropertySpec.build())
+                .addProperty(classRegistrarCountPropertySpec.build())
                 .addProperty(projectNamePropertySpec.build())
                 .build()
         )
@@ -110,7 +110,10 @@ object MainEntryFileBuilder {
         projectNamePropertySpec.initializer("%S", projectName)
     }
 
-    fun registerClassRegistrarFromDependencyCount(classRegistrarFromDependencyCount: Int) {
-        classRegistrarFromDependencyCountPropertySpec.initializer("%L", classRegistrarFromDependencyCount)
+    fun registerClassRegistrarCount(classRegistrarFromCurrentCompilationCount: Int, classRegistrarFromDependencyCount: Int) {
+        classRegistrarCountPropertySpec.initializer(
+            "%L",
+            classRegistrarFromCurrentCompilationCount + classRegistrarFromDependencyCount
+        )
     }
 }

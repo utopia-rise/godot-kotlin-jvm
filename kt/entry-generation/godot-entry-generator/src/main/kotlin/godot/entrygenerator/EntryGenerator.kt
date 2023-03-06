@@ -65,7 +65,11 @@ object EntryGenerator {
             registerUserTypesVariantMappings(sourceFiles.flatMap { it.registeredClasses })
             registerUserScriptsResourcePathPrefix(registrationFileBaseDir)
             registerProjectName(projectName)
-            registerClassRegistrarFromDependencyCount(classRegistrarFromDependencyCount)
+            val classRegistrarsForCurrentCompilationCount = sourceFiles.flatMap { it.registeredClasses }.size
+            registerClassRegistrarCount(
+                classRegistrarFromCurrentCompilationCount = classRegistrarsForCurrentCompilationCount,
+                classRegistrarFromDependencyCount = classRegistrarFromDependencyCount
+            )
             build(randomPackageForEntryFile, mainBufferedWriterProvider)
         }
 
