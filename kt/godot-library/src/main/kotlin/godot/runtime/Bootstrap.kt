@@ -190,6 +190,7 @@ internal class Bootstrap {
 
         unloadClasses(classes)
         classRegistries.clear()
+        TypeManager.clearUserTypes()
     }
 
     private fun forceJvmInitializationOfSingletons() {
