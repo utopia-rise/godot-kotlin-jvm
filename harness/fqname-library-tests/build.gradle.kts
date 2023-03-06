@@ -8,7 +8,7 @@ repositories {
 
 godot {
     classPrefix.set("FQNL")
-    dummyFileBaseDir.set(projectDir.resolve("fqnLibraryScripts").also { it.mkdirs() })
-    isDummyFileHierarchyEnabled.set(true)
+    registrationFileBaseDir.set(projectDir.resolve("fqnLibraryScripts").also { it.mkdirs() })
+    isRegistrationFileHierarchyEnabled.set(true)
     isFqNameRegistrationEnabled.set(true)
 }

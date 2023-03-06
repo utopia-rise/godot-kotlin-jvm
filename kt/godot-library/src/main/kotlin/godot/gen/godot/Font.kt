@@ -240,6 +240,8 @@ public open class Font internal constructor() : Resource() {
    *
    * **Note:** Since kerning, advance and subpixel positioning are taken into account by [getStringSize], using separate [getStringSize] calls on substrings of a string then adding the results together will return a different result compared to using a single [getStringSize] call on the full string.
    *
+   * **Note:** Since kerning, advance and subpixel positioning are taken into account by [getStringSize], using separate [getStringSize] calls on substrings of a string then adding the results together will return a different result compared to using a single [getStringSize] call on the full string.
+   *
    * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by [getHeight].
    */
   public fun getStringSize(

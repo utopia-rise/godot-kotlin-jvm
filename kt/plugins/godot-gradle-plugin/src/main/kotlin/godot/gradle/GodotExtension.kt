@@ -7,8 +7,8 @@ import java.io.File
 
 open class GodotExtension(objects: ObjectFactory) {
     val classPrefix: Property<String> = objects.property(String::class.java)
-    val dummyFileBaseDir: RegularFileProperty = objects.fileProperty()
-    val isDummyFileHierarchyEnabled: Property<Boolean> = objects.property(Boolean::class.java)
+    val registrationFileBaseDir: RegularFileProperty = objects.fileProperty()
+    val isRegistrationFileHierarchyEnabled: Property<Boolean> = objects.property(Boolean::class.java)
     val isFqNameRegistrationEnabled: Property<Boolean> = objects.property(Boolean::class.java)
     val projectName: Property<String> = objects.property(String::class.java)
     /**
@@ -91,7 +91,7 @@ open class GodotExtension(objects: ObjectFactory) {
             ?.listFiles()
             ?.last { it.isDirectory }
 
-        isDummyFileHierarchyEnabled.set(true)
+        isRegistrationFileHierarchyEnabled.set(true)
         isFqNameRegistrationEnabled.set(false)
 
         isAndroidExportEnabled.set(false)

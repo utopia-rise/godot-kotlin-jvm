@@ -35,8 +35,8 @@ fun Project.configureThirdPartyPlugins() {
                 (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_")
             )
             arg(
-                "projectRelativeDummyFilesBaseDirPath",
-                (godotJvmExtension.dummyFileBaseDir.orNull?.asFile ?: projectDir.resolve("gdj").apply { mkdirs() })
+                "registrationFileBaseDir",
+                (godotJvmExtension.registrationFileBaseDir.orNull?.asFile ?: projectDir.resolve("gdj").apply { mkdirs() })
                     .relativeTo(projectDir)
                     .path
                     .replace(File.separator, "/")
@@ -48,8 +48,8 @@ fun Project.configureThirdPartyPlugins() {
                 godotJvmExtension.classPrefix.orNull.toString()
             )
             arg(
-                "isDummyFileHierarchyEnabled",
-                godotJvmExtension.isDummyFileHierarchyEnabled.getOrElse(true).toString()
+                "isRegistrationFileHierarchyEnabled",
+                godotJvmExtension.isRegistrationFileHierarchyEnabled.getOrElse(true).toString()
             )
             arg(
                 "isFqNameRegistrationEnabled",

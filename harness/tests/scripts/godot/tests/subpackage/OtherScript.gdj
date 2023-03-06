@@ -1,4 +1,5 @@
-// dummy file
+// THIS FILE IS GENERATED! DO NOT EDIT, MOVE OR DELETE IT. EDIT, MOVE OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+
 registeredName = OtherScript
 fqName = godot.tests.subpackage.OtherScript
 baseType = Node

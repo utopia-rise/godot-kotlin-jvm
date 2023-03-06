@@ -7,7 +7,7 @@ import godot.entrygenerator.checks.ExportedMutablilityCheck
 import godot.entrygenerator.checks.RpcCheck
 import godot.entrygenerator.checks.SignalTypeCheck
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
-import godot.entrygenerator.filebuilder.DummyFileGenerator
+import godot.entrygenerator.filebuilder.RegistrationFileGenerator
 import godot.entrygenerator.filebuilder.MainEntryFileBuilder
 import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
@@ -34,7 +34,7 @@ object EntryGenerator {
         dependencyCount: Int,
         logger: Logger,
         sourceFiles: List<SourceFile>,
-        projectRelativeDummyFilesBaseDirPath: String,
+        registrationFileBaseDir: String,
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
@@ -60,7 +60,7 @@ object EntryGenerator {
                 }
             }
             registerUserTypesVariantMappings(sourceFiles.flatMap { it.registeredClasses })
-            registerUserScriptsResourcePathPrefix(projectRelativeDummyFilesBaseDirPath)
+            registerUserScriptsResourcePathPrefix(registrationFileBaseDir)
             registerProjectName(projectName)
             registerDependencyCount(dependencyCount)
             build(randomPackageForEntryFile, mainBufferedWriterProvider)
@@ -69,14 +69,14 @@ object EntryGenerator {
         generateServiceFile(randomPackageForEntryFile, projectDir)
     }
 
-    fun generateDummyFiles(
+    fun generateRegistrationFiles(
         registeredClassMetadataContainers: List<RegisteredClassMetadataContainer>,
-        dummyFileAppendableProvider: (RegisteredClassMetadataContainer) -> BufferedWriter,
+        registrationFileAppendableProvider: (RegisteredClassMetadataContainer) -> BufferedWriter,
     ) {
         registeredClassMetadataContainers.forEach { metadata ->
-            DummyFileGenerator(
+            RegistrationFileGenerator(
                 metadata,
-                dummyFileAppendableProvider
+                registrationFileAppendableProvider
             ).build()
         }
     }

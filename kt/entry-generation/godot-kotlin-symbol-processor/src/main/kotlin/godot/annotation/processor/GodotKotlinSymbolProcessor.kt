@@ -37,12 +37,12 @@ class GodotKotlinSymbolProcessor(
 
     private lateinit var projectName: String
     private lateinit var projectBasePath: File
-    private lateinit var projectRelativeDummyFilesBaseDirPath: String
+    private lateinit var registrationFileBaseDir: String
     private var classPrefix: String? = null
     private var isFqNameRegistrationEnabled: Boolean = false
-    private var isDummyFileHierarchyEnabled: Boolean = true
+    private var isRegistrationFileHierarchyEnabled: Boolean = true
 
-    private val alreadyGeneratedDummyFiles = mutableListOf<String>()
+    private val alreadyGeneratedRegistrationFiles = mutableListOf<String>()
 
     @OptIn(KspExperimental::class)
     override fun process(resolver: Resolver): List<KSAnnotated> {
@@ -62,8 +62,8 @@ class GodotKotlinSymbolProcessor(
         projectBasePath = options["projectBasePath"]?.let { absolutePath -> File(absolutePath) }
             ?: throw IllegalStateException("No projectBasePath option provided")
 
-        projectRelativeDummyFilesBaseDirPath = options["projectRelativeDummyFilesBaseDirPath"]
-            ?: throw IllegalStateException("No projectRelativeDummyFilesBaseDirPath option provided")
+        registrationFileBaseDir = options["registrationFileBaseDir"]
+            ?: throw IllegalStateException("No registrationFileBaseDir option provided")
 
         classPrefix = options["classPrefix"]?.let { prefix ->
             if (prefix == "null") {
@@ -73,8 +73,8 @@ class GodotKotlinSymbolProcessor(
             }
         }
 
-        isDummyFileHierarchyEnabled = options["isDummyFileHierarchyEnabled"]?.toBooleanStrictOrNull()
-            ?: throw IllegalStateException("No isDummyFileHierarchyEnabled option provided or not a boolean")
+        isRegistrationFileHierarchyEnabled = options["isRegistrationFileHierarchyEnabled"]?.toBooleanStrictOrNull()
+            ?: throw IllegalStateException("No isRegistrationFileHierarchyEnabled option provided or not a boolean")
 
         isFqNameRegistrationEnabled = options["isFqNameRegistrationEnabled"]?.toBooleanStrictOrNull()
             ?: throw IllegalStateException("No isFqNameRegistrationEnabled option provided or not a boolean")
@@ -86,7 +86,7 @@ class GodotKotlinSymbolProcessor(
             sourceFilesContainingRegisteredClasses = sourceFilesContainingRegisteredClasses,
             localResourcePathProvider = { fqName, registeredName ->
                 //  if the fqName does not contain a . it means the class is in the root package
-                if (isDummyFileHierarchyEnabled && fqName.contains(".")) {
+                if (isRegistrationFileHierarchyEnabled && fqName.contains(".")) {
                     "${fqName.substringBeforeLast(".").replace(".", "/")}/$registeredName"
                 } else {
                     registeredName
@@ -107,17 +107,17 @@ class GodotKotlinSymbolProcessor(
         // first round: dependencies
         // second round: user scripts
         // third round: empty
-        val metadataToGenerateDummyFilesFor = registeredClassMetadataContainers
-            .filter { !alreadyGeneratedDummyFiles.contains(it.localResPath) }
+        val metadataToGenerateRegistrationFilesFor = registeredClassMetadataContainers
+            .filter { !alreadyGeneratedRegistrationFiles.contains(it.localResPath) }
 
         if (shouldGenerateRegistrars) {
             EntryGenerator.generateEntryFiles(
                 projectName = projectName,
                 projectDir = projectBasePath.absolutePath,
-                dependencyCount = metadataToGenerateDummyFilesFor.size,
+                dependencyCount = metadataToGenerateRegistrationFilesFor.size,
                 logger = LoggerWrapper(logger),
                 sourceFiles = sourceFilesContainingRegisteredClasses,
-                projectRelativeDummyFilesBaseDirPath = projectRelativeDummyFilesBaseDirPath,
+                registrationFileBaseDir = registrationFileBaseDir,
                 jvmTypeFqNamesProvider = JvmTypeProvider(),
                 classRegistrarAppendableProvider = { registeredClass ->
                     codeGenerator.createNewFile(
@@ -144,16 +144,16 @@ class GodotKotlinSymbolProcessor(
             )
         }
 
-        EntryGenerator.generateDummyFiles(
-            registeredClassMetadataContainers = metadataToGenerateDummyFilesFor,
-            dummyFileAppendableProvider = { metadata ->
-                alreadyGeneratedDummyFiles.add(metadata.localResPath)
+        EntryGenerator.generateRegistrationFiles(
+            registeredClassMetadataContainers = metadataToGenerateRegistrationFilesFor,
+            registrationFileAppendableProvider = { metadata ->
+                alreadyGeneratedRegistrationFiles.add(metadata.localResPath)
 
                 // keep in sync with ClassRegistry!
                 val resourcePathFromProjectRoot = if (metadata.projectName == projectName) {
-                    "$projectRelativeDummyFilesBaseDirPath/${metadata.localResPath}"
+                    "$registrationFileBaseDir/${metadata.localResPath}"
                 } else {
-                    "$projectRelativeDummyFilesBaseDirPath/dependencies/${metadata.projectName}/${metadata.localResPath}"
+                    "$registrationFileBaseDir/dependencies/${metadata.projectName}/${metadata.localResPath}"
                 }
 
                 codeGenerator.createNewFileByPath(
@@ -170,13 +170,13 @@ class GodotKotlinSymbolProcessor(
     override fun finish() {
         super.finish()
 
-        cleanupOldDummyFiles()
-        copyNewDummyFiles()
+        cleanupOldRegistrationFiles()
+        copyNewRegistrationFiles()
     }
 
-    private fun cleanupOldDummyFiles() {
+    private fun cleanupOldRegistrationFiles() {
         projectBasePath
-            .resolve(projectRelativeDummyFilesBaseDirPath)
+            .resolve(registrationFileBaseDir)
             .walkBottomUp()
             .forEach { file ->
                 if (file.isFile && file.extension == "gdj") {
@@ -188,7 +188,7 @@ class GodotKotlinSymbolProcessor(
             }
     }
 
-    private fun copyNewDummyFiles() {
+    private fun copyNewRegistrationFiles() {
         projectBasePath
             .resolve("build/generated/ksp/main/resources/entryFiles")
             .copyRecursively(

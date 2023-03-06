@@ -4,15 +4,16 @@ import godot.entrygenerator.model.RegisteredClassMetadataContainer
 import godot.util.camelToSnakeCase
 import java.io.BufferedWriter
 
-class DummyFileGenerator(
+class RegistrationFileGenerator(
     private val metadata: RegisteredClassMetadataContainer,
-    private val dummyFileAppendableProvider: (RegisteredClassMetadataContainer) -> BufferedWriter,
+    private val registrationFileAppendableProvider: (RegisteredClassMetadataContainer) -> BufferedWriter,
 ) {
     fun build() {
-        dummyFileAppendableProvider(metadata).use { bufferedWriter ->
+        registrationFileAppendableProvider(metadata).use { bufferedWriter ->
             bufferedWriter.write(
                 """
-                    |// dummy file
+                    |// THIS FILE IS GENERATED! DO NOT EDIT, MOVE OR DELETE IT. EDIT, MOVE OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+                    |
                     |registeredName = ${metadata.registeredName}
                     |fqName = ${metadata.fqName}
                     |baseType = ${metadata.baseType}
