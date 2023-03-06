@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://scripts/godot/tests/Invocation.gdj" id="1_hulge"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_0m184"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_jspm3"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_v4y4r"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_6r6ai"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_tqlro"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_p0vxi"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_aawnr"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_0llmm"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_dcofn"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_m6o7p"]
 
 [node name="Spatial" type="Node3D"]
 script = ExtResource("1_hulge")
@@ -22,15 +22,15 @@ register_object_non_nullable_pre_init = Object(Node,"_import_path":NodePath(""),
 
 invocation = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://scripts/godot/tests/subpackage/OtherScript.gdj"))
 
-resource_test = SubResource("NavigationMesh_0m184")
-jvm_id = 666312528
-nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_v4y4r")])
-nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_tqlro"), null])
+resource_test = SubResource("NavigationMesh_jspm3")
+jvm_id = 2146303527
+nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_6r6ai")])
+nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_p0vxi"), null])
 nav_meshes_dictionary = {
-"AwesomeNavmesh": SubResource("NavigationMesh_aawnr")
+"AwesomeNavmesh": SubResource("NavigationMesh_0llmm")
 }
 nullable_dictionary = {
-"notnull": SubResource("NavigationMesh_dcofn"),
+"notnull": SubResource("NavigationMesh_m6o7p"),
 "null": null
 }
 
