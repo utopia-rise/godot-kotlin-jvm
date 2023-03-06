@@ -40,6 +40,7 @@ void GodotKotlinJvmEditor::on_file_system_dock_folder_moved(// NOLINT(readabilit
             );
             break;
         }
+        file_path = dir_access->get_next();
     }
 }
 
