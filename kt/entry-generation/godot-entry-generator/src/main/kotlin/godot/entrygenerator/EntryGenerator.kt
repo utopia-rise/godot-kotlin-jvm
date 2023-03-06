@@ -1,15 +1,10 @@
 package godot.entrygenerator
 
-import godot.entrygenerator.checks.ConstructorArgCountCheck
-import godot.entrygenerator.checks.ConstructorOverloadingCheck
-import godot.entrygenerator.checks.DefaultConstructorCheck
-import godot.entrygenerator.checks.ExportedMutablilityCheck
-import godot.entrygenerator.checks.RpcCheck
-import godot.entrygenerator.checks.SignalTypeCheck
+import godot.entrygenerator.checks.*
 import godot.entrygenerator.exceptions.ChecksFailedException
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
-import godot.entrygenerator.filebuilder.RegistrationFileGenerator
 import godot.entrygenerator.filebuilder.MainEntryFileBuilder
+import godot.entrygenerator.filebuilder.RegistrationFileGenerator
 import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredClassMetadataContainer
@@ -40,8 +35,13 @@ object EntryGenerator {
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
     ) {
+        val serviceFile = File(projectDir)
+            .resolve("src/main/resources/META-INF/services")
+            .apply { mkdirs() }
+            .resolve("$godotRegistrationPackage.Entry")
+
         // the package path for an entry file needs to be unique over all possible dependencies otherwise they'll override each other and only one will be used/loaded
-        val randomPackageForEntryFile = randomPackageName()
+        val randomPackageForEntryFile = getOrCreateRandomPackageName(serviceFile)
 
         _logger = logger
         _jvmTypeFqNamesProvider = jvmTypeFqNamesProvider
@@ -69,7 +69,7 @@ object EntryGenerator {
             build(randomPackageForEntryFile, mainBufferedWriterProvider)
         }
 
-        generateServiceFile(randomPackageForEntryFile, projectDir)
+        generateServiceFile(randomPackageForEntryFile, serviceFile)
     }
 
     fun generateRegistrationFiles(
@@ -84,14 +84,8 @@ object EntryGenerator {
         }
     }
 
-    private fun generateServiceFile(randomPackagePathForEntryFile: String, projectDir: String) {
-        File(projectDir)
-            .resolve("src/main/resources/META-INF/services")
-            .apply { mkdirs() }
-            .resolve("$godotRegistrationPackage.Entry")
-            .apply {
-                writeText("$godotEntryBasePackage.$randomPackagePathForEntryFile.Entry")
-            }
+    private fun generateServiceFile(randomPackagePathForEntryFile: String, serviceFile: File) {
+        serviceFile.writeText("$randomPackagePathForEntryFile.Entry")
     }
 
     private fun executeSanityChecks(
@@ -111,11 +105,21 @@ object EntryGenerator {
         ).any { hasIssue -> hasIssue }
     }
 
+    /**
+     * Either gets the previously generated random package path of the entry class or creates a new one.
+     */
+    private fun getOrCreateRandomPackageName(serviceFile: File): String {
+        return if (serviceFile.exists()) {
+            serviceFile.readText().trim().removeSuffix(".Entry")
+        } else {
+            "$godotEntryBasePackage.${randomPackageName()}"
+        }
+    }
+
     private fun randomPackageName(length: Int = 20): String {
         val allowedChars = ('A'..'Z') + ('a'..'z')
         return (1..length)
             .map { allowedChars.random() }
             .joinToString("")
     }
-
 }

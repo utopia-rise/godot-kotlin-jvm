@@ -62,7 +62,7 @@ object MainEntryFileBuilder {
 
     fun build(randomPackageForEntryFile: String, outAppendable: () -> BufferedWriter) {
         val entryFileSpec = FileSpec
-            .builder("$godotEntryBasePackage.$randomPackageForEntryFile", "Entry")
+            .builder(randomPackageForEntryFile, "Entry")
             .addFileComment(GENERATED_COMMENT)
 
         entryFileSpec.addType(
