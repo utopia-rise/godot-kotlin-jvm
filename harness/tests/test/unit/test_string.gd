@@ -31,7 +31,7 @@ You can't ship the continuous integration without blogging the junior IoT Stack 
 
 
 func test_short_string() -> void:
-	var script = godot_tests_coretypes_StringTest.new()
+	var script = StringTest.new()
 	assert_eq(short_str, script.get_short_string(), "String on JVM side should be same as gdscript one.")
 	assert_eq(short_str, script.identity(short_str), "String on JVM side should be same as gdscript one.")
 	assert_eq(script.fill_the_buffer(short_str, short_str, short_str, short_str, short_str), true, "Should return true when buffer is filled")
@@ -39,7 +39,7 @@ func test_short_string() -> void:
 	script.free()
 	
 func test_longest_short_string() -> void:
-	var script = godot_tests_coretypes_StringTest.new()
+	var script = StringTest.new()
 	assert_eq(longest_short_str, script.get_longest_short_string(), "String on JVM side should be same as gdscript one.")
 	assert_eq(longest_short_str, script.identity(longest_short_str), "String on JVM side should be same as gdscript one.")
 	assert_eq(script.fill_the_buffer(longest_short_str, longest_short_str, longest_short_str, longest_short_str, longest_short_str), true, "Should return true when buffer is filled")
@@ -47,7 +47,7 @@ func test_longest_short_string() -> void:
 	script.free()
 
 func test_shortest_long_string() -> void:
-	var script = godot_tests_coretypes_StringTest.new()
+	var script = StringTest.new()
 	assert_eq(shortest_long_str, script.get_shortest_long_string(), "String on JVM side should be same as gdscript one.")
 	assert_eq(shortest_long_str, script.identity(shortest_long_str), "String on JVM side should be same as gdscript one.")
 	assert_eq(script.fill_the_buffer(shortest_long_str, shortest_long_str, shortest_long_str, shortest_long_str, shortest_long_str), true, "Should return true when buffer is filled")
@@ -55,7 +55,7 @@ func test_shortest_long_string() -> void:
 	script.free()
 	
 func test_long_string() -> void:
-	var script = godot_tests_coretypes_StringTest.new()
+	var script = StringTest.new()
 	assert_eq(long_str, script.get_long_string(), "String on JVM side should be same as gdscript one.")
 	assert_eq(long_str, script.identity(long_str), "String on JVM side should be same as gdscript one.")
 	assert_eq(script.fill_the_buffer(long_str, long_str, long_str, long_str, long_str), true, "Should return true when buffer is filled")
@@ -63,7 +63,7 @@ func test_long_string() -> void:
 	script.free()
 
 func test_string_length() -> void:
-	var script = godot_tests_coretypes_StringTest.new()
+	var script = StringTest.new()
 	assert_eq(script.get_length(""), 0, "Should return the right size of the string")
 	assert_eq(script.get_length("A"), 1, "Should return the right size of the string")
 	assert_eq(script.get_length("abcde"), 5, "Should return the right size of the string")

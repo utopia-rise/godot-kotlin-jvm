@@ -1,7 +1,7 @@
 extends "res://addons/gut/test.gd"
 
 func test_signal_connection_script_instantiation():
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	get_tree().root.add_child(invocation_script)
 	await get_tree().create_timer(1).timeout
 	assert_eq(invocation_script.is_connected("no_param", Callable(invocation_script.invocation, "hook_no_param")), true, "signal \"no_param\" should be connected to \"invocation_script.invocation::hook_no_param\"")
@@ -22,7 +22,7 @@ func test_signal_connection_code():
 	invocation_script.free()
 
 func test_signal_emitted_with_multiple_targets():
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	get_tree().root.add_child(invocation_script)
 	await get_tree().create_timer(1).timeout
 	assert_eq(invocation_script.array.size(), 16)

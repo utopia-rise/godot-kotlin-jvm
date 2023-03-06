@@ -14,6 +14,8 @@
 
 [node name="Spatial" type="Node3D"]
 script = ExtResource("1_hulge")
+nullable_long = 2
+lateinit_string = "works also from inspector"
 register_object_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://scripts/godot/tests/subpackage/OtherScript.gdj"))
 
 register_object_non_nullable_pre_init = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","script":Resource("res://scripts/godot/tests/subpackage/OtherScript.gdj"))

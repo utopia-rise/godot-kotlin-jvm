@@ -1,7 +1,7 @@
 extends "res://addons/gut/test.gd"
 
 func test_enum_list_getting():
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	var enum_list = invocation_script.enum_list
 	assert_eq(enum_list.size(), 1, "Retreived enum list should contain 1 enum")
 	assert_eq(enum_list[0], 0, "Retreived enum should be of ordinal 0")
@@ -13,7 +13,7 @@ func test_enum_list_getting():
 	invocation_script.free()
 
 func test_enum_list_setting():
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	
 	invocation_script.enum_list = [0, 1]
 	

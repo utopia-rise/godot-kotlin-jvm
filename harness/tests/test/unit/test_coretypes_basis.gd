@@ -2,7 +2,7 @@ extends "res://addons/gut/test.gd"
 
 
 func test_should_get_right_vector3_using_operator_get():
-	var basis_test = godot_tests_coretypes_BasisTest.new()
+	var basis_test = BasisTest.new()
 	var engine_basis = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
 	var jvm_basis = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
 	assert_eq(engine_basis[0], basis_test.get_from_basis(jvm_basis, 0), "Basis get operator on JVM side should be same as gdscript one.")
@@ -11,7 +11,7 @@ func test_should_get_right_vector3_using_operator_get():
 	basis_test.free()
 
 func test_should_set_right_vector3_using_operator_set():
-	var basis_test = godot_tests_coretypes_BasisTest.new()
+	var basis_test = BasisTest.new()
 	var engine_basis = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
 	var jvm_basis = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
 	engine_basis[0] = Vector3(10, 20, 30)
@@ -26,7 +26,7 @@ func test_should_set_right_vector3_using_operator_set():
 func test_jvm_basis_get_rotation_quat():
 	# Tests previous issues with Basis#getQuat()
 	# see https://github.com/utopia-rise/godot-kotlin-jvm/pull/330
-	var basis_test = godot_tests_coretypes_BasisTest.new()
+	var basis_test = BasisTest.new()
 	var basis = Basis.IDENTITY \
 		.rotated(Vector3(1, 0, 0), 5.0 * PI / 180.0) \
 		.rotated(Vector3(0, 1, 0), 5.0 * PI / 180.0) \
@@ -41,7 +41,7 @@ func test_jvm_basis_get_rotation_quat():
 func test_new_jvm_basis_should_be_unity():
 	# Tests previous issues with Basis#getQuat()
 	# see https://github.com/utopia-rise/godot-kotlin-jvm/pull/330
-	var basis_test = godot_tests_coretypes_BasisTest.new()
+	var basis_test = BasisTest.new()
 	var jvm_basis = basis_test.new_jvm_basis()
 	var engine_basis = Basis(Vector3(1, 0, 0), Vector3(0, 1, 0), Vector3(0, 0, 1))
 	assert_eq(engine_basis, jvm_basis, "Basis() on JVM side should be same as unity gdscript one.")
@@ -50,7 +50,7 @@ func test_new_jvm_basis_should_be_unity():
 func test_jvm_basis_is_equal_approx():
 	# Tests previous issues with Basis#getQuat()
 	# see https://github.com/utopia-rise/godot-kotlin-jvm/pull/330
-	var basis_test = godot_tests_coretypes_BasisTest.new()
+	var basis_test = BasisTest.new()
 	var ref = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
 	assert_true(basis_test.is_equal_approx_jvm(ref, Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))))
 	assert_false(basis_test.is_equal_approx_jvm(ref, Basis(Vector3(0, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))))

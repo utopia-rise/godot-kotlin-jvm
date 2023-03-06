@@ -2,7 +2,7 @@ extends "res://addons/gut/test.gd"
 
 
 func test_dictionary_any_not_null_append():
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.any_dict_size(), 0, "Dict should be empty")
 	var key = Node.new()
 	var value = Node.new()
@@ -18,7 +18,7 @@ func test_dictionary_any_not_null_append():
 	value.free()
 
 func test_dictionary_any_not_null_remove():
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	invocation_script.append_to_any_dict("key2", 11)
 	assert_eq(invocation_script.any_dict_size(), 1, "Dict size should be 1")
 	invocation_script.remove_from_any_dict("key2")
@@ -34,7 +34,7 @@ func test_dictionary_any_not_null_remove():
 	value.free()
 
 func test_dictionary_typed_not_null_append():
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.string_nav_mesh_dict_size(), 1, "Dict size should be 1")
 	var nav_mesh = NavigationMesh.new()
 	invocation_script.append_to_string_nav_mesh_dict("key", nav_mesh)
@@ -44,7 +44,7 @@ func test_dictionary_typed_not_null_append():
 	invocation_script.free()
 
 func test_dictionary_typed_not_null_remove():
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.string_nav_mesh_dict_size(), 1, "Array size should be 1")
 	invocation_script.remove_from_string_nav_mesh_dict("AwesomeNavmesh")
 	assert_eq(invocation_script.string_nav_mesh_dict_size(), 0, "Dict size should be 0")

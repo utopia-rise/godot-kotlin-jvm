@@ -7,6 +7,6 @@ func test_should_find_camera_node():
 	invocation_scene.free()
 
 func test_should_not_find_camera_node():
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_false(invocation_script.has_camera_node(), "Should not find camera node using node path")
 	invocation_script.free()

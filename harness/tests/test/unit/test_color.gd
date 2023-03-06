@@ -2,7 +2,7 @@ extends "res://addons/gut/test.gd"
 
 
 func test_color_set() -> void:
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.color, Color(), "Color should be default color")
 	var col = Color(10, 20, 30, 70)
 	invocation_script.color = col
