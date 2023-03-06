@@ -20,7 +20,7 @@ import godot.tools.common.constants.godotEntryBasePackage
  *
  * Generates entry files for current compilation and registration files for registrars from dependencies
  */
-internal class RoundGenerateRegistrarsAndDependencyRegistrationFiles(
+internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistrationFiles(
     override val blackboard: ProcessingRoundsBlackboard,
     override val resolver: Resolver,
     override val codeGenerator: CodeGenerator,

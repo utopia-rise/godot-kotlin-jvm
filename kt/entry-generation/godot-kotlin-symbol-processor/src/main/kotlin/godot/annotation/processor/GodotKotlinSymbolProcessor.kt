@@ -43,7 +43,7 @@ class GodotKotlinSymbolProcessor(
         logger.info("Current processing round: $currentProcessingRound")
 
         return when (currentProcessingRound) {
-            ProcessingRound.GENERATE_REGISTRARS_FOR_THIS_PROJECT_AND_REGISTRATION_FILES_FOR_DEPENDENCIES -> RoundGenerateRegistrarsAndDependencyRegistrationFiles(
+            ProcessingRound.GENERATE_REGISTRARS_FOR_THIS_PROJECT_AND_REGISTRATION_FILES_FOR_DEPENDENCIES -> RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistrationFiles(
                 blackboard = processingRoundsBlackboard,
                 resolver = resolver,
                 codeGenerator = codeGenerator,
