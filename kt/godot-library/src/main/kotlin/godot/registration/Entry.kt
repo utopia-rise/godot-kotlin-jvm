@@ -9,6 +9,6 @@ abstract class Entry {
     abstract fun Context.getRegisteredClasses(): List<KClass<*>>
 
     abstract val userScriptResourcePathPrefix: String
-    abstract val dependencyCount: Int
+    abstract val classRegistrarFromDependencyCount: Int
     abstract val projectName: String
 }

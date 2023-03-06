@@ -27,7 +27,7 @@ object EntryGenerator {
     fun generateEntryFiles(
         projectDir: String,
         projectName: String,
-        dependencyCount: Int,
+        classRegistrarFromDependencyCount: Int,
         logger: Logger,
         sourceFiles: List<SourceFile>,
         registrationFileBaseDir: String,
@@ -65,7 +65,7 @@ object EntryGenerator {
             registerUserTypesVariantMappings(sourceFiles.flatMap { it.registeredClasses })
             registerUserScriptsResourcePathPrefix(registrationFileBaseDir)
             registerProjectName(projectName)
-            registerDependencyCount(dependencyCount)
+            registerClassRegistrarFromDependencyCount(classRegistrarFromDependencyCount)
             build(randomPackageForEntryFile, mainBufferedWriterProvider)
         }
 

@@ -122,9 +122,9 @@ internal class Bootstrap {
             }
         }
 
-        // the entry with the most dependencies is always the "main" entry. All other entries are from dependencies
-        // reason: the "main" entry file combines all dependencies. Hence, it will always be the one with the highest dependency count
-        val mainEntry = entries.maxBy { entry -> entry.dependencyCount }
+        // the entry with the most class registrars from dependencies is always the "main" entry. All other entries are from dependencies
+        // reason: the "main" compilation generates the registration files from all class registrars (it's own AND all from dependencies. Hence, it will always be the one with the highest registrar count
+        val mainEntry = entries.maxBy { entry -> entry.classRegistrarFromDependencyCount }
 
         entries.forEach { entry ->
             val isMainEntry = entry == mainEntry

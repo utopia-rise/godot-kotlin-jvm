@@ -12,7 +12,6 @@ import godot.annotation.processor.utils.LoggerWrapper
 import godot.annotation.processor.visitor.MetadataAnnotationVisitor
 import godot.annotation.processor.visitor.RegistrationAnnotationVisitor
 import godot.entrygenerator.EntryGenerator
-import godot.entrygenerator.exceptions.EntryGeneratorException
 import godot.tools.common.constants.FileExtensions
 import godot.tools.common.constants.godotEntryBasePackage
 
@@ -57,7 +56,7 @@ internal class RoundGenerateRegistrarsAndDependencyRegistrationFiles(
             projectName = settings.projectName,
             projectDir = settings.projectBasePath.absolutePath,
             // in this first round, the received metadata containers are all from dependencies as the ones from this compilation will only be present in the next compilation round
-            dependencyCount = metadataAnnotationVisitor.registeredClassMetadataContainers.size,
+            classRegistrarFromDependencyCount = metadataAnnotationVisitor.registeredClassMetadataContainers.size,
             logger = LoggerWrapper(logger),
             sourceFiles = registerAnnotationVisitor.sourceFilesContainingRegisteredClasses,
             registrationFileBaseDir = settings.registrationBaseDirPathRelativeToProjectDir,
