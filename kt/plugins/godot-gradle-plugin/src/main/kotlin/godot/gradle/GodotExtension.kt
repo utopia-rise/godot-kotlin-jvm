@@ -57,7 +57,7 @@ open class GodotExtension(objects: ObjectFactory) {
 
     /**
      * Only has a visible effect when this project is used as a library. This project name defines to what directory the
-     * registration files are generated to.
+     * registration files are generated to. Defaults to the gradle project name
      *
      * Example:
      * ```
