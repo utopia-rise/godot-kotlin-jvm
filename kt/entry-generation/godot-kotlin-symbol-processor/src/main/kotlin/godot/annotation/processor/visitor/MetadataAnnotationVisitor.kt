@@ -7,16 +7,20 @@ import com.google.devtools.ksp.symbol.KSVisitorVoid
 import godot.annotation.RegisteredClassMetadata
 import godot.entrygenerator.model.RegisteredClassMetadataContainer
 
-class MetadataAnnotationVisitor(
-    private val registeredClassMetadataContainers: MutableList<RegisteredClassMetadataContainer>,
-): KSVisitorVoid() {
+/**
+ * Collects [RegisteredClassMetadata] annotations for registration file generation by the main compilation of the project
+ */
+internal class MetadataAnnotationVisitor: KSVisitorVoid() {
+    private val _registeredClassMetadataContainers: MutableList<RegisteredClassMetadataContainer> = mutableListOf()
+    val registeredClassMetadataContainers: List<RegisteredClassMetadataContainer> = _registeredClassMetadataContainers
+
     @OptIn(KspExperimental::class)
     override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
         classDeclaration
             .getAnnotationsByType(RegisteredClassMetadata::class)
             .firstOrNull()
             ?.let { annotation ->
-                registeredClassMetadataContainers.add(
+                _registeredClassMetadataContainers.add(
                     RegisteredClassMetadataContainer(
                         registeredName = annotation.registeredName,
                         baseType = annotation.baseType,

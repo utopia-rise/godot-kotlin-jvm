@@ -3,7 +3,7 @@ package godot.annotation.processor.compiler
 import com.google.devtools.ksp.processing.Resolver
 import org.jetbrains.kotlin.com.intellij.openapi.project.Project
 
-object CompilerDataProvider {
+internal object CompilerDataProvider {
     private var _project: Project? = null
     val project: Project
         get() = _project ?: throw UninitializedPropertyAccessException("CompilerDataProvider not yet initialized")

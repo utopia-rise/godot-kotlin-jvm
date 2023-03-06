@@ -13,7 +13,7 @@ import godot.entrygenerator.model.PropertyAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.RegisteredSignal
 
-fun KSPropertyDeclaration.mapToRegisteredProperty(declaredProperties: List<KSPropertyDeclaration>): RegisteredProperty {
+internal fun KSPropertyDeclaration.mapToRegisteredProperty(): RegisteredProperty {
     val fqName = requireNotNull(qualifiedName?.asString()) {
         "Qualified name for a registered property declaration cannot be null"
     }
@@ -81,7 +81,7 @@ fun KSPropertyDeclaration.mapToRegisteredProperty(declaredProperties: List<KSPro
     )
 }
 
-fun KSPropertyDeclaration.mapToRegisteredSignal(declaredProperties: List<KSPropertyDeclaration>): RegisteredSignal {
+internal fun KSPropertyDeclaration.mapToRegisteredSignal(declaredProperties: List<KSPropertyDeclaration>): RegisteredSignal {
     val fqName = requireNotNull(qualifiedName?.asString()) {
         "Qualified name for a registered property declaration cannot be null"
     }

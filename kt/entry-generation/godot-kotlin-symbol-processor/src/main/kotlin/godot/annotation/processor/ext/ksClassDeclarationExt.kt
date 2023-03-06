@@ -17,7 +17,7 @@ import godot.entrygenerator.model.RegisteredFunction
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.RegisteredSignal
 
-fun KSClassDeclaration.mapToClazz(
+internal fun KSClassDeclaration.mapToClazz(
     isFqNameRegistrationEnabled: Boolean,
     classNamePrefix: String?,
     localResourcePathProvider: (fqName: String, registeredName: String) -> String,
@@ -45,7 +45,7 @@ fun KSClassDeclaration.mapToClazz(
                 property.findOverridee()?.annotations?.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } == true
         }
         .map {
-            it.mapToRegisteredProperty(declaredProperties.toList())
+            it.mapToRegisteredProperty()
         }
         .toList()
     val registeredSignals = allProperties
@@ -92,7 +92,7 @@ fun KSClassDeclaration.mapToClazz(
     }
 }
 
-fun KSClassDeclaration.isAbstractAndContainsRegisteredMembers(
+internal fun KSClassDeclaration.isAbstractAndContainsRegisteredMembers(
     registeredFunctions: List<RegisteredFunction>,
     registeredProperties: List<RegisteredProperty>,
     registeredSignals: List<RegisteredSignal>
@@ -102,7 +102,7 @@ fun KSClassDeclaration.isAbstractAndContainsRegisteredMembers(
 
 // issue: https://github.com/utopia-rise/godot-kotlin-jvm/issues/365
 // also register empty abstract classes which inherit from a godot base class as child class registrars will reference the class registrar of this class
-fun KSClassDeclaration.isAbstractAndInheritsGodotBaseClass(): Boolean {
+internal fun KSClassDeclaration.isAbstractAndInheritsGodotBaseClass(): Boolean {
     return isAbstract()
         && superTypes
         .any { supertype ->

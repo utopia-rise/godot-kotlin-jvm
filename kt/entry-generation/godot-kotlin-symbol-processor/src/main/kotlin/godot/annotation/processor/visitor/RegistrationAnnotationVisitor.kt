@@ -13,11 +13,13 @@ import godot.annotation.processor.ext.mapToClazz
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
 
-class RegistrationAnnotationVisitor(
+/**
+ * Collects [RegisterClass], [RegisterConstructor], [RegisterFunction], [RegisterProperty], [RegisterSignal] annotations
+ * for registrar generation and entry generation
+ */
+internal class RegistrationAnnotationVisitor(
     private val isFqNameRegistrationEnabled: Boolean,
     private val classNamePrefix: String?,
-    private val registeredClassToKSFileMap: MutableMap<RegisteredClass, KSFile>,
-    private val sourceFilesContainingRegisteredClasses: MutableList<SourceFile>,
     private val localResourcePathProvider: (fqName: String, registeredName: String) -> String,
 ) : KSVisitorVoid() {
 
@@ -28,6 +30,12 @@ class RegistrationAnnotationVisitor(
         RegisterProperty::class.qualifiedName!!,
         RegisterSignal::class.qualifiedName!!
     )
+
+    private val _registeredClassToKSFileMap: MutableMap<RegisteredClass, KSFile> = mutableMapOf()
+    val registeredClassToKSFileMap: Map<RegisteredClass, KSFile> = _registeredClassToKSFileMap
+
+    private val _sourceFilesContainingRegisteredClasses: MutableList<SourceFile> = mutableListOf()
+    val sourceFilesContainingRegisteredClasses: List<SourceFile> = _sourceFilesContainingRegisteredClasses
 
     override fun visitFile(file: KSFile, data: Unit) {
         val absolutePath = file.filePath
@@ -49,12 +57,12 @@ class RegistrationAnnotationVisitor(
                 }
             }
             .onEach { registeredClass ->
-                registeredClassToKSFileMap[registeredClass] = file
+                _registeredClassToKSFileMap[registeredClass] = file
             }
             .toList()
 
         if (registeredClasses.isNotEmpty()) {
-            sourceFilesContainingRegisteredClasses.add(
+            _sourceFilesContainingRegisteredClasses.add(
                 SourceFile(
                     absolutePath,
                     registeredClasses

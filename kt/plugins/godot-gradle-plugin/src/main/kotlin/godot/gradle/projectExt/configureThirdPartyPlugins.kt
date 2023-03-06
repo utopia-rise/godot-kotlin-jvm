@@ -2,6 +2,7 @@ package godot.gradle.projectExt
 
 import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
 import com.google.devtools.ksp.gradle.KspGradleSubplugin
+import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
 import org.gradle.plugins.ide.idea.IdeaPlugin
 import java.io.File
@@ -36,7 +37,7 @@ fun Project.configureThirdPartyPlugins() {
             )
             arg(
                 "registrationFileBaseDir",
-                (godotJvmExtension.registrationFileBaseDir.orNull?.asFile ?: projectDir.resolve("gdj").apply { mkdirs() })
+                (godotJvmExtension.registrationFileBaseDir.orNull?.asFile ?: projectDir.resolve(FileExtensions.GodotKotlinJvm.registrationFile).apply { mkdirs() })
                     .relativeTo(projectDir)
                     .path
                     .replace(File.separator, "/")
