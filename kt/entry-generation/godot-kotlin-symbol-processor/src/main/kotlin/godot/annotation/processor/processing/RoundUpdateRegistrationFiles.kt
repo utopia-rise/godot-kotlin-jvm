@@ -21,7 +21,7 @@ internal class RoundUpdateRegistrationFiles(
     override val logger: KSPLogger,
     private val settings: Settings,
 ) : BaseRound() {
-    override fun execute(): List<KSAnnotated> {
+    override fun executeInternal(): List<KSAnnotated> {
         val newRegistrationFilesBaseDir = settings.projectBasePath.resolve("build/generated/ksp/main/resources/entryFiles")
         val currentRegistrationFilesBaseDir = settings.projectBasePath.resolve(settings.registrationBaseDirPathRelativeToProjectDir)
 

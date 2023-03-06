@@ -6,6 +6,7 @@ import godot.entrygenerator.checks.DefaultConstructorCheck
 import godot.entrygenerator.checks.ExportedMutablilityCheck
 import godot.entrygenerator.checks.RpcCheck
 import godot.entrygenerator.checks.SignalTypeCheck
+import godot.entrygenerator.exceptions.ChecksFailedException
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
 import godot.entrygenerator.filebuilder.RegistrationFileGenerator
 import godot.entrygenerator.filebuilder.MainEntryFileBuilder
@@ -45,7 +46,9 @@ object EntryGenerator {
         _logger = logger
         _jvmTypeFqNamesProvider = jvmTypeFqNamesProvider
 
-        executeSanityChecks(logger, sourceFiles)
+        if (executeSanityChecks(logger, sourceFiles)) {
+            throw ChecksFailedException()
+        }
 
         with(MainEntryFileBuilder) {
             sourceFiles.forEach { sourceFile ->
@@ -94,16 +97,18 @@ object EntryGenerator {
     private fun executeSanityChecks(
         logger: Logger,
         sourceFiles: List<SourceFile>
-    ) {
-        DefaultConstructorCheck(logger, sourceFiles).execute()
-        ConstructorArgCountCheck(logger, sourceFiles).execute()
-        ConstructorOverloadingCheck(logger, sourceFiles).execute()
+    ): Boolean {
+        return listOf(
+            DefaultConstructorCheck(logger, sourceFiles).execute(),
+            ConstructorArgCountCheck(logger, sourceFiles).execute(),
+            ConstructorOverloadingCheck(logger, sourceFiles).execute(),
 
-        SignalTypeCheck(logger, sourceFiles).execute()
+            SignalTypeCheck(logger, sourceFiles).execute(),
 
-        ExportedMutablilityCheck(logger, sourceFiles).execute()
+            ExportedMutablilityCheck(logger, sourceFiles).execute(),
 
-        RpcCheck(logger, sourceFiles).execute()
+            RpcCheck(logger, sourceFiles).execute(),
+        ).any { hasIssue -> hasIssue }
     }
 
     private fun randomPackageName(length: Int = 20): String {

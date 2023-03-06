@@ -9,6 +9,7 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.ext.fqNameUnsafe
+import godot.annotation.processor.ext.hasCompilationErrors
 import godot.annotation.processor.ext.mapToClazz
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
@@ -44,10 +45,14 @@ internal class RegistrationAnnotationVisitor(
             .mapNotNull { declaration ->
                 when (declaration) {
                     is KSClassDeclaration -> {
-                        val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, localResourcePathProvider)
-                        if (clazz is RegisteredClass) {
-                            clazz
-                        } else null
+                        if (declaration.hasCompilationErrors()) {
+                            null
+                        } else {
+                            val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, localResourcePathProvider)
+                            if (clazz is RegisteredClass) {
+                                clazz
+                            } else null
+                        }
                     }
                     else -> if (declaration.annotations.any { registerAnnotations.contains(it.fqNameUnsafe) }) {
                         throw IllegalStateException("${declaration.qualifiedName} was registered top level. Only classes can be registered top level.")

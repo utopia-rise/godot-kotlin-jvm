@@ -5,6 +5,7 @@ import com.google.devtools.ksp.getAnnotationsByType
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSVisitorVoid
 import godot.annotation.RegisteredClassMetadata
+import godot.annotation.processor.ext.hasCompilationErrors
 import godot.entrygenerator.model.RegisteredClassMetadataContainer
 
 /**
@@ -16,23 +17,25 @@ internal class MetadataAnnotationVisitor: KSVisitorVoid() {
 
     @OptIn(KspExperimental::class)
     override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
-        classDeclaration
-            .getAnnotationsByType(RegisteredClassMetadata::class)
-            .firstOrNull()
-            ?.let { annotation ->
-                _registeredClassMetadataContainers.add(
-                    RegisteredClassMetadataContainer(
-                        registeredName = annotation.registeredName,
-                        baseType = annotation.baseType,
-                        fqName = annotation.fqName,
-                        localResPath = annotation.localResPath,
-                        projectName = annotation.projectName,
-                        superTypes = annotation.superTypes,
-                        signals = annotation.signals,
-                        properties = annotation.properties,
-                        functions = annotation.functions,
+        if (!classDeclaration.hasCompilationErrors()) {
+            classDeclaration
+                .getAnnotationsByType(RegisteredClassMetadata::class)
+                .firstOrNull()
+                ?.let { annotation ->
+                    _registeredClassMetadataContainers.add(
+                        RegisteredClassMetadataContainer(
+                            registeredName = annotation.registeredName,
+                            baseType = annotation.baseType,
+                            fqName = annotation.fqName,
+                            localResPath = annotation.localResPath,
+                            projectName = annotation.projectName,
+                            superTypes = annotation.superTypes,
+                            signals = annotation.signals,
+                            properties = annotation.properties,
+                            functions = annotation.functions,
+                        )
                     )
-                )
-            }
+                }
+        }
     }
 }

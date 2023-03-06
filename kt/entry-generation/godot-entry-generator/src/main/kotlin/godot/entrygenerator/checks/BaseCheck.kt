@@ -7,5 +7,5 @@ abstract class BaseCheck(
     protected val logger: Logger,
     protected val sourceFiles: List<SourceFile>
 ) {
-    abstract fun execute()
+    abstract fun execute(): Boolean
 }

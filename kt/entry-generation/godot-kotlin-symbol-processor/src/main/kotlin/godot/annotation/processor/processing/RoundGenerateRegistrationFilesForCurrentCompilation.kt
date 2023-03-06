@@ -27,7 +27,7 @@ internal class RoundGenerateRegistrationFilesForCurrentCompilation(
     override val logger: KSPLogger,
     private val settings: Settings,
 ): BaseRound() {
-    override fun execute(): List<KSAnnotated> {
+    override fun executeInternal(): List<KSAnnotated> {
         val metadataAnnotationVisitor = MetadataAnnotationVisitor()
         resolver.getDeclarationsFromPackage(godotEntryBasePackage).forEach { declaration ->
             declaration.accept(metadataAnnotationVisitor, Unit)
