@@ -11,7 +11,6 @@ import godot.annotation.DoubleRange
 import godot.annotation.EnumFlag
 import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
-import godot.annotation.ExpRange
 import godot.annotation.Export
 import godot.annotation.File
 import godot.annotation.FloatRange
@@ -43,6 +42,7 @@ import godot.core.asStringName
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
 import godot.extensions.getNodeAs
+import godot.registration.Range
 import godot.signals.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
@@ -224,12 +224,12 @@ class Invocation : Node3D() {
 
 	@Export
 	@RegisterProperty
-	@ExpRange(1f, 2f)
+	@DoubleRange(min = 1.0, max = 2.0, step = 0.1, or = Range.OR_GREATER, hideSlider = true, isDegrees = true, suffix = "MyCoolSuffix")
 	var p4 = 1.0
 
 	@Export
 	@RegisterProperty
-	@ExpRange(1f, 2f)
+	@FloatRange(1f, 2f)
 	var p5 = 1f
 
 	@Export
@@ -289,7 +289,7 @@ class Invocation : Node3D() {
 	@Export
 	@RegisterProperty
 	@PlaceHolderText
-	var p16 = "someDir"
+	var p16 = "some placeholderText"
 
 	@Export
 	@RegisterProperty

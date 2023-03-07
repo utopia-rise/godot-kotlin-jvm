@@ -5,21 +5,16 @@ import godot.entrygenerator.ext.isCompatibleList
 import godot.entrygenerator.ext.isReference
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
-import godot.entrygenerator.model.DoubleRangeHintAnnotation
-import godot.entrygenerator.model.EnumAnnotation
 import godot.entrygenerator.model.EnumFlagHintStringAnnotation
 import godot.entrygenerator.model.EnumHintStringAnnotation
 import godot.entrygenerator.model.EnumListHintStringAnnotation
 import godot.entrygenerator.model.ExpEasingHintAnnotation
-import godot.entrygenerator.model.ExpRangeHintAnnotation
 import godot.entrygenerator.model.FileHintAnnotation
-import godot.entrygenerator.model.FloatRangeHintAnnotation
 import godot.entrygenerator.model.IntFlagHintAnnotation
-import godot.entrygenerator.model.IntRangeHintAnnotation
-import godot.entrygenerator.model.LongRangeHintAnnotation
 import godot.entrygenerator.model.MultilineTextHintAnnotation
 import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.PropertyHintAnnotation
+import godot.entrygenerator.model.RangeHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 
 
@@ -44,11 +39,7 @@ object PropertyHintStringGeneratorProvider {
             is IntFlagHintAnnotation -> IntFlagHintStringGenerator(registeredProperty)
             MultilineTextHintAnnotation -> MultilineTextHintStringGenerator(registeredProperty)
             PlaceHolderTextHintAnnotation -> PlaceHolderTextHintStringGenerator(registeredProperty)
-            is DoubleRangeHintAnnotation -> DoubleRangeHintStringGenerator(registeredProperty)
-            is ExpRangeHintAnnotation -> ExpRangeHintStringGenerator(registeredProperty)
-            is FloatRangeHintAnnotation -> FloatRangeHintStringGenerator(registeredProperty)
-            is IntRangeHintAnnotation -> IntRangeHintStringGenerator(registeredProperty)
-            is LongRangeHintAnnotation -> LongRangeHintStringGenerator(registeredProperty)
+            is RangeHintAnnotation<*> -> RangeHintStringGenerator(registeredProperty)
             null -> when {
                 registeredProperty.type.isReference() -> ResourceHintStringGenerator(registeredProperty)
                 registeredProperty.type.isCompatibleList() -> ArrayHintStringGenerator(registeredProperty)

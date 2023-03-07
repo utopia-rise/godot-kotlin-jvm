@@ -19,9 +19,9 @@ class ExpEasingHintStringGenerator(registeredProperty: RegisteredProperty) :
         }
 
         return when {
-            propertyHintAnnotation.attenuation && propertyHintAnnotation.inOut -> "attenuation,inout"
+            propertyHintAnnotation.attenuation && propertyHintAnnotation.isPositiveOnly -> "attenuation,positive_only"
             propertyHintAnnotation.attenuation -> "attenuation"
-            propertyHintAnnotation.inOut -> "inout"
+            propertyHintAnnotation.isPositiveOnly -> "positive_only"
             else -> ""
         }
     }

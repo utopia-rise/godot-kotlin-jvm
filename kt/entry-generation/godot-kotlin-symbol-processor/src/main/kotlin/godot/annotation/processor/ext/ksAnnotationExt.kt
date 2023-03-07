@@ -24,21 +24,17 @@ import godot.annotation.Rpc
 import godot.annotation.Tool
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
-import godot.entrygenerator.model.DoubleRangeHintAnnotation
 import godot.entrygenerator.model.EnumFlagHintStringAnnotation
 import godot.entrygenerator.model.ExpEasingHintAnnotation
-import godot.entrygenerator.model.ExpRangeHintAnnotation
 import godot.entrygenerator.model.ExportAnnotation
 import godot.entrygenerator.model.FileHintAnnotation
-import godot.entrygenerator.model.FloatRangeHintAnnotation
 import godot.entrygenerator.model.GodotAnnotation
 import godot.entrygenerator.model.GodotBaseTypeAnnotation
 import godot.entrygenerator.model.IntFlagHintAnnotation
-import godot.entrygenerator.model.IntRangeHintAnnotation
-import godot.entrygenerator.model.LongRangeHintAnnotation
 import godot.entrygenerator.model.MultilineTextHintAnnotation
 import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.Range
+import godot.entrygenerator.model.RangeHintAnnotation
 import godot.entrygenerator.model.RegisterClassAnnotation
 import godot.entrygenerator.model.RegisterConstructorAnnotation
 import godot.entrygenerator.model.RegisterFunctionAnnotation
@@ -140,76 +136,17 @@ fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotat
         MultilineText::class.qualifiedName -> MultilineTextHintAnnotation
         PlaceHolderText::class.qualifiedName -> PlaceHolderTextHintAnnotation
         ColorNoAlpha::class.qualifiedName -> ColorNoAlphaHintAnnotation
-        godot.annotation.IntRange::class.qualifiedName -> {
-            val start = (arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: arguments.first().value) as Int
-            val end = (arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: arguments[1].value) as Int
-            val step = ((arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: arguments[2].value) as? Int) ?: -1
-            val or = rangeEnum
-
-            IntRangeHintAnnotation(
-                start,
-                end,
-                step,
-                or
-            )
-        }
-        godot.annotation.LongRange::class.qualifiedName -> {
-            val start = (arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: arguments.first().value) as Long
-            val end = (arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: arguments[1].value) as Long
-            val step = ((arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: arguments[2].value) as? Long) ?: -1
-            val or = rangeEnum
-
-            LongRangeHintAnnotation(
-                start,
-                end,
-                step,
-                or
-            )
-        }
-        godot.annotation.FloatRange::class.qualifiedName -> {
-            val start = (arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: arguments.first().value) as Float
-            val end = (arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: arguments[1].value) as Float
-            val step = ((arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: arguments[2].value) as? Float) ?: -1f
-            val or = rangeEnum
-
-            FloatRangeHintAnnotation(
-                start,
-                end,
-                step,
-                or
-            )
-        }
-        godot.annotation.DoubleRange::class.qualifiedName -> {
-            val start = (arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: arguments.first().value) as Double
-            val end = (arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: arguments[1].value) as Double
-            val step = ((arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: arguments[2].value) as? Double) ?: -1.0
-            val or = rangeEnum
-
-            DoubleRangeHintAnnotation(
-                start,
-                end,
-                step,
-                or
-            )
-        }
-        godot.annotation.ExpRange::class.qualifiedName -> {
-            val start = (arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: arguments.first().value) as Float
-            val end = (arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: arguments[1].value) as Float
-            val step = ((arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: arguments[2].value) as? Float) ?: -1f
-
-            ExpRangeHintAnnotation(
-                start,
-                end,
-                step
-            )
-        }
+        godot.annotation.IntRange::class.qualifiedName -> provideRangeHintAnnotation(-1)
+        godot.annotation.LongRange::class.qualifiedName -> provideRangeHintAnnotation(-1L)
+        godot.annotation.FloatRange::class.qualifiedName -> provideRangeHintAnnotation(-1f)
+        godot.annotation.DoubleRange::class.qualifiedName -> provideRangeHintAnnotation(-1.0)
         EnumTypeHint::class.qualifiedName -> null
         ExpEasing::class.qualifiedName -> {
             val attenuation = ((arguments.firstOrNull { it.name?.asString() == "attenuation" }?.value ?: arguments.firstOrNull()?.value) as? Boolean) ?: false
-            val inout = ((arguments.firstOrNull { it.name?.asString() == "inout" }?.value ?: arguments[1].value) as? Boolean) ?: false
+            val isPositiveOnly = ((arguments.firstOrNull { it.name?.asString() == "isPositiveOnly" }?.value ?: arguments[1].value) as? Boolean) ?: false
             ExpEasingHintAnnotation(
                 attenuation,
-                inout
+                isPositiveOnly
             )
         }
         godot.annotation.File::class.qualifiedName -> {
@@ -228,4 +165,34 @@ fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotat
         }
         else -> null
     }
+}
+
+private fun <T: Number> KSAnnotation.provideRangeHintAnnotation(stepDefault: T): RangeHintAnnotation<T> {
+    val start = (arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: arguments.first().value) as T
+    val end = (arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: arguments[1].value) as T
+    val step = ((arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: arguments[2].value) as? T) ?: stepDefault
+    val or = rangeEnum
+    val hideSlider = (arguments.firstOrNull { it.name?.asString() == "hideSlider" }?.value ?: arguments[4].value) as Boolean
+    val isRadians = (arguments.firstOrNull { it.name?.asString() == "isRadians" }?.value ?: arguments[5].value) as Boolean
+    val isDegrees = (arguments.firstOrNull { it.name?.asString() == "isDegrees" }?.value ?: arguments[6].value) as Boolean
+    val isExp = (arguments.firstOrNull { it.name?.asString() == "isExp" }?.value ?: arguments[7].value) as Boolean
+    val suffix = ((arguments.firstOrNull { it.name?.asString() == "suffix" }?.value ?: arguments[8].value) as String).let { suffix ->
+        if (suffix == "<none>") {
+            null
+        } else {
+            suffix
+        }
+    }
+
+    return RangeHintAnnotation(
+        start = start,
+        end = end,
+        step = step,
+        or = or,
+        hideSlider = hideSlider,
+        isRadians = isRadians,
+        isDegrees = isDegrees,
+        isExp = isExp,
+        suffix = suffix
+    )
 }

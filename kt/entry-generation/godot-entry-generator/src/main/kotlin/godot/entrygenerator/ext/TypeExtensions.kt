@@ -92,7 +92,7 @@ fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     else -> false
 }
 
-// TODO: 4.0: fix ordinals: https://github.com/godotengine/godot/blob/0810ecaafdbee3ea747219e6ab3a8de5d2216a09/editor/editor_properties_array_dict.cpp
+// ordinals can be found in core/variant/variant.h
 fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     Boolean::class.qualifiedName -> 1
     Int::class.qualifiedName,
@@ -139,7 +139,7 @@ fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     "$godotCorePackage.${GodotTypes.packedVector3Array}" -> 36
     "$godotCorePackage.${GodotTypes.packedColorArray}" -> 37
     else -> if (this.isCompatibleListType()) {
-        19
+        28
     } else {
         null
     }
