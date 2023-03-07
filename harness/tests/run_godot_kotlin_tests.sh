@@ -1,4 +1,8 @@
-$1 -d -s --headless --path $PWD addons/gut/gut_cmdln.gd | ( no_error="false"; jvm_closed="false"; while read -r line
+$1 -d -s --headless --path $PWD addons/gut/gut_cmdln.gd &> logs.txt
+
+no_error="false"
+jvm_closed="false"
+while read -r line
 do
     echo "$line"
     if echo "$line" | grep -q "Failing tests     0"; then
@@ -7,7 +11,8 @@ do
     if echo "$line" | grep -q "Shutting down JVM ..."; then
         jvm_closed="true"
     fi
-done
+done < logs.txt
+
 if [[ "$no_error" == "false" ]]; then
     echo "ERROR: Some assertions failed !"
     exit 1
@@ -18,4 +23,5 @@ else
     echo "All tests OK !"
     exit 0
 fi
-); exit $?
+
+exit $?
