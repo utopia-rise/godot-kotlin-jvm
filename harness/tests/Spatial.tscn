@@ -12,11 +12,13 @@
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_abcao"]
 
-[node name="Spatial" type="Node3D"]
+[node name="Spatial" type="Node3D" node_paths=PackedStringArray("button")]
 script = ExtResource("1")
+button = NodePath("CanvasLayer/Button")
 nullable_long = 2
 lateinit_string = "works also from inspector"
 resource_test = SubResource("NavigationMesh_prd4u")
+jvm_id = 1783463798
 nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_tuyoa")])
 nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_bh4po"), null])
 nav_meshes_dictionary = {

@@ -34,7 +34,6 @@ import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
 import godot.core.RID
-import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.Vector3
@@ -55,6 +54,9 @@ enum class TestEnum {
 
 @RegisterClass
 class Invocation : Node3D() {
+	@Export
+	@RegisterProperty
+	lateinit var button: Button
 
 	@Export
 	@RegisterProperty
