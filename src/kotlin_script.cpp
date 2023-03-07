@@ -240,15 +240,23 @@ void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) {
         KotlinInstance* script_instance {
           dynamic_cast<KotlinInstance*>(_instance_create({}, 0, tmp_object))};
 
-        List<PropertyInfo> properties;
-        get_script_property_list(&properties);
-        for (int i = 0; i < properties.size(); ++i) {
+        List<PropertyInfo> all_properties;
+        get_script_property_list(&all_properties);
+
+        List<PropertyInfo> exported_properties;
+        for (const PropertyInfo& property_info : all_properties) {
+            if (property_info.usage != PropertyUsageFlags::PROPERTY_USAGE_NO_EDITOR) {
+                exported_properties.push_back(property_info);
+            }
+        }
+
+        for (int i = 0; i < exported_properties.size(); ++i) {
             Variant default_value;
-            const String& property_name{ properties[i].name };
+            const String& property_name {exported_properties[i].name};
             script_instance->get_or_default(property_name, default_value);
             exported_members_default_value_cache[property_name] = default_value;
         }
-        placeholder->update(properties, exported_members_default_value_cache);
+        placeholder->update(exported_properties, exported_members_default_value_cache);
         memdelete(tmp_object);
     }
 #endif
