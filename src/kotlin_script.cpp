@@ -245,7 +245,7 @@ void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) {
 
         List<PropertyInfo> exported_properties;
         for (const PropertyInfo& property_info : all_properties) {
-            if (property_info.usage != PropertyUsageFlags::PROPERTY_USAGE_NO_EDITOR) {
+            if (property_info.usage & PropertyUsageFlags::PROPERTY_USAGE_EDITOR) {
                 exported_properties.push_back(property_info);
             }
         }
