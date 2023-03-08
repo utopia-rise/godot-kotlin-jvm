@@ -86,7 +86,9 @@ class GodotKotlinSymbolProcessor(
             isFqNameRegistrationEnabled = options["isFqNameRegistrationEnabled"]?.toBooleanStrictOrNull()
                 ?: throw IllegalStateException("No isFqNameRegistrationEnabled option provided or not a boolean"),
             isRegistrationFileHierarchyEnabled = options["isRegistrationFileHierarchyEnabled"]?.toBooleanStrictOrNull()
-                ?: throw IllegalStateException("No isRegistrationFileHierarchyEnabled option provided or not a boolean")
+                ?: throw IllegalStateException("No isRegistrationFileHierarchyEnabled option provided or not a boolean"),
+            isRegistrationFileGenerationEnabled = options["isRegistrationFileGenerationEnabled"]?.toBooleanStrictOrNull()
+                ?: throw IllegalStateException("No isRegistrationFileGenerationEnabled option provided or not a boolean"),
         )
     }
 }

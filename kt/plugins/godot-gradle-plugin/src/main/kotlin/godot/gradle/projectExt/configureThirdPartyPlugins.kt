@@ -37,7 +37,19 @@ fun Project.configureThirdPartyPlugins() {
             )
             arg(
                 "registrationFileBaseDir",
-                (godotJvmExtension.registrationFileBaseDir.orNull?.asFile ?: projectDir.resolve(FileExtensions.GodotKotlinJvm.registrationFile).apply { mkdirs() })
+                (
+                    godotJvmExtension
+                        .registrationFileBaseDir
+                        .orNull
+                        ?.asFile
+                        ?: projectDir
+                            .resolve(FileExtensions.GodotKotlinJvm.registrationFile)
+                            .apply {
+                                if (godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true)) {
+                                    mkdirs()
+                                }
+                            }
+                    )
                     .relativeTo(projectDir)
                     .path
                     .replace(File.separator, "/")
@@ -55,6 +67,10 @@ fun Project.configureThirdPartyPlugins() {
             arg(
                 "isFqNameRegistrationEnabled",
                 godotJvmExtension.isFqNameRegistrationEnabled.getOrElse(false).toString()
+            )
+            arg(
+                "isRegistrationFileGenerationEnabled",
+                godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true).toString()
             )
         }
 

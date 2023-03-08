@@ -8,5 +8,6 @@ internal data class Settings(
         val registrationBaseDirPathRelativeToProjectDir: String,
         val classPrefix: String?,
         val isFqNameRegistrationEnabled: Boolean,
-        val isRegistrationFileHierarchyEnabled: Boolean
+        val isRegistrationFileHierarchyEnabled: Boolean,
+        val isRegistrationFileGenerationEnabled: Boolean,
 )

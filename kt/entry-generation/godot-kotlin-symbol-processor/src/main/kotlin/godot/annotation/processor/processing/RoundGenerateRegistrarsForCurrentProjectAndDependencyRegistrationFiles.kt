@@ -85,23 +85,25 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
             }
         )
 
-        EntryGenerator.generateRegistrationFiles(
-            registeredClassMetadataContainers = metadataAnnotationVisitor.registeredClassMetadataContainers,
-            registrationFileAppendableProvider = { metadata ->
-                blackboard.alreadyGeneratedRegistrationFiles.add(metadata.fqName)
+        if (settings.isRegistrationFileGenerationEnabled) {
+            EntryGenerator.generateRegistrationFiles(
+                registeredClassMetadataContainers = metadataAnnotationVisitor.registeredClassMetadataContainers,
+                registrationFileAppendableProvider = { metadata ->
+                    blackboard.alreadyGeneratedRegistrationFiles.add(metadata.fqName)
 
-                val resourcePathFromProjectRoot = metadata.provideRegistrationFileDir(
-                    currentCompilationProjectName = settings.projectName,
-                    registrationBaseDirPathRelativeToProjectDir = settings.registrationBaseDirPathRelativeToProjectDir
-                )
+                    val resourcePathFromProjectRoot = metadata.provideRegistrationFileDir(
+                        currentCompilationProjectName = settings.projectName,
+                        registrationBaseDirPathRelativeToProjectDir = settings.registrationBaseDirPathRelativeToProjectDir
+                    )
 
-                codeGenerator.createNewFileByPath(
-                    Dependencies.ALL_FILES,
-                    "entryFiles/${resourcePathFromProjectRoot.removeSuffix(".${FileExtensions.GodotKotlinJvm.registrationFile}")}", // suffix will be added by the codeGenerator of KSP and is defined one line below
-                    FileExtensions.GodotKotlinJvm.registrationFile
-                ).bufferedWriter()
-            }
-        )
+                    codeGenerator.createNewFileByPath(
+                        Dependencies.ALL_FILES,
+                        "entryFiles/${resourcePathFromProjectRoot.removeSuffix(".${FileExtensions.GodotKotlinJvm.registrationFile}")}", // suffix will be added by the codeGenerator of KSP and is defined one line below
+                        FileExtensions.GodotKotlinJvm.registrationFile
+                    ).bufferedWriter()
+                }
+            )
+        }
 
         return emptyList()
     }

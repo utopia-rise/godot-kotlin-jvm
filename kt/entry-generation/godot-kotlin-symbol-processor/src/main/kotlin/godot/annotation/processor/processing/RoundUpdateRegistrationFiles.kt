@@ -22,11 +22,13 @@ internal class RoundUpdateRegistrationFiles(
     private val settings: Settings,
 ) : BaseRound() {
     override fun executeInternal(): List<KSAnnotated> {
-        val newRegistrationFilesBaseDir = settings.projectBasePath.resolve("build/generated/ksp/main/resources/entryFiles")
-        val currentRegistrationFilesBaseDir = settings.projectBasePath.resolve(settings.registrationBaseDirPathRelativeToProjectDir)
+        if (settings.isRegistrationFileGenerationEnabled) {
+            val newRegistrationFilesBaseDir = settings.projectBasePath.resolve("build/generated/ksp/main/resources/entryFiles")
+            val currentRegistrationFilesBaseDir = settings.projectBasePath.resolve(settings.registrationBaseDirPathRelativeToProjectDir)
 
-        deleteObsoleteRegistrationFilesAndEmptyDirs(currentRegistrationFilesBaseDir, newRegistrationFilesBaseDir)
-        createOrUpdateRegistrationFiles(newRegistrationFilesBaseDir)
+            deleteObsoleteRegistrationFilesAndEmptyDirs(currentRegistrationFilesBaseDir, newRegistrationFilesBaseDir)
+            createOrUpdateRegistrationFiles(newRegistrationFilesBaseDir)
+        }
 
         return emptyList()
     }

@@ -71,6 +71,14 @@ open class GodotExtension(objects: ObjectFactory) {
     val projectName: Property<String> = objects.property(String::class.java)
 
     /**
+     * Defines whether registration files should be generated or not. Defaults to `true`.
+     *
+     * Only really useful for library authors to disable the registration file generation if a project is only used as a
+     * library where the registration files are not needed.
+     */
+    val isRegistrationFileGenerationEnabled: Property<Boolean> = objects.property(Boolean::class.java)
+
+    /**
      * enable android export
      *
      * is set to true, d8 tool and androidCompileSdk dir have to be resolvable
