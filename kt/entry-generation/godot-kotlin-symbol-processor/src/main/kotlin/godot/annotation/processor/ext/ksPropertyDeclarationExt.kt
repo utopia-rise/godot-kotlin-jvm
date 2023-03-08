@@ -95,6 +95,7 @@ internal fun KSPropertyDeclaration.mapToRegisteredSignal(declaredProperties: Lis
     val isInheritedButNotOverridden = !declaredProperties.map { it.qualifiedName?.asString() }.contains(fqName)
 
     val signalParameterNames = PsiProvider.provideSignalArgumentNames(
+        this,
         if (isInheritedButNotOverridden) {
             "${findOverridee()?.qualifiedName?.asString()}"
         } else fqName

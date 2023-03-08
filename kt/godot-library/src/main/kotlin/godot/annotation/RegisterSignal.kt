@@ -12,6 +12,6 @@ package godot.annotation
  *
  * Use the signals `connect` method to register receivers in a typesafe way.
  */
-@Target(AnnotationTarget.PROPERTY)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class RegisterSignal
