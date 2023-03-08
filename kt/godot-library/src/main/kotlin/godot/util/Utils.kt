@@ -1,3 +1,4 @@
+@file:JvmName("Utils")
 package godot.util
 
 import godot.core.ObjectID

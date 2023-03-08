@@ -264,6 +264,7 @@ class Rect2(
      * Returns true if the Rect2 overlaps with b (i.e. they have at least one point in common).
      * If include_borders is true, they will also be considered overlapping if their borders touch, even without intersection.
      */
+    @JvmOverloads
     fun intersects(b: Rect2, includeBorders: Boolean = false): Boolean {
         if (includeBorders) {
             return when {
