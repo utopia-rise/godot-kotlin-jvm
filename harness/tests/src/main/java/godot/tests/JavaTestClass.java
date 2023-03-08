@@ -3,6 +3,9 @@ package godot.tests;
 import godot.Button;
 import godot.Node;
 import godot.annotation.*;
+import godot.core.Callable;
+import godot.core.StringNameUtils;
+import godot.core.VariantArray;
 import godot.signals.Signal;
 import godot.signals.Signal2;
 import godot.signals.SignalProvider;
@@ -55,5 +58,23 @@ public class JavaTestClass extends Node {
     @RegisterFunction
     public String greeting() {
         return "Hello from java";
+    }
+
+    @RegisterProperty
+    public boolean signalEmitted = false;
+
+    @RegisterFunction
+    public void connectAndTriggerSignal() {
+        connect(
+                StringNameUtils.asStringName("test_signal"),
+                new Callable(this, StringNameUtils.asStringName("signal_callback")),
+                ConnectFlags.CONNECT_ONE_SHOT.getId()
+        );
+        testSignal.emit(this);
+    }
+
+    @RegisterFunction
+    public void signalCallback() {
+        signalEmitted = true;
     }
 }

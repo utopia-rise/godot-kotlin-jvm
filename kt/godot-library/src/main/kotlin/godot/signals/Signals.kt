@@ -19,6 +19,10 @@ open class Signal(
 
     val objectId by lazy { godotObject.id }
 
+    fun emit(instance: Object, vararg args: Any?) {
+        emitSignal(instance, *args)
+    }
+
     protected fun emitSignal(instance: Object, vararg args: Any?) {
         instance.emitSignal(name, *args)
     }

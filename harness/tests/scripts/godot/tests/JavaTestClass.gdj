@@ -22,8 +22,11 @@ properties = [
 	exported_boolean,
 	exported_string,
 	exported_byte,
-	exported_button
+	exported_button,
+	signal_emitted
 ]
 functions = [
-	greeting
+	greeting,
+	connect_and_trigger_signal,
+	signal_callback
 ]
