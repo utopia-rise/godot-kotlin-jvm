@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * A unit of execution in a process.
@@ -48,6 +49,7 @@ public open class Thread : RefCounted() {
    *
    * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
    */
+  @JvmOverloads
   public fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):
       GodotError {
     TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)

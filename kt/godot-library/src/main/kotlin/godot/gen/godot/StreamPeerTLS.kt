@@ -19,6 +19,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * TLS stream peer.
@@ -57,6 +58,7 @@ public open class StreamPeerTLS : StreamPeer() {
   /**
    * Connects to a peer using an underlying [godot.StreamPeer] [stream] and verifying the remote certificate is correctly signed for the given [commonName]. You can pass the optional [clientOptions] parameter to customize the trusted certification authorities, or disable the common name verification. See [godot.TLSOptions.client] and [godot.TLSOptions.clientUnsafe].
    */
+  @JvmOverloads
   public fun connectToStream(
     stream: StreamPeer,
     commonName: String,

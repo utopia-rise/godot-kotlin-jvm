@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Placeholder for the root [godot.Node] of a [godot.PackedScene].
@@ -38,6 +39,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
    *
    * If [withOrder] is `true`, a key named `.order` (note the leading period) is added to the dictionary. This `.order` key is an [godot.Array] of [godot.String] property names specifying the order in which properties will be applied (with index 0 being the first).
    */
+  @JvmOverloads
   public fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to withOrder)
     TransferContext.callMethod(rawPtr,
@@ -50,6 +52,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
    *
    * **Note:** [createInstance] is not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
    */
+  @JvmOverloads
   public fun createInstance(replace: Boolean = false, customScene: PackedScene? = null): Node? {
     TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_CREATE_INSTANCE,

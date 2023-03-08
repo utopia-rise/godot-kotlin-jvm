@@ -23,6 +23,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Plugin to control and modifying the process of importing a scene.
@@ -122,6 +123,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
   /**
    * Add a specific import option. This function can only be called from [_getImportOptions] and [_getInternalImportOptions].
    */
+  @JvmOverloads
   public fun addImportOptionAdvanced(
     type: VariantType,
     name: String,

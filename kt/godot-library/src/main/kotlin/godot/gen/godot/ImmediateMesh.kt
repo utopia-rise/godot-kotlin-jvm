@@ -23,6 +23,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Mesh optimized for creating geometry manually.
@@ -39,6 +40,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Begin a new surface.
    */
+  @JvmOverloads
   public fun surfaceBegin(primitive: Mesh.PrimitiveType, material: Material? = null): Unit {
     TransferContext.writeArguments(LONG to primitive.id, OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_BEGIN, NIL)

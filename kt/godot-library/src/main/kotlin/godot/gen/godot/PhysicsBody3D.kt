@@ -24,6 +24,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Base class for all objects affected by physics in 3D space.
@@ -55,6 +56,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    *
    * [maxCollisions] allows to retrieve more than one collision result.
    */
+  @JvmOverloads
   public fun moveAndCollide(
     motion: Vector3,
     testOnly: Boolean = false,
@@ -81,6 +83,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    *
    * [maxCollisions] allows to retrieve more than one collision result.
    */
+  @JvmOverloads
   public fun testMove(
     from: Transform3D,
     motion: Vector3,

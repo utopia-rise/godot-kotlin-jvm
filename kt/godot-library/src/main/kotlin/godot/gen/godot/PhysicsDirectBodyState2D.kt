@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Direct access object to a physics body in the [godot.PhysicsServer2D].
@@ -237,6 +238,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
@@ -248,6 +250,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
+  @JvmOverloads
   public fun applyCentralForce(force: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(rawPtr,
@@ -259,6 +262,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
@@ -281,6 +285,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
+  @JvmOverloads
   public fun addConstantCentralForce(force: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(rawPtr,
@@ -292,6 +297,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,

@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Provides a compressed texture for disk and/or VRAM in a way that is portable.
@@ -83,6 +84,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    *
    * If lossy compression is requested, the quality setting can optionally be provided. This maps to Lossy WebP compression quality.
    */
+  @JvmOverloads
   public fun createFromImage(
     image: Image,
     compressionMode: CompressionMode,

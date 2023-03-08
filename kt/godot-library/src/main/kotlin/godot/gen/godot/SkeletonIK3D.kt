@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * SkeletonIK3D is used to place the end bone of a [godot.Skeleton3D] bone chain at a certain point in 3D by rotating all bones in the chain accordingly.
@@ -242,6 +243,7 @@ public open class SkeletonIK3D : Node() {
   /**
    * Starts applying IK effects on each frame to the [godot.Skeleton3D] bones but will only take effect starting on the next frame. If `one_time` is `true`, this will take effect immediately but also reset on the next frame.
    */
+  @JvmOverloads
   public fun start(oneTime: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to oneTime)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_START, NIL)

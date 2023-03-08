@@ -19,6 +19,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * DTLS packet peer.
@@ -47,6 +48,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   /**
    * Connects a [packetPeer] beginning the DTLS handshake using the underlying [godot.PacketPeerUDP] which must be connected (see [godot.PacketPeerUDP.connectToHost]). You can optionally specify the [clientOptions] to be used while verifying the TLS connections. See [godot.TLSOptions.client] and [godot.TLSOptions.clientUnsafe].
    */
+  @JvmOverloads
   public fun connectToPeer(
     packetPeer: PacketPeerUDP,
     hostname: String,

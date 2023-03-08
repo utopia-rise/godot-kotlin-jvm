@@ -6,21 +6,13 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.StringName
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
-import kotlin.Boolean
-import kotlin.Int
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base dialog for user notification.
@@ -154,6 +146,7 @@ public open class AcceptDialog : Window() {
    *
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
+  @JvmOverloads
   public fun addButton(
     text: String,
     right: Boolean = false,

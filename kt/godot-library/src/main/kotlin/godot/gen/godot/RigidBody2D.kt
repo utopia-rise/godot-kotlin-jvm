@@ -29,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Physics Body which is moved by 2D physics simulation. Useful for objects that have gravity and can be pushed by other objects.
@@ -561,6 +562,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
+  @JvmOverloads
   public fun applyCentralImpulse(impulse: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_CENTRAL_IMPULSE,
@@ -574,6 +576,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_IMPULSE, NIL)
@@ -608,6 +611,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_FORCE, NIL)
@@ -639,6 +643,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_ADD_CONSTANT_FORCE, NIL)

@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Exposes performance-related data.
@@ -175,6 +176,7 @@ public object Performance : Object() {
    *
    * Callables are called with arguments supplied in argument array.
    */
+  @JvmOverloads
   public fun addCustomMonitor(
     id: StringName,
     callable: Callable,

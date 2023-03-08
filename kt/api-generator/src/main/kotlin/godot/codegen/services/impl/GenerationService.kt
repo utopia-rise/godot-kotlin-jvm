@@ -658,6 +658,9 @@ class GenerationService(
                             .build()
                     )
                 )
+                // add @JvmOverloads annotation for java support
+                .addAnnotation(JvmOverloads::class.asClassName())
+
             connectFun.addCode(
                 """
                             |val methodName = (method as %T<*>).name.%M().%M()
@@ -789,7 +792,15 @@ class GenerationService(
                 } else {
                     defaultValueKotlinCode
                 }
-                if (appliedDefault != null) parameterBuilder.defaultValue(appliedDefault)
+                if (appliedDefault != null) {
+                    parameterBuilder.defaultValue(appliedDefault)
+
+                    // add @JvmOverloads annotation for java support if not already present
+                    val jvmOverloadAnnotationSpec = AnnotationSpec.builder(JvmOverloads::class.asClassName()).build()
+                    if (!generatedFunBuilder.annotations.contains(jvmOverloadAnnotationSpec)) {
+                        generatedFunBuilder.addAnnotation(jvmOverloadAnnotationSpec)
+                    }
+                }
 
                 generatedFunBuilder.addParameter(parameterBuilder.build())
             }

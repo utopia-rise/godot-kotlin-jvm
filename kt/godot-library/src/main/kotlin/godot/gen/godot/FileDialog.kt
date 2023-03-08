@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Dialog for selecting files or directories in the filesystem.
@@ -204,6 +205,7 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * For example, a [filter] of `"*.png, *.jpg"` and a [description] of `"Images"` results in filter text "Images (*.png, *.jpg)".
    */
+  @JvmOverloads
   public fun addFilter(filter: String, description: String = ""): Unit {
     TransferContext.writeArguments(STRING to filter, STRING to description)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_ADD_FILTER, NIL)

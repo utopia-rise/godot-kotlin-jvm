@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A region of the navigation map.
@@ -187,6 +188,7 @@ public open class NavigationRegion3D : Node3D() {
   /**
    * Bakes the [godot.NavigationMesh]. If [onThread] is set to `true` (default), the baking is done on a separate thread. Baking on separate thread is useful because navigation baking is not a cheap operation. When it is completed, it automatically sets the new [godot.NavigationMesh]. Please note that baking on separate thread may be very slow if geometry is parsed from meshes as async access to each mesh involves heavy synchronization. Also, please note that baking on a separate thread is automatically disabled on operating systems that cannot use threads (such as Web with threads disabled).
    */
+  @JvmOverloads
   public fun bakeNavigationMesh(onThread: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to onThread)
     TransferContext.callMethod(rawPtr,

@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A helper to handle dictionaries which look like JSONRPC documents.
@@ -51,6 +52,7 @@ public open class JSONRPC : Object() {
    *
    * [action]: The action to be run, as a Dictionary in the form of a JSON-RPC request or notification.
    */
+  @JvmOverloads
   public fun processAction(action: Any, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_ACTION, ANY)
@@ -121,6 +123,7 @@ public open class JSONRPC : Object() {
    *
    * - [id]: The request this error is a response to.
    */
+  @JvmOverloads
   public fun makeResponseError(
     code: Int,
     message: String,

@@ -21,6 +21,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Type used to handle the filesystem.
@@ -264,6 +265,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Returns the absolute path to the currently opened directory (e.g. `res://folder` or `C:\tmp\folder`).
    */
+  @JvmOverloads
   public fun getCurrentDir(includeDrive: Boolean = true): String {
     TransferContext.writeArguments(BOOL to includeDrive)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_GET_CURRENT_DIR, STRING)
@@ -328,6 +330,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    *
    * Returns one of the [enum Error] code constants ([OK] on success).
    */
+  @JvmOverloads
   public fun copy(
     from: String,
     to: String,

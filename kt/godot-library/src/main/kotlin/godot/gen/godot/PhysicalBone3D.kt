@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  *
@@ -308,6 +309,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    *
    */
+  @JvmOverloads
   public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_APPLY_IMPULSE, NIL)

@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.
@@ -407,6 +408,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
   /**
    * This function can only be called during the [_import] callback and it allows manually importing resources from it. This is useful when the imported file generates external resources that require importing (as example, images). Custom parameters for the ".import" file can be passed via the [customOptions]. Additionally, in cases where multiple importers can handle a file, the [customImporter] ca be specified to force a specific one. This function performs a resource import and returns immediately with a success or error code. [generatorParameters] defines optional extra metadata which will be stored as `generator_parameters` in the `remap` section of the `.import` file, for example to store a md5 hash of the source data.
    */
+  @JvmOverloads
   public fun appendImportExternalResource(
     path: String,
     customOptions: Dictionary<Any?, Any?> = Dictionary(),

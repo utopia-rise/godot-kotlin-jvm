@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Node that instances meshes into a scenario.
@@ -141,6 +142,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    *
    * If [simplify] is `true`, the geometry can be further simplified to reduce the number of vertices. Disabled by default.
    */
+  @JvmOverloads
   public fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(rawPtr,

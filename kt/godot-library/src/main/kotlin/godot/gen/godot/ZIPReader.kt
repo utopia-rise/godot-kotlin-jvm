@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class ZIPReader : RefCounted() {
@@ -48,6 +49,7 @@ public open class ZIPReader : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
+  @JvmOverloads
   public fun readFile(path: String, caseSensitive: Boolean = true): PackedByteArray {
     TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ZIPREADER_READ_FILE,

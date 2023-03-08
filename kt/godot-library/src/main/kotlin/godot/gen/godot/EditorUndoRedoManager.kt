@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Manages undo history of scenes opened in the editor.
@@ -65,6 +66,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
    *
    * If [customContext] object is provided, it will be used for deducing target history (instead of using the first operation).
    */
+  @JvmOverloads
   public fun createAction(
     name: String,
     mergeMode: UndoRedo.MergeMode = UndoRedo.MergeMode.MERGE_DISABLE,
@@ -79,6 +81,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   /**
    * Commit the action. If [execute] is true (default), all "do" methods/properties are called/set when this function is called.
    */
+  @JvmOverloads
   public fun commitAction(execute: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to execute)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_COMMIT_ACTION,

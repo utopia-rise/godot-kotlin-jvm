@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Operating System functions.
@@ -81,6 +82,7 @@ public object OS : Object() {
   /**
    * Displays a modal dialog box using the host OS' facilities. Execution is blocked until the dialog is closed.
    */
+  @JvmOverloads
   public fun alert(text: String, title: String = "Alert!"): Unit {
     TransferContext.writeArguments(STRING to text, STRING to title)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_ALERT, NIL)
@@ -172,6 +174,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
+  @JvmOverloads
   public fun getSystemFontPath(
     fontName: String,
     weight: Int = 400,
@@ -194,6 +197,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
+  @JvmOverloads
   public fun getSystemFontPathForText(
     fontName: String,
     text: String,
@@ -294,6 +298,7 @@ public object OS : Object() {
    *
    * **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables, specified during export.
    */
+  @JvmOverloads
   public fun execute(
     path: String,
     arguments: PackedStringArray,
@@ -337,6 +342,7 @@ public object OS : Object() {
    *
    * **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables, specified during export or system .app bundle, system .app bundles will ignore arguments.
    */
+  @JvmOverloads
   public fun createProcess(
     path: String,
     arguments: PackedStringArray,
@@ -738,6 +744,7 @@ public object OS : Object() {
    *
    * **Note:** If the project process crashes or is *killed* by the user (by sending `SIGKILL` instead of the usual `SIGTERM`), the project won't restart automatically.
    */
+  @JvmOverloads
   public fun setRestartOnExit(restart: Boolean, arguments: PackedStringArray = PackedStringArray()):
       Unit {
     TransferContext.writeArguments(BOOL to restart, PACKED_STRING_ARRAY to arguments)
@@ -947,6 +954,7 @@ public object OS : Object() {
    *
    * **Note:** Shared storage is implemented on Android and allows to differentiate between app specific and shared directories. Shared directories have additional restrictions on Android.
    */
+  @JvmOverloads
   public fun getSystemDir(dir: SystemDir, sharedStorage: Boolean = true): String {
     TransferContext.writeArguments(LONG to dir.id, BOOL to sharedStorage)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_DIR, STRING)

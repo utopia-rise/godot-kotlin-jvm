@@ -31,6 +31,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Server interface for low-level physics access.
@@ -262,6 +263,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
    */
+  @JvmOverloads
   public fun areaAddShape(
     area: RID,
     shape: RID,
@@ -605,6 +607,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
    */
+  @JvmOverloads
   public fun bodyAddShape(
     body: RID,
     shape: RID,
@@ -814,6 +817,7 @@ public object PhysicsServer3D : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun bodyApplyImpulse(
     body: RID,
     impulse: Vector3,
@@ -851,6 +855,7 @@ public object PhysicsServer3D : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun bodyApplyForce(
     body: RID,
     force: Vector3,
@@ -886,6 +891,7 @@ public object PhysicsServer3D : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun bodyAddConstantForce(
     body: RID,
     force: Vector3,
@@ -1050,6 +1056,7 @@ public object PhysicsServer3D : Object() {
    *
    * `userdata:` Optional user data, if it was passed when calling `body_set_force_integration_callback`.
    */
+  @JvmOverloads
   public fun bodySetForceIntegrationCallback(
     body: RID,
     callable: Callable,
@@ -1072,6 +1079,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns `true` if a collision would result from moving along a motion vector from a given point in space. [godot.PhysicsTestMotionParameters3D] is passed to set motion parameters. [godot.PhysicsTestMotionResult3D] can be passed to return additional information.
    */
+  @JvmOverloads
   public fun bodyTestMotion(
     body: RID,
     parameters: PhysicsTestMotionParameters3D,

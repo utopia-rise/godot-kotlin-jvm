@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A mathematic curve.
@@ -101,6 +102,7 @@ public open class Curve : Resource() {
   /**
    * Adds a point to the curve. For each side, if the `*_mode` is [TANGENT_LINEAR], the `*_tangent` angle (in degrees) uses the slope of the curve halfway to the adjacent point. Allows custom assignments to the `*_tangent` angle if `*_mode` is set to [TANGENT_FREE].
    */
+  @JvmOverloads
   public fun addPoint(
     position: Vector2,
     leftTangent: Float = 0.0f,

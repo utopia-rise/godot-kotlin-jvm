@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A [godot.Resource] that contains vertex array-based geometry.
@@ -249,6 +250,7 @@ public open class Mesh : Resource() {
    *
    * If [simplify] is `true`, the geometry can be further simplified to reduce the number of vertices. Disabled by default.
    */
+  @JvmOverloads
   public fun createConvexShape(clean: Boolean = true, simplify: Boolean = false):
       ConvexPolygonShape3D? {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)

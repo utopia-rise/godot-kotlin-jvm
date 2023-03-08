@@ -29,6 +29,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Object that holds the project-independent editor settings.
@@ -227,6 +228,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Returns project-specific metadata for the [section] and [key] specified. If the metadata doesn't exist, [default] will be returned instead. See also [setProjectMetadata].
    */
+  @JvmOverloads
   public fun getProjectMetadata(
     section: String,
     key: String,

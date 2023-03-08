@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Tab bar control.
@@ -424,6 +425,7 @@ public open class TabBar : Control() {
   /**
    * Adds a new tab.
    */
+  @JvmOverloads
   public fun addTab(title: String = "", icon: Texture2D? = null): Unit {
     TransferContext.writeArguments(STRING to title, OBJECT to icon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_ADD_TAB, NIL)

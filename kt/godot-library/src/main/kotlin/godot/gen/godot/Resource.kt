@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Base class for all resources.
@@ -176,6 +177,7 @@ public open class Resource : RefCounted() {
    *
    * **Note:** For custom resources, this method will fail if [godot.Object.Init] has been defined with required parameters.
    */
+  @JvmOverloads
   public fun duplicate(subresources: Boolean = false): Resource? {
     TransferContext.writeArguments(BOOL to subresources)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_DUPLICATE, OBJECT)

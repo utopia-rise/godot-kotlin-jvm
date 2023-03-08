@@ -19,6 +19,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * UDP packet peer.
@@ -43,6 +44,7 @@ public open class PacketPeerUDP : PacketPeer() {
    *
    * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer will only be bound to the interface with that addresses (or fail if no interface with the given address exists).
    */
+  @JvmOverloads
   public fun bind(
     port: Int,
     bindAddress: String = "*",

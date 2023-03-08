@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A soft mesh physics body.
@@ -308,6 +309,7 @@ public open class SoftBody3D : MeshInstance3D() {
   /**
    * Sets the pinned state of a surface vertex. When set to `true`, the optional [attachmentPath] can define a [godot.Node3D] the pinned vertex will be attached to.
    */
+  @JvmOverloads
   public fun setPointPinned(
     pointIndex: Int,
     pinned: Boolean,

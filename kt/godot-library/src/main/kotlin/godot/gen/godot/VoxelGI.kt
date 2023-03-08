@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Real-time global illumination (GI) probe.
@@ -110,6 +111,7 @@ public open class VoxelGI : VisualInstance3D() {
    *
    * **Note:** [godot.GeometryInstance3D]s and [godot.Light3D]s must be fully ready before [bake] is called. If you are procedurally creating those and some meshes or lights are missing from your baked [godot.VoxelGI], use `call_deferred("bake")` instead of calling [bake] directly.
    */
+  @JvmOverloads
   public fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, BOOL to createVisualDebug)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_BAKE, NIL)

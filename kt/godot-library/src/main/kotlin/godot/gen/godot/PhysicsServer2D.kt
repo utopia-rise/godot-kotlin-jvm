@@ -30,6 +30,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Server interface for low-level 2D physics access.
@@ -275,6 +276,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Adds a shape to the area, with the given local transform. The shape (together with its [transform] and [disabled] properties) is added to an array of shapes, and the shapes of an area are usually referenced by their index in this array.
    */
+  @JvmOverloads
   public fun areaAddShape(
     area: RID,
     shape: RID,
@@ -591,6 +593,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Adds a shape to the area, with the given local transform. The shape (together with its [transform] and [disabled] properties) is added to an array of shapes, and the shapes of a body are usually referenced by their index in this array.
    */
+  @JvmOverloads
   public fun bodyAddShape(
     body: RID,
     shape: RID,
@@ -901,6 +904,7 @@ public object PhysicsServer2D : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun bodyApplyImpulse(
     body: RID,
     impulse: Vector2,
@@ -927,6 +931,7 @@ public object PhysicsServer2D : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun bodyApplyForce(
     body: RID,
     force: Vector2,
@@ -962,6 +967,7 @@ public object PhysicsServer2D : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun bodyAddConstantForce(
     body: RID,
     force: Vector2,
@@ -1103,6 +1109,7 @@ public object PhysicsServer2D : Object() {
    *
    * **Note:** This callback is currently not called in Godot Physics.
    */
+  @JvmOverloads
   public fun bodySetForceIntegrationCallback(
     body: RID,
     callable: Callable,
@@ -1116,6 +1123,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns `true` if a collision would result from moving the body along a motion vector from a given point in space. See [godot.PhysicsTestMotionParameters2D] for the available motion parameters. Optionally a [godot.PhysicsTestMotionResult2D] object can be passed, which will be used to store the information about the resulting collision.
    */
+  @JvmOverloads
   public fun bodyTestMotion(
     body: RID,
     parameters: PhysicsTestMotionParameters2D,
@@ -1199,6 +1207,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Makes the joint a pin joint. If [bodyB] is `RID()`, then [bodyA] is pinned to the point [anchor] (given in global coordinates); otherwise, [bodyA] is pinned to [bodyB] at the point [anchor] (given in global coordinates). To set the parameters which are specific to the pin joint, see [pinJointSetParam].
    */
+  @JvmOverloads
   public fun jointMakePin(
     joint: RID,
     anchor: Vector2,
@@ -1212,6 +1221,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Makes the joint a groove joint.
    */
+  @JvmOverloads
   public fun jointMakeGroove(
     joint: RID,
     groove1A: Vector2,
@@ -1228,6 +1238,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Makes the joint a damped spring joint, attached at the point [anchorA] (given in global coordinates) on the body [bodyA] and at the point [anchorB] (given in global coordinates) on the body [bodyB]. To set the parameters which are specific to the damped spring, see [dampedSpringJointSetParam].
    */
+  @JvmOverloads
   public fun jointMakeDampedSpring(
     joint: RID,
     anchorA: Vector2,

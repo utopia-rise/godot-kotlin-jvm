@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  *
@@ -49,6 +50,7 @@ public open class RDShaderFile : Resource() {
   /**
    *
    */
+  @JvmOverloads
   public fun setBytecode(bytecode: RDShaderSPIRV, version: StringName = StringName("")): Unit {
     TransferContext.writeArguments(OBJECT to bytecode, STRING_NAME to version)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_SET_BYTECODE, NIL)
@@ -57,6 +59,7 @@ public open class RDShaderFile : Resource() {
   /**
    *
    */
+  @JvmOverloads
   public fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {
     TransferContext.writeArguments(STRING_NAME to version)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_SPIRV, OBJECT)

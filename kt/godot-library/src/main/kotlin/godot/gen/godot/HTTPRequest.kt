@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A node with the ability to send HTTP(S) requests.
@@ -467,6 +468,7 @@ public open class HTTPRequest : Node() {
    *
    * **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.
    */
+  @JvmOverloads
   public fun request(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
@@ -483,6 +485,7 @@ public open class HTTPRequest : Node() {
    *
    * Returns [OK] if request is successfully created. (Does not imply that the server has responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT] if not using thread and the [godot.HTTPClient] cannot connect to host.
    */
+  @JvmOverloads
   public fun requestRaw(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),

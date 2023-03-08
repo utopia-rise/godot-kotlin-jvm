@@ -22,6 +22,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Plugin for adding custom property editors on the inspector.
@@ -108,6 +109,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   /**
    * Adds a property editor for an individual property. The [editor] control must extend [godot.EditorProperty].
    */
+  @JvmOverloads
   public fun addPropertyEditor(
     `property`: String,
     editor: Control,

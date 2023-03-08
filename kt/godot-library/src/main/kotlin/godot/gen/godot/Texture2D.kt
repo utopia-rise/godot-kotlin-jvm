@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Texture for 2D and 3D.
@@ -154,6 +155,7 @@ public open class Texture2D : Texture() {
   /**
    * Draws the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API at the specified [position].
    */
+  @JvmOverloads
   public fun draw(
     canvasItem: RID,
     position: Vector2,
@@ -167,6 +169,7 @@ public open class Texture2D : Texture() {
   /**
    * Draws the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API.
    */
+  @JvmOverloads
   public fun drawRect(
     canvasItem: RID,
     rect: Rect2,
@@ -181,6 +184,7 @@ public open class Texture2D : Texture() {
   /**
    * Draws a part of the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API.
    */
+  @JvmOverloads
   public fun drawRectRegion(
     canvasItem: RID,
     rect: Rect2,

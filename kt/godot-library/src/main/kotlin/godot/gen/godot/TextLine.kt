@@ -36,6 +36,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Holds a line of text.
@@ -190,6 +191,7 @@ public open class TextLine : RefCounted() {
   /**
    * Adds text span and font to draw it.
    */
+  @JvmOverloads
   public fun addString(
     text: String,
     font: Font,
@@ -205,6 +207,7 @@ public open class TextLine : RefCounted() {
   /**
    * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented as [length] object replacement characters.
    */
+  @JvmOverloads
   public fun addObject(
     key: Any,
     size: Vector2,
@@ -220,6 +223,7 @@ public open class TextLine : RefCounted() {
   /**
    * Sets new size and alignment of embedded object.
    */
+  @JvmOverloads
   public fun resizeObject(
     key: Any,
     size: Vector2,
@@ -325,6 +329,7 @@ public open class TextLine : RefCounted() {
   /**
    * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
+  @JvmOverloads
   public fun draw(
     canvas: RID,
     pos: Vector2,
@@ -337,6 +342,7 @@ public open class TextLine : RefCounted() {
   /**
    * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
+  @JvmOverloads
   public fun drawOutline(
     canvas: RID,
     pos: Vector2,

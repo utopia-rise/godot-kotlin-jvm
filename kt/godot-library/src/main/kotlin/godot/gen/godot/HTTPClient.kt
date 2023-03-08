@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Low-level hyper-text transfer protocol client.
@@ -111,6 +112,7 @@ public open class HTTPClient : RefCounted() {
    *
    * If no [port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for HTTPS. You can pass the optional [tlsOptions] parameter to customize the trusted certification authorities, or the common name verification when using HTTPS. See [godot.TLSOptions.client] and [godot.TLSOptions.clientUnsafe].
    */
+  @JvmOverloads
   public fun connectToHost(
     host: String,
     port: Int = -1,
@@ -180,6 +182,7 @@ public open class HTTPClient : RefCounted() {
    *
    * **Note:** The [body] parameter is ignored if [method] is [godot.HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [godot.String.uriEncode] for an example.
    */
+  @JvmOverloads
   public fun request(
     method: Method,
     url: String,

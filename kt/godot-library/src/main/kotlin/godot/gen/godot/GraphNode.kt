@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * GraphNode is a [godot.Container] control that represents a single data unit in a [godot.GraphEdit] graph. You can customize the number, type, and color of left- and right-side connection ports.
@@ -268,6 +269,7 @@ public open class GraphNode : Container() {
    *
    * **Note:** This method only sets properties of the slot. To create the slot itself, add a [godot.Control]-derived child to the GraphNode.
    */
+  @JvmOverloads
   public fun setSlot(
     slotIndex: Int,
     enableLeftPort: Boolean,

@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Exposes the internal debugger.
@@ -94,6 +95,7 @@ public object EngineDebugger : Object() {
   /**
    * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables the same profiler depending on `enable` argument.
    */
+  @JvmOverloads
   public fun profilerEnable(
     name: StringName,
     enable: Boolean,

@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Type to handle file reading and writing operations.
@@ -195,6 +196,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * **Note:** This is an offset, so you should use negative numbers or the cursor will be at the end of the file.
    */
+  @JvmOverloads
   public fun seekEnd(position: Long = 0): Unit {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_SEEK_END, NIL)
@@ -352,6 +354,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * Note how the second line can omit the enclosing quotes as it does not include the delimiter. However it *could* very well use quotes, it was only written without for demonstration purposes. The third line must use `""` for each quotation mark that needs to be interpreted as such instead of the end of a text value.
    */
+  @JvmOverloads
   public fun getCsvLine(delim: String = ","): PackedStringArray {
     TransferContext.writeArguments(STRING to delim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_CSV_LINE,
@@ -364,6 +367,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * If [skipCr] is `true`, carriage return characters (`\r`, CR) will be ignored when parsing the UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
    */
+  @JvmOverloads
   public fun getAsText(skipCr: Boolean = false): String {
     TransferContext.writeArguments(BOOL to skipCr)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_AS_TEXT, STRING)
@@ -386,6 +390,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
+  @JvmOverloads
   public fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_VAR, ANY)
@@ -547,6 +552,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * Text will be encoded as UTF-8.
    */
+  @JvmOverloads
   public fun storeCsvLine(values: PackedStringArray, delim: String = ","): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to values, STRING to delim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_STORE_CSV_LINE, NIL)
@@ -569,6 +575,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * **Note:** Not all properties are included. Only properties that are configured with the [PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property by overriding the [godot.Object.GetPropertyList] method in your class. You can also check how property usage is configured by calling [godot.Object.GetPropertyList]. See [enum PropertyUsageFlags] for the possible usage flags.
    */
+  @JvmOverloads
   public fun storeVar(`value`: Any, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_STORE_VAR, NIL)

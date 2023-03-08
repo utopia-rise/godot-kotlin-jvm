@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A modified version of [godot.FileDialog] used by the editor.
@@ -207,6 +208,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
    *
    * For example, a [filter] of `"*.tscn, *.scn"` and a [description] of `"Scenes"` results in filter text "Scenes (*.tscn, *.scn)".
    */
+  @JvmOverloads
   public fun addFilter(filter: String, description: String = ""): Unit {
     TransferContext.writeArguments(STRING to filter, STRING to description)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_ADD_FILTER, NIL)

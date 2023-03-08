@@ -23,6 +23,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Base class for all objects affected by physics in 2D space.
@@ -50,6 +51,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    *
    * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [godot.CharacterBody2D] for improving floor detection during floor snapping.
    */
+  @JvmOverloads
   public fun moveAndCollide(
     motion: Vector2,
     testOnly: Boolean = false,
@@ -73,6 +75,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    *
    * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would *touch* any other bodies.
    */
+  @JvmOverloads
   public fun testMove(
     from: Transform2D,
     motion: Vector2,

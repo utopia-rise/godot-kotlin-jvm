@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
@@ -111,6 +112,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     return true
   }
 
+  @JvmOverloads
   public fun createClient(url: String, tlsClientOptions: TLSOptions? = null): GodotError {
     TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
     TransferContext.callMethod(rawPtr,
@@ -118,6 +120,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
+  @JvmOverloads
   public fun createServer(
     port: Int,
     bindAddress: String = "*",

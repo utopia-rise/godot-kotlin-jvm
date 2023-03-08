@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Access to advanced cryptographic functionalities.
@@ -217,6 +218,7 @@ public open class Crypto : RefCounted() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun generateSelfSignedCertificate(
     key: CryptoKey,
     issuerName: String = "CN=myserver,O=myorganisation,C=IT",

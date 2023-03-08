@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * A class that stores an expression you can execute.
@@ -126,6 +127,7 @@ public open class Expression : RefCounted() {
    *
    * You can optionally specify names of variables that may appear in the expression with [inputNames], so that you can bind them when it gets executed.
    */
+  @JvmOverloads
   public fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
       GodotError {
     TransferContext.writeArguments(STRING to expression, PACKED_STRING_ARRAY to inputNames)
@@ -138,6 +140,7 @@ public open class Expression : RefCounted() {
    *
    * If you defined input variables in [parse], you can specify their values in the inputs array, in the same order.
    */
+  @JvmOverloads
   public fun execute(
     inputs: VariantArray<Any?> = godot.core.variantArrayOf(),
     baseInstance: Object? = null,

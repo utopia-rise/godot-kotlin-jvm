@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Holds a pattern to be copied from or pasted into [godot.TileMap]s.
@@ -38,6 +39,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Sets the tile indentifiers for the cell at coordinates [coords]. See [godot.TileMap.setCell].
    */
+  @JvmOverloads
   public fun setCell(
     coords: Vector2i,
     sourceId: Int = -1,

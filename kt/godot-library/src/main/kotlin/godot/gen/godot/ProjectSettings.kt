@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Contains global variables accessible from everywhere.
@@ -113,6 +114,7 @@ public object ProjectSettings : Object() {
    *
    * **Note:** This method doesn't take potential feature overrides into account automatically. Use [getSettingWithOverride] to handle seamlessly.
    */
+  @JvmOverloads
   public fun getSetting(name: String, defaultValue: Any? = null): Any? {
     TransferContext.writeArguments(STRING to name, ANY to defaultValue)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
@@ -354,6 +356,7 @@ public object ProjectSettings : Object() {
    *
    * **Note:** The optional [offset] parameter can be used to specify the offset in bytes to the start of the resource pack. This is only supported for .pck files.
    */
+  @JvmOverloads
   public fun loadResourcePack(
     pack: String,
     replaceFiles: Boolean = true,

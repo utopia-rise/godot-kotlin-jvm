@@ -35,6 +35,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Base class for viewports.
@@ -849,6 +850,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
    */
+  @JvmOverloads
   public fun pushInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_INPUT, NIL)
@@ -873,6 +875,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used for physics object picking.
    */
+  @JvmOverloads
   public fun pushUnhandledInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_UNHANDLED_INPUT, NIL)

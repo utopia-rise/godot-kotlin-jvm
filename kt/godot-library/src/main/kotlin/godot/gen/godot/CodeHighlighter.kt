@@ -6,21 +6,11 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.NIL
-import godot.core.VariantType.STRING
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
-import kotlin.Any
-import kotlin.Boolean
-import kotlin.Int
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A syntax highlighter for code.
@@ -253,6 +243,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    *
    * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
+  @JvmOverloads
   public fun addColorRegion(
     startKey: String,
     endKey: String,

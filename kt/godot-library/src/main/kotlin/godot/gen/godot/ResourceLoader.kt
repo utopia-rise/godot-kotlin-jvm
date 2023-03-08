@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Singleton used to load resource files.
@@ -50,6 +51,7 @@ public object ResourceLoader : Object() {
    *
    * The [cacheMode] property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.
    */
+  @JvmOverloads
   public fun loadThreadedRequest(
     path: String,
     typeHint: String = "",
@@ -67,6 +69,7 @@ public object ResourceLoader : Object() {
    *
    * An array variable can optionally be passed via [progress], and will return a one-element array containing the percentage of completion of the threaded loading.
    */
+  @JvmOverloads
   public fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
       godot.core.variantArrayOf()): ThreadLoadStatus {
     TransferContext.writeArguments(STRING to path, ARRAY to progress)
@@ -100,6 +103,7 @@ public object ResourceLoader : Object() {
    *
    * GDScript has a simplified [@GDScript.load] built-in method which can be used in most situations, leaving the use of [godot.ResourceLoader] for more advanced scenarios.
    */
+  @JvmOverloads
   public fun load(
     path: String,
     typeHint: String = "",
@@ -126,6 +130,7 @@ public object ResourceLoader : Object() {
    *
    * This method is performed implicitly for ResourceFormatLoaders written in GDScript (see [godot.ResourceFormatLoader] for more information).
    */
+  @JvmOverloads
   public fun addResourceFormatLoader(formatLoader: ResourceFormatLoader, atFront: Boolean = false):
       Unit {
     TransferContext.writeArguments(OBJECT to formatLoader, BOOL to atFront)
@@ -177,6 +182,7 @@ public object ResourceLoader : Object() {
    *
    * An optional [typeHint] can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
    */
+  @JvmOverloads
   public fun exists(path: String, typeHint: String = ""): Boolean {
     TransferContext.writeArguments(STRING to path, STRING to typeHint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_EXISTS, BOOL)

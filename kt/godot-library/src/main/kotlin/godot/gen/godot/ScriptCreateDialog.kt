@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * The Editor's popup dialog for creating new [godot.Script] files.
@@ -75,6 +76,7 @@ public open class ScriptCreateDialog internal constructor() : ConfirmationDialog
   /**
    * Prefills required fields to configure the ScriptCreateDialog for use.
    */
+  @JvmOverloads
   public fun config(
     inherits: String,
     path: String,

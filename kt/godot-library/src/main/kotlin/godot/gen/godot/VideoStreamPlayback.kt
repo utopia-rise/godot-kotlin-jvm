@@ -18,6 +18,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Internal class used by [godot.VideoStream] to manage playback state when played from a [godot.VideoStreamPlayer].
@@ -119,6 +120,7 @@ public open class VideoStreamPlayback : Resource() {
   /**
    * Render `num_frames` audio frames (of [_getChannels] floats each) from `buffer`, starting from index `offset` in the array. Returns the number of audio frames rendered, or -1 on error.
    */
+  @JvmOverloads
   public fun mixAudio(
     numFrames: Int,
     buffer: PackedFloat32Array = PackedFloat32Array(),

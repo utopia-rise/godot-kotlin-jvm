@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Server that manages all translations.
@@ -166,6 +167,7 @@ public object TranslationServer : Object() {
   /**
    * Returns the current locale's translation for the given message (key) and context.
    */
+  @JvmOverloads
   public fun translate(message: StringName, context: StringName = StringName("")): StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_TRANSLATE,
@@ -178,6 +180,7 @@ public object TranslationServer : Object() {
    *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
    */
+  @JvmOverloads
   public fun translatePlural(
     message: StringName,
     pluralMessage: StringName,

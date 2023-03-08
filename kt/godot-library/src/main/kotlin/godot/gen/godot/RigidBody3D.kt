@@ -31,6 +31,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Physics Body which is moved by 3D physics simulation. Useful for objects that have gravity and can be pushed by other objects.
@@ -586,6 +587,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_APPLY_IMPULSE, NIL)
@@ -620,6 +622,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_APPLY_FORCE, NIL)
@@ -651,6 +654,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_ADD_CONSTANT_FORCE, NIL)

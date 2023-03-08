@@ -35,6 +35,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Server interface for low-level 3D navigation access.
@@ -218,6 +219,7 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the navigation path to reach the destination from the origin. [navigationLayers] is a bitmask of all region navigation layers that are allowed to be in the path.
    */
+  @JvmOverloads
   public fun mapGetPath(
     map: RID,
     origin: Vector3,
@@ -234,6 +236,7 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the closest point between the navigation surface and the segment.
    */
+  @JvmOverloads
   public fun mapGetClosestPointToSegment(
     map: RID,
     start: Vector3,

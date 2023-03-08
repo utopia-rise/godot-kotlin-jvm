@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A modification that applies the transforms of [godot.PhysicalBone2D] nodes to [godot.Bone2D] nodes.
@@ -89,6 +90,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    *
    * Optionally, an array of bone names can be passed to this function, and that will cause only [godot.PhysicalBone2D] nodes with those names to start simulating.
    */
+  @JvmOverloads
   public fun startSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr,
@@ -100,6 +102,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    *
    * Optionally, an array of bone names can be passed to this function, and that will cause only [godot.PhysicalBone2D] nodes with those names to stop simulating.
    */
+  @JvmOverloads
   public fun stopSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr,

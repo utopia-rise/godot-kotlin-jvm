@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * A class stored as a resource.
@@ -91,6 +92,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Reloads the script's class implementation. Returns an error code.
    */
+  @JvmOverloads
   public fun reload(keepState: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to keepState)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_RELOAD, LONG)

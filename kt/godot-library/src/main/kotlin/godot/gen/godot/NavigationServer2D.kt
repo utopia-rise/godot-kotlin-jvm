@@ -35,6 +35,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Server interface for low-level 2D navigation access.
@@ -185,6 +186,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the navigation path to reach the destination from the origin. [navigationLayers] is a bitmask of all region navigation layers that are allowed to be in the path.
    */
+  @JvmOverloads
   public fun mapGetPath(
     map: RID,
     origin: Vector2,

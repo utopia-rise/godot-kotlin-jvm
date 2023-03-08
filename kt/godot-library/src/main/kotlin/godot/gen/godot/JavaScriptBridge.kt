@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Singleton that connects the engine with the browser's JavaScript context in Web export.
@@ -56,6 +57,7 @@ public object JavaScriptBridge : Object() {
    *
    * If [useGlobalExecutionContext] is `true`, the code will be evaluated in the global execution context. Otherwise, it is evaluated in the execution context of a function within the engine's runtime environment.
    */
+  @JvmOverloads
   public fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to code, BOOL to useGlobalExecutionContext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_EVAL, ANY)
@@ -100,6 +102,7 @@ public object JavaScriptBridge : Object() {
    *
    * **Note:** Browsers might ask the user for permission or block the download if multiple download requests are made in a quick succession.
    */
+  @JvmOverloads
   public fun downloadBuffer(
     buffer: PackedByteArray,
     name: String,

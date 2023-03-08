@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * A cryptographic key (RSA).
@@ -37,6 +38,7 @@ public open class CryptoKey : Resource() {
    *
    * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
+  @JvmOverloads
   public fun save(path: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_SAVE, LONG)
@@ -48,6 +50,7 @@ public open class CryptoKey : Resource() {
    *
    * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
+  @JvmOverloads
   public fun load(path: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_LOAD, LONG)
@@ -66,6 +69,7 @@ public open class CryptoKey : Resource() {
   /**
    * Returns a string containing the key in PEM format. If [publicOnly] is `true`, only the public key will be included.
    */
+  @JvmOverloads
   public fun saveToString(publicOnly: Boolean = false): String {
     TransferContext.writeArguments(BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_SAVE_TO_STRING, STRING)
@@ -75,6 +79,7 @@ public open class CryptoKey : Resource() {
   /**
    * Loads a key from the given [stringKey]. If [publicOnly] is `true`, only the public key will be loaded.
    */
+  @JvmOverloads
   public fun loadFromString(stringKey: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to stringKey, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_LOAD_FROM_STRING, LONG)
