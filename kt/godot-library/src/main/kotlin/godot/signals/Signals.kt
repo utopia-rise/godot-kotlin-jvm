@@ -4,6 +4,7 @@ import godot.Object
 import godot.core.Callable
 import godot.core.CoreType
 import godot.core.StringName
+import godot.core.KtFunction
 import godot.core.asStringName
 import godot.global.GD
 import godot.util.camelToSnakeCase
@@ -18,10 +19,6 @@ open class Signal(
     )
 
     val objectId by lazy { godotObject.id }
-
-    fun emit(instance: Object, vararg args: Any?) {
-        emitSignal(instance, *args)
-    }
 
     protected fun emitSignal(instance: Object, vararg args: Any?) {
         instance.emitSignal(name, *args)

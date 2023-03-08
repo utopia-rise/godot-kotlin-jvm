@@ -70,7 +70,7 @@ public class JavaTestClass extends Node {
                 new Callable(this, StringNameUtils.asStringName("signal_callback")),
                 ConnectFlags.CONNECT_ONE_SHOT.getId()
         );
-        testSignal.emit(this);
+        emitSignal(StringNameUtils.asStringName("test_signal"));
     }
 
     @RegisterFunction
