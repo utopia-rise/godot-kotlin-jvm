@@ -5,7 +5,6 @@ import godot.Node;
 import godot.annotation.*;
 import godot.core.Callable;
 import godot.core.StringNameUtils;
-import godot.core.VariantArray;
 import godot.signals.Signal;
 import godot.signals.Signal2;
 import godot.signals.SignalProvider;
