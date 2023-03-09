@@ -1,8 +1,12 @@
 #ifndef GODOT_JVM_KT_RESOURCE_LOADER_H
 #define GODOT_JVM_KT_RESOURCE_LOADER_H
 #include <core/io/resource_loader.h>
+#include "kotlin_script.h"
 
 class KtResourceFormatLoader : public ResourceFormatLoader {
+private:
+    HashMap<String, Ref<KotlinScript>> cache;
+
 public:
     KtResourceFormatLoader() = default;
     ~KtResourceFormatLoader() = default;

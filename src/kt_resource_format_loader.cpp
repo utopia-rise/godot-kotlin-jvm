@@ -3,6 +3,7 @@
 #include "kotlin_language.h"
 #include "kotlin_script.h"
 #include "logging.h"
+#include "kotlin_script_cache.h"
 
 Error kt_read_all_file_utf8(const String& p_path, String& r_content) {
     Vector<uint8_t> sourcef;
@@ -25,7 +26,13 @@ Error kt_read_all_file_utf8(const String& p_path, String& r_content) {
 }
 
 Ref<Resource> KtResourceFormatLoader::load(const String& p_path, const String& p_original_path, Error* r_error, bool p_use_sub_threads, float* r_progress, CacheMode p_cache_mode) {
-    Ref<KotlinScript> ref {memnew(KotlinScript)};
+#ifdef TOOLS_ENABLED
+    // TODO: check if we need to take CacheMode into account like GDScript does
+    Ref<KotlinScript> ref = KotlinScriptCache::get_or_create_script(p_path);
+#else
+    Ref<KotlinScript> ref { memnew(KotlinScript) };
+#endif
+
     ref->set_path(p_original_path, true);
     ref->reload(false);
 

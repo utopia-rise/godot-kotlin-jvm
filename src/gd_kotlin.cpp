@@ -2,6 +2,7 @@
 
 #include "jni/class_loader.h"
 #include "memory/bridges_manager.h"
+#include "kotlin_script_cache.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>
@@ -392,6 +393,10 @@ void GDKotlin::finish() {
         garbage_collector_instance.call_void_method(env, clean_up_method_id);
     }
 
+#ifdef TOOLS_ENABLED
+    KotlinScriptCache::invalidate();
+#endif
+
     LongStringQueue::destroy();
     BridgesManager::get_instance().delete_bridges();
 
@@ -526,6 +531,22 @@ void GDKotlin::register_members(jni::Env& p_env) {
     for (const KeyValue<StringName, KtClass*>& item : classes) {
         item.value->fetch_members();
     }
+
+#ifdef TOOLS_ENABLED
+    // updates all exports for all classes loaded in the editor and makes sure the values are updated
+    //
+    // Reason: godot only does that for us when the resource file is updated, but not when the classes are reloaded but
+    // the resource files have not changed. Such a case is, when the user edits the script and goes back to the godot
+    // editor before building and presses build there, or goes back to the editor before the build is done. Then the
+    // last default value is loaded but the new ones are never loaded after registering.
+    //
+    // Downside: in other cases the exports might get updated twice. Case being, the user changes a script and the build
+    // finishes before returning to the godot editor
+    Vector<Ref<KotlinScript>> kotlin_scripts = KotlinScriptCache::get_cached_scripts();
+    for (Ref<KotlinScript>& kotlin_script : kotlin_scripts) {
+        kotlin_script->update_exports();
+    }
+#endif
 }
 
 bool GDKotlin::check_configuration() {
