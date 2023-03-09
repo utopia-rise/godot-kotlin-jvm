@@ -4,9 +4,6 @@
 #include "kotlin_script.h"
 
 class KtResourceFormatLoader : public ResourceFormatLoader {
-private:
-    HashMap<String, Ref<KotlinScript>> cache;
-
 public:
     KtResourceFormatLoader() = default;
     ~KtResourceFormatLoader() = default;
