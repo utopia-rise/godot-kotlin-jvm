@@ -1,3 +1,5 @@
 package godot.entrygenerator.model
 
-sealed interface GodotJvmSourceElement
+sealed interface GodotJvmSourceElement {
+    val source: Any
+}

@@ -10,4 +10,5 @@ data class RangeHintAnnotation<T: Number>(
     val isDegrees: Boolean,
     val isExp: Boolean,
     val suffix: String?,
-): PropertyHintAnnotation
+    val source: Any,
+): PropertyHintAnnotation(source)

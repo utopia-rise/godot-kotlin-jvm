@@ -1,3 +1,5 @@
 package godot.entrygenerator.model
 
-sealed interface PropertyHintAnnotation: PropertyAnnotation
+sealed class PropertyHintAnnotation(
+    override val source: Any
+) : PropertyAnnotation

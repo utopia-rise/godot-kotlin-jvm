@@ -1,3 +1,3 @@
 package godot.entrygenerator.model
 
-object RegisterSignalAnnotation : PropertyAnnotation
+class RegisterSignalAnnotation(override val source: Any) : PropertyAnnotation

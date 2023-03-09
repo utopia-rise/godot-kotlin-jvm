@@ -69,8 +69,9 @@ internal class RegistrationAnnotationVisitor(
         if (registeredClasses.isNotEmpty()) {
             _sourceFilesContainingRegisteredClasses.add(
                 SourceFile(
-                    absolutePath,
-                    registeredClasses
+                    absolutePath = absolutePath,
+                    registeredClasses = registeredClasses,
+                    source = this
                 )
             )
         }

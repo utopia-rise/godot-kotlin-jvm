@@ -7,6 +7,7 @@ data class RegisteredSignal(
     val parameterNames: List<String>,
     val isOverridee: Boolean = false,
     val annotations: List<PropertyAnnotation> = emptyList(),
+    override val source: Any
 ) : GodotJvmSourceElement {
     val name: String = fqName.substringAfterLast(".")
 }

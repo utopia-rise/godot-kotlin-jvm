@@ -1,3 +1,3 @@
 package godot.entrygenerator.model
 
-object MultilineTextHintAnnotation : PropertyHintAnnotation
+class MultilineTextHintAnnotation(source: Any) : PropertyHintAnnotation(source)

@@ -1,3 +1,3 @@
 package godot.entrygenerator.model
 
-object ExportAnnotation : PropertyAnnotation
+class ExportAnnotation(override val source: Any) : PropertyAnnotation

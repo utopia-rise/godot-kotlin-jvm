@@ -81,13 +81,15 @@ internal fun KSClassDeclaration.mapToClazz(
             properties = registeredProperties,
             isAbstract = isAbstract(),
             isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
-            classNamePrefix = classNamePrefix
+            classNamePrefix = classNamePrefix,
+            source = this
         )
     } else {
         Clazz(
             fqName = fqName,
             supertypes = supertypeDeclarations,
-            annotations = mappedAnnotations
+            annotations = mappedAnnotations,
+            source = this
         )
     }
 }

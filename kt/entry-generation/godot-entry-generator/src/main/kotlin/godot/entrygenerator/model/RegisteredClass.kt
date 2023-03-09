@@ -14,8 +14,9 @@ data class RegisteredClass(
     val properties: List<RegisteredProperty> = emptyList(),
     override val isAbstract: Boolean = false,
     private val isFqNameRegistrationEnabled: Boolean = false,
-    private val classNamePrefix: String? = null
-) : Clazz(fqName, supertypes, isAbstract = isAbstract) {
+    private val classNamePrefix: String? = null,
+    override val source: Any
+) : Clazz(fqName, supertypes, isAbstract = isAbstract, source = source) {
     val registeredName: String
         get() {
             val customName = annotations

@@ -93,21 +93,23 @@ internal val KSAnnotation.rpcChannel: Int
 internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotation? {
     return when (fqNameUnsafe) {
         RegisterClass::class.qualifiedName -> RegisterClassAnnotation(
-            arguments.first().value as? String
+            customName = arguments.first().value as? String,
+            source = this
         )
-        RegisterConstructor::class.qualifiedName -> RegisterConstructorAnnotation
-        RegisterFunction::class.qualifiedName -> RegisterFunctionAnnotation
-        RegisterProperty::class.qualifiedName -> RegisterPropertyAnnotation
-        RegisterSignal::class.qualifiedName -> RegisterSignalAnnotation
-        Tool::class.qualifiedName -> ToolAnnotation
-        Export::class.qualifiedName -> ExportAnnotation
+        RegisterConstructor::class.qualifiedName -> RegisterConstructorAnnotation(this)
+        RegisterFunction::class.qualifiedName -> RegisterFunctionAnnotation(this)
+        RegisterProperty::class.qualifiedName -> RegisterPropertyAnnotation(this)
+        RegisterSignal::class.qualifiedName -> RegisterSignalAnnotation(this)
+        Tool::class.qualifiedName -> ToolAnnotation(this)
+        Export::class.qualifiedName -> ExportAnnotation(this)
         Rpc::class.qualifiedName -> RpcAnnotation(
             rpcMode = rpcModeEnum,
             sync = rpcSyncEnum,
             transferMode = rpcTransferModeEnum,
-            transferChannel = rpcChannel
+            transferChannel = rpcChannel,
+            source = this
         )
-        "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation //is internal
+        "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation(this) //is internal
         EnumFlag::class.qualifiedName -> {
             val setType = (parentDeclaration as KSPropertyDeclaration).type.resolve()
             require(setType.declaration.qualifiedName?.asString()?.matches(Regex("^kotlin\\.collections\\..*Set\$")) ?: false) {
@@ -127,11 +129,12 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): God
                 .map { it.simpleName.asString() }
                 .toList()
 
-            EnumFlagHintStringAnnotation(enumValueNames)
+            EnumFlagHintStringAnnotation(enumValueNames = enumValueNames, source = this)
         }
         IntFlag::class.qualifiedName -> IntFlagHintAnnotation(
             @Suppress("UNCHECKED_CAST")
-            (arguments.firstOrNull()?.value as? ArrayList<String>)?.toList() ?: emptyList()
+            (arguments.firstOrNull()?.value as? ArrayList<String>)?.toList() ?: emptyList(),
+            this
         )
         MultilineText::class.qualifiedName -> MultilineTextHintAnnotation
         PlaceHolderText::class.qualifiedName -> PlaceHolderTextHintAnnotation
@@ -145,8 +148,9 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): God
             val attenuation = ((arguments.firstOrNull { it.name?.asString() == "attenuation" }?.value ?: arguments.firstOrNull()?.value) as? Boolean) ?: false
             val isPositiveOnly = ((arguments.firstOrNull { it.name?.asString() == "isPositiveOnly" }?.value ?: arguments[1].value) as? Boolean) ?: false
             ExpEasingHintAnnotation(
-                attenuation,
-                isPositiveOnly
+                attenuation = attenuation,
+                isPositiveOnly = isPositiveOnly,
+                source = this
             )
         }
         godot.annotation.File::class.qualifiedName -> {
@@ -154,13 +158,16 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): God
             val extensions = ((arguments.firstOrNull { it.name?.asString() == "extensions" }?.value ?: arguments.firstOrNull()?.value) as? ArrayList<String>)?.toList() ?: emptyList()
             val global = ((arguments.firstOrNull { it.name?.asString() == "global" }?.value ?: arguments[1].value) as? Boolean) ?: false
             FileHintAnnotation(
-                extensions, global
+                extensions = extensions,
+                global = global,
+                source = this
             )
         }
         Dir::class.qualifiedName -> {
             val global = ((arguments.firstOrNull { it.name?.asString() == "global" }?.value ?: arguments.firstOrNull()?.value) as? Boolean) ?: false
             DirHintAnnotation(
-                global
+                global = global,
+                source = this
             )
         }
         else -> null

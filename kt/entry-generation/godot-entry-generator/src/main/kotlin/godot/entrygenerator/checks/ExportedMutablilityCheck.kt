@@ -14,7 +14,7 @@ class ExportedMutablilityCheck(logger: Logger, sourceFiles: List<SourceFile>): B
             .forEach { exportedProperty ->
                 if (!exportedProperty.isMutable) {
                     hasIssue = true
-                    logger.error("Exported property is not mutable: ${exportedProperty.fqName}")
+                    logger.error(exportedProperty, "Exported property is not mutable")
                 }
             }
         return hasIssue

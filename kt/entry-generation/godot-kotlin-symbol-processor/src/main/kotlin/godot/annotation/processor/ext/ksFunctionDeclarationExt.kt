@@ -9,15 +9,16 @@ import godot.entrygenerator.model.RegisteredFunction
 
 internal fun KSFunctionDeclaration.mapToRegisteredConstructor(): RegisteredConstructor {
     return RegisteredConstructor(
-        requireNotNull(qualifiedName?.asString() ?: parentDeclaration?.qualifiedName?.asString()) {
+        fqName = requireNotNull(qualifiedName?.asString() ?: parentDeclaration?.qualifiedName?.asString()) {
             "Qualified name for a registered constructor declaration cannot be null"
         },
-        parameters.map { ksValueParameter ->
+        parameters = parameters.map { ksValueParameter ->
             ksValueParameter.mapToValueParameter()
         },
-        annotations
+        annotations = annotations
             .mapNotNull { it.mapToAnnotation(this) as? ConstructorAnnotation }
-            .toList()
+            .toList(),
+        source = this
     )
 }
 
@@ -30,10 +31,11 @@ internal fun KSFunctionDeclaration.mapToRegisteredFunction(): RegisteredFunction
         val parameters = parameters.map { it.mapToValueParameter() }
         val annotations = annotations.mapNotNull { it.mapToAnnotation(this) as? FunctionAnnotation }
         RegisteredFunction(
-            fqName,
-            parameters,
-            returnType?.mapToType(),
-            annotations.toList()
+            fqName = fqName,
+            parameters = parameters,
+            returnType = returnType?.mapToType(),
+            annotations = annotations.toList(),
+            source = this
         )
     } else null
 }

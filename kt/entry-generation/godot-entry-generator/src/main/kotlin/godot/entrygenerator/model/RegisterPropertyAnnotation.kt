@@ -1,3 +1,3 @@
 package godot.entrygenerator.model
 
-object RegisterPropertyAnnotation : PropertyAnnotation
+class RegisterPropertyAnnotation(override val source: Any) : PropertyAnnotation

@@ -13,7 +13,7 @@ class JvmCoreTypeTypeHintGenerator(
 ) : PropertyTypeHintGenerator(registeredProperty) {
     override fun getPropertyTypeHint(): ClassName {
         return when (propertyHintAnnotation) {
-            ColorNoAlphaHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "COLOR_NO_ALPHA")
+            is ColorNoAlphaHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "COLOR_NO_ALPHA")
             //TODO: implement ImageCompressLossy
             //TODO: implement ImageCompressLossLess
             //TODO: implement NodePathToEditedNode
