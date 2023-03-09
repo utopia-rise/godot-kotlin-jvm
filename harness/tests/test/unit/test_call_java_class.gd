@@ -14,6 +14,13 @@ func test_field_access():
 	java_scene.free()
 
 
+func test_field_set():
+	var java_scene = load("res://java_test_scene.tscn").instantiate()
+	java_scene.exported_int = 2
+	assert_eq(java_scene.exported_int, 2, "Field from java should match")
+	java_scene.free()
+
+
 func test_signal():
 	var java_scene: JavaTestClass = load("res://java_test_scene.tscn").instantiate()
 	get_tree().root.add_child(java_scene)
