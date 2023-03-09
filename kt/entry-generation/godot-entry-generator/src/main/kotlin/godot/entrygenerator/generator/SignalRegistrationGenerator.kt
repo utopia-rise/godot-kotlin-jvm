@@ -4,10 +4,13 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName.Companion.member
+import godot.entrygenerator.EntryGenerator
 import godot.entrygenerator.ext.toKtVariantType
+import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredSignal
 import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.VARIANT_TYPE_ANY
 import godot.tools.common.constants.godotRegistrationPackage
 
 object SignalRegistrationGenerator {
@@ -27,7 +30,7 @@ object SignalRegistrationGenerator {
         append("signal(%L") //signalPropertyReference
 
         //a KtFunctionArgument per signal argument
-        registeredSignal.parameterNameToType.forEach { _ ->
+        (0 until kotlin.math.max(registeredSignal.parameterTypes.size, registeredSignal.parameterNames.size)).forEach {  _ ->
             append(",·%T(%T,·%S,·%L)")
         }
 
@@ -40,12 +43,25 @@ object SignalRegistrationGenerator {
     ) = buildList {
         add(getPropertyReference(registeredSignal, className)) //signalPropertyReference
 
-        //a KtFunctionArgument per signal argument
-        registeredSignal.parameterNameToType.entries.forEach { (argumentName, argumentType) ->
-            add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
-            add(argumentType.toKtVariantType())
-            add(argumentType.fqName)
-            add(argumentName)
+        if (registeredSignal.parameterTypes.size >= registeredSignal.parameterNames.size) {
+            //a KtFunctionArgument per signal argument
+            registeredSignal.parameterTypes.forEachIndexed { index, argumentType ->
+                val argumentName = registeredSignal.parameterNames.getOrNull(index) ?: "name_no_provided"
+                add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
+                add(argumentType.toKtVariantType())
+                add(argumentType.fqName)
+                add(argumentName)
+            }
+        } else {
+            registeredSignal.parameterNames.forEachIndexed { index, argumentName ->
+                val argumentTypeVariantType = registeredSignal.parameterTypes.getOrNull(index)?.toKtVariantType() ?: VARIANT_TYPE_ANY
+                val argumentTypeFqName = registeredSignal.parameterTypes.getOrNull(index)?.fqName ?: EntryGenerator.jvmTypeFqNamesProvider(JvmType.ANY).first()
+
+                add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
+                add(argumentTypeVariantType)
+                add(argumentTypeFqName)
+                add(argumentName)
+            }
         }
     }.toTypedArray()
 

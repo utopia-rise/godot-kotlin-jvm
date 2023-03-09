@@ -102,20 +102,17 @@ internal fun KSPropertyDeclaration.mapToRegisteredSignal(declaredProperties: Lis
     )
 
     return RegisteredSignal(
-        fqName,
-        mappedType,
-        type.resolve().arguments.mapIndexed { index, ksTypeArgument ->
-            val argumentType = requireNotNull(requireNotNull(ksTypeArgument.type) {
+        fqName = fqName,
+        type = mappedType,
+        parameterTypes = type.resolve().arguments.map { ksTypeArgument ->
+            requireNotNull(requireNotNull(ksTypeArgument.type) {
                 "typeArgument's type of type $mappedType cannot be null"
             }.mapToType()) {
                 "Type of signal $fqName cannot be null"
             }
-
-            val argumentName = signalParameterNames[index]
-
-            argumentName to argumentType
-        }.toMap(),
-        findOverridee() != null,
-        annotations.toList()
+        },
+        parameterNames = signalParameterNames,
+        isOverridee = findOverridee() != null,
+        annotations = annotations.toList()
     )
 }

@@ -4,17 +4,17 @@ registeredName = JavaTestClass
 fqName = godot.tests.JavaTestClass
 baseType = Node
 supertypes = [
-	godot.Node,
+    godot.Node,
 	godot.Object,
 	godot.core.KtObject,
 	kotlin.Any
 ]
 signals = [
-	test_signal,
+    test_signal,
 	test_signal2
 ]
 properties = [
-	java_enum,
+    java_enum,
 	exported_int,
 	exported_long,
 	exported_float,
@@ -26,7 +26,7 @@ properties = [
 	signal_emitted
 ]
 functions = [
-	greeting,
+    greeting,
 	connect_and_trigger_signal,
 	signal_callback
 ]

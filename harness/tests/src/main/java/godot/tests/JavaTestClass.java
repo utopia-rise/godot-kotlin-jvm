@@ -6,7 +6,6 @@ import godot.annotation.*;
 import godot.core.Callable;
 import godot.core.StringNameUtils;
 import godot.signals.Signal;
-import godot.signals.Signal2;
 import godot.signals.SignalProvider;
 
 @RegisterClass
@@ -15,7 +14,7 @@ public class JavaTestClass extends Node {
     public Signal testSignal = SignalProvider.signal(this, "test_signal");
 
     @RegisterSignal
-    public Signal2<String, String> testSignal2 = SignalProvider.signal(this, "test_signal_2", "param1", "param2");
+    public Signal testSignal2 = SignalProvider.signal(this, "test_signal_2", "param1", "param2");
 
     @Export
     @RegisterProperty
