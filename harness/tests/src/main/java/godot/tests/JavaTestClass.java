@@ -6,6 +6,7 @@ import godot.annotation.*;
 import godot.core.Callable;
 import godot.core.StringNameUtils;
 import godot.signals.Signal;
+import godot.signals.Signal2;
 import godot.signals.SignalProvider;
 
 @RegisterClass
@@ -15,6 +16,10 @@ public class JavaTestClass extends Node {
 
     @RegisterSignal
     public Signal testSignal2 = SignalProvider.signal(this, "test_signal_2", "param1", "param2");
+
+    // The following should NOT work as we cannot extract parameter names. The compiler checks should catch that and throw a build error
+//    @RegisterSignal
+//    public Signal testSignal3 = new Signal2<>(this, "name");
 
     @Export
     @RegisterProperty
