@@ -4,20 +4,20 @@ registeredName = Invocation
 fqName = godot.tests.Invocation
 baseType = Node3D
 supertypes = [
-	godot.Node3D,
+    godot.Node3D,
 	godot.Node,
 	godot.Object,
 	godot.core.KtObject,
 	kotlin.Any
 ]
 signals = [
-	no_param,
+    no_param,
 	one_param,
 	two_param,
 	signal_with_multiple_targets
 ]
 properties = [
-	button,
+    button,
 	enum_list,
 	vector_list,
 	enum_list_mutable,
@@ -76,7 +76,7 @@ properties = [
 	array
 ]
 functions = [
-	target_function_one,
+    target_function_one,
 	target_function_two,
 	int_value,
 	long_value,

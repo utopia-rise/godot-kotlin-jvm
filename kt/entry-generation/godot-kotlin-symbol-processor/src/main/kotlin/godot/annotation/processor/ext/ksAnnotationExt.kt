@@ -136,9 +136,9 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): God
             (arguments.firstOrNull()?.value as? ArrayList<String>)?.toList() ?: emptyList(),
             this
         )
-        MultilineText::class.qualifiedName -> MultilineTextHintAnnotation
-        PlaceHolderText::class.qualifiedName -> PlaceHolderTextHintAnnotation
-        ColorNoAlpha::class.qualifiedName -> ColorNoAlphaHintAnnotation
+        MultilineText::class.qualifiedName -> MultilineTextHintAnnotation(this)
+        PlaceHolderText::class.qualifiedName -> PlaceHolderTextHintAnnotation(this)
+        ColorNoAlpha::class.qualifiedName -> ColorNoAlphaHintAnnotation(this)
         godot.annotation.IntRange::class.qualifiedName -> provideRangeHintAnnotation(-1)
         godot.annotation.LongRange::class.qualifiedName -> provideRangeHintAnnotation(-1L)
         godot.annotation.FloatRange::class.qualifiedName -> provideRangeHintAnnotation(-1f)
@@ -200,6 +200,7 @@ private fun <T: Number> KSAnnotation.provideRangeHintAnnotation(stepDefault: T):
         isRadians = isRadians,
         isDegrees = isDegrees,
         isExp = isExp,
-        suffix = suffix
+        suffix = suffix,
+        source = this
     )
 }
