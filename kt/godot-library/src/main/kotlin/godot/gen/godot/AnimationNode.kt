@@ -129,7 +129,7 @@ public open class AnimationNode : Resource() {
   public open fun _process(
     time: Double,
     seek: Boolean,
-    isExternalSeeking: Boolean
+    isExternalSeeking: Boolean,
   ): Double {
     throw NotImplementedError("_process is not implemented for AnimationNode")
   }
@@ -232,7 +232,7 @@ public open class AnimationNode : Resource() {
     seeked: Boolean,
     isExternalSeeking: Boolean,
     blend: Double,
-    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.LOOPED_FLAG_NONE
+    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.LOOPED_FLAG_NONE,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend, LONG to loopedFlag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_ANIMATION, NIL)
@@ -249,7 +249,7 @@ public open class AnimationNode : Resource() {
     isExternalSeeking: Boolean,
     blend: Double,
     filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
-    sync: Boolean = true
+    sync: Boolean = true,
   ): Double {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend, LONG to filter.id, BOOL to sync)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_NODE, DOUBLE)
@@ -266,7 +266,7 @@ public open class AnimationNode : Resource() {
     isExternalSeeking: Boolean,
     blend: Double,
     filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
-    sync: Boolean = true
+    sync: Boolean = true,
   ): Double {
     TransferContext.writeArguments(LONG to inputIndex, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend, LONG to filter.id, BOOL to sync)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_INPUT, DOUBLE)
@@ -291,7 +291,7 @@ public open class AnimationNode : Resource() {
   }
 
   public enum class FilterAction(
-    id: Long
+    id: Long,
   ) {
     /**
      * Do not use filtering.

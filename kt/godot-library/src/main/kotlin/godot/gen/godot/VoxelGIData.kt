@@ -157,7 +157,7 @@ public open class VoxelGIData : Resource() {
     octreeCells: PackedByteArray,
     dataCells: PackedByteArray,
     distanceField: PackedByteArray,
-    levelCounts: PackedInt32Array
+    levelCounts: PackedInt32Array,
   ): Unit {
     TransferContext.writeArguments(TRANSFORM3D to toCellXform, godot.core.VariantType.AABB to aabb, VECTOR3 to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_ALLOCATE, NIL)

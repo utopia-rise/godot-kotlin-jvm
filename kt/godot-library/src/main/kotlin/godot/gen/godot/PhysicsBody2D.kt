@@ -54,7 +54,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
     motion: Vector2,
     testOnly: Boolean = false,
     safeMargin: Double = 0.08,
-    recoveryAsCollision: Boolean = false
+    recoveryAsCollision: Boolean = false,
   ): KinematicCollision2D? {
     TransferContext.writeArguments(VECTOR2 to motion, BOOL to testOnly, DOUBLE to safeMargin, BOOL to recoveryAsCollision)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_MOVE_AND_COLLIDE,
@@ -78,7 +78,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
     motion: Vector2,
     collision: KinematicCollision2D? = null,
     safeMargin: Double = 0.08,
-    recoveryAsCollision: Boolean = false
+    recoveryAsCollision: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to motion, OBJECT to collision, DOUBLE to safeMargin, BOOL to recoveryAsCollision)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_TEST_MOVE, BOOL)

@@ -50,7 +50,7 @@ public open class Noise internal constructor() : Resource() {
   public fun getNoise3d(
     x: Double,
     y: Double,
-    z: Double
+    z: Double,
   ): Double {
     TransferContext.writeArguments(DOUBLE to x, DOUBLE to y, DOUBLE to z)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_3D, DOUBLE)
@@ -68,7 +68,7 @@ public open class Noise internal constructor() : Resource() {
     height: Long,
     invert: Boolean = false,
     in3dSpace: Boolean = false,
-    normalize: Boolean = true
+    normalize: Boolean = true,
   ): Image? {
     TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert, BOOL to in3dSpace, BOOL to normalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_IMAGE, OBJECT)
@@ -81,7 +81,7 @@ public open class Noise internal constructor() : Resource() {
     invert: Boolean = false,
     in3dSpace: Boolean = false,
     skirt: Double = 0.1,
-    normalize: Boolean = true
+    normalize: Boolean = true,
   ): Image? {
     TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert, BOOL to in3dSpace, DOUBLE to skirt, BOOL to normalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_SEAMLESS_IMAGE, OBJECT)

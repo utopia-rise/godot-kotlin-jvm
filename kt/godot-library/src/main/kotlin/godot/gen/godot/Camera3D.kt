@@ -337,7 +337,7 @@ public open class Camera3D : Node3D() {
   public fun setPerspective(
     fov: Double,
     zNear: Double,
-    zFar: Double
+    zFar: Double,
   ): Unit {
     TransferContext.writeArguments(DOUBLE to fov, DOUBLE to zNear, DOUBLE to zFar)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_PERSPECTIVE, NIL)
@@ -349,7 +349,7 @@ public open class Camera3D : Node3D() {
   public fun setOrthogonal(
     size: Double,
     zNear: Double,
-    zFar: Double
+    zFar: Double,
   ): Unit {
     TransferContext.writeArguments(DOUBLE to size, DOUBLE to zNear, DOUBLE to zFar)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_ORTHOGONAL, NIL)
@@ -362,7 +362,7 @@ public open class Camera3D : Node3D() {
     size: Double,
     offset: Vector2,
     zNear: Double,
-    zFar: Double
+    zFar: Double,
   ): Unit {
     TransferContext.writeArguments(DOUBLE to size, VECTOR2 to offset, DOUBLE to zNear, DOUBLE to zFar)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FRUSTUM, NIL)
@@ -450,7 +450,7 @@ public open class Camera3D : Node3D() {
   }
 
   public enum class ProjectionType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Perspective projection. Objects on the screen becomes smaller when they are far away.
@@ -477,7 +477,7 @@ public open class Camera3D : Node3D() {
   }
 
   public enum class KeepAspect(
-    id: Long
+    id: Long,
   ) {
     /**
      * Preserves the horizontal aspect ratio; also known as Vert- scaling. This is usually the best option for projects running in portrait mode, as taller aspect ratios will benefit from a wider vertical FOV.
@@ -500,7 +500,7 @@ public open class Camera3D : Node3D() {
   }
 
   public enum class DopplerTracking(
-    id: Long
+    id: Long,
   ) {
     /**
      * Disables [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) simulation (default).

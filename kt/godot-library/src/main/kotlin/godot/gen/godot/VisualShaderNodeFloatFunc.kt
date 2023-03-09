@@ -45,7 +45,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long
+    id: Long,
   ) {
     /**
      * Returns the sine of the parameter. Translates to `sin(x)` in the Godot Shader Language.

@@ -666,7 +666,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public enum class FreezeMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Static body freeze mode (default). The body is not affected by gravity and forces. It can be only moved by user code and doesn't collide with other bodies along its path.
@@ -689,7 +689,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public enum class CenterOfMassMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * In this mode, the body's center of mass is calculated automatically based on its shapes.
@@ -712,7 +712,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public enum class DampMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * In this mode, the body's damping value is added to any value set in areas or the default value.
@@ -735,7 +735,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public enum class CCDMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Continuous collision detection disabled. This is the fastest way to detect body collisions, but can miss small, fast-moving objects.

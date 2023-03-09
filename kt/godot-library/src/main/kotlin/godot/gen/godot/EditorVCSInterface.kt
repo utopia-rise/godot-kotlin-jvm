@@ -51,7 +51,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
     password: String,
     sshPublicKeyPath: String,
     sshPrivateKeyPath: String,
-    sshPassphrase: String
+    sshPassphrase: String,
   ): Unit {
   }
 
@@ -199,7 +199,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
     newLineNo: Long,
     oldLineNo: Long,
     content: String,
-    status: String
+    status: String,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to newLineNo, LONG to oldLineNo, STRING to content, STRING to status)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_CREATE_DIFF_LINE,
@@ -214,7 +214,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
     oldStart: Long,
     newStart: Long,
     oldLines: Long,
-    newLines: Long
+    newLines: Long,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to oldStart, LONG to newStart, LONG to oldLines, LONG to newLines)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_CREATE_DIFF_HUNK,
@@ -240,7 +240,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
     author: String,
     id: String,
     unixTimestamp: Long,
-    offsetMinutes: Long
+    offsetMinutes: Long,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to msg, STRING to author, STRING to id, LONG to unixTimestamp, LONG to offsetMinutes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_CREATE_COMMIT,
@@ -254,7 +254,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   public fun createStatusFile(
     filePath: String,
     changeType: ChangeType,
-    area: TreeArea
+    area: TreeArea,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to filePath, LONG to changeType.id, LONG to area.id)
     TransferContext.callMethod(rawPtr,
@@ -293,7 +293,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   }
 
   public enum class ChangeType(
-    id: Long
+    id: Long,
   ) {
     /**
      * A new file has been added.
@@ -332,7 +332,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   }
 
   public enum class TreeArea(
-    id: Long
+    id: Long,
   ) {
     /**
      * A commit is encountered from the commit area.

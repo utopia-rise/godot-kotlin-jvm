@@ -29,9 +29,10 @@ class GenerationService(
 
     override fun generateSingleton(singletonClass: EnrichedClass): FileSpec {
         val singletonTypeName = singletonClass.getTypeClassName()
+        val baseClass = singletonClass.inherits ?: GodotKotlinJvmTypes.obj
         val classTypeBuilder = TypeSpec
             .objectBuilder(singletonTypeName.className)
-            .superclass(GODOT_OBJECT)
+            .superclass(ClassName(godotApiPackage, baseClass))
 
         classTypeBuilder.generateSingletonConstructor(singletonClass.engineClassDBIndexName)
 
@@ -696,8 +697,7 @@ class GenerationService(
                 .addParameter("scriptIndex", Int::class)
                 .returns(Boolean::class)
                 .addStatement(
-                    "rawPtr = %T.getSingleton(%M)",
-                    TRANSFER_CONTEXT,
+                    "getSingleton(%M)",
                     MemberName(godotApiPackage, classIndexName),
                 )
                 .addStatement(

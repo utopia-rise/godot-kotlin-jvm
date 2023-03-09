@@ -158,7 +158,7 @@ public open class PathFollow3D : Node3D() {
   }
 
   public enum class RotationMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Forbids the PathFollow3D to rotate.

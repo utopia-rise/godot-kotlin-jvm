@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class MouseButton(
-  id: Long
+  id: Long,
 ) {
   MOUSE_BUTTON_NONE(0),
   MOUSE_BUTTON_LEFT(1),

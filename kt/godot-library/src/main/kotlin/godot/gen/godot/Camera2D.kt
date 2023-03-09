@@ -454,7 +454,7 @@ public open class Camera2D : Node2D() {
   }
 
   public enum class AnchorMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The camera's position is fixed so that the top-left corner is always at the origin.
@@ -477,7 +477,7 @@ public open class Camera2D : Node2D() {
   }
 
   public enum class Camera2DProcessCallback(
-    id: Long
+    id: Long,
   ) {
     /**
      * The camera updates with the `_physics_process` callback.

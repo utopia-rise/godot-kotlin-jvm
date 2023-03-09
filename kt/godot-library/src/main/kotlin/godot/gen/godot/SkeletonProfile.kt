@@ -303,7 +303,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   public enum class TailDirection(
-    id: Long
+    id: Long,
   ) {
     /**
      * Direction to the average coordinates of bone children.

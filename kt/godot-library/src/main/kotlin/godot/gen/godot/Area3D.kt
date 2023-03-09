@@ -550,7 +550,7 @@ public open class Area3D : CollisionObject3D() {
   }
 
   public enum class SpaceOverride(
-    id: Long
+    id: Long,
   ) {
     /**
      * This area does not affect gravity/damping.

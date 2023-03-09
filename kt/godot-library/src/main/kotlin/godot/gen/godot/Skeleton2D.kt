@@ -114,7 +114,7 @@ public open class Skeleton2D : Node2D() {
     boneIdx: Long,
     overridePose: Transform2D,
     strength: Double,
-    persistent: Boolean
+    persistent: Boolean,
   ): Unit {
     TransferContext.writeArguments(LONG to boneIdx, TRANSFORM2D to overridePose, DOUBLE to strength, BOOL to persistent)
     TransferContext.callMethod(rawPtr,

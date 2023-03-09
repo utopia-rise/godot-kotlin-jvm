@@ -106,7 +106,7 @@ public open class Curve : Resource() {
     leftTangent: Double = 0.0,
     rightTangent: Double = 0.0,
     leftMode: TangentMode = Curve.TangentMode.TANGENT_FREE,
-    rightMode: TangentMode = Curve.TangentMode.TANGENT_FREE
+    rightMode: TangentMode = Curve.TangentMode.TANGENT_FREE,
   ): Long {
     TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent, DOUBLE to rightTangent, LONG to leftMode.id, LONG to rightMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_ADD_POINT, LONG)
@@ -260,7 +260,7 @@ public open class Curve : Resource() {
   }
 
   public enum class TangentMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The tangent on this side of the point is user-defined.

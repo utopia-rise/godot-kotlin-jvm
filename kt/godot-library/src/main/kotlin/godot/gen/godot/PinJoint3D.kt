@@ -48,7 +48,7 @@ public open class PinJoint3D : Joint3D() {
   }
 
   public enum class Param(
-    id: Long
+    id: Long,
   ) {
     /**
      * The force with which the pinned objects stay in positional relation to each other. The higher, the stronger.

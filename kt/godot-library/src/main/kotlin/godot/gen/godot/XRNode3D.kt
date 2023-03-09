@@ -105,7 +105,7 @@ public open class XRNode3D internal constructor() : Node3D() {
     frequency: Double,
     amplitude: Double,
     durationSec: Double,
-    delaySec: Double
+    delaySec: Double,
   ): Unit {
     TransferContext.writeArguments(STRING to actionName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_TRIGGER_HAPTIC_PULSE, NIL)

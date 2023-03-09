@@ -45,7 +45,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   }
 
   public enum class Operator(
-    id: Long
+    id: Long,
   ) {
     /**
      * Multiplies transform `a` by the vector `b`.

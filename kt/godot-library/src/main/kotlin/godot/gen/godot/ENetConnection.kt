@@ -42,7 +42,7 @@ public open class ENetConnection : RefCounted() {
     maxPeers: Long = 32,
     maxChannels: Long = 0,
     inBandwidth: Long = 0,
-    outBandwidth: Long = 0
+    outBandwidth: Long = 0,
   ): GodotError {
     TransferContext.writeArguments(STRING to bindAddress, LONG to bindPort, LONG to maxPeers, LONG to maxChannels, LONG to inBandwidth, LONG to outBandwidth)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CREATE_HOST_BOUND,
@@ -54,7 +54,7 @@ public open class ENetConnection : RefCounted() {
     maxPeers: Long = 32,
     maxChannels: Long = 0,
     inBandwidth: Long = 0,
-    outBandwidth: Long = 0
+    outBandwidth: Long = 0,
   ): GodotError {
     TransferContext.writeArguments(LONG to maxPeers, LONG to maxChannels, LONG to inBandwidth, LONG to outBandwidth)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CREATE_HOST, LONG)
@@ -70,7 +70,7 @@ public open class ENetConnection : RefCounted() {
     address: String,
     port: Long,
     channels: Long = 0,
-    `data`: Long = 0
+    `data`: Long = 0,
   ): ENetPacketPeer? {
     TransferContext.writeArguments(STRING to address, LONG to port, LONG to channels, LONG to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CONNECT_TO_HOST,
@@ -102,7 +102,7 @@ public open class ENetConnection : RefCounted() {
   public fun broadcast(
     channel: Long,
     packet: PackedByteArray,
-    flags: Long
+    flags: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to channel, PACKED_BYTE_ARRAY to packet, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BROADCAST, NIL)
@@ -160,7 +160,7 @@ public open class ENetConnection : RefCounted() {
   }
 
   public enum class CompressionMode(
-    id: Long
+    id: Long,
   ) {
     COMPRESS_NONE(0),
     COMPRESS_RANGE_CODER(1),
@@ -180,7 +180,7 @@ public open class ENetConnection : RefCounted() {
   }
 
   public enum class EventType(
-    id: Long
+    id: Long,
   ) {
     EVENT_ERROR(-1),
     EVENT_NONE(0),
@@ -200,7 +200,7 @@ public open class ENetConnection : RefCounted() {
   }
 
   public enum class HostStatistic(
-    id: Long
+    id: Long,
   ) {
     HOST_TOTAL_SENT_DATA(0),
     HOST_TOTAL_SENT_PACKETS(1),

@@ -222,7 +222,7 @@ public open class Crypto : RefCounted() {
     key: CryptoKey,
     issuerName: String = "CN=myserver,O=myorganisation,C=IT",
     notBefore: String = "20140101000000",
-    notAfter: String = "20340101000000"
+    notAfter: String = "20340101000000",
   ): X509Certificate? {
     TransferContext.writeArguments(OBJECT to key, STRING to issuerName, STRING to notBefore, STRING to notAfter)
     TransferContext.callMethod(rawPtr,
@@ -236,7 +236,7 @@ public open class Crypto : RefCounted() {
   public fun sign(
     hashType: HashingContext.HashType,
     hash: PackedByteArray,
-    key: CryptoKey
+    key: CryptoKey,
   ): PackedByteArray {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, OBJECT to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_SIGN, PACKED_BYTE_ARRAY)
@@ -250,7 +250,7 @@ public open class Crypto : RefCounted() {
     hashType: HashingContext.HashType,
     hash: PackedByteArray,
     signature: PackedByteArray,
-    key: CryptoKey
+    key: CryptoKey,
   ): Boolean {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_VERIFY, BOOL)
@@ -287,7 +287,7 @@ public open class Crypto : RefCounted() {
   public fun hmacDigest(
     hashType: HashingContext.HashType,
     key: PackedByteArray,
-    msg: PackedByteArray
+    msg: PackedByteArray,
   ): PackedByteArray {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to msg)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_HMAC_DIGEST,

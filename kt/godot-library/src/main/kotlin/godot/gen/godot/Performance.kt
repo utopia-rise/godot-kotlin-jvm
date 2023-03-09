@@ -43,7 +43,7 @@ import kotlin.Unit
 @GodotBaseType
 public object Performance : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_PERFORMANCE)
+    getSingleton(ENGINECLASS_PERFORMANCE)
     return false
   }
 
@@ -178,7 +178,7 @@ public object Performance : Object() {
   public fun addCustomMonitor(
     id: StringName,
     callable: Callable,
-    arguments: VariantArray<Any?> = godot.core.variantArrayOf()
+    arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_ADD_CUSTOM_MONITOR, NIL)
@@ -233,7 +233,7 @@ public object Performance : Object() {
   }
 
   public enum class Monitor(
-    id: Long
+    id: Long,
   ) {
     /**
      * The number of frames rendered in the last second. This metric is only updated once per second, even if queried more often. *Higher is better.*

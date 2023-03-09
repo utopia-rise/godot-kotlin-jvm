@@ -70,7 +70,7 @@ public open class LightmapGIData : Resource() {
     path: NodePath,
     uvScale: Rect2,
     sliceIndex: Long,
-    subInstance: Long
+    subInstance: Long,
   ): Unit {
     TransferContext.writeArguments(NODE_PATH to path, RECT2 to uvScale, LONG to sliceIndex, LONG to subInstance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_ADD_USER, NIL)

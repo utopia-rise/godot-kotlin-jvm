@@ -45,7 +45,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   }
 
   public enum class Function(
-    id: Long
+    id: Long,
   ) {
     /**
      * Normalizes the vector so that it has a length of `1` but points in the same direction.

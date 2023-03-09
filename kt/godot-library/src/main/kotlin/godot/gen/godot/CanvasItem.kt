@@ -388,7 +388,7 @@ public open class CanvasItem internal constructor() : Node() {
     to: Vector2,
     color: Color,
     width: Double = -1.0,
-    antialiased: Boolean = false
+    antialiased: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width, BOOL to antialiased)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_LINE, NIL)
@@ -405,7 +405,7 @@ public open class CanvasItem internal constructor() : Node() {
     color: Color,
     width: Double = -1.0,
     dash: Double = 2.0,
-    aligned: Boolean = true
+    aligned: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width, DOUBLE to dash, BOOL to aligned)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_DASHED_LINE, NIL)
@@ -420,7 +420,7 @@ public open class CanvasItem internal constructor() : Node() {
     points: PackedVector2Array,
     color: Color,
     width: Double = -1.0,
-    antialiased: Boolean = false
+    antialiased: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, COLOR to color, DOUBLE to width, BOOL to antialiased)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_POLYLINE, NIL)
@@ -435,7 +435,7 @@ public open class CanvasItem internal constructor() : Node() {
     points: PackedVector2Array,
     colors: PackedColorArray,
     width: Double = -1.0,
-    antialiased: Boolean = false
+    antialiased: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width, BOOL to antialiased)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_POLYLINE_COLORS,
@@ -457,7 +457,7 @@ public open class CanvasItem internal constructor() : Node() {
     pointCount: Long,
     color: Color,
     width: Double = -1.0,
-    antialiased: Boolean = false
+    antialiased: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to center, DOUBLE to radius, DOUBLE to startAngle, DOUBLE to endAngle, LONG to pointCount, COLOR to color, DOUBLE to width, BOOL to antialiased)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_ARC, NIL)
@@ -471,7 +471,7 @@ public open class CanvasItem internal constructor() : Node() {
   public fun drawMultiline(
     points: PackedVector2Array,
     color: Color,
-    width: Double = -1.0
+    width: Double = -1.0,
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, COLOR to color, DOUBLE to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE, NIL)
@@ -485,7 +485,7 @@ public open class CanvasItem internal constructor() : Node() {
   public fun drawMultilineColors(
     points: PackedVector2Array,
     colors: PackedColorArray,
-    width: Double = -1.0
+    width: Double = -1.0,
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE_COLORS,
@@ -505,7 +505,7 @@ public open class CanvasItem internal constructor() : Node() {
     rect: Rect2,
     color: Color,
     filled: Boolean = true,
-    width: Double = -1.0
+    width: Double = -1.0,
   ): Unit {
     TransferContext.writeArguments(RECT2 to rect, COLOR to color, BOOL to filled, DOUBLE to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_RECT, NIL)
@@ -517,7 +517,7 @@ public open class CanvasItem internal constructor() : Node() {
   public fun drawCircle(
     position: Vector2,
     radius: Double,
-    color: Color
+    color: Color,
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to position, DOUBLE to radius, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_CIRCLE, NIL)
@@ -529,7 +529,7 @@ public open class CanvasItem internal constructor() : Node() {
   public fun drawTexture(
     texture: Texture2D,
     position: Vector2,
-    modulate: Color = Color(Color(1, 1, 1, 1))
+    modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, VECTOR2 to position, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_TEXTURE, NIL)
@@ -543,7 +543,7 @@ public open class CanvasItem internal constructor() : Node() {
     rect: Rect2,
     tile: Boolean,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    transpose: Boolean = false
+    transpose: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, RECT2 to rect, BOOL to tile, COLOR to modulate, BOOL to transpose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_TEXTURE_RECT, NIL)
@@ -558,7 +558,7 @@ public open class CanvasItem internal constructor() : Node() {
     srcRect: Rect2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     transpose: Boolean = false,
-    clipUv: Boolean = true
+    clipUv: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_TEXTURE_RECT_REGION,
@@ -579,7 +579,7 @@ public open class CanvasItem internal constructor() : Node() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     outline: Double = 0.0,
     pixelRange: Double = 4.0,
-    scale: Double = 1.0
+    scale: Double = 1.0,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, DOUBLE to outline, DOUBLE to pixelRange, DOUBLE to scale)
     TransferContext.callMethod(rawPtr,
@@ -602,7 +602,7 @@ public open class CanvasItem internal constructor() : Node() {
     texture: Texture2D,
     rect: Rect2,
     srcRect: Rect2,
-    modulate: Color = Color(Color(1, 1, 1, 1))
+    modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, RECT2 to rect, RECT2 to srcRect, COLOR to modulate)
     TransferContext.callMethod(rawPtr,
@@ -624,7 +624,7 @@ public open class CanvasItem internal constructor() : Node() {
     points: PackedVector2Array,
     colors: PackedColorArray,
     uvs: PackedVector2Array,
-    texture: Texture2D? = null
+    texture: Texture2D? = null,
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_PRIMITIVE, NIL)
@@ -637,7 +637,7 @@ public open class CanvasItem internal constructor() : Node() {
     points: PackedVector2Array,
     colors: PackedColorArray,
     uvs: PackedVector2Array = PackedVector2Array(),
-    texture: Texture2D? = null
+    texture: Texture2D? = null,
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_POLYGON, NIL)
@@ -650,7 +650,7 @@ public open class CanvasItem internal constructor() : Node() {
     points: PackedVector2Array,
     color: Color,
     uvs: PackedVector2Array = PackedVector2Array(),
-    texture: Texture2D? = null
+    texture: Texture2D? = null,
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, COLOR to color, PACKED_VECTOR2_ARRAY to uvs, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_COLORED_POLYGON,
@@ -710,7 +710,7 @@ public open class CanvasItem internal constructor() : Node() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     jstFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STRING, NIL)
@@ -731,7 +731,7 @@ public open class CanvasItem internal constructor() : Node() {
     brkFlags: Long = 3,
     jstFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE_STRING,
@@ -752,7 +752,7 @@ public open class CanvasItem internal constructor() : Node() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     jstFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to size, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STRING_OUTLINE, NIL)
@@ -774,7 +774,7 @@ public open class CanvasItem internal constructor() : Node() {
     brkFlags: Long = 3,
     jstFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, LONG to size, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr,
@@ -789,7 +789,7 @@ public open class CanvasItem internal constructor() : Node() {
     pos: Vector2,
     char: String,
     fontSize: Long = 16,
-    modulate: Color = Color(Color(1, 1, 1, 1))
+    modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to char, LONG to fontSize, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_CHAR, NIL)
@@ -804,7 +804,7 @@ public open class CanvasItem internal constructor() : Node() {
     char: String,
     fontSize: Long = 16,
     size: Long = -1,
-    modulate: Color = Color(Color(1, 1, 1, 1))
+    modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to char, LONG to fontSize, LONG to size, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_CHAR_OUTLINE, NIL)
@@ -817,7 +817,7 @@ public open class CanvasItem internal constructor() : Node() {
     mesh: Mesh,
     texture: Texture2D,
     transform: Transform2D = Transform2D(),
-    modulate: Color = Color(Color(1, 1, 1, 1))
+    modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(OBJECT to mesh, OBJECT to texture, TRANSFORM2D to transform, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MESH, NIL)
@@ -839,7 +839,7 @@ public open class CanvasItem internal constructor() : Node() {
   public fun drawSetTransform(
     position: Vector2,
     rotation: Double = 0.0,
-    scale: Vector2 = Vector2(1, 1)
+    scale: Vector2 = Vector2(1, 1),
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to position, DOUBLE to rotation, VECTOR2 to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_SET_TRANSFORM, NIL)
@@ -861,7 +861,7 @@ public open class CanvasItem internal constructor() : Node() {
     animationLength: Double,
     sliceBegin: Double,
     sliceEnd: Double,
-    offset: Double = 0.0
+    offset: Double = 0.0,
   ): Unit {
     TransferContext.writeArguments(DOUBLE to animationLength, DOUBLE to sliceBegin, DOUBLE to sliceEnd, DOUBLE to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_ANIMATION_SLICE,
@@ -1071,7 +1071,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public enum class TextureFilter(
-    id: Long
+    id: Long,
   ) {
     /**
      * The [godot.CanvasItem] will inherit the filter from its parent.
@@ -1122,7 +1122,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public enum class TextureRepeat(
-    id: Long
+    id: Long,
   ) {
     /**
      * The [godot.CanvasItem] will inherit the filter from its parent.
@@ -1157,7 +1157,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public enum class ClipChildrenMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Child draws over parent and is not clipped.

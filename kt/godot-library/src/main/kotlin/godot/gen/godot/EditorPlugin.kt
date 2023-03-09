@@ -710,7 +710,7 @@ public open class EditorPlugin internal constructor() : Node() {
     type: String,
     base: String,
     script: Script,
-    icon: Texture2D
+    icon: Texture2D,
   ): Unit {
     TransferContext.writeArguments(STRING to type, STRING to base, OBJECT to script, OBJECT to icon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CUSTOM_TYPE, NIL)
@@ -1053,7 +1053,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   public enum class CustomControlContainer(
-    id: Long
+    id: Long,
   ) {
     /**
      * Main editor toolbar, next to play buttons.
@@ -1116,7 +1116,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   public enum class DockSlot(
-    id: Long
+    id: Long,
   ) {
     /**
      * Dock slot, left side, upper-left (empty in default layout).
@@ -1167,7 +1167,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   public enum class AfterGUIInput(
-    id: Long
+    id: Long,
   ) {
     /**
      * Forwards the [godot.InputEvent] to other EditorPlugins.

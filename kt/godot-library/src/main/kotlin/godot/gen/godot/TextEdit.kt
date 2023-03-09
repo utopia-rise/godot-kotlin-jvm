@@ -827,7 +827,7 @@ public open class TextEdit : Control() {
     fromLine: Long,
     fromColumn: Long,
     toLine: Long,
-    toColumn: Long
+    toColumn: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to toColumn)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_TEXT, NIL)
@@ -859,7 +859,7 @@ public open class TextEdit : Control() {
   public fun getNextVisibleLineIndexOffsetFrom(
     line: Long,
     wrapIndex: Long,
-    visibleAmount: Long
+    visibleAmount: Long,
   ): Vector2i {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex, LONG to visibleAmount)
     TransferContext.callMethod(rawPtr,
@@ -1072,7 +1072,7 @@ public open class TextEdit : Control() {
     text: String,
     flags: Long,
     fromLine: Long,
-    fromColum: Long
+    fromColum: Long,
   ): Vector2i {
     TransferContext.writeArguments(STRING to text, LONG to flags, LONG to fromLine, LONG to fromColum)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SEARCH, VECTOR2I)
@@ -1244,7 +1244,7 @@ public open class TextEdit : Control() {
     fromLine: Long,
     fromCol: Long,
     toLine: Long,
-    toCol: Long
+    toCol: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to caret, LONG to fromLine, LONG to fromCol, LONG to toLine, LONG to toCol)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADJUST_CARETS_AFTER_EDIT,
@@ -1284,7 +1284,7 @@ public open class TextEdit : Control() {
     adjustViewport: Boolean = true,
     canBeHidden: Boolean = true,
     wrapIndex: Long = 0,
-    caretIndex: Long = 0
+    caretIndex: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to line, BOOL to adjustViewport, BOOL to canBeHidden, LONG to wrapIndex, LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_LINE, NIL)
@@ -1309,7 +1309,7 @@ public open class TextEdit : Control() {
   public fun setCaretColumn(
     column: Long,
     adjustViewport: Boolean = true,
-    caretIndex: Long = 0
+    caretIndex: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to adjustViewport, LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_COLUMN, NIL)
@@ -1350,7 +1350,7 @@ public open class TextEdit : Control() {
     mode: SelectionMode,
     line: Long = -1,
     column: Long = -1,
-    caretIndex: Long = 0
+    caretIndex: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to mode.id, LONG to line, LONG to column, LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SELECTION_MODE, NIL)
@@ -1403,7 +1403,7 @@ public open class TextEdit : Control() {
     fromColumn: Long,
     toLine: Long,
     toColumn: Long,
-    caretIndex: Long = 0
+    caretIndex: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to toColumn, LONG to caretIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT, NIL)
@@ -1844,7 +1844,7 @@ public open class TextEdit : Control() {
   public fun setLineGutterMetadata(
     line: Long,
     gutter: Long,
-    metadata: Any
+    metadata: Any,
   ): Unit {
     TransferContext.writeArguments(LONG to line, LONG to gutter, ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_METADATA,
@@ -1867,7 +1867,7 @@ public open class TextEdit : Control() {
   public fun setLineGutterText(
     line: Long,
     gutter: Long,
-    text: String
+    text: String,
   ): Unit {
     TransferContext.writeArguments(LONG to line, LONG to gutter, STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_TEXT, NIL)
@@ -1889,7 +1889,7 @@ public open class TextEdit : Control() {
   public fun setLineGutterIcon(
     line: Long,
     gutter: Long,
-    icon: Texture2D
+    icon: Texture2D,
   ): Unit {
     TransferContext.writeArguments(LONG to line, LONG to gutter, OBJECT to icon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_ICON, NIL)
@@ -1911,7 +1911,7 @@ public open class TextEdit : Control() {
   public fun setLineGutterItemColor(
     line: Long,
     gutter: Long,
-    color: Color
+    color: Color,
   ): Unit {
     TransferContext.writeArguments(LONG to line, LONG to gutter, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_ITEM_COLOR,
@@ -1934,7 +1934,7 @@ public open class TextEdit : Control() {
   public fun setLineGutterClickable(
     line: Long,
     gutter: Long,
-    clickable: Boolean
+    clickable: Boolean,
   ): Unit {
     TransferContext.writeArguments(LONG to line, LONG to gutter, BOOL to clickable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_CLICKABLE,
@@ -2077,7 +2077,7 @@ public open class TextEdit : Control() {
   }
 
   public enum class MenuItems(
-    id: Long
+    id: Long,
   ) {
     /**
      * Cuts (copies and clears) the selected text.
@@ -2216,7 +2216,7 @@ public open class TextEdit : Control() {
   }
 
   public enum class EditAction(
-    id: Long
+    id: Long,
   ) {
     /**
      * No current action.
@@ -2247,7 +2247,7 @@ public open class TextEdit : Control() {
   }
 
   public enum class SearchFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Match case when searching.
@@ -2274,7 +2274,7 @@ public open class TextEdit : Control() {
   }
 
   public enum class CaretType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Vertical line caret.
@@ -2297,7 +2297,7 @@ public open class TextEdit : Control() {
   }
 
   public enum class SelectionMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Not selecting.
@@ -2332,7 +2332,7 @@ public open class TextEdit : Control() {
   }
 
   public enum class LineWrappingMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Line wrapping is disabled.
@@ -2355,7 +2355,7 @@ public open class TextEdit : Control() {
   }
 
   public enum class GutterType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Draw a string.

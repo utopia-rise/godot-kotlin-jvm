@@ -1121,7 +1121,7 @@ public open class Window : Viewport() {
   }
 
   public enum class Mode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Windowed mode, i.e. [godot.Window] doesn't occupy the whole screen (unless set to the size of the screen).
@@ -1162,7 +1162,7 @@ public open class Window : Viewport() {
   }
 
   public enum class Flags(
-    id: Long
+    id: Long,
   ) {
     /**
      * The window can't be resizing by dragging its resize grip. It's still possible to resize the window using [size]. This flag is ignored for full screen windows. Set with [unresizable].
@@ -1217,7 +1217,7 @@ public open class Window : Viewport() {
   }
 
   public enum class ContentScaleMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The content will not be scaled to match the [godot.Window]'s size.
@@ -1244,7 +1244,7 @@ public open class Window : Viewport() {
   }
 
   public enum class ContentScaleAspect(
-    id: Long
+    id: Long,
   ) {
     /**
      * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
@@ -1279,7 +1279,7 @@ public open class Window : Viewport() {
   }
 
   public enum class LayoutDirection(
-    id: Long
+    id: Long,
   ) {
     /**
      * Automatic layout direction, determined from the parent window layout direction.
@@ -1310,7 +1310,7 @@ public open class Window : Viewport() {
   }
 
   public enum class WindowInitialPosition(
-    id: Long
+    id: Long,
   ) {
     /**
      * Initial window position is determined by [position].

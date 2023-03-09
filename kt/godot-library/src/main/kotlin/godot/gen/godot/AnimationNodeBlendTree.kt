@@ -68,7 +68,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public fun addNode(
     name: StringName,
     node: AnimationNode,
-    position: Vector2 = Vector2(0, 0)
+    position: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_ADD_NODE,
@@ -119,7 +119,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public fun connectNode(
     inputNode: StringName,
     inputIndex: Long,
-    outputNode: StringName
+    outputNode: StringName,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex, STRING_NAME to outputNode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_CONNECT_NODE,

@@ -63,7 +63,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   }
 
   public enum class EnableMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Corresponds to [godot.Node.PROCESS_MODE_INHERIT].

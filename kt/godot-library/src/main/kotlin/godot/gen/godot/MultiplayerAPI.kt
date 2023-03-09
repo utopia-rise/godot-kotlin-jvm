@@ -149,7 +149,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     peer: Long,
     _object: Object,
     method: StringName,
-    arguments: VariantArray<Any?> = godot.core.variantArrayOf()
+    arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): GodotError {
     TransferContext.writeArguments(LONG to peer, OBJECT to _object, STRING_NAME to method, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_RPC, LONG)
@@ -191,7 +191,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   public enum class RPCMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Used with [godot.Node.rpcConfig] to disable a method or property for all RPC calls, making it unavailable. Default for all methods.

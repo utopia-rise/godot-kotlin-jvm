@@ -434,7 +434,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontSetAscent(
     fontRid: RID,
     size: Long,
-    ascent: Double
+    ascent: Double,
   ): Unit {
   }
 
@@ -451,7 +451,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontSetDescent(
     fontRid: RID,
     size: Long,
-    descent: Double
+    descent: Double,
   ): Unit {
   }
 
@@ -468,7 +468,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontSetUnderlinePosition(
     fontRid: RID,
     size: Long,
-    underlinePosition: Double
+    underlinePosition: Double,
   ): Unit {
   }
 
@@ -485,7 +485,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontSetUnderlineThickness(
     fontRid: RID,
     size: Long,
-    underlineThickness: Double
+    underlineThickness: Double,
   ): Unit {
   }
 
@@ -502,7 +502,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontSetScale(
     fontRid: RID,
     size: Long,
-    scale: Double
+    scale: Double,
   ): Unit {
   }
 
@@ -532,7 +532,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontRemoveTexture(
     fontRid: RID,
     size: Vector2i,
-    textureIndex: Long
+    textureIndex: Long,
   ): Unit {
   }
 
@@ -543,7 +543,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
-    image: Image
+    image: Image,
   ): Unit {
   }
 
@@ -553,7 +553,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetTextureImage(
     fontRid: RID,
     size: Vector2i,
-    textureIndex: Long
+    textureIndex: Long,
   ): Image? {
     throw NotImplementedError("_font_get_texture_image is not implemented for TextServerExtension")
   }
@@ -565,7 +565,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
-    offset: PackedInt32Array
+    offset: PackedInt32Array,
   ): Unit {
   }
 
@@ -575,7 +575,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetTextureOffsets(
     fontRid: RID,
     size: Vector2i,
-    textureIndex: Long
+    textureIndex: Long,
   ): PackedInt32Array {
     throw NotImplementedError("_font_get_texture_offsets is not implemented for TextServerExtension")
   }
@@ -599,7 +599,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontRemoveGlyph(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Unit {
   }
 
@@ -609,7 +609,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetGlyphAdvance(
     fontRid: RID,
     size: Long,
-    glyph: Long
+    glyph: Long,
   ): Vector2 {
     throw NotImplementedError("_font_get_glyph_advance is not implemented for TextServerExtension")
   }
@@ -621,7 +621,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Long,
     glyph: Long,
-    advance: Vector2
+    advance: Vector2,
   ): Unit {
   }
 
@@ -631,7 +631,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetGlyphOffset(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Vector2 {
     throw NotImplementedError("_font_get_glyph_offset is not implemented for TextServerExtension")
   }
@@ -643,7 +643,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
-    offset: Vector2
+    offset: Vector2,
   ): Unit {
   }
 
@@ -653,7 +653,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetGlyphSize(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Vector2 {
     throw NotImplementedError("_font_get_glyph_size is not implemented for TextServerExtension")
   }
@@ -665,7 +665,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
-    glSize: Vector2
+    glSize: Vector2,
   ): Unit {
   }
 
@@ -675,7 +675,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetGlyphUvRect(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Rect2 {
     throw NotImplementedError("_font_get_glyph_uv_rect is not implemented for TextServerExtension")
   }
@@ -687,7 +687,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
-    uvRect: Rect2
+    uvRect: Rect2,
   ): Unit {
   }
 
@@ -697,7 +697,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetGlyphTextureIdx(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Long {
     throw NotImplementedError("_font_get_glyph_texture_idx is not implemented for TextServerExtension")
   }
@@ -709,7 +709,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
-    textureIdx: Long
+    textureIdx: Long,
   ): Unit {
   }
 
@@ -719,7 +719,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetGlyphTextureRid(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): RID {
     throw NotImplementedError("_font_get_glyph_texture_rid is not implemented for TextServerExtension")
   }
@@ -730,7 +730,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetGlyphTextureSize(
     fontRid: RID,
     size: Vector2i,
-    glyph: Long
+    glyph: Long,
   ): Vector2 {
     throw NotImplementedError("_font_get_glyph_texture_size is not implemented for TextServerExtension")
   }
@@ -741,7 +741,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetGlyphContours(
     fontRid: RID,
     size: Long,
-    index: Long
+    index: Long,
   ): Dictionary<Any?, Any?> {
     throw NotImplementedError("_font_get_glyph_contours is not implemented for TextServerExtension")
   }
@@ -765,7 +765,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontRemoveKerning(
     fontRid: RID,
     size: Long,
-    glyphPair: Vector2i
+    glyphPair: Vector2i,
   ): Unit {
   }
 
@@ -776,7 +776,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Long,
     glyphPair: Vector2i,
-    kerning: Vector2
+    kerning: Vector2,
   ): Unit {
   }
 
@@ -786,7 +786,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontGetKerning(
     fontRid: RID,
     size: Long,
-    glyphPair: Vector2i
+    glyphPair: Vector2i,
   ): Vector2 {
     throw NotImplementedError("_font_get_kerning is not implemented for TextServerExtension")
   }
@@ -798,7 +798,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Long,
     char: Long,
-    variationSelector: Long
+    variationSelector: Long,
   ): Long {
     throw NotImplementedError("_font_get_glyph_index is not implemented for TextServerExtension")
   }
@@ -824,7 +824,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     start: Long,
-    end: Long
+    end: Long,
   ): Unit {
   }
 
@@ -834,7 +834,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontRenderGlyph(
     fontRid: RID,
     size: Vector2i,
-    index: Long
+    index: Long,
   ): Unit {
   }
 
@@ -847,7 +847,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     pos: Vector2,
     index: Long,
-    color: Color
+    color: Color,
   ): Unit {
   }
 
@@ -861,7 +861,7 @@ public open class TextServerExtension : TextServer() {
     outlineSize: Long,
     pos: Vector2,
     index: Long,
-    color: Color
+    color: Color,
   ): Unit {
   }
 
@@ -878,7 +878,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontSetLanguageSupportOverride(
     fontRid: RID,
     language: String,
-    supported: Boolean
+    supported: Boolean,
   ): Unit {
   }
 
@@ -915,7 +915,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _fontSetScriptSupportOverride(
     fontRid: RID,
     script: String,
-    supported: Boolean
+    supported: Boolean,
   ): Unit {
   }
 
@@ -995,7 +995,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     pos: Vector2,
     index: Long,
-    color: Color
+    color: Color,
   ): Unit {
   }
 
@@ -1098,7 +1098,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _shapedTextSetSpacing(
     shaped: RID,
     spacing: TextServer.SpacingType,
-    `value`: Long
+    `value`: Long,
   ): Unit {
   }
 
@@ -1119,7 +1119,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     opentypeFeatures: Dictionary<Any?, Any?>,
     language: String,
-    meta: Any
+    meta: Any,
   ): Boolean {
     throw NotImplementedError("_shaped_text_add_string is not implemented for TextServerExtension")
   }
@@ -1133,7 +1133,7 @@ public open class TextServerExtension : TextServer() {
     size: Vector2,
     inlineAlign: InlineAlignment,
     length: Long,
-    baseline: Double
+    baseline: Double,
   ): Boolean {
     throw NotImplementedError("_shaped_text_add_object is not implemented for TextServerExtension")
   }
@@ -1146,7 +1146,7 @@ public open class TextServerExtension : TextServer() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment,
-    baseline: Double
+    baseline: Double,
   ): Boolean {
     throw NotImplementedError("_shaped_text_resize_object is not implemented for TextServerExtension")
   }
@@ -1173,7 +1173,7 @@ public open class TextServerExtension : TextServer() {
     index: Long,
     fonts: VariantArray<RID>,
     size: Long,
-    opentypeFeatures: Dictionary<Any?, Any?>
+    opentypeFeatures: Dictionary<Any?, Any?>,
   ): Unit {
   }
 
@@ -1183,7 +1183,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _shapedTextSubstr(
     shaped: RID,
     start: Long,
-    length: Long
+    length: Long,
   ): RID {
     throw NotImplementedError("_shaped_text_substr is not implemented for TextServerExtension")
   }
@@ -1201,7 +1201,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _shapedTextFitToWidth(
     shaped: RID,
     width: Double,
-    jstFlags: Long
+    jstFlags: Long,
   ): Double {
     throw NotImplementedError("_shaped_text_fit_to_width is not implemented for TextServerExtension")
   }
@@ -1263,7 +1263,7 @@ public open class TextServerExtension : TextServer() {
     width: PackedFloat32Array,
     start: Long,
     once: Boolean,
-    breakFlags: Long
+    breakFlags: Long,
   ): PackedInt32Array {
     throw NotImplementedError("_shaped_text_get_line_breaks_adv is not implemented for TextServerExtension")
   }
@@ -1275,7 +1275,7 @@ public open class TextServerExtension : TextServer() {
     shaped: RID,
     width: Double,
     start: Long,
-    breakFlags: Long
+    breakFlags: Long,
   ): PackedInt32Array {
     throw NotImplementedError("_shaped_text_get_line_breaks is not implemented for TextServerExtension")
   }
@@ -1314,7 +1314,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _shapedTextOverrunTrimToWidth(
     shaped: RID,
     width: Double,
-    trimFlags: Long
+    trimFlags: Long,
   ): Unit {
   }
 
@@ -1380,7 +1380,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _shapedTextGetDominantDirectionInRange(
     shaped: RID,
     start: Long,
-    end: Long
+    end: Long,
   ): Long {
     throw NotImplementedError("_shaped_text_get_dominant_direction_in_range is not implemented for TextServerExtension")
   }
@@ -1391,7 +1391,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _shapedTextGetSelection(
     shaped: RID,
     start: Long,
-    end: Long
+    end: Long,
   ): PackedVector2Array {
     throw NotImplementedError("_shaped_text_get_selection is not implemented for TextServerExtension")
   }
@@ -1419,7 +1419,7 @@ public open class TextServerExtension : TextServer() {
     pos: Vector2,
     clipL: Double,
     clipR: Double,
-    color: Color
+    color: Color,
   ): Unit {
   }
 
@@ -1433,7 +1433,7 @@ public open class TextServerExtension : TextServer() {
     clipL: Double,
     clipR: Double,
     outlineSize: Long,
-    color: Color
+    color: Color,
   ): Unit {
   }
 
@@ -1499,7 +1499,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _stringGetWordBreaks(
     string: String,
     language: String,
-    charsPerLine: Long
+    charsPerLine: Long,
   ): PackedInt32Array {
     throw NotImplementedError("_string_get_word_breaks is not implemented for TextServerExtension")
   }
@@ -1538,7 +1538,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _parseStructuredText(
     parserType: TextServer.StructuredTextParser,
     args: VariantArray<Any?>,
-    text: String
+    text: String,
   ): VariantArray<Vector3i> {
     throw NotImplementedError("_parse_structured_text is not implemented for TextServerExtension")
   }

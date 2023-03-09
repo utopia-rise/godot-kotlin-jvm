@@ -137,7 +137,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
   }
 
   public enum class Param(
-    id: Long
+    id: Long,
   ) {
     /**
      * The minimum difference between the pivot points' axes.
@@ -244,7 +244,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
   }
 
   public enum class Flag(
-    id: Long
+    id: Long,
   ) {
     /**
      * If enabled, linear motion is possible within the given limits.

@@ -1472,7 +1472,7 @@ public open class Environment : Resource() {
   }
 
   public enum class BGMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Clears the background using the clear color defined in [godot.ProjectSettings.rendering/environment/defaults/defaultClearColor].
@@ -1515,7 +1515,7 @@ public open class Environment : Resource() {
   }
 
   public enum class AmbientSource(
-    id: Long
+    id: Long,
   ) {
     /**
      * Gather ambient light from whichever source is specified as the background.
@@ -1546,7 +1546,7 @@ public open class Environment : Resource() {
   }
 
   public enum class ReflectionSource(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use the background for reflections.
@@ -1573,7 +1573,7 @@ public open class Environment : Resource() {
   }
 
   public enum class ToneMapper(
-    id: Long
+    id: Long,
   ) {
     /**
      * Linear tonemapper operator. Reads the linear data and passes it on unmodified. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
@@ -1606,7 +1606,7 @@ public open class Environment : Resource() {
   }
 
   public enum class GlowBlendMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright sources.
@@ -1641,7 +1641,7 @@ public open class Environment : Resource() {
   }
 
   public enum class SDFGIYScale(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use 50% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as they are wide. This allows providing increased GI detail and reduced light leaking with thin floors and ceilings. This is usually the best choice for scenes that don't feature much verticality.

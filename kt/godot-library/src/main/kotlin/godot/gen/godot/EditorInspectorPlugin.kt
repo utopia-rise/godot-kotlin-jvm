@@ -85,7 +85,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
     hintType: PropertyHint,
     hintString: String,
     usageFlags: Long,
-    wide: Boolean
+    wide: Boolean,
   ): Boolean {
     throw NotImplementedError("_parse_property is not implemented for EditorInspectorPlugin")
   }
@@ -111,7 +111,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   public fun addPropertyEditor(
     `property`: String,
     editor: Control,
-    addToEnd: Boolean = false
+    addToEnd: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING to property, OBJECT to editor, BOOL to addToEnd)
     TransferContext.callMethod(rawPtr,
@@ -124,7 +124,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   public fun addPropertyEditorForMultipleProperties(
     label: String,
     properties: PackedStringArray,
-    editor: Control
+    editor: Control,
   ): Unit {
     TransferContext.writeArguments(STRING to label, PACKED_STRING_ARRAY to properties, OBJECT to editor)
     TransferContext.callMethod(rawPtr,

@@ -258,7 +258,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   public enum class GenEditState(
-    id: Long
+    id: Long,
   ) {
     /**
      * If passed to [godot.PackedScene.instantiate], blocks edits to the scene state.

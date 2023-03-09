@@ -45,7 +45,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long
+    id: Long,
   ) {
     /**
      * Translates `uv` by using `scale` and `offset` values using the following formula: `uv = uv + offset * scale`. `uv` port is connected to `UV` built-in by default.

@@ -48,7 +48,7 @@ public open class EngineProfiler : RefCounted() {
     frameTime: Double,
     processTime: Double,
     physicsTime: Double,
-    physicsFrameTime: Double
+    physicsFrameTime: Double,
   ): Unit {
   }
 

@@ -59,7 +59,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public fun addPeer(
     peer: WebRTCPeerConnection,
     peerId: Long,
-    unreliableLifetime: Long = 1
+    unreliableLifetime: Long = 1,
   ): GodotError {
     TransferContext.writeArguments(OBJECT to peer, LONG to peerId, LONG to unreliableLifetime)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_ADD_PEER,

@@ -79,7 +79,7 @@ public open class InputEvent internal constructor() : Resource() {
   public fun isActionPressed(
     action: StringName,
     allowEcho: Boolean = false,
-    exactMatch: Boolean = false
+    exactMatch: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to allowEcho, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION_PRESSED, BOOL)

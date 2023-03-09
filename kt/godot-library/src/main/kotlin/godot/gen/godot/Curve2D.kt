@@ -76,7 +76,7 @@ public open class Curve2D : Resource() {
     position: Vector2,
     _in: Vector2 = Vector2(0, 0),
     `out`: Vector2 = Vector2(0, 0),
-    index: Long = -1
+    index: Long = -1,
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to _in, VECTOR2 to out, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_ADD_POINT, NIL)

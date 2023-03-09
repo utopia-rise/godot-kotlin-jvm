@@ -245,7 +245,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   }
 
   public enum class FileMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The [godot.EditorFileDialog] can select only one file. Accepting the window will open the file.
@@ -280,7 +280,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   }
 
   public enum class Access(
-    id: Long
+    id: Long,
   ) {
     /**
      * The [godot.EditorFileDialog] can only view `res://` directory contents.
@@ -307,7 +307,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   }
 
   public enum class DisplayMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The [godot.EditorFileDialog] displays resources as thumbnails.

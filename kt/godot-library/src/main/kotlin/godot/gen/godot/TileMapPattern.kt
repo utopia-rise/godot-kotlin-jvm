@@ -42,7 +42,7 @@ public open class TileMapPattern : Resource() {
     coords: Vector2i,
     sourceId: Long = -1,
     atlasCoords: Vector2i = Vector2i(-1, -1),
-    alternativeTile: Long = -1
+    alternativeTile: Long = -1,
   ): Unit {
     TransferContext.writeArguments(VECTOR2I to coords, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_SET_CELL, NIL)

@@ -35,7 +35,7 @@ public open class GLTFDocument : Resource() {
     path: String,
     state: GLTFState,
     flags: Long = 0,
-    basePath: String = ""
+    basePath: String = "",
   ): GodotError {
     TransferContext.writeArguments(STRING to path, OBJECT to state, LONG to flags, STRING to basePath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_FILE, LONG)
@@ -46,7 +46,7 @@ public open class GLTFDocument : Resource() {
     bytes: PackedByteArray,
     basePath: String,
     state: GLTFState,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, STRING to basePath, OBJECT to state, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_BUFFER,
@@ -57,7 +57,7 @@ public open class GLTFDocument : Resource() {
   public fun appendFromScene(
     node: Node,
     state: GLTFState,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     TransferContext.writeArguments(OBJECT to node, OBJECT to state, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_SCENE,
@@ -69,7 +69,7 @@ public open class GLTFDocument : Resource() {
     state: GLTFState,
     bakeFps: Double = 30.0,
     trimming: Boolean = false,
-    removeImmutableTracks: Boolean = true
+    removeImmutableTracks: Boolean = true,
   ): Node? {
     TransferContext.writeArguments(OBJECT to state, DOUBLE to bakeFps, BOOL to trimming, BOOL to removeImmutableTracks)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GENERATE_SCENE, OBJECT)

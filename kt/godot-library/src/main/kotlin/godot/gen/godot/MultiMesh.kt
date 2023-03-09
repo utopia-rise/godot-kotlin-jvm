@@ -254,7 +254,7 @@ public open class MultiMesh : Resource() {
   }
 
   public enum class TransformFormat(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use this when using 2D transforms.

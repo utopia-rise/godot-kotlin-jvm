@@ -106,7 +106,7 @@ public open class OptionButton : Button() {
   public fun addIconItem(
     texture: Texture2D,
     label: String,
-    id: Long = -1
+    id: Long = -1,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_ADD_ICON_ITEM, NIL)

@@ -248,7 +248,7 @@ public open class TextParagraph : RefCounted() {
     font: Font,
     fontSize: Long,
     dropcapMargins: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
-    language: String = ""
+    language: String = "",
   ): Boolean {
     TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize, RECT2 to dropcapMargins, STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_DROPCAP, BOOL)
@@ -271,7 +271,7 @@ public open class TextParagraph : RefCounted() {
     font: Font,
     fontSize: Long,
     language: String = "",
-    meta: Any? = null
+    meta: Any? = null,
   ): Boolean {
     TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize, STRING to language, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_STRING, BOOL)
@@ -286,7 +286,7 @@ public open class TextParagraph : RefCounted() {
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     length: Long = 1,
-    baseline: Double = 0.0
+    baseline: Double = 0.0,
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_OBJECT, BOOL)
@@ -300,7 +300,7 @@ public open class TextParagraph : RefCounted() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    baseline: Double = 0.0
+    baseline: Double = 0.0,
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_RESIZE_OBJECT, BOOL)
@@ -487,7 +487,7 @@ public open class TextParagraph : RefCounted() {
     canvas: RID,
     pos: Vector2,
     color: Color = Color(Color(1, 1, 1, 1)),
-    dcColor: Color = Color(Color(1, 1, 1, 1))
+    dcColor: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color, COLOR to dcColor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW, NIL)
@@ -501,7 +501,7 @@ public open class TextParagraph : RefCounted() {
     pos: Vector2,
     outlineSize: Long = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
-    dcColor: Color = Color(Color(1, 1, 1, 1))
+    dcColor: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize, COLOR to color, COLOR to dcColor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_OUTLINE, NIL)
@@ -514,7 +514,7 @@ public open class TextParagraph : RefCounted() {
     canvas: RID,
     pos: Vector2,
     line: Long,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_LINE, NIL)
@@ -528,7 +528,7 @@ public open class TextParagraph : RefCounted() {
     pos: Vector2,
     line: Long,
     outlineSize: Long = 1,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line, LONG to outlineSize, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_LINE_OUTLINE,
@@ -541,7 +541,7 @@ public open class TextParagraph : RefCounted() {
   public fun drawDropcap(
     canvas: RID,
     pos: Vector2,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_DROPCAP, NIL)
@@ -554,7 +554,7 @@ public open class TextParagraph : RefCounted() {
     canvas: RID,
     pos: Vector2,
     outlineSize: Long = 1,
-    color: Color = Color(Color(1, 1, 1, 1))
+    color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_DROPCAP_OUTLINE,

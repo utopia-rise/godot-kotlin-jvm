@@ -70,7 +70,7 @@ public object NavigationServer3D : Object() {
   public val navigationDebugChanged: Signal0 by signal()
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_NAVIGATIONSERVER3D)
+    getSingleton(ENGINECLASS_NAVIGATIONSERVER3D)
     return false
   }
 
@@ -194,7 +194,7 @@ public object NavigationServer3D : Object() {
     origin: Vector3,
     destination: Vector3,
     optimize: Boolean,
-    navigationLayers: Long = 1
+    navigationLayers: Long = 1,
   ): PackedVector3Array {
     TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to navigationLayers)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_PATH,
@@ -209,7 +209,7 @@ public object NavigationServer3D : Object() {
     map: RID,
     start: Vector3,
     end: Vector3,
-    useCollision: Boolean = false
+    useCollision: Boolean = false,
   ): Vector3 {
     TransferContext.writeArguments(_RID to map, VECTOR3 to start, VECTOR3 to end, BOOL to useCollision)
     TransferContext.callMethod(rawPtr,
@@ -807,7 +807,7 @@ public object NavigationServer3D : Object() {
   }
 
   public enum class ProcessInfo(
-    id: Long
+    id: Long,
   ) {
     /**
      * Constant to get the number of active navigation maps.

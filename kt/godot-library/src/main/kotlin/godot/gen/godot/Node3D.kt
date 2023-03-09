@@ -393,7 +393,7 @@ public open class Node3D : Node() {
   public fun setSubgizmoSelection(
     gizmo: Node3DGizmo,
     id: Long,
-    transform: Transform3D
+    transform: Transform3D,
   ): Unit {
     TransferContext.writeArguments(OBJECT to gizmo, LONG to id, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_SUBGIZMO_SELECTION, NIL)
@@ -596,7 +596,7 @@ public open class Node3D : Node() {
   public fun lookAtFromPosition(
     position: Vector3,
     target: Vector3,
-    up: Vector3 = Vector3(0, 1, 0)
+    up: Vector3 = Vector3(0, 1, 0),
   ): Unit {
     TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to target, VECTOR3 to up)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_LOOK_AT_FROM_POSITION, NIL)
@@ -621,7 +621,7 @@ public open class Node3D : Node() {
   }
 
   public enum class RotationEditMode(
-    id: Long
+    id: Long,
   ) {
     /**
      *

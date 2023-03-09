@@ -86,7 +86,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public fun addInputPort(
     id: Long,
     type: Long,
-    name: String
+    name: String,
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to type, STRING to name)
     TransferContext.callMethod(rawPtr,
@@ -137,7 +137,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public fun addOutputPort(
     id: Long,
     type: Long,
-    name: String
+    name: String,
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to type, STRING to name)
     TransferContext.callMethod(rawPtr,

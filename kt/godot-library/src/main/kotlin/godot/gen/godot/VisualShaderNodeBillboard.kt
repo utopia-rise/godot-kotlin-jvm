@@ -62,7 +62,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   }
 
   public enum class BillboardType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Billboarding is disabled and the node does nothing.

@@ -78,7 +78,7 @@ public open class JSONRPC : Object() {
   public fun makeRequest(
     method: String,
     params: Any,
-    id: Any
+    id: Any,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params, ANY to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_REQUEST, DICTIONARY)
@@ -124,7 +124,7 @@ public open class JSONRPC : Object() {
   public fun makeResponseError(
     code: Long,
     message: String,
-    id: Any? = null
+    id: Any? = null,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to code, STRING to message, ANY to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE_ERROR,
@@ -133,7 +133,7 @@ public open class JSONRPC : Object() {
   }
 
   public enum class ErrorCode(
-    id: Long
+    id: Long,
   ) {
     /**
      *

@@ -142,7 +142,7 @@ public open class Expression : RefCounted() {
     inputs: VariantArray<Any?> = godot.core.variantArrayOf(),
     baseInstance: Object? = null,
     showError: Boolean = true,
-    constCallsOnly: Boolean = false
+    constCallsOnly: Boolean = false,
   ): Any? {
     TransferContext.writeArguments(ARRAY to inputs, OBJECT to baseInstance, BOOL to showError, BOOL to constCallsOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_EXECUTE, ANY)

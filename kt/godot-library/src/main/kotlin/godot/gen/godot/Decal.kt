@@ -284,7 +284,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public enum class DecalTexture(
-    id: Long
+    id: Long,
   ) {
     /**
      * [godot.Texture2D] corresponding to [textureAlbedo].

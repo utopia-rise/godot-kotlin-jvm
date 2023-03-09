@@ -607,7 +607,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   public enum class ModeFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Opens the file for read operations. The cursor is positioned at the beginning of the file.
@@ -638,7 +638,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   public enum class CompressionMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Uses the [godot.FastLZ](https://fastlz.org/) compression method.

@@ -343,7 +343,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   }
 
   public enum class DampMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * In this mode, the body's damping value is added to any value set in areas or the default value.
@@ -366,7 +366,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   }
 
   public enum class JointType(
-    id: Long
+    id: Long,
   ) {
     /**
      *

@@ -114,7 +114,7 @@ public open class ImporterMesh : Resource() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     material: Material? = null,
     name: String = "",
-    flags: Long = 0
+    flags: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_ADD_SURFACE, NIL)
@@ -249,7 +249,7 @@ public open class ImporterMesh : Resource() {
   public fun generateLods(
     normalMergeAngle: Double,
     normalSplitAngle: Double,
-    boneTransformArray: VariantArray<Any?>
+    boneTransformArray: VariantArray<Any?>,
   ): Unit {
     TransferContext.writeArguments(DOUBLE to normalMergeAngle, DOUBLE to normalSplitAngle, ARRAY to boneTransformArray)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GENERATE_LODS, NIL)

@@ -124,13 +124,13 @@ public open class ResourceFormatLoader : RefCounted() {
     path: String,
     originalPath: String,
     useSubThreads: Boolean,
-    cacheMode: Long
+    cacheMode: Long,
   ): Any? {
     throw NotImplementedError("_load is not implemented for ResourceFormatLoader")
   }
 
   public enum class CacheMode(
-    id: Long
+    id: Long,
   ) {
     /**
      *

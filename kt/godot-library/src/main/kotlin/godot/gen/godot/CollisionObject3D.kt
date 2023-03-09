@@ -175,7 +175,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     event: InputEvent,
     position: Vector3,
     normal: Vector3,
-    shapeIdx: Long
+    shapeIdx: Long,
   ): Unit {
   }
 
@@ -383,7 +383,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   public enum class DisableMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * When [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [godot.CollisionObject3D].

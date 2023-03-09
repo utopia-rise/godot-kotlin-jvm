@@ -185,7 +185,7 @@ public open class ScrollContainer : Container() {
   }
 
   public enum class ScrollMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Scrolling disabled, scrollbar will be invisible.

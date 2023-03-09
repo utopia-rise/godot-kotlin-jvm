@@ -118,7 +118,7 @@ public open class UPNPDevice : RefCounted() {
     portInternal: Long = 0,
     desc: String = "",
     proto: String = "UDP",
-    duration: Long = 0
+    duration: Long = 0,
   ): Long {
     TransferContext.writeArguments(LONG to port, LONG to portInternal, STRING to desc, STRING to proto, LONG to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_ADD_PORT_MAPPING, LONG)
@@ -133,7 +133,7 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public enum class IGDStatus(
-    id: Long
+    id: Long,
   ) {
     IGD_STATUS_OK(0),
     IGD_STATUS_HTTP_ERROR(1),

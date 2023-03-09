@@ -125,7 +125,7 @@ public open class VoxelGI : VisualInstance3D() {
   }
 
   public enum class Subdiv(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use 64 subdivisions. This is the lowest quality setting, but the fastest. Use it if you can, but especially use it on lower-end hardware.

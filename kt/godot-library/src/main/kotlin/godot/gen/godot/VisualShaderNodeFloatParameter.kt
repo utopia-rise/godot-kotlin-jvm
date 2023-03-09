@@ -128,7 +128,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public enum class Hint(
-    id: Long
+    id: Long,
   ) {
     /**
      * No hint used.

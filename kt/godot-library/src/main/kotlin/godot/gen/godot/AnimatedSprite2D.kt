@@ -242,7 +242,7 @@ public open class AnimatedSprite2D : Node2D() {
   public fun play(
     name: StringName = StringName(""),
     customSpeed: Double = 1.0,
-    fromEnd: Boolean = false
+    fromEnd: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customSpeed, BOOL to fromEnd)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_PLAY, NIL)

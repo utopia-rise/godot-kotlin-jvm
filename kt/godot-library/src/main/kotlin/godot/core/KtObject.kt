@@ -48,7 +48,7 @@ abstract class KtObject {
             //Native object already exists, so we know the id and ptr without going back to the other side.
             rawPtr = config.ptr
             id = config.id
-            //Singletons are never initialized from here.
+            //Singletons are never initialized here as we force their initialization on JVM side at engine start
             if (config.needBind) {
                 GarbageCollector.registerObjectAndBind(this)
             } else {
@@ -59,8 +59,10 @@ abstract class KtObject {
             //Native object doesn't exist yet, we have to create it.
             val scriptIndex = TypeManager.userTypeToId[this::class] ?: -1
             //If the class is a script, the ScriptInstance is going to be created at the same time as the native object.
-            if (new(scriptIndex)) {
-                //Singletons return false and shouldn't be registered
+            val isSingleton = !new(scriptIndex)
+            if (isSingleton) {
+                GarbageCollector.registerSingleton(this)
+            } else {
                 GarbageCollector.registerObject(this)
             }
         }
@@ -70,6 +72,15 @@ abstract class KtObject {
 
     internal inline fun callConstructor(classIndex: Int, scriptIndex: Int): Unit {
         TransferContext.createNativeObject(classIndex, this, this::class.java.classLoader, scriptIndex)
+        readPtrAndIdFromBuffer()
+    }
+
+    internal inline fun getSingleton(classIndex: Int) {
+        TransferContext.getSingleton(classIndex)
+        readPtrAndIdFromBuffer()
+    }
+
+    private inline fun readPtrAndIdFromBuffer() {
         val buffer = TransferContext.buffer
         rawPtr = buffer.long
         id = ObjectID(buffer.long)

@@ -52,7 +52,7 @@ public open class ConeTwistJoint3D : Joint3D() {
   }
 
   public enum class Param(
-    id: Long
+    id: Long,
   ) {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.

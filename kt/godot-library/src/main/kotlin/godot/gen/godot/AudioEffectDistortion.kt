@@ -118,7 +118,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   }
 
   public enum class Mode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Digital distortion effect which cuts off peaks at the top and bottom of the waveform.

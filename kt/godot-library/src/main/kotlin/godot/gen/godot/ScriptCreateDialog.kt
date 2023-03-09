@@ -79,7 +79,7 @@ public open class ScriptCreateDialog internal constructor() : ConfirmationDialog
     inherits: String,
     path: String,
     builtInEnabled: Boolean = true,
-    loadEnabled: Boolean = true
+    loadEnabled: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(STRING to inherits, STRING to path, BOOL to builtInEnabled, BOOL to loadEnabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTCREATEDIALOG_CONFIG, NIL)

@@ -45,7 +45,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   }
 
   public enum class Operator(
-    id: Long
+    id: Long,
   ) {
     /**
      * Adds two vectors.

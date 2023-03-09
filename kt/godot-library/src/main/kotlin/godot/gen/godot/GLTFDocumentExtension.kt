@@ -35,7 +35,7 @@ public open class GLTFDocumentExtension : Resource() {
   public open fun _parseNodeExtensions(
     state: GLTFState,
     gltfNode: GLTFNode,
-    extensions: Dictionary<Any?, Any?>
+    extensions: Dictionary<Any?, Any?>,
   ): GodotError {
     throw NotImplementedError("_parse_node_extensions is not implemented for GLTFDocumentExtension")
   }
@@ -43,7 +43,7 @@ public open class GLTFDocumentExtension : Resource() {
   public open fun _generateSceneNode(
     state: GLTFState,
     gltfNode: GLTFNode,
-    sceneParent: Node
+    sceneParent: Node,
   ): Node3D? {
     throw NotImplementedError("_generate_scene_node is not implemented for GLTFDocumentExtension")
   }
@@ -56,7 +56,7 @@ public open class GLTFDocumentExtension : Resource() {
     state: GLTFState,
     gltfNode: GLTFNode,
     json: Dictionary<Any?, Any?>,
-    node: Node
+    node: Node,
   ): GodotError {
     throw NotImplementedError("_import_node is not implemented for GLTFDocumentExtension")
   }
@@ -72,7 +72,7 @@ public open class GLTFDocumentExtension : Resource() {
   public open fun _convertSceneNode(
     state: GLTFState,
     gltfNode: GLTFNode,
-    sceneNode: Node
+    sceneNode: Node,
   ): Unit {
   }
 
@@ -80,7 +80,7 @@ public open class GLTFDocumentExtension : Resource() {
     state: GLTFState,
     gltfNode: GLTFNode,
     json: Dictionary<Any?, Any?>,
-    node: Node
+    node: Node,
   ): GodotError {
     throw NotImplementedError("_export_node is not implemented for GLTFDocumentExtension")
   }

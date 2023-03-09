@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public object TranslationServer : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_TRANSLATIONSERVER)
+    getSingleton(ENGINECLASS_TRANSLATIONSERVER)
     return false
   }
 
@@ -182,7 +182,7 @@ public object TranslationServer : Object() {
     message: StringName,
     pluralMessage: StringName,
     n: Long,
-    context: StringName = StringName("")
+    context: StringName = StringName(""),
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_TRANSLATE_PLURAL,

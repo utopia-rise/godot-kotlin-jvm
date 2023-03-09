@@ -149,7 +149,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   }
 
   public enum class PathfindingAlgorithm(
-    id: Long
+    id: Long,
   ) {
     /**
      * The path query uses the default A* pathfinding algorithm.
@@ -168,7 +168,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   }
 
   public enum class PathPostProcessing(
-    id: Long
+    id: Long,
   ) {
     /**
      * Applies a funnel algorithm to the raw path corridor found by the pathfinding algorithm. This will result in the shortest path possible inside the path corridor. This postprocessing very much depends on the navigation mesh polygon layout and the created corridor. Especially tile- or gridbased layouts can face artificial corners with diagonal movement due to a jagged path corridor imposed by the cell shapes.
@@ -191,7 +191,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   }
 
   public enum class PathMetadataFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Don't include any additional metadata about the returned path.

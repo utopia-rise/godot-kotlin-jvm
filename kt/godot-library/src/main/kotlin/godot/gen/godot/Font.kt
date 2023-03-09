@@ -71,7 +71,7 @@ public open class Font internal constructor() : Resource() {
     variationCoordinates: Dictionary<Any?, Any?>,
     faceIndex: Long = 0,
     strength: Double = 0.0,
-    transform: Transform2D = Transform2D()
+    transform: Transform2D = Transform2D(),
   ): RID {
     TransferContext.writeArguments(DICTIONARY to variationCoordinates, LONG to faceIndex, DOUBLE to strength, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_FIND_VARIATION, _RID)
@@ -249,7 +249,7 @@ public open class Font internal constructor() : Resource() {
     fontSize: Long = 16,
     jstFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Vector2 {
     TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_STRING_SIZE, VECTOR2)
@@ -270,7 +270,7 @@ public open class Font internal constructor() : Resource() {
     brkFlags: Long = 3,
     jstFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Vector2 {
     TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_MULTILINE_STRING_SIZE,
@@ -293,7 +293,7 @@ public open class Font internal constructor() : Resource() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     jstFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING, NIL)
@@ -316,7 +316,7 @@ public open class Font internal constructor() : Resource() {
     brkFlags: Long = 3,
     jstFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING, NIL)
@@ -338,7 +338,7 @@ public open class Font internal constructor() : Resource() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     jstFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to size, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING_OUTLINE, NIL)
@@ -362,7 +362,7 @@ public open class Font internal constructor() : Resource() {
     brkFlags: Long = 3,
     jstFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL
+    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, LONG to size, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING_OUTLINE,
@@ -390,7 +390,7 @@ public open class Font internal constructor() : Resource() {
     pos: Vector2,
     char: Long,
     fontSize: Long,
-    modulate: Color = Color(Color(1, 1, 1, 1))
+    modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Double {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to fontSize, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_CHAR, DOUBLE)
@@ -408,7 +408,7 @@ public open class Font internal constructor() : Resource() {
     char: Long,
     fontSize: Long,
     size: Long = -1,
-    modulate: Color = Color(Color(1, 1, 1, 1))
+    modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Double {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to fontSize, LONG to size, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_CHAR_OUTLINE, DOUBLE)

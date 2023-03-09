@@ -185,7 +185,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   public fun addBlendPoint(
     node: AnimationRootNode,
     pos: Vector2,
-    atIndex: Long = -1
+    atIndex: Long = -1,
   ): Unit {
     TransferContext.writeArguments(OBJECT to node, VECTOR2 to pos, LONG to atIndex)
     TransferContext.callMethod(rawPtr,
@@ -256,7 +256,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     x: Long,
     y: Long,
     z: Long,
-    atIndex: Long = -1
+    atIndex: Long = -1,
   ): Unit {
     TransferContext.writeArguments(LONG to x, LONG to y, LONG to z, LONG to atIndex)
     TransferContext.callMethod(rawPtr,
@@ -293,7 +293,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public enum class BlendMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The interpolation between animations is linear.

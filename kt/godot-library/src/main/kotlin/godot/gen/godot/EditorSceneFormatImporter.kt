@@ -52,7 +52,7 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
   public open fun _importScene(
     path: String,
     flags: Long,
-    options: Dictionary<Any?, Any?>
+    options: Dictionary<Any?, Any?>,
   ): Object? {
     throw NotImplementedError("_import_scene is not implemented for EditorSceneFormatImporter")
   }
@@ -69,7 +69,7 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
   public open fun _getOptionVisibility(
     path: String,
     forAnimation: Boolean,
-    option: String
+    option: String,
   ): Any? {
     throw NotImplementedError("_get_option_visibility is not implemented for EditorSceneFormatImporter")
   }

@@ -27,7 +27,7 @@ import kotlin.Suppress
 @GodotBaseType
 public object Marshalls : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_MARSHALLS)
+    getSingleton(ENGINECLASS_MARSHALLS)
     return false
   }
 

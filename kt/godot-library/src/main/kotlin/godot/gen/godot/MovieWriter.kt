@@ -75,7 +75,7 @@ public open class MovieWriter : Object() {
   public open fun _writeBegin(
     movieSize: Vector2i,
     fps: Long,
-    basePath: String
+    basePath: String,
   ): GodotError {
     throw NotImplementedError("_write_begin is not implemented for MovieWriter")
   }

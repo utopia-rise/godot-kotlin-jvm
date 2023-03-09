@@ -468,7 +468,7 @@ public open class TabBar : Control() {
   }
 
   public enum class AlignmentMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Places tabs to the left.
@@ -499,7 +499,7 @@ public open class TabBar : Control() {
   }
 
   public enum class CloseButtonDisplayPolicy(
-    id: Long
+    id: Long,
   ) {
     /**
      * Never show the close buttons.

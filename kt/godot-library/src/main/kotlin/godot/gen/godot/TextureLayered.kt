@@ -153,7 +153,7 @@ public open class TextureLayered : Texture() {
   }
 
   public enum class LayeredType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Texture is a generic [godot.Texture2DArray].

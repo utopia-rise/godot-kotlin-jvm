@@ -70,7 +70,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public fun setInputPortDefaultValue(
     port: Long,
     `value`: Any,
-    prevValue: Any? = null
+    prevValue: Any? = null,
   ): Unit {
     TransferContext.writeArguments(LONG to port, ANY to value, ANY to prevValue)
     TransferContext.callMethod(rawPtr,
@@ -106,7 +106,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   public enum class PortType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Floating-point scalar. Translated to `float` type in shader code.

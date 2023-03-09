@@ -279,7 +279,7 @@ public open class GraphNode : Container() {
     colorRight: Color,
     customIconLeft: Texture2D? = null,
     customIconRight: Texture2D? = null,
-    drawStylebox: Boolean = true
+    drawStylebox: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(LONG to slotIndex, BOOL to enableLeftPort, LONG to typeLeft, COLOR to colorLeft, BOOL to enableRightPort, LONG to typeRight, COLOR to colorRight, OBJECT to customIconLeft, OBJECT to customIconRight, BOOL to drawStylebox)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT, NIL)
@@ -549,7 +549,7 @@ public open class GraphNode : Container() {
   }
 
   public enum class Overlay(
-    id: Long
+    id: Long,
   ) {
     /**
      * No overlay is shown.

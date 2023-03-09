@@ -129,7 +129,7 @@ public open class EditorSettings internal constructor() : Resource() {
   public fun setInitialValue(
     name: StringName,
     `value`: Any,
-    updateCurrent: Boolean
+    updateCurrent: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value, BOOL to updateCurrent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_INITIAL_VALUE,
@@ -217,7 +217,7 @@ public open class EditorSettings internal constructor() : Resource() {
   public fun setProjectMetadata(
     section: String,
     key: String,
-    `data`: Any
+    `data`: Any,
   ): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_PROJECT_METADATA,
@@ -230,7 +230,7 @@ public open class EditorSettings internal constructor() : Resource() {
   public fun getProjectMetadata(
     section: String,
     key: String,
-    default: Any? = null
+    default: Any? = null,
   ): Any? {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to default)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_PROJECT_METADATA,

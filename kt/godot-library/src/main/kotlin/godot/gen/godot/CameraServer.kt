@@ -43,7 +43,7 @@ public object CameraServer : Object() {
   public val cameraFeedRemoved: Signal1<Long> by signal("id")
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_CAMERASERVER)
+    getSingleton(ENGINECLASS_CAMERASERVER)
     return false
   }
 
@@ -91,7 +91,7 @@ public object CameraServer : Object() {
   }
 
   public enum class FeedImage(
-    id: Long
+    id: Long,
   ) {
     /**
      * The RGBA camera image.

@@ -119,7 +119,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public enum class Shape(
-    id: Long
+    id: Long,
   ) {
     /**
      *

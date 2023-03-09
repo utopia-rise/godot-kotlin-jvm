@@ -101,7 +101,7 @@ public open class Thread : RefCounted() {
   }
 
   public enum class Priority(
-    id: Long
+    id: Long,
   ) {
     /**
      * A thread running with lower priority than normally.

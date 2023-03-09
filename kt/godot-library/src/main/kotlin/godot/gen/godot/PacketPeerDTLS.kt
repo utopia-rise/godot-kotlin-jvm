@@ -51,7 +51,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   public fun connectToPeer(
     packetPeer: PacketPeerUDP,
     hostname: String,
-    clientOptions: TLSOptions? = null
+    clientOptions: TLSOptions? = null,
   ): GodotError {
     TransferContext.writeArguments(OBJECT to packetPeer, STRING to hostname, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_CONNECT_TO_PEER,
@@ -78,7 +78,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   }
 
   public enum class Status(
-    id: Long
+    id: Long,
   ) {
     /**
      * A status representing a [godot.PacketPeerDTLS] that is disconnected.

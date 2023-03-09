@@ -69,7 +69,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun textureCreate(
     format: RDTextureFormat,
     view: RDTextureView,
-    `data`: VariantArray<PackedByteArray> = godot.core.variantArrayOf()
+    `data`: VariantArray<PackedByteArray> = godot.core.variantArrayOf(),
   ): RID {
     TransferContext.writeArguments(OBJECT to format, OBJECT to view, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CREATE,
@@ -96,7 +96,7 @@ public open class RenderingDevice internal constructor() : Object() {
     layer: Long,
     mipmap: Long,
     mipmaps: Long = 1,
-    sliceType: TextureSliceType = RenderingDevice.TextureSliceType.TEXTURE_SLICE_2D
+    sliceType: TextureSliceType = RenderingDevice.TextureSliceType.TEXTURE_SLICE_2D,
   ): RID {
     TransferContext.writeArguments(OBJECT to view, _RID to withTexture, LONG to layer, LONG to mipmap, LONG to mipmaps, LONG to sliceType.id)
     TransferContext.callMethod(rawPtr,
@@ -111,7 +111,7 @@ public open class RenderingDevice internal constructor() : Object() {
     texture: RID,
     layer: Long,
     `data`: PackedByteArray,
-    postBarrier: Long = 7
+    postBarrier: Long = 7,
   ): GodotError {
     TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_UPDATE,
@@ -172,7 +172,7 @@ public open class RenderingDevice internal constructor() : Object() {
     dstMipmap: Long,
     srcLayer: Long,
     dstLayer: Long,
-    postBarrier: Long = 7
+    postBarrier: Long = 7,
   ): GodotError {
     TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_COPY, LONG)
@@ -189,7 +189,7 @@ public open class RenderingDevice internal constructor() : Object() {
     mipmapCount: Long,
     baseLayer: Long,
     layerCount: Long,
-    postBarrier: Long = 7
+    postBarrier: Long = 7,
   ): GodotError {
     TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CLEAR, LONG)
@@ -202,7 +202,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun textureResolveMultisample(
     fromTexture: RID,
     toTexture: RID,
-    postBarrier: Long = 7
+    postBarrier: Long = 7,
   ): GodotError {
     TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr,
@@ -227,7 +227,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun framebufferFormatCreateMultipass(
     attachments: VariantArray<RDAttachmentFormat>,
     passes: VariantArray<RDFramebufferPass>,
-    viewCount: Long = 1
+    viewCount: Long = 1,
   ): Long {
     TransferContext.writeArguments(ARRAY to attachments, ARRAY to passes, LONG to viewCount)
     TransferContext.callMethod(rawPtr,
@@ -263,7 +263,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun framebufferCreate(
     textures: VariantArray<RID>,
     validateWithFormat: Long = -1,
-    viewCount: Long = 1
+    viewCount: Long = 1,
   ): RID {
     TransferContext.writeArguments(ARRAY to textures, LONG to validateWithFormat, LONG to viewCount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_CREATE,
@@ -278,7 +278,7 @@ public open class RenderingDevice internal constructor() : Object() {
     textures: VariantArray<RID>,
     passes: VariantArray<RDFramebufferPass>,
     validateWithFormat: Long = -1,
-    viewCount: Long = 1
+    viewCount: Long = 1,
   ): RID {
     TransferContext.writeArguments(ARRAY to textures, ARRAY to passes, LONG to validateWithFormat, LONG to viewCount)
     TransferContext.callMethod(rawPtr,
@@ -292,7 +292,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun framebufferCreateEmpty(
     size: Vector2i,
     samples: TextureSamples = RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1,
-    validateWithFormat: Long = -1
+    validateWithFormat: Long = -1,
   ): RID {
     TransferContext.writeArguments(VECTOR2I to size, LONG to samples.id, LONG to validateWithFormat)
     TransferContext.callMethod(rawPtr,
@@ -336,7 +336,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun vertexBufferCreate(
     sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
-    useAsStorage: Boolean = false
+    useAsStorage: Boolean = false,
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, BOOL to useAsStorage)
     TransferContext.callMethod(rawPtr,
@@ -361,7 +361,7 @@ public open class RenderingDevice internal constructor() : Object() {
     vertexCount: Long,
     vertexFormat: Long,
     srcBuffers: VariantArray<RID>,
-    offsets: PackedInt64Array = PackedInt64Array()
+    offsets: PackedInt64Array = PackedInt64Array(),
   ): RID {
     TransferContext.writeArguments(LONG to vertexCount, LONG to vertexFormat, ARRAY to srcBuffers, PACKED_INT_64_ARRAY to offsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_VERTEX_ARRAY_CREATE,
@@ -376,7 +376,7 @@ public open class RenderingDevice internal constructor() : Object() {
     sizeIndices: Long,
     format: IndexBufferFormat,
     `data`: PackedByteArray = PackedByteArray(),
-    useRestartIndices: Boolean = false
+    useRestartIndices: Boolean = false,
   ): RID {
     TransferContext.writeArguments(LONG to sizeIndices, LONG to format.id, PACKED_BYTE_ARRAY to data, BOOL to useRestartIndices)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_INDEX_BUFFER_CREATE,
@@ -390,7 +390,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun indexArrayCreate(
     indexBuffer: RID,
     indexOffset: Long,
-    indexCount: Long
+    indexCount: Long,
   ): RID {
     TransferContext.writeArguments(_RID to indexBuffer, LONG to indexOffset, LONG to indexCount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_INDEX_ARRAY_CREATE,
@@ -468,7 +468,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun storageBufferCreate(
     sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
-    usage: Long = 0
+    usage: Long = 0,
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, OBJECT to usage)
     TransferContext.callMethod(rawPtr,
@@ -482,7 +482,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun textureBufferCreate(
     sizeBytes: Long,
     format: DataFormat,
-    `data`: PackedByteArray = PackedByteArray()
+    `data`: PackedByteArray = PackedByteArray(),
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, LONG to format.id, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
@@ -496,7 +496,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun uniformSetCreate(
     uniforms: VariantArray<RDUniform>,
     shader: RID,
-    shaderSet: Long
+    shaderSet: Long,
   ): RID {
     TransferContext.writeArguments(ARRAY to uniforms, _RID to shader, LONG to shaderSet)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_UNIFORM_SET_CREATE,
@@ -522,7 +522,7 @@ public open class RenderingDevice internal constructor() : Object() {
     offset: Long,
     sizeBytes: Long,
     `data`: PackedByteArray,
-    postBarrier: Long = 7
+    postBarrier: Long = 7,
   ): GodotError {
     TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_UPDATE, LONG)
@@ -536,7 +536,7 @@ public open class RenderingDevice internal constructor() : Object() {
     buffer: RID,
     offset: Long,
     sizeBytes: Long,
-    postBarrier: Long = 7
+    postBarrier: Long = 7,
   ): GodotError {
     TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_CLEAR, LONG)
@@ -549,7 +549,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun bufferGetData(
     buffer: RID,
     offsetBytes: Long = 0,
-    sizeBytes: Long = 0
+    sizeBytes: Long = 0,
   ): PackedByteArray {
     TransferContext.writeArguments(_RID to buffer, LONG to offsetBytes, LONG to sizeBytes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_GET_DATA,
@@ -572,7 +572,7 @@ public open class RenderingDevice internal constructor() : Object() {
     dynamicStateFlags: Long = 0,
     forRenderPass: Long = 0,
     specializationConstants: VariantArray<RDPipelineSpecializationConstant> =
-        godot.core.variantArrayOf()
+        godot.core.variantArrayOf(),
   ): RID {
     TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, OBJECT to dynamicStateFlags, LONG to forRenderPass, ARRAY to specializationConstants)
     TransferContext.callMethod(rawPtr,
@@ -666,7 +666,7 @@ public open class RenderingDevice internal constructor() : Object() {
     clearDepth: Double = 1.0,
     clearStencil: Long = 0,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
-    storageTextures: VariantArray<Any?> = godot.core.variantArrayOf()
+    storageTextures: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Long {
     TransferContext.writeArguments(_RID to framebuffer, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth, LONG to clearStencil, RECT2 to region, ARRAY to storageTextures)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BEGIN,
@@ -688,7 +688,7 @@ public open class RenderingDevice internal constructor() : Object() {
     clearDepth: Double = 1.0,
     clearStencil: Long = 0,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
-    storageTextures: VariantArray<RID> = godot.core.variantArrayOf()
+    storageTextures: VariantArray<RID> = godot.core.variantArrayOf(),
   ): PackedInt64Array {
     TransferContext.writeArguments(_RID to framebuffer, LONG to splits, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth, LONG to clearStencil, RECT2 to region, ARRAY to storageTextures)
     TransferContext.callMethod(rawPtr,
@@ -720,7 +720,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun drawListBindUniformSet(
     drawList: Long,
     uniformSet: RID,
-    setIndex: Long
+    setIndex: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to drawList, _RID to uniformSet, LONG to setIndex)
     TransferContext.callMethod(rawPtr,
@@ -751,7 +751,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun drawListSetPushConstant(
     drawList: Long,
     buffer: PackedByteArray,
-    sizeBytes: Long
+    sizeBytes: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to drawList, PACKED_BYTE_ARRAY to buffer, LONG to sizeBytes)
     TransferContext.callMethod(rawPtr,
@@ -765,7 +765,7 @@ public open class RenderingDevice internal constructor() : Object() {
     drawList: Long,
     useIndices: Boolean,
     instances: Long,
-    proceduralVertexCount: Long = 0
+    proceduralVertexCount: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to drawList, BOOL to useIndices, LONG to instances, LONG to proceduralVertexCount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_DRAW, NIL)
@@ -843,7 +843,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun computeListSetPushConstant(
     computeList: Long,
     buffer: PackedByteArray,
-    sizeBytes: Long
+    sizeBytes: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to computeList, PACKED_BYTE_ARRAY to buffer, LONG to sizeBytes)
     TransferContext.callMethod(rawPtr,
@@ -856,7 +856,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun computeListBindUniformSet(
     computeList: Long,
     uniformSet: RID,
-    setIndex: Long
+    setIndex: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to computeList, _RID to uniformSet, LONG to setIndex)
     TransferContext.callMethod(rawPtr,
@@ -870,7 +870,7 @@ public open class RenderingDevice internal constructor() : Object() {
     computeList: Long,
     xGroups: Long,
     yGroups: Long,
-    zGroups: Long
+    zGroups: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to computeList, LONG to xGroups, LONG to yGroups, LONG to zGroups)
     TransferContext.callMethod(rawPtr,
@@ -1105,7 +1105,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun getDriverResource(
     resource: DriverResource,
     rid: RID,
-    index: Long
+    index: Long,
   ): Long {
     TransferContext.writeArguments(LONG to resource.id, _RID to rid, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_DRIVER_RESOURCE,
@@ -1114,7 +1114,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class DeviceType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Rendering device type does not match any of the other enum values or is unknown.
@@ -1153,7 +1153,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class DriverResource(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -1220,7 +1220,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class DataFormat(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2111,7 +2111,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class BarrierMask(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2146,7 +2146,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class TextureType(
-    id: Long
+    id: Long,
   ) {
     /**
      * 1-dimensional texture.
@@ -2193,7 +2193,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class TextureSamples(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2240,7 +2240,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class TextureUsageBits(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2295,7 +2295,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class TextureSwizzle(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2342,7 +2342,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class TextureSliceType(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2369,7 +2369,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class SamplerFilter(
-    id: Long
+    id: Long,
   ) {
     /**
      * Nearest-neighbor sampler filtering. Sampling at higher resolutions than the source will result in a pixelated look.
@@ -2392,7 +2392,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class SamplerRepeatMode(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2431,7 +2431,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class SamplerBorderColor(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2474,7 +2474,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class VertexFrequency(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2497,7 +2497,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class IndexBufferFormat(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2520,7 +2520,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class StorageBufferUsage(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2539,7 +2539,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class UniformType(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2598,7 +2598,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class RenderPrimitive(
-    id: Long
+    id: Long,
   ) {
     /**
      * Point rendering primitive (with constant size, regardless of distance from camera).
@@ -2661,7 +2661,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class PolygonCullMode(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2688,7 +2688,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class PolygonFrontFace(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2711,7 +2711,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class StencilOperation(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2762,7 +2762,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class CompareOperator(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2813,7 +2813,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class LogicOperation(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2896,7 +2896,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class BlendFactor(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -2991,7 +2991,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class BlendOperation(
-    id: Long
+    id: Long,
   ) {
     /**
      * Additive blending operation (`source + destination`).
@@ -3030,7 +3030,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class PipelineDynamicStateFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -3073,7 +3073,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class InitialAction(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -3116,7 +3116,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class FinalAction(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -3147,7 +3147,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class ShaderStage(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -3206,7 +3206,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class ShaderLanguage(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -3229,7 +3229,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class PipelineSpecializationConstantType(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -3256,7 +3256,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class Limit(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -3419,7 +3419,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class MemoryType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Memory taken by textures.

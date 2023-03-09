@@ -120,7 +120,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   }
 
   public enum class WriteMode(
-    id: Long
+    id: Long,
   ) {
     WRITE_MODE_TEXT(0),
     WRITE_MODE_BINARY(1),
@@ -137,7 +137,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   }
 
   public enum class ChannelState(
-    id: Long
+    id: Long,
   ) {
     STATE_CONNECTING(0),
     STATE_OPEN(1),

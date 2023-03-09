@@ -148,7 +148,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public fun addBlendPoint(
     node: AnimationRootNode,
     pos: Double,
-    atIndex: Long = -1
+    atIndex: Long = -1,
   ): Unit {
     TransferContext.writeArguments(OBJECT to node, DOUBLE to pos, LONG to atIndex)
     TransferContext.callMethod(rawPtr,
@@ -213,7 +213,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   public enum class BlendMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The interpolation between animations is linear.

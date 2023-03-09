@@ -155,7 +155,7 @@ public open class TileMap : Node2D() {
   public open fun _tileDataRuntimeUpdate(
     layer: Long,
     coords: Vector2i,
-    tileData: TileData
+    tileData: TileData,
   ): Unit {
   }
 
@@ -355,7 +355,7 @@ public open class TileMap : Node2D() {
     coords: Vector2i,
     sourceId: Long = -1,
     atlasCoords: Vector2i = Vector2i(-1, -1),
-    alternativeTile: Long = 0
+    alternativeTile: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL, NIL)
@@ -377,7 +377,7 @@ public open class TileMap : Node2D() {
   public fun getCellSourceId(
     layer: Long,
     coords: Vector2i,
-    useProxies: Boolean = false
+    useProxies: Boolean = false,
   ): Long {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_SOURCE_ID, LONG)
@@ -390,7 +390,7 @@ public open class TileMap : Node2D() {
   public fun getCellAtlasCoords(
     layer: Long,
     coords: Vector2i,
-    useProxies: Boolean = false
+    useProxies: Boolean = false,
   ): Vector2i {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ATLAS_COORDS,
@@ -404,7 +404,7 @@ public open class TileMap : Node2D() {
   public fun getCellAlternativeTile(
     layer: Long,
     coords: Vector2i,
-    useProxies: Boolean = false
+    useProxies: Boolean = false,
   ): Long {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ALTERNATIVE_TILE,
@@ -430,7 +430,7 @@ public open class TileMap : Node2D() {
   public fun getCellTileData(
     layer: Long,
     coords: Vector2i,
-    useProxies: Boolean = false
+    useProxies: Boolean = false,
   ): TileData? {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_TILE_DATA, OBJECT)
@@ -462,7 +462,7 @@ public open class TileMap : Node2D() {
   public fun mapPattern(
     positionInTilemap: Vector2i,
     coordsInPattern: Vector2i,
-    pattern: TileMapPattern
+    pattern: TileMapPattern,
   ): Vector2i {
     TransferContext.writeArguments(VECTOR2I to positionInTilemap, VECTOR2I to coordsInPattern, OBJECT to pattern)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_PATTERN, VECTOR2I)
@@ -475,7 +475,7 @@ public open class TileMap : Node2D() {
   public fun setPattern(
     layer: Long,
     position: Vector2i,
-    pattern: TileMapPattern
+    pattern: TileMapPattern,
   ): Unit {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to position, OBJECT to pattern)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_PATTERN, NIL)
@@ -493,7 +493,7 @@ public open class TileMap : Node2D() {
     cells: VariantArray<Vector2i>,
     terrainSet: Long,
     terrain: Long,
-    ignoreEmptyTerrains: Boolean = true
+    ignoreEmptyTerrains: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(LONG to layer, ARRAY to cells, LONG to terrainSet, LONG to terrain, BOOL to ignoreEmptyTerrains)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_TERRAIN_CONNECT,
@@ -512,7 +512,7 @@ public open class TileMap : Node2D() {
     path: VariantArray<Vector2i>,
     terrainSet: Long,
     terrain: Long,
-    ignoreEmptyTerrains: Boolean = true
+    ignoreEmptyTerrains: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(LONG to layer, ARRAY to path, LONG to terrainSet, LONG to terrain, BOOL to ignoreEmptyTerrains)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_TERRAIN_PATH, NIL)
@@ -584,7 +584,7 @@ public open class TileMap : Node2D() {
     layer: Long,
     sourceId: Long = -1,
     atlasCoords: Vector2i = Vector2i(-1, -1),
-    alternativeTile: Long = -1
+    alternativeTile: Long = -1,
   ): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to layer, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS_BY_ID, ARRAY)
@@ -630,7 +630,7 @@ public open class TileMap : Node2D() {
   }
 
   public enum class VisibilityMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use the debug settings to determine visibility.

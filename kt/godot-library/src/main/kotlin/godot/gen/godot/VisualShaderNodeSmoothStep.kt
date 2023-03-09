@@ -47,7 +47,7 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
   }
 
   public enum class OpType(
-    id: Long
+    id: Long,
   ) {
     /**
      * A floating-point scalar type.

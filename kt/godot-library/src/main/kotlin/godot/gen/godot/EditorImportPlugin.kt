@@ -385,7 +385,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
   public open fun _getOptionVisibility(
     path: String,
     optionName: StringName,
-    options: Dictionary<Any?, Any?>
+    options: Dictionary<Any?, Any?>,
   ): Boolean {
     throw NotImplementedError("_get_option_visibility is not implemented for EditorImportPlugin")
   }
@@ -400,7 +400,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
     savePath: String,
     options: Dictionary<Any?, Any?>,
     platformVariants: VariantArray<String>,
-    genFiles: VariantArray<String>
+    genFiles: VariantArray<String>,
   ): GodotError {
     throw NotImplementedError("_import is not implemented for EditorImportPlugin")
   }
@@ -412,7 +412,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
     path: String,
     customOptions: Dictionary<Any?, Any?> = Dictionary(),
     customImporter: String = "",
-    generatorParameters: Any? = null
+    generatorParameters: Any? = null,
   ): GodotError {
     TransferContext.writeArguments(STRING to path, DICTIONARY to customOptions, STRING to customImporter, ANY to generatorParameters)
     TransferContext.callMethod(rawPtr,

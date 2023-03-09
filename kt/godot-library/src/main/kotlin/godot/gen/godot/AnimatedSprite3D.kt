@@ -179,7 +179,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   public fun play(
     name: StringName = StringName(""),
     customSpeed: Double = 1.0,
-    fromEnd: Boolean = false
+    fromEnd: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customSpeed, BOOL to fromEnd)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_PLAY, NIL)

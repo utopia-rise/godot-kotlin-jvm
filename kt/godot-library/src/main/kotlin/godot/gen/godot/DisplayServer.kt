@@ -79,7 +79,7 @@ public object DisplayServer : Object() {
   public final const val INVALID_WINDOW_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_DISPLAYSERVER)
+    getSingleton(ENGINECLASS_DISPLAYSERVER)
     return false
   }
 
@@ -121,7 +121,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     label: String,
     submenu: String,
-    index: Long = -1
+    index: Long = -1,
   ): Long {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, STRING to submenu, LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -154,7 +154,7 @@ public object DisplayServer : Object() {
     keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
-    index: Long = -1
+    index: Long = -1,
   ): Long {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ITEM,
@@ -187,7 +187,7 @@ public object DisplayServer : Object() {
     keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
-    index: Long = -1
+    index: Long = -1,
   ): Long {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -221,7 +221,7 @@ public object DisplayServer : Object() {
     keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
-    index: Long = -1
+    index: Long = -1,
   ): Long {
     TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -255,7 +255,7 @@ public object DisplayServer : Object() {
     keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
-    index: Long = -1
+    index: Long = -1,
   ): Long {
     TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -290,7 +290,7 @@ public object DisplayServer : Object() {
     keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
-    index: Long = -1
+    index: Long = -1,
   ): Long {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -326,7 +326,7 @@ public object DisplayServer : Object() {
     keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
-    index: Long = -1
+    index: Long = -1,
   ): Long {
     TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -365,7 +365,7 @@ public object DisplayServer : Object() {
     keyCallback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
-    index: Long = -1
+    index: Long = -1,
   ): Long {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, LONG to maxStates, LONG to defaultState, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -610,7 +610,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemChecked(
     menuRoot: String,
     idx: Long,
-    checked: Boolean
+    checked: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, BOOL to checked)
     TransferContext.callMethod(rawPtr,
@@ -625,7 +625,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemCheckable(
     menuRoot: String,
     idx: Long,
-    checkable: Boolean
+    checkable: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, BOOL to checkable)
     TransferContext.callMethod(rawPtr,
@@ -642,7 +642,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemRadioCheckable(
     menuRoot: String,
     idx: Long,
-    checkable: Boolean
+    checkable: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, BOOL to checkable)
     TransferContext.callMethod(rawPtr,
@@ -659,7 +659,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemCallback(
     menuRoot: String,
     idx: Long,
-    callback: Callable
+    callback: Callable,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, CALLABLE to callback)
     TransferContext.callMethod(rawPtr,
@@ -676,7 +676,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemKeyCallback(
     menuRoot: String,
     idx: Long,
-    keyCallback: Callable
+    keyCallback: Callable,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, CALLABLE to keyCallback)
     TransferContext.callMethod(rawPtr,
@@ -691,7 +691,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemTag(
     menuRoot: String,
     idx: Long,
-    tag: Any
+    tag: Any,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, ANY to tag)
     TransferContext.callMethod(rawPtr,
@@ -706,7 +706,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemText(
     menuRoot: String,
     idx: Long,
-    text: String
+    text: String,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, STRING to text)
     TransferContext.callMethod(rawPtr,
@@ -721,7 +721,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemSubmenu(
     menuRoot: String,
     idx: Long,
-    submenu: String
+    submenu: String,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, STRING to submenu)
     TransferContext.callMethod(rawPtr,
@@ -736,7 +736,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemAccelerator(
     menuRoot: String,
     idx: Long,
-    keycode: Key
+    keycode: Key,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, LONG to keycode.id)
     TransferContext.callMethod(rawPtr,
@@ -751,7 +751,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemDisabled(
     menuRoot: String,
     idx: Long,
-    disabled: Boolean
+    disabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, BOOL to disabled)
     TransferContext.callMethod(rawPtr,
@@ -766,7 +766,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemTooltip(
     menuRoot: String,
     idx: Long,
-    tooltip: String
+    tooltip: String,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, STRING to tooltip)
     TransferContext.callMethod(rawPtr,
@@ -781,7 +781,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemState(
     menuRoot: String,
     idx: Long,
-    state: Long
+    state: Long,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, LONG to state)
     TransferContext.callMethod(rawPtr,
@@ -796,7 +796,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemMaxStates(
     menuRoot: String,
     idx: Long,
-    maxStates: Long
+    maxStates: Long,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, LONG to maxStates)
     TransferContext.callMethod(rawPtr,
@@ -813,7 +813,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemIcon(
     menuRoot: String,
     idx: Long,
-    icon: Texture2D
+    icon: Texture2D,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, OBJECT to icon)
     TransferContext.callMethod(rawPtr,
@@ -828,7 +828,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemIndentationLevel(
     menuRoot: String,
     idx: Long,
-    level: Long
+    level: Long,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx, LONG to level)
     TransferContext.callMethod(rawPtr,
@@ -959,7 +959,7 @@ public object DisplayServer : Object() {
     pitch: Double = 1.0,
     rate: Double = 1.0,
     utteranceId: Long = 0,
-    interrupt: Boolean = false
+    interrupt: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING to text, STRING to voice, LONG to volume, DOUBLE to pitch, DOUBLE to rate, LONG to utteranceId, BOOL to interrupt)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TTS_SPEAK, NIL)
@@ -1722,7 +1722,7 @@ public object DisplayServer : Object() {
   public fun windowSetFlag(
     flag: WindowFlags,
     enabled: Boolean,
-    windowId: Long = 0
+    windowId: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_FLAG, NIL)
@@ -1934,7 +1934,7 @@ public object DisplayServer : Object() {
     type: VirtualKeyboardType = DisplayServer.VirtualKeyboardType.KEYBOARD_TYPE_DEFAULT,
     maxLength: Long = -1,
     cursorStart: Long = -1,
-    cursorEnd: Long = -1
+    cursorEnd: Long = -1,
   ): Unit {
     TransferContext.writeArguments(STRING to existingText, RECT2 to position, LONG to type.id, LONG to maxLength, LONG to cursorStart, LONG to cursorEnd)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_VIRTUAL_KEYBOARD_SHOW,
@@ -1984,7 +1984,7 @@ public object DisplayServer : Object() {
   public fun cursorSetCustomImage(
     cursor: Resource,
     shape: CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
-    hotspot: Vector2 = Vector2(0, 0)
+    hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(OBJECT to cursor, LONG to shape.id, VECTOR2 to hotspot)
     TransferContext.callMethod(rawPtr,
@@ -2023,7 +2023,7 @@ public object DisplayServer : Object() {
     title: String,
     description: String,
     buttons: PackedStringArray,
-    callback: Callable
+    callback: Callable,
   ): GodotError {
     TransferContext.writeArguments(STRING to title, STRING to description, PACKED_STRING_ARRAY to buttons, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_SHOW, LONG)
@@ -2039,7 +2039,7 @@ public object DisplayServer : Object() {
     title: String,
     description: String,
     existingText: String,
-    callback: Callable
+    callback: Callable,
   ): GodotError {
     TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_INPUT_TEXT,
@@ -2201,7 +2201,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class Feature(
-    id: Long
+    id: Long,
   ) {
     /**
      * Display server supports global menu. This allows the application to display its menu items in the operating system's top bar. **macOS**
@@ -2296,7 +2296,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class MouseMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Makes the mouse cursor visible if it is hidden.
@@ -2333,7 +2333,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class ScreenOrientation(
-    id: Long
+    id: Long,
   ) {
     /**
      * Default landscape orientation.
@@ -2376,7 +2376,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class VirtualKeyboardType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Default text virtual keyboard.
@@ -2425,7 +2425,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class CursorShape(
-    id: Long
+    id: Long,
   ) {
     /**
      * Arrow cursor shape. This is the default when not pointing anything that overrides the mouse cursor, such as a [godot.LineEdit] or [godot.TextEdit].
@@ -2512,7 +2512,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class WindowMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Windowed mode, i.e. [godot.Window] doesn't occupy the whole screen (unless set to the size of the screen).
@@ -2561,7 +2561,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class WindowFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * The window can't be resizing by dragging its resize grip. It's still possible to resize the window using [windowSetSize]. This flag is ignored for full screen windows.
@@ -2622,7 +2622,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class WindowEvent(
-    id: Long
+    id: Long,
   ) {
     /**
      * Sent when the mouse pointer enters the window, see [windowSetWindowEventCallback].
@@ -2675,7 +2675,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class VSyncMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * No vertical synchronization, which means the engine will display frames as fast as possible (tearing may be visible). Framerate is unlimited (nonwithstanding [godot.Engine.maxFps]).
@@ -2708,7 +2708,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class HandleType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Display handle:
@@ -2767,7 +2767,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class TTSUtteranceEvent(
-    id: Long
+    id: Long,
   ) {
     /**
      * Utterance has begun to be spoken.

@@ -73,7 +73,7 @@ public open class BoxContainer : Container() {
   }
 
   public enum class AlignmentMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The child controls will be arranged at the beginning of the container, i.e. top if orientation is vertical, left if orientation is horizontal (right for RTL layout).

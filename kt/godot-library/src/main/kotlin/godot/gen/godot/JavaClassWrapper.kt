@@ -21,7 +21,7 @@ import kotlin.Suppress
 @GodotBaseType
 public object JavaClassWrapper : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_JAVACLASSWRAPPER)
+    getSingleton(ENGINECLASS_JAVACLASSWRAPPER)
     return false
   }
 

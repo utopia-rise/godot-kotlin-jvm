@@ -332,7 +332,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public fun copy(
     from: String,
     to: String,
-    chmodFlags: Long = -1
+    chmodFlags: Long = -1,
   ): GodotError {
     TransferContext.writeArguments(STRING to from, STRING to to, LONG to chmodFlags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_COPY, LONG)

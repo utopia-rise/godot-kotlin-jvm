@@ -31,7 +31,7 @@ public:
 
     static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jobject p_class_loader, jint p_script_index);
 
-    static jlong get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
+    static void get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
 
     static void free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 

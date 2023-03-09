@@ -112,7 +112,7 @@ public open class Object : KtObject() {
   public inline fun <reified K : () -> Unit> Signal0.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -125,7 +125,7 @@ public open class Object : KtObject() {
   public inline fun <A0, reified K : (A0) -> Unit> Signal1<A0>.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -138,7 +138,7 @@ public open class Object : KtObject() {
   public inline fun <A0, A1, reified K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -147,7 +147,7 @@ public open class Object : KtObject() {
   public fun <A0, A1, A2> Signal3<A0, A1, A2>.emit(
     a0: A0,
     a1: A1,
-    a2: A2
+    a2: A2,
   ): Unit {
     emit(this@Object, a0, a1, a2)
   }
@@ -155,11 +155,11 @@ public open class Object : KtObject() {
   public inline fun <A0, A1, A2, reified K : (
     A0,
     A1,
-    A2
+    A2,
   ) -> Unit> Signal3<A0, A1, A2>.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -169,7 +169,7 @@ public open class Object : KtObject() {
     a0: A0,
     a1: A1,
     a2: A2,
-    a3: A3
+    a3: A3,
   ): Unit {
     emit(this@Object, a0, a1, a2, a3)
   }
@@ -178,11 +178,11 @@ public open class Object : KtObject() {
     A0,
     A1,
     A2,
-    A3
+    A3,
   ) -> Unit> Signal4<A0, A1, A2, A3>.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -193,7 +193,7 @@ public open class Object : KtObject() {
     a1: A1,
     a2: A2,
     a3: A3,
-    a4: A4
+    a4: A4,
   ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4)
   }
@@ -203,11 +203,11 @@ public open class Object : KtObject() {
     A1,
     A2,
     A3,
-    A4
+    A4,
   ) -> Unit> Signal5<A0, A1, A2, A3, A4>.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -219,7 +219,7 @@ public open class Object : KtObject() {
     a2: A2,
     a3: A3,
     a4: A4,
-    a5: A5
+    a5: A5,
   ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4, a5)
   }
@@ -230,11 +230,11 @@ public open class Object : KtObject() {
     A2,
     A3,
     A4,
-    A5
+    A5,
   ) -> Unit> Signal6<A0, A1, A2, A3, A4, A5>.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -247,7 +247,7 @@ public open class Object : KtObject() {
     a3: A3,
     a4: A4,
     a5: A5,
-    a6: A6
+    a6: A6,
   ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6)
   }
@@ -259,11 +259,11 @@ public open class Object : KtObject() {
     A3,
     A4,
     A5,
-    A6
+    A6,
   ) -> Unit> Signal7<A0, A1, A2, A3, A4, A5, A6>.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -277,7 +277,7 @@ public open class Object : KtObject() {
     a4: A4,
     a5: A5,
     a6: A6,
-    a7: A7
+    a7: A7,
   ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7)
   }
@@ -290,11 +290,11 @@ public open class Object : KtObject() {
     A4,
     A5,
     A6,
-    A7
+    A7,
   ) -> Unit> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -309,7 +309,7 @@ public open class Object : KtObject() {
     a5: A5,
     a6: A6,
     a7: A7,
-    a8: A8
+    a8: A8,
   ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8)
   }
@@ -323,11 +323,11 @@ public open class Object : KtObject() {
     A5,
     A6,
     A7,
-    A8
+    A8,
   ) -> Unit> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -344,7 +344,7 @@ public open class Object : KtObject() {
     a6: A6,
     a7: A7,
     a8: A8,
-    a9: A9
+    a9: A9,
   ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9)
   }
@@ -359,11 +359,11 @@ public open class Object : KtObject() {
     A6,
     A7,
     A8,
-    A9
+    A9,
   ) -> Unit> Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>.connect(
     target: Object,
     method: K,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
@@ -1345,7 +1345,7 @@ public open class Object : KtObject() {
   public fun connect(
     signal: StringName,
     callable: Callable,
-    flags: Long = 0
+    flags: Long = 0,
   ): GodotError {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CONNECT, LONG)
@@ -1442,7 +1442,7 @@ public open class Object : KtObject() {
     message: StringName,
     pluralMessage: StringName,
     n: Long,
-    context: StringName = StringName("")
+    context: StringName = StringName(""),
   ): String {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_TR_N, STRING)
@@ -1459,7 +1459,7 @@ public open class Object : KtObject() {
   }
 
   public enum class ConnectFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Deferred connections trigger their [godot.Callable]s on idle time, rather than instantly.

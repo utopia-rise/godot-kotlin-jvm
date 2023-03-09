@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class ClockDirection(
-  id: Long
+  id: Long,
 ) {
   CLOCKWISE(0),
   COUNTERCLOCKWISE(1),

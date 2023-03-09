@@ -140,7 +140,7 @@ public open class Image : Resource() {
   public fun resize(
     width: Long,
     height: Long,
-    interpolation: Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR
+    interpolation: Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR,
   ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, LONG to interpolation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE, NIL)
@@ -203,7 +203,7 @@ public open class Image : Resource() {
     height: Long,
     useMipmaps: Boolean,
     format: Format,
-    `data`: PackedByteArray
+    `data`: PackedByteArray,
   ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SET_DATA, NIL)
@@ -302,7 +302,7 @@ public open class Image : Resource() {
   public fun saveWebp(
     path: String,
     lossy: Boolean = false,
-    quality: Double = 0.75
+    quality: Double = 0.75,
   ): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to lossy, DOUBLE to quality)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_WEBP, LONG)
@@ -357,7 +357,7 @@ public open class Image : Resource() {
   public fun compress(
     mode: CompressMode,
     source: CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
-    astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4
+    astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4,
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, LONG to source.id, LONG to astcFormat.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS, LONG)
@@ -374,7 +374,7 @@ public open class Image : Resource() {
   public fun compressFromChannels(
     mode: CompressMode,
     channels: UsedChannels,
-    astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4
+    astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4,
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, LONG to astcFormat.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS_FROM_CHANNELS, LONG)
@@ -484,7 +484,7 @@ public open class Image : Resource() {
   public fun blitRect(
     src: Image,
     srcRect: Rect2i,
-    dst: Vector2i
+    dst: Vector2i,
   ): Unit {
     TransferContext.writeArguments(OBJECT to src, RECT2I to srcRect, VECTOR2I to dst)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLIT_RECT, NIL)
@@ -497,7 +497,7 @@ public open class Image : Resource() {
     src: Image,
     mask: Image,
     srcRect: Rect2i,
-    dst: Vector2i
+    dst: Vector2i,
   ): Unit {
     TransferContext.writeArguments(OBJECT to src, OBJECT to mask, RECT2I to srcRect, VECTOR2I to dst)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLIT_RECT_MASK, NIL)
@@ -509,7 +509,7 @@ public open class Image : Resource() {
   public fun blendRect(
     src: Image,
     srcRect: Rect2i,
-    dst: Vector2i
+    dst: Vector2i,
   ): Unit {
     TransferContext.writeArguments(OBJECT to src, RECT2I to srcRect, VECTOR2I to dst)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLEND_RECT, NIL)
@@ -522,7 +522,7 @@ public open class Image : Resource() {
     src: Image,
     mask: Image,
     srcRect: Rect2i,
-    dst: Vector2i
+    dst: Vector2i,
   ): Unit {
     TransferContext.writeArguments(OBJECT to src, OBJECT to mask, RECT2I to srcRect, VECTOR2I to dst)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLEND_RECT_MASK, NIL)
@@ -678,7 +678,7 @@ public open class Image : Resource() {
   public fun setPixel(
     x: Long,
     y: Long,
-    color: Color
+    color: Color,
   ): Unit {
     TransferContext.writeArguments(LONG to x, LONG to y, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SET_PIXEL, NIL)
@@ -690,7 +690,7 @@ public open class Image : Resource() {
   public fun adjustBcs(
     brightness: Double,
     contrast: Double,
-    saturation: Double
+    saturation: Double,
   ): Unit {
     TransferContext.writeArguments(DOUBLE to brightness, DOUBLE to contrast, DOUBLE to saturation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_ADJUST_BCS, NIL)
@@ -744,7 +744,7 @@ public open class Image : Resource() {
   }
 
   public enum class Format(
-    id: Long
+    id: Long,
   ) {
     /**
      * Texture format with a single 8-bit depth representing luminance.
@@ -937,7 +937,7 @@ public open class Image : Resource() {
   }
 
   public enum class Interpolation(
-    id: Long
+    id: Long,
   ) {
     /**
      * Performs nearest-neighbor interpolation. If the image is resized, it will be pixelated.
@@ -980,7 +980,7 @@ public open class Image : Resource() {
   }
 
   public enum class AlphaMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Image does not have alpha.
@@ -1007,7 +1007,7 @@ public open class Image : Resource() {
   }
 
   public enum class CompressMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use S3TC compression.
@@ -1038,7 +1038,7 @@ public open class Image : Resource() {
   }
 
   public enum class UsedChannels(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -1077,7 +1077,7 @@ public open class Image : Resource() {
   }
 
   public enum class CompressSource(
-    id: Long
+    id: Long,
   ) {
     /**
      * Source texture (before compression) is a regular texture. Default for all textures.
@@ -1104,7 +1104,7 @@ public open class Image : Resource() {
   }
 
   public enum class ASTCFormat(
-    id: Long
+    id: Long,
   ) {
     /**
      * Hint to indicate that the high quality 4x4 ASTC compression format should be used.

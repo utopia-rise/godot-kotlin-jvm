@@ -122,7 +122,7 @@ public open class VideoStreamPlayback : Resource() {
   public fun mixAudio(
     numFrames: Long,
     buffer: PackedFloat32Array = PackedFloat32Array(),
-    offset: Long = 0
+    offset: Long = 0,
   ): Long {
     TransferContext.writeArguments(LONG to numFrames, PACKED_FLOAT_32_ARRAY to buffer, LONG to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYBACK_MIX_AUDIO, LONG)

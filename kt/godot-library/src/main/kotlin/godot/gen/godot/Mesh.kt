@@ -277,7 +277,7 @@ public open class Mesh : Resource() {
   }
 
   public enum class PrimitiveType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Render array as points (one vertex equals one point).
@@ -312,7 +312,7 @@ public open class Mesh : Resource() {
   }
 
   public enum class ArrayType(
-    id: Long
+    id: Long,
   ) {
     /**
      * [godot.PackedVector3Array], [godot.PackedVector2Array], or [godot.Array] of vertex positions.
@@ -385,7 +385,7 @@ public open class Mesh : Resource() {
   }
 
   public enum class ArrayCustomFormat(
-    id: Long
+    id: Long,
   ) {
     /**
      * Indicates this custom channel contains unsigned normalized byte colors from 0 to 1, encoded as [godot.PackedByteArray].
@@ -436,7 +436,7 @@ public open class Mesh : Resource() {
   }
 
   public enum class ArrayFormat(
-    id: Long
+    id: Long,
   ) {
     /**
      * Mesh array contains vertices. All meshes require a vertex array so this should always be present.
@@ -555,7 +555,7 @@ public open class Mesh : Resource() {
   }
 
   public enum class BlendShapeMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Blend shapes are normalized.

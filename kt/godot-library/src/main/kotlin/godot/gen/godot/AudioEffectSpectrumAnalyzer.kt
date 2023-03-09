@@ -84,7 +84,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   }
 
   public enum class FFTSize(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use a buffer of 256 samples for the Fast Fourier transform. Lowest latency, but least stable over time.

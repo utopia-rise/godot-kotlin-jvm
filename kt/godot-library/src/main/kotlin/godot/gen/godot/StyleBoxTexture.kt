@@ -192,7 +192,7 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public enum class AxisStretchMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Stretch the stylebox's texture. This results in visible distortion unless the texture size matches the stylebox's size perfectly.

@@ -190,7 +190,7 @@ public open class AnimationTree : Node() {
     track: Long,
     `value`: Any,
     _object: Object,
-    objectIdx: Long
+    objectIdx: Long,
   ): Any? {
     throw NotImplementedError("_post_process_key_value is not implemented for AnimationTree")
   }
@@ -472,7 +472,7 @@ public open class AnimationTree : Node() {
   }
 
   public enum class AnimationProcessCallback(
-    id: Long
+    id: Long,
   ) {
     /**
      * The animations will progress during the physics frame (i.e. [godot.Node.PhysicsProcess]).

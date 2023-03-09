@@ -66,7 +66,7 @@ public open class OpenXRAction : Resource() {
   }
 
   public enum class ActionType(
-    id: Long
+    id: Long,
   ) {
     OPENXR_ACTION_BOOL(0),
     OPENXR_ACTION_FLOAT(1),

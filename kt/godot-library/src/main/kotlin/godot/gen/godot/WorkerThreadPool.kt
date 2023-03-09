@@ -27,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public object WorkerThreadPool : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_WORKERTHREADPOOL)
+    getSingleton(ENGINECLASS_WORKERTHREADPOOL)
     return false
   }
 
@@ -37,7 +37,7 @@ public object WorkerThreadPool : Object() {
   public fun addTask(
     action: Callable,
     highPriority: Boolean = false,
-    description: String = ""
+    description: String = "",
   ): Long {
     TransferContext.writeArguments(CALLABLE to action, BOOL to highPriority, STRING to description)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORKERTHREADPOOL_ADD_TASK, LONG)
@@ -71,7 +71,7 @@ public object WorkerThreadPool : Object() {
     elements: Long,
     tasksNeeded: Long = -1,
     highPriority: Boolean = false,
-    description: String = ""
+    description: String = "",
   ): Long {
     TransferContext.writeArguments(CALLABLE to action, LONG to elements, LONG to tasksNeeded, BOOL to highPriority, STRING to description)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORKERTHREADPOOL_ADD_GROUP_TASK,

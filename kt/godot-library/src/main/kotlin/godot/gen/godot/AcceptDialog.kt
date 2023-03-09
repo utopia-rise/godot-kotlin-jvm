@@ -157,7 +157,7 @@ public open class AcceptDialog : Window() {
   public fun addButton(
     text: String,
     right: Boolean = false,
-    action: String = ""
+    action: String = "",
   ): Button? {
     TransferContext.writeArguments(STRING to text, BOOL to right, STRING to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_ADD_BUTTON, OBJECT)

@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class PropertyUsageFlags(
-  id: Long
+  id: Long,
 ) {
   PROPERTY_USAGE_NONE(0),
   PROPERTY_USAGE_STORAGE(2),

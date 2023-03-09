@@ -112,7 +112,7 @@ public open class SplitContainer : Container() {
   }
 
   public enum class DraggerVisibility(
-    id: Long
+    id: Long,
   ) {
     /**
      * The split dragger is visible when the cursor hovers it.

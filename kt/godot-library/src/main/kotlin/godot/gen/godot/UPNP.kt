@@ -104,7 +104,7 @@ public open class UPNP : RefCounted() {
   public fun discover(
     timeout: Long = 2000,
     ttl: Long = 2,
-    deviceFilter: String = "InternetGatewayDevice"
+    deviceFilter: String = "InternetGatewayDevice",
   ): Long {
     TransferContext.writeArguments(LONG to timeout, LONG to ttl, STRING to deviceFilter)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_DISCOVER, LONG)
@@ -122,7 +122,7 @@ public open class UPNP : RefCounted() {
     portInternal: Long = 0,
     desc: String = "",
     proto: String = "UDP",
-    duration: Long = 0
+    duration: Long = 0,
   ): Long {
     TransferContext.writeArguments(LONG to port, LONG to portInternal, STRING to desc, STRING to proto, LONG to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_ADD_PORT_MAPPING, LONG)
@@ -136,7 +136,7 @@ public open class UPNP : RefCounted() {
   }
 
   public enum class UPNPResult(
-    id: Long
+    id: Long,
   ) {
     UPNP_RESULT_SUCCESS(0),
     UPNP_RESULT_NOT_AUTHORIZED(1),

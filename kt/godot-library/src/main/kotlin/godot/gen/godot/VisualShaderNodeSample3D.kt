@@ -45,7 +45,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   }
 
   public enum class Source(
-    id: Long
+    id: Long,
   ) {
     /**
      * Creates internal uniform and provides a way to assign it within node.

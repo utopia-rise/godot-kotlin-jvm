@@ -498,7 +498,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   public enum class MotionMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Apply when notions of walls, ceiling and floor are relevant. In this mode the body motion will react to slopes (acceleration/slowdown). This mode is suitable for sided games like platformers.
@@ -521,7 +521,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   public enum class PlatformOnLeave(
-    id: Long
+    id: Long,
   ) {
     /**
      * Add the last platform velocity to the [velocity] when you leave a moving platform.

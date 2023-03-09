@@ -77,7 +77,7 @@ public open class EditorCommandPalette internal constructor() : ConfirmationDial
     commandName: String,
     keyName: String,
     bindedCallable: Callable,
-    shortcutText: String = "None"
+    shortcutText: String = "None",
   ): Unit {
     TransferContext.writeArguments(STRING to commandName, STRING to keyName, CALLABLE to bindedCallable, STRING to shortcutText)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORCOMMANDPALETTE_ADD_COMMAND,

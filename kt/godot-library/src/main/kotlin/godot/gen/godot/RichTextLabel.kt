@@ -482,7 +482,7 @@ public open class RichTextLabel : Control() {
     height: Long = 0,
     color: Color = Color(Color(1, 1, 1, 1)),
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0)
+    region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to width, LONG to height, COLOR to color, LONG to inlineAlign.id, RECT2 to region)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_ADD_IMAGE, NIL)
@@ -599,7 +599,7 @@ public open class RichTextLabel : Control() {
     baseDirection: Control.TextDirection = Control.TextDirection.TEXT_DIRECTION_AUTO,
     language: String = "",
     stParser: TextServer.StructuredTextParser =
-        TextServer.StructuredTextParser.STRUCTURED_TEXT_DEFAULT
+        TextServer.StructuredTextParser.STRUCTURED_TEXT_DEFAULT,
   ): Unit {
     TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_PARAGRAPH, NIL)
@@ -619,7 +619,7 @@ public open class RichTextLabel : Control() {
   public fun pushList(
     level: Long,
     type: ListType,
-    capitalize: Boolean
+    capitalize: Boolean,
   ): Unit {
     TransferContext.writeArguments(LONG to level, LONG to type.id, BOOL to capitalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_LIST, NIL)
@@ -664,7 +664,7 @@ public open class RichTextLabel : Control() {
   public fun pushTable(
     columns: Long,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_TOP_TO,
-    alignToRow: Long = -1
+    alignToRow: Long = -1,
   ): Unit {
     TransferContext.writeArguments(LONG to columns, LONG to inlineAlign.id, LONG to alignToRow)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_TABLE, NIL)
@@ -680,7 +680,7 @@ public open class RichTextLabel : Control() {
     dropcapMargins: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     color: Color = Color(Color(1, 1, 1, 1)),
     outlineSize: Long = 0,
-    outlineColor: Color = Color(Color(0, 0, 0, 0))
+    outlineColor: Color = Color(Color(0, 0, 0, 0)),
   ): Unit {
     TransferContext.writeArguments(STRING to string, OBJECT to font, LONG to size, RECT2 to dropcapMargins, COLOR to color, LONG to outlineSize, COLOR to outlineColor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_DROPCAP, NIL)
@@ -696,7 +696,7 @@ public open class RichTextLabel : Control() {
   public fun setTableColumnExpand(
     column: Long,
     expand: Boolean,
-    ratio: Long
+    ratio: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to expand, LONG to ratio)
     TransferContext.callMethod(rawPtr,
@@ -1151,7 +1151,7 @@ public open class RichTextLabel : Control() {
   }
 
   public enum class ListType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Each list item has a number marker.
@@ -1182,7 +1182,7 @@ public open class RichTextLabel : Control() {
   }
 
   public enum class MenuItems(
-    id: Long
+    id: Long,
   ) {
     /**
      * Copies the selected text.

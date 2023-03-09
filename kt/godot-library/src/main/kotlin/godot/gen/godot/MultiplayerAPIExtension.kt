@@ -202,7 +202,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
     peer: Long,
     _object: Object,
     method: StringName,
-    args: VariantArray<Any?>
+    args: VariantArray<Any?>,
   ): GodotError {
     throw NotImplementedError("_rpc is not implemented for MultiplayerAPIExtension")
   }

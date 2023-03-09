@@ -321,7 +321,7 @@ public open class AnimationPlayer : Node() {
     track: Long,
     `value`: Any,
     _object: Object,
-    objectIdx: Long
+    objectIdx: Long,
   ): Any? {
     throw NotImplementedError("_post_process_key_value is not implemented for AnimationPlayer")
   }
@@ -438,7 +438,7 @@ public open class AnimationPlayer : Node() {
   public fun setBlendTime(
     animFrom: StringName,
     animTo: StringName,
-    sec: Double
+    sec: Double,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo, DOUBLE to sec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_BLEND_TIME, NIL)
@@ -465,7 +465,7 @@ public open class AnimationPlayer : Node() {
     name: StringName = StringName(""),
     customBlend: Double = -1.0,
     customSpeed: Double = 1.0,
-    fromEnd: Boolean = false
+    fromEnd: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customBlend, DOUBLE to customSpeed, BOOL to fromEnd)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_PLAY, NIL)
@@ -599,7 +599,7 @@ public open class AnimationPlayer : Node() {
   }
 
   public enum class AnimationProcessCallback(
-    id: Long
+    id: Long,
   ) {
     /**
      * Process animation during the physics process. This is especially useful when animating physics bodies.
@@ -626,7 +626,7 @@ public open class AnimationPlayer : Node() {
   }
 
   public enum class AnimationMethodCallMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Batch method calls during the animation process, then do the calls after events are processed. This avoids bugs involving deleting nodes or modifying the AnimationPlayer while playing.

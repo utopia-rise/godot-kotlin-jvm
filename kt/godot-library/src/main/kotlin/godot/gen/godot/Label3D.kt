@@ -476,7 +476,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public enum class DrawFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * If set, lights in the environment affect the label.
@@ -511,7 +511,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public enum class AlphaCutMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * This mode performs standard alpha blending. It can display translucent areas, but transparency sorting issues may be visible when multiple transparent materials are overlapping. [godot.GeometryInstance3D.castShadow] has no effect when this transparency mode is used; the [godot.Label3D] will never cast shadows.

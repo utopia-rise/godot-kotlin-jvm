@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class JoyButton(
-  id: Long
+  id: Long,
 ) {
   JOY_BUTTON_INVALID(-1),
   JOY_BUTTON_A(0),

@@ -68,7 +68,7 @@ public open class PCKPacker : RefCounted() {
     pckName: String,
     alignment: Long = 32,
     key: String = "0000000000000000000000000000000000000000000000000000000000000000",
-    encryptDirectory: Boolean = false
+    encryptDirectory: Boolean = false,
   ): GodotError {
     TransferContext.writeArguments(STRING to pckName, LONG to alignment, STRING to key, BOOL to encryptDirectory)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_PCK_START, LONG)
@@ -81,7 +81,7 @@ public open class PCKPacker : RefCounted() {
   public fun addFile(
     pckPath: String,
     sourcePath: String,
-    encrypt: Boolean = false
+    encrypt: Boolean = false,
   ): GodotError {
     TransferContext.writeArguments(STRING to pckPath, STRING to sourcePath, BOOL to encrypt)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_ADD_FILE, LONG)

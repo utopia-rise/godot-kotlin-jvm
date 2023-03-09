@@ -66,7 +66,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public enum class PlayMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Plays animation in forward direction.

@@ -143,7 +143,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
     inputVars: VariantArray<String>,
     outputVars: VariantArray<String>,
     mode: Shader.Mode,
-    type: VisualShader.Type
+    type: VisualShader.Type,
   ): String {
     throw NotImplementedError("_get_code is not implemented for VisualShaderNodeCustom")
   }

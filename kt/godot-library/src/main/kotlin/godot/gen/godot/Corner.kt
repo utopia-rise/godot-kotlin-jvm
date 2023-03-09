@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class Corner(
-  id: Long
+  id: Long,
 ) {
   CORNER_TOP_LEFT(0),
   CORNER_TOP_RIGHT(1),

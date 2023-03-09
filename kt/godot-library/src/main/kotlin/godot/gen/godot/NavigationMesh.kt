@@ -508,7 +508,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public enum class SamplePartitionType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use this if you have large open areas.
@@ -539,7 +539,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public enum class ParsedGeometryType(
-    id: Long
+    id: Long,
   ) {
     /**
      * Parses mesh instances as geometry. This includes [godot.MeshInstance3D], [godot.CSGShape3D], and [godot.GridMap] nodes.
@@ -570,7 +570,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public enum class SourceGeometryMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Scans the child nodes of the root node recursively for geometry.

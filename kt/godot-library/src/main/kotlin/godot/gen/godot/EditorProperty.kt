@@ -265,7 +265,7 @@ public open class EditorProperty internal constructor() : Container() {
     `property`: StringName,
     `value`: Any,
     `field`: StringName = StringName(""),
-    changing: Boolean = false
+    changing: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value, STRING_NAME to field, BOOL to changing)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_EMIT_CHANGED, NIL)

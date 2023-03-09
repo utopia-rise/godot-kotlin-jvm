@@ -45,7 +45,7 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
   }
 
   public enum class Operator(
-    id: Long
+    id: Long,
   ) {
     /**
      * Produce a screen effect with the following formula:

@@ -107,7 +107,7 @@ public open class TextureRect : Control() {
   }
 
   public enum class ExpandMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The minimum size will be equal to texture size, i.e. [godot.TextureRect] can't be smaller than the texture.
@@ -146,7 +146,7 @@ public open class TextureRect : Control() {
   }
 
   public enum class StretchMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Scale to fit the node's bounding rectangle.

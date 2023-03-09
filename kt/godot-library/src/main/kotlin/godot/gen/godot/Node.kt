@@ -259,27 +259,27 @@ public open class Node : Object() {
   public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcId(
     id: Long,
     function: FUNCTION,
-    arg0: ARG0
+    arg0: ARG0,
   ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0)
 
   public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
-    arg1: ARG1
+    arg1: ARG1,
   ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1)
 
   public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
-    arg1: ARG1
+    arg1: ARG1,
   ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1)
 
   public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
-    arg2: ARG2
+    arg2: ARG2,
   ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2)
 
   public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpcId(
@@ -287,7 +287,7 @@ public open class Node : Object() {
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
-    arg2: ARG2
+    arg2: ARG2,
   ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
@@ -296,7 +296,7 @@ public open class Node : Object() {
     arg0: ARG0,
     arg1: ARG1,
     arg2: ARG2,
-    arg3: ARG3
+    arg3: ARG3,
   ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
@@ -306,7 +306,7 @@ public open class Node : Object() {
     arg0: ARG0,
     arg1: ARG1,
     arg2: ARG2,
-    arg3: ARG3
+    arg3: ARG3,
   ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
@@ -316,7 +316,7 @@ public open class Node : Object() {
     arg1: ARG1,
     arg2: ARG2,
     arg3: ARG3,
-    arg4: ARG4
+    arg4: ARG4,
   ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
@@ -327,7 +327,7 @@ public open class Node : Object() {
     arg1: ARG1,
     arg2: ARG2,
     arg3: ARG3,
-    arg4: ARG4
+    arg4: ARG4,
   ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
@@ -338,7 +338,7 @@ public open class Node : Object() {
     arg2: ARG2,
     arg3: ARG3,
     arg4: ARG4,
-    arg5: ARG5
+    arg5: ARG5,
   ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
@@ -350,7 +350,7 @@ public open class Node : Object() {
     arg2: ARG2,
     arg3: ARG3,
     arg4: ARG4,
-    arg5: ARG5
+    arg5: ARG5,
   ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
@@ -362,7 +362,7 @@ public open class Node : Object() {
     arg3: ARG3,
     arg4: ARG4,
     arg5: ARG5,
-    arg6: ARG6
+    arg6: ARG6,
   ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
@@ -375,7 +375,7 @@ public open class Node : Object() {
     arg3: ARG3,
     arg4: ARG4,
     arg5: ARG5,
-    arg6: ARG6
+    arg6: ARG6,
   ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6)
 
@@ -389,7 +389,7 @@ public open class Node : Object() {
     arg4: ARG4,
     arg5: ARG5,
     arg6: ARG6,
-    arg7: ARG7
+    arg7: ARG7,
   ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
       arg7)
 
@@ -404,7 +404,7 @@ public open class Node : Object() {
     arg4: ARG4,
     arg5: ARG5,
     arg6: ARG6,
-    arg7: ARG7
+    arg7: ARG7,
   ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6, arg7)
 
@@ -419,7 +419,7 @@ public open class Node : Object() {
     arg5: ARG5,
     arg6: ARG6,
     arg7: ARG7,
-    arg8: ARG8
+    arg8: ARG8,
   ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
       arg7, arg8)
 
@@ -435,7 +435,7 @@ public open class Node : Object() {
     arg5: ARG5,
     arg6: ARG6,
     arg7: ARG7,
-    arg8: ARG8
+    arg8: ARG8,
   ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6, arg7, arg8)
 
@@ -451,7 +451,7 @@ public open class Node : Object() {
     arg6: ARG6,
     arg7: ARG7,
     arg8: ARG8,
-    arg9: ARG9
+    arg9: ARG9,
   ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
       arg7, arg8, arg9)
 
@@ -468,7 +468,7 @@ public open class Node : Object() {
     arg6: ARG6,
     arg7: ARG7,
     arg8: ARG8,
-    arg9: ARG9
+    arg9: ARG9,
   ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6, arg7, arg8, arg9)
 
@@ -657,7 +657,7 @@ public open class Node : Object() {
   public fun addChild(
     node: Node,
     forceReadableName: Boolean = false,
-    `internal`: InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED
+    `internal`: InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED,
   ): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to forceReadableName, LONG to internal.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_CHILD, NIL)
@@ -819,7 +819,7 @@ public open class Node : Object() {
   public fun findChild(
     pattern: String,
     recursive: Boolean = true,
-    owned: Boolean = true
+    owned: Boolean = true,
   ): Node? {
     TransferContext.writeArguments(STRING to pattern, BOOL to recursive, BOOL to owned)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_CHILD, OBJECT)
@@ -847,7 +847,7 @@ public open class Node : Object() {
     pattern: String,
     type: String = "",
     recursive: Boolean = true,
-    owned: Boolean = true
+    owned: Boolean = true,
   ): VariantArray<Node> {
     TransferContext.writeArguments(STRING to pattern, STRING to type, BOOL to recursive, BOOL to owned)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_CHILDREN, ARRAY)
@@ -1113,7 +1113,7 @@ public open class Node : Object() {
   public fun propagateCall(
     method: StringName,
     args: VariantArray<Any?> = godot.core.variantArrayOf(),
-    parentFirst: Boolean = false
+    parentFirst: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to method, ARRAY to args, BOOL to parentFirst)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PROPAGATE_CALL, NIL)
@@ -1506,7 +1506,7 @@ public open class Node : Object() {
   public fun rpcId(
     peerId: Long,
     method: StringName,
-    vararg __var_args: Any?
+    vararg __var_args: Any?,
   ): GodotError {
     TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_ID, LONG)
@@ -1525,7 +1525,7 @@ public open class Node : Object() {
   }
 
   public enum class ProcessMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Inherits process mode from the node's parent. For the root node, it is equivalent to [PROCESS_MODE_PAUSABLE]. Default.
@@ -1560,7 +1560,7 @@ public open class Node : Object() {
   }
 
   public enum class DuplicateFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Duplicate the node's signals.
@@ -1593,7 +1593,7 @@ public open class Node : Object() {
   }
 
   public enum class InternalMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Node will not be internal.

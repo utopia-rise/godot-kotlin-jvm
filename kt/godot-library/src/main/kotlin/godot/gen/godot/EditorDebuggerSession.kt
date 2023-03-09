@@ -74,7 +74,7 @@ public open class EditorDebuggerSession internal constructor() : RefCounted() {
   public fun toggleProfiler(
     profiler: String,
     enable: Boolean,
-    `data`: VariantArray<Any?> = godot.core.variantArrayOf()
+    `data`: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Unit {
     TransferContext.writeArguments(STRING to profiler, BOOL to enable, ARRAY to data)
     TransferContext.callMethod(rawPtr,

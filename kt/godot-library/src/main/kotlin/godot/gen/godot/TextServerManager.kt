@@ -46,7 +46,7 @@ public object TextServerManager : Object() {
   public val interfaceRemoved: Signal1<StringName> by signal("interfaceName")
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_TEXTSERVERMANAGER)
+    getSingleton(ENGINECLASS_TEXTSERVERMANAGER)
     return false
   }
 

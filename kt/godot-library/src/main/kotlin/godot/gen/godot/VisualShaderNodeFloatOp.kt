@@ -45,7 +45,7 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
   }
 
   public enum class Operator(
-    id: Long
+    id: Long,
   ) {
     /**
      * Sums two numbers using `a + b`.

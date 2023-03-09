@@ -98,7 +98,7 @@ public open class AspectRatioContainer : Container() {
   }
 
   public enum class StretchMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The height of child controls is automatically adjusted based on the width of the container.
@@ -131,7 +131,7 @@ public open class AspectRatioContainer : Container() {
   }
 
   public enum class AlignmentMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Aligns child controls with the beginning (left or top) of the container.

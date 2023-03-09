@@ -101,7 +101,7 @@ public open class CameraFeed : RefCounted() {
   }
 
   public enum class FeedDataType(
-    id: Long
+    id: Long,
   ) {
     /**
      * No image set for the feed.
@@ -132,7 +132,7 @@ public open class CameraFeed : RefCounted() {
   }
 
   public enum class FeedPosition(
-    id: Long
+    id: Long,
   ) {
     /**
      * Unspecified position.

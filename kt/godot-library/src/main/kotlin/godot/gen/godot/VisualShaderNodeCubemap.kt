@@ -78,7 +78,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   }
 
   public enum class Source(
-    id: Long
+    id: Long,
   ) {
     /**
      * Use the [godot.Cubemap] set via [cubeMap]. If this is set to [source], the `samplerCube` port is ignored.
@@ -105,7 +105,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   }
 
   public enum class TextureType(
-    id: Long
+    id: Long,
   ) {
     /**
      * No hints are added to the uniform declaration.

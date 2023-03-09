@@ -249,7 +249,7 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   public enum class FileMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The dialog allows selecting one, and only one file.
@@ -284,7 +284,7 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   public enum class Access(
-    id: Long
+    id: Long,
   ) {
     /**
      * The dialog only allows accessing files under the [godot.Resource] path (`res://`).

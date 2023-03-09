@@ -88,7 +88,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     image: Image,
     compressionMode: CompressionMode,
     normalMap: Boolean = false,
-    lossyQuality: Double = 0.8
+    lossyQuality: Double = 0.8,
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to compressionMode.id, BOOL to normalMap, DOUBLE to lossyQuality)
     TransferContext.callMethod(rawPtr,
@@ -116,7 +116,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   }
 
   public enum class CompressionMode(
-    id: Long
+    id: Long,
   ) {
     /**
      *

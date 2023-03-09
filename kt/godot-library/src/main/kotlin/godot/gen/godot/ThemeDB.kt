@@ -36,7 +36,7 @@ public object ThemeDB : Object() {
   public val fallbackChanged: Signal0 by signal()
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_THEMEDB)
+    getSingleton(ENGINECLASS_THEMEDB)
     return false
   }
 

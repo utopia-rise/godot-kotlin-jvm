@@ -203,7 +203,7 @@ public open class PackedScene : Resource() {
   }
 
   public enum class GenEditState(
-    id: Long
+    id: Long,
   ) {
     /**
      * If passed to [instantiate], blocks edits to the scene state.

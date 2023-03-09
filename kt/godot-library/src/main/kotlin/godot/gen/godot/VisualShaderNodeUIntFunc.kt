@@ -45,7 +45,7 @@ public open class VisualShaderNodeUIntFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long
+    id: Long,
   ) {
     /**
      * Negates the `x` using `-(x)`.

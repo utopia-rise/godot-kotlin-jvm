@@ -257,7 +257,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     startKey: String,
     endKey: String,
     color: Color,
-    lineOnly: Boolean = false
+    lineOnly: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING to startKey, STRING to endKey, COLOR to color, BOOL to lineOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_ADD_COLOR_REGION,

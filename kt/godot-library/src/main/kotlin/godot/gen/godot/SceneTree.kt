@@ -319,7 +319,7 @@ public open class SceneTree : MainLoop() {
     timeSec: Double,
     processAlways: Boolean = true,
     processInPhysics: Boolean = false,
-    ignoreTimeScale: Boolean = false
+    ignoreTimeScale: Boolean = false,
   ): SceneTreeTimer? {
     TransferContext.writeArguments(DOUBLE to timeSec, BOOL to processAlways, BOOL to processInPhysics, BOOL to ignoreTimeScale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TIMER, OBJECT)
@@ -399,7 +399,7 @@ public open class SceneTree : MainLoop() {
     flags: Long,
     group: StringName,
     method: StringName,
-    vararg __var_args: Any?
+    vararg __var_args: Any?,
   ): Unit {
     TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP_FLAGS, NIL)
@@ -413,7 +413,7 @@ public open class SceneTree : MainLoop() {
   public fun notifyGroupFlags(
     callFlags: Long,
     group: StringName,
-    notification: Long
+    notification: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, LONG to notification)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_NOTIFY_GROUP_FLAGS, NIL)
@@ -428,7 +428,7 @@ public open class SceneTree : MainLoop() {
     callFlags: Long,
     group: StringName,
     `property`: String,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP_FLAGS, NIL)
@@ -442,7 +442,7 @@ public open class SceneTree : MainLoop() {
   public fun callGroup(
     group: StringName,
     method: StringName,
-    vararg __var_args: Any?
+    vararg __var_args: Any?,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP, NIL)
@@ -466,7 +466,7 @@ public open class SceneTree : MainLoop() {
   public fun setGroup(
     group: StringName,
     `property`: String,
-    `value`: Any
+    `value`: Any,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to group, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP, NIL)
@@ -557,7 +557,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public enum class GroupCallFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Call a group with no flags (default).

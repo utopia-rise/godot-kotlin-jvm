@@ -577,7 +577,7 @@ public open class Tree : Control() {
   public fun getItemAreaRect(
     item: TreeItem,
     column: Long = -1,
-    buttonIndex: Long = -1
+    buttonIndex: Long = -1,
   ): Rect2 {
     TransferContext.writeArguments(OBJECT to item, LONG to column, LONG to buttonIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_ITEM_AREA_RECT, RECT2)
@@ -710,7 +710,7 @@ public open class Tree : Control() {
   }
 
   public enum class SelectMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Allows selection of a single cell at a time. From the perspective of items, only a single item is allowed to be selected. And there is only one column selected in the selected item.
@@ -743,7 +743,7 @@ public open class Tree : Control() {
   }
 
   public enum class DropModeFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Disables all drop sections, but still allows to detect the "on item" drop section by [getDropSectionAtPosition].

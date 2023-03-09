@@ -48,7 +48,7 @@ public open class SliderJoint3D : Joint3D() {
   }
 
   public enum class Param(
-    id: Long
+    id: Long,
   ) {
     /**
      * The maximum difference between the pivot points on their X axis before damping happens.

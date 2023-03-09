@@ -137,7 +137,7 @@ public open class NinePatchRect : Control() {
   }
 
   public enum class AxisStretchMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Stretches the center texture across the NinePatchRect. This may cause the texture to be distorted.

@@ -160,7 +160,7 @@ public open class Timer : Node() {
   }
 
   public enum class TimerProcessCallback(
-    id: Long
+    id: Long,
   ) {
     /**
      * Update the timer during the physics step at each frame (fixed framerate processing).

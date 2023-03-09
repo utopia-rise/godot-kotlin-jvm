@@ -303,7 +303,7 @@ public open class TileData : Object() {
   public fun setCollisionPolygonPoints(
     layerId: Long,
     polygonIndex: Long,
-    polygon: PackedVector2Array
+    polygon: PackedVector2Array,
   ): Unit {
     TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex, PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
@@ -326,7 +326,7 @@ public open class TileData : Object() {
   public fun setCollisionPolygonOneWay(
     layerId: Long,
     polygonIndex: Long,
-    oneWay: Boolean
+    oneWay: Boolean,
   ): Unit {
     TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex, BOOL to oneWay)
     TransferContext.callMethod(rawPtr,
@@ -349,7 +349,7 @@ public open class TileData : Object() {
   public fun setCollisionPolygonOneWayMargin(
     layerId: Long,
     polygonIndex: Long,
-    oneWayMargin: Double
+    oneWayMargin: Double,
   ): Unit {
     TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex, DOUBLE to oneWayMargin)
     TransferContext.callMethod(rawPtr,

@@ -50,7 +50,7 @@ public open class OmniLight3D : Light3D() {
   }
 
   public enum class ShadowMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Shadows are rendered to a dual-paraboloid texture. Faster than [SHADOW_CUBE], but lower-quality.

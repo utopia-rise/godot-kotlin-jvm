@@ -422,14 +422,14 @@ public open class GPUParticles2D : Node2D() {
     velocity: Vector2,
     color: Color,
     custom: Color,
-    flags: Long
+    flags: Long,
   ): Unit {
     TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to velocity, COLOR to color, COLOR to custom, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_EMIT_PARTICLE, NIL)
   }
 
   public enum class DrawOrder(
-    id: Long
+    id: Long,
   ) {
     /**
      * Particles are drawn in the order emitted.
@@ -456,7 +456,7 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public enum class EmitFlags(
-    id: Long
+    id: Long,
   ) {
     /**
      * Particle starts at the specified position.

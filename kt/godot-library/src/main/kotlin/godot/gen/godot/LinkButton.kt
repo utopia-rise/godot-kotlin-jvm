@@ -168,7 +168,7 @@ public open class LinkButton : BaseButton() {
   }
 
   public enum class UnderlineMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The LinkButton will always show an underline at the bottom of its text.

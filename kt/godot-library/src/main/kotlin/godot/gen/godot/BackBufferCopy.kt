@@ -62,7 +62,7 @@ public open class BackBufferCopy : Node2D() {
   }
 
   public enum class CopyMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Disables the buffering mode. This means the [godot.BackBufferCopy] node will directly use the portion of screen it covers.

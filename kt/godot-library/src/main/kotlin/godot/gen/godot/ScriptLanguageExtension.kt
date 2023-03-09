@@ -98,7 +98,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _makeTemplate(
     template: String,
     className: String,
-    baseClassName: String
+    baseClassName: String,
   ): Script? {
     throw NotImplementedError("_make_template is not implemented for ScriptLanguageExtension")
   }
@@ -126,7 +126,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     validateFunctions: Boolean,
     validateErrors: Boolean,
     validateWarnings: Boolean,
-    validateSafeLines: Boolean
+    validateSafeLines: Boolean,
   ): Dictionary<Any?, Any?> {
     throw NotImplementedError("_validate is not implemented for ScriptLanguageExtension")
   }
@@ -186,7 +186,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _makeFunction(
     className: String,
     functionName: String,
-    functionArgs: PackedStringArray
+    functionArgs: PackedStringArray,
   ): String {
     throw NotImplementedError("_make_function is not implemented for ScriptLanguageExtension")
   }
@@ -197,7 +197,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _openInExternalEditor(
     script: Script,
     line: Long,
-    column: Long
+    column: Long,
   ): GodotError {
     throw NotImplementedError("_open_in_external_editor is not implemented for ScriptLanguageExtension")
   }
@@ -215,7 +215,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _completeCode(
     code: String,
     path: String,
-    owner: Object
+    owner: Object,
   ): Dictionary<Any?, Any?> {
     throw NotImplementedError("_complete_code is not implemented for ScriptLanguageExtension")
   }
@@ -227,7 +227,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     code: String,
     symbol: String,
     path: String,
-    owner: Object
+    owner: Object,
   ): Dictionary<Any?, Any?> {
     throw NotImplementedError("_lookup_code is not implemented for ScriptLanguageExtension")
   }
@@ -238,7 +238,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _autoIndentCode(
     code: String,
     fromLine: Long,
-    toLine: Long
+    toLine: Long,
   ): String {
     throw NotImplementedError("_auto_indent_code is not implemented for ScriptLanguageExtension")
   }
@@ -307,7 +307,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _debugGetStackLevelLocals(
     level: Long,
     maxSubitems: Long,
-    maxDepth: Long
+    maxDepth: Long,
   ): Dictionary<Any?, Any?> {
     throw NotImplementedError("_debug_get_stack_level_locals is not implemented for ScriptLanguageExtension")
   }
@@ -318,7 +318,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _debugGetStackLevelMembers(
     level: Long,
     maxSubitems: Long,
-    maxDepth: Long
+    maxDepth: Long,
   ): Dictionary<Any?, Any?> {
     throw NotImplementedError("_debug_get_stack_level_members is not implemented for ScriptLanguageExtension")
   }
@@ -337,7 +337,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     level: Long,
     expression: String,
     maxSubitems: Long,
-    maxDepth: Long
+    maxDepth: Long,
   ): String {
     throw NotImplementedError("_debug_parse_stack_level_expression is not implemented for ScriptLanguageExtension")
   }
@@ -422,7 +422,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public enum class LookupResultType(
-    id: Long
+    id: Long,
   ) {
     /**
      *
@@ -477,7 +477,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public enum class CodeCompletionLocation(
-    id: Long
+    id: Long,
   ) {
     /**
      * The option is local to the location of the code completion query - e.g. a local variable.
@@ -508,7 +508,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public enum class CodeCompletionKind(
-    id: Long
+    id: Long,
   ) {
     /**
      *

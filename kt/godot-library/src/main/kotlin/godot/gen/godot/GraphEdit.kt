@@ -416,7 +416,7 @@ public open class GraphEdit : Control() {
   public open fun _isInInputHotzone(
     inNode: Object,
     inPort: Long,
-    mousePosition: Vector2
+    mousePosition: Vector2,
   ): Boolean {
     throw NotImplementedError("_is_in_input_hotzone is not implemented for GraphEdit")
   }
@@ -438,7 +438,7 @@ public open class GraphEdit : Control() {
   public open fun _isInOutputHotzone(
     inNode: Object,
     inPort: Long,
-    mousePosition: Vector2
+    mousePosition: Vector2,
   ): Boolean {
     throw NotImplementedError("_is_in_output_hotzone is not implemented for GraphEdit")
   }
@@ -486,7 +486,7 @@ public open class GraphEdit : Control() {
     fromNode: StringName,
     fromPort: Long,
     toNode: StringName,
-    toPort: Long
+    toPort: Long,
   ): Boolean {
     throw NotImplementedError("_is_node_hover_valid is not implemented for GraphEdit")
   }
@@ -498,7 +498,7 @@ public open class GraphEdit : Control() {
     fromNode: StringName,
     fromPort: Long,
     toNode: StringName,
-    toPort: Long
+    toPort: Long,
   ): GodotError {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CONNECT_NODE, LONG)
@@ -512,7 +512,7 @@ public open class GraphEdit : Control() {
     fromNode: StringName,
     fromPort: Long,
     toNode: StringName,
-    toPort: Long
+    toPort: Long,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_NODE_CONNECTED, BOOL)
@@ -526,7 +526,7 @@ public open class GraphEdit : Control() {
     fromNode: StringName,
     fromPort: Long,
     toNode: StringName,
-    toPort: Long
+    toPort: Long,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_DISCONNECT_NODE, NIL)
@@ -540,7 +540,7 @@ public open class GraphEdit : Control() {
     fromPort: Long,
     toNode: StringName,
     toPort: Long,
-    amount: Double
+    amount: Double,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort, DOUBLE to amount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_ACTIVITY,
@@ -686,7 +686,7 @@ public open class GraphEdit : Control() {
   }
 
   public enum class PanningScheme(
-    id: Long
+    id: Long,
   ) {
     /**
      * [kbd]Mouse Wheel[/kbd] will zoom, [kbd]Ctrl + Mouse Wheel[/kbd] will move the view.

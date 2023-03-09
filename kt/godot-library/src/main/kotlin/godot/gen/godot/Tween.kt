@@ -293,7 +293,7 @@ public open class Tween : RefCounted() {
     _object: Object,
     `property`: NodePath,
     finalVal: Any,
-    duration: Double
+    duration: Double,
   ): PropertyTweener? {
     TransferContext.writeArguments(OBJECT to _object, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_PROPERTY, OBJECT)
@@ -515,7 +515,7 @@ public open class Tween : RefCounted() {
     method: Callable,
     from: Any,
     to: Any,
-    duration: Double
+    duration: Double,
   ): MethodTweener? {
     TransferContext.writeArguments(CALLABLE to method, ANY to from, ANY to to, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_METHOD, OBJECT)
@@ -764,7 +764,7 @@ public open class Tween : RefCounted() {
   }
 
   public enum class TweenProcessMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * The [godot.Tween] updates during the physics frame.
@@ -787,7 +787,7 @@ public open class Tween : RefCounted() {
   }
 
   public enum class TweenPauseMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * If the [godot.Tween] has a bound node, it will process when that node can process (see [godot.Node.processMode]). Otherwise it's the same as [TWEEN_PAUSE_STOP].
@@ -814,7 +814,7 @@ public open class Tween : RefCounted() {
   }
 
   public enum class TransitionType(
-    id: Long
+    id: Long,
   ) {
     /**
      * The animation is interpolated linearly.
@@ -873,7 +873,7 @@ public open class Tween : RefCounted() {
   }
 
   public enum class EaseType(
-    id: Long
+    id: Long,
   ) {
     /**
      * The interpolation starts slowly and speeds up towards the end.

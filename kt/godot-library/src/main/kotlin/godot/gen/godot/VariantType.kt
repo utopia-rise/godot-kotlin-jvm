@@ -4,7 +4,7 @@ package godot
 import kotlin.Long
 
 public enum class VariantType(
-  id: Long
+  id: Long,
 ) {
   TYPE_NIL(0),
   TYPE_BOOL(1),

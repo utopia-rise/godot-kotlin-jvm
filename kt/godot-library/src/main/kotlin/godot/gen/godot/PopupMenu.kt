@@ -172,7 +172,7 @@ public open class PopupMenu : Popup() {
   public fun addItem(
     label: String,
     id: Long = -1,
-    accel: Key = Key.KEY_NONE
+    accel: Key = Key.KEY_NONE,
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id, LONG to accel.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ITEM, NIL)
@@ -187,7 +187,7 @@ public open class PopupMenu : Popup() {
     texture: Texture2D,
     label: String,
     id: Long = -1,
-    accel: Key = Key.KEY_NONE
+    accel: Key = Key.KEY_NONE,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id, LONG to accel.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_ITEM, NIL)
@@ -203,7 +203,7 @@ public open class PopupMenu : Popup() {
   public fun addCheckItem(
     label: String,
     id: Long = -1,
-    accel: Key = Key.KEY_NONE
+    accel: Key = Key.KEY_NONE,
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id, LONG to accel.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_CHECK_ITEM, NIL)
@@ -220,7 +220,7 @@ public open class PopupMenu : Popup() {
     texture: Texture2D,
     label: String,
     id: Long = -1,
-    accel: Key = Key.KEY_NONE
+    accel: Key = Key.KEY_NONE,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id, LONG to accel.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_CHECK_ITEM, NIL)
@@ -236,7 +236,7 @@ public open class PopupMenu : Popup() {
   public fun addRadioCheckItem(
     label: String,
     id: Long = -1,
-    accel: Key = Key.KEY_NONE
+    accel: Key = Key.KEY_NONE,
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id, LONG to accel.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_RADIO_CHECK_ITEM, NIL)
@@ -249,7 +249,7 @@ public open class PopupMenu : Popup() {
     texture: Texture2D,
     label: String,
     id: Long = -1,
-    accel: Key = Key.KEY_NONE
+    accel: Key = Key.KEY_NONE,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id, LONG to accel.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_RADIO_CHECK_ITEM,
@@ -268,7 +268,7 @@ public open class PopupMenu : Popup() {
     maxStates: Long,
     defaultState: Long = 0,
     id: Long = -1,
-    accel: Key = Key.KEY_NONE
+    accel: Key = Key.KEY_NONE,
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to maxStates, LONG to defaultState, LONG to id, LONG to accel.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_MULTISTATE_ITEM, NIL)
@@ -282,7 +282,7 @@ public open class PopupMenu : Popup() {
   public fun addShortcut(
     shortcut: Shortcut,
     id: Long = -1,
-    global: Boolean = false
+    global: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SHORTCUT, NIL)
@@ -297,7 +297,7 @@ public open class PopupMenu : Popup() {
     texture: Texture2D,
     shortcut: Shortcut,
     id: Long = -1,
-    global: Boolean = false
+    global: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_SHORTCUT, NIL)
@@ -313,7 +313,7 @@ public open class PopupMenu : Popup() {
   public fun addCheckShortcut(
     shortcut: Shortcut,
     id: Long = -1,
-    global: Boolean = false
+    global: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_CHECK_SHORTCUT, NIL)
@@ -330,7 +330,7 @@ public open class PopupMenu : Popup() {
     texture: Texture2D,
     shortcut: Shortcut,
     id: Long = -1,
-    global: Boolean = false
+    global: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_CHECK_SHORTCUT,
@@ -347,7 +347,7 @@ public open class PopupMenu : Popup() {
   public fun addRadioCheckShortcut(
     shortcut: Shortcut,
     id: Long = -1,
-    global: Boolean = false
+    global: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_RADIO_CHECK_SHORTCUT,
@@ -361,7 +361,7 @@ public open class PopupMenu : Popup() {
     texture: Texture2D,
     shortcut: Shortcut,
     id: Long = -1,
-    global: Boolean = false
+    global: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr,
@@ -376,7 +376,7 @@ public open class PopupMenu : Popup() {
   public fun addSubmenuItem(
     label: String,
     submenu: String,
-    id: Long = -1
+    id: Long = -1,
   ): Unit {
     TransferContext.writeArguments(STRING to label, STRING to submenu, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SUBMENU_ITEM, NIL)
@@ -508,7 +508,7 @@ public open class PopupMenu : Popup() {
   public fun setItemShortcut(
     index: Long,
     shortcut: Shortcut,
-    global: Boolean = false
+    global: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(LONG to index, OBJECT to shortcut, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_SHORTCUT, NIL)

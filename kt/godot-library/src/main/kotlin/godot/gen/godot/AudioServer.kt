@@ -45,7 +45,7 @@ public object AudioServer : Object() {
   public val busLayoutChanged: Signal0 by signal()
 
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_AUDIOSERVER)
+    getSingleton(ENGINECLASS_AUDIOSERVER)
     return false
   }
 
@@ -214,7 +214,7 @@ public object AudioServer : Object() {
   public fun addBusEffect(
     busIdx: Long,
     effect: AudioEffect,
-    atPosition: Long = -1
+    atPosition: Long = -1,
   ): Unit {
     TransferContext.writeArguments(LONG to busIdx, OBJECT to effect, LONG to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_ADD_BUS_EFFECT, NIL)
@@ -253,7 +253,7 @@ public object AudioServer : Object() {
   public fun getBusEffectInstance(
     busIdx: Long,
     effectIdx: Long,
-    channel: Long = 0
+    channel: Long = 0,
   ): AudioEffectInstance? {
     TransferContext.writeArguments(LONG to busIdx, LONG to effectIdx, LONG to channel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_EFFECT_INSTANCE,
@@ -267,7 +267,7 @@ public object AudioServer : Object() {
   public fun swapBusEffects(
     busIdx: Long,
     effectIdx: Long,
-    byEffectIdx: Long
+    byEffectIdx: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to busIdx, LONG to effectIdx, LONG to byEffectIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SWAP_BUS_EFFECTS, NIL)
@@ -279,7 +279,7 @@ public object AudioServer : Object() {
   public fun setBusEffectEnabled(
     busIdx: Long,
     effectIdx: Long,
-    enabled: Boolean
+    enabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(LONG to busIdx, LONG to effectIdx, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_EFFECT_ENABLED,
@@ -469,7 +469,7 @@ public object AudioServer : Object() {
   }
 
   public enum class SpeakerMode(
-    id: Long
+    id: Long,
   ) {
     /**
      * Two or fewer speakers were detected.

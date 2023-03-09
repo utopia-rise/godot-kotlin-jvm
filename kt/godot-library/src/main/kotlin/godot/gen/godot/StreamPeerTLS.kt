@@ -61,7 +61,7 @@ public open class StreamPeerTLS : StreamPeer() {
   public fun connectToStream(
     stream: StreamPeer,
     commonName: String,
-    clientOptions: TLSOptions? = null
+    clientOptions: TLSOptions? = null,
   ): GodotError {
     TransferContext.writeArguments(OBJECT to stream, STRING to commonName, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_CONNECT_TO_STREAM,
@@ -97,7 +97,7 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   public enum class Status(
-    id: Long
+    id: Long,
   ) {
     /**
      * A status representing a [godot.StreamPeerTLS] that is disconnected.

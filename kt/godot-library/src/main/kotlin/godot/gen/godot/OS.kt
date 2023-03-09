@@ -39,7 +39,7 @@ import kotlin.Unit
 @GodotBaseType
 public object OS : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    rawPtr = TransferContext.getSingleton(ENGINECLASS_OS)
+    getSingleton(ENGINECLASS_OS)
     return false
   }
 
@@ -164,7 +164,7 @@ public object OS : Object() {
     fontName: String,
     weight: Long = 400,
     stretch: Long = 100,
-    italic: Boolean = false
+    italic: Boolean = false,
   ): String {
     TransferContext.writeArguments(STRING to fontName, LONG to weight, LONG to stretch, BOOL to italic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONT_PATH, STRING)
@@ -189,7 +189,7 @@ public object OS : Object() {
     script: String = "",
     weight: Long = 400,
     stretch: Long = 100,
-    italic: Boolean = false
+    italic: Boolean = false,
   ): PackedStringArray {
     TransferContext.writeArguments(STRING to fontName, STRING to text, STRING to locale, STRING to script, LONG to weight, LONG to stretch, BOOL to italic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONT_PATH_FOR_TEXT,
@@ -287,7 +287,7 @@ public object OS : Object() {
     arguments: PackedStringArray,
     output: VariantArray<Any?> = godot.core.variantArrayOf(),
     readStderr: Boolean = false,
-    openConsole: Boolean = false
+    openConsole: Boolean = false,
   ): Long {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, ARRAY to output, BOOL to readStderr, BOOL to openConsole)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_EXECUTE, LONG)
@@ -328,7 +328,7 @@ public object OS : Object() {
   public fun createProcess(
     path: String,
     arguments: PackedStringArray,
-    openConsole: Boolean = false
+    openConsole: Boolean = false,
   ): Long {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, BOOL to openConsole)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_PROCESS, LONG)
@@ -1088,7 +1088,7 @@ public object OS : Object() {
   }
 
   public enum class RenderingDriver(
-    id: Long
+    id: Long,
   ) {
     /**
      * The Vulkan rendering driver. It requires Vulkan 1.0 support and automatically uses features from Vulkan 1.1 and 1.2 if available.
@@ -1111,7 +1111,7 @@ public object OS : Object() {
   }
 
   public enum class SystemDir(
-    id: Long
+    id: Long,
   ) {
     /**
      * Desktop directory path.

@@ -47,7 +47,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
     image: Image,
     fileaccess: FileAccess,
     flags: Long,
-    scale: Double
+    scale: Double,
   ): GodotError {
     throw NotImplementedError("_load_image is not implemented for ImageFormatLoaderExtension")
   }
