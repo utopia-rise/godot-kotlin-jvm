@@ -1,6 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import godot.dependencies.gradle.DependenciesVersions
 import godot.dependencies.gradle.fullGodotKotlinJvmVersion
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
@@ -10,7 +10,7 @@ plugins {
 
 dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
-    implementation("com.utopia-rise:godot-library:$fullGodotKotlinJvmVersion")
+    implementation(project(":godot-library"))
     implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
 }
 
