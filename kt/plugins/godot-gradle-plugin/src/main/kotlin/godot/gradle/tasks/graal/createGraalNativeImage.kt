@@ -53,6 +53,13 @@ fun Project.createGraalNativeImageTask(
                     graalDirectory.resolve("godot-kotlin-graal-jni-config.json").absolutePath +
                     additionalJoinedJniConfiguration
 
+                val reflectionConfigurationFilesString = godotJvmExtension
+                    .additionalGraalReflectionConfigurationFiles
+                    .getOrElse(arrayOf())
+                    .joinToString(",")
+
+                val reflectionConfigurationFilesArgument = "-H:ReflectionConfigurationFiles=$reflectionConfigurationFilesString"
+
                 val verboseArgument = if (godotJvmExtension.isGraalVmNativeImageGenerationVerbose.get()) {
                     "--verbose"
                 } else {
@@ -76,6 +83,7 @@ fun Project.createGraalNativeImageTask(
                         "--shared",
                         "-H:Name=usercode",
                         jniConfigurationFilesArgument,
+                        reflectionConfigurationFilesArgument,
                         "-H:IncludeResources=${
                             resourcesDir.absolutePath.replace(
                                 '\\',
@@ -95,6 +103,7 @@ fun Project.createGraalNativeImageTask(
                         "--shared",
                         "-H:Name=usercode",
                         jniConfigurationFilesArgument,
+                        reflectionConfigurationFilesArgument,
                         "-H:IncludeResources=${resourcesDir.absolutePath}/main/META-INF/services/*.*",
                         "--no-fallback",
                         verboseArgument,
