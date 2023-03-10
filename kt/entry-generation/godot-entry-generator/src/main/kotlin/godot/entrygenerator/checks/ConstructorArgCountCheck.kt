@@ -10,6 +10,7 @@ class ConstructorArgCountCheck(logger: Logger, sourceFiles: List<SourceFile>): B
             .flatMap { it.registeredClasses }
             .flatMap { it.constructors }
             .forEach { registeredConstructor ->
+                // keep in sync with VARIANT_ARG_MAX in transfer_context.cpp!
                 if (registeredConstructor.parameters.size > 5) {
                     hasIssue = true
                     logger.error("RegisteredConstructor ${registeredConstructor.fqName} has more than 5 arguments")

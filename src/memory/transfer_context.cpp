@@ -4,6 +4,7 @@
 #include "kotlin_instance.h"
 
 JNI_INIT_STATICS_FOR_CLASS(TransferContext)
+// when changed, also update ConstructorArgCountCheck.kt!
 const int VARIANT_ARG_MAX {5};
 const int MAX_STACK_SIZE = VARIANT_ARG_MAX * 8;
 
