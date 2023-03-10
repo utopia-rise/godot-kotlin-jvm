@@ -10,6 +10,11 @@
 #ifndef TOOLS_ENABLED
 
 #include <core/io/dir_access.h>
+
+#endif
+
+#ifdef TOOLS_ENABLED
+
 #include "kotlin_script_cache.h"
 
 #endif
