@@ -1,6 +1,12 @@
 package godot.entrygenerator
 
-import godot.entrygenerator.checks.*
+import godot.entrygenerator.checks.ConstructorArgCountCheck
+import godot.entrygenerator.checks.ConstructorOverloadingCheck
+import godot.entrygenerator.checks.DefaultConstructorCheck
+import godot.entrygenerator.checks.ExportedMutablilityCheck
+import godot.entrygenerator.checks.FunctionArgCountCheck
+import godot.entrygenerator.checks.RpcCheck
+import godot.entrygenerator.checks.SignalTypeCheck
 import godot.entrygenerator.exceptions.ChecksFailedException
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
 import godot.entrygenerator.filebuilder.MainEntryFileBuilder
@@ -100,6 +106,8 @@ object EntryGenerator {
             DefaultConstructorCheck(logger, sourceFiles).execute(),
             ConstructorArgCountCheck(logger, sourceFiles).execute(),
             ConstructorOverloadingCheck(logger, sourceFiles).execute(),
+
+            FunctionArgCountCheck(logger, sourceFiles).execute(),
 
             SignalTypeCheck(logger, sourceFiles).execute(),
 
