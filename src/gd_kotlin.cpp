@@ -2,7 +2,6 @@
 
 #include "jni/class_loader.h"
 #include "memory/bridges_manager.h"
-#include "kotlin_script_cache.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>
@@ -11,6 +10,7 @@
 #ifndef TOOLS_ENABLED
 
 #include <core/io/dir_access.h>
+#include "kotlin_script_cache.h"
 
 #endif
 

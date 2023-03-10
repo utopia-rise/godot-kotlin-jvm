@@ -1,10 +1,9 @@
+#ifdef TOOLS_ENABLED
 #ifndef GODOT_KOTLIN_SCRIPT_CACHE_H
 #define GODOT_KOTLIN_SCRIPT_CACHE_H
 
 #include <core/string/ustring.h>
 #include "kotlin_script.h"
-
-#ifdef TOOLS_ENABLED
 
 class KotlinScriptCache {
 private:
@@ -28,6 +27,6 @@ public:
     static const Vector<Ref<KotlinScript>> get_cached_scripts();
 };
 
-#endif
-
 #endif //GODOT_KOTLIN_SCRIPT_CACHE_H
+
+#endif
