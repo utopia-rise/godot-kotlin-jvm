@@ -60,6 +60,13 @@ fun Project.createGraalNativeImageTask(
 
                 val reflectionConfigurationFilesArgument = "-H:ReflectionConfigurationFiles=$reflectionConfigurationFilesString"
 
+                val resourceConfigurationFilesString = godotJvmExtension
+                    .additionalGraalResourceConfigurationFiles
+                    .getOrElse(arrayOf())
+                    .joinToString(",")
+
+                val resourceConfigurationFilesArgument = "-H:ResourceConfigurationFiles=$resourceConfigurationFilesString"
+
                 val verboseArgument = if (godotJvmExtension.isGraalVmNativeImageGenerationVerbose.get()) {
                     "--verbose"
                 } else {
@@ -84,6 +91,7 @@ fun Project.createGraalNativeImageTask(
                         "-H:Name=usercode",
                         jniConfigurationFilesArgument,
                         reflectionConfigurationFilesArgument,
+                        resourceConfigurationFilesArgument,
                         "-H:IncludeResources=${
                             resourcesDir.absolutePath.replace(
                                 '\\',
@@ -104,6 +112,7 @@ fun Project.createGraalNativeImageTask(
                         "-H:Name=usercode",
                         jniConfigurationFilesArgument,
                         reflectionConfigurationFilesArgument,
+                        resourceConfigurationFilesArgument,
                         "-H:IncludeResources=${resourcesDir.absolutePath}/main/META-INF/services/*.*",
                         "--no-fallback",
                         verboseArgument,

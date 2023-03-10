@@ -70,6 +70,13 @@ open class GodotExtension(objects: ObjectFactory) {
     val additionalGraalReflectionConfigurationFiles = objects.property(Array<String>::class.java)
 
     /**
+     * Additional Graal resource configurations.
+     *
+     * example: arrayOf("my-resource-configuration-file.json", "another-conf.json")
+     */
+    val additionalGraalResourceConfigurationFiles = objects.property(Array<String>::class.java)
+
+    /**
      * enable verbose mode on native image generation.
      *
      * if set to true, native-image tool will be in verbose mode.
@@ -108,6 +115,7 @@ open class GodotExtension(objects: ObjectFactory) {
         nativeImageToolPath.set(System.getenv("native-image")?.let { File(it) })
         additionalGraalJniConfigurationFiles.set(arrayOf())
         additionalGraalReflectionConfigurationFiles.set(arrayOf())
+        additionalGraalResourceConfigurationFiles.set(arrayOf())
         isGraalVmNativeImageGenerationVerbose.set(false)
         windowsDeveloperVCVarsPath.set("\"%VC_VARS_PATH%\"")
     }
