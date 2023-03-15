@@ -27,6 +27,7 @@ private fun getProblemDescriptor(element: PsiElement, quickFix: LocalQuickFix, p
     .getInstance(element.project)
     .createProblemDescriptor(
         element,
+        @Suppress("DialogTitleCapitalization")
         "unused",
         quickFix,
         problemHighlightType,
