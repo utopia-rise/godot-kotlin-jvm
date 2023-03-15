@@ -159,8 +159,12 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
         if (wizardContext.isCreatingNewProject) {
             copyTemplateFile(basePath, "gradle/wrapper/gradle-wrapper.jar")
             copyTemplateFile(basePath, "gradle/wrapper/gradle-wrapper.properties")
-            copyTemplateFile(basePath, "gradlew")
-            copyTemplateFile(basePath, "gradlew.bat")
+            copyTemplateFile(basePath, "gradlew") { gradleWrapperScript ->
+                gradleWrapperScript.setExecutable(true)
+            }
+            copyTemplateFile(basePath, "gradlew.bat") { gradleWrapperScript ->
+                gradleWrapperScript.setExecutable(true)
+            }
             copyTemplateFile(basePath, "build.gradle.kts") { outFile ->
                 outFile.writeText(
                     outFile
