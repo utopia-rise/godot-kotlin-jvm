@@ -14,6 +14,12 @@ apiGenerator {
     docsDir.set(project.file("$projectDir/../../../../doc/classes"))
 }
 
+dependencies {
+    // added here as a transitive dependency so the user can use reflection
+    // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
+    api(kotlin("reflect"))
+}
+
 tasks {
     compileKotlin {
         dependsOn(generateAPI)
