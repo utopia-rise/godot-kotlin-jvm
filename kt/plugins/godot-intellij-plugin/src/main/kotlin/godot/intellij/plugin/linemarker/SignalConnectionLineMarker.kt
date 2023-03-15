@@ -9,10 +9,10 @@ import com.intellij.psi.impl.source.tree.LeafPsiElement
 import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
 import godot.intellij.plugin.extension.getGodotRoot
 import godot.intellij.plugin.extension.isSignal
+import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.ui.dialog.IncomingSignalConnectionsDialog
 import godot.intellij.plugin.ui.dialog.OutgoingSignalConnectionsDialog
 import org.jetbrains.kotlin.lexer.KtTokens
-import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.psiUtil.containingClass
