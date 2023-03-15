@@ -10,7 +10,7 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.data.model.RegisteredClassDataContainer
 import godot.intellij.plugin.extension.getGodotRoot
-import org.jetbrains.kotlin.idea.core.util.getLineNumber
+import org.jetbrains.kotlin.idea.base.psi.getLineNumber
 import org.jetbrains.kotlin.idea.core.util.toPsiFile
 import org.jetbrains.kotlin.idea.inspections.findExistingEditor
 import org.jetbrains.kotlin.psi.KtClass
