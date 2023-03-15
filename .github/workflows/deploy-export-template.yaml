@@ -191,6 +191,10 @@ jobs:
       - name: Setup Godot dependencies
         uses: ./.github/actions/godot-deps
 
+      - name: Fix scons version
+        run: |
+          python -m pip install scons==4.4.0
+
       # Upload cache on completion and check it out now
       - name: Setup Godot build cache
         uses: ./.github/actions/godot-cache

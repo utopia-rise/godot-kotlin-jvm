@@ -59,6 +59,9 @@ jobs:
               libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip
       - name: Setup Godot dependencies
         uses: ./.github/actions/godot-deps
+      - name: Fix scons version
+        run: |
+          python -m pip install scons==4.4.0
       # Upload cache on completion and check it out now
       - name: Setup Godot build cache
         uses: ./.github/actions/godot-cache
