@@ -62,7 +62,7 @@ class ClassAlreadyRegisteredQuickFix(private val registeredClassName: String) : 
                         .map { container -> container.fqName }
                         .toList()
                 )
-                .setTitle(GodotPluginBundle.message("quickFix.class.alreadyRegistered.popup.title"))
+            .setTitle(@Suppress("DialogTitleCapitalization") GodotPluginBundle.message("quickFix.class.alreadyRegistered.popup.title"))
                 .setItemChosenCallback { chosenFqName ->
                     val container = RegisteredClassNameCacheProvider
                         .provide(godotRoot)
