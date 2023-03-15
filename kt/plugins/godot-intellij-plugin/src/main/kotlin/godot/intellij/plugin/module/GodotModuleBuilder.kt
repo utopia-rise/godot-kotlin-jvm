@@ -65,69 +65,72 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
             lateinit var androidCompileSdkDirTextField: TextFieldWithBrowseButton
 
             override fun getComponent(): JComponent {
+                // ui dsl documentation: https://plugins.jetbrains.com/docs/intellij/kotlin-ui-dsl-version-2.html
                 return panel {
-                    group(GodotPluginBundle.message("wizard.projectSettings.general.title")) {
-                        row(GodotPluginBundle.message("wizard.projectSettings.general.groupId")) {
-                            textField()
-                                .columns(COLUMNS_MEDIUM)
-                                .applyToComponent {
-                                    text = "com.example"
-                                    groupIdTextField = this
-                                }
-                        }
-                        row(GodotPluginBundle.message("wizard.projectSettings.general.artifactId")) {
-                            textField()
-                                .columns(COLUMNS_MEDIUM)
-                                .applyToComponent {
-                                    text = "game"
-                                    artifactIdTextField = this
-                                }
-                        }
-                        row(GodotPluginBundle.message("wizard.projectSettings.general.version")) {
-                            textField()
-                                .columns(COLUMNS_MEDIUM)
-                                .applyToComponent {
-                                    text = "0.0.1-SNAPSHOT"
-                                    artifactIdTextField = this
-                                }
-                        }
-                    }
-                    group(GodotPluginBundle.message("wizard.projectSettings.buildSettings.title")) {
-                        row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidEnabled")) {
-                            checkBox("").applyToComponent {
-                                androidEnabledCheckBox = this
+                    indent {
+                        group(GodotPluginBundle.message("wizard.projectSettings.general.title")) {
+                            row(GodotPluginBundle.message("wizard.projectSettings.general.groupId")) {
+                                textField()
+                                    .columns(COLUMNS_MEDIUM)
+                                    .applyToComponent {
+                                        text = "com.example"
+                                        groupIdTextField = this
+                                    }
+                            }
+                            row(GodotPluginBundle.message("wizard.projectSettings.general.artifactId")) {
+                                textField()
+                                    .columns(COLUMNS_MEDIUM)
+                                    .applyToComponent {
+                                        text = "game"
+                                        artifactIdTextField = this
+                                    }
+                            }
+                            row(GodotPluginBundle.message("wizard.projectSettings.general.version")) {
+                                textField()
+                                    .columns(COLUMNS_MEDIUM)
+                                    .applyToComponent {
+                                        text = "0.0.1-SNAPSHOT"
+                                        artifactIdTextField = this
+                                    }
                             }
                         }
-                        row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath")) {
-                            textFieldWithBrowseButton(
-                                browseDialogTitle = @Suppress("DialogTitleCapitalization") GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath.browseDialogTitle"),
-                                project = context.project,
-                                fileChooserDescriptor = FileChooserDescriptor(true, false, false, false, false, false),
-                                fileChosen = { chosenFile -> chosenFile.path }
-                            )
-                                .applyToComponent {
-                                    text = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8"
-                                    enabledIf(androidEnabledCheckBox.selected)
-                                    @Suppress("DialogTitleCapitalization")
-                                    comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath.comment"))
-                                    d8ToolPathTextField = this
+                        group(GodotPluginBundle.message("wizard.projectSettings.buildSettings.title")) {
+                            row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidEnabled")) {
+                                checkBox("").applyToComponent {
+                                    androidEnabledCheckBox = this
                                 }
-                                .columns(COLUMNS_SHORT)
-                        }
-                        row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir")) {
-                            textFieldWithBrowseButton(
-                                browseDialogTitle = GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir.browseDialogTitle"),
-                                project = context.project,
-                                fileChooserDescriptor = FileChooserDescriptor(true, false, false, false, false, false),
-                                fileChosen = { chosenFile -> chosenFile.path }
-                            )
-                                .applyToComponent {
-                                    text = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30"
-                                    enabledIf(androidEnabledCheckBox.selected)
-                                    comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir.comment"))
-                                    androidCompileSdkDirTextField = this
-                                }
-                                .columns(COLUMNS_SHORT)
+                            }
+                            row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath")) {
+                                textFieldWithBrowseButton(
+                                    browseDialogTitle = @Suppress("DialogTitleCapitalization") GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath.browseDialogTitle"),
+                                    project = context.project,
+                                    fileChooserDescriptor = FileChooserDescriptor(true, false, false, false, false, false),
+                                    fileChosen = { chosenFile -> chosenFile.path }
+                                )
+                                    .applyToComponent {
+                                        text = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8"
+                                        enabledIf(androidEnabledCheckBox.selected)
+                                        @Suppress("DialogTitleCapitalization")
+                                        comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath.comment"))
+                                        d8ToolPathTextField = this
+                                    }
+                                    .columns(COLUMNS_SHORT)
+                            }
+                            row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir")) {
+                                textFieldWithBrowseButton(
+                                    browseDialogTitle = GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir.browseDialogTitle"),
+                                    project = context.project,
+                                    fileChooserDescriptor = FileChooserDescriptor(true, false, false, false, false, false),
+                                    fileChosen = { chosenFile -> chosenFile.path }
+                                )
+                                    .applyToComponent {
+                                        text = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30"
+                                        enabledIf(androidEnabledCheckBox.selected)
+                                        comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir.comment"))
+                                        androidCompileSdkDirTextField = this
+                                    }
+                                    .columns(COLUMNS_SHORT)
+                            }
                         }
                     }
                 }
