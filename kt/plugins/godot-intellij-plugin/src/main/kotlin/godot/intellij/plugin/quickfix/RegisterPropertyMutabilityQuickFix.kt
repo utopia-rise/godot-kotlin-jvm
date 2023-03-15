@@ -27,7 +27,6 @@ class RegisterPropertyMutabilityQuickFix : LocalQuickFix {
                         GodotPluginBundle.message("notification.property.mutability.error.title"),
                         GodotPluginBundle.message("notification.property.mutability.error.content", propertyName),
                         NotificationType.ERROR,
-                        null
                     )
             )
         }

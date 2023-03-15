@@ -25,8 +25,7 @@ class RegisterSignalMutabilityQuickFix : LocalQuickFix {
                     .createNotification(
                         GodotPluginBundle.message("notification.signal.mutability.error.title"),
                         GodotPluginBundle.message("notification.signal.mutability.error.content", signalName),
-                        NotificationType.ERROR,
-                        null
+                        NotificationType.ERROR
                     )
             )
         }
