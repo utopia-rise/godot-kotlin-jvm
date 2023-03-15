@@ -77,7 +77,7 @@ intellij {
 kotlin {
     sourceSets {
         main {
-            kotlin.srcDirs("src/${settings.extraSource}/kotlin")
+            settings.extraSource?.let { extraSourceDir -> kotlin.srcDirs("src/$extraSourceDir/kotlin") }
         }
     }
 }
