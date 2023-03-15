@@ -9,7 +9,7 @@ fun String.snakeToLowerCamelCase(): String {
             it
                 .value
                 .replace("_", "")
-                .toUpperCase()
+                .uppercase(Locale.US)
         }
 }
 
@@ -19,3 +19,5 @@ fun String.camelToSnakeCase(): String {
         "_${it.value}"
     }.lowercase(Locale.ENGLISH)
 }
+
+fun String.capitalize() = this.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
