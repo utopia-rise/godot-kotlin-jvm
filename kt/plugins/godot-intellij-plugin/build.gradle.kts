@@ -8,38 +8,22 @@ plugins {
     // Kotlin support
     id("org.jetbrains.kotlin.jvm")
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "1.7.0"
+    id("org.jetbrains.intellij") version "1.13.2"
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
-    id("org.jetbrains.changelog") version "1.3.1"
+    id("org.jetbrains.changelog") version "2.0.0"
     // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
-    id("io.gitlab.arturbosch.detekt") version "1.20.0"
+    id("io.gitlab.arturbosch.detekt") version "1.22.0"
 }
 
 //sdk version: https://github.com/JetBrains/intellij-community/tags
 //kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
 val buildMatrix: Map<String, BuildConfig> = mapOf(
-    "IJ213" to BuildConfig(
-        sdk = "213.6777.52",
-        prefix = "IJ2021.3",
-        extraSource = "IJ213",
-        version = VersionRange("213.2", "213.*"),
-        ideVersionsForVerifierTask = listOf("2021.3"),
-        deps = listOf("java", "org.jetbrains.kotlin:213-1.6.21-release-334-IJ6777.52", "gradle")
-    ),
-    "IJ221" to BuildConfig(
-        sdk = "221.5591.52",
-        prefix = "IJ2022.1",
-        extraSource = "IJ221",
-        version = VersionRange("221.3", "999.*"),
-        ideVersionsForVerifierTask = listOf("2022.1"),
-        deps = listOf("java", "org.jetbrains.kotlin:221-1.7.10-release-333-IJ5591.52", "gradle")
-    ),
-    "IJ222" to BuildConfig(
-        sdk = "222.3345.118",
-        prefix = "IJ2022.2",
-        extraSource = "IJ221", // hasn't changed. Thus no need to update
-        version = VersionRange("222.2", "999.*"),
-        ideVersionsForVerifierTask = listOf("2022.2"),
+    "IJ223" to BuildConfig(
+        sdk = "223.8836.41",
+        prefix = "IJ2022.3",
+        extraSource = "IJ223",
+        version = VersionRange("222.3", "999.*"),
+        ideVersionsForVerifierTask = listOf("2022.3"),
         deps = listOf("java", "org.jetbrains.kotlin", "gradle") // kotlin plugin version no longer needed as it's now bundled with the IDE
     )
 )
@@ -77,7 +61,7 @@ version = if (!releaseMode) {
 
 group = "com.utopia-rise"
 
-val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ222"
+val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ223"
 val settings = checkNotNull(buildMatrix[sdkVersion])
 
 // Configure gradle-intellij-plugin plugin.
@@ -101,7 +85,7 @@ kotlin {
 }
 
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.20.0")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.22.0")
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
 }
