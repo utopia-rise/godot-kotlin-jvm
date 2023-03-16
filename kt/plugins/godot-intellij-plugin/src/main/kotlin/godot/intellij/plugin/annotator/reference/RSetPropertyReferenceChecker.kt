@@ -3,12 +3,12 @@ package godot.intellij.plugin.annotator.reference
 import com.intellij.lang.annotation.AnnotationHolder
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
-import godot.intellij.plugin.extension.getKotlinFqName
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.extension.resolve
 import godot.intellij.plugin.quickfix.TargetPropertyNotRegisteredQuickFix
+import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.resolve
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
@@ -58,7 +58,7 @@ object RSetPropertyReferenceChecker {
                                 .getArgumentExpression()
                                 ?.getChildOfType<KtNameReferenceExpression>()
                                 ?.resolve()
-                                ?.getKotlinFqName()
+                                ?.kotlinFqName
                                 ?.asString()
                         }
                         ?.filter { fqName ->
