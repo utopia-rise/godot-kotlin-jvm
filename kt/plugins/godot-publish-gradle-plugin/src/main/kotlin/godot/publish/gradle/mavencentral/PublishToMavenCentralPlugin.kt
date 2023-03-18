@@ -2,9 +2,11 @@ package godot.publish.gradle.mavencentral
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.PublishArtifact
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.publish.plugins.PublishingPlugin
 import org.gradle.api.publish.tasks.GenerateModuleMetadata
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.jvm.tasks.Jar
@@ -32,12 +34,15 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                 target.extensions.findByType(PublishingExtension::class.java)?.publications?.all {
                     if (signingKey != null && signingPassword != null) { // for local development, If missing in CI it will fail later on deploy so we would notice the issue then
                         sign(this)
+
+                        target
+                            .tasks
+                            .filter { task -> task.group == "publishing" && task.name.startsWith("publish") }
+                            .forEach { task ->
+                                task.dependsOn(target.tasks.withType(Sign::class.java))
+                            }
                     }
                 }
-            }
-
-            target.tasks.withType(GenerateModuleMetadata::class.java) {
-                dependsOn(target.tasks.withType(Sign::class.java))
             }
 
             target.extensions.getByType(JavaPluginExtension::class).apply {
