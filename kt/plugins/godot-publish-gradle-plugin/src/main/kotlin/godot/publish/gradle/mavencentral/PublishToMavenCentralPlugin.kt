@@ -5,10 +5,12 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.publish.tasks.GenerateModuleMetadata
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 
 class PublishToMavenCentralPlugin: Plugin<Project> {
@@ -32,6 +34,10 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                         sign(this)
                     }
                 }
+            }
+
+            target.tasks.withType(GenerateModuleMetadata::class.java) {
+                dependsOn(target.tasks.withType(Sign::class.java))
             }
 
             target.extensions.getByType(JavaPluginExtension::class).apply {
