@@ -46,7 +46,8 @@ tasks {
         finalizedBy(copyBootstrapJar)
     }
 
-    withType<SourceTask> {
+    // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
+    withType<Jar> {
         dependsOn(generateAPI)
     }
 }
