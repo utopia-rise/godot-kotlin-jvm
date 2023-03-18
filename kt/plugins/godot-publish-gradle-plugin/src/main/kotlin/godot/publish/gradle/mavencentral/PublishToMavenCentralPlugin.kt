@@ -2,6 +2,7 @@ package godot.publish.gradle.mavencentral
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.SourceSetContainer
@@ -33,13 +34,9 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                 }
             }
 
-            val stubJavaDocJar = target.tasks.register("stubJavaDocJar", Jar::class.java) {
-                archiveClassifier.set("javadoc")
-            }
-
-            val sourceJar = target.tasks.register("sourceJar", Jar::class.java) {
-                archiveClassifier.set("sources")
-                from(target.extensions.getByType<SourceSetContainer>()["main"].allSource)
+            target.extensions.getByType(JavaPluginExtension::class).apply {
+                withJavadocJar()
+                withSourcesJar()
             }
 
             target.extensions.configure(PublishingExtension::class.java) {
@@ -64,9 +61,6 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                             groupId = "com.utopia-rise"
                             artifactId = target.name
                             version = target.version as String
-
-                            artifact(stubJavaDocJar.get())
-                            artifact(sourceJar.get())
 
                             pom {
                                 url.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
