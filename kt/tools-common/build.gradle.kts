@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("gradle-plugin", version = "1.7.20"))
+    implementation(kotlin("gradle-plugin", version = DependenciesVersions.supportedKotlinVersion))
     implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
 }
 

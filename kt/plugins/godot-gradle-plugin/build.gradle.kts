@@ -2,34 +2,25 @@ import godot.dependencies.gradle.DependenciesVersions
 
 plugins {
     kotlin("jvm")
-    `maven-publish`
     `java-gradle-plugin`
-    id("com.gradle.plugin-publish") version "0.14.0"
+    id("com.gradle.plugin-publish") version "1.1.0"
     id("com.utopia-rise.godot-publish")
     id("com.utopia-rise.godot-dependencies")
 }
 
 gradlePlugin {
+    website.set("https://github.com/utopia-rise/godot-kotlin-jvm")
+    vcsUrl.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
+
     plugins {
         create("godotPlugin") {
             id = "com.utopia-rise.godot-kotlin-jvm"
             displayName = "Gradle plugin for godot-kotlin-jvm"
             implementationClass = "godot.gradle.GodotPlugin"
             description = "Automatically setup of godot kotlin jvm specific project configurations"
+
+            tags.set(listOf("kotlin", "godot", "gamedev"))
         }
-    }
-    isAutomatedPublishing = false
-}
-
-pluginBundle {
-    website = "https://github.com/utopia-rise/godot-kotlin-jvm"
-    vcsUrl = "https://github.com/utopia-rise/godot-kotlin-jvm.git"
-    tags = listOf("kotlin", "godot", "gamedev")
-
-    mavenCoordinates {
-        groupId = "${project.group}"
-        artifactId = "godot-gradle-plugin"
-        version = "${project.version}"
     }
 }
 
