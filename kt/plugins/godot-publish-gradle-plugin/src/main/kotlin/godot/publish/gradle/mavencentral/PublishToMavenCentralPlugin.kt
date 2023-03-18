@@ -2,15 +2,9 @@ package godot.publish.gradle.mavencentral
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.PublishArtifact
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.publish.plugins.PublishingPlugin
-import org.gradle.api.publish.tasks.GenerateModuleMetadata
-import org.gradle.api.tasks.SourceSetContainer
-import org.gradle.jvm.tasks.Jar
-import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
@@ -18,33 +12,12 @@ import org.gradle.plugins.signing.SigningExtension
 class PublishToMavenCentralPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         target.plugins.apply("maven-publish")
-        target.plugins.apply("signing")
+
+        val isReleaseMode = !(target.version as String).endsWith("-SNAPSHOT")
+
+        setupSigning(target)
 
         target.afterEvaluate {
-            val ossrhUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME")
-            val ossrhPassword = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD")
-            val signingKey = target.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII")
-            val signingPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE")
-
-            val releaseMode = !(target.version as String).endsWith("-SNAPSHOT")
-
-            target.extensions.configure(SigningExtension::class.java) {
-                @Suppress("UnstableApiUsage")
-                useInMemoryPgpKeys(signingKey, signingPassword)
-                target.extensions.findByType(PublishingExtension::class.java)?.publications?.all {
-                    if (signingKey != null && signingPassword != null) { // for local development, If missing in CI it will fail later on deploy so we would notice the issue then
-                        sign(this)
-
-                        target
-                            .tasks
-                            .filter { task -> task.group == "publishing" && task.name.startsWith("publish") }
-                            .forEach { task ->
-                                task.dependsOn(target.tasks.withType(Sign::class.java))
-                            }
-                    }
-                }
-            }
-
             target.extensions.getByType(JavaPluginExtension::class).apply {
                 withJavadocJar()
                 withSourcesJar()
@@ -53,17 +26,12 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
             target.extensions.configure(PublishingExtension::class.java) {
                 repositories {
                     maven {
-                        val targetRepo = if (releaseMode) {
+                        val targetRepo = if (isReleaseMode) {
                             "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
                         } else {
                             "https://s01.oss.sonatype.org/content/repositories/snapshots/"
                         }
                         setUrl(targetRepo)
-
-                        credentials {
-                            username = ossrhUser
-                            password = ossrhPassword
-                        }
                     }
                 }
                 publications {
@@ -118,6 +86,43 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setupSigning(target: Project) {
+        val ossrhUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME")
+        val ossrhPassword = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD")
+        val signingKey = target.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII")
+        val signingPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE")
+
+        if (signingKey != null && signingPassword != null) { // for local development, If missing in CI it will fail later on deploy so we would notice the issue then
+            target.plugins.apply("signing")
+
+            target.extensions.configure(SigningExtension::class.java) {
+                @Suppress("UnstableApiUsage")
+                useInMemoryPgpKeys(signingKey, signingPassword)
+                target.extensions.findByType(PublishingExtension::class.java)?.publications?.all {
+                    sign(this)
+
+                    target
+                        .tasks
+                        .filter { task -> task.group == "publishing" && task.name.startsWith("publish") }
+                        .forEach { task ->
+                            task.dependsOn(target.tasks.withType(Sign::class.java))
+                        }
+                }
+            }
+
+            target.extensions.configure(PublishingExtension::class.java) {
+                repositories {
+                    maven {
+                        credentials {
+                            username = ossrhUser
+                            password = ossrhPassword
                         }
                     }
                 }
