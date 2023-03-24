@@ -45,6 +45,11 @@ tasks {
         exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
         finalizedBy(copyBootstrapJar)
     }
+
+    // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
+    withType<Jar> {
+        dependsOn(generateAPI)
+    }
 }
 
 publishing {

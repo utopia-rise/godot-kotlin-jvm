@@ -25,6 +25,6 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation(kotlin("gradle-plugin", version = "1.7.20"))
+    implementation(kotlin("gradle-plugin", version = "1.8.10"))
     implementation("org.ajoberstar.grgit:grgit-gradle:4.1.1")
 }

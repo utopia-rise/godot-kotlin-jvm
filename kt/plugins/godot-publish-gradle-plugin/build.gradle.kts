@@ -1,5 +1,8 @@
+import godot.dependencies.gradle.DependenciesVersions
+
 plugins {
     `kotlin-dsl`
+    id("com.utopia-rise.godot-dependencies")
 }
 
 buildscript {
@@ -25,5 +28,5 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation(kotlin("gradle-plugin", version = "1.7.20"))
+    implementation(kotlin("gradle-plugin", version = DependenciesVersions.supportedKotlinVersion))
 }

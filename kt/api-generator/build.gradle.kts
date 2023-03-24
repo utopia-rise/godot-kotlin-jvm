@@ -28,7 +28,7 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation(kotlin("gradle-plugin", version = "1.7.20"))
+    implementation(kotlin("gradle-plugin", version = DependenciesVersions.supportedKotlinVersion))
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${DependenciesVersions.jacksonDatabindVersion}")
