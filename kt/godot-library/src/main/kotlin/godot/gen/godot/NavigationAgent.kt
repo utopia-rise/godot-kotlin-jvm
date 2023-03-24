@@ -33,6 +33,8 @@ import kotlin.Unit
  * 3D agent that is used in navigation to reach a location while avoiding static and dynamic obstacles. The dynamic obstacles are avoided using RVO (Reciprocal Velocity Obstacles) collision avoidance. The agent needs navigation data to work correctly. By default this node will register to the default [godot.World] navigation map. If this node is a child of a [godot.Navigation] node it will register to the navigation map of the navigation node or the function [setNavigation] can be used to set the navigation node directly. [godot.NavigationAgent] is physics safe.
  *
  * **Note:** After [setTargetLocation] is used it is required to use the [getNextLocation] function once every physics frame to update the internal path logic of the NavigationAgent. The returned vector position from this function should be used as the next movement position for the agent's parent Node.
+ *
+ * **Note:** By default, the expensive calculations for avoidance are done in a thread. In HTML5 exports without thread support, they will be done on the main thread, which can lead to performance issues.
  */
 @GodotBaseType
 public open class NavigationAgent : Node() {

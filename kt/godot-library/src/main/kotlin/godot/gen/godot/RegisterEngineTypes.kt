@@ -12380,6 +12380,10 @@ private fun registerEngineTypeMethodForVisualInstance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "set_layer_mask_bit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "get_layer_mask")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "set_layer_mask")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "get_sorting_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "set_sorting_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "is_sorting_use_aabb_center")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "set_sorting_use_aabb_center")
 }
 
 private fun registerEngineTypeMethodForVisualScript(): Unit {
