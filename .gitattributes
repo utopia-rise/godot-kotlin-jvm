@@ -1,1 +1,2 @@
 kt/godot-library/src/main/kotlin/godot/gen/godot/*.kt    linguist-generated=true
+harness/tests/.godot/**/*    linguist-generated=true

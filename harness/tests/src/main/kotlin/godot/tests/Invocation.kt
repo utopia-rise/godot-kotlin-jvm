@@ -394,7 +394,7 @@ class Invocation : Node3D() {
 		name = "TestName".asStringName()
 		println("Name is: $name")
 		name = formerName
-		val test = DateTime.now() //external dependency to test dependency inclusion in dummyCompilation
+		val test = DateTime.now() //external dependency to test dependency inclusion in main compilation
 
 		val getNode = getNodeAs<Button>("CanvasLayer/Button")
 

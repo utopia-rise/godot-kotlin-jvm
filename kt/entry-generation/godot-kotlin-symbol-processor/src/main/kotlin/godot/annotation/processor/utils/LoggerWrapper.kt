@@ -3,7 +3,7 @@ package godot.annotation.processor.utils
 import com.google.devtools.ksp.processing.KSPLogger
 import godot.entrygenerator.utils.Logger
 
-class LoggerWrapper(
+internal class LoggerWrapper(
     private val kspLogger: KSPLogger
 ) : Logger {
     override fun logging(message: String) = kspLogger.logging(message)

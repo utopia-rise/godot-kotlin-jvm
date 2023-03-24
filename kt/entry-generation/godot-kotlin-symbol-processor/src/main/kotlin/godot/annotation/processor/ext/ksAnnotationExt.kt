@@ -46,12 +46,12 @@ import godot.entrygenerator.model.Sync
 import godot.entrygenerator.model.ToolAnnotation
 import godot.entrygenerator.model.TransferMode
 
-val KSAnnotation.fqNameUnsafe: String
+internal val KSAnnotation.fqNameUnsafe: String
     get() = requireNotNull(this.annotationType.resolve().declaration.qualifiedName?.asString()) {
         "$this has no resolvable fqName"
     }
 
-val KSAnnotation.rangeEnum: Range
+internal val KSAnnotation.rangeEnum: Range
     get() = ((arguments.firstOrNull { it.name?.asString() == "or" }?.value ?: arguments[3].value) as? KSType)
         ?.declaration
         ?.qualifiedName
@@ -65,21 +65,21 @@ val KSAnnotation.rangeEnum: Range
             }
         } ?: Range.NONE
 
-val KSAnnotation.rpcModeEnum: RpcMode
+internal val KSAnnotation.rpcModeEnum: RpcMode
     get() = when (((arguments.firstOrNull { it.name?.asString() == "rpcMode" }?.value ?: arguments[0].value) as? KSType)?.declaration?.qualifiedName?.asString()) {
         "${godot.annotation.RpcMode.ANY::class.qualifiedName}.${godot.annotation.RpcMode.ANY.name}" -> RpcMode.ANY
         "${godot.annotation.RpcMode.AUTHORITY::class.qualifiedName}.${godot.annotation.RpcMode.AUTHORITY.name}" -> RpcMode.AUTHORITY
         else -> RpcMode.DISABLED
     }
 
-val KSAnnotation.rpcSyncEnum: Sync
+internal val KSAnnotation.rpcSyncEnum: Sync
     get() = when (((arguments.firstOrNull { it.name?.asString() == "sync" }?.value ?: arguments[1].value) as? KSType)?.declaration?.qualifiedName?.asString()) {
         "${godot.annotation.Sync.SYNC::class.qualifiedName}.${godot.annotation.Sync.SYNC.name}" -> Sync.SYNC
         "${godot.annotation.Sync.NO_SYNC::class.qualifiedName}.${godot.annotation.Sync.NO_SYNC.name}" -> Sync.NO_SYNC
         else -> Sync.NO_SYNC
     }
 
-val KSAnnotation.rpcTransferModeEnum: TransferMode
+internal val KSAnnotation.rpcTransferModeEnum: TransferMode
     get() = when (((arguments.firstOrNull { it.name?.asString() == "transferMode" }?.value ?: arguments[2].value) as? KSType)?.declaration?.qualifiedName?.asString()) {
         "${godot.annotation.TransferMode.RELIABLE::class.qualifiedName}.${godot.annotation.TransferMode.RELIABLE.name}" -> TransferMode.RELIABLE
         "${godot.annotation.TransferMode.UNRELIABLE::class.qualifiedName}.${godot.annotation.TransferMode.UNRELIABLE.name}" -> TransferMode.UNRELIABLE
@@ -87,10 +87,10 @@ val KSAnnotation.rpcTransferModeEnum: TransferMode
         else -> TransferMode.RELIABLE
     }
 
-val KSAnnotation.rpcChannel: Int
+internal val KSAnnotation.rpcChannel: Int
     get() = (arguments.firstOrNull { it.name?.asString() == "transferChannel" }?.value ?: arguments[3].value) as Int
 
-fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotation? {
+internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotation? {
     return when (fqNameUnsafe) {
         RegisterClass::class.qualifiedName -> RegisterClassAnnotation(
             arguments.first().value as? String

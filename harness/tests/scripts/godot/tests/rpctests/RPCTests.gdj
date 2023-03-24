@@ -1,0 +1,21 @@
+// THIS FILE IS GENERATED! DO NOT EDIT, MOVE OR DELETE IT. EDIT, MOVE OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+
+registeredName = RPCTests
+fqName = godot.tests.rpctests.RpcTests
+baseType = Node
+supertypes = [
+    godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    
+]
+properties = [
+    remote_sync_called
+]
+functions = [
+    remote_sync_test,
+	trigger_function_remote_sync_call
+]

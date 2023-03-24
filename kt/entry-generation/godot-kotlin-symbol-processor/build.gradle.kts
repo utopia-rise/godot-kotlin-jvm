@@ -1,4 +1,6 @@
 import godot.dependencies.gradle.DependenciesVersions
+import godot.dependencies.gradle.fullGodotKotlinJvmVersion
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
@@ -11,6 +13,7 @@ repositories {
 }
 
 dependencies {
+    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     implementation(project(":godot-library"))
     implementation(project(":godot-entry-generator"))
 
@@ -30,6 +33,17 @@ publishing {
             artifactId = project.name
             description = "Godot Kotlin symbol processor"
             from(components.getByName("java"))
+        }
+    }
+}
+
+
+tasks {
+    withType(KotlinCompile::class.java) {
+        kotlinOptions {
+            freeCompilerArgs += listOf(
+                    "-opt-in=com.google.devtools.ksp.KspExperimental" // needed for resolve by package path
+            )
         }
     }
 }

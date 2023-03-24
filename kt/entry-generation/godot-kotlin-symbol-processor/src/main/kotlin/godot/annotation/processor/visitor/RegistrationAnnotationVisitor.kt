@@ -9,14 +9,19 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.ext.fqNameUnsafe
+import godot.annotation.processor.ext.hasCompilationErrors
 import godot.annotation.processor.ext.mapToClazz
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
 
-class RegistrationAnnotationVisitor(
-    private val projectBasePath: String,
-    private val registeredClassToKSFileMap: MutableMap<RegisteredClass, KSFile>,
-    private val sourceFilesContainingRegisteredClasses: MutableList<SourceFile>
+/**
+ * Collects [RegisterClass], [RegisterConstructor], [RegisterFunction], [RegisterProperty], [RegisterSignal] annotations
+ * for registrar generation and entry generation
+ */
+internal class RegistrationAnnotationVisitor(
+    private val isFqNameRegistrationEnabled: Boolean,
+    private val classNamePrefix: String?,
+    private val localResourcePathProvider: (fqName: String, registeredName: String) -> String,
 ) : KSVisitorVoid() {
 
     private val registerAnnotations = listOf(
@@ -27,6 +32,12 @@ class RegistrationAnnotationVisitor(
         RegisterSignal::class.qualifiedName!!
     )
 
+    private val _registeredClassToKSFileMap: MutableMap<RegisteredClass, KSFile> = mutableMapOf()
+    val registeredClassToKSFileMap: Map<RegisteredClass, KSFile> = _registeredClassToKSFileMap
+
+    private val _sourceFilesContainingRegisteredClasses: MutableList<SourceFile> = mutableListOf()
+    val sourceFilesContainingRegisteredClasses: List<SourceFile> = _sourceFilesContainingRegisteredClasses
+
     override fun visitFile(file: KSFile, data: Unit) {
         val absolutePath = file.filePath
         val registeredClasses = file
@@ -34,10 +45,14 @@ class RegistrationAnnotationVisitor(
             .mapNotNull { declaration ->
                 when (declaration) {
                     is KSClassDeclaration -> {
-                        val clazz = declaration.mapToClazz(projectBasePath)
-                        if (clazz is RegisteredClass) {
-                            clazz
-                        } else null
+                        if (declaration.hasCompilationErrors()) {
+                            null
+                        } else {
+                            val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, localResourcePathProvider)
+                            if (clazz is RegisteredClass) {
+                                clazz
+                            } else null
+                        }
                     }
                     else -> if (declaration.annotations.any { registerAnnotations.contains(it.fqNameUnsafe) }) {
                         throw IllegalStateException("${declaration.qualifiedName} was registered top level. Only classes can be registered top level.")
@@ -47,12 +62,12 @@ class RegistrationAnnotationVisitor(
                 }
             }
             .onEach { registeredClass ->
-                registeredClassToKSFileMap[registeredClass] = file
+                _registeredClassToKSFileMap[registeredClass] = file
             }
             .toList()
 
         if (registeredClasses.isNotEmpty()) {
-            sourceFilesContainingRegisteredClasses.add(
+            _sourceFilesContainingRegisteredClasses.add(
                 SourceFile(
                     absolutePath,
                     registeredClasses

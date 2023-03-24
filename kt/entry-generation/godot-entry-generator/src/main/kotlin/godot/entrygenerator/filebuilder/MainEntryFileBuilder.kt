@@ -5,13 +5,10 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import godot.entrygenerator.model.RegisteredClass
 import godot.tools.common.constants.*
 import java.io.BufferedWriter
+import java.io.File
 import kotlin.reflect.KClass
 
 object MainEntryFileBuilder {
-    private val entryFileSpec = FileSpec
-        .builder(godotEntryBasePackage, "Entry")
-        .addFileComment(GENERATED_COMMENT)
-
     private val initFunctionSpec = FunSpec
         .builder("init")
         .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
@@ -21,9 +18,9 @@ object MainEntryFileBuilder {
         .builder("initEngineTypes")
         .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
         .addModifiers(KModifier.OVERRIDE)
-        .addStatement("%M()", MemberName(godotEntryBasePackage, "registerVariantMapping"))
-        .addStatement("%M()", MemberName(godotEntryBasePackage, "registerEngineTypes"))
-        .addStatement("%M()", MemberName(godotEntryBasePackage, "registerEngineTypeMethods"))
+        .addStatement("%M()", MemberName(godotApiPackage, "registerVariantMapping"))
+        .addStatement("%M()", MemberName(godotApiPackage, "registerEngineTypes"))
+        .addStatement("%M()", MemberName(godotApiPackage, "registerEngineTypeMethods"))
 
     private val registerUserTypesVariantMappingsFunSpec = FunSpec
         .builder("getRegisteredClasses")
@@ -38,15 +35,33 @@ object MainEntryFileBuilder {
                 )
         )
 
-    fun build(outAppendable: () -> BufferedWriter) {
+    private val userScriptResourcePathPrefixPropertySpec = PropertySpec
+        .builder("userScriptResourcePathPrefix", String::class.asTypeName())
+        .addModifiers(KModifier.OVERRIDE)
+
+    private val classRegistrarCountPropertySpec = PropertySpec
+        .builder("classRegistrarCount", Int::class.asTypeName())
+        .addModifiers(KModifier.OVERRIDE)
+
+    private val projectNamePropertySpec = PropertySpec
+        .builder("projectName", String::class.asTypeName())
+        .addModifiers(KModifier.OVERRIDE)
+
+    fun build(randomPackageForEntryFile: String, outAppendable: () -> BufferedWriter) {
+        val entryFileSpec = FileSpec
+            .builder(randomPackageForEntryFile, "Entry")
+            .addFileComment(GENERATED_COMMENT)
 
         entryFileSpec.addType(
             TypeSpec
-                .classBuilder(ClassName(godotEntryBasePackage, GodotKotlinJvmTypes.entry))
+                .classBuilder(ClassName("$godotEntryBasePackage.$randomPackageForEntryFile", GodotKotlinJvmTypes.entry))
                 .superclass(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.entry))
                 .addFunction(initFunctionSpec.build())
                 .addFunction(initEngineTypesFunSpec.build())
                 .addFunction(registerUserTypesVariantMappingsFunSpec.build())
+                .addProperty(userScriptResourcePathPrefixPropertySpec.build())
+                .addProperty(classRegistrarCountPropertySpec.build())
+                .addProperty(projectNamePropertySpec.build())
                 .build()
         )
         outAppendable().use {
@@ -70,6 +85,35 @@ object MainEntryFileBuilder {
             "return %M(${listOfArguments.joinToString { "%T::class" }})",
             KOTLIN_LIST_OF,
             *listOfArguments.toTypedArray()
+        )
+    }
+
+    fun registerUserScriptsResourcePathPrefix(userScriptsResourcePathPrefix: String) {
+        val resDir = userScriptsResourcePathPrefix
+            .replace(File.separator, "/")
+            .removePrefix("/")
+            .removeSuffix("/")
+            .let { resPath ->
+                if (resPath.startsWith("res://")) {
+                    resPath
+                } else {
+                    "res://$resPath"
+                }
+            }
+        userScriptResourcePathPrefixPropertySpec.initializer(
+            "%S",
+            resDir
+        )
+    }
+
+    fun registerProjectName(projectName: String) {
+        projectNamePropertySpec.initializer("%S", projectName)
+    }
+
+    fun registerClassRegistrarCount(classRegistrarFromCurrentCompilationCount: Int, classRegistrarFromDependencyCount: Int) {
+        classRegistrarCountPropertySpec.initializer(
+            "%L",
+            classRegistrarFromCurrentCompilationCount + classRegistrarFromDependencyCount
         )
     }
 }

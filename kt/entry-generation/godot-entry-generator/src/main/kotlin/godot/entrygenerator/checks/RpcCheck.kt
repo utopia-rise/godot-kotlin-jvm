@@ -7,7 +7,7 @@ import godot.entrygenerator.model.TransferMode
 import godot.entrygenerator.utils.Logger
 
 class RpcCheck(logger: Logger, sourceFiles: List<SourceFile>): BaseCheck(logger, sourceFiles) {
-    override fun execute() {
+    override fun execute(): Boolean {
         sourceFiles
             .flatMap { it.registeredClasses }
             .flatMap { it.functions }
@@ -19,5 +19,7 @@ class RpcCheck(logger: Logger, sourceFiles: List<SourceFile>): BaseCheck(logger,
                     logger.warn("You set \"transferChannel\" to something else than 0 (you set: ${rpcAnnotation.transferChannel}) while the \"transferMode\" is not set to ${TransferMode.UNRELIABLE_ORDERED.name}. \"transferChannel\" only has an effect with \"transferMode\" ${TransferMode.UNRELIABLE_ORDERED.name}! Found in function: ${registeredFunction.fqName}")
                 }
             }
+
+        return false // just provides warnings
     }
 }

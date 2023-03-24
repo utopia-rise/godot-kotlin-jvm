@@ -8,7 +8,6 @@ import org.gradle.api.tasks.TaskProvider
 fun Project.packageMainJarTask(
     createBuildLockTask: TaskProvider<out Task>,
     deleteBuildLockTask: TaskProvider<out Task>,
-    generateEntryServiceFileTask: TaskProvider<out Task>
 ): TaskProvider<out Task> {
     return tasks.named("shadowJar", ShadowJar::class.java) {
         with(it) {
@@ -19,6 +18,10 @@ fun Project.packageMainJarTask(
             archiveVersion.set("")
             archiveClassifier.set("")
 
+            // merges all service files from all dependencies into on
+            // needed so we can loop over and load all entry files from within Bootstrap.kt
+            mergeServiceFiles()
+
             dependencies {
                 it.exclude(it.dependency("org.jetbrains.kotlin:kotlin-stdlib.*"))
                 it.exclude(it.dependency("com.utopia-rise:godot-library:.*"))
@@ -26,7 +29,6 @@ fun Project.packageMainJarTask(
 
             dependsOn(
                 createBuildLockTask,
-                generateEntryServiceFileTask
             )
             finalizedBy(deleteBuildLockTask)
         }

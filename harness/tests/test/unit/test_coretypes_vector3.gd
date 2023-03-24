@@ -2,7 +2,7 @@ extends "res://addons/gut/test.gd"
 
 
 func test_operator_get_on_jvm_side_should_return_right_axis():
-	var vector3_test = godot_tests_coretypes_Vector3Test.new()
+	var vector3_test = Vector3Test.new()
 	var engine_vector = Vector3(1, 2, 3)
 	var jvm_vector = Vector3(1, 2, 3)
 	assert_eq(engine_vector[0], vector3_test.get_from_vector3(jvm_vector, 0), "Vector3 operator get on jvm side should act the same as gdscript one.")
@@ -11,7 +11,7 @@ func test_operator_get_on_jvm_side_should_return_right_axis():
 	vector3_test.free()
 
 func test_operator_set_on_jvm_side_should_set_right_axis():
-	var vector3_test = godot_tests_coretypes_Vector3Test.new()
+	var vector3_test = Vector3Test.new()
 	var engine_vector = Vector3(1, 2, 3)
 	var jvm_vector = Vector3(1, 2, 3)
 	engine_vector[0] = 10

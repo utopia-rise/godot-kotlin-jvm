@@ -7,7 +7,6 @@ import godot.gradle.tasks.android.packageBootstrapDexJarTask
 import godot.gradle.tasks.android.packageMainDexJarTask
 import godot.gradle.tasks.createBuildLockTask
 import godot.gradle.tasks.deleteBuildLockTask
-import godot.gradle.tasks.generateEntryServiceFileTask
 import godot.gradle.tasks.graal.checkNativeImageToolAccessibleTask
 import godot.gradle.tasks.graal.checkPresenceOfDefaultGraalJniConfigTask
 import godot.gradle.tasks.graal.createGraalNativeImageTask
@@ -22,15 +21,13 @@ fun Project.setupTasks() {
         with(it) {
             val createBuildLockTask = createBuildLockTask()
             val deleteBuildLockTask = deleteBuildLockTask()
-            val generateEntryServiceFileTask = generateEntryServiceFileTask()
             val packageBootstrapJarTask = packageBootstrapJarTask(
                 createBuildLockTask = createBuildLockTask,
                 deleteBuildLockTask = deleteBuildLockTask
             )
             val packageMainJarTask = packageMainJarTask(
                 createBuildLockTask = createBuildLockTask,
-                deleteBuildLockTask = deleteBuildLockTask,
-                generateEntryServiceFileTask = generateEntryServiceFileTask
+                deleteBuildLockTask = deleteBuildLockTask
             )
 
             // START: android specific tasks
@@ -68,7 +65,6 @@ fun Project.setupTasks() {
                 createBuildLockTask = createBuildLockTask,
                 packageBootstrapJarTask = packageBootstrapJarTask,
                 packageMainJarTask = packageMainJarTask,
-                generateEntryServiceFileTask = generateEntryServiceFileTask,
                 deleteBuildLockTask = deleteBuildLockTask,
                 packageBootstrapDexJarTask = packageBootstrapDexJarTask,
                 packageMainDexJarTask = packageMainDexJarTask,

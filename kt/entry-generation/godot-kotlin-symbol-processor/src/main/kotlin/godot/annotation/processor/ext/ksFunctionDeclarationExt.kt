@@ -7,7 +7,7 @@ import godot.entrygenerator.model.FunctionAnnotation
 import godot.entrygenerator.model.RegisteredConstructor
 import godot.entrygenerator.model.RegisteredFunction
 
-fun KSFunctionDeclaration.mapToRegisteredConstructor(): RegisteredConstructor {
+internal fun KSFunctionDeclaration.mapToRegisteredConstructor(): RegisteredConstructor {
     return RegisteredConstructor(
         requireNotNull(qualifiedName?.asString() ?: parentDeclaration?.qualifiedName?.asString()) {
             "Qualified name for a registered constructor declaration cannot be null"
@@ -22,7 +22,7 @@ fun KSFunctionDeclaration.mapToRegisteredConstructor(): RegisteredConstructor {
 }
 
 
-fun KSFunctionDeclaration.mapToRegisteredFunction(): RegisteredFunction? {
+internal fun KSFunctionDeclaration.mapToRegisteredFunction(): RegisteredFunction? {
     return if (annotations.any { it.fqNameUnsafe == RegisterFunction::class.qualifiedName }) {
         val fqName = requireNotNull(qualifiedName?.asString()) {
             "Qualified name for a registered function declaration cannot be null"

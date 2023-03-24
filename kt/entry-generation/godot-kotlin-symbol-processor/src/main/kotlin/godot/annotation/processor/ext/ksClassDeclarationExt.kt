@@ -10,45 +10,24 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.annotation.processor.compiler.CompilerDataProvider
 import godot.entrygenerator.model.ClassAnnotation
 import godot.entrygenerator.model.Clazz
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredFunction
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.RegisteredSignal
-import java.io.File
 
-fun KSClassDeclaration.getResPath(srcDirs: List<String>, projectDir: String): String = containingFile
-    ?.filePath
-    ?.let { filePath ->
-        val srcDir = requireNotNull(
-            srcDirs
-                .map { it.replace(File.separator, "/") }
-                .filter { srcDir ->
-                    filePath.contains(srcDir)
-                }
-                .maxByOrNull { it.length }
-                ?.removePrefix(projectDir)
-                ?.replace(File.separator, "/")
-                ?.removePrefix("/")
-                ?.removeSuffix("/")
-        )
-
-        val relativeFilePath = filePath
-            .substringAfterLast(srcDir)
-            .removePrefix("/")
-
-        "res://$srcDir/$relativeFilePath"
-    } ?: throw IllegalStateException("Cannot get res path for declaration: ${qualifiedName?.asString()}")
-
-fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
+internal fun KSClassDeclaration.mapToClazz(
+    isFqNameRegistrationEnabled: Boolean,
+    classNamePrefix: String?,
+    localResourcePathProvider: (fqName: String, registeredName: String) -> String,
+): Clazz {
     val fqName = requireNotNull(qualifiedName?.asString()) {
         "Qualified name for class declaration of a registered type or it's super types cannot be null! KSClassDeclaration: $this"
     }
     val supertypeDeclarations = getAllSuperTypes()
         .mapNotNull { it.declaration as? KSClassDeclaration } //we're only interested in classes not interfaces
-        .map { it.mapToClazz(projectDir) }
+        .map { it.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, localResourcePathProvider) }
         .toList()
     val mappedAnnotations = annotations
         .mapNotNull { it.mapToAnnotation(this) as? ClassAnnotation }
@@ -66,7 +45,7 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
                 property.findOverridee()?.annotations?.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } == true
         }
         .map {
-            it.mapToRegisteredProperty(declaredProperties.toList())
+            it.mapToRegisteredProperty()
         }
         .toList()
     val registeredSignals = allProperties
@@ -94,13 +73,15 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
         RegisteredClass(
             fqName = fqName,
             supertypes = supertypeDeclarations,
-            resPath = getResPath(CompilerDataProvider.srcDirs, projectDir),
+            localResourcePathProvider = { localResourcePathProvider(fqName, registeredName) },
             annotations = mappedAnnotations,
             constructors = registeredConstructors,
             functions = registeredFunctions,
             signals = registeredSignals,
             properties = registeredProperties,
-            isAbstract = isAbstract()
+            isAbstract = isAbstract(),
+            isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
+            classNamePrefix = classNamePrefix
         )
     } else {
         Clazz(
@@ -111,7 +92,7 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
     }
 }
 
-fun KSClassDeclaration.isAbstractAndContainsRegisteredMembers(
+internal fun KSClassDeclaration.isAbstractAndContainsRegisteredMembers(
     registeredFunctions: List<RegisteredFunction>,
     registeredProperties: List<RegisteredProperty>,
     registeredSignals: List<RegisteredSignal>
@@ -121,7 +102,7 @@ fun KSClassDeclaration.isAbstractAndContainsRegisteredMembers(
 
 // issue: https://github.com/utopia-rise/godot-kotlin-jvm/issues/365
 // also register empty abstract classes which inherit from a godot base class as child class registrars will reference the class registrar of this class
-fun KSClassDeclaration.isAbstractAndInheritsGodotBaseClass(): Boolean {
+internal fun KSClassDeclaration.isAbstractAndInheritsGodotBaseClass(): Boolean {
     return isAbstract()
         && superTypes
         .any { supertype ->

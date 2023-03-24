@@ -1,19 +1,12 @@
 package godot.annotation.processor
 
 import com.google.devtools.ksp.processing.CodeGenerator
-import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
-import com.google.devtools.ksp.symbol.KSFile
 import godot.annotation.processor.compiler.CompilerDataProvider
-import godot.annotation.processor.utils.JvmTypeProvider
-import godot.annotation.processor.utils.LoggerWrapper
-import godot.annotation.processor.visitor.RegistrationAnnotationVisitor
-import godot.entrygenerator.EntryGenerator
-import godot.entrygenerator.model.RegisteredClass
-import godot.entrygenerator.model.SourceFile
+import godot.annotation.processor.processing.*
 import java.io.File
 
 /**
@@ -27,63 +20,75 @@ class GodotKotlinSymbolProcessor(
     private val codeGenerator: CodeGenerator,
     private val logger: KSPLogger
 ) : SymbolProcessor {
-    private val registeredClassToKSFileMap = mutableMapOf<RegisteredClass, KSFile>()
-    private val sourceFilesContainingRegisteredClasses = mutableListOf<SourceFile>()
-
-    private lateinit var projectBasePath: String
+    private lateinit var settings: Settings
+    private val processingRoundsBlackboard = ProcessingRoundsBlackboard()
+    private var processingRound = -1
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        CompilerDataProvider.init(
-            resolver,
-            options["srcDirs"]
-                ?.split(File.pathSeparator)
-                ?: throw IllegalStateException("No srcDirs option provided")
-        )
-        projectBasePath = options["projectBasePath"]
-            ?: throw IllegalStateException("No projectBasePath option provided")
-
-        val registerAnnotationVisitor = RegistrationAnnotationVisitor(
-            projectBasePath,
-            registeredClassToKSFileMap,
-            sourceFilesContainingRegisteredClasses
-        )
-
-        resolver.getAllFiles().toList().map {
-            it.accept(registerAnnotationVisitor, Unit)
+        processingRound++
+        if (processingRound == 0) {
+            CompilerDataProvider.init(
+                resolver,
+                options["srcDirs"]
+                    ?.split(File.pathSeparator)
+                    ?: throw IllegalStateException("No srcDirs option provided")
+            )
+            settings = provideSettingsFromArguments()
         }
-        return emptyList()
+
+        val currentProcessingRound = ProcessingRound.values().getOrNull(processingRound)
+            ?: return emptyList<KSAnnotated>().also {
+                logger.warn("Unexpected processing round: $processingRound. Only expecting ${ProcessingRound.values().size} rounds. No op.")
+            }
+        logger.info("Current processing round: $currentProcessingRound")
+
+        return when (currentProcessingRound) {
+            ProcessingRound.GENERATE_REGISTRARS_FOR_THIS_PROJECT_AND_REGISTRATION_FILES_FOR_DEPENDENCIES -> RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistrationFiles(
+                blackboard = processingRoundsBlackboard,
+                resolver = resolver,
+                codeGenerator = codeGenerator,
+                logger = logger,
+                settings = settings
+            )
+
+            ProcessingRound.GENERATE_REGISTRATION_FILES_FOR_REGISTRARS -> RoundGenerateRegistrationFilesForCurrentCompilation(
+                blackboard = processingRoundsBlackboard,
+                resolver = resolver,
+                codeGenerator = codeGenerator,
+                logger = logger,
+                settings = settings
+            )
+
+            ProcessingRound.UPDATE_REGISTRATION_FILES -> RoundUpdateRegistrationFiles(
+                blackboard = processingRoundsBlackboard,
+                resolver = resolver,
+                codeGenerator = codeGenerator,
+                logger = logger,
+                settings = settings
+            )
+        }.execute()
     }
 
-    override fun finish() {
-        super.finish()
-        EntryGenerator.generateEntryFiles(
-            projectDir = projectBasePath,
-            srcDirs = CompilerDataProvider.srcDirs,
-            logger = LoggerWrapper(logger),
-            sourceFiles = sourceFilesContainingRegisteredClasses,
-            jvmTypeFqNamesProvider = JvmTypeProvider(),
-            appendableProvider = { registeredClass ->
-                codeGenerator.createNewFile(
-                    Dependencies(
-                        false,
-                        requireNotNull(registeredClassToKSFileMap[registeredClass]) {
-                            "No KSFile found for $registeredClass. This should never happen"
-                        }
-                    ),
-                    "godot.${registeredClass.containingPackage}",
-                    "${registeredClass.name}Registrar"
-                ).bufferedWriter()
+    private fun provideSettingsFromArguments(): Settings {
+        return Settings(
+            projectName = options["projectName"] ?: throw IllegalStateException("No projectName option provided"),
+            projectBasePath = options["projectBasePath"]?.let { absolutePath -> File(absolutePath) }
+                ?: throw IllegalStateException("No projectBasePath option provided"),
+            registrationBaseDirPathRelativeToProjectDir = options["registrationFileBaseDir"]
+                ?: throw IllegalStateException("No registrationFileBaseDir option provided"),
+            classPrefix = options["classPrefix"]?.let { prefix ->
+                if (prefix == "null") {
+                    null
+                } else {
+                    prefix
+                }
             },
-            mainBufferedWriterProvider = {
-                codeGenerator.createNewFile(
-                    Dependencies(
-                        true,
-                        *registeredClassToKSFileMap.map { it.value }.toTypedArray()
-                    ),
-                    "godot",
-                    "Entry"
-                ).bufferedWriter()
-            }
+            isFqNameRegistrationEnabled = options["isFqNameRegistrationEnabled"]?.toBooleanStrictOrNull()
+                ?: throw IllegalStateException("No isFqNameRegistrationEnabled option provided or not a boolean"),
+            isRegistrationFileHierarchyEnabled = options["isRegistrationFileHierarchyEnabled"]?.toBooleanStrictOrNull()
+                ?: throw IllegalStateException("No isRegistrationFileHierarchyEnabled option provided or not a boolean"),
+            isRegistrationFileGenerationEnabled = options["isRegistrationFileGenerationEnabled"]?.toBooleanStrictOrNull()
+                ?: throw IllegalStateException("No isRegistrationFileGenerationEnabled option provided or not a boolean"),
         )
     }
 }

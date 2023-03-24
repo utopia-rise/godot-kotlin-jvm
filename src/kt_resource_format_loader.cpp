@@ -1,5 +1,6 @@
 #include "kt_resource_format_loader.h"
 
+#include "godotkotlin_defs.h"
 #include "kotlin_language.h"
 #include "kotlin_script.h"
 #include "logging.h"
@@ -57,5 +58,5 @@ bool KtResourceFormatLoader::handles_type(const String& p_type) const {
 }
 
 String KtResourceFormatLoader::get_resource_type(const String& p_path) const {
-    return p_path.get_extension().to_lower() == "kt" ? KotlinLanguage::get_instance()->get_type() : "";
+    return p_path.get_extension().to_lower() == GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION ? KotlinLanguage::get_instance()->get_type() : "";
 }

@@ -1,6 +1,7 @@
 #include "kotlin_language.h"
 
 #include "gd_kotlin.h"
+#include "godotkotlin_defs.h"
 #include "kotlin_script.h"
 
 #include <core/config/project_settings.h>
@@ -26,7 +27,7 @@ String KotlinLanguage::get_type() const {
 }
 
 String KotlinLanguage::get_extension() const {
-    return "kt";
+    return GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION;
 }
 
 void KotlinLanguage::finish() {
@@ -340,7 +341,7 @@ void KotlinLanguage::reload_all_scripts() {}
 void KotlinLanguage::reload_tool_script(const Ref<Script>& p_script, bool p_soft_reload) {}
 
 void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const {
-    p_extensions->push_back("kt");
+    p_extensions->push_back(GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION);
 }
 
 void KotlinLanguage::get_public_functions(List<MethodInfo>* p_functions) const {}

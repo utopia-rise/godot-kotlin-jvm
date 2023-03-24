@@ -31,4 +31,9 @@ internal object TypeManager {
     fun isUserType(className: String) = userTypes.contains(className)
 
     fun isEngineType(className: String) = engineTypeNames.contains(className)
+
+    fun clearUserTypes() {
+        userTypeToId.clear()
+        userTypes.clear()
+    }
 }

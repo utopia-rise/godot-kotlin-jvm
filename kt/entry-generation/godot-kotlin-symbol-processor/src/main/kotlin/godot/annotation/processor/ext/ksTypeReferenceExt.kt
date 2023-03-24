@@ -7,7 +7,7 @@ import com.google.devtools.ksp.symbol.KSTypeReference
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
 
-fun KSTypeReference.mapToType(): Type {
+internal fun KSTypeReference.mapToType(): Type {
     val resolvedType = resolve()
     val fqName = requireNotNull(resolvedType.declaration.qualifiedName?.asString()) {
         "resolvedType $resolvedType cannot have no fqName"

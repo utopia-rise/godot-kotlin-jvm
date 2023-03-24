@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 
 
 internal class Bootstrap {
-    private var registry: ClassRegistry? = null
+    private val classRegistries: MutableList<ClassRegistry> = mutableListOf()
     private lateinit var classloader: ClassLoader
     private lateinit var serviceLoader: ServiceLoader<Entry>
     private var executor: ScheduledExecutorService? = null
@@ -71,6 +71,7 @@ internal class Bootstrap {
                         }
                         info("Changes detected, reloading classes ...")
                         clearClassesCache()
+                        serviceLoader.reload()
 
                         if (File(mainJarPath.toString()).exists()) {
                             doInit(mainJarPath.toUri().toURL(), null) //no classloader so new main jar get's loaded
@@ -87,6 +88,7 @@ internal class Bootstrap {
         executor?.shutdown()
         watchService?.close()
         clearClassesCache()
+        serviceLoader.reload()
     }
 
     /**
@@ -97,7 +99,6 @@ internal class Bootstrap {
     }
 
     private fun doInit(mainJar: URL, classLoader: ClassLoader?) {
-        registry = ClassRegistry()
         classloader = classLoader ?: URLClassLoader(arrayOf(mainJar), this::class.java.classLoader)
         Thread.currentThread().contextClassLoader = classloader
         serviceLoader = ServiceLoader.load(Entry::class.java, classloader)
@@ -105,18 +106,40 @@ internal class Bootstrap {
     }
 
     private fun doInitGraal() {
-        registry = ClassRegistry()
         serviceLoader = ServiceLoader.load(Entry::class.java)
         initializeUsingEntry()
     }
 
     private fun initializeUsingEntry() {
         val entryIterator = serviceLoader.iterator()
-        if (entryIterator.hasNext()) {
-            with(entryIterator.next()) {
-                val context = Entry.Context(registry!!)
+        if (!entryIterator.hasNext()) {
+            err("Unable to find Entry class, no classes will be loaded")
+        }
 
-                if (!engineTypesRegistered) {
+        val entries = buildList {
+            while (entryIterator.hasNext()) {
+                add(entryIterator.next())
+            }
+        }
+
+        // the entry with the most class registrars is always the "main" entry. All other entries are from dependencies
+        // reason: the "main" compilation generates the registration files from all class registrars (its own AND all from dependencies). Hence, it will always be the one with the highest registrar count
+        val mainEntry = entries.maxBy { entry -> entry.classRegistrarCount }
+
+        entries.forEach { entry ->
+            val isMainEntry = entry == mainEntry
+
+            val registry = ClassRegistry(
+                projectName = entry.projectName,
+                isDependency = !isMainEntry,
+                baseResourcePath = mainEntry.userScriptResourcePathPrefix
+            )
+            classRegistries.add(registry)
+
+            val context = Entry.Context(registry)
+
+            with(entry) {
+                if (!engineTypesRegistered && isMainEntry) {
                     context.initEngineTypes()
                     for (clazz in context.getRegisteredClasses()) {
                         variantMapper[clazz] = VariantType.OBJECT
@@ -132,13 +155,18 @@ internal class Bootstrap {
 
                 context.init()
             }
-            loadClasses(registry!!.classes.toTypedArray())
-            registerUserTypesNames(TypeManager.userTypes.toTypedArray())
-            registerUserTypesMembers()
-        } else {
-            err("Unable to find Entry class, no classes will be loaded")
         }
+
+        val classes = classRegistries
+            .flatMap { registry -> registry.classes }
+            .toTypedArray()
+
+        // START: order matters!
+        loadClasses(classes)
+        registerUserTypesNames(TypeManager.userTypes.toTypedArray())
+        registerUserTypesMembers()
         forceJvmInitializationOfSingletons()
+        // END: order matters!
     }
 
     private fun getBuildLockDir(projectDir: String): File {
@@ -156,10 +184,13 @@ internal class Bootstrap {
     }
 
     private fun clearClassesCache() {
-        registry?.let {
-            unloadClasses(it.classes.toTypedArray())
-            it.classes.clear()
-        }
+        val classes = classRegistries
+            .flatMap { registry -> registry.classes }
+            .toTypedArray()
+
+        unloadClasses(classes)
+        classRegistries.clear()
+        TypeManager.clearUserTypes()
     }
 
     private fun forceJvmInitializationOfSingletons() {

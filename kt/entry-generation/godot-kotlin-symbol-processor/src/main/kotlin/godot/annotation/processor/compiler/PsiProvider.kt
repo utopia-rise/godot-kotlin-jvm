@@ -16,7 +16,7 @@ import java.io.File
  *
  * Abstracted here rather than in the entry gen to keep it independent of compiler and psi classes
  */
-object PsiProvider {
+internal object PsiProvider {
     fun provideSignalArgumentNames(signalFqName: String): List<String> {
         return requireNotNull(getPropertyInitializerExpression(signalFqName)) {
             "signal $signalFqName does not have an initializer expression"

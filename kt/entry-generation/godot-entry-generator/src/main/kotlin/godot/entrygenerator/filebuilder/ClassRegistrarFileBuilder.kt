@@ -1,10 +1,13 @@
 package godot.entrygenerator.filebuilder
 
+import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.asClassName
+import godot.annotation.RegisteredClassMetadata
 import godot.entrygenerator.generator.ConstructorRegistrationGenerator
 import godot.entrygenerator.generator.FunctionRegistrationGenerator
 import godot.entrygenerator.generator.PropertyRegistrationGenerator
@@ -17,12 +20,27 @@ import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
 
 class ClassRegistrarFileBuilder(
+    projectName: String,
     private val registeredClass: RegisteredClass,
-    private val appendableProvider: (RegisteredClass) -> BufferedWriter
+    private val registrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
 ) {
     private val classRegistrarBuilder = TypeSpec
-        .classBuilder("${registeredClass.name}Registrar")
+        .classBuilder("${registeredClass.registeredName}Registrar")
         .addModifiers(KModifier.OPEN)
+        .addAnnotation(
+            AnnotationSpec
+                .builder(RegisteredClassMetadata::class.asClassName())
+                .addMember("\"${registeredClass.registeredName}\"")
+                .addMember("\"${registeredClass.godotBaseClass}\"")
+                .addMember("\"${registeredClass.fqName}\"")
+                .addMember("\"${registeredClass.localResourcePathProvider(registeredClass)}\"")
+                .addMember("\"$projectName\"")
+                .addMember("\"${registeredClass.supertypes.joinToString(",") { it.fqName }}\"")
+                .addMember("\"${registeredClass.signals.joinToString(",") { it.fqName }}\"")
+                .addMember("\"${registeredClass.properties.joinToString(",") { it.fqName }}\"")
+                .addMember("\"${registeredClass.functions.joinToString(",") { it.fqName }}\"")
+                .build()
+        )
         .let { classBuilder ->
             if (registeredClass.isAbstract) {
                 classBuilder.addKdoc("Registrar for abstract class. Does not register any members as it's only used for default value providing if any properties with default values are provided in the abstract class. Members of this abstract class are registered by the inheriting registrars")
@@ -41,7 +59,7 @@ class ClassRegistrarFileBuilder(
                 funSpecBuilder.beginControlFlow(
                     "registerClass<%T>(%S,·%S,·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
                     className,
-                    registeredClass.resPath,
+                    registeredClass.localResourcePathProvider(registeredClass),
                     registeredClass.supertypes.first().fqName,
                     className,
                     registeredClass.godotBaseClass,
@@ -55,19 +73,9 @@ class ClassRegistrarFileBuilder(
 
 
     fun build(): Pair<String, Array<Any>> {
-        if (!registeredClass.directlyInheritsGodotBaseClass) {
-            val inheritedClass = registeredClass.supertypes.first()
-            classRegistrarBuilder.superclass(
-                ClassName(
-                    "$godotEntryBasePackage.${inheritedClass.containingPackage}",
-                    "${inheritedClass.name}Registrar"
-                )
-            )
-        } else {
-            classRegistrarBuilder.addSuperinterface(
-                ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistrar)
-            )
-        }
+        classRegistrarBuilder.addSuperinterface(
+            ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistrar)
+        )
 
         if (!registeredClass.isAbstract) {
             ConstructorRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
@@ -87,9 +95,9 @@ class ClassRegistrarFileBuilder(
                 .build()
         )
 
-        appendableProvider(registeredClass).use { bufferedWriter ->
+        registrarAppendableProvider(registeredClass).use { bufferedWriter ->
             FileSpec
-                .builder("$godotEntryBasePackage.${registeredClass.containingPackage}", "${registeredClass.name}Entry")
+                .builder(godotEntryBasePackage, "${registeredClass.registeredName}Entry")
                 .addFileComment(GENERATED_COMMENT)
                 .addType(classRegistrarBuilder.build())
                 .build()
@@ -98,8 +106,8 @@ class ClassRegistrarFileBuilder(
 
         return "%T().register(registry)" to arrayOf(
             ClassName(
-                "$godotEntryBasePackage.${registeredClass.containingPackage}",
-                "${registeredClass.name}Registrar"
+                godotEntryBasePackage,
+                "${registeredClass.registeredName}Registrar"
             )
         )
     }

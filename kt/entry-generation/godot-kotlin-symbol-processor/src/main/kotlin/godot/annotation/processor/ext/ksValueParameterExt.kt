@@ -3,7 +3,7 @@ package godot.annotation.processor.ext
 import com.google.devtools.ksp.symbol.KSValueParameter
 import godot.entrygenerator.model.ValueParameter
 
-fun KSValueParameter.mapToValueParameter(): ValueParameter {
+internal fun KSValueParameter.mapToValueParameter(): ValueParameter {
     val resolvedType = type.resolve()
     return ValueParameter(
         requireNotNull(name?.asString()) {

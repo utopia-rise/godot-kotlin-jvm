@@ -2,6 +2,7 @@ package godot.gradle.projectExt
 
 import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
 import com.google.devtools.ksp.gradle.KspGradleSubplugin
+import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
 import org.gradle.plugins.ide.idea.IdeaPlugin
 import java.io.File
@@ -29,6 +30,47 @@ fun Project.configureThirdPartyPlugins() {
             arg(
                 "projectBasePath",
                 projectDir.absolutePath.replace(File.separator, "/")
+            )
+            arg(
+                "projectName",
+                (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_")
+            )
+            arg(
+                "registrationFileBaseDir",
+                (
+                    godotJvmExtension
+                        .registrationFileBaseDir
+                        .orNull
+                        ?.asFile
+                        ?: projectDir
+                            .resolve(FileExtensions.GodotKotlinJvm.registrationFile)
+                            .apply {
+                                if (godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true)) {
+                                    mkdirs()
+                                }
+                            }
+                    )
+                    .relativeTo(projectDir)
+                    .path
+                    .replace(File.separator, "/")
+                    .removePrefix("/")
+                    .removeSuffix("/")
+            )
+            arg(
+                "classPrefix",
+                godotJvmExtension.classPrefix.orNull.toString()
+            )
+            arg(
+                "isRegistrationFileHierarchyEnabled",
+                godotJvmExtension.isRegistrationFileHierarchyEnabled.getOrElse(true).toString()
+            )
+            arg(
+                "isFqNameRegistrationEnabled",
+                godotJvmExtension.isFqNameRegistrationEnabled.getOrElse(false).toString()
+            )
+            arg(
+                "isRegistrationFileGenerationEnabled",
+                godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true).toString()
             )
         }
 

@@ -2,7 +2,7 @@ extends "res://addons/gut/test.gd"
 
 
 func test_pool_byte_array_add_delete() -> void:
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.packed_byte_array.size(), 0, "PackedByteArray should be empty")
 	invocation_script.add_byte_to_pool_array(2)
 	assert_eq(invocation_script.packed_byte_array.size(), 1, "PackedByteArray have one element")
@@ -26,7 +26,7 @@ func test_pool_byte_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_color_array_add_delete() -> void:
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.packed_color_array.size(), 0, "PackedColorArray should be empty")
 	invocation_script.add_color_to_pool_array(Color())
 	assert_eq(invocation_script.packed_color_array.size(), 1, "PackedColorArray have one element")
@@ -53,7 +53,7 @@ func test_pool_color_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_int_array_add_delete() -> void:
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.packed_int32_array.size(), 0, "PackedInt32Array should be empty")
 	invocation_script.add_int_to_pool_array(2)
 	assert_eq(invocation_script.packed_int32_array.size(), 1, "PackedInt32Array have one element")
@@ -80,7 +80,7 @@ func test_pool_int_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_real_array_add_delete() -> void:
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.packed_float64_array.size(), 0, "PackedFloat32Array should be empty")
 	invocation_script.add_real_to_pool_array(2.0)
 	assert_eq(invocation_script.packed_float64_array.size(), 1, "PackedFloat32Array have one element")
@@ -107,7 +107,7 @@ func test_pool_real_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_string_array_add_delete() -> void:
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.packed_string_array.size(), 0, "PackedStringArray should be empty")
 	invocation_script.add_string_to_pool_array("2")
 	assert_eq(invocation_script.packed_string_array.size(), 1, "PackedStringArray have one element")
@@ -134,7 +134,7 @@ func test_pool_string_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_vector2_array_add_delete() -> void:
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.packed_vector2_array.size(), 0, "PackedVector2Array should be empty")
 	invocation_script.add_vector2_to_pool_array(Vector2(2, 1))
 	assert_eq(invocation_script.packed_vector2_array.size(), 1, "PackedVector2Array have one element")
@@ -161,7 +161,7 @@ func test_pool_vector2_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_vector3_array_add_delete() -> void:
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	assert_eq(invocation_script.packed_vector3_array.size(), 0, "PackedVector3Array should be empty")
 	invocation_script.add_vector3_to_pool_array(Vector3(2, 1, 1))
 	assert_eq(invocation_script.packed_vector3_array.size(), 1, "PackedVector3Array have one element")
@@ -188,7 +188,7 @@ func test_pool_vector3_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_byte_array_string_conversion() -> void:
-	var invocation_script = godot_tests_Invocation.new()
+	var invocation_script = Invocation.new()
 	invocation_script.read_string_from_byte_array()
 	assert_eq(invocation_script.test_string, invocation_script.ascii_string, "The ascii String read from the pool should be equal to the test String")
 	assert_eq(invocation_script.test_string, invocation_script.utf8_string, "The utf8 String read from the pool should be equal to the test String")
