@@ -92,6 +92,18 @@ fun Type.isCoreType(): Boolean {
     ).contains(fqName)
 }
 
+fun Type.isNodeType(): Boolean {
+    return fqName == "$godotApiPackage.${GodotTypes.node}" || supertypes.any { supertype -> supertype.isNodeType() }
+}
+
+fun Type.baseGodotType(): Type? {
+    return if (fqName.startsWith(godotApiPackage)) {
+        this
+    } else {
+        supertypes.firstNotNullOfOrNull { supertype -> supertype.baseGodotType() }
+    }
+}
+
 fun Type.toTypeName(): TypeName = ClassName(
     fqName.substringBeforeLast("."),
     fqName.substringAfterLast(".")

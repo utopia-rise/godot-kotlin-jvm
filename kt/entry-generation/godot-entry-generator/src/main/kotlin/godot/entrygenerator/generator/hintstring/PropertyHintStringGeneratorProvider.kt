@@ -2,6 +2,7 @@ package godot.entrygenerator.generator.hintstring
 
 import godot.entrygenerator.EntryGenerator
 import godot.entrygenerator.ext.isCompatibleList
+import godot.entrygenerator.ext.isNodeType
 import godot.entrygenerator.ext.isReference
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
@@ -41,6 +42,7 @@ object PropertyHintStringGeneratorProvider {
             PlaceHolderTextHintAnnotation -> PlaceHolderTextHintStringGenerator(registeredProperty)
             is RangeHintAnnotation<*> -> RangeHintStringGenerator(registeredProperty)
             null -> when {
+                registeredProperty.type.isNodeType() -> NodeTypeHintStringGenerator(registeredProperty)
                 registeredProperty.type.isReference() -> ResourceHintStringGenerator(registeredProperty)
                 registeredProperty.type.isCompatibleList() -> ArrayHintStringGenerator(registeredProperty)
                 else -> object : PropertyHintStringGenerator<PropertyHintAnnotation>(registeredProperty) {

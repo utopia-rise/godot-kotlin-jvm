@@ -18,7 +18,7 @@ func test_signal_connection_code():
 	var invocation_script = load("res://Spatial.tscn").instantiate()
 	get_tree().root.add_child(invocation_script)
 	await get_tree().create_timer(1).timeout
-	assert_eq(invocation_script.get_node("CanvasLayer/Button").is_connected("pressed", Callable(invocation_script.invocation, "hook_no_param")), true, "signal \"pressed\" of button should be connected to \"invocation_script.invocation::hook_no_param\"")
+	assert_eq(invocation_script.button.is_connected("pressed", Callable(invocation_script.invocation, "hook_no_param")), true, "signal \"pressed\" of button should be connected to \"invocation_script.invocation::hook_no_param\"")
 	invocation_script.free()
 
 func test_signal_emitted_with_multiple_targets():
