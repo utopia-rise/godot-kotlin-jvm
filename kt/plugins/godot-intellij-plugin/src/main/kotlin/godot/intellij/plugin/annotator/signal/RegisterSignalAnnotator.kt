@@ -5,6 +5,7 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
@@ -26,6 +27,7 @@ class RegisterSignalAnnotator : Annotator {
         if (!element.isInGodotRoot()) return
 
         if (element is KtProperty && element.findAnnotation(FqName(REGISTER_SIGNAL_ANNOTATION)) != null) {
+            checkNotGeneric(element, holder)
             checkMutability(element, holder)
             checkRegisteredType(element, holder)
         }

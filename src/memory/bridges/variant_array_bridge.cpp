@@ -262,11 +262,11 @@ uintptr_t VariantArrayBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, j
     StringName base_class_name;
     Variant script;
     if (userTypeIndex != -1) {
-        const Ref<KotlinScript>& kotlin_script {GDKotlin::get_instance().user_scripts[userTypeIndex]};
+        const Ref<KotlinScript>& kotlin_script {TypeManager::get_instance().get_user_script_for_index(userTypeIndex)};
         base_class_name = kotlin_script->get_instance_base_type();
         script = kotlin_script;
     } else if (engineTypeIndex != -1) {
-        base_class_name = GDKotlin::get_instance().engine_type_names[engineTypeIndex];
+        base_class_name = TypeManager::get_instance().get_engine_type_for_index(engineTypeIndex);
     }
     ret->set_typed(
             static_cast<uint32_t>(args[0].operator int64_t()),

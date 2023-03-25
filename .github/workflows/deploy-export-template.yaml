@@ -13,7 +13,7 @@ jobs:
   deploy-export-template:
     strategy:
       matrix:
-        name: [ Linux-release, MacOs-x64-release, MacOs-arm64-release, Windows-release, Android-armv7-release, Android-armv8-release, Linux-debug, MacOs-x64-debug, MacOs-arm64-debug, Windows-debug, Android-armv7-debug, Android-armv8-debug ]
+        name: [ Linux-release, MacOs-x64-release, MacOs-arm64-release, Windows-release, Android-armv7-release, Android-armv8-release, Android-x86_64-release, Linux-debug, MacOs-x64-debug, MacOs-arm64-debug, Windows-debug, Android-armv7-debug, Android-armv8-debug, Android-x86_64-debug ]
         include:
           - name: Linux-release
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
@@ -60,6 +60,14 @@ jobs:
             arch: arm64v8
             output_folder: platform/android/java/lib/libs/release/arm64-v8a/
             target: template_release
+          - name: Android-x86_64-release
+            os: ubuntu-latest
+            platform: android
+            binary: android_release.apk
+            cat_command: cat
+            arch: x86_64
+            output_folder: platform/android/java/lib/libs/release/x86_64/
+            target: template_release
           - name: Linux-debug
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
             os: ubuntu-20.04
@@ -105,6 +113,14 @@ jobs:
             arch: arm64v8
             output_folder: platform/android/java/lib/libs/debug/arm64-v8a/
             target: template_debug
+          - name: Android-x86_64-debug
+            os: ubuntu-latest
+            platform: android
+            binary: android_debug.apk
+            cat_command: cat
+            arch: x86_64
+            output_folder: platform/android/java/lib/libs/debug/x86_64/
+            target: release_debug
     runs-on: ${{ matrix.os }}
     steps:
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
@@ -154,6 +170,10 @@ jobs:
         run: |
           sh misc/scripts/install_vulkan_sdk_macos.sh
 
+      - name: Fix scons version
+        run: |
+          python -m pip install scons==4.4.0
+
       # Upload cache on completion and check it out now
       - name: Setup Godot build cache
         uses: ./.github/actions/godot-cache
@@ -181,7 +201,7 @@ jobs:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
           target: ${{ matrix.target }}
-          
+
 
       - name: Build android ${{ matrix.target }} export template binary
         if: matrix.platform == 'android'
@@ -190,7 +210,7 @@ jobs:
           sconsflags: android_arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
           target: ${{ matrix.target }}
-          
+
 
       - name: Upload android binary
         if: matrix.platform == 'android'

@@ -4,6 +4,7 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_CONSTRUCTOR_ANNOTATION
@@ -74,6 +75,7 @@ class RegisterClassAnnotator : Annotator {
                         )
                     }
                 } else {
+                    checkNotGeneric(element, holder)
                     checkExtendsGodotType(element, holder)
                     checkDefaultConstructorExistence(element, holder)
                     checkConstructorParameterCount(element, holder)

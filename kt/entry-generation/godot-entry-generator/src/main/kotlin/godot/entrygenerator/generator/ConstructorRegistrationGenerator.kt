@@ -40,18 +40,21 @@ object ConstructorRegistrationGenerator {
 
                             if (valueParameter.typeArguments.isNotEmpty()) {
                                 append("<")
-                                valueParameter.typeArguments.forEach { typeArgument ->
-                                    append("%T")
-                                    templateArgs.add(
-                                        ClassName(
-                                            typeArgument.fqName.substringBeforeLast("."),
-                                            typeArgument.fqName.substringAfterLast(".")
+                                append(
+                                    valueParameter.typeArguments.joinToString(",·") { typeArgument ->
+                                        templateArgs.add(
+                                            ClassName(
+                                                typeArgument.fqName.substringBeforeLast("."),
+                                                typeArgument.fqName.substringAfterLast(".")
+                                            )
                                         )
-                                    )
-                                    if (typeArgument.isNullable) {
-                                        append("?")
+                                        if (typeArgument.isNullable) {
+                                            "%T?"
+                                        } else {
+                                            "%T"
+                                        }
                                     }
-                                }
+                                )
                                 append(">")
                             }
 

@@ -238,13 +238,13 @@ namespace ktvariant {
         if (!binding->is_ready()) {
             StringName class_name {ptr->get_class_name()};
             do {
-                if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+                if (!TypeManager::get_instance().java_engine_type_constructor_for_type_exists(class_name)) {
                     class_name = ClassDB::get_parent_class(class_name);
                 } else {
                     break;
                 }
             } while (class_name != StringName());
-            constructorID = TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name];
+            constructorID = TypeManager::get_instance().get_java_engine_type_constructor_index_for_type(class_name);
         }
 
         uint64_t id = ptr->get_instance_id();

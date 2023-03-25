@@ -36,6 +36,9 @@ dependencies {
     implementation("gradle.plugin.com.github.johnrengelman:shadow:${DependenciesVersions.shadowJarPluginVersion}")
     implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${DependenciesVersions.kspVersion}")
 
+    // used for idea sync gradle task integration (ex. generateGdIgnoreFilesTask)
+    implementation("org.jetbrains.gradle.plugin.idea-ext:org.jetbrains.gradle.plugin.idea-ext.gradle.plugin:1.1.6")
+
     implementation(project(":godot-build-props"))
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
 }
