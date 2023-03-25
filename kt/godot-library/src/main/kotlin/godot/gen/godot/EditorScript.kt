@@ -30,6 +30,8 @@ import kotlin.Unit
  * 		```
  *
  * **Note:** The script is run in the Editor context, which means the output is visible in the console window started with the Editor (stdout) instead of the usual Godot **Output** dock.
+ *
+ * **Note:** EditorScript is reference counted, meaning it is destroyed when nothing references it. This can cause errors during asynchronous operations if there are no references to the script.
  */
 @GodotBaseType
 public open class EditorScript : Reference() {

@@ -20,6 +20,8 @@ import kotlin.Unit
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * Cylinder shape for collisions.
+ *
+ * **Note:** When using GodotPhysics instead of the default Bullet physics engine, there are several known bugs with cylinder collision shapes. Using [godot.CapsuleShape] or [godot.BoxShape] instead is recommended.
  */
 @GodotBaseType
 public open class CylinderShape : Shape() {

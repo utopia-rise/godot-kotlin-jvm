@@ -18,7 +18,7 @@ import kotlin.Unit
 /**
  * Control for holding [godot.Viewport]s.
  *
- * A [godot.Container] node that holds a [godot.Viewport], automatically setting its size.
+ * A [godot.Container] node that holds a [godot.Viewport], automatically setting the viewport's size.
  *
  * **Note:** Changing a ViewportContainer's [godot.Control.rectScale] will cause its contents to appear distorted. To change its visual size without causing distortion, adjust the node's margins instead (if it's not already in a container).
  */

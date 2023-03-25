@@ -731,6 +731,8 @@ public open class SceneTree : MainLoop() {
     GROUP_CALL_REALTIME(2),
     /**
      * Call a group only once even if the call is executed many times.
+     *
+     * **Note:** Arguments are not taken into account when deciding whether the call is unique or not. Therefore when the same method is called with different arguments, only the first call will be performed.
      */
     GROUP_CALL_UNIQUE(4),
     ;
@@ -790,6 +792,8 @@ public open class SceneTree : MainLoop() {
 
     /**
      * Call a group only once even if the call is executed many times.
+     *
+     * **Note:** Arguments are not taken into account when deciding whether the call is unique or not. Therefore when the same method is called with different arguments, only the first call will be performed.
      */
     public final const val GROUP_CALL_UNIQUE: Long = 4
 

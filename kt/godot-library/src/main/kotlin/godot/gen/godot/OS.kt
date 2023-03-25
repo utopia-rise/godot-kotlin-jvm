@@ -838,7 +838,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the *global* cache data directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getConfigDir] and [getDataDir].
+   * Returns the *global* cache data directory according to the operating system's standards. On Linux, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getConfigDir] and [getDataDir].
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
@@ -879,7 +879,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the *global* user configuration directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getDataDir].
+   * Returns the *global* user configuration directory according to the operating system's standards. On Linux, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getDataDir].
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
@@ -913,7 +913,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the *global* user data directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getConfigDir].
+   * Returns the *global* user data directory according to the operating system's standards. On Linux, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getConfigDir].
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
@@ -2098,6 +2098,8 @@ public object OS : Object() {
    * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To" field set to `example@example.com`. See [godot.RFC 2368 - The `mailto` URL scheme](https://datatracker.ietf.org/doc/html/rfc2368) for a list of fields that can be added.
    *
    * Use [godot.ProjectSettings.globalizePath] to convert a `res://` or `user://` path into a system path for use with this method.
+   *
+   * **Note:** Use [godot.String.percentEncode] to encode characters within URLs in a URL-safe, portable way. This is especially required for line breaks. Otherwise, [shellOpen] may not work correctly in a project exported to the Web platform.
    *
    * **Note:** This method is implemented on Android, iOS, HTML5, Linux, macOS and Windows.
    */

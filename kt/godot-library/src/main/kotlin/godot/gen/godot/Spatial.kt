@@ -150,6 +150,8 @@ public open class Spatial : Node() {
    * Scale part of the local transformation.
    *
    * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
+   *
+   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [godot.Light]s are not visually affected by [scale].
    */
   public open var scale: Vector3
     get() {

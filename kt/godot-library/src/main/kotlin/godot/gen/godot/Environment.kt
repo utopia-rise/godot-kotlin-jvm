@@ -312,7 +312,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The power of the light emitted by the background.
+   * The power of the light emitted by the background. This affects the sky brightness, the ambient light (if [ambientLightSkyContribution] is greater than `0.0`) and specular light from the sky.
    */
   public open var backgroundEnergy: Double
     get() {

@@ -10,10 +10,12 @@ import godot.core.AABB
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType._RID
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -40,6 +42,40 @@ public open class VisualInstance : CullInstance() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE_SET_LAYERS, NIL)
+    }
+
+  /**
+   * The sorting offset used by this [godot.VisualInstance]. Adjusting it to a higher value will make the [godot.VisualInstance] reliably draw on top of other [godot.VisualInstance]s that are otherwise positioned at the same spot.
+   */
+  public open var sortingOffset: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE_GET_SORTING_OFFSET,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE_SET_SORTING_OFFSET,
+          NIL)
+    }
+
+  /**
+   * If `true`, the object is sorted based on the [AABB] center. Sorted based on the global position otherwise.
+   *
+   * The [AABB] center based sorting is generally more accurate for 3D models. The position based sorting instead allows to better control the drawing order when working with [godot.Particles] and [godot.CPUParticles].
+   */
+  public open var sortingUseAabbCenter: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE_GET_SORTING_USE_AABB_CENTER, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE_SET_SORTING_USE_AABB_CENTER, NIL)
     }
 
   public override fun __new(): Unit {

@@ -132,6 +132,8 @@ public open class Light : VisualInstance() {
 
   /**
    * The size of the light in Godot units. Only considered in baked lightmaps and only if [lightBakeMode] is set to [BAKE_ALL]. Increasing this value will make the shadows appear blurrier. This can be used to simulate area lights to an extent.
+   *
+   * **Note:** [lightSize] is not affected by [godot.Spatial.scale] (the light's scale or its parent's scale).
    */
   public open var lightSize: Double
     get() {

@@ -2450,9 +2450,44 @@ public object GlobalConstants : Object() {
   public final const val PROPERTY_HINT_LENGTH: Long = 5
 
   /**
+   *
+   */
+  public final const val PROPERTY_HINT_MAX: Long = 40
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_METHOD_OF_BASE_TYPE: Long = 29
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_METHOD_OF_INSTANCE: Long = 30
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_METHOD_OF_SCRIPT: Long = 31
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_METHOD_OF_VARIANT_TYPE: Long = 28
+
+  /**
    * Hints that a string property is text with line breaks. Editing it will show a text input field where line breaks can be typed.
    */
   public final const val PROPERTY_HINT_MULTILINE_TEXT: Long = 20
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE: Long = 27
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_NODE_PATH_VALID_TYPES: Long = 37
 
   /**
    * No hint for the edited property.
@@ -2460,9 +2495,39 @@ public object GlobalConstants : Object() {
   public final const val PROPERTY_HINT_NONE: Long = 0
 
   /**
+   *
+   */
+  public final const val PROPERTY_HINT_OBJECT_ID: Long = 25
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_OBJECT_TOO_BIG: Long = 36
+
+  /**
    * Hints that a string property should have a placeholder text visible on its input field, whenever the property is empty. The hint string is the placeholder text to use.
    */
   public final const val PROPERTY_HINT_PLACEHOLDER_TEXT: Long = 21
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_PROPERTY_OF_BASE_TYPE: Long = 33
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_PROPERTY_OF_INSTANCE: Long = 34
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_PROPERTY_OF_SCRIPT: Long = 35
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_PROPERTY_OF_VARIANT_TYPE: Long = 32
 
   /**
    * Hints that an integer or float property should be within a range specified via the hint string `"min,max"` or `"min,max,step"`. The hint string can optionally include `"or_greater"` and/or `"or_lesser"` to allow manual input going respectively above the max or below the min values. Example: `"-360,360,1,or_greater,or_lesser"`.
@@ -2473,6 +2538,25 @@ public object GlobalConstants : Object() {
    * Hints that a property is an instance of a [godot.Resource]-derived type, optionally specified via the hint string (e.g. `"Texture"`). Editing it will show a popup menu of valid resource types to instantiate.
    */
   public final const val PROPERTY_HINT_RESOURCE_TYPE: Long = 19
+
+  /**
+   *
+   */
+  public final const val PROPERTY_HINT_SAVE_FILE: Long = 38
+
+  /**
+   * Hint that a property represents a particular type. If a property is [TYPE_STRING], allows to set a type from the create dialog. If you need to create an [godot.Array] to contain elements of a specific type, the `hint_string` must encode nested types using `":"` and `"/"` for specifying [godot.Resource] types. For instance:
+   *
+   * ```
+   * 			hint_string = "%s:" % [TYPE_INT] # Array of inteters.
+   * 			hint_string = "%s:%s:" % [godot.TYPE_ARRAY, TYPE_REAL] # Two-dimensional array of floats.
+   * 			hint_string = "%s/%s:Resource" % [godot.TYPE_OBJECT, TYPE_OBJECT] # Array of resources.
+   * 			hint_string = "%s:%s/%s:Resource" % [godot.TYPE_ARRAY, TYPE_OBJECT, TYPE_OBJECT] # Two-dimensional array of resources.
+   * 			```
+   *
+   * **Note:** The final colon is required to specify for properly detecting built-in types.
+   */
+  public final const val PROPERTY_HINT_TYPE_STRING: Long = 26
 
   /**
    * Used to categorize properties together in the editor.
