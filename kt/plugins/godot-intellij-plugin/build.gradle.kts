@@ -19,7 +19,7 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
     "IJ223" to BuildConfig(
         sdk = "223.8836.41",
         prefix = "IJ2022.3",
-        version = VersionRange("222.3", "999.*"),
+        version = VersionRange("223.1", "999.*"),
         ideVersionsForVerifierTask = listOf("2022.3"),
         deps = listOf("java", "org.jetbrains.kotlin", "gradle") // kotlin plugin version no longer needed as it's now bundled with the IDE
     )
