@@ -23,6 +23,7 @@ func test_script_binding():
 func test_add_script():
 	var test_script: BindingTest = BindingTest.new()
 	var bound_obj: Node = Node.new()
+	
 	var clazz = test_script.get_class_name(bound_obj)
 	assert_eq(clazz, "Node", "Type should be Node")
 	
@@ -37,6 +38,7 @@ func test_add_script():
 func test_remove_script():
 	var test_script: BindingTest = BindingTest.new()
 	var bound_obj: Node = BindingA.new()
+	
 	var clazz = test_script.get_class_name(bound_obj)
 	assert_eq(clazz, "BindingA", "Type should be BindingA")
 	
@@ -50,6 +52,7 @@ func test_remove_script():
 func test_add_then_remove_script():
 	var test_script: BindingTest = BindingTest.new()
 	var bound_obj: Node = Node.new()
+	
 	var clazz = test_script.get_class_name(bound_obj)
 	assert_eq(clazz, "Node", "Type should be Node")
 	
@@ -64,10 +67,11 @@ func test_add_then_remove_script():
 	
 	bound_obj.free()
 	test_script.free()
-	
+
 func test_switch_script():
 	var test_script: BindingTest = BindingTest.new()
 	var bound_obj: Object = BindingA.new()
+	
 	var clazz = test_script.get_class_name(bound_obj)
 	assert_eq(clazz, "BindingA", "Type should be BindingA")
 		
