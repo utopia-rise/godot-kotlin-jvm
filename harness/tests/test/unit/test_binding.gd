@@ -27,8 +27,7 @@ func test_add_script():
 	var clazz = test_script.get_class_name(bound_obj)
 	assert_eq(clazz, "Node", "Type should be Node")
 	
-	var script = load("res://scripts/godot/tests/binding/BindingA.gdj")
-	bound_obj.set_script(script)
+	bound_obj.set_script(BindingA)
 	clazz = test_script.get_class_name(bound_obj)
 	assert_eq(clazz, "BindingA", "Type should be BindingA")
 	
@@ -56,8 +55,7 @@ func test_add_then_remove_script():
 	var clazz = test_script.get_class_name(bound_obj)
 	assert_eq(clazz, "Node", "Type should be Node")
 	
-	var script = load("res://scripts/godot/tests/binding/BindingA.gdj")
-	bound_obj.set_script(script)
+	bound_obj.set_script(BindingA)
 	clazz = test_script.get_class_name(bound_obj)
 	assert_eq(clazz, "BindingA", "Type should be BindingA")
 	
@@ -75,8 +73,7 @@ func test_switch_script():
 	var clazz = test_script.get_class_name(bound_obj)
 	assert_eq(clazz, "BindingA", "Type should be BindingA")
 		
-	var script = load("res://scripts/godot/tests/binding/BindingB.gdj")
-	bound_obj.set_script(script)
+	bound_obj.set_script(BindingB)
 	clazz = test_script.get_class_name(bound_obj)
 	assert_eq(clazz, "BindingB", "Type should be BindingB")
 	
