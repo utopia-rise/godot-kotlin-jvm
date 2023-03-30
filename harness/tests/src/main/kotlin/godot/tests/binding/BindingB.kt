@@ -1,8 +1,8 @@
 package godot.tests.binding
 
-import godot.RefCounted
+import godot.Node
 import godot.annotation.RegisterClass
 
 @RegisterClass
-class BindingB(): RefCounted() {
+class BindingB : Node() {
 }
