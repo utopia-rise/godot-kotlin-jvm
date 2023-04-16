@@ -1,0 +1,20 @@
+// THIS FILE IS GENERATED! DO NOT EDIT, MOVE OR DELETE IT. EDIT, MOVE OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+
+registeredName = ConstructorRegistrationTest
+fqName = godot.tests.constructor.ConstructorRegistrationTest
+baseType = Node
+supertypes = [
+    godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    
+]
+properties = [
+    
+]
+functions = [
+    
+]

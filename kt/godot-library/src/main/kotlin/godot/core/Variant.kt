@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.Object
 import godot.core.VariantType.*
 import godot.core.VariantType.AABB
 import godot.core.memory.GarbageCollector
@@ -116,6 +117,15 @@ private var ByteBuffer.basis: Basis
         vector3 = value._x
         vector3 = value._y
         vector3 = value._z
+    }
+
+private var ByteBuffer.stringName: Any
+    get() {
+        val ptr = long
+        return GarbageCollector.getNativeCoreTypeInstance(ptr) ?: StringName(ptr)
+    }
+    set(value) {
+        STRING_NAME.toGodotNativeCoreType<StringName>(this, value)
     }
 
 private var ByteBuffer.obj: KtObject
@@ -458,11 +468,10 @@ enum class VariantType(
     STRING_NAME(
         21,
         { buffer: ByteBuffer, _: Int ->
-            val ptr = buffer.long
-            GarbageCollector.getNativeCoreTypeInstance(ptr) ?: StringName(ptr)
+            buffer.stringName
         },
         { buffer: ByteBuffer, any: Any ->
-            STRING_NAME.toGodotNativeCoreType<StringName>(buffer, any)
+            buffer.stringName = any
         }
     ),
     NODE_PATH(
@@ -517,10 +526,16 @@ enum class VariantType(
     SIGNAL(
         26,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            val obj = buffer.obj
+            val name = buffer.stringName
+            require(obj is Object)
+            require(name is StringName)
+            Signal(obj, name)
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            require(any is Signal)
+            buffer.obj = any.godotObject
+            buffer.stringName = any.name
         }
     ),
     DICTIONARY(
