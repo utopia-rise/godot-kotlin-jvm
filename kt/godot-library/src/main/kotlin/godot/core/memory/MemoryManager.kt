@@ -16,7 +16,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
-internal object GarbageCollector {
+internal object MemoryManager {
 
     /** Minimum time before 2 iterations of the thread.*/
     private const val MIN_DELAY = 0L
@@ -37,7 +37,7 @@ internal object GarbageCollector {
     private const val OBJECTDB_SIZE = 1 shl ObjectID.OBJECTDB_SLOT_MAX_COUNT_BITS
 
     /** Pointers to Godot objects.*/
-    private val ObjectDB = Array<GodotWeakReference?>(OBJECTDB_SIZE) { null }
+    private val ObjectDB = Array<GodotBinding?>(OBJECTDB_SIZE) { null }
 
     /** Indexes of singletons in [ObjectDB] */
     private val singletonIndexes = mutableListOf<Int>()
@@ -59,7 +59,7 @@ internal object GarbageCollector {
     private val refReferenceQueue = ReferenceQueue<KtObject>()
 
     /** List of element to remove from ObjectDB*/
-    private val deleteList = ArrayList<GodotWeakReference>(CHECK_NUMBER)
+    private val deleteList = ArrayList<GodotBinding>(CHECK_NUMBER)
 
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
@@ -84,14 +84,14 @@ internal object GarbageCollector {
     fun registerObject(instance: KtObject) {
         synchronized(ObjectDB) {
             val index = instance.id.index
-            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.id)
+            ObjectDB[index] = GodotBinding(instance, refReferenceQueue, instance.id)
         }
     }
 
     fun registerSingleton(instance: KtObject) {
         synchronized(ObjectDB) {
             val index = instance.id.index
-            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.id)
+            ObjectDB[index] = GodotBinding(instance, refReferenceQueue, instance.id)
             singletonIndexes.add(index)
         }
     }
@@ -99,7 +99,7 @@ internal object GarbageCollector {
     fun registerObjectAndBind(instance: KtObject) {
         synchronized(ObjectDB) {
             val index = instance.id.index
-            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.id)
+            ObjectDB[index] = GodotBinding(instance, refReferenceQueue, instance.id)
             bindingQueue.addLast(instance)
         }
     }
@@ -129,10 +129,10 @@ internal object GarbageCollector {
     fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.id.id)
 
     fun start(forceJvmGarbageCollector: Boolean) {
-        GarbageCollector.forceJvmGarbageCollector = forceJvmGarbageCollector
+        MemoryManager.forceJvmGarbageCollector = forceJvmGarbageCollector
         gcState = GCState.STARTED
         info("Starting GC thread")
-        executor.schedule(GarbageCollector::run, 0, TimeUnit.MILLISECONDS)
+        executor.schedule(MemoryManager::run, 0, TimeUnit.MILLISECONDS)
     }
 
     private fun run() {
@@ -195,7 +195,7 @@ internal object GarbageCollector {
         //We poll the reference that have been clear by the GC and then call c++ code to destroy the native object.
         synchronized(ObjectDB) {
             while (counter < CHECK_NUMBER) {
-                val ref = ((refReferenceQueue.poll() ?: break) as GodotWeakReference)
+                val ref = ((refReferenceQueue.poll() ?: break) as GodotBinding)
                 val index = ref.id.index
                 val otherRef = ObjectDB[index]
                 //Check if the ref in the DB hasn't been replaced by a new object before the GC could remove it.

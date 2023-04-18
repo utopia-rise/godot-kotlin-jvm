@@ -6,3 +6,4 @@ import godot.annotation.RegisterClass
 @RegisterClass
 class ObjectInstance : Object() {
 }
+

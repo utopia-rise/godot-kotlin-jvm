@@ -5,8 +5,11 @@
 
 #include <core/object/script_language.h>
 
+class KotlinInstance;
+
 class KotlinScript : public Script {
     GDCLASS(KotlinScript, Script);
+    friend class KotlinInstance;
 
 private:
     String source;
@@ -14,6 +17,7 @@ private:
     // Stored kotlin_class should be nullptr when in TOOL
     KtClass* kotlin_class;
 
+    template<bool isCreator>
     ScriptInstance* _instance_create(const Variant** p_args, int p_argcount, Object* p_this);
 
 public:
@@ -24,6 +28,8 @@ public:
     KtClass* get_kotlin_class() const;
 
     Variant _new(const Variant** p_args, int p_argcount, Callable::CallError& r_error);
+
+    KotlinInstance* wrap(KtObject* kt_object, Object* owner);
 
     bool can_instantiate() const override;
 

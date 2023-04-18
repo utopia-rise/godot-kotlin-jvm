@@ -1,6 +1,6 @@
 package godot.core
 
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import godot.util.nullObjectID
@@ -50,9 +50,9 @@ abstract class KtObject {
             id = config.id
             //Singletons are never initialized here as we force their initialization on JVM side at engine start
             if (config.needBind) {
-                GarbageCollector.registerObjectAndBind(this)
+                MemoryManager.registerObjectAndBind(this)
             } else {
-                GarbageCollector.registerObject(this)
+                MemoryManager.registerObject(this)
             }
             config.reset()
         } else {
@@ -61,9 +61,9 @@ abstract class KtObject {
             //If the class is a script, the ScriptInstance is going to be created at the same time as the native object.
             val isSingleton = !new(scriptIndex)
             if (isSingleton) {
-                GarbageCollector.registerSingleton(this)
+                MemoryManager.registerSingleton(this)
             } else {
-                GarbageCollector.registerObject(this)
+                MemoryManager.registerObject(this)
             }
         }
     }

@@ -2,7 +2,7 @@
 
 package godot.core
 
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
@@ -26,7 +26,7 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
     }
 
     /**
@@ -44,7 +44,7 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
     constructor(from: VariantArray<Int>) {
         TransferContext.writeArguments(VariantType.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
     }
 
     //POOL ARRAY API SHARED

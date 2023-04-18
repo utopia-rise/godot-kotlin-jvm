@@ -3,19 +3,21 @@
 #include "kotlin_language.h"
 #include "kt_class.h"
 
-KotlinInstance::KotlinInstance(KtObject* p_wrapped_object, Object* p_owner, KtClass* p_kt_class, KotlinScript* p_script) :
-  kt_class(p_kt_class),
-  script(p_script) {
-    binding = KotlinBindingManager::create_script_binding(p_owner, p_wrapped_object);
+KotlinInstance::KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinBinding* p_binding, KotlinScript* p_script) :
+  owner(p_owner),
+  kt_object(p_kt_object),
+  script(p_script)
+{
+    KotlinBindingManager::bind_object(owner, p_wrapped_object);
 }
 
 KotlinInstance::~KotlinInstance() {
-    KotlinBindingManager::delete_script_binding(binding);
+    KotlinBindingManager::unbind_object(owner);
     binding = nullptr;
 }
 
 Object* KotlinInstance::get_owner() {
-    return binding->owner;
+    return owner;
 }
 
 bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
@@ -23,7 +25,7 @@ bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
 
     KtProperty* ktProperty {kt_class->get_property(p_name)};
     if (ktProperty) {
-        ktProperty->call_set(binding->kt_object, p_value);
+        ktProperty->call_set(kt_object, p_value);
         return true;
     } else {
         return false;
@@ -35,7 +37,7 @@ bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
 
     KtProperty* ktProperty {kt_class->get_property(p_name)};
     if (ktProperty) {
-        ktProperty->call_get(binding->kt_object, r_ret);
+        ktProperty->call_get(kt_object, r_ret);
         return true;
     } else {
         return false;
@@ -48,7 +50,7 @@ bool KotlinInstance::get_or_default(const StringName& p_name, Variant& r_ret) co
 
     KtProperty* ktProperty {kt_class->get_property(p_name)};
     if (ktProperty) {
-        ktProperty->safe_call_get(binding->kt_object, r_ret);
+        ktProperty->safe_call_get(kt_object, r_ret);
         return true;
     } else {
         return false;
@@ -82,7 +84,7 @@ Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args
     KtFunction* function {kt_class->get_method(p_method)};
     Variant ret_var;
     if (function) {
-        function->invoke(binding->kt_object, p_args, p_argcount, ret_var);
+        function->invoke(kt_object, p_args, p_argcount, ret_var);
     } else {
         r_error.error = Callable::CallError::CALL_ERROR_INVALID_METHOD;
     }
@@ -97,12 +99,12 @@ String KotlinInstance::to_string(bool* r_valid) {
 
 void KotlinInstance::refcount_incremented() {
     // Godot only calls that function for Refcounted instance.
-    binding->refcount_incremented_unsafe();
+    refcount_incremented_unsafe();
 }
 
 bool KotlinInstance::refcount_decremented() {
     // Godot only calls that function for Refcounted instance.
-    return binding->refcount_decremented_unsafe();
+    return refcount_decremented_unsafe();
 }
 
 Ref<Script> KotlinInstance::get_script() const {

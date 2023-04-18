@@ -9,13 +9,10 @@ class KotlinBindingManager;
 class KotlinBinding {
     friend class KotlinBindingManager;
     friend class KotlinInstance;
-    // The pair structure in HashMap contains values of KotlinBinding.
-    // It has to be able to call its private destructor when removing bindings.
-    friend struct KeyValue<Object*, KotlinBinding>;
 
-private:
     KtObject* kt_object;
     Object* owner;
+    KtObject* kt_object;
 
     KotlinBinding();
 
@@ -23,12 +20,14 @@ private:
 
     void set_kt_object(KtObject* p_kt_object);
 
+    void unset_kt_object();
+
 public:
     void refcount_incremented_unsafe();
 
     bool refcount_decremented_unsafe();
 
-    bool is_ready();
+    bool is_bound();
 };
 
 #endif// GODOT_JVM_KOTLIN_BINDING_H

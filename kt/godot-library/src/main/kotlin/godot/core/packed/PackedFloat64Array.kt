@@ -2,7 +2,7 @@
 
 package godot.core
 
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
@@ -25,7 +25,7 @@ class PackedFloat64Array : NativeCoreType, Iterable<Double> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
     }
 
     /**
@@ -43,7 +43,7 @@ class PackedFloat64Array : NativeCoreType, Iterable<Double> {
     constructor(from: VariantArray<Double>) {
         TransferContext.writeArguments(VariantType.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
     }
 
     //POOL ARRAY API SHARED

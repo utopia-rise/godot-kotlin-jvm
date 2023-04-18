@@ -1,6 +1,6 @@
 package godot.core
 
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 
@@ -18,12 +18,12 @@ class RID : NativeCoreType, Comparable<RID> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType._RID)
+        MemoryManager.registerNativeCoreType(this, VariantType._RID)
     }
 
     constructor(from: RID) {
         _handle = Bridge.engine_call_constructor(from._handle)
-        GarbageCollector.registerNativeCoreType(this, VariantType._RID)
+        MemoryManager.registerNativeCoreType(this, VariantType._RID)
     }
 
     //API

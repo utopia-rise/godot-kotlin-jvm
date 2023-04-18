@@ -5,7 +5,7 @@ import godot.core.ObjectID
 import java.lang.ref.ReferenceQueue
 import java.lang.ref.WeakReference
 
-internal class GodotWeakReference(
+internal class GodotBinding(
     ref: KtObject,
     queue: ReferenceQueue<KtObject>,
     val id: ObjectID

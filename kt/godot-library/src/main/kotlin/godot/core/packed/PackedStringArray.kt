@@ -1,6 +1,6 @@
 package godot.core
 
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
@@ -24,7 +24,7 @@ class PackedStringArray : NativeCoreType, Iterable<String> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
     }
 
     /**
@@ -42,7 +42,7 @@ class PackedStringArray : NativeCoreType, Iterable<String> {
     constructor(from: VariantArray<String>) {
         TransferContext.writeArguments(VariantType.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
     }
 
     //PACKED ARRAY API SHARED
