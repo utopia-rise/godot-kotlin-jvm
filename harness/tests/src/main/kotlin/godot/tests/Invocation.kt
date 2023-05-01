@@ -598,7 +598,7 @@ class Invocation : Node3D() {
 	fun addColorArrayToPoolArray(colorArray: PackedColorArray) = packedColorArray.appendArray(colorArray)
 
 	@RegisterFunction
-	fun deleteColorFromPoolArray(index: Int) = packedColorArray.remove(index)
+	fun deleteColorFromPoolArray(index: Int) = packedColorArray.removeAt(index)
 
 	@RegisterFunction
 	fun getColorFromPoolArray(index: Int) = packedColorArray[index]

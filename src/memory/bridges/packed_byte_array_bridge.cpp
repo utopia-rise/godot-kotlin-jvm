@@ -880,7 +880,7 @@ void PackedByteArrayBridge::engine_call_rfind(JNIEnv* p_raw_env, jobject p_insta
     transfer_context->read_args(env, args);
 
     Variant ret {
-        from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->rfind(args[0].operator int(), args->operator int())
+        from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->rfind(args[0].operator uint8_t(), args->operator int())
     };
 }
 

@@ -561,8 +561,8 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
      * Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index
      * is considered relative to the end of the array.
      */
-    fun rfind(value: Int, from: Int = -1): Int {
-        TransferContext.writeArguments(VariantType.JVM_INT to value, VariantType.JVM_INT to from)
+    fun rfind(value: Byte, from: Int = -1): Int {
+        TransferContext.writeArguments(VariantType.JVM_BYTE to value, VariantType.JVM_INT to from)
         Bridge.engine_call_rfind(_handle)
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
@@ -576,7 +576,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
     }
 
     /**
-     * Returns the slice of the PackedByteArray, from begin (inclusive) to end (exclusive), as a new PackedByteArray.
+     * Returns the slice of the [PackedByteArray], from begin (inclusive) to end (exclusive), as a new [PackedByteArray].
      *
      * The absolute value of begin and end will be clamped to the array size, so the default value for end makes it
      * slice to the size of the array by default (i.e. arr.slice(1) is a shorthand for arr.slice(1, arr.size())).
