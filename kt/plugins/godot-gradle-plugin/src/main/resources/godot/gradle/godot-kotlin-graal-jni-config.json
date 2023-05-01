@@ -45,9 +45,8 @@
     ],
     "methods" : [
       { "name" : "icall", "parameterTypes" : ["long", "int", "int"] },
-      { "name" : "invokeConstructor", "parameterTypes" : ["int"] },
+      { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "java.lang.ClassLoader", "int"] },
       { "name" : "getSingleton", "parameterTypes" : ["int"] },
-      { "name" : "setScript", "parameterTypes" : ["long", "int", "godot.core.KtObject", "java.lang.ClassLoader"] },
       { "name" : "freeObject", "parameterTypes" : ["long"] },
       { "name" : "getBuffer", "parameterTypes" : [] }
     ]
@@ -68,6 +67,7 @@
     "fields":[{"name":"INSTANCE"}],
     "methods":[
       {"name":"cleanUp","parameterTypes":[] },
+      {"name": "setShouldDisplayLeakInstancesOnClose", "parameterTypes":["boolean"]},
       {"name":"close","parameterTypes":[] },
       {"name":"isClosed","parameterTypes":[] },
       {"name":"start","parameterTypes":["boolean"] }
@@ -80,7 +80,8 @@
     ],
     "methods" : [
       { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
-      { "name" : "unref", "parameterTypes" : ["long", "int"] },
+      { "name" : "bindInstance", "parameterTypes" : ["long", "godot.core.KtObject", "java.lang.ClassLoader"] },
+      { "name" : "decrementRefCounter", "parameterTypes" : ["long"] },
       { "name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
       { "name" : "notifyLeak", "parameterTypes" : [] }
     ]
@@ -103,35 +104,49 @@
     ],
     "methods" : [
       { "name" : "engine_call_constructor", "parameterTypes" : [] },
-      { "name" : "engine_call_get_size", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_clear", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_empty", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_hash", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_invert", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_remove", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_resize", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_shuffle", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_sortCustom", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_constructor_typed", "parameterTypes" : [] },
+      { "name" : "engine_call_all", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_any", "parameterTypes" : ["long"] },
       { "name" : "engine_call_append", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_appendArray", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_back", "parameterTypes" : ["long"] },
       { "name" : "engine_call_bsearch", "parameterTypes" : ["long"] },
       { "name" : "engine_call_bsearchCustom", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_clear", "parameterTypes" : ["long"] },
       { "name" : "engine_call_count", "parameterTypes" : ["long"] },
       { "name" : "engine_call_duplicate", "parameterTypes" : ["long"] },
       { "name" : "engine_call_erase", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_fill", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_filter", "parameterTypes" : ["long"] },
       { "name" : "engine_call_find", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_findLast", "parameterTypes" : ["long"] },
       { "name" : "engine_call_front", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_getTypedClassName", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_getTypedScript", "parameterTypes" : ["long"] },
       { "name" : "engine_call_has", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_hash", "parameterTypes" : ["long"] },
       { "name" : "engine_call_insert", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_isEmpty", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_isReadOnly", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_isTyped", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_map", "parameterTypes" : ["long"] },
       { "name" : "engine_call_max", "parameterTypes" : ["long"] },
       { "name" : "engine_call_min", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_pickRandom", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_popAt", "parameterTypes" : ["long"] },
       { "name" : "engine_call_popBack", "parameterTypes" : ["long"] },
       { "name" : "engine_call_popFront", "parameterTypes" : ["long"] },
       { "name" : "engine_call_pushBack", "parameterTypes" : ["long"] },
       { "name" : "engine_call_pushFront", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_reduce", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_removeAt", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_resize", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_reverse", "parameterTypes" : ["long"] },
       { "name" : "engine_call_rfind", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_shuffle", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_size", "parameterTypes" : ["long"] },
       { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_sortCustom", "parameterTypes" : ["long"] },
       { "name" : "engine_call_operator_set", "parameterTypes" : ["long"] },
       { "name" : "engine_call_operator_get", "parameterTypes" : ["long"] }
     ]
@@ -168,6 +183,7 @@
       { "name" : "engine_call_constructor", "parameterTypes" : [] },
       { "name" : "engine_call_constructor", "parameterTypes" : ["long"] },
       { "name" : "engine_call_getID", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_isValid", "parameterTypes" : ["long"] },
       { "name" : "engine_call_compareTo", "parameterTypes" : ["long"] },
       { "name" : "engine_call_equals", "parameterTypes" : ["long"] }
     ]
@@ -178,15 +194,19 @@
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "engine_call_constructor", "parameterTypes" : ["boolean"] },
-      { "name" : "engine_call_path", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_constructor", "parameterTypes" : [] },
+      { "name" : "engine_call_constructor_string", "parameterTypes" : [] },
+      { "name" : "engine_call_constructor_node_path", "parameterTypes" : [] },
+
+      { "name" : "engine_call_getAsPropertyPath", "parameterTypes" : ["long"] },
       { "name" : "engine_call_getName", "parameterTypes" : ["long"] },
       { "name" : "engine_call_getNameCount", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_getProperty", "parameterTypes" : ["long"] },
       { "name" : "engine_call_getSubname", "parameterTypes" : ["long"] },
       { "name" : "engine_call_getSubnameCount", "parameterTypes" : ["long"] },
       { "name" : "engine_call_isAbsolute", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_hash", "parameterTypes" : ["long"] },
       { "name" : "engine_call_isEmpty", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_getConcatenatedNames", "parameterTypes" : ["long"] },
       { "name" : "engine_call_getConcatenatedSubnames", "parameterTypes" : ["long"] },
       { "name" : "engine_call_equals", "parameterTypes" : ["long"] }
     ]

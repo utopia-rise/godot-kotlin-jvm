@@ -21,8 +21,8 @@ class RID : NativeCoreType, Comparable<RID> {
         GarbageCollector.registerNativeCoreType(this, VariantType._RID)
     }
 
-    constructor(from: KtObject) {
-        _handle = Bridge.engine_call_constructor(from.rawPtr)
+    constructor(from: RID) {
+        _handle = Bridge.engine_call_constructor(from._handle)
         GarbageCollector.registerNativeCoreType(this, VariantType._RID)
     }
 
@@ -35,16 +35,21 @@ class RID : NativeCoreType, Comparable<RID> {
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
 
+    /**
+     * Returns `true` if the RID is not `0`.
+     */
+    fun isValid(): Boolean {
+        Bridge.engine_call_isValid(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
 
     //UTILITIES
     override fun compareTo(other: RID): Int {
+        TransferContext.writeArguments(VariantType._RID to other)
+        Bridge.engine_call_compareTo(_handle)
         return when {
             this == other -> 0
-            {
-                TransferContext.writeArguments(VariantType._RID to other)
-                Bridge.engine_call_compareTo(_handle)
-                TransferContext.readReturnValue(VariantType.BOOL) as Boolean
-            }() -> -1
+            TransferContext.readReturnValue(VariantType.BOOL) as Boolean -> -1
 
             else -> 1
         }
@@ -73,8 +78,9 @@ class RID : NativeCoreType, Comparable<RID> {
     @Suppress("FunctionName")
     private object Bridge {
         external fun engine_call_constructor(): VoidPtr
-        external fun engine_call_constructor(fromObject: VoidPtr): VoidPtr
+        external fun engine_call_constructor(from: VoidPtr): VoidPtr
         external fun engine_call_getID(_handle: VoidPtr)
+        external fun engine_call_isValid(_handle: VoidPtr)
         external fun engine_call_compareTo(_handle: VoidPtr)
         external fun engine_call_equals(_handle: VoidPtr)
     }
