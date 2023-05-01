@@ -576,7 +576,7 @@ class Invocation : Node3D() {
 	fun addByteArrayToPoolArray(array: PackedByteArray) = packedByteArray.appendArray(array)
 
 	@RegisterFunction
-	fun deleteByteFromPoolArray(index: Int) = packedByteArray.remove(index)
+	fun deleteByteFromPoolArray(index: Int) = packedByteArray.removeAt(index)
 
 	@RegisterFunction
 	fun getByteFromPoolArray(index: Int) = packedByteArray[index]
