@@ -57,7 +57,6 @@
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "sendStringToCPP", "parameterTypes" : ["java.lang.String"] },
       { "name" : "queueString", "parameterTypes" : ["java.lang.String"] },
       { "name" : "setStringMaxSize", "parameterTypes" : ["int"] }
     ]
@@ -209,6 +208,19 @@
       { "name" : "engine_call_getConcatenatedNames", "parameterTypes" : ["long"] },
       { "name" : "engine_call_getConcatenatedSubnames", "parameterTypes" : ["long"] },
       { "name" : "engine_call_equals", "parameterTypes" : ["long"] }
+    ]
+  },
+  {
+    "name" : "godot.core.StringName$Bridge",
+    "fields" : [
+      { "name" : "INSTANCE" }
+    ],
+    "methods" : [
+      { "name" : "engine_call_constructor", "parameterTypes" : [] },
+      { "name" : "engine_call_copy_constructor", "parameterTypes" : [] },
+      { "name" : "engine_call_constructor_string", "parameterTypes" : [] },
+
+      { "name" : "engine_call_operator_string", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -640,7 +652,7 @@
       {"name":"getArguments","parameterTypes":[] },
       {"name":"getName","parameterTypes":[] },
       {"name":"getReturnVal","parameterTypes":[] },
-      {"name":"getRpcModeId","parameterTypes":[] }
+      {"name":"getRpcConfig","parameterTypes":[] }
     ]
   },
   {
@@ -648,10 +660,8 @@
     "methods":[
       {"name":"getKtPropertyInfo","parameterTypes":[] },
       {"name":"isRef","parameterTypes":[] },
-      {"name":"getDefaultValue","parameterTypes":[] },
       {"name":"callGet","parameterTypes":["godot.core.KtObject"] },
-      {"name":"callSet","parameterTypes":["godot.core.KtObject"] },
-      {"name":"getDefaultValue","parameterTypes":[] }
+      {"name":"callSet","parameterTypes":["godot.core.KtObject"] }
     ]
   },
   {
@@ -661,7 +671,6 @@
       {"name":"getHint","parameterTypes":[] },
       {"name":"getHintString","parameterTypes":[] },
       {"name":"getName","parameterTypes":[] },
-      {"name":"getRpcModeId","parameterTypes":[] },
       {"name":"getType","parameterTypes":[] },
       {"name":"getVisibleInEditor","parameterTypes":[] }
     ]
@@ -674,9 +683,28 @@
     ]
   },
   {
+    "name":"godot.core.KtRpcConfig",
+    "methods":[
+      {"name":"getRpcModeId","parameterTypes":[] },
+      {"name":"getRpcCallLocal","parameterTypes":[] },
+      {"name":"getRpcTransferModeId","parameterTypes":[] },
+      {"name":"getRpcChannel","parameterTypes":[] }
+    ]
+  },
+  {
     "name":"godot.core.KtObject",
     "methods":[
       {"name":"_onDestroy","parameterTypes":[] }
+    ]
+  },
+  {
+    "name":"godot.core.KtCustomCallable",
+    "methods":[
+      {"name":"sendTargetToNative","parameterTypes":[] },
+      {"name":"callTargeted","parameterTypes":[] },
+      {"name":"callNotTargeted","parameterTypes":[] },
+      {"name":"hashcode","parameterTypes":[] },
+      {"name":"equals","parameterTypes":["java.lang.Object"] }
     ]
   }
 ]
