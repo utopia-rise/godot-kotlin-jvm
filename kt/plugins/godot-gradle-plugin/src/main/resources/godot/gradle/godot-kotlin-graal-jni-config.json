@@ -387,6 +387,40 @@
     ]
   },
   {
+    "name" : "godot.core.PackedInt32Array$Bridge",
+    "fields" : [
+      { "name" : "INSTANCE" }
+    ],
+    "methods" : [
+      { "name" : "engine_call_constructor", "parameterTypes" : [] },
+      { "name" : "engine_call_constructor_packed_int_32_array", "parameterTypes" : [] },
+      { "name" : "engine_call_constructor_array", "parameterTypes" : [] },
+
+      { "name" : "engine_call_append", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_appendArray", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_bsearch", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_clear", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_count", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_duplicate", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_fill", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_find", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_get", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_has", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_is_empty", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_insert", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_reverse", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_pushback", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_remove_at", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_resize", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_rfind", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_set", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_size", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] }
+    ]
+  },
+  {
     "name" : "godot.core.PoolIntArray$Bridge",
     "fields" : [
       { "name" : "INSTANCE" }
