@@ -660,7 +660,7 @@ class Invocation : Node3D() {
 	}
 
 	@RegisterFunction
-	fun deleteRealFromPoolArray(index: Int) = packedFloat64Array.remove(index)
+	fun deleteRealFromPoolArray(index: Int) = packedFloat64Array.removeAt(index)
 
 	@RegisterFunction
 	fun getRealFromPoolArray(index: Int) = packedFloat64Array[index]

@@ -30,7 +30,7 @@ class PackedColorArray : NativeCoreType, Iterable<Color> {
     }
 
     /**
-     * Constructs a PackedColorArray as a copy of the given PackedColorArray.
+     * Constructs a [PackedColorArray] as a copy of the given [PackedColorArray].
      */
     constructor(from: PackedColorArray) {
         TransferContext.writeArguments(VariantType.PACKED_COLOR_ARRAY to from)
@@ -39,7 +39,7 @@ class PackedColorArray : NativeCoreType, Iterable<Color> {
     }
 
     /**
-     * Constructs a new PackedColorArray by converting a `VariantArray<Color>`.
+     * Constructs a new [PackedColorArray] by converting a [VariantArray]<[Color]>.
      */
     constructor(from: VariantArray<Color>) {
         TransferContext.writeArguments(VariantType.ARRAY to from)
@@ -240,7 +240,7 @@ class PackedColorArray : NativeCoreType, Iterable<Color> {
     }
 
     override fun toString(): String {
-        return "PoolColorArray(${size})"
+        return "PackedColorArray(${size})"
     }
 
     override fun iterator(): Iterator<Color> {

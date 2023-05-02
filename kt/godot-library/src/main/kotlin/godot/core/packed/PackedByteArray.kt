@@ -621,7 +621,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
     }
 
     override fun toString(): String {
-        return "PoolByteArray(${size})"
+        return "PackedByteArray(${size})"
     }
 
     override fun iterator(): Iterator<Byte> {

@@ -244,7 +244,7 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
     }
 
     override fun toString(): String {
-        return "PoolRealArray(${size})"
+        return "PackedFloat32Array(${size})"
     }
 
     override fun iterator(): Iterator<Float> {
