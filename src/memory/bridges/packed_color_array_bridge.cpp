@@ -14,7 +14,7 @@ PackedColorArrayBridge::PackedColorArrayBridge(jni::JObject p_wrapped, jni::JObj
       const_cast<char*>("engine_call_constructor"),
       const_cast<char*>("()J"),
       (void*) PackedColorArrayBridge::engine_call_constructor};
-    jni::JNativeMethod engine_call_constructor_packed_color_array_method {
+    jni::JNativeMethod engine_call_constructor_packed_array_method {
             const_cast<char*>("engine_call_constructor_packed_array"),
             const_cast<char*>("()J"),
       (void*) PackedColorArrayBridge::engine_call_constructor_packed_array};
@@ -116,7 +116,7 @@ PackedColorArrayBridge::PackedColorArrayBridge(jni::JObject p_wrapped, jni::JObj
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(engine_call_constructor_method);
-    methods.push_back(engine_call_constructor_packed_color_array_method);
+    methods.push_back(engine_call_constructor_packed_array_method);
     methods.push_back(engine_call_constructor_array_method);
 
     methods.push_back(engine_call_append_method);
