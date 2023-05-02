@@ -726,7 +726,7 @@ class Invocation : Node3D() {
 	fun addVector3ArrayToPoolArray(vector3Array: PackedVector3Array) = packedVector3Array.appendArray(vector3Array)
 
 	@RegisterFunction
-	fun deleteVector3FromPoolArray(index: Int) = packedVector3Array.remove(index)
+	fun deleteVector3FromPoolArray(index: Int) = packedVector3Array.removeAt(index)
 
 	@RegisterFunction
 	fun getVector3FromPoolArray(index: Int) = packedVector3Array[index]
