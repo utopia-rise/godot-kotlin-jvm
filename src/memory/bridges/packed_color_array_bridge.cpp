@@ -15,11 +15,11 @@ PackedColorArrayBridge::PackedColorArrayBridge(jni::JObject p_wrapped, jni::JObj
       const_cast<char*>("()J"),
       (void*) PackedColorArrayBridge::engine_call_constructor};
     jni::JNativeMethod engine_call_constructor_packed_color_array_method {
-            const_cast<char*>("engine_call_constructor"),
+            const_cast<char*>("engine_call_constructor_packed_color_array"),
             const_cast<char*>("()J"),
             (void*) PackedColorArrayBridge::engine_call_constructor_packed_color_array};
     jni::JNativeMethod engine_call_constructor_array_method {
-            const_cast<char*>("engine_call_constructor"),
+            const_cast<char*>("engine_call_constructor_array"),
             const_cast<char*>("()J"),
             (void*) PackedColorArrayBridge::engine_call_constructor_array};
 
@@ -340,7 +340,7 @@ void PackedColorArrayBridge::engine_call_sort(JNIEnv* p_raw_env, jobject p_insta
 void PackedColorArrayBridge::engine_call_to_byte_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant ret {
-            from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->to_byte_array();
+            from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->to_byte_array()
     };
     GDKotlin::get_instance().transfer_context->write_return_value(env, ret);
 }

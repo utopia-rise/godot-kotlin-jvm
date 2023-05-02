@@ -17,11 +17,11 @@ PackedByteArrayBridge::PackedByteArrayBridge(jni::JObject p_wrapped, jni::JObjec
       const_cast<char*>("()J"),
       (void*) PackedByteArrayBridge::engine_call_constructor};
     jni::JNativeMethod engine_call_constructor_packed_byte_array_method {
-            const_cast<char*>("engine_call_constructor"),
+            const_cast<char*>("engine_call_constructor_packed_byte_array"),
             const_cast<char*>("()J"),
             (void*) PackedByteArrayBridge::engine_call_constructor_packed_byte_array};
     jni::JNativeMethod engine_call_constructor_array_method {
-            const_cast<char*>("engine_call_constructor"),
+            const_cast<char*>("engine_call_constructor_array"),
             const_cast<char*>("()J"),
             (void*) PackedByteArrayBridge::engine_call_constructor_array};
 
