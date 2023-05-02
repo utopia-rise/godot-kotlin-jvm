@@ -239,7 +239,7 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
     }
 
     override fun toString(): String {
-        return "PoolIntArray(${size})"
+        return "PackedInt32Array(${size})"
     }
 
     override fun iterator(): Iterator<Int> {
