@@ -15,9 +15,9 @@ PackedFloat64ArrayBridge::PackedFloat64ArrayBridge(jni::JObject p_wrapped, jni::
       const_cast<char*>("()J"),
       (void*) PackedFloat64ArrayBridge::engine_call_constructor};
     jni::JNativeMethod engine_call_constructor_packed_float_64_array_method {
-      const_cast<char*>("engine_call_constructor_packed_float_64_array"),
+      const_cast<char*>("engine_call_constructor_packed_array"),
       const_cast<char*>("()J"),
-      (void*) PackedFloat64ArrayBridge::engine_call_constructor_packed_float_64_array};
+      (void*) PackedFloat64ArrayBridge::engine_call_constructor_packed_array};
     jni::JNativeMethod engine_call_constructor_array_method {
       const_cast<char*>("engine_call_constructor_array"),
       const_cast<char*>("()J"),
@@ -151,7 +151,7 @@ uintptr_t PackedFloat64ArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, j
     return reinterpret_cast<uintptr_t>(memnew(PackedFloat32Array));
 }
 
-uintptr_t PackedFloat64ArrayBridge::engine_call_constructor_packed_float_64_array(JNIEnv* p_raw_env, jobject p_instance) {
+uintptr_t PackedFloat64ArrayBridge::engine_call_constructor_packed_array(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);

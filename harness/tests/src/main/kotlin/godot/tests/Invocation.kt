@@ -682,7 +682,7 @@ class Invocation : Node3D() {
 	fun addStringArrayToPoolArray(stringArray: PackedStringArray) = packedStringArray.appendArray(stringArray)
 
 	@RegisterFunction
-	fun deleteStringFromPoolArray(index: Int) = packedStringArray.remove(index)
+	fun deleteStringFromPoolArray(index: Int) = packedStringArray.removeAt(index)
 
 	@RegisterFunction
 	fun getStringFromPoolArray(index: Int) = packedStringArray[index]

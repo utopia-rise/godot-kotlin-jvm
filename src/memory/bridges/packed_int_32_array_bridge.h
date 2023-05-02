@@ -11,7 +11,7 @@ namespace bridges {
         ~PackedInt32IntArrayBridge() = default;
 
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
-        static uintptr_t engine_call_constructor_packed_int_32_array(JNIEnv* p_raw_env, jobject p_instance);
+        static uintptr_t engine_call_constructor_packed_array(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_array(JNIEnv* p_raw_env, jobject p_instance);
 
         static void engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

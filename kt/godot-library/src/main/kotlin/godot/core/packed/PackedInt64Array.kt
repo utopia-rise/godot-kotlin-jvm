@@ -29,6 +29,24 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
         GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
     }
 
+    /**
+     * Constructs a [PackedInt64Array] as a copy of the given [PackedInt64Array].
+     */
+    constructor(from: PackedInt64Array) {
+        TransferContext.writeArguments(VariantType.PACKED_INT_64_ARRAY to from)
+        _handle = Bridge.engine_call_constructor_packed_array()
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_64_ARRAY)
+    }
+
+    /**
+     * Constructs a new [PackedInt64Array] by converting a [VariantArray]<[Long]>.
+     */
+    constructor(from: VariantArray<Long>) {
+        TransferContext.writeArguments(VariantType.ARRAY to from)
+        _handle = Bridge.engine_call_constructor_array()
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_64_ARRAY)
+    }
+
     //POOL ARRAY API SHARED
     /**
      * Appends an element at the end of the array (alias of push_back).
@@ -251,7 +269,7 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
     @Suppress("FunctionName")
     private object Bridge {
         external fun engine_call_constructor(): VoidPtr
-        external fun engine_call_constructor_packed_int_64_array(): VoidPtr
+        external fun engine_call_constructor_packed_array(): VoidPtr
         external fun engine_call_constructor_array(): VoidPtr
 
         external fun engine_call_append(_handle: VoidPtr)

@@ -17,9 +17,9 @@ PackedByteArrayBridge::PackedByteArrayBridge(jni::JObject p_wrapped, jni::JObjec
       const_cast<char*>("()J"),
       (void*) PackedByteArrayBridge::engine_call_constructor};
     jni::JNativeMethod engine_call_constructor_packed_byte_array_method {
-            const_cast<char*>("engine_call_constructor_packed_byte_array"),
+            const_cast<char*>("engine_call_constructor_packed_array"),
             const_cast<char*>("()J"),
-            (void*) PackedByteArrayBridge::engine_call_constructor_packed_byte_array};
+      (void*) PackedByteArrayBridge::engine_call_constructor_packed_array};
     jni::JNativeMethod engine_call_constructor_array_method {
             const_cast<char*>("engine_call_constructor_array"),
             const_cast<char*>("()J"),
@@ -405,7 +405,7 @@ uintptr_t PackedByteArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobj
     return reinterpret_cast<uintptr_t>(memnew(PackedByteArray));
 }
 
-uintptr_t PackedByteArrayBridge::engine_call_constructor_packed_byte_array(JNIEnv* p_raw_env, jobject p_instance) {
+uintptr_t PackedByteArrayBridge::engine_call_constructor_packed_array(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
