@@ -14,6 +14,7 @@ namespace bridges {
         static uintptr_t engine_call_constructor_string(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_node_path(JNIEnv* p_raw_env, jobject p_instance);
 
+        static void engine_call_path(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_getAsPropertyPath(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_getName(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_getNameCount(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

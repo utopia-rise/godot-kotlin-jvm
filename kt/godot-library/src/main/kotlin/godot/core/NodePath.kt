@@ -34,6 +34,13 @@ class NodePath : NativeCoreType {
 
     //API
 
+    //PROPERTIES
+    val path: String
+        get() {
+            Bridge.engine_call_path(_handle)
+            return TransferContext.readReturnValue(VariantType.STRING) as String
+        }
+
     /**
      * Returns a node path with a colon character (`:`) prepended, transforming it to a pure property path with no node
      * name (defaults to resolving from the current node).
@@ -144,6 +151,7 @@ class NodePath : NativeCoreType {
         external fun engine_call_constructor_string(): VoidPtr
         external fun engine_call_constructor_node_path(): VoidPtr
 
+        external fun engine_call_path(_handle: VoidPtr)
         external fun engine_call_getAsPropertyPath(_handle: VoidPtr)
         external fun engine_call_getName(_handle: VoidPtr)
         external fun engine_call_getNameCount(_handle: VoidPtr)
