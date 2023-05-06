@@ -39,6 +39,16 @@ DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped, jni::JObject p_class_
       (void*) DictionaryBridge::engine_call_hasAll};
     jni::JNativeMethod engine_call_hash_method {const_cast<char*>("engine_call_hash"), const_cast<char*>("(J)V"), (void*) DictionaryBridge::engine_call_hash};
     jni::JNativeMethod engine_call_keys_method {const_cast<char*>("engine_call_keys"), const_cast<char*>("(J)V"), (void*) DictionaryBridge::engine_call_keys};
+    jni::JNativeMethod engine_call_make_read_only_method {
+        const_cast<char*>("engine_call_make_read_only"),
+        const_cast<char*>("(J)V"),
+        (void*) DictionaryBridge::engine_call_make_read_only
+    };
+    jni::JNativeMethod engine_call_merge_method {
+            const_cast<char*>("engine_call_merge"),
+            const_cast<char*>("(J)V"),
+            (void*) DictionaryBridge::engine_call_merge
+    };
     jni::JNativeMethod engine_call_size_method {const_cast<char*>("engine_call_size"), const_cast<char*>("(J)V"), (void*) DictionaryBridge::engine_call_size};
     jni::JNativeMethod engine_call_values_method {
       const_cast<char*>("engine_call_values"),
@@ -68,6 +78,8 @@ DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped, jni::JObject p_class_
     methods.push_back(engine_call_hasAll_method);
     methods.push_back(engine_call_hash_method);
     methods.push_back(engine_call_keys_method);
+    methods.push_back(engine_call_make_read_only_method);
+    methods.push_back(engine_call_merge_method);
     methods.push_back(engine_call_size_method);
     methods.push_back(engine_call_values_method);
     methods.push_back(engine_call_operator_get_method);
@@ -148,6 +160,18 @@ void DictionaryBridge::engine_call_keys(JNIEnv* p_raw_env, jobject p_instance, j
     Variant variant {from_uint_to_ptr<Dictionary>(p_raw_ptr)->keys()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
+
+void DictionaryBridge::engine_call_make_read_only(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    from_uint_to_ptr<Dictionary>(p_raw_ptr)->make_read_only();
+}
+
+void DictionaryBridge::engine_call_merge(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant args[2] = {};
+    GDKotlin::get_instance().transfer_context->read_args(env, args);
+    from_uint_to_ptr<Dictionary>(p_raw_ptr)->merge(args[0], args[1]);
+}
+
 
 void DictionaryBridge::engine_call_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};

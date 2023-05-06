@@ -1,5 +1,12 @@
 [
   {
+    "name" : "java.lang.Object",
+    "methods":[
+      {"name":"hashCode","parameterTypes":[] },
+      {"name":"equals","parameterTypes":["java.lang.Object"] }
+    ]
+  },
+  {
     "name" : "java.lang.Class"
   },
   {
@@ -151,21 +158,40 @@
     ]
   },
   {
+    "name" : "godot.core.Callable$Bridge",
+    "fields" : [
+      { "name" : "INSTANCE" }
+    ],
+    "methods" : [
+      { "name" : "engine_call_constructor", "parameterTypes" : [] },
+
+      { "name" : "engine_call_constructor_object_string_name", "parameterTypes" : [] },
+      { "name" : "engine_call_constructor_kt_custom_callable", "parameterTypes" : ["godot.core.KtCustomCallable"] },
+      { "name" : "engine_call_copy_constructor", "parameterTypes" : [] },
+
+      { "name" : "engine_call_call", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_call_deferred", "parameterTypes" : ["long"] }
+    ]
+  },
+  {
     "name" : "godot.core.Dictionary$Bridge",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
     "methods" : [
       { "name" : "engine_call_constructor", "parameterTypes" : [] },
+
       { "name" : "engine_call_clear", "parameterTypes" : ["long"] },
       { "name" : "engine_call_duplicate", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_empty", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_is_empty", "parameterTypes" : ["long"] },
       { "name" : "engine_call_erase", "parameterTypes" : ["long"] },
       { "name" : "engine_call_get", "parameterTypes" : ["long"] },
       { "name" : "engine_call_has", "parameterTypes" : ["long"] },
       { "name" : "engine_call_hasAll", "parameterTypes" : ["long"] },
       { "name" : "engine_call_hash", "parameterTypes" : ["long"] },
       { "name" : "engine_call_keys", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_make_read_only", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_merge", "parameterTypes" : ["long"] },
       { "name" : "engine_call_size", "parameterTypes" : ["long"] },
       { "name" : "engine_call_values", "parameterTypes" : ["long"] },
       { "name" : "engine_call_operator_get", "parameterTypes" : ["long"] },
@@ -197,6 +223,7 @@
       { "name" : "engine_call_constructor_string", "parameterTypes" : [] },
       { "name" : "engine_call_constructor_node_path", "parameterTypes" : [] },
 
+      { "name" : "engine_call_path", "parameterTypes" : ["long"] },
       { "name" : "engine_call_getAsPropertyPath", "parameterTypes" : ["long"] },
       { "name" : "engine_call_getName", "parameterTypes" : ["long"] },
       { "name" : "engine_call_getNameCount", "parameterTypes" : ["long"] },
@@ -639,11 +666,16 @@
     ]
   },
   {
-    "name":"godot.core.KtFunction",
+    "name":"godot.core.callable.KtCallable",
     "methods":[
-      {"name":"getFunctionInfo","parameterTypes":[] },
       {"name":"getParameterCount","parameterTypes":[] },
       {"name":"invoke","parameterTypes":["godot.core.KtObject"] }
+    ]
+  },
+  {
+    "name":"godot.core.KtFunction",
+    "methods":[
+      {"name":"getFunctionInfo","parameterTypes":[] }
     ]
   },
   {
@@ -702,9 +734,7 @@
     "methods":[
       {"name":"sendTargetToNative","parameterTypes":[] },
       {"name":"callTargeted","parameterTypes":[] },
-      {"name":"callNotTargeted","parameterTypes":[] },
-      {"name":"hashcode","parameterTypes":[] },
-      {"name":"equals","parameterTypes":["java.lang.Object"] }
+      {"name":"callNotTargeted","parameterTypes":[] }
     ]
   }
 ]

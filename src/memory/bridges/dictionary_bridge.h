@@ -20,6 +20,8 @@ namespace bridges {
         static void engine_call_hasAll(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_hash(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_keys(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_make_read_only(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_merge(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_values(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_operator_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

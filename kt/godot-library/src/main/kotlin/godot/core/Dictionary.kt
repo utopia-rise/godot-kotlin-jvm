@@ -243,6 +243,15 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         }
     }
 
+    fun makeReadOnly() {
+        Bridge.engine_call_make_read_only(_handle)
+    }
+
+    fun merge(dictionary: Dictionary<K, V>, overwrite: Boolean = false) {
+        TransferContext.writeArguments(VariantType.DICTIONARY to dictionary, VariantType.BOOL to overwrite)
+        Bridge.engine_call_merge(_handle)
+    }
+
     override fun put(key: K, value: V): V? {
         val ret = get(key, null)
         set(key, value)
@@ -326,6 +335,8 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         external fun engine_call_hasAll(_handle: VoidPtr)
         external fun engine_call_hash(_handle: VoidPtr)
         external fun engine_call_keys(_handle: VoidPtr)
+        external fun engine_call_make_read_only(_handle: VoidPtr)
+        external fun engine_call_merge(_handle: VoidPtr)
         external fun engine_call_size(_handle: VoidPtr)
         external fun engine_call_values(_handle: VoidPtr)
         external fun engine_call_operator_get(_handle: VoidPtr)

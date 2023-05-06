@@ -70,7 +70,10 @@ internal object GarbageCollector {
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
     private var forceJvmGarbageCollector = false
-    private var shouldDisplayLeakInstancesOnClose = true
+
+    // Not private because accessed by engine.
+    @Suppress("MemberVisibilityCanBePrivate")
+    var shouldDisplayLeakInstancesOnClose = true
 
     private var gcState = GCState.NONE
 

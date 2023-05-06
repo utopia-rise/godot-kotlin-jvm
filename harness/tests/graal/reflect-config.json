@@ -18,5 +18,8 @@
   },
   {
     "name": "kotlin.KotlinVersion$Companion[]"
+  },
+  {
+    "name": "godot.tests.reflection.BaseReflectionTest"
   }
 ]
