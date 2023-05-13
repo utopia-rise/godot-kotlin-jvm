@@ -576,7 +576,7 @@ class Invocation : Node3D() {
 	fun addByteArrayToPoolArray(array: PackedByteArray) = packedByteArray.appendArray(array)
 
 	@RegisterFunction
-	fun deleteByteFromPoolArray(index: Int) = packedByteArray.remove(index)
+	fun deleteByteFromPoolArray(index: Int) = packedByteArray.removeAt(index)
 
 	@RegisterFunction
 	fun getByteFromPoolArray(index: Int) = packedByteArray[index]
@@ -598,7 +598,7 @@ class Invocation : Node3D() {
 	fun addColorArrayToPoolArray(colorArray: PackedColorArray) = packedColorArray.appendArray(colorArray)
 
 	@RegisterFunction
-	fun deleteColorFromPoolArray(index: Int) = packedColorArray.remove(index)
+	fun deleteColorFromPoolArray(index: Int) = packedColorArray.removeAt(index)
 
 	@RegisterFunction
 	fun getColorFromPoolArray(index: Int) = packedColorArray[index]
@@ -620,7 +620,7 @@ class Invocation : Node3D() {
 	fun addIntArrayToPoolArray(intArray: PackedInt32Array) = this.packedInt32Array.appendArray(intArray)
 
 	@RegisterFunction
-	fun deleteIntFromPoolArray(index: Int) = packedInt32Array.remove(index)
+	fun deleteIntFromPoolArray(index: Int) = packedInt32Array.removeAt(index)
 
 	@RegisterFunction
 	fun getIntFromPoolArray(index: Int) = packedInt32Array[index]
@@ -660,7 +660,7 @@ class Invocation : Node3D() {
 	}
 
 	@RegisterFunction
-	fun deleteRealFromPoolArray(index: Int) = packedFloat64Array.remove(index)
+	fun deleteRealFromPoolArray(index: Int) = packedFloat64Array.removeAt(index)
 
 	@RegisterFunction
 	fun getRealFromPoolArray(index: Int) = packedFloat64Array[index]
@@ -682,7 +682,7 @@ class Invocation : Node3D() {
 	fun addStringArrayToPoolArray(stringArray: PackedStringArray) = packedStringArray.appendArray(stringArray)
 
 	@RegisterFunction
-	fun deleteStringFromPoolArray(index: Int) = packedStringArray.remove(index)
+	fun deleteStringFromPoolArray(index: Int) = packedStringArray.removeAt(index)
 
 	@RegisterFunction
 	fun getStringFromPoolArray(index: Int) = packedStringArray[index]
@@ -704,7 +704,7 @@ class Invocation : Node3D() {
 	fun addVector2ArrayToPoolArray(vector2Array: PackedVector2Array) = packedVector2Array.appendArray(vector2Array)
 
 	@RegisterFunction
-	fun deleteVector2FromPoolArray(index: Int) = packedVector2Array.remove(index)
+	fun deleteVector2FromPoolArray(index: Int) = packedVector2Array.removeAt(index)
 
 	@RegisterFunction
 	fun getVector2FromPoolArray(index: Int) = packedVector2Array[index]
@@ -726,7 +726,7 @@ class Invocation : Node3D() {
 	fun addVector3ArrayToPoolArray(vector3Array: PackedVector3Array) = packedVector3Array.appendArray(vector3Array)
 
 	@RegisterFunction
-	fun deleteVector3FromPoolArray(index: Int) = packedVector3Array.remove(index)
+	fun deleteVector3FromPoolArray(index: Int) = packedVector3Array.removeAt(index)
 
 	@RegisterFunction
 	fun getVector3FromPoolArray(index: Int) = packedVector3Array[index]
