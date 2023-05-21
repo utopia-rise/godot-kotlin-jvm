@@ -3,6 +3,8 @@ package godot.core
 import godot.annotation.CoreTypeHelper
 import godot.util.CMP_EPSILON
 import godot.util.RealT
+import kotlin.math.min
+
 
 class AABB(
     p_position: Vector3,
@@ -74,6 +76,19 @@ class AABB(
 
     //API
     /**
+     * Returns an AABB with equivalent position and size, modified so that the most-negative corner is the origin and
+     * the size is positive.
+     */
+    fun abs() = AABB(
+        Vector3(
+            position.x + min(size.x, 0.0),
+            position.y + min(size.y, 0.0),
+            position.z + min(size.z, 0.0)
+        ),
+        size.abs()
+    )
+
+    /**
      * Returns true if this AABB completely encloses another one.
      */
     fun encloses(other: AABB): Boolean {
@@ -127,11 +142,9 @@ class AABB(
     }
 
     /**
-     * Returns the volume of the AABB.
+     * Returns the center of the [AABB], which is equal to [position] + ([size] / 2).
      */
-    fun getArea(): RealT {
-        return _size.x * _size.y * _size.z
-    }
+    fun getCenter() = position + (size * 0.5)
 
     /**
      * Gets the position of the 8 endpoints of the AABB in space.
@@ -272,6 +285,13 @@ class AABB(
     }
 
     /**
+     * Returns the volume of the AABB.
+     */
+    fun getVolume(): RealT {
+        return _size.x * _size.y * _size.z
+    }
+
+    /**
      * Returns a copy of the AABB grown a given amount of units towards all the sides.
      */
     fun grow(p_by: RealT): AABB {
@@ -290,20 +310,6 @@ class AABB(
     }
 
     /**
-     * Returns true if the AABB is flat or empty.
-     */
-    fun hasNoArea(): Boolean {
-        return (_size.x <= CMP_EPSILON || _size.y <= CMP_EPSILON || _size.z <= CMP_EPSILON)
-    }
-
-    /**
-     * Returns true if the AABB is empty.
-     */
-    fun hasNoSurface(): Boolean {
-        return (_size.x <= CMP_EPSILON && _size.y <= CMP_EPSILON && _size.z <= CMP_EPSILON)
-    }
-
-    /**
      * Returns true if the AABB contains a point.
      */
     fun hasPoint(point: Vector3): Boolean {
@@ -316,6 +322,20 @@ class AABB(
             point.z > _position.z + _size.z -> false
             else -> true
         }
+    }
+
+    /**
+     * Returns true if the AABB is empty.
+     */
+    fun hasSurface(): Boolean {
+        return (_size.x > CMP_EPSILON && _size.y > CMP_EPSILON && _size.z > CMP_EPSILON)
+    }
+
+    /**
+     * Returns true if the AABB is flat or empty.
+     */
+    fun hasVolume(): Boolean {
+        return (_size.x > CMP_EPSILON || _size.y > CMP_EPSILON || _size.z > CMP_EPSILON)
     }
 
     /**
@@ -397,6 +417,49 @@ class AABB(
     }
 
     /**
+     * Returns `true` if the given ray intersects with this [AABB]. Ray length is infinite.
+     */
+    fun intersectsRay(from: Vector3, dir: Vector3): Boolean {
+        require(size.x < 0 || size.y < 0 || size.z < 0) {
+            "AABB size is negative, this is not supported. Use AABB.abs() to get an AABB with a positive size."
+        }
+
+        var c1 = Vector3()
+        var c2 = Vector3()
+        val end = position + size
+        var near = -1e20
+        var far = 1e20
+        var axis = 0
+
+        for (i in 0..2) {
+            if (dir[i] == 0.0) {
+                if (from[i] < position[i] || from[i] > end[i]) {
+                    return false
+                }
+            } else { // ray not parallel to planes in this direction
+                c1[i] = (position[i] - from[i]) / dir[i]
+                c2[i] = (end[i] - from[i]) / dir[i]
+                if (c1[i] > c2[i]) {
+                    val aux = c1
+                    c1 = c2
+                    c2 = aux
+                }
+                if (c1[i] > near) {
+                    near = c1[i]
+                }
+                if (c2[i] < far) {
+                    far = c2[i]
+                }
+                if (near > far || far < 0) {
+                    return false
+                }
+            }
+        }
+
+        return true
+    }
+
+    /**
      * Returns true if the AABB intersects the line segment between from and to.
      */
     fun intersectsSegment(from: Vector3, to: Vector3): Boolean {
@@ -444,6 +507,11 @@ class AABB(
     fun isEqualApprox(other: AABB): Boolean {
         return this._position.isEqualApprox(other._position) && this._size.isEqualApprox(other._size)
     }
+
+    /**
+     * Returns `true` if this [AABB] is finite, by calling [Vector3.isFinite] on each component.
+     */
+    fun isFinite() = position.isFinite() && size.isFinite()
 
     /**
      * Returns a larger AABB that contains both this AABB and with.
