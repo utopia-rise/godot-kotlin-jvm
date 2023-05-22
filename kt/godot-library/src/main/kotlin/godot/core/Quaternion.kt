@@ -361,7 +361,7 @@ class Quaternion(
      * GDScript related members
      */
     constructor(from: Basis) : this() {
-        from.getQuat().also {
+        from.getQuaternion().also {
             set(it.x, it.y, it.z, it.w)
         }
     }

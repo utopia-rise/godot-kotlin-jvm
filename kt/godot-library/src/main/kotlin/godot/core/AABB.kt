@@ -420,7 +420,7 @@ class AABB(
      * Returns `true` if the given ray intersects with this [AABB]. Ray length is infinite.
      */
     fun intersectsRay(from: Vector3, dir: Vector3): Boolean {
-        require(size.x < 0 || size.y < 0 || size.z < 0) {
+        require(size.x >= 0 && size.y >= 0 && size.z >= 0) {
             "AABB size is negative, this is not supported. Use AABB.abs() to get an AABB with a positive size."
         }
 

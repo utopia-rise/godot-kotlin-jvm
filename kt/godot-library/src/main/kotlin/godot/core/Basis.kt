@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.EulerOrder
 import godot.annotation.CoreTypeHelper
 import godot.util.CMP_EPSILON
 import godot.util.RealT
@@ -68,6 +69,42 @@ class Basis() : CoreType {
                 Basis(0.0, 0.0, -1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0),
                 Basis(0.0, -1.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0)
             )
+
+        fun fromEuler(euler: Vector3, order: EulerOrder = EulerOrder.EULER_ORDER_YXZ) = Basis().also {
+            it.setEuler(euler, order)
+        }
+        fun fromScale(scale: Vector3) = Basis(scale.x, 0, 0, 0, scale.y, 0, 0, 0, scale.z)
+
+        /**
+         * Creates a Basis with a rotation such that the forward axis (-Z) points towards the [target] position.
+         *
+         * The up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the forward
+         * axis.
+         * The resulting Basis is orthonormalized. The [target] and [up] vectors cannot be zero, and cannot be parallel
+         * to each other.
+         */
+        fun lookingAt(target: Vector3, up: Vector3 = Vector3(0, 1, 0)): Basis {
+            require(!target.isZeroApprox()) {
+                "The target vector can't be zero."
+            }
+            require(!up.isZeroApprox()) {
+                "The up vector can't be zero."
+            }
+            val vZ: Vector3 = -target.normalized()
+            val vX: Vector3 = up.cross(vZ)
+
+            require(!vX.isZeroApprox()) {
+                "The target vector and up vector can't be parallel to each other."
+            }
+
+            vX.normalize()
+            val vY = vZ.cross(vX)
+
+            val basis = Basis()
+
+            basis.setColumns(vX, vY, vZ)
+            return basis
+        }
     }
 
 
@@ -166,10 +203,20 @@ class Basis() : CoreType {
     }
 
     /**
+     * Returns the basis's rotation in the form of Euler angles. The Euler order depends on the [order] parameter, by
+     * default it uses the YXZ convention: when decomposing, first Z, then X, and Y last. The returned vector contains
+     * the rotation angles in the format (X angle, Y angle, Z angle).
      *
+     * Consider using the [getRotationQuaternion] method instead, which returns a [Quaternion] quaternion instead of
+     * Euler angles.
      */
-    fun getEuler(): Vector3 {
-        return getEulerYxz()
+    fun getEuler(order: EulerOrder = EulerOrder.EULER_ORDER_YXZ) = when(order) {
+        EulerOrder.EULER_ORDER_XYZ -> getEulerXyz()
+        EulerOrder.EULER_ORDER_XZY -> getEulerXzy()
+        EulerOrder.EULER_ORDER_YXZ -> getEulerYxz()
+        EulerOrder.EULER_ORDER_YZX -> getEulerYzx()
+        EulerOrder.EULER_ORDER_ZXY -> getEulerZxy()
+        EulerOrder.EULER_ORDER_ZYX -> getEulerZyx()
     }
 
     /**
@@ -226,6 +273,36 @@ class Basis() : CoreType {
     }
 
     /**
+     * Euler angles in XZY convention.
+     * See https://en.wikipedia.org/wiki/Euler_angles#Rotation_matrix
+     * rot =  cz*cy             -sz             cz*sy
+     *        sx*sy+cx*cy*sz    cx*cz           cx*sz*sy-cy*sx
+     *        cy*sx*sz          cz*sx           cx*cy+sx*sz*sy
+     */
+    internal fun getEulerXzy(): Vector3 {
+        val euler = Vector3()
+        val sz = _x[1]
+        if (sz < (1.0f - CMP_EPSILON)) {
+            if (sz > -(1.0f - CMP_EPSILON)) {
+                euler.x = atan2(_z[1], _y[1])
+                euler.y = atan2(_x[2], _x[0])
+                euler.z = asin(-sz)
+            } else {
+                // It's -1
+                euler.x = -atan2(_y[2], _z[2])
+                euler.y = 0.0
+                euler.z = Math.PI / 2.0f
+            }
+        } else {
+            // It's 1
+            euler.x = -atan2(y[2], z[2]);
+            euler.y = 0.0
+            euler.z = -Math.PI / 2.0
+        }
+        return euler
+    }
+
+    /**
      * getEulerYxz returns a vector containing the Euler angles in the YXZ convention,
      * as in first-Z, then-X, last-Y. The angles for X, Y, and Z rotations are returned
      * as the x, y, and z components of a Vector3 respectively.
@@ -274,6 +351,93 @@ class Basis() : CoreType {
         return euler
     }
 
+    /**
+     * Euler angles in YZX convention.
+     * See https://en.wikipedia.org/wiki/Euler_angles#Rotation_matrix
+     * rot =  cy*cz             sy*sx-cy*cx*sz     cx*sy+cy*sz*sx
+     *        sz                cz*cx              -cz*sx
+     *        -cz*sy            cy*sx+cx*sy*sz     cy*cx-sy*sz*sx
+     */
+    internal fun getEulerYzx(): Vector3 {
+        val euler = Vector3()
+        val sz = _y[0]
+        if (sz < (1.0f - CMP_EPSILON)) {
+            if (sz > -(1.0f - CMP_EPSILON)) {
+                euler.x = atan2(-_y[2], _y[1])
+                euler.y = atan2(-_z[0], _x[0])
+                euler.z = asin(sz)
+            } else {
+                // It's -1
+                euler.x = atan2(_z[1], _z[2])
+                euler.y = 0.0
+                euler.z = -Math.PI / 2.0
+            }
+        } else {
+            // It's 1
+            euler.x = atan2(_z[1], _z[2])
+            euler.y = 0.0
+            euler.z = Math.PI / 2.0
+        }
+
+        return euler
+    }
+
+    /**
+     * Euler angles in ZXY convention.
+     * See https://en.wikipedia.org/wiki/Euler_angles#Rotation_matrix
+     * rot =  cz*cy-sz*sx*sy    -cx*sz                cz*sy+cy*sz*sx
+     *        cy*sz+cz*sx*sy    cz*cx                 sz*sy-cz*cy*sx
+     *        -cx*sy            sx                    cx*cy
+     */
+    internal fun getEulerZxy(): Vector3 {
+        val euler = Vector3()
+        val sx = _z[1]
+
+        if (sx < 1.0f - CMP_EPSILON) {
+            if (sx > -(1.0f - CMP_EPSILON)) {
+                euler.x = asin(sx)
+                euler.y = atan2(-_z[0], _z[2])
+                euler.z = atan2(-_x[1], _y[1])
+            } else {
+                // It's -1
+                euler.x = -Math.PI / 2.0f
+                euler.y = atan2(_x[2], _x[0])
+                euler.z = 0.0
+            }
+        } else {
+            // It's 1
+            euler.x = Math.PI / 2.0f
+            euler.y = atan2(_x[2], _x[0])
+            euler.z = 0.0
+        }
+
+        return euler
+    }
+
+    internal fun getEulerZyx(): Vector3 {
+        val euler = Vector3()
+        val sy = _z[0];
+
+        if (sy < 1.0f - CMP_EPSILON) {
+            if (sy > -(1.0f - CMP_EPSILON)) {
+                euler.x = atan2(_z[1], _z[2])
+                euler.y = asin(-sy)
+                euler.z = atan2(_y[0], _x[0])
+            } else {
+                // It's -1
+                euler.x = 0.0
+                euler.y = Math.PI / 2.0f
+                euler.z = -atan2(_x[1], _y[1])
+            }
+        } else {
+            // It's 1
+            euler.x = 0.0;
+            euler.y = -Math.PI / 2.0f;
+            euler.z = -atan2(_x[1], _y[1]);
+        }
+
+        return euler
+    }
 
     private fun isOrthogonal(): Boolean {
         val id = Basis()
@@ -315,7 +479,7 @@ class Basis() : CoreType {
     /**
      *
      */
-    fun getRotationQuat(): Quaternion {
+    fun getRotationQuaternion(): Quaternion {
         // Assumes that the matrix can be decomposed into a proper rotation and scaling matrix as M = R.S,
         // and returns the Euler angles corresponding to the rotation part, complementing get_scale().
         // See the comment in get_scale() for further information.
@@ -378,7 +542,7 @@ class Basis() : CoreType {
         )
     }
 
-    fun getQuat(): Quaternion {
+    fun getQuaternion(): Quaternion {
         require(isRotation()) { "Basis must be normalized in order to be casted to a Quaternion. Use get_rotation_quat() or call orthonormalized() instead." }
         val trace = this._x.x + this._y.y + this._z.z
         val temp: Array<RealT>
@@ -432,6 +596,11 @@ class Basis() : CoreType {
 
         return true
     }
+
+    /**
+     * Returns `true` if this basis is finite, by calling [Vector3.isFinite] on each component.
+     */
+    fun isFinite() = _x.isFinite() && _y.isFinite() && _z.isFinite()
 
     /**
      * Returns the orthonormalized version of the matrix (useful to call from time to time to avoid rounding error for orthogonal matrices).
@@ -507,21 +676,13 @@ class Basis() : CoreType {
         this._z.z *= scale.z
     }
 
-    /**
-     *
-     */
-    fun setEuler(p_euler: Vector3) {
-        setEulerYxz(p_euler)
+    private fun set(basis: Basis) {
+        this._x = basis._x
+        this._y = basis._y
+        this._z = basis._z
     }
 
-    /**
-     * setEulerXyz expects a vector containing the Euler angles in the format
-     * (ax,ay,az), where ax is the angle of rotation around x axis,
-     * and similar for other axes.
-     * The current implementation uses XYZ convention (Z is the first rotation).
-     */
-    internal fun setEulerXyz(euler: Vector3) {
-
+    internal fun setEuler(euler: Vector3, order: EulerOrder = EulerOrder.EULER_ORDER_YXZ) {
         var c: RealT = cos(euler.x)
         var s: RealT = sin(euler.x)
 
@@ -535,38 +696,14 @@ class Basis() : CoreType {
         s = sin(euler.z)
         val zmat = Basis(c, -s, 0.0, s, c, 0.0, 0.0, 0.0, 1.0)
 
-        //optimizer will optimize away all this anyway
-        val ret = xmat * (ymat * zmat)
-        this._x = ret._x
-        this._y = ret._y
-        this._z = ret._z
-    }
-
-    /**
-     * setEulerYxz expects a vector containing the Euler angles in the format
-     * (ax,ay,az), where ax is the angle of rotation around x axis,
-     * and similar for other axes.
-     * The current implementation uses YXZ convention (Z is the first rotation).
-     */
-    internal fun setEulerYxz(euler: Vector3) {
-        var c: RealT = cos(euler.x)
-        var s: RealT = sin(euler.x)
-
-        val xmat = Basis(1.0, 0.0, 0.0, 0.0, c, -s, 0.0, s, c)
-
-        c = cos(euler.y)
-        s = sin(euler.y)
-        val ymat = Basis(c, 0.0, s, 0.0, 1.0, 0.0, -s, 0.0, c)
-
-        c = cos(euler.z)
-        s = sin(euler.z)
-        val zmat = Basis(c, -s, 0.0, s, c, 0.0, 0.0, 0.0, 1.0)
-
-        val ret = ymat * xmat * zmat
-
-        this._x = ret._x
-        this._y = ret._y
-        this._z = ret._z
+        when(order) {
+            EulerOrder.EULER_ORDER_XYZ -> set(xmat * (ymat * zmat))
+            EulerOrder.EULER_ORDER_XZY -> set(xmat * zmat * ymat)
+            EulerOrder.EULER_ORDER_YXZ -> set(ymat * xmat * zmat)
+            EulerOrder.EULER_ORDER_YZX -> set(ymat * zmat * xmat)
+            EulerOrder.EULER_ORDER_ZXY -> set(zmat * xmat * ymat)
+            EulerOrder.EULER_ORDER_ZYX -> set(zmat * ymat * xmat)
+        }
     }
 
     /**
@@ -671,6 +808,18 @@ class Basis() : CoreType {
             2 -> _z = f
             else -> throw IndexOutOfBoundsException()
         }
+    }
+
+    internal fun setColumns(x: Vector3, y: Vector3, z: Vector3) {
+        setColumn(0, x)
+        setColumn(1, y)
+        setColumn(2, z)
+    }
+
+    internal fun setColumn(index: Int, value: Vector3) {
+        _x[index] = value.x
+        _y[index] = value.y
+        _z[index] = value.z
     }
 
     fun set(
