@@ -48,6 +48,18 @@ class Callable internal constructor(
         GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
+    fun bind(vararg args: Any?): Callable {
+        TransferContext.writeArguments(*args.map { VariantType.ANY to it }.toTypedArray())
+        Bridge.engine_call_bind(_handle)
+        return TransferContext.readReturnValue(VariantType.CALLABLE, false) as Callable
+    }
+
+    fun bindv(args: VariantArray<Any?>): Callable {
+        TransferContext.writeArguments(VariantType.ARRAY to args)
+        Bridge.engine_call_bindv(_handle)
+        return TransferContext.readReturnValue(VariantType.CALLABLE, false) as Callable
+    }
+
     fun call(vararg args: Any?): Any? {
         TransferContext.writeArguments(*args.map { VariantType.ANY to it }.toTypedArray())
         Bridge.engine_call_call(_handle)
@@ -59,6 +71,78 @@ class Callable internal constructor(
         Bridge.engine_call_call_deferred(_handle)
     }
 
+    fun callv(args: VariantArray<Any?>): Any? {
+        TransferContext.writeArguments(VariantType.ARRAY to args)
+        Bridge.engine_call_callv(_handle)
+        return TransferContext.readReturnValue(VariantType.ANY, true)
+    }
+
+    fun getBoundArguments(): VariantArray<Any?> {
+        Bridge.engine_call_get_bound_arguments(_handle)
+        return TransferContext.readReturnValue(VariantType.ARRAY, false) as VariantArray<Any?>
+    }
+
+    fun getBoundArgumentCount(): Int {
+        Bridge.engine_call_get_bound_arguments_count(_handle)
+        return TransferContext.readReturnValue(VariantType.JVM_INT, false) as Int
+    }
+
+    fun getMethod(): StringName {
+        Bridge.engine_call_get_method(_handle)
+        return TransferContext.readReturnValue(VariantType.STRING_NAME, false) as StringName
+    }
+
+    fun getObject(): Object {
+        Bridge.engine_call_get_object(_handle)
+        return TransferContext.readReturnValue(VariantType.OBJECT, false) as Object
+    }
+
+    fun getObjectId(): ObjectID {
+        Bridge.engine_call_get_object_id(_handle)
+        return ObjectID(TransferContext.readReturnValue(VariantType.LONG) as Long)
+    }
+
+    override fun hashCode(): Int {
+        Bridge.engine_call_hash(_handle)
+        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+    }
+
+    fun isCustom(): Boolean {
+        Bridge.engine_call_is_custom(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
+
+    fun isNull(): Boolean {
+        Bridge.engine_call_is_null(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
+
+    fun isStandard(): Boolean {
+        Bridge.engine_call_is_standard(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
+
+    fun isValid(): Boolean {
+        Bridge.engine_call_is_valid(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
+
+    fun rpc(vararg args: Any?) {
+        TransferContext.writeArguments(*args.map { VariantType.ANY to it }.toTypedArray())
+        Bridge.engine_call_rpc(_handle)
+    }
+
+    fun rpcId(peerId: Long, vararg args: Any?) {
+        TransferContext.writeArguments(VariantType.LONG to peerId, *args.map { VariantType.ANY to it }.toTypedArray())
+        Bridge.engine_call_rpc_id(_handle)
+    }
+
+    fun unbind(argCount: Int): Callable {
+        TransferContext.writeArguments(VariantType.JVM_INT to argCount)
+        Bridge.engine_call_unbind(_handle)
+        return TransferContext.readReturnValue(VariantType.CALLABLE, false) as Callable
+    }
+
     @Suppress("FunctionName")
     object Bridge {
         external fun engine_call_constructor(): VoidPtr
@@ -66,8 +150,24 @@ class Callable internal constructor(
         external fun engine_call_constructor_kt_custom_callable(callable: KtCustomCallable): VoidPtr
         external fun engine_call_copy_constructor(): VoidPtr
 
+        external fun engine_call_bind(_handle: VoidPtr)
+        external fun engine_call_bindv(_handle: VoidPtr)
         external fun engine_call_call(handle: VoidPtr)
         external fun engine_call_call_deferred(handle: VoidPtr)
+        external fun engine_call_callv(_handle: VoidPtr)
+        external fun engine_call_get_bound_arguments(_handle: VoidPtr)
+        external fun engine_call_get_bound_arguments_count(_handle: VoidPtr)
+        external fun engine_call_get_method(_handle: VoidPtr)
+        external fun engine_call_get_object(_handle: VoidPtr)
+        external fun engine_call_get_object_id(_handle: VoidPtr)
+        external fun engine_call_hash(_handle: VoidPtr)
+        external fun engine_call_is_custom(_handle: VoidPtr)
+        external fun engine_call_is_null(_handle: VoidPtr)
+        external fun engine_call_is_standard(_handle: VoidPtr)
+        external fun engine_call_is_valid(_handle: VoidPtr)
+        external fun engine_call_rpc(_handle: VoidPtr)
+        external fun engine_call_rpc_id(_handle: VoidPtr)
+        external fun engine_call_unbind(_handle: VoidPtr)
     }
 }
 

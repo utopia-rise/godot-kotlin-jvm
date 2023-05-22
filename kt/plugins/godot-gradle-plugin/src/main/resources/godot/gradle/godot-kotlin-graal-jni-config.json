@@ -169,8 +169,24 @@
       { "name" : "engine_call_constructor_kt_custom_callable", "parameterTypes" : ["godot.core.KtCustomCallable"] },
       { "name" : "engine_call_copy_constructor", "parameterTypes" : [] },
 
+      { "name" : "engine_call_bind", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_bindv", "parameterTypes" : ["long"] },
       { "name" : "engine_call_call", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_call_deferred", "parameterTypes" : ["long"] }
+      { "name" : "engine_call_call_deferred", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_callv", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_get_bound_arguments", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_get_bound_arguments_count", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_get_method", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_get_object", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_get_object_id", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_hash", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_is_custom", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_is_null", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_is_standard", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_is_valid", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_rpc", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_rpc_id", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_unbind", "parameterTypes" : ["long"] }
     ]
   },
   {
