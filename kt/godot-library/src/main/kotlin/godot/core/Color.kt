@@ -476,6 +476,58 @@ class Color(
             return ig
         }
 
+        /**
+         * Constructs a color from an HSV profile. h, s, and v are values between 0 and 1.
+         */
+        fun fromHsv(h: RealT, s: RealT, v: RealT, a: RealT): Color {
+            var h2 = (h * 360.0).rem(360.0)
+
+            if (h2 < 0) h2 += 360
+
+            val finalH = h2 / 60
+            val c = v * s
+            val x = c * (1.0 - (finalH.rem(2) - 1))
+            val rgbTriple = when (finalH.toInt()) {
+                0 -> Triple(c, x, 0.0)
+                1 -> Triple(x, c, 0.0)
+                2 -> Triple(0.0, c, x)
+                3 -> Triple(0.0, x, c)
+                4 -> Triple(x, 0.0, c)
+                5 -> Triple(c, 0.0, x)
+                else -> Triple(0.0, 0.0, 0.0)
+            }
+
+            val m = v - c
+            return Color(m + rgbTriple.first, m + rgbTriple.second, m + rgbTriple.third, a)
+        }
+
+        /**
+         * Decodes a Color from a RGBE9995 format integer. See Image.FORMAT_RGBE9995.
+         */
+        fun fromRgbd9995(rgbe: Int): Color {
+            val r = rgbe and 0x1ff
+            val g = (rgbe shr 9) and 0x1ff
+            val b = (rgbe shr 18) and 0x1ff
+            val e = (rgbe shr 27)
+            val m = 2.0.pow(e - 15.0 - 9.0)
+
+            val rd = r * m;
+            val gd = g * m;
+            val bd = b * m;
+
+            return Color(rd, gd, bd, 1.0f)
+        }
+
+        /**
+         * Creates a Color from the given string, which can be either an HTML color code or a named color
+         * (case-insensitive). Returns default if the color cannot be inferred from the string.
+         */
+        fun fromString(str: String, default: Color) = if (htmlIsValid(str)) {
+            html(str)
+        } else {
+            named(str, default)
+        }
+
         //Color construction helpers
         fun html(from: String): Color {
             var color = from
@@ -514,7 +566,7 @@ class Color(
             )
         }
 
-        fun hex(from: Int): Color {
+        fun hex(from: Long): Color {
             val a = (from and 0xFF) / 255.0
             var hex = from shr 8
             val b = (hex and 0xFF) / 255.0
@@ -535,6 +587,237 @@ class Color(
             val r = (hex and 0xFFFF) / 65535.0
             return Color(r, g, b, a)
         }
+
+        private val namedColors = arrayOf(
+            "ALICE_BLUE" to hex(0xF0F8FFFF),
+            "ANTIQUE_WHITE" to hex(0xFAEBD7FF),
+            "AQUA" to hex(0x00FFFFFF),
+            "AQUAMARINE" to hex(0x7FFFD4FF),
+            "AZURE" to hex(0xF0FFFFFF),
+            "BEIGE" to hex(0xF5F5DCFF),
+            "BISQUE" to hex(0xFFE4C4FF),
+            "BLACK" to hex(0x000000FF),
+            "BLANCHED_ALMOND" to hex(0xFFEBCDFF),
+            "BLUE" to hex(0x0000FFFF),
+            "BLUE_VIOLET" to hex(0x8A2BE2FF),
+            "BROWN" to hex(0xA52A2AFF),
+            "BURLYWOOD" to hex(0xDEB887FF),
+            "CADET_BLUE" to hex(0x5F9EA0FF),
+            "CHARTREUSE" to hex(0x7FFF00FF),
+            "CHOCOLATE" to hex(0xD2691EFF),
+            "CORAL" to hex(0xFF7F50FF),
+            "CORNFLOWER_BLUE" to hex(0x6495EDFF),
+            "CORNSILK" to hex(0xFFF8DCFF),
+            "CRIMSON" to hex(0xDC143CFF),
+            "CYAN" to hex(0x00FFFFFF),
+            "DARK_BLUE" to hex(0x00008BFF),
+            "DARK_CYAN" to hex(0x008B8BFF),
+            "DARK_GOLDENROD" to hex(0xB8860BFF),
+            "DARK_GRAY" to hex(0xA9A9A9FF),
+            "DARK_GREEN" to hex(0x006400FF),
+            "DARK_KHAKI" to hex(0xBDB76BFF),
+            "DARK_MAGENTA" to hex(0x8B008BFF),
+            "DARK_OLIVE_GREEN" to hex(0x556B2FFF),
+            "DARK_ORANGE" to hex(0xFF8C00FF),
+            "DARK_ORCHID" to hex(0x9932CCFF),
+            "DARK_RED" to hex(0x8B0000FF),
+            "DARK_SALMON" to hex(0xE9967AFF),
+            "DARK_SEA_GREEN" to hex(0x8FBC8FFF),
+            "DARK_SLATE_BLUE" to hex(0x483D8BFF),
+            "DARK_SLATE_GRAY" to hex(0x2F4F4FFF),
+            "DARK_TURQUOISE" to hex(0x00CED1FF),
+            "DARK_VIOLET" to hex(0x9400D3FF),
+            "DEEP_PINK" to hex(0xFF1493FF),
+            "DEEP_SKY_BLUE" to hex(0x00BFFFFF),
+            "DIM_GRAY" to hex(0x696969FF),
+            "DODGER_BLUE" to hex(0x1E90FFFF),
+            "FIREBRICK" to hex(0xB22222FF),
+            "FLORAL_WHITE" to hex(0xFFFAF0FF),
+            "FOREST_GREEN" to hex(0x228B22FF),
+            "FUCHSIA" to hex(0xFF00FFFF),
+            "GAINSBORO" to hex(0xDCDCDCFF),
+            "GHOST_WHITE" to hex(0xF8F8FFFF),
+            "GOLD" to hex(0xFFD700FF),
+            "GOLDENROD" to hex(0xDAA520FF),
+            "GRAY" to hex(0xBEBEBEFF),
+            "GREEN" to hex(0x00FF00FF),
+            "GREEN_YELLOW" to hex(0xADFF2FFF),
+            "HONEYDEW" to hex(0xF0FFF0FF),
+            "HOT_PINK" to hex(0xFF69B4FF),
+            "INDIAN_RED" to hex(0xCD5C5CFF),
+            "INDIGO" to hex(0x4B0082FF),
+            "IVORY" to hex(0xFFFFF0FF),
+            "KHAKI" to hex(0xF0E68CFF),
+            "LAVENDER" to hex(0xE6E6FAFF),
+            "LAVENDER_BLUSH" to hex(0xFFF0F5FF),
+            "LAWN_GREEN" to hex(0x7CFC00FF),
+            "LEMON_CHIFFON" to hex(0xFFFACDFF),
+            "LIGHT_BLUE" to hex(0xADD8E6FF),
+            "LIGHT_CORAL" to hex(0xF08080FF),
+            "LIGHT_CYAN" to hex(0xE0FFFFFF),
+            "LIGHT_GOLDENROD" to hex(0xFAFAD2FF),
+            "LIGHT_GRAY" to hex(0xD3D3D3FF),
+            "LIGHT_GREEN" to hex(0x90EE90FF),
+            "LIGHT_PINK" to hex(0xFFB6C1FF),
+            "LIGHT_SALMON" to hex(0xFFA07AFF),
+            "LIGHT_SEA_GREEN" to hex(0x20B2AAFF),
+            "LIGHT_SKY_BLUE" to hex(0x87CEFAFF),
+            "LIGHT_SLATE_GRAY" to hex(0x778899FF),
+            "LIGHT_STEEL_BLUE" to hex(0xB0C4DEFF),
+            "LIGHT_YELLOW" to hex(0xFFFFE0FF),
+            "LIME" to hex(0x00FF00FF),
+            "LIME_GREEN" to hex(0x32CD32FF),
+            "LINEN" to hex(0xFAF0E6FF),
+            "MAGENTA" to hex(0xFF00FFFF),
+            "MAROON" to hex(0xB03060FF),
+            "MEDIUM_AQUAMARINE" to hex(0x66CDAAFF),
+            "MEDIUM_BLUE" to hex(0x0000CDFF),
+            "MEDIUM_ORCHID" to hex(0xBA55D3FF),
+            "MEDIUM_PURPLE" to hex(0x9370DBFF),
+            "MEDIUM_SEA_GREEN" to hex(0x3CB371FF),
+            "MEDIUM_SLATE_BLUE" to hex(0x7B68EEFF),
+            "MEDIUM_SPRING_GREEN" to hex(0x00FA9AFF),
+            "MEDIUM_TURQUOISE" to hex(0x48D1CCFF),
+            "MEDIUM_VIOLET_RED" to hex(0xC71585FF),
+            "MIDNIGHT_BLUE" to hex(0x191970FF),
+            "MINT_CREAM" to hex(0xF5FFFAFF),
+            "MISTY_ROSE" to hex(0xFFE4E1FF),
+            "MOCCASIN" to hex(0xFFE4B5FF),
+            "NAVAJO_WHITE" to hex(0xFFDEADFF),
+            "NAVY_BLUE" to hex(0x000080FF),
+            "OLD_LACE" to hex(0xFDF5E6FF),
+            "OLIVE" to hex(0x808000FF),
+            "OLIVE_DRAB" to hex(0x6B8E23FF),
+            "ORANGE" to hex(0xFFA500FF),
+            "ORANGE_RED" to hex(0xFF4500FF),
+            "ORCHID" to hex(0xDA70D6FF),
+            "PALE_GOLDENROD" to hex(0xEEE8AAFF),
+            "PALE_GREEN" to hex(0x98FB98FF),
+            "PALE_TURQUOISE" to hex(0xAFEEEEFF),
+            "PALE_VIOLET_RED" to hex(0xDB7093FF),
+            "PAPAYA_WHIP" to hex(0xFFEFD5FF),
+            "PEACH_PUFF" to hex(0xFFDAB9FF),
+            "PERU" to hex(0xCD853FFF),
+            "PINK" to hex(0xFFC0CBFF),
+            "PLUM" to hex(0xDDA0DDFF),
+            "POWDER_BLUE" to hex(0xB0E0E6FF),
+            "PURPLE" to hex(0xA020F0FF),
+            "REBECCA_PURPLE" to hex(0x663399FF),
+            "RED" to hex(0xFF0000FF),
+            "ROSY_BROWN" to hex(0xBC8F8FFF),
+            "ROYAL_BLUE" to hex(0x4169E1FF),
+            "SADDLE_BROWN" to hex(0x8B4513FF),
+            "SALMON" to hex(0xFA8072FF),
+            "SANDY_BROWN" to hex(0xF4A460FF),
+            "SEA_GREEN" to hex(0x2E8B57FF),
+            "SEASHELL" to hex(0xFFF5EEFF),
+            "SIENNA" to hex(0xA0522DFF),
+            "SILVER" to hex(0xC0C0C0FF),
+            "SKY_BLUE" to hex(0x87CEEBFF),
+            "SLATE_BLUE" to hex(0x6A5ACDFF),
+            "SLATE_GRAY" to hex(0x708090FF),
+            "SNOW" to hex(0xFFFAFAFF),
+            "SPRING_GREEN" to hex(0x00FF7FFF),
+            "STEEL_BLUE" to hex(0x4682B4FF),
+            "TAN" to hex(0xD2B48CFF),
+            "TEAL" to hex(0x008080FF),
+            "THISTLE" to hex(0xD8BFD8FF),
+            "TOMATO" to hex(0xFF6347FF),
+            "TRANSPARENT" to hex(0xFFFFFF00),
+            "TURQUOISE" to hex(0x40E0D0FF),
+            "VIOLET" to hex(0xEE82EEFF),
+            "WEB_GRAY" to hex(0x808080FF),
+            "WEB_GREEN" to hex(0x008000FF),
+            "WEB_MAROON" to hex(0x800000FF),
+            "WEB_PURPLE" to hex(0x800080FF),
+            "WHEAT" to hex(0xF5DEB3FF),
+            "WHITE" to hex(0xFFFFFFFF),
+            "WHITE_SMOKE" to hex(0xF5F5F5FF),
+            "YELLOW" to hex(0xFFFF00FF),
+            "YELLOW_GREEN" to hex(0x9ACD32FF),
+            null to Color(),
+        )
+
+        private fun findNamedColor(name: String): Int {
+            var nameCopy = name
+            // Normalize name
+            // Normalize name
+            nameCopy = nameCopy.replace(" ", "")
+            nameCopy = nameCopy.replace("-", "")
+            nameCopy = nameCopy.replace("_", "")
+            nameCopy = nameCopy.replace("'", "")
+            nameCopy = nameCopy.replace(".", "")
+            nameCopy = nameCopy.uppercase()
+
+            var idx = 0
+            val color = namedColors[idx].first
+            while (color != null) {
+                if (nameCopy == java.lang.String(color).replace("_", "")) {
+                    return idx
+                }
+                idx++
+            }
+
+            return -1
+        }
+
+        private fun named(name: String, default: Color): Color {
+            val idx: Int = findNamedColor(name)
+            return if (idx == -1) {
+                default
+            } else namedColors[idx].second
+        }
+
+        fun parseCol4(str: String, ofs: Int) = when (val character: Char = str.get(ofs)) {
+            in '0'..'9' -> {
+                character.code - '0'.code
+            }
+
+            in 'a'..'f' -> {
+                character.code + (10 - 'a'.code)
+            }
+
+            in 'A'..'F' -> {
+                character.code + (10 - 'A'.code)
+            }
+
+            else -> -1
+        }
+
+        /**
+         * Returns true if color is a valid HTML hexadecimal color string. The string must be a hexadecimal value
+         * (case-insensitive) of either 3, 4, 6 or 8 digits, and may be prefixed by a hash sign (#). This method is
+         * identical to String.is_valid_html_color.
+         */
+        fun htmlIsValid(color: String): Boolean {
+            var clr: String = color
+
+            if (clr.isEmpty()) {
+                return false
+            }
+            if (clr[0] == '#') {
+                clr = clr.substring(1)
+            }
+
+            // Check if the amount of hex digits is valid.
+
+            // Check if the amount of hex digits is valid.
+            val len = clr.length
+            if (!(len == 3 || len == 4 || len == 6 || len == 8)) {
+                return false
+            }
+
+            // Check if each hex digit is valid.
+
+            // Check if each hex digit is valid.
+            for (i in 0 until len) {
+                if (parseCol4(clr, i) == -1) {
+                    return false
+                }
+            }
+
+            return true
+        }
     }
 
     //CONSTRUCTOR
@@ -543,8 +826,10 @@ class Color(
 
     constructor(other: Color) : this(other.r, other.g, other.b, other.a)
 
+    constructor(other: Color, alpha: RealT) : this(other.r, other.g, other.b, alpha)
+
     constructor(r: Number, g: Number, b: Number, a: Number = 1.0) :
-        this(r.toRealT(), g.toRealT(), b.toRealT(), a.toRealT())
+            this(r.toRealT(), g.toRealT(), b.toRealT(), a.toRealT())
 
     //API
     /**
@@ -563,6 +848,17 @@ class Color(
         }
         return res
     }
+
+    /**
+     * Returns a new color with all components clamped between the components of [min] and [max], by running clamp on
+     * each component.
+     */
+    fun clamp(min: Color = Color(0, 0, 0, 0), max: Color = Color(1, 1, 1, 1)) = Color(
+        r.coerceIn(min.r, max.r),
+        g.coerceIn(min.g, max.g),
+        b.coerceIn(min.b, max.b),
+        a.coerceIn(min.a, max.a),
+    )
 
     /**
      * Returns the most contrasting color.
@@ -593,29 +889,13 @@ class Color(
     }
 
     /**
-     * Constructs a color from an HSV profile. h, s, and v are values between 0 and 1.
+     * Returns the light intensity of the color, as a value between 0.0 and 1.0 (inclusive). This is useful when
+     * determining light or dark color. Colors with a luminance smaller than 0.5 can be generally considered dark.
+     *
+     * Note: get_luminance relies on the color being in the linear color space to return an accurate relative luminance
+     * value. If the color is in the sRGB color space, use srgb_to_linear to convert it to the linear color space first.
      */
-    fun fromHsv(h: RealT, s: RealT, v: RealT, a: RealT): Color {
-        var h2 = (h * 360.0).rem(360.0)
-
-        if (h2 < 0) h2 += 360
-
-        val finalH = h2 / 60
-        val c = v * s
-        val x = c * (1.0 - (finalH.rem(2) - 1))
-        val rgbTriple = when (finalH.toInt()) {
-            0 -> Triple(c, x, 0.0)
-            1 -> Triple(x, c, 0.0)
-            2 -> Triple(0.0, c, x)
-            3 -> Triple(0.0, x, c)
-            4 -> Triple(x, 0.0, c)
-            5 -> Triple(c, 0.0, x)
-            else -> Triple(0.0, 0.0, 0.0)
-        }
-
-        val m = v - c
-        return Color(m + rgbTriple.first, m + rgbTriple.second, m + rgbTriple.third, a)
-    }
+    fun getLuminance() = 0.2126f * r + 0.7152f * g + 0.0722f * b
 
     /**
      * Returns the color’s grayscale representation.
@@ -643,9 +923,24 @@ class Color(
      */
     fun isEqualApprox(color: Color): Boolean {
         return isEqualApprox(r, color.r)
-            && isEqualApprox(g, color.g)
-            && isEqualApprox(b, color.b)
-            && isEqualApprox(a, color.a)
+                && isEqualApprox(g, color.g)
+                && isEqualApprox(b, color.b)
+                && isEqualApprox(a, color.a)
+    }
+
+    /**
+     * Returns the linear interpolation between this color's components and [to]'s components. The interpolation factor
+     * [weight] should be between 0.0 and 1.0 (inclusive). See also @GlobalScope.lerp.
+     */
+    fun lerp(to: Color, weight: Float): Color {
+        val res = Color(this)
+
+        res.r = r + (weight * (to.r - r))
+        res.r = g + (weight * (to.g - g))
+        res.r = b + (weight * (to.b - b))
+        res.r = a + (weight * (to.a - a))
+
+        return res
     }
 
     /**
@@ -672,6 +967,27 @@ class Color(
         return res
     }
 
+    /**
+     * Returns the color converted to the sRGB color space. This method assumes the original color is in the linear
+     * color space. See also srgb_to_linear which performs the opposite operation.
+     */
+    fun linearToSrgb() = Color(
+        if (r < 0.0031308f) 12.92f * r else (1.0f + 0.055f) * r.pow(1.0 / 2.4) - 0.055,
+        if (g < 0.0031308f) 12.92f * g else (1.0f + 0.055f) * g.pow(1.0 / 2.4) - 0.055,
+        if (b < 0.0031308f) 12.92f * b else (1.0f + 0.055f) * b.pow(1.0 / 2.4) - 0.055,
+        a
+    )
+
+    /**
+     * Returns the color converted to the linear color space. This method assumes the original color already is in the
+     * sRGB color space. See also linear_to_srgb which performs the opposite operation.
+     */
+    fun srgbToLinear() = Color(
+        if (r < 0.04045f) r * (1.0f / 12.92f) else ((r + 0.055) * (1.0 / (1.0 + 0.055))).pow(2.4),
+        if (g < 0.04045f) g * (1.0f / 12.92f) else ((g + 0.055) * (1.0 / (1.0 + 0.055))).pow(2.4),
+        if (b < 0.04045f) b * (1.0f / 12.92f) else ((b + 0.055) * (1.0 / (1.0 + 0.055))).pow(2.4),
+        a
+    )
 
     /**
      * Returns the color’s 32-bit integer in ABGR format (each byte represents a component of the ABGR profile).
