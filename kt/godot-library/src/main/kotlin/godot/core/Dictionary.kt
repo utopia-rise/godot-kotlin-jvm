@@ -175,19 +175,18 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     }
 
     /**
-     * Returns true if the dictionary is empty.
-     */
-    fun empty(): Boolean {
-        Bridge.engine_call_is_empty(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
-    }
-
-    /**
      * Erase a dictionary key/value pair by key. Doesn't return a Boolean like the GDScript version because the GDNative function doesn't return anything
      */
     fun erase(key: K) {
         TransferContext.writeArguments(keyVariantType to key)
         Bridge.engine_call_erase(_handle)
+    }
+
+    fun findKey(value: V): K {
+        TransferContext.writeArguments(valueVariantType to value)
+        Bridge.engine_call_find_key(_handle)
+        @Suppress("UNCHECKED_CAST")
+        return TransferContext.readReturnValue(keyVariantType, false) as K
     }
 
     /**
@@ -230,7 +229,21 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
 
-    override fun isEmpty() = empty()
+    /**
+     * Returns true if the dictionary is read-only. See [makeReadOnly]
+     */
+    fun isReadOnly(): Boolean {
+        Bridge.engine_call_is_read_only(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL, false) as Boolean
+    }
+
+    /**
+     * Returns true if the dictionary is empty.
+     */
+    override fun isEmpty(): Boolean {
+        Bridge.engine_call_is_empty(_handle)
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
 
     /**
      * Returns the list of keys in the Dictionary.
@@ -328,12 +341,14 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
         external fun engine_call_clear(_handle: VoidPtr)
         external fun engine_call_duplicate(_handle: VoidPtr)
-        external fun engine_call_is_empty(_handle: VoidPtr)
         external fun engine_call_erase(_handle: VoidPtr)
+        external fun engine_call_find_key(_handle: VoidPtr)
         external fun engine_call_get(_handle: VoidPtr)
         external fun engine_call_has(_handle: VoidPtr)
         external fun engine_call_hasAll(_handle: VoidPtr)
         external fun engine_call_hash(_handle: VoidPtr)
+        external fun engine_call_is_empty(_handle: VoidPtr)
+        external fun engine_call_is_read_only(_handle: VoidPtr)
         external fun engine_call_keys(_handle: VoidPtr)
         external fun engine_call_make_read_only(_handle: VoidPtr)
         external fun engine_call_merge(_handle: VoidPtr)
