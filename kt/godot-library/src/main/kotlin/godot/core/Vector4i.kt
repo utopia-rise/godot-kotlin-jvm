@@ -140,6 +140,20 @@ class Vector4i(
 
     fun toVector4() = Vector4(this)
 
+    fun mod(other: Vector4i) = Vector4i(
+        x.mod(other.x),
+        y.mod(other.y),
+        z.mod(other.z),
+        w.mod(other.w),
+    )
+
+    fun mod(scalar: Int) = Vector4i(
+        x.mod(scalar),
+        y.mod(scalar),
+        z.mod(scalar),
+        w.mod(scalar),
+    )
+
     operator fun get(n: Int): Int =
         when (n) {
             0 -> x
