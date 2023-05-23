@@ -50,6 +50,8 @@ class Vector4(
     constructor(vec: Vector4) :
             this(vec.x, vec.y, vec.z, vec.w)
 
+    constructor(other: Vector4i) : this(other.x, other.y, other.z, other.w)
+
     constructor(x: Number, y: Number, z: Number, w: Number) :
             this(x.toRealT(), y.toRealT(), z.toRealT(), w.toRealT())
 

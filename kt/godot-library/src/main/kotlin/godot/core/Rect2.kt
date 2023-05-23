@@ -1,7 +1,9 @@
 package godot.core
 
+import godot.Side
 import godot.annotation.CoreTypeHelper
 import godot.util.RealT
+import org.w3c.dom.css.Rect
 import kotlin.math.max
 import kotlin.math.min
 
@@ -106,6 +108,8 @@ class Rect2(
     constructor(other: Rect2) :
         this(other._position, other._size)
 
+    constructor(other: Rect2i) : this(other._position.toVector2(), other._size.toVector2())
+
     constructor(x: RealT, y: RealT, width: RealT, height: RealT) :
         this(Vector2(x, y), Vector2(width, height))
 
@@ -124,30 +128,12 @@ class Rect2(
     }
 
     /**
-     * Returns the intersection of this Rect2 and b.
-     */
-    fun intersection(b: Rect2): Rect2 {
-        if (!intersects(b)) return Rect2()
-
-        b._position.x = max(b._position.x, _position.x)
-        b._position.y = max(b._position.y, _position.y)
-
-        val rectEnd = b._position + b._size
-        val end = _position + _size
-
-        b._size.x = min(rectEnd.x, end.x) - b._position.x
-        b._size.y = min(rectEnd.y, end.y) - b._position.y
-
-        return b
-    }
-
-    /**
      * Returns true if this Rect2 completely encloses another one.
      */
     fun encloses(b: Rect2): Boolean {
         return (b._position.x >= _position.x) && (b._position.y >= _position.y) &&
-            ((b._position.x + b._size.x) < (_position.x + _size.x)) &&
-            ((b._position.y + b._size.y) < (_position.y + _size.y))
+                ((b._position.x + b._size.x) < (_position.x + _size.x)) &&
+                ((b._position.y + b._size.y) < (_position.y + _size.y))
     }
 
     /**
@@ -189,6 +175,11 @@ class Rect2(
     }
 
     /**
+     * Returns the center of the Rect2, which is equal to [position] + ([size] / 2).
+     */
+    fun getCenter() = position + (size * 0.5f)
+
+    /**
      * Returns a copy of the Rect2 grown a given amount of units towards all the sides.
      */
     fun grow(by: RealT): Rect2 {
@@ -213,38 +204,24 @@ class Rect2(
     }
 
     /**
-     * Returns a copy of the Rect2 grown a given amount of units towards all the sides.
+     * Returns a copy of the Rect2 grown a given [amount] of units towards all the sides.
      */
-    fun growMargin(margin: Margin, by: RealT): Rect2 {
-        val g = Rect2(this._position, this._size)
-        when (margin) {
-            Margin.LEFT -> {
-                g._position.x -= by
-                g._size.x += by
-            }
-
-            Margin.RIGHT -> {
-                g._size.x += by
-            }
-
-            Margin.TOP -> {
-                g._position.y -= by
-                g._size.y += by
-            }
-
-            Margin.BOTTOM -> {
-                g._size.y += by
-            }
-        }
+    fun growSide(side: Side, amount: RealT): Rect2 {
+        var g = Rect2(this)
+        g = g.growIndividual(
+            if (Side.SIDE_LEFT == side) amount else 0.0,
+            if (Side.SIDE_TOP == side) amount else 0.0,
+            if (Side.SIDE_RIGHT == side) amount else 0.0,
+            if (Side.SIDE_BOTTOM == side) amount else 0.0,
+        )
         return g
     }
 
     /**
-     * Returns true if the Rect2 is flat or empty.
+     * Returns true if the [Rect2] has area, and false if the Rect2 is linear, empty, or has a negative size. See also
+     * [getArea].
      */
-    fun hasNoArea(): Boolean {
-        return _size.x <= 0 || _size.y <= 0
-    }
+    fun hasArea() = size.x > 0.0f && size.y > 0.0f
 
     /**
      * Returns true if the Rect2 contains a point.
@@ -257,6 +234,30 @@ class Rect2(
             point.y >= (_position.y + _size.y) -> false
             else -> true
         }
+    }
+
+    /**
+     * Returns the intersection of this [Rect2] and [b].
+     *
+     * If the rectangles do not intersect, an empty [Rect2] is returned.
+     */
+    fun intersection(p_rect: Rect2): Rect2 {
+        val newRect = Rect2(p_rect)
+
+        if (!intersects(newRect)) {
+            return Rect2()
+        }
+
+        newRect.position.x = max(p_rect.position.x, position.x)
+        newRect.position.y = max(p_rect.position.y, position.y)
+
+        val p_rect_end = p_rect.position + p_rect.size
+        val end = position + size
+
+        newRect.size.x = min(p_rect_end.x, end.x) - newRect.position.x
+        newRect.size.y = min(p_rect_end.y, end.y) - newRect.position.y
+
+        return newRect;
     }
 
     /**
@@ -306,6 +307,8 @@ class Rect2(
 
         return ret
     }
+
+    fun toRect2i() = Rect2i(this)
 
     override fun equals(other: Any?): Boolean {
         return when (other) {

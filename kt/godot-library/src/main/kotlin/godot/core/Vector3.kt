@@ -68,6 +68,8 @@ class Vector3(
     constructor(vec: Vector3) :
         this(vec.x, vec.y, vec.z)
 
+    constructor(other: Vector3i) : this(other.x, other.y, other.z)
+
     constructor(x: Number, y: Number, z: Number) :
         this(x.toRealT(), y.toRealT(), z.toRealT())
 

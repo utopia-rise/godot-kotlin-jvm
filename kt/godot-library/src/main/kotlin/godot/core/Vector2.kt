@@ -50,6 +50,8 @@ class Vector2(
     constructor(vec: Vector2) :
         this(vec.x, vec.y)
 
+    constructor(other: Vector2i) : this(other.x, other.y)
+
     constructor(x: Number, y: Number) :
         this(x.toRealT(), y.toRealT())
 
