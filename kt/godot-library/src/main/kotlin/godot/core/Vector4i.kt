@@ -138,6 +138,8 @@ class Vector4i(
         snapped(w, step.w)
     )
 
+    fun toVector4() = Vector4(this)
+
     operator fun get(n: Int): Int =
         when (n) {
             0 -> x
