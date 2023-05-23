@@ -129,13 +129,14 @@ class Vector4i(
     }
 
     /**
-     * Returns a diagonal matrix with the vector as main diagonal.
+     * Returns a new vector with each component snapped to the closest multiple of the corresponding component in [step].
      */
-// TODO: fix me
-//    fun toDiagonalMatrix(): Basis {
-//        return Basis()
-//    }
-
+    fun snapped(step: Vector4i) = Vector4i(
+        snapped(x, step.x),
+        snapped(y, step.y),
+        snapped(z, step.z),
+        snapped(w, step.w)
+    )
 
     operator fun get(n: Int): Int =
         when (n) {
