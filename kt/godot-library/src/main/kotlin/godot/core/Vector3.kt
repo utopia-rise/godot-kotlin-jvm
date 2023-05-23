@@ -90,6 +90,36 @@ class Vector3(
     }
 
     /**
+     * Returns the derivative at the given [t] on the Bézier curve defined by this vector and the given [control1],
+     * [control2], and [end] points.
+     */
+    fun bezierDerivative(
+        control1: Vector3,
+        control2: Vector3,
+        end: Vector3,
+        t: RealT
+    ) = Vector3(
+        bezierDerivative(this.x, control1.x, control2.x, end.x, t),
+        bezierDerivative(this.y, control1.y, control2.y, end.y, t),
+        bezierDerivative(this.z, control1.z, control2.z, end.z, t)
+    )
+
+    /**
+     * Returns the point at the given [t] on the Bézier curve defined by this vector and the given [control1],
+     * [control2], and [end] points.
+     */
+    fun bezierInterpolate(
+        control1: Vector3,
+        control2: Vector3,
+        end: Vector3,
+        t: RealT
+    ) = Vector3(
+        bezierInterpolate(this.x, control1.x, control2.x, end.x, t),
+        bezierInterpolate(this.y, control1.y, control2.y, end.y, t),
+        bezierInterpolate(this.z, control1.z, control2.z, end.z, t)
+    )
+
+    /**
      * Returns the vector “bounced off” from a plane defined by the given normal.
      */
     fun bounce(n: Vector3): Vector3 {
@@ -368,6 +398,18 @@ class Vector3(
         }
     }
 
+    /**
+     * Returns the Vector3 from an octahedral-compressed form created using [octahedronEncode] (stored as a Vector2).
+     */
+    fun octahedronDecode(uv: Vector2): Vector3 {
+        val f = Vector2(uv.x * 2.0f - 1.0f, uv.y * 2.0f - 1.0f)
+        val n = Vector3(f.x, f.y, 1.0f - abs(f.x) - abs(f.y))
+        val t = -n.z.coerceIn(0.0, 1.0)
+        n.x += (if (n.x >= 0) -t else t).toDouble()
+        n.y += (if (n.y >= 0) -t else t).toDouble()
+        return n.normalized()
+    }
+
     fun octahedronEncode(): Vector2 {
         var n = Vector3(this)
         n /= abs(n.x) + abs(n.y) + abs(n.z)
@@ -501,13 +543,7 @@ class Vector3(
         }
     }
 
-    /**
-     * Returns a diagonal matrix with the vector as main diagonal.
-     */
-// TODO: fix me
-//    fun toDiagonalMatrix(): Basis {
-//        return Basis()
-//    }
+    fun toVector3i() = Vector3i(this)
 
 
     operator fun get(n: Int): RealT =
