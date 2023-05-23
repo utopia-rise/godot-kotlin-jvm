@@ -68,26 +68,21 @@ class Vector2i(
     fun aspect() = this.x / this.y
 
     /**
-     * Returns the vector with each component set to one or negative one, depending on the signs of the components.
-     */
-    fun sign() = Vector2i(kotlin.math.sign(x.toFloat()), kotlin.math.sign(y.toFloat()))
-
-    /**
      * Returns a new vector with all components clamped between the components of min and max, by running
      * @GlobalScope.clamp on each component.
      */
     fun clamp(min: Vector2i, max: Vector2i) = Vector2(x.coerceIn(min.x, max.x), y.coerceIn(min.y, max.y))
 
     /**
+     * Returns the vector’s length.
+     */
+    fun length() = sqrt(lengthSquared().toDouble())
+
+    /**
      * Returns the vector’s length squared.
      * Prefer this method over length if you need to sort vectors or need the squared length for some formula.
      */
     fun lengthSquared() = x * x + y * y
-
-    /**
-     * Returns the vector’s length.
-     */
-    fun length() = sqrt(lengthSquared().toDouble())
 
     /**
      * Returns the axis of the vector's highest value. See AXIS_* constants. If all components are equal,
@@ -100,6 +95,29 @@ class Vector2i(
      * this method returns AXIS_Y.
      */
     fun minAxisIndex() = if (x < y) Vector2.AXIS_X else Vector2.AXIS_Y
+
+    /**
+     * Returns the vector with each component set to one or negative one, depending on the signs of the components.
+     */
+    fun sign() = Vector2i(kotlin.math.sign(x.toFloat()), kotlin.math.sign(y.toFloat()))
+
+    /**
+     * Returns a new vector with each component snapped to the closest multiple of the corresponding component in [step].
+     */
+    fun snapped(step: Vector2i) = Vector2i(
+        snapped(x, step.x),
+        snapped(y, step.y)
+    )
+
+    fun mod(other: Vector2i) = Vector2i(
+        x.mod(other.x),
+        y.mod(other.y)
+    )
+
+    fun mod(scalar: Int) = Vector2i(
+        x.mod(scalar),
+        y.mod(scalar)
+    )
 
     operator fun get(idx: Int): Int =
         when (idx) {
