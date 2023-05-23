@@ -1,10 +1,9 @@
 package godot.core
 
-import godot.util.CMP_EPSILON
-import godot.util.RealT
-import godot.util.isEqualApprox
-import godot.util.toRealT
+import godot.EulerOrder
+import godot.util.*
 import kotlin.math.*
+
 
 class Quaternion(
     var x: RealT,
@@ -17,6 +16,30 @@ class Quaternion(
     companion object {
         val IDENTITY: Quaternion
             get() = Quaternion(0.0, 0.0, 0.0, 1.0)
+
+        fun fromEuler(euler: Vector3): Quaternion {
+            val halfA1 = euler.y * 0.5f
+            val halfA2 = euler.x * 0.5f
+            val halfA3 = euler.z * 0.5f
+
+            // R = Y(a1).X(a2).Z(a3) convention for Euler angles.
+            // Conversion to quaternion as listed in https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19770024290.pdf (page A-6)
+            // a3 is the angle of the first rotation, following the notation in this reference.
+
+            val cosA1 = cos(halfA1)
+            val sinA1 = sin(halfA1)
+            val cosA2 = cos(halfA2)
+            val sinA2 = sin(halfA2)
+            val cosA3 = cos(halfA3)
+            val sinA3 = sin(halfA3)
+
+            return Quaternion(
+                sinA1 * cosA2 * sinA3 + cosA1 * sinA2 * cosA3,
+                sinA1 * cosA2 * cosA3 - cosA1 * sinA2 * sinA3,
+                -sinA1 * sinA2 * cosA3 + cosA1 * cosA2 * sinA3,
+                sinA1 * sinA2 * sinA3 + cosA1 * cosA2 * cosA3
+            )
+        }
     }
 
 
@@ -61,14 +84,17 @@ class Quaternion(
     }
 
     //API
+
     /**
-     * Performs a cubic spherical-linear interpolation with another quaternion.
+     * Returns the angle between this quaternion and [to]. This is the magnitude of the angle you would need to rotate by
+     * to get from one to the other.
+     *
+     * Note: The magnitude of the floating-point error for this method is abnormally high, so methods such as
+     * [isZeroApprox] will not work reliably.
      */
-    fun cubicSlerp(q: Quaternion, prep: Quaternion, postq: Quaternion, t: RealT): Quaternion {
-        val t2: RealT = (1.0 - t) * t * 2
-        val sp = this.slerp(q, t)
-        val sq = prep.slerpni(postq, t)
-        return sp.slerpni(sq, t2)
+    fun angleTo(to: Quaternion): Double {
+        val d = dot(to)
+        return acos((d * d * 2 - 1).coerceIn(-1.0, 1.0))
     }
 
     /**
@@ -78,27 +104,36 @@ class Quaternion(
         return x * q.x + y * q.y + z * q.z + w * q.w
     }
 
-    /**
-     * Returns Euler angles (in the YXZ convention: first Z, then X, and Y last) corresponding to the rotation represented by the unit quaternion. Returned vector contains the rotation angles in the format (X angle, Y angle, Z angle).
-     */
-    fun getEuler(): Vector3 {
-        return getEulerYxz()
+    fun exp(): Quaternion {
+        var srcV = Vector3(x, y, z)
+        val theta = srcV.length()
+        srcV = srcV.normalized()
+        if (theta < CMP_EPSILON || !srcV.isNormalized()) {
+            return Quaternion(0, 0, 0, 1)
+        }
+        return Quaternion(srcV, theta)
+    }
+
+    fun getAngle() = 2 * acos(w)
+
+    fun getAxis(): Vector3 {
+        if (abs(w) > 1 - CMP_EPSILON) {
+            return Vector3(x, y, z)
+        }
+        val r = 1 / sqrt(1 - w * w)
+        return Vector3(x * r, y * r, z * r)
     }
 
     /**
-     * getEulerYxz returns a vector containing the Euler angles in the format
-     *(ax,ay,az), where ax is the angle of rotation around x axis,
-     * and similar for other axes.
-     * This implementation uses YXZ convention (Z is the first rotation).
+     * Returns Euler angles (in the YXZ convention: first Z, then X, and Y last) corresponding to the rotation
+     * represented by the unit quaternion. Returned vector contains the rotation angles in the format (X angle, Y angle,
+     * Z angle).
      */
-    internal fun getEulerYxz(): Vector3 {
-        val m = Basis(this)
-        return m.getEulerYxz()
-    }
-
-    internal fun getEulerXyz(): Vector3 {
-        val m = Basis(this)
-        return m.getEulerXyz()
+    fun getEuler(order: EulerOrder = EulerOrder.EULER_ORDER_YXZ): Vector3 {
+        require(isNormalized()) {
+            "The quaternion must be normalized."
+        }
+        return Basis(this).getEuler(order)
     }
 
     /**
@@ -119,6 +154,11 @@ class Quaternion(
     }
 
     /**
+     * Returns `true` if this quaternion is finite, by calling [Float.isFinite] on each component.
+     */
+    fun isFinite() = x.isFinite() && y.isFinite() && z.isFinite() && w.isFinite()
+
+    /**
      * Returns whether the quaternion is normalized or not.
      */
     fun isNormalized(): Boolean {
@@ -137,6 +177,11 @@ class Quaternion(
      */
     fun lengthSquared(): RealT {
         return dot(this)
+    }
+
+    fun log(): Quaternion {
+        val srcV = getAxis() * getAngle()
+        return Quaternion(srcV.x, srcV.y, srcV.z, 0)
     }
 
     /**
@@ -169,67 +214,6 @@ class Quaternion(
             val s = sin / d
             set(axis.x * s, axis.y * s, axis.z * s, cos)
         }
-    }
-
-    /**
-     * Sets the quaternion to a rotation specified by Euler angles (in the YXZ convention: first Z, then X, and Y last), given in the vector format as (X angle, Y angle, Z angle).
-     */
-    fun setEuler(p_euler: Vector3) {
-        setEulerYxz(p_euler)
-    }
-
-    /**
-     * setEulerXyz expects a vector containing the Euler angles in the format
-     * (ax,ay,az), where ax is the angle of rotation around x axis,
-     * and similar for other axes.
-     * This implementation uses XYZ convention (Z is the first rotation).
-     */
-    internal fun setEulerXyz(p_euler: Vector3) {
-        val half1: RealT = p_euler.x * 0.5
-        val half2: RealT = p_euler.y * 0.5
-        val half3: RealT = p_euler.z * 0.5
-
-        // R = X(a1).Y(a2).Z(a3) convention for Euler angles.
-        // Conversion to quaternion as listed in https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19770024290.pdf (page A-2)
-        // a3 is the angle of the first rotation, following the notation in this reference.
-
-        val cos1: RealT = cos(half1)
-        val cos2: RealT = cos(half2)
-        val cos3: RealT = cos(half3)
-        val sin1: RealT = sin(half1)
-        val sin2: RealT = sin(half2)
-        val sin3: RealT = sin(half3)
-
-        set(
-            sin1 * cos2 * sin3 + cos1 * sin2 * cos3,
-            sin1 * cos2 * cos3 - cos1 * sin2 * sin3,
-            -sin1 * sin2 * cos3 + cos1 * sin2 * sin3,
-            sin1 * sin2 * sin3 + cos1 * cos2 * cos3
-        )
-    }
-
-    internal fun setEulerYxz(p_euler: Vector3) {
-        val half1: RealT = p_euler.y * 0.5
-        val half2: RealT = p_euler.x * 0.5
-        val half3: RealT = p_euler.z * 0.5
-
-        // R = X(a1).Y(a2).Z(a3) convention for Euler angles.
-        // Conversion to quaternion as listed in https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19770024290.pdf (page A-2)
-        // a3 is the angle of the first rotation, following the notation in this reference.
-
-        val cos1: RealT = cos(half1)
-        val cos2: RealT = cos(half2)
-        val cos3: RealT = cos(half3)
-        val sin1: RealT = sin(half1)
-        val sin2: RealT = sin(half2)
-        val sin3: RealT = sin(half3)
-
-        set(
-            sin1 * cos2 * sin3 + cos1 * sin2 * cos3,
-            sin1 * cos2 * cos3 - cos1 * sin2 * sin3,
-            -sin1 * sin2 * cos3 + cos1 * sin2 * sin3,
-            sin1 * sin2 * sin3 + cos1 * cos2 * cos3
-        )
     }
 
     /**
@@ -302,12 +286,132 @@ class Quaternion(
     }
 
     /**
-     * Transforms the vector v by this quaternion.
+     * Performs a spherical cubic interpolation between quaternions [preA], this vector, [b], and [postB], by the given
+     * amount [weight].
      */
-    fun xform(v: Vector3): Vector3 {
-        var q = this * v
-        q *= this.inverse()
-        return Vector3(q.x, q.y, q.z)
+    fun sphericalCubicInterpolate(b: Quaternion, preA: Quaternion, postB: Quaternion, weight: RealT): Quaternion {
+        require(isNormalized()) {
+            "The start quaternion must be normalized."
+        }
+        require(b.isNormalized()) {
+            "The end quaternion must be normalized."
+        }
+
+        var fromQ = this
+        var preQ = preA
+        var toQ = b
+        var postQ = postB
+
+        // Align flip phases.
+        fromQ = Basis(fromQ).getRotationQuaternion()
+        preQ = Basis(preQ).getRotationQuaternion()
+        toQ = Basis(toQ).getRotationQuaternion()
+        postQ = Basis(postQ).getRotationQuaternion()
+
+        // Flip quaternions to shortest path if necessary.
+        // Flip quaternions to shortest path if necessary.
+        val flip1 = fromQ.dot(preQ).signbit
+        preQ = if (flip1) -preQ else preQ
+        val flip2 = fromQ.dot(toQ).signbit
+        toQ = if (flip2) -toQ else toQ
+        val flip3 = if (flip2) toQ.dot(postQ) <= 0 else toQ.dot(postQ).signbit
+        postQ = if (flip3) -postQ else postQ
+
+        // Calc by Expmap in from_q space.
+        // Calc by Expmap in from_q space.
+        var lnFrom = Quaternion(0, 0, 0, 0)
+        var lnTo = (fromQ.inverse() * toQ).log()
+        var lnPre = (fromQ.inverse() * preQ).log()
+        var lnPost = (fromQ.inverse() * postQ).log()
+        var ln = Quaternion(0, 0, 0, 0)
+
+        ln.x = cubicInterpolate(lnFrom.x, lnTo.x, lnPre.x, lnPost.x, weight)
+        ln.y = cubicInterpolate(lnFrom.y, lnTo.y, lnPre.y, lnPost.y, weight)
+        ln.z = cubicInterpolate(lnFrom.z, lnTo.z, lnPre.z, lnPost.z, weight)
+        val q1 = fromQ * ln.exp()
+
+        // Calc by Expmap in to_q space.
+        lnFrom = (toQ.inverse() * fromQ).log()
+        lnTo = Quaternion(0, 0, 0, 0)
+        lnPre = (toQ.inverse() * preQ).log()
+        lnPost = (toQ.inverse() * postQ).log()
+        ln = Quaternion(0, 0, 0, 0)
+        ln.x = cubicInterpolate(lnFrom.x, lnTo.x, lnPre.x, lnPost.x, weight)
+        ln.y = cubicInterpolate(lnFrom.y, lnTo.y, lnPre.y, lnPost.y, weight)
+        ln.z = cubicInterpolate(lnFrom.z, lnTo.z, lnPre.z, lnPost.z, weight)
+        val q2 = toQ * ln.exp()
+
+        // To cancel error made by Expmap ambiguity, do blending.
+        return q1.slerp(q2, weight)
+    }
+
+    /**
+     * Performs a spherical cubic interpolation between quaternions pre_a, this vector, b, and post_b, by the given
+     * amount weight.
+     *
+     * It can perform smoother interpolation than spherical_cubic_interpolate() by the time values.
+     */
+    fun sphericalCubicInterpolateInTime(
+        p_b: Quaternion,
+        p_pre_a: Quaternion,
+        p_post_b: Quaternion,
+        p_weight: RealT,
+        p_b_t: RealT,
+        p_pre_a_t: RealT,
+        p_post_b_t: RealT
+    ) : Quaternion {
+        require(isNormalized()) {
+            "The start quaternion must be normalized."
+        }
+        require(p_b.isNormalized()) {
+            "The end quaternion must be normalized."
+        }
+
+        var from_q = this
+        var pre_q = p_pre_a
+        var to_q = p_b
+        var post_q = p_post_b
+
+        // Align flip phases.
+        from_q = Basis(from_q).getRotationQuaternion()
+        pre_q = Basis(pre_q).getRotationQuaternion()
+        to_q = Basis(to_q).getRotationQuaternion()
+        post_q = Basis(post_q).getRotationQuaternion()
+
+        // Flip quaternions to shortest path if necessary.
+        // Flip quaternions to shortest path if necessary.
+        val flip1 = from_q.dot(pre_q).signbit
+        pre_q = if (flip1) -pre_q else pre_q
+        val flip2 = from_q.dot(to_q).signbit
+        to_q = if (flip2) -to_q else to_q
+        val flip3 = if (flip2) to_q.dot(post_q) <= 0 else to_q.dot(post_q).signbit
+        post_q = if (flip3) -post_q else post_q
+
+        // Calc by Expmap in from_q space.
+        // Calc by Expmap in from_q space.
+        var ln_from = Quaternion(0, 0, 0, 0)
+        var ln_to = (from_q.inverse() * to_q).log()
+        var ln_pre = (from_q.inverse() * pre_q).log()
+        var ln_post = (from_q.inverse() * post_q).log()
+        var ln = Quaternion(0, 0, 0, 0)
+        ln.x = cubicInterpolateInTime(ln_from.x, ln_to.x, ln_pre.x, ln_post.x, p_weight, p_b_t, p_pre_a_t, p_post_b_t)
+        ln.y = cubicInterpolateInTime(ln_from.y, ln_to.y, ln_pre.y, ln_post.y, p_weight, p_b_t, p_pre_a_t, p_post_b_t)
+        ln.z = cubicInterpolateInTime(ln_from.z, ln_to.z, ln_pre.z, ln_post.z, p_weight, p_b_t, p_pre_a_t, p_post_b_t)
+        val q1 = from_q * ln.exp()
+
+        // Calc by Expmap in to_q space.
+        ln_from = (to_q.inverse() * from_q).log()
+        ln_to = Quaternion(0, 0, 0, 0)
+        ln_pre = (to_q.inverse() * pre_q).log()
+        ln_post = (to_q.inverse() * post_q).log()
+        ln = Quaternion(0, 0, 0, 0)
+        ln.x = cubicInterpolateInTime(ln_from.x, ln_to.x, ln_pre.x, ln_post.x, p_weight, p_b_t, p_pre_a_t, p_post_b_t)
+        ln.y = cubicInterpolateInTime(ln_from.y, ln_to.y, ln_pre.y, ln_post.y, p_weight, p_b_t, p_pre_a_t, p_post_b_t)
+        ln.z = cubicInterpolateInTime(ln_from.z, ln_to.z, ln_pre.z, ln_post.z, p_weight, p_b_t, p_pre_a_t, p_post_b_t)
+        val q2 = to_q * ln.exp()
+
+        // To cancel error made by Expmap ambiguity, do blending.
+        return q1.slerp(q2, p_weight);
     }
 
     fun set(px: RealT, py: RealT, pz: RealT, pw: RealT) {
