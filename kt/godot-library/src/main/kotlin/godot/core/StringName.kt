@@ -36,7 +36,7 @@ class StringName : NativeCoreType {
         return TransferContext.readReturnValue(VariantType.STRING, false) as String
     }
 
-    //TODO/4.0: Implement
+    operator fun <T> invoke(stringOperation: String.() -> T): T = toString().stringOperation()
 
     @Suppress("FunctionName")
     private object Bridge {

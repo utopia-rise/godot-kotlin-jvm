@@ -110,19 +110,6 @@ class Rect2i(
      */
     constructor(rect: Rect2i) : this(rect._position, rect._size)
 
-    /**
-     * Returns the area of the [Rect2i]. See also [hasArea].
-     */
-    val area: Int
-        get() = _size.width * _size.height
-
-    /**
-     * Returns the center of the [Rect2i], which is equal to [position] + ([size] / 2).
-     * If [size] is an odd number, the returned center value will be rounded towards [position].
-     */
-    val center: Vector2i
-        get() = _position + (_size / 2)
-
     // API
 
     /**
@@ -221,7 +208,7 @@ class Rect2i(
 
     /**
      * Returns `true` if the [Rect2i] has area, and `false` if the [Rect2i] is linear, empty, or has a negative [size].
-     * See also [area].
+     * See also [getArea].
      */
     @Suppress("unused")
     fun hasArea() = _size.x > 0 && _size.y > 0
