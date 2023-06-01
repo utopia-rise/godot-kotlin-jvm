@@ -90,7 +90,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                                     .columns(COLUMNS_MEDIUM)
                                     .applyToComponent {
                                         text = "0.0.1-SNAPSHOT"
-                                        artifactIdTextField = this
+                                        versionTextField = this
                                     }
                             }
                         }
