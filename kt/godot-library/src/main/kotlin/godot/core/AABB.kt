@@ -325,14 +325,15 @@ class AABB(
     }
 
     /**
-     * Returns true if the AABB is empty.
+     * Returns `true` if the [AABB] has a surface or a length, and `false` if the [AABB] is empty (all components of
+     * [size] are zero or negative).
      */
     fun hasSurface(): Boolean {
         return (_size.x > CMP_EPSILON && _size.y > CMP_EPSILON && _size.z > CMP_EPSILON)
     }
 
     /**
-     * Returns true if the AABB is flat or empty.
+     * Returns `true` if the [AABB] has a volume, and `false` if the [AABB] is flat, empty, or has a negative [size].
      */
     fun hasVolume(): Boolean {
         return (_size.x > CMP_EPSILON || _size.y > CMP_EPSILON || _size.z > CMP_EPSILON)

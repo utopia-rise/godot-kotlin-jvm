@@ -36,6 +36,19 @@ class StringName : NativeCoreType {
         return TransferContext.readReturnValue(VariantType.STRING, false) as String
     }
 
+    /**
+     * Method to use JVM string methods on [StringName]. This [StringName] is first converted to [String] and then code
+     * block is called on the converted [String].
+     *
+     * Example:  
+     * ```kotlin
+     * val stringName = "path/to/my/file".asStringName()
+     * val splitResult = stringName.invoke { split('/') }
+     * ```
+     *
+     * This should be used to reproduce behaviour of methods described in
+     * [StringName Godot's documentation](https://docs.godotengine.org/en/stable/classes/class_stringname.html).
+     */
     operator fun <T> invoke(stringOperation: String.() -> T): T = toString().stringOperation()
 
     @Suppress("FunctionName")

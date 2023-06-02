@@ -155,9 +155,9 @@ class Color(
     }
 
     companion object {
-        inline val aliceblue: Color
+        inline val aliceBlue: Color
             get() = Color(0.94, 0.97, 1.00)
-        inline val antiquewhite: Color
+        inline val antiqueWhite: Color
             get() = Color(0.98, 0.92, 0.84)
         inline val aqua: Color
             get() = Color(0.00, 1.00, 1.00)
@@ -171,17 +171,17 @@ class Color(
             get() = Color(1.00, 0.89, 0.77)
         inline val black: Color
             get() = Color(0.00, 0.00, 0.00)
-        inline val blanchedalmond: Color
+        inline val blanchedAlmond: Color
             get() = Color(1.00, 0.92, 0.80)
         inline val blue: Color
             get() = Color(0.00, 0.00, 1.00)
-        inline val blueviolet: Color
+        inline val blueViolet: Color
             get() = Color(0.54, 0.17, 0.89)
         inline val brown: Color
             get() = Color(0.65, 0.16, 0.16)
         inline val burlywood: Color
             get() = Color(0.87, 0.72, 0.53)
-        inline val cadetblue: Color
+        inline val cadetBlue: Color
             get() = Color(0.37, 0.62, 0.63)
         inline val chartreuse: Color
             get() = Color(0.50, 1.00, 0.00)
@@ -189,7 +189,7 @@ class Color(
             get() = Color(0.82, 0.41, 0.12)
         inline val coral: Color
             get() = Color(1.00, 0.50, 0.31)
-        inline val cornflower: Color
+        inline val cornflowerBlue: Color
             get() = Color(0.39, 0.58, 0.93)
         inline val cornsilk: Color
             get() = Color(1.00, 0.97, 0.86)
@@ -197,59 +197,59 @@ class Color(
             get() = Color(0.86, 0.08, 0.24)
         inline val cyan: Color
             get() = Color(0.00, 1.00, 1.00)
-        inline val darkblue: Color
+        inline val darkBlue: Color
             get() = Color(0.00, 0.00, 0.55)
-        inline val darkcyan: Color
+        inline val darkCyan: Color
             get() = Color(0.00, 0.55, 0.55)
-        inline val darkgoldenrod: Color
+        inline val darkGoldenrod: Color
             get() = Color(0.72, 0.53, 0.04)
-        inline val darkgray: Color
+        inline val darkGray: Color
             get() = Color(0.66, 0.66, 0.66)
-        inline val darkgreen: Color
+        inline val darkGreen: Color
             get() = Color(0.00, 0.39, 0.00)
-        inline val darkkhaki: Color
+        inline val darkKhaki: Color
             get() = Color(0.74, 0.72, 0.42)
-        inline val darkmagenta: Color
+        inline val darkMagenta: Color
             get() = Color(0.55, 0.00, 0.55)
-        inline val darkolivegreen: Color
+        inline val darkOliveGreen: Color
             get() = Color(0.33, 0.42, 0.18)
         inline val darkorange: Color
             get() = Color(1.00, 0.55, 0.00)
-        inline val darkorchid: Color
+        inline val darkOrchid: Color
             get() = Color(0.60, 0.20, 0.80)
-        inline val darkred: Color
+        inline val darkRed: Color
             get() = Color(0.55, 0.00, 0.00)
-        inline val darksalmon: Color
+        inline val darkSalmon: Color
             get() = Color(0.91, 0.59, 0.48)
-        inline val darkseagreen: Color
+        inline val darkSeaGreen: Color
             get() = Color(0.56, 0.74, 0.56)
-        inline val darkslateblue: Color
+        inline val darkSlateBlue: Color
             get() = Color(0.28, 0.24, 0.55)
-        inline val darkslategray: Color
+        inline val darkSlateGray: Color
             get() = Color(0.18, 0.31, 0.31)
-        inline val darkturquoise: Color
+        inline val darkTurquoise: Color
             get() = Color(0.00, 0.81, 0.82)
-        inline val darkviolet: Color
+        inline val darkViolet: Color
             get() = Color(0.58, 0.00, 0.83)
-        inline val deeppink: Color
+        inline val deepPink: Color
             get() = Color(1.00, 0.08, 0.58)
-        inline val deepskyblue: Color
+        inline val deepSkyBlue: Color
             get() = Color(0.00, 0.75, 1.00)
-        inline val dimgray: Color
+        inline val dimGray: Color
             get() = Color(0.41, 0.41, 0.41)
-        inline val dodgerblue: Color
+        inline val dodgerBlue: Color
             get() = Color(0.12, 0.56, 1.00)
         inline val firebrick: Color
             get() = Color(0.70, 0.13, 0.13)
-        inline val floralwhite: Color
+        inline val floralWhite: Color
             get() = Color(1.00, 0.98, 0.94)
-        inline val forestgreen: Color
+        inline val forestGreen: Color
             get() = Color(0.13, 0.55, 0.13)
         inline val fuchsia: Color
             get() = Color(1.00, 0.00, 1.00)
         inline val gainsboro: Color
             get() = Color(0.86, 0.86, 0.86)
-        inline val ghostwhite: Color
+        inline val ghostWhite: Color
             get() = Color(0.97, 0.97, 1.00)
         inline val gold: Color
             get() = Color(1.00, 0.84, 0.00)
@@ -257,19 +257,19 @@ class Color(
             get() = Color(0.85, 0.65, 0.13)
         inline val gray: Color
             get() = Color(0.75, 0.75, 0.75)
-        inline val webgray: Color
+        inline val webGray: Color
             get() = Color(0.50, 0.50, 0.50)
         inline val green: Color
             get() = Color(0.00, 1.00, 0.00)
-        inline val webgreen: Color
+        inline val webGreen: Color
             get() = Color(0.00, 0.50, 0.00)
-        inline val greenyellow: Color
+        inline val greenYellow: Color
             get() = Color(0.68, 1.00, 0.18)
         inline val honeydew: Color
             get() = Color(0.94, 1.00, 0.94)
-        inline val hotpink: Color
+        inline val hotPink: Color
             get() = Color(1.00, 0.41, 0.71)
-        inline val indianred: Color
+        inline val indianRed: Color
             get() = Color(0.80, 0.36, 0.36)
         inline val indigo: Color
             get() = Color(0.29, 0.00, 0.51)
@@ -279,41 +279,41 @@ class Color(
             get() = Color(0.94, 0.90, 0.55)
         inline val lavender: Color
             get() = Color(0.90, 0.90, 0.98)
-        inline val lavenderblush: Color
+        inline val lavenderBlush: Color
             get() = Color(1.00, 0.94, 0.96)
-        inline val lawngreen: Color
+        inline val lawnGreen: Color
             get() = Color(0.49, 0.99, 0.00)
-        inline val lemonchiffon: Color
+        inline val lemonChiffon: Color
             get() = Color(1.00, 0.98, 0.80)
-        inline val lightblue: Color
+        inline val lightBlue: Color
             get() = Color(0.68, 0.85, 0.90)
-        inline val lightcoral: Color
+        inline val lightCoral: Color
             get() = Color(0.94, 0.50, 0.50)
-        inline val lightcyan: Color
+        inline val lightCyan: Color
             get() = Color(0.88, 1.00, 1.00)
-        inline val lightgoldenrod: Color
+        inline val lightGoldenrod: Color
             get() = Color(0.98, 0.98, 0.82)
-        inline val lightgray: Color
+        inline val lightGray: Color
             get() = Color(0.83, 0.83, 0.83)
-        inline val lightgreen: Color
+        inline val lightGreen: Color
             get() = Color(0.56, 0.93, 0.56)
-        inline val lightpink: Color
+        inline val lightPink: Color
             get() = Color(1.00, 0.71, 0.76)
-        inline val lightsalmon: Color
+        inline val lightSalmon: Color
             get() = Color(1.00, 0.63, 0.48)
-        inline val lightseagreen: Color
+        inline val lightSeaGreen: Color
             get() = Color(0.13, 0.70, 0.67)
-        inline val lightskyblue: Color
+        inline val lightSkyBlue: Color
             get() = Color(0.53, 0.81, 0.98)
-        inline val lightslategray: Color
+        inline val lightSlateGray: Color
             get() = Color(0.47, 0.53, 0.60)
-        inline val lightsteelblue: Color
+        inline val lightSteelBlue: Color
             get() = Color(0.69, 0.77, 0.87)
-        inline val lightyellow: Color
+        inline val lightYellow: Color
             get() = Color(1.00, 1.00, 0.88)
         inline val lime: Color
             get() = Color(0.00, 1.00, 0.00)
-        inline val limegreen: Color
+        inline val limeGreen: Color
             get() = Color(0.20, 0.80, 0.20)
         inline val linen: Color
             get() = Color(0.98, 0.94, 0.90)
@@ -321,61 +321,61 @@ class Color(
             get() = Color(1.00, 0.00, 1.00)
         inline val maroon: Color
             get() = Color(0.69, 0.19, 0.38)
-        inline val webmaroon: Color
+        inline val webMaroon: Color
             get() = Color(0.50, 0.00, 0.00)
-        inline val mediumaquamarine: Color
+        inline val mediumAquamarine: Color
             get() = Color(0.40, 0.80, 0.67)
-        inline val mediumblue: Color
+        inline val mediumBlue: Color
             get() = Color(0.00, 0.00, 0.80)
-        inline val mediumorchid: Color
+        inline val mediumOrchid: Color
             get() = Color(0.73, 0.33, 0.83)
-        inline val mediumpurple: Color
+        inline val mediumPurple: Color
             get() = Color(0.58, 0.44, 0.86)
-        inline val mediumseagreen: Color
+        inline val mediumSeaGreen: Color
             get() = Color(0.24, 0.70, 0.44)
-        inline val mediumslateblue: Color
+        inline val mediumSlateBlue: Color
             get() = Color(0.48, 0.41, 0.93)
-        inline val mediumspringgreen: Color
+        inline val mediumSpringGreen: Color
             get() = Color(0.00, 0.98, 0.60)
-        inline val mediumturquoise: Color
+        inline val mediumTurquoise: Color
             get() = Color(0.28, 0.82, 0.80)
-        inline val mediumvioletred: Color
+        inline val mediumVioletRed: Color
             get() = Color(0.78, 0.08, 0.52)
-        inline val midnightblue: Color
+        inline val midnightBlue: Color
             get() = Color(0.10, 0.10, 0.44)
-        inline val mintcream: Color
+        inline val mintCream: Color
             get() = Color(0.96, 1.00, 0.98)
-        inline val mistyrose: Color
+        inline val mistyRose: Color
             get() = Color(1.00, 0.89, 0.88)
         inline val moccasin: Color
             get() = Color(1.00, 0.89, 0.71)
-        inline val navajowhite: Color
+        inline val navajoWhite: Color
             get() = Color(1.00, 0.87, 0.68)
-        inline val navyblue: Color
+        inline val navyBlue: Color
             get() = Color(0.00, 0.00, 0.50)
-        inline val oldlace: Color
+        inline val oldLace: Color
             get() = Color(0.99, 0.96, 0.90)
         inline val olive: Color
             get() = Color(0.50, 0.50, 0.00)
-        inline val olivedrab: Color
+        inline val oliveDrab: Color
             get() = Color(0.42, 0.56, 0.14)
         inline val orange: Color
             get() = Color(1.00, 0.65, 0.00)
-        inline val orangered: Color
+        inline val orangeRed: Color
             get() = Color(1.00, 0.27, 0.00)
         inline val orchid: Color
             get() = Color(0.85, 0.44, 0.84)
-        inline val palegoldenrod: Color
+        inline val paleGoldenrod: Color
             get() = Color(0.93, 0.91, 0.67)
-        inline val palegreen: Color
+        inline val paleGreen: Color
             get() = Color(0.60, 0.98, 0.60)
-        inline val paleturquoise: Color
+        inline val paleTurquoise: Color
             get() = Color(0.69, 0.93, 0.93)
-        inline val palevioletred: Color
+        inline val paleVioletRed: Color
             get() = Color(0.86, 0.44, 0.58)
-        inline val papayawhip: Color
+        inline val papayaWhip: Color
             get() = Color(1.00, 0.94, 0.84)
-        inline val peachpuff: Color
+        inline val peachPuff: Color
             get() = Color(1.00, 0.85, 0.73)
         inline val peru: Color
             get() = Color(0.80, 0.52, 0.25)
@@ -383,27 +383,27 @@ class Color(
             get() = Color(1.00, 0.75, 0.80)
         inline val plum: Color
             get() = Color(0.87, 0.63, 0.87)
-        inline val powderblue: Color
+        inline val powderBlue: Color
             get() = Color(0.69, 0.88, 0.90)
         inline val purple: Color
             get() = Color(0.63, 0.13, 0.94)
-        inline val webpurple: Color
+        inline val webPurple: Color
             get() = Color(0.50, 0.00, 0.50)
-        inline val rebeccapurple: Color
+        inline val rebeccaPurple: Color
             get() = Color(0.40, 0.20, 0.60)
         inline val red: Color
             get() = Color(1.00, 0.00, 0.00)
-        inline val rosybrown: Color
+        inline val rosyBrown: Color
             get() = Color(0.74, 0.56, 0.56)
-        inline val royalblue: Color
+        inline val royalBlue: Color
             get() = Color(0.25, 0.41, 0.88)
-        inline val saddlebrown: Color
+        inline val saddleBrown: Color
             get() = Color(0.55, 0.27, 0.07)
         inline val salmon: Color
             get() = Color(0.98, 0.50, 0.45)
-        inline val sandybrown: Color
+        inline val sandyBrown: Color
             get() = Color(0.96, 0.64, 0.38)
-        inline val seagreen: Color
+        inline val seaGreen: Color
             get() = Color(0.18, 0.55, 0.34)
         inline val seashell: Color
             get() = Color(1.00, 0.96, 0.93)
@@ -411,17 +411,17 @@ class Color(
             get() = Color(0.63, 0.32, 0.18)
         inline val silver: Color
             get() = Color(0.75, 0.75, 0.75)
-        inline val skyblue: Color
+        inline val skyBlue: Color
             get() = Color(0.53, 0.81, 0.92)
-        inline val slateblue: Color
+        inline val slateBlue: Color
             get() = Color(0.42, 0.35, 0.80)
-        inline val slategray: Color
+        inline val slateGray: Color
             get() = Color(0.44, 0.50, 0.56)
         inline val snow: Color
             get() = Color(1.00, 0.98, 0.98)
-        inline val springgreen: Color
+        inline val springGreen: Color
             get() = Color(0.00, 1.00, 0.50)
-        inline val steelblue: Color
+        inline val steelBlue: Color
             get() = Color(0.27, 0.51, 0.71)
         inline val tan: Color
             get() = Color(0.82, 0.71, 0.55)
@@ -441,11 +441,11 @@ class Color(
             get() = Color(0.96, 0.87, 0.70)
         inline val white: Color
             get() = Color(1.00, 1.00, 1.00)
-        inline val whitesmoke: Color
+        inline val whiteSmoke: Color
             get() = Color(0.96, 0.96, 0.96)
         inline val yellow: Color
             get() = Color(1.00, 1.00, 0.00)
-        inline val yellowgreen: Color
+        inline val yellowGreen: Color
             get() = Color(0.60, 0.80, 0.20)
 
         internal fun parseCol(p_str: String, p_ofs: Int): RealT {
@@ -589,152 +589,152 @@ class Color(
         }
 
         private val namedColors = arrayOf(
-            "ALICE_BLUE" to hex(0xF0F8FFFF),
-            "ANTIQUE_WHITE" to hex(0xFAEBD7FF),
-            "AQUA" to hex(0x00FFFFFF),
-            "AQUAMARINE" to hex(0x7FFFD4FF),
-            "AZURE" to hex(0xF0FFFFFF),
-            "BEIGE" to hex(0xF5F5DCFF),
-            "BISQUE" to hex(0xFFE4C4FF),
-            "BLACK" to hex(0x000000FF),
-            "BLANCHED_ALMOND" to hex(0xFFEBCDFF),
-            "BLUE" to hex(0x0000FFFF),
-            "BLUE_VIOLET" to hex(0x8A2BE2FF),
-            "BROWN" to hex(0xA52A2AFF),
-            "BURLYWOOD" to hex(0xDEB887FF),
-            "CADET_BLUE" to hex(0x5F9EA0FF),
-            "CHARTREUSE" to hex(0x7FFF00FF),
-            "CHOCOLATE" to hex(0xD2691EFF),
-            "CORAL" to hex(0xFF7F50FF),
-            "CORNFLOWER_BLUE" to hex(0x6495EDFF),
-            "CORNSILK" to hex(0xFFF8DCFF),
-            "CRIMSON" to hex(0xDC143CFF),
-            "CYAN" to hex(0x00FFFFFF),
-            "DARK_BLUE" to hex(0x00008BFF),
-            "DARK_CYAN" to hex(0x008B8BFF),
-            "DARK_GOLDENROD" to hex(0xB8860BFF),
-            "DARK_GRAY" to hex(0xA9A9A9FF),
-            "DARK_GREEN" to hex(0x006400FF),
-            "DARK_KHAKI" to hex(0xBDB76BFF),
-            "DARK_MAGENTA" to hex(0x8B008BFF),
-            "DARK_OLIVE_GREEN" to hex(0x556B2FFF),
-            "DARK_ORANGE" to hex(0xFF8C00FF),
-            "DARK_ORCHID" to hex(0x9932CCFF),
-            "DARK_RED" to hex(0x8B0000FF),
-            "DARK_SALMON" to hex(0xE9967AFF),
-            "DARK_SEA_GREEN" to hex(0x8FBC8FFF),
-            "DARK_SLATE_BLUE" to hex(0x483D8BFF),
-            "DARK_SLATE_GRAY" to hex(0x2F4F4FFF),
-            "DARK_TURQUOISE" to hex(0x00CED1FF),
-            "DARK_VIOLET" to hex(0x9400D3FF),
-            "DEEP_PINK" to hex(0xFF1493FF),
-            "DEEP_SKY_BLUE" to hex(0x00BFFFFF),
-            "DIM_GRAY" to hex(0x696969FF),
-            "DODGER_BLUE" to hex(0x1E90FFFF),
-            "FIREBRICK" to hex(0xB22222FF),
-            "FLORAL_WHITE" to hex(0xFFFAF0FF),
-            "FOREST_GREEN" to hex(0x228B22FF),
-            "FUCHSIA" to hex(0xFF00FFFF),
-            "GAINSBORO" to hex(0xDCDCDCFF),
-            "GHOST_WHITE" to hex(0xF8F8FFFF),
-            "GOLD" to hex(0xFFD700FF),
-            "GOLDENROD" to hex(0xDAA520FF),
-            "GRAY" to hex(0xBEBEBEFF),
-            "GREEN" to hex(0x00FF00FF),
-            "GREEN_YELLOW" to hex(0xADFF2FFF),
-            "HONEYDEW" to hex(0xF0FFF0FF),
-            "HOT_PINK" to hex(0xFF69B4FF),
-            "INDIAN_RED" to hex(0xCD5C5CFF),
-            "INDIGO" to hex(0x4B0082FF),
-            "IVORY" to hex(0xFFFFF0FF),
-            "KHAKI" to hex(0xF0E68CFF),
-            "LAVENDER" to hex(0xE6E6FAFF),
-            "LAVENDER_BLUSH" to hex(0xFFF0F5FF),
-            "LAWN_GREEN" to hex(0x7CFC00FF),
-            "LEMON_CHIFFON" to hex(0xFFFACDFF),
-            "LIGHT_BLUE" to hex(0xADD8E6FF),
-            "LIGHT_CORAL" to hex(0xF08080FF),
-            "LIGHT_CYAN" to hex(0xE0FFFFFF),
-            "LIGHT_GOLDENROD" to hex(0xFAFAD2FF),
-            "LIGHT_GRAY" to hex(0xD3D3D3FF),
-            "LIGHT_GREEN" to hex(0x90EE90FF),
-            "LIGHT_PINK" to hex(0xFFB6C1FF),
-            "LIGHT_SALMON" to hex(0xFFA07AFF),
-            "LIGHT_SEA_GREEN" to hex(0x20B2AAFF),
-            "LIGHT_SKY_BLUE" to hex(0x87CEFAFF),
-            "LIGHT_SLATE_GRAY" to hex(0x778899FF),
-            "LIGHT_STEEL_BLUE" to hex(0xB0C4DEFF),
-            "LIGHT_YELLOW" to hex(0xFFFFE0FF),
-            "LIME" to hex(0x00FF00FF),
-            "LIME_GREEN" to hex(0x32CD32FF),
-            "LINEN" to hex(0xFAF0E6FF),
-            "MAGENTA" to hex(0xFF00FFFF),
-            "MAROON" to hex(0xB03060FF),
-            "MEDIUM_AQUAMARINE" to hex(0x66CDAAFF),
-            "MEDIUM_BLUE" to hex(0x0000CDFF),
-            "MEDIUM_ORCHID" to hex(0xBA55D3FF),
-            "MEDIUM_PURPLE" to hex(0x9370DBFF),
-            "MEDIUM_SEA_GREEN" to hex(0x3CB371FF),
-            "MEDIUM_SLATE_BLUE" to hex(0x7B68EEFF),
-            "MEDIUM_SPRING_GREEN" to hex(0x00FA9AFF),
-            "MEDIUM_TURQUOISE" to hex(0x48D1CCFF),
-            "MEDIUM_VIOLET_RED" to hex(0xC71585FF),
-            "MIDNIGHT_BLUE" to hex(0x191970FF),
-            "MINT_CREAM" to hex(0xF5FFFAFF),
-            "MISTY_ROSE" to hex(0xFFE4E1FF),
-            "MOCCASIN" to hex(0xFFE4B5FF),
-            "NAVAJO_WHITE" to hex(0xFFDEADFF),
-            "NAVY_BLUE" to hex(0x000080FF),
-            "OLD_LACE" to hex(0xFDF5E6FF),
-            "OLIVE" to hex(0x808000FF),
-            "OLIVE_DRAB" to hex(0x6B8E23FF),
-            "ORANGE" to hex(0xFFA500FF),
-            "ORANGE_RED" to hex(0xFF4500FF),
-            "ORCHID" to hex(0xDA70D6FF),
-            "PALE_GOLDENROD" to hex(0xEEE8AAFF),
-            "PALE_GREEN" to hex(0x98FB98FF),
-            "PALE_TURQUOISE" to hex(0xAFEEEEFF),
-            "PALE_VIOLET_RED" to hex(0xDB7093FF),
-            "PAPAYA_WHIP" to hex(0xFFEFD5FF),
-            "PEACH_PUFF" to hex(0xFFDAB9FF),
-            "PERU" to hex(0xCD853FFF),
-            "PINK" to hex(0xFFC0CBFF),
-            "PLUM" to hex(0xDDA0DDFF),
-            "POWDER_BLUE" to hex(0xB0E0E6FF),
-            "PURPLE" to hex(0xA020F0FF),
-            "REBECCA_PURPLE" to hex(0x663399FF),
-            "RED" to hex(0xFF0000FF),
-            "ROSY_BROWN" to hex(0xBC8F8FFF),
-            "ROYAL_BLUE" to hex(0x4169E1FF),
-            "SADDLE_BROWN" to hex(0x8B4513FF),
-            "SALMON" to hex(0xFA8072FF),
-            "SANDY_BROWN" to hex(0xF4A460FF),
-            "SEA_GREEN" to hex(0x2E8B57FF),
-            "SEASHELL" to hex(0xFFF5EEFF),
-            "SIENNA" to hex(0xA0522DFF),
-            "SILVER" to hex(0xC0C0C0FF),
-            "SKY_BLUE" to hex(0x87CEEBFF),
-            "SLATE_BLUE" to hex(0x6A5ACDFF),
-            "SLATE_GRAY" to hex(0x708090FF),
-            "SNOW" to hex(0xFFFAFAFF),
-            "SPRING_GREEN" to hex(0x00FF7FFF),
-            "STEEL_BLUE" to hex(0x4682B4FF),
-            "TAN" to hex(0xD2B48CFF),
-            "TEAL" to hex(0x008080FF),
-            "THISTLE" to hex(0xD8BFD8FF),
-            "TOMATO" to hex(0xFF6347FF),
-            "TRANSPARENT" to hex(0xFFFFFF00),
-            "TURQUOISE" to hex(0x40E0D0FF),
-            "VIOLET" to hex(0xEE82EEFF),
-            "WEB_GRAY" to hex(0x808080FF),
-            "WEB_GREEN" to hex(0x008000FF),
-            "WEB_MAROON" to hex(0x800000FF),
-            "WEB_PURPLE" to hex(0x800080FF),
-            "WHEAT" to hex(0xF5DEB3FF),
-            "WHITE" to hex(0xFFFFFFFF),
-            "WHITE_SMOKE" to hex(0xF5F5F5FF),
-            "YELLOW" to hex(0xFFFF00FF),
-            "YELLOW_GREEN" to hex(0x9ACD32FF),
+            "ALICE_BLUE" to aliceBlue,
+            "ANTIQUE_WHITE" to antiqueWhite,
+            "AQUA" to aqua,
+            "AQUAMARINE" to aquamarine,
+            "AZURE" to azure,
+            "BEIGE" to beige,
+            "BISQUE" to bisque,
+            "BLACK" to black,
+            "BLANCHED_ALMOND" to blanchedAlmond,
+            "BLUE" to blue,
+            "BLUE_VIOLET" to blueViolet,
+            "BROWN" to brown,
+            "BURLYWOOD" to burlywood,
+            "CADET_BLUE" to cadetBlue,
+            "CHARTREUSE" to chartreuse,
+            "CHOCOLATE" to chocolate,
+            "CORAL" to coral,
+            "CORNFLOWER_BLUE" to cornflowerBlue,
+            "CORNSILK" to cornsilk,
+            "CRIMSON" to crimson,
+            "CYAN" to cyan,
+            "DARK_BLUE" to darkBlue,
+            "DARK_CYAN" to darkCyan,
+            "DARK_GOLDENROD" to darkGoldenrod,
+            "DARK_GRAY" to darkGray,
+            "DARK_GREEN" to darkGreen,
+            "DARK_KHAKI" to darkKhaki,
+            "DARK_MAGENTA" to darkMagenta,
+            "DARK_OLIVE_GREEN" to darkOliveGreen,
+            "DARK_ORANGE" to darkorange,
+            "DARK_ORCHID" to darkOrchid,
+            "DARK_RED" to darkRed,
+            "DARK_SALMON" to darkSalmon,
+            "DARK_SEA_GREEN" to darkSeaGreen,
+            "DARK_SLATE_BLUE" to darkSlateBlue,
+            "DARK_SLATE_GRAY" to darkSlateGray,
+            "DARK_TURQUOISE" to darkTurquoise,
+            "DARK_VIOLET" to darkViolet,
+            "DEEP_PINK" to deepPink,
+            "DEEP_SKY_BLUE" to deepSkyBlue,
+            "DIM_GRAY" to dimGray,
+            "DODGER_BLUE" to dodgerBlue,
+            "FIREBRICK" to firebrick,
+            "FLORAL_WHITE" to floralWhite,
+            "FOREST_GREEN" to forestGreen,
+            "FUCHSIA" to fuchsia,
+            "GAINSBORO" to gainsboro,
+            "GHOST_WHITE" to ghostWhite,
+            "GOLD" to gold,
+            "GOLDENROD" to goldenrod,
+            "GRAY" to gray,
+            "GREEN" to green,
+            "GREEN_YELLOW" to greenYellow,
+            "HONEYDEW" to honeydew,
+            "HOT_PINK" to hotPink,
+            "INDIAN_RED" to indianRed,
+            "INDIGO" to indigo,
+            "IVORY" to ivory,
+            "KHAKI" to khaki,
+            "LAVENDER" to lavender,
+            "LAVENDER_BLUSH" to lavenderBlush,
+            "LAWN_GREEN" to lawnGreen,
+            "LEMON_CHIFFON" to lemonChiffon,
+            "LIGHT_BLUE" to lightBlue,
+            "LIGHT_CORAL" to lightCoral,
+            "LIGHT_CYAN" to lightCyan,
+            "LIGHT_GOLDENROD" to lightGoldenrod,
+            "LIGHT_GRAY" to lightGray,
+            "LIGHT_GREEN" to lightGreen,
+            "LIGHT_PINK" to lightPink,
+            "LIGHT_SALMON" to lightSalmon,
+            "LIGHT_SEA_GREEN" to lightSeaGreen,
+            "LIGHT_SKY_BLUE" to lightSkyBlue,
+            "LIGHT_SLATE_GRAY" to lightSlateGray,
+            "LIGHT_STEEL_BLUE" to lightSteelBlue,
+            "LIGHT_YELLOW" to lightYellow,
+            "LIME" to lime,
+            "LIME_GREEN" to limeGreen,
+            "LINEN" to linen,
+            "MAGENTA" to magenta,
+            "MAROON" to maroon,
+            "MEDIUM_AQUAMARINE" to mediumAquamarine,
+            "MEDIUM_BLUE" to mediumBlue,
+            "MEDIUM_ORCHID" to mediumOrchid,
+            "MEDIUM_PURPLE" to mediumPurple,
+            "MEDIUM_SEA_GREEN" to mediumSeaGreen,
+            "MEDIUM_SLATE_BLUE" to mediumSlateBlue,
+            "MEDIUM_SPRING_GREEN" to mediumSpringGreen,
+            "MEDIUM_TURQUOISE" to mediumTurquoise,
+            "MEDIUM_VIOLET_RED" to mediumVioletRed,
+            "MIDNIGHT_BLUE" to midnightBlue,
+            "MINT_CREAM" to mintCream,
+            "MISTY_ROSE" to mistyRose,
+            "MOCCASIN" to moccasin,
+            "NAVAJO_WHITE" to navajoWhite,
+            "NAVY_BLUE" to navyBlue,
+            "OLD_LACE" to oldLace,
+            "OLIVE" to olive,
+            "OLIVE_DRAB" to oliveDrab,
+            "ORANGE" to orange,
+            "ORANGE_RED" to orangeRed,
+            "ORCHID" to orchid,
+            "PALE_GOLDENROD" to paleGoldenrod,
+            "PALE_GREEN" to paleGreen,
+            "PALE_TURQUOISE" to paleTurquoise,
+            "PALE_VIOLET_RED" to paleVioletRed,
+            "PAPAYA_WHIP" to papayaWhip,
+            "PEACH_PUFF" to peachPuff,
+            "PERU" to peru,
+            "PINK" to pink,
+            "PLUM" to plum,
+            "POWDER_BLUE" to powderBlue,
+            "PURPLE" to purple,
+            "REBECCA_PURPLE" to rebeccaPurple,
+            "RED" to red,
+            "ROSY_BROWN" to rosyBrown,
+            "ROYAL_BLUE" to royalBlue,
+            "SADDLE_BROWN" to saddleBrown,
+            "SALMON" to salmon,
+            "SANDY_BROWN" to sandyBrown,
+            "SEA_GREEN" to seaGreen,
+            "SEASHELL" to seashell,
+            "SIENNA" to sienna,
+            "SILVER" to silver,
+            "SKY_BLUE" to skyBlue,
+            "SLATE_BLUE" to slateBlue,
+            "SLATE_GRAY" to slateGray,
+            "SNOW" to snow,
+            "SPRING_GREEN" to springGreen,
+            "STEEL_BLUE" to steelBlue,
+            "TAN" to tan,
+            "TEAL" to teal,
+            "THISTLE" to thistle,
+            "TOMATO" to tomato,
+            "TRANSPARENT" to transparent,
+            "TURQUOISE" to turquoise,
+            "VIOLET" to violet,
+            "WEB_GRAY" to webGray,
+            "WEB_GREEN" to webGreen,
+            "WEB_MAROON" to webMaroon,
+            "WEB_PURPLE" to webPurple,
+            "WHEAT" to wheat,
+            "WHITE" to white,
+            "WHITE_SMOKE" to whiteSmoke,
+            "YELLOW" to yellow,
+            "YELLOW_GREEN" to yellowGreen,
             null to Color(),
         )
 
@@ -800,14 +800,10 @@ class Color(
             }
 
             // Check if the amount of hex digits is valid.
-
-            // Check if the amount of hex digits is valid.
             val len = clr.length
             if (!(len == 3 || len == 4 || len == 6 || len == 8)) {
                 return false
             }
-
-            // Check if each hex digit is valid.
 
             // Check if each hex digit is valid.
             for (i in 0 until len) {

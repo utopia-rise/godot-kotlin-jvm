@@ -28,3 +28,15 @@ internal fun bezierInterpolate(start: RealT, control1: RealT, control2: RealT, e
 
     return start * omt3 + control1 * omt2 * t * 3.0 + control2 * omt * t2 * 3.0 + end * t3
 }
+
+internal fun cubicInterpolate(
+    from: Double,
+    to: Double,
+    pre: Double,
+    post: Double,
+    weight: Double
+) = 0.5f *
+        ((from * 2.0f) +
+                (-pre + to) * weight +
+                (2.0f * pre - 5.0f * from + 4.0f * to - post) * (weight * weight) +
+                (-pre + 3.0f * from - 3.0f * to + post) * (weight * weight * weight))

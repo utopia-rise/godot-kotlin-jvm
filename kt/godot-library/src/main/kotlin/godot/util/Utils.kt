@@ -55,18 +55,6 @@ val Float.signbit: Boolean
 val Double.signbit: Boolean
     get() = sign < 0
 
-fun cubicInterpolate(
-    from: Double,
-    to: Double,
-    pre: Double,
-    post: Double,
-    weight: Double
-) = 0.5f *
-        ((from * 2.0f) +
-                (-pre + to) * weight +
-                (2.0f * pre - 5.0f * from + 4.0f * to - post) * (weight * weight) +
-                (-pre + 3.0f * from - 3.0f * to + post) * (weight * weight * weight))
-
 /**
  * Because of float precision, it's hard to obtain two perfectly equal real numbers.
  * They are considered equal if the difference is smaller than CMP_EPSILON

@@ -309,7 +309,6 @@ class Quaternion(
         postQ = Basis(postQ).getRotationQuaternion()
 
         // Flip quaternions to shortest path if necessary.
-        // Flip quaternions to shortest path if necessary.
         val flip1 = fromQ.dot(preQ).signbit
         preQ = if (flip1) -preQ else preQ
         val flip2 = fromQ.dot(toQ).signbit
@@ -317,7 +316,6 @@ class Quaternion(
         val flip3 = if (flip2) toQ.dot(postQ) <= 0 else toQ.dot(postQ).signbit
         postQ = if (flip3) -postQ else postQ
 
-        // Calc by Expmap in from_q space.
         // Calc by Expmap in from_q space.
         var lnFrom = Quaternion(0, 0, 0, 0)
         var lnTo = (fromQ.inverse() * toQ).log()
@@ -379,7 +377,6 @@ class Quaternion(
         post_q = Basis(post_q).getRotationQuaternion()
 
         // Flip quaternions to shortest path if necessary.
-        // Flip quaternions to shortest path if necessary.
         val flip1 = from_q.dot(pre_q).signbit
         pre_q = if (flip1) -pre_q else pre_q
         val flip2 = from_q.dot(to_q).signbit
@@ -387,7 +384,6 @@ class Quaternion(
         val flip3 = if (flip2) to_q.dot(post_q) <= 0 else to_q.dot(post_q).signbit
         post_q = if (flip3) -post_q else post_q
 
-        // Calc by Expmap in from_q space.
         // Calc by Expmap in from_q space.
         var ln_from = Quaternion(0, 0, 0, 0)
         var ln_to = (from_q.inverse() * to_q).log()
