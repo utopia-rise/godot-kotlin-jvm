@@ -113,6 +113,9 @@ jobs:
             target: release_debug
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Delay execution
+        run: sleep 5
+
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
       - name: Get release infos from draft release
         uses: dawidd6/action-download-artifact@v2
@@ -470,6 +473,9 @@ jobs:
             target: release_debug
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Delay execution
+        run: sleep 5
+
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
       - name: Get release infos from draft release
         uses: dawidd6/action-download-artifact@v2
