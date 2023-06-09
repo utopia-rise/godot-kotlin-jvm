@@ -231,7 +231,7 @@ jobs:
           name: osx-editor-${{ matrix.target }}-binary-${{ matrix.arch }}
           path: bin/${{ matrix.binary }}
 
-  create-macos-universal:
+  create-macos-universal-editor:
     needs: [ deploy-editor-release ]
     strategy:
       matrix:
@@ -277,7 +277,7 @@ jobs:
           path: godot.osx.${{ matrix.binary-suffix }}.universal
 
   create-macos-editor-app:
-    needs: [ create-macos-universal ]
+    needs: [ create-macos-universal-editor ]
     strategy:
       matrix:
         os: [ macos-latest ]
@@ -647,7 +647,7 @@ jobs:
           asset_name: ${{ matrix.apk-name }}
           asset_content_type: application/octet-stream
 
-  create-macos-universal:
+  create-macos-universal-export:
     needs: [deploy-export-template]
     strategy:
       matrix:
@@ -698,7 +698,7 @@ jobs:
           path: godot.osx.${{ matrix.binary-suffix }}.universal
 
   create-macos-export-template-app:
-    needs: [create-macos-universal]
+    needs: [create-macos-universal-export]
     strategy:
       matrix:
         os: [ macos-latest ]
