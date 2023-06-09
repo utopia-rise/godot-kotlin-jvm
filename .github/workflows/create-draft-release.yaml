@@ -332,7 +332,7 @@ jobs:
           chmod +x Godot.app/Contents/MacOS/Godot
           cp godot-bootstrap.jar Godot.app/Contents/MacOS/
           chmod +x Godot.app/Contents/MacOS/godot-bootstrap.jar
-          zip -q -9 -r godot-editor-macos.zip Godot.app
+          zip -q -9 -r godot-kotlin-jvm_editor_macos_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip Godot.app
 
       - name: Upload MacOs editor app
         uses: actions/upload-release-asset@v1.0.1
@@ -340,8 +340,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.save_release_info.outputs.upload_url }}
-          asset_path: godot-editor-macos.zip
-          asset_name: godot-editor-macos.zip
+          asset_path: godot-kotlin-jvm_editor_macos_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
+          asset_name: godot-kotlin-jvm_editor_macos_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
           asset_content_type: application/octet-stream
 # END: merged from deploy-godot-editor-release.yaml
 
