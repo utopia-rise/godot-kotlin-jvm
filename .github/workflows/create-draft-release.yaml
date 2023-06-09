@@ -114,20 +114,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
-      - name: Get release url from draft release
-        uses: actions/download-artifact@v2
+      - name: Get release infos from draft release
+        uses: dawidd6/action-download-artifact@v2
         with:
-          name: release_url
-
-      - name: Get supported godot version from draft release
-        uses: actions/download-artifact@v2
-        with:
-          name: godot_version
-
-      - name: Get godot kotlin jvm version from draft release
-        uses: actions/download-artifact@v2
-        with:
-          name: godot_kotlin_jvm_version
+          workflow: create-draft-release.yaml
+          workflow_conclusion: success
 
       - name: Create release information artifact
         if: matrix.platform == 'x11'
@@ -135,9 +126,9 @@ jobs:
         with:
           name: release-informations
           path: |
-            release_url.txt
-            godot_version.txt
-            godot_kotlin_jvm_version.txt
+            release_url/release_url.txt
+            godot_version/godot_version.txt
+            godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt
 
       - name: Save release infos as variables
         id: save_release_info
