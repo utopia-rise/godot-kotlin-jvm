@@ -1,5 +1,6 @@
 #include "kotlin_instance.h"
 
+#include "core/core_string_names.h"
 #include "kotlin_language.h"
 #include "kt_class.h"
 
@@ -79,8 +80,6 @@ bool KotlinInstance::has_method(const StringName& p_method) const {
 }
 
 Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
-    jni::LocalFrame local_frame(100);
-
     KtFunction* function {kt_class->get_method(p_method)};
     Variant ret_var;
     if (function) {
@@ -91,7 +90,16 @@ Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args
     return ret_var;
 }
 
-void KotlinInstance::notification(int p_notification) {}
+void KotlinInstance::notification(int p_notification) {
+    KtFunction* function {kt_class->get_method(CoreStringNames::get_singleton()->notification)};
+
+    if (function) {
+        Variant ret_var;
+        Variant value = p_notification;
+        const Variant *args[1] = { &value };
+        function->invoke(kt_object, args, 1, ret_var);
+    }
+}
 
 String KotlinInstance::to_string(bool* r_valid) {
     return ScriptInstance::to_string(r_valid);
