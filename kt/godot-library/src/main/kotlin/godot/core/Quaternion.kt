@@ -3,6 +3,7 @@ package godot.core
 import godot.EulerOrder
 import godot.util.*
 import kotlin.math.*
+import kotlincompile.definitions.GodotJvmDefinitions
 
 
 class Quaternion(
@@ -130,8 +131,10 @@ class Quaternion(
      * Z angle).
      */
     fun getEuler(order: EulerOrder = EulerOrder.EULER_ORDER_YXZ): Vector3 {
-        require(isNormalized()) {
-            "The quaternion must be normalized."
+        if (GodotJvmDefinitions.DEBUG) {
+            require(isNormalized()) {
+                "The quaternion must be normalized."
+            }
         }
         return Basis(this).getEuler(order)
     }
@@ -203,7 +206,9 @@ class Quaternion(
      * Sets the quaternion to a rotation which rotates around axis by the specified angle, in radians. The axis must be a normalized vector.
      */
     fun setAxisAndAngle(axis: Vector3, angle: RealT) {
-        require(axis.isNormalized()) { "Axis must be normalized!" }
+        if (GodotJvmDefinitions.DEBUG) {
+            require(axis.isNormalized()) { "Axis must be normalized!" }
+        }
 
         val d = axis.length()
         if (isEqualApprox(d, 0.0)) {
@@ -290,11 +295,13 @@ class Quaternion(
      * amount [weight].
      */
     fun sphericalCubicInterpolate(b: Quaternion, preA: Quaternion, postB: Quaternion, weight: RealT): Quaternion {
-        require(isNormalized()) {
-            "The start quaternion must be normalized."
-        }
-        require(b.isNormalized()) {
-            "The end quaternion must be normalized."
+        if (GodotJvmDefinitions.DEBUG) {
+            require(isNormalized()) {
+                "The start quaternion must be normalized."
+            }
+            require(b.isNormalized()) {
+                "The end quaternion must be normalized."
+            }
         }
 
         var fromQ = this
@@ -358,11 +365,13 @@ class Quaternion(
         p_pre_a_t: RealT,
         p_post_b_t: RealT
     ): Quaternion {
-        require(isNormalized()) {
-            "The start quaternion must be normalized."
-        }
-        require(p_b.isNormalized()) {
-            "The end quaternion must be normalized."
+        if (GodotJvmDefinitions.DEBUG) {
+            require(isNormalized()) {
+                "The start quaternion must be normalized."
+            }
+            require(p_b.isNormalized()) {
+                "The end quaternion must be normalized."
+            }
         }
 
         var from_q = this

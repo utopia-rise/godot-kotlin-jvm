@@ -7,6 +7,18 @@ plugins {
     id("com.utopia-rise.godot-publish")
     id("com.utopia-rise.versioninfo")
     alias(libs.plugins.shadowJar)
+    id("com.utopia-rise.godot-dependencies")
+    id("com.github.johnrengelman.shadow")
+
+    id("com.utopia-rise.kotlin-preprocessors") version "0.1.4"
+}
+
+val isRelease = project.hasProperty("release")
+
+kotlinDefinitions {
+    definitionsObjectPrefix.set("GodotJvm")
+
+    define("DEBUG", !isRelease)
 }
 
 apiGenerator {

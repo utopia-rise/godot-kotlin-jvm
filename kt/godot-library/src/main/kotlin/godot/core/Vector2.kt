@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.util.*
+import kotlincompile.definitions.GodotJvmDefinitions
 import kotlin.math.*
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -428,7 +429,9 @@ class Vector2(
      * Note: Both vectors must be normalized.
      */
     fun slerp(b: Vector2, t: RealT): Vector2 {
-        require(this.isNormalized() && b.isNormalized()) { "Both this and b vector must be normalized!" }
+        if (GodotJvmDefinitions.DEBUG) {
+            require(this.isNormalized() && b.isNormalized()) { "Both this and b vector must be normalized!" }
+        }
         val theta: RealT = angleTo(b)
         return rotated((theta * t))
     }

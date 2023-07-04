@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.util.*
+import kotlincompile.definitions.GodotJvmDefinitions
 import kotlin.math.*
 
 
@@ -472,7 +473,9 @@ class Vector3(
      * Rotates the vector around a given axis by phi radians. The axis must be a normalized vector.
      */
     fun rotated(axis: Vector3, phi: RealT): Vector3 {
-        require(axis.isNormalized()) { "Axis not normalized!" }
+        if (GodotJvmDefinitions.DEBUG) {
+            require(axis.isNormalized()) { "Axis not normalized!" }
+        }
         val v = Vector3(this)
         v.rotate(axis, phi)
         return v
@@ -517,7 +520,9 @@ class Vector3(
      * Note: Both vectors must be normalized.
      */
     fun slerp(b: Vector3, t: RealT): Vector3 {
-        require(this.isNormalized() && b.isNormalized()) { "Both this and b vectors must be normalized!" }
+        if (GodotJvmDefinitions.DEBUG) {
+            require(this.isNormalized() && b.isNormalized()) { "Both this and b vectors must be normalized!" }
+        }
         val theta: RealT = angleTo(b)
         return rotated(cross(b).normalized(), theta * t)
     }

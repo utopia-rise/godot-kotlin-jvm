@@ -7,6 +7,7 @@ import godot.util.CMP_EPSILON
 import godot.util.RealT
 import godot.util.isEqualApprox
 import godot.util.toRealT
+import kotlincompile.definitions.GodotJvmDefinitions
 import kotlin.math.*
 
 class Basis() : CoreType {
@@ -85,11 +86,13 @@ class Basis() : CoreType {
          * If [useModelFront] is true, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).
          */
         fun lookingAt(target: Vector3, up: Vector3 = Vector3(0, 1, 0), useModelFront: Boolean = false): Basis {
-            require(!target.isZeroApprox()) {
-                "The target vector can't be zero."
-            }
-            require(!up.isZeroApprox()) {
-                "The up vector can't be zero."
+            if (GodotJvmDefinitions.DEBUG) {
+                require(!target.isZeroApprox()) {
+                    "The target vector can't be zero."
+                }
+                require(!up.isZeroApprox()) {
+                    "The up vector can't be zero."
+                }
             }
             val vZ: Vector3 = if (!useModelFront) {
                 -target.normalized()
@@ -98,8 +101,10 @@ class Basis() : CoreType {
             }
             val vX: Vector3 = up.cross(vZ)
 
-            require(!vX.isZeroApprox()) {
-                "The target vector and up vector can't be parallel to each other."
+            if (GodotJvmDefinitions.DEBUG) {
+                require(!vX.isZeroApprox()) {
+                    "The target vector and up vector can't be parallel to each other."
+                }
             }
 
             vX.normalize()
@@ -535,8 +540,9 @@ class Basis() : CoreType {
 
         val det: RealT = this._x.x * co1 + this._x.y * co2 + this._x.z * co3
 
-
-        require(!isEqualApprox(det, 0.0)) { "Determinant is zero!" }
+        if (GodotJvmDefinitions.DEBUG) {
+            require(!isEqualApprox(det, 0.0)) { "Determinant is zero!" }
+        }
 
         val s = 1.0 / det
         set(
@@ -547,7 +553,9 @@ class Basis() : CoreType {
     }
 
     fun getQuaternion(): Quaternion {
-        require(isRotation()) { "Basis must be normalized in order to be casted to a Quaternion. Use get_rotation_quat() or call orthonormalized() instead." }
+        if (GodotJvmDefinitions.DEBUG) {
+            require(isRotation()) { "Basis must be normalized in order to be casted to a Quaternion. Use get_rotation_quat() or call orthonormalized() instead." }
+        }
         val trace = this._x.x + this._y.y + this._z.z
         val temp: Array<RealT>
 
@@ -618,7 +626,9 @@ class Basis() : CoreType {
     }
 
     internal fun orthonormalize() {
-        require(!isEqualApprox(determinant(), 0.0)) { "Determinant is zero!" }
+        if (GodotJvmDefinitions.DEBUG) {
+            require(!isEqualApprox(determinant(), 0.0)) { "Determinant is zero!" }
+        }
 
         val x = getColumn(0)
         var y = getColumn(1)
@@ -721,7 +731,9 @@ class Basis() : CoreType {
      *
      */
     fun setOrthogonalIndex(index: Int) {
-        require(index < 24) { "Index must be less than 24!" }
+        if (GodotJvmDefinitions.DEBUG) {
+            require(index < 24) { "Index must be less than 24!" }
+        }
         val ret = orthoBases[index]
         this._x = ret._x
         this._y = ret._y
@@ -732,7 +744,9 @@ class Basis() : CoreType {
      * Assuming that the matrix is a proper rotation matrix, slerp performs a spherical-linear interpolation with another rotation matrix.
      */
     fun slerp(b: Basis, t: RealT): Basis {
-        require(isRotation()) { "Basis is not a rotation!" }
+        if (GodotJvmDefinitions.DEBUG) {
+            require(isRotation()) { "Basis is not a rotation!" }
+        }
 
         val from = Quaternion(this)
         val to = Quaternion(b)
