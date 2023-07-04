@@ -19,31 +19,31 @@ jobs:
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
             os: ubuntu-20.04
             platform: x11
-            binary: godot.x11.opt.editor.64
+            binary: godot.linuxbsd.editor.x86_64
             cat_command: cat
-            arch: 64
-            target: template_debug
+            arch: x86_64
+            target: editor
           - name: MacOs
             os: macos-latest
             platform: macos
-            binary: godot.macos.opt.editor.64
+            binary: godot.macos.editor.x86_64
             cat_command: cat
-            arch: 64
-            target: template_debug
+            arch: x86_64
+            target: editor
           - name: OSX-arm64
             os: macos-latest
-            platform: osx
-            binary: godot.osx.opt.tools.arm64
+            platform: macos
+            binary: godot.macos.editor.arm64
             cat_command: cat
             arch: arm64
-            target: template_debug
+            target: editor
           - name: Windows
             os: windows-2019
             platform: windows
-            binary: godot.windows.opt.editor.64.exe
+            binary: godot.windows.editor.x86_64
             cat_command: type
-            arch: 64
-            target: template_debug
+            arch: x86_64
+            target: editor
     runs-on: ${{ matrix.os }}
     steps:
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
@@ -112,12 +112,12 @@ jobs:
         id: cpu-cores
         uses: SimenB/github-actions-cpu-cores@v1
 
-      - name: Build ${{ matrix.target }} editor release app
+      - name: Build ${{ matrix.os }} editor release app
         uses: ./.github/actions/godot-build
         with:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
-          target: editor
+          target: ${{ matrix.target }}
 
       - name: Build godot-bootstrap
         uses: eskatos/gradle-command-action@v1
@@ -127,14 +127,14 @@ jobs:
           arguments: godot-library:build
 
       - name: Zip release
-        if: matrix.platform != 'osx'
+        if: matrix.platform != 'macos'
         uses: vimtor/action-zip@v1
         with:
           files: bin/${{ matrix.binary }} modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
           dest: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
 
       - name: Upload zip release
-        if: matrix.platform != 'osx'
+        if: matrix.platform != 'macos'
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -145,14 +145,14 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload bootstrap jar
-        if: matrix.platform == 'osx'
+        if: matrix.platform == 'macos'
         uses: actions/upload-artifact@v3
         with:
           name: bootstrap-jar
           path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
 
       - name: Upload OSX binary
-        if: matrix.platform == 'osx'
+        if: matrix.platform == 'macos'
         uses: actions/upload-artifact@v3
         with:
           name: osx-editor-${{ matrix.target }}-binary-${{ matrix.arch }}
@@ -167,8 +167,7 @@ jobs:
           - name: MacOs
             os: macos-latest
             java-version: 11
-            target: template_debug
-            binary-suffix: opt.tools
+            target: editor
     runs-on: ${{ matrix.os }}
     steps:
       - name: Download release informations
@@ -192,16 +191,16 @@ jobs:
         uses: ./.github/actions/create-osx-universal-binary
         with:
           amd-64-binary-artifact: osx-editor-${{ matrix.target }}-binary-64
-          amd-64-binary-name: godot.osx.${{ matrix.binary-suffix }}.64
+          amd-64-binary-name: godot.osx.${{ matrix.target }}.64
           arm-64-binary-artifact: osx-editor-${{ matrix.target }}-binary-arm64
-          arm-64-binary-name: godot.osx.${{ matrix.binary-suffix }}.arm64
-          universal-output-binary-name: godot.osx.${{ matrix.binary-suffix }}.universal
+          arm-64-binary-name: godot.osx.${{ matrix.target }}.arm64
+          universal-output-binary-name: godot.osx.${{ matrix.target }}.universal
 
       - name: Upload ${{ matrix.target }} osx universal artifact
         uses: actions/upload-artifact@v3
         with:
           name: osx-editor-${{ matrix.target }}-binary-universal
-          path: godot.osx.${{ matrix.binary-suffix }}.universal
+          path: godot.osx.${{ matrix.target }}.universal
 
   create-macos-editor-app:
     needs: [ create-macos-universal ]
@@ -211,8 +210,7 @@ jobs:
         include:
           - os: macos-latest
             java-version: 11
-            target: template_debug
-            binary-suffix: opt.tools
+            target: editor
     runs-on: ${{ matrix.os }}
     steps:
       - name: Download release informations
@@ -247,7 +245,7 @@ jobs:
         run: |
           cp -r misc/dist/osx_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
-          cp godot.osx.${{ matrix.binary-suffix }}.universal Godot.app/Contents/MacOS/Godot
+          cp godot.osx.${{ matrix.target }}.universal Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
           cp godot-bootstrap.jar Godot.app/Contents/MacOS/
           chmod +x Godot.app/Contents/MacOS/godot-bootstrap.jar

@@ -39,12 +39,12 @@ jobs:
           - name: Android-armv7
             os: ubuntu-latest
             platform: android
-            arch: arm32
+            arch: armv7
             output_folder: platform/android/java/lib/libs/release/armeabi-v7a/
           - name: Android-armv8
             os: ubuntu-latest
             platform: android
-            arch: arm64
+            arch: arm64v8
             output_folder: platform/android/java/lib/libs/release/arm64-v8a/
           - name: Android-x86_64
             os: ubuntu-latest

@@ -35,6 +35,10 @@ fun Project.createIOSStaticLibraryTask(
             val javaLibFolder = iosLibDir.resolve("$jdkName-main")
 
             if (!javaLibFolder.exists()) {
+                // Those JDK's are static libraries downloaded from https://download2.gluonhq.com/substrate/staticjdk/
+                // Then those libraries have been unpacked to get all objects files
+                // This way we can combine JDK's objects files, ios_graal_fix.c and user code object files into one
+                // static library that we add using our export plugin.
                 val url = URL("https://github.com/utopia-rise/$jdkName/archive/refs/heads/main.zip")
                 url.openStream().use { urlStream ->
                     ZipInputStream(urlStream).use { zipInputStream ->

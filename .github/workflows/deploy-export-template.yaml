@@ -19,28 +19,28 @@ jobs:
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
             os: ubuntu-20.04
             platform: x11
-            binary: godot.x11.opt.64
+            binary: godot.linuxbsd.template_release.x86_64
             cat_command: cat
             arch: x86_64
             target: template_release
           - name: MacOs-x64-release
             os: macos-latest
             platform: macos
-            binary: godot.macos.opt.64
+            binary: godot.macos.template_release.x86_64
             cat_command: cat
             arch: x86_64
             target: template_release
           - name: MacOs-arm64-release
             os: macos-latest
             platform: macos
-            binary: godot.macos.opt.arm64
+            binary: godot.macos.template_release.arm64
             cat_command: cat
             arch: arm64
             target: template_release
           - name: Windows-release
             os: windows-2019
             platform: windows
-            binary: godot.windows.opt.64.exe
+            binary: godot.windows.template_release.x86_64.exe
             cat_command: type
             arch: x86_64
             target: template_release
@@ -79,28 +79,28 @@ jobs:
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
             os: ubuntu-20.04
             platform: x11
-            binary: godot.x11.opt.debug.64
+            binary: godot.linuxbsd.template_debug.x86_64
             cat_command: cat
             arch: x86_64
             target: template_debug
           - name: MacOs-x64-debug
             os: macos-latest
             platform: macos
-            binary: godot.macos.opt.debug.64
+            binary: godot.macos.template_debug.x86_64
             cat_command: cat
             arch: x86_64
             target: template_debug
           - name: MacOs-arm64-debug
             os: macos-latest
             platform: macos
-            binary: godot.macos.opt.debug.arm64
+            binary: godot.macos.template_debug.arm64
             cat_command: cat
             arch: arm64
             target: template_debug
           - name: Windows-debug
             os: windows-2019
             platform: windows
-            binary: godot.windows.opt.debug.64.exe
+            binary: godot.windows.template_debug.x86_64.exe
             cat_command: type
             arch: x86_64
             target: template_debug
@@ -209,19 +209,9 @@ jobs:
         uses: SimenB/github-actions-cpu-cores@v1
 
       - name: Build ${{ matrix.target }} export template
-        if: matrix.platform != 'android'
         uses: ./.github/actions/godot-build
         with:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
-          platform: ${{ matrix.platform }}
-          target: ${{ matrix.target }}
-
-
-      - name: Build android ${{ matrix.target }} export template binary
-        if: matrix.platform == 'android'
-        uses: ./.github/actions/godot-build
-        with:
-          sconsflags: android_arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
           target: ${{ matrix.target }}
 
@@ -319,12 +309,10 @@ jobs:
             os: macos-latest
             java-version: 11
             target: template_release
-            binary-suffix: opt
           - name: MacOs-debug
             os: macos-latest
             java-version: 11
             target: template_debug
-            binary-suffix: opt.debug
     runs-on: ${{ matrix.os }}
     steps:
       - name: Download release informations
@@ -347,17 +335,17 @@ jobs:
       - name: Create MacOs universal binary
         uses: ./.github/actions/create-macos-universal-binary
         with:
-          amd-64-binary-artifact: macos-template-${{ matrix.target }}-binary-64
-          amd-64-binary-name: godot.macos.${{ matrix.binary-suffix }}.64
+          amd-64-binary-artifact: macos-template-${{ matrix.target }}-binary-x86_64
+          amd-64-binary-name: godot.macos.${{ matrix.target }}.x86_64
           arm-64-binary-artifact: macos-template-${{ matrix.target }}-binary-arm64
-          arm-64-binary-name: godot.macos.${{ matrix.binary-suffix }}.arm64
-          universal-output-binary-name: godot.macos.${{ matrix.binary-suffix }}.universal
+          arm-64-binary-name: godot.macos.${{ matrix.target }}.arm64
+          universal-output-binary-name: godot.macos.${{ matrix.target }}.universal
 
       - name: Upload ${{ matrix.target }} MacOs universal artifact
         uses: actions/upload-artifact@v3
         with:
           name: macos-template-${{ matrix.target }}-binary-universal
-          path: godot.macos.${{ matrix.binary-suffix }}.universal
+          path: godot.macos.${{ matrix.target }}.universal
 
   create-macos-export-template-app:
     needs: [create-macos-universal]
@@ -390,7 +378,7 @@ jobs:
       - name: Get release export template binary
         uses: actions/download-artifact@v3
         with:
-          name: macos-template-release-binary-universal
+          name: macos-template-template_release-binary-universal
 
       - name: Get debug export template binary
         uses: actions/download-artifact@v3
@@ -401,8 +389,8 @@ jobs:
         run: |
           cp -r misc/dist/macos_template.app .
           mkdir -p macos_template.app/Contents/MacOS
-          cp godot.macos.opt.universal macos_template.app/Contents/MacOS/godot_macos_release.64
-          cp godot.macos.opt.debug.universal macos_template.app/Contents/MacOS/godot_macos_debug.64
+          cp godot.macos.template_release.universal macos_template.app/Contents/MacOS/godot_macos_release.64
+          cp godot.macos.template_debug.universal macos_template.app/Contents/MacOS/godot_macos_debug.64
           chmod +x macos_template.app/Contents/MacOS/godot_macos*
           zip -q -9 -r macos.zip macos_template.app
 
@@ -447,27 +435,28 @@ jobs:
       - name: Get release export template binary
         uses: actions/download-artifact@v3
         with:
-          name: ios-template-release-binary-universal
+          name: ios-template-template_release-binary-arm64
 
       - name: Get debug export template binary
         uses: actions/download-artifact@v3
         with:
-          name: ios-template-template_debug-binary-universal
+          name: ios-template-template_debug-binary-arm64
 
       - name: Clone MoltenVK
         uses: actions/checkout@v2
         with:
           repository: KhronosGroup/MoltenVK
+          path: MoltenVk
           ref: v1.2.4
 
       - name: Build MoltenVK
         run: |
-          cd MoltenVK && ./fetchDependencies ios && make ios
+          cd MoltenVK && ./fetchDependencies --ios && make ios
 
       - name: Create iOS template app
         run: |
           cp -r misc/dist/ios_xcode .
-          cp -r ../MoltenVK/Package/Release/MoltenVK/MoltenVK.xcframework ios_xcode/
+          cp -r MoltenVK/Package/Release/MoltenVK/MoltenVK.xcframework ios_xcode/
           mkdir -p macos_template.app/Contents/MacOS
           cp libgodot.ios.template_release.arm64.a ios_xcode/libgodot.ios.release.xcframework/ios-arm64/libgodot.a
           cp libgodot.ios.template_debug.arm64.a ios_xcode/libgodot.ios.debug.xcframework/ios-arm64/libgodot.a

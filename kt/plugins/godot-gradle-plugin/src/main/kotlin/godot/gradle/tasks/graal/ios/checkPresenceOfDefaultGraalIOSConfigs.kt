@@ -26,6 +26,8 @@ fun Project.checkPresenceOfDefaultGraalIOSConfigsTask(
         doLast {
             val jsonConfigs = iosLibDir.resolve("graal-configs")
 
+            // Configurations from gluon substrate: https://github.com/gluonhq/substrate/tree/master/src/main/resources/config
+
             copyToGraalFromPluginResourceIfDoesNotExists(
                 jsonConfigs
                     .resolve(iosJniConfig),
@@ -41,6 +43,9 @@ fun Project.checkPresenceOfDefaultGraalIOSConfigsTask(
                     .resolve(iosResourceConfig),
                 "ios/$iosResourceConfig"
             )
+
+            // Cap files from gluon substrate: https://github.com/gluonhq/substrate/tree/master/src/main/resources/native/ios/cap
+            // From what I understand cap files are constant native values dependants on OS
 
             val capCacheDir = iosLibDir.resolve("capcache")
             capCacheDir.ensureParentDirsCreated()

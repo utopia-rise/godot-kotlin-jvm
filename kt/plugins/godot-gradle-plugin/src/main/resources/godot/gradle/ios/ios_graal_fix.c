@@ -81,6 +81,7 @@ typedef struct {
 #endif
 } CPUFeatures;
 
+// Here to tell SVM which instruction set is enabled
 void determineCPUFeatures(CPUFeatures* features)
 {
 #ifdef GVM_IOS_SIM
@@ -92,6 +93,7 @@ void determineCPUFeatures(CPUFeatures* features)
 #endif
 }
 
+// Here to make linker happy. We need to investigate why those methods are missing.
 #ifdef GVM_17
 // dummy symbols only for JDK17
 void Java_java_net_AbstractPlainDatagramSocketImpl_isReusePortAvailable0() {}
