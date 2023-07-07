@@ -132,6 +132,27 @@ class Vector3i(
         return Vector3i(kotlin.math.sign(x.toDouble()), kotlin.math.sign(y.toDouble()), kotlin.math.sign(z.toDouble()))
     }
 
+    /**
+     * Returns a new vector with each component snapped to the closest multiple of the corresponding component in [step].
+     */
+    fun snapped(step: Vector3i) = Vector3i(
+        snapped(x, step.x),
+        snapped(y, step.y),
+        snapped(z, step.z)
+    )
+
+    fun mod(other: Vector3i) = Vector3i(
+        x.mod(other.x),
+        y.mod(other.y),
+        z.mod(other.z)
+    )
+
+    fun mod(scalar: Int) = Vector3i(
+        x.mod(scalar),
+        y.mod(scalar),
+        z.mod(scalar)
+    )
+
     operator fun get(n: Int): Int =
         when (n) {
             0 -> x

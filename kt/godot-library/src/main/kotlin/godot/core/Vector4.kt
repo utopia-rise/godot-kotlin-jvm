@@ -50,6 +50,8 @@ class Vector4(
     constructor(vec: Vector4) :
             this(vec.x, vec.y, vec.z, vec.w)
 
+    constructor(other: Vector4i) : this(other.x, other.y, other.z, other.w)
+
     constructor(x: Number, y: Number, z: Number, w: Number) :
             this(x.toRealT(), y.toRealT(), z.toRealT(), w.toRealT())
 
@@ -60,13 +62,6 @@ class Vector4(
      */
     fun abs(): Vector4 {
         return Vector4(abs(x), abs(y), abs(z), abs(w))
-    }
-
-    /**
-     * Returns the vector “bounced off” from a plane defined by the given normal.
-     */
-    fun bounce(n: Vector4): Vector4 {
-        return -reflect(n)
     }
 
     /**
@@ -219,9 +214,9 @@ class Vector4(
     }
 
     /**
-     * Returns true if this vector's values are approximately zero
+     * Returns true if this vector is finite, by calling [Float.isFinite] on each component.
      */
-    fun isZeroApprox() = isEqualApprox(ZERO)
+    fun isFinite() = x.isFinite() && y.isFinite() && z.isFinite() && w.isFinite()
 
     /**
      * Returns true if the vector is normalized.
@@ -229,6 +224,11 @@ class Vector4(
     fun isNormalized(): Boolean {
         return isEqualApprox(this.length(), 1.0)
     }
+
+    /**
+     * Returns true if this vector's values are approximately zero
+     */
+    fun isZeroApprox() = isEqualApprox(ZERO)
 
     /**
      * Returns the vector’s length.
@@ -253,20 +253,6 @@ class Vector4(
         z + (weight * (to.z - z)),
         w + (weight * (to.w - w))
     )
-
-    /**
-     * Returns the vector with a maximum length by limiting its length to length.
-     */
-    fun limitLength(length: RealT = 1.0): Vector4 {
-        val l = length()
-        var v = Vector4(this)
-        if (l > 0 && length < l) {
-            v /= l
-            v *= length
-        }
-
-        return v
-    }
 
     /**
      * Returns the axis of the vector's highest value. See AXIS_* constants.
@@ -304,19 +290,6 @@ class Vector4(
     }
 
     /**
-     * Moves the vector toward to by the fixed delta amount.
-     */
-    fun moveToward(to: Vector4, delta: RealT): Vector4 {
-        val vd = to - this
-        val len = vd.length()
-        return if (len <= delta || len < CMP_EPSILON) {
-            to
-        } else {
-            this + vd / len * delta
-        }
-    }
-
-    /**
      * Returns the vector scaled to unit length. Equivalent to v / v.length().
      */
     fun normalized(): Vector4 {
@@ -341,15 +314,6 @@ class Vector4(
     }
 
     /**
-     * Returns the outer product with b.
-     */
-    fun outer(b: Vector4) = Basis(
-        Vector3(x * b.x, x * b.y, x * b.z),
-        Vector3(y * b.x, y * b.y, y * b.z),
-        Vector3(z * b.x, z * b.y, z * b.z)
-    )
-
-    /**
      * Returns a vector composed of the fposmod of this vector’s components and mod.
      */
     fun posmod(mod: RealT) = Vector4(x.rem(mod), y.rem(mod), z.rem(mod), w.rem(mod))
@@ -358,13 +322,6 @@ class Vector4(
      * Returns a vector composed of the fposmod of this vector’s components and modv’s components.
      */
     fun posmodv(modv: Vector4) = Vector4(x.rem(modv.x), y.rem(modv.y), z.rem(modv.z), w.rem(modv.w))
-
-    /**
-     * Returns the vector reflected from a plane defined by the given normal.
-     */
-    fun reflect(by: Vector4): Vector4 {
-        return by - this * this.dot(by) * 2.0
-    }
 
     /**
      * Returns the vector with all components rounded to the nearest integer, with halfway cases rounded away from zero.
@@ -378,13 +335,6 @@ class Vector4(
      */
     fun sign(): Vector4 {
         return Vector4(sign(x), sign(y), sign(z), sign(w))
-    }
-
-    /**
-     * Returns the component of the vector along a plane defined by the given normal.
-     */
-    fun slide(vec: Vector4): Vector4 {
-        return vec - this * this.dot(vec)
     }
 
     /**
@@ -403,13 +353,7 @@ class Vector4(
         }
     }
 
-    /**
-     * Returns a diagonal matrix with the vector as main diagonal.
-     */
-// TODO: fix me
-//    fun toDiagonalMatrix(): Basis {
-//        return Basis()
-//    }
+    fun toVector4i() = Vector4i(this)
 
 
     operator fun get(n: Int): RealT =

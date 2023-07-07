@@ -25,139 +25,139 @@ internal interface GDCore {
     /** Returns a color according to the standardized name with alpha ranging from 0 to 1.*/
     fun ColorN(name: String, alpha: Float = 1.0f): Color {
         return when (name) {
-            "aliceblue" -> Color.aliceblue
+            "aliceblue" -> Color.aliceBlue
             "aqua" -> Color.aqua
             "aquamarine" -> Color.aquamarine
             "azure" -> Color.azure
             "beige" -> Color.beige
             "bisque" -> Color.bisque
             "black" -> Color.black
-            "blanchedalmond" -> Color.blanchedalmond
+            "blanchedalmond" -> Color.blanchedAlmond
             "blue" -> Color.blue
-            "blueviolet" -> Color.blueviolet
+            "blueviolet" -> Color.blueViolet
             "brown" -> Color.brown
             "burlywood" -> Color.burlywood
-            "cadetblue" -> Color.cadetblue
+            "cadetblue" -> Color.cadetBlue
             "chartreuse" -> Color.chartreuse
             "chocolate" -> Color.chocolate
             "coral" -> Color.coral
-            "cornflower" -> Color.cornflower
+            "cornflower" -> Color.cornflowerBlue
             "cornsilk" -> Color.cornsilk
             "crimson" -> Color.crimson
             "cyan" -> Color.cyan
-            "darkblue" -> Color.darkblue
-            "darkcyan" -> Color.darkcyan
-            "darkgoldenrod" -> Color.darkgoldenrod
-            "darkgray" -> Color.darkgray
-            "darkgreen" -> Color.darkgreen
-            "darkkhaki" -> Color.darkkhaki
-            "darkmagenta" -> Color.darkmagenta
-            "darkolivegreen" -> Color.darkolivegreen
+            "darkblue" -> Color.darkBlue
+            "darkcyan" -> Color.darkCyan
+            "darkgoldenrod" -> Color.darkGoldenrod
+            "darkgray" -> Color.darkGray
+            "darkgreen" -> Color.darkGreen
+            "darkkhaki" -> Color.darkKhaki
+            "darkmagenta" -> Color.darkMagenta
+            "darkolivegreen" -> Color.darkOliveGreen
             "darkorange" -> Color.darkorange
-            "darkorchid" -> Color.darkorchid
-            "darkred" -> Color.darkred
-            "darksalmon" -> Color.darksalmon
-            "darkseagreen" -> Color.darkseagreen
-            "darkslateblue" -> Color.darkslateblue
-            "darkslategray" -> Color.darkslategray
-            "darkturquoise" -> Color.darkturquoise
-            "darkviolet" -> Color.darkviolet
-            "deeppink" -> Color.deeppink
-            "deepskyblue" -> Color.deepskyblue
-            "dimgray" -> Color.dimgray
-            "dodgerblue" -> Color.dodgerblue
+            "darkorchid" -> Color.darkOrchid
+            "darkred" -> Color.darkRed
+            "darksalmon" -> Color.darkSalmon
+            "darkseagreen" -> Color.darkSeaGreen
+            "darkslateblue" -> Color.darkSlateBlue
+            "darkslategray" -> Color.darkSlateGray
+            "darkturquoise" -> Color.darkTurquoise
+            "darkviolet" -> Color.darkViolet
+            "deeppink" -> Color.deepPink
+            "deepskyblue" -> Color.deepSkyBlue
+            "dimgray" -> Color.dimGray
+            "dodgerblue" -> Color.dodgerBlue
             "firebrick" -> Color.firebrick
-            "floralwhite" -> Color.floralwhite
-            "forestgreen" -> Color.forestgreen
+            "floralwhite" -> Color.floralWhite
+            "forestgreen" -> Color.forestGreen
             "fuchsia" -> Color.fuchsia
             "gainsboro" -> Color.gainsboro
-            "ghostwhite" -> Color.ghostwhite
+            "ghostwhite" -> Color.ghostWhite
             "gold" -> Color.gold
             "goldenrod" -> Color.goldenrod
             "gray" -> Color.gray
-            "webgray" -> Color.webgray
+            "webgray" -> Color.webGray
             "green" -> Color.green
-            "webgreen" -> Color.webgreen
-            "greenyellow" -> Color.greenyellow
+            "webgreen" -> Color.webGreen
+            "greenyellow" -> Color.greenYellow
             "honeydew" -> Color.honeydew
-            "hotpink" -> Color.hotpink
-            "indianred" -> Color.indianred
+            "hotpink" -> Color.hotPink
+            "indianred" -> Color.indianRed
             "indigo" -> Color.indigo
             "ivory" -> Color.ivory
             "khaki" -> Color.khaki
             "lavender" -> Color.lavender
-            "lavenderblush" -> Color.lavenderblush
-            "lawngreen" -> Color.lawngreen
-            "lemonchiffon" -> Color.lemonchiffon
-            "lightblue" -> Color.lightblue
-            "lightcoral" -> Color.lightcoral
-            "lightcyan" -> Color.lightcyan
-            "lightgoldenrod" -> Color.lightgoldenrod
-            "lightgray" -> Color.lightgray
-            "lightgreen" -> Color.lightgreen
-            "lightpink" -> Color.lightpink
-            "lightsalmon" -> Color.lightsalmon
-            "lightseagreen" -> Color.lightseagreen
-            "lightskyblue" -> Color.lightskyblue
-            "lightslategray" -> Color.lightslategray
-            "lightsteelblue" -> Color.lightsteelblue
-            "lightyellow" -> Color.lightyellow
+            "lavenderblush" -> Color.lavenderBlush
+            "lawngreen" -> Color.lawnGreen
+            "lemonchiffon" -> Color.lemonChiffon
+            "lightblue" -> Color.lightBlue
+            "lightcoral" -> Color.lightCoral
+            "lightcyan" -> Color.lightCyan
+            "lightgoldenrod" -> Color.lightGoldenrod
+            "lightgray" -> Color.lightGray
+            "lightgreen" -> Color.lightGreen
+            "lightpink" -> Color.lightPink
+            "lightsalmon" -> Color.lightSalmon
+            "lightseagreen" -> Color.lightSeaGreen
+            "lightskyblue" -> Color.lightSkyBlue
+            "lightslategray" -> Color.lightSlateGray
+            "lightsteelblue" -> Color.lightSteelBlue
+            "lightyellow" -> Color.lightYellow
             "lime" -> Color.lime
-            "limegreen" -> Color.limegreen
+            "limegreen" -> Color.limeGreen
             "linen" -> Color.linen
             "magenta" -> Color.magenta
             "maroon" -> Color.maroon
-            "webmaroon" -> Color.webmaroon
-            "mediumaquamarine" -> Color.mediumaquamarine
-            "mediumblue" -> Color.mediumblue
-            "mediumorchid" -> Color.mediumorchid
-            "mediumpurple" -> Color.mediumpurple
-            "mediumseagreen" -> Color.mediumseagreen
-            "mediumslateblue" -> Color.mediumslateblue
-            "mediumspringgreen" -> Color.mediumspringgreen
-            "mediumturquoise" -> Color.mediumturquoise
-            "mediumvioletred" -> Color.mediumvioletred
-            "midnightblue" -> Color.midnightblue
-            "mintcream" -> Color.mintcream
-            "mistyrose" -> Color.mistyrose
+            "webmaroon" -> Color.webMaroon
+            "mediumaquamarine" -> Color.mediumAquamarine
+            "mediumblue" -> Color.mediumBlue
+            "mediumorchid" -> Color.mediumOrchid
+            "mediumpurple" -> Color.mediumPurple
+            "mediumseagreen" -> Color.mediumSeaGreen
+            "mediumslateblue" -> Color.mediumSlateBlue
+            "mediumspringgreen" -> Color.mediumSpringGreen
+            "mediumturquoise" -> Color.mediumTurquoise
+            "mediumvioletred" -> Color.mediumVioletRed
+            "midnightblue" -> Color.midnightBlue
+            "mintcream" -> Color.mintCream
+            "mistyrose" -> Color.mistyRose
             "moccasin" -> Color.moccasin
-            "navajowhite" -> Color.navajowhite
-            "navyblue" -> Color.navyblue
-            "oldlace" -> Color.oldlace
+            "navajowhite" -> Color.navajoWhite
+            "navyblue" -> Color.navyBlue
+            "oldlace" -> Color.oldLace
             "olive" -> Color.olive
-            "olivedrab" -> Color.olivedrab
+            "olivedrab" -> Color.oliveDrab
             "orange" -> Color.orange
-            "orangered" -> Color.orangered
+            "orangered" -> Color.orangeRed
             "orchid" -> Color.orchid
-            "palegoldenrod" -> Color.palegoldenrod
-            "palegreen" -> Color.palegreen
-            "paleturquoise" -> Color.paleturquoise
-            "palevioletred" -> Color.palevioletred
-            "papayawhip" -> Color.papayawhip
-            "peachpuff" -> Color.peachpuff
+            "palegoldenrod" -> Color.paleGoldenrod
+            "palegreen" -> Color.paleGreen
+            "paleturquoise" -> Color.paleTurquoise
+            "palevioletred" -> Color.paleVioletRed
+            "papayawhip" -> Color.papayaWhip
+            "peachpuff" -> Color.peachPuff
             "peru" -> Color.peru
             "pink" -> Color.pink
             "plum" -> Color.plum
-            "powderblue" -> Color.powderblue
+            "powderblue" -> Color.powderBlue
             "purple" -> Color.purple
-            "webpurple" -> Color.webpurple
-            "rebeccapurple" -> Color.rebeccapurple
+            "webpurple" -> Color.webPurple
+            "rebeccapurple" -> Color.rebeccaPurple
             "red" -> Color.red
-            "rosybrown" -> Color.rosybrown
-            "royalblue" -> Color.royalblue
-            "saddlebrown" -> Color.saddlebrown
+            "rosybrown" -> Color.rosyBrown
+            "royalblue" -> Color.royalBlue
+            "saddlebrown" -> Color.saddleBrown
             "salmon" -> Color.salmon
-            "sandybrown" -> Color.sandybrown
-            "seagreen" -> Color.seagreen
+            "sandybrown" -> Color.sandyBrown
+            "seagreen" -> Color.seaGreen
             "seashell" -> Color.seashell
             "sienna" -> Color.sienna
             "silver" -> Color.silver
-            "skyblue" -> Color.skyblue
-            "slateblue" -> Color.slateblue
-            "slategray" -> Color.slategray
+            "skyblue" -> Color.skyBlue
+            "slateblue" -> Color.slateBlue
+            "slategray" -> Color.slateGray
             "snow" -> Color.snow
-            "springgreen" -> Color.springgreen
-            "steelblue" -> Color.steelblue
+            "springgreen" -> Color.springGreen
+            "steelblue" -> Color.steelBlue
             "tan" -> Color.tan
             "teal" -> Color.teal
             "thistle" -> Color.thistle
@@ -167,9 +167,9 @@ internal interface GDCore {
             "violet" -> Color.violet
             "wheat" -> Color.wheat
             "white" -> Color.white
-            "whitesmoke" -> Color.whitesmoke
+            "whitesmoke" -> Color.whiteSmoke
             "yellow" -> Color.yellow
-            "yellowgreen" -> Color.yellowgreen
+            "yellowgreen" -> Color.yellowGreen
             else -> throw NoSuchElementException("$name is not a valid color name.")
         }.also {
             it.a = alpha.toRealT()

@@ -143,6 +143,11 @@ class Transform3D(
     }
 
     /**
+     * Returns true if this transform is finite, by calling @GlobalScope.is_finite on each component.
+     */
+    fun isFinite() = basis.isFinite() && origin.isFinite()
+
+    /**
      * Returns a copy of the transform rotated such that its -Z axis points towards the target position.
      * The transform will first be rotated around the given up vector, and then fully aligned to the target by a further rotation around an axis perpendicular to both the target and up vectors.
      * Operations take place in global space.

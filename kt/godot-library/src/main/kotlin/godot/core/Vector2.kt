@@ -50,6 +50,8 @@ class Vector2(
     constructor(vec: Vector2) :
         this(vec.x, vec.y)
 
+    constructor(other: Vector2i) : this(other.x, other.y)
+
     constructor(x: Number, y: Number) :
         this(x.toRealT(), y.toRealT())
 
@@ -90,6 +92,34 @@ class Vector2(
     fun aspect(): RealT {
         return this.x / this.y
     }
+
+    /**
+     * Returns the derivative at the given [t] on the Bézier curve defined by this vector and the given [control1],
+     * [control2], and [end] points.
+     */
+    fun bezierDerivative(
+        control1: Vector2,
+        control2: Vector2,
+        end: Vector2,
+        t: RealT
+    ) = Vector2(
+        bezierDerivative(this.x, control1.x, control2.x, end.x, t),
+        bezierDerivative(this.y, control1.y, control2.y, end.y, t)
+    )
+
+    /**
+     * Returns the point at the given [t] on the Bézier curve defined by this vector and the given [control1],
+     * [control2], and [end] points.
+     */
+    fun bezierInterpolate(
+        control1: Vector2,
+        control2: Vector2,
+        end: Vector2,
+        t: RealT
+    ) = Vector2(
+        bezierInterpolate(this.x, control1.x, control2.x, end.x, t),
+        bezierInterpolate(this.y, control1.y, control2.y, end.y, t)
+    )
 
     /**
      * Returns the vector “bounced off” from a plane defined by the given normal.
@@ -227,11 +257,6 @@ class Vector2(
     }
 
     /**
-     * Returns true if this vector's values are approximately zero
-     */
-    fun isZeroApprox() = isEqualApprox(Vector2.ZERO)
-
-    /**
      * Returns true if this vector is finite, by calling @GlobalScope.is_finite on each component.
      */
     fun isFinite() = x.isFinite() && y.isFinite()
@@ -242,6 +267,11 @@ class Vector2(
     fun isNormalized(): Boolean {
         return isEqualApprox(this.length(), 1.0)
     }
+
+    /**
+     * Returns true if this vector's values are approximately zero
+     */
+    fun isZeroApprox() = isEqualApprox(Vector2.ZERO)
 
     /**
      * Returns the vector’s length.

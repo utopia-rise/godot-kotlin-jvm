@@ -63,16 +63,10 @@ class Plane(
     constructor(normal: Vector3, d: Number) :
         this(normal, d.toRealT())
 
-    constructor(point: Vector3, normal: Vector3) :
+    constructor(normal: Vector3, point: Vector3) :
         this(normal, normal.dot(point))
 
     //API
-    /**
-     * Returns the center of the plane.
-     */
-    fun center(): Vector3 {
-        return _normal * d;
-    }
 
     /**
      * Returns the shortest distance from the plane to the position point.
@@ -82,26 +76,16 @@ class Plane(
     }
 
     /**
-     * Returns a point on the plane.
+     * Returns the center of the plane.
      */
-    fun getAnyPoint(): Vector3 {
-        return _normal * d
+    fun getCenter(): Vector3 {
+        return _normal * d;
     }
 
     /**
-     * Returns a normal of the plane.
+     * Returns true if [point] is inside the plane. Comparison uses a custom minimum [tolerance] threshold.
      */
-    fun getAnyPerpendicularNormal(): Vector3 {
-        val p1 = Vector3(1, 0, 0)
-        val p2 = Vector3(0, 1, 0)
-
-        var p = if (abs(_normal.dot(p1)) > 0.99) p2 else p1
-
-        p -= _normal * _normal.dot(p)
-        p.normalize()
-
-        return p
-    }
+    fun hasPoint(point: Vector3, tolerance: Float = 1e-05f) = abs(normal.dot(point) - d) <= tolerance
 
     /**
      * Returns true if point is inside the plane (by a very minimum epsilon threshold).
@@ -184,6 +168,11 @@ class Plane(
             other.d
         )
     }
+
+    /**
+     * Returns `true` if this plane is finite, by calling @GlobalScope.is_finite on each component.
+     */
+    fun isFinite() = normal.isFinite() && d.isFinite()
 
     /**
      * Returns true if point is located above the plane.

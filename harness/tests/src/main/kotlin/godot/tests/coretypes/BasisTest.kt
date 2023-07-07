@@ -21,7 +21,7 @@ class BasisTest : Node() {
 
     @RegisterFunction
     fun getRotationQuat(basis: Basis): Quaternion {
-        return basis.getRotationQuat()
+        return basis.getRotationQuaternion()
     }
 
     @RegisterFunction

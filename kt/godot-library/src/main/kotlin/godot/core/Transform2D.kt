@@ -222,6 +222,11 @@ class Transform2D(
     }
 
     /**
+     * Returns true if this transform is finite, by calling @GlobalScope.is_finite on each component.
+     */
+    fun isFinite() = x.isFinite() && y.isFinite() && origin.isFinite()
+
+    /**
      * Returns the transform with the basis orthogonal (90 degrees), and normalized axis vectors.
      */
     fun orthonormalized(): Transform2D {

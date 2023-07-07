@@ -4,13 +4,16 @@ import godot.core.ObjectID
 import godot.core.VariantType
 import java.util.*
 import kotlin.math.abs
+import kotlin.math.sign
 
 typealias RealT = Double
 internal typealias NaturalT = Long
+
 internal val realTVariantType = VariantType.DOUBLE
 internal val NaturalTVariantType = VariantType.LONG
 
 typealias VoidPtr = Long
+
 const val nullptr: VoidPtr = -1L
 val nullObjectID = ObjectID(-1)
 
@@ -39,6 +42,18 @@ internal inline fun Float.toGodotReal(): Float = this
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun Int.toNaturalT(): NaturalT = this.toLong()
+
+val Int.signbit: Boolean
+    get() = sign < 0
+
+val Long.signbit: Boolean
+    get() = sign < 0
+
+val Float.signbit: Boolean
+    get() = sign < 0
+
+val Double.signbit: Boolean
+    get() = sign < 0
 
 /**
  * Because of float precision, it's hard to obtain two perfectly equal real numbers.
@@ -72,7 +87,7 @@ fun cubicInterpolateInTime(
     toT: RealT,
     preT: RealT,
     postT: RealT
-) : RealT {
+): RealT {
     val t = lerp(0.0, toT, weight)
     val a1 = lerp(pre, from, if (preT == 0.0) 0.0 else (t - preT) / -preT)
     val a2 = lerp(from, to, if (toT == 0.0) 0.5 else t / toT)

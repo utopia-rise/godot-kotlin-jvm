@@ -110,38 +110,19 @@ class Rect2i(
      */
     constructor(rect: Rect2i) : this(rect._position, rect._size)
 
-    /**
-     * Returns the area of the [Rect2i]. See also [hasArea].
-     */
-    val area: Int
-        get() = _size.width * _size.height
+    // API
 
     /**
-     * Returns the center of the [Rect2i], which is equal to [position] + ([size] / 2).
-     * If [size] is an odd number, the returned center value will be rounded towards [position].
+     * Returns a [Rect2i] with equivalent position and area, modified so that the top-left corner is the origin and
+     * `width` and `height` are positive.
      */
-    val center: Vector2i
-        get() = _position + (_size / 2)
-
-    /**
-     * Returns `true` if the [Rect2i] overlaps with `b` (i.e. they have at least one point in common).
-     */
-    fun intersects(rect: Rect2i): Boolean {
-        if (_position.x >= (rect._position.x + rect._size.width)) {
-            return false
-        }
-        if ((_position.x + _size.width) <= rect._position.x) {
-            return false
-        }
-        if (_position.y >= (rect._position.y + rect._size.height)) {
-            return false
-        }
-        if ((_position.y + _size.height) <= rect._position.y) {
-            return false
-        }
-
-        return true
-    }
+    fun abs() = Rect2i(
+        Point2i(
+            _position.x + min(_size.x, 0),
+            _position.y + min(_size.y, 0)
+        ),
+        _size.abs()
+    )
 
     /**
      * Returns `true` if this [Rect2i] completely encloses another one.
@@ -150,113 +131,6 @@ class Rect2i(
     fun encloses(rect: Rect2i) = (rect._position.x >= _position.x) && (rect._position.y >= _position.y) &&
             ((rect._position.x + rect._size.x) <= (_position.x + _size.x)) &&
             ((rect._position.y + rect._size.y) <= (_position.y + _size.y))
-
-    /**
-     * Returns `true` if the [Rect2i] has area, and `false` if the [Rect2i] is linear, empty, or has a negative [size].
-     * See also [area].
-     */
-    @Suppress("unused")
-    fun hasArea() = _size.x > 0 && _size.y > 0
-
-    /**
-     * Returns the intersection of this [Rect2i] and `b`.
-     * If the rectangles do not intersect, an empty [Rect2i] is returned.
-     */
-    fun intersection(rect: Rect2i): Rect2i {
-        val newRect = Rect2i(rect)
-
-        if (!intersects(newRect)) {
-            return Rect2i()
-        }
-
-        newRect._position.x = max(rect._position.x, _position.x)
-        newRect._position.y = max(rect._position.y, _position.y)
-
-        val p_rect_end = rect._position + rect._size
-        val end = _position + _size
-
-        newRect._size.x = min(p_rect_end.x, end.x) - newRect._position.x
-        newRect._size.y = min(p_rect_end.y, end.y) - newRect._position.y
-
-        return rect
-    }
-
-    /**
-     * Returns a larger [Rect2i] that contains this [Rect2i] and `b`.
-     */
-    @Suppress("unused")
-    fun merge(rect: Rect2i): Rect2i {
-        val newRect = Rect2i()
-
-        newRect._position.x = min(rect._position.x, _position.x)
-        newRect._position.y = min(rect._position.y, _position.y)
-
-        newRect._size.x = max(rect._position.x + rect._size.x, _position.x + _size.x)
-        newRect._size.y = max(rect._position.y + rect._size.y, _position.y + _size.y)
-
-        newRect._size = newRect._size - newRect._position // Make relative again.
-
-        return newRect
-    }
-
-    /**
-     * Returns `true` if the [Rect2i] contains a point. By convention, the right and bottom edges of the [Rect2i] are
-     * considered exclusive, so points on these edges are not included.
-     *
-     * **Note**: This method is not reliable for [Rect2i] with a negative size. Use [abs] to get a positive sized
-     * equivalent rectangle to check for contained points.
-     */
-    @Suppress("unused")
-    fun hasPoint(point: Point2i): Boolean {
-        if (point.x < _position.x) {
-            return false
-        }
-        if (point.y < _position.y) {
-            return false
-        }
-
-        if (point.x >= (_position.x + _size.x)) {
-            return false
-        }
-        if (point.y >= (_position.y + _size.y)) {
-            return false
-        }
-
-        return true
-    }
-
-    /**
-     * Returns a copy of the [Rect2i] grown by the specified `amount` on all sides.
-     */
-    fun grow(amount: Int) = Rect2i(this).also {
-        it._position.x -= amount
-        it._position.y -= amount
-        it._size.width += amount * 2
-        it._size.height += amount * 2
-    }
-
-    /**
-     * Returns a copy of the [Rect2i] grown by the specified [amount] on the specified [Side].
-     */
-    @Suppress("unused")
-    fun growSide(side: Side, amount: Int) = Rect2i(this).also {
-        it.growIndividual(
-            if (Side.SIDE_LEFT == side) amount else 0,
-            if (Side.SIDE_TOP == side) amount else 0,
-            if (Side.SIDE_RIGHT == side) amount else 0,
-            if (Side.SIDE_BOTTOM == side) amount else 0
-        )
-    }
-
-    /**
-     * Returns a copy of the [Rect2i] grown by the specified amount on each side individually.
-     */
-    fun growIndividual(left: Int, top: Int, right: Int, bottom: Int) = Rect2i(this).also {
-        it._position.x -= left
-        it._position.y -= top
-        it._size.width += left + right
-        it._size.height += top + bottom
-    }
 
     /**
      * Returns a copy of this [Rect2i] expanded so that the borders align with the given point.
@@ -288,16 +162,143 @@ class Rect2i(
     }
 
     /**
-     * Returns a [Rect2i] with equivalent position and area, modified so that the top-left corner is the origin and
-     * `width` and `height` are positive.
+     * Returns the area of the [Rect2i]. See also [hasArea].
      */
-    fun abs() = Rect2i(
-        Point2i(
-            _position.x + min(_size.x, 0),
-            _position.y + min(_size.y, 0)
-        ),
-        _size.abs()
-    )
+    fun getArea(): Int = size.width * size.height
+
+    /**
+     * Returns the center of the [Rect2i], which is equal to [position] + ([size] / 2).
+     *
+     * If [size] is an odd number, the returned center value will be rounded towards [position].
+     */
+    fun getCenter(): Vector2i = position + (size / 2)
+
+    /**
+     * Returns a copy of the [Rect2i] grown by the specified `amount` on all sides.
+     */
+    fun grow(amount: Int) = Rect2i(this).also {
+        it._position.x -= amount
+        it._position.y -= amount
+        it._size.width += amount * 2
+        it._size.height += amount * 2
+    }
+
+    /**
+     * Returns a copy of the [Rect2i] grown by the specified amount on each side individually.
+     */
+    fun growIndividual(left: Int, top: Int, right: Int, bottom: Int) = Rect2i(this).also {
+        it._position.x -= left
+        it._position.y -= top
+        it._size.width += left + right
+        it._size.height += top + bottom
+    }
+
+    /**
+     * Returns a copy of the [Rect2i] grown by the specified [amount] on the specified [Side].
+     */
+    @Suppress("unused")
+    fun growSide(side: Side, amount: Int) = Rect2i(this).also {
+        it.growIndividual(
+            if (Side.SIDE_LEFT == side) amount else 0,
+            if (Side.SIDE_TOP == side) amount else 0,
+            if (Side.SIDE_RIGHT == side) amount else 0,
+            if (Side.SIDE_BOTTOM == side) amount else 0
+        )
+    }
+
+    /**
+     * Returns `true` if the [Rect2i] has area, and `false` if the [Rect2i] is linear, empty, or has a negative [size].
+     * See also [getArea].
+     */
+    @Suppress("unused")
+    fun hasArea() = _size.x > 0 && _size.y > 0
+
+    /**
+     * Returns `true` if the [Rect2i] contains a point. By convention, the right and bottom edges of the [Rect2i] are
+     * considered exclusive, so points on these edges are not included.
+     *
+     * **Note**: This method is not reliable for [Rect2i] with a negative size. Use [abs] to get a positive sized
+     * equivalent rectangle to check for contained points.
+     */
+    @Suppress("unused")
+    fun hasPoint(point: Point2i): Boolean {
+        if (point.x < _position.x) {
+            return false
+        }
+        if (point.y < _position.y) {
+            return false
+        }
+
+        if (point.x >= (_position.x + _size.x)) {
+            return false
+        }
+        if (point.y >= (_position.y + _size.y)) {
+            return false
+        }
+
+        return true
+    }
+
+    /**
+     * Returns the intersection of this [Rect2i] and `b`.
+     * If the rectangles do not intersect, an empty [Rect2i] is returned.
+     */
+    fun intersection(rect: Rect2i): Rect2i {
+        val newRect = Rect2i(rect)
+
+        if (!intersects(newRect)) {
+            return Rect2i()
+        }
+
+        newRect._position.x = max(rect._position.x, _position.x)
+        newRect._position.y = max(rect._position.y, _position.y)
+
+        val p_rect_end = rect._position + rect._size
+        val end = _position + _size
+
+        newRect._size.x = min(p_rect_end.x, end.x) - newRect._position.x
+        newRect._size.y = min(p_rect_end.y, end.y) - newRect._position.y
+
+        return rect
+    }
+
+    /**
+     * Returns `true` if the [Rect2i] overlaps with `b` (i.e. they have at least one point in common).
+     */
+    fun intersects(rect: Rect2i): Boolean {
+        if (_position.x >= (rect._position.x + rect._size.width)) {
+            return false
+        }
+        if ((_position.x + _size.width) <= rect._position.x) {
+            return false
+        }
+        if (_position.y >= (rect._position.y + rect._size.height)) {
+            return false
+        }
+        if ((_position.y + _size.height) <= rect._position.y) {
+            return false
+        }
+
+        return true
+    }
+
+    /**
+     * Returns a larger [Rect2i] that contains this [Rect2i] and `b`.
+     */
+    @Suppress("unused")
+    fun merge(rect: Rect2i): Rect2i {
+        val newRect = Rect2i()
+
+        newRect._position.x = min(rect._position.x, _position.x)
+        newRect._position.y = min(rect._position.y, _position.y)
+
+        newRect._size.x = max(rect._position.x + rect._size.x, _position.x + _size.x)
+        newRect._size.y = max(rect._position.y + rect._size.y, _position.y + _size.y)
+
+        newRect._size = newRect._size - newRect._position // Make relative again.
+
+        return newRect
+    }
 
     @Suppress("unused")
     fun toRect2() = Rect2(
