@@ -258,5 +258,5 @@ jobs:
         with:
           upload_url: ${{ steps.save_release_info.outputs.upload_url }}
           asset_path: godot-editor-macos.zip
-          asset_name: godot-editor-macos.zip
+          asset_name: godot-kotlin-jvm_editor_macos_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
           asset_content_type: application/octet-stream
