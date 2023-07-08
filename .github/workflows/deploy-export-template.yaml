@@ -483,25 +483,25 @@ jobs:
         - name: Download linux debug export templates
           uses: actions/download-artifact@v3
           with:
-            name: godot.x11.opt.debug.x86_64
+            name: godot.linuxbsd.template_debug.x86_64
             path: templates/linux_debug.x86_64
 
         - name: Download linux release export templates
           uses: actions/download-artifact@v3
           with:
-            name: godot.x11.opt.x86_64
+            name: godot.linuxbsd.template_release.x86_64
             path: templates/linux_release.x86_64
 
         - name: Download windows debug export templates
           uses: actions/download-artifact@v3
           with:
-            name: godot.windows.opt.debug.x86_64.exe
+            name: godot.windows.template_debug.x86_64.exe
             path: templates/windows_debug_x86_64.exe
 
         - name: Download windows release export templates
           uses: actions/download-artifact@v3
           with:
-            name: godot.windows.opt.x86_64.exe
+            name: godot.windows.template_release.x86_64
             path: templates/windows_release_x86_64.exe
 
         - name: Download android debug export templates
