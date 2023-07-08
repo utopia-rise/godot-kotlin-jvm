@@ -221,8 +221,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: android-export-${{ matrix.target }}-binary-${{ matrix.arch }}
-          path: |
-            **/${{ matrix.output_folder }}
+          path: ${{ matrix.output_folder }}
 
       - name: Upload export template ${{ matrix.target }}
         if: matrix.platform != 'android' && matrix.platform != 'macos'
