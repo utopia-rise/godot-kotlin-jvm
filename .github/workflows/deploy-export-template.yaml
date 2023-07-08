@@ -226,14 +226,10 @@ jobs:
 
       - name: Upload export template ${{ matrix.target }}
         if: matrix.platform != 'android' && matrix.platform != 'macos'
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-artifact@v3
         with:
-          upload_url: ${{ steps.save_release_info.outputs.upload_url }}
-          asset_path: bin/${{ matrix.binary }}
-          asset_name: ${{ matrix.binary }}
-          asset_content_type: application/octet-stream
+          name: ${{ matrix.binary }}
+          path: bin/${{ matrix.binary }}
 
       - name: Upload IOS/MacOs binary
         if: matrix.platform == 'macos' || matrix.platform == 'ios'
@@ -290,14 +286,10 @@ jobs:
           target: ${{ matrix.target }}
 
       - name: Upload android export template ${{ matrix.target }}
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-artifact@v3
         with:
-          upload_url: ${{ steps.save_release_info.outputs.upload_url }}
-          asset_path: bin/${{ matrix.apk-name }}
-          asset_name: ${{ matrix.apk-name }}
-          asset_content_type: application/octet-stream
+          path: bin/${{ matrix.apk-name }}
+          name: ${{ matrix.apk-name }}
 
   create-macos-universal:
     needs: [deploy-export-template]
@@ -395,14 +387,10 @@ jobs:
           zip -q -9 -r macos.zip macos_template.app
 
       - name: Upload MacOs template app
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-artifact@v3
         with:
-          upload_url: ${{ steps.save_release_info.outputs.upload_url }}
-          asset_path: macos.zip
-          asset_name: macos.zip
-          asset_content_type: application/octet-stream
+          path: macos.zip
+          name: macos.zip
 
   create-ios-export-template-app:
     needs: [ deploy-export-template ]
@@ -471,3 +459,79 @@ jobs:
           asset_path: ios.zip
           asset_name: ios.zip
           asset_content_type: application/octet-stream
+
+      create_export_template_tpz:
+        needs: [ create-macos-export-template-app ]
+        runs-on: ubuntu-latest
+        steps:
+          - name: Download release informations
+            uses: actions/download-artifact@v3
+            with:
+              name: release-informations
+
+          - name: Save release infos as variables
+            id: save_release_info
+            run: |
+              echo "::set-output name=upload_url::$(cat release_url/release_url.txt)"
+              echo "::set-output name=godot_version::$(cat godot_version/godot_version.txt)"
+              echo "::set-output name=godot_kotlin_jvm_version::$(cat godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
+
+          - name: Create templates folder
+            run: mkdir templates
+            shell: bash
+
+          - name: Download linux debug export templates
+            uses: actions/download-artifact@v3
+            with:
+              name: godot.x11.opt.debug.64
+              path: templates/linux_debug.x86_64
+
+          - name: Download linux release export templates
+            uses: actions/download-artifact@v3
+            with:
+              name: godot.x11.opt.64
+              path: templates/linux_release.x86_64
+
+          - name: Download windows debug export templates
+            uses: actions/download-artifact@v3
+            with:
+              name: godot.windows.opt.debug.64.exe
+              path: templates/windows_debug_x86_64.exe
+
+          - name: Download windows release export templates
+            uses: actions/download-artifact@v3
+            with:
+              name: godot.windows.opt.64.exe
+              path: templates/windows_release_x86_64.exe
+
+          - name: Download android debug export templates
+            uses: actions/download-artifact@v3
+            with:
+              name: android_debug.apk
+              path: templates/android_debug.apk
+
+          - name: Download android release export templates
+            uses: actions/download-artifact@v3
+            with:
+              name: android_release.apk
+              path: templates/android_release.apk
+
+          - name: Download macos export templates
+            uses: actions/download-artifact@v3
+            with:
+              name: macos.zip
+              path: templates/macos.zip
+
+          - name: Compress templates folder to tpz
+            run: zip -r godot-kotlin-jvm_export_templates_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.tpz templates
+            shell: bash
+
+          - name: Upload export templates tpz
+            uses: actions/upload-release-asset@v1.0.1
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            with:
+              upload_url: ${{ steps.save_release_info.outputs.upload_url }}
+              asset_path: godot-kotlin-jvm_export_templates_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.tpz
+              asset_name: godot-kotlin-jvm_export_templates_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.tpz
+              asset_content_type: application/octet-stream
