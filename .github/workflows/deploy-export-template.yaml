@@ -459,78 +459,78 @@ jobs:
           asset_name: ios.zip
           asset_content_type: application/octet-stream
 
-      create_export_template_tpz:
-        needs: [ create-macos-export-template-app ]
-        runs-on: ubuntu-latest
-        steps:
-          - name: Download release informations
-            uses: actions/download-artifact@v3
-            with:
-              name: release-informations
+    create_export_template_tpz:
+      needs: [ create-macos-export-template-app, build-android-export-template ]
+      runs-on: ubuntu-latest
+      steps:
+        - name: Download release informations
+          uses: actions/download-artifact@v3
+          with:
+            name: release-informations
 
-          - name: Save release infos as variables
-            id: save_release_info
-            run: |
-              echo "::set-output name=upload_url::$(cat release_url/release_url.txt)"
-              echo "::set-output name=godot_version::$(cat godot_version/godot_version.txt)"
-              echo "::set-output name=godot_kotlin_jvm_version::$(cat godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
+        - name: Save release infos as variables
+          id: save_release_info
+          run: |
+            echo "::set-output name=upload_url::$(cat release_url/release_url.txt)"
+            echo "::set-output name=godot_version::$(cat godot_version/godot_version.txt)"
+            echo "::set-output name=godot_kotlin_jvm_version::$(cat godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
-          - name: Create templates folder
-            run: mkdir templates
-            shell: bash
+        - name: Create templates folder
+          run: mkdir templates
+          shell: bash
 
-          - name: Download linux debug export templates
-            uses: actions/download-artifact@v3
-            with:
-              name: godot.x11.opt.debug.x86_64
-              path: templates/linux_debug.x86_64
+        - name: Download linux debug export templates
+          uses: actions/download-artifact@v3
+          with:
+            name: godot.x11.opt.debug.x86_64
+            path: templates/linux_debug.x86_64
 
-          - name: Download linux release export templates
-            uses: actions/download-artifact@v3
-            with:
-              name: godot.x11.opt.x86_64
-              path: templates/linux_release.x86_64
+        - name: Download linux release export templates
+          uses: actions/download-artifact@v3
+          with:
+            name: godot.x11.opt.x86_64
+            path: templates/linux_release.x86_64
 
-          - name: Download windows debug export templates
-            uses: actions/download-artifact@v3
-            with:
-              name: godot.windows.opt.debug.x86_64.exe
-              path: templates/windows_debug_x86_64.exe
+        - name: Download windows debug export templates
+          uses: actions/download-artifact@v3
+          with:
+            name: godot.windows.opt.debug.x86_64.exe
+            path: templates/windows_debug_x86_64.exe
 
-          - name: Download windows release export templates
-            uses: actions/download-artifact@v3
-            with:
-              name: godot.windows.opt.x86_64.exe
-              path: templates/windows_release_x86_64.exe
+        - name: Download windows release export templates
+          uses: actions/download-artifact@v3
+          with:
+            name: godot.windows.opt.x86_64.exe
+            path: templates/windows_release_x86_64.exe
 
-          - name: Download android debug export templates
-            uses: actions/download-artifact@v3
-            with:
-              name: android_debug.apk
-              path: templates/android_debug.apk
+        - name: Download android debug export templates
+          uses: actions/download-artifact@v3
+          with:
+            name: android_debug.apk
+            path: templates/android_debug.apk
 
-          - name: Download android release export templates
-            uses: actions/download-artifact@v3
-            with:
-              name: android_release.apk
-              path: templates/android_release.apk
+        - name: Download android release export templates
+          uses: actions/download-artifact@v3
+          with:
+            name: android_release.apk
+            path: templates/android_release.apk
 
-          - name: Download macos export templates
-            uses: actions/download-artifact@v3
-            with:
-              name: macos.zip
-              path: templates/macos.zip
+        - name: Download macos export templates
+          uses: actions/download-artifact@v3
+          with:
+            name: macos.zip
+            path: templates/macos.zip
 
-          - name: Compress templates folder to tpz
-            run: zip -r godot-kotlin-jvm_export_templates_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.tpz templates
-            shell: bash
+        - name: Compress templates folder to tpz
+          run: zip -r godot-kotlin-jvm_export_templates_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.tpz templates
+          shell: bash
 
-          - name: Upload export templates tpz
-            uses: actions/upload-release-asset@v1.0.1
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            with:
-              upload_url: ${{ steps.save_release_info.outputs.upload_url }}
-              asset_path: godot-kotlin-jvm_export_templates_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.tpz
-              asset_name: godot-kotlin-jvm_export_templates_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.tpz
-              asset_content_type: application/octet-stream
+        - name: Upload export templates tpz
+          uses: actions/upload-release-asset@v1.0.1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            upload_url: ${{ steps.save_release_info.outputs.upload_url }}
+            asset_path: godot-kotlin-jvm_export_templates_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.tpz
+            asset_name: godot-kotlin-jvm_export_templates_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.tpz
+            asset_content_type: application/octet-stream
