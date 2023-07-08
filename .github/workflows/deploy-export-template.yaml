@@ -384,6 +384,7 @@ jobs:
           cp godot.macos.template_debug.universal macos_template.app/Contents/MacOS/godot_macos_debug.64
           chmod +x macos_template.app/Contents/MacOS/godot_macos*
           zip -q -9 -r macos.zip macos_template.app
+        shell: bash
 
       - name: Upload MacOs template app
         uses: actions/upload-artifact@v3
