@@ -36,12 +36,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Contains data used to animate everything in the engine.
+ * Holds data that can be used to animate anything in the engine.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/index.html]($DOCS_URL/tutorials/animation/index.html)
  *
- * An Animation resource contains data used to animate everything in the engine. Animations are divided into tracks, and each track must be linked to a node. The state of that node can be changed through time, by adding timed keys (events) to the track.
+ * This resource holds data that can be used to animate anything in the engine. Animations are divided into tracks and each track must be linked to a node. The state of that node can be changed through time, by adding timed keys (events) to the track.
  *
  * [codeblocks]
  *
@@ -321,6 +321,46 @@ public open class Animation : Resource() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_BLEND_SHAPE_TRACK_INSERT_KEY, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the interpolated position value at the given time (in seconds). The [trackIdx] must be the index of a 3D position track.
+   */
+  public fun positionTrackInterpolate(trackIdx: Long, timeSec: Double): Vector3 {
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATION_POSITION_TRACK_INTERPOLATE, VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Returns the interpolated rotation value at the given time (in seconds). The [trackIdx] must be the index of a 3D rotation track.
+   */
+  public fun rotationTrackInterpolate(trackIdx: Long, timeSec: Double): Quaternion {
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATION_ROTATION_TRACK_INTERPOLATE, QUATERNION)
+    return TransferContext.readReturnValue(QUATERNION, false) as Quaternion
+  }
+
+  /**
+   * Returns the interpolated scale value at the given time (in seconds). The [trackIdx] must be the index of a 3D scale track.
+   */
+  public fun scaleTrackInterpolate(trackIdx: Long, timeSec: Double): Vector3 {
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_SCALE_TRACK_INTERPOLATE,
+        VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Returns the interpolated blend shape value at the given time (in seconds). The [trackIdx] must be the index of a blend shape track.
+   */
+  public fun blendShapeTrackInterpolate(trackIdx: Long, timeSec: Double): Double {
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATION_BLEND_SHAPE_TRACK_INTERPOLATE, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**

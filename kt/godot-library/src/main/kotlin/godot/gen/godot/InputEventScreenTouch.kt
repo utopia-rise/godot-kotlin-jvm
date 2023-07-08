@@ -20,14 +20,12 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * Input event type for screen touch events.
- *
- * (only available on mobile devices)
+ * Represents a screen touch event.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
- * Stores multi-touch press/release information. Supports touch press, touch release and [index] for multi-touch count and order.
+ * Stores information about multi-touch press/release input events. Supports touch press, touch release and [index] for multi-touch count and order.
  */
 @GodotBaseType
 public open class InputEventScreenTouch : InputEventFromWindow() {
@@ -61,6 +59,19 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_POSITION, NIL)
+    }
+
+  /**
+   * If `true`, the touch event has been canceled.
+   */
+  public var canceled: Boolean
+    @JvmName("isCanceled_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isCanceled()
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_CANCELED, NIL)
     }
 
   /**

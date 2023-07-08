@@ -131,21 +131,6 @@ public open class PathFollow2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_LOOP, NIL)
     }
 
-  /**
-   * How far to look ahead of the curve to calculate the tangent if the node is rotating. E.g. shorter lookaheads will lead to faster rotations.
-   */
-  public var lookahead: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_LOOKAHEAD,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_LOOKAHEAD, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PATHFOLLOW2D, scriptIndex)
     return true

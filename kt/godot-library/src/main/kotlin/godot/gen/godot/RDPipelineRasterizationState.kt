@@ -20,7 +20,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Pipeline rasterization state (used by [godot.RenderingDevice]).
  *
+ * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineRasterizationState : RefCounted() {
@@ -41,7 +43,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   *
+   * If `true`, primitives are discarded immediately before the rasterization stage.
    */
   public var discardPrimitives: Boolean
     get() {
@@ -57,7 +59,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   *
+   * If `true`, performs wireframe rendering for triangles instead of flat or textured rendering.
    */
   public var wireframe: Boolean
     get() {
@@ -73,7 +75,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   *
+   * The cull mode to use when drawing polygons, which determines whether front faces or backfaces are hidden.
    */
   public var cullMode: RenderingDevice.PolygonCullMode
     get() {
@@ -89,7 +91,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   *
+   * The winding order to use to determine which face of a triangle is considered its front face.
    */
   public var frontFace: RenderingDevice.PolygonFrontFace
     get() {
@@ -170,7 +172,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   *
+   * THe line width to use when drawing lines (in pixels). Thick lines may not be supported on all hardware.
    */
   public var lineWidth: Double
     get() {
@@ -186,7 +188,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   *
+   * The number of control points to use when drawing a patch with tessellation enabled. Higher values result in higher quality at the cost of performance.
    */
   public var patchControlPoints: Long
     get() {

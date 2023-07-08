@@ -155,6 +155,22 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
+   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
+   */
+  public var justificationFlags: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_JUSTIFICATION_FLAGS,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_SET_JUSTIFICATION_FLAGS,
+          NIL)
+    }
+
+  /**
    * The size of one pixel's width on the text to scale it in 3D.
    */
   public var pixelSize: Double

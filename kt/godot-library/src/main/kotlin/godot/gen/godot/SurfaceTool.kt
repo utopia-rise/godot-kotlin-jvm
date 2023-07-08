@@ -79,7 +79,7 @@ import kotlin.Unit
  *
  * st.SetColor(new Color(1, 0, 0));
  *
- * st.SetUv(new Vector2(0, 0));
+ * st.SetUV(new Vector2(0, 0));
  *
  * st.AddVertex(new Vector3(0, 0, 0));
  *
@@ -236,6 +236,8 @@ public open class SurfaceTool : RefCounted() {
 
   /**
    * Specifies the smooth group to use for the *next* vertex. If this is never called, all vertices will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same group. To produce a mesh with flat normals, set the smooth group to `-1`.
+   *
+   * **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue` instead of `-1` to produce a mesh with flat normals.
    */
   public fun setSmoothGroup(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
@@ -253,7 +255,7 @@ public open class SurfaceTool : RefCounted() {
     colors: PackedColorArray = PackedColorArray(),
     uv2s: PackedVector2Array = PackedVector2Array(),
     normals: PackedVector3Array = PackedVector3Array(),
-    tangents: VariantArray<Any?> = godot.core.variantArrayOf(),
+    tangents: VariantArray<Plane> = godot.core.variantArrayOf(),
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_VECTOR2_ARRAY to uvs, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uv2s, PACKED_VECTOR3_ARRAY to normals, ARRAY to tangents)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_TRIANGLE_FAN, NIL)
@@ -325,7 +327,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Generates a LOD for a given [ndThreshold] in linear units (square root of quadric error metric), using at most [targetIndexCount] indices.
    *
-   * Deprecated. Unused internally and neglects to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
+   * *Deprecated.* Unused internally and neglects to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
    */
   public fun generateLod(ndThreshold: Double, targetIndexCount: Long = 3): PackedInt32Array {
     TransferContext.writeArguments(DOUBLE to ndThreshold, LONG to targetIndexCount)

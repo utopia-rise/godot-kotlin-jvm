@@ -12,7 +12,6 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.KtObject
 import godot.core.NodePath
-import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
@@ -23,7 +22,6 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.asStringName
@@ -731,7 +729,9 @@ public open class Object : KtObject() {
    *
    * If [value] is `null`, the entry is removed. This is the equivalent of using [removeMeta]. See also [hasMeta] and [getMeta].
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector dock and should not be edited.
+   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
+   *
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
   public fun setMeta(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
@@ -741,7 +741,9 @@ public open class Object : KtObject() {
   /**
    * Removes the given entry [name] from the object's metadata. See also [hasMeta], [getMeta] and [setMeta].
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited.
+   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
+   *
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
   public fun removeMeta(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -751,7 +753,9 @@ public open class Object : KtObject() {
   /**
    * Returns the object's metadata value for the given entry [name]. If the entry does not exist, returns [default]. If [default] is `null`, an error is also generated.
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector dock and should not be edited.
+   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
+   *
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
   public fun getMeta(name: StringName, default: Any? = null): Any? {
     TransferContext.writeArguments(STRING_NAME to name, ANY to default)
@@ -761,6 +765,8 @@ public open class Object : KtObject() {
 
   /**
    * Returns `true` if a metadata entry is found with the given [name]. See also [getMeta], [setMeta] and [removeMeta].
+   *
+   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
    *
    * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
@@ -773,11 +779,10 @@ public open class Object : KtObject() {
   /**
    * Returns the object's metadata entry names as a [godot.PackedStringArray].
    */
-  public fun getMetaList(): PackedStringArray {
+  public fun getMetaList(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_META_LIST,
-        PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_META_LIST, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>
   }
 
   /**
@@ -909,7 +914,11 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the [method] on the object during idle time. This method supports a variable number of arguments, so parameters can be passed as a comma separated list.
+   * Calls the [method] on the object during idle time. Always returns null, **not** the method's result.
+   *
+   * Idle time happens mainly at the end of process and physics frames. In it, deferred calls will be run until there are none left, which means you can defer calls from other deferred calls and they'll still be run in the current idle time cycle. If not done carefully, this can result in infinite recursion without causing a stack overflow, which will hang the game similarly to an infinite loop.
+   *
+   * This method supports a variable number of arguments, so parameters can be passed as a comma separated list.
    *
    * [codeblocks]
    *
@@ -931,7 +940,20 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    *
+   * See also [godot.Callable.callDeferred].
+   *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [godot.StringName] on each call.
+   *
+   * **Note:** If you're looking to delay the function call by a frame, refer to the [godot.SceneTree.processFrame] and [godot.SceneTree.physicsFrame] signals.
+   *
+   * ```
+   * 				var node = Node3D.new()
+   * 				# Make a Callable and bind the arguments to the node's rotate() call.
+   * 				var callable = node.rotate.bind(Vector3(1.0, 0.0, 0.0), 1.571)
+   * 				# Connect the callable to the process_frame signal, so it gets called in the next process frame.
+   * 				# CONNECT_ONE_SHOT makes sure it only gets called once instead of every frame.
+   * 				get_tree().process_frame.connect(callable, CONNECT_ONE_SHOT)
+   * 				```
    */
   public fun callDeferred(method: StringName, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
@@ -940,7 +962,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns [value] to the given [property], after the current frame's physics step. This is equivalent to calling [set] through [callDeferred].
+   * Assigns [value] to the given [property], at the end of the current frame. This is equivalent to calling [set] through [callDeferred].
    *
    * [codeblocks]
    *
@@ -1025,7 +1047,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the the given [method] name exists in the object.
+   * Returns `true` if the given [method] name exists in the object.
    *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [godot.StringName] on each call.
    */
@@ -1458,11 +1480,19 @@ public open class Object : KtObject() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * If this method is called during [NOTIFICATION_PREDELETE], this object will reject being freed and will remain allocated. This is mostly an internal function used for error handling to avoid the user from freeing objects when they are not intended to.
+   */
+  public fun cancelFree(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CANCEL_FREE, NIL)
+  }
+
   public enum class ConnectFlags(
     id: Long,
   ) {
     /**
-     * Deferred connections trigger their [godot.Callable]s on idle time, rather than instantly.
+     * Deferred connections trigger their [godot.Callable]s on idle time (at the end of the frame), rather than instantly.
      */
     CONNECT_DEFERRED(1),
     /**

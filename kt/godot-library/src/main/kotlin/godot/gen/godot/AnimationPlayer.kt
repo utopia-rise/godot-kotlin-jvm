@@ -39,18 +39,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Player of [godot.Animation] resources.
+ * A node used for animation playback.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * An animation player is used for general-purpose playback of [godot.Animation] resources. It contains a dictionary of [godot.AnimationLibrary] resources and custom blend times between animation transitions.
+ * An animation player is used for general-purpose playback of animations. It contains a dictionary of [godot.AnimationLibrary] resources and custom blend times between animation transitions.
  *
  * Some methods and properties use a single key to reference an animation directly. These keys are formatted as the key for the library, followed by a forward slash, then the key for the animation within the library, for example `"movement/run"`. If the library's key is an empty string (known as the default library), the forward slash is omitted, being the same key used by the library.
  *
- * [godot.AnimationPlayer] is more suited than [godot.Tween] for animations where you know the final values in advance. For example, fading a screen in and out is more easily done with an [godot.AnimationPlayer] node thanks to the animation tools provided by the editor. That particular example can also be implemented with a [godot.Tween], but it requires doing everything by code.
+ * [godot.AnimationPlayer] is better-suited than [godot.Tween] for more complex animations, for example ones with non-trivial timings. It can also be used over [godot.Tween] if the animation track editor is more convenient than doing it in code.
  *
- * Updating the target properties of animations occurs at process time.
+ * Updating the target properties of animations occurs at the process frame.
  */
 @GodotBaseType
 public open class AnimationPlayer : Node() {
@@ -122,7 +122,7 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * If playing, the the current animation's key, otherwise, the animation last played. When set, this changes the animation, but will not play it unless already playing. See also [currentAnimation].
+   * If playing, the current animation's key, otherwise, the animation last played. When set, this changes the animation, but will not play it unless already playing. See also [currentAnimation].
    */
   public var assignedAnimation: String
     get() {
@@ -366,6 +366,8 @@ public open class AnimationPlayer : Node() {
 
   /**
    * Returns the first [godot.AnimationLibrary] with key [name] or `null` if not found.
+   *
+   * To get the [godot.AnimationPlayer]'s global animation library, use `get_animation_library("")`.
    */
   public fun getAnimationLibrary(name: StringName): AnimationLibrary? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -455,7 +457,9 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Plays the animation with key [name]. Custom blend times and speed can be set. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards (which is equivalent to calling [playBackwards]).
+   * Plays the animation with key [name]. Custom blend times and speed can be set.
+   *
+   * The [fromEnd] option only affects when switching to a new animation track, or if the same track but at the start or end. It does not affect resuming playback that was paused in the middle of an animation. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards (which is equivalent to calling [playBackwards]).
    *
    * The [godot.AnimationPlayer] keeps track of its current or last played animation with [assignedAnimation]. If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused.
    *
@@ -602,11 +606,11 @@ public open class AnimationPlayer : Node() {
     id: Long,
   ) {
     /**
-     * Process animation during the physics process. This is especially useful when animating physics bodies.
+     * Process animation during physics frames (see [godot.Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). This is especially useful when animating physics bodies.
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * Process animation during the idle process.
+     * Process animation during process frames (see [godot.Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     ANIMATION_PROCESS_IDLE(1),
     /**

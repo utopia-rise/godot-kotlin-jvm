@@ -19,18 +19,16 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Editor-only node for defining a collision polygon in 3D space.
+ * A node that provides a thickened polygon shape (a prism) to a [godot.CollisionObject3D] parent.
  *
- * Allows editing a concave or convex collision polygon's vertices on a selected plane. Can also set a depth perpendicular to that plane. This class is only available in the editor. It will not appear in the scene tree at run-time. Creates several [godot.ConvexPolygonShape3D]s at run-time to represent the original polygon using convex decomposition.
+ * A node that provides a thickened polygon shape (a prism) to a [godot.CollisionObject3D] parent and allows to edit it. The polygon can be concave or convex. This can give a detection shape to an [godot.Area3D] or turn [godot.PhysicsBody3D] into a solid object.
  *
- * **Note:** Since this is an editor-only helper, properties modified during gameplay will have no effect.
- *
- * **Warning:** A non-uniformly scaled CollisionPolygon3D node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change its [polygon]'s vertices instead.
+ * **Warning:** A non-uniformly scaled [godot.CollisionShape3D] will likely not behave as expected. Make sure to keep its scale the same on all axes and adjust its shape resource instead.
  */
 @GodotBaseType
 public open class CollisionPolygon3D : Node3D() {
   /**
-   * Length that the resulting collision extends in either direction perpendicular to its polygon.
+   * Length that the resulting collision extends in either direction perpendicular to its 2D polygon.
    */
   public var depth: Double
     get() {
@@ -61,7 +59,7 @@ public open class CollisionPolygon3D : Node3D() {
     }
 
   /**
-   * Array of vertices which define the polygon.
+   * Array of vertices which define the 2D polygon in the local XY plane.
    *
    * **Note:** The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the `polygon` member.
    */

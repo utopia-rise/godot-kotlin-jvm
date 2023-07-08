@@ -25,20 +25,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Query the closest object intersecting a ray.
+ * A ray in 3D space, used to find the first [godot.CollisionObject3D] it intersects.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * A RayCast represents a line from its origin to its destination position, [targetPosition]. It is used to query the 3D space in order to find the closest object along the path of the ray.
+ * A raycast represents a ray from its origin to its [targetPosition] that finds the closest [godot.CollisionObject3D] along its path, if it intersects any. This is useful for a lot of things, such as
  *
- * RayCast3D can ignore some objects by adding them to the exception list via [addException] or by setting proper filtering with collision layers and masks.
+ * [godot.RayCast3D] can ignore some objects by adding them to an exception list, by making its detection reporting ignore [godot.Area3D]s ([collideWithAreas]) or [godot.PhysicsBody3D]s ([collideWithBodies]), or by configuring physics layers.
  *
- * RayCast3D can be configured to report collisions with [godot.Area3D]s ([collideWithAreas]) and/or [godot.PhysicsBody3D]s ([collideWithBodies]).
+ * [godot.RayCast3D] calculates intersection every physics frame, and it holds the result until the next physics frame. For an immediate raycast, or if you want to configure a [godot.RayCast3D] multiple times within the same physics frame, use [forceRaycastUpdate].
  *
- * Only enabled raycasts will be able to query the space and report collisions.
- *
- * RayCast3D calculates intersection every physics frame (see [godot.Node]), and the result is cached so it can be used later until the next frame. If multiple queries are required between physics frames (or during the same frame), use [forceRaycastUpdate] after adjusting the raycast.
+ * To sweep over a region of 3D space, you can approximate the region with multiple [godot.RayCast3D]s or use [godot.ShapeCast3D].
  */
 @GodotBaseType
 public open class RayCast3D : Node3D() {

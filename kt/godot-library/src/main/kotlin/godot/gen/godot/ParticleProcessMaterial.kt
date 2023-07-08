@@ -37,7 +37,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ParticleProcessMaterial : Material() {
   /**
-   * Particle lifetime randomness ratio. The lifetime will be multiplied by a value interpolated between `1.0` and a random number less than one. For example a random ratio of `0.4` would scale the original lifetime between `0.4-1.0` of its original value.
+   * Particle lifetime randomness ratio. The equation for the lifetime of a particle is `lifetime * (1.0 - randf() * lifetime_randomness)`. For example, a [lifetimeRandomness] of `0.4` scales the lifetime between `0.6` to `1.0` of its original value.
    */
   public var lifetimeRandomness: Double
     get() {
@@ -349,7 +349,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Enables and disables Turbulence for the particle system.
+   * If `true`, enables turbulence for the particle system. Turbulence can be used to vary particle movement according to its position (based on a 3D noise pattern). In 3D, [godot.GPUParticlesAttractorVectorField3D] with [godot.NoiseTexture3D] can be used as an alternative to turbulence that works in world space and with multiple particle systems reacting in the same way.
+   *
+   * **Note:** Enabling turbulence has a high performance cost on the GPU. Only enable turbulence on a few particle systems at once at most, and consider disabling it when targeting mobile/web platforms.
    */
   public var turbulenceEnabled: Boolean
     get() {
@@ -365,7 +367,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The turbulence noise strength. Increasing this will result in a stronger, more contrasting, noise pattern.
+   * The turbulence noise strength. Increasing this will result in a stronger, more contrasting, flow pattern.
    */
   public var turbulenceNoiseStrength: Double
     get() {
@@ -399,9 +401,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The movement speed of the turbulence pattern. This changes how quickly the noise changes over time.
+   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to move in over time.
    *
-   * A value of `Vector3(0.0, 0.0, 0.0)` will freeze the turbulence pattern in place.
+   * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    */
   public var turbulenceNoiseSpeed: Vector3
     get() {
@@ -417,7 +419,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Use to influence the noise speed in a random pattern. This helps to break up visible movement patterns.
+   * The in-place rate of change of the turbulence field. This defines how quickly the noise pattern varies over time.
+   *
+   * A value of 0.0 will result in a fixed pattern.
    */
   public var turbulenceNoiseSpeedRandom: Double
     get() {

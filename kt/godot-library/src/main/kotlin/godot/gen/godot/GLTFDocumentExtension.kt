@@ -9,11 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
+import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -38,6 +40,23 @@ public open class GLTFDocumentExtension : Resource() {
     extensions: Dictionary<Any?, Any?>,
   ): GodotError {
     throw NotImplementedError("_parse_node_extensions is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _parseImageData(
+    state: GLTFState,
+    imageData: PackedByteArray,
+    mimeType: String,
+    retImage: Image,
+  ): GodotError {
+    throw NotImplementedError("_parse_image_data is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _parseTextureJson(
+    state: GLTFState,
+    textureJson: Dictionary<Any?, Any?>,
+    retGltfTexture: GLTFTexture,
+  ): GodotError {
+    throw NotImplementedError("_parse_texture_json is not implemented for GLTFDocumentExtension")
   }
 
   public open fun _generateSceneNode(

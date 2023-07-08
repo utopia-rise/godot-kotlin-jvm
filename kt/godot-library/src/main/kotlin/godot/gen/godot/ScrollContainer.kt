@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -16,22 +17,19 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A helper node for displaying scrollable elements such as lists.
+ * A container used to provide scrollbars to a child control when needed.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * A ScrollContainer node meant to contain a [godot.Control] child.
- *
- * ScrollContainers will automatically create a scrollbar child ([godot.HScrollBar], [godot.VScrollBar], or both) when needed and will only draw the Control within the ScrollContainer area. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.customMinimumSize] of the Control relative to the ScrollContainer.
- *
- * Works great with a [godot.Panel] control. You can set [godot.Control.SIZE_EXPAND] on the children's size flags, so they will upscale to the ScrollContainer's size if it's larger (scroll is invisible for the chosen dimension).
+ * A container used to provide a child control with scrollbars when needed. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.customMinimumSize] of the Control relative to the ScrollContainer.
  */
 @GodotBaseType
 public open class ScrollContainer : Container() {
@@ -62,7 +60,14 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   * The current horizontal scroll value.
+   * The current horizontal scroll value. 
+   *
+   * **Note:** If you are setting this value in the [godot.Node.Ready] function or earlier, it needs to be wrapped with [godot.Object.setDeferred], since scroll bar's [godot.Range.maxValue] is not initialized yet.
+   *
+   * ```
+   * 			func _ready():
+   * 			    set_deferred("scroll_horizontal", 600)
+   * 			```
    */
   public var scrollHorizontal: Long
     get() {
@@ -78,6 +83,13 @@ public open class ScrollContainer : Container() {
 
   /**
    * The current vertical scroll value.
+   *
+   * **Note:** Setting it early needs to be deferred, just like in [scrollHorizontal].
+   *
+   * ```
+   * 			func _ready():
+   * 			    set_deferred("scroll_vertical", 600)
+   * 			```
    */
   public var scrollVertical: Long
     get() {
@@ -89,6 +101,38 @@ public open class ScrollContainer : Container() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_V_SCROLL, NIL)
+    }
+
+  /**
+   * Overrides the [godot.ScrollBar.customStep] used when clicking the internal scroll bar's horizontal increment and decrement buttons or when using arrow keys when the [godot.ScrollBar] is focused.
+   */
+  public var scrollHorizontalCustomStep: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_CUSTOM_STEP, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_HORIZONTAL_CUSTOM_STEP, NIL)
+    }
+
+  /**
+   * Overrides the [godot.ScrollBar.customStep] used when clicking the internal scroll bar's vertical increment and decrement buttons or when using arrow keys when the [godot.ScrollBar] is focused.
+   */
+  public var scrollVerticalCustomStep: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_CUSTOM_STEP, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_VERTICAL_CUSTOM_STEP, NIL)
     }
 
   /**

@@ -26,9 +26,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Texture-based nine-patch [godot.StyleBox].
+ * A texture-based nine-patch [godot.StyleBox].
  *
- * Texture-based nine-patch [godot.StyleBox], in a way similar to [godot.NinePatchRect]. This stylebox performs a 3×3 scaling of a texture, where only the center cell is fully stretched. This makes it possible to design bordered styles regardless of the stylebox's size.
+ * A texture-based nine-patch [godot.StyleBox], in a way similar to [godot.NinePatchRect]. This stylebox performs a 3×3 scaling of a texture, where only the center cell is fully stretched. This makes it possible to design bordered styles regardless of the stylebox's size.
  */
 @GodotBaseType
 public open class StyleBoxTexture : StyleBox() {

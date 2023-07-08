@@ -19,9 +19,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Slider between two PhysicsBodies in 3D.
+ * A physics joint that restricts the movement of a 3D physics body along an axis relative to another physics body.
  *
- * Slides across the X axis of the pivot object. See also [godot.Generic6DOFJoint3D].
+ * A physics joint that restricts the movement of a 3D physics body along an axis relative to another physics body. For example, Body A could be a [godot.StaticBody3D] representing a piston base, while Body B could be a [godot.RigidBody3D] representing the piston head, moving up and down.
  */
 @GodotBaseType
 public open class SliderJoint3D : Joint3D() {

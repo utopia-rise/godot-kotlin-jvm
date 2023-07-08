@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Dictionary
 import godot.core.PackedFloat64Array
 import godot.core.PackedStringArray
 import godot.core.PackedVector3Array
@@ -25,6 +26,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -78,6 +80,13 @@ public open class XRInterfaceExtension : XRInterface() {
    * Uninitialize the interface.
    */
   public open fun _uninitialize(): Unit {
+  }
+
+  /**
+   * Returns a [godot.core.Dictionary] with system informationr elated to this interface.
+   */
+  public open fun _getSystemInfo(): Dictionary<Any?, Any?> {
+    throw NotImplementedError("_get_system_info is not implemented for XRInterfaceExtension")
   }
 
   /**
@@ -156,13 +165,13 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Called if this [godot.XRInterfaceExtension] is active before our physics and game process is called. most XR interfaces will update its [godot.XRPositionalTracker]s at this point in time.
+   * Called if this [godot.XRInterfaceExtension] is active before our physics and game process is called. Most XR interfaces will update its [godot.XRPositionalTracker]s at this point in time.
    */
   public open fun _process(): Unit {
   }
 
   /**
-   * Called if this [godot.XRInterfaceExtension] is active before rendering starts, most XR interfaces will sync tracking at this point in time.
+   * Called if this [godot.XRInterfaceExtension] is active before rendering starts. Most XR interfaces will sync tracking at this point in time.
    */
   public open fun _preRender(): Unit {
   }

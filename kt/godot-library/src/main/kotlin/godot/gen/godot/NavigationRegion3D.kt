@@ -25,12 +25,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A region of the navigation map.
+ * A traversable 3D region that [godot.NavigationAgent3D]s can use for pathfinding.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationregions.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationregions.html)
  *
- * A region of the navigation map. It tells the [godot.NavigationServer3D] what can be navigated and what cannot, based on its [godot.NavigationMesh] resource.
+ * A traversable 3D region based on a [godot.NavigationMesh] that [godot.NavigationAgent3D]s can use for pathfinding.
  *
  * Two regions can be connected to each other if they share a similar edge. You can set the minimum distance between two vertices required to connect two edges by using [godot.NavigationServer3D.mapSetEdgeConnectionMargin].
  *
@@ -86,6 +86,22 @@ public open class NavigationRegion3D : Node3D() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_ENABLED,
           NIL)
+    }
+
+  /**
+   * If enabled the navigation region will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   */
+  public var useEdgeConnections: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_USE_EDGE_CONNECTIONS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_USE_EDGE_CONNECTIONS, NIL)
     }
 
   /**

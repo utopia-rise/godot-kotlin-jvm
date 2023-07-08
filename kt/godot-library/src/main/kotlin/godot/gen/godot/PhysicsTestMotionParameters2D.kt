@@ -25,9 +25,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Parameters to be sent to a 2D body motion test.
+ * Provides parameters for [godot.PhysicsServer2D.bodyTestMotion].
  *
- * This class contains parameters used in [godot.PhysicsServer2D.bodyTestMotion].
+ * By changing various properties of this object, such as the motion, you can configure the parameters for [godot.PhysicsServer2D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionParameters2D : RefCounted() {

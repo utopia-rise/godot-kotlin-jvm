@@ -22,9 +22,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract base class for range-based controls.
+ * Abstract base class for controls that represent a number within a range.
  *
- * Range is a base class for [godot.Control] nodes that change a floating-point [value] between a [minValue] and [maxValue], using a configured [step] and [page] size. See e.g. [godot.ScrollBar] and [godot.Slider] for examples of higher level nodes using Range.
+ * Range is an abstract base class for controls that represent a number within a range, using a configured [step] and [page] size. See e.g. [godot.ScrollBar] and [godot.Slider] for examples of higher-level nodes using Range.
  */
 @GodotBaseType
 public open class Range : Control() {
@@ -41,7 +41,7 @@ public open class Range : Control() {
   public val changed: Signal0 by signal()
 
   /**
-   * Minimum value. Range is clamped if `value` is less than `min_value`.
+   * Minimum value. Range is clamped if [value] is less than [minValue].
    */
   public var minValue: Double
     get() {
@@ -55,7 +55,7 @@ public open class Range : Control() {
     }
 
   /**
-   * Maximum value. Range is clamped if `value` is greater than `max_value`.
+   * Maximum value. Range is clamped if [value] is greater than [maxValue].
    */
   public var maxValue: Double
     get() {
@@ -69,7 +69,7 @@ public open class Range : Control() {
     }
 
   /**
-   * If greater than 0, `value` will always be rounded to a multiple of `step`. If `rounded` is also `true`, `value` will first be rounded to a multiple of `step` then rounded to the nearest integer.
+   * If greater than 0, [value] will always be rounded to a multiple of this property's value. If [rounded] is also `true`, [value] will first be rounded to a multiple of this property's value, then rounded to the nearest integer.
    */
   public var step: Double
     get() {
@@ -83,7 +83,7 @@ public open class Range : Control() {
     }
 
   /**
-   * Page size. Used mainly for [godot.ScrollBar]. ScrollBar's length is its size multiplied by `page` over the difference between `min_value` and `max_value`.
+   * Page size. Used mainly for [godot.ScrollBar]. ScrollBar's length is its size multiplied by [page] over the difference between [minValue] and [maxValue].
    */
   public var page: Double
     get() {
@@ -125,7 +125,7 @@ public open class Range : Control() {
     }
 
   /**
-   * If `true`, and `min_value` is greater than 0, `value` will be represented exponentially rather than linearly.
+   * If `true`, and [minValue] is greater than 0, [value] will be represented exponentially rather than linearly.
    */
   public var expEdit: Boolean
     get() {
@@ -139,7 +139,7 @@ public open class Range : Control() {
     }
 
   /**
-   * If `true`, `value` will always be rounded to the nearest integer.
+   * If `true`, [value] will always be rounded to the nearest integer.
    */
   public var rounded: Boolean
     get() {

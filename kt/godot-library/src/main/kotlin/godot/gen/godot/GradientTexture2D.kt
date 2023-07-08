@@ -161,6 +161,10 @@ public open class GradientTexture2D : Texture2D() {
      * The colors are linearly interpolated in a circular pattern.
      */
     FILL_RADIAL(1),
+    /**
+     * The colors are linearly interpolated in a square pattern.
+     */
+    FILL_SQUARE(2),
     ;
 
     public val id: Long

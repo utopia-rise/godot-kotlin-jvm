@@ -14,6 +14,7 @@ import godot.core.RID
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -34,14 +35,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 3D Agent used in navigation for collision avoidance.
+ * A 3D agent used to pathfind to a position while avoiding obstacles.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationagents.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationagents.html)
  *
- * 3D Agent that is used in navigation to reach a position while avoiding static and dynamic obstacles. The dynamic obstacles are avoided using RVO collision avoidance. The agent needs navigation data to work correctly. [godot.NavigationAgent3D] is physics safe.
+ * A 3D agent used to pathfind to a position while avoiding static and dynamic obstacles. The calculation can be used by the parent node to dynamically move it along the path. Requires navigation data to work correctly.
  *
- * **Note:** After setting [targetPosition] it is required to use the [getNextPathPosition] function once every physics frame to update the internal path logic of the NavigationAgent. The returned vector position from this function should be used as the next movement position for the agent's parent Node.
+ * Dynamic obstacles are avoided using RVO collision avoidance. Avoidance is computed before physics, so the pathfinding information can be used safely in the physics step.
+ *
+ * **Note:** After setting the [targetPosition] property, the [getNextPathPosition] method must be used once every physics frame to update the internal path logic of the navigation agent. The vector position it returns should be used as the next movement position for the agent's parent node.
  */
 @GodotBaseType
 public open class NavigationAgent3D : Node() {
@@ -95,12 +98,12 @@ public open class NavigationAgent3D : Node() {
   public val navigationFinished: Signal0 by signal()
 
   /**
-   * Notifies when the collision avoidance velocity is calculated. Emitted by [setVelocity]. Only emitted when [avoidanceEnabled] is true.
+   * Notifies when the collision avoidance velocity is calculated. Emitted when [velocity] is set. Only emitted when [avoidanceEnabled] is true.
    */
   public val velocityComputed: Signal1<Vector3> by signal("safeVelocity")
 
   /**
-   * The user-defined target position. Setting this property will clear the current navigation path.
+   * If set a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
    */
   public var targetPosition: Vector3
     get() {
@@ -116,7 +119,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The distance threshold before a path point is considered to be reached. This will allow an agent to not have to hit a path point on the path exactly, but in the area. If this value is set to high the NavigationAgent will skip points on the path which can lead to leaving the navigation mesh. If this value is set to low the NavigationAgent will be stuck in a repath loop cause it will constantly overshoot or undershoot the distance to the next point on each physics frame update.
+   * The distance threshold before a path point is considered to be reached. This allows agents to not have to hit a path point on the path exactly, but only to reach its general area. If this value is set too high, the NavigationAgent will skip points on the path, which can lead to leaving the navigation mesh. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it will constantly overshoot or undershoot the distance to the next point on each physics frame update.
    */
   public var pathDesiredDistance: Double
     get() {
@@ -132,7 +135,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The distance threshold before the final target point is considered to be reached. This will allow an agent to not have to hit the point of the final target exactly, but only the area. If this value is set to low the NavigationAgent will be stuck in a repath loop cause it will constantly overshoot or undershoot the distance to the final target point on each physics frame update.
+   * The distance threshold before the final target point is considered to be reached. This allows agents to not have to hit the point of the final target exactly, but only to reach its general. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it will constantly overshoot or undershoot the distance to the final target point on each physics frame update.
    */
   public var targetDesiredDistance: Double
     get() {
@@ -148,19 +151,19 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The NavigationAgent height offset is subtracted from the y-axis value of any vector path position for this NavigationAgent. The NavigationAgent height offset does not change or influence the navigation mesh or pathfinding query result. Additional navigation maps that use regions with navigation meshes that the developer baked with appropriate agent radius or height values are required to support different-sized agents.
+   * The height offset is subtracted from the y-axis value of any vector path position for this NavigationAgent. The NavigationAgent height offset does not change or influence the navigation mesh or pathfinding query result. Additional navigation maps that use regions with navigation meshes that the developer baked with appropriate agent radius or height values are required to support different-sized agents.
    */
-  public var agentHeightOffset: Double
+  public var pathHeightOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_AGENT_HEIGHT_OFFSET, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_PATH_HEIGHT_OFFSET, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_AGENT_HEIGHT_OFFSET, NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_PATH_HEIGHT_OFFSET, NIL)
     }
 
   /**
@@ -180,7 +183,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * A bitfield determining what navigation layers of navigation regions this NavigationAgent will use to calculate path. Changing it runtime will clear current navigation path and generate new one, according to new navigation layers.
+   * A bitfield determining which navigation layers of navigation regions this agent will use to calculate a path. Changing it during runtime will clear the current navigation path and generate a new one, according to the new navigation layers.
    */
   public var navigationLayers: Long
     get() {
@@ -193,6 +196,38 @@ public open class NavigationAgent3D : Node() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_NAVIGATION_LAYERS, NIL)
+    }
+
+  /**
+   * The pathfinding algorithm used in the path query.
+   */
+  public var pathfindingAlgorithm: NavigationPathQueryParameters3D.PathfindingAlgorithm
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_PATHFINDING_ALGORITHM, LONG)
+      return NavigationPathQueryParameters3D.PathfindingAlgorithm.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_PATHFINDING_ALGORITHM, NIL)
+    }
+
+  /**
+   * The path postprocessing applied to the raw path corridor found by the [pathfindingAlgorithm].
+   */
+  public var pathPostprocessing: NavigationPathQueryParameters3D.PathPostProcessing
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_PATH_POSTPROCESSING, LONG)
+      return NavigationPathQueryParameters3D.PathPostProcessing.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_PATH_POSTPROCESSING, NIL)
     }
 
   /**
@@ -212,7 +247,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * If `true` the agent is registered for an RVO avoidance callback on the [godot.NavigationServer3D]. When [godot.NavigationAgent3D.setVelocity] is used and the processing is completed a `safe_velocity` Vector3 is received with a signal connection to [velocityComputed]. Avoidance processing with many registered agents has a significant performance cost and should only be enabled on agents that currently require it.
+   * If `true` the agent is registered for an RVO avoidance callback on the [godot.NavigationServer3D]. When [velocity] is set and the processing is completed a `safe_velocity` Vector3 is received with a signal connection to [velocityComputed]. Avoidance processing with many registered agents has a significant performance cost and should only be enabled on agents that currently require it.
    */
   public var avoidanceEnabled: Boolean
     get() {
@@ -225,6 +260,37 @@ public open class NavigationAgent3D : Node() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_AVOIDANCE_ENABLED, NIL)
+    }
+
+  /**
+   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agents and obstacles. When an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal simulation velocity.
+   */
+  public var velocity: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_VELOCITY,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_VELOCITY,
+          NIL)
+    }
+
+  /**
+   * The height of the avoidance agent. Agents will ignore other agents or obstacles that are above or below their current position + height in 2D avoidance. Does nothing in 3D avoidance which uses radius spheres alone.
+   */
+  public var height: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_HEIGHT,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_HEIGHT, NIL)
     }
 
   /**
@@ -277,19 +343,35 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to other agents. The larger the number, the sooner the agent will respond to other agents, but less freedom in choosing its velocities. Must be positive.
+   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to other agents. The larger the number, the sooner the agent will respond to other agents, but less freedom in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive.
    */
-  public var timeHorizon: Double
+  public var timeHorizonAgents: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_TIME_HORIZON, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_TIME_HORIZON_AGENTS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_TIME_HORIZON, NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_TIME_HORIZON_AGENTS, NIL)
+    }
+
+  /**
+   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to static avoidance obstacles. The larger the number, the sooner the agent will respond to static avoidance obstacles, but less freedom in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive.
+   */
+  public var timeHorizonObstacles: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_TIME_HORIZON_OBSTACLES, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_TIME_HORIZON_OBSTACLES, NIL)
     }
 
   /**
@@ -309,19 +391,69 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * Ignores collisions on the Y axis. Must be true to move on a horizontal plane.
+   * If `true`, the agent calculates avoidance velocities in 3D omnidirectionally, e.g. for games that take place in air, underwater or space. Agents using 3D avoidance only avoid other agents using 3D avoidance, and react to radius-based avoidance obstacles. They ignore any vertex-based obstacles.
+   *
+   * If `false`, the agent calculates avoidance velocities in 2D along the x and z-axes, ignoring the y-axis. Agents using 2D avoidance only avoid other agents using 2D avoidance, and react to radius-based avoidance obstacles or vertex-based avoidance obstacles. Other agents using 2D avoidance that are below or above their current position including [height] are ignored.
    */
-  public var ignoreY: Boolean
+  public var use3dAvoidance: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_IGNORE_Y,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_USE_3D_AVOIDANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_IGNORE_Y,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_USE_3D_AVOIDANCE, NIL)
+    }
+
+  /**
+   * A bitfield determining the avoidance layers for this NavigationAgent. Other agent's with a matching bit on the [avoidanceMask] will avoid this agent.
+   */
+  public var avoidanceLayers: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_AVOIDANCE_LAYERS, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_AVOIDANCE_LAYERS, NIL)
+    }
+
+  /**
+   * A bitfield determining what other avoidance agents and obstacles this NavigationAgent will avoid when a bit matches at least one of their [avoidanceLayers].
+   */
+  public var avoidanceMask: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_AVOIDANCE_MASK, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_AVOIDANCE_MASK, NIL)
+    }
+
+  /**
+   * The agent does not adjust the velocity for other agents that would match the [avoidanceMask] but have a lower [avoidancePriority]. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.
+   */
+  public var avoidancePriority: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_AVOIDANCE_PRIORITY, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_AVOIDANCE_PRIORITY, NIL)
     }
 
   /**
@@ -451,6 +583,15 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
+   * Replaces the internal velocity in the collision avoidance simulation with [velocity]. When an agent is teleported to a new position this function should be used in the same frame. If called frequently this function can get agents stuck.
+   */
+  public fun setVelocityForced(velocity: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to velocity)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_VELOCITY_FORCED, NIL)
+  }
+
+  /**
    * Returns the distance to the target position, using the agent's global position. The user must set [targetPosition] in order for this to be accurate.
    */
   public fun distanceToTarget(): Double {
@@ -458,14 +599,6 @@ public open class NavigationAgent3D : Node() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_DISTANCE_TO_TARGET, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Sends the passed in velocity to the collision avoidance algorithm. It will adjust the velocity to avoid collisions. Once the adjustment to the velocity is complete, it will emit the [velocityComputed] signal.
-   */
-  public fun setVelocity(velocity: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_VELOCITY, NIL)
   }
 
   /**
@@ -510,7 +643,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns true if [targetPosition] is reachable.
+   * Returns true if [targetPosition] is reachable. The target position is set using [targetPosition].
    */
   public fun isTargetReachable(): Boolean {
     TransferContext.writeArguments()
@@ -530,13 +663,51 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the reachable final position in global coordinates. This can change if the navigation path is altered in any way. Because of this, it would be best to check this each frame.
+   * Returns the reachable final position of the current navigation path in global coordinates. This position can change if the navigation path is altered in any way. Because of this, it would be best to check this each frame.
    */
   public fun getFinalPosition(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_FINAL_POSITION, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask, given a [layerNumber] between 1 and 32.
+   */
+  public fun setAvoidanceLayerValue(layerNumber: Long, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_AVOIDANCE_LAYER_VALUE, NIL)
+  }
+
+  /**
+   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
+   */
+  public fun getAvoidanceLayerValue(layerNumber: Long): Boolean {
+    TransferContext.writeArguments(LONG to layerNumber)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_AVOIDANCE_LAYER_VALUE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Based on [value], enables or disables the specified mask in the [avoidanceMask] bitmask, given a [maskNumber] between 1 and 32.
+   */
+  public fun setAvoidanceMaskValue(maskNumber: Long, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to maskNumber, BOOL to value)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_AVOIDANCE_MASK_VALUE, NIL)
+  }
+
+  /**
+   * Returns whether or not the specified mask of the [avoidanceMask] bitmask is enabled, given a [maskNumber] between 1 and 32.
+   */
+  public fun getAvoidanceMaskValue(maskNumber: Long): Boolean {
+    TransferContext.writeArguments(LONG to maskNumber)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_AVOIDANCE_MASK_VALUE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public companion object

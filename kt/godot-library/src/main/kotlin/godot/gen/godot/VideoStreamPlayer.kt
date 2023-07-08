@@ -27,9 +27,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Control for playing video streams.
+ * A control used for video playback.
  *
- * Control node for playing video streams using [godot.VideoStream] resources.
+ * A control used for playback of [godot.VideoStream] resources.
  *
  * Supported video formats are [godot.Ogg Theora](https://www.theora.org/) (`.ogv`, [godot.VideoStreamTheora]) and any format exposed via a GDExtension plugin.
  *

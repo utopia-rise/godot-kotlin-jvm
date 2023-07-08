@@ -41,7 +41,8 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
     throw NotImplementedError("_initialize is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _createDataChannel(pLabel: String, pConfig: Dictionary<Any?, Any?>): Object? {
+  public open fun _createDataChannel(pLabel: String, pConfig: Dictionary<Any?, Any?>):
+      WebRTCDataChannel? {
     throw NotImplementedError("_create_data_channel is not implemented for WebRTCPeerConnectionExtension")
   }
 

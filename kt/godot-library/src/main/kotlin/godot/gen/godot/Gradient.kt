@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Gradient : Resource() {
   /**
-   * Defines how the colors between points of the gradient are interpolated. See [enum InterpolationMode] for available modes.
+   * The algorithm used to interpolate between points of the gradient. See [enum InterpolationMode] for available modes.
    */
   public var interpolationMode: InterpolationMode
     get() {
@@ -51,7 +51,27 @@ public open class Gradient : Resource() {
     }
 
   /**
+   * The color space used to interpolate between points of the gradient. It does not affect the returned colors, which will always be in sRGB space. See [enum ColorSpace] for available modes.
+   *
+   * **Note:** This setting has no effect when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
+   */
+  public var interpolationColorSpace: ColorSpace
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_INTERPOLATION_COLOR_SPACE, LONG)
+      return Gradient.ColorSpace.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_INTERPOLATION_COLOR_SPACE, NIL)
+    }
+
+  /**
    * Gradient's offsets returned as a [godot.PackedFloat32Array].
+   *
+   * **Note:** This property returns a copy, modifying the return value does not update the gradient. To update the gradient use [setOffset] method (for updating offsets individually) or assign to this property directly (for bulk-updating all offsets at once).
    */
   public var offsets: PackedFloat32Array
     get() {
@@ -67,6 +87,8 @@ public open class Gradient : Resource() {
 
   /**
    * Gradient's colors returned as a [godot.PackedColorArray].
+   *
+   * **Note:** This property returns a copy, modifying the return value does not update the gradient. To update the gradient use [setColor] method (for updating colors individually) or assign to this property directly (for bulk-updating all colors at once).
    */
   public var colors: PackedColorArray
     get() {
@@ -120,6 +142,8 @@ public open class Gradient : Resource() {
 
   /**
    * Reverses/mirrors the gradient.
+   *
+   * **Note:** This method mirrors all points around the middle of the gradient, which may produce unexpected results when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
    */
   public fun reverse(): Unit {
     TransferContext.writeArguments()
@@ -144,7 +168,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Returns the interpolated color specified by `offset`.
+   * Returns the interpolated color specified by [offset].
    */
   public fun sample(offset: Double): Color {
     TransferContext.writeArguments(DOUBLE to offset)
@@ -176,6 +200,33 @@ public open class Gradient : Resource() {
      * Cubic interpolation.
      */
     GRADIENT_INTERPOLATE_CUBIC(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ColorSpace(
+    id: Long,
+  ) {
+    /**
+     * sRGB color space.
+     */
+    GRADIENT_COLOR_SPACE_SRGB(0),
+    /**
+     * Linear sRGB color space.
+     */
+    GRADIENT_COLOR_SPACE_LINEAR_SRGB(1),
+    /**
+     * [godot.Oklab](https://bottosson.github.io/posts/oklab/) color space. This color space provides a smooth and uniform-looking transition between colors.
+     */
+    GRADIENT_COLOR_SPACE_OKLAB(2),
     ;
 
     public val id: Long

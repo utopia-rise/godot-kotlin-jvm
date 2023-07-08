@@ -85,6 +85,18 @@ public object XRServer : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_WORLD_SCALE, NIL)
   }
 
+  public fun getWorldOrigin(): Transform3D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_WORLD_ORIGIN,
+        TRANSFORM3D)
+    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+  }
+
+  public fun setWorldOrigin(worldOrigin: Transform3D): Unit {
+    TransferContext.writeArguments(TRANSFORM3D to worldOrigin)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_WORLD_ORIGIN, NIL)
+  }
+
   /**
    * Returns the reference frame transform. Mostly used internally and exposed for GDExtension build interfaces.
    */

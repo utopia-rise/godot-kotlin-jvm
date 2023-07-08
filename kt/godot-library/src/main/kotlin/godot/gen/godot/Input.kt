@@ -34,12 +34,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A singleton that deals with inputs.
+ * A singleton for handling inputs.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * A singleton that deals with inputs. This includes key presses, mouse buttons and movement, joypads, and input actions. Actions and their events can be set in the **Input Map** tab in the **Project > Project Settings**, or with the [godot.InputMap] class.
+ * The [godot.Input] singleton handles key presses, mouse buttons and movement, gamepads, and input actions. Actions and their events can be set in the **Input Map** tab in **Project > Project Settings**, or with the [godot.InputMap] class.
+ *
+ * **Note:** [godot.Input]'s methods reflect the global input state and are not affected by [godot.Control.acceptEvent] or [godot.Viewport.setInputAsHandled], as those methods only deal with the way input is propagated in the [godot.SceneTree].
  */
 @GodotBaseType
 public object Input : Object() {
@@ -129,11 +131,13 @@ public object Input : Object() {
   }
 
   /**
-   * Returns `true` when the user starts pressing the action event, meaning it's `true` only on the frame that the user pressed down the button.
+   * Returns `true` when the user has *started* pressing the action event in the current frame or physics tick. It will only return `true` on the frame or tick that the user pressed down the button.
    *
    * This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   *
+   * **Note:** Returning `true` does not imply that the action is *still* pressed. An action can be pressed and released again rapidly, and `true` will still be returned so as not to miss input.
    *
    * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
@@ -144,7 +148,9 @@ public object Input : Object() {
   }
 
   /**
-   * Returns `true` when the user stops pressing the action event, meaning it's `true` only on the frame that the user released the button.
+   * Returns `true` when the user *stops* pressing the action event in the current frame or physics tick. It will only return `true` on the frame or tick that the user releases the button.
+   *
+   * **Note:** Returning `true` does not imply that the action is *still* not pressed. An action can be released and pressed again rapidly, and `true` will still be returned so as not to miss input.
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
@@ -242,7 +248,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns the name of the joypad at the specified device index.
+   * Returns the name of the joypad at the specified device index, e.g. `PS4 Controller`. Godot uses the [godot.SDL2 game controller database](https://github.com/gabomdq/SDL_GameControllerDB) to determine gamepad names.
    */
   public fun getJoyName(device: Long): String {
     TransferContext.writeArguments(LONG to device)
@@ -251,7 +257,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns a SDL2-compatible device GUID on platforms that use gamepad remapping. Returns `"Default Gamepad"` otherwise.
+   * Returns a SDL2-compatible device GUID on platforms that use gamepad remapping, e.g. `030000004c050000c405000000010000`. Returns `"Default Gamepad"` otherwise. Godot uses the [godot.SDL2 game controller database](https://github.com/gabomdq/SDL_GameControllerDB) to determine gamepad names and mappings based on this GUID.
    */
   public fun getJoyGuid(device: Long): String {
     TransferContext.writeArguments(LONG to device)
@@ -500,13 +506,13 @@ public object Input : Object() {
   /**
    * Sets a custom mouse cursor image, which is only visible inside the game window. The hotspot can also be specified. Passing `null` to the image parameter resets to the system cursor. See [enum CursorShape] for the list of shapes.
    *
-   * [image]'s size must be lower than 256×256.
+   * [image]'s size must be lower than or equal to 256×256. To avoid rendering issues, sizes lower than or equal to 128×128 are recommended.
    *
    * [hotspot] must be within [image]'s size.
    *
    * **Note:** [godot.AnimatedTexture]s aren't supported as custom mouse cursors. If using an [godot.AnimatedTexture], only the first frame will be displayed.
    *
-   * **Note:** Only images imported with the **Lossless**, **Lossy** or **Uncompressed** compression modes are supported. The **Video RAM** compression mode can't be used for custom cursors.
+   * **Note:** The **Lossless**, **Lossy** or **Uncompressed** compression modes are recommended. The **Video RAM** compression mode can be used, but it will be decompressed on the CPU, which means loading times are slowed down and no memory is saved compared to lossless modes.
    *
    * **Note:** On the web platform, the maximum allowed cursor image size is 128×128. Cursor images larger than 32×32 will also only be displayed if the mouse cursor image is entirely located within the page for [security reasons](https://chromestatus.com/feature/5825971391299584).
    */

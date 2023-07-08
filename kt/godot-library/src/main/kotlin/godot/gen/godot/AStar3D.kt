@@ -27,11 +27,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An implementation of A* to find the shortest paths among connected points in space.
+ * An implementation of A* for finding the shortest path between two vertices on a connected graph in 3D space.
  *
- * A* (A star) is a computer algorithm that is widely used in pathfinding and graph traversal, the process of plotting short paths among vertices (points), passing through a given set of edges (segments). It enjoys widespread use due to its performance and accuracy. Godot's A* implementation uses points in three-dimensional space and Euclidean distances by default.
+ * A* (A star) is a computer algorithm used in pathfinding and graph traversal, the process of plotting short paths among vertices (points), passing through a given set of edges (segments). It enjoys widespread use due to its performance and accuracy. Godot's A* implementation uses points in 3D space and Euclidean distances by default.
  *
- * You must add points manually with [addPoint] and create segments manually with [connectPoints]. Then you can test if there is a path between two points with the [arePointsConnected] function, get a path containing indices by [getIdPath], or one containing actual coordinates with [getPointPath].
+ * You must add points manually with [addPoint] and create segments manually with [connectPoints]. Once done, you can test if there is a path between two points with the [arePointsConnected] function, get a path containing indices by [getIdPath], or one containing actual coordinates with [getPointPath].
  *
  * It is also possible to use non-Euclidean distances. To do so, create a class that extends `AStar3D` and override methods [_computeCost] and [_estimateCost]. Both take two indices and return a length, as is shown in the following example.
  *

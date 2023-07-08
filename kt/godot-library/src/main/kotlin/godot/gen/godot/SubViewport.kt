@@ -20,12 +20,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Creates a sub-view into the screen.
+ * An interface to a game world that doesn't create a window or draw to the screen directly.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/586](https://godotengine.org/asset-library/asset/586)
  *
- * [godot.SubViewport] is a [godot.Viewport] that isn't a [godot.Window], i.e. it doesn't draw anything by itself. To display something, [godot.SubViewport]'s [size] must be non-zero and it should be either put inside a [godot.SubViewportContainer] or assigned to a [godot.ViewportTexture].
+ * [godot.SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be used, for example, to display UI in 3D space.
+ *
+ * **Note:** [godot.SubViewport] is a [godot.Viewport] that isn't a [godot.Window], i.e. it doesn't draw anything by itself. To display anything, [godot.SubViewport] must have a non-zero size and be either put inside a [godot.SubViewportContainer] or assigned to a [godot.ViewportTexture].
  */
 @GodotBaseType
 public open class SubViewport : Viewport() {

@@ -36,24 +36,24 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Server interface for low-level 3D navigation access.
+ * A server interface for low-level 3D navigation access.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationservers.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationservers.html)
  *
- * NavigationServer3D is the server responsible for all 3D navigation. It handles several objects, namely maps, regions and agents.
+ * NavigationServer2D is the server that handles navigation maps, regions and agents. It does not handle A* navigation from [godot.AStar3D].
  *
  * Maps are made up of regions, which are made of navigation meshes. Together, they define the navigable areas in the 3D world.
  *
- * **Note:** Most NavigationServer changes take effect after the next physics frame and not immediately. This includes all changes made to maps, regions or agents by navigation related Nodes in the SceneTree or made through scripts.
+ * **Note:** Most [godot.NavigationServer3D] changes take effect after the next physics frame and not immediately. This includes all changes made to maps, regions or agents by navigation-related nodes in the scene tree or made through scripts.
  *
  * For two regions to be connected to each other, they must share a similar edge. An edge is considered connected to another if both of its two vertices are at a distance less than `edge_connection_margin` to the respective other edge's vertex.
  *
- * You may assign navigation layers to regions with [godot.NavigationServer3D.regionSetNavigationLayers], which then can be checked upon when requesting a path with [godot.NavigationServer3D.mapGetPath]. This allows allowing or forbidding some areas to 3D objects.
+ * You may assign navigation layers to regions with [godot.NavigationServer3D.regionSetNavigationLayers], which then can be checked upon when requesting a path with [godot.NavigationServer3D.mapGetPath]. This can be used to allow or deny certain areas for some objects.
  *
  * To use the collision avoidance system, you may use agents. You can set an agent's target velocity, then the servers will emit a callback with a modified velocity.
  *
- * **Note:** The collision avoidance system ignores regions. Using the modified velocity as-is might lead to pushing and agent outside of a navigable area. This is a limitation of the collision avoidance system, any more complex situation may require the use of the physics engine.
+ * **Note:** The collision avoidance system ignores regions. Using the modified velocity directly may move an agent outside of the traversable area. This is a limitation of the collision avoidance system, any more complex situation may require the use of the physics engine.
  *
  * This server keeps tracks of any call and executes them during the sync phase. This means that you can request any change to the map, using any thread, without worrying.
  */
@@ -68,6 +68,11 @@ public object NavigationServer3D : Object() {
    * Emitted when navigation debug settings are changed. Only available in debug builds.
    */
   public val navigationDebugChanged: Signal0 by signal()
+
+  /**
+   * Emitted when avoidance debug settings are changed. Only available in debug builds.
+   */
+  public val avoidanceDebugChanged: Signal0 by signal()
 
   public override fun new(scriptIndex: Int): Boolean {
     getSingleton(ENGINECLASS_NAVIGATIONSERVER3D)
@@ -130,7 +135,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Set the map cell size used to weld the navigation mesh polygons.
+   * Sets the map cell size used to rasterize the navigation mesh vertices on the XZ plane. Must match with the cell size of the used navigation meshes.
    */
   public fun mapSetCellSize(map: RID, cellSize: Double): Unit {
     TransferContext.writeArguments(_RID to map, DOUBLE to cellSize)
@@ -139,13 +144,51 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the map cell size.
+   * Returns the map cell size used to rasterize the navigation mesh vertices on the XZ plane.
    */
   public fun mapGetCellSize(map: RID): Double {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CELL_SIZE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Sets the map cell height used to rasterize the navigation mesh vertices on the Y axis. Must match with the cell height of the used navigation meshes.
+   */
+  public fun mapSetCellHeight(map: RID, cellHeight: Double): Unit {
+    TransferContext.writeArguments(_RID to map, DOUBLE to cellHeight)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_CELL_HEIGHT, NIL)
+  }
+
+  /**
+   * Returns the map cell height used to rasterize the navigation mesh vertices on the Y axis.
+   */
+  public fun mapGetCellHeight(map: RID): Double {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CELL_HEIGHT, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Set the navigation [map] edge connection use. If [enabled] the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   */
+  public fun mapSetUseEdgeConnections(map: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to map, BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_USE_EDGE_CONNECTIONS, NIL)
+  }
+
+  /**
+   * Returns true if the navigation [map] allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   */
+  public fun mapGetUseEdgeConnections(map: RID): Boolean {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_USE_EDGE_CONNECTIONS, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -248,7 +291,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns all navigation link [RID]s that are currently assigned to the requested navigation `map`.
+   * Returns all navigation link [RID]s that are currently assigned to the requested navigation [map].
    */
   public fun mapGetLinks(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
@@ -274,6 +317,16 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_AGENTS,
         ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+  }
+
+  /**
+   * Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation [map].
+   */
+  public fun mapGetObstacles(map: RID): VariantArray<RID> {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_OBSTACLES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
   }
 
@@ -309,6 +362,25 @@ public object NavigationServer3D : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_CREATE,
         _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * If [enabled] the navigation [region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   */
+  public fun regionSetUseEdgeConnections(region: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to region, BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_USE_EDGE_CONNECTIONS, NIL)
+  }
+
+  /**
+   * Returns true if the navigation [region] is set to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   */
+  public fun regionGetUseEdgeConnections(region: RID): Boolean {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_USE_EDGE_CONNECTIONS, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -497,7 +569,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the navigation map [RID] the requested `link` is currently assigned to.
+   * Returns the navigation map [RID] the requested [link] is currently assigned to.
    */
   public fun linkGetMap(link: RID): RID {
     TransferContext.writeArguments(_RID to link)
@@ -507,7 +579,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets whether this `link` can be travelled in both directions.
+   * Sets whether this [link] can be travelled in both directions.
    */
   public fun linkSetBidirectional(link: RID, bidirectional: Boolean): Unit {
     TransferContext.writeArguments(_RID to link, BOOL to bidirectional)
@@ -516,7 +588,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns whether this `link` can be travelled in both directions.
+   * Returns whether this [link] can be travelled in both directions.
    */
   public fun linkIsBidirectional(link: RID): Boolean {
     TransferContext.writeArguments(_RID to link)
@@ -535,7 +607,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the navigation layers for this `link`.
+   * Returns the navigation layers for this [link].
    */
   public fun linkGetNavigationLayers(link: RID): Long {
     TransferContext.writeArguments(_RID to link)
@@ -545,7 +617,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the entry position for this `link`.
+   * Sets the entry position for this [link].
    */
   public fun linkSetStartPosition(link: RID, position: Vector3): Unit {
     TransferContext.writeArguments(_RID to link, VECTOR3 to position)
@@ -554,7 +626,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the starting position of this `link`.
+   * Returns the starting position of this [link].
    */
   public fun linkGetStartPosition(link: RID): Vector3 {
     TransferContext.writeArguments(_RID to link)
@@ -564,7 +636,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the exit position for the `link`.
+   * Sets the exit position for the [link].
    */
   public fun linkSetEndPosition(link: RID, position: Vector3): Unit {
     TransferContext.writeArguments(_RID to link, VECTOR3 to position)
@@ -573,7 +645,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the ending position of this `link`.
+   * Returns the ending position of this [link].
    */
   public fun linkGetEndPosition(link: RID): Vector3 {
     TransferContext.writeArguments(_RID to link)
@@ -583,7 +655,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the `enter_cost` for this `link`.
+   * Sets the [enterCost] for this [link].
    */
   public fun linkSetEnterCost(link: RID, enterCost: Double): Unit {
     TransferContext.writeArguments(_RID to link, DOUBLE to enterCost)
@@ -602,7 +674,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the `travel_cost` for this `link`.
+   * Sets the [travelCost] for this [link].
    */
   public fun linkSetTravelCost(link: RID, travelCost: Double): Unit {
     TransferContext.writeArguments(_RID to link, DOUBLE to travelCost)
@@ -650,6 +722,48 @@ public object NavigationServer3D : Object() {
   }
 
   /**
+   * If [enabled] the provided [agent] calculates avoidance.
+   */
+  public fun agentSetAvoidanceEnabled(agent: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to agent, BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_AVOIDANCE_ENABLED, NIL)
+  }
+
+  /**
+   * Returns `true` if the provided [agent] has avoidance enabled.
+   */
+  public fun agentGetAvoidanceEnabled(agent: RID): Boolean {
+    TransferContext.writeArguments(_RID to agent)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_GET_AVOIDANCE_ENABLED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets if the agent uses the 2D avoidance or the 3D avoidance while avoidance is enabled.
+   *
+   * If `true` the agent calculates avoidance velocities in 3D for the xyz-axis, e.g. for games that take place in air, unterwater or space. The 3D using agent only avoids other 3D avoidance using agent's. The 3D using agent only reacts to radius based avoidance obstacles. The 3D using agent ignores any vertices based obstacles. The 3D using agent only avoids other 3D using agent's.
+   *
+   * If `false` the agent calculates avoidance velocities in 2D along the xz-axis ignoring the y-axis. The 2D using agent only avoids other 2D avoidance using agent's. The 2D using agent reacts to radius avoidance obstacles. The 2D using agent reacts to vertices based avoidance obstacles. The 2D using agent only avoids other 2D using agent's. 2D using agents will ignore other 2D using agents or obstacles that are below their current position or above their current position including the agents height in 2D avoidance.
+   */
+  public fun agentSetUse3dAvoidance(agent: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to agent, BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_USE_3D_AVOIDANCE, NIL)
+  }
+
+  /**
+   * Returns `true` if the provided [agent] uses avoidance in 3D space Vector3(x,y,z) instead of horizontal 2D Vector2(x,y) / Vector3(x,0.0,z).
+   */
+  public fun agentGetUse3dAvoidance(agent: RID): Boolean {
+    TransferContext.writeArguments(_RID to agent)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_GET_USE_3D_AVOIDANCE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Puts the agent in the map.
    */
   public fun agentSetMap(agent: RID, map: RID): Unit {
@@ -666,6 +780,25 @@ public object NavigationServer3D : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_GET_MAP,
         _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * If [paused] is true the specified [agent] will not be processed, e.g. calculate avoidance velocities or receive avoidance callbacks.
+   */
+  public fun agentSetPaused(agent: RID, paused: Boolean): Unit {
+    TransferContext.writeArguments(_RID to agent, BOOL to paused)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_PAUSED,
+        NIL)
+  }
+
+  /**
+   * Returns `true` if the specified [agent] is paused.
+   */
+  public fun agentGetPaused(agent: RID): Boolean {
+    TransferContext.writeArguments(_RID to agent)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_GET_PAUSED,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -687,12 +820,21 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner this agent will respond to the presence of other agents, but the less freedom this agent has in choosing its velocities. Must be positive.
+   * The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner this agent will respond to the presence of other agents, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive.
    */
-  public fun agentSetTimeHorizon(agent: RID, time: Double): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to time)
+  public fun agentSetTimeHorizonAgents(agent: RID, timeHorizon: Double): Unit {
+    TransferContext.writeArguments(_RID to agent, DOUBLE to timeHorizon)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_TIME_HORIZON, NIL)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_TIME_HORIZON_AGENTS, NIL)
+  }
+
+  /**
+   * The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to static avoidance obstacles. The larger this number, the sooner this agent will respond to the presence of static avoidance obstacles, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive.
+   */
+  public fun agentSetTimeHorizonObstacles(agent: RID, timeHorizon: Double): Unit {
+    TransferContext.writeArguments(_RID to agent, DOUBLE to timeHorizon)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_TIME_HORIZON_OBSTACLES, NIL)
   }
 
   /**
@@ -701,6 +843,15 @@ public object NavigationServer3D : Object() {
   public fun agentSetRadius(agent: RID, radius: Double): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to radius)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_RADIUS,
+        NIL)
+  }
+
+  /**
+   * Updates the provided [agent] [height].
+   */
+  public fun agentSetHeight(agent: RID, height: Double): Unit {
+    TransferContext.writeArguments(_RID to agent, DOUBLE to height)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_HEIGHT,
         NIL)
   }
 
@@ -714,21 +865,21 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the current velocity of the agent.
+   * Replaces the internal velocity in the collision avoidance simulation with [velocity] for the specified [agent]. When an agent is teleported to a new position this function should be used in the same frame. If called frequently this function can get agents stuck.
+   */
+  public fun agentSetVelocityForced(agent: RID, velocity: Vector3): Unit {
+    TransferContext.writeArguments(_RID to agent, VECTOR3 to velocity)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_VELOCITY_FORCED, NIL)
+  }
+
+  /**
+   * Sets [velocity] as the new wanted velocity for the specified [agent]. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agent's and obstacles. When an agent is teleported to a new position use [agentSetVelocityForced] as well to reset the internal simulation velocity.
    */
   public fun agentSetVelocity(agent: RID, velocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR3 to velocity)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_VELOCITY, NIL)
-  }
-
-  /**
-   * Sets the new target velocity.
-   */
-  public fun agentSetTargetVelocity(agent: RID, targetVelocity: Vector3): Unit {
-    TransferContext.writeArguments(_RID to agent, VECTOR3 to targetVelocity)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_TARGET_VELOCITY, NIL)
   }
 
   /**
@@ -751,14 +902,212 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the callback that gets called after each avoidance processing step for the [agent]. The calculated `safe_velocity` will be passed as the first parameter just before the physics calculations.
+   * Sets the callback [godot.Callable] that gets called after each avoidance processing step for the [agent]. The calculated `safe_velocity` will be dispatched with a signal to the object just before the physics calculations.
    *
-   * **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [agentSetCallback] again with an empty [godot.Callable].
+   * **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [agentSetAvoidanceCallback] again with an empty [godot.Callable].
    */
-  public fun agentSetCallback(agent: RID, callback: Callable): Unit {
+  public fun agentSetAvoidanceCallback(agent: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to agent, CALLABLE to callback)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_CALLBACK, NIL)
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_AVOIDANCE_CALLBACK, NIL)
+  }
+
+  /**
+   * Set the agent's `avoidance_layers` bitmask.
+   */
+  public fun agentSetAvoidanceLayers(agent: RID, layers: Long): Unit {
+    TransferContext.writeArguments(_RID to agent, LONG to layers)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_AVOIDANCE_LAYERS, NIL)
+  }
+
+  /**
+   * Set the agent's `avoidance_mask` bitmask.
+   */
+  public fun agentSetAvoidanceMask(agent: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to agent, LONG to mask)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_AVOIDANCE_MASK, NIL)
+  }
+
+  /**
+   * Set the agent's `avoidance_priority` with a [priority] between 0.0 (lowest priority) to 1.0 (highest priority).
+   *
+   * The specified [agent] does not adjust the velocity for other agents that would match the `avoidance_mask` but have a lower ` avoidance_priority`. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.
+   */
+  public fun agentSetAvoidancePriority(agent: RID, priority: Double): Unit {
+    TransferContext.writeArguments(_RID to agent, DOUBLE to priority)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_AVOIDANCE_PRIORITY, NIL)
+  }
+
+  /**
+   * Creates a new obstacle.
+   */
+  public fun obstacleCreate(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_CREATE,
+        _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * If [enabled] the provided [obstacle] affects avoidance using agents.
+   */
+  public fun obstacleSetAvoidanceEnabled(obstacle: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to obstacle, BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_AVOIDANCE_ENABLED, NIL)
+  }
+
+  /**
+   * Returns `true` if the provided [obstacle] has avoidance enabled.
+   */
+  public fun obstacleGetAvoidanceEnabled(obstacle: RID): Boolean {
+    TransferContext.writeArguments(_RID to obstacle)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_GET_AVOIDANCE_ENABLED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets if the [obstacle] uses the 2D avoidance or the 3D avoidance while avoidance is enabled.
+   */
+  public fun obstacleSetUse3dAvoidance(obstacle: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to obstacle, BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_USE_3D_AVOIDANCE, NIL)
+  }
+
+  /**
+   * Returns `true` if the provided [obstacle] uses avoidance in 3D space Vector3(x,y,z) instead of horizontal 2D Vector2(x,y) / Vector3(x,0.0,z).
+   */
+  public fun obstacleGetUse3dAvoidance(obstacle: RID): Boolean {
+    TransferContext.writeArguments(_RID to obstacle)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_GET_USE_3D_AVOIDANCE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Assigns the [obstacle] to a navigation map.
+   */
+  public fun obstacleSetMap(obstacle: RID, map: RID): Unit {
+    TransferContext.writeArguments(_RID to obstacle, _RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_MAP,
+        NIL)
+  }
+
+  /**
+   * Returns the navigation map [RID] the requested [obstacle] is currently assigned to.
+   */
+  public fun obstacleGetMap(obstacle: RID): RID {
+    TransferContext.writeArguments(_RID to obstacle)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_GET_MAP,
+        _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * If [paused] is true the specified [obstacle] will not be processed, e.g. affect avoidance velocities.
+   */
+  public fun obstacleSetPaused(obstacle: RID, paused: Boolean): Unit {
+    TransferContext.writeArguments(_RID to obstacle, BOOL to paused)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_PAUSED, NIL)
+  }
+
+  /**
+   * Returns `true` if the specified [obstacle] is paused.
+   */
+  public fun obstacleGetPaused(obstacle: RID): Boolean {
+    TransferContext.writeArguments(_RID to obstacle)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_GET_PAUSED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the radius of the dynamic obstacle.
+   */
+  public fun obstacleSetRadius(obstacle: RID, radius: Double): Unit {
+    TransferContext.writeArguments(_RID to obstacle, DOUBLE to radius)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_RADIUS, NIL)
+  }
+
+  /**
+   * Sets the [height] for the [obstacle]. In 3D agents will ignore obstacles that are above or below them while using 2D avoidance.
+   */
+  public fun obstacleSetHeight(obstacle: RID, height: Double): Unit {
+    TransferContext.writeArguments(_RID to obstacle, DOUBLE to height)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_HEIGHT, NIL)
+  }
+
+  /**
+   * Sets [velocity] of the dynamic [obstacle]. Allows other agents to better predict the movement of the dynamic obstacle. Only works in combination with the radius of the obstacle.
+   */
+  public fun obstacleSetVelocity(obstacle: RID, velocity: Vector3): Unit {
+    TransferContext.writeArguments(_RID to obstacle, VECTOR3 to velocity)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_VELOCITY, NIL)
+  }
+
+  /**
+   * Updates the [position] in world space for the [obstacle].
+   */
+  public fun obstacleSetPosition(obstacle: RID, position: Vector3): Unit {
+    TransferContext.writeArguments(_RID to obstacle, VECTOR3 to position)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_POSITION, NIL)
+  }
+
+  /**
+   * Sets the outline vertices for the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out.
+   */
+  public fun obstacleSetVertices(obstacle: RID, vertices: PackedVector3Array): Unit {
+    TransferContext.writeArguments(_RID to obstacle, PACKED_VECTOR3_ARRAY to vertices)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_VERTICES, NIL)
+  }
+
+  /**
+   * Set the obstacles's `avoidance_layers` bitmask.
+   */
+  public fun obstacleSetAvoidanceLayers(obstacle: RID, layers: Long): Unit {
+    TransferContext.writeArguments(_RID to obstacle, LONG to layers)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_AVOIDANCE_LAYERS, NIL)
+  }
+
+  /**
+   * Parses the [godot.SceneTree] for source geometry according to the properties of [navigationMesh]. Updates the provided [sourceGeometryData] resource with the resulting data. The resource can then be used to bake a navigation mesh with [bakeFromSourceGeometryData]. After the process is finished the optional [callback] will be called.
+   *
+   * **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.
+   */
+  public fun parseSourceGeometryData(
+    navigationMesh: NavigationMesh,
+    sourceGeometryData: NavigationMeshSourceGeometryData3D,
+    rootNode: Node,
+    callback: Callable = Callable(),
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_PARSE_SOURCE_GEOMETRY_DATA, NIL)
+  }
+
+  /**
+   * Bakes the provided [navigationMesh] with the data from the provided [sourceGeometryData]. After the process is finished the optional [callback] will be called.
+   */
+  public fun bakeFromSourceGeometryData(
+    navigationMesh: NavigationMesh,
+    sourceGeometryData: NavigationMeshSourceGeometryData3D,
+    callback: Callable = Callable(),
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_BAKE_FROM_SOURCE_GEOMETRY_DATA, NIL)
   }
 
   /**

@@ -17,12 +17,20 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A synchronization semaphore.
+ * A synchronization mechanism used to control access to a shared resource by [godot.Thread]s.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/performance/using_multiple_threads.html]($DOCS_URL/tutorials/performance/using_multiple_threads.html)
+ * [$DOCS_URL/tutorials/performance/thread_safe_apis.html]($DOCS_URL/tutorials/performance/thread_safe_apis.html)
  *
- * A synchronization semaphore which can be used to synchronize multiple [godot.Thread]s. Initialized to zero on creation. Be careful to avoid deadlocks. For a binary version, see [godot.Mutex].
+ * A synchronization semaphore that can be used to synchronize multiple [godot.Thread]s. Initialized to zero on creation. For a binary version, see [godot.Mutex].
+ *
+ * **Warning:** Semaphores must be used carefully to avoid deadlocks.
+ *
+ * **Warning:** To guarantee that the operating system is able to perform proper cleanup (no crashes, no deadlocks), these conditions must be met:
+ *
+ * - When a [godot.Semaphore]'s reference count reaches zero and it is therefore destroyed, no threads must be waiting on it.
+ *
+ * - When a [godot.Thread]'s reference count reaches zero and it is therefore destroyed, it must not be waiting on any semaphore.
  */
 @GodotBaseType
 public open class Semaphore : RefCounted() {

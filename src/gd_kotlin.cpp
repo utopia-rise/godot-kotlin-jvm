@@ -131,7 +131,9 @@ void GDKotlin::init() {
     const List<String>& cmdline_args {OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
         const String cmd_arg {cmdline_args[i]};
-        if (cmd_arg.find("--java-vm-type") >= 0) {
+        if (cmd_arg.find("--dump-extension-api") >= 0) {
+            return;
+        } else if (cmd_arg.find("--java-vm-type") >= 0) {
             _split_jvm_debug_argument(cmd_arg, jvm_type_argument);
 #ifdef __ANDROID__
             LOG_WARNING("You're running android, will use ART.");

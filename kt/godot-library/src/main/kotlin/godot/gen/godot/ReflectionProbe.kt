@@ -76,7 +76,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The maximum distance away from the [godot.ReflectionProbe] an object can be before it is culled. Decrease this to improve performance, especially when using the [UPDATE_ALWAYS] [updateMode].
    *
-   * **Note:** The maximum reflection distance is always at least equal to the probe's extents. This means that decreasing [maxDistance] will not always cull objects from reflections, especially if the reflection probe's [size] is already large.
+   * **Note:** The maximum reflection distance is always at least equal to the probe's extents. This means that decreasing [maxDistance] will not always cull objects from reflections, especially if the reflection probe's box defined by its [size] is already large.
    */
   public var maxDistance: Double
     get() {
@@ -208,7 +208,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   /**
-   * The ambient color to use within the [godot.ReflectionProbe]'s [size]. The ambient color will smoothly blend with other [godot.ReflectionProbe]s and the rest of the scene (outside the [godot.ReflectionProbe]'s [size]).
+   * The ambient color to use within the [godot.ReflectionProbe]'s box defined by its [size]. The ambient color will smoothly blend with other [godot.ReflectionProbe]s and the rest of the scene (outside the [godot.ReflectionProbe]'s box defined by its [size]).
    */
   public var ambientMode: AmbientMode
     get() {
@@ -224,7 +224,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   /**
-   * The custom ambient color to use within the [godot.ReflectionProbe]'s [size]. Only effective if [ambientMode] is [AMBIENT_COLOR].
+   * The custom ambient color to use within the [godot.ReflectionProbe]'s box defined by its [size]. Only effective if [ambientMode] is [AMBIENT_COLOR].
    */
   public var ambientColor: Color
     get() {
@@ -240,7 +240,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   /**
-   * The custom ambient color energy to use within the [godot.ReflectionProbe]'s [size]. Only effective if [ambientMode] is [AMBIENT_COLOR].
+   * The custom ambient color energy to use within the [godot.ReflectionProbe]'s box defined by its [size]. Only effective if [ambientMode] is [AMBIENT_COLOR].
    */
   public var ambientColorEnergy: Double
     get() {
@@ -287,15 +287,15 @@ public open class ReflectionProbe : VisualInstance3D() {
     id: Long,
   ) {
     /**
-     * Do not apply any ambient lighting inside the [godot.ReflectionProbe]'s [size].
+     * Do not apply any ambient lighting inside the [godot.ReflectionProbe]'s box defined by its [size].
      */
     AMBIENT_DISABLED(0),
     /**
-     * Apply automatically-sourced environment lighting inside the [godot.ReflectionProbe]'s [size].
+     * Apply automatically-sourced environment lighting inside the [godot.ReflectionProbe]'s box defined by its [size].
      */
     AMBIENT_ENVIRONMENT(1),
     /**
-     * Apply custom ambient lighting inside the [godot.ReflectionProbe]'s [size]. See [ambientColor] and [ambientColorEnergy].
+     * Apply custom ambient lighting inside the [godot.ReflectionProbe]'s box defined by its [size]. See [ambientColor] and [ambientColorEnergy].
      */
     AMBIENT_COLOR(2),
     ;

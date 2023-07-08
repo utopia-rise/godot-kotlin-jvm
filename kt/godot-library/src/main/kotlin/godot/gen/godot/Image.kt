@@ -350,7 +350,7 @@ public open class Image : Resource() {
   /**
    * Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.
    *
-   * The [mode] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.
+   * The [source] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.
    *
    * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
@@ -1025,6 +1025,14 @@ public open class Image : Resource() {
      * Use BPTC compression.
      */
     COMPRESS_BPTC(3),
+    /**
+     * Use ASTC compression.
+     */
+    COMPRESS_ASTC(4),
+    /**
+     * Represents the size of the [enum CompressMode] enum.
+     */
+    COMPRESS_MAX(5),
     ;
 
     public val id: Long

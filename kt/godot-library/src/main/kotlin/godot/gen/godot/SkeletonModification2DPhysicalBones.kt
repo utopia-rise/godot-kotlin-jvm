@@ -76,7 +76,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   }
 
   /**
-   * Empties the list of [godot.PhysicalBone2D] nodes and populates it will all [godot.PhysicalBone2D] nodes that are children of the [godot.Skeleton2D].
+   * Empties the list of [godot.PhysicalBone2D] nodes and populates it with all [godot.PhysicalBone2D] nodes that are children of the [godot.Skeleton2D].
    */
   public fun fetchPhysicalBones(): Unit {
     TransferContext.writeArguments()

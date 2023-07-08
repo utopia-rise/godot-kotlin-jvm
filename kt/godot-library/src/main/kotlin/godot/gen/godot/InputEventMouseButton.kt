@@ -20,12 +20,12 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * Input event type for mouse button events.
+ * Represents a mouse button being pressed or released.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/mouse_and_input_coordinates.html]($DOCS_URL/tutorials/inputs/mouse_and_input_coordinates.html)
  *
- * Contains mouse click information. See [godot.Node.Input].
+ * Stores information about mouse click events. See [godot.Node.Input].
  */
 @GodotBaseType
 public open class InputEventMouseButton : InputEventMouse() {
@@ -59,6 +59,19 @@ public open class InputEventMouseButton : InputEventMouse() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_BUTTON_INDEX, NIL)
+    }
+
+  /**
+   * If `true`, the mouse button event has been canceled.
+   */
+  public var canceled: Boolean
+    @JvmName("isCanceled_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isCanceled()
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_CANCELED, NIL)
     }
 
   /**

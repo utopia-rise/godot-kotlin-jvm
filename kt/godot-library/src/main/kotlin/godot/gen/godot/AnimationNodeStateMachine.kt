@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -23,12 +24,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * State machine for control of animations.
+ * A state machine with multiple [godot.AnimationRootNode]s, used by [godot.AnimationTree].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
- * Contains multiple nodes representing animation states, connected in a graph. Node transitions can be configured to happen automatically or via code, using a shortest-path algorithm. Retrieve the [godot.AnimationNodeStateMachinePlayback] object from the [godot.AnimationTree] node to control it programmatically.
+ * Contains multiple [godot.AnimationRootNode]s representing animation states, connected in a graph. State transitions can be configured to happen automatically or via code, using a shortest-path algorithm. Retrieve the [godot.AnimationNodeStateMachinePlayback] object from the [godot.AnimationTree] node to control it programmatically.
  *
  * **Example:**
  *
@@ -55,6 +56,22 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
+   * This property can define the process of transitions for different use cases. See also [enum AnimationNodeStateMachine.StateMachineType].
+   */
+  public var stateMachineType: StateMachineType
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_STATE_MACHINE_TYPE, LONG)
+      return AnimationNodeStateMachine.StateMachineType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_STATE_MACHINE_TYPE, NIL)
+    }
+
+  /**
    * If `true`, allows teleport to the self state with [godot.AnimationNodeStateMachinePlayback.travel]. When the reset option is enabled in [godot.AnimationNodeStateMachinePlayback.travel], the animation is restarted. If `false`, nothing happens on the teleportation to the self state.
    */
   public var allowTransitionToSelf: Boolean
@@ -70,13 +87,31 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_ALLOW_TRANSITION_TO_SELF, NIL)
     }
 
+  /**
+   * If `true`, treat the cross-fade to the start and end nodes as a blend with the RESET animation.
+   *
+   * In most cases, when additional cross-fades are performed in the parent [godot.AnimationNode] of the state machine, setting this property to `false` and matching the cross-fade time of the parent [godot.AnimationNode] and the state machine's start node and end node gives good results.
+   */
+  public var resetEnds: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_ARE_ENDS_RESET, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_RESET_ENDS, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINE, scriptIndex)
     return true
   }
 
   /**
-   * Adds a new node to the graph. The [position] is used for display in the editor.
+   * Adds a new animation node to the graph. The [position] is used for display in the editor.
    */
   public fun addNode(
     name: StringName,
@@ -108,7 +143,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   /**
-   * Deletes the given node from the graph.
+   * Deletes the given animation node from the graph.
    */
   public fun removeNode(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -117,7 +152,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   /**
-   * Renames the given node.
+   * Renames the given animation node.
    */
   public fun renameNode(name: StringName, newName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newName)
@@ -126,7 +161,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   /**
-   * Returns `true` if the graph contains the given node.
+   * Returns `true` if the graph contains the given animation node.
    */
   public fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -146,7 +181,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   /**
-   * Sets the node's coordinates. Used for display in the editor.
+   * Sets the animation node's coordinates. Used for display in the editor.
    */
   public fun setNodePosition(name: StringName, position: Vector2): Unit {
     TransferContext.writeArguments(STRING_NAME to name, VECTOR2 to position)
@@ -155,7 +190,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   /**
-   * Returns the given node's coordinates. Used for display in the editor.
+   * Returns the given animation node's coordinates. Used for display in the editor.
    */
   public fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -165,7 +200,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   /**
-   * Returns `true` if there is a transition between the given nodes.
+   * Returns `true` if there is a transition between the given animation nodes.
    */
   public fun hasTransition(from: StringName, to: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to from, STRING_NAME to to)
@@ -175,7 +210,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   /**
-   * Adds a transition between the given nodes.
+   * Adds a transition between the given animation nodes.
    */
   public fun addTransition(
     from: StringName,
@@ -237,7 +272,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   /**
-   * Deletes the transition between the two specified nodes.
+   * Deletes the transition between the two specified animation nodes.
    */
   public fun removeTransition(from: StringName, to: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to from, STRING_NAME to to)
@@ -262,6 +297,33 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_GRAPH_OFFSET, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  public enum class StateMachineType(
+    id: Long,
+  ) {
+    /**
+     * Seeking to the beginning is treated as playing from the start state. Transition to the end state is treated as exiting the state machine.
+     */
+    STATE_MACHINE_TYPE_ROOT(0),
+    /**
+     * Seeking to the beginning is treated as seeking to the beginning of the animation in the current state. Transition to the end state, or the absence of transitions in each state, is treated as exiting the state machine.
+     */
+    STATE_MACHINE_TYPE_NESTED(1),
+    /**
+     * This is a grouped state machine that can be controlled from a parent state machine. It does not work on standalone. There must be a state machine with [stateMachineType] of [STATE_MACHINE_TYPE_ROOT] or [STATE_MACHINE_TYPE_NESTED] in the parent or ancestor.
+     */
+    STATE_MACHINE_TYPE_GROUPED(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public companion object

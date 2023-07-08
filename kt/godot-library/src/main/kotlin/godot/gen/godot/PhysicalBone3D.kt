@@ -25,9 +25,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * A physics body used to make bones in a [godot.Skeleton3D] react to physics.
  *
- *
- * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
+ * The [godot.PhysicalBone3D] node is a physics body that can be used to make bones in a [godot.Skeleton3D] react to physics.
  */
 @GodotBaseType
 public open class PhysicalBone3D : PhysicsBody3D() {

@@ -20,9 +20,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A hinge between two 3D PhysicsBodies.
+ * A physics joint that restricts the rotation of a 3D physics body around an axis relative to another physics body.
  *
- * A HingeJoint3D normally uses the Z axis of body A as the hinge axis, another axis can be specified when adding it manually though. See also [godot.Generic6DOFJoint3D].
+ * A physics joint that restricts the rotation of a 3D physics body around an axis relative to another physics body. For example, Body A can be a [godot.StaticBody3D] representing a door hinge that a [godot.RigidBody3D] rotates around.
  */
 @GodotBaseType
 public open class HingeJoint3D : Joint3D() {

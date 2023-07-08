@@ -19,7 +19,31 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Efficiently packs and serializes [godot.Array] or [godot.core.Dictionary].
  *
+ * [godot.PackedDataContainer] can be used to efficiently store data from untyped containers. The data is packed into raw bytes and can be saved to file. Only [godot.Array] and [godot.core.Dictionary] can be stored this way.
+ *
+ * You can retrieve the data by iterating on the container, which will work as if iterating on the packed data itself. If the packed container is a [godot.core.Dictionary], the data can be retrieved by key names ([godot.String]/[godot.StringName] only).
+ *
+ * ```
+ * 		var data = { "key": "value", "another_key": 123, "lock": Vector2() }
+ * 		var packed = PackedDataContainer.new()
+ * 		packed.pack(data)
+ * 		ResourceSaver.save(packed, "packed_data.res")
+ * 		```
+ *
+ * ```
+ * 		var container = load("packed_data.res")
+ * 		for key in container:
+ * 		    prints(key, container[key])
+ *
+ * 		# Prints:
+ * 		# key value
+ * 		# lock (0, 0)
+ * 		# another_key 123
+ * 		```
+ *
+ * Nested containers will be packed recursively. While iterating, they will be returned as [godot.PackedDataContainerRef].
  */
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
@@ -29,7 +53,9 @@ public open class PackedDataContainer : Resource() {
   }
 
   /**
+   * Packs the given container into a binary representation. The [value] must be either [godot.Array] or [godot.core.Dictionary], any other type will result in invalid data error.
    *
+   * **Note:** Subsequent calls to this method will overwrite the existing data.
    */
   public fun pack(`value`: Any): GodotError {
     TransferContext.writeArguments(ANY to value)
@@ -38,7 +64,7 @@ public open class PackedDataContainer : Resource() {
   }
 
   /**
-   *
+   * Returns the size of the packed container (see [godot.Array.size] and [godot.Dictionary.size]).
    */
   public fun size(): Long {
     TransferContext.writeArguments()

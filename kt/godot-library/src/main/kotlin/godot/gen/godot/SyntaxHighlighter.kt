@@ -22,13 +22,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base Syntax highlighter resource for [godot.TextEdit].
+ * Base class for syntax highlighters. Provides syntax highlighting data to a [godot.TextEdit].
  *
- * Base syntax highlighter resource all syntax highlighters extend from, provides syntax highlighting data to [godot.TextEdit].
+ * Base class for syntax highlighters. Provides syntax highlighting data to a [godot.TextEdit]. The associated [godot.TextEdit] will call into the [godot.SyntaxHighlighter] on an as-needed basis.
  *
- * The associated [godot.TextEdit] node will call into the [godot.SyntaxHighlighter] on a as needed basis.
- *
- * **Note:** Each Syntax highlighter instance should not be shared across multiple [godot.TextEdit] nodes.
+ * **Note:** A [godot.SyntaxHighlighter] instance should not be used across multiple [godot.TextEdit] nodes.
  */
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {

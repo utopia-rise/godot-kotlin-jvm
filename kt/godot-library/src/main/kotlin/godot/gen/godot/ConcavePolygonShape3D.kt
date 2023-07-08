@@ -17,18 +17,20 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Concave polygon shape resource (also called "trimesh") for 3D physics.
+ * A 3D trimesh shape used for physics collision.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
  *
- * 3D concave polygon shape resource (also called "trimesh") to be added as a *direct* child of a [godot.PhysicsBody3D] or [godot.Area3D] using a [godot.CollisionShape3D] node. This shape is created by feeding a list of triangles. Despite its name, [godot.ConcavePolygonShape3D] can also store convex polygon shapes. However, unlike [godot.ConvexPolygonShape3D], [godot.ConcavePolygonShape3D] is *not* limited to storing convex shapes exclusively.
+ * A 3D trimesh shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape3D].
  *
- * **Note:** When used for collision, [godot.ConcavePolygonShape3D] is intended to work with static [godot.PhysicsBody3D] nodes like [godot.StaticBody3D] and will not work with [godot.CharacterBody3D] or [godot.RigidBody3D] with a mode other than Static.
+ * Being just a collection of interconnected triangles, [godot.ConcavePolygonShape3D] is the most freely configurable single 3D shape. It can be used to form polyhedra of any nature, or even shapes that don't enclose a volume. However, [godot.ConvexPolygonShape3D] is *hollow* even if the interconnected triangles do enclose a volume, which often makes it unsuitable for physics or detection.
  *
- * **Performance:** Due to its complexity, [godot.ConcavePolygonShape3D] is the slowest collision shape to check collisions against. Its use should generally be limited to level geometry. For convex geometry, using [godot.ConvexPolygonShape3D] will perform better. For dynamic physics bodies that need concave collision, several [godot.ConvexPolygonShape3D]s can be used to represent its collision by using convex decomposition; see [godot.ConvexPolygonShape3D]'s documentation for instructions. However, consider using primitive collision shapes such as [godot.SphereShape3D] or [godot.BoxShape3D] first.
+ * **Note:** When used for collision, [godot.ConcavePolygonShape3D] is intended to work with static [godot.CollisionShape3D] nodes like [godot.StaticBody3D] and will likely not behave well for [godot.CharacterBody3D]s or [godot.RigidBody3D]s in a mode other than Static.
  *
- * **Warning:** Using this shape for an [godot.Area3D] (via a [godot.CollisionShape3D] node, created e.g. by using the *Create Trimesh Collision Sibling* option in the *Mesh* menu that appears when selecting a [godot.MeshInstance3D] node) may give unexpected results: the area will only detect collisions with the triangle faces in the [godot.ConcavePolygonShape3D] (and not with any "inside" of the shape, for example); moreover it will only detect all such collisions if [backfaceCollision] is `true`.
+ * **Warning:** Physics bodies that are small have a chance to clip through this shape when moving fast. This happens because on one frame, the physics body may be on the "outside" of the shape, and on the next frame it may be "inside" it. [godot.ConcavePolygonShape3D] is hollow, so it won't detect a collision.
+ *
+ * **Performance:** Due to its complexity, [godot.ConcavePolygonShape3D] is the slowest 3D collision shape to check collisions against. Its use should generally be limited to level geometry. For convex geometry, [godot.ConvexPolygonShape3D] should be used. For dynamic physics bodies that need concave collision, several [godot.ConvexPolygonShape3D]s can be used to represent its collision by using convex decomposition; see [godot.ConvexPolygonShape3D]'s documentation for instructions.
  */
 @GodotBaseType
 public open class ConcavePolygonShape3D : Shape3D() {

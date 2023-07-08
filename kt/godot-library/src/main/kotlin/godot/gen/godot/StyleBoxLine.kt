@@ -21,9 +21,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * [godot.StyleBox] that displays a single line.
+ * A [godot.StyleBox] that displays a single line of a given color and thickness.
  *
- * [godot.StyleBox] that displays a single line of a given color and thickness. It can be used to draw things like separators.
+ * A [godot.StyleBox] that displays a single line of a given color and thickness. The line can be either horizontal or vertical. Useful for separators.
  */
 @GodotBaseType
 public open class StyleBoxLine : StyleBox() {

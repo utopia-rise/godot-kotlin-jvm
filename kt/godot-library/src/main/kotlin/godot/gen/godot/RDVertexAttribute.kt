@@ -17,7 +17,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Vertex attribute (used by [godot.RenderingDevice]).
  *
+ * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDVertexAttribute : RefCounted() {

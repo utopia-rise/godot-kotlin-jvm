@@ -20,9 +20,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Data buffer stream peer.
+ * A stream peer used to handle binary data streams.
  *
- * Data buffer stream peer that uses a byte array as the stream. This object can be used to handle binary data from network sessions. To handle binary data stored in files, [godot.FileAccess] can be used directly.
+ * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle binary data from network sessions. To handle binary data stored in files, [godot.FileAccess] can be used directly.
  *
  * A [godot.StreamPeerBuffer] object keeps an internal cursor which is the offset in bytes to the start of the buffer. Get and put operations are performed at the cursor position and will move the cursor accordingly.
  */

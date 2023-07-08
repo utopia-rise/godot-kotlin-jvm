@@ -61,7 +61,7 @@ import kotlin.Unit
  *
  *     if server.is_connection_available():
  *
- *         var peer : PacketPeerUDP = server.take_connection()
+ *         var peer: PacketPeerUDP = server.take_connection()
  *
  *         var packet = peer.get_packet()
  *
@@ -189,7 +189,7 @@ import kotlin.Unit
  *
  *         # Try to contact server
  *
- *         udp.put_packet("The answer is... 42!".to_utf8())
+ *         udp.put_packet("The answer is... 42!".to_utf8_buffer())
  *
  *     if udp.get_available_packet_count() > 0:
  *
@@ -237,7 +237,7 @@ import kotlin.Unit
  *
  *             // Try to contact server
  *
- *             _udp.PutPacket("The Answer Is..42!".ToUtf8());
+ *             _udp.PutPacket("The Answer Is..42!".ToUtf8Buffer());
  *
  *         }
  *

@@ -16,9 +16,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Optimized translation.
+ * An optimized translation, used by default for CSV Translations.
  *
- * Optimized translation. Uses real-time compressed translations, which results in very small dictionaries.
+ * An optimized translation, used by default for CSV Translations. Uses real-time compressed translations, which results in very small dictionaries.
  */
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {

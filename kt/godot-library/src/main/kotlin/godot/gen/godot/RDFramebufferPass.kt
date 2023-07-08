@@ -18,11 +18,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Framebuffer pass attachment description.
+ * Framebuffer pass attachment description (used by [godot.RenderingDevice]).
  *
  * This class contains the list of attachment descriptions for a framebuffer pass. Each points with an index to a previously supplied list of texture attachments.
  *
- * Multipass framebuffers can optimize some configurations in mobile, on desktop they provide little to no advantage.
+ * Multipass framebuffers can optimize some configurations in mobile. On desktop, they provide little to no advantage.
+ *
+ * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDFramebufferPass : RefCounted() {
@@ -113,7 +115,7 @@ public open class RDFramebufferPass : RefCounted() {
 
   public companion object {
     /**
-     *
+     * Attachment is unused.
      */
     public final const val ATTACHMENT_UNUSED: Long = -1
   }

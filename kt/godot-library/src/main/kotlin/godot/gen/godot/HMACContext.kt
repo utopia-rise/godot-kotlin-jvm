@@ -34,15 +34,15 @@ import kotlin.Suppress
  *
  * func _ready():
  *
- *     var key = "supersecret".to_utf8()
+ *     var key = "supersecret".to_utf8_buffer()
  *
  *     var err = ctx.start(HashingContext.HASH_SHA256, key)
  *
  *     assert(err == OK)
  *
- *     var msg1 = "this is ".to_utf8()
+ *     var msg1 = "this is ".to_utf8_buffer()
  *
- *     var msg2 = "super duper secret".to_utf8()
+ *     var msg2 = "super duper secret".to_utf8_buffer()
  *
  *     err = ctx.update(msg1)
  *
@@ -80,15 +80,15 @@ import kotlin.Suppress
  *
  *     {
  *
- *         byte[] key = "supersecret".ToUtf8();
+ *         byte[] key = "supersecret".ToUtf8Buffer();
  *
  *         Error err = _ctx.Start(HashingContext.HashType.Sha256, key);
  *
  *         Debug.Assert(err == Error.Ok);
  *
- *         byte[] msg1 = "this is ".ToUtf8();
+ *         byte[] msg1 = "this is ".ToUtf8Buffer();
  *
- *         byte[] msg2 = "super duper secret".ToUtf8();
+ *         byte[] msg2 = "super duper secret".ToUtf8Buffer();
  *
  *         err = _ctx.Update(msg1);
  *

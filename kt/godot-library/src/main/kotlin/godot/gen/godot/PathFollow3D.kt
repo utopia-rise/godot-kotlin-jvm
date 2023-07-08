@@ -103,6 +103,22 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
+   * If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also [godot.Vector3.FORWARD] and [godot.Vector3.MODEL_FRONT].
+   */
+  public var useModelFront: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_IS_USING_MODEL_FRONT,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_USE_MODEL_FRONT,
+          NIL)
+    }
+
+  /**
    * If `true`, the position between two cached points is interpolated cubically, and linearly otherwise.
    *
    * The points along the [godot.Curve3D] of the [godot.Path3D] are precomputed before use, for faster calculations. The point at the requested offset is then calculated interpolating between two adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached points may not follow the curve closely enough.

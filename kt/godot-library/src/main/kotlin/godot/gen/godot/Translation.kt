@@ -24,12 +24,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Language Translation.
+ * A language translation that maps a collection of strings to their individual translations.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/i18n/locales.html]($DOCS_URL/tutorials/i18n/locales.html)
  *
- * Translations are resources that can be loaded and unloaded on demand. They map a string to another string.
+ * [godot.Translation]s are resources that can be loaded and unloaded on demand. They map a collection of strings to their individual translations, and they also provide convenience methods for pluralization.
  */
 @GodotBaseType
 public open class Translation : Resource() {

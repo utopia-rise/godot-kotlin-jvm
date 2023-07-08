@@ -122,7 +122,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [godot.MeshInstance3D] or to have fine control over the [godot.MeshInstance3D]'s bounding box. To remove this, set value to an [AABB] with all fields set to zero.
+   * Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [godot.MeshInstance3D] or to have fine control over the [godot.MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [godot.RenderingServer.instanceSetIgnoreCulling] on the [godot.GeometryInstance3D]'s [RID].
    */
   public var customAabb: AABB
     get() {
@@ -157,6 +157,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   /**
    * If `true`, disables occlusion culling for this instance. Useful for gizmos that must be rendered even when occlusion culling is in use.
+   *
+   * **Note:** [ignoreOcclusionCulling] does not affect frustum culling (which is what happens when an object is not visible given the camera's angle). To avoid frustum culling, set [customAabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`.
    */
   public var ignoreOcclusionCulling: Boolean
     get() {
@@ -224,7 +226,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Margin for the [visibilityRangeBegin] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [visibilityRangeBegin] threshold by this amount.
    *
-   * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as an hysteresis distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.
+   * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.
    */
   public var visibilityRangeBeginMargin: Double
     get() {
@@ -258,7 +260,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Margin for the [visibilityRangeEnd] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [visibilityRangeEnd] threshold by this amount.
    *
-   * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as an hysteresis distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.
+   * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.
    */
   public var visibilityRangeEndMargin: Double
     get() {

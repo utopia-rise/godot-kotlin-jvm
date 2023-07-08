@@ -34,7 +34,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Access to engine properties.
+ * Provides access to engine properties.
  *
  * The [godot.Engine] singleton allows you to query and modify the project's run-time parameters, such as frames per second, time scale, and others.
  */

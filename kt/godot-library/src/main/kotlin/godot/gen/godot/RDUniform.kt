@@ -22,12 +22,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Shader uniform (used by [godot.RenderingDevice]).
  *
+ * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDUniform : RefCounted() {
   /**
-   *
+   * The uniform's data type.
    */
   public var uniformType: RenderingDevice.UniformType
     get() {
@@ -41,7 +43,7 @@ public open class RDUniform : RefCounted() {
     }
 
   /**
-   *
+   * The uniform's binding.
    */
   public var binding: Long
     get() {

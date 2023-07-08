@@ -33,9 +33,23 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Server interface for low-level physics access.
+ * A server interface for low-level 3D physics access.
  *
- * PhysicsServer3D is the server responsible for all 3D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
+ * PhysicsServer2D is the server responsible for all 2D physics. It can directly create and manipulate all physics objects:
+ *
+ * - A *space* is a self-contained world for a physics simulation. It contains bodies, areas, and joints. Its state can be queried for collision and intersection information, and several parameters of the simulation can be modified.
+ *
+ * - A *shape* is a geometric shape such as a sphere, a box, a cylinder, or a polygon. It can be used for collision detection by adding it to a body/area, possibly with an extra transformation relative to the body/area's origin. Bodies/areas can have multiple (transformed) shapes added to them, and a single shape can be added to bodies/areas multiple times with different local transformations.
+ *
+ * - A *body* is a physical object which can be in static, kinematic, or rigid mode. Its state (such as position and velocity) can be queried and updated. A force integration callback can be set to customize the body's physics.
+ *
+ * - An *area* is a region in space which can be used to detect bodies and areas entering and exiting it. A body monitoring callback can be set to report entering/exiting body shapes, and similarly an area monitoring callback can be set. Gravity and damping can be overridden within the area by setting area parameters.
+ *
+ * - A *joint* is a constraint, either between two bodies or on one body relative to a point. Parameters such as the joint bias and the rest length of a spring joint can be adjusted.
+ *
+ * Physics objects in [godot.PhysicsServer3D] may be created and manipulated independently; they do not have to be tied to nodes in the scene tree.
+ *
+ * **Note:** All the 3D physics nodes use the physics server internally. Adding a physics node to the scene tree will cause a corresponding physics object to be created in the physics server. A rigid body node registers a callback that updates the node's transform with the transform of the respective body object in the physics server (every physics update). An area node registers a callback to inform the area node about overlaps with the respective area object in the physics server. The raycast node queries the direct state of the relevant space in the physics server.
  */
 @GodotBaseType
 public object PhysicsServer3D : Object() {
@@ -456,17 +470,19 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the function to call when any body/area enters or exits the area. This callback will be called for any object interacting with the area, and takes five parameters:
+   * Sets the area's body monitor callback. This callback will be called when any other (shape of a) body enters or exits (a shape of) the given area, and must take the following five parameters:
    *
-   * 1: [AREA_BODY_ADDED] or [AREA_BODY_REMOVED], depending on whether the object entered or exited the area.
+   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether the other body shape entered or exited the area,
    *
-   * 2: [RID] of the object that entered/exited the area.
+   * 2. an [RID] `body_rid`: the [RID] of the body that entered or exited the area,
    *
-   * 3: Instance ID of the object that entered/exited the area.
+   * 3. an integer `instance_id`: the `ObjectID` attached to the body,
    *
-   * 4: The shape index of the object that entered/exited the area.
+   * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the area,
    *
-   * 5: The shape index of the area where the object entered/exited.
+   * 5. an integer `self_shape_idx`: the index of the shape of the area where the body entered or exited.
+   *
+   * By counting (or keeping track of) the shapes that enter and exit, it can be determined if a body (with all its shapes) is entering for the first time or exiting for the last time.
    */
   public fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
@@ -475,7 +491,19 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
+   * Sets the area's area monitor callback. This callback will be called when any other (shape of an) area enters or exits (a shape of) the given area, and must take the following five parameters:
    *
+   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether the other area's shape entered or exited the area,
+   *
+   * 2. an [RID] `area_rid`: the [RID] of the other area that entered or exited the area,
+   *
+   * 3. an integer `instance_id`: the `ObjectID` attached to the other area,
+   *
+   * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited the area,
+   *
+   * 5. an integer `self_shape_idx`: the index of the shape of the area where the other area entered or exited.
+   *
+   * By counting (or keeping track of) the shapes that enter and exit, it can be determined if an area (with all its shapes) is entering for the first time or exiting for the last time.
    */
   public fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)

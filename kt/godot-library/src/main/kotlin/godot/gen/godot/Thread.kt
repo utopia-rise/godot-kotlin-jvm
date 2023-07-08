@@ -32,6 +32,16 @@ import kotlin.Suppress
  * A unit of execution in a process. Can run methods on [godot.Object]s simultaneously. The use of synchronization via [godot.Mutex] or [godot.Semaphore] is advised if working with shared objects.
  *
  * **Note:** Breakpoints won't break on code if it's running in a thread. This is a current limitation of the GDScript debugger.
+ *
+ * **Warning:**
+ *
+ * To ensure proper cleanup without crashes or deadlocks, when a [godot.Thread]'s reference count reaches zero and it is therefore destroyed, the following conditions must be met:
+ *
+ * - It must not have any [godot.Mutex] objects locked.
+ *
+ * - It must not be waiting on any [godot.Semaphore] objects.
+ *
+ * - [waitToFinish] should have been called on it.
  */
 @GodotBaseType
 public open class Thread : RefCounted() {
@@ -57,7 +67,7 @@ public open class Thread : RefCounted() {
   }
 
   /**
-   * Returns the current [godot.Thread]'s ID, uniquely identifying it among all threads. If the [godot.Thread] is not running this returns an empty string.
+   * Returns the current [godot.Thread]'s ID, uniquely identifying it among all threads. If the [godot.Thread] has not started running or if [waitToFinish] has been called, this returns an empty string.
    */
   public fun getId(): String {
     TransferContext.writeArguments()
@@ -75,7 +85,7 @@ public open class Thread : RefCounted() {
   }
 
   /**
-   * Returns `true` if this [godot.Thread] is currently running. This is useful for determining if [waitToFinish] can be called without blocking the calling thread.
+   * Returns `true` if this [godot.Thread] is currently running the provided function. This is useful for determining if [waitToFinish] can be called without blocking the calling thread.
    *
    * To check if a [godot.Thread] is joinable, use [isStarted].
    */
@@ -91,8 +101,6 @@ public open class Thread : RefCounted() {
    * Should either be used when you want to retrieve the value returned from the method called by the [godot.Thread] or before freeing the instance that contains the [godot.Thread].
    *
    * To determine if this can be called without blocking the calling thread, check if [isAlive] is `false`.
-   *
-   * **Note:** After the [godot.Thread] finishes joining it will be disposed. If you want to use it again you will have to create a new instance of it.
    */
   public fun waitToFinish(): Any? {
     TransferContext.writeArguments()

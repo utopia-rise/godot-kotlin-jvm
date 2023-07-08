@@ -16,33 +16,17 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Colored rectangle.
+ * A control that displays a solid color rectangle.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
  *
- * Displays a rectangle filled with a solid [color]. If you need to display the border alone, consider using [godot.ReferenceRect] instead.
+ * Displays a rectangle filled with a solid [color]. If you need to display the border alone, consider using a [godot.Panel] instead.
  */
 @GodotBaseType
 public open class ColorRect : Control() {
   /**
-   * The fill color.
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
-   * $ColorRect.color = Color(1, 0, 0, 1) # Set ColorRect's color to red.
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
-   * GetNode<ColorRect>("ColorRect").Color = new Color(1, 0, 0, 1); // Set ColorRect's color to red.
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * The fill color of the rectangle.
    */
   public var color: Color
     get() {

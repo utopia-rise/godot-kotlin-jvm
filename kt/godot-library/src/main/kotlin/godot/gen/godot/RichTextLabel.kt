@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.PackedFloat32Array
 import godot.core.PackedStringArray
 import godot.core.Rect2
 import godot.core.VariantArray
@@ -22,6 +23,7 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
@@ -41,20 +43,20 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Label that displays rich text.
+ * A control for displaying text that can contain different font styles, images, and basic formatting.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
  *
- * Rich text can contain custom text, fonts, images and some basic formatting. The label manages these as an internal tag stack. It also adapts itself to given width/heights.
+ * A control for displaying text that can contain custom fonts, images, and basic formatting. [godot.RichTextLabel] manages these as an internal tag stack. It also adapts itself to given width/heights.
  *
  * **Note:** Assignments to [text] clear the tag stack and reconstruct it from the property's contents. Any edits made to [text] will erase previous edits made from other manual sources such as [appendText] and the `push_*` / [pop] methods.
  *
  * **Note:** RichTextLabel doesn't support entangled BBCode tags. For example, instead of using `**bold*bold italic**italic*`, use `**bold*bold italic****italic*`.
  *
- * **Note:** `push_* / pop` functions won't affect BBCode.
+ * **Note:** `push_* / pop_*` functions won't affect BBCode.
  *
- * **Note:** Unlike [godot.Label], RichTextLabel doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a `[center]` tag as follows: `[center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContent] property.
+ * **Note:** Unlike [godot.Label], [godot.RichTextLabel] doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a `[center]` tag as follows: `[center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContent] property.
  */
 @GodotBaseType
 public open class RichTextLabel : Control() {
@@ -550,7 +552,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[font]` tag with a italics font to the tag stack. This is the same as adding a `*` tag if not currently in a `**` tag.
+   * Adds a `[font]` tag with an italics font to the tag stack. This is the same as adding an `*` tag if not currently in a `**` tag.
    */
   public fun pushItalics(): Unit {
     TransferContext.writeArguments()
@@ -600,8 +602,10 @@ public open class RichTextLabel : Control() {
     language: String = "",
     stParser: TextServer.StructuredTextParser =
         TextServer.StructuredTextParser.STRUCTURED_TEXT_DEFAULT,
+    justificationFlags: Long = 163,
+    tabStops: PackedFloat32Array = PackedFloat32Array(),
   ): Unit {
-    TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id)
+    TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id, OBJECT to justificationFlags, PACKED_FLOAT_32_ARRAY to tabStops)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_PARAGRAPH, NIL)
   }
 
@@ -620,8 +624,9 @@ public open class RichTextLabel : Control() {
     level: Long,
     type: ListType,
     capitalize: Boolean,
+    bullet: String = "•",
   ): Unit {
-    TransferContext.writeArguments(LONG to level, LONG to type.id, BOOL to capitalize)
+    TransferContext.writeArguments(LONG to level, LONG to type.id, BOOL to capitalize, STRING to bullet)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_LIST, NIL)
   }
 
@@ -779,7 +784,9 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Clears the tag stack and sets [text] to an empty string.
+   * Clears the tag stack.
+   *
+   * **Note:** This method will not modify [text], but setting [text] to an empty string also clears the stack.
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()

@@ -44,7 +44,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * All user interface nodes inherit from Control. A control's anchors and offsets adapt its position and size relative to its parent.
+ * Base class for all GUI controls. Adapts its position and size based on its parent control.
  *
  * Tutorials:
  * [https://github.com/godotengine/godot-demo-projects/tree/master/gui](https://github.com/godotengine/godot-demo-projects/tree/master/gui)
@@ -301,7 +301,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells the parent [godot.Container] nodes how they should resize and place the node on the X axis. Use one of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
+   * Tells the parent [godot.Container] nodes how they should resize and place the node on the X axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
    */
   public var sizeFlagsHorizontal: Long
     get() {
@@ -315,7 +315,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells the parent [godot.Container] nodes how they should resize and place the node on the Y axis. Use one of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
+   * Tells the parent [godot.Container] nodes how they should resize and place the node on the Y axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
    */
   public var sizeFlagsVertical: Long
     get() {
@@ -343,7 +343,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Toggles if any text should automatically change to its translated version depending on the current locale. Note that this will not affect any internal nodes (e.g. the popup of a [godot.MenuButton]).
+   * Toggles if any text should automatically change to its translated version depending on the current locale.
    *
    * Also decides if the node's strings should be parsed for POT generation.
    */
@@ -616,6 +616,15 @@ public open class Control : CanvasItem() {
   }
 
   /**
+   * Virtual method to be implemented by the user. Returns the tooltip text for the position [atPosition] in control's local coordinates, which will typically appear when the cursor is resting over this control. See [getTooltip].
+   *
+   * **Note:** If this method returns an empty [godot.String], no tooltip is displayed.
+   */
+  public open fun _getTooltip(atPosition: Vector2): String {
+    throw NotImplementedError("_get_tooltip is not implemented for Control")
+  }
+
+  /**
    * Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Returns `null` if there is no data to drag. Controls that want to receive drop data should implement [_canDropData] and [_dropData]. [atPosition] is local to this control. Drag may be forced with [forceDrag].
    *
    * A preview that will follow the mouse that should represent the data can be set with [setDragPreview]. A good time to set the preview is in this method.
@@ -685,7 +694,7 @@ public open class Control : CanvasItem() {
    *
    *     // Otherwise, just check data
    *
-   *     return data.VariantType == Variant.Type.Dictionary && data.AsGodotDictionary().Contains("expected");
+   *     return data.VariantType == Variant.Type.Dictionary && data.AsGodotDictionary().ContainsKey("expected");
    *
    * }
    *
@@ -722,7 +731,7 @@ public open class Control : CanvasItem() {
    *
    * {
    *
-   *     return data.VariantType == Variant.Type.Dictionary && dict.AsGodotDictionary().Contains("color");
+   *     return data.VariantType == Variant.Type.Dictionary && dict.AsGodotDictionary().ContainsKey("color");
    *
    * }
    *
@@ -890,6 +899,8 @@ public open class Control : CanvasItem() {
 
   /**
    * Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [godot.Node.UnhandledInput] or [godot.Node.UnhandledKeyInput].
+   *
+   * **Note:** This does not affect the methods in [godot.Input], only the way events are propagated.
    */
   public fun acceptEvent(): Unit {
     TransferContext.writeArguments()
@@ -989,7 +1000,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the anchor for the specified [enum Side]. A getter method for [offsetBottom], [offsetLeft], [offsetRight] and [offsetTop].
+   * Returns the offset for the specified [enum Side]. A getter method for [offsetBottom], [offsetLeft], [offsetRight] and [offsetTop].
    */
   public fun getOffset(offset: Side): Double {
     TransferContext.writeArguments(LONG to offset.id)
@@ -1697,9 +1708,11 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the tooltip text [atPosition] in local coordinates, which will typically appear when the cursor is resting over this control. By default, it returns [tooltipText].
+   * Returns the tooltip text for the position [atPosition] in control's local coordinates, which will typically appear when the cursor is resting over this control. By default, it returns [tooltipText].
    *
-   * **Note:** This method can be overridden to customize its behavior. If this method returns an empty [godot.String], no tooltip is displayed.
+   * This method can be overridden to customize its behavior. See [_getTooltip].
+   *
+   * **Note:** If this method returns an empty [godot.String], no tooltip is displayed.
    */
   public fun getTooltip(atPosition: Vector2 = Vector2(0, 0)): String {
     TransferContext.writeArguments(VECTOR2 to atPosition)
@@ -1717,7 +1730,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the anchor for the specified [enum Side] to the [godot.Control] at [neighbor] node path. A setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and [focusNeighborTop].
+   * Sets the focus neighbor for the specified [enum Side] to the [godot.Control] at [neighbor] node path. A setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and [focusNeighborTop].
    */
   public fun setFocusNeighbor(side: Side, neighbor: NodePath): Unit {
     TransferContext.writeArguments(LONG to side.id, NODE_PATH to neighbor)

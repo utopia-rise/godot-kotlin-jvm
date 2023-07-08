@@ -24,9 +24,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Provides a low-level interface for creating parsers for XML files.
+ *
  * Low-level class for creating parsers for [XML](https://en.wikipedia.org/wiki/XML) files.
  *
- * This class can serve as base to make custom XML parsers. Since XML is a very flexible standard, this interface is low-level so it can be applied to any possible schema.
+ * Provides a low-level interface for creating parsers for [XML](https://en.wikipedia.org/wiki/XML) files. This class can serve as base to make custom XML parsers.
  */
 @GodotBaseType
 public open class XMLParser : RefCounted() {

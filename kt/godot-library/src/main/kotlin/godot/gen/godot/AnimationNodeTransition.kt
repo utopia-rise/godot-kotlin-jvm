@@ -22,7 +22,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A generic animation transition node for [godot.AnimationTree].
+ * A transition within an [godot.AnimationTree] connecting two [godot.AnimationNode]s.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
@@ -59,7 +59,7 @@ import kotlin.jvm.JvmName
  *
  * # Get current state index (read-only).
  *
- * animation_tree.get("parameters/Transition/current_index"))
+ * animation_tree.get("parameters/Transition/current_index")
  *
  * # Alternative syntax (same result as above).
  *
@@ -140,7 +140,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   /**
-   * The number of enabled input ports for this node.
+   * The number of enabled input ports for this animation node.
    */
   public var inputCount: Long
     @JvmName("getInputCount_prop")

@@ -18,8 +18,6 @@ protected:
 private:
     CheckBox* about_dialog_check_box;
 
-    void on_about_to_show();
-
     void on_checkbox_toggled(bool is_selected);
 
     void on_url_clicked(const String& url);

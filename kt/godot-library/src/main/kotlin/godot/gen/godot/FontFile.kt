@@ -45,7 +45,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Font source data and prerendered glyph cache, imported from dynamic or bitmap font.
+ * Holds font source data and prerendered glyph cache, imported from a dynamic or a bitmap font.
  *
  * [godot.FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as well as a cache of rasterized glyphs, and a set of fallback [godot.Font]s to use.
  *
@@ -63,9 +63,9 @@ import kotlin.jvm.JvmName
  *
  * **Note:** A character is a symbol that represents an item (letter, digit etc.) in an abstract way.
  *
- * **Note:** A glyph is a bitmap or shape used to draw a one or more characters in a context-dependent manner. Glyph indices are bound to the specific font data source.
+ * **Note:** A glyph is a bitmap or a shape used to draw one or more characters in a context-dependent manner. Glyph indices are bound to the specific font data source.
  *
- * **Note:** If a none of the font data sources contain glyphs for a character used in a string, the character in question will be replaced with a box displaying its hexadecimal code.
+ * **Note:** If none of the font data sources contain glyphs for a character used in a string, the character in question will be replaced with a box displaying its hexadecimal code.
  *
  * [codeblocks]
  *
@@ -1045,6 +1045,16 @@ public open class FontFile : Font() {
   ): Long {
     TransferContext.writeArguments(LONG to size, LONG to char, LONG to variationSelector)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_GLYPH_INDEX, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See [getGlyphIndex].
+   */
+  public fun getCharFromGlyphIndex(size: Long, glyphIndex: Long): Long {
+    TransferContext.writeArguments(LONG to size, LONG to glyphIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_CHAR_FROM_GLYPH_INDEX,
+        LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

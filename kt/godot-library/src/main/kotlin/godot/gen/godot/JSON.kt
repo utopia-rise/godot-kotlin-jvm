@@ -39,6 +39,7 @@ import kotlin.Suppress
  * 		# Save data
  * 		# ...
  * 		# Retrieve data
+ * 		var json = JSON.new()
  * 		var error = json.parse(json_string)
  * 		if error == OK:
  * 		    var data_received = json.data

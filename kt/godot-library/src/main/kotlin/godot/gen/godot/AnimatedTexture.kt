@@ -31,7 +31,9 @@ import kotlin.Unit
  *
  * **Note:** AnimatedTexture doesn't support using [godot.AtlasTexture]s. Each frame needs to be a separate [godot.Texture2D].
  *
- * **Warning:** AnimatedTexture is deprecated, and might be removed in a future release. Its current implementation is not efficient for the modern renderers.
+ * **Warning:** The current implementation is not efficient for the modern renderers.
+ *
+ * *Deprecated.* This class is deprecated, and might be removed in a future release.
  */
 @GodotBaseType
 public open class AnimatedTexture : Texture2D() {

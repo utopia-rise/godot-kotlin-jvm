@@ -30,14 +30,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A soft mesh physics body.
+ * A deformable 3D physics mesh.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/soft_body.html]($DOCS_URL/tutorials/physics/soft_body.html)
  *
- * A deformable physics body. Used to create elastic or deformable objects such as cloth, rubber, or other flexible materials.
+ * A deformable 3D physics mesh. Used to create elastic or deformable objects such as cloth, rubber, or other flexible materials.
  *
- * **Note:** There are many known bugs in [godot.SoftBody3D]. Therefore, it's not recommended to use them for things that can affect gameplay (such as a player character made entirely out of soft bodies).
+ * **Note:** There are many known bugs in [godot.SoftBody3D]. Therefore, it's not recommended to use them for things that can affect gameplay (such as trampolines).
  */
 @GodotBaseType
 public open class SoftBody3D : MeshInstance3D() {
@@ -230,7 +230,7 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -249,7 +249,7 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [collisionLayer], given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a [layerNumber] between 1 and 32.
    */
   public fun setCollisionLayerValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)

@@ -33,7 +33,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class TextureButton : BaseButton() {
   /**
-   * Texture to display by default, when the node is **not** in the disabled, focused, hover or pressed state.
+   * Texture to display by default, when the node is **not** in the disabled, hover or pressed state. This texture is still displayed in the focused state, with [textureFocused] drawn on top.
    */
   public var textureNormal: Texture2D?
     get() {

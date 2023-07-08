@@ -12,12 +12,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Provides an opaque background for [godot.Control] children.
+ * A GUI control that displays a [godot.StyleBox].
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/523](https://godotengine.org/asset-library/asset/523)
  *
- * Panel is a [godot.Control] that displays an opaque background. It's commonly used as a parent and container for other types of [godot.Control] nodes.
+ * [godot.Panel] is a GUI control that displays a [godot.StyleBox]. See also [godot.PanelContainer].
  */
 @GodotBaseType
 public open class Panel : Control() {

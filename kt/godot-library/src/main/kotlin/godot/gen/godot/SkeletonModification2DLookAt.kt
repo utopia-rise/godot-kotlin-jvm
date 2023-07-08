@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
-   * The index of the [godot.Bone2D] node that the modification will oeprate on.
+   * The index of the [godot.Bone2D] node that the modification will operate on.
    */
   public var boneIndex: Long
     get() {

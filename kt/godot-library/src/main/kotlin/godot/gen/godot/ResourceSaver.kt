@@ -25,11 +25,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Singleton for saving Godot-specific resource types.
+ * A singleton for saving [godot.Resource]s to the filesystem.
  *
- * Singleton for saving Godot-specific resource types to the filesystem.
+ * A singleton for saving resource types to the filesystem.
  *
- * It uses the many [godot.ResourceFormatSaver] classes registered in the engine (either built-in or from a plugin) to save engine-specific resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res` or `.scn`).
+ * It uses the many [godot.ResourceFormatSaver] classes registered in the engine (either built-in or from a plugin) to save resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res` or `.scn`).
  */
 @GodotBaseType
 public object ResourceSaver : Object() {

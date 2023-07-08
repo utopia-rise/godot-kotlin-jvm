@@ -32,9 +32,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for TextServer custom implementations (plugins).
+ * Base class for custom [godot.TextServer] implementations (plugins).
  *
- * External TextServer implementations should inherit from this class.
+ * External [godot.TextServer] implementations should inherit from this class.
  */
 @GodotBaseType
 public open class TextServerExtension : TextServer() {
@@ -183,6 +183,13 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontGetName(fontRid: RID): String {
     throw NotImplementedError("_font_get_name is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _fontGetOtNameStrings(fontRid: RID): Dictionary<Any?, Any?> {
+    throw NotImplementedError("_font_get_ot_name_strings is not implemented for TextServerExtension")
   }
 
   /**
@@ -806,6 +813,17 @@ public open class TextServerExtension : TextServer() {
   /**
    *
    */
+  public open fun _fontGetCharFromGlyphIndex(
+    fontRid: RID,
+    size: Long,
+    glyphIndex: Long,
+  ): Long {
+    throw NotImplementedError("_font_get_char_from_glyph_index is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _fontHasChar(fontRid: RID, char: Long): Boolean {
     throw NotImplementedError("_font_has_char is not implemented for TextServerExtension")
   }
@@ -1201,7 +1219,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _shapedTextFitToWidth(
     shaped: RID,
     width: Double,
-    jstFlags: Long,
+    justificationFlags: Long,
   ): Double {
     throw NotImplementedError("_shaped_text_fit_to_width is not implemented for TextServerExtension")
   }

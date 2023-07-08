@@ -40,15 +40,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Control that provides a list of selectable items (and/or icons) in a single column, or optionally in multiple columns.
+ * A vertical list of selectable items with one or multiple columns.
  *
- * This control provides a selectable list of items that may be in a single (or multiple columns) with option of text, icons, or both text and icon. Tooltips are supported and may be different for every item in the list.
+ * This control provides a vertical list of selectable items that may be in a single or in multiple columns, with each item having options for text and an icon. Tooltips are supported and may be different for every item in the list.
  *
  * Selectable items in the list may be selected or deselected and multiple selection may be enabled. Selection with right mouse button may also be enabled to allow use of popup context menus. Items may also be "activated" by double-clicking them or by pressing [kbd]Enter[/kbd].
  *
- * Item text only supports single-line strings, newline characters (e.g. `\n`) in the string won't produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but column's width is adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero to wrap the text.
+ * Item text only supports single-line strings. Newline characters (e.g. `\n`) in the string won't produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but the column's width is adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero to wrap the text.
  *
- * All `set_*` methods allow negative item index, which makes the item accessed from the last one.
+ * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to select the second-to-last item, and so on.
  *
  * **Incremental search:** Like [godot.PopupMenu] and [godot.Tree], [godot.ItemList] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
@@ -126,6 +126,20 @@ public open class ItemList : Control() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_RMB_SELECT,
           NIL)
+    }
+
+  /**
+   * If `true`, allows navigating the [godot.ItemList] with letter keys through incremental search.
+   */
+  public var allowSearch: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ALLOW_SEARCH, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_SEARCH, NIL)
     }
 
   /**
@@ -536,6 +550,17 @@ public open class ItemList : Control() {
   }
 
   /**
+   * Returns the position and size of the item with the specified index, in the coordinate system of the [godot.ItemList] node. If [expand] is `true` the last column expands to fill the rest of the row.
+   *
+   * **Note:** The returned value is unreliable if called right after modifying the [godot.ItemList], before it redraws in the next frame.
+   */
+  public fun getItemRect(idx: Long, expand: Boolean = true): Rect2 {
+    TransferContext.writeArguments(LONG to idx, BOOL to expand)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_RECT, RECT2)
+    return TransferContext.readReturnValue(RECT2, false) as Rect2
+  }
+
+  /**
    * Sets whether the tooltip hint is enabled for specified item index.
    */
   public fun setItemTooltipEnabled(idx: Long, enable: Boolean): Unit {
@@ -661,6 +686,8 @@ public open class ItemList : Control() {
    * Returns the item index at the given [position].
    *
    * When there is no item at that point, -1 will be returned if [exact] is `true`, and the closest item index will be returned otherwise.
+   *
+   * **Note:** The returned value is unreliable if called right after modifying the [godot.ItemList], before it redraws in the next frame.
    */
   public fun getItemAtPosition(position: Vector2, exact: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to exact)

@@ -102,7 +102,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the index of the bus with the name [busName].
+   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified name exist.
    */
   public fun getBusIndex(busName: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to busName)

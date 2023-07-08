@@ -145,7 +145,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   *
+   * Path to a [godot.Skeleton2D] node used for skeleton-based deformations of this polygon. If empty or invalid, skeletal deformations will not be used.
    */
   public var skeleton: NodePath
     get() {
@@ -250,7 +250,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   *
+   * Number of internal vertices, used for UV mapping.
    */
   public var internalVertexCount: Long
     get() {
@@ -297,7 +297,7 @@ public open class Polygon2D : Node2D() {
   }
 
   /**
-   * Returns the height values of the specified bone.
+   * Returns the weight values of the specified bone.
    */
   public fun getBoneWeights(index: Long): PackedFloat32Array {
     TransferContext.writeArguments(LONG to index)

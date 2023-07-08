@@ -27,6 +27,8 @@ import kotlin.Suppress
  * Depending on the TileSet source type, those IDs might have restrictions on their values, this is why the base [godot.TileSetSource] class only exposes getters for them.
  *
  * You can iterate over all tiles exposed by a TileSetSource by first iterating over coordinates IDs using [getTilesCount] and [getTileId], then over alternative IDs using [getAlternativeTilesCount] and [getAlternativeTileId].
+ *
+ * **Warning:** [godot.TileSetSource] can only be added to one TileSet at the same time. Calling [godot.TileSet.addSource] on a second [godot.TileSet] will remove the source from the first one.
  */
 @GodotBaseType
 public open class TileSetSource internal constructor() : Resource() {

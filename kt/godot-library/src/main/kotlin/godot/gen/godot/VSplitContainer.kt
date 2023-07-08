@@ -12,12 +12,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Vertical split container.
+ * A container that splits two child controls vertically and provides a grabber for adjusting the split ratio.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * Vertical split container. See [godot.SplitContainer]. This goes from top to bottom.
+ * A container that accepts only two child controls, then arranges them vertically and creates a divisor between them. The divisor can be dragged around to change the size relation between the child controls.
  */
 @GodotBaseType
 public open class VSplitContainer : SplitContainer() {

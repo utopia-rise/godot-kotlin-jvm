@@ -22,7 +22,7 @@ import kotlin.Suppress
  *
  * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved like any other [godot.Resource].
  *
- * They can be used as the server certificate in [godot.StreamPeerTLS.acceptStream] (along with the proper [godot.CryptoKey]), and to specify the only certificate that should be accepted when connecting to an TLS server via [godot.StreamPeerTLS.connectToStream].
+ * They can be used as the server certificate in [godot.StreamPeerTLS.acceptStream] (along with the proper [godot.CryptoKey]), and to specify the only certificate that should be accepted when connecting to a TLS server via [godot.StreamPeerTLS.connectToStream].
  */
 @GodotBaseType
 public open class X509Certificate : Resource() {
@@ -46,6 +46,26 @@ public open class X509Certificate : Resource() {
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_LOAD, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns a string representation of the certificate, or an empty string if the certificate is invalid.
+   */
+  public fun saveToString(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_SAVE_TO_STRING,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Loads a certificate from the given [string].
+   */
+  public fun loadFromString(string: String): GodotError {
+    TransferContext.writeArguments(STRING to string)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_LOAD_FROM_STRING,
+        LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

@@ -12,9 +12,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Vertical flow container.
+ * A container that arranges its child controls vertically and wraps them around at the borders.
  *
- * Vertical version of [godot.FlowContainer].
+ * Tutorials:
+ * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
+ *
+ * A variant of [godot.FlowContainer] that can only arrange its child controls vertically, wrapping them around at the borders. This is similar to how text in a book wraps around when no more words can fit on a line, except vertically.
  */
 @GodotBaseType
 public open class VFlowContainer : FlowContainer() {

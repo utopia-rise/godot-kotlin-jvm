@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.PackedFloat32Array
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -15,6 +16,7 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Any
@@ -26,14 +28,12 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Displays plain text in a line or wrapped inside a rectangle. For formatted text, use [godot.RichTextLabel].
+ * A control for displaying plain text.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
  *
- * Label displays plain text on the screen. It gives you control over the horizontal and vertical alignment and can wrap the text inside the node's bounding rectangle. It doesn't support bold, italics, or other formatting. For that, use [godot.RichTextLabel] instead.
- *
- * **Note:** Contrarily to most other [godot.Control]s, Label's [godot.Control.mouseFilter] defaults to [godot.Control.MOUSE_FILTER_IGNORE] (i.e. it doesn't react to mouse input events). This implies that a label won't display any configured [godot.Control.tooltipText], unless you change its mouse filter.
+ * A control for displaying plain text. It gives you control over the horizontal and vertical alignment and can wrap the text inside the node's bounding rectangle. It doesn't support bold, italics, or other rich text formatting. For that, use [godot.RichTextLabel] instead.
  */
 @GodotBaseType
 public open class Label : Control() {
@@ -111,6 +111,22 @@ public open class Label : Control() {
     }
 
   /**
+   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
+   */
+  public var justificationFlags: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_JUSTIFICATION_FLAGS,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_JUSTIFICATION_FLAGS,
+          NIL)
+    }
+
+  /**
    * If `true`, the Label only shows the text that fits inside its bounding rectangle and will clip text horizontally.
    */
   public var clipText: Boolean
@@ -152,6 +168,21 @@ public open class Label : Control() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_UPPERCASE, NIL)
+    }
+
+  /**
+   * Aligns text to the given tab-stops.
+   */
+  public var tabStops: PackedFloat32Array
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TAB_STOPS,
+          PACKED_FLOAT_32_ARRAY)
+      return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
+    }
+    set(`value`) {
+      TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_TAB_STOPS, NIL)
     }
 
   /**

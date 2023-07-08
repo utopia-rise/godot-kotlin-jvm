@@ -21,9 +21,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Interface to low level AES encryption features.
+ * Provides access to AES encryption/decryption of raw data.
  *
- * This class provides access to AES encryption/decryption of raw data. Both AES-ECB and AES-CBC mode are supported.
+ * This class holds the context information required for encryption and decryption operations with AES (Advanced Encryption Standard). Both AES-ECB and AES-CBC modes are supported.
  *
  * [codeblocks]
  *
@@ -45,15 +45,15 @@ import kotlin.Unit
  *
  *     # Encrypt ECB
  *
- *     aes.start(AESContext.MODE_ECB_ENCRYPT, key.to_utf8())
+ *     aes.start(AESContext.MODE_ECB_ENCRYPT, key.to_utf8_buffer())
  *
- *     var encrypted = aes.update(data.to_utf8())
+ *     var encrypted = aes.update(data.to_utf8_buffer())
  *
  *     aes.finish()
  *
  *     # Decrypt ECB
  *
- *     aes.start(AESContext.MODE_ECB_DECRYPT, key.to_utf8())
+ *     aes.start(AESContext.MODE_ECB_DECRYPT, key.to_utf8_buffer())
  *
  *     var decrypted = aes.update(encrypted)
  *
@@ -61,7 +61,7 @@ import kotlin.Unit
  *
  *     # Check ECB
  *
- *     assert(decrypted == data.to_utf8())
+ *     assert(decrypted == data.to_utf8_buffer())
  *
  *
  *
@@ -69,15 +69,15 @@ import kotlin.Unit
  *
  *     # Encrypt CBC
  *
- *     aes.start(AESContext.MODE_CBC_ENCRYPT, key.to_utf8(), iv.to_utf8())
+ *     aes.start(AESContext.MODE_CBC_ENCRYPT, key.to_utf8_buffer(), iv.to_utf8_buffer())
  *
- *     encrypted = aes.update(data.to_utf8())
+ *     encrypted = aes.update(data.to_utf8_buffer())
  *
  *     aes.finish()
  *
  *     # Decrypt CBC
  *
- *     aes.start(AESContext.MODE_CBC_DECRYPT, key.to_utf8(), iv.to_utf8())
+ *     aes.start(AESContext.MODE_CBC_DECRYPT, key.to_utf8_buffer(), iv.to_utf8_buffer())
  *
  *     decrypted = aes.update(encrypted)
  *
@@ -85,7 +85,7 @@ import kotlin.Unit
  *
  *     # Check CBC
  *
- *     assert(decrypted == data.to_utf8())
+ *     assert(decrypted == data.to_utf8_buffer())
  *
  * [/gdscript]
  *
@@ -115,15 +115,15 @@ import kotlin.Unit
  *
  *         // Encrypt ECB
  *
- *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8());
+ *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8Buffer());
  *
- *         byte[] encrypted = _aes.Update(data.ToUtf8());
+ *         byte[] encrypted = _aes.Update(data.ToUtf8Buffer());
  *
  *         _aes.Finish();
  *
  *         // Decrypt ECB
  *
- *         _aes.Start(AesContext.Mode.EcbDecrypt, key.ToUtf8());
+ *         _aes.Start(AesContext.Mode.EcbDecrypt, key.ToUtf8Buffer());
  *
  *         byte[] decrypted = _aes.Update(encrypted);
  *
@@ -131,7 +131,7 @@ import kotlin.Unit
  *
  *         // Check ECB
  *
- *         Debug.Assert(decrypted == data.ToUtf8());
+ *         Debug.Assert(decrypted == data.ToUtf8Buffer());
  *
  *
  *
@@ -139,15 +139,15 @@ import kotlin.Unit
  *
  *         // Encrypt CBC
  *
- *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8(), iv.ToUtf8());
+ *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8Buffer(), iv.ToUtf8Buffer());
  *
- *         encrypted = _aes.Update(data.ToUtf8());
+ *         encrypted = _aes.Update(data.ToUtf8Buffer());
  *
  *         _aes.Finish();
  *
  *         // Decrypt CBC
  *
- *         _aes.Start(AesContext.Mode.EcbDecrypt, key.ToUtf8(), iv.ToUtf8());
+ *         _aes.Start(AesContext.Mode.EcbDecrypt, key.ToUtf8Buffer(), iv.ToUtf8Buffer());
  *
  *         decrypted = _aes.Update(encrypted);
  *
@@ -155,7 +155,7 @@ import kotlin.Unit
  *
  *         // Check CBC
  *
- *         Debug.Assert(decrypted == data.ToUtf8());
+ *         Debug.Assert(decrypted == data.ToUtf8Buffer());
  *
  *     }
  *

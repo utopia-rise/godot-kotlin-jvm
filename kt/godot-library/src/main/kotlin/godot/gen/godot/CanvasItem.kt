@@ -40,22 +40,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class of anything 2D.
+ * Abstract base class for everything in 2D space.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/528](https://godotengine.org/asset-library/asset/528)
  *
- * Base class of anything 2D. Canvas items are laid out in a tree; children inherit and extend their parent's transform. [godot.CanvasItem] is extended by [godot.Control] for anything GUI-related, and by [godot.Node2D] for anything related to the 2D engine.
+ * Abstract base class for everything in 2D space. Canvas items are laid out in a tree; children inherit and extend their parent's transform. [godot.CanvasItem] is extended by [godot.Control] for GUI-related nodes, and by [godot.Node2D] for 2D game objects.
  *
- * Any [godot.CanvasItem] can draw. For this, [queueRedraw] is called by the engine, then [NOTIFICATION_DRAW] will be received on idle time to request redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [godot.CanvasItem] are provided (see `draw_*` functions). However, they can only be used inside [_draw], its corresponding [godot.Object.Notification] or methods connected to the [draw] signal.
+ * Any [godot.CanvasItem] can draw. For this, [queueRedraw] is called by the engine, then [NOTIFICATION_DRAW] will be received on idle time to request a redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [godot.CanvasItem] are provided (see `draw_*` functions). However, they can only be used inside [_draw], its corresponding [godot.Object.Notification] or methods connected to the [draw] signal.
  *
- * Canvas items are drawn in tree order. By default, children are on top of their parents so a root [godot.CanvasItem] will be drawn behind everything. This behavior can be changed on a per-item basis.
+ * Canvas items are drawn in tree order. By default, children are on top of their parents, so a root [godot.CanvasItem] will be drawn behind everything. This behavior can be changed on a per-item basis.
  *
- * A [godot.CanvasItem] can also be hidden, which will also hide its children. It provides many ways to change parameters such as modulation (for itself and its children) and self modulation (only for itself), as well as its blend mode.
- *
- * Ultimately, a transform notification can be requested, which will notify the node that its global position changed in case the parent tree changed.
- *
- * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
+ * A [godot.CanvasItem] can be hidden, which will also hide its children. By adjusting various other properties of a [godot.CanvasItem], you can also modulate its color (via [modulate] or [selfModulate]), change its Z-index, blend mode, and more.
  */
 @GodotBaseType
 public open class CanvasItem internal constructor() : Node() {
@@ -82,7 +78,7 @@ public open class CanvasItem internal constructor() : Node() {
   public val itemRectChanged: Signal0 by signal()
 
   /**
-   * If `true`, this [godot.CanvasItem] is drawn. The node is only visible if all of its antecedents are visible as well (in other words, [isVisibleInTree] must return `true`).
+   * If `true`, this [godot.CanvasItem] is drawn. The node is only visible if all of its ancestors are visible as well (in other words, [isVisibleInTree] must return `true`).
    *
    * **Note:** For controls that inherit [godot.Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead.
    */
@@ -98,7 +94,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The color applied to textures on this [godot.CanvasItem].
+   * The color applied to this [godot.CanvasItem]. This property does affect child [godot.CanvasItem]s, unlike [selfModulate] which only affects the node itself.
    */
   public var modulate: Color
     get() {
@@ -112,7 +108,9 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The color applied to textures on this [godot.CanvasItem]. This is not inherited by children [godot.CanvasItem]s.
+   * The color applied to this [godot.CanvasItem]. This property does **not** affect child [godot.CanvasItem]s, unlike [modulate] which affects both the node itself and its children.
+   *
+   * **Note:** Internal children (e.g. sliders in [godot.ColorPicker] or tab bar in [godot.TabContainer]) are also not affected by this property (see `include_internal` parameter of [godot.Node.getChild] and other similar methods).
    */
   public var selfModulate: Color
     get() {
@@ -284,7 +282,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The material applied to textures on this [godot.CanvasItem].
+   * The material applied to this [godot.CanvasItem].
    */
   public var material: Material?
     get() {
@@ -336,7 +334,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its antecedents are also visible. If any antecedent is hidden, this node will not be visible in the scene tree, and is consequently not drawn (see [_draw]).
+   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree, and is consequently not drawn (see [_draw]).
    */
   public fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -427,7 +425,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform [width] and segment-by-segment coloring, and optional antialiasing (supported only for positive [width]). Colors assigned to line segments match by index between [points] and [colors]. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
+   * Draws interconnected line segments with a uniform [width], point-by-point coloring, and optional antialiasing (supported only for positive [width]). Colors assigned to line points match by index between [points] and [colors], i.e. each line segment is filled with a gradient between the colors of the endpoints. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
    *
    * If [width] is negative, then the polyline is drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
@@ -464,7 +462,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws multiple disconnected lines with a uniform [color]. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
+   * Draws multiple disconnected lines with a uniform [width] and [color]. Each line is defined by two consecutive points from [points] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
    *
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
@@ -478,7 +476,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws multiple disconnected lines with a uniform [width] and segment-by-segment coloring. Colors assigned to line segments match by index between [points] and [colors]. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
+   * Draws multiple disconnected lines with a uniform [width] and segment-by-segment coloring. Each segment is defined by two consecutive points from [points] array and a corresponding color from [colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints and has `colors*` color. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
    *
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
@@ -493,7 +491,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a rectangle. If [filled] is `true`, the rectangle will be filled with the [color] specified. If [filled] is `false`, the rectangle will be drawn as a stroke with the [color] and [width] specified.
+   * Draws a rectangle. If [filled] is `true`, the rectangle will be filled with the [color] specified. If [filled] is `false`, the rectangle will be drawn as a stroke with the [color] and [width] specified. See also [drawTextureRect].
    *
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    *
@@ -536,7 +534,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle at a given position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X and Y coordinates swapped.
+   * Draws a textured rectangle at a given position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X and Y coordinates swapped. See also [drawRect] and [drawTextureRectRegion].
    */
   public fun drawTextureRect(
     texture: Texture2D,
@@ -550,7 +548,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle region at a given position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X and Y coordinates swapped.
+   * Draws a textured rectangle from a texture's region (specified by [srcRect]) at a given position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X and Y coordinates swapped. See also [drawTextureRect].
    */
   public fun drawTextureRectRegion(
     texture: Texture2D,
@@ -631,7 +629,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a solid polygon of any number of points, convex or concave. Unlike [drawColoredPolygon], each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors].
+   * Draws a solid polygon of any number of points, convex or concave. Unlike [drawColoredPolygon], each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors]. If you need more flexibility (such as being able to use bones), use [godot.RenderingServer.canvasItemAddTriangleArray] instead.
    */
   public fun drawPolygon(
     points: PackedVector2Array,
@@ -708,11 +706,11 @@ public open class CanvasItem internal constructor() : Node() {
     width: Double = -1.0,
     fontSize: Long = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, COLOR to modulate, OBJECT to justificationFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STRING, NIL)
   }
 
@@ -729,11 +727,11 @@ public open class CanvasItem internal constructor() : Node() {
     maxLines: Long = -1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     brkFlags: Long = 3,
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, COLOR to modulate, OBJECT to brkFlags, OBJECT to justificationFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE_STRING,
         NIL)
   }
@@ -750,11 +748,11 @@ public open class CanvasItem internal constructor() : Node() {
     fontSize: Long = 16,
     size: Long = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to size, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to size, COLOR to modulate, OBJECT to justificationFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STRING_OUTLINE, NIL)
   }
 
@@ -772,11 +770,11 @@ public open class CanvasItem internal constructor() : Node() {
     size: Long = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     brkFlags: Long = 3,
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, LONG to size, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, LONG to size, COLOR to modulate, OBJECT to brkFlags, OBJECT to justificationFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE_STRING_OUTLINE, NIL)
   }
@@ -959,6 +957,8 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Returns the mouse's position in the [godot.CanvasLayer] that this [godot.CanvasItem] is in using the coordinate system of the [godot.CanvasLayer].
+   *
+   * **Note:** For screen-space coordinates (e.g. when using a non-embedded [godot.Popup]), you can use [godot.DisplayServer.mouseGetPosition].
    */
   public fun getGlobalMousePosition(): Vector2 {
     TransferContext.writeArguments()
@@ -1217,5 +1217,10 @@ public open class CanvasItem internal constructor() : Node() {
      * The [godot.CanvasItem] has exited the canvas.
      */
     public final const val NOTIFICATION_EXIT_CANVAS: Long = 33
+
+    /**
+     * The [godot.CanvasItem]'s active [godot.World2D] changed.
+     */
+    public final const val NOTIFICATION_WORLD_2D_CHANGED: Long = 36
   }
 }

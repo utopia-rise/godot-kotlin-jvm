@@ -20,9 +20,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Stream peer handling GZIP and deflate compression/decompresison.
+ * A stream peer that handles GZIP and deflate compression/decompression.
  *
- * This class allows to compress or decompress data using GZIP/deflate in a streaming fashion. This is particularly useful when compressing or decompressing files that has to be sent through the network without having to allocate them all in memory.
+ * This class allows to compress or decompress data using GZIP/deflate in a streaming fashion. This is particularly useful when compressing or decompressing files that have to be sent through the network without needing to allocate them all in memory.
  *
  * After starting the stream via [startCompression] (or [startDecompression]), calling [godot.StreamPeer.putPartialData] on this stream will compress (or decompress) the data, writing it to the internal buffer. Calling [godot.StreamPeer.getAvailableBytes] will return the pending bytes in the internal buffer, and [godot.StreamPeer.getPartialData] will retrieve the compressed (or decompressed) bytes from it. When the stream is over, you must call [finish] to ensure the internal buffer is properly flushed (make sure to call [godot.StreamPeer.getAvailableBytes] on last time to check if more data needs to be read after that).
  */

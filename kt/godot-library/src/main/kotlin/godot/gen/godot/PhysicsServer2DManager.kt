@@ -21,9 +21,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Manager for 2D physics server implementations.
+ * A singleton for managing [godot.PhysicsServer2D] implementations.
  *
- * [godot.PhysicsServer2DManager] is the API for registering [godot.PhysicsServer2D] implementations, and for setting the default implementation.
+ * [godot.PhysicsServer2DManager] is the API for registering [godot.PhysicsServer2D] implementations and for setting the default implementation.
  *
  * **Note:** It is not possible to switch physics servers at runtime. This class is only used on startup at the server initialization level, by Godot itself and possibly by GDExtensions.
  */

@@ -21,16 +21,16 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * Input event type for keyboard events.
+ * Represents a key on a keyboard being pressed or released.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
- * Stores key presses on the keyboard. Supports key presses, key releases and [echo] events.
+ * An input event for keys on a keyboard. Supports key presses, key releases and [echo] events. It can also be received in [godot.Node.UnhandledKeyInput].
  *
  * **Note:** Events received from the keyboard usually have all properties set. Event mappings should have only one of the [keycode], [physicalKeycode] or [unicode] set.
  *
- * When events are compared, properties are checked in the following priority - [keycode], [physicalKeycode] and [unicode], events with the first matching value will be considered equal.
+ * When events are compared, properties are checked in the following priority - [keycode], [physicalKeycode] and [unicode]. Events with the first matching value will be considered equal.
  */
 @GodotBaseType
 public open class InputEventKey : InputEventWithModifiers() {

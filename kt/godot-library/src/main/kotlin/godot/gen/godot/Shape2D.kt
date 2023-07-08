@@ -31,12 +31,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for all 2D shapes.
+ * Abstract base class for 2D shapes used for physics collision.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
  *
- * Base class for all 2D shapes. All 2D shape types inherit from this.
+ * Abstract base class for all 2D shapes, intended for use in physics.
+ *
+ * **Performance:** Primitive shapes, especially [godot.CircleShape2D], are fast to check collisions against. [godot.ConvexPolygonShape2D] is slower, and [godot.ConcavePolygonShape2D] is the slowest.
  */
 @GodotBaseType
 public open class Shape2D internal constructor() : Resource() {

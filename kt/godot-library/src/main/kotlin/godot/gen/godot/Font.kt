@@ -36,9 +36,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for fonts and font variations.
+ * Abstract base class for fonts and font variations.
  *
- * Font is the abstract base class for font, so it shouldn't be used directly. Other types of fonts inherit from it.
+ * Abstract base class for different font types. It has methods for drawing text and font character introspection.
  */
 @GodotBaseType
 public open class Font internal constructor() : Resource() {
@@ -162,6 +162,16 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
+   * Returns [godot.core.Dictionary] with OpenType font name strings (localized font names, version, description, license information, sample text, etc.).
+   */
+  public fun getOtNameStrings(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_OT_NAME_STRINGS,
+        DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  }
+
+  /**
    * Returns font style flags, see [enum TextServer.FontStyle].
    */
   public fun getFontStyle(): Long {
@@ -247,11 +257,11 @@ public open class Font internal constructor() : Resource() {
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Double = -1.0,
     fontSize: Long = 16,
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Vector2 {
-    TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, OBJECT to justificationFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_STRING_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
@@ -268,11 +278,11 @@ public open class Font internal constructor() : Resource() {
     fontSize: Long = 16,
     maxLines: Long = -1,
     brkFlags: Long = 3,
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Vector2 {
-    TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, OBJECT to brkFlags, OBJECT to justificationFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_MULTILINE_STRING_SIZE,
         VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -291,11 +301,11 @@ public open class Font internal constructor() : Resource() {
     width: Double = -1.0,
     fontSize: Long = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, COLOR to modulate, OBJECT to justificationFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING, NIL)
   }
 
@@ -314,11 +324,11 @@ public open class Font internal constructor() : Resource() {
     maxLines: Long = -1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     brkFlags: Long = 3,
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, COLOR to modulate, OBJECT to brkFlags, OBJECT to justificationFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING, NIL)
   }
 
@@ -336,11 +346,11 @@ public open class Font internal constructor() : Resource() {
     fontSize: Long = 16,
     size: Long = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to size, COLOR to modulate, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to size, COLOR to modulate, OBJECT to justificationFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING_OUTLINE, NIL)
   }
 
@@ -360,11 +370,11 @@ public open class Font internal constructor() : Resource() {
     size: Long = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     brkFlags: Long = 3,
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, LONG to size, COLOR to modulate, OBJECT to brkFlags, OBJECT to jstFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to fontSize, LONG to maxLines, LONG to size, COLOR to modulate, OBJECT to brkFlags, OBJECT to justificationFlags, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING_OUTLINE,
         NIL)
   }
@@ -467,6 +477,20 @@ public open class Font internal constructor() : Resource() {
    * Returns list of supported [variation coordinates](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg), each coordinate is returned as `tag: Vector3i(min_value,max_value,default_value)`.
    *
    * Font variations allow for continuous change of glyph characteristics along some given design axis, such as weight, width or slant.
+   *
+   * To print available variation axes of a variable font:
+   *
+   * ```
+   * 				var fv = FontVariation.new()
+   * 				fv.set_base_font = load("res://RobotoFlex.ttf")
+   * 				var variation_list = fv.get_supported_variation_list()
+   * 				for tag in variation_list:
+   * 				    var name = TextServerManager.get_primary_interface().tag_to_name(tag)
+   * 				    var values = variation_list[tag]
+   * 				    print("variation axis: %s (%d)\n\tmin, max, default: %s" % [name, tag, values])
+   * 				```
+   *
+   * **Note:** To set and get variation coordinates of a [godot.FontVariation], use [godot.FontVariation.variationOpentype].
    */
   public fun getSupportedVariationList(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()

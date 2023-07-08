@@ -27,9 +27,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Helper node to calculate generic geometry operations in 3D space.
+ * Provides methods for some common 3D geometric operations.
  *
- * Geometry3D provides users with a set of helper functions to create geometric shapes, compute intersections between shapes, and process various other geometric operations.
+ * Provides a set of helper functions to create geometric shapes, compute intersections between shapes, and process various other geometric operations in 3D.
  */
 @GodotBaseType
 public object Geometry3D : Object() {
@@ -190,7 +190,7 @@ public object Geometry3D : Object() {
   public fun segmentIntersectsConvex(
     from: Vector3,
     to: Vector3,
-    planes: VariantArray<Any?>,
+    planes: VariantArray<Plane>,
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, ARRAY to planes)
     TransferContext.callMethod(rawPtr,

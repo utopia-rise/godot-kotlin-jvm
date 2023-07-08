@@ -14,7 +14,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- *
+ * A class used to provide [godot.PhysicsServer3DExtension.SoftBodyUpdateRenderingServer] with a rendering handler for soft bodies.
  */
 @GodotBaseType
 public open class PhysicsServer3DRenderingServerHandler : Object() {

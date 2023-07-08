@@ -33,18 +33,16 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * 3D area for detection, as well as physics and audio influence.
+ * A region of 3D space that detects other [godot.CollisionObject3D]s entering or exiting it.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/127](https://godotengine.org/asset-library/asset/127)
  *
- * 3D area that detects [godot.CollisionObject3D] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping) and route audio to custom audio buses.
+ * [godot.Area3D] is a region of 3D space defined by one or multiple [godot.CollisionShape3D] or [godot.CollisionPolygon3D] child nodes. It detects when other [godot.CollisionObject3D]s enter or exit it, and it also keeps track of which collision objects haven't exited it yet (i.e. which one are overlapping it).
  *
- * To give the area its shape, add a [godot.CollisionShape3D] or a [godot.CollisionPolygon3D] node as a *direct* child (or add multiple such nodes as direct children) of the area.
+ * This node can also locally alter or override physics parameters (gravity, damping) and route audio to custom audio buses.
  *
- * **Warning:** See [godot.ConcavePolygonShape3D] (also called "trimesh") for a warning about possibly unexpected behavior when using that shape for an area.
- *
- * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
+ * **Warning:** Using a [godot.ConcavePolygonShape3D] inside a [godot.CollisionShape3D] child of this node (created e.g. by using the *Create Trimesh Collision Sibling* option in the *Mesh* menu that appears when selecting a [godot.MeshInstance3D] node) may give unexpected results, since this collision shape is hollow. If this is not desired, it has to be split into multiple [godot.ConvexPolygonShape3D]s or primitive shapes like [godot.BoxShape3D], or in some cases it may be replaceable by a [godot.CollisionPolygon3D].
  */
 @GodotBaseType
 public open class Area3D : CollisionObject3D() {
@@ -169,16 +167,16 @@ public open class Area3D : CollisionObject3D() {
     }
 
   /**
-   * The area's priority. Higher priority areas are processed first.
+   * The area's priority. Higher priority areas are processed first. The [godot.World3D]'s physics is always processed last, after all areas.
    */
-  public var priority: Double
+  public var priority: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_PRIORITY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_PRIORITY, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_PRIORITY, NIL)
     }
 
@@ -372,7 +370,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   /**
-   * The [godot.Node3D] which is used to specify the the direction and origin of an area-specific wind force. The direction is opposite to the z-axis of the [godot.Node3D]'s local transform, and its origin is the origin of the [godot.Node3D]'s local transform.
+   * The [godot.Node3D] which is used to specify the direction and origin of an area-specific wind force. The direction is opposite to the z-axis of the [godot.Node3D]'s local transform, and its origin is the origin of the [godot.Node3D]'s local transform.
    */
   public var windSourcePath: NodePath
     get() {

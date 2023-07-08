@@ -43,7 +43,7 @@ import kotlin.Unit
  *
  * A TileSet can be configured so that its tiles expose more or less properties. To do so, the TileSet resources uses property layers, that you can add or remove depending on your needs.
  *
- * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer having dedicated properties (physics layer an mask), you may add several TileSet physics layers for each type of collision you need.
+ * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer having dedicated properties (physics layer and mask), you may add several TileSet physics layers for each type of collision you need.
  *
  * See the functions to add new layers for more information.
  */
@@ -137,7 +137,9 @@ public open class TileSet : Resource() {
   /**
    * Adds a [godot.TileSetSource] to the TileSet. If [atlasSourceIdOverride] is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.
    *
-   * The function returns the added source source ID or -1 if the source could not be added.
+   * The function returns the added source ID or -1 if the source could not be added.
+   *
+   * **Warning:** A source cannot belong to two TileSets at the same time. If the added source was attached to another [godot.TileSet], it will be removed from that one.
    */
   public fun addSource(source: TileSetSource, atlasSourceIdOverride: Long = -1): Long {
     TransferContext.writeArguments(OBJECT to source, LONG to atlasSourceIdOverride)
@@ -253,7 +255,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Enables or disables sdf collision for occluders in the given TileSet occlusion layer.
+   * Enables or disables SDF collision for occluders in the given TileSet occlusion layer.
    */
   public fun setOcclusionLayerSdfCollision(layerIndex: Long, sdfCollision: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerIndex, BOOL to sdfCollision)
@@ -533,7 +535,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets the navigation layers (as in the navigation server) for navigation regions is the given TileSet navigation layer.
+   * Sets the navigation layers (as in the navigation server) for navigation regions in the given TileSet navigation layer.
    */
   public fun setNavigationLayerLayers(layerIndex: Long, layers: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to layers)
@@ -542,7 +544,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the navigation layers (as in the Navigation server) of the gives TileSet navigation layer.
+   * Returns the navigation layers (as in the Navigation server) of the given TileSet navigation layer.
    */
   public fun getNavigationLayerLayers(layerIndex: Long): Long {
     TransferContext.writeArguments(LONG to layerIndex)
@@ -660,7 +662,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlac coordinates ID and the alternative tile ID are kept the same when using source-level proxies.
+   * Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept the same when using source-level proxies.
    *
    * This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target source when one is available.
    *
