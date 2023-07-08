@@ -40,7 +40,7 @@ jobs:
           - name: Windows
             os: windows-2019
             platform: windows
-            binary: godot.windows.editor.x86_64
+            binary: godot.windows.editor.x86_64.exe
             cat_command: type
             arch: x86_64
             target: editor
