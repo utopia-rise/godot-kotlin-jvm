@@ -501,7 +501,7 @@ jobs:
         - name: Download windows release export templates
           uses: actions/download-artifact@v3
           with:
-            name: godot.windows.template_release.x86_64
+            name: godot.windows.template_release.x86_64.exe
             path: templates/windows_release_x86_64.exe
 
         - name: Download android debug export templates
