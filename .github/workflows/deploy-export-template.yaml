@@ -522,6 +522,10 @@ jobs:
             name: macos.zip
             path: templates/macos.zip
 
+        - name: Create version.txt
+          run: echo "${{ steps.save_release_info.outputs.godot_version }}" > templates/version.txt
+          shell: bash
+
         - name: Compress templates folder to tpz
           run: zip -r godot-kotlin-jvm_export_templates_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.tpz templates
           shell: bash
