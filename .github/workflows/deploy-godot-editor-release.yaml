@@ -70,16 +70,16 @@ jobs:
           echo "::set-output name=godot_version::$(${{ matrix.cat_command }} godot_version/godot_version.txt)"
           echo "::set-output name=godot_kotlin_jvm_version::$(${{ matrix.cat_command }} godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
-      - name: Setup Vulkan SDK
-        if: matrix.platform == 'macos'
-        run: |
-          sh misc/scripts/install_vulkan_sdk_macos.sh
-
       - name: Clone Godot Engine
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
           ref: 4.1-stable
+
+      - name: Setup Vulkan SDK
+        if: matrix.platform == 'macos'
+        run: misc/scripts/install_vulkan_sdk_macos.sh
+        shell: bash
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
@@ -191,7 +191,7 @@ jobs:
         uses: ./.github/actions/create-osx-universal-binary
         with:
           amd-64-binary-artifact: osx-editor-${{ matrix.target }}-binary-64
-          amd-64-binary-name: godot.osx.${{ matrix.target }}.64
+          amd-64-binary-name: godot.osx.${{ matrix.target }}.x86_64
           arm-64-binary-artifact: osx-editor-${{ matrix.target }}-binary-arm64
           arm-64-binary-name: godot.osx.${{ matrix.target }}.arm64
           universal-output-binary-name: godot.osx.${{ matrix.target }}.universal
