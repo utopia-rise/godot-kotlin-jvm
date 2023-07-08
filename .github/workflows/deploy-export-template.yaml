@@ -247,11 +247,13 @@ jobs:
             os: ubuntu-20.04
             java-version: 11
             target: template_debug
+            base-path: platform/android/java/lib/libs/debug
             apk-name: android_debug.apk
           - name: Android-release
             os: ubuntu-20.04
             java-version: 11
             target: template_release
+            base-path: platform/android/java/lib/libs/release
             apk-name: android_release.apk
     runs-on: ${{ matrix.os }}
     steps:
@@ -283,12 +285,20 @@ jobs:
         uses: ./modules/kotlin_jvm/.github/actions/create-android-export-template
         with:
           target: ${{ matrix.target }}
+          base-path: ${{ matrix.base-path }}
 
       - name: Upload android export template ${{ matrix.target }}
         uses: actions/upload-artifact@v3
         with:
           path: bin/${{ matrix.apk-name }}
           name: ${{ matrix.apk-name }}
+
+      - name: Upload android source
+        if: matrix.target == 'template_release' #we only need to do this once doesn't matter for which target
+        uses: actions/upload-artifact@v3
+        with:
+          path: bin/android_source.zip
+          name: android_source.zip
 
   create-macos-universal:
     needs: [deploy-export-template]
@@ -503,6 +513,12 @@ jobs:
           with:
             name: godot.windows.template_release.x86_64.exe
             path: templates/windows_release_x86_64.exe
+
+        - name: Download android source zip
+          uses: actions/download-artifact@v3
+          with:
+            name: android_source.zip
+            path: templates/android_source.zip
 
         - name: Download android debug export templates
           uses: actions/download-artifact@v3
