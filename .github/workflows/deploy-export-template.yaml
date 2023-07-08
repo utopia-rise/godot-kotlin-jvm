@@ -494,19 +494,28 @@ jobs:
           uses: actions/download-artifact@v3
           with:
             name: godot.linuxbsd.template_debug.x86_64
-            path: templates/linux_debug.x86_64
+
+        - name: Copy linux debug export templates
+          run: cp godot.linuxbsd.template_debug.x86_64 templates/linux_debug.x86_64
+          shell: bash
 
         - name: Download linux release export templates
           uses: actions/download-artifact@v3
           with:
             name: godot.linuxbsd.template_release.x86_64
-            path: templates/linux_release.x86_64
+
+        - name: Copy linux release export templates
+          run: cp godot.linuxbsd.template_release.x86_64 templates/linux_release.x86_64
+          shell: bash
 
         - name: Download windows debug export templates
           uses: actions/download-artifact@v3
           with:
             name: godot.windows.template_debug.x86_64.exe
-            path: templates/windows_debug_x86_64.exe
+
+        - name: Copy windows debug export templates
+          run: cp godot.windows.template_debug.x86_64.exe templates/windows_debug_x86_64.exe
+          shell: bash
 
         - name: Download windows release export templates
           uses: actions/download-artifact@v3
@@ -514,29 +523,45 @@ jobs:
             name: godot.windows.template_release.x86_64.exe
             path: templates/windows_release_x86_64.exe
 
+        - name: Copy windows release export templates
+          run: cp godot.windows.template_release.x86_64.exe templates/windows_release_x86_64.exe
+          shell: bash
+
         - name: Download android source zip
           uses: actions/download-artifact@v3
           with:
             name: android_source.zip
-            path: templates/android_source.zip
+
+        - name: Copy android source zip
+          run: cp android_source.zip templates/android_source.zip
+          shell: bash
 
         - name: Download android debug export templates
           uses: actions/download-artifact@v3
           with:
             name: android_debug.apk
-            path: templates/android_debug.apk
+
+        - name: Copy android debug export templates
+          run: cp android_debug.apk templates/android_debug.apk
+          shell: bash
 
         - name: Download android release export templates
           uses: actions/download-artifact@v3
           with:
             name: android_release.apk
-            path: templates/android_release.apk
+
+        - name: Copy android release export templates
+          run: cp android_release.apk templates/android_release.apk
+          shell: bash
 
         - name: Download macos export templates
           uses: actions/download-artifact@v3
           with:
             name: macos.zip
-            path: templates/macos.zip
+
+        - name: Copy macos export templates
+          run: cp macos.zip templates/macos.zip
+          shell: bash
 
         - name: Create version.txt
           run: echo "${{ steps.save_release_info.outputs.godot_version }}" > templates/version.txt
