@@ -155,7 +155,7 @@ jobs:
         if: matrix.platform == 'macos'
         uses: actions/upload-artifact@v3
         with:
-          name: osx-editor-${{ matrix.target }}-binary-${{ matrix.arch }}
+          name: macos-editor-${{ matrix.target }}-binary-${{ matrix.arch }}
           path: bin/${{ matrix.binary }}
 
   create-macos-universal:
@@ -188,19 +188,19 @@ jobs:
           submodules: recursive
 
       - name: Create OSX universal binary
-        uses: ./.github/actions/create-osx-universal-binary
+        uses: ./.github/actions/create-macos-universal-binary
         with:
-          amd-64-binary-artifact: osx-editor-${{ matrix.target }}-binary-64
-          amd-64-binary-name: godot.osx.${{ matrix.target }}.x86_64
-          arm-64-binary-artifact: osx-editor-${{ matrix.target }}-binary-arm64
-          arm-64-binary-name: godot.osx.${{ matrix.target }}.arm64
-          universal-output-binary-name: godot.osx.${{ matrix.target }}.universal
+          amd-64-binary-artifact: macos-editor-${{ matrix.target }}-binary-64
+          amd-64-binary-name: godot.macos.${{ matrix.target }}.x86_64
+          arm-64-binary-artifact: macos-editor-${{ matrix.target }}-binary-arm64
+          arm-64-binary-name: godot.macos.${{ matrix.target }}.arm64
+          universal-output-binary-name: godot.macos.${{ matrix.target }}.universal
 
-      - name: Upload ${{ matrix.target }} osx universal artifact
+      - name: Upload ${{ matrix.target }} macos universal artifact
         uses: actions/upload-artifact@v3
         with:
-          name: osx-editor-${{ matrix.target }}-binary-universal
-          path: godot.osx.${{ matrix.target }}.universal
+          name: macos-editor-${{ matrix.target }}-binary-universal
+          path: godot.macos.${{ matrix.target }}.universal
 
   create-macos-editor-app:
     needs: [ create-macos-universal ]
@@ -234,7 +234,7 @@ jobs:
       - name: Get editor binary
         uses: actions/download-artifact@v3
         with:
-          name: osx-editor-${{ matrix.target }}-binary-universal
+          name: macos-editor-${{ matrix.target }}-binary-universal
 
       - name: Get bootstrap jar
         uses: actions/download-artifact@v3
@@ -243,9 +243,9 @@ jobs:
 
       - name: Create MacOs editor app
         run: |
-          cp -r misc/dist/osx_tools.app ./Godot.app
+          cp -r misc/dist/macos_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
-          cp godot.osx.${{ matrix.target }}.universal Godot.app/Contents/MacOS/Godot
+          cp godot.macos.${{ matrix.target }}.universal Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
           cp godot-bootstrap.jar Godot.app/Contents/MacOS/
           chmod +x Godot.app/Contents/MacOS/godot-bootstrap.jar
