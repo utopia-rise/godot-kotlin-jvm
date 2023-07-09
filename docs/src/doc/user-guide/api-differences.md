@@ -4,7 +4,7 @@ Contrary to GDScript and C# you cannot attach scripts (aka source files) directl
 Have a look at the [classes](classes.md) documentation for more information. 
 
 !!! Reason
-    Contrary to GDScript, Kotlin is a compiled language. Hence if you use a library which defines scripts you can not attach those to nodes anymore as the source files don't exist. You only have a jar of the library. While in GDScript you still have the sources when using an addon. With our registration files our compiler plugin is able to extract those from the libraries you use and provide them to you, so you can also attach script from libraries you use.
+    Contrary to GDScript, Kotlin is a compiled language. Hence, if you use a library which defines scripts you can not attach those to nodes anymore as the source files don't exist. You only have a jar of the library. While in GDScript you still have the sources when using an addon. With our registration files our compiler plugin is able to extract those from the libraries you use and provide them to you, so you can also attach scripts from libraries you use.
 
 ## Class and member registration
 Contrary to what you might be used to from GDScript or C#, this binding requires you to explicitly define which classes
