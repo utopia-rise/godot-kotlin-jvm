@@ -32,7 +32,7 @@ Once the build completes, you will be able to use your class in Godot. Simply at
     As Kotlin is a compiled language you can only use newly created classes after you have built them, otherwise, Godot will not be able to find them.
 
 
-# Final project structure
+## Final project structure
 The final project should look like this:
 
 ![Final project structure](../assets/img/final_project_structure.png)
