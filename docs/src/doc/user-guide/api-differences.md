@@ -17,14 +17,14 @@ you can use them from godot and other scripting languages.
 ## Instance types and singletons
 Creating a new instance of a Godot type can be done like any Kotlin types.
 
-```kt
+```kotlin
 val Node3D = Node3D()
 val vec = Vector3()
 ```
 
 Godot singletons are mapped as Kotlin objects.
 
-```kt
+```kotlin
 Physics2DServer.areaGetTransform(area)
 ```
 

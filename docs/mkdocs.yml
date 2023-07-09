@@ -19,7 +19,7 @@ theme:
   logo: assets/img/logo.png
   features:
     - navigation.tabs
-    - navigation.sections
+    - navigation.expand
     - navigation.top
 
 
@@ -39,10 +39,10 @@ markdown_extensions:
   - meta
 
 extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js
   - js/init.js
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css
 
 nav:
   - Home: index.md
