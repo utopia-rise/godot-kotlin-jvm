@@ -31,12 +31,8 @@ Once the build completes, you will be able to use your class in Godot. Simply at
 !!! info
     As Kotlin is a compiled language you can only use newly created classes after you have built them, otherwise, Godot will not be able to find them.
 
-## Configuring dependencies
-The majority of the JVM ecosystem is at your disposal, just add a dependency like you would in a normal java based project to your build file:
 
-=== "build.gradle.kts"
-    ```kotlin
-    dependencies {
-        implementation("joda-time:joda-time:2.10.6")
-    }
-    ```
+# Final project structure
+The final project should look like this:
+
+![Final project structure](../assets/img/final_project_structure.png)
