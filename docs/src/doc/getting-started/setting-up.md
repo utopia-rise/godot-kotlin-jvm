@@ -1,7 +1,7 @@
 ## Setting up using IntelliJ IDEA project wizard
 The easiest way to setup a new project is via IntelliJ's project wizard (you need to install our IntelliJ IDEA [plugin](./requirements.md#intellij-idea-plugin)).
 
-In IntelliJ IDEA click `New Project` and select `Godot Kotlin JVM`. Fill up the fields and click `Next` when you are done.
+In IntelliJ IDEA click `New Project` and select `Godot Kotlin JVM`. Fill out the fields and click `Next` when you are done.
 
 ![Wizard 1](../assets/img/wizard_1.png)
 
