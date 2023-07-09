@@ -190,7 +190,7 @@ jobs:
       - name: Create OSX universal binary
         uses: ./.github/actions/create-macos-universal-binary
         with:
-          amd-64-binary-artifact: macos-editor-${{ matrix.target }}-binary-64
+          amd-64-binary-artifact: macos-editor-${{ matrix.target }}-binary-x86_64
           amd-64-binary-name: godot.macos.${{ matrix.target }}.x86_64
           arm-64-binary-artifact: macos-editor-${{ matrix.target }}-binary-arm64
           arm-64-binary-name: godot.macos.${{ matrix.target }}.arm64
