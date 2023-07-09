@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+---
+
+
 [![GitHub](https://img.shields.io/github/license/utopia-rise/godot-kotlin-jvm?style=flat-square)](LICENSE)
 
 Godot Kotlin/JVM is a Godot module which allows you to write your game or application logic in Kotlin on the JVM.
