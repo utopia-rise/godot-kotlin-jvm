@@ -56,7 +56,7 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
 }
 
 void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_singleton_names, jobjectArray p_method_names, jobjectArray p_types_of_methods) {
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
     LOG_VERBOSE("Starting to register managed engine types...");
 #endif
     jni::Env env(p_env);
@@ -77,7 +77,7 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
     singleton_names.delete_local_ref(env);
     method_names.delete_local_ref(env);
     types_of_methods.delete_local_ref(env);
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
     LOG_VERBOSE("Done registering managed engine types...");
 #endif
 }
@@ -388,26 +388,26 @@ void GDKotlin::finish() {
 }
 
 void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
     LOG_INFO("Loading classes ...");
 #endif
     jni::JObject class_loader = ClassLoader::get_default_loader();
     for (auto i = 0; i < p_classes.length(p_env); i++) {
         auto* kt_class = new KtClass(p_classes.get(p_env, i), class_loader);
         classes[kt_class->resource_path] = kt_class;
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->resource_path, kt_class->base_godot_class, kt_class->registered_class_name));
 #endif
     }
 }
 
 void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
     LOG_INFO("Unloading classes ...");
 #endif
     for (const KeyValue<StringName, KtClass*>& item : classes) {
         KtClass* kt_class {item.value};
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Unloading class %s : %s, as %s", kt_class->resource_path, kt_class->base_godot_class, kt_class->registered_class_name));
 #endif
         delete kt_class;
