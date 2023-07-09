@@ -3,13 +3,13 @@ Let's create a file `src/main/kotlin/com/yourcompany/game/Simple.kt` with the fo
 ```kotlin
 package com.yourcompany.game
 
-import godot.Spatial
+import godot.Node3D
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.global.GD
 
 @RegisterClass
-class Simple: Spatial() {
+class Simple: Node3D() {
 
     @RegisterFunction
     override fun _ready() {
@@ -24,7 +24,7 @@ The [classes](../user-guide/classes.md) section covers in detail what we did her
 ./gradlew build
 ``` 
 
-Once the build completes, you will be able to use your class in Godot. Simply attach the `kt` file containing registered class to a node like you would do in GDScript. If you rebuild the project while the editor is open, your classes will be reloaded automatically in Godot and you can use them.
+Once the build completes, you will be able to use your class in Godot. Simply attach the generated `gdj` file (you'll learn what this file is in the [user guide](../user-guide/api-differences.md)) to a node like you would do in GDScript. If you rebuild the project while the editor is open, your classes will be reloaded automatically in Godot and you can use them.
 
 ![Attach Node Script](../assets/img/attach.png)
 

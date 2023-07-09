@@ -7,7 +7,7 @@ This issue is fixed by using the delegate `godotStatic` on singleton properties.
 ```kotlin
 object GodotStatic {
     var ref by godotStatic {
-        ResourceLoader.load("res://Spatial.tscn") as PackedScene?
+        ResourceLoader.load("res://Node3D.tscn") as PackedScene?
     }
     var myScene by godotStatic {
         Node()

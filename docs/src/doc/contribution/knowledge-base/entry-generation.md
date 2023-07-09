@@ -1,9 +1,9 @@
 # Entry generation
 
 ## General
-The entry generator project on its own is useless. It needs sophisticated information about the source code being compiled. To make it more language agnostic, the entry gen provides a set of model classes which represent the needed information about the source code by the entry gen. It expects this information to be gathered and assembled by the calling tool and to be provided in the entry point of the entry gen.
+To make it more language agnostic, the entry gen provides a set of model classes which represent the needed information about the source code by the entry gen. It expects this information to be gathered and assembled by the calling tool and to be provided in the entry point of the entry gen.
 
-For kotlin, this tool is `godot-kotlin-symbol-processor` which in essence is a compiler plugin, which analyses the source code, and gathers the information needed by the entry gen. It then calls the entry gen which in turn generates the needed entry files.
+For kotlin and java, this tool is `godot-kotlin-symbol-processor` which in essence is a compiler plugin, which analyses the source code, and gathers the information needed by the entry gen. It then calls the entry gen which in turn generates the needed entry files.
 
 ## godot-kotlin-symbol-processor
 Previously, we implemented our own compiler plugin based on the [mpapt](https://github.com/Foso/MpApt) project. Even though it worked very well, the code was far from easy to understand and as the compiler plugin api is not stable, it also introduced a lot of maintenance work to keep it up to date with the ever evolving kotlin compiler.

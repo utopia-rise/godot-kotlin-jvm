@@ -1,3 +1,11 @@
+## Registration files and attaching scripts
+Contrary to GDScript and C# you cannot attach scripts (aka source files) directly to nodes. Godot Kotlin JVM uses a different approach: registration files. These files have the extension `gdj` and are generated during compilation. These are the files you attach to nodes.
+
+Have a look at the [classes](classes.md) documentation for more information. 
+
+!!! Reason
+    Contrary to GDScript, Kotlin is a compiled language. Hence if you use a library which defines scripts you can not attach those to nodes anymore as the source files don't exist. You only have a jar of the library. While in GDScript you still have the sources when using an addon. With our registration files our compiler plugin is able to extract those from the libraries you use and provide them to you, so you can also attach script from libraries you use.
+
 ## Class and member registration
 Contrary to what you might be used to from GDScript or C#, this binding requires you to explicitly define which classes
 and which members of those classes should be exposed to Godot.  
@@ -10,7 +18,7 @@ you can use them from godot and other scripting languages.
 Creating a new instance of a Godot type can be done like any Kotlin types.
 
 ```kt
-val spatial = Spatial()
+val Node3D = Node3D()
 val vec = Vector3()
 ```
 
@@ -24,22 +32,22 @@ Physics2DServer.areaGetTransform(area)
 Godot's built-in types are passed by value (except for `Dictionary` and `VariantArray` - more on this later), so the following snippet won't work as expected.
 
 ```kotlin
-val spatial = Spatial()
-spatial.rotation.y += 10f
+val Node3D = Node3D()
+Node3D.rotation.y += 10f
 ```
 
 You are actually mutating a copy of the `rotation` property, not a reference to it. To get the desired behaviour you have to re-assign the copy back.
 
 ```kotlin
-val rotation = spatial.rotation
+val rotation = Node3D.rotation
 rotation.y += 10f
-spatial.rotation = rotation
+Node3D.rotation = rotation
 ``` 
 
 This approach introduces a lot of boilerplate, so this binding provides a concise way of achieving the same behaviour.
 
 ```kotlin
-spatial.rotation {
+Node3D.rotation {
   y += 10f
 }
 ```
@@ -85,9 +93,9 @@ In GDScript, some functions are always available like mathematical functions or 
 
 In Kotlin, they are available inside the `GD` singleton. Don't forget that some functions couldn't be reproduced in Kotlin. `load()` is available but `preload()` is not.
 
-## Additiional functions
+## Additional functions
 
-For comfort, some Objects got some additionnal functions to enjoy some Kotlin sugar syntax. You can find them all in this folder: https://github.com/utopia-rise/godot-kotlin-jvm/tree/master/kt/godot-library/src/main/kotlin/godot/extensions
+For comfort, some Objects got some additional functions to enjoy some Kotlin syntax sugar. You can find them all [in this folder](https://github.com/utopia-rise/godot-kotlin-jvm/tree/master/kt/godot-library/src/main/kotlin/godot/extensions)
 
 ## Logging
 If you want logs to appear both in CLI and in the Godot Editor you will have to use the print functions inside the `GD` singleton like:

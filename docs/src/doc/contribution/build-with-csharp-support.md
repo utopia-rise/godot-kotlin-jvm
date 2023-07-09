@@ -6,4 +6,4 @@
     - And a `godot-bootstrap.jar` in `<godot-root>/bin`
 4. `export LD_PRELOAD=<path_to_sample_project>/jre-{amd64|arm64}/lib/libjsig.so`
 5. `scons -j$(nproc) platform=<platform> module_mono_enabled=yes`
-6. run with `../../../../bin/godot.x11.tools.64.mono`
+6. run with `../../../../bin/godot.linuxbsd.editor.x86_64.mono`
