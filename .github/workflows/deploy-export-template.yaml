@@ -563,7 +563,10 @@ jobs:
           shell: bash
 
         - name: Create version.txt
-          run: echo "${{ steps.save_release_info.outputs.godot_version }}" > templates/version.txt
+          run: |
+            refVersion=4.0-stable #for easier search and replace with other `ref` occurrences
+            templatesVersion=${refVersion//-/.} #replace `-` with `.` in templates version
+            echo "$templatesVersion" > templates/version.txt
           shell: bash
 
         - name: Compress templates folder to tpz
