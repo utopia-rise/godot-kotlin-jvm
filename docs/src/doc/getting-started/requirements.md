@@ -23,4 +23,4 @@ We also recommend installing our [IntelliJ IDEA plugin](https://plugins.jetbrain
 You need our custom engine build from the latest [GitHub release](https://github.com/utopia-rise/godot-kotlin-jvm/releases) to be able to use this project. If you need other modules you can also [build it yourself](../contribution/setup.md).
 
 ## Exporting
-You need our custom export templates for your exported games to work with the jvm. Have a look at the [Exporting](user-guide/exporting.md) documentation.
+You need our custom export templates for your exported games to work with the jvm. Have a look at the [Exporting](../user-guide/exporting.md) documentation.
