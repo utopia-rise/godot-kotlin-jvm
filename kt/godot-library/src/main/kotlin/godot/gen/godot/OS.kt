@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -27,12 +29,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Operating System functions.
+ * Provides access to common operating system functionalities.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
  *
- * Operating System functions. [OS] wraps the most common functionality to communicate with the host operating system, such as the clipboard, video driver, delays, environment variables, execution of binaries, command line, etc.
+ * This class wraps the most common functionalities for communicating with the host operating system, such as the video driver, delays, environment variables, execution of binaries, command line, etc.
  *
  * **Note:** In Godot 4, [OS] functions related to window management were moved to the [godot.DisplayServer] singleton.
  */
@@ -119,6 +121,17 @@ public object OS : Object() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  public fun setDeltaSmoothing(deltaSmoothingEnabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to deltaSmoothingEnabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_DELTA_SMOOTHING, NIL)
+  }
+
+  public fun isDeltaSmoothingEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_DELTA_SMOOTHING_ENABLED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
   /**
    * Returns the number of *logical* CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of *physical* CPU cores.
    */
@@ -176,7 +189,7 @@ public object OS : Object() {
    *
    * The following aliases can be used to request default fonts: "sans-serif", "serif", "monospace", "cursive", and "fantasy".
    *
-   * **Note:** Depending on OS, it's not guaranteed that any of the returned fonts is suitable for rendering specified text. Fonts should be loaded and checked in the order they are returned, and the first suitable one used.
+   * **Note:** Depending on OS, it's not guaranteed that any of the returned fonts will be suitable for rendering specified text. Fonts should be loaded and checked in the order they are returned, and the first suitable one used.
    *
    * **Note:** Returned fonts might have different style if the requested style is not available or belong to a different font family.
    *
@@ -220,7 +233,7 @@ public object OS : Object() {
   }
 
   /**
-   * Executes a command. The file specified in [path] must exist and be executable. Platform path resolution will be used. The [arguments] are used in the given order and separated by a space. If an [output] [godot.Array] is provided, the complete shell output of the process will be appended as a single [godot.String] element in [output]. If [readStderr] is `true`, the output to the standard error stream will be included too.
+   * Executes a command. The file specified in [path] must exist and be executable. Platform path resolution will be used. The [arguments] are used in the given order, separated by spaces, and wrapped in quotes. If an [output] [godot.Array] is provided, the complete shell output of the process will be appended as a single [godot.String] element in [output]. If [readStderr] is `true`, the output to the standard error stream will be included too.
    *
    * On Windows, if [openConsole] is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.
    *
@@ -372,11 +385,28 @@ public object OS : Object() {
    *
    * Use [godot.ProjectSettings.globalizePath] to convert a `res://` or `user://` path into a system path for use with this method.
    *
+   * **Note:** Use [godot.String.uriEncode] to encode characters within URLs in a URL-safe, portable way. This is especially required for line breaks. Otherwise, [shellOpen] may not work correctly in a project exported to the Web platform.
+   *
    * **Note:** This method is implemented on Android, iOS, Web, Linux, macOS and Windows.
    */
   public fun shellOpen(uri: String): GodotError {
     TransferContext.writeArguments(STRING to uri)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SHELL_OPEN, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Requests the OS to open the file manager, then navigate to the given [fileOrDirPath] and select the target file or folder.
+   *
+   * If [fileOrDirPath] is a valid directory path, and [openFolder] is `true`, the method will open the file manager and enter the target folder without selecting anything.
+   *
+   * Use [godot.ProjectSettings.globalizePath] to convert a `res://` or `user://` path into a system path for use with this method.
+   *
+   * **Note:** Currently this method is only implemented on Windows. On other platforms, it will fallback to [shellOpen] with a directory path for [fileOrDirPath].
+   */
+  public fun shellShowInFileManager(fileOrDirPath: String, openFolder: Boolean = true): GodotError {
+    TransferContext.writeArguments(STRING to fileOrDirPath, BOOL to openFolder)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SHELL_SHOW_IN_FILE_MANAGER, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -696,7 +726,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the video adapter driver name and version for the user's currently active graphics card.
+   * Returns the video adapter driver name and version for the user's currently active graphics card. See also [godot.RenderingServer.getVideoAdapterApiVersion].
    *
    * The first element holds the driver name, such as `nvidia`, `amdgpu`, etc.
    *
@@ -858,6 +888,23 @@ public object OS : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_PEAK_USAGE,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the [godot.core.Dictionary] with the following keys:
+   *
+   * `"physical"` - total amount of usable physical memory, in bytes or `-1` if unknown. This value can be slightly less than the actual physical memory amount, since it does not include memory reserved by kernel and devices.
+   *
+   * `"free"` - amount of physical memory, that can be immediately allocated without disk access or other costly operation, in bytes or `-1` if unknown. The process might be able to allocate more physical memory, but such allocation will require moving inactive pages to disk and can take some time.
+   *
+   * `"available"` - amount of memory, that can be allocated without extending the swap file(s), in bytes or `-1` if unknown. This value include both physical memory and swap.
+   *
+   * `"stack"` - size of the current thread stack, in bytes or `-1` if unknown.
+   */
+  public fun getMemoryInfo(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MEMORY_INFO, DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
   /**
@@ -1048,6 +1095,8 @@ public object OS : Object() {
    * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build, etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags]($DOCS_URL/tutorials/export/feature_tags.html) documentation for more details.
    *
    * **Note:** Tag names are case-sensitive.
+   *
+   * **Note:** On the web platform, one of the following additional tags is defined to indicate host platform: `web_android`, `web_ios`, `web_linuxbsd`, `web_macos`, or `web_windows`.
    */
   public fun hasFeature(tagName: String): Boolean {
     TransferContext.writeArguments(STRING to tagName)
@@ -1067,7 +1116,7 @@ public object OS : Object() {
   /**
    * With this function, you can request dangerous permissions since normal permissions are automatically granted at install time in Android applications.
    *
-   * **Note:** This method is implemented on Android.
+   * **Note:** This method is implemented only on Android.
    */
   public fun requestPermissions(): Boolean {
     TransferContext.writeArguments()
@@ -1078,7 +1127,7 @@ public object OS : Object() {
   /**
    * With this function, you can get the list of dangerous permissions that have been granted to the Android application.
    *
-   * **Note:** This method is implemented on Android.
+   * **Note:** This method is implemented only on Android.
    */
   public fun getGrantedPermissions(): PackedStringArray {
     TransferContext.writeArguments()

@@ -462,11 +462,11 @@ public open class AudioStreamPlayer3D : Node3D() {
      */
     DOPPLER_TRACKING_DISABLED(0),
     /**
-     * Executes doppler tracking in idle step.
+     * Executes doppler tracking during process frames (see [godot.Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     DOPPLER_TRACKING_IDLE_STEP(1),
     /**
-     * Executes doppler tracking in physics step.
+     * Executes doppler tracking during physics frames (see [godot.Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     DOPPLER_TRACKING_PHYSICS_STEP(2),
     ;

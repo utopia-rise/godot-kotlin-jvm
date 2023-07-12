@@ -18,12 +18,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Input event type for gamepad joysticks and other motions. For buttons, see `InputEventJoypadButton`.
+ * Represents axis motions (such as joystick or analog triggers) from a gamepad.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
- * Stores information about joystick motions. One [godot.InputEventJoypadMotion] represents one axis at a time.
+ * Stores information about joystick motions. One [godot.InputEventJoypadMotion] represents one axis at a time. For gamepad buttons, see [godot.InputEventJoypadButton].
  */
 @GodotBaseType
 public open class InputEventJoypadMotion : InputEvent() {

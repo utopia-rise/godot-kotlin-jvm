@@ -22,9 +22,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Result from a 2D body motion test.
+ * Describes the motion and collision result from [godot.PhysicsServer2D.bodyTestMotion].
  *
- * This class contains the motion and collision result from [godot.PhysicsServer2D.bodyTestMotion].
+ * Describes the motion and collision result from [godot.PhysicsServer2D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult2D : RefCounted() {

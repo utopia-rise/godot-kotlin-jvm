@@ -30,12 +30,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Type to handle file reading and writing operations.
+ * Provides methods for file reading and writing operations.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * File type. This is used to permanently store data into the user device's file system and to read from it. This can be used to store game save data or player configuration files, for example.
+ * This class can be used to permanently store data in the user device's file system and to read from it. This is useful for store game save data or player configuration files.
  *
  * Here's a sample on how to write and read from a file:
  *
@@ -93,29 +93,9 @@ import kotlin.Unit
  *
  * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths]($DOCS_URL/tutorials/io/data_paths.html) documentation.
  *
- * [godot.FileAccess] will close when it's freed, which happens when it goes out of scope or when it gets assigned with `null`. In C# the reference must be disposed after we are done using it, this can be done with the `using` statement or calling the `Dispose` method directly.
+ * [godot.FileAccess] will close when it's freed, which happens when it goes out of scope or when it gets assigned with `null`. [close] can be used to close it before then explicitly. In C# the reference must be disposed manually, which can be done with the `using` statement or by calling the `Dispose` method directly.
  *
- * [codeblocks]
- *
- * [gdscript]
- *
- * var file = FileAccess.open("res://something") # File is opened and locked for use.
- *
- * file = null # File is closed.
- *
- * [/gdscript]
- *
- * [csharp]
- *
- * using var file = FileAccess.Open("res://something"); // File is opened and locked for use.
- *
- * // The using statement calls Dispose when going out of scope.
- *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * **Note:** To access project resources once exported, it is recommended to use [godot.ResourceLoader] instead of the [godot.FileAccess] API, as some files are converted to engine-specific formats and their original source files might not be present in the exported PCK package.
+ * **Note:** To access project resources once exported, it is recommended to use [godot.ResourceLoader] instead of [godot.FileAccess], as some files are converted to engine-specific formats and their original source files might not be present in the exported PCK package.
  *
  * **Note:** Files are automatically closed only if the process exits "normally" (such as by clicking the window manager's close button or pressing **Alt + F4**). If you stop the project execution by pressing **F8** while the project is running, the file won't be closed as the game process will be killed. You can work around this by calling [flush] at regular intervals.
  */
@@ -656,6 +636,10 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Uses the [gzip](https://www.gzip.org/) compression method.
      */
     COMPRESSION_GZIP(3),
+    /**
+     * Uses the [brotli](https://github.com/google/brotli) compression method (only decompression is supported).
+     */
+    COMPRESSION_BROTLI(4),
     ;
 
     public val id: Long

@@ -32,6 +32,8 @@ import kotlin.Unit
 public open class MultiplayerSynchronizer : Node() {
   public val synchronized: Signal0 by signal()
 
+  public val deltaSynchronized: Signal0 by signal()
+
   public val visibilityChanged: Signal1<Long> by signal("forPeer")
 
   public var rootPath: NodePath
@@ -58,6 +60,19 @@ public open class MultiplayerSynchronizer : Node() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_REPLICATION_INTERVAL, NIL)
+    }
+
+  public var deltaInterval: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_GET_DELTA_INTERVAL, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_DELTA_INTERVAL, NIL)
     }
 
   public var replicationConfig: SceneReplicationConfig?

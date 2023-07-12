@@ -77,7 +77,7 @@ public open class PacketPeerUDP : PacketPeer() {
    *
    * socket.set_dest_address("127.0.0.1", 789)
    *
-   * socket.put_packet("Time to stop".to_ascii())
+   * socket.put_packet("Time to stop".to_ascii_buffer())
    *
    *
    *
@@ -101,7 +101,7 @@ public open class PacketPeerUDP : PacketPeer() {
    *
    * socket.SetDestAddress("127.0.0.1", 789);
    *
-   * socket.PutPacket("Time to stop".ToAscii());
+   * socket.PutPacket("Time to stop".ToAsciiBuffer());
    *
    *
    *

@@ -23,7 +23,7 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Time singleton for working with time.
+ * A singleton for working with time data.
  *
  * The Time singleton allows converting time between various formats and also getting time information from the system.
  *

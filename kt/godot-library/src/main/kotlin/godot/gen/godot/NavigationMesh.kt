@@ -31,7 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A mesh to approximate the walkable areas and obstacles.
+ * A navigation mesh that defines traversable areas and obstacles.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html)
@@ -137,7 +137,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The XZ plane cell size to use for fields.
+   * The cell size used to rasterize the navigation mesh vertices on the XZ plane. Must match with the cell size on the navigation map.
    */
   public var cellSize: Double
     get() {
@@ -152,7 +152,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The Y axis cell size to use for fields.
+   * The cell height used to rasterize the navigation mesh vertices on the Y axis. Must match with the cell height on the navigation map.
    */
   public var cellHeight: Double
     get() {

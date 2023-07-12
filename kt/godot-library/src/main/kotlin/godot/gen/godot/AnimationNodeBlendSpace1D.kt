@@ -24,18 +24,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Blends linearly between two of any number of [godot.AnimationNode] of any type placed on a virtual axis.
+ * A set of [godot.AnimationRootNode]s placed on a virtual axis, crossfading between the two adjacent ones. Used by [godot.AnimationTree].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
- * A resource to add to an [godot.AnimationNodeBlendTree].
+ * A resource used by [godot.AnimationNodeBlendTree].
  *
- * This is a virtual axis on which you can add any type of [godot.AnimationNode] using [addBlendPoint].
+ * [godot.AnimationNodeBlendSpace1D] represents a virtual axis on which any type of [godot.AnimationRootNode]s can be added using [addBlendPoint]. Outputs the linear blend of the two [godot.AnimationRootNode]s adjacent to the current value.
  *
- * Outputs the linear blend of the two [godot.AnimationNode]s closest to the node's current value.
- *
- * You can set the extents of the axis using the [minSpace] and [maxSpace].
+ * You can set the extents of the axis with [minSpace] and [maxSpace].
  */
 @GodotBaseType
 public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
@@ -220,7 +218,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
      */
     BLEND_MODE_INTERPOLATED(0),
     /**
-     * The blend space plays the animation of the node the blending position is closest to. Useful for frame-by-frame 2D animations.
+     * The blend space plays the animation of the animation node which blending position is closest to. Useful for frame-by-frame 2D animations.
      */
     BLEND_MODE_DISCRETE(1),
     /**

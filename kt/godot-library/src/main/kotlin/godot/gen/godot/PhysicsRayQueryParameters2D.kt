@@ -22,9 +22,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Parameters to be sent to a 2D ray physics query.
+ * Provides parameters for [godot.PhysicsDirectSpaceState2D.intersectRay].
  *
- * This class contains the ray position and other parameters to be used for [godot.PhysicsDirectSpaceState2D.intersectRay].
+ * By changing various properties of this object, such as the ray position, you can configure the parameters for [godot.PhysicsDirectSpaceState2D.intersectRay].
  */
 @GodotBaseType
 public open class PhysicsRayQueryParameters2D : RefCounted() {

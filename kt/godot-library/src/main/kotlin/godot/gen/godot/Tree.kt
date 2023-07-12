@@ -32,11 +32,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Control to show a tree of items.
+ * A control used to show a set of internal [godot.TreeItem]s in a hierarchical structure.
  *
- * This shows a tree of items that can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like text editing, buttons and popups. It can be useful for structured displays and interactions.
+ * A control used to show a set of internal [godot.TreeItem]s in a hierarchical structure. The tree items can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like [godot.LineEdit]s, buttons and popups. It can be useful for structured displays and interactions.
  *
- * Trees are built via code, using [godot.TreeItem] objects to create the structure. They have a single root but multiple roots can be simulated if a dummy hidden root is added.
+ * Trees are built via code, using [godot.TreeItem] objects to create the structure. They have a single root, but multiple roots can be simulated with [hideRoot]:
  *
  * [codeblocks]
  *
@@ -224,6 +224,20 @@ public open class Tree : Control() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_ALLOW_RMB_SELECT, NIL)
+    }
+
+  /**
+   * If `true`, allows navigating the [godot.Tree] with letter keys through incremental search.
+   */
+  public var allowSearch: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_ALLOW_SEARCH, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_ALLOW_SEARCH, NIL)
     }
 
   /**
@@ -554,10 +568,14 @@ public open class Tree : Control() {
   }
 
   /**
-   * Edits the selected tree item as if it was clicked. The item must be set editable with [godot.TreeItem.setEditable]. Returns `true` if the item could be edited. Fails if no item is selected.
+   * Edits the selected tree item as if it was clicked.
+   *
+   * Either the item must be set editable with [godot.TreeItem.setEditable] or [forceEdit] must be `true`.
+   *
+   * Returns `true` if the item could be edited. Fails if no item is selected.
    */
-  public fun editSelected(): Boolean {
-    TransferContext.writeArguments()
+  public fun editSelected(forceEdit: Boolean = false): Boolean {
+    TransferContext.writeArguments(BOOL to forceEdit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_EDIT_SELECTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -653,6 +671,25 @@ public open class Tree : Control() {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Sets the column title alignment. Note that [@GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is not supported for column titles.
+   */
+  public fun setColumnTitleAlignment(column: Long, titleAlignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to column, LONG to titleAlignment.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLE_ALIGNMENT,
+        NIL)
+  }
+
+  /**
+   * Returns the column title alignment.
+   */
+  public fun getColumnTitleAlignment(column: Long): HorizontalAlignment {
+    TransferContext.writeArguments(LONG to column)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE_ALIGNMENT,
+        LONG)
+    return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**

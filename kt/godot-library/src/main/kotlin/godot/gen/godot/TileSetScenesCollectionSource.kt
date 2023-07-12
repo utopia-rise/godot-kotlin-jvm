@@ -75,7 +75,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Changes a scene tile's ID from [id] to [newId]. This will fail if there is already a tile with a ID equal to [newId].
+   * Changes a scene tile's ID from [id] to [newId]. This will fail if there is already a tile with an ID equal to [newId].
    */
   public fun setSceneTileId(id: Long, newId: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to newId)

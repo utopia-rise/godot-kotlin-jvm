@@ -340,7 +340,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The fade-in distance for screen-space reflections. Affects the area from the reflected material to the screen-space reflection). Only positive values are valid (negative values will be clamped to `0.0`).
+   * The fade-in distance for screen-space reflections. Affects the area from the reflected material to the screen-space reflection. Only positive values are valid (negative values will be clamped to `0.0`).
    */
   public var ssrFadeIn: Double
     get() {

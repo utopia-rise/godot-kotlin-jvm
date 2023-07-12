@@ -21,11 +21,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Special button that brings up a [godot.PopupMenu] when clicked.
+ * A button that brings up a [godot.PopupMenu] when clicked.
  *
- * Special button that brings up a [godot.PopupMenu] when clicked.
- *
- * New items can be created inside this [godot.PopupMenu] using `get_popup().add_item("My Item Name")`. You can also create them directly from the editor. To do so, select the [godot.MenuButton] node, then in the toolbar at the top of the 2D editor, click **Items** then click **Add** in the popup. You will be able to give each item new properties.
+ * A button that brings up a [godot.PopupMenu] when clicked. To create new items inside this [godot.PopupMenu], use `get_popup().add_item("My Item Name")`. You can also create them directly from Godot editor's inspector.
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  */

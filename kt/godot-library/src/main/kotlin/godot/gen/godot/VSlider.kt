@@ -12,11 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Vertical slider.
+ * A vertical slider that goes from bottom (min) to top (max).
  *
- * Vertical slider. See [godot.Slider]. This one goes from bottom (min) to top (max).
- *
- * **Note:** The [godot.Range.changed] and [godot.Range.valueChanged] signals are part of the [godot.Range] class which this class inherits from.
+ * A vertical slider, used to adjust a value by moving a grabber along a vertical axis. It is a [godot.Range]-based control and goes from bottom (min) to top (max). Note that this direction is the opposite of [godot.VScrollBar]'s.
  */
 @GodotBaseType
 public open class VSlider : Slider() {

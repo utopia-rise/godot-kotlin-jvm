@@ -50,14 +50,24 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Singleton for window management functions.
+ * A server interface for low-level window management.
  *
- * [godot.DisplayServer] handles everything related to window management. This is separated from [OS] as a single operating system may support multiple display servers.
+ * [godot.DisplayServer] handles everything related to window management. It is separated from [OS] as a single operating system may support multiple display servers.
  *
  * **Headless mode:** Starting the engine with the `--headless` [command line argument]($DOCS_URL/tutorials/editor/command_line_tutorial.html) disables all rendering and window management functions. Most functions from [godot.DisplayServer] will return dummy values in this case.
  */
 @GodotBaseType
 public object DisplayServer : Object() {
+  /**
+   * Represents the screen containing the mouse pointer.
+   */
+  public final const val SCREEN_WITH_MOUSE_FOCUS: Long = -4
+
+  /**
+   * Represents the screen containing the window with the keyboard focus.
+   */
+  public final const val SCREEN_WITH_KEYBOARD_FOCUS: Long = -3
+
   /**
    * Represents the primary screen.
    */
@@ -108,7 +118,7 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Supported system menu IDs:**
    *
@@ -134,11 +144,11 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Supported system menu IDs:**
    *
@@ -167,11 +177,11 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Supported system menu IDs:**
    *
@@ -200,11 +210,11 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Supported system menu IDs:**
    *
@@ -234,11 +244,11 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Supported system menu IDs:**
    *
@@ -268,13 +278,13 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
    * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on how to control it.
    *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Supported system menu IDs:**
    *
@@ -303,13 +313,13 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
    * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on how to control it.
    *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Supported system menu IDs:**
    *
@@ -341,13 +351,13 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
    * **Note:** By default, there's no indication of the current item state, it should be changed manually.
    *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Supported system menu IDs:**
    *
@@ -378,7 +388,7 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Supported system menu IDs:**
    *
@@ -397,7 +407,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the index of the item with the specified [text]. Index is automatically assigned to each item by the engine. Index can not be set manually.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Long {
     TransferContext.writeArguments(STRING to menuRoot, STRING to text)
@@ -409,7 +419,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the index of the item with the specified [tag]. Index is automatically assigned to each item by the engine. Index can not be set manually.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any): Long {
     TransferContext.writeArguments(STRING to menuRoot, ANY to tag)
@@ -421,7 +431,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if the item at index [idx] is checked.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuIsItemChecked(menuRoot: String, idx: Long): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -433,7 +443,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if the item at index [idx] is checkable in some way, i.e. if it has a checkbox or radio button.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuIsItemCheckable(menuRoot: String, idx: Long): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -447,7 +457,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuIsItemRadioCheckable(menuRoot: String, idx: Long): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -459,7 +469,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the callback of the item at index [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemCallback(menuRoot: String, idx: Long): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -471,7 +481,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the callback of the item accelerator at index [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemKeyCallback(menuRoot: String, idx: Long): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -483,7 +493,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the metadata of the specified item, which might be of any type. You can set it with [globalMenuSetItemTag], which provides a simple way of assigning context data to items.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemTag(menuRoot: String, idx: Long): Any? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -495,7 +505,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the text of the item at index [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemText(menuRoot: String, idx: Long): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -507,7 +517,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the submenu ID of the item at index [idx]. See [globalMenuAddSubmenuItem] for more info on how to add a submenu.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemSubmenu(menuRoot: String, idx: Long): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -519,7 +529,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the accelerator of the item at index [idx]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemAccelerator(menuRoot: String, idx: Long): Key {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -533,7 +543,7 @@ public object DisplayServer : Object() {
    *
    * See [globalMenuSetItemDisabled] for more info on how to disable an item.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuIsItemDisabled(menuRoot: String, idx: Long): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -543,9 +553,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the tooltip associated with the specified index index [idx].
+   * Returns the tooltip associated with the specified index [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemTooltip(menuRoot: String, idx: Long): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -555,9 +565,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the state of an multistate item. See [globalMenuAddMultistateItem] for details.
+   * Returns the state of a multistate item. See [globalMenuAddMultistateItem] for details.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemState(menuRoot: String, idx: Long): Long {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -567,9 +577,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns number of states of an multistate item. See [globalMenuAddMultistateItem] for details.
+   * Returns number of states of a multistate item. See [globalMenuAddMultistateItem] for details.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemMaxStates(menuRoot: String, idx: Long): Long {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -581,7 +591,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the icon of the item at index [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemIcon(menuRoot: String, idx: Long): Texture2D? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -593,7 +603,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the horizontal offset of the item at the given [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemIndentationLevel(menuRoot: String, idx: Long): Long {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -605,7 +615,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the checkstate status of the item at index [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemChecked(
     menuRoot: String,
@@ -620,7 +630,7 @@ public object DisplayServer : Object() {
   /**
    * Sets whether the item at index [idx] has a checkbox. If `false`, sets the type of the item to plain text.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemCheckable(
     menuRoot: String,
@@ -637,7 +647,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemRadioCheckable(
     menuRoot: String,
@@ -652,9 +662,9 @@ public object DisplayServer : Object() {
   /**
    * Sets the callback of the item at index [idx]. Callback is emitted when an item is pressed.
    *
-   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the tag parameter when the menu item was created.
+   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemCallback(
     menuRoot: String,
@@ -669,9 +679,9 @@ public object DisplayServer : Object() {
   /**
    * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is activated.
    *
-   * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the tag parameter when the menu item was created.
+   * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemKeyCallback(
     menuRoot: String,
@@ -686,7 +696,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the metadata of an item, which may be of any type. You can later get it with [globalMenuGetItemTag], which provides a simple way of assigning context data to items.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemTag(
     menuRoot: String,
@@ -701,7 +711,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the text of the item at index [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemText(
     menuRoot: String,
@@ -716,7 +726,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the submenu of the item at index [idx]. The submenu is the ID of a global menu root that would be shown when the item is clicked.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemSubmenu(
     menuRoot: String,
@@ -729,9 +739,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the accelerator of the item at index [idx]. [keycode] can be a single [enum Key], or a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * Sets the accelerator of the item at index [idx]. [keycode] can be a single [enum Key], or a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemAccelerator(
     menuRoot: String,
@@ -746,7 +756,7 @@ public object DisplayServer : Object() {
   /**
    * Enables/disables the item at index [idx]. When it is disabled, it can't be selected and its action can't be invoked.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemDisabled(
     menuRoot: String,
@@ -761,7 +771,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the [godot.String] tooltip of the item at the specified index [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemTooltip(
     menuRoot: String,
@@ -774,9 +784,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the state of an multistate item. See [globalMenuAddMultistateItem] for details.
+   * Sets the state of a multistate item. See [globalMenuAddMultistateItem] for details.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemState(
     menuRoot: String,
@@ -789,9 +799,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets number of state of an multistate item. See [globalMenuAddMultistateItem] for details.
+   * Sets number of state of a multistate item. See [globalMenuAddMultistateItem] for details.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemMaxStates(
     menuRoot: String,
@@ -806,7 +816,7 @@ public object DisplayServer : Object() {
   /**
    * Replaces the [godot.Texture2D] icon of the specified [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Note:** This method is not supported by macOS "_dock" menu items.
    */
@@ -823,7 +833,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the horizontal offset of the item at the given [idx].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemIndentationLevel(
     menuRoot: String,
@@ -838,7 +848,7 @@ public object DisplayServer : Object() {
   /**
    * Returns number of items in the global menu with ID [menuRoot].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemCount(menuRoot: String): Long {
     TransferContext.writeArguments(STRING to menuRoot)
@@ -852,7 +862,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** The indices of items after the removed item will be shifted by one.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuRemoveItem(menuRoot: String, idx: Long): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -863,7 +873,7 @@ public object DisplayServer : Object() {
   /**
    * Removes all items from the global menu with ID [menuRoot].
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    *
    * **Supported system menu IDs:**
    *
@@ -882,6 +892,8 @@ public object DisplayServer : Object() {
    * Returns `true` if the synthesizer is generating speech, or have utterance waiting in the queue.
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   *
+   * **Note:** [godot.ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsIsSpeaking(): Boolean {
     TransferContext.writeArguments()
@@ -893,6 +905,8 @@ public object DisplayServer : Object() {
    * Returns `true` if the synthesizer is in a paused state.
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   *
+   * **Note:** [godot.ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsIsPaused(): Boolean {
     TransferContext.writeArguments()
@@ -911,9 +925,11 @@ public object DisplayServer : Object() {
    *
    * - `language` is language code in `lang_Variant` format. `lang` part is a 2 or 3-letter code based on the ISO-639 standard, in lowercase. And `Variant` part is an engine dependent string describing country, region or/and dialect.
    *
-   * Note that Godot depends on system libraries for text-to-speech functionality. These libraries are installed by default on Windows and MacOS, but not on all Linux distributions. If they are not present, this method will return an empty list. This applies to both Godot users on Linux, as well as end-users on Linux running Godot games that use text-to-speech.
+   * Note that Godot depends on system libraries for text-to-speech functionality. These libraries are installed by default on Windows and macOS, but not on all Linux distributions. If they are not present, this method will return an empty list. This applies to both Godot users on Linux, as well as end-users on Linux running Godot games that use text-to-speech.
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   *
+   * **Note:** [godot.ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -925,6 +941,8 @@ public object DisplayServer : Object() {
    * Returns an [godot.PackedStringArray] of voice identifiers for the [language].
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   *
+   * **Note:** [godot.ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsGetVoicesForLanguage(language: String): PackedStringArray {
     TransferContext.writeArguments(STRING to language)
@@ -951,6 +969,8 @@ public object DisplayServer : Object() {
    * **Note:** The granularity of pitch, rate, and volume is engine and voice dependent. Values may be truncated.
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   *
+   * **Note:** [godot.ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsSpeak(
     text: String,
@@ -969,6 +989,8 @@ public object DisplayServer : Object() {
    * Puts the synthesizer into a paused state.
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   *
+   * **Note:** [godot.ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsPause(): Unit {
     TransferContext.writeArguments()
@@ -979,6 +1001,8 @@ public object DisplayServer : Object() {
    * Resumes the synthesizer if it was paused.
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   *
+   * **Note:** [godot.ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsResume(): Unit {
     TransferContext.writeArguments()
@@ -989,6 +1013,8 @@ public object DisplayServer : Object() {
    * Stops synthesis in progress and removes all utterances from the queue.
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   *
+   * **Note:** [godot.ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsStop(): Unit {
     TransferContext.writeArguments()
@@ -998,13 +1024,15 @@ public object DisplayServer : Object() {
   /**
    * Adds a callback, which is called when the utterance has started, finished, canceled or reached a text boundary.
    *
-   * - [TTS_UTTERANCE_STARTED], [TTS_UTTERANCE_ENDED], and [TTS_UTTERANCE_CANCELED] callable's method should take one [int] parameter, the utterance id.
+   * - [TTS_UTTERANCE_STARTED], [TTS_UTTERANCE_ENDED], and [TTS_UTTERANCE_CANCELED] callable's method should take one [int] parameter, the utterance ID.
    *
-   * - [TTS_UTTERANCE_BOUNDARY] callable's method should take two [int] parameters, the index of the character and the utterance id.
+   * - [TTS_UTTERANCE_BOUNDARY] callable's method should take two [int] parameters, the index of the character and the utterance ID.
    *
    * **Note:** The granularity of the boundary callbacks is engine dependent.
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   *
+   * **Note:** [godot.ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable): Unit {
     TransferContext.writeArguments(LONG to event.id, CALLABLE to callable)
@@ -1075,7 +1103,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the mouse cursor's current position.
+   * Returns the mouse cursor's current position in screen coordinates.
    */
   public fun mouseGetPosition(): Vector2i {
     TransferContext.writeArguments()
@@ -1186,6 +1214,16 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns the index of the screen containing the window with the keyboard focus, or the primary screen if there's no focused window.
+   */
+  public fun getKeyboardFocusScreen(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_KEYBOARD_FOCUS_SCREEN, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Returns index of the screen which contains specified rectangle.
    */
   public fun getScreenFromRect(rect: Rect2): Long {
@@ -1265,7 +1303,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** On macOS returned value is `2.0` for hiDPI (Retina) screen, and `1.0` for all other cases.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun screenGetScale(screen: Long = -1): Double {
     TransferContext.writeArguments(LONG to screen)
@@ -1289,7 +1327,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** On macOS returned value is `2.0` if there is at least one hiDPI (Retina) screen in the system, and `1.0` in all other cases.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun screenGetMaxScale(): Double {
     TransferContext.writeArguments()
@@ -1319,7 +1357,37 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns color of the display pixel at the [position].
+   *
+   * **Note:** This method is implemented on Linux (X11), macOS, and Windows.
+   *
+   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not granted it will return desktop wallpaper color.
+   */
+  public fun screenGetPixel(position: Vector2i): Color {
+    TransferContext.writeArguments(VECTOR2I to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_PIXEL,
+        COLOR)
+    return TransferContext.readReturnValue(COLOR, false) as Color
+  }
+
+  /**
+   * Returns screenshot of the [screen].
+   *
+   * **Note:** This method is implemented on Linux (X11), macOS, and Windows.
+   *
+   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not granted it will return desktop wallpaper color.
+   */
+  public fun screenGetImage(screen: Long = -1): Image? {
+    TransferContext.writeArguments(LONG to screen)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_IMAGE,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Image?
+  }
+
+  /**
    * Sets the [screen]'s [orientation]. See also [screenGetOrientation].
+   *
+   * **Note:** On iOS, this method has no effect if [godot.ProjectSettings.display/window/handheld/orientation] is not set to [SCREEN_SENSOR].
    */
   public fun screenSetOrientation(orientation: ScreenOrientation, screen: Long = -1): Unit {
     TransferContext.writeArguments(LONG to orientation.id, LONG to screen)
@@ -1630,7 +1698,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the [godot.Object.getInstanceId] of the [godot.Window] the [windowId] is attached to. also [windowGetAttachedInstanceId].
+   * Returns the [godot.Object.getInstanceId] of the [godot.Window] the [windowId] is attached to.
    */
   public fun windowGetAttachedInstanceId(windowId: Long = 0): Long {
     TransferContext.writeArguments(LONG to windowId)
@@ -1740,7 +1808,7 @@ public object DisplayServer : Object() {
   /**
    * When [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set, set offset to the center of the first titlebar button.
    *
-   * **Note:** This flag is implemented on macOS.
+   * **Note:** This flag is implemented only on macOS.
    */
   public fun windowSetWindowButtonsOffset(offset: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to offset, LONG to windowId)
@@ -1774,6 +1842,16 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_MOVE_TO_FOREGROUND, NIL)
+  }
+
+  /**
+   * Returns `true` if the window specified by [windowId] is focused.
+   */
+  public fun windowIsFocused(windowId: Long = 0): Boolean {
+    TransferContext.writeArguments(LONG to windowId)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_IS_FOCUSED,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -1867,7 +1945,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true`, if double-click on a window title should maximize it.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun windowMaximizeOnTitleDblClick(): Boolean {
     TransferContext.writeArguments()
@@ -1879,7 +1957,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true`, if double-click on a window title should minimize it.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun windowMinimizeOnTitleDblClick(): Boolean {
     TransferContext.writeArguments()
@@ -1891,7 +1969,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the text selection in the [godot.Input Method Editor](https://en.wikipedia.org/wiki/Input_method) composition string, with the [godot.Vector2i]'s `x` component being the caret position and `y` being the length of the selection.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun imeGetSelection(): Vector2i {
     TransferContext.writeArguments()
@@ -1903,7 +1981,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the composition string contained within the [godot.Input Method Editor](https://en.wikipedia.org/wiki/Input_method) window.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun imeGetText(): String {
     TransferContext.writeArguments()
@@ -2006,7 +2084,7 @@ public object DisplayServer : Object() {
   /**
    * Allows the [processId] PID to steal focus from this window. In other words, this disables the operating system's focus stealing protection for the specified PID.
    *
-   * **Note:** This method is implemented on Windows.
+   * **Note:** This method is implemented only on Windows.
    */
   public fun enableForStealingFocus(processId: Long): Unit {
     TransferContext.writeArguments(LONG to processId)
@@ -2017,7 +2095,7 @@ public object DisplayServer : Object() {
   /**
    * Shows a text dialog which uses the operating system's native look-and-feel. [callback] will be called when the dialog is closed for any reason.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun dialogShow(
     title: String,
@@ -2033,7 +2111,7 @@ public object DisplayServer : Object() {
   /**
    * Shows a text input dialog which uses the operating system's native look-and-feel. [callback] will be called with a [godot.String] argument equal to the text field's contents when the dialog is closed for any reason.
    *
-   * **Note:** This method is implemented on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   public fun dialogInputText(
     title: String,
@@ -2146,7 +2224,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the window icon (usually displayed in the top-left corner) in the operating system's *native* format. To use icons in the operating system's native format, use [setNativeIcon] instead.
+   * Sets the window icon (usually displayed in the top-left corner) with an [godot.Image]. To use icons in the operating system's native format, use [setNativeIcon] instead.
    */
   public fun setIcon(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
@@ -2156,7 +2234,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the total number of available tablet drivers.
    *
-   * **Note:** This method is implemented on Windows.
+   * **Note:** This method is implemented only on Windows.
    */
   public fun tabletGetDriverCount(): Long {
     TransferContext.writeArguments()
@@ -2168,7 +2246,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the tablet driver name for the given index.
    *
-   * **Note:** This method is implemented on Windows.
+   * **Note:** This method is implemented only on Windows.
    */
   public fun tabletGetDriverName(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -2180,7 +2258,7 @@ public object DisplayServer : Object() {
   /**
    * Returns current active tablet driver name.
    *
-   * **Note:** This method is implemented on Windows.
+   * **Note:** This method is implemented only on Windows.
    */
   public fun tabletGetCurrentDriver(): String {
     TransferContext.writeArguments()
@@ -2192,7 +2270,7 @@ public object DisplayServer : Object() {
   /**
    * Set active tablet driver name.
    *
-   * **Note:** This method is implemented on Windows.
+   * **Note:** This method is implemented only on Windows.
    */
   public fun tabletSetCurrentDriver(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
@@ -2283,6 +2361,10 @@ public object DisplayServer : Object() {
      * Display server supports expanding window content to the title. See [WINDOW_FLAG_EXTEND_TO_TITLE]. **macOS**
      */
     FEATURE_EXTEND_TO_TITLE(20),
+    /**
+     * Display server supports reading screen pixels. See [screenGetPixel].
+     */
+    FEATURE_SCREEN_CAPTURE(21),
     ;
 
     public val id: Long
@@ -2340,7 +2422,7 @@ public object DisplayServer : Object() {
      */
     SCREEN_LANDSCAPE(0),
     /**
-     * Default portrait orienstation.
+     * Default portrait orientation.
      */
     SCREEN_PORTRAIT(1),
     /**
@@ -2436,7 +2518,7 @@ public object DisplayServer : Object() {
      */
     CURSOR_IBEAM(1),
     /**
-     * Pointing hand cursor shape. This is used by default when hovering a [godot.LinkButton] or an URL tag in a [godot.RichTextLabel].
+     * Pointing hand cursor shape. This is used by default when hovering a [godot.LinkButton] or a URL tag in a [godot.RichTextLabel].
      */
     CURSOR_POINTING_HAND(2),
     /**
@@ -2564,7 +2646,7 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * The window can't be resizing by dragging its resize grip. It's still possible to resize the window using [windowSetSize]. This flag is ignored for full screen windows.
+     * The window can't be resized by dragging its resize grip. It's still possible to resize the window using [windowSetSize]. This flag is ignored for full screen windows.
      */
     WINDOW_FLAG_RESIZE_DISABLED(0),
     /**
@@ -2588,7 +2670,7 @@ public object DisplayServer : Object() {
      */
     WINDOW_FLAG_NO_FOCUS(4),
     /**
-     * Window is part of menu or [godot.OptionButton] dropdown. This flag can't be changed when the window is visible. An active popup window will exclusively receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have `transient parent` set (see [windowSetTransient]).
+     * Window is part of menu or [godot.OptionButton] dropdown. This flag can't be changed when the window is visible. An active popup window will exclusively receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have transient parent set (see [windowSetTransient]).
      */
     WINDOW_FLAG_POPUP(5),
     /**
@@ -2598,7 +2680,7 @@ public object DisplayServer : Object() {
      *
      * Use [windowGetSafeTitleMargins] to determine area under the title bar that is not covered by decorations.
      *
-     * **Note:** This flag is implemented on macOS.
+     * **Note:** This flag is implemented only on macOS.
      */
     WINDOW_FLAG_EXTEND_TO_TITLE(6),
     /**
@@ -2647,19 +2729,19 @@ public object DisplayServer : Object() {
     /**
      * Sent when the device "Back" button is pressed, see [windowSetWindowEventCallback].
      *
-     * **Note:** This event is implemented on Android.
+     * **Note:** This event is implemented only on Android.
      */
     WINDOW_EVENT_GO_BACK_REQUEST(5),
     /**
      * Sent when the window is moved to the display with different DPI, or display DPI is changed, see [windowSetWindowEventCallback].
      *
-     * **Note:** This flag is implemented on macOS.
+     * **Note:** This flag is implemented only on macOS.
      */
     WINDOW_EVENT_DPI_CHANGE(6),
     /**
      * Sent when the window title bar decoration is changed (e.g. [WINDOW_FLAG_EXTEND_TO_TITLE] is set or window entered/exited full screen mode), see [windowSetWindowEventCallback].
      *
-     * **Note:** This flag is implemented on macOS.
+     * **Note:** This flag is implemented only on macOS.
      */
     WINDOW_EVENT_TITLEBAR_CHANGE(7),
     ;
@@ -2749,7 +2831,7 @@ public object DisplayServer : Object() {
      *
      * - Linux: `GLXContext*` for the window.
      *
-     * - MacOS: `NSOpenGLContext*` for the window.
+     * - macOS: `NSOpenGLContext*` for the window.
      *
      * - Android: `EGLContext` for the window.
      */

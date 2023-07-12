@@ -87,5 +87,18 @@ public open class SceneReplicationConfig : Resource() {
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_SET_SYNC, NIL)
   }
 
+  public fun propertyGetWatch(path: NodePath): Boolean {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_WATCH, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public fun propertySetWatch(path: NodePath, enabled: Boolean): Unit {
+    TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_SET_WATCH, NIL)
+  }
+
   public companion object
 }

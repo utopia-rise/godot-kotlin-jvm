@@ -29,11 +29,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Control that provides single-line string editing.
+ * An input field for single-line text.
  *
- * LineEdit provides a single-line string editor, used for text fields.
- *
- * It features many built-in shortcuts which will always be available ([kbd]Ctrl[/kbd] here maps to [kbd]Cmd[/kbd] on macOS):
+ * [godot.LineEdit] provides an input field for editing a single line of text. It features many built-in shortcuts that are always available ([kbd]Ctrl[/kbd] here maps to [kbd]Cmd[/kbd] on macOS):
  *
  * - [kbd]Ctrl + C[/kbd]: Copy
  *
@@ -57,21 +55,21 @@ import kotlin.Unit
  *
  * On macOS, some extra keyboard shortcuts are available:
  *
- * - [kbd]Ctrl + F[/kbd]: Same as [kbd]Right Arrow[/kbd], move the caret one character right
+ * - [kbd]Cmd + F[/kbd]: Same as [kbd]Right Arrow[/kbd], move the caret one character right
  *
- * - [kbd]Ctrl + B[/kbd]: Same as [kbd]Left Arrow[/kbd], move the caret one character left
+ * - [kbd]Cmd + B[/kbd]: Same as [kbd]Left Arrow[/kbd], move the caret one character left
  *
- * - [kbd]Ctrl + P[/kbd]: Same as [kbd]Up Arrow[/kbd], move the caret to the previous line
+ * - [kbd]Cmd + P[/kbd]: Same as [kbd]Up Arrow[/kbd], move the caret to the previous line
  *
- * - [kbd]Ctrl + N[/kbd]: Same as [kbd]Down Arrow[/kbd], move the caret to the next line
+ * - [kbd]Cmd + N[/kbd]: Same as [kbd]Down Arrow[/kbd], move the caret to the next line
  *
- * - [kbd]Ctrl + D[/kbd]: Same as [kbd]Delete[/kbd], delete the character on the right side of caret
+ * - [kbd]Cmd + D[/kbd]: Same as [kbd]Delete[/kbd], delete the character on the right side of caret
  *
- * - [kbd]Ctrl + H[/kbd]: Same as [kbd]Backspace[/kbd], delete the character on the left side of the caret
+ * - [kbd]Cmd + H[/kbd]: Same as [kbd]Backspace[/kbd], delete the character on the left side of the caret
  *
- * - [kbd]Ctrl + A[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the line
+ * - [kbd]Cmd + A[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the line
  *
- * - [kbd]Ctrl + E[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
+ * - [kbd]Cmd + E[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
  *
  * - [kbd]Cmd + Left Arrow[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the line
  *
@@ -85,7 +83,7 @@ public open class LineEdit : Control() {
   public val textChanged: Signal1<String> by signal("newText")
 
   /**
-   * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to fit [maxLength], and the part that couldn't fit is passed as the `rejected_substring` argument.
+   * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to fit [maxLength], and the part that couldn't fit is passed as the [rejectedSubstring] argument.
    */
   public val textChangeRejected: Signal1<String> by signal("rejectedSubstring")
 
@@ -307,7 +305,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [godot.LineEdit] will show a clear button if `text` is not empty, which can be used to clear the text quickly.
+   * If `true`, the [godot.LineEdit] will show a clear button if [text] is not empty, which can be used to clear the text quickly.
    */
   public var clearButtonEnabled: Boolean
     get() {
@@ -449,7 +447,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the caret (text cursor) blinks.
+   * If `true`, makes the caret blink.
    */
   public var caretBlink: Boolean
     get() {
@@ -465,7 +463,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Duration (in seconds) of a caret's blinking cycle.
+   * The interval at which the caret blinks (in seconds).
    */
   public var caretBlinkInterval: Double
     get() {
@@ -660,6 +658,15 @@ public open class LineEdit : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_HAS_SELECTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the text inside the selection.
+   */
+  public fun getSelectedText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SELECTED_TEXT, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**

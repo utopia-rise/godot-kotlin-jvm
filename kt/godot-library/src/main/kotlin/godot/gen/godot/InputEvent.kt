@@ -28,12 +28,12 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Generic input event.
+ * Abstract base class for input events.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * Base class of all sort of input event. See [godot.Node.Input].
+ * Abstract base class of all types of input events. See [godot.Node.Input].
  */
 @GodotBaseType
 public open class InputEvent internal constructor() : Resource() {
@@ -110,6 +110,15 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
+   * Returns `true` if this input event has been canceled.
+   */
+  public fun isCanceled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_CANCELED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns `true` if this input event is pressed. Not relevant for events of type [godot.InputEventMouseMotion] or [godot.InputEventScreenDrag].
    *
    * **Note:** Due to keyboard ghosting, [isPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
@@ -117,6 +126,15 @@ public open class InputEvent internal constructor() : Resource() {
   public fun isPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_PRESSED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if this input event is released. Not relevant for events of type [godot.InputEventMouseMotion] or [godot.InputEventScreenDrag].
+   */
+  public fun isReleased(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_RELEASED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

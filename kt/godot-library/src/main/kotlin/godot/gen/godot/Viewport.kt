@@ -37,14 +37,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for viewports.
+ * Abstract base class for viewports. Encapsulates drawing and interaction with a game world.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/586](https://godotengine.org/asset-library/asset/586)
  *
  * A Viewport creates a different view into the screen, or a sub-view inside another viewport. Children 2D Nodes will display on it, and children Camera3D 3D nodes will render on it too.
  *
- * Optionally, a viewport can have its own 2D or 3D world, so they don't share what they draw with other viewports.
+ * Optionally, a viewport can have its own 2D or 3D world, so it doesn't share what it draws with other viewports.
  *
  * Viewports can also choose to be audio listeners, so they generate positional audio depending on a 2D or 3D camera child of it.
  *
@@ -153,7 +153,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, this viewport will mark incoming input events as handled by itself. If `false`, this is instead done by the the first parent viewport that is set to handle input locally.
+   * If `true`, this viewport will mark incoming input events as handled by itself. If `false`, this is instead done by the first parent viewport that is set to handle input locally.
    *
    * A [godot.SubViewportContainer] will automatically set this property to `false` for the [godot.Viewport] contained inside of it.
    *
@@ -623,9 +623,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The shadow atlas' resolution (used for omni and spot lights). The value will be rounded up to the nearest power of 2.
+   * The shadow atlas' resolution (used for omni and spot lights). The value is rounded up to the nearest power of 2.
    *
-   * **Note:** If this is set to `0`, no shadows will be visible at all (including directional shadows).
+   * **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw calls are needed to draw the scene without shadows).
    */
   public var positionalShadowAtlasSize: Long
     get() {
@@ -641,7 +641,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   *
+   * Use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less precision and may result in shadow acne, but can lead to performance improvements on some devices.
    */
   public var positionalShadowAtlas16Bits: Boolean
     get() {
@@ -792,7 +792,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   *
+   * Returns rendering statistics of the given type. See [enum RenderInfoType] and [enum RenderInfo] for options.
    */
   public fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Long {
     TransferContext.writeArguments(LONG to type.id, LONG to info.id)
@@ -827,7 +827,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   *
+   * Helper method which calls the `set_text()` method on the currently focused [godot.Control], provided that it is defined (e.g. if the focused Control is [godot.Button] or [godot.LineEdit]).
    */
   public fun pushTextInput(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
@@ -847,7 +847,15 @@ public open class Viewport internal constructor() : Node() {
    *
    * - [godot.Control.GuiInput] for [godot.Control] nodes
    *
+   * - [godot.Node.ShortcutInput]
+   *
+   * - [godot.Node.UnhandledInput]
+   *
+   * - [godot.Node.UnhandledKeyInput]
+   *
    * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
+   *
+   * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used for physics object picking.
    */
   public fun pushInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
@@ -872,6 +880,10 @@ public open class Viewport internal constructor() : Node() {
    * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
    *
    * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used for physics object picking.
+   *
+   * **Note:** This method doesn't propagate input events to embedded [godot.Window]s or [godot.SubViewport]s.
+   *
+   * *Deprecated.* Use [pushInput] instead.
    */
   public fun pushUnhandledInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
@@ -905,6 +917,15 @@ public open class Viewport internal constructor() : Node() {
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_WARP_MOUSE, NIL)
+  }
+
+  /**
+   * Force instantly updating the display based on the current mouse cursor position. This includes updating the mouse cursor shape and sending necessary [godot.Control.mouseEntered], [godot.CollisionObject2D.mouseEntered], [godot.CollisionObject3D.mouseEntered] and [godot.Window.mouseEntered] signals and their respective `mouse_exited` counterparts.
+   */
+  public fun updateMouseCursorState(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_UPDATE_MOUSE_CURSOR_STATE,
+        NIL)
   }
 
   /**
@@ -967,6 +988,8 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Stops the input from propagating further down the [godot.SceneTree].
+   *
+   * **Note:** This does not affect the methods in [godot.Input], only the way events are propagated.
    */
   public fun setInputAsHandled(): Unit {
     TransferContext.writeArguments()
@@ -1074,11 +1097,11 @@ public open class Viewport internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
+     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less than `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
      */
     SCALING_3D_MODE_BILINEAR(0),
     /**
-     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
+     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less than `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
      */
     SCALING_3D_MODE_FSR(1),
     /**

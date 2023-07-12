@@ -19,7 +19,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Provides virtual methods that can be overridden to create custom [godot.PhysicsDirectBodyState2D] implementations.
  *
+ * This class extends [godot.PhysicsDirectBodyState2D] by providing additional virtual methods that can be overridden. When these methods are overridden, they will be called instead of the internal methods of the physics server.
+ *
+ * Intended for use with GDExtension to create custom implementations of [godot.PhysicsDirectBodyState2D].
  */
 @GodotBaseType
 public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D() {
@@ -242,6 +246,13 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    */
   public open fun _getContactLocalShape(contactIdx: Long): Long {
     throw NotImplementedError("_get_contact_local_shape is not implemented for PhysicsDirectBodyState2DExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _getContactLocalVelocityAtPosition(contactIdx: Long): Vector2 {
+    throw NotImplementedError("_get_contact_local_velocity_at_position is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**

@@ -7,7 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -18,7 +21,9 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import kotlin.Any
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -50,6 +55,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public val visibilityStateChanged: Signal0 by signal()
 
   public val referenceSpaceReset: Signal0 by signal()
+
+  public val displayRefreshRateChanged: Signal0 by signal()
 
   public var sessionMode: String
     get() {
@@ -149,6 +156,26 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_INPUT_SOURCE_TARGET_RAY_MODE, LONG)
     return WebXRInterface.TargetRayMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public fun getDisplayRefreshRate(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_DISPLAY_REFRESH_RATE, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  public fun setDisplayRefreshRate(refreshRate: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to refreshRate)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_SET_DISPLAY_REFRESH_RATE, NIL)
+  }
+
+  public fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_AVAILABLE_DISPLAY_REFRESH_RATES, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public enum class TargetRayMode(

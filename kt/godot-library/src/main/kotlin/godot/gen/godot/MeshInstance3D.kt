@@ -147,10 +147,11 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * This helper creates a [godot.StaticBody3D] child node with multiple [godot.ConvexPolygonShape3D] collision shapes calculated from the mesh geometry via convex decomposition. It's mainly used for testing.
+   * This helper creates a [godot.StaticBody3D] child node with multiple [godot.ConvexPolygonShape3D] collision shapes calculated from the mesh geometry via convex decomposition. The convex decomposition operation can be controlled with parameters from the optional [settings].
    */
-  public fun createMultipleConvexCollisions(): Unit {
-    TransferContext.writeArguments()
+  public fun createMultipleConvexCollisions(settings: MeshConvexDecompositionSettings? = null):
+      Unit {
+    TransferContext.writeArguments(OBJECT to settings)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_MULTIPLE_CONVEX_COLLISIONS, NIL)
   }

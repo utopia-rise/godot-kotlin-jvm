@@ -29,7 +29,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Class information repository.
+ * A class information repository.
  *
  * Provides access to metadata stored for every available class.
  */

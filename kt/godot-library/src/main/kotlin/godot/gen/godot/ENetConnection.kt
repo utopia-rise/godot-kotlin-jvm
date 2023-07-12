@@ -159,6 +159,15 @@ public open class ENetConnection : RefCounted() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<ENetPacketPeer>
   }
 
+  public fun socketSend(
+    destinationAddress: String,
+    destinationPort: Long,
+    packet: PackedByteArray,
+  ): Unit {
+    TransferContext.writeArguments(STRING to destinationAddress, LONG to destinationPort, PACKED_BYTE_ARRAY to packet)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_SOCKET_SEND, NIL)
+  }
+
   public enum class CompressionMode(
     id: Long,
   ) {

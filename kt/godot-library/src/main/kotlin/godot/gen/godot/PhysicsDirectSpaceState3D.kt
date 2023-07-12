@@ -9,13 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedFloat32Array
-import godot.core.PackedVector3Array
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
+import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
@@ -24,12 +24,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Direct access object to a space in the [godot.PhysicsServer3D].
+ * Provides direct access to a physics space in the [godot.PhysicsServer3D].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Direct access object to a space in the [godot.PhysicsServer3D]. It's used mainly to do queries against objects and areas residing in a given space.
+ * Provides direct access to a physics space in the [godot.PhysicsServer3D]. It's used mainly to do queries against objects and areas residing in a given space.
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
@@ -128,11 +128,11 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    * **Note:** This method does not take into account the `motion` property of the object.
    */
   public fun collideShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Long = 32):
-      VariantArray<PackedVector3Array> {
+      VariantArray<Vector3> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_COLLIDE_SHAPE, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector3Array>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3>
   }
 
   /**

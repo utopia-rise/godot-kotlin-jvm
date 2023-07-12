@@ -89,7 +89,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   /**
-   * Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness texture. see [enum TextureSource] for options.
+   * Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness texture. See [enum TextureSource] for options.
    */
   public var textureSource: TextureSource
     get() {

@@ -134,7 +134,7 @@ public open class Curve2D : Resource() {
   }
 
   /**
-   * Deletes the point `idx` from the curve. Sends an error to the console if `idx` is out of bounds.
+   * Deletes the point [idx] from the curve. Sends an error to the console if [idx] is out of bounds.
    */
   public fun removePoint(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
@@ -192,12 +192,17 @@ public open class Curve2D : Resource() {
   }
 
   /**
-   * Similar to [sampleBaked], but returns [godot.core.Transform2D] that includes a rotation along the curve. Returns empty transform if length of the curve is `0`.
+   * Similar to [sampleBaked], but returns [godot.core.Transform2D] that includes a rotation along the curve, with [godot.Transform2D.origin] as the point position, [godot.Transform2D.x] as the sideways vector, and [godot.Transform2D.y] as the forward vector. Returns an empty transform if the length of the curve is `0`.
    *
    * ```
-   * 				var transform = curve.sample_baked_with_rotation(offset)
-   * 				position = transform.get_origin()
-   * 				rotation = transform.get_rotation()
+   * 				var baked = curve.sample_baked_with_rotation(offset)
+   * 				# This will rotate and position the node with the up direction pointing along the curve.
+   * 				position = baked.get_origin()
+   * 				rotation = baked.get_rotation()
+   * 				# Alternatively, not preserving scale.
+   * 				transform = baked * Transform2D.FLIP_Y
+   * 				# To match the rotation of PathFollow2D, not preserving scale.
+   * 				transform = Transform2D(baked.y, baked.x, baked.origin)
    * 				```
    */
   public fun sampleBakedWithRotation(offset: Double = 0.0, cubic: Boolean = false): Transform2D {

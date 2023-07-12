@@ -25,12 +25,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Server that manages all translations.
+ * The server responsible for language translations.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/i18n/locales.html]($DOCS_URL/tutorials/i18n/locales.html)
  *
- * Server that manages all translations. Translations can be set to it and removed from it.
+ * The server that manages all language translations. Translations can be added to or removed from it.
  */
 @GodotBaseType
 public object TranslationServer : Object() {
@@ -74,7 +74,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Compares two locales and return similarity score between `0`(no match) and `10`(full match).
+   * Compares two locales and returns a similarity score between `0` (no match) and `10` (full match).
    */
   public fun compareLocales(localeA: String, localeB: String): Long {
     TransferContext.writeArguments(STRING to localeA, STRING to localeB)
@@ -84,7 +84,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns [locale] string standardized to match known locales (e.g. `en-US` would be matched to `en_US`).
+   * Returns a [locale] string standardized to match known locales (e.g. `en-US` would be matched to `en_US`).
    */
   public fun standardizeLocale(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
@@ -104,7 +104,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns readable language name for the [language] code.
+   * Returns a readable language name for the [language] code.
    */
   public fun getLanguageName(language: String): String {
     TransferContext.writeArguments(STRING to language)
@@ -114,7 +114,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns array of known script codes.
+   * Returns an array of known script codes.
    */
   public fun getAllScripts(): PackedStringArray {
     TransferContext.writeArguments()
@@ -124,7 +124,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns readable script name for the [script] code.
+   * Returns a readable script name for the [script] code.
    */
   public fun getScriptName(script: String): String {
     TransferContext.writeArguments(STRING to script)
@@ -134,7 +134,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns array of known country codes.
+   * Returns an array of known country codes.
    */
   public fun getAllCountries(): PackedStringArray {
     TransferContext.writeArguments()
@@ -144,7 +144,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns readable country name for the [country] code.
+   * Returns a readable country name for the [country] code.
    */
   public fun getCountryName(country: String): String {
     TransferContext.writeArguments(STRING to country)
@@ -174,7 +174,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns the current locale's translation for the given message (key), plural_message and context.
+   * Returns the current locale's translation for the given message (key), plural message and context.
    *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
    */

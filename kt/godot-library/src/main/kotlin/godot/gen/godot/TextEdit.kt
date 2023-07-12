@@ -45,9 +45,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Multiline text editing control.
+ * A multiline text editor.
  *
- * TextEdit is meant for editing large, multiline text. It also has facilities for editing code, such as syntax highlighting support and multiple levels of undo/redo.
+ * A multiline text editor. It also has limited facilities for editing code, such as syntax highlighting support. For more advanced facilities for editing code, see [godot.CodeEdit].
  *
  * **Note:** Most viewport, caret and edit methods contain a `caret_index` argument for [caretMultiple] support. The argument should be one of the following: `-1` for all carets, `0` for the main caret, or greater than `0` for secondary carets.
  *
@@ -264,6 +264,20 @@ public open class TextEdit : Control() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_WRAPPING_MODE,
           NIL)
+    }
+
+  /**
+   * If [wrapMode] is set to [LINE_WRAPPING_BOUNDARY], sets text wrapping mode. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   */
+  public var autowrapMode: TextServer.AutowrapMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_AUTOWRAP_MODE, LONG)
+      return TextServer.AutowrapMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_AUTOWRAP_MODE, NIL)
     }
 
   /**
@@ -492,7 +506,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * Sets if the caret should blink.
+   * If `true`, makes the caret blink.
    */
   public var caretBlink: Boolean
     get() {
@@ -508,7 +522,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * Duration (in seconds) of a caret's blinking cycle.
+   * The interval at which the caret blinks (in seconds).
    */
   public var caretBlinkInterval: Double
     get() {
@@ -521,6 +535,22 @@ public open class TextEdit : Control() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_BLINK_INTERVAL,
           NIL)
+    }
+
+  /**
+   * If `true`, caret will be visible when [editable] is disabled.
+   */
+  public var caretDrawWhenEditableDisabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_CARET_WHEN_EDITABLE_DISABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_CARET_WHEN_EDITABLE_DISABLED, NIL)
     }
 
   /**
@@ -767,7 +797,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the height of a largest line.
+   * Returns the maximum value of the line height among all lines.
+   *
+   * **Note:** The return value is influenced by [theme_item line_spacing] and [theme_item font_size]. And it will not be less than `1`.
    */
   public fun getLineHeight(): Long {
     TransferContext.writeArguments()
@@ -909,7 +941,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Starts an action, will end the current action if `action` is different.
+   * Starts an action, will end the current action if [action] is different.
    *
    * An action will also end after a call to [endAction], after [godot.ProjectSettings.gui/timers/textEditIdleDetectSec] is triggered or a new undoable step outside the [startAction] and [endAction] calls.
    */
@@ -1275,7 +1307,7 @@ public open class TextEdit : Control() {
    *
    * If [adjustViewport] is `true`, the viewport will center at the caret position after the move occurs.
    *
-   * If [canBeHidden] is `true`, the specified `line` can be hidden.
+   * If [canBeHidden] is `true`, the specified [line] can be hidden.
    *
    * **Note:** If supporting multiple carets this will not check for any overlap. See [mergeOverlappingCarets].
    */
@@ -1419,7 +1451,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the text inside the selection.
+   * Returns the text inside the selection of a caret, or all the carets if [caretIndex] is its default value `-1`.
    */
   public fun getSelectedText(caretIndex: Long = -1): String {
     TransferContext.writeArguments(LONG to caretIndex)
@@ -2316,7 +2348,7 @@ public open class TextEdit : Control() {
      */
     SELECTION_MODE_WORD(3),
     /**
-     * Select whole lines as if the user tripped clicked.
+     * Select whole lines as if the user triple clicked.
      */
     SELECTION_MODE_LINE(4),
     ;

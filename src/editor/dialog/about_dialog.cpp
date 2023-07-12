@@ -5,21 +5,16 @@
 
 #include "editor/godot_kotlin_jvm_editor.h"
 
-#include <core/os/os.h>
 #include <editor/editor_scale.h>
-#include <scene/gui/check_box.h>
-#include <scene/gui/rich_text_label.h>
+#include <editor/editor_interface.h>
 #include <scene/gui/texture_rect.h>
 
 AboutDialog::AboutDialog() : AcceptDialog(), about_dialog_check_box(memnew(CheckBox)) {
     _EDITOR_DEF("kotlin_jvm/editor/show_info_on_start", true, false);
-    ClassDB::bind_method(D_METHOD("on_about_to_show"), &AboutDialog::on_about_to_show);
     ClassDB::bind_method(D_METHOD("on_checkbox_toggled"), &AboutDialog::on_checkbox_toggled);
     ClassDB::bind_method(D_METHOD("on_url_clicked"), &AboutDialog::on_url_clicked);
 
     set_title("About Godot Kotlin JVM");
-
-    connect(SNAME("about_to_show"), callable_mp(this, &AboutDialog::on_about_to_show));
 
     // Main VBoxContainer (icon + label on top, checkbox at bottom)
     VBoxContainer* about_vbox {memnew(VBoxContainer)};
@@ -52,13 +47,6 @@ AboutDialog::AboutDialog() : AcceptDialog(), about_dialog_check_box(memnew(Check
     about_dialog_check_box->connect(SNAME("toggled"), callable_mp(this, &AboutDialog::on_checkbox_toggled));
 }
 
-void AboutDialog::on_about_to_show() {
-    bool show_on_start = GodotKotlinJvmEditor::get_instance()->get_editor_interface()->get_editor_settings()->get_setting("kotlin_jvm/editor/show_info_on_start"
-    );
-
-    about_dialog_check_box->set_pressed(show_on_start);
-}
-
 void AboutDialog::on_checkbox_toggled(bool is_selected) {// NOLINT(readability-convert-member-functions-to-static)
     bool show_on_start = GodotKotlinJvmEditor::get_instance()->get_editor_interface()->get_editor_settings()->get_setting("kotlin_jvm/editor/show_info_on_start"
     );
@@ -81,6 +69,8 @@ void AboutDialog::_notificationv(int p_notification, bool p_reversed) {
     if (p_notification == NOTIFICATION_READY) {
         bool show_on_start = GodotKotlinJvmEditor::get_instance()->get_editor_interface()->get_editor_settings()->get_setting("kotlin_jvm/editor/show_info_on_start"
         );
+
+        about_dialog_check_box->set_pressed(show_on_start);
 
         if (show_on_start) {
             // Once shown a first time, it can be seen again via the Kotlin JVM menu - it doesn't have to be exclusive from that time on.

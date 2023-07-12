@@ -27,12 +27,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Direct access object to a physics body in the [godot.PhysicsServer2D].
+ * Provides direct access to a physics body in the [godot.PhysicsServer2D].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Provides direct access to a physics body in the [godot.PhysicsServer2D], allowing safe changes to physics properties. This object is passed via the direct state callback of rigid bodies, and is intended for changing the direct state of that body. See [godot.RigidBody2D.IntegrateForces].
+ * Provides direct access to a physics body in the [godot.PhysicsServer2D], allowing safe changes to physics properties. This object is passed via the direct state callback of [godot.RigidBody2D], and is intended for changing the direct state of that body. See [godot.RigidBody2D.IntegrateForces].
  */
 @GodotBaseType
 public open class PhysicsDirectBodyState2D internal constructor() : Object() {
@@ -365,7 +365,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   }
 
   /**
-   * Returns the local position of the contact point.
+   * Returns the position of the contact point on the body in the global coordinate system.
    */
   public fun getContactLocalPosition(contactIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx)
@@ -395,6 +395,17 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   }
 
   /**
+   * Returns the velocity vector at the body's contact point.
+   */
+  public fun getContactLocalVelocityAtPosition(contactIdx: Long): Vector2 {
+    TransferContext.writeArguments(LONG to contactIdx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_LOCAL_VELOCITY_AT_POSITION,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
    * Returns the collider's [RID].
    */
   public fun getContactCollider(contactIdx: Long): RID {
@@ -405,7 +416,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   }
 
   /**
-   * Returns the contact position in the collider.
+   * Returns the position of the contact point on the collider in the global coordinate system.
    */
   public fun getContactColliderPosition(contactIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx)
@@ -445,7 +456,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   }
 
   /**
-   * Returns the linear velocity vector at the collider's contact point.
+   * Returns the velocity vector at the collider's contact point.
    */
   public fun getContactColliderVelocityAtPosition(contactIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx)

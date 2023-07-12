@@ -40,11 +40,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for all windows.
+ * Base class for all windows, dialogs, and popups.
  *
  * A node that creates a window. The window can either be a native system window or embedded inside another [godot.Window] (see [godot.Viewport.guiEmbedSubwindows]).
  *
- * At runtime, [godot.Window]s will not close automatically when requested. You need to handle it manually using [closeRequested] (this applies both to clicking close button and clicking outside popup).
+ * At runtime, [godot.Window]s will not close automatically when requested. You need to handle it manually using the [closeRequested] signal (this applies both to pressing the close button and clicking outside of a popup).
  */
 @GodotBaseType
 public open class Window : Viewport() {
@@ -56,7 +56,7 @@ public open class Window : Viewport() {
   /**
    * Emitted when files are dragged from the OS file manager and dropped in the game window. The argument is a list of file paths.
    *
-   * Note that this method only works with non-embedded windows, i.e. the main window and [godot.Window]-derived nodes when [godot.Viewport.guiEmbedSubwindows] is disabled in the main viewport.
+   * Note that this method only works with native windows, i.e. the main window and [godot.Window]-derived nodes when [godot.Viewport.guiEmbedSubwindows] is disabled in the main viewport.
    *
    * Example usage:
    *
@@ -130,21 +130,25 @@ public open class Window : Viewport() {
   public val titlebarChanged: Signal0 by signal()
 
   /**
+   * Set's the window's current mode.
    *
+   * **Note:** Fullscreen mode is not exclusive full screen on Windows and Linux.
+   *
+   * **Note:** This method only works with native windows, i.e. the main window and [godot.Window]-derived nodes when [godot.Viewport.guiEmbedSubwindows] is disabled in the main viewport.
    */
-  public var initialPosition: WindowInitialPosition
+  public var mode: Mode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_INITIAL_POSITION, LONG)
-      return Window.WindowInitialPosition.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MODE, LONG)
+      return Window.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_INITIAL_POSITION, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_MODE, NIL)
     }
 
   /**
-   * The window's title. If the [godot.Window] is non-embedded, title styles set in [godot.Theme] will have no effect.
+   * The window's title. If the [godot.Window] is native, title styles set in [godot.Theme] will have no effect.
    */
   public var title: String
     get() {
@@ -158,7 +162,25 @@ public open class Window : Viewport() {
     }
 
   /**
+   * Specifies the initial type of position for the [godot.Window]. See [enum WindowInitialPosition] constants.
+   */
+  public var initialPosition: WindowInitialPosition
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_INITIAL_POSITION, LONG)
+      return Window.WindowInitialPosition.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_INITIAL_POSITION, NIL)
+    }
+
+  /**
    * The window's position in pixels.
+   *
+   * If [godot.ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`, the window's position is in the coordinates of its parent [godot.Viewport].
+   *
+   * **Note:** This property only works if [initialPosition] is set to [WINDOW_INITIAL_POSITION_ABSOLUTE].
    */
   public var position: Vector2i
     get() {
@@ -183,22 +205,6 @@ public open class Window : Viewport() {
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_SIZE, NIL)
-    }
-
-  /**
-   * Set's the window's current mode.
-   *
-   * **Note:** Fullscreen mode is not exclusive full screen on Windows and Linux.
-   */
-  public var mode: Mode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MODE, LONG)
-      return Window.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_MODE, NIL)
     }
 
   /**
@@ -314,7 +320,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, the [godot.Window] is transient, i.e. it's considered a child of another [godot.Window]. Transient window is will be destroyed with its transient parent and will return focus to their parent when closed. The transient window is displayed on top of a non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.
+   * If `true`, the [godot.Window] is transient, i.e. it's considered a child of another [godot.Window]. The transient window will be destroyed with its transient parent and will return focus to their parent when closed. The transient window is displayed on top of a non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.
    *
    * Note that behavior might be different depending on the platform.
    */
@@ -493,6 +499,15 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the ID of the window.
+   */
+  public fun getWindowId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_WINDOW_ID, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Resets the size to the minimum size, which is the max of [minSize] and (if [wrapControls] is enabled) [getContentsMinimumSize]. This is equivalent to calling `set_size(Vector2i())` (or any size below the minimum).
    */
   public fun resetSize(): Unit {
@@ -576,6 +591,17 @@ public open class Window : Viewport() {
   public fun show(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SHOW, NIL)
+  }
+
+  /**
+   * If [unparent] is `true`, the window is automatically unparented when going invisible.
+   *
+   * **Note:** Make sure to keep a reference to the node, otherwise it will be orphaned. You also need to manually call [godot.Node.queueFree] to free the window if it's not parented.
+   */
+  public fun setUnparentWhenInvisible(unparent: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to unparent)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_UNPARENT_WHEN_INVISIBLE,
+        NIL)
   }
 
   /**
@@ -1068,9 +1094,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Shows the [godot.Window] and makes it transient (see [transient]). If [rect] is provided, it will be set as the [godot.Window]'s size.
-   *
-   * Fails if called on the main window.
+   * Shows the [godot.Window] and makes it transient (see [transient]). If [rect] is provided, it will be set as the [godot.Window]'s size. Fails if called on the main window.
    */
   public fun popup(rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
     TransferContext.writeArguments(RECT2I to rect)
@@ -1078,9 +1102,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Popups the [godot.Window] with a position shifted by parent [godot.Window]'s position.
-   *
-   * If the [godot.Window] is embedded, has the same effect as [popup].
+   * Popups the [godot.Window] with a position shifted by parent [godot.Window]'s position. If the [godot.Window] is embedded, has the same effect as [popup].
    */
   public fun popupOnParent(parentRect: Rect2i): Unit {
     TransferContext.writeArguments(RECT2I to parentRect)
@@ -1088,17 +1110,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Popups the [godot.Window] centered inside its parent [godot.Window] and sets its size as a [ratio] of parent's size.
-   */
-  public fun popupCenteredRatio(ratio: Double = 0.8): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED_RATIO, NIL)
-  }
-
-  /**
-   * Popups the [godot.Window] at the center of the current screen, with optionally given minimum size.
-   *
-   * If the [godot.Window] is embedded, it will be centered in the parent [godot.Viewport] instead.
+   * Popups the [godot.Window] at the center of the current screen, with optionally given minimum size. If the [godot.Window] is embedded, it will be centered in the parent [godot.Viewport] instead.
    *
    * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with [size].
    */
@@ -1108,9 +1120,17 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Popups the [godot.Window] centered inside its parent [godot.Window].
+   * If [godot.Window] is embedded, popups the [godot.Window] centered inside its embedder and sets its size as a [ratio] of embedder's size.
    *
-   * `fallback_ratio` determines the maximum size of the [godot.Window], in relation to its parent.
+   * If [godot.Window] is a native window, popups the [godot.Window] centered inside the screen of its parent [godot.Window] and sets its size as a [ratio] of the screen size.
+   */
+  public fun popupCenteredRatio(ratio: Double = 0.8): Unit {
+    TransferContext.writeArguments(DOUBLE to ratio)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED_RATIO, NIL)
+  }
+
+  /**
+   * Popups the [godot.Window] centered inside its parent [godot.Window]. [fallbackRatio] determines the maximum size of the [godot.Window], in relation to its parent.
    *
    * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with [size].
    */
@@ -1118,6 +1138,64 @@ public open class Window : Viewport() {
       Unit {
     TransferContext.writeArguments(VECTOR2I to minsize, DOUBLE to fallbackRatio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED_CLAMPED, NIL)
+  }
+
+  /**
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then calls [godot.Window.popup] on it. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [setUnparentWhenInvisible] and [godot.Node.getLastExclusiveWindow].
+   */
+  public fun popupExclusive(fromNode: Node, rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
+    TransferContext.writeArguments(OBJECT to fromNode, RECT2I to rect)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_EXCLUSIVE, NIL)
+  }
+
+  /**
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then calls [godot.Window.popupOnParent] on it. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [setUnparentWhenInvisible] and [godot.Node.getLastExclusiveWindow].
+   */
+  public fun popupExclusiveOnParent(fromNode: Node, parentRect: Rect2i): Unit {
+    TransferContext.writeArguments(OBJECT to fromNode, RECT2I to parentRect)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_EXCLUSIVE_ON_PARENT,
+        NIL)
+  }
+
+  /**
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then calls [godot.Window.popupCentered] on it. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [setUnparentWhenInvisible] and [godot.Node.getLastExclusiveWindow].
+   */
+  public fun popupExclusiveCentered(fromNode: Node, minsize: Vector2i = Vector2i(0, 0)): Unit {
+    TransferContext.writeArguments(OBJECT to fromNode, VECTOR2I to minsize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_EXCLUSIVE_CENTERED,
+        NIL)
+  }
+
+  /**
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then calls [godot.Window.popupCenteredRatio] on it. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [setUnparentWhenInvisible] and [godot.Node.getLastExclusiveWindow].
+   */
+  public fun popupExclusiveCenteredRatio(fromNode: Node, ratio: Double = 0.8): Unit {
+    TransferContext.writeArguments(OBJECT to fromNode, DOUBLE to ratio)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_EXCLUSIVE_CENTERED_RATIO, NIL)
+  }
+
+  /**
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then calls [godot.Window.popupCenteredClamped] on it. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [setUnparentWhenInvisible] and [godot.Node.getLastExclusiveWindow].
+   */
+  public fun popupExclusiveCenteredClamped(
+    fromNode: Node,
+    minsize: Vector2i = Vector2i(0, 0),
+    fallbackRatio: Double = 0.75,
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to fromNode, VECTOR2I to minsize, DOUBLE to fallbackRatio)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_EXCLUSIVE_CENTERED_CLAMPED, NIL)
   }
 
   public enum class Mode(
@@ -1165,7 +1243,7 @@ public open class Window : Viewport() {
     id: Long,
   ) {
     /**
-     * The window can't be resizing by dragging its resize grip. It's still possible to resize the window using [size]. This flag is ignored for full screen windows. Set with [unresizable].
+     * The window can't be resized by dragging its resize grip. It's still possible to resize the window using [size]. This flag is ignored for full screen windows. Set with [unresizable].
      */
     FLAG_RESIZE_DISABLED(0),
     /**
@@ -1177,9 +1255,9 @@ public open class Window : Viewport() {
      */
     FLAG_ALWAYS_ON_TOP(2),
     /**
-     * The window background can be transparent.
+     * The window background can be transparent. Set with [transparent].
      *
-     * **Note:** This flag has no effect if [godot.ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`. Set with [transparent].
+     * **Note:** This flag has no effect if either [godot.ProjectSettings.display/window/perPixelTransparency/allowed], or the window's [godot.Viewport.transparentBg] is set to `false`.
      */
     FLAG_TRANSPARENT(3),
     /**
@@ -1187,17 +1265,23 @@ public open class Window : Viewport() {
      */
     FLAG_NO_FOCUS(4),
     /**
-     * Window is part of menu or [godot.OptionButton] dropdown. This flag can't be changed when the window is visible. An active popup window will exclusively receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have `transient parent` set (see [transient]).
+     * Window is part of menu or [godot.OptionButton] dropdown. This flag can't be changed when the window is visible. An active popup window will exclusively receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have transient parent set (see [transient]).
+     *
+     * **Note:** This flag has no effect in embedded windows (unless said window is a [godot.Popup]).
      */
     FLAG_POPUP(5),
     /**
      * Window content is expanded to the full size of the window. Unlike borderless window, the frame is left intact and can be used to resize the window, title bar is transparent, but have minimize/maximize/close buttons. Set with [extendToTitle].
      *
-     * **Note:** This flag is implemented on macOS.
+     * **Note:** This flag is implemented only on macOS.
+     *
+     * **Note:** This flag has no effect in embedded windows.
      */
     FLAG_EXTEND_TO_TITLE(6),
     /**
      * All mouse events are passed to the underlying window of the same application.
+     *
+     * **Note:** This flag has no effect in embedded windows.
      */
     FLAG_MOUSE_PASSTHROUGH(7),
     /**
@@ -1263,7 +1347,7 @@ public open class Window : Viewport() {
      */
     CONTENT_SCALE_ASPECT_KEEP_HEIGHT(3),
     /**
-     * The content's aspect will be preserved. If the target size has different aspect from the base one, the content will stay in the to-left corner and add an extra visible area in the stretched space.
+     * The content's aspect will be preserved. If the target size has different aspect from the base one, the content will stay in the top-left corner and add an extra visible area in the stretched space.
      */
     CONTENT_SCALE_ASPECT_EXPAND(4),
     ;
@@ -1317,17 +1401,25 @@ public open class Window : Viewport() {
      */
     WINDOW_INITIAL_POSITION_ABSOLUTE(0),
     /**
-     * Initial window position is a center of the primary screen.
+     * Initial window position is the center of the primary screen.
      */
     WINDOW_INITIAL_POSITION_CENTER_PRIMARY_SCREEN(1),
     /**
-     * Initial window position is a center of the main window screen.
+     * Initial window position is the center of the main window screen.
      */
     WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN(2),
     /**
-     * Initial window position is a center of [currentScreen] screen.
+     * Initial window position is the center of [currentScreen] screen.
      */
     WINDOW_INITIAL_POSITION_CENTER_OTHER_SCREEN(3),
+    /**
+     * Initial window position is the center of the screen containing the mouse pointer.
+     */
+    WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_MOUSE_FOCUS(4),
+    /**
+     * Initial window position is the center of the screen containing the window with the keyboard focus.
+     */
+    WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_KEYBOARD_FOCUS(5),
     ;
 
     public val id: Long

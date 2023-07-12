@@ -28,9 +28,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Parameters to be sent to a 3D shape physics query.
+ * Provides parameters for [godot.PhysicsDirectSpaceState3D.intersectShape].
  *
- * This class contains the shape and other parameters for [godot.PhysicsDirectSpaceState3D] intersection/collision queries.
+ * By changing various properties of this object, such as the shape, you can configure the parameters for [godot.PhysicsDirectSpaceState3D.intersectShape].
  */
 @GodotBaseType
 public open class PhysicsShapeQueryParameters3D : RefCounted() {

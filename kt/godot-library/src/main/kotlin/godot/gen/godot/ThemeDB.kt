@@ -22,9 +22,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An engine singleton providing access to static [godot.Theme] information, such as default and project theme, and fallback values.
+ * A singleton that provides access to static information about [godot.Theme] resources used by the engine and by your project.
  *
- * This engine singleton provides access to static information about [godot.Theme] resources used by the engine and by your projects. You can fetch the default engine theme, as well as your project configured theme.
+ * This singleton provides access to static information about [godot.Theme] resources used by the engine and by your projects. You can fetch the default engine theme, as well as your project configured theme.
  *
  * [godot.ThemeDB] also contains fallback values for theme properties.
  */

@@ -16,12 +16,36 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Audio stream that generates sounds procedurally.
+ * An audio stream with utilities for procedural sound generation.
  *
  * Tutorials:
- * [https://godotengine.org/article/godot-32-will-get-new-audio-features](https://godotengine.org/article/godot-32-will-get-new-audio-features)
+ * [https://godotengine.org/asset-library/asset/526](https://godotengine.org/asset-library/asset/526)
  *
- * This audio stream does not play back sounds, but expects a script to generate audio data for it instead. See also [godot.AudioStreamGeneratorPlayback].
+ * [godot.AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own; instead, it expects a script to generate audio data for it. See also [godot.AudioStreamGeneratorPlayback].
+ *
+ * Here's a sample on how to use it to generate a sine wave:
+ *
+ * ```
+ * 		var playback # Will hold the AudioStreamGeneratorPlayback.
+ * 		@onready var sample_hz = $AudioStreamPlayer.stream.mix_rate
+ * 		var pulse_hz = 440.0 # The frequency of the sound wave.
+ *
+ * 		func _ready():
+ * 		    $AudioStreamPlayer.play()
+ * 		    playback = $AudioStreamPlayer.get_stream_playback()
+ * 		    fill_buffer()
+ *
+ * 		func fill_buffer():
+ * 		    var phase = 0.0
+ * 		    var increment = pulse_hz / sample_hz
+ * 		    var frames_available = playback.get_frames_available()
+ *
+ * 		    for i in range(frames_available):
+ * 		        playback.push_frame(Vector2.ONE * sin(phase * TAU))
+ * 		        phase = fmod(phase + increment, 1.0)
+ * 		```
+ *
+ * In the example above, the "AudioStreamPlayer" node must use an [godot.AudioStreamGenerator] as its stream. The `fill_buffer` function provides audio data for approximating a sine wave.
  *
  * See also [godot.AudioEffectSpectrumAnalyzer] for performing real-time audio spectrum analysis.
  *

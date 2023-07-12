@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
+import godot.core.Rect2i
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -18,7 +19,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
+import godot.core.VariantType.RECT2I
 import godot.core.VariantType.STRING
+import godot.core.VariantType.VECTOR2I
+import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
@@ -31,12 +35,12 @@ import kotlin.Unit
 /**
  * Godot editor's interface.
  *
- * EditorInterface gives you control over Godot editor's window. It allows customizing the window, saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects, and provides access to [godot.EditorSettings], [godot.EditorFileSystem], [godot.EditorResourcePreview], [godot.ScriptEditor], the editor viewport, and information about scenes.
+ * [godot.EditorInterface] gives you control over Godot editor's window. It allows customizing the window, saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects, and provides access to [godot.EditorSettings], [godot.EditorFileSystem], [godot.EditorResourcePreview], [godot.ScriptEditor], the editor viewport, and information about scenes.
  *
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorPlugin.getEditorInterface].
  */
 @GodotBaseType
-public open class EditorInterface internal constructor() : Node() {
+public open class EditorInterface internal constructor() : Object() {
   /**
    * If `true`, enables distraction-free mode which hides side docks to increase the space available for the main view.
    */
@@ -53,21 +57,75 @@ public open class EditorInterface internal constructor() : Node() {
           ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
     }
 
+  /**
+   * If `true`, the Movie Maker mode is enabled in the editor. See [godot.MovieWriter] for more information.
+   */
+  public var movieMakerEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_MOVIE_MAKER_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MOVIE_MAKER_ENABLED, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORINTERFACE, scriptIndex)
     return true
   }
 
   /**
-   * Shows the given property on the given [object] in the editor's Inspector dock. If [inspectorOnly] is `true`, plugins will not attempt to edit [object].
+   * Restarts the editor. This closes the editor and then opens the same project. If [save] is `true`, the project will be saved before restarting.
    */
-  public fun inspectObject(
-    _object: Object,
-    forProperty: String = "",
-    inspectorOnly: Boolean = false,
-  ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING to forProperty, BOOL to inspectorOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_INSPECT_OBJECT, NIL)
+  public fun restartEditor(save: Boolean = true): Unit {
+    TransferContext.writeArguments(BOOL to save)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RESTART_EDITOR, NIL)
+  }
+
+  /**
+   * Returns the editor's [godot.EditorCommandPalette] instance.
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
+   */
+  public fun getCommandPalette(): EditorCommandPalette? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_COMMAND_PALETTE,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as EditorCommandPalette?
+  }
+
+  /**
+   * Returns the editor's [godot.EditorFileSystem] instance.
+   */
+  public fun getResourceFilesystem(): EditorFileSystem? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_FILESYSTEM, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystem?
+  }
+
+  /**
+   * Returns the [godot.EditorPaths] singleton.
+   */
+  public fun getEditorPaths(): EditorPaths? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_PATHS,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as EditorPaths?
+  }
+
+  /**
+   * Returns the editor's [godot.EditorResourcePreview] instance.
+   */
+  public fun getResourcePreviewer(): EditorResourcePreview? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_PREVIEWER, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as EditorResourcePreview?
   }
 
   /**
@@ -91,15 +149,33 @@ public open class EditorInterface internal constructor() : Node() {
   }
 
   /**
-   * Returns the editor's [godot.ScriptEditor] instance.
-   *
-   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
+   * Returns mesh previews rendered at the given size as an [godot.Array] of [godot.Texture2D]s.
    */
-  public fun getScriptEditor(): ScriptEditor? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SCRIPT_EDITOR,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ScriptEditor?
+  public fun makeMeshPreviews(meshes: VariantArray<Mesh>, previewSize: Long):
+      VariantArray<Texture2D> {
+    TransferContext.writeArguments(ARRAY to meshes, LONG to previewSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MAKE_MESH_PREVIEWS,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Texture2D>
+  }
+
+  /**
+   * Sets the enabled status of a plugin. The plugin name is the same as its directory name.
+   */
+  public fun setPluginEnabled(plugin: String, enabled: Boolean): Unit {
+    TransferContext.writeArguments(STRING to plugin, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_PLUGIN_ENABLED,
+        NIL)
+  }
+
+  /**
+   * Returns `true` if the specified [plugin] is enabled. The plugin name is the same as its directory name.
+   */
+  public fun isPluginEnabled(plugin: String): Boolean {
+    TransferContext.writeArguments(STRING to plugin)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLUGIN_ENABLED,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -115,6 +191,39 @@ public open class EditorInterface internal constructor() : Node() {
   }
 
   /**
+   * Returns the editor control responsible for main screen plugins and tools. Use it with plugins that implement [godot.EditorPlugin.HasMainScreen].
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
+   */
+  public fun getEditorMainScreen(): VBoxContainer? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_MAIN_SCREEN, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
+  }
+
+  /**
+   * Returns the editor's [godot.ScriptEditor] instance.
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
+   */
+  public fun getScriptEditor(): ScriptEditor? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SCRIPT_EDITOR,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as ScriptEditor?
+  }
+
+  /**
+   * Sets the editor's current main screen to the one specified in [name]. [name] must match the text of the tab in question exactly (`2D`, `3D`, `Script`, `AssetLib`).
+   */
+  public fun setMainScreenEditor(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MAIN_SCREEN_EDITOR, NIL)
+  }
+
+  /**
    * Returns the actual scale of the editor UI (`1.0` being 100% scale). This can be used to adjust position and dimensions of the UI added by plugins.
    *
    * **Note:** This value is set via the `interface/editor/display_scale` and `interface/editor/custom_display_scale` editor settings. Editor must be restarted for changes to be properly applied.
@@ -124,6 +233,127 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SCALE,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusive]. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [godot.Window.setUnparentWhenInvisible].
+   */
+  public fun popupDialog(dialog: Window, rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
+    TransferContext.writeArguments(OBJECT to dialog, RECT2I to rect)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG, NIL)
+  }
+
+  /**
+   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusiveCentered]. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [godot.Window.setUnparentWhenInvisible].
+   */
+  public fun popupDialogCentered(dialog: Window, minsize: Vector2i = Vector2i(0, 0)): Unit {
+    TransferContext.writeArguments(OBJECT to dialog, VECTOR2I to minsize)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED, NIL)
+  }
+
+  /**
+   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusiveCenteredRatio]. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [godot.Window.setUnparentWhenInvisible].
+   */
+  public fun popupDialogCenteredRatio(dialog: Window, ratio: Double = 0.8): Unit {
+    TransferContext.writeArguments(OBJECT to dialog, DOUBLE to ratio)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED_RATIO, NIL)
+  }
+
+  /**
+   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusiveCenteredClamped]. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [godot.Window.setUnparentWhenInvisible].
+   */
+  public fun popupDialogCenteredClamped(
+    dialog: Window,
+    minsize: Vector2i = Vector2i(0, 0),
+    fallbackRatio: Double = 0.75,
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to dialog, VECTOR2I to minsize, DOUBLE to fallbackRatio)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED_CLAMPED, NIL)
+  }
+
+  /**
+   * Returns the editor's [godot.FileSystemDock] instance.
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
+   */
+  public fun getFileSystemDock(): FileSystemDock? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_FILE_SYSTEM_DOCK, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as FileSystemDock?
+  }
+
+  /**
+   * Selects the file, with the path provided by [file], in the FileSystem dock.
+   */
+  public fun selectFile(`file`: String): Unit {
+    TransferContext.writeArguments(STRING to file)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SELECT_FILE, NIL)
+  }
+
+  /**
+   * Returns an array containing the paths of the currently selected files (and directories) in the [godot.FileSystemDock].
+   */
+  public fun getSelectedPaths(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATHS,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns the current path being viewed in the [godot.FileSystemDock].
+   */
+  public fun getCurrentPath(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_PATH,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the current directory being viewed in the [godot.FileSystemDock]. If a file is selected, its base directory will be returned using [godot.String.getBaseDir] instead.
+   */
+  public fun getCurrentDirectory(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_DIRECTORY, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the editor's [godot.EditorInspector] instance.
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
+   */
+  public fun getInspector(): EditorInspector? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_INSPECTOR,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as EditorInspector?
+  }
+
+  /**
+   * Shows the given property on the given [object] in the editor's Inspector dock. If [inspectorOnly] is `true`, plugins will not attempt to edit [object].
+   */
+  public fun inspectObject(
+    _object: Object,
+    forProperty: String = "",
+    inspectorOnly: Boolean = false,
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to _object, STRING to forProperty, BOOL to inspectorOnly)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_INSPECT_OBJECT, NIL)
   }
 
   /**
@@ -171,6 +401,52 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments(STRING to sceneFilepath)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RELOAD_SCENE_FROM_PATH, NIL)
+  }
+
+  /**
+   * Returns an [godot.Array] with the file paths of the currently opened scenes.
+   */
+  public fun getOpenScenes(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_OPEN_SCENES,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns the edited (current) scene's root [godot.Node].
+   */
+  public fun getEditedSceneRoot(): Node? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITED_SCENE_ROOT, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Node?
+  }
+
+  /**
+   * Saves the scene. Returns either [OK] or [ERR_CANT_CREATE].
+   */
+  public fun saveScene(): GodotError {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Saves the scene as a file at [path].
+   */
+  public fun saveSceneAs(path: String, withPreview: Boolean = true): Unit {
+    TransferContext.writeArguments(STRING to path, BOOL to withPreview)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS, NIL)
+  }
+
+  /**
+   * Marks the current scene tab as unsaved.
+   */
+  public fun markSceneAsUnsaved(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MARK_SCENE_AS_UNSAVED, NIL)
   }
 
   /**
@@ -227,225 +503,6 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_PLAYING_SCENE,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Returns an [godot.Array] with the file paths of the currently opened scenes.
-   */
-  public fun getOpenScenes(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_OPEN_SCENES,
-        PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
-  }
-
-  /**
-   * Returns the edited (current) scene's root [godot.Node].
-   */
-  public fun getEditedSceneRoot(): Node? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITED_SCENE_ROOT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
-  }
-
-  /**
-   * Returns the editor's [godot.EditorResourcePreview] instance.
-   */
-  public fun getResourcePreviewer(): EditorResourcePreview? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_PREVIEWER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorResourcePreview?
-  }
-
-  /**
-   * Returns the editor's [godot.EditorFileSystem] instance.
-   */
-  public fun getResourceFilesystem(): EditorFileSystem? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_FILESYSTEM, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystem?
-  }
-
-  /**
-   * Returns the editor control responsible for main screen plugins and tools. Use it with plugins that implement [godot.EditorPlugin.HasMainScreen].
-   *
-   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
-   */
-  public fun getEditorMainScreen(): VBoxContainer? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_MAIN_SCREEN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
-  }
-
-  /**
-   * Returns mesh previews rendered at the given size as an [godot.Array] of [godot.Texture2D]s.
-   */
-  public fun makeMeshPreviews(meshes: VariantArray<Mesh>, previewSize: Long):
-      VariantArray<Texture2D> {
-    TransferContext.writeArguments(ARRAY to meshes, LONG to previewSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MAKE_MESH_PREVIEWS,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Texture2D>
-  }
-
-  /**
-   * Selects the file, with the path provided by [file], in the FileSystem dock.
-   */
-  public fun selectFile(`file`: String): Unit {
-    TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SELECT_FILE, NIL)
-  }
-
-  /**
-   * Returns an array containing the paths of the currently selected files (and directories) in the [godot.FileSystemDock].
-   */
-  public fun getSelectedPaths(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATHS,
-        PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
-  }
-
-  /**
-   * Returns the current path being viewed in the [godot.FileSystemDock].
-   */
-  public fun getCurrentPath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_PATH,
-        STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Returns the current directory being viewed in the [godot.FileSystemDock]. If a file is selected, its base directory will be returned using [godot.String.getBaseDir] instead.
-   */
-  public fun getCurrentDirectory(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_DIRECTORY, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Returns the editor's [godot.FileSystemDock] instance.
-   *
-   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
-   */
-  public fun getFileSystemDock(): FileSystemDock? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_FILE_SYSTEM_DOCK, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as FileSystemDock?
-  }
-
-  /**
-   * Returns the [godot.EditorPaths] singleton.
-   */
-  public fun getEditorPaths(): EditorPaths? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_PATHS,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorPaths?
-  }
-
-  /**
-   * Returns the editor's [godot.EditorCommandPalette] instance.
-   *
-   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
-   */
-  public fun getCommandPalette(): EditorCommandPalette? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_COMMAND_PALETTE,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorCommandPalette?
-  }
-
-  /**
-   * Sets the enabled status of a plugin. The plugin name is the same as its directory name.
-   */
-  public fun setPluginEnabled(plugin: String, enabled: Boolean): Unit {
-    TransferContext.writeArguments(STRING to plugin, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_PLUGIN_ENABLED,
-        NIL)
-  }
-
-  /**
-   * Returns `true` if the specified [plugin] is enabled. The plugin name is the same as its directory name.
-   */
-  public fun isPluginEnabled(plugin: String): Boolean {
-    TransferContext.writeArguments(STRING to plugin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLUGIN_ENABLED,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Sets whether Movie Maker mode is enabled in the editor. See also [isMovieMakerEnabled]. See [godot.MovieWriter] for more information.
-   */
-  public fun setMovieMakerEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MOVIE_MAKER_ENABLED, NIL)
-  }
-
-  /**
-   * Returns `true` if Movie Maker mode is enabled in the editor. See also [setMovieMakerEnabled]. See [godot.MovieWriter] for more information.
-   */
-  public fun isMovieMakerEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_MOVIE_MAKER_ENABLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns the editor's [godot.EditorInspector] instance.
-   *
-   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
-   */
-  public fun getInspector(): EditorInspector? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_INSPECTOR,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorInspector?
-  }
-
-  /**
-   * Saves the scene. Returns either [OK] or [ERR_CANT_CREATE].
-   */
-  public fun saveScene(): GodotError {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Saves the scene as a file at [path].
-   */
-  public fun saveSceneAs(path: String, withPreview: Boolean = true): Unit {
-    TransferContext.writeArguments(STRING to path, BOOL to withPreview)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS, NIL)
-  }
-
-  /**
-   * Restarts the editor. This closes the editor and then opens the same project. If [save] is `true`, the project will be saved before restarting.
-   */
-  public fun restartEditor(save: Boolean = true): Unit {
-    TransferContext.writeArguments(BOOL to save)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RESTART_EDITOR, NIL)
-  }
-
-  /**
-   * Sets the editor's current main screen to the one specified in [name]. [name] must match the text of the tab in question exactly (`2D`, `3D`, `Script`, `AssetLib`).
-   */
-  public fun setMainScreenEditor(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MAIN_SCREEN_EDITOR, NIL)
   }
 
   public companion object

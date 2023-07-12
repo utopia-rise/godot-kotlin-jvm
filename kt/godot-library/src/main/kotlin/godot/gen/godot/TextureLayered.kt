@@ -21,7 +21,7 @@ import kotlin.Suppress
 /**
  * Base class for texture types which contain the data of multiple [godot.Image]s. Each image is of the same size and format.
  *
- * Base class for [godot.ImageTextureLayered]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. See also [godot.Texture3D].
+ * Base class for [godot.ImageTextureLayered] and [godot.CompressedTextureLayered]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. See also [godot.Texture3D].
  *
  * Data is set on a per-layer basis. For [godot.Texture2DArray]s, the layer specifies the array layer.
  *
@@ -60,7 +60,7 @@ public open class TextureLayered : Texture() {
   }
 
   /**
-   * Called when the the [godot.TextureLayered]'s height is queried.
+   * Called when the [godot.TextureLayered]'s height is queried.
    */
   public open fun _getHeight(): Long {
     throw NotImplementedError("_get_height is not implemented for TextureLayered")

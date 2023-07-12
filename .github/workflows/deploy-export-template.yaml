@@ -151,7 +151,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.0-stable
+          ref: 4.1-stable
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
@@ -272,7 +272,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.0-stable
+          ref: 4.1-stable
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
@@ -371,7 +371,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.0-stable
+          ref: 4.1-stable
 
       - name: Get release export template binary
         uses: actions/download-artifact@v3

@@ -11,7 +11,8 @@ BuildDialog::BuildDialog() : scroll_container(memnew(ScrollContainer)), log_labe
     ClassDB::bind_method(D_METHOD("on_build_dialog_hide"), &BuildDialog::on_build_dialog_hide);
 
     set_title("Building...");
-    connect(SNAME("popup_hide"), callable_mp(this, &BuildDialog::on_build_dialog_hide));
+    connect(SNAME("confirmed"), callable_mp(this, &BuildDialog::on_build_dialog_hide));
+    connect(SNAME("canceled"), callable_mp(this, &BuildDialog::on_build_dialog_hide));
 
     scroll_container->set_custom_minimum_size(Size2 {600, 400} * EDSCALE);
     add_child(scroll_container);

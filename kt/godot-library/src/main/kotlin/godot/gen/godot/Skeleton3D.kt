@@ -39,16 +39,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Skeleton for characters and animated objects.
+ * A node containing a bone hierarchy, used to create a 3D skeletal animation.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * Skeleton3D provides a hierarchical interface for managing bones, including pose, rest and animation (see [godot.Animation]). It can also use ragdoll physics.
+ * [godot.Skeleton3D] provides an interface for managing a hierarchy of bones, including pose, rest and animation (see [godot.Animation]). It can also use ragdoll physics.
  *
- * The overall transform of a bone with respect to the skeleton is determined by the following hierarchical order: rest pose, custom pose and pose.
+ * The overall transform of a bone with respect to the skeleton is determined by bone pose. Bone rest defines the initial transform of the bone pose.
  *
- * Note that "global pose" below refers to the overall transform of the bone with respect to skeleton, so it not the actual global/world transform of the bone.
+ * Note that "global pose" below refers to the overall transform of the bone with respect to skeleton, so it is not the actual global/world transform of the bone.
  *
  * To setup different types of inverse kinematics, consider using [godot.SkeletonIK3D], or add a custom IK implementation in [godot.Node.Process] as a child node.
  */
@@ -75,7 +75,7 @@ public open class Skeleton3D : Node3D() {
   public val showRestOnlyChanged: Signal0 by signal()
 
   /**
-   * Multiplies the position 3D track animation.
+   * Multiplies the 3D position track animation.
    *
    * **Note:** Unless this value is `1.0`, the key value in animation will not match the actual position value.
    */
@@ -298,7 +298,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the pose transform of the specified bone. Pose is applied on top of the custom pose, which is applied on top the rest pose.
+   * Returns the pose transform of the specified bone.
    */
   public fun getBonePose(boneIdx: Long): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -455,6 +455,8 @@ public open class Skeleton3D : Node3D() {
 
   /**
    * Force updates the bone transforms/poses for all bones in the skeleton.
+   *
+   * *Deprecated.* Do not use.
    */
   public fun forceUpdateAllBoneTransforms(): Unit {
     TransferContext.writeArguments()

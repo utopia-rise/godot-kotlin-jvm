@@ -16,11 +16,11 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Capsule shape resource for 2D physics.
+ * A 2D capsule shape used for physics collision.
  *
- * 2D capsule shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. In 2D, a capsule is a rectangle shape with half-circles at both ends.
+ * A 2D capsule shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape2D].
  *
- * **Performance:** Being a primitive collision shape, [godot.CapsuleShape2D] is fast to check collisions against (though not as fast as [godot.CircleShape2D]).
+ * **Performance:** [godot.CapsuleShape2D] is fast to check collisions against, but it is slower than [godot.RectangleShape2D] and [godot.CircleShape2D].
  */
 @GodotBaseType
 public open class CapsuleShape2D : Shape2D() {

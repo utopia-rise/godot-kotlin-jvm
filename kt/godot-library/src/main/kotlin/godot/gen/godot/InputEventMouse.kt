@@ -23,7 +23,7 @@ import kotlin.Suppress
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
- * Stores general mouse events information.
+ * Stores general information about mouse events.
  */
 @GodotBaseType
 public open class InputEventMouse internal constructor() : InputEventWithModifiers() {

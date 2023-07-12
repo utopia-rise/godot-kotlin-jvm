@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Singleton that manages [godot.InputEventAction].
+ * A singleton that manages all [godot.InputEventAction]s.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/inputevent.html#inputmap]($DOCS_URL/tutorials/inputs/inputevent.html#inputmap)

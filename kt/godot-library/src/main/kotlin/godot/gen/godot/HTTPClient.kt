@@ -43,7 +43,7 @@ import kotlin.Unit
  *
  * A [godot.HTTPClient] should be reused between multiple requests or to connect to different hosts instead of creating one client per request. Supports Transport Layer Security (TLS), including server certificate verification. HTTP status codes in the 2xx range indicate success, 3xx redirection (i.e. "try again, but over here"), 4xx something was wrong with the request, and 5xx something went wrong on the server's side.
  *
- * For more information on HTTP, see https://developer.mozilla.org/en-US/docs/Web/HTTP (or read RFC 2616 to get it straight from the source: https://tools.ietf.org/html/rfc2616).
+ * For more information on HTTP, see [godot.MDN's documentation on HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP) (or read [godot.RFC 2616](https://tools.ietf.org/html/rfc2616) to get it straight from the source).
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  *
@@ -573,11 +573,11 @@ public open class HTTPClient : RefCounted() {
      */
     RESPONSE_NOT_MODIFIED(304),
     /**
-     * HTTP status code `305 Use Proxy`. *Deprecated. Do not use.*
+     * *Deprecated.* HTTP status code `305 Use Proxy`.
      */
     RESPONSE_USE_PROXY(305),
     /**
-     * HTTP status code `306 Switch Proxy`. *Deprecated. Do not use.*
+     * *Deprecated.* HTTP status code `306 Switch Proxy`.
      */
     RESPONSE_SWITCH_PROXY(306),
     /**

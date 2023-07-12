@@ -27,14 +27,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Skeleton for 2D characters and animated objects.
+ * The parent of a hierarchy of [godot.Bone2D]s, used to create a 2D skeletal animation.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/2d_skeletons.html]($DOCS_URL/tutorials/animation/2d_skeletons.html)
  *
- * Skeleton2D parents a hierarchy of [godot.Bone2D] objects. It is a requirement of [godot.Bone2D]. Skeleton2D holds a reference to the rest pose of its children and acts as a single point of access to its bones.
+ * [godot.Skeleton2D] parents a hierarchy of [godot.Bone2D] nodes. It holds a reference to each [godot.Bone2D]'s rest pose and acts as a single point of access to its bones.
  *
- * To setup different types of inverse kinematics for the given Skeleton2D, a [godot.SkeletonModificationStack2D] should be created. They can be applied by creating the desired number of modifications, which can be done by increasing [godot.SkeletonModificationStack2D.modificationCount].
+ * To set up different types of inverse kinematics for the given Skeleton2D, a [godot.SkeletonModificationStack2D] should be created. The inverse kinematics be applied by increasing [godot.SkeletonModificationStack2D.modificationCount] and creating the desired number of modifications.
  */
 @GodotBaseType
 public open class Skeleton2D : Node2D() {

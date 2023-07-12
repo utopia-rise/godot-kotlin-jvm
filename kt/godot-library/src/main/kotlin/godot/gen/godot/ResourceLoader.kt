@@ -28,12 +28,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Singleton used to load resource files.
+ * A singleton for loading resource files.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
  *
- * Singleton used to load resource files from the filesystem.
+ * A singleton used to load resource files from the filesystem.
  *
  * It uses the many [godot.ResourceFormatLoader] classes registered in the engine (either built-in or from a plugin) to load files into memory and convert them to a format that can be used by the engine.
  *
@@ -100,6 +100,8 @@ public object ResourceLoader : Object() {
    * Returns an empty resource if no [godot.ResourceFormatLoader] could handle the file.
    *
    * GDScript has a simplified [@GDScript.load] built-in method which can be used in most situations, leaving the use of [godot.ResourceLoader] for more advanced scenarios.
+   *
+   * **Note:** If [godot.ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`, [@GDScript.load] will not be able to read converted files in an exported project. If you rely on run-time loading of files present within the PCK, set [godot.ProjectSettings.editor/export/convertTextResourcesToBinary] to `false`.
    */
   public fun load(
     path: String,

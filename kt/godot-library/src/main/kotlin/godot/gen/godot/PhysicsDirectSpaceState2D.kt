@@ -9,13 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedFloat32Array
-import godot.core.PackedVector2Array
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
+import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
@@ -24,12 +24,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Direct access object to a space in the [godot.PhysicsServer2D].
+ * Provides direct access to a physics space in the [godot.PhysicsServer2D].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Direct access object to a space in the [godot.PhysicsServer2D]. It's used mainly to do queries against objects and areas residing in a given space.
+ * Provides direct access to a physics space in the [godot.PhysicsServer2D]. It's used mainly to do queries against objects and areas residing in a given space.
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
@@ -126,11 +126,11 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    * Returned points are a list of pairs of contact points. For each pair the first one is in the shape passed in [godot.PhysicsShapeQueryParameters2D] object, second one is in the collided shape from the physics space.
    */
   public fun collideShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Long = 32):
-      VariantArray<PackedVector2Array> {
+      VariantArray<Vector2> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2D_COLLIDE_SHAPE, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2>
   }
 
   /**

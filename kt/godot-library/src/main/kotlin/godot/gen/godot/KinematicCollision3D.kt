@@ -22,11 +22,11 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Collision data for [godot.PhysicsBody3D.moveAndCollide] collisions.
+ * Holds collision data from the movement of a [godot.PhysicsBody3D].
  *
- * Contains collision data for [godot.PhysicsBody3D.moveAndCollide] collisions. When a [godot.PhysicsBody3D] is moved using [godot.PhysicsBody3D.moveAndCollide], it stops if it detects a collision with another body. If a collision is detected, a [godot.KinematicCollision3D] object is returned.
+ * Holds collision data from the movement of a [godot.PhysicsBody3D], usually from [godot.PhysicsBody3D.moveAndCollide]. When a [godot.PhysicsBody3D] is moved, it stops if it detects a collision with another body. If a collision is detected, a [godot.KinematicCollision3D] object is returned.
  *
- * This object contains information about the collision, including the colliding object, the remaining motion, and the collision position. This information can be used to calculate a collision response.
+ * The collision data includes the colliding object, the remaining motion, and the collision position. This data can be used to determine a custom response to the collision.
  */
 @GodotBaseType
 public open class KinematicCollision3D : RefCounted() {

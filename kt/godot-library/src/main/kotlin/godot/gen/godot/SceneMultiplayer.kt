@@ -118,6 +118,32 @@ public open class SceneMultiplayer : MultiplayerAPI() {
           ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SET_SERVER_RELAY_ENABLED, NIL)
     }
 
+  public var maxSyncPacketSize: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_GET_MAX_SYNC_PACKET_SIZE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SET_MAX_SYNC_PACKET_SIZE, NIL)
+    }
+
+  public var maxDeltaPacketSize: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_GET_MAX_DELTA_PACKET_SIZE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SET_MAX_DELTA_PACKET_SIZE, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SCENEMULTIPLAYER, scriptIndex)
     return true

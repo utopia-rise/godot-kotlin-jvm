@@ -34,12 +34,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node to be used for advanced animation transitions in an [godot.AnimationPlayer].
+ * A node used for advanced animation transitions in an [godot.AnimationPlayer].
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * A node to be used for advanced animation transitions in an [godot.AnimationPlayer].
+ * A node used for advanced animation transitions in an [godot.AnimationPlayer].
  *
  * **Note:** When linked with an [godot.AnimationPlayer], several properties and methods of the corresponding [godot.AnimationPlayer] will not function as expected. Playback and transitions should be handled using only the [godot.AnimationTree] and its constituent [godot.AnimationNode](s). The [godot.AnimationPlayer] node should be used solely for adding, deleting, and editing animations.
  */
@@ -475,11 +475,11 @@ public open class AnimationTree : Node() {
     id: Long,
   ) {
     /**
-     * The animations will progress during the physics frame (i.e. [godot.Node.PhysicsProcess]).
+     * The animations will progress during physics frames (see [godot.Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * The animations will progress during the idle frame (i.e. [godot.Node.Process]).
+     * The animations will progress during process frames (see [godot.Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     ANIMATION_PROCESS_IDLE(1),
     /**

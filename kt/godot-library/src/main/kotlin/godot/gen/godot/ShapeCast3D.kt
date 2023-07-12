@@ -27,15 +27,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Node for physics collision sweep and immediate overlap queries. Similar to the [godot.RayCast3D] node.
+ * A 3D shape that sweeps a region of space to detect [godot.CollisionObject3D]s.
  *
- * Shape casting allows to detect collision objects by sweeping the [shape] along the cast direction determined by [targetPosition] (useful for things like beam weapons).
+ * Shape casting allows to detect collision objects by sweeping its [shape] along the cast direction determined by [targetPosition]. This is similar to [godot.RayCast3D], but it allows for sweeping a region of space, rather than just a straight line. [godot.ShapeCast3D] can detect multiple collision objects. It is useful for things like wide laser beams or snapping a simple shape to a floor.
  *
- * Immediate collision overlaps can be done with the [targetPosition] set to `Vector3(0, 0, 0)` and by calling [forceShapecastUpdate] within the same **physics_frame**. This also helps to overcome some limitations of [godot.Area3D] when used as a continuous detection area, often requiring waiting a couple of frames before collision information is available to [godot.Area3D] nodes, and when using the signals creates unnecessary complexity.
+ * Immediate collision overlaps can be done with the [targetPosition] set to `Vector3(0, 0, 0)` and by calling [forceShapecastUpdate] within the same physics frame. This helps to overcome some limitations of [godot.Area3D] when used as an instantaneous detection area, as collision information isn't immediately available to it.
  *
- * The node can detect multiple collision objects, but it's usually used to detect the first collision.
- *
- * **Note:** Shape casting is more computationally expensive compared to ray casting.
+ * **Note:** Shape casting is more computationally expensive than ray casting.
  */
 @GodotBaseType
 public open class ShapeCast3D : Node3D() {

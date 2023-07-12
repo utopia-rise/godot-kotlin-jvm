@@ -171,7 +171,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Deletes the point `idx` from the curve. Sends an error to the console if `idx` is out of bounds.
+   * Deletes the point [idx] from the curve. Sends an error to the console if [idx] is out of bounds.
    */
   public fun removePoint(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
@@ -229,7 +229,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Similar with `interpolate_baked()`. The the return value is `Transform3D`, with `origin` as point position, `basis.x` as sideway vector, `basis.y` as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way to calculate the rotation, all vectors aligned with global space axes.
+   * Similar with `interpolate_baked()`. The return value is `Transform3D`, with `origin` as point position, `basis.x` as sideway vector, `basis.y` as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way to calculate the rotation, all vectors aligned with global space axes.
    */
   public fun sampleBakedWithRotation(
     offset: Double = 0.0,

@@ -7,6 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -86,6 +88,31 @@ public open class Noise internal constructor() : Resource() {
     TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert, BOOL to in3dSpace, DOUBLE to skirt, BOOL to normalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_SEAMLESS_IMAGE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
+  }
+
+  public fun getImage3d(
+    width: Long,
+    height: Long,
+    depth: Long,
+    invert: Boolean = false,
+    normalize: Boolean = true,
+  ): VariantArray<Image> {
+    TransferContext.writeArguments(LONG to width, LONG to height, LONG to depth, BOOL to invert, BOOL to normalize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_IMAGE_3D, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>
+  }
+
+  public fun getSeamlessImage3d(
+    width: Long,
+    height: Long,
+    depth: Long,
+    invert: Boolean = false,
+    skirt: Double = 0.1,
+    normalize: Boolean = true,
+  ): VariantArray<Image> {
+    TransferContext.writeArguments(LONG to width, LONG to height, LONG to depth, BOOL to invert, DOUBLE to skirt, BOOL to normalize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_SEAMLESS_IMAGE_3D, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>
   }
 
   public companion object

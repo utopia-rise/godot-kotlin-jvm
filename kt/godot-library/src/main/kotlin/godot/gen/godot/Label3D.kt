@@ -31,9 +31,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Displays plain text in a 3D world.
+ * A node for displaying plain text in 3D space.
  *
- * Label3D displays plain text in a 3D world. It gives you control over the horizontal and vertical alignment.
+ * A node for displaying plain text in 3D space. By adjusting various properties of this node, you can configure things such as the text's appearance and whether it always faces the camera.
  */
 @GodotBaseType
 public open class Label3D : GeometryInstance3D() {
@@ -367,6 +367,22 @@ public open class Label3D : GeometryInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_AUTOWRAP_MODE, NIL)
+    }
+
+  /**
+   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
+   */
+  public var justificationFlags: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_JUSTIFICATION_FLAGS,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_JUSTIFICATION_FLAGS,
+          NIL)
     }
 
   /**

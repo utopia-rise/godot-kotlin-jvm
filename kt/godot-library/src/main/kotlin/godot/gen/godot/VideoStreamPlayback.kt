@@ -51,7 +51,7 @@ public open class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Set the paused status of video playback. [_isPaused] must return `paused`. Called in response to the [godot.VideoStreamPlayer.paused] setter.
+   * Set the paused status of video playback. [_isPaused] must return [paused]. Called in response to the [godot.VideoStreamPlayer.paused] setter.
    */
   public open fun _setPaused(paused: Boolean): Unit {
   }
@@ -78,13 +78,13 @@ public open class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Seeks to `time` seconds. Called in response to the [godot.VideoStreamPlayer.streamPosition] setter.
+   * Seeks to [time] seconds. Called in response to the [godot.VideoStreamPlayer.streamPosition] setter.
    */
   public open fun _seek(time: Double): Unit {
   }
 
   /**
-   * Select the audio track `idx`. Called when playback starts, and in response to the [godot.VideoStreamPlayer.audioTrack] setter.
+   * Select the audio track [idx]. Called when playback starts, and in response to the [godot.VideoStreamPlayer.audioTrack] setter.
    */
   public open fun _setAudioTrack(idx: Long): Unit {
   }
@@ -97,7 +97,7 @@ public open class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Ticks video playback for `delta` seconds. Called every frame as long as [_isPaused] and [_isPlaying] return true.
+   * Ticks video playback for [delta] seconds. Called every frame as long as [_isPaused] and [_isPlaying] return true.
    */
   public open fun _update(delta: Double): Unit {
   }
@@ -117,7 +117,7 @@ public open class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Render `num_frames` audio frames (of [_getChannels] floats each) from `buffer`, starting from index `offset` in the array. Returns the number of audio frames rendered, or -1 on error.
+   * Render [numFrames] audio frames (of [_getChannels] floats each) from [buffer], starting from index [offset] in the array. Returns the number of audio frames rendered, or -1 on error.
    */
   public fun mixAudio(
     numFrames: Long,

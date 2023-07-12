@@ -51,7 +51,7 @@ import kotlin.reflect.KFunction8
 import kotlin.reflect.KFunction9
 
 /**
- * Base class for all *scene* objects.
+ * Base class for all scene objects.
  *
  * Tutorials:
  * [https://github.com/godotengine/godot-demo-projects/](https://github.com/godotengine/godot-demo-projects/)
@@ -124,6 +124,18 @@ public open class Node : Object() {
    * When this signal is received, the child [node] is still in the tree and valid. This signal is emitted *after* the child node's own [treeExiting] and [NOTIFICATION_EXIT_TREE].
    */
   public val childExitingTree: Signal1<Node> by signal("node")
+
+  /**
+   * Emitted when the list of children is changed. This happens when child nodes are added, moved or removed.
+   */
+  public val childOrderChanged: Signal0 by signal()
+
+  /**
+   * Emitted when this node is being replaced by the [node], see [replaceBy].
+   *
+   * This signal is emitted *after* [node] has been added as a child of the original parent node, but *before* all original child nodes have been reparented to [node].
+   */
+  public val replacingBy: Signal1<Node> by signal("node")
 
   /**
    * The name of the node. This name is unique among the siblings (other child nodes from the same parent). When set to an existing name, the node will be automatically renamed.
@@ -225,6 +237,76 @@ public open class Node : Object() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_PRIORITY, NIL)
+    }
+
+  /**
+   * Similar to [processPriority] but for [NOTIFICATION_PHYSICS_PROCESS], [_physicsProcess] or the internal version.
+   */
+  public var processPhysicsPriority: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PHYSICS_PROCESS_PRIORITY,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PHYSICS_PROCESS_PRIORITY,
+          NIL)
+    }
+
+  /**
+   * Set the process thread group for this node (basically, whether it receives [NOTIFICATION_PROCESS], [NOTIFICATION_PHYSICS_PROCESS], [_process] or [_physicsProcess] (and the internal versions) on the main thread or in a sub-thread.
+   *
+   * By default, the thread group is [PROCESS_THREAD_GROUP_INHERIT], which means that this node belongs to the same thread group as the parent node. The thread groups means that nodes in a specific thread group will process together, separate to other thread groups (depending on [processThreadGroupOrder]). If the value is set is [PROCESS_THREAD_GROUP_SUB_THREAD], this thread group will occur on a sub thread (not the main thread), otherwise if set to [PROCESS_THREAD_GROUP_MAIN_THREAD] it will process on the main thread. If there is not a parent or grandparent node set to something other than inherit, the node will belong to the *default thread group*. This default group will process on the main thread and its group order is 0.
+   *
+   * During processing in a sub-thread, accessing most functions in nodes outside the thread group is forbidden (and it will result in an error in debug mode). Use [godot.Object.callDeferred], [callThreadSafe], [callDeferredThreadGroup] and the likes in order to communicate from the thread groups to the main thread (or to other thread groups).
+   *
+   * To better understand process thread groups, the idea is that any node set to any other value than [PROCESS_THREAD_GROUP_INHERIT] will include any children (and grandchildren) nodes set to inherit into its process thread group. this means that the processing of all the nodes in the group will happen together, at the same time as the node including them.
+   */
+  public var processThreadGroup: ProcessThreadGroup
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_THREAD_GROUP,
+          LONG)
+      return Node.ProcessThreadGroup.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_THREAD_GROUP,
+          NIL)
+    }
+
+  /**
+   * Change the process thread group order. Groups with a lesser order will process before groups with a greater order. This is useful when a large amount of nodes process in sub thread and, afterwards, another group wants to collect their result in the main thread, as an example.
+   */
+  public var processThreadGroupOrder: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_THREAD_GROUP_ORDER, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_THREAD_GROUP_ORDER, NIL)
+    }
+
+  /**
+   * Set whether the current thread group will process messages (calls to [callDeferredThreadGroup] on threads, and whether it wants to receive them during regular process or physics process callbacks.
+   */
+  public var processThreadMessages: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_THREAD_MESSAGES,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_THREAD_MESSAGES,
+          NIL)
     }
 
   /**
@@ -530,6 +612,19 @@ public open class Node : Object() {
    * Returning an empty array produces no warnings.
    *
    * Call [updateConfigurationWarnings] when the warnings need to be updated for this node.
+   *
+   * ```
+   * 				@export var energy = 0:
+   * 				    set(value):
+   * 				        energy = value
+   * 				        update_configuration_warnings()
+   *
+   * 				func _get_configuration_warnings():
+   * 				    if energy < 0:
+   * 				        return ["Energy must be 0 or greater."]
+   * 				    else:
+   * 				        return []
+   * 				```
    */
   public open fun _getConfigurationWarnings(): PackedStringArray {
     throw NotImplementedError("_get_configuration_warnings is not implemented for Node")
@@ -614,7 +709,7 @@ public open class Node : Object() {
    *
    * If [forceReadableName] is `true`, improves the readability of the added [node]. If not named, the [node] is renamed to its type, and if it shares [name] with a sibling, a number is suffixed more appropriately. This operation is very slow. As such, it is recommended leaving this to `false`, which assigns a dummy name featuring `@` in both situations.
    *
-   * If [internal] is different than [INTERNAL_MODE_DISABLED], the child will be added as internal node. Such nodes are ignored by methods like [getChildren], unless their parameter `include_internal` is `true`.The intended usage is to hide the internal nodes from the user, so the user won't accidentally delete or modify them. Used by some GUI nodes, e.g. [godot.ColorPicker]. See [enum InternalMode] for available modes.
+   * If [internal] is different than [INTERNAL_MODE_DISABLED], the child will be added as internal node. Such nodes are ignored by methods like [getChildren], unless their parameter `include_internal` is `true`. The intended usage is to hide the internal nodes from the user, so the user won't accidentally delete or modify them. Used by some GUI nodes, e.g. [godot.ColorPicker]. See [enum InternalMode] for available modes.
    *
    * **Note:** If the child node already has a parent, the function will fail. Use [removeChild] first to remove the node from its current parent. For example:
    *
@@ -802,7 +897,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Finds the first descendant of this node whose name matches [pattern] as in [godot.String.match].
+   * Finds the first descendant of this node whose name matches [pattern] as in [godot.String.match]. Internal children are also searched over (see `internal` parameter in [addChild]).
    *
    * [pattern] does not match against the full path, just against individual node names. It is case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single character except `"."`).
    *
@@ -827,7 +922,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Finds descendants of this node whose name matches [pattern] as in [godot.String.match], and/or type matches [type] as in [godot.Object.isClass].
+   * Finds descendants of this node whose name matches [pattern] as in [godot.String.match], and/or type matches [type] as in [godot.Object.isClass]. Internal children are also searched over (see `internal` parameter in [addChild]).
    *
    * [pattern] does not match against the full path, just against individual node names. It is case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single character except `"."`).
    *
@@ -1322,6 +1417,16 @@ public open class Node : Object() {
   }
 
   /**
+   * Returns the [godot.Window] that contains this node, or the last exclusive child in a chain of windows starting with the one that contains this node.
+   */
+  public fun getLastExclusiveWindow(): Window? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_LAST_EXCLUSIVE_WINDOW,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Window?
+  }
+
+  /**
    * Returns the [godot.SceneTree] that contains this node.
    */
   public fun getTree(): SceneTree? {
@@ -1348,6 +1453,8 @@ public open class Node : Object() {
    * [/csharp]
    *
    * [/codeblocks]
+   *
+   * The Tween will start automatically on the next process frame or physics frame (depending on [enum Tween.TweenProcessMode]).
    */
   public fun createTween(): Tween? {
     TransferContext.writeArguments()
@@ -1428,7 +1535,11 @@ public open class Node : Object() {
   }
 
   /**
-   * Queues a node for deletion at the end of the current frame. When deleted, all of its child nodes will be deleted as well. This method ensures it's safe to delete the node, contrary to [godot.Object.free]. Use [godot.Object.isQueuedForDeletion] to check whether a node will be deleted at the end of the frame.
+   * Queues a node for deletion at the end of the current frame. When deleted, all of its child nodes will be deleted as well, and all references to the node and its children will become invalid, see [godot.Object.free].
+   *
+   * It is safe to call [queueFree] multiple times per frame on a node, and to [godot.Object.free] a node that is currently queued for deletion. Use [godot.Object.isQueuedForDeletion] to check whether a node will be deleted at the end of the frame.
+   *
+   * The node will only be freed after all other deferred calls are finished, so using [queueFree] is not always the same as calling [godot.Object.free] through [godot.Object.callDeferred].
    */
   public fun queueFree(): Unit {
     TransferContext.writeArguments()
@@ -1444,7 +1555,20 @@ public open class Node : Object() {
   }
 
   /**
+   * Returns `true` if the node is ready, i.e. it's inside scene tree and all its children are initialized.
+   *
+   * [requestReady] resets it back to `false`.
+   */
+  public fun isNodeReady(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_NODE_READY, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Sets the node's multiplayer authority to the peer with the given peer ID. The multiplayer authority is the peer that has authority over the node on the network. Useful in conjunction with [rpcConfig] and the [godot.MultiplayerAPI]. Inherited from the parent node by default, which ultimately defaults to peer ID 1 (the server). If [recursive], the given peer is recursively set as the authority for all children of this node.
+   *
+   * **Warning:** This does **not** automatically replicate the new authority to other peers. It is developer's responsibility to do so. You can propagate the information about the new authority using [godot.MultiplayerSpawner.spawnFunction], an RPC, or using a [godot.MultiplayerSynchronizer].
    */
   public fun setMultiplayerAuthority(id: Long, recursive: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to recursive)
@@ -1476,7 +1600,7 @@ public open class Node : Object() {
    * ```
    * 				{
    * 				    rpc_mode = MultiplayerAPI.RPCMode,
-   * 				    transfer_mode = MultiplayerPeer.TranferMode,
+   * 				    transfer_mode = MultiplayerPeer.TransferMode,
    * 				    call_local = false,
    * 				    channel = 0,
    * 				}
@@ -1524,6 +1648,58 @@ public open class Node : Object() {
         NIL)
   }
 
+  /**
+   * This function is similar to [godot.Object.callDeferred] except that the call will take place when the node thread group is processed. If the node thread group processes in sub-threads, then the call will be done on that thread, right before [NOTIFICATION_PROCESS] or [NOTIFICATION_PHYSICS_PROCESS], the [_process] or [_physicsProcess] or their internal versions are called.
+   */
+  public fun callDeferredThreadGroup(method: StringName, vararg __var_args: Any?): Any? {
+    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CALL_DEFERRED_THREAD_GROUP,
+        ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   * Similar to [callDeferredThreadGroup], but for setting properties.
+   */
+  public fun setDeferredThreadGroup(`property`: StringName, `value`: Any): Unit {
+    TransferContext.writeArguments(STRING_NAME to property, ANY to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_DEFERRED_THREAD_GROUP, NIL)
+  }
+
+  /**
+   * Similar to [callDeferredThreadGroup], but for notifications.
+   */
+  public fun notifyDeferredThreadGroup(what: Long): Unit {
+    TransferContext.writeArguments(LONG to what)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_NOTIFY_DEFERRED_THREAD_GROUP,
+        NIL)
+  }
+
+  /**
+   * This function ensures that the calling of this function will succeed, no matter whether it's being done from a thread or not. If called from a thread that is not allowed to call the function, the call will become deferred. Otherwise, the call will go through directly.
+   */
+  public fun callThreadSafe(method: StringName, vararg __var_args: Any?): Any? {
+    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CALL_THREAD_SAFE, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   * Similar to [callThreadSafe], but for setting properties.
+   */
+  public fun setThreadSafe(`property`: StringName, `value`: Any): Unit {
+    TransferContext.writeArguments(STRING_NAME to property, ANY to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_THREAD_SAFE, NIL)
+  }
+
+  /**
+   * Similar to [callThreadSafe], but for notifications.
+   */
+  public fun notifyThreadSafe(what: Long): Unit {
+    TransferContext.writeArguments(LONG to what)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_NOTIFY_THREAD_SAFE, NIL)
+  }
+
   public enum class ProcessMode(
     id: Long,
   ) {
@@ -1547,6 +1723,60 @@ public open class Node : Object() {
      * Never process. Completely disables processing, ignoring the [godot.SceneTree]'s paused property. This is the inverse of [PROCESS_MODE_ALWAYS].
      */
     PROCESS_MODE_DISABLED(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ProcessThreadGroup(
+    id: Long,
+  ) {
+    /**
+     * If the [processThreadGroup] property is sent to this, the node will belong to any parent (or grandparent) node that has a thread group mode that is not inherit. See [processThreadGroup] for more information.
+     */
+    PROCESS_THREAD_GROUP_INHERIT(0),
+    /**
+     * Process this node (and children nodes set to inherit) on the main thread. See [processThreadGroup] for more information.
+     */
+    PROCESS_THREAD_GROUP_MAIN_THREAD(1),
+    /**
+     * Process this node (and children nodes set to inherit) on a sub-thread. See [processThreadGroup] for more information.
+     */
+    PROCESS_THREAD_GROUP_SUB_THREAD(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ProcessThreadMessages(
+    id: Long,
+  ) {
+    /**
+     *
+     */
+    FLAG_PROCESS_THREAD_MESSAGES(1),
+    /**
+     *
+     */
+    FLAG_PROCESS_THREAD_MESSAGES_PHYSICS(2),
+    /**
+     *
+     */
+    FLAG_PROCESS_THREAD_MESSAGES_ALL(3),
     ;
 
     public val id: Long
@@ -1635,7 +1865,7 @@ public open class Node : Object() {
     public final const val NOTIFICATION_EXIT_TREE: Long = 11
 
     /**
-     * Notification received when the node is moved in the parent.
+     * *Deprecated.* This notification is no longer emitted. Use [NOTIFICATION_CHILD_ORDER_CHANGED] instead.
      */
     public final const val NOTIFICATION_MOVED_IN_PARENT: Long = 12
 
@@ -1703,6 +1933,11 @@ public open class Node : Object() {
     public final const val NOTIFICATION_PATH_RENAMED: Long = 23
 
     /**
+     * Notification received when the list of children is changed. This happens when child nodes are added, moved or removed.
+     */
+    public final const val NOTIFICATION_CHILD_ORDER_CHANGED: Long = 24
+
+    /**
      * Notification received every frame when the internal process flag is set (see [setProcessInternal]).
      */
     public final const val NOTIFICATION_INTERNAL_PROCESS: Long = 25
@@ -1757,12 +1992,16 @@ public open class Node : Object() {
     public final const val NOTIFICATION_WM_MOUSE_EXIT: Long = 1003
 
     /**
-     * Notification received from the OS when the node's parent [godot.Window] is focused. This may be a change of focus between two windows of the same engine instance, or from the OS desktop or a third-party application to a window of the game (in which case [NOTIFICATION_APPLICATION_FOCUS_IN] is also emitted).
+     * Notification received when the node's parent [godot.Window] is focused. This may be a change of focus between two windows of the same engine instance, or from the OS desktop or a third-party application to a window of the game (in which case [NOTIFICATION_APPLICATION_FOCUS_IN] is also emitted).
+     *
+     * A [godot.Window] node receives this notification when it is focused.
      */
     public final const val NOTIFICATION_WM_WINDOW_FOCUS_IN: Long = 1004
 
     /**
-     * Notification received from the OS when the node's parent [godot.Window] is defocused. This may be a change of focus between two windows of the same engine instance, or from a window of the game to the OS desktop or a third-party application (in which case [NOTIFICATION_APPLICATION_FOCUS_OUT] is also emitted).
+     * Notification received when the node's parent [godot.Window] is defocused. This may be a change of focus between two windows of the same engine instance, or from a window of the game to the OS desktop or a third-party application (in which case [NOTIFICATION_APPLICATION_FOCUS_OUT] is also emitted).
+     *
+     * A [godot.Window] node receives this notification when it is defocused.
      */
     public final const val NOTIFICATION_WM_WINDOW_FOCUS_OUT: Long = 1005
 
@@ -1781,12 +2020,12 @@ public open class Node : Object() {
     public final const val NOTIFICATION_WM_GO_BACK_REQUEST: Long = 1007
 
     /**
-     *
+     * Notification received from the OS when the window is resized.
      */
     public final const val NOTIFICATION_WM_SIZE_CHANGED: Long = 1008
 
     /**
-     *
+     * Notification received from the OS when the screen's DPI has been changed. Only implemented on macOS.
      */
     public final const val NOTIFICATION_WM_DPI_CHANGE: Long = 1009
 

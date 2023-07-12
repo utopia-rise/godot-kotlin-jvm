@@ -25,18 +25,26 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Button control that provides selectable options when pressed.
+ * A button that brings up a dropdown with selectable options when pressed.
  *
- * OptionButton is a type button that provides a selectable list of items when pressed. The item selected becomes the "current" item and is displayed as the button text.
+ * [godot.OptionButton] is a type of button that brings up a dropdown with selectable items when pressed. The item selected becomes the "current" item and is displayed as the button text.
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  *
  * **Note:** Properties [godot.Button.text] and [godot.Button.icon] are automatically set based on the selected item. They shouldn't be changed manually.
+ *
+ * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
+ *
+ * **Note:** The ID values used for items are 32-bit, unlike [int] which is always 64-bit. They go from `-2147483648` to `2147483647`.
+ *
+ * **Note:** The [godot.Button.text] and [godot.Button.icon] properties are set automatically based on the selected item. They shouldn't be changed manually.
  */
 @GodotBaseType
 public open class OptionButton : Button() {
   /**
    * Emitted when the current item has been changed by the user. The index of the item selected is passed as argument.
+   *
+   * [allowReselect] must be enabled to reselect an item.
    */
   public val itemSelected: Signal1<Long> by signal("index")
 
@@ -85,6 +93,22 @@ public open class OptionButton : Button() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_FIT_TO_LONGEST_ITEM, NIL)
+    }
+
+  /**
+   * If `true`, the currently selected item can be selected again.
+   */
+  public var allowReselect: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ALLOW_RESELECT,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ALLOW_RESELECT,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

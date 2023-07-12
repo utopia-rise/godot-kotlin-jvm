@@ -22,11 +22,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Joint used with [godot.Skeleton2D] to control and animate other nodes.
+ * A joint used with [godot.Skeleton2D] to control and animate other nodes.
  *
- * Use a hierarchy of `Bone2D` bound to a [godot.Skeleton2D] to control, and animate other [godot.Node2D] nodes.
+ * A hierarchy of [godot.Bone2D]s can be bound to a [godot.Skeleton2D] to control and animate other [godot.Node2D] nodes.
  *
- * You can use `Bone2D` and `Skeleton2D` nodes to animate 2D meshes created with the Polygon 2D UV editor.
+ * You can use [godot.Bone2D] and [godot.Skeleton2D] nodes to animate 2D meshes created with the [godot.Polygon2D] UV editor.
  *
  * Each bone has a [rest] transform that you can reset to with [applyRest]. These rest poses are relative to the bone's parent.
  *
@@ -81,7 +81,7 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * When set to `true`, the `Bone2D` node will attempt to automatically calculate the bone angle and length using the first child `Bone2D` node, if one exists. If none exist, the `Bone2D` cannot automatically calculate these values and will print a warning.
+   * When set to `true`, the [godot.Bone2D] node will attempt to automatically calculate the bone angle and length using the first child [godot.Bone2D] node, if one exists. If none exist, the [godot.Bone2D] cannot automatically calculate these values and will print a warning.
    */
   public fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autoCalculate)
@@ -90,7 +90,7 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Returns whether this `Bone2D` node is going to autocalculate its length and bone angle using its first `Bone2D` child node, if one exists. If there are no `Bone2D` children, then it cannot autocalculate these values and will print a warning.
+   * Returns whether this [godot.Bone2D] is going to autocalculate its length and bone angle using its first [godot.Bone2D] child node, if one exists. If there are no [godot.Bone2D] children, then it cannot autocalculate these values and will print a warning.
    */
   public fun getAutocalculateLengthAndAngle(): Boolean {
     TransferContext.writeArguments()
@@ -100,7 +100,7 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Sets the length of the bone in the `Bone2D` node.
+   * Sets the length of the bone in the [godot.Bone2D].
    */
   public fun setLength(length: Double): Unit {
     TransferContext.writeArguments(DOUBLE to length)
@@ -108,7 +108,7 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Returns the length of the bone in the `Bone2D` node.
+   * Returns the length of the bone in the [godot.Bone2D] node.
    */
   public fun getLength(): Double {
     TransferContext.writeArguments()
@@ -117,9 +117,9 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Sets the bone angle for the `Bone2D` node. This is typically set to the rotation from the `Bone2D` node to a child `Bone2D` node.
+   * Sets the bone angle for the [godot.Bone2D]. This is typically set to the rotation from the [godot.Bone2D] to a child [godot.Bone2D] node.
    *
-   * **Note:** This is different from the `Bone2D`'s rotation. The bone angle is the rotation of the bone shown by the `Bone2D` gizmo, and because `Bone2D` bones are based on positions, this can vary from the actual rotation of the `Bone2D` node.
+   * **Note:** **Note:** This is different from the [godot.Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [godot.Bone2D]'s [godot.Node2D.transform].
    */
   public fun setBoneAngle(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
@@ -127,9 +127,9 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Returns the angle of the bone in the `Bone2D` node.
+   * Returns the angle of the bone in the [godot.Bone2D].
    *
-   * **Note:** This is different from the `Bone2D`'s rotation. The bone angle is the rotation of the bone shown by the `Bone2D` gizmo, and because `Bone2D` bones are based on positions, this can vary from the actual rotation of the `Bone2D` node.
+   * **Note:** This is different from the [godot.Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [godot.Bone2D]'s [godot.Node2D.transform].
    */
   public fun getBoneAngle(): Double {
     TransferContext.writeArguments()

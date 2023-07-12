@@ -16,12 +16,17 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
+ * Represents a magnifying touch gesture.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
+ *
+ * Stores the factor of a magnifying touch gesture. This is usually performed when the user pinches the touch screen and used for zooming in/out.
  */
 @GodotBaseType
 public open class InputEventMagnifyGesture : InputEventGesture() {
   /**
-   *
+   * The amount (or delta) of the event. This value is closer to `1.0` the slower the gesture is performed.
    */
   public var factor: Double
     get() {

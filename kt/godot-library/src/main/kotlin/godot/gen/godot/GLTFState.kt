@@ -362,6 +362,12 @@ public open class GLTFState : Resource() {
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
+  public fun getNodeIndex(sceneNode: Node): Long {
+    TransferContext.writeArguments(OBJECT to sceneNode)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_NODE_INDEX, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
   public fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_ADDITIONAL_DATA, ANY)

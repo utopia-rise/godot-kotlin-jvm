@@ -82,7 +82,7 @@ public open class TileMap : Node2D() {
   /**
    * If enabled, the TileMap will see its collisions synced to the physics tick and change its collision type from static to kinematic. This is required to create TileMap-based moving platform.
    *
-   * **Note:** Enabling `collision_animatable` may have a small performance impact, only do it if the TileMap is moving and has colliding tiles.
+   * **Note:** Enabling [collisionAnimatable] may have a small performance impact, only do it if the TileMap is moving and has colliding tiles.
    */
   public var collisionAnimatable: Boolean
     get() {
@@ -195,7 +195,7 @@ public open class TileMap : Node2D() {
   /**
    * Sets a layer's name. This is mostly useful in the editor.
    *
-   * If `layer` is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerName(layer: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to layer, STRING to name)
@@ -233,7 +233,7 @@ public open class TileMap : Node2D() {
   /**
    * Sets a layer's color. It will be multiplied by tile's color and TileMap's modulate.
    *
-   * If `layer` is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerModulate(layer: Long, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to layer, COLOR to modulate)
@@ -254,7 +254,7 @@ public open class TileMap : Node2D() {
    *
    * Y-sorted layers should usually be on different Z-index values than not Y-sorted layers, otherwise, each of those layer will be Y-sorted as whole with the Y-sorted one. This is usually an undesired behavior.
    *
-   * If `layer` is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerYSortEnabled(layer: Long, ySortEnabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer, BOOL to ySortEnabled)
@@ -277,7 +277,7 @@ public open class TileMap : Node2D() {
    *
    * This allows, for example, to fake a different height level on each layer. This can be useful for top-down view games.
    *
-   * If `layer` is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerYSortOrigin(layer: Long, ySortOrigin: Long): Unit {
     TransferContext.writeArguments(LONG to layer, LONG to ySortOrigin)
@@ -298,7 +298,7 @@ public open class TileMap : Node2D() {
   /**
    * Sets a layers Z-index value. This Z-index is added to each tile's Z-index value.
    *
-   * If `layer` is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerZIndex(layer: Long, zIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layer, LONG to zIndex)
@@ -448,6 +448,16 @@ public open class TileMap : Node2D() {
   }
 
   /**
+   * Returns the tilemap layer of the tile for given physics body RID. Such RID can be retrieved from [godot.KinematicCollision2D.getColliderRid], when colliding with a tile.
+   */
+  public fun getLayerForBodyRid(body: RID): Long {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_FOR_BODY_RID,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Creates a new [godot.TileMapPattern] from the given layer and set of cells.
    */
   public fun getPattern(layer: Long, coordsArray: VariantArray<Vector2i>): TileMapPattern? {
@@ -486,7 +496,7 @@ public open class TileMap : Node2D() {
    *
    * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
    *
-   * **Note:** To work correctly, `set_cells_terrain_connect` requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+   * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
   public fun setCellsTerrainConnect(
     layer: Long,
@@ -505,7 +515,7 @@ public open class TileMap : Node2D() {
    *
    * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
    *
-   * **Note:** To work correctly, `set_cells_terrain_path` requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+   * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
   public fun setCellsTerrainPath(
     layer: Long,

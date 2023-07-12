@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import kotlin.Boolean
@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Playback control for [godot.AnimationNodeStateMachine].
+ * Provides playback control for an [godot.AnimationNodeStateMachine].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
@@ -43,7 +43,7 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback") as AnimationNodeStateMachinePlayback;
+ * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback").As<AnimationNodeStateMachinePlayback>();
  *
  * stateMachine.Travel("some_state");
  *
@@ -159,12 +159,11 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Returns the current travel path as computed internally by the A* algorithm.
    */
-  public fun getTravelPath(): PackedStringArray {
+  public fun getTravelPath(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_TRAVEL_PATH,
-        PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_TRAVEL_PATH, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>
   }
 
   public companion object

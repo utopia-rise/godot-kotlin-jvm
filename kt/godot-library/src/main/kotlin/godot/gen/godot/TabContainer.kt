@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
@@ -19,6 +20,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -27,23 +29,36 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Tabbed container.
+ * A container that creates a tab for each child control, displaying only the active tab's control.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * Arranges [godot.Control] children into a tabbed view, creating a tab for each one. The active tab's corresponding [godot.Control] has its `visible` property set to `true`, and all other children's to `false`.
+ * Arranges child controls into a tabbed view, creating a tab for each one. The active tab's corresponding control is made visible, while all other child controls are hidden. Ignores non-control children.
  *
- * Ignores non-[godot.Control] children.
- *
- * **Note:** The drawing of the clickable tabs themselves is handled by this node. Adding [godot.TabBar]s as children is not needed.
+ * **Note:** The drawing of the clickable tabs is handled by this node; [godot.TabBar] is not needed.
  */
 @GodotBaseType
 public open class TabContainer : Container() {
   /**
+   * Emitted when the active tab is rearranged via mouse drag. See [dragToRearrangeEnabled].
+   */
+  public val activeTabRearranged: Signal1<Long> by signal("idxTo")
+
+  /**
    * Emitted when switching to another tab.
    */
   public val tabChanged: Signal1<Long> by signal("tab")
+
+  /**
+   * Emitted when a tab is clicked, even if it is the current tab.
+   */
+  public val tabClicked: Signal1<Long> by signal("tab")
+
+  /**
+   * Emitted when a tab is hovered by the mouse.
+   */
+  public val tabHovered: Signal1<Long> by signal("tab")
 
   /**
    * Emitted when a tab is selected, even if it is the current tab.
@@ -296,6 +311,23 @@ public open class TabContainer : Container() {
     TransferContext.writeArguments(LONG to tabIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_IS_TAB_HIDDEN, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the metadata value for the tab at index [tabIdx], which can be retrieved later using [getTabMetadata].
+   */
+  public fun setTabMetadata(tabIdx: Long, metadata: Any): Unit {
+    TransferContext.writeArguments(LONG to tabIdx, ANY to metadata)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_METADATA, NIL)
+  }
+
+  /**
+   * Returns the metadata value set to the tab at index [tabIdx] using [setTabMetadata]. If no metadata was previously set, returns `null` by default.
+   */
+  public fun getTabMetadata(tabIdx: Long): Any? {
+    TransferContext.writeArguments(LONG to tabIdx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_METADATA, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   /**

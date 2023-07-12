@@ -170,6 +170,16 @@ public open class Mesh : Resource() {
   }
 
   /**
+   * Returns all the vertices that make up the faces of the mesh. Each three vertices represent one triangle.
+   */
+  public fun getFaces(): PackedVector3Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_FACES,
+        PACKED_VECTOR3_ARRAY)
+    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+  }
+
+  /**
    * Returns the number of surfaces that the [godot.Mesh] holds.
    */
   public fun getSurfaceCount(): Long {
@@ -258,16 +268,6 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Returns all the vertices that make up the faces of the mesh. Each three vertices represent one triangle.
-   */
-  public fun getFaces(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_FACES,
-        PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
-  }
-
-  /**
    * Generate a [godot.TriangleMesh] from the mesh. Considers only surfaces using one of these primitive types: [PRIMITIVE_TRIANGLES], [PRIMITIVE_TRIANGLE_STRIP].
    */
   public fun generateTriangleMesh(): TriangleMesh? {
@@ -339,19 +339,19 @@ public open class Mesh : Resource() {
      */
     ARRAY_TEX_UV2(5),
     /**
-     * Contains custom color channel 0. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM0_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 0. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM0(6),
     /**
-     * Contains custom color channel 1. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM1_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 1. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM1_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM1(7),
     /**
-     * Contains custom color channel 2. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM2_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 2. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM2_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM2(8),
     /**
-     * Contains custom color channel 3. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM3_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 3. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM3_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM3(9),
     /**

@@ -53,9 +53,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Interface for the fonts and complex text layouts.
+ * A server interface for font management and text rendering.
  *
- * [godot.TextServer] is the API backend for managing fonts, and rendering complex text.
+ * [godot.TextServer] is the API backend for managing fonts and rendering text.
  */
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
@@ -179,7 +179,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Creates new, empty font cache entry resource. To free the resulting resource, use [freeRid] method.
+   * Creates a new, empty font cache entry resource. To free the resulting resource, use the [freeRid] method.
    */
   public fun createFont(): RID {
     TransferContext.writeArguments()
@@ -257,6 +257,16 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns [godot.core.Dictionary] with OpenType font name strings (localized font names, version, description, license information, sample text, etc.).
+   */
+  public fun fontGetOtNameStrings(fontRid: RID): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_OT_NAME_STRINGS,
+        DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
   /**
@@ -1095,7 +1105,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the glyph index of a [char], optionally modified by the [variationSelector].
+   * Returns the glyph index of a [char], optionally modified by the [variationSelector].  See [fontGetCharFromGlyphIndex].
    */
   public fun fontGetGlyphIndex(
     fontRid: RID,
@@ -1106,6 +1116,20 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to char, LONG to variationSelector)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_INDEX,
         LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See [fontGetGlyphIndex].
+   */
+  public fun fontGetCharFromGlyphIndex(
+    fontRid: RID,
+    size: Long,
+    glyphIndex: Long,
+  ): Long {
+    TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to glyphIndex)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_CHAR_FROM_GLYPH_INDEX, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1662,14 +1686,14 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Adjusts text with to fit to specified width, returns new text width.
+   * Adjusts text width to fit to specified width, returns new text width.
    */
   public fun shapedTextFitToWidth(
     shaped: RID,
     width: Double,
-    jstFlags: Long = 3,
+    justificationFlags: Long = 3,
   ): Double {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, OBJECT to jstFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, OBJECT to justificationFlags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_FIT_TO_WIDTH,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -1703,6 +1727,16 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_IS_READY,
         BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true`, if text buffer contents any visible characters.
+   */
+  public fun shapedTextHasVisibleChars(shaped: RID): Boolean {
+    TransferContext.writeArguments(_RID to shaped)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_HAS_VISIBLE_CHARS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -2131,7 +2165,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` is [string] is a valid identifier.
+   * Returns `true` if [string] is a valid identifier.
    *
    * If the text server supports the [FEATURE_UNICODE_IDENTIFIERS] feature, a valid identifier must:
    *
@@ -2349,6 +2383,18 @@ public open class TextServer internal constructor() : RefCounted() {
      * Apply justification to the trimmed line with ellipsis.
      */
     JUSTIFICATION_CONSTRAIN_ELLIPSIS(16),
+    /**
+     * Do not apply justification to the last line of the paragraph.
+     */
+    JUSTIFICATION_SKIP_LAST_LINE(32),
+    /**
+     * Do not apply justification to the last line of the paragraph with visible characters (takes precedence over [JUSTIFICATION_SKIP_LAST_LINE]).
+     */
+    JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS(64),
+    /**
+     * Always apply justification to the paragraphs with a single line ([JUSTIFICATION_SKIP_LAST_LINE] and [JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS] are ignored).
+     */
+    JUSTIFICATION_DO_NOT_SKIP_SINGLE_LINE(128),
     ;
 
     public val id: Long
@@ -2591,6 +2637,10 @@ public open class TextServer internal constructor() : RefCounted() {
      * It is safe to insert a U+0640 before this grapheme for elongation.
      */
     GRAPHEME_IS_SAFE_TO_INSERT_TATWEEL(2048),
+    /**
+     * Grapheme is an object replacement character for the embedded object.
+     */
+    GRAPHEME_IS_EMBEDDED_OBJECT(4096),
     ;
 
     public val id: Long

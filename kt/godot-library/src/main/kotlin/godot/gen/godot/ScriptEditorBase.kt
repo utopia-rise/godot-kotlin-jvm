@@ -24,7 +24,7 @@ import kotlin.Unit
 /**
  * Base editor for editing scripts in the [godot.ScriptEditor].
  *
- * Base editor for editing scripts in the [godot.ScriptEditor], this does not include documentation items.
+ * Base editor for editing scripts in the [godot.ScriptEditor]. This does not include documentation items.
  */
 @GodotBaseType
 public open class ScriptEditorBase internal constructor() : VBoxContainer() {
