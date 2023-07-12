@@ -12,7 +12,6 @@ class KotlinBinding {
 
     KtObject* kt_object;
     Object* owner;
-    KtObject* kt_object;
 
     KotlinBinding();
 

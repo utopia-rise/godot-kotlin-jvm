@@ -138,7 +138,6 @@ private var ByteBuffer.obj: KtObject
         return MemoryManager.getInstance(id) ?: KtObject.instantiateWith(
             ptr,
             id,
-            true,
             TypeManager.engineTypesConstructors[constructorIndex],
         )
     }

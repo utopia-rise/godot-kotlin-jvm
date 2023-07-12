@@ -32,8 +32,6 @@ public:
     static KotlinBinding* get_instance_binding(Object* p_object);
 
     static void bind_object(KotlinBinding* binding, KtObject* ktObject);
-
-    static void unbind_object(KotlinBinding* binding);
 };
 
 #endif// GODOT_JVM_KOTLIN_BINDING_MANAGER_H

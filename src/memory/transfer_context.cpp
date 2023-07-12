@@ -58,6 +58,13 @@ SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
     return &shared_buffer;
 }
 
+void TransferContext::remove_script_instance(uint64_t id) {
+    jni::Env env {jni::Jvm::current_env()};
+    jni::MethodId method = get_method_id(env, jni_methods.REMOVE_SCRIPT);
+    jvalue args[1] = {jni::to_jni_arg(id)};
+    wrapped.call_object_method(env, method, args);
+}
+
 void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {
     SharedBuffer* buffer {get_buffer(p_env)};
     ktvariant::get_variant_from_buffer(buffer, r_ret);
@@ -165,12 +172,13 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance
     JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name));
 #endif
 
-    KtObject* kt_object {new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
+
     KotlinBinding* binding = KotlinBindingManager::set_instance_binding(ptr);
     int script_index {static_cast<int>(p_script_index)};
     if (script_index >= 0) {
+        KtObject* kt_object {new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
         Ref<KotlinScript> kotlin_script {TypeManager::get_instance().get_user_script_for_index(script_index)};
-        auto script {memnew(KotlinInstance(kt_object, binding, kotlin_script->get_kotlin_class(), kotlin_script.ptr()))};
+        auto script {memnew(KotlinInstance(ptr, kt_object, kotlin_script.ptr()))};
         ptr->set_script_instance(script);
     }
 

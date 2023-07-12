@@ -1,20 +1,21 @@
 #include "kotlin_instance.h"
 
 #include "core/core_string_names.h"
+#include "gd_kotlin.h"
 #include "kotlin_language.h"
 #include "kt_class.h"
 
-KotlinInstance::KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinBinding* p_binding, KotlinScript* p_script) :
+KotlinInstance::KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinScript* p_script) :
   owner(p_owner),
   kt_object(p_kt_object),
   script(p_script)
-{
-    KotlinBindingManager::bind_object(owner, p_wrapped_object);
-}
+{}
 
 KotlinInstance::~KotlinInstance() {
-    KotlinBindingManager::unbind_object(owner);
-    binding = nullptr;
+    if(delete_flag){
+        GDKotlin::get_instance().transfer_context->remove_script_instance(owner->get_instance_id());
+    }
+
 }
 
 Object* KotlinInstance::get_owner() {
@@ -91,6 +92,12 @@ Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args
 }
 
 void KotlinInstance::notification(int p_notification) {
+    switch (p_notification) {
+        case Object::NOTIFICATION_PREDELETE: {
+            delete_flag = false;
+        } break;
+    }
+
     KtFunction* function {kt_class->get_method(CoreStringNames::get_singleton()->notification)};
 
     if (function) {
@@ -105,15 +112,9 @@ String KotlinInstance::to_string(bool* r_valid) {
     return ScriptInstance::to_string(r_valid);
 }
 
-void KotlinInstance::refcount_incremented() {
-    // Godot only calls that function for Refcounted instance.
-    refcount_incremented_unsafe();
-}
+void KotlinInstance::refcount_incremented() {}
 
-bool KotlinInstance::refcount_decremented() {
-    // Godot only calls that function for Refcounted instance.
-    return refcount_decremented_unsafe();
-}
+bool KotlinInstance::refcount_decremented() {}
 
 Ref<Script> KotlinInstance::get_script() const {
     return script;

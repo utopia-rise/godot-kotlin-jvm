@@ -37,7 +37,7 @@ internal object MemoryManager {
     private const val OBJECTDB_SIZE = 1 shl ObjectID.OBJECTDB_SLOT_MAX_COUNT_BITS
 
     /** Pointers to Godot objects.*/
-    private val ObjectDB = Array<GodotBinding?>(OBJECTDB_SIZE) { null }
+    private val ObjectDB = Array<GodotWeakRef?>(OBJECTDB_SIZE) { null }
 
     /** Indexes of singletons in [ObjectDB] */
     private val singletonIndexes = mutableListOf<Int>()
@@ -46,20 +46,20 @@ internal object MemoryManager {
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
 
     /** Queue of objects that need to be bound to native objects*/
-    private val bindingQueue = ArrayDeque<KtObject>()
+    private val bindingQueue = ArrayDeque<GodotBinding>()
 
     /**
      * Queue of objects which will to be bound to native objects in a given iteration.
      *
      * At the start of a garbage collection iteration. The objects from the [bindingQueue] are copied into this list in order to spend as little time as possible in a `synchonized` block. Later we loop through this list to actually bind the objects.
      */
-    private val bindingList = ArrayList<KtObject>(CHECK_NUMBER)
+    private val bindingList = ArrayList<GodotBinding>(CHECK_NUMBER)
 
     /** Queues so we are notified when the GC runs on References.*/
-    private val refReferenceQueue = ReferenceQueue<KtObject>()
+    private val refReferenceQueue = ReferenceQueue<GodotBinding>()
 
     /** List of element to remove from ObjectDB*/
-    private val deleteList = ArrayList<GodotBinding>(CHECK_NUMBER)
+    private val deleteList = ArrayList<GodotWeakRef>(CHECK_NUMBER)
 
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
@@ -81,26 +81,56 @@ internal object MemoryManager {
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
 
-    fun registerObject(instance: KtObject) {
+    fun registerObject(instance: KtObject): GodotBinding {
         synchronized(ObjectDB) {
-            val index = instance.id.index
-            ObjectDB[index] = GodotBinding(instance, refReferenceQueue, instance.id)
+            val id = instance.id
+            val binding = getBinding(id.id)
+            return if (binding == null) {
+                GodotBinding().also {
+                    it.wrapper = instance
+                    ObjectDB[id.index] = GodotWeakRef(it, refReferenceQueue, instance.id)
+                    bindingQueue.addLast(it)
+                }
+            } else {
+                binding.wrapper = instance
+                binding
+            }
         }
     }
 
-    fun registerSingleton(instance: KtObject) {
+    fun registerScriptInstance(instance: KtObject): GodotBinding {
         synchronized(ObjectDB) {
-            val index = instance.id.index
-            ObjectDB[index] = GodotBinding(instance, refReferenceQueue, instance.id)
-            singletonIndexes.add(index)
+            val id = instance.id
+            val binding = getBinding(id.id)
+            return if (binding == null) {
+                 GodotBinding().also {
+                    it.scriptInstance = instance
+                    ObjectDB[id.index] = GodotWeakRef(it, refReferenceQueue, instance.id)
+                    bindingQueue.addLast(it)
+                }
+            } else {
+                binding.scriptInstance = instance
+                binding
+            }
         }
     }
 
-    fun registerObjectAndBind(instance: KtObject) {
+    fun unregisterScriptInstance(id: Long) {
+        synchronized(ObjectDB) {
+            val index = ObjectID(id).index
+            ObjectDB[index]?.get()?.scriptInstance == null
+        }
+    }
+
+    fun registerSingleton(instance: KtObject): GodotBinding {
         synchronized(ObjectDB) {
             val index = instance.id.index
-            ObjectDB[index] = GodotBinding(instance, refReferenceQueue, instance.id)
-            bindingQueue.addLast(instance)
+            return GodotBinding().also {
+                it.wrapper = instance
+                ObjectDB[index] = GodotWeakRef(it, refReferenceQueue, instance.id)
+                singletonIndexes.add(index)
+                bindingQueue.addLast(it)
+            }
         }
     }
 
@@ -114,10 +144,14 @@ internal object MemoryManager {
     }
 
     fun getInstance(id: Long): KtObject? {
+        return getBinding(id)?.value
+    }
+
+    private fun getBinding(id: Long): GodotBinding? {
         val objectID = ObjectID(id)
-        val ktObject = ObjectDB[objectID.index]?.get()
-        if (ktObject != null && objectID == ktObject.id) {
-            return ktObject
+        val ref = ObjectDB[objectID.index]
+        if (ref != null && ref.id.id == objectID.id) {
+            return ref.get()
         }
         return null
     }
@@ -176,7 +210,7 @@ internal object MemoryManager {
         }
 
         for (ref in bindingList) {
-            MemoryBridge.bindInstance(ref.id.id, ref, ref::class.java.classLoader)
+            MemoryBridge.bindInstance(ref.value.id.id, ref, ref::class.java.classLoader)
             isActive = true
         }
         bindingList.clear()
@@ -195,7 +229,7 @@ internal object MemoryManager {
         //We poll the reference that have been clear by the GC and then call c++ code to destroy the native object.
         synchronized(ObjectDB) {
             while (counter < CHECK_NUMBER) {
-                val ref = ((refReferenceQueue.poll() ?: break) as GodotBinding)
+                val ref = ((refReferenceQueue.poll() ?: break) as GodotWeakRef)
                 val index = ref.id.index
                 val otherRef = ObjectDB[index]
                 //Check if the ref in the DB hasn't been replaced by a new object before the GC could remove it.
@@ -310,7 +344,7 @@ internal object MemoryManager {
 
     private object MemoryBridge {
         external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-        external fun bindInstance(instanceId: Long, obj: KtObject, classLoader: ClassLoader)
+        external fun bindInstance(instanceId: Long, obj: GodotBinding, classLoader: ClassLoader)
         external fun decrementRefCounter(instanceId: Long)
         external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
         external fun notifyLeak()

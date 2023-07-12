@@ -66,7 +66,3 @@ KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
 void KotlinBindingManager::bind_object(KotlinBinding* binding, KtObject* ktObject) {
     binding->set_kt_object(ktObject);
 }
-
-void KotlinBindingManager::unbind_object(KotlinBinding* binding){
-    binding->unset_kt_object();
-}

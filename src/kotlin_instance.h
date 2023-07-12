@@ -13,9 +13,10 @@ private:
     KtObject* kt_object;
     KtClass* kt_class;
     Ref<KotlinScript> script;
+    bool delete_flag = true;
 
 public:
-    KotlinInstance(KtObject* p_wrapped_object, KotlinBinding* p_binding, KtClass* p_kt_class, KotlinScript* p_script);
+    KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinScript* p_script);
     ~KotlinInstance() override;
 
     bool set(const StringName& p_name, const Variant& p_value) override;

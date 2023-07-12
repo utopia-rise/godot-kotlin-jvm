@@ -60,6 +60,10 @@ internal object TransferContext {
         )
     }
 
+    fun removeScriptInstance(id: Long) {
+        MemoryManager.unregisterScriptInstance(id)
+    }
+
     fun freeObject(obj: KtObject) {
         freeObject(obj.rawPtr)
     }
