@@ -37,7 +37,7 @@ internal object MemoryManager {
     private const val OBJECTDB_SIZE = 1 shl ObjectID.OBJECTDB_SLOT_MAX_COUNT_BITS
 
     /** Pointers to Godot objects.*/
-    private val ObjectDB = Array<GodotWeakRef?>(OBJECTDB_SIZE) { null }
+    private val ObjectDB = Array<GodotWeakReference?>(OBJECTDB_SIZE) { null }
 
     /** Indexes of singletons in [ObjectDB] */
     private val singletonIndexes = mutableListOf<Int>()
@@ -59,7 +59,7 @@ internal object MemoryManager {
     private val refReferenceQueue = ReferenceQueue<GodotBinding>()
 
     /** List of element to remove from ObjectDB*/
-    private val deleteList = ArrayList<GodotWeakRef>(CHECK_NUMBER)
+    private val deleteList = ArrayList<GodotWeakReference>(CHECK_NUMBER)
 
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
@@ -88,7 +88,7 @@ internal object MemoryManager {
             return if (binding == null) {
                 GodotBinding().also {
                     it.wrapper = instance
-                    ObjectDB[id.index] = GodotWeakRef(it, refReferenceQueue, instance.id)
+                    ObjectDB[id.index] = GodotWeakReference(it, refReferenceQueue, instance.id)
                     bindingQueue.addLast(it)
                 }
             } else {
@@ -103,9 +103,9 @@ internal object MemoryManager {
             val id = instance.id
             val binding = getBinding(id.id)
             return if (binding == null) {
-                 GodotBinding().also {
+                GodotBinding().also {
                     it.scriptInstance = instance
-                    ObjectDB[id.index] = GodotWeakRef(it, refReferenceQueue, instance.id)
+                    ObjectDB[id.index] = GodotWeakReference(it, refReferenceQueue, instance.id)
                     bindingQueue.addLast(it)
                 }
             } else {
@@ -117,8 +117,7 @@ internal object MemoryManager {
 
     fun unregisterScriptInstance(id: Long) {
         synchronized(ObjectDB) {
-            val index = ObjectID(id).index
-            ObjectDB[index]?.get()?.scriptInstance == null
+            getBinding(id)?.scriptInstance = null
         }
     }
 
@@ -127,7 +126,7 @@ internal object MemoryManager {
             val index = instance.id.index
             return GodotBinding().also {
                 it.wrapper = instance
-                ObjectDB[index] = GodotWeakRef(it, refReferenceQueue, instance.id)
+                ObjectDB[index] = GodotWeakReference(it, refReferenceQueue, instance.id)
                 singletonIndexes.add(index)
                 bindingQueue.addLast(it)
             }
@@ -210,7 +209,7 @@ internal object MemoryManager {
         }
 
         for (ref in bindingList) {
-            MemoryBridge.bindInstance(ref.value.id.id, ref, ref::class.java.classLoader)
+            MemoryBridge.bindInstance(ref.value!!.id.id, ref, ref::class.java.classLoader)
             isActive = true
         }
         bindingList.clear()
@@ -229,7 +228,7 @@ internal object MemoryManager {
         //We poll the reference that have been clear by the GC and then call c++ code to destroy the native object.
         synchronized(ObjectDB) {
             while (counter < CHECK_NUMBER) {
-                val ref = ((refReferenceQueue.poll() ?: break) as GodotWeakRef)
+                val ref = ((refReferenceQueue.poll() ?: break) as GodotWeakReference)
                 val index = ref.id.index
                 val otherRef = ObjectDB[index]
                 //Check if the ref in the DB hasn't been replaced by a new object before the GC could remove it.

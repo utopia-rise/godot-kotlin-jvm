@@ -80,13 +80,13 @@
     ]
   },
   {
-    "name" : "godot.core.memory.GarbageCollector$MemoryBridge",
+    "name" : "godot.core.memory.MemoryManager$MemoryBridge",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
     "methods" : [
       { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
-      { "name" : "bindInstance", "parameterTypes" : ["long", "godot.core.KtObject", "java.lang.ClassLoader"] },
+      { "name" : "bindInstance", "parameterTypes" : ["long", "godot.core.memory.GodotBinding", "java.lang.ClassLoader"] },
       { "name" : "decrementRefCounter", "parameterTypes" : ["long"] },
       { "name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
       { "name" : "notifyLeak", "parameterTypes" : [] }

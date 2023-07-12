@@ -8,14 +8,17 @@
 KotlinInstance::KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinScript* p_script) :
   owner(p_owner),
   kt_object(p_kt_object),
-  script(p_script)
-{}
+  kt_class(p_script->get_kotlin_class()),
+  script(p_script),
+  delete_flag(true)
+{
+    kt_object->swap_to_weak_unsafe();
+}
 
 KotlinInstance::~KotlinInstance() {
     if(delete_flag){
         GDKotlin::get_instance().transfer_context->remove_script_instance(owner->get_instance_id());
     }
-
 }
 
 Object* KotlinInstance::get_owner() {

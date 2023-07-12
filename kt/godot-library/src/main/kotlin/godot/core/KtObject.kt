@@ -45,22 +45,32 @@ abstract class KtObject {
     init {
         val config = initConfig.get()
 
+        val scriptIndex = TypeManager.userTypeToId[this::class] ?: -1
+
         binding = if (config.shouldOverride) {
             //Native object already exists, so we know the id and ptr without going back to the other side.
             rawPtr = config.ptr
             id = config.id
             //Singletons are never initialized here as we force their initialization on JVM side at engine start
             config.reset()
-            MemoryManager.registerObject(this)
+            if(scriptIndex != - 1){
+                MemoryManager.registerScriptInstance(this)
+            } else {
+                MemoryManager.registerObject(this)
+            }
         } else {
+
             //Native object doesn't exist yet, we have to create it.
-            val scriptIndex = TypeManager.userTypeToId[this::class] ?: -1
             //If the class is a script, the ScriptInstance is going to be created at the same time as the native object.
             val isSingleton = !new(scriptIndex)
             if (isSingleton) {
                 MemoryManager.registerSingleton(this)
             } else {
-                MemoryManager.registerScriptInstance(this)
+                if(scriptIndex != - 1){
+                    MemoryManager.registerScriptInstance(this)
+                } else {
+                    MemoryManager.registerObject(this)
+                }
             }
         }
     }

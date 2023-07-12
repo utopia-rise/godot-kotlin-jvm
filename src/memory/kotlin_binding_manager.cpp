@@ -1,6 +1,7 @@
 #include "kotlin_binding_manager.h"
 
 #include "gd_kotlin.h"
+#include "kt_binding.h"
 
 GDExtensionInstanceBindingCallbacks KotlinBindingManager::_instance_binding_callbacks = {
   &_instance_binding_create_callback,
@@ -20,10 +21,8 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     // Called in the destructor of the Object.
     //  It's the very last action done in the destructor so assume variables local to the Object have been cleaned (including script and extension).
     // There are 2 cases, either an Object has been freed, and we have to release its reference OR it's a Refcounted and the JVM instance is already dead.
-
     KotlinBinding* binding = reinterpret_cast<KotlinBinding*>(p_binding);
-    binding->unset_kt_object();
-    delete binding;
+    memdelete(binding);
 }
 
 GDExtensionBool KotlinBindingManager::_instance_binding_reference_callback(void* p_token, void* p_binding, GDExtensionBool p_reference) {
@@ -63,6 +62,6 @@ KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
     return binding;
 }
 
-void KotlinBindingManager::bind_object(KotlinBinding* binding, KtObject* ktObject) {
-    binding->set_kt_object(ktObject);
+void KotlinBindingManager::bind_object(KotlinBinding* binding, KtBinding* kt_binding) {
+    binding->set_kt_binding(kt_binding);
 }

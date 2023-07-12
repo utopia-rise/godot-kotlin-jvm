@@ -13,7 +13,7 @@ private:
     KtObject* kt_object;
     KtClass* kt_class;
     Ref<KotlinScript> script;
-    bool delete_flag = true;
+    bool delete_flag;
 
 public:
     KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinScript* p_script);

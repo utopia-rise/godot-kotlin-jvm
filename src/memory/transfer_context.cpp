@@ -172,8 +172,7 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance
     JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name));
 #endif
 
-
-    KotlinBinding* binding = KotlinBindingManager::set_instance_binding(ptr);
+    KotlinBindingManager::set_instance_binding(ptr);
     int script_index {static_cast<int>(p_script_index)};
     if (script_index >= 0) {
         KtObject* kt_object {new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};

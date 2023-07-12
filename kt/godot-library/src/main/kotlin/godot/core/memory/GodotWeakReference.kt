@@ -5,7 +5,7 @@ import godot.core.ObjectID
 import java.lang.ref.ReferenceQueue
 import java.lang.ref.WeakReference
 
-internal class GodotWeakRef(
+internal class GodotWeakReference(
     binding: GodotBinding,
     queue: ReferenceQueue<GodotBinding>,
     val id: ObjectID
@@ -16,6 +16,6 @@ internal class GodotBinding {
     internal var wrapper: KtObject? = null
     internal var scriptInstance: KtObject? = null
 
-    val value: KtObject
-        get() = scriptInstance?: wrapper!!
+    val value: KtObject?
+        get() = scriptInstance?: wrapper
 }

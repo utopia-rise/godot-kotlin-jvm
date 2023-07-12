@@ -1,6 +1,7 @@
 #ifndef GODOT_JVM_KOTLIN_BINDING_H
 #define GODOT_JVM_KOTLIN_BINDING_H
 
+#include "kt_binding.h"
 #include "kt_object.h"
 
 // forward declaration
@@ -10,18 +11,16 @@ class KotlinBinding {
     friend class KotlinBindingManager;
     friend class KotlinInstance;
 
-    KtObject* kt_object;
+    KtBinding* kt_binding;
     Object* owner;
 
     KotlinBinding();
 
-    ~KotlinBinding() = default;
-
-    void set_kt_object(KtObject* p_kt_object);
-
-    void unset_kt_object();
+    void set_kt_binding(KtBinding* p_kt_binding);
 
 public:
+    ~KotlinBinding();
+
     void refcount_incremented_unsafe();
 
     bool refcount_decremented_unsafe();

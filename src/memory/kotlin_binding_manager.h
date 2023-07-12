@@ -1,7 +1,9 @@
 #ifndef GODOT_JVM_KOTLIN_BINDING_MANAGER_H
 #define GODOT_JVM_KOTLIN_BINDING_MANAGER_H
 
+#include "core/extension/gdextension_interface.h"
 #include "kotlin_binding.h"
+#include "kt_binding.h"
 
 #include <cstdint>
 
@@ -31,7 +33,7 @@ public:
     // Doesn't set the KtObject as it doesn't exist yet, bind_object has be used later.
     static KotlinBinding* get_instance_binding(Object* p_object);
 
-    static void bind_object(KotlinBinding* binding, KtObject* ktObject);
+    static void bind_object(KotlinBinding* binding, KtBinding* kt_binding);
 };
 
 #endif// GODOT_JVM_KOTLIN_BINDING_MANAGER_H
