@@ -14,7 +14,7 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
     }
 
     //PROPERTIES
@@ -39,7 +39,7 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
     constructor(from: PackedFloat32Array) {
         TransferContext.writeArguments(VariantType.PACKED_FLOAT_32_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
     }
 
     /**

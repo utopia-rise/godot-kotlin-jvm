@@ -35,7 +35,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
     //INTERNALS
     internal constructor(handle: VoidPtr) {
         this._handle = handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
 
     //PROPERTIES
@@ -69,7 +69,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
     constructor(from: VariantArray<Byte>) {
         TransferContext.writeArguments(VariantType.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
 
     //POOL ARRAY API SHARED

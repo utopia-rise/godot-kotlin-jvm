@@ -29,8 +29,6 @@ public:
 
     Variant _new(const Variant** p_args, int p_argcount, Callable::CallError& r_error);
 
-    KotlinInstance* wrap(KtObject* kt_object, Object* owner);
-
     bool can_instantiate() const override;
 
     bool inherits_script(const Ref<Script>& p_script) const override;

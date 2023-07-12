@@ -59,15 +59,13 @@ ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_arg
     jni::Env env = jni::Jvm::current_env();
     KtObject* wrapped = kt_class->create_instance(env, p_args, p_argcount, p_this);
 
-    KotlinBinding* binding;
     if (isCreator) {
-        binding = KotlinBindingManager::set_instance_binding(p_this);
+        KotlinBindingManager::set_instance_binding(p_this);
     } else {
-        binding = KotlinBindingManager::get_instance_binding(p_this);
+        KotlinBindingManager::get_instance_binding(p_this);
     }
-    KotlinBindingManager::bind_object(binding, wrapped);
 
-    return memnew(KotlinInstance(wrapped, binding, kt_class, this));
+    return memnew(KotlinInstance(p_this, wrapped, this));
 }
 
 bool KotlinScript::instance_has(const Object* p_this) const {
@@ -170,12 +168,6 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::Cal
     }
 
     return Variant(owner);
-}
-
-KotlinInstance* KotlinScript::wrap(KtObject* kt_object, KotlinBinding* binding ){
-    KotlinInstance* script {memnew(KotlinInstance(kt_object, binding, get_kotlin_class(), this))};
-    owner->set_script_instance(script);
-    return script;
 }
 
 void KotlinScript::set_path(const String& p_path, bool p_take_over) {

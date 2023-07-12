@@ -13,7 +13,7 @@ class PackedColorArray : NativeCoreType, Iterable<Color> {
     // INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_COLOR_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_COLOR_ARRAY)
     }
 
     //PROPERTIES
@@ -35,7 +35,7 @@ class PackedColorArray : NativeCoreType, Iterable<Color> {
     constructor(from: PackedColorArray) {
         TransferContext.writeArguments(VariantType.PACKED_COLOR_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_COLOR_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_COLOR_ARRAY)
     }
 
     /**

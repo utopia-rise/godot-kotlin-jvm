@@ -114,7 +114,9 @@ String KotlinInstance::to_string(bool* r_valid) {
 
 void KotlinInstance::refcount_incremented() {}
 
-bool KotlinInstance::refcount_decremented() {}
+bool KotlinInstance::refcount_decremented() {
+    return true;
+}
 
 Ref<Script> KotlinInstance::get_script() const {
     return script;

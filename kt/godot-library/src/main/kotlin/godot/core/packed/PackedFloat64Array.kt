@@ -12,7 +12,7 @@ class PackedFloat64Array : NativeCoreType, Iterable<Double> {
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
     }
 
     //PROPERTIES
@@ -34,7 +34,7 @@ class PackedFloat64Array : NativeCoreType, Iterable<Double> {
     constructor(from: PackedFloat64Array) {
         TransferContext.writeArguments(VariantType.PACKED_FLOAT_64_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
     }
 
     /**

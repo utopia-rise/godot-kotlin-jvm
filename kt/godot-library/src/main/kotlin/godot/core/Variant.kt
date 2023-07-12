@@ -123,7 +123,7 @@ private var ByteBuffer.basis: Basis
 private var ByteBuffer.stringName: Any
     get() {
         val ptr = long
-        return GarbageCollector.getNativeCoreTypeInstance(ptr) ?: StringName(ptr)
+        return MemoryManager.getNativeCoreTypeInstance(ptr) ?: StringName(ptr)
     }
     set(value) {
         STRING_NAME.toGodotNativeCoreType<StringName>(this, value)

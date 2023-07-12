@@ -13,7 +13,7 @@ class PackedVector2Array : NativeCoreType, Iterable<Vector2> {
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
     }
 
     //PROPERTIES

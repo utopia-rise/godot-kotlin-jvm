@@ -69,7 +69,7 @@
     ]
   },
   {
-    "name":"godot.core.memory.GarbageCollector",
+    "name":"godot.core.memory.MemoryManager",
     "fields":[{"name":"INSTANCE"}],
     "methods":[
       {"name":"cleanUp","parameterTypes":[] },

@@ -13,7 +13,7 @@ class PackedVector3Array : NativeCoreType, Iterable<Vector3> {
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_VECTOR3_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR3_ARRAY)
     }
 
     //PROPERTIES
@@ -35,7 +35,7 @@ class PackedVector3Array : NativeCoreType, Iterable<Vector3> {
     constructor(from: PackedVector3Array) {
         TransferContext.writeArguments(VariantType.PACKED_VECTOR3_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_VECTOR3_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR3_ARRAY)
     }
 
     /**
