@@ -30,9 +30,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Tab bar control.
+ * A control that provides a horizontal bar with tabs.
  *
- * Simple tabs control, similar to [godot.TabContainer] but is only in charge of drawing tabs, not interacting with children.
+ * A control that provides a horizontal bar with tabs. Similar to [godot.TabContainer] but is only in charge of drawing tabs, not interacting with children.
  */
 @GodotBaseType
 public open class TabBar : Control() {
@@ -216,7 +216,7 @@ public open class TabBar : Control() {
     }
 
   /**
-   * If `true`, the tab offset will be changed to keep the the currently selected tab visible.
+   * If `true`, the tab offset will be changed to keep the currently selected tab visible.
    */
   public var scrollToSelected: Boolean
     get() {
@@ -333,7 +333,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the [godot.Texture2D] for the tab at index [tabIdx] or `null` if the tab has no [godot.Texture2D].
+   * Returns the icon for the tab at index [tabIdx] or `null` if the tab has no icon.
    */
   public fun getTabIcon(tabIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -341,11 +341,17 @@ public open class TabBar : Control() {
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
+  /**
+   * Sets the maximum allowed width of the icon for the tab at index [tabIdx]. This limit is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is adjusted according to the icon's ratio.
+   */
   public fun setTabIconMaxWidth(tabIdx: Int, width: Int): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), LONG to width.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_ICON_MAX_WIDTH, NIL)
   }
 
+  /**
+   * Returns the maximum allowed width of the icon for the tab at index [tabIdx].
+   */
   public fun getTabIconMaxWidth(tabIdx: Int): Int {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ICON_MAX_WIDTH, LONG)
@@ -361,7 +367,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the [godot.Texture2D] for the right button of the tab at index [tabIdx] or `null` if the button has no [godot.Texture2D].
+   * Returns the icon for the right button of the tab at index [tabIdx] or `null` if the right button has no icon.
    */
   public fun getTabButtonIcon(tabIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -403,11 +409,17 @@ public open class TabBar : Control() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Sets the metadata value for the tab at index [tabIdx], which can be retrieved later using [getTabMetadata].
+   */
   public fun setTabMetadata(tabIdx: Int, metadata: Any): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_METADATA, NIL)
   }
 
+  /**
+   * Returns the metadata value set to the tab at index [tabIdx] using [setTabMetadata]. If no metadata was previously set, returns `null` by default.
+   */
   public fun getTabMetadata(tabIdx: Int): Any? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_METADATA, ANY)

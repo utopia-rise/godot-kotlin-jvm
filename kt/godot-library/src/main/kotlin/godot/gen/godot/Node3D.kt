@@ -33,6 +33,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Most basic 3D game object, parent of all 3D-related nodes.
@@ -45,6 +46,8 @@ import kotlin.Unit
  * Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless the [godot.Node3D] object is set as top-level. Affine operations in this coordinate system correspond to direct affine operations on the [godot.Node3D]'s transform. The word local below refers to this coordinate system. The coordinate system that is attached to the [godot.Node3D] object itself is referred to as object-local coordinate system.
  *
  * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
+ *
+ * **Note:** Be aware that "Spatial" nodes are now called "Node3D" starting with Godot 4. Any Godot 3.x references to "Spatial" nodes refer to "Node3D" in Godot 4.
  */
 @GodotBaseType
 public open class Node3D : Node() {
@@ -268,7 +271,7 @@ public open class Node3D : Node() {
     }
 
   /**
-   * If `true`, this node is drawn. The node is only visible if all of its antecedents are visible as well (in other words, [isVisibleInTree] must return `true`).
+   * If `true`, this node is drawn. The node is only visible if all of its ancestors are visible as well (in other words, [isVisibleInTree] must return `true`).
    */
   public var visible: Boolean
     get() {
@@ -408,7 +411,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its antecedents are also visible. If any antecedent is hidden, this node will not be visible in the scene tree.
+   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree.
    */
   public fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -576,14 +579,17 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the node so that the local forward axis (-Z) points toward the [target] position.
+   * Rotates the node so that the local forward axis (-Z, [godot.Vector3.FORWARD]) points toward the [target] position.
    *
    * The local up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is preserved. Non-uniform scaling may not work correctly.
    *
    * The [target] position cannot be the same as the node's position, the [up] vector cannot be zero, and the direction from the node's position to the [target] vector cannot be parallel to the [up] vector.
    *
    * Operations take place in global space, which means that the node must be in the scene tree.
+   *
+   * If [useModelFront] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).
    */
+  @JvmOverloads
   public fun lookAt(
     target: Vector3,
     up: Vector3 = Vector3(0, 1, 0),
@@ -596,6 +602,7 @@ public open class Node3D : Node() {
   /**
    * Moves the node to the specified [position], and then rotates the node to point toward the [target] as per [lookAt]. Operations take place in global space.
    */
+  @JvmOverloads
   public fun lookAtFromPosition(
     position: Vector3,
     target: Vector3,
@@ -628,15 +635,15 @@ public open class Node3D : Node() {
     id: Long,
   ) {
     /**
-     *
+     * The rotation is edited using [godot.core.Vector3] Euler angles.
      */
     ROTATION_EDIT_MODE_EULER(0),
     /**
-     *
+     * The rotation is edited using a [godot.Quaternion].
      */
     ROTATION_EDIT_MODE_QUATERNION(1),
     /**
-     *
+     * The rotation is edited using a [godot.core.Basis]. In this mode, [scale] can't be edited separately.
      */
     ROTATION_EDIT_MODE_BASIS(2),
     ;

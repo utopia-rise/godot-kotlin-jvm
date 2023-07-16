@@ -33,6 +33,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Image datatype.
@@ -127,6 +128,7 @@ public open class Image : Resource() {
   /**
    * Resizes the image to the nearest power of 2 for the width and height. If [square] is `true` then set width and height to be the same. New pixels are calculated using the [interpolation] mode defined via [enum Interpolation] constants.
    */
+  @JvmOverloads
   public fun resizeToPo2(square: Boolean = false, interpolation: Interpolation =
       Image.Interpolation.INTERPOLATE_BILINEAR): Unit {
     TransferContext.writeArguments(BOOL to square, LONG to interpolation.id)
@@ -136,6 +138,7 @@ public open class Image : Resource() {
   /**
    * Resizes the image to the given [width] and [height]. New pixels are calculated using the [interpolation] mode defined via [enum Interpolation] constants.
    */
+  @JvmOverloads
   public fun resize(
     width: Int,
     height: Int,
@@ -180,6 +183,7 @@ public open class Image : Resource() {
   /**
    * Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`.
    */
+  @JvmOverloads
   public fun generateMipmaps(renormalize: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to renormalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GENERATE_MIPMAPS, LONG)
@@ -254,6 +258,7 @@ public open class Image : Resource() {
    *
    * **Note:** JPEG does not save an alpha channel. If the [godot.Image] contains an alpha channel, the image will still be saved, but the resulting JPEG file won't contain the alpha channel.
    */
+  @JvmOverloads
   public fun saveJpg(path: String, quality: Float = 0.75f): GodotError {
     TransferContext.writeArguments(STRING to path, DOUBLE to quality.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_JPG, LONG)
@@ -265,6 +270,7 @@ public open class Image : Resource() {
    *
    * **Note:** JPEG does not save an alpha channel. If the [godot.Image] contains an alpha channel, the image will still be saved, but the resulting byte array won't contain the alpha channel.
    */
+  @JvmOverloads
   public fun saveJpgToBuffer(quality: Float = 0.75f): PackedByteArray {
     TransferContext.writeArguments(DOUBLE to quality.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_JPG_TO_BUFFER,
@@ -277,6 +283,7 @@ public open class Image : Resource() {
    *
    * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will return [ERR_UNAVAILABLE] when it is called from an exported project.
    */
+  @JvmOverloads
   public fun saveExr(path: String, grayscale: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to grayscale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_EXR, LONG)
@@ -288,6 +295,7 @@ public open class Image : Resource() {
    *
    * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will return an empty byte array when it is called from an exported project.
    */
+  @JvmOverloads
   public fun saveExrToBuffer(grayscale: Boolean = false): PackedByteArray {
     TransferContext.writeArguments(BOOL to grayscale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_EXR_TO_BUFFER,
@@ -298,6 +306,7 @@ public open class Image : Resource() {
   /**
    * Saves the image as a WebP (Web Picture) file to the file at [path]. By default it will save lossless. If [lossy] is true, the image will be saved lossy, using the [quality] setting between 0.0 and 1.0 (inclusive).
    */
+  @JvmOverloads
   public fun saveWebp(
     path: String,
     lossy: Boolean = false,
@@ -311,6 +320,7 @@ public open class Image : Resource() {
   /**
    * Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless. If [lossy] is true, the image will be saved lossy, using the [quality] setting between 0.0 and 1.0 (inclusive).
    */
+  @JvmOverloads
   public fun saveWebpToBuffer(lossy: Boolean = false, quality: Float = 0.75f): PackedByteArray {
     TransferContext.writeArguments(BOOL to lossy, DOUBLE to quality.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_WEBP_TO_BUFFER,
@@ -339,6 +349,7 @@ public open class Image : Resource() {
   /**
    *
    */
+  @JvmOverloads
   public fun detectUsedChannels(source: CompressSource =
       Image.CompressSource.COMPRESS_SOURCE_GENERIC): UsedChannels {
     TransferContext.writeArguments(LONG to source.id)
@@ -349,10 +360,11 @@ public open class Image : Resource() {
   /**
    * Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.
    *
-   * The [mode] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.
+   * The [source] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.
    *
    * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
+  @JvmOverloads
   public fun compress(
     mode: CompressMode,
     source: CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
@@ -370,6 +382,7 @@ public open class Image : Resource() {
    *
    * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
+  @JvmOverloads
   public fun compressFromChannels(
     mode: CompressMode,
     channels: UsedChannels,
@@ -460,6 +473,7 @@ public open class Image : Resource() {
   /**
    * Converts a bump map to a normal map. A bump map provides a height offset per-pixel, while a normal map provides a normal direction per pixel.
    */
+  @JvmOverloads
   public fun bumpMapToNormalMap(bumpScale: Float = 1.0f): Unit {
     TransferContext.writeArguments(DOUBLE to bumpScale.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BUMP_MAP_TO_NORMAL_MAP, NIL)
@@ -1024,7 +1038,13 @@ public open class Image : Resource() {
      * Use BPTC compression.
      */
     COMPRESS_BPTC(3),
+    /**
+     * Use ASTC compression.
+     */
     COMPRESS_ASTC(4),
+    /**
+     * Represents the size of the [enum CompressMode] enum.
+     */
     COMPRESS_MAX(5),
     ;
 

@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class ENetConnection : RefCounted() {
@@ -35,6 +36,7 @@ public open class ENetConnection : RefCounted() {
     return true
   }
 
+  @JvmOverloads
   public fun createHostBound(
     bindAddress: String,
     bindPort: Int,
@@ -49,6 +51,7 @@ public open class ENetConnection : RefCounted() {
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
+  @JvmOverloads
   public fun createHost(
     maxPeers: Int = 32,
     maxChannels: Int = 0,
@@ -65,6 +68,7 @@ public open class ENetConnection : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DESTROY, NIL)
   }
 
+  @JvmOverloads
   public fun connectToHost(
     address: String,
     port: Int,
@@ -77,6 +81,7 @@ public open class ENetConnection : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT, true) as ENetPacketPeer?)
   }
 
+  @JvmOverloads
   public fun service(timeout: Int = 0): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to timeout.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_SERVICE, ARRAY)
@@ -88,6 +93,7 @@ public open class ENetConnection : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_FLUSH, NIL)
   }
 
+  @JvmOverloads
   public fun bandwidthLimit(inBandwidth: Int = 0, outBandwidth: Int = 0): Unit {
     TransferContext.writeArguments(LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BANDWIDTH_LIMIT, NIL)
@@ -119,6 +125,7 @@ public open class ENetConnection : RefCounted() {
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
+  @JvmOverloads
   public fun dtlsClientSetup(hostname: String, clientOptions: TLSOptions? = null): GodotError {
     TransferContext.writeArguments(STRING to hostname, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DTLS_CLIENT_SETUP,

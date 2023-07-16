@@ -28,9 +28,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Variation of the [godot.Font].
+ * A variation of a font with additional settings.
  *
- * OpenType variations, simulated bold / slant, and additional font settings like OpenType features and extra spacing.
+ * Provides OpenType variations, simulated bold / slant, and additional font settings like OpenType features and extra spacing.
  *
  * To use simulated bold font variant:
  *
@@ -65,6 +65,15 @@ import kotlin.jvm.JvmName
  * [/csharp]
  *
  * [/codeblocks]
+ *
+ * To set the coordinate of multiple variation axes:
+ *
+ * ```
+ * 		var fv = FontVariation.new();
+ * 		var ts = TextServerManager.get_primary_interface()
+ * 		fv.base_font = load("res://BarlowCondensed-Regular.ttf")
+ * 		fv.variation_opentype = { ts.name_to_tag("wght"): 900, ts.name_to_tag("custom_hght"): 900 }
+ * 		```
  */
 @GodotBaseType
 public open class FontVariation : Font() {
@@ -84,7 +93,7 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * Array of fallback [godot.Font]s. If not set [baseFont] fallback are ussed.
+   * Array of fallback [godot.Font]s to use as a substitute if a glyph is not found in this [godot.FontVariation]. If not set, [baseFont]'s fallbacks are used instead.
    */
   public var fallbacks: VariantArray<Font>
     @JvmName("getFallbacks_prop")
@@ -98,6 +107,10 @@ public open class FontVariation : Font() {
 
   /**
    * Font OpenType variation coordinates. More info: [godot.OpenType variation tags](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg).
+   *
+   * **Note:** This [godot.core.Dictionary] uses OpenType tags as keys. Variation axes can be identified both by tags(`int`) and names (`string`). Some axes might be accessible by multiple names. For example, `wght` refers to the same axis as `weight`. Tags on the other hand are unique. To convert between names and tags, use [godot.TextServer.nameToTag] and [godot.TextServer.tagToName].
+   *
+   * **Note:** To get available variation axes of a font, use [godot.Font.getSupportedVariationList].
    */
   public var variationOpentype: Dictionary<Any?, Any?>
     get() {

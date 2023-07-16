@@ -17,16 +17,16 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Cylinder shape for 3D collisions.
+ * A 3D cylinder shape used for physics collision.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * Cylinder shape for collisions. Like [godot.CapsuleShape3D], but without hemispheres at the cylinder's ends.
+ * A 2D capsule shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape3D].
  *
  * **Note:** There are several known bugs with cylinder collision shapes. Using [godot.CapsuleShape3D] or [godot.BoxShape3D] instead is recommended.
  *
- * **Performance:** Being a primitive collision shape, [godot.CylinderShape3D] is fast to check collisions against (though not as fast as [godot.SphereShape3D]). [godot.CylinderShape3D] is also more demanding compared to [godot.CapsuleShape3D].
+ * **Performance:** [godot.CylinderShape3D] is fast to check collisions against, but it is slower than [godot.CapsuleShape3D], [godot.BoxShape3D], and [godot.CylinderShape3D].
  */
 @GodotBaseType
 public open class CylinderShape3D : Shape3D() {

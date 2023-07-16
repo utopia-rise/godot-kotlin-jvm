@@ -20,9 +20,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Pin joint for 3D PhysicsBodies.
+ * A physics joint that attaches two 3D physics bodies at a single point, allowing them to freely rotate.
  *
- * Pin joint for 3D rigid bodies. It pins 2 bodies (dynamic or static) together. See also [godot.Generic6DOFJoint3D].
+ * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely rotate. For example, a [godot.RigidBody3D] can be attached to a [godot.StaticBody3D] to create a pendulum or a seesaw.
  */
 @GodotBaseType
 public open class PinJoint3D : Joint3D() {

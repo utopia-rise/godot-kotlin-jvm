@@ -93,7 +93,7 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables the same profiler depending on `enable` argument.
+   * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables the same profiler depending on [enable] argument.
    */
   @JvmOverloads
   public fun profilerEnable(

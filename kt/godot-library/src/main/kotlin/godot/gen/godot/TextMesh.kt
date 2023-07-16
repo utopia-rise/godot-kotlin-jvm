@@ -154,6 +154,9 @@ public open class TextMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_SET_AUTOWRAP_MODE, NIL)
     }
 
+  /**
+   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
+   */
   public var justificationFlags: Long
     get() {
       TransferContext.writeArguments()

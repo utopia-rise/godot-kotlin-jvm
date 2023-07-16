@@ -30,12 +30,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Contains global variables accessible from everywhere.
+ * Stores globally-accessible variables.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
  *
- * Contains global variables accessible from everywhere. Use [getSetting], [setSetting] or [hasSetting] to access them. Variables stored in `project.godot` are also loaded into ProjectSettings, making this object very useful for reading custom game configuration options.
+ * Stores variables that can be accessed from everywhere. Use [getSetting], [setSetting] or [hasSetting] to access them. Variables stored in `project.godot` are also loaded into [godot.ProjectSettings], making this object very useful for reading custom game configuration options.
  *
  * When naming a Project Settings property, use the full path to the setting including the category. For example, `"application/config/name"` for the project name. Category and property names can be viewed in the Project Settings dialog.
  *
@@ -193,7 +193,7 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Sets the specified property's initial value. This is the value the property reverts to.
+   * Sets the specified setting's initial value. This is the value the setting reverts to.
    */
   public fun setInitialValue(name: String, `value`: Any): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
@@ -201,11 +201,17 @@ public object ProjectSettings : Object() {
         NIL)
   }
 
+  /**
+   * Defines if the specified setting is considered basic or advanced. Basic settings will always be shown in the project settings. Advanced settings will only be shown if the user enables the "Advanced Settings" option.
+   */
   public fun setAsBasic(name: String, basic: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to basic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_AS_BASIC, NIL)
   }
 
+  /**
+   * Defines if the specified setting is considered internal. An internal setting won't show up in the Project Settings dialog. This is mostly useful for addons that need to store their own internal settings without exposing them directly to the user.
+   */
   public fun setAsInternal(name: String, `internal`: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to internal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_AS_INTERNAL,
@@ -215,11 +221,11 @@ public object ProjectSettings : Object() {
   /**
    * Adds a custom property info to a property. The dictionary must contain:
    *
-   * - `name`: [godot.String] (the property's name)
+   * - `"name"`: [godot.String] (the property's name)
    *
-   * - `type`: [int] (see [enum Variant.Type])
+   * - `"type"`: [int] (see [enum Variant.Type])
    *
-   * - optionally `hint`: [int] (see [enum PropertyHint]) and `hint_string`: [godot.String]
+   * - optionally `"hint"`: [int] (see [enum PropertyHint]) and `"hint_string"`: [godot.String]
    *
    * **Example:**
    *

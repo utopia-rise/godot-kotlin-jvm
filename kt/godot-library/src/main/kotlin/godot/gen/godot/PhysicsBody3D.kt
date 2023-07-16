@@ -27,14 +27,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Base class for all objects affected by physics in 3D space.
+ * Abstract base class for 3D game objects affected by physics.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
  *
- * PhysicsBody3D is an abstract base class for implementing a physics body. All *Body3D types inherit from it.
+ * [godot.PhysicsBody3D] is an abstract base class for 3D game objects affected by physics. All 3D physics bodies inherit from it.
  *
- * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
+ * **Warning:** With a non-uniform scale, this node will likely not behave as expected. It is advised to keep its scale the same on all axes and adjust its collision shape(s) instead.
  */
 @GodotBaseType
 public open class PhysicsBody3D internal constructor() : CollisionObject3D() {

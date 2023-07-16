@@ -41,6 +41,8 @@ public open class EditorResourcePreviewGenerator internal constructor() : RefCou
    * Returning an empty texture is an OK way to fail and let another generator take care.
    *
    * Care must be taken because this function is always called from a thread (not the main thread).
+   *
+   * [metadata] dictionary can modified to store file-specific metadata that can be used in [godot.EditorResourceTooltipPlugin.MakeTooltipForPath] (like image size, sample length etc.).
    */
   public open fun _generate(
     resource: Resource,
@@ -56,6 +58,8 @@ public open class EditorResourcePreviewGenerator internal constructor() : RefCou
    * Returning an empty texture is an OK way to fail and let another generator take care.
    *
    * Care must be taken because this function is always called from a thread (not the main thread).
+   *
+   * [metadata] dictionary can modified to store file-specific metadata that can be used in [godot.EditorResourceTooltipPlugin.MakeTooltipForPath] (like image size, sample length etc.).
    */
   public open fun _generateFromPath(
     path: String,

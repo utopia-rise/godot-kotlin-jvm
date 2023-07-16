@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Server interface for low-level audio access.
@@ -71,6 +72,7 @@ public object AudioServer : Object() {
   /**
    * Adds a bus at [atPosition].
    */
+  @JvmOverloads
   public fun addBus(atPosition: Int = -1): Unit {
     TransferContext.writeArguments(LONG to atPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_ADD_BUS, NIL)
@@ -102,7 +104,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the index of the bus with the name [busName].
+   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified name exist.
    */
   public fun getBusIndex(busName: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to busName)
@@ -211,6 +213,7 @@ public object AudioServer : Object() {
   /**
    * Adds an [godot.AudioEffect] effect to the bus [busIdx] at [atPosition].
    */
+  @JvmOverloads
   public fun addBusEffect(
     busIdx: Int,
     effect: AudioEffect,
@@ -250,6 +253,7 @@ public object AudioServer : Object() {
   /**
    * Returns the [godot.AudioEffectInstance] assigned to the given bus and effect indices (and optionally channel).
    */
+  @JvmOverloads
   public fun getBusEffectInstance(
     busIdx: Int,
     effectIdx: Int,

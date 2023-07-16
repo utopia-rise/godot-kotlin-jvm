@@ -43,7 +43,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * Holds a paragraph of text.
  *
- * Abstraction over [godot.TextServer] for handling paragraph of text.
+ * Abstraction over [godot.TextServer] for handling a single paragraph of text.
  */
 @GodotBaseType
 public open class TextParagraph : RefCounted() {
@@ -156,7 +156,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Line alignment rules. For more info see [godot.TextServer].
+   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
    */
   public var justificationFlags: Long
     get() {

@@ -30,13 +30,14 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * A* (or "A-Star") pathfinding tailored to find the shortest paths on 2D grids.
+ * An implementation of A* for finding the shortest path between two points on a partial 2D grid.
  *
- * Compared to [godot.AStar2D] you don't need to manually create points or connect them together. It also supports multiple type of heuristics and modes for diagonal movement. This class also provides a jumping mode which is faster to calculate than without it in the [godot.AStar2D] class.
+ * [godot.AStarGrid2D] is a variant of [godot.AStar2D] that is specialized for partial 2D grids. It is simpler to use because it doesn't require you to manually create points and connect them together. This class also supports multiple types of heuristics, modes for diagonal movement, and a jumping mode to speed up calculations.
  *
- * In contrast to [godot.AStar2D], you only need set the [size] of the grid, optionally set the [cellSize] and then call the [update] method:
+ * To use [godot.AStarGrid2D], you only need to set the [region] of the grid, optionally set the [cellSize], and then call the [update] method:
  *
  * [codeblocks]
  *
@@ -44,7 +45,7 @@ import kotlin.Unit
  *
  * var astar_grid = AStarGrid2D.new()
  *
- * astar_grid.size = Vector2i(32, 32)
+ * astar_grid.region = Rect2i(0, 0, 32, 32)
  *
  * astar_grid.cell_size = Vector2(16, 16)
  *
@@ -73,9 +74,14 @@ import kotlin.Unit
  * [/csharp]
  *
  * [/codeblocks]
+ *
+ * To remove a point from the pathfinding grid, it must be set as "solid" with [setPointSolid].
  */
 @GodotBaseType
 public open class AStarGrid2D : RefCounted() {
+  /**
+   * The region of grid cells available for pathfinding. If changed, [update] needs to be called before finding the next path.
+   */
   public var region: Rect2i
     get() {
       TransferContext.writeArguments()
@@ -89,6 +95,8 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update] needs to be called before finding the next path.
+   *
+   * *Deprecated.* Use [region] instead.
    */
   public var size: Vector2i
     get() {
@@ -247,7 +255,9 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Updates the internal state of the grid according to the parameters to prepare it to search the path. Needs to be called if parameters like [size], [cellSize] or [offset] are changed. [isDirty] will return `true` if this is the case and this needs to be called.
+   * Updates the internal state of the grid according to the parameters to prepare it to search the path. Needs to be called if parameters like [region], [cellSize] or [offset] are changed. [isDirty] will return `true` if this is the case and this needs to be called.
+   *
+   * **Note:** All point data (solidity and weight scale) will be cleared.
    */
   public fun update(): Unit {
     TransferContext.writeArguments()
@@ -259,6 +269,7 @@ public open class AStarGrid2D : RefCounted() {
    *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
+  @JvmOverloads
   public fun setPointSolid(id: Vector2i, solid: Boolean = true): Unit {
     TransferContext.writeArguments(VECTOR2I to id, BOOL to solid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_SET_POINT_SOLID, NIL)
@@ -295,7 +306,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Clears the grid and sets the [size] to [godot.Vector2i.ZERO].
+   * Clears the grid and sets the [region] to `Rect2i(0, 0, 0, 0)`.
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()

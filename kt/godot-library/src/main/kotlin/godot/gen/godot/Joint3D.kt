@@ -19,12 +19,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Base class for all 3D joints.
+ * Abstract base class for all 3D physics joints.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/524](https://godotengine.org/asset-library/asset/524)
  *
- * Joints are used to bind together two physics bodies. They have a solver priority and can define if the bodies of the two attached nodes should be able to collide with each other. See also [godot.Generic6DOFJoint3D].
+ * Abstract base class for all joints in 3D physics. 3D joints bind together two physics bodies and apply a constraint.
  */
 @GodotBaseType
 public open class Joint3D internal constructor() : Node3D() {

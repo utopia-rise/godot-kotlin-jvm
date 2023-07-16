@@ -31,12 +31,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * SkeletonIK3D is used to place the end bone of a [godot.Skeleton3D] bone chain at a certain point in 3D by rotating all bones in the chain accordingly.
+ * A node used to rotate all bones of a [godot.Skeleton3D] bone chain a way that places the end bone at a desired 3D position.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/523](https://godotengine.org/asset-library/asset/523)
  *
- * SkeletonIK3D is used to place the end bone of a [godot.Skeleton3D] bone chain at a certain point in 3D by rotating all bones in the chain accordingly. A typical scenario for IK in games is to place a characters feet on the ground or a characters hands on a currently hold object. SkeletonIK uses FabrikInverseKinematic internally to solve the bone chain and applies the results to the [godot.Skeleton3D] `bones_global_pose_override` property for all affected bones in the chain. If fully applied this overwrites any bone transform from [godot.Animation]s or bone custom poses set by users. The applied amount can be controlled with the `interpolation` property.
+ * SkeletonIK3D is used to rotate all bones of a [godot.Skeleton3D] bone chain a way that places the end bone at a desired 3D position. A typical scenario for IK in games is to place a character's feet on the ground or a character's hands on a currently held object. SkeletonIK uses FabrikInverseKinematic internally to solve the bone chain and applies the results to the [godot.Skeleton3D] `bones_global_pose_override` property for all affected bones in the chain. If fully applied, this overwrites any bone transform from [godot.Animation]s or bone custom poses set by users. The applied amount can be controlled with the [interpolation] property.
  *
  * ```
  * 		# Apply IK effect automatically on every new frame (not the current)
@@ -57,6 +57,8 @@ import kotlin.jvm.JvmOverloads
  * 		# Apply zero IK effect (a value at or below 0.01 also removes bones_global_pose_override on Skeleton)
  * 		skeleton_ik_node.set_interpolation(0.0)
  * 		```
+ *
+ * *Deprecated.* This class is deprecated, and might be removed in a future release.
  */
 @GodotBaseType
 public open class SkeletonIK3D : Node() {
@@ -241,7 +243,7 @@ public open class SkeletonIK3D : Node() {
   }
 
   /**
-   * Starts applying IK effects on each frame to the [godot.Skeleton3D] bones but will only take effect starting on the next frame. If `one_time` is `true`, this will take effect immediately but also reset on the next frame.
+   * Starts applying IK effects on each frame to the [godot.Skeleton3D] bones but will only take effect starting on the next frame. If [oneTime] is `true`, this will take effect immediately but also reset on the next frame.
    */
   @JvmOverloads
   public fun start(oneTime: Boolean = false): Unit {

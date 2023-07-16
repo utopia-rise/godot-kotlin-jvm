@@ -17,13 +17,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Control for holding [godot.SubViewport]s.
+ * A container used for displaying the contents of a [godot.SubViewport].
  *
- * A [godot.Container] node that holds a [godot.SubViewport]. It uses the [godot.SubViewport]'s size as minimum size, unless [stretch] is enabled.
+ * A container that displays the contents of underlying [godot.SubViewport] child nodes. It uses the combined size of the [godot.SubViewport]s as minimum size, unless [stretch] is enabled.
  *
- * **Note:** Changing a SubViewportContainer's [godot.Control.scale] will cause its contents to appear distorted. To change its visual size without causing distortion, adjust the node's margins instead (if it's not already in a container).
+ * **Note:** Changing a [godot.SubViewportContainer]'s [godot.Control.scale] will cause its contents to appear distorted. To change its visual size without causing distortion, adjust the node's margins instead (if it's not already in a container).
  *
- * **Note:** The SubViewportContainer forwards mouse-enter and mouse-exit notifications to its sub-viewports.
+ * **Note:** The [godot.SubViewportContainer] forwards mouse-enter and mouse-exit notifications to its sub-viewports.
  */
 @GodotBaseType
 public open class SubViewportContainer : Container() {

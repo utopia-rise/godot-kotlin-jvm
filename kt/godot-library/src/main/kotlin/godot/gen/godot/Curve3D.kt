@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Describes a Bézier curve in 3D space.
@@ -91,6 +92,7 @@ public open class Curve3D : Resource() {
    *
    * If [index] is given, the new point is inserted before the existing point identified by index [index]. Every existing point starting from [index] is shifted further down the list of points. The index must be greater than or equal to `0` and must not exceed the number of existing points in the line. See [pointCount].
    */
+  @JvmOverloads
   public fun addPoint(
     position: Vector3,
     _in: Vector3 = Vector3(0, 0, 0),
@@ -172,7 +174,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Deletes the point `idx` from the curve. Sends an error to the console if `idx` is out of bounds.
+   * Deletes the point [idx] from the curve. Sends an error to the console if [idx] is out of bounds.
    */
   public fun removePoint(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -223,6 +225,7 @@ public open class Curve3D : Resource() {
    *
    * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
    */
+  @JvmOverloads
   public fun sampleBaked(offset: Float = 0.0f, cubic: Boolean = false): Vector3 {
     TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE_BAKED, VECTOR3)
@@ -230,8 +233,9 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Similar with `interpolate_baked()`. The the return value is `Transform3D`, with `origin` as point position, `basis.x` as sideway vector, `basis.y` as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way to calculate the rotation, all vectors aligned with global space axes.
+   * Similar with `interpolate_baked()`. The return value is `Transform3D`, with `origin` as point position, `basis.x` as sideway vector, `basis.y` as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way to calculate the rotation, all vectors aligned with global space axes.
    */
+  @JvmOverloads
   public fun sampleBakedWithRotation(
     offset: Float = 0.0f,
     cubic: Boolean = false,
@@ -250,6 +254,7 @@ public open class Curve3D : Resource() {
    *
    * If the curve has no up vectors, the function sends an error to the console, and returns `(0, 1, 0)`.
    */
+  @JvmOverloads
   public fun sampleBakedUpVector(offset: Float, applyTilt: Boolean = false): Vector3 {
     TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to applyTilt)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE_BAKED_UP_VECTOR,
@@ -320,6 +325,7 @@ public open class Curve3D : Resource() {
    *
    * [toleranceDegrees] controls how many degrees the midpoint of a segment may deviate from the real curve, before the segment has to be subdivided.
    */
+  @JvmOverloads
   public fun tessellate(maxStages: Int = 5, toleranceDegrees: Float = 4.0f): PackedVector3Array {
     TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceDegrees.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_TESSELLATE,
@@ -332,6 +338,7 @@ public open class Curve3D : Resource() {
    *
    * [toleranceLength] controls the maximal distance between two neighboring points, before the segment has to be subdivided.
    */
+  @JvmOverloads
   public fun tessellateEvenLength(maxStages: Int = 5, toleranceLength: Float = 0.2f):
       PackedVector3Array {
     TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceLength.toDouble())

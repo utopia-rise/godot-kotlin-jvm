@@ -31,16 +31,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * 2D area for detection, as well as physics and audio influence.
+ * A region of 2D space that detects other [godot.CollisionObject2D]s entering or exiting it.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/120](https://godotengine.org/asset-library/asset/120)
  *
- * 2D area that detects [godot.CollisionObject2D] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping) and route audio to custom audio buses.
+ * [godot.Area2D] is a region of 2D space defined by one or multiple [godot.CollisionShape2D] or [godot.CollisionPolygon2D] child nodes. It detects when other [godot.CollisionObject2D]s enter or exit it, and it also keeps track of which collision objects haven't exited it yet (i.e. which one are overlapping it).
  *
- * To give the area its shape, add a [godot.CollisionShape2D] or a [godot.CollisionPolygon2D] node as a *direct* child (or add multiple such nodes as direct children) of the area.
- *
- * **Warning:** See [godot.ConcavePolygonShape2D] for a warning about possibly unexpected behavior when using that shape for an area.
+ * This node can also locally alter or override physics parameters (gravity, damping) and route audio to custom audio buses.
  */
 @GodotBaseType
 public open class Area2D : CollisionObject2D() {
@@ -165,7 +163,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The area's priority. Higher priority areas are processed first.
+   * The area's priority. Higher priority areas are processed first. The [godot.World2D]'s physics is always processed last, after all areas.
    */
   public var priority: Int
     get() {

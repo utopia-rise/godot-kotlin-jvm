@@ -35,11 +35,12 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Base class for fonts and font variations.
+ * Abstract base class for fonts and font variations.
  *
- * Font is the abstract base class for font, so it shouldn't be used directly. Other types of fonts inherit from it.
+ * Abstract base class for different font types. It has methods for drawing text and font character introspection.
  */
 @GodotBaseType
 public open class Font internal constructor() : Resource() {
@@ -68,6 +69,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns [godot.TextServer] RID of the font cache for specific variation.
    */
+  @JvmOverloads
   public fun findVariation(
     variationCoordinates: Dictionary<Any?, Any?>,
     faceIndex: Int = 0,
@@ -93,6 +95,7 @@ public open class Font internal constructor() : Resource() {
    *
    * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the height of empty line).
    */
+  @JvmOverloads
   public fun getHeight(fontSize: Int = 16): Float {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_HEIGHT, DOUBLE)
@@ -104,6 +107,7 @@ public open class Font internal constructor() : Resource() {
    *
    * **Note:** Real ascent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of empty line).
    */
+  @JvmOverloads
   public fun getAscent(fontSize: Int = 16): Float {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_ASCENT, DOUBLE)
@@ -115,6 +119,7 @@ public open class Font internal constructor() : Resource() {
    *
    * **Note:** Real descent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the descent of empty line).
    */
+  @JvmOverloads
   public fun getDescent(fontSize: Int = 16): Float {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DESCENT, DOUBLE)
@@ -126,6 +131,7 @@ public open class Font internal constructor() : Resource() {
    *
    * **Note:** Real underline position of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
    */
+  @JvmOverloads
   public fun getUnderlinePosition(fontSize: Int = 16): Float {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_POSITION, DOUBLE)
@@ -137,6 +143,7 @@ public open class Font internal constructor() : Resource() {
    *
    * **Note:** Real underline thickness of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
    */
+  @JvmOverloads
   public fun getUnderlineThickness(fontSize: Int = 16): Float {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_THICKNESS,
@@ -162,6 +169,9 @@ public open class Font internal constructor() : Resource() {
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
+  /**
+   * Returns [godot.core.Dictionary] with OpenType font name strings (localized font names, version, description, license information, sample text, etc.).
+   */
   public fun getOtNameStrings(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_OT_NAME_STRINGS,
@@ -250,6 +260,7 @@ public open class Font internal constructor() : Resource() {
    *
    * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by [getHeight].
    */
+  @JvmOverloads
   public fun getStringSize(
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
@@ -269,6 +280,7 @@ public open class Font internal constructor() : Resource() {
    *
    * See also [drawMultilineString].
    */
+  @JvmOverloads
   public fun getMultilineStringSize(
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
@@ -291,6 +303,7 @@ public open class Font internal constructor() : Resource() {
    *
    * See also [godot.CanvasItem.drawString].
    */
+  @JvmOverloads
   public fun drawString(
     canvasItem: RID,
     pos: Vector2,
@@ -312,6 +325,7 @@ public open class Font internal constructor() : Resource() {
    *
    * See also [godot.CanvasItem.drawMultilineString].
    */
+  @JvmOverloads
   public fun drawMultilineString(
     canvasItem: RID,
     pos: Vector2,
@@ -335,6 +349,7 @@ public open class Font internal constructor() : Resource() {
    *
    * See also [godot.CanvasItem.drawStringOutline].
    */
+  @JvmOverloads
   public fun drawStringOutline(
     canvasItem: RID,
     pos: Vector2,
@@ -357,6 +372,7 @@ public open class Font internal constructor() : Resource() {
    *
    * See also [godot.CanvasItem.drawMultilineStringOutline].
    */
+  @JvmOverloads
   public fun drawMultilineStringOutline(
     canvasItem: RID,
     pos: Vector2,
@@ -393,6 +409,7 @@ public open class Font internal constructor() : Resource() {
    *
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or [godot.TextLine] instead.
    */
+  @JvmOverloads
   public fun drawChar(
     canvasItem: RID,
     pos: Vector2,
@@ -410,6 +427,7 @@ public open class Font internal constructor() : Resource() {
    *
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or [godot.TextLine] instead.
    */
+  @JvmOverloads
   public fun drawCharOutline(
     canvasItem: RID,
     pos: Vector2,
@@ -475,6 +493,20 @@ public open class Font internal constructor() : Resource() {
    * Returns list of supported [variation coordinates](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg), each coordinate is returned as `tag: Vector3i(min_value,max_value,default_value)`.
    *
    * Font variations allow for continuous change of glyph characteristics along some given design axis, such as weight, width or slant.
+   *
+   * To print available variation axes of a variable font:
+   *
+   * ```
+   * 				var fv = FontVariation.new()
+   * 				fv.set_base_font = load("res://RobotoFlex.ttf")
+   * 				var variation_list = fv.get_supported_variation_list()
+   * 				for tag in variation_list:
+   * 				    var name = TextServerManager.get_primary_interface().tag_to_name(tag)
+   * 				    var values = variation_list[tag]
+   * 				    print("variation axis: %s (%d)\n\tmin, max, default: %s" % [name, tag, values])
+   * 				```
+   *
+   * **Note:** To set and get variation coordinates of a [godot.FontVariation], use [godot.FontVariation.variationOpentype].
    */
   public fun getSupportedVariationList(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()

@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Helper class for creating and clearing navigation meshes.
@@ -41,7 +42,7 @@ public object NavigationMeshGenerator : Object() {
   }
 
   /**
-   * Bakes navigation data to the provided [navigationMesh] by parsing child nodes under the provided [rootNode] or a specific group of nodes for potential source geometry. The parse behavior can be controlled with the [godot.NavigationMesh.geometryParsedGeometryType] and [godot.NavigationMesh.geometrySourceGeometryMode] properties on the [godot.NavigationMesh] resource.
+   * The bake function is deprecated due to core threading changes. To upgrade existing code, first create a [godot.NavigationMeshSourceGeometryData3D] resource. Use this resource with [parseSourceGeometryData] to parse the SceneTree for nodes that should contribute to the navigation mesh baking. The SceneTree parsing needs to happen on the main thread. After the parsing is finished use the resource with [bakeFromSourceGeometryData] to bake a navigation mesh.
    */
   public fun bake(navigationMesh: NavigationMesh, rootNode: Node): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
@@ -56,6 +57,12 @@ public object NavigationMeshGenerator : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESHGENERATOR_CLEAR, NIL)
   }
 
+  /**
+   * Parses the [godot.SceneTree] for source geometry according to the properties of [navigationMesh]. Updates the provided [sourceGeometryData] resource with the resulting data. The resource can then be used to bake a navigation mesh with [bakeFromSourceGeometryData]. After the process is finished the optional [callback] will be called.
+   *
+   * **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.
+   */
+  @JvmOverloads
   public fun parseSourceGeometryData(
     navigationMesh: NavigationMesh,
     sourceGeometryData: NavigationMeshSourceGeometryData3D,
@@ -67,6 +74,10 @@ public object NavigationMeshGenerator : Object() {
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESHGENERATOR_PARSE_SOURCE_GEOMETRY_DATA, NIL)
   }
 
+  /**
+   * Bakes the provided [navigationMesh] with the data from the provided [sourceGeometryData]. After the process is finished the optional [callback] will be called.
+   */
+  @JvmOverloads
   public fun bakeFromSourceGeometryData(
     navigationMesh: NavigationMesh,
     sourceGeometryData: NavigationMeshSourceGeometryData3D,

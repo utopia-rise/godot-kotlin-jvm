@@ -93,6 +93,7 @@ public open class Noise internal constructor() : Resource() {
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
+  @JvmOverloads
   public fun getImage3d(
     width: Int,
     height: Int,
@@ -105,6 +106,7 @@ public open class Noise internal constructor() : Resource() {
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>)
   }
 
+  @JvmOverloads
   public fun getSeamlessImage3d(
     width: Int,
     height: Int,

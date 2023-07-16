@@ -24,14 +24,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Color picker control.
+ * A widget that provides an interface for selecting or modifying a color.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/146](https://godotengine.org/asset-library/asset/146)
  *
- * Displays a color picker widget. Useful for selecting a color from an RGB/RGBA colorspace.
+ * A widget that provides an interface for selecting or modifying a color. It can optionally provide functionalities like a color sampler (eyedropper), color modes, and presets.
  *
- * **Note:** This control is the color picker widget itself. You can use a [godot.ColorPickerButton] instead if you need a button that brings up a [godot.ColorPicker] in a pop-up.
+ * **Note:** This control is the color picker widget itself. You can use a [godot.ColorPickerButton] instead if you need a button that brings up a [godot.ColorPicker] in a popup.
  */
 @GodotBaseType
 public open class ColorPicker : VBoxContainer() {

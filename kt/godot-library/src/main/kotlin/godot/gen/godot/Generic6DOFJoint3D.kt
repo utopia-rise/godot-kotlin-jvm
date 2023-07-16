@@ -21,9 +21,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * The generic 6-degrees-of-freedom joint can implement a variety of joint types by locking certain axes' rotation or translation.
+ * A physics joint that allows for complex movement and rotation between two 3D physics bodies.
  *
- * The first 3 DOF axes are linear axes, which represent translation of Bodies, and the latter 3 DOF axes represent the angular motion. Each axis can be either locked, or limited.
+ * The [godot.Generic6DOFJoint3D] (6 Degrees Of Freedom) joint allows for implementing custom types of joints by locking the rotation and translation of certain axes.
+ *
+ * The first 3 DOF represent the linear motion of the physics bodies and the last 3 DOF represent the angular motion of the physics bodies. Each axis can be either locked, or limited.
  */
 @GodotBaseType
 public open class Generic6DOFJoint3D : Joint3D() {

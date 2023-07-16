@@ -19,8 +19,16 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Parameters to be used with a [godot.Mesh] convex decomposition operation.
+ *
+ * Parameters to be used with a [godot.Mesh] convex decomposition operation.
+ */
 @GodotBaseType
 public open class MeshConvexDecompositionSettings : RefCounted() {
+  /**
+   * Maximum concavity. Ranges from `0.0` to `1.0`.
+   */
   public var maxConcavity: Float
     get() {
       TransferContext.writeArguments()
@@ -34,6 +42,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_MAX_CONCAVITY, NIL)
     }
 
+  /**
+   * Controls the bias toward clipping along symmetry planes. Ranges from `0.0` to `1.0`.
+   */
   public var symmetryPlanesClippingBias: Float
     get() {
       TransferContext.writeArguments()
@@ -49,6 +60,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           NIL)
     }
 
+  /**
+   * Controls the bias toward clipping along revolution axes. Ranges from `0.0` to `1.0`.
+   */
   public var revolutionAxesClippingBias: Float
     get() {
       TransferContext.writeArguments()
@@ -64,6 +78,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           NIL)
     }
 
+  /**
+   * Controls the adaptive sampling of the generated convex-hulls. Ranges from `0.0` to `0.01`.
+   */
   public var minVolumePerConvexHull: Float
     get() {
       TransferContext.writeArguments()
@@ -79,6 +96,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           NIL)
     }
 
+  /**
+   * Maximum number of voxels generated during the voxelization stage.
+   */
   public var resolution: Int
     get() {
       TransferContext.writeArguments()
@@ -92,6 +112,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_RESOLUTION, NIL)
     }
 
+  /**
+   * Controls the maximum number of triangles per convex-hull. Ranges from `4` to `1024`.
+   */
   public var maxNumVerticesPerConvexHull: Int
     get() {
       TransferContext.writeArguments()
@@ -107,6 +130,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           NIL)
     }
 
+  /**
+   * Controls the granularity of the search for the "best" clipping plane. Ranges from `1` to `16`.
+   */
   public var planeDownsampling: Int
     get() {
       TransferContext.writeArguments()
@@ -120,6 +146,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_PLANE_DOWNSAMPLING, NIL)
     }
 
+  /**
+   * Controls the precision of the convex-hull generation process during the clipping plane selection stage. Ranges from `1` to `16`.
+   */
   public var convexHullDownsampling: Int
     get() {
       TransferContext.writeArguments()
@@ -135,6 +164,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           NIL)
     }
 
+  /**
+   * If enabled normalizes the mesh before applying the convex decomposition.
+   */
   public var normalizeMesh: Boolean
     get() {
       TransferContext.writeArguments()
@@ -148,6 +180,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_NORMALIZE_MESH, NIL)
     }
 
+  /**
+   * Mode for the approximate convex decomposition.
+   */
   public var mode: Mode
     get() {
       TransferContext.writeArguments()
@@ -161,6 +196,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_MODE, NIL)
     }
 
+  /**
+   * If enabled uses approximation for computing convex hulls.
+   */
   public var convexHullApproximation: Boolean
     get() {
       TransferContext.writeArguments()
@@ -176,6 +214,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           NIL)
     }
 
+  /**
+   * The maximum number of convex hulls to produce from the merge operation.
+   */
   public var maxConvexHulls: Int
     get() {
       TransferContext.writeArguments()
@@ -189,6 +230,9 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_MAX_CONVEX_HULLS, NIL)
     }
 
+  /**
+   * If enabled projects output convex hull vertices onto original source mesh to increase floating point accuracy of the results.
+   */
   public var projectHullVertices: Boolean
     get() {
       TransferContext.writeArguments()
@@ -210,7 +254,13 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   public enum class Mode(
     id: Long,
   ) {
+    /**
+     * Constant for voxel-based approximate convex decomposition.
+     */
     CONVEX_DECOMPOSITION_MODE_VOXEL(0),
+    /**
+     * Constant for tetrahedron-based approximate convex decomposition.
+     */
     CONVEX_DECOMPOSITION_MODE_TETRAHEDRON(1),
     ;
 

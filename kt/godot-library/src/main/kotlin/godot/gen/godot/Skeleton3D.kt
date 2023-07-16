@@ -38,18 +38,19 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Skeleton for characters and animated objects.
+ * A node containing a bone hierarchy, used to create a 3D skeletal animation.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * Skeleton3D provides a hierarchical interface for managing bones, including pose, rest and animation (see [godot.Animation]). It can also use ragdoll physics.
+ * [godot.Skeleton3D] provides an interface for managing a hierarchy of bones, including pose, rest and animation (see [godot.Animation]). It can also use ragdoll physics.
  *
- * The overall transform of a bone with respect to the skeleton is determined by the following hierarchical order: rest pose, custom pose and pose.
+ * The overall transform of a bone with respect to the skeleton is determined by bone pose. Bone rest defines the initial transform of the bone pose.
  *
- * Note that "global pose" below refers to the overall transform of the bone with respect to skeleton, so it not the actual global/world transform of the bone.
+ * Note that "global pose" below refers to the overall transform of the bone with respect to skeleton, so it is not the actual global/world transform of the bone.
  *
  * To setup different types of inverse kinematics, consider using [godot.SkeletonIK3D], or add a custom IK implementation in [godot.Node.Process] as a child node.
  */
@@ -76,7 +77,7 @@ public open class Skeleton3D : Node3D() {
   public val showRestOnlyChanged: Signal0 by signal()
 
   /**
-   * Multiplies the position 3D track animation.
+   * Multiplies the 3D position track animation.
    *
    * **Note:** Unless this value is `1.0`, the key value in animation will not match the actual position value.
    */
@@ -299,7 +300,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the pose transform of the specified bone. Pose is applied on top of the custom pose, which is applied on top the rest pose.
+   * Returns the pose transform of the specified bone.
    */
   public fun getBonePose(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -392,6 +393,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Disables the pose for the bone at [boneIdx] if `false`, enables the bone pose if `true`.
    */
+  @JvmOverloads
   public fun setBoneEnabled(boneIdx: Int, enabled: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_ENABLED, NIL)
@@ -413,6 +415,7 @@ public open class Skeleton3D : Node3D() {
    *
    * **Note:** The pose transform needs to be a global pose! To convert a world transform from a [godot.Node3D] to a global bone pose, multiply the [godot.Transform3D.affineInverse] of the node's [godot.Node3D.globalTransform] by the desired world transform.
    */
+  @JvmOverloads
   public fun setBoneGlobalPoseOverride(
     boneIdx: Int,
     pose: Transform3D,
@@ -456,6 +459,8 @@ public open class Skeleton3D : Node3D() {
 
   /**
    * Force updates the bone transforms/poses for all bones in the skeleton.
+   *
+   * *Deprecated.* Do not use.
    */
   public fun forceUpdateAllBoneTransforms(): Unit {
     TransferContext.writeArguments()
@@ -486,6 +491,7 @@ public open class Skeleton3D : Node3D() {
    *
    * Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be simulated.
    */
+  @JvmOverloads
   public fun physicalBonesStartSimulation(bones: VariantArray<StringName> =
       godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)

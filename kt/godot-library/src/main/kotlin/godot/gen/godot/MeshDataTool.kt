@@ -65,7 +65,7 @@ import kotlin.Unit
  *
  *     mdt.set_vertex(i, vertex)
  *
- * mesh.surface_remove(0)
+ * mesh.clear_surfaces()
  *
  * mdt.commit_to_surface(mesh)
  *
@@ -103,7 +103,7 @@ import kotlin.Unit
  *
  * }
  *
- * mesh.SurfaceRemove(0);
+ * mesh.ClearSurfaces();
  *
  * mdt.CommitToSurface(mesh);
  *

@@ -28,7 +28,34 @@ import kotlin.jvm.JvmOverloads
 /**
  * Mesh optimized for creating geometry manually.
  *
- * Mesh optimized for creating geometry manually, similar to OpenGL1.x immediate mode.
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/procedural_geometry/immediatemesh.html]($DOCS_URL/tutorials/3d/procedural_geometry/immediatemesh.html)
+ *
+ * A mesh type optimized for creating geometry manually, similar to OpenGL 1.x immediate mode.
+ *
+ * Here's a sample on how to generate a triangular face:
+ *
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * var mesh = ImmediateMesh.new()
+ *
+ * mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
+ *
+ * mesh.surface_add_vertex(Vector3.LEFT)
+ *
+ * mesh.surface_add_vertex(Vector3.FORWARD)
+ *
+ * mesh.surface_add_vertex(Vector3.ZERO)
+ *
+ * mesh.surface_end()
+ *
+ * [/gdscript]
+ *
+ * [/codeblocks]
+ *
+ * **Note:** Generating complex geometries with [godot.ImmediateMesh] is highly inefficient. Instead, it is designed to generate simple geometry that changes often.
  */
 @GodotBaseType
 public open class ImmediateMesh : Mesh() {

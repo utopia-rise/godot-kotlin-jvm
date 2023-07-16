@@ -474,7 +474,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * If set to true, three different scale curves can be specified, one per scale axis.
+   * If set to `true`, three different scale curves can be specified, one per scale axis.
    */
   public var splitScale: Boolean
     get() {

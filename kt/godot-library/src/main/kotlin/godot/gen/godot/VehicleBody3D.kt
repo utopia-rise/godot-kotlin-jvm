@@ -17,18 +17,16 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Physics body that simulates the behavior of a car.
+ * A 3D physics body that simulates the behavior of a car.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/524](https://godotengine.org/asset-library/asset/524)
  *
- * This node implements all the physics logic needed to simulate a car. It is based on the raycast vehicle system commonly found in physics engines. You will need to add a [godot.CollisionShape3D] for the main body of your vehicle and add [godot.VehicleWheel3D] nodes for the wheels. You should also add a [godot.MeshInstance3D] to this node for the 3D model of your car but this model should not include meshes for the wheels. You should control the vehicle by using the [brake], [engineForce], and [steering] properties and not change the position or orientation of this node directly.
+ * This physics body implements all the physics logic needed to simulate a car. It is based on the raycast vehicle system commonly found in physics engines. Aside from a [godot.CollisionShape3D] for the main body of the vehicle, you must also add a [godot.VehicleWheel3D] node for each wheel. You should also add a [godot.MeshInstance3D] to this node for the 3D model of the vehicle, but this model should generally not include meshes for the wheels. You can control the vehicle by using the [brake], [engineForce], and [steering] properties. The position or orientation of this node shouldn't be changed directly.
  *
- * **Note:** The origin point of your VehicleBody3D will determine the center of gravity of your vehicle so it is better to keep this low and move the [godot.CollisionShape3D] and [godot.MeshInstance3D] upwards.
+ * **Note:** The origin point of your VehicleBody3D will determine the center of gravity of your vehicle. To make the vehicle more grounded, the origin point is usually kept low, moving the [godot.CollisionShape3D] and [godot.MeshInstance3D] upwards.
  *
- * **Note:** This class has known issues and isn't designed to provide realistic 3D vehicle physics. If you want advanced vehicle physics, you will probably have to write your own physics integration using another [godot.PhysicsBody3D] class.
- *
- * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
+ * **Note:** This class has known issues and isn't designed to provide realistic 3D vehicle physics. If you want advanced vehicle physics, you may have to write your own physics integration using [godot.CharacterBody3D] or [godot.RigidBody3D].
  */
 @GodotBaseType
 public open class VehicleBody3D : RigidBody3D() {

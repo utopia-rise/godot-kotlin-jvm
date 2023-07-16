@@ -18,9 +18,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A material for physics properties.
+ * Holds physics-related properties of a surface, namely its roughness and bounciness.
  *
- * Provides a means of modifying the collision properties of a [godot.PhysicsBody3D].
+ * Holds physics-related properties of a surface, namely its roughness and bounciness. This class is used to apply these properties to a physics body.
  */
 @GodotBaseType
 public open class PhysicsMaterial : Resource() {

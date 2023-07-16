@@ -29,7 +29,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Used by the editor to define Node3D gizmo types.
+ * A class used by the editor to define Node3D gizmo types.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/plugins/editor/3d_gizmos.html]($DOCS_URL/tutorials/plugins/editor/3d_gizmos.html)

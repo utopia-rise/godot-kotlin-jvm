@@ -18,12 +18,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Base class for box containers.
+ * A container that arranges its child controls horizontally or vertically.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * Arranges child [godot.Control] nodes vertically or horizontally, and rearranges them automatically when their minimum size changes.
+ * A container that arranges its child controls horizontally or vertically, rearranging them automatically when their minimum size changes.
  */
 @GodotBaseType
 public open class BoxContainer : Container() {

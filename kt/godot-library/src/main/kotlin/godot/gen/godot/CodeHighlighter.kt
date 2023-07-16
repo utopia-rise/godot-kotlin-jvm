@@ -6,16 +6,27 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
-import godot.core.VariantType.*
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.COLOR
+import godot.core.VariantType.DICTIONARY
+import godot.core.VariantType.NIL
+import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * A syntax highlighter for code.
+ * A syntax highlighter intended for code.
  *
- * A syntax highlighter for code.
+ * By adjusting various properties of this resource, you can change the colors of strings, comments, numbers, and other text patterns inside a [godot.TextEdit] control.
  */
 @GodotBaseType
 public open class CodeHighlighter : SyntaxHighlighter() {

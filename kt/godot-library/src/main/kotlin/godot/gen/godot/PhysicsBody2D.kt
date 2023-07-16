@@ -26,12 +26,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Base class for all objects affected by physics in 2D space.
+ * Abstract base class for 2D game objects affected by physics.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
  *
- * PhysicsBody2D is an abstract base class for implementing a physics body. All *Body2D types inherit from it.
+ * [godot.PhysicsBody2D] is an abstract base class for 2D game objects affected by physics. All 2D physics bodies inherit from it.
  */
 @GodotBaseType
 public open class PhysicsBody2D internal constructor() : CollisionObject2D() {

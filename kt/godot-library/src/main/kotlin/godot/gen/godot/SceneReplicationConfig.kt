@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
@@ -35,6 +36,7 @@ public open class SceneReplicationConfig : Resource() {
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<NodePath>)
   }
 
+  @JvmOverloads
   public fun addProperty(path: NodePath, index: Int = -1): Unit {
     TransferContext.writeArguments(NODE_PATH to path, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_ADD_PROPERTY,

@@ -27,12 +27,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A region of the navigation map.
+ * A traversable 3D region that [godot.NavigationAgent3D]s can use for pathfinding.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationregions.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationregions.html)
  *
- * A region of the navigation map. It tells the [godot.NavigationServer3D] what can be navigated and what cannot, based on its [godot.NavigationMesh] resource.
+ * A traversable 3D region based on a [godot.NavigationMesh] that [godot.NavigationAgent3D]s can use for pathfinding.
  *
  * Two regions can be connected to each other if they share a similar edge. You can set the minimum distance between two vertices required to connect two edges by using [godot.NavigationServer3D.mapSetEdgeConnectionMargin].
  *
@@ -90,6 +90,9 @@ public open class NavigationRegion3D : Node3D() {
           NIL)
     }
 
+  /**
+   * If enabled the navigation region will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   */
   public var useEdgeConnections: Boolean
     get() {
       TransferContext.writeArguments()

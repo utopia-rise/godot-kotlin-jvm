@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Exposes a 2D atlas texture as a set of tiles for a [godot.TileSet] resource.
@@ -132,6 +133,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Creates a new tile at coordinates [atlasCoords] with the given [size].
    */
+  @JvmOverloads
   public fun createTile(atlasCoords: Vector2i, size: Vector2i = Vector2i(1, 1)): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_CREATE_TILE, NIL)
@@ -152,6 +154,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    *
    * To avoid an error, first check if a move is possible using [hasRoomForTile].
    */
+  @JvmOverloads
   public fun moveTileInAtlas(
     atlasCoords: Vector2i,
     newAtlasCoords: Vector2i = Vector2i(-1, -1),
@@ -175,6 +178,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Returns whether there is enough room in an atlas to create/modify a tile with the given properties. If [ignoredTile] is provided, act as is the given tile was not present in the atlas. This may be used when you want to modify a tile's properties.
    */
+  @JvmOverloads
   public fun hasRoomForTile(
     atlasCoords: Vector2i,
     size: Vector2i,
@@ -329,6 +333,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    *
    * Returns the new alternative identifier, or -1 if the alternative could not be created with a provided [alternativeIdOverride].
    */
+  @JvmOverloads
   public fun createAlternativeTile(atlasCoords: Vector2i, alternativeIdOverride: Int = -1): Int {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeIdOverride.toLong())
     TransferContext.callMethod(rawPtr,
@@ -395,6 +400,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Returns a tile's texture region in the atlas texture. For animated tiles, a [frame] argument might be provided for the different frames of the animation.
    */
+  @JvmOverloads
   public fun getTileTextureRegion(atlasCoords: Vector2i, frame: Int = 0): Rect2i {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frame.toLong())
     TransferContext.callMethod(rawPtr,

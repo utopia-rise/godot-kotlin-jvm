@@ -55,10 +55,16 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
     throw NotImplementedError("_put_packet_script is not implemented for MultiplayerPeerExtension")
   }
 
+  /**
+   * Called to get the channel over which the next available packet was received. See [godot.MultiplayerPeer.getPacketChannel].
+   */
   public open fun _getPacketChannel(): Int {
     throw NotImplementedError("_get_packet_channel is not implemented for MultiplayerPeerExtension")
   }
 
+  /**
+   * Called to get the [enum MultiplayerPeer.TransferMode] the remote peer used to send the next available packet. See [godot.MultiplayerPeer.getPacketMode].
+   */
   public open fun _getPacketMode(): MultiplayerPeer.TransferMode {
     throw NotImplementedError("_get_packet_mode is not implemented for MultiplayerPeerExtension")
   }
@@ -128,7 +134,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   }
 
   /**
-   * Called when the unique ID of this [godot.MultiplayerPeer] is requested (see [godot.MultiplayerPeer.getUniqueId]).
+   * Called when the unique ID of this [godot.MultiplayerPeer] is requested (see [godot.MultiplayerPeer.getUniqueId]). The value must be between `1` and `2147483647`.
    */
   public open fun _getUniqueId(): Int {
     throw NotImplementedError("_get_unique_id is not implemented for MultiplayerPeerExtension")
@@ -147,6 +153,9 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
     throw NotImplementedError("_is_refusing_new_connections is not implemented for MultiplayerPeerExtension")
   }
 
+  /**
+   * Called to check if the server can act as a relay in the current configuration. See [godot.MultiplayerPeer.isServerRelaySupported].
+   */
   public open fun _isServerRelaySupported(): Boolean {
     throw NotImplementedError("_is_server_relay_supported is not implemented for MultiplayerPeerExtension")
   }

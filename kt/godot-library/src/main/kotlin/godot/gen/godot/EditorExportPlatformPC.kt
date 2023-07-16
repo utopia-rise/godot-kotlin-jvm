@@ -11,6 +11,9 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * Base class for the desktop platform exporter (Windows and Linux/BSD).
+ */
 @GodotBaseType
 public open class EditorExportPlatformPC internal constructor() : EditorExportPlatform() {
   public override fun new(scriptIndex: Int): Boolean {

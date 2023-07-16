@@ -31,11 +31,12 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Godot editor's interface.
  *
- * EditorInterface gives you control over Godot editor's window. It allows customizing the window, saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects, and provides access to [godot.EditorSettings], [godot.EditorFileSystem], [godot.EditorResourcePreview], [godot.ScriptEditor], the editor viewport, and information about scenes.
+ * [godot.EditorInterface] gives you control over Godot editor's window. It allows customizing the window, saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects, and provides access to [godot.EditorSettings], [godot.EditorFileSystem], [godot.EditorResourcePreview], [godot.ScriptEditor], the editor viewport, and information about scenes.
  *
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorPlugin.getEditorInterface].
  */
@@ -57,6 +58,9 @@ public open class EditorInterface internal constructor() : Object() {
           ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
     }
 
+  /**
+   * If `true`, the Movie Maker mode is enabled in the editor. See [godot.MovieWriter] for more information.
+   */
   public var movieMakerEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -78,6 +82,7 @@ public open class EditorInterface internal constructor() : Object() {
   /**
    * Restarts the editor. This closes the editor and then opens the same project. If [save] is `true`, the project will be saved before restarting.
    */
+  @JvmOverloads
   public fun restartEditor(save: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to save)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RESTART_EDITOR, NIL)
@@ -232,23 +237,47 @@ public open class EditorInterface internal constructor() : Object() {
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
+  /**
+   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusive]. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [godot.Window.setUnparentWhenInvisible].
+   */
+  @JvmOverloads
   public fun popupDialog(dialog: Window, rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
     TransferContext.writeArguments(OBJECT to dialog, RECT2I to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG, NIL)
   }
 
+  /**
+   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusiveCentered]. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [godot.Window.setUnparentWhenInvisible].
+   */
+  @JvmOverloads
   public fun popupDialogCentered(dialog: Window, minsize: Vector2i = Vector2i(0, 0)): Unit {
     TransferContext.writeArguments(OBJECT to dialog, VECTOR2I to minsize)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED, NIL)
   }
 
+  /**
+   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusiveCenteredRatio]. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [godot.Window.setUnparentWhenInvisible].
+   */
+  @JvmOverloads
   public fun popupDialogCenteredRatio(dialog: Window, ratio: Float = 0.8f): Unit {
     TransferContext.writeArguments(OBJECT to dialog, DOUBLE to ratio.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED_RATIO, NIL)
   }
 
+  /**
+   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusiveCenteredClamped]. The dialog must have no current parent, otherwise the method fails.
+   *
+   * See also [godot.Window.setUnparentWhenInvisible].
+   */
+  @JvmOverloads
   public fun popupDialogCenteredClamped(
     dialog: Window,
     minsize: Vector2i = Vector2i(0, 0),
@@ -324,6 +353,7 @@ public open class EditorInterface internal constructor() : Object() {
   /**
    * Shows the given property on the given [object] in the editor's Inspector dock. If [inspectorOnly] is `true`, plugins will not attempt to edit [object].
    */
+  @JvmOverloads
   public fun inspectObject(
     _object: Object,
     forProperty: String = "",
@@ -352,6 +382,7 @@ public open class EditorInterface internal constructor() : Object() {
   /**
    * Edits the given [godot.Script]. The line and column on which to open the script can also be specified. The script will be open with the user-configured editor for the script's language which may be an external editor.
    */
+  @JvmOverloads
   public fun editScript(
     script: Script,
     line: Int = -1,
@@ -412,11 +443,15 @@ public open class EditorInterface internal constructor() : Object() {
   /**
    * Saves the scene as a file at [path].
    */
+  @JvmOverloads
   public fun saveSceneAs(path: String, withPreview: Boolean = true): Unit {
     TransferContext.writeArguments(STRING to path, BOOL to withPreview)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS, NIL)
   }
 
+  /**
+   * Marks the current scene tab as unsaved.
+   */
   public fun markSceneAsUnsaved(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,

@@ -20,12 +20,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Input event type for mouse motion events.
+ * Represents a mouse or a pen movement.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * Contains mouse and pen motion information. Supports relative, absolute positions and velocity. See [godot.Node.Input].
+ * Stores information about a mouse or a pen motion. This includes relative position, absolute position, and velocity. See [godot.Node.Input].
  *
  * **Note:** By default, this event is only emitted once per frame rendered at most. If you need more precise input reporting, set [godot.Input.useAccumulatedInput] to `false` to make events emitted as often as possible. If you use InputEventMouseMotion to draw lines, consider implementing [godot.Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) as well to avoid visible gaps in lines if the user is moving the mouse quickly.
  */

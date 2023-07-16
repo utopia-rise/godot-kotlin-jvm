@@ -6,21 +6,32 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.VariantType.*
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.LONG
+import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
+import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * [godot.AnimationTree] node resource that contains many blend type nodes.
+ * A sub-tree of many type [godot.AnimationNode]s used for complex animations. Used by [godot.AnimationTree].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
- * This node may contain a sub-tree of any other blend type nodes, such as [godot.AnimationNodeTransition], [godot.AnimationNodeBlend2], [godot.AnimationNodeBlend3], [godot.AnimationNodeOneShot], etc. This is one of the most commonly used roots.
+ * This animation node may contain a sub-tree of any other type animation nodes, such as [godot.AnimationNodeTransition], [godot.AnimationNodeBlend2], [godot.AnimationNodeBlend3], [godot.AnimationNodeOneShot], etc. This is one of the most commonly used animation node roots.
  *
  * An [godot.AnimationNodeOutput] node named `output` is created by default.
  */
@@ -32,7 +43,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public val nodeChanged: Signal1<StringName> by signal("nodeName")
 
   /**
-   * The global offset of all sub-nodes.
+   * The global offset of all sub animation nodes.
    */
   public var graphOffset: Vector2
     get() {
@@ -53,7 +64,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Adds an [godot.AnimationNode] at the given [position]. The [name] is used to identify the created sub-node later.
+   * Adds an [godot.AnimationNode] at the given [position]. The [name] is used to identify the created sub animation node later.
    */
   @JvmOverloads
   public fun addNode(
@@ -67,7 +78,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns the sub-node with the specified [name].
+   * Returns the sub animation node with the specified [name].
    */
   public fun getNode(name: StringName): AnimationNode? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -77,7 +88,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Removes a sub-node.
+   * Removes a sub animation node.
    */
   public fun removeNode(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -86,7 +97,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Changes the name of a sub-node.
+   * Changes the name of a sub animation node.
    */
   public fun renameNode(name: StringName, newName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newName)
@@ -95,7 +106,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns `true` if a sub-node with specified [name] exists.
+   * Returns `true` if a sub animation node with specified [name] exists.
    */
   public fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -118,7 +129,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Disconnects the node connected to the specified input.
+   * Disconnects the animation node connected to the specified input.
    */
   public fun disconnectNode(inputNode: StringName, inputIndex: Int): Unit {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex.toLong())
@@ -127,7 +138,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Modifies the position of a sub-node.
+   * Modifies the position of a sub animation node.
    */
   public fun setNodePosition(name: StringName, position: Vector2): Unit {
     TransferContext.writeArguments(STRING_NAME to name, VECTOR2 to position)
@@ -136,7 +147,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the sub-node with the specified [name].
+   * Returns the position of the sub animation node with the specified [name].
    */
   public fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)

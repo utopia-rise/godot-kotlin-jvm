@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Plays positional sound in 2D space.
@@ -242,6 +243,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Queues the audio to play on the next physics frame, from the given position [fromPosition], in seconds.
    */
+  @JvmOverloads
   public fun play(fromPosition: Float = 0.0f): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_PLAY, NIL)

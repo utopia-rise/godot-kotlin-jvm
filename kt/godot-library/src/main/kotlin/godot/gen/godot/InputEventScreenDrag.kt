@@ -22,12 +22,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Input event type for screen drag events. Only available on mobile devices.
+ * Represents a screen drag event.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
- * Contains screen drag information. See [godot.Node.Input].
+ * Stores information about screen drag events. See [godot.Node.Input].
  */
 @GodotBaseType
 public open class InputEventScreenDrag : InputEventFromWindow() {

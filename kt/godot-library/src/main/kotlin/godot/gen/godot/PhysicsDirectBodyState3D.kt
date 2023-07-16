@@ -31,12 +31,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Direct access object to a physics body in the [godot.PhysicsServer3D].
+ * Provides direct access to a physics body in the [godot.PhysicsServer3D].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Provides direct access to a physics body in the [godot.PhysicsServer3D], allowing safe changes to physics properties. This object is passed via the direct state callback of rigid bodies, and is intended for changing the direct state of that body. See [godot.RigidBody3D.IntegrateForces].
+ * Provides direct access to a physics body in the [godot.PhysicsServer3D], allowing safe changes to physics properties. This object is passed via the direct state callback of [godot.RigidBody3D], and is intended for changing the direct state of that body. See [godot.RigidBody3D.IntegrateForces].
  */
 @GodotBaseType
 public open class PhysicsDirectBodyState3D internal constructor() : Object() {
@@ -397,7 +397,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Returns the local position of the contact point.
+   * Returns the position of the contact point on the body in the global coordinate system.
    */
   public fun getContactLocalPosition(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
@@ -436,6 +436,9 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns the linear velocity vector at the body's contact point.
+   */
   public fun getContactLocalVelocityAtPosition(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
@@ -455,7 +458,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Returns the contact position in the collider.
+   * Returns the position of the contact point on the collider in the global coordinate system.
    */
   public fun getContactColliderPosition(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())

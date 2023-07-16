@@ -21,9 +21,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A horizontal menu bar, which displays [godot.PopupMenu]s or system global menu.
+ * A horizontal menu bar that creates a [godot.MenuButton] for each [godot.PopupMenu] child.
  *
- * New items can be created by adding [godot.PopupMenu] nodes to this node.
+ * A horizontal menu bar that creates a [godot.MenuButton] for each [godot.PopupMenu] child. New items are created by adding [godot.PopupMenu]s to this node.
  */
 @GodotBaseType
 public open class MenuBar : Control() {

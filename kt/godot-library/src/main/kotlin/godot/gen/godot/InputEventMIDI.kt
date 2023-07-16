@@ -16,12 +16,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Input event for MIDI inputs.
+ * Represents an input event from a MIDI device, such as a piano.
  *
  * Tutorials:
  * [https://en.wikipedia.org/wiki/Piano_key_frequencies#List](https://en.wikipedia.org/wiki/Piano_key_frequencies#List)
  *
- * InputEventMIDI allows receiving input events from MIDI devices such as a piano. MIDI stands for Musical Instrument Digital Interface.
+ * InputEventMIDI allows receiving input events from MIDI (Musical Instrument Digital Interface) devices such as a piano.
  *
  * MIDI signals can be sent over a 5-pin MIDI connector or over USB, if your device supports both be sure to check the settings in the device to see which output it's using.
  *
@@ -152,7 +152,9 @@ public open class InputEventMIDI : InputEvent() {
    *
    * Notes will return [MIDI_MESSAGE_NOTE_ON] when activated, but they might not always return [MIDI_MESSAGE_NOTE_OFF] when deactivated, therefore your code should treat the input as stopped if some period of time has passed.
    *
-   * For more information, see the MIDI message status byte list chart linked above.
+   * Some MIDI devices may send [MIDI_MESSAGE_NOTE_ON] with zero velocity instead of [MIDI_MESSAGE_NOTE_OFF].
+   *
+   * For more information, see the note in [velocity] and the MIDI message status byte list chart linked above.
    */
   public var message: MIDIMessage
     get() {
@@ -180,7 +182,9 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * The velocity of the MIDI signal. This value ranges from 0 to 127. For a piano, this corresponds to how quickly the key was pressed, and is rarely above about 110 in practice. Note that some MIDI devices may send a [MIDI_MESSAGE_NOTE_ON] message with zero velocity and expect this to be treated the same as a [MIDI_MESSAGE_NOTE_OFF] message, but device implementations vary so Godot reports event data exactly as received.
+   * The velocity of the MIDI signal. This value ranges from 0 to 127. For a piano, this corresponds to how quickly the key was pressed, and is rarely above about 110 in practice.
+   *
+   * **Note:** Some MIDI devices may send a [MIDI_MESSAGE_NOTE_ON] message with zero velocity and expect this to be treated the same as a [MIDI_MESSAGE_NOTE_OFF] message, but device implementations vary so Godot reports event data exactly as received. Depending on the hardware and the needs of the game/app, this MIDI quirk can be handled robustly with a couple lines of script (check for [MIDI_MESSAGE_NOTE_ON] with velocity zero).
    */
   public var velocity: Int
     get() {

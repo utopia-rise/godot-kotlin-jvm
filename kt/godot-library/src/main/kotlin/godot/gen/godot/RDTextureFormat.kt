@@ -18,12 +18,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Texture format (used by [godot.RenderingDevice]).
  *
+ * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDTextureFormat : RefCounted() {
   /**
-   *
+   * The texture's pixel data format.
    */
   public var format: RenderingDevice.DataFormat
     get() {
@@ -37,7 +39,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   *
+   * The texture's width (in pixels).
    */
   public var width: Int
     get() {
@@ -51,7 +53,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   *
+   * The texture's height (in pixels).
    */
   public var height: Int
     get() {
@@ -65,7 +67,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   *
+   * The texture's depth (in pixels). This is always `1` for 2D textures.
    */
   public var depth: Int
     get() {
@@ -79,7 +81,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   *
+   * The number of layers in the texture. Only relevant for 2D texture arrays.
    */
   public var arrayLayers: Int
     get() {
@@ -95,7 +97,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   *
+   * The number of mipmaps available in the texture.
    */
   public var mipmaps: Int
     get() {
@@ -109,7 +111,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   *
+   * The texture type.
    */
   public var textureType: RenderingDevice.TextureType
     get() {
@@ -125,7 +127,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   *
+   * The number of samples used when sampling the texture.
    */
   public var samples: RenderingDevice.TextureSamples
     get() {
@@ -139,7 +141,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   /**
-   *
+   * The texture's usage bits, which determine what can be done using the texture.
    */
   public var usageBits: Long
     get() {

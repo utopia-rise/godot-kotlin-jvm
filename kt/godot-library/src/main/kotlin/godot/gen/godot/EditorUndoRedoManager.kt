@@ -41,6 +41,10 @@ import kotlin.jvm.JvmOverloads
  * - If the object is external resource or anything else, use global history.
  *
  * This guessing can sometimes yield false results, so you can provide a custom context object when creating an action.
+ *
+ * [godot.EditorUndoRedoManager] is intended to be used by Godot editor plugins. You can obtain it using [godot.EditorPlugin.getUndoRedo]. For non-editor uses or plugins that don't need to integrate with the editor's undo history, use [godot.UndoRedo] instead.
+ *
+ * The manager's API is mostly the same as in [godot.UndoRedo], so you can refer to its documentation for more examples. The main difference is that [godot.EditorUndoRedoManager] uses object + method name for actions, instead of [godot.Callable].
  */
 @GodotBaseType
 public open class EditorUndoRedoManager internal constructor() : Object() {
@@ -65,6 +69,8 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
    * The way actions are merged is dictated by the [mergeMode] argument. See [enum UndoRedo.MergeMode] for details.
    *
    * If [customContext] object is provided, it will be used for deducing target history (instead of using the first operation).
+   *
+   * The way undo operation are ordered in actions is dictated by [backwardUndoOps]. When [backwardUndoOps] is `false` undo option are ordered in the same order they were added. Which means the first operation to be added will be the first to be undone.
    */
   @JvmOverloads
   public fun createAction(

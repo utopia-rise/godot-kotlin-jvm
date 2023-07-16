@@ -57,6 +57,8 @@ import kotlin.Suppress
  * [/codeblocks]
  *
  * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a reference to it. See [godot.RefCounted].
+ *
+ * **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's [godot.Node.Process] method would be called before the timer (or [godot.Node.PhysicsProcess] if `process_in_physics` in [godot.SceneTree.createTimer] has been set to `true`).
  */
 @GodotBaseType
 public open class SceneTreeTimer internal constructor() : RefCounted() {

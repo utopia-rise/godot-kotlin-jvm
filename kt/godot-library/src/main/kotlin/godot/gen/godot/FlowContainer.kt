@@ -17,11 +17,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Base class for flow containers.
+ * A container that arranges its child controls horizontally or vertically and wraps them around at the borders.
  *
- * Arranges child [godot.Control] nodes vertically or horizontally in a left-to-right or top-to-bottom flow.
+ * Tutorials:
+ * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * A line is filled with [godot.Control] nodes until no more fit on the same line, similar to text in an autowrapped label.
+ * A container that arranges its child controls horizontally or vertically and wraps them around at the borders. This is similar to how text in a book wraps around when no more words can fit on a line.
  */
 @GodotBaseType
 public open class FlowContainer : Container() {

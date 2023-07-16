@@ -32,9 +32,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for TextServer custom implementations (plugins).
+ * Base class for custom [godot.TextServer] implementations (plugins).
  *
- * External TextServer implementations should inherit from this class.
+ * External [godot.TextServer] implementations should inherit from this class.
  */
 @GodotBaseType
 public open class TextServerExtension : TextServer() {
@@ -185,6 +185,9 @@ public open class TextServerExtension : TextServer() {
     throw NotImplementedError("_font_get_name is not implemented for TextServerExtension")
   }
 
+  /**
+   *
+   */
   public open fun _fontGetOtNameStrings(fontRid: RID): Dictionary<Any?, Any?> {
     throw NotImplementedError("_font_get_ot_name_strings is not implemented for TextServerExtension")
   }
@@ -807,6 +810,9 @@ public open class TextServerExtension : TextServer() {
     throw NotImplementedError("_font_get_glyph_index is not implemented for TextServerExtension")
   }
 
+  /**
+   *
+   */
   public open fun _fontGetCharFromGlyphIndex(
     fontRid: RID,
     size: Long,

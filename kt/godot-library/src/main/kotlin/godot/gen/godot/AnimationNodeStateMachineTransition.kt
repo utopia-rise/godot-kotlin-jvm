@@ -27,7 +27,7 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A resource to connect each node to make a path for [godot.AnimationNodeStateMachine].
+ * A transition within an [godot.AnimationNodeStateMachine] connecting two [godot.AnimationRootNode]s.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)

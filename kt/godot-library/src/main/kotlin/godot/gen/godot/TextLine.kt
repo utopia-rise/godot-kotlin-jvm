@@ -41,7 +41,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * Holds a line of text.
  *
- * Abstraction over [godot.TextServer] for handling single line of text.
+ * Abstraction over [godot.TextServer] for handling a single line of text.
  */
 @GodotBaseType
 public open class TextLine : RefCounted() {

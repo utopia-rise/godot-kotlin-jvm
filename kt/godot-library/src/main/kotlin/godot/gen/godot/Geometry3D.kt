@@ -27,9 +27,9 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * Helper node to calculate generic geometry operations in 3D space.
+ * Provides methods for some common 3D geometric operations.
  *
- * Geometry3D provides users with a set of helper functions to create geometric shapes, compute intersections between shapes, and process various other geometric operations.
+ * Provides a set of helper functions to create geometric shapes, compute intersections between shapes, and process various other geometric operations in 3D.
  */
 @GodotBaseType
 public object Geometry3D : Object() {

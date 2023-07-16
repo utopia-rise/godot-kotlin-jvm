@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Profile of a virtual skeleton used as a target for retargeting.
+ * Base class for a profile of a virtual skeleton used as a target for retargeting.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html]($DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html)

@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 
 /**
  * A 2D game object, inherited by all 2D-related nodes. Has a position, rotation, scale, and Z index.
@@ -225,6 +226,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Applies a local translation on the node's X axis based on the [godot.Node.Process]'s [delta]. If [scaled] is `false`, normalizes the movement.
    */
+  @JvmOverloads
   public fun moveLocalX(delta: Float, scaled: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), BOOL to scaled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_MOVE_LOCAL_X, NIL)
@@ -233,6 +235,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Applies a local translation on the node's Y axis based on the [godot.Node.Process]'s [delta]. If [scaled] is `false`, normalizes the movement.
    */
+  @JvmOverloads
   public fun moveLocalY(delta: Float, scaled: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), BOOL to scaled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_MOVE_LOCAL_Y, NIL)

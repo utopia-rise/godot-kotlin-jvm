@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Plays positional sound in 3D space.
@@ -372,6 +373,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * Queues the audio to play on the next physics frame, from the given position [fromPosition], in seconds.
    */
+  @JvmOverloads
   public fun play(fromPosition: Float = 0.0f): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_PLAY, NIL)
@@ -462,11 +464,11 @@ public open class AudioStreamPlayer3D : Node3D() {
      */
     DOPPLER_TRACKING_DISABLED(0),
     /**
-     * Executes doppler tracking in idle step.
+     * Executes doppler tracking during process frames (see [godot.Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     DOPPLER_TRACKING_IDLE_STEP(1),
     /**
-     * Executes doppler tracking in physics step.
+     * Executes doppler tracking during physics frames (see [godot.Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     DOPPLER_TRACKING_PHYSICS_STEP(2),
     ;

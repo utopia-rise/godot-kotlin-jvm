@@ -29,19 +29,20 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * PopupMenu displays a list of options.
+ * A modal window used to display a list of options.
  *
- * [godot.PopupMenu] is a modal window used to display a list of options. They are popular in toolbars or context menus.
+ * [godot.PopupMenu] is a modal window used to display a list of options. Useful for toolbars and context menus.
  *
- * The size of a [godot.PopupMenu] can be limited by using [godot.Window.maxSize]. If the height of the list of items is larger than the maximum height of the [godot.PopupMenu], a [godot.ScrollContainer] within the popup will allow the user to scroll the contents.
+ * The size of a [godot.PopupMenu] can be limited by using [godot.Window.maxSize]. If the height of the list of items is larger than the maximum height of the [godot.PopupMenu], a [godot.ScrollContainer] within the popup will allow the user to scroll the contents. If no maximum size is set, or if it is set to `0`, the [godot.PopupMenu] height will be limited by its parent rect.
  *
- * If no maximum size is set, or if it is set to 0, the [godot.PopupMenu] height will be limited by its parent rect.
- *
- * All `set_*` methods allow negative item index, which makes the item accessed from the last one.
+ * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to select the second-to-last item, and so on.
  *
  * **Incremental search:** Like [godot.ItemList] and [godot.Tree], [godot.PopupMenu] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
+ *
+ * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
  */
 @GodotBaseType
 public open class PopupMenu : Popup() {
@@ -171,6 +172,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** The provided [id] is used only in [idPressed] and [idFocused] signals. It's not related to the `index` arguments in e.g. [setItemChecked].
    */
+  @JvmOverloads
   public fun addItem(
     label: String,
     id: Int = -1,
@@ -185,6 +187,7 @@ public open class PopupMenu : Popup() {
    *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    */
+  @JvmOverloads
   public fun addIconItem(
     texture: Texture2D,
     label: String,
@@ -202,6 +205,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addCheckItem(
     label: String,
     id: Int = -1,
@@ -218,6 +222,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addIconCheckItem(
     texture: Texture2D,
     label: String,
@@ -235,6 +240,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addRadioCheckItem(
     label: String,
     id: Int = -1,
@@ -247,6 +253,7 @@ public open class PopupMenu : Popup() {
   /**
    * Same as [addIconCheckItem], but uses a radio check button.
    */
+  @JvmOverloads
   public fun addIconRadioCheckItem(
     texture: Texture2D,
     label: String,
@@ -265,6 +272,7 @@ public open class PopupMenu : Popup() {
    *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    */
+  @JvmOverloads
   public fun addMultistateItem(
     label: String,
     maxStates: Int,
@@ -281,6 +289,7 @@ public open class PopupMenu : Popup() {
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
+  @JvmOverloads
   public fun addShortcut(
     shortcut: Shortcut,
     id: Int = -1,
@@ -295,6 +304,7 @@ public open class PopupMenu : Popup() {
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
+  @JvmOverloads
   public fun addIconShortcut(
     texture: Texture2D,
     shortcut: Shortcut,
@@ -312,6 +322,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addCheckShortcut(
     shortcut: Shortcut,
     id: Int = -1,
@@ -328,6 +339,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addIconCheckShortcut(
     texture: Texture2D,
     shortcut: Shortcut,
@@ -346,6 +358,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addRadioCheckShortcut(
     shortcut: Shortcut,
     id: Int = -1,
@@ -359,6 +372,7 @@ public open class PopupMenu : Popup() {
   /**
    * Same as [addIconCheckShortcut], but uses a radio check button.
    */
+  @JvmOverloads
   public fun addIconRadioCheckShortcut(
     texture: Texture2D,
     shortcut: Shortcut,
@@ -375,6 +389,7 @@ public open class PopupMenu : Popup() {
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
+  @JvmOverloads
   public fun addSubmenuItem(
     label: String,
     submenu: String,
@@ -417,12 +432,18 @@ public open class PopupMenu : Popup() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ICON, NIL)
   }
 
+  /**
+   * Sets the maximum allowed width of the icon for the item at the given [index]. This limit is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is adjusted according to the icon's ratio.
+   */
   public fun setItemIconMaxWidth(index: Int, width: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to width.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ICON_MAX_WIDTH,
         NIL)
   }
 
+  /**
+   * Sets a modulating [godot.core.Color] of the item's icon at the given [index].
+   */
   public fun setItemIconModulate(index: Int, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ICON_MODULATE,
@@ -448,7 +469,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. [accel] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * Sets the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. [accel] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    */
   public fun setItemAccelerator(index: Int, accel: Key): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to accel.id)
@@ -519,6 +540,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets a [godot.Shortcut] for the item at the given [index].
    */
+  @JvmOverloads
   public fun setItemShortcut(
     index: Int,
     shortcut: Shortcut,
@@ -607,6 +629,9 @@ public open class PopupMenu : Popup() {
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
+  /**
+   * Returns the maximum allowed width of the icon for the item at the given [index].
+   */
   public fun getItemIconMaxWidth(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ICON_MAX_WIDTH,
@@ -614,6 +639,9 @@ public open class PopupMenu : Popup() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns a [godot.core.Color] modulating the item's icon at the given [index].
+   */
   public fun getItemIconModulate(index: Int): Color {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ICON_MODULATE,
@@ -649,7 +677,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The return value is an integer which is generally a combination of [enum KeyModifierMask]s and [enum Key]s using boolean OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is defined for the specified [index], [getItemAccelerator] returns `0` (corresponding to [@GlobalScope.KEY_NONE]).
+   * Returns the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The return value is an integer which is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is defined for the specified [index], [getItemAccelerator] returns `0` (corresponding to [@GlobalScope.KEY_NONE]).
    */
   public fun getItemAccelerator(index: Int): Key {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -798,6 +826,7 @@ public open class PopupMenu : Popup() {
    *
    * A [label] can optionally be provided, which will appear at the center of the separator.
    */
+  @JvmOverloads
   public fun addSeparator(label: String = "", id: Int = -1): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SEPARATOR, NIL)

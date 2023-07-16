@@ -32,14 +32,17 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * A singleton that deals with inputs.
+ * A singleton for handling inputs.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * A singleton that deals with inputs. This includes key presses, mouse buttons and movement, joypads, and input actions. Actions and their events can be set in the **Input Map** tab in the **Project > Project Settings**, or with the [godot.InputMap] class.
+ * The [godot.Input] singleton handles key presses, mouse buttons and movement, gamepads, and input actions. Actions and their events can be set in the **Input Map** tab in **Project > Project Settings**, or with the [godot.InputMap] class.
+ *
+ * **Note:** [godot.Input]'s methods reflect the global input state and are not affected by [godot.Control.acceptEvent] or [godot.Viewport.setInputAsHandled], as those methods only deal with the way input is propagated in the [godot.SceneTree].
  */
 @GodotBaseType
 public object Input : Object() {
@@ -122,6 +125,7 @@ public object Input : Object() {
    *
    * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
+  @JvmOverloads
   public fun isActionPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_PRESSED, BOOL)
@@ -129,14 +133,17 @@ public object Input : Object() {
   }
 
   /**
-   * Returns `true` when the user starts pressing the action event, meaning it's `true` only on the frame that the user pressed down the button.
+   * Returns `true` when the user has *started* pressing the action event in the current frame or physics tick. It will only return `true` on the frame or tick that the user pressed down the button.
    *
    * This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
+   * **Note:** Returning `true` does not imply that the action is *still* pressed. An action can be pressed and released again rapidly, and `true` will still be returned so as not to miss input.
+   *
    * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
+  @JvmOverloads
   public fun isActionJustPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_PRESSED, BOOL)
@@ -144,10 +151,13 @@ public object Input : Object() {
   }
 
   /**
-   * Returns `true` when the user stops pressing the action event, meaning it's `true` only on the frame that the user released the button.
+   * Returns `true` when the user *stops* pressing the action event in the current frame or physics tick. It will only return `true` on the frame or tick that the user releases the button.
+   *
+   * **Note:** Returning `true` does not imply that the action is *still* not pressed. An action can be released and pressed again rapidly, and `true` will still be returned so as not to miss input.
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
+  @JvmOverloads
   public fun isActionJustReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_RELEASED, BOOL)
@@ -159,6 +169,7 @@ public object Input : Object() {
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
+  @JvmOverloads
   public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_STRENGTH, DOUBLE)
@@ -170,6 +181,7 @@ public object Input : Object() {
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
+  @JvmOverloads
   public fun getActionRawStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_RAW_STRENGTH,
@@ -195,6 +207,7 @@ public object Input : Object() {
    *
    * By default, the deadzone is automatically calculated from the average of the action deadzones. However, you can override the deadzone to be whatever you want (on the range of 0 to 1).
    */
+  @JvmOverloads
   public fun getVector(
     negativeX: StringName,
     positiveX: StringName,
@@ -210,6 +223,7 @@ public object Input : Object() {
   /**
    * Adds a new mapping entry (in SDL2 format) to the mapping database. Optionally update already connected devices.
    */
+  @JvmOverloads
   public fun addJoyMapping(mapping: String, updateExisting: Boolean = false): Unit {
     TransferContext.writeArguments(STRING to mapping, BOOL to updateExisting)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ADD_JOY_MAPPING, NIL)
@@ -242,7 +256,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns the name of the joypad at the specified device index.
+   * Returns the name of the joypad at the specified device index, e.g. `PS4 Controller`. Godot uses the [godot.SDL2 game controller database](https://github.com/gabomdq/SDL_GameControllerDB) to determine gamepad names.
    */
   public fun getJoyName(device: Int): String {
     TransferContext.writeArguments(LONG to device.toLong())
@@ -251,7 +265,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns a SDL2-compatible device GUID on platforms that use gamepad remapping. Returns `"Default Gamepad"` otherwise.
+   * Returns a SDL2-compatible device GUID on platforms that use gamepad remapping, e.g. `030000004c050000c405000000010000`. Returns `"Default Gamepad"` otherwise. Godot uses the [godot.SDL2 game controller database](https://github.com/gabomdq/SDL_GameControllerDB) to determine gamepad names and mappings based on this GUID.
    */
   public fun getJoyGuid(device: Int): String {
     TransferContext.writeArguments(LONG to device.toLong())
@@ -293,6 +307,7 @@ public object Input : Object() {
    *
    * **Note:** Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.
    */
+  @JvmOverloads
   public fun startJoyVibration(
     device: Int,
     weakMagnitude: Float,
@@ -322,6 +337,7 @@ public object Input : Object() {
    *
    * **Note:** Some web browsers such as Safari and Firefox for Android do not support [vibrateHandheld].
    */
+  @JvmOverloads
   public fun vibrateHandheld(durationMs: Int = 500): Unit {
     TransferContext.writeArguments(LONG to durationMs.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_VIBRATE_HANDHELD, NIL)
@@ -462,6 +478,7 @@ public object Input : Object() {
    *
    * **Note:** This method will not cause any [godot.Node.Input] calls. It is intended to be used with [isActionPressed] and [isActionJustPressed]. If you want to simulate `_input`, use [parseInputEvent] instead.
    */
+  @JvmOverloads
   public fun actionPress(action: StringName, strength: Float = 1.0f): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ACTION_PRESS, NIL)
@@ -482,6 +499,7 @@ public object Input : Object() {
    *
    * **Note:** This method generates an [godot.InputEventMouseMotion] to update cursor immediately.
    */
+  @JvmOverloads
   public fun setDefaultCursorShape(shape: CursorShape = Input.CursorShape.CURSOR_ARROW): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_DEFAULT_CURSOR_SHAPE, NIL)
@@ -500,16 +518,17 @@ public object Input : Object() {
   /**
    * Sets a custom mouse cursor image, which is only visible inside the game window. The hotspot can also be specified. Passing `null` to the image parameter resets to the system cursor. See [enum CursorShape] for the list of shapes.
    *
-   * [image]'s size must be lower than 256×256.
+   * [image]'s size must be lower than or equal to 256×256. To avoid rendering issues, sizes lower than or equal to 128×128 are recommended.
    *
    * [hotspot] must be within [image]'s size.
    *
    * **Note:** [godot.AnimatedTexture]s aren't supported as custom mouse cursors. If using an [godot.AnimatedTexture], only the first frame will be displayed.
    *
-   * **Note:** Only images imported with the **Lossless**, **Lossy** or **Uncompressed** compression modes are supported. The **Video RAM** compression mode can't be used for custom cursors.
+   * **Note:** The **Lossless**, **Lossy** or **Uncompressed** compression modes are recommended. The **Video RAM** compression mode can be used, but it will be decompressed on the CPU, which means loading times are slowed down and no memory is saved compared to lossless modes.
    *
    * **Note:** On the web platform, the maximum allowed cursor image size is 128×128. Cursor images larger than 32×32 will also only be displayed if the mouse cursor image is entirely located within the page for [security reasons](https://chromestatus.com/feature/5825971391299584).
    */
+  @JvmOverloads
   public fun setCustomMouseCursor(
     image: Resource,
     shape: CursorShape = Input.CursorShape.CURSOR_ARROW,

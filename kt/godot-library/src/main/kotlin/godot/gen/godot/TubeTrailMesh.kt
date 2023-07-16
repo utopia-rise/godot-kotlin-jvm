@@ -21,12 +21,19 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Represents a straight tube-shaped [godot.PrimitiveMesh] with variable width.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/particles/index.html]($DOCS_URL/tutorials/3d/particles/index.html)
+ *
+ * [godot.TubeTrailMesh] represents a straight tube-shaped mesh with variable width. The tube is composed of a number of cylindrical sections, each with the same [sectionLength] and number of [sectionRings]. A [curve] is sampled along the total length of the tube, meaning that the curve determines the radius of the tube along its length.
+ *
+ * This primitive mesh is usually used for particle trails.
  */
 @GodotBaseType
 public open class TubeTrailMesh : PrimitiveMesh() {
   /**
-   *
+   * The baseline radius of the tube. The radius of a particular section ring is obtained by multiplying this radius by the value of the [curve] at the given distance.
    */
   public var radius: Float
     get() {
@@ -40,7 +47,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   *
+   * The number of sides on the tube. For example, a value of `5` means the tube will be pentagonal. Higher values result in a more detailed tube at the cost of performance.
    */
   public var radialSteps: Int
     get() {
@@ -56,7 +63,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   *
+   * The total number of sections on the tube.
    */
   public var sections: Int
     get() {
@@ -70,7 +77,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   *
+   * The length of a section of the tube.
    */
   public var sectionLength: Float
     get() {
@@ -86,7 +93,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   *
+   * The number of rings in a section. The [curve] is sampled on each ring to determine its radius. Higher values result in a more detailed tube at the cost of performance.
    */
   public var sectionRings: Int
     get() {
@@ -130,7 +137,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   *
+   * Determines the radius of the tube along its length. The radius of a particular section ring is obtained by multiplying the baseline [radius] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted.
    */
   public var curve: Curve?
     get() {

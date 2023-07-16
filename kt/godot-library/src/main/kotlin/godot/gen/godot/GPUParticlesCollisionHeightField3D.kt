@@ -153,7 +153,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     id: Long,
   ) {
     /**
-     * Only update the heightmap when the [godot.GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [followCameraEnabled] is `true`. An update can be forced by slightly moving the [godot.GPUParticlesCollisionHeightField3D] in any direction.
+     * Only update the heightmap when the [godot.GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [followCameraEnabled] is `true`. An update can be forced by slightly moving the [godot.GPUParticlesCollisionHeightField3D] in any direction, or by calling [godot.RenderingServer.particlesCollisionHeightFieldUpdate].
      */
     UPDATE_MODE_WHEN_MOVED(0),
     /**

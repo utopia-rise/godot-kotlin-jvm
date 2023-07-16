@@ -18,12 +18,14 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Base class for all 3D shape resources.
+ * Abstract base class for 3D shapes used for physics collision.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
  *
- * Base class for all 3D shape resources. Nodes that inherit from this can be used as shapes for a [godot.PhysicsBody3D] or [godot.Area3D] objects.
+ * Abstract base class for all 3D shapes, intended for use in physics.
+ *
+ * **Performance:** Primitive shapes, especially [godot.SphereShape3D], are fast to check collisions against. [godot.ConvexPolygonShape3D] and [godot.HeightMapShape3D] are slower, and [godot.ConcavePolygonShape3D] is the slowest.
  */
 @GodotBaseType
 public open class Shape3D internal constructor() : Resource() {
@@ -46,7 +48,7 @@ public open class Shape3D internal constructor() : Resource() {
     }
 
   /**
-   * The collision margin for the shape. Used in Bullet Physics only.
+   * The collision margin for the shape. This is not used in Godot Physics.
    *
    * Collision margins allow collision detection to be more efficient by adding an extra shell around shapes. Collision algorithms are more expensive when objects overlap by more than their margin, so a higher value for margins is better for performance, at the cost of accuracy around edges as it makes them less sharp.
    */

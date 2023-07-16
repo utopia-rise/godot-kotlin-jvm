@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A resource that operates on [godot.Bone2D] nodes in a [godot.Skeleton2D].
+ * Base class for resources that operate on [godot.Bone2D]s in a [godot.Skeleton2D].
  *
  * This resource provides an interface that can be expanded so code that operates on [godot.Bone2D] nodes in a [godot.Skeleton2D] can be mixed and matched together to create complex interactions.
  *
@@ -117,7 +117,7 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Takes a angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will inversely clamp the angle, clamping it to the range outside of the given bounds.
+   * Takes an angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will inversely clamp the angle, clamping it to the range outside of the given bounds.
    */
   public fun clampAngle(
     angle: Float,

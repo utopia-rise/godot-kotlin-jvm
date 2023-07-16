@@ -28,19 +28,20 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Tabbed container.
+ * A container that creates a tab for each child control, displaying only the active tab's control.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * Arranges [godot.Control] children into a tabbed view, creating a tab for each one. The active tab's corresponding [godot.Control] has its `visible` property set to `true`, and all other children's to `false`.
+ * Arranges child controls into a tabbed view, creating a tab for each one. The active tab's corresponding control is made visible, while all other child controls are hidden. Ignores non-control children.
  *
- * Ignores non-[godot.Control] children.
- *
- * **Note:** The drawing of the clickable tabs themselves is handled by this node. Adding [godot.TabBar]s as children is not needed.
+ * **Note:** The drawing of the clickable tabs is handled by this node; [godot.TabBar] is not needed.
  */
 @GodotBaseType
 public open class TabContainer : Container() {
+  /**
+   * Emitted when the active tab is rearranged via mouse drag. See [dragToRearrangeEnabled].
+   */
   public val activeTabRearranged: Signal1<Long> by signal("idxTo")
 
   /**
@@ -48,8 +49,14 @@ public open class TabContainer : Container() {
    */
   public val tabChanged: Signal1<Long> by signal("tab")
 
+  /**
+   * Emitted when a tab is clicked, even if it is the current tab.
+   */
   public val tabClicked: Signal1<Long> by signal("tab")
 
+  /**
+   * Emitted when a tab is hovered by the mouse.
+   */
   public val tabHovered: Signal1<Long> by signal("tab")
 
   /**
@@ -305,11 +312,17 @@ public open class TabContainer : Container() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Sets the metadata value for the tab at index [tabIdx], which can be retrieved later using [getTabMetadata].
+   */
   public fun setTabMetadata(tabIdx: Int, metadata: Any): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_METADATA, NIL)
   }
 
+  /**
+   * Returns the metadata value set to the tab at index [tabIdx] using [setTabMetadata]. If no metadata was previously set, returns `null` by default.
+   */
   public fun getTabMetadata(tabIdx: Int): Any? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_METADATA, ANY)

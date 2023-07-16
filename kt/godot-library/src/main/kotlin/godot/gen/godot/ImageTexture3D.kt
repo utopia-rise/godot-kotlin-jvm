@@ -51,7 +51,7 @@ public open class ImageTexture3D : Texture3D() {
   }
 
   /**
-   * Replaces the texture's existing data with the layers specified in `data`. The size of `data` must match the parameters that were used for [create]. In other words, the texture cannot be resized or have its format changed by calling [update].
+   * Replaces the texture's existing data with the layers specified in [data]. The size of [data] must match the parameters that were used for [create]. In other words, the texture cannot be resized or have its format changed by calling [update].
    */
   public fun update(`data`: VariantArray<Image>): Unit {
     TransferContext.writeArguments(ARRAY to data)

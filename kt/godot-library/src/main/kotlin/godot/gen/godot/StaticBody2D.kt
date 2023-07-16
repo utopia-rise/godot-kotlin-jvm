@@ -20,17 +20,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Physics body for 2D physics which is static or moves only by script. Useful for floor and walls.
+ * A 2D physics body that can't be moved by external forces. When moved manually, it doesn't affect other bodies in its path.
  *
- * Static body for 2D physics.
+ * A static 2D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [godot.AnimationPlayer]s (with [godot.AnimationPlayer.playbackProcessMode] set to `ANIMATION_PROCESS_PHYSICS`), and [godot.RemoteTransform2D].
  *
- * A static body is a simple body that doesn't move under physics simulation, i.e. it can't be moved by external forces or contacts but its transformation can still be updated manually by the user. It is ideal for implementing objects in the environment, such as walls or platforms. In contrast to [godot.RigidBody2D], it doesn't consume any CPU resources as long as they don't move.
+ * When [godot.StaticBody2D] is moved, it is teleported to its new position without affecting other physics bodies in its path. If this is not desired, use [godot.AnimatableBody2D] instead.
  *
- * They have extra functionalities to move and affect other bodies:
- *
- * **Static transform change:** Static bodies can be moved by animation or script. In this case, they are just teleported and don't affect other bodies on their path.
- *
- * **Constant velocity:** When [constantLinearVelocity] or [constantAngularVelocity] is set, static bodies don't move themselves but affect touching bodies as if they were moving. This is useful for simulating conveyor belts or conveyor wheels.
+ * [godot.StaticBody2D] is useful for completely static objects like floors and walls, as well as moving surfaces like conveyor belts and circular revolving platforms (by using [constantLinearVelocity] and [constantAngularVelocity]).
  */
 @GodotBaseType
 public open class StaticBody2D : PhysicsBody2D() {

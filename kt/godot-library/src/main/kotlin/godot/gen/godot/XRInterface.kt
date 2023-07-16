@@ -153,6 +153,11 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_UNINITIALIZE, NIL)
   }
 
+  /**
+   * Returns a [godot.core.Dictionary] with extra system info. Interfaces are expected to return `XRRuntimeName` and `XRRuntimeVersion` providing info about the used XR runtime. Additional entries may be provided specific to an interface.
+   *
+   * **Note:**This information may only be available after [initialize] was successfully called.
+   */
   public fun getSystemInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_SYSTEM_INFO,
@@ -293,7 +298,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    *
    * [view] is the view/eye index.
    *
-   * [camTransform] is the transform that maps device coordinates to scene coordinates, typically the global_transform of the current XROrigin3D.
+   * [camTransform] is the transform that maps device coordinates to scene coordinates, typically the [godot.Node3D.globalTransform] of the current XROrigin3D.
    */
   public fun getTransformForView(view: Int, camTransform: Transform3D): Transform3D {
     TransferContext.writeArguments(LONG to view.toLong(), TRANSFORM3D to camTransform)
@@ -336,9 +341,9 @@ public open class XRInterface internal constructor() : RefCounted() {
    *
    * ```
    * 				                func _ready():
-   * 				                    var xr_interface : XRInterface = XRServer.find_interface("OpenXR")
+   * 				                    var xr_interface: XRInterface = XRServer.find_interface("OpenXR")
    * 				                    if xr_interface and xr_interface.is_initialized():
-   * 				                        var vp : Viewport = get_viewport()
+   * 				                        var vp: Viewport = get_viewport()
    * 				                        vp.use_xr = true
    * 				                        var acceptable_modes = [ XRInterface.XR_ENV_BLEND_MODE_OPAQUE, XRInterface.XR_ENV_BLEND_MODE_ADDITIVE ]
    * 				                        var modes = xr_interface.get_supported_environment_blend_modes()
@@ -453,7 +458,7 @@ public open class XRInterface internal constructor() : RefCounted() {
      */
     XR_PLAY_AREA_ROOMSCALE(3),
     /**
-     * Same as roomscale but origin point is fixed to the center of the physical space, XRServer.center_on_hmd disabled.
+     * Same as [XR_PLAY_AREA_ROOMSCALE] but origin point is fixed to the center of the physical space, [godot.XRServer.centerOnHmd] disabled.
      */
     XR_PLAY_AREA_STAGE(4),
     ;

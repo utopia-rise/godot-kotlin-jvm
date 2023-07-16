@@ -12,9 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Empty stylebox (does not display anything).
+ * An empty [godot.StyleBox] (does not display anything).
  *
- * Empty stylebox (really does not display anything).
+ * An empty [godot.StyleBox] that can be used to display nothing instead of the default style (e.g. it can "disable" `focus` styles).
  */
 @GodotBaseType
 public open class StyleBoxEmpty : StyleBox() {

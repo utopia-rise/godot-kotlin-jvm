@@ -33,13 +33,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Server interface for low-level 2D physics access.
+ * A server interface for low-level 2D physics access.
  *
  * PhysicsServer2D is the server responsible for all 2D physics. It can directly create and manipulate all physics objects:
  *
  * - A *space* is a self-contained world for a physics simulation. It contains bodies, areas, and joints. Its state can be queried for collision and intersection information, and several parameters of the simulation can be modified.
  *
- * - A *shape* is a geometric figure such as a circle, a rectangle, a capsule, or a polygon. It can be used for collision detection by adding it to a body/area, possibly with an extra transformation relative to the body/area's origin. Bodies/areas can have multiple (transformed) shapes added to them, and a single shape can be added to bodies/areas multiple times with different local transformations.
+ * - A *shape* is a geometric shape such as a circle, a rectangle, a capsule, or a polygon. It can be used for collision detection by adding it to a body/area, possibly with an extra transformation relative to the body/area's origin. Bodies/areas can have multiple (transformed) shapes added to them, and a single shape can be added to bodies/areas multiple times with different local transformations.
  *
  * - A *body* is a physical object which can be in static, kinematic, or rigid mode. Its state (such as position and velocity) can be queried and updated. A force integration callback can be set to customize the body's physics.
  *
@@ -47,9 +47,9 @@ import kotlin.jvm.JvmOverloads
  *
  * - A *joint* is a constraint, either between two bodies or on one body relative to a point. Parameters such as the joint bias and the rest length of a spring joint can be adjusted.
  *
- * Physics objects in the physics server may be created and manipulated independently; they do not have to be tied to nodes in the scene tree.
+ * Physics objects in [godot.PhysicsServer2D] may be created and manipulated independently; they do not have to be tied to nodes in the scene tree.
  *
- * **Note:** All the physics nodes use the physics server internally. Adding a physics node to the scene tree will cause a corresponding physics object to be created in the physics server. A rigid body node registers a callback that updates the node's transform with the transform of the respective body object in the physics server (every physics update). An area node registers a callback to inform the area node about overlaps with the respective area object in the physics server. The raycast node queries the direct state of the relevant space in the physics server.
+ * **Note:** All the 2D physics nodes use the physics server internally. Adding a physics node to the scene tree will cause a corresponding physics object to be created in the physics server. A rigid body node registers a callback that updates the node's transform with the transform of the respective body object in the physics server (every physics update). An area node registers a callback to inform the area node about overlaps with the respective area object in the physics server. The raycast node queries the direct state of the relevant space in the physics server.
  */
 @GodotBaseType
 public object PhysicsServer2D : Object() {
@@ -157,7 +157,7 @@ public object PhysicsServer2D : Object() {
    *
    * - [SHAPE_CONCAVE_POLYGON]: a [godot.PackedVector2Array] of length divisible by two (each pair of points forms one segment).
    *
-   * **Warning**: In the case of [SHAPE_CONVEX_POLYGON], this method does not check if the points supplied actually form a convex polygon (unlike the [godot.CollisionPolygon2D.polygon] property).
+   * **Warning:** In the case of [SHAPE_CONVEX_POLYGON], this method does not check if the points supplied actually form a convex polygon (unlike the [godot.CollisionPolygon2D.polygon] property).
    */
   public fun shapeSetData(shape: RID, `data`: Any): Unit {
     TransferContext.writeArguments(_RID to shape, ANY to data)
@@ -1105,7 +1105,7 @@ public object PhysicsServer2D : Object() {
    *
    * 1. a [godot.PhysicsDirectBodyState2D] `state`: used to retrieve and modify the body's state,
    *
-   * 2. a [Variant] `userdata`: optional user data.
+   * 2. a [Variant] [userdata]: optional user data.
    *
    * **Note:** This callback is currently not called in Godot Physics.
    */

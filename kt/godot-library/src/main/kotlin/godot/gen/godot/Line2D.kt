@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A 2D line.
@@ -260,6 +261,7 @@ public open class Line2D : Node2D() {
    *
    * If [index] is given, the new point is inserted before the existing point identified by index [index]. Every existing point starting from [index] is shifted further down the list of points. The index must be greater than or equal to `0` and must not exceed the number of existing points in the line. See [getPointCount].
    */
+  @JvmOverloads
   public fun addPoint(position: Vector2, index: Int = -1): Unit {
     TransferContext.writeArguments(VECTOR2 to position, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_ADD_POINT, NIL)

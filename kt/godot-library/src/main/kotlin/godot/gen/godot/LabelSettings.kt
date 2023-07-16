@@ -24,9 +24,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Collection of common settings to customize label text.
+ * Provides common settings to customize the text in a [godot.Label].
  *
- * [godot.LabelSettings] is a resource that can be assigned to a [godot.Label] node to customize it. It will take priority over the properties defined in theme. The resource can be shared between multiple labels and swapped on the fly, so it's convenient and flexible way to setup text style.
+ * [godot.LabelSettings] is a resource that provides common settings to customize the text in a [godot.Label]. It will take priority over the properties defined in [godot.Control.theme]. The resource can be shared between multiple labels and changed on the fly, so it's convenient and flexible way to setup text style.
  */
 @GodotBaseType
 public open class LabelSettings : Resource() {

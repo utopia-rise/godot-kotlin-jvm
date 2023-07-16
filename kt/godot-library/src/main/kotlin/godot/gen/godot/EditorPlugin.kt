@@ -1015,7 +1015,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Returns the [godot.EditorInterface] object that gives you control over Godot editor's window and its functionalities.
+   * Returns the [godot.EditorInterface] singleton. It provides access to some parts of the editor GUI as well as various inner states and tools.
    */
   public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()

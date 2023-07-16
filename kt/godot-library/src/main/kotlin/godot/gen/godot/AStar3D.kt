@@ -26,13 +26,14 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * An implementation of A* to find the shortest paths among connected points in space.
+ * An implementation of A* for finding the shortest path between two vertices on a connected graph in 3D space.
  *
- * A* (A star) is a computer algorithm that is widely used in pathfinding and graph traversal, the process of plotting short paths among vertices (points), passing through a given set of edges (segments). It enjoys widespread use due to its performance and accuracy. Godot's A* implementation uses points in three-dimensional space and Euclidean distances by default.
+ * A* (A star) is a computer algorithm used in pathfinding and graph traversal, the process of plotting short paths among vertices (points), passing through a given set of edges (segments). It enjoys widespread use due to its performance and accuracy. Godot's A* implementation uses points in 3D space and Euclidean distances by default.
  *
- * You must add points manually with [addPoint] and create segments manually with [connectPoints]. Then you can test if there is a path between two points with the [arePointsConnected] function, get a path containing indices by [getIdPath], or one containing actual coordinates with [getPointPath].
+ * You must add points manually with [addPoint] and create segments manually with [connectPoints]. Once done, you can test if there is a path between two points with the [arePointsConnected] function, get a path containing indices by [getIdPath], or one containing actual coordinates with [getPointPath].
  *
  * It is also possible to use non-Euclidean distances. To do so, create a class that extends `AStar3D` and override methods [_computeCost] and [_estimateCost]. Both take two indices and return a length, as is shown in the following example.
  *
@@ -154,6 +155,7 @@ public open class AStar3D : RefCounted() {
    *
    * If there already exists a point for the given [id], its position and weight scale are updated to the given values.
    */
+  @JvmOverloads
   public fun addPoint(
     id: Long,
     position: Vector3,
@@ -288,6 +290,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Disables or enables the specified point for pathfinding. Useful for making a temporary obstacle.
    */
+  @JvmOverloads
   public fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_DISABLED, NIL)
@@ -333,6 +336,7 @@ public open class AStar3D : RefCounted() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun connectPoints(
     id: Long,
     toId: Long,
@@ -345,6 +349,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Deletes the segment between the given points. If [bidirectional] is `false`, only movement from [id] to [toId] is prevented, and a unidirectional segment possibly remains.
    */
+  @JvmOverloads
   public fun disconnectPoints(
     id: Long,
     toId: Long,
@@ -357,6 +362,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Returns whether the two given points are directly connected by a segment. If [bidirectional] is `false`, returns whether movement from [id] to [toId] is possible through this segment.
    */
+  @JvmOverloads
   public fun arePointsConnected(
     id: Long,
     toId: Long,
@@ -406,6 +412,7 @@ public open class AStar3D : RefCounted() {
    *
    * **Note:** If several points are the closest to [toPosition], the one with the smallest ID will be returned, ensuring a deterministic result.
    */
+  @JvmOverloads
   public fun getClosestPoint(toPosition: Vector3, includeDisabled: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR3 to toPosition, BOOL to includeDisabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_CLOSEST_POINT, LONG)

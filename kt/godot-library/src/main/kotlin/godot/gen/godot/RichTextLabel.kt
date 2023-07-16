@@ -44,20 +44,20 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Label that displays rich text.
+ * A control for displaying text that can contain different font styles, images, and basic formatting.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
  *
- * Rich text can contain custom text, fonts, images and some basic formatting. The label manages these as an internal tag stack. It also adapts itself to given width/heights.
+ * A control for displaying text that can contain custom fonts, images, and basic formatting. [godot.RichTextLabel] manages these as an internal tag stack. It also adapts itself to given width/heights.
  *
  * **Note:** Assignments to [text] clear the tag stack and reconstruct it from the property's contents. Any edits made to [text] will erase previous edits made from other manual sources such as [appendText] and the `push_*` / [pop] methods.
  *
  * **Note:** RichTextLabel doesn't support entangled BBCode tags. For example, instead of using `**bold*bold italic**italic*`, use `**bold*bold italic****italic*`.
  *
- * **Note:** `push_* / pop` functions won't affect BBCode.
+ * **Note:** `push_* / pop_*` functions won't affect BBCode.
  *
- * **Note:** Unlike [godot.Label], RichTextLabel doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a `[center]` tag as follows: `[center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContent] property.
+ * **Note:** Unlike [godot.Label], [godot.RichTextLabel] doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a `[center]` tag as follows: `[center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContent] property.
  */
 @GodotBaseType
 public open class RichTextLabel : Control() {
@@ -554,7 +554,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[font]` tag with a italics font to the tag stack. This is the same as adding a `*` tag if not currently in a `**` tag.
+   * Adds a `[font]` tag with an italics font to the tag stack. This is the same as adding an `*` tag if not currently in a `**` tag.
    */
   public fun pushItalics(): Unit {
     TransferContext.writeArguments()
@@ -623,6 +623,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds `[ol]` or `[ul]` tag to the tag stack. Multiplies [level] by current [tabSize] to determine new margin length.
    */
+  @JvmOverloads
   public fun pushList(
     level: Int,
     type: ListType,
@@ -789,7 +790,9 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Clears the tag stack and sets [text] to an empty string.
+   * Clears the tag stack.
+   *
+   * **Note:** This method will not modify [text], but setting [text] to an empty string also clears the stack.
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()

@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Wraps a pool of audio streams with pitch and volume shifting.
@@ -99,6 +100,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * Insert a stream at the specified index. If the index is less than zero, the insertion occurs at the end of the underlying pool.
    */
+  @JvmOverloads
   public fun addStream(
     index: Int,
     stream: AudioStream,

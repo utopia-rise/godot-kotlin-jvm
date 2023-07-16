@@ -29,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Lightweight object used for general-purpose animation via script, using [godot.Tweener]s.
@@ -201,11 +202,11 @@ import kotlin.Unit
  *
  * Some [godot.Tweener]s use transitions and eases. The first accepts a [enum TransitionType] constant, and refers to the way the timing of the animation is handled (see [easings.net](https://easings.net/) for some examples). The second accepts an [enum EaseType] constant, and controls where the `trans_type` is applied to the interpolation (in the beginning, the end, or both). If you don't know which transition and easing to pick, you can try different [enum TransitionType] constants with [EASE_IN_OUT], and use the one that looks best.
  *
- * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.png)
+ * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp)
  *
- * **Note:** All [godot.Tween]s will automatically start by default. To prevent a [godot.Tween] from autostarting, you can call [stop] immediately after it is created.
+ * **Note:** Tweens are not designed to be re-used and trying to do so results in an undefined behavior. Create a new Tween for each animation and every time you replay an animation from start. Keep in mind that Tweens start immediately, so only create a Tween when you want to start animating.
  *
- * **Note:** [godot.Tween]s are processing after all of nodes in the current frame, i.e. after [godot.Node.Process] or [godot.Node.PhysicsProcess] (depending on [enum TweenProcessMode]).
+ * **Note:** The tween is processed after all of the nodes in the current frame, i.e. node's [godot.Node.Process] method would be called before the timer (or [godot.Node.PhysicsProcess] depending on the value passed to [setProcessMode]).
  */
 @GodotBaseType
 public open class Tween : RefCounted() {
@@ -221,8 +222,6 @@ public open class Tween : RefCounted() {
 
   /**
    * Emitted when the [godot.Tween] has finished all tweening. Never emitted when the [godot.Tween] is set to infinite looping (see [setLoops]).
-   *
-   * **Note:** The [godot.Tween] is removed (invalidated) in the next processing frame after this signal is emitted. Calling [stop] inside the signal callback will prevent the [godot.Tween] from being removed.
    */
   public val finished: Signal0 by signal()
 
@@ -527,8 +526,6 @@ public open class Tween : RefCounted() {
    * Processes the [godot.Tween] by the given [delta] value, in seconds. This is mostly useful for manual control when the [godot.Tween] is paused. It can also be used to end the [godot.Tween] animation immediately, by setting [delta] longer than the whole duration of the [godot.Tween] animation.
    *
    * Returns `true` if the [godot.Tween] still has [godot.Tweener]s that haven't finished.
-   *
-   * **Note:** The [godot.Tween] will become invalid in the next processing frame after its animation finishes. Calling [stop] after performing [customStep] instead keeps and resets the [godot.Tween].
    */
   public fun customStep(delta: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to delta)
@@ -610,7 +607,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Determines whether the [godot.Tween] should run during idle frame (see [godot.Node.Process]) or physics frame (see [godot.Node.PhysicsProcess].
+   * Determines whether the [godot.Tween] should run after process frames (see [godot.Node.Process]) or physics frames (see [godot.Node.PhysicsProcess]).
    *
    * Default value is [TWEEN_PROCESS_IDLE].
    */
@@ -634,6 +631,7 @@ public open class Tween : RefCounted() {
   /**
    * If [parallel] is `true`, the [godot.Tweener]s appended after this method will by default run simultaneously, as opposed to sequentially.
    */
+  @JvmOverloads
   public fun setParallel(parallel: Boolean = true): Tween? {
     TransferContext.writeArguments(BOOL to parallel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PARALLEL, OBJECT)
@@ -647,12 +645,16 @@ public open class Tween : RefCounted() {
    *
    * **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent the game freezing, 0-duration looped animations (e.g. a single [godot.CallbackTweener] with no delay) are stopped after a small number of loops, which may produce unexpected results. If a [godot.Tween]'s lifetime depends on some node, always use [bindNode].
    */
+  @JvmOverloads
   public fun setLoops(loops: Int = 0): Tween? {
     TransferContext.writeArguments(LONG to loops.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_LOOPS, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
+  /**
+   * Returns the number of remaining loops for this [godot.Tween] (see [setLoops]). A return value of `-1` indicates an infinitely looping [godot.Tween], and a return value of `0` indicates that the [godot.Tween] has already finished.
+   */
   public fun getLoopsLeft(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_LOOPS_LEFT, LONG)
@@ -774,11 +776,11 @@ public open class Tween : RefCounted() {
     id: Long,
   ) {
     /**
-     * The [godot.Tween] updates during the physics frame.
+     * The [godot.Tween] updates after each physics frame (see [godot.Node.PhysicsProcess]).
      */
     TWEEN_PROCESS_PHYSICS(0),
     /**
-     * The [godot.Tween] updates during the idle frame.
+     * The [godot.Tween] updates after each process frame (see [godot.Node.Process]).
      */
     TWEEN_PROCESS_IDLE(1),
     ;
@@ -867,6 +869,9 @@ public open class Tween : RefCounted() {
      * The animation is interpolated backing out at ends.
      */
     TRANS_BACK(10),
+    /**
+     * The animation is interpolated like a spring towards the end.
+     */
     TRANS_SPRING(11),
     ;
 

@@ -24,9 +24,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Base dialog for user notification.
+ * A base dialog used for user notification.
  *
- * This dialog is useful for small notifications to the user about an event. It can only be accepted or closed, with the same result.
+ * The default use of [godot.AcceptDialog] is to allow it to only be accepted or closed, with the same result. However, the [confirmed] and [canceled] signals allow to make the two actions different, and the [addButton] method allows to add custom buttons and actions.
  */
 @GodotBaseType
 public open class AcceptDialog : Window() {

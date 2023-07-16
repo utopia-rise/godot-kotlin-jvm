@@ -16,12 +16,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Texture view (used by [godot.RenderingDevice]).
  *
+ * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDTextureView : RefCounted() {
   /**
-   *
+   * Optional override for the data format to return sampled values in. The default value of [godot.RenderingDevice.DATA_FORMAT_MAX] does not override the format.
    */
   public var formatOverride: RenderingDevice.DataFormat
     get() {
@@ -37,7 +39,7 @@ public open class RDTextureView : RefCounted() {
     }
 
   /**
-   *
+   * The channel to sample when sampling the red color channel.
    */
   public var swizzleR: RenderingDevice.TextureSwizzle
     get() {
@@ -51,7 +53,7 @@ public open class RDTextureView : RefCounted() {
     }
 
   /**
-   *
+   * The channel to sample when sampling the green color channel.
    */
   public var swizzleG: RenderingDevice.TextureSwizzle
     get() {
@@ -65,7 +67,7 @@ public open class RDTextureView : RefCounted() {
     }
 
   /**
-   *
+   * The channel to sample when sampling the blue color channel.
    */
   public var swizzleB: RenderingDevice.TextureSwizzle
     get() {
@@ -79,7 +81,7 @@ public open class RDTextureView : RefCounted() {
     }
 
   /**
-   *
+   * The channel to sample when sampling the alpha channel.
    */
   public var swizzleA: RenderingDevice.TextureSwizzle
     get() {

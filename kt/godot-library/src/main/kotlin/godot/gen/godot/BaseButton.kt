@@ -22,9 +22,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for different kinds of buttons.
+ * Abstract base class for GUI buttons.
  *
- * BaseButton is the abstract base class for buttons, so it shouldn't be used directly (it doesn't display anything). Other types of buttons inherit from it.
+ * [godot.BaseButton] is an abstract base class for GUI buttons. It doesn't display anything by itself.
  */
 @GodotBaseType
 public open class BaseButton : Control() {
@@ -145,6 +145,8 @@ public open class BaseButton : Control() {
 
   /**
    * The [godot.ButtonGroup] associated with the button. Not to be confused with node groups.
+   *
+   * **Note:** The button will be configured as a radio button if a [godot.ButtonGroup] is assigned to it.
    */
   public var buttonGroup: ButtonGroup?
     get() {

@@ -116,7 +116,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Removes the point at `index` from the curve.
+   * Removes the point at [index] from the curve.
    */
   public fun removePoint(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())

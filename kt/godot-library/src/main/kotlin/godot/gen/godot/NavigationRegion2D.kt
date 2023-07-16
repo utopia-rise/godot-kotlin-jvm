@@ -24,18 +24,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A region of the 2D navigation map.
+ * A traversable 2D region that [godot.NavigationAgent2D]s can use for pathfinding.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationregions.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationregions.html)
  *
- * A region of the navigation map. It tells the [godot.NavigationServer2D] what can be navigated and what cannot, based on its [godot.NavigationPolygon] resource.
+ * A traversable 2D region based on a [godot.NavigationPolygon] that [godot.NavigationAgent2D]s can use for pathfinding.
  *
  * Two regions can be connected to each other if they share a similar edge. You can set the minimum distance between two vertices required to connect two edges by using [godot.NavigationServer2D.mapSetEdgeConnectionMargin].
  *
  * **Note:** Overlapping two regions' navigation polygons is not enough for connecting two regions. They must share a similar edge.
  *
- * The pathfinding cost of entering this region from another region can be controlled with the [enterCost] value.
+ * The pathfinding cost of entering a region from another region can be controlled with the [enterCost] value.
  *
  * **Note:** This value is not added to the path cost when the start position is already inside this region.
  *
@@ -77,6 +77,9 @@ public open class NavigationRegion2D : Node2D() {
           NIL)
     }
 
+  /**
+   * If enabled the navigation region will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   */
   public var useEdgeConnections: Boolean
     get() {
       TransferContext.writeArguments()
@@ -138,6 +141,11 @@ public open class NavigationRegion2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_TRAVEL_COST, NIL)
     }
 
+  /**
+   * If `true` constraints avoidance agent's with an avoidance mask bit that matches with a bit of the [avoidanceLayers] to the navigation polygon. Due to each navigation polygon outline creating an obstacle and each polygon edge creating an avoidance line constrain keep the navigation polygon shape as simple as possible for performance.
+   *
+   * **Experimental:** This is an experimental feature and should not be used in production as agent's can get stuck on the navigation polygon corners and edges especially at high frame rate.
+   */
   public var constrainAvoidance: Boolean
     get() {
       TransferContext.writeArguments()
@@ -151,6 +159,9 @@ public open class NavigationRegion2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_CONSTRAIN_AVOIDANCE, NIL)
     }
 
+  /**
+   * A bitfield determining all avoidance layers for the avoidance constrain.
+   */
   public var avoidanceLayers: Int
     get() {
       TransferContext.writeArguments()
@@ -188,12 +199,18 @@ public open class NavigationRegion2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask, given a [layerNumber] between 1 and 32.
+   */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_AVOIDANCE_LAYER_VALUE, NIL)
   }
 
+  /**
+   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
+   */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr,

@@ -19,12 +19,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Container that preserves its child controls' aspect ratio.
+ * A container that preserves the proportions of its child controls.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * Arranges child controls in a way to preserve their aspect ratio automatically whenever the container is resized. Solves the problem where the container size is dynamic and the contents' size needs to adjust accordingly without losing proportions.
+ * A container type that arranges its child controls in a way that preserves their proportions automatically when the container is resized. Useful when a container has a dynamic size and the child nodes must adjust their sizes accordingly without losing their aspect ratios.
  */
 @GodotBaseType
 public open class AspectRatioContainer : Container() {

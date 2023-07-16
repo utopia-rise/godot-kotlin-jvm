@@ -35,32 +35,33 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Base resource for [godot.AnimationTree] nodes.
+ * Base class for [godot.AnimationTree] nodes. Not related to scene nodes.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
  * Base resource for [godot.AnimationTree] nodes. In general, it's not used directly, but you can create custom ones with custom blending formulas.
  *
- * Inherit this when creating nodes mainly for use in [godot.AnimationNodeBlendTree], otherwise [godot.AnimationRootNode] should be used instead.
+ * Inherit this when creating animation nodes mainly for use in [godot.AnimationNodeBlendTree], otherwise [godot.AnimationRootNode] should be used instead.
  */
 @GodotBaseType
 public open class AnimationNode : Resource() {
   /**
-   * Emitted by nodes that inherit from this class and that have an internal tree when one of their nodes changes. The nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], [godot.AnimationNodeBlendTree] and [godot.AnimationNodeTransition].
+   * Emitted by nodes that inherit from this class and that have an internal tree when one of their animation nodes changes. The animation nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], [godot.AnimationNodeBlendTree] and [godot.AnimationNodeTransition].
    */
   public val treeChanged: Signal0 by signal()
 
   /**
-   * Emitted by nodes that inherit from this class and that have an internal tree when one of their node names changes. The nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], and [godot.AnimationNodeBlendTree].
+   * Emitted by nodes that inherit from this class and that have an internal tree when one of their animation node names changes. The animation nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], and [godot.AnimationNodeBlendTree].
    */
   public val animationNodeRenamed: Signal3<Long, String, String> by signal("objectId", "oldName",
       "newName")
 
   /**
-   * Emitted by nodes that inherit from this class and that have an internal tree when one of their nodes removes. The nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], and [godot.AnimationNodeBlendTree].
+   * Emitted by nodes that inherit from this class and that have an internal tree when one of their animation nodes removes. The animation nodes that emit this signal are [godot.AnimationNodeBlendSpace1D], [godot.AnimationNodeBlendSpace2D], [godot.AnimationNodeStateMachine], and [godot.AnimationNodeBlendTree].
    */
   public val animationNodeRemoved: Signal2<Long, String> by signal("objectId", "name")
 
@@ -86,42 +87,42 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return all children nodes in order as a `name: node` dictionary.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return all children animation nodes in order as a `name: node` dictionary.
    */
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_child_nodes is not implemented for AnimationNode")
   }
 
   /**
-   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return a list of the properties on this node. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees. Format is similar to [godot.Object.getPropertyList].
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return a list of the properties on this animation node. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees. Format is similar to [godot.Object.getPropertyList].
    */
   public open fun _getParameterList(): VariantArray<Any?> {
     throw NotImplementedError("_get_parameter_list is not implemented for AnimationNode")
   }
 
   /**
-   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return a child node by its [name].
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return a child animation node by its [name].
    */
   public open fun _getChildByName(name: StringName): AnimationNode? {
     throw NotImplementedError("_get_child_by_name is not implemented for AnimationNode")
   }
 
   /**
-   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return the default value of a [parameter]. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return the default value of a [parameter]. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees.
    */
   public open fun _getParameterDefaultValue(parameter: StringName): Any? {
     throw NotImplementedError("_get_parameter_default_value is not implemented for AnimationNode")
   }
 
   /**
-   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return whether the [parameter] is read-only. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return whether the [parameter] is read-only. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees.
    */
   public open fun _isParameterReadOnly(parameter: StringName): Boolean {
     throw NotImplementedError("_is_parameter_read_only is not implemented for AnimationNode")
   }
 
   /**
-   * When inheriting from [godot.AnimationRootNode], implement this virtual method to run some code when this node is processed. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to run some code when this animation node is processed. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute.
    *
    * Here, call the [blendInput], [blendNode] or [blendAnimation] functions. You can also use [getParameter] and [setParameter] to modify local memory.
    *
@@ -137,21 +138,21 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * When inheriting from [godot.AnimationRootNode], implement this virtual method to override the text caption for this node.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to override the text caption for this animation node.
    */
   public open fun _getCaption(): String {
     throw NotImplementedError("_get_caption is not implemented for AnimationNode")
   }
 
   /**
-   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return whether the blend tree editor should display filter editing on this node.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return whether the blend tree editor should display filter editing on this animation node.
    */
   public open fun _hasFilter(): Boolean {
     throw NotImplementedError("_has_filter is not implemented for AnimationNode")
   }
 
   /**
-   * Adds an input to the node. This is only useful for nodes created for use in an [godot.AnimationNodeBlendTree]. If the addition fails, returns `false`.
+   * Adds an input to the animation node. This is only useful for animation nodes created for use in an [godot.AnimationNodeBlendTree]. If the addition fails, returns `false`.
    */
   public fun addInput(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -187,7 +188,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Amount of inputs in this node, only useful for nodes that go into [godot.AnimationNodeBlendTree].
+   * Amount of inputs in this animation node, only useful for animation nodes that go into [godot.AnimationNodeBlendTree].
    */
   public fun getInputCount(): Int {
     TransferContext.writeArguments()
@@ -227,6 +228,7 @@ public open class AnimationNode : Resource() {
    *
    * A [loopedFlag] is used by internal processing immediately after the loop. See also [enum Animation.LoopedFlag].
    */
+  @JvmOverloads
   public fun blendAnimation(
     animation: StringName,
     time: Double,
@@ -241,8 +243,9 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Blend another animation node (in case this node contains children animation nodes). This function is only useful if you inherit from [godot.AnimationRootNode] instead, else editors will not display your node for addition.
+   * Blend another animation node (in case this animation node contains children animation nodes). This function is only useful if you inherit from [godot.AnimationRootNode] instead, else editors will not display your animation node for addition.
    */
+  @JvmOverloads
   public fun blendNode(
     name: StringName,
     node: AnimationNode,
@@ -260,8 +263,9 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Blend an input. This is only useful for nodes created for an [godot.AnimationNodeBlendTree]. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute. A filter mode may be optionally passed (see [enum FilterAction] for options).
+   * Blend an input. This is only useful for animation nodes created for an [godot.AnimationNodeBlendTree]. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute. A filter mode may be optionally passed (see [enum FilterAction] for options).
    */
+  @JvmOverloads
   public fun blendInput(
     inputIndex: Int,
     time: Double,
@@ -286,7 +290,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Gets the value of a parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
+   * Gets the value of a parameter. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees.
    */
   public fun getParameter(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)

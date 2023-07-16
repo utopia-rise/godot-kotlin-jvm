@@ -45,6 +45,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Helper tool to create geometry.
@@ -78,7 +79,7 @@ import kotlin.Unit
  *
  * st.SetColor(new Color(1, 0, 0));
  *
- * st.SetUv(new Vector2(0, 0));
+ * st.SetUV(new Vector2(0, 0));
  *
  * st.AddVertex(new Vector3(0, 0, 0));
  *
@@ -235,6 +236,8 @@ public open class SurfaceTool : RefCounted() {
 
   /**
    * Specifies the smooth group to use for the *next* vertex. If this is never called, all vertices will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same group. To produce a mesh with flat normals, set the smooth group to `-1`.
+   *
+   * **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue` instead of `-1` to produce a mesh with flat normals.
    */
   public fun setSmoothGroup(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -246,6 +249,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * Requires the primitive type be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
    */
+  @JvmOverloads
   public fun addTriangleFan(
     vertices: PackedVector3Array,
     uvs: PackedVector2Array = PackedVector2Array(),
@@ -289,6 +293,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** [generateNormals] takes smooth groups into account. To generate smooth normals, set the smooth group to a value greater than or equal to `0` using [setSmoothGroup] or leave the smooth group at the default of `0`. To generate flat normals, set the smooth group to `-1` using [setSmoothGroup] prior to adding vertices.
    */
+  @JvmOverloads
   public fun generateNormals(flip: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to flip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_NORMALS, NIL)
@@ -324,8 +329,9 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Generates a LOD for a given [ndThreshold] in linear units (square root of quadric error metric), using at most [targetIndexCount] indices.
    *
-   * Deprecated. Unused internally and neglects to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
+   * *Deprecated.* Unused internally and neglects to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
    */
+  @JvmOverloads
   public fun generateLod(ndThreshold: Float, targetIndexCount: Int = 3): PackedInt32Array {
     TransferContext.writeArguments(DOUBLE to ndThreshold.toDouble(), LONG to targetIndexCount.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_LOD,
@@ -397,6 +403,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **FIXME:** Document possible values for [flags], it changed in 4.0. Likely some combinations of [enum Mesh.ArrayFormat].
    */
+  @JvmOverloads
   public fun commit(existing: ArrayMesh? = null, flags: Int = 0): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing, LONG to flags.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT, OBJECT)

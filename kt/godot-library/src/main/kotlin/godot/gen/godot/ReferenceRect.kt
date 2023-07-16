@@ -20,14 +20,14 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Reference frame for GUI.
+ * A rectangle hint for designing UIs.
  *
- * A rectangle box that displays only a [borderColor] border color around its rectangle. [godot.ReferenceRect] has no fill [godot.core.Color]. If you need to display a rectangle filled with a solid color, consider using [godot.ColorRect] instead.
+ * A rectangle box that displays only a colored border around its rectangle. It is used to visualize the extents of a [godot.Control].
  */
 @GodotBaseType
 public open class ReferenceRect : Control() {
   /**
-   * Sets the border [godot.core.Color] of the [godot.ReferenceRect].
+   * Sets the border color of the [godot.ReferenceRect].
    */
   public var borderColor: Color
     get() {

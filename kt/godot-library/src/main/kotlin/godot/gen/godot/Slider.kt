@@ -20,11 +20,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Base class for GUI sliders.
+ * Abstract base class for sliders.
  *
- * Base class for GUI sliders.
- *
- * **Note:** The [godot.Range.changed] and [godot.Range.valueChanged] signals are part of the [godot.Range] class which this class inherits from.
+ * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or vertical axis. Sliders are [godot.Range]-based controls.
  */
 @GodotBaseType
 public open class Slider internal constructor() : Range() {

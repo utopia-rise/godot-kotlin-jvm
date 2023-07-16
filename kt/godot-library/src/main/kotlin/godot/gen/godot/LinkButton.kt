@@ -21,9 +21,9 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Simple button used to represent a link to some resource.
+ * A button that represents a link.
  *
- * This kind of button is primarily used when the interaction with the button causes a context change (like linking to a web page).
+ * A button that represents a link. This type of button is primarily used for interactions that cause a context change (like linking to a web page).
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  */
