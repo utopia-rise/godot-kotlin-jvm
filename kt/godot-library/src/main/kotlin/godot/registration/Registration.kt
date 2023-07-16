@@ -417,7 +417,7 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <T> signal(kProperty: KProperty<T>) {
         appendSignal(
-            KtSignalInfo(kProperty.name.removePrefix("signal").camelToSnakeCase(), listOf())
+            KtSignalInfo(kProperty.name.camelToSnakeCase(), listOf())
         )
     }
 
@@ -427,7 +427,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                kProperty.name.camelToSnakeCase(),
                 listOf(
                     p0.toKtPropertyInfo()
                 )
@@ -442,7 +442,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                kProperty.name.camelToSnakeCase(),
                 listOf(
                     p0.toKtPropertyInfo(),
                     p1.toKtPropertyInfo()
@@ -459,7 +459,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                kProperty.name.camelToSnakeCase(),
                 listOf(
                     p0.toKtPropertyInfo(),
                     p1.toKtPropertyInfo(),
@@ -478,7 +478,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                kProperty.name.camelToSnakeCase(),
                 listOf(
                     p0.toKtPropertyInfo(),
                     p1.toKtPropertyInfo(),
@@ -499,7 +499,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                kProperty.name.camelToSnakeCase(),
                 listOf(
                     p0.toKtPropertyInfo(),
                     p1.toKtPropertyInfo(),

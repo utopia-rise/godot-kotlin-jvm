@@ -8,9 +8,11 @@ import godot.gradle.tasks.android.packageMainDexJarTask
 import godot.gradle.tasks.createBuildLockTask
 import godot.gradle.tasks.deleteBuildLockTask
 import godot.gradle.tasks.generateGdIgnoreFilesTask
-import godot.gradle.tasks.graal.checkNativeImageToolAccessibleTask
-import godot.gradle.tasks.graal.checkPresenceOfDefaultGraalJniConfigTask
-import godot.gradle.tasks.graal.createGraalNativeImageTask
+import godot.gradle.tasks.graal.*
+import godot.gradle.tasks.graal.ios.checkPresenceOfDefaultGraalIOSConfigsTask
+import godot.gradle.tasks.graal.ios.compileIOSGraalFixTask
+import godot.gradle.tasks.graal.ios.createIOSGraalNativeImageTask
+import godot.gradle.tasks.graal.ios.createIOSStaticLibraryTask
 import godot.gradle.tasks.packageBootstrapJarTask
 import godot.gradle.tasks.packageMainJarTask
 import godot.gradle.tasks.setupBuildTask
@@ -55,11 +57,25 @@ fun Project.setupTasks() {
             // START: graal native image specific tasks
             val checkNativeImageToolAccessibleTask = checkNativeImageToolAccessibleTask()
             val checkPresenceOfDefaultGraalJniConfigTask = checkPresenceOfDefaultGraalJniConfigTask()
+            val checkPresenceOfDefaultGraalIOSConfigsTask = checkPresenceOfDefaultGraalIOSConfigsTask(
+                checkPresenceOfDefaultGraalJniConfigTask
+            )
             val createGraalNativeImageTask = createGraalNativeImageTask(
                 checkNativeImageToolAccessibleTask = checkNativeImageToolAccessibleTask,
                 checkPresenceOfDefaultGraalJniConfigTask = checkPresenceOfDefaultGraalJniConfigTask,
                 packageMainJarTask = packageMainJarTask,
                 packageBootstrapJarTask = packageBootstrapJarTask
+            )
+            val createIOSGraalNativeImageTask = createIOSGraalNativeImageTask(
+                checkNativeImageToolAccessibleTask = checkNativeImageToolAccessibleTask,
+                checkPresenceOfDefaultGraalIOSConfigsTask = checkPresenceOfDefaultGraalIOSConfigsTask,
+                packageMainJarTask = packageMainJarTask,
+                packageBootstrapJarTask = packageBootstrapJarTask
+            )
+            val compileIOSGraalFixTask = compileIOSGraalFixTask()
+            val createIOSStaticLibraryTask = createIOSStaticLibraryTask(
+                compileIOSGraalFixTask = compileIOSGraalFixTask,
+                createIOSGraalNativeImageTask = createIOSGraalNativeImageTask
             )
             // END: graal native image specific tasks
 
@@ -72,6 +88,7 @@ fun Project.setupTasks() {
                 packageBootstrapDexJarTask = packageBootstrapDexJarTask,
                 packageMainDexJarTask = packageMainDexJarTask,
                 createGraalNativeImageTask = createGraalNativeImageTask,
+                createIOSTask = createIOSStaticLibraryTask,
                 generateGdIgnoreFilesTask = generateGdIgnoreFilesTask,
             )
 

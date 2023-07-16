@@ -17,9 +17,16 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     Vector<String> files_to_add;
 
     bool is_graal_only {false};
+    bool is_ios_export{p_features.has("ios")};
     bool is_android_export {p_features.has("Android")};
     bool is_osx_export {p_features.has("OSX")};
-    if (is_android_export) {
+    if (is_ios_export) {
+        _generate_export_configuration_file(jni::Jvm::GRAAL_NATIVE_IMAGE);
+        add_ios_project_static_lib(
+                ProjectSettings::get_singleton()->globalize_path("res://build/libs/ios/usercode.a")
+        );
+        return;
+    } else if (is_android_export) {
         files_to_add.push_back("res://build/libs/main-dex.jar");
         files_to_add.push_back("res://build/libs/godot-bootstrap-dex.jar");
         _generate_export_configuration_file(jni::Jvm::ART);

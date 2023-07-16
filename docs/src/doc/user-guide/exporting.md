@@ -88,10 +88,26 @@ On android, we do not embed a JVM, we use the existing ART provided by the OS. I
 !!! warning
     GraalVM native image is a advanced feature and requires a lot of work to support. Especially if you rely on many third party libraries.
 
-In order to build for graalvm, follow `GraalVM native-image` section in advanced user guide.
+In order to build for graalvm, follow `GraalVM native-image` section in [advanced user guide](./advanced/graal-vm-native-image.md).
 
 As `main.jar` and `godot-bootstrap.jar`, `usercode` shared library is set in `pck` during the export process and is copied to user directory. Don't forget to destroy them when creating an uninstaller.
 
 - GraalVM native image is not available for android platform.
 
-On desktop platform default export is inferred by the `godot_kotin_configuration.json` file. You still can export for `jvm` and `native-image`, by adding feature `export-all-jvm`. In this case, the default JVM started by engine is the one from `godot_kotin_configuration.json` and can be overridden by command line. 
+On desktop platform default export is inferred by the `godot_kotin_configuration.json` file. You still can export for `jvm` and `native-image`, by adding feature `export-all-jvm`. In this case, the default JVM started by engine is the one from `godot_kotin_configuration.json` and can be overridden by command line.  
+
+## iOS
+
+!!! warning
+    IOS export is experimental.
+
+IOS export rely on graalvm native image feature, so you should configure your project with same configuration than
+classic graalvm native-image export.  
+You should additionally add this configuration, in the godot gradle configuration:  
+```kotlin
+isIOSExportEnabled.set(true)
+```
+
+!!! warning
+    With this export you don't have choice regarding JVM embedded in app. Godot kotlin's gradle plugin will
+automatically download iOS static JDK libraries and pack them with your code for iOS.

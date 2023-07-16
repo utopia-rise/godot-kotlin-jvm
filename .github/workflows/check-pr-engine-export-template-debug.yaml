@@ -14,7 +14,7 @@ jobs:
   build-export-debug:
     strategy:
       matrix:
-        name: [ Linux, MacOs-x64, MacOs-arm64, Windows, Android-armv7, Android-armv8, Android-x86_64 ]
+        name: [ Linux, MacOs-x64, MacOs-arm64, Windows, Android-armv7, Android-armv8, Android-x86_64, iOS ]
         include:
           # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
           - name: Linux
@@ -30,7 +30,7 @@ jobs:
           - name: MacOs-arm64
             os: macos-latest
             platform: macos
-            arch: arm64
+            arch: arm64v8
             output_folder: bin/
           - name: Windows
             os: windows-2019
@@ -40,18 +40,23 @@ jobs:
           - name: Android-armv7
             os: ubuntu-latest
             platform: android
-            arch: arm32
+            arch: armv7
             output_folder: platform/android/java/lib/libs/debug/armeabi-v7a/
           - name: Android-armv8
             os: ubuntu-latest
             platform: android
-            arch: arm64
+            arch: arm64v8
             output_folder: platform/android/java/lib/libs/debug/arm64-v8a/
           - name: Android-x86_64
             os: ubuntu-latest
             platform: android
             arch: x86_64
             output_folder: platform/android/java/lib/libs/debug/x86_64/
+          - name: iOS
+            os: macos-latest
+            platform: ios
+            arch: arm64
+            output_folder: bin/
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine

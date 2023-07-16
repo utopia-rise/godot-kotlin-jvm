@@ -114,11 +114,18 @@ open class GodotExtension(objects: ObjectFactory) {
     val isGraalNativeImageExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
     /**
+     * enable ios Export, if true, [isGraalNativeImageExportEnabled] should be set to true
+     *
+     * if is set to true, native-image tool and graalvm home has to be resolvable
+     */
+    val isIOSExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
+
+    /**
      * path to the native-image tool used to convert jar to native.
      *
      * example: "${System.getenv("GRAALVM_HOME")}/bin/native-image"
      */
-    val nativeImageToolPath: RegularFileProperty = objects.fileProperty()
+    val graalVmDirectory: RegularFileProperty = objects.fileProperty()
 
     /**
      * Windows specific.
@@ -188,11 +195,17 @@ open class GodotExtension(objects: ObjectFactory) {
         androidMinApi.set(21)
 
         isGraalNativeImageExportEnabled.set(false)
-        nativeImageToolPath.set(System.getenv("native-image")?.let { File(it) })
+        graalVmDirectory.set(
+            System.getenv("GRAALVM_HOME")?.let {
+                File(it).resolve("bin").resolve("native-image")
+            }
+        )
         additionalGraalJniConfigurationFiles.set(arrayOf())
         additionalGraalReflectionConfigurationFiles.set(arrayOf())
         additionalGraalResourceConfigurationFiles.set(arrayOf())
         isGraalVmNativeImageGenerationVerbose.set(false)
         windowsDeveloperVCVarsPath.set("\"%VC_VARS_PATH%\"")
+
+        isIOSExportEnabled.set(false)
     }
 }

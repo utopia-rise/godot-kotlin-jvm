@@ -19,7 +19,7 @@ godot {
 
     //uncomment to test graal vm native image
 //    isGraalNativeImageExportEnabled.set(true)
-//    nativeImageToolPath.set(File("${System.getenv("JAVA_HOME")}/bin/native-image"))
+//    graalVmDirectory.set(File(System.getenv("JAVA_HOME")))
 //    additionalGraalResourceConfigurationFiles.set(
 //        arrayOf(
 //            projectDir.resolve("graal").resolve("resource-config.json").absolutePath,
@@ -31,6 +31,9 @@ godot {
 //        )
 //    )
 //    windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
+
+    // uncomment to test ios
+//    isIOSExportEnabled.set(true)
 }
 
 dependencies {
