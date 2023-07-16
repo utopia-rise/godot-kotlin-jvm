@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -27,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for a profile of a virtual skeleton used as a target for retargeting.
+ * Profile of a virtual skeleton used as a target for retargeting.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html]($DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html)
@@ -53,7 +52,7 @@ public open class SkeletonProfile : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_ROOT_BONE,
           STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
@@ -69,7 +68,7 @@ public open class SkeletonProfile : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_SCALE_BASE_BONE, STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
@@ -82,15 +81,15 @@ public open class SkeletonProfile : Resource() {
    *
    * This property exists to separate the bone list into several sections in the editor.
    */
-  public var groupSize: Long
+  public var groupSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_GROUP_SIZE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_GROUP_SIZE,
           NIL)
     }
@@ -100,15 +99,15 @@ public open class SkeletonProfile : Resource() {
    *
    * The size of elements in [godot.BoneMap] updates when changing this property in it's assigned [godot.SkeletonProfile].
    */
-  public var boneSize: Long
+  public var boneSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_BONE_SIZE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_BONE_SIZE,
           NIL)
     }
@@ -121,45 +120,45 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the name of the group at [groupIdx] that will be the drawing group in the [godot.BoneMap] editor.
    */
-  public fun getGroupName(groupIdx: Long): StringName {
-    TransferContext.writeArguments(LONG to groupIdx)
+  public fun getGroupName(groupIdx: Int): StringName {
+    TransferContext.writeArguments(LONG to groupIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_GROUP_NAME,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
    * Sets the name of the group at [groupIdx] that will be the drawing group in the [godot.BoneMap] editor.
    */
-  public fun setGroupName(groupIdx: Long, groupName: StringName): Unit {
-    TransferContext.writeArguments(LONG to groupIdx, STRING_NAME to groupName)
+  public fun setGroupName(groupIdx: Int, groupName: StringName): Unit {
+    TransferContext.writeArguments(LONG to groupIdx.toLong(), STRING_NAME to groupName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_GROUP_NAME, NIL)
   }
 
   /**
    * Returns the texture of the group at [groupIdx] that will be the drawing group background image in the [godot.BoneMap] editor.
    */
-  public fun getTexture(groupIdx: Long): Texture2D? {
-    TransferContext.writeArguments(LONG to groupIdx)
+  public fun getTexture(groupIdx: Int): Texture2D? {
+    TransferContext.writeArguments(LONG to groupIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_TEXTURE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   /**
    * Sets the texture of the group at [groupIdx] that will be the drawing group background image in the [godot.BoneMap] editor.
    */
-  public fun setTexture(groupIdx: Long, texture: Texture2D): Unit {
-    TransferContext.writeArguments(LONG to groupIdx, OBJECT to texture)
+  public fun setTexture(groupIdx: Int, texture: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to groupIdx.toLong(), OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_TEXTURE, NIL)
   }
 
   /**
    * Returns the bone index that matches [boneName] as its name.
    */
-  public fun findBone(boneName: StringName): Long {
+  public fun findBone(boneName: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to boneName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_FIND_BONE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -167,11 +166,11 @@ public open class SkeletonProfile : Resource() {
    *
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
-  public fun getBoneName(boneIdx: Long): StringName {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneName(boneIdx: Int): StringName {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_BONE_NAME,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
@@ -179,26 +178,26 @@ public open class SkeletonProfile : Resource() {
    *
    * In the retargeting process, the setting bone name is the bone name of the target skeleton.
    */
-  public fun setBoneName(boneIdx: Long, boneName: StringName): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, STRING_NAME to boneName)
+  public fun setBoneName(boneIdx: Int, boneName: StringName): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_BONE_NAME, NIL)
   }
 
   /**
    * Returns the name of the bone which is the parent to the bone at [boneIdx]. The result is empty if the bone has no parent.
    */
-  public fun getBoneParent(boneIdx: Long): StringName {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneParent(boneIdx: Int): StringName {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_BONE_PARENT,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
    * Sets the bone with name [boneParent] as the parent of the bone at [boneIdx]. If an empty string is passed, then the bone has no parent.
    */
-  public fun setBoneParent(boneIdx: Long, boneParent: StringName): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, STRING_NAME to boneParent)
+  public fun setBoneParent(boneIdx: Int, boneParent: StringName): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneParent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_BONE_PARENT,
         NIL)
   }
@@ -206,11 +205,11 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the tail direction of the bone at [boneIdx].
    */
-  public fun getTailDirection(boneIdx: Long): TailDirection {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getTailDirection(boneIdx: Int): TailDirection {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_TAIL_DIRECTION,
         LONG)
-    return SkeletonProfile.TailDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return SkeletonProfile.TailDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -218,8 +217,8 @@ public open class SkeletonProfile : Resource() {
    *
    * **Note:** This only specifies the method of calculation. The actual coordinates required should be stored in an external skeleton, so the calculation itself needs to be done externally.
    */
-  public fun setTailDirection(boneIdx: Long, tailDirection: TailDirection): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, LONG to tailDirection.id)
+  public fun setTailDirection(boneIdx: Int, tailDirection: TailDirection): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), LONG to tailDirection.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_TAIL_DIRECTION,
         NIL)
   }
@@ -227,36 +226,36 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the name of the bone which is the tail of the bone at [boneIdx].
    */
-  public fun getBoneTail(boneIdx: Long): StringName {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneTail(boneIdx: Int): StringName {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_BONE_TAIL,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
    * Sets the bone with name [boneTail] as the tail of the bone at [boneIdx].
    */
-  public fun setBoneTail(boneIdx: Long, boneTail: StringName): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, STRING_NAME to boneTail)
+  public fun setBoneTail(boneIdx: Int, boneTail: StringName): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneTail)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_BONE_TAIL, NIL)
   }
 
   /**
    * Returns the reference pose transform for bone [boneIdx].
    */
-  public fun getReferencePose(boneIdx: Long): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getReferencePose(boneIdx: Int): Transform3D {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_REFERENCE_POSE,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
    * Sets the reference pose transform for bone [boneIdx].
    */
-  public fun setReferencePose(boneIdx: Long, boneName: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to boneName)
+  public fun setReferencePose(boneIdx: Int, boneName: Transform3D): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to boneName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_REFERENCE_POSE,
         NIL)
   }
@@ -266,11 +265,11 @@ public open class SkeletonProfile : Resource() {
    *
    * This is the offset with origin at the top left corner of the square.
    */
-  public fun getHandleOffset(boneIdx: Long): Vector2 {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getHandleOffset(boneIdx: Int): Vector2 {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_HANDLE_OFFSET,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -278,8 +277,8 @@ public open class SkeletonProfile : Resource() {
    *
    * This is the offset with origin at the top left corner of the square.
    */
-  public fun setHandleOffset(boneIdx: Long, handleOffset: Vector2): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, VECTOR2 to handleOffset)
+  public fun setHandleOffset(boneIdx: Int, handleOffset: Vector2): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR2 to handleOffset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_HANDLE_OFFSET,
         NIL)
   }
@@ -287,18 +286,18 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the group of the bone at [boneIdx].
    */
-  public fun getGroup(boneIdx: Long): StringName {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getGroup(boneIdx: Int): StringName {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_GROUP,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
    * Sets the group of the bone at [boneIdx].
    */
-  public fun setGroup(boneIdx: Long, group: StringName): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, STRING_NAME to group)
+  public fun setGroup(boneIdx: Int, group: StringName): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to group)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_SET_GROUP, NIL)
   }
 

@@ -31,7 +31,7 @@ public open class EditorScriptPicker internal constructor() : EditorResourcePick
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORSCRIPTPICKER_GET_SCRIPT_OWNER, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Node?
+      return (TransferContext.readReturnValue(OBJECT, true) as Node?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

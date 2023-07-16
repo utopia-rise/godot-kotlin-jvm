@@ -32,11 +32,11 @@ public open class SceneReplicationConfig : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_GET_PROPERTIES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<NodePath>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<NodePath>)
   }
 
-  public fun addProperty(path: NodePath, index: Long = -1): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, LONG to index)
+  public fun addProperty(path: NodePath, index: Int = -1): Unit {
+    TransferContext.writeArguments(NODE_PATH to path, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_ADD_PROPERTY,
         NIL)
   }
@@ -45,7 +45,7 @@ public open class SceneReplicationConfig : Resource() {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_HAS_PROPERTY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun removeProperty(path: NodePath): Unit {
@@ -54,18 +54,18 @@ public open class SceneReplicationConfig : Resource() {
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_REMOVE_PROPERTY, NIL)
   }
 
-  public fun propertyGetIndex(path: NodePath): Long {
+  public fun propertyGetIndex(path: NodePath): Int {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_INDEX, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun propertyGetSpawn(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_SPAWN, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun propertySetSpawn(path: NodePath, enabled: Boolean): Unit {
@@ -78,7 +78,7 @@ public open class SceneReplicationConfig : Resource() {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_SYNC, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun propertySetSync(path: NodePath, enabled: Boolean): Unit {
@@ -91,7 +91,7 @@ public open class SceneReplicationConfig : Resource() {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_WATCH, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun propertySetWatch(path: NodePath, enabled: Boolean): Unit {

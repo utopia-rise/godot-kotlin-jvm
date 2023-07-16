@@ -28,7 +28,7 @@ import kotlin.Suppress
  *
  *
  *
- * func _handles(resource: Resource):
+ * func _handles(resource : Resource):
  *
  *     return resource is ImageTexture
  *
@@ -40,7 +40,7 @@ import kotlin.Suppress
  *
  *
  *
- * func _convert(itex: Resource):
+ * func _convert(itex : Resource):
  *
  *     var ptex = PortableCompressedTexture2D.new()
  *

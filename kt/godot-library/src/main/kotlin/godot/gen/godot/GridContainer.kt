@@ -16,28 +16,30 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A container that arranges its child controls in a grid layout.
+ * Grid container used to arrange Control-derived children in a grid like layout.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
  *
- * [godot.GridContainer] arranges its child controls in a grid layout. The number of columns is specified by the [columns] property, whereas the number of rows depends on how many are needed for the child controls. The number of rows and columns is preserved for every size of the container.
+ * GridContainer will arrange its Control-derived children in a grid like structure, the grid columns are specified using the [columns] property and the number of rows will be equal to the number of children in the container divided by the number of columns. For example, if the container has 5 children, and 2 columns, there will be 3 rows in the container.
  *
- * **Note:** [godot.GridContainer] only works with child nodes inheriting from [godot.Control]. It won't rearrange child nodes inheriting from [godot.Node2D].
+ * Notice that grid layout will preserve the columns and rows for every size of the container, and that empty columns will be expanded automatically.
+ *
+ * **Note:** GridContainer only works with child nodes inheriting from Control. It won't rearrange child nodes inheriting from Node2D.
  */
 @GodotBaseType
 public open class GridContainer : Container() {
   /**
    * The number of columns in the [godot.GridContainer]. If modified, [godot.GridContainer] reorders its Control-derived children to accommodate the new layout.
    */
-  public var columns: Long
+  public var columns: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_GET_COLUMNS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_SET_COLUMNS, NIL)
     }
 

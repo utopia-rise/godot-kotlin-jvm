@@ -33,15 +33,15 @@ public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview.
    */
-  public var outputPortForPreview: Long
+  public var outputPortForPreview: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_OUTPUT_PORT_FOR_PREVIEW, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_OUTPUT_PORT_FOR_PREVIEW, NIL)
     }
@@ -51,7 +51,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_DEFAULT_INPUT_VALUES, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -68,11 +68,11 @@ public open class VisualShaderNode internal constructor() : Resource() {
    * Sets the default [value] for the selected input [port].
    */
   public fun setInputPortDefaultValue(
-    port: Long,
+    port: Int,
     `value`: Any,
     prevValue: Any? = null,
   ): Unit {
-    TransferContext.writeArguments(LONG to port, ANY to value, ANY to prevValue)
+    TransferContext.writeArguments(LONG to port.toLong(), ANY to value, ANY to prevValue)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_INPUT_PORT_DEFAULT_VALUE, NIL)
   }
@@ -80,18 +80,18 @@ public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Returns the default value of the input [port].
    */
-  public fun getInputPortDefaultValue(port: Long): Any? {
-    TransferContext.writeArguments(LONG to port)
+  public fun getInputPortDefaultValue(port: Int): Any? {
+    TransferContext.writeArguments(LONG to port.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_INPUT_PORT_DEFAULT_VALUE, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
    * Removes the default value of the input [port].
    */
-  public fun removeInputPortDefaultValue(port: Long): Unit {
-    TransferContext.writeArguments(LONG to port)
+  public fun removeInputPortDefaultValue(port: Int): Unit {
+    TransferContext.writeArguments(LONG to port.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_REMOVE_INPUT_PORT_DEFAULT_VALUE, NIL)
   }

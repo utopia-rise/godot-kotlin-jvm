@@ -48,7 +48,7 @@ public open class EditorPaths internal constructor() : Object() {
   public fun getDataDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_DATA_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -65,7 +65,7 @@ public open class EditorPaths internal constructor() : Object() {
   public fun getConfigDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CONFIG_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -82,24 +82,20 @@ public open class EditorPaths internal constructor() : Object() {
   public fun getCacheDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CACHE_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns `true` if the editor is marked as self-contained, `false` otherwise. When self-contained mode is enabled, user configuration, data and cache files are saved in an `editor_data/` folder next to the editor binary. This makes portable usage easier and ensures the Godot editor minimizes file writes outside its own folder. Self-contained mode is not available for exported projects.
    *
-   * Self-contained mode can be enabled by creating a file named `._sc_` or `_sc_` in the same folder as the editor binary or macOS .app bundle while the editor is not running. See also [getSelfContainedFile].
-   *
-   * **Note:** On macOS, quarantine flag should be manually removed before using self-contained mode, see [godot.Running on macOS](https://docs.godotengine.org/en/stable/tutorials/export/running_on_macos.html).
-   *
-   * **Note:** On macOS, placing `_sc_` or any other file inside .app bundle will break digital signature and make it non-portable, consider placing it in the same folder as the .app bundle instead.
+   * Self-contained mode can be enabled by creating a file named `._sc_` or `_sc_` in the same folder as the editor binary while the editor is not running. See also [getSelfContainedFile].
    *
    * **Note:** The Steam release of Godot uses self-contained mode by default.
    */
   public fun isSelfContained(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_IS_SELF_CONTAINED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -109,7 +105,7 @@ public open class EditorPaths internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_SELF_CONTAINED_FILE,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -119,7 +115,7 @@ public open class EditorPaths internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_PROJECT_SETTINGS_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

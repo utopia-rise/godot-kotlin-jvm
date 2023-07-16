@@ -17,14 +17,15 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Describes the motion and collision result from [godot.PhysicsServer2D.bodyTestMotion].
+ * Result from a 2D body motion test.
  *
- * Describes the motion and collision result from [godot.PhysicsServer2D.bodyTestMotion].
+ * This class contains the motion and collision result from [godot.PhysicsServer2D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult2D : RefCounted() {
@@ -40,7 +41,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_TRAVEL, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -50,7 +51,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_REMAINDER, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -60,7 +61,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_POINT, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -70,7 +71,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_NORMAL, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -80,7 +81,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLIDER_VELOCITY, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -90,7 +91,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLIDER_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -100,7 +101,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLIDER_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -110,57 +111,57 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLIDER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Object?
+    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
 
   /**
    * Returns the colliding body's shape index, if a collision occurred. See [godot.CollisionObject2D].
    */
-  public fun getColliderShape(): Long {
+  public fun getColliderShape(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLIDER_SHAPE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the moving object's colliding shape, if a collision occurred.
    */
-  public fun getCollisionLocalShape(): Long {
+  public fun getCollisionLocalShape(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_LOCAL_SHAPE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the length of overlap along the collision normal, if a collision occurred.
    */
-  public fun getCollisionDepth(): Double {
+  public fun getCollisionDepth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_DEPTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the maximum fraction of the motion that can occur without a collision, between `0` and `1`.
    */
-  public fun getCollisionSafeFraction(): Double {
+  public fun getCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_SAFE_FRACTION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between `0` and `1`.
    */
-  public fun getCollisionUnsafeFraction(): Double {
+  public fun getCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_UNSAFE_FRACTION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -31,7 +30,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_COMPARISON_TYPE, LONG)
-      return VisualShaderNodeCompare.ComparisonType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeCompare.ComparisonType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -47,7 +46,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_FUNCTION, LONG)
-      return VisualShaderNodeCompare.Function.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeCompare.Function.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -63,7 +62,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_CONDITION, LONG)
-      return VisualShaderNodeCompare.Condition.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeCompare.Condition.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

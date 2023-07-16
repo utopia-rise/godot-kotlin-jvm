@@ -16,9 +16,11 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 2D line segment shape used for physics collision.
+ * Segment shape resource for 2D physics.
  *
- * A 2D line segment shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape2D].
+ * 2D segment shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. Consists of two points, `a` and `b`.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.SegmentShape2D] is fast to check collisions against (though not as fast as [godot.CircleShape2D]).
  */
 @GodotBaseType
 public open class SegmentShape2D : Shape2D() {
@@ -29,7 +31,7 @@ public open class SegmentShape2D : Shape2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_GET_A, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -43,7 +45,7 @@ public open class SegmentShape2D : Shape2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_GET_B, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)

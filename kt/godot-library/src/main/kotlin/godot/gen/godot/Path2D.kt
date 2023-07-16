@@ -30,7 +30,7 @@ public open class Path2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH2D_GET_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Curve2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

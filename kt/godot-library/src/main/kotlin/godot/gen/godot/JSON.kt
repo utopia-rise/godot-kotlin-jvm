@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
@@ -39,7 +38,6 @@ import kotlin.Suppress
  * 		# Save data
  * 		# ...
  * 		# Retrieve data
- * 		var json = JSON.new()
  * 		var error = json.parse(json_string)
  * 		if error == OK:
  * 		    var data_received = json.data
@@ -76,7 +74,7 @@ public open class JSON : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_DATA, ANY)
-      return TransferContext.readReturnValue(ANY, true) as Any?
+      return (TransferContext.readReturnValue(ANY, true) as Any?)
     }
     set(`value`) {
       TransferContext.writeArguments(ANY to value)
@@ -100,7 +98,7 @@ public open class JSON : Resource() {
   public fun parse(jsonText: String, keepText: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to jsonText, BOOL to keepText)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_PARSE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -109,16 +107,16 @@ public open class JSON : Resource() {
   public fun getParsedText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_PARSED_TEXT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns `0` if the last call to [parse] was successful, or the line number where the parse failed.
    */
-  public fun getErrorLine(): Long {
+  public fun getErrorLine(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_ERROR_LINE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -127,7 +125,7 @@ public open class JSON : Resource() {
   public fun getErrorMessage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_ERROR_MESSAGE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

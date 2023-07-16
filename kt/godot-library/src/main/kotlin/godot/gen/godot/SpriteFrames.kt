@@ -19,6 +19,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -50,7 +51,7 @@ public open class SpriteFrames : Resource() {
   public fun hasAnimation(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_HAS_ANIMATION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -76,7 +77,7 @@ public open class SpriteFrames : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_NAMES,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -95,7 +96,7 @@ public open class SpriteFrames : Resource() {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_SPEED,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
@@ -114,7 +115,7 @@ public open class SpriteFrames : Resource() {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_LOOP,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -123,10 +124,10 @@ public open class SpriteFrames : Resource() {
   public fun addFrame(
     anim: StringName,
     texture: Texture2D,
-    duration: Double = 1.0,
-    atPosition: Long = -1,
+    duration: Float = 1.0f,
+    atPosition: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to anim, OBJECT to texture, DOUBLE to duration, LONG to atPosition)
+    TransferContext.writeArguments(STRING_NAME to anim, OBJECT to texture, DOUBLE to duration.toDouble(), LONG to atPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_ADD_FRAME, NIL)
   }
 
@@ -135,39 +136,39 @@ public open class SpriteFrames : Resource() {
    */
   public fun setFrame(
     anim: StringName,
-    idx: Long,
+    idx: Int,
     texture: Texture2D,
-    duration: Double = 1.0,
+    duration: Float = 1.0f,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx, OBJECT to texture, DOUBLE to duration)
+    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx.toLong(), OBJECT to texture, DOUBLE to duration.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_FRAME, NIL)
   }
 
   /**
    * Removes the [anim] animation's frame [idx].
    */
-  public fun removeFrame(anim: StringName, idx: Long): Unit {
-    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)
+  public fun removeFrame(anim: StringName, idx: Int): Unit {
+    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_REMOVE_FRAME, NIL)
   }
 
   /**
    * Returns the number of frames for the [anim] animation.
    */
-  public fun getFrameCount(anim: StringName): Long {
+  public fun getFrameCount(anim: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the texture of the frame [idx] in the [anim] animation.
    */
-  public fun getFrameTexture(anim: StringName, idx: Long): Texture2D? {
-    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)
+  public fun getFrameTexture(anim: StringName, idx: Int): Texture2D? {
+    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME_TEXTURE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   /**
@@ -179,11 +180,11 @@ public open class SpriteFrames : Resource() {
    *
    * In this example, `playing_speed` refers to either [godot.AnimatedSprite2D.getPlayingSpeed] or [godot.AnimatedSprite3D.getPlayingSpeed].
    */
-  public fun getFrameDuration(anim: StringName, idx: Long): Double {
-    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)
+  public fun getFrameDuration(anim: StringName, idx: Int): Float {
+    TransferContext.writeArguments(STRING_NAME to anim, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME_DURATION,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**

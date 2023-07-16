@@ -22,9 +22,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * А node that dynamically copies or overrides the 3D transform of a bone in its parent [godot.Skeleton3D].
+ * A node that will attach to a bone.
  *
- * This node selects a bone in a [godot.Skeleton3D] and attaches to it. This means that the [godot.BoneAttachment3D] node will either dynamically copy or override the 3D transform of the selected bone.
+ * This node will allow you to select a bone for this node to attach to. The BoneAttachment3D node can copy the transform of the select bone, or can override the transform of the selected bone.
+ *
+ * The BoneAttachment3D node must either be a child of a [godot.Skeleton3D] node or be given an external [godot.Skeleton3D] to use in order to function properly.
  */
 @GodotBaseType
 public open class BoneAttachment3D : Node3D() {
@@ -36,7 +38,7 @@ public open class BoneAttachment3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_BONE_NAME,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -47,15 +49,15 @@ public open class BoneAttachment3D : Node3D() {
   /**
    * The index of the attached bone.
    */
-  public var boneIdx: Long
+  public var boneIdx: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_BONE_IDX,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_BONE_IDX,
           NIL)
     }
@@ -68,7 +70,7 @@ public open class BoneAttachment3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_OVERRIDE_POSE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -84,8 +86,8 @@ public open class BoneAttachment3D : Node3D() {
   /**
    * A function that is called automatically when the [godot.Skeleton3D] the BoneAttachment3D node is using has a bone that has changed its pose. This function is where the BoneAttachment3D node updates its position so it is correctly bound when it is *not* set to override the bone pose.
    */
-  public fun onBonePoseUpdate(boneIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to boneIndex)
+  public fun onBonePoseUpdate(boneIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to boneIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_ON_BONE_POSE_UPDATE, NIL)
   }
@@ -106,7 +108,7 @@ public open class BoneAttachment3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_USE_EXTERNAL_SKELETON, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -125,7 +127,7 @@ public open class BoneAttachment3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_EXTERNAL_SKELETON, NODE_PATH)
-    return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   public companion object

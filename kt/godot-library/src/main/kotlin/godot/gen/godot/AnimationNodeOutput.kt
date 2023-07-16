@@ -12,12 +12,10 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * The animation output node of an [godot.AnimationNodeBlendTree].
+ * Generic output node to be added to [godot.AnimationNodeBlendTree].
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * A node created automatically in an [godot.AnimationNodeBlendTree] that outputs the final animation.
  */
 @GodotBaseType
 public open class AnimationNodeOutput : AnimationNode() {

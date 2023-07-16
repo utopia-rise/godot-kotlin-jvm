@@ -19,19 +19,22 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 2D shape that sweeps a region of space to detect [godot.CollisionObject2D]s.
+ * Node for physics collision sweep and immediate overlap queries. Similar to the [godot.RayCast2D] node.
  *
- * Shape casting allows to detect collision objects by sweeping its [shape] along the cast direction determined by [targetPosition]. This is similar to [godot.RayCast2D], but it allows for sweeping a region of space, rather than just a straight line. [godot.ShapeCast2D] can detect multiple collision objects. It is useful for things like wide laser beams or snapping a simple shape to a floor.
+ * Shape casting allows to detect collision objects by sweeping the [shape] along the cast direction determined by [targetPosition] (useful for things like beam weapons).
  *
- * Immediate collision overlaps can be done with the [targetPosition] set to `Vector2(0, 0)` and by calling [forceShapecastUpdate] within the same physics frame. This helps to overcome some limitations of [godot.Area2D] when used as an instantaneous detection area, as collision information isn't immediately available to it.
+ * Immediate collision overlaps can be done with the [targetPosition] set to `Vector2(0, 0)` and by calling [forceShapecastUpdate] within the same **physics_frame**. This also helps to overcome some limitations of [godot.Area2D] when used as a continuous detection area, often requiring waiting a couple of frames before collision information is available to [godot.Area2D] nodes, and when using the signals creates unnecessary complexity.
  *
- * **Note:** Shape casting is more computationally expensive than ray casting.
+ * The node can detect multiple collision objects, but it's usually used to detect the first collision.
+ *
+ * **Note:** shape casting is more computationally expensive compared to ray casting.
  */
 @GodotBaseType
 public open class ShapeCast2D : Node2D() {
@@ -42,7 +45,7 @@ public open class ShapeCast2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -56,7 +59,7 @@ public open class ShapeCast2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_SHAPE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Shape2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -71,7 +74,7 @@ public open class ShapeCast2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_EXCLUDE_PARENT_BODY, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -87,7 +90,7 @@ public open class ShapeCast2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_TARGET_POSITION,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -98,43 +101,43 @@ public open class ShapeCast2D : Node2D() {
   /**
    * The collision margin for the shape. A larger margin helps detecting collisions more consistently, at the cost of precision.
    */
-  public var margin: Double
+  public var margin: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_MARGIN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_MARGIN, NIL)
     }
 
   /**
    * The number of intersections can be limited with this parameter, to reduce the processing time.
    */
-  public var maxResults: Long
+  public var maxResults: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_MAX_RESULTS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_MAX_RESULTS, NIL)
     }
 
   /**
    * The shape's collision mask. Only objects in at least one collision layer enabled in the mask will be detected.
    */
-  public var collisionMask: Long
+  public var collisionMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_MASK,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_COLLISION_MASK,
           NIL)
     }
@@ -147,7 +150,7 @@ public open class ShapeCast2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDE_WITH_AREAS_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -163,7 +166,7 @@ public open class ShapeCast2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDE_WITH_BODIES_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -182,17 +185,17 @@ public open class ShapeCast2D : Node2D() {
   public fun isColliding(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * The number of collisions detected at the point of impact. Use this to iterate over multiple collisions as provided by [getCollider], [getColliderShape], [getCollisionPoint], and [getCollisionNormal] methods.
    */
-  public fun getCollisionCount(): Long {
+  public fun getCollisionCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -209,29 +212,29 @@ public open class ShapeCast2D : Node2D() {
   /**
    * Returns the collided [godot.Object] of one of the multiple collisions at [index], or `null` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
-  public fun getCollider(index: Long): Object? {
-    TransferContext.writeArguments(LONG to index)
+  public fun getCollider(index: Int): Object? {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLIDER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Object?
+    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
 
   /**
    * Returns the [RID] of the collided object of one of the multiple collisions at [index].
    */
-  public fun getColliderRid(index: Long): RID {
-    TransferContext.writeArguments(LONG to index)
+  public fun getColliderRid(index: Int): RID {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLIDER_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
    * Returns the shape ID of the colliding shape of one of the multiple collisions at [index], or `0` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
-  public fun getColliderShape(index: Long): Long {
-    TransferContext.writeArguments(LONG to index)
+  public fun getColliderShape(index: Int): Int {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLIDER_SHAPE,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -239,41 +242,41 @@ public open class ShapeCast2D : Node2D() {
    *
    * **Note:** this point is in the **global** coordinate system.
    */
-  public fun getCollisionPoint(index: Long): Vector2 {
-    TransferContext.writeArguments(LONG to index)
+  public fun getCollisionPoint(index: Int): Vector2 {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_POINT,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Returns the normal of one of the multiple collisions at [index] of the intersecting object.
    */
-  public fun getCollisionNormal(index: Long): Vector2 {
-    TransferContext.writeArguments(LONG to index)
+  public fun getCollisionNormal(index: Int): Vector2 {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_NORMAL,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * The fraction from the [godot.ShapeCast2D]'s origin to its [targetPosition] (between 0 and 1) of how far the shape can move without triggering a collision.
    */
-  public fun getClosestCollisionSafeFraction(): Double {
+  public fun getClosestCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_CLOSEST_COLLISION_SAFE_FRACTION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * The fraction from the [godot.ShapeCast2D]'s origin to its [targetPosition] (between 0 and 1) of how far the shape must move to trigger a collision.
    */
-  public fun getClosestCollisionUnsafeFraction(): Double {
+  public fun getClosestCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_CLOSEST_COLLISION_UNSAFE_FRACTION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -320,8 +323,8 @@ public open class ShapeCast2D : Node2D() {
   /**
    * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
-  public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
+  public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_COLLISION_MASK_VALUE, NIL)
   }
@@ -329,11 +332,11 @@ public open class ShapeCast2D : Node2D() {
   /**
    * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
-  public fun getCollisionMaskValue(layerNumber: Long): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber)
+  public fun getCollisionMaskValue(layerNumber: Int): Boolean {
+    TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_MASK_VALUE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

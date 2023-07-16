@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
@@ -31,15 +32,15 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   /**
    * Distance from camera of object that will be in focus, measured in meters. Internally this will be clamped to be at least 1 millimeter larger than [frustumFocalLength].
    */
-  public var frustumFocusDistance: Double
+  public var frustumFocusDistance: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_GET_FOCUS_DISTANCE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_SET_FOCUS_DISTANCE, NIL)
     }
@@ -47,15 +48,15 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   /**
    * Distance between camera lens and camera aperture, measured in millimeters. Controls field of view and depth of field. A larger focal length will result in a smaller field of view and a narrower depth of field meaning fewer objects will be in focus. A smaller focal length will result in a wider field of view and a larger depth of field meaning more objects will be in focus. When attached to a [godot.Camera3D] as its [godot.Camera3D.attributes], it will override the [godot.Camera3D.fov] property and the [godot.Camera3D.keepAspect] property.
    */
-  public var frustumFocalLength: Double
+  public var frustumFocalLength: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_GET_FOCAL_LENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_SET_FOCAL_LENGTH, NIL)
     }
@@ -63,15 +64,15 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   /**
    * Override value for [godot.Camera3D.near]. Used internally when calculating depth of field. When attached to a [godot.Camera3D] as its [godot.Camera3D.attributes], it will override the [godot.Camera3D.near] property.
    */
-  public var frustumNear: Double
+  public var frustumNear: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_GET_NEAR,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_SET_NEAR,
           NIL)
     }
@@ -79,15 +80,15 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   /**
    * Override value for [godot.Camera3D.far]. Used internally when calculating depth of field. When attached to a [godot.Camera3D] as its [godot.Camera3D.attributes], it will override the [godot.Camera3D.far] property.
    */
-  public var frustumFar: Double
+  public var frustumFar: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_GET_FAR,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_SET_FAR,
           NIL)
     }
@@ -97,15 +98,15 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    *
    * Only available when [godot.ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled.
    */
-  public var exposureAperture: Double
+  public var exposureAperture: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_GET_APERTURE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_SET_APERTURE, NIL)
     }
@@ -115,15 +116,15 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    *
    * Only available when [godot.ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled.
    */
-  public var exposureShutterSpeed: Double
+  public var exposureShutterSpeed: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_GET_SHUTTER_SPEED, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_SET_SHUTTER_SPEED, NIL)
     }
@@ -131,16 +132,16 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   /**
    * The minimum luminance luminance (in EV100) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing above a certain brightness, resulting in a cut off point where the scene will remain dark.
    */
-  public var autoExposureMinExposureValue: Double
+  public var autoExposureMinExposureValue: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_GET_AUTO_EXPOSURE_MIN_EXPOSURE_VALUE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_SET_AUTO_EXPOSURE_MIN_EXPOSURE_VALUE,
           NIL)
@@ -149,16 +150,16 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   /**
    * The maximum luminance (in EV100) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing below a certain brightness, resulting in a cut off point where the scene will remain bright.
    */
-  public var autoExposureMaxExposureValue: Double
+  public var autoExposureMaxExposureValue: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_GET_AUTO_EXPOSURE_MAX_EXPOSURE_VALUE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_SET_AUTO_EXPOSURE_MAX_EXPOSURE_VALUE,
           NIL)
@@ -172,11 +173,11 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   /**
    * Returns the vertical field of view that corresponds to the [frustumFocalLength]. This value is calculated internally whenever [frustumFocalLength] is changed.
    */
-  public fun getFov(): Double {
+  public fun getFov(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTESPHYSICAL_GET_FOV,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

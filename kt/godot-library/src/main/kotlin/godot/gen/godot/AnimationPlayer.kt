@@ -15,7 +15,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -31,6 +30,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -39,18 +39,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node used for animation playback.
+ * Player of [godot.Animation] resources.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * An animation player is used for general-purpose playback of animations. It contains a dictionary of [godot.AnimationLibrary] resources and custom blend times between animation transitions.
+ * An animation player is used for general-purpose playback of [godot.Animation] resources. It contains a dictionary of [godot.AnimationLibrary] resources and custom blend times between animation transitions.
  *
  * Some methods and properties use a single key to reference an animation directly. These keys are formatted as the key for the library, followed by a forward slash, then the key for the animation within the library, for example `"movement/run"`. If the library's key is an empty string (known as the default library), the forward slash is omitted, being the same key used by the library.
  *
- * [godot.AnimationPlayer] is better-suited than [godot.Tween] for more complex animations, for example ones with non-trivial timings. It can also be used over [godot.Tween] if the animation track editor is more convenient than doing it in code.
+ * [godot.AnimationPlayer] is more suited than [godot.Tween] for animations where you know the final values in advance. For example, fading a screen in and out is more easily done with an [godot.AnimationPlayer] node thanks to the animation tools provided by the editor. That particular example can also be implemented with a [godot.Tween], but it requires doing everything by code.
  *
- * Updating the target properties of animations occurs at the process frame.
+ * Updating the target properties of animations occurs at process time.
  */
 @GodotBaseType
 public open class AnimationPlayer : Node() {
@@ -96,7 +96,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ROOT,
           NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -113,7 +113,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_CURRENT_ANIMATION, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -122,14 +122,14 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * If playing, the current animation's key, otherwise, the animation last played. When set, this changes the animation, but will not play it unless already playing. See also [currentAnimation].
+   * If playing, the the current animation's key, otherwise, the animation last played. When set, this changes the animation, but will not play it unless already playing. See also [currentAnimation].
    */
   public var assignedAnimation: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ASSIGNED_ANIMATION, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -145,7 +145,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_AUTOPLAY,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -162,7 +162,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_IS_RESET_ON_SAVE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -178,7 +178,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_CURRENT_ANIMATION_LENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
 
   /**
@@ -189,7 +189,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_CURRENT_ANIMATION_POSITION, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
 
   /**
@@ -200,7 +200,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_PROCESS_CALLBACK, LONG)
-      return AnimationPlayer.AnimationProcessCallback.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return AnimationPlayer.AnimationProcessCallback.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -216,7 +216,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_DEFAULT_BLEND_TIME, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -231,7 +231,7 @@ public open class AnimationPlayer : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_IS_ACTIVE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -243,15 +243,15 @@ public open class AnimationPlayer : Node() {
    *
    * If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.
    */
-  public var speedScale: Double
+  public var speedScale: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_SPEED_SCALE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_SPEED_SCALE,
           NIL)
     }
@@ -264,7 +264,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_METHOD_CALL_MODE, LONG)
-      return AnimationPlayer.AnimationMethodCallMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return AnimationPlayer.AnimationMethodCallMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -277,15 +277,15 @@ public open class AnimationPlayer : Node() {
    *
    * For example, if this value is `32` and the animation has two audio tracks, the two [godot.AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.
    */
-  public var audioMaxPolyphony: Long
+  public var audioMaxPolyphony: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_AUDIO_MAX_POLYPHONY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_AUDIO_MAX_POLYPHONY, NIL)
     }
@@ -300,7 +300,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_IS_MOVIE_QUIT_ON_FINISH_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -318,10 +318,10 @@ public open class AnimationPlayer : Node() {
    */
   public open fun _postProcessKeyValue(
     animation: Animation,
-    track: Long,
+    track: Int,
     `value`: Any,
     _object: Object,
-    objectIdx: Long,
+    objectIdx: Int,
   ): Any? {
     throw NotImplementedError("_post_process_key_value is not implemented for AnimationPlayer")
   }
@@ -333,7 +333,7 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_ADD_ANIMATION_LIBRARY, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -361,19 +361,17 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_HAS_ANIMATION_LIBRARY, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the first [godot.AnimationLibrary] with key [name] or `null` if not found.
-   *
-   * To get the [godot.AnimationPlayer]'s global animation library, use `get_animation_library("")`.
    */
   public fun getAnimationLibrary(name: StringName): AnimationLibrary? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ANIMATION_LIBRARY, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as AnimationLibrary?
+    return (TransferContext.readReturnValue(OBJECT, true) as AnimationLibrary?)
   }
 
   /**
@@ -383,7 +381,7 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ANIMATION_LIBRARY_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
   }
 
   /**
@@ -392,7 +390,7 @@ public open class AnimationPlayer : Node() {
   public fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_HAS_ANIMATION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -402,7 +400,7 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ANIMATION,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Animation?
+    return (TransferContext.readReturnValue(OBJECT, true) as Animation?)
   }
 
   /**
@@ -412,7 +410,7 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ANIMATION_LIST,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -431,7 +429,7 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments(STRING_NAME to animFrom)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_ANIMATION_GET_NEXT,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
@@ -453,13 +451,11 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_BLEND_TIME,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
-   * Plays the animation with key [name]. Custom blend times and speed can be set.
-   *
-   * The [fromEnd] option only affects when switching to a new animation track, or if the same track but at the start or end. It does not affect resuming playback that was paused in the middle of an animation. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards (which is equivalent to calling [playBackwards]).
+   * Plays the animation with key [name]. Custom blend times and speed can be set. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards (which is equivalent to calling [playBackwards]).
    *
    * The [godot.AnimationPlayer] keeps track of its current or last played animation with [assignedAnimation]. If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused.
    *
@@ -468,10 +464,10 @@ public open class AnimationPlayer : Node() {
   public fun play(
     name: StringName = StringName(""),
     customBlend: Double = -1.0,
-    customSpeed: Double = 1.0,
+    customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customBlend, DOUBLE to customSpeed, BOOL to fromEnd)
+    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customBlend, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_PLAY, NIL)
   }
 
@@ -513,7 +509,7 @@ public open class AnimationPlayer : Node() {
   public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_IS_PLAYING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -533,7 +529,7 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_QUEUE,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -549,11 +545,11 @@ public open class AnimationPlayer : Node() {
    *
    * Returns a negative value if the current animation is playing backwards.
    */
-  public fun getPlayingSpeed(): Double {
+  public fun getPlayingSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_PLAYING_SPEED,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -563,7 +559,7 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments(OBJECT to animation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_FIND_ANIMATION,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
@@ -573,7 +569,7 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments(OBJECT to animation)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_FIND_ANIMATION_LIBRARY, STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
@@ -606,11 +602,11 @@ public open class AnimationPlayer : Node() {
     id: Long,
   ) {
     /**
-     * Process animation during physics frames (see [godot.Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). This is especially useful when animating physics bodies.
+     * Process animation during the physics process. This is especially useful when animating physics bodies.
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * Process animation during process frames (see [godot.Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * Process animation during the idle process.
      */
     ANIMATION_PROCESS_IDLE(1),
     /**

@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
@@ -37,7 +36,7 @@ public open class GDExtension : Resource() {
   public fun openLibrary(path: String, entrySymbol: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to entrySymbol)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_OPEN_LIBRARY, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -54,7 +53,7 @@ public open class GDExtension : Resource() {
   public fun isLibraryOpen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_IS_LIBRARY_OPEN, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -64,7 +63,7 @@ public open class GDExtension : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GDEXTENSION_GET_MINIMUM_LIBRARY_INITIALIZATION_LEVEL, LONG)
-    return GDExtension.InitializationLevel.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GDExtension.InitializationLevel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**

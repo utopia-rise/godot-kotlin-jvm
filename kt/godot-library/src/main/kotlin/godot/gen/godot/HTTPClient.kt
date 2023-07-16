@@ -13,7 +13,6 @@ import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -43,7 +42,7 @@ import kotlin.Unit
  *
  * A [godot.HTTPClient] should be reused between multiple requests or to connect to different hosts instead of creating one client per request. Supports Transport Layer Security (TLS), including server certificate verification. HTTP status codes in the 2xx range indicate success, 3xx redirection (i.e. "try again, but over here"), 4xx something was wrong with the request, and 5xx something went wrong on the server's side.
  *
- * For more information on HTTP, see [godot.MDN's documentation on HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP) (or read [godot.RFC 2616](https://tools.ietf.org/html/rfc2616) to get it straight from the source).
+ * For more information on HTTP, see https://developer.mozilla.org/en-US/docs/Web/HTTP (or read RFC 2616 to get it straight from the source: https://tools.ietf.org/html/rfc2616).
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  *
@@ -65,7 +64,7 @@ public open class HTTPClient : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_IS_BLOCKING_MODE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -79,7 +78,7 @@ public open class HTTPClient : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_CONNECTION, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as StreamPeer?
+      return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -89,15 +88,15 @@ public open class HTTPClient : RefCounted() {
   /**
    * The size of the buffer used and maximum bytes to read per iteration. See [readResponseBodyChunk].
    */
-  public var readChunkSize: Long
+  public var readChunkSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_READ_CHUNK_SIZE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_READ_CHUNK_SIZE,
           NIL)
     }
@@ -114,12 +113,12 @@ public open class HTTPClient : RefCounted() {
    */
   public fun connectToHost(
     host: String,
-    port: Long = -1,
+    port: Int = -1,
     tlsOptions: TLSOptions? = null,
   ): GodotError {
-    TransferContext.writeArguments(STRING to host, LONG to port, OBJECT to tlsOptions)
+    TransferContext.writeArguments(STRING to host, LONG to port.toLong(), OBJECT to tlsOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CONNECT_TO_HOST, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -139,7 +138,7 @@ public open class HTTPClient : RefCounted() {
   ): GodotError {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, PACKED_BYTE_ARRAY to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST_RAW, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -189,7 +188,7 @@ public open class HTTPClient : RefCounted() {
   ): GodotError {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, STRING to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -206,7 +205,7 @@ public open class HTTPClient : RefCounted() {
   public fun hasResponse(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_HAS_RESPONSE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -216,16 +215,16 @@ public open class HTTPClient : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_IS_RESPONSE_CHUNKED,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the response's HTTP status code.
    */
-  public fun getResponseCode(): Long {
+  public fun getResponseCode(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_CODE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -235,7 +234,7 @@ public open class HTTPClient : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_HEADERS,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -254,7 +253,7 @@ public open class HTTPClient : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_HEADERS_AS_DICTIONARY, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -266,7 +265,7 @@ public open class HTTPClient : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_BODY_LENGTH,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -276,7 +275,7 @@ public open class HTTPClient : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_READ_RESPONSE_BODY_CHUNK,
         PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
@@ -285,7 +284,7 @@ public open class HTTPClient : RefCounted() {
   public fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_STATUS, LONG)
-    return HTTPClient.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return HTTPClient.Status.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -294,7 +293,7 @@ public open class HTTPClient : RefCounted() {
   public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_POLL, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -302,8 +301,8 @@ public open class HTTPClient : RefCounted() {
    *
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
-  public fun setHttpProxy(host: String, port: Long): Unit {
-    TransferContext.writeArguments(STRING to host, LONG to port)
+  public fun setHttpProxy(host: String, port: Int): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTP_PROXY, NIL)
   }
 
@@ -312,8 +311,8 @@ public open class HTTPClient : RefCounted() {
    *
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
-  public fun setHttpsProxy(host: String, port: Long): Unit {
-    TransferContext.writeArguments(STRING to host, LONG to port)
+  public fun setHttpsProxy(host: String, port: Int): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTPS_PROXY, NIL)
   }
 
@@ -384,7 +383,7 @@ public open class HTTPClient : RefCounted() {
     TransferContext.writeArguments(DICTIONARY to fields)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_QUERY_STRING_FROM_DICT,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public enum class Method(
@@ -573,11 +572,11 @@ public open class HTTPClient : RefCounted() {
      */
     RESPONSE_NOT_MODIFIED(304),
     /**
-     * *Deprecated.* HTTP status code `305 Use Proxy`.
+     * HTTP status code `305 Use Proxy`. *Deprecated. Do not use.*
      */
     RESPONSE_USE_PROXY(305),
     /**
-     * *Deprecated.* HTTP status code `306 Switch Proxy`.
+     * HTTP status code `306 Switch Proxy`. *Deprecated. Do not use.*
      */
     RESPONSE_SWITCH_PROXY(306),
     /**

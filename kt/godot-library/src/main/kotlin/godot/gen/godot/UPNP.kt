@@ -27,7 +27,7 @@ public open class UPNP : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DISCOVER_MULTICAST_IF,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -35,15 +35,15 @@ public open class UPNP : RefCounted() {
           NIL)
     }
 
-  public var discoverLocalPort: Long
+  public var discoverLocalPort: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DISCOVER_LOCAL_PORT,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_LOCAL_PORT, NIL)
     }
 
@@ -51,7 +51,7 @@ public open class UPNP : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_IS_DISCOVER_IPV6, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -63,16 +63,16 @@ public open class UPNP : RefCounted() {
     return true
   }
 
-  public fun getDeviceCount(): Long {
+  public fun getDeviceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DEVICE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun getDevice(index: Long): UPNPDevice? {
-    TransferContext.writeArguments(LONG to index)
+  public fun getDevice(index: Int): UPNPDevice? {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DEVICE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?
+    return (TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?)
   }
 
   public fun addDevice(device: UPNPDevice): Unit {
@@ -80,13 +80,13 @@ public open class UPNP : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_ADD_DEVICE, NIL)
   }
 
-  public fun setDevice(index: Long, device: UPNPDevice): Unit {
-    TransferContext.writeArguments(LONG to index, OBJECT to device)
+  public fun setDevice(index: Int, device: UPNPDevice): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), OBJECT to device)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DEVICE, NIL)
   }
 
-  public fun removeDevice(index: Long): Unit {
-    TransferContext.writeArguments(LONG to index)
+  public fun removeDevice(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_REMOVE_DEVICE, NIL)
   }
 
@@ -98,41 +98,41 @@ public open class UPNP : RefCounted() {
   public fun getGateway(): UPNPDevice? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_GATEWAY, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?
+    return (TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?)
   }
 
   public fun discover(
-    timeout: Long = 2000,
-    ttl: Long = 2,
+    timeout: Int = 2000,
+    ttl: Int = 2,
     deviceFilter: String = "InternetGatewayDevice",
-  ): Long {
-    TransferContext.writeArguments(LONG to timeout, LONG to ttl, STRING to deviceFilter)
+  ): Int {
+    TransferContext.writeArguments(LONG to timeout.toLong(), LONG to ttl.toLong(), STRING to deviceFilter)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_DISCOVER, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun queryExternalAddress(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_QUERY_EXTERNAL_ADDRESS, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public fun addPortMapping(
-    port: Long,
-    portInternal: Long = 0,
+    port: Int,
+    portInternal: Int = 0,
     desc: String = "",
     proto: String = "UDP",
-    duration: Long = 0,
-  ): Long {
-    TransferContext.writeArguments(LONG to port, LONG to portInternal, STRING to desc, STRING to proto, LONG to duration)
+    duration: Int = 0,
+  ): Int {
+    TransferContext.writeArguments(LONG to port.toLong(), LONG to portInternal.toLong(), STRING to desc, STRING to proto, LONG to duration.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_ADD_PORT_MAPPING, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun deletePortMapping(port: Long, proto: String = "UDP"): Long {
-    TransferContext.writeArguments(LONG to port, STRING to proto)
+  public fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
+    TransferContext.writeArguments(LONG to port.toLong(), STRING to proto)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_DELETE_PORT_MAPPING, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public enum class UPNPResult(

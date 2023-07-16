@@ -20,6 +20,7 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -27,9 +28,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A variation of a font with additional settings.
+ * Variation of the [godot.Font].
  *
- * Provides OpenType variations, simulated bold / slant, and additional font settings like OpenType features and extra spacing.
+ * OpenType variations, simulated bold / slant, and additional font settings like OpenType features and extra spacing.
  *
  * To use simulated bold font variant:
  *
@@ -64,15 +65,6 @@ import kotlin.jvm.JvmName
  * [/csharp]
  *
  * [/codeblocks]
- *
- * To set the coordinate of multiple variation axes:
- *
- * ```
- * 		var fv = FontVariation.new();
- * 		var ts = TextServerManager.get_primary_interface()
- * 		fv.base_font = load("res://BarlowCondensed-Regular.ttf")
- * 		fv.variation_opentype = { ts.name_to_tag("wght"): 900, ts.name_to_tag("custom_hght"): 900 }
- * 		```
  */
 @GodotBaseType
 public open class FontVariation : Font() {
@@ -84,7 +76,7 @@ public open class FontVariation : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_GET_BASE_FONT,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Font?
+      return (TransferContext.readReturnValue(OBJECT, true) as Font?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -92,7 +84,7 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * Array of fallback [godot.Font]s to use as a substitute if a glyph is not found in this [godot.FontVariation]. If not set, [baseFont]'s fallbacks are used instead.
+   * Array of fallback [godot.Font]s. If not set [baseFont] fallback are ussed.
    */
   public var fallbacks: VariantArray<Font>
     @JvmName("getFallbacks_prop")
@@ -106,17 +98,13 @@ public open class FontVariation : Font() {
 
   /**
    * Font OpenType variation coordinates. More info: [godot.OpenType variation tags](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg).
-   *
-   * **Note:** This [godot.core.Dictionary] uses OpenType tags as keys. Variation axes can be identified both by tags(`int`) and names (`string`). Some axes might be accessible by multiple names. For example, `wght` refers to the same axis as `weight`. Tags on the other hand are unique. To convert between names and tags, use [godot.TextServer.nameToTag] and [godot.TextServer.tagToName].
-   *
-   * **Note:** To get available variation axes of a font, use [godot.Font.getSupportedVariationList].
    */
   public var variationOpentype: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FONTVARIATION_GET_VARIATION_OPENTYPE, DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
@@ -127,15 +115,15 @@ public open class FontVariation : Font() {
   /**
    * Active face index in the TrueType / OpenType collection file.
    */
-  public var variationFaceIndex: Long
+  public var variationFaceIndex: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FONTVARIATION_GET_VARIATION_FACE_INDEX, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_VARIATION_FACE_INDEX, NIL)
     }
@@ -145,15 +133,15 @@ public open class FontVariation : Font() {
    *
    * **Note:** Emboldened fonts might have self-intersecting outlines, which will prevent MSDF fonts and [godot.TextMesh] from working correctly.
    */
-  public var variationEmbolden: Double
+  public var variationEmbolden: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FONTVARIATION_GET_VARIATION_EMBOLDEN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_VARIATION_EMBOLDEN, NIL)
     }
@@ -168,7 +156,7 @@ public open class FontVariation : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FONTVARIATION_GET_VARIATION_TRANSFORM, TRANSFORM2D)
-      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
@@ -197,8 +185,8 @@ public open class FontVariation : Font() {
   /**
    * Sets the spacing for `type` (see [enum TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
    */
-  public fun setSpacing(spacing: TextServer.SpacingType, `value`: Long): Unit {
-    TransferContext.writeArguments(LONG to spacing.id, LONG to value)
+  public fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
+    TransferContext.writeArguments(LONG to spacing.id, LONG to value.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
   }
 

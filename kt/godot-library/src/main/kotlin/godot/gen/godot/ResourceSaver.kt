@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -25,11 +24,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A singleton for saving [godot.Resource]s to the filesystem.
+ * Singleton for saving Godot-specific resource types.
  *
- * A singleton for saving resource types to the filesystem.
+ * Singleton for saving Godot-specific resource types to the filesystem.
  *
- * It uses the many [godot.ResourceFormatSaver] classes registered in the engine (either built-in or from a plugin) to save resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res` or `.scn`).
+ * It uses the many [godot.ResourceFormatSaver] classes registered in the engine (either built-in or from a plugin) to save engine-specific resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res` or `.scn`).
  */
 @GodotBaseType
 public object ResourceSaver : Object() {
@@ -52,7 +51,7 @@ public object ResourceSaver : Object() {
   ): GodotError {
     TransferContext.writeArguments(OBJECT to resource, STRING to path, OBJECT to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_SAVE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -62,7 +61,7 @@ public object ResourceSaver : Object() {
     TransferContext.writeArguments(OBJECT to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_GET_RECOGNIZED_EXTENSIONS, PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**

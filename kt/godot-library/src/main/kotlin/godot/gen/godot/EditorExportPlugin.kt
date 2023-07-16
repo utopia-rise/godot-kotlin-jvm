@@ -62,7 +62,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
     features: PackedStringArray,
     isDebug: Boolean,
     path: String,
-    flags: Long,
+    flags: Int,
   ): Unit {
   }
 
@@ -131,25 +131,11 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   public open fun _endCustomizeResources(): Unit {
   }
 
-  /**
-   * Return a list of export options that can be configured for this export plugin.
-   *
-   * Each element in the return value is a [godot.core.Dictionary] with the following keys:
-   *
-   * - `option`: A dictionary with the structure documented by [godot.Object.getPropertyList], but all keys are optional.
-   *
-   * - `default_value`: The default value for this option.
-   *
-   * - `update_visibility`: An optional boolean value. If set to `true`, the preset will emit [godot.Object.propertyListChanged] when the option is changed.
-   */
   public open fun _getExportOptions(platform: EditorExportPlatform):
       VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_export_options is not implemented for EditorExportPlugin")
   }
 
-  /**
-   * Return `true`, if the result of [_getExportOptions] has changed and the export options of preset corresponding to [platform] should be updated.
-   */
   public open fun _shouldUpdateExportOptions(platform: EditorExportPlatform): Boolean {
     throw NotImplementedError("_should_update_export_options is not implemented for EditorExportPlugin")
   }
@@ -286,13 +272,10 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_SKIP, NIL)
   }
 
-  /**
-   * Returns the current value of an export option supplied by [_getExportOptions].
-   */
   public fun getOption(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_GET_OPTION, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public companion object

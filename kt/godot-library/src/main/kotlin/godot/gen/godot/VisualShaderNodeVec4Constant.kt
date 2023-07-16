@@ -30,7 +30,7 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC4CONSTANT_GET_CONSTANT, QUATERNION)
-      return TransferContext.readReturnValue(QUATERNION, false) as Quaternion
+      return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
     }
     set(`value`) {
       TransferContext.writeArguments(QUATERNION to value)

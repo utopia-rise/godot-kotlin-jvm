@@ -16,6 +16,7 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -29,17 +30,17 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
-   * The index of the [godot.Bone2D] node that the modification will operate on.
+   * The index of the [godot.Bone2D] node that the modification will oeprate on.
    */
-  public var boneIndex: Long
+  public var boneIndex: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_BONE_INDEX, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_BONE_INDEX, NIL)
     }
@@ -52,7 +53,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_BONE2D_NODE, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -68,7 +69,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_TARGET_NODE, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -84,8 +85,8 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Sets the amount of additional rotation that is to be applied after executing the modification. This allows for offsetting the results by the inputted rotation amount.
    */
-  public fun setAdditionalRotation(rotation: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to rotation)
+  public fun setAdditionalRotation(rotation: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to rotation.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_ADDITIONAL_ROTATION, NIL)
   }
@@ -93,11 +94,11 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Returns the amount of additional rotation that is applied after the LookAt modification executes.
    */
-  public fun getAdditionalRotation(): Double {
+  public fun getAdditionalRotation(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_ADDITIONAL_ROTATION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -116,14 +117,14 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_ENABLE_CONSTRAINT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Sets the constraint's minimum allowed angle.
    */
-  public fun setConstraintAngleMin(angleMin: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to angleMin)
+  public fun setConstraintAngleMin(angleMin: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angleMin.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_CONSTRAINT_ANGLE_MIN, NIL)
   }
@@ -131,18 +132,18 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Returns the constraint's minimum allowed angle.
    */
-  public fun getConstraintAngleMin(): Double {
+  public fun getConstraintAngleMin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_CONSTRAINT_ANGLE_MIN, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets the constraint's maximum allowed angle.
    */
-  public fun setConstraintAngleMax(angleMax: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to angleMax)
+  public fun setConstraintAngleMax(angleMax: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angleMax.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_CONSTRAINT_ANGLE_MAX, NIL)
   }
@@ -150,11 +151,11 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Returns the constraint's maximum allowed angle.
    */
-  public fun getConstraintAngleMax(): Double {
+  public fun getConstraintAngleMax(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_CONSTRAINT_ANGLE_MAX, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -175,7 +176,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_CONSTRAINT_ANGLE_INVERT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

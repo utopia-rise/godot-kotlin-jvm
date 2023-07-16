@@ -14,7 +14,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -35,7 +35,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   /**
    * Play an [godot.AudioStream] at a given offset, volume and pitch scale. Playback starts immediately.
    *
-   * The return value is a unique integer ID that is associated to this playback stream and which can be used to control it.
+   * The return value is an unique integer ID that is associated to this playback stream and which can be used to control it.
    *
    * This ID becomes invalid when the stream ends (if it does not loop), when the [godot.AudioStreamPlaybackPolyphonic] is stopped, or when [stopStream] is called.
    *
@@ -43,21 +43,21 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    */
   public fun playStream(
     stream: AudioStream,
-    fromOffset: Double = 0.0,
-    volumeDb: Double = 0.0,
-    pitchScale: Double = 1.0,
+    fromOffset: Float = 0.0f,
+    volumeDb: Float = 0.0f,
+    pitchScale: Float = 1.0f,
   ): Long {
-    TransferContext.writeArguments(OBJECT to stream, DOUBLE to fromOffset, DOUBLE to volumeDb, DOUBLE to pitchScale)
+    TransferContext.writeArguments(OBJECT to stream, DOUBLE to fromOffset.toDouble(), DOUBLE to volumeDb.toDouble(), DOUBLE to pitchScale.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYBACKPOLYPHONIC_PLAY_STREAM, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Change the stream volume (in db). The [stream] argument is an integer ID returned by [playStream].
    */
-  public fun setStreamVolume(stream: Long, volumeDb: Double): Unit {
-    TransferContext.writeArguments(LONG to stream, DOUBLE to volumeDb)
+  public fun setStreamVolume(stream: Long, volumeDb: Float): Unit {
+    TransferContext.writeArguments(LONG to stream, DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYBACKPOLYPHONIC_SET_STREAM_VOLUME, NIL)
   }
@@ -65,8 +65,8 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   /**
    * Change the stream pitch scale. The [stream] argument is an integer ID returned by [playStream].
    */
-  public fun setStreamPitchScale(stream: Long, pitchScale: Double): Unit {
-    TransferContext.writeArguments(LONG to stream, DOUBLE to pitchScale)
+  public fun setStreamPitchScale(stream: Long, pitchScale: Float): Unit {
+    TransferContext.writeArguments(LONG to stream, DOUBLE to pitchScale.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYBACKPOLYPHONIC_SET_STREAM_PITCH_SCALE, NIL)
   }
@@ -78,7 +78,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
     TransferContext.writeArguments(LONG to stream)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYBACKPOLYPHONIC_IS_STREAM_PLAYING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

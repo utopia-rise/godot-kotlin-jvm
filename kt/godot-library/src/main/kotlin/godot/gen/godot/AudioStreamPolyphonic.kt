@@ -27,15 +27,15 @@ public open class AudioStreamPolyphonic : AudioStream() {
   /**
    * Maximum amount of simultaneous streams that can be played.
    */
-  public var polyphony: Long
+  public var polyphony: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPOLYPHONIC_GET_POLYPHONY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPOLYPHONIC_SET_POLYPHONY, NIL)
     }

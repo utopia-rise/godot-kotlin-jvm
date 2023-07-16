@@ -14,7 +14,6 @@ import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -184,7 +183,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [godot.MultiplayerAPI.getUniqueId].
    */
-  public open fun _getUniqueId(): Long {
+  public open fun _getUniqueId(): Int {
     throw NotImplementedError("_get_unique_id is not implemented for MultiplayerAPIExtension")
   }
 
@@ -199,7 +198,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
    * Callback for [godot.MultiplayerAPI.rpc].
    */
   public open fun _rpc(
-    peer: Long,
+    peer: Int,
     _object: Object,
     method: StringName,
     args: VariantArray<Any?>,
@@ -210,7 +209,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [godot.MultiplayerAPI.getRemoteSenderId].
    */
-  public open fun _getRemoteSenderId(): Long {
+  public open fun _getRemoteSenderId(): Int {
     throw NotImplementedError("_get_remote_sender_id is not implemented for MultiplayerAPIExtension")
   }
 

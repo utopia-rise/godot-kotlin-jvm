@@ -29,7 +29,7 @@ public open class VisualShaderNodeCurveXYZTexture : VisualShaderNodeResizableBas
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECURVEXYZTEXTURE_GET_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as CurveXYZTexture?
+      return (TransferContext.readReturnValue(OBJECT, true) as CurveXYZTexture?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

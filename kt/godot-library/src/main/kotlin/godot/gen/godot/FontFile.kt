@@ -19,7 +19,6 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -37,6 +36,7 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -45,7 +45,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Holds font source data and prerendered glyph cache, imported from a dynamic or a bitmap font.
+ * Font source data and prerendered glyph cache, imported from dynamic or bitmap font.
  *
  * [godot.FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as well as a cache of rasterized glyphs, and a set of fallback [godot.Font]s to use.
  *
@@ -63,9 +63,9 @@ import kotlin.jvm.JvmName
  *
  * **Note:** A character is a symbol that represents an item (letter, digit etc.) in an abstract way.
  *
- * **Note:** A glyph is a bitmap or a shape used to draw one or more characters in a context-dependent manner. Glyph indices are bound to the specific font data source.
+ * **Note:** A glyph is a bitmap or shape used to draw a one or more characters in a context-dependent manner. Glyph indices are bound to the specific font data source.
  *
- * **Note:** If none of the font data sources contain glyphs for a character used in a string, the character in question will be replaced with a box displaying its hexadecimal code.
+ * **Note:** If a none of the font data sources contain glyphs for a character used in a string, the character in question will be replaced with a box displaying its hexadecimal code.
  *
  * [codeblocks]
  *
@@ -101,7 +101,7 @@ public open class FontFile : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_DATA,
           PACKED_BYTE_ARRAY)
-      return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
@@ -116,7 +116,7 @@ public open class FontFile : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_GENERATE_MIPMAPS,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -131,7 +131,7 @@ public open class FontFile : Font() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_ANTIALIASING, LONG)
-      return TextServer.FontAntialiasing.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.FontAntialiasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -177,24 +177,24 @@ public open class FontFile : Font() {
   /**
    * Weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
    */
-  public var fontWeight: Long
+  public var fontWeight: Int
     @JvmName("getFontWeight_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontWeight()
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FONT_WEIGHT, NIL)
     }
 
   /**
    * Font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
    */
-  public var fontStretch: Long
+  public var fontStretch: Int
     @JvmName("getFontStretch_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontStretch()
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FONT_STRETCH, NIL)
     }
 
@@ -206,7 +206,7 @@ public open class FontFile : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_SUBPIXEL_POSITIONING,
           LONG)
-      return TextServer.SubpixelPositioning.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.SubpixelPositioning.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -226,7 +226,7 @@ public open class FontFile : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FONTFILE_IS_MULTICHANNEL_SIGNED_DISTANCE_FIELD, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -237,15 +237,15 @@ public open class FontFile : Font() {
   /**
    * The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to look correct.
    */
-  public var msdfPixelRange: Long
+  public var msdfPixelRange: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_MSDF_PIXEL_RANGE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_MSDF_PIXEL_RANGE,
           NIL)
     }
@@ -253,14 +253,14 @@ public open class FontFile : Font() {
   /**
    * Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering.
    */
-  public var msdfSize: Long
+  public var msdfSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_MSDF_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_MSDF_SIZE, NIL)
     }
 
@@ -272,7 +272,7 @@ public open class FontFile : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_IS_ALLOW_SYSTEM_FALLBACK,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -288,7 +288,7 @@ public open class FontFile : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_IS_FORCE_AUTOHINTER,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -303,7 +303,7 @@ public open class FontFile : Font() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_HINTING, LONG)
-      return TextServer.Hinting.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.Hinting.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -313,28 +313,28 @@ public open class FontFile : Font() {
   /**
    * Font oversampling factor. If set to `0.0`, the global oversampling factor is used instead. Used by dynamic fonts only (MSDF fonts ignore oversampling).
    */
-  public var oversampling: Double
+  public var oversampling: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_OVERSAMPLING, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_OVERSAMPLING, NIL)
     }
 
   /**
    * Font size, used only for the bitmap fonts.
    */
-  public var fixedSize: Long
+  public var fixedSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_FIXED_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FIXED_SIZE, NIL)
     }
 
@@ -346,7 +346,7 @@ public open class FontFile : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_OPENTYPE_FEATURE_OVERRIDES, DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
@@ -380,7 +380,7 @@ public open class FontFile : Font() {
   public fun loadBitmapFont(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_LOAD_BITMAP_FONT, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -391,16 +391,16 @@ public open class FontFile : Font() {
   public fun loadDynamicFont(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_LOAD_DYNAMIC_FONT, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Returns number of the font cache entries.
    */
-  public fun getCacheCount(): Long {
+  public fun getCacheCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_CACHE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -414,42 +414,42 @@ public open class FontFile : Font() {
   /**
    * Removes specified font cache entry.
    */
-  public fun removeCache(cacheIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex)
+  public fun removeCache(cacheIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_REMOVE_CACHE, NIL)
   }
 
   /**
    * Returns list of the font sizes in the cache. Each size is `Vector2i` with font size and outline size.
    */
-  public fun getSizeCacheList(cacheIndex: Long): VariantArray<Vector2i> {
-    TransferContext.writeArguments(LONG to cacheIndex)
+  public fun getSizeCacheList(cacheIndex: Int): VariantArray<Vector2i> {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_SIZE_CACHE_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
   }
 
   /**
    * Removes all font sizes from the cache entry
    */
-  public fun clearSizeCache(cacheIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex)
+  public fun clearSizeCache(cacheIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_CLEAR_SIZE_CACHE, NIL)
   }
 
   /**
    * Removes specified font size from the cache entry.
    */
-  public fun removeSizeCache(cacheIndex: Long, size: Vector2i): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size)
+  public fun removeSizeCache(cacheIndex: Int, size: Vector2i): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_REMOVE_SIZE_CACHE, NIL)
   }
 
   /**
    * Sets variation coordinates for the specified font cache entry. See [godot.Font.getSupportedVariationList] for more info.
    */
-  public fun setVariationCoordinates(cacheIndex: Long,
-      variationCoordinates: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, DICTIONARY to variationCoordinates)
+  public fun setVariationCoordinates(cacheIndex: Int, variationCoordinates: Dictionary<Any?, Any?>):
+      Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), DICTIONARY to variationCoordinates)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_VARIATION_COORDINATES,
         NIL)
   }
@@ -457,115 +457,115 @@ public open class FontFile : Font() {
   /**
    * Returns variation coordinates for the specified font cache entry. See [godot.Font.getSupportedVariationList] for more info.
    */
-  public fun getVariationCoordinates(cacheIndex: Long): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to cacheIndex)
+  public fun getVariationCoordinates(cacheIndex: Int): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_VARIATION_COORDINATES,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
    * Sets embolden strength, if is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
    */
-  public fun setEmbolden(cacheIndex: Long, strength: Double): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, DOUBLE to strength)
+  public fun setEmbolden(cacheIndex: Int, strength: Float): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_EMBOLDEN, NIL)
   }
 
   /**
    * Returns embolden strength, if is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
    */
-  public fun getEmbolden(cacheIndex: Long): Double {
-    TransferContext.writeArguments(LONG to cacheIndex)
+  public fun getEmbolden(cacheIndex: Int): Float {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_EMBOLDEN, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
    */
-  public fun setTransform(cacheIndex: Long, transform: Transform2D): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, TRANSFORM2D to transform)
+  public fun setTransform(cacheIndex: Int, transform: Transform2D): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_TRANSFORM, NIL)
   }
 
   /**
    * Returns 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
    */
-  public fun getTransform(cacheIndex: Long): Transform2D {
-    TransferContext.writeArguments(LONG to cacheIndex)
+  public fun getTransform(cacheIndex: Int): Transform2D {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_TRANSFORM, TRANSFORM2D)
-    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
   /**
    * Sets an active face index in the TrueType / OpenType collection.
    */
-  public fun setFaceIndex(cacheIndex: Long, faceIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to faceIndex)
+  public fun setFaceIndex(cacheIndex: Int, faceIndex: Long): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to faceIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FACE_INDEX, NIL)
   }
 
   /**
    * Recturns an active face index in the TrueType / OpenType collection.
    */
-  public fun getFaceIndex(cacheIndex: Long): Long {
-    TransferContext.writeArguments(LONG to cacheIndex)
+  public fun getFaceIndex(cacheIndex: Int): Long {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_FACE_INDEX, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Sets the font ascent (number of pixels above the baseline).
    */
   public fun setCacheAscent(
-    cacheIndex: Long,
-    size: Long,
-    ascent: Double,
+    cacheIndex: Int,
+    size: Int,
+    ascent: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, DOUBLE to ascent)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), DOUBLE to ascent.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_CACHE_ASCENT, NIL)
   }
 
   /**
    * Returns the font ascent (number of pixels above the baseline).
    */
-  public fun getCacheAscent(cacheIndex: Long, size: Long): Double {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
+  public fun getCacheAscent(cacheIndex: Int, size: Int): Float {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_CACHE_ASCENT, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets the font descent (number of pixels below the baseline).
    */
   public fun setCacheDescent(
-    cacheIndex: Long,
-    size: Long,
-    descent: Double,
+    cacheIndex: Int,
+    size: Int,
+    descent: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, DOUBLE to descent)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), DOUBLE to descent.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_CACHE_DESCENT, NIL)
   }
 
   /**
    * Returns the font descent (number of pixels below the baseline).
    */
-  public fun getCacheDescent(cacheIndex: Long, size: Long): Double {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
+  public fun getCacheDescent(cacheIndex: Int, size: Int): Float {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_CACHE_DESCENT, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets pixel offset of the underline below the baseline.
    */
   public fun setCacheUnderlinePosition(
-    cacheIndex: Long,
-    size: Long,
-    underlinePosition: Double,
+    cacheIndex: Int,
+    size: Int,
+    underlinePosition: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, DOUBLE to underlinePosition)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), DOUBLE to underlinePosition.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_CACHE_UNDERLINE_POSITION, NIL)
   }
@@ -573,22 +573,22 @@ public open class FontFile : Font() {
   /**
    * Returns pixel offset of the underline below the baseline.
    */
-  public fun getCacheUnderlinePosition(cacheIndex: Long, size: Long): Double {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
+  public fun getCacheUnderlinePosition(cacheIndex: Int, size: Int): Float {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_CACHE_UNDERLINE_POSITION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets thickness of the underline in pixels.
    */
   public fun setCacheUnderlineThickness(
-    cacheIndex: Long,
-    size: Long,
-    underlineThickness: Double,
+    cacheIndex: Int,
+    size: Int,
+    underlineThickness: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, DOUBLE to underlineThickness)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), DOUBLE to underlineThickness.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_CACHE_UNDERLINE_THICKNESS, NIL)
   }
@@ -596,41 +596,41 @@ public open class FontFile : Font() {
   /**
    * Returns thickness of the underline in pixels.
    */
-  public fun getCacheUnderlineThickness(cacheIndex: Long, size: Long): Double {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
+  public fun getCacheUnderlineThickness(cacheIndex: Int, size: Int): Float {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_CACHE_UNDERLINE_THICKNESS, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets scaling factor of the color bitmap font.
    */
   public fun setCacheScale(
-    cacheIndex: Long,
-    size: Long,
-    scale: Double,
+    cacheIndex: Int,
+    size: Int,
+    scale: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, DOUBLE to scale)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), DOUBLE to scale.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_CACHE_SCALE, NIL)
   }
 
   /**
    * Returns scaling factor of the color bitmap font.
    */
-  public fun getCacheScale(cacheIndex: Long, size: Long): Double {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
+  public fun getCacheScale(cacheIndex: Int, size: Int): Float {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_CACHE_SCALE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns number of textures used by font cache entry.
    */
-  public fun getTextureCount(cacheIndex: Long, size: Vector2i): Long {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size)
+  public fun getTextureCount(cacheIndex: Int, size: Vector2i): Int {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_TEXTURE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -638,8 +638,8 @@ public open class FontFile : Font() {
    *
    * **Note:** This function will not remove glyphs associated with the texture, use [removeGlyph] to remove them manually.
    */
-  public fun clearTextures(cacheIndex: Long, size: Vector2i): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size)
+  public fun clearTextures(cacheIndex: Int, size: Vector2i): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_CLEAR_TEXTURES, NIL)
   }
 
@@ -649,11 +649,11 @@ public open class FontFile : Font() {
    * **Note:** This function will not remove glyphs associated with the texture. Remove them manually using [removeGlyph].
    */
   public fun removeTexture(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    textureIndex: Long,
+    textureIndex: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to textureIndex)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to textureIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_REMOVE_TEXTURE, NIL)
   }
 
@@ -661,12 +661,12 @@ public open class FontFile : Font() {
    * Sets font cache texture image.
    */
   public fun setTextureImage(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    textureIndex: Long,
+    textureIndex: Int,
     image: Image,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to textureIndex, OBJECT to image)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to textureIndex.toLong(), OBJECT to image)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_TEXTURE_IMAGE, NIL)
   }
 
@@ -674,25 +674,25 @@ public open class FontFile : Font() {
    * Returns a copy of the font cache texture image.
    */
   public fun getTextureImage(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    textureIndex: Long,
+    textureIndex: Int,
   ): Image? {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to textureIndex)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to textureIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_TEXTURE_IMAGE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Image?
+    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
   /**
    * Sets array containing glyph packing data.
    */
   public fun setTextureOffsets(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    textureIndex: Long,
+    textureIndex: Int,
     offset: PackedInt32Array,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to textureIndex, PACKED_INT_32_ARRAY to offset)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to textureIndex.toLong(), PACKED_INT_32_ARRAY to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_TEXTURE_OFFSETS, NIL)
   }
 
@@ -700,24 +700,24 @@ public open class FontFile : Font() {
    * Returns a copy of the array containing glyph packing data.
    */
   public fun getTextureOffsets(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    textureIndex: Long,
+    textureIndex: Int,
   ): PackedInt32Array {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to textureIndex)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to textureIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_TEXTURE_OFFSETS,
         PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
    * Returns list of rendered glyphs in the cache entry.
    */
-  public fun getGlyphList(cacheIndex: Long, size: Vector2i): PackedInt32Array {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size)
+  public fun getGlyphList(cacheIndex: Int, size: Vector2i): PackedInt32Array {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_GLYPH_LIST,
         PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
@@ -725,8 +725,8 @@ public open class FontFile : Font() {
    *
    * **Note:** This function will not remove textures associated with the glyphs, use [removeTexture] to remove them manually.
    */
-  public fun clearGlyphs(cacheIndex: Long, size: Vector2i): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size)
+  public fun clearGlyphs(cacheIndex: Int, size: Vector2i): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_CLEAR_GLYPHS, NIL)
   }
 
@@ -736,11 +736,11 @@ public open class FontFile : Font() {
    * **Note:** This function will not remove textures associated with the glyphs, use [removeTexture] to remove them manually.
    */
   public fun removeGlyph(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    glyph: Long,
+    glyph: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_REMOVE_GLYPH, NIL)
   }
 
@@ -750,12 +750,12 @@ public open class FontFile : Font() {
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
   public fun setGlyphAdvance(
-    cacheIndex: Long,
-    size: Long,
-    glyph: Long,
+    cacheIndex: Int,
+    size: Int,
+    glyph: Int,
     advance: Vector2,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, LONG to glyph, VECTOR2 to advance)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), LONG to glyph.toLong(), VECTOR2 to advance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_GLYPH_ADVANCE, NIL)
   }
 
@@ -765,25 +765,25 @@ public open class FontFile : Font() {
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
   public fun getGlyphAdvance(
-    cacheIndex: Long,
-    size: Long,
-    glyph: Long,
+    cacheIndex: Int,
+    size: Int,
+    glyph: Int,
   ): Vector2 {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, LONG to glyph)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), LONG to glyph.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_GLYPH_ADVANCE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Sets glyph offset from the baseline.
    */
   public fun setGlyphOffset(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    glyph: Long,
+    glyph: Int,
     offset: Vector2,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, VECTOR2 to offset)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong(), VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_GLYPH_OFFSET, NIL)
   }
 
@@ -791,25 +791,25 @@ public open class FontFile : Font() {
    * Returns glyph offset from the baseline.
    */
   public fun getGlyphOffset(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    glyph: Long,
+    glyph: Int,
   ): Vector2 {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_GLYPH_OFFSET, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Sets glyph size.
    */
   public fun setGlyphSize(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    glyph: Long,
+    glyph: Int,
     glSize: Vector2,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, VECTOR2 to glSize)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong(), VECTOR2 to glSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_GLYPH_SIZE, NIL)
   }
 
@@ -817,25 +817,25 @@ public open class FontFile : Font() {
    * Returns glyph size.
    */
   public fun getGlyphSize(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    glyph: Long,
+    glyph: Int,
   ): Vector2 {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_GLYPH_SIZE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Sets rectangle in the cache texture containing the glyph.
    */
   public fun setGlyphUvRect(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    glyph: Long,
+    glyph: Int,
     uvRect: Rect2,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, RECT2 to uvRect)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong(), RECT2 to uvRect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_GLYPH_UV_RECT, NIL)
   }
 
@@ -843,25 +843,25 @@ public open class FontFile : Font() {
    * Returns rectangle in the cache texture containing the glyph.
    */
   public fun getGlyphUvRect(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    glyph: Long,
+    glyph: Int,
   ): Rect2 {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_GLYPH_UV_RECT, RECT2)
-    return TransferContext.readReturnValue(RECT2, false) as Rect2
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
   /**
    * Sets index of the cache texture containing the glyph.
    */
   public fun setGlyphTextureIdx(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    glyph: Long,
-    textureIdx: Long,
+    glyph: Int,
+    textureIdx: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, LONG to textureIdx)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong(), LONG to textureIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_GLYPH_TEXTURE_IDX, NIL)
   }
 
@@ -869,30 +869,30 @@ public open class FontFile : Font() {
    * Returns index of the cache texture containing the glyph.
    */
   public fun getGlyphTextureIdx(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    glyph: Long,
-  ): Long {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph)
+    glyph: Int,
+  ): Int {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_GLYPH_TEXTURE_IDX,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns list of the kerning overrides.
    */
-  public fun getKerningList(cacheIndex: Long, size: Long): VariantArray<Vector2i> {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
+  public fun getKerningList(cacheIndex: Int, size: Int): VariantArray<Vector2i> {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_KERNING_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
   }
 
   /**
    * Removes all kerning overrides.
    */
-  public fun clearKerningMap(cacheIndex: Long, size: Long): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
+  public fun clearKerningMap(cacheIndex: Int, size: Int): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_CLEAR_KERNING_MAP, NIL)
   }
 
@@ -900,11 +900,11 @@ public open class FontFile : Font() {
    * Removes kerning override for the pair of glyphs.
    */
   public fun removeKerning(
-    cacheIndex: Long,
-    size: Long,
+    cacheIndex: Int,
+    size: Int,
     glyphPair: Vector2i,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, VECTOR2I to glyphPair)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), VECTOR2I to glyphPair)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_REMOVE_KERNING, NIL)
   }
 
@@ -912,12 +912,12 @@ public open class FontFile : Font() {
    * Sets kerning for the pair of glyphs.
    */
   public fun setKerning(
-    cacheIndex: Long,
-    size: Long,
+    cacheIndex: Int,
+    size: Int,
     glyphPair: Vector2i,
     kerning: Vector2,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, VECTOR2I to glyphPair, VECTOR2 to kerning)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), VECTOR2I to glyphPair, VECTOR2 to kerning)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_KERNING, NIL)
   }
 
@@ -925,25 +925,25 @@ public open class FontFile : Font() {
    * Returns kerning for the pair of glyphs.
    */
   public fun getKerning(
-    cacheIndex: Long,
-    size: Long,
+    cacheIndex: Int,
+    size: Int,
     glyphPair: Vector2i,
   ): Vector2 {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, VECTOR2I to glyphPair)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), VECTOR2I to glyphPair)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_KERNING, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Renders the range of characters to the font cache texture.
    */
   public fun renderRange(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
     start: Long,
     end: Long,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to start, LONG to end)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to start, LONG to end)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_RENDER_RANGE, NIL)
   }
 
@@ -951,11 +951,11 @@ public open class FontFile : Font() {
    * Renders specified glyph to the font cache texture.
    */
   public fun renderGlyph(
-    cacheIndex: Long,
+    cacheIndex: Int,
     size: Vector2i,
-    index: Long,
+    index: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to index)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_RENDER_GLYPH, NIL)
   }
 
@@ -975,7 +975,7 @@ public open class FontFile : Font() {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_LANGUAGE_SUPPORT_OVERRIDE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -994,7 +994,7 @@ public open class FontFile : Font() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_LANGUAGE_SUPPORT_OVERRIDES, PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -1013,7 +1013,7 @@ public open class FontFile : Font() {
     TransferContext.writeArguments(STRING to script)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_SCRIPT_SUPPORT_OVERRIDE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1032,30 +1032,27 @@ public open class FontFile : Font() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_SCRIPT_SUPPORT_OVERRIDES, PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
    * Returns the glyph index of a [char], optionally modified by the [variationSelector].
    */
   public fun getGlyphIndex(
-    size: Long,
+    size: Int,
     char: Long,
     variationSelector: Long,
-  ): Long {
-    TransferContext.writeArguments(LONG to size, LONG to char, LONG to variationSelector)
+  ): Int {
+    TransferContext.writeArguments(LONG to size.toLong(), LONG to char, LONG to variationSelector)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_GLYPH_INDEX, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  /**
-   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See [getGlyphIndex].
-   */
-  public fun getCharFromGlyphIndex(size: Long, glyphIndex: Long): Long {
-    TransferContext.writeArguments(LONG to size, LONG to glyphIndex)
+  public fun getCharFromGlyphIndex(size: Int, glyphIndex: Int): Long {
+    TransferContext.writeArguments(LONG to size.toLong(), LONG to glyphIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_CHAR_FROM_GLYPH_INDEX,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public companion object

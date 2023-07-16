@@ -16,15 +16,16 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A modification that rotates two bones using the law of cosines to reach the target.
+ * A modification that rotates two bones using the law of cosigns to reach the target.
  *
- * This [godot.SkeletonModification2D] uses an algorithm typically called TwoBoneIK. This algorithm works by leveraging the law of cosines and the lengths of the bones to figure out what rotation the bones currently have, and what rotation they need to make a complete triangle, where the first bone, the second bone, and the target form the three vertices of the triangle. Because the algorithm works by making a triangle, it can only operate on two bones.
+ * This [godot.SkeletonModification2D] uses an algorithm typically called TwoBoneIK. This algorithm works by leveraging the law of cosigns and the lengths of the bones to figure out what rotation the bones currently have, and what rotation they need to make a complete triangle, where the first bone, the second bone, and the target form the three vertices of the triangle. Because the algorithm works by making a triangle, it can only operate on two bones.
  *
  * TwoBoneIK is great for arms, legs, and really any joints that can be represented by just two bones that bend to reach a target. This solver is more lightweight than [godot.SkeletonModification2DFABRIK], but gives similar, natural looking results.
  */
@@ -38,7 +39,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_TARGET_NODE, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -49,16 +50,16 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   /**
    * The minimum distance the target can be at. If the target is closer than this distance, the modification will solve as if it's at this minimum distance. When set to `0`, the modification will solve without distance constraints.
    */
-  public var targetMinimumDistance: Double
+  public var targetMinimumDistance: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_TARGET_MINIMUM_DISTANCE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_TARGET_MINIMUM_DISTANCE, NIL)
     }
@@ -66,16 +67,16 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   /**
    * The maximum distance the target can be at. If the target is farther than this distance, the modification will solve as if it's at this maximum distance. When set to `0`, the modification will solve without distance constraints.
    */
-  public var targetMaximumDistance: Double
+  public var targetMaximumDistance: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_TARGET_MAXIMUM_DISTANCE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_TARGET_MAXIMUM_DISTANCE, NIL)
     }
@@ -88,7 +89,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_FLIP_BEND_DIRECTION, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -118,14 +119,14 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_JOINT_ONE_BONE2D_NODE,
         NODE_PATH)
-    return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   /**
    * Sets the index of the [godot.Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
    */
-  public fun setJointOneBoneIdx(boneIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun setJointOneBoneIdx(boneIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_JOINT_ONE_BONE_IDX, NIL)
   }
@@ -133,11 +134,11 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   /**
    * Returns the index of the [godot.Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
    */
-  public fun getJointOneBoneIdx(): Long {
+  public fun getJointOneBoneIdx(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_JOINT_ONE_BONE_IDX, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -157,14 +158,14 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_JOINT_TWO_BONE2D_NODE,
         NODE_PATH)
-    return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   /**
    * Sets the index of the [godot.Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
    */
-  public fun setJointTwoBoneIdx(boneIdx: Long): Unit {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun setJointTwoBoneIdx(boneIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_JOINT_TWO_BONE_IDX, NIL)
   }
@@ -172,11 +173,11 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   /**
    * Returns the index of the [godot.Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
    */
-  public fun getJointTwoBoneIdx(): Long {
+  public fun getJointTwoBoneIdx(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_JOINT_TWO_BONE_IDX, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

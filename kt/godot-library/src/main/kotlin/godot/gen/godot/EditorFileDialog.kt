@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -28,7 +27,7 @@ import kotlin.Unit
 /**
  * A modified version of [godot.FileDialog] used by the editor.
  *
- * [godot.EditorFileDialog] is an enhanced version of [godot.FileDialog] available only to editor plugins. Additional features include list of favorited/recent files and the ability to see files as thumbnails grid instead of list.
+ * [godot.EditorFileDialog] is an enhanced version of [godot.FileDialog] available only to editor plugins. Additional features include list of favorited/recent files and ability to see files as thumbnails grid instead of list.
  */
 @GodotBaseType
 public open class EditorFileDialog internal constructor() : ConfirmationDialog() {
@@ -54,7 +53,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_ACCESS, LONG)
-      return EditorFileDialog.Access.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return EditorFileDialog.Access.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -69,7 +68,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_DISPLAY_MODE,
           LONG)
-      return EditorFileDialog.DisplayMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return EditorFileDialog.DisplayMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -78,14 +77,14 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     }
 
   /**
-   * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode].
+   * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode]
    */
   public var fileMode: FileMode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_FILE_MODE,
           LONG)
-      return EditorFileDialog.FileMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return EditorFileDialog.FileMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -101,7 +100,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_CURRENT_DIR,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -117,7 +116,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_CURRENT_FILE,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -133,7 +132,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_CURRENT_PATH,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -149,7 +148,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_FILTERS,
           PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
@@ -164,7 +163,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_IS_SHOWING_HIDDEN_FILES, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -180,7 +179,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_IS_OVERWRITE_WARNING_DISABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -221,7 +220,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   public fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_VBOX, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
+    return (TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?)
   }
 
   /**
@@ -233,7 +232,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_LINE_EDIT,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as LineEdit?
+    return (TransferContext.readReturnValue(OBJECT, true) as LineEdit?)
   }
 
   /**

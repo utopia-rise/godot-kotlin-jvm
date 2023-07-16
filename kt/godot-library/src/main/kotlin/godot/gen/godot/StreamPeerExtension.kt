@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
@@ -26,7 +25,7 @@ public open class StreamPeerExtension : StreamPeer() {
   /**
    *
    */
-  public open fun _getAvailableBytes(): Long {
+  public open fun _getAvailableBytes(): Int {
     throw NotImplementedError("_get_available_bytes is not implemented for StreamPeerExtension")
   }
 

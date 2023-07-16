@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
@@ -21,9 +20,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides access to AES encryption/decryption of raw data.
+ * Interface to low level AES encryption features.
  *
- * This class holds the context information required for encryption and decryption operations with AES (Advanced Encryption Standard). Both AES-ECB and AES-CBC modes are supported.
+ * This class provides access to AES encryption/decryption of raw data. Both AES-ECB and AES-CBC mode are supported.
  *
  * [codeblocks]
  *
@@ -45,15 +44,15 @@ import kotlin.Unit
  *
  *     # Encrypt ECB
  *
- *     aes.start(AESContext.MODE_ECB_ENCRYPT, key.to_utf8_buffer())
+ *     aes.start(AESContext.MODE_ECB_ENCRYPT, key.to_utf8())
  *
- *     var encrypted = aes.update(data.to_utf8_buffer())
+ *     var encrypted = aes.update(data.to_utf8())
  *
  *     aes.finish()
  *
  *     # Decrypt ECB
  *
- *     aes.start(AESContext.MODE_ECB_DECRYPT, key.to_utf8_buffer())
+ *     aes.start(AESContext.MODE_ECB_DECRYPT, key.to_utf8())
  *
  *     var decrypted = aes.update(encrypted)
  *
@@ -61,7 +60,7 @@ import kotlin.Unit
  *
  *     # Check ECB
  *
- *     assert(decrypted == data.to_utf8_buffer())
+ *     assert(decrypted == data.to_utf8())
  *
  *
  *
@@ -69,15 +68,15 @@ import kotlin.Unit
  *
  *     # Encrypt CBC
  *
- *     aes.start(AESContext.MODE_CBC_ENCRYPT, key.to_utf8_buffer(), iv.to_utf8_buffer())
+ *     aes.start(AESContext.MODE_CBC_ENCRYPT, key.to_utf8(), iv.to_utf8())
  *
- *     encrypted = aes.update(data.to_utf8_buffer())
+ *     encrypted = aes.update(data.to_utf8())
  *
  *     aes.finish()
  *
  *     # Decrypt CBC
  *
- *     aes.start(AESContext.MODE_CBC_DECRYPT, key.to_utf8_buffer(), iv.to_utf8_buffer())
+ *     aes.start(AESContext.MODE_CBC_DECRYPT, key.to_utf8(), iv.to_utf8())
  *
  *     decrypted = aes.update(encrypted)
  *
@@ -85,7 +84,7 @@ import kotlin.Unit
  *
  *     # Check CBC
  *
- *     assert(decrypted == data.to_utf8_buffer())
+ *     assert(decrypted == data.to_utf8())
  *
  * [/gdscript]
  *
@@ -115,15 +114,15 @@ import kotlin.Unit
  *
  *         // Encrypt ECB
  *
- *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8Buffer());
+ *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8());
  *
- *         byte[] encrypted = _aes.Update(data.ToUtf8Buffer());
+ *         byte[] encrypted = _aes.Update(data.ToUtf8());
  *
  *         _aes.Finish();
  *
  *         // Decrypt ECB
  *
- *         _aes.Start(AesContext.Mode.EcbDecrypt, key.ToUtf8Buffer());
+ *         _aes.Start(AesContext.Mode.EcbDecrypt, key.ToUtf8());
  *
  *         byte[] decrypted = _aes.Update(encrypted);
  *
@@ -131,7 +130,7 @@ import kotlin.Unit
  *
  *         // Check ECB
  *
- *         Debug.Assert(decrypted == data.ToUtf8Buffer());
+ *         Debug.Assert(decrypted == data.ToUtf8());
  *
  *
  *
@@ -139,15 +138,15 @@ import kotlin.Unit
  *
  *         // Encrypt CBC
  *
- *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8Buffer(), iv.ToUtf8Buffer());
+ *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8(), iv.ToUtf8());
  *
- *         encrypted = _aes.Update(data.ToUtf8Buffer());
+ *         encrypted = _aes.Update(data.ToUtf8());
  *
  *         _aes.Finish();
  *
  *         // Decrypt CBC
  *
- *         _aes.Start(AesContext.Mode.EcbDecrypt, key.ToUtf8Buffer(), iv.ToUtf8Buffer());
+ *         _aes.Start(AesContext.Mode.EcbDecrypt, key.ToUtf8(), iv.ToUtf8());
  *
  *         decrypted = _aes.Update(encrypted);
  *
@@ -155,7 +154,7 @@ import kotlin.Unit
  *
  *         // Check CBC
  *
- *         Debug.Assert(decrypted == data.ToUtf8Buffer());
+ *         Debug.Assert(decrypted == data.ToUtf8());
  *
  *     }
  *
@@ -182,7 +181,7 @@ public open class AESContext : RefCounted() {
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_START, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -194,7 +193,7 @@ public open class AESContext : RefCounted() {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to src)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_UPDATE,
         PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
@@ -206,7 +205,7 @@ public open class AESContext : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_GET_IV_STATE,
         PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**

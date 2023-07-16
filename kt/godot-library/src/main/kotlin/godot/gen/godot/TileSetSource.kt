@@ -27,8 +27,6 @@ import kotlin.Suppress
  * Depending on the TileSet source type, those IDs might have restrictions on their values, this is why the base [godot.TileSetSource] class only exposes getters for them.
  *
  * You can iterate over all tiles exposed by a TileSetSource by first iterating over coordinates IDs using [getTilesCount] and [getTileId], then over alternative IDs using [getAlternativeTilesCount] and [getAlternativeTileId].
- *
- * **Warning:** [godot.TileSetSource] can only be added to one TileSet at the same time. Calling [godot.TileSet.addSource] on a second [godot.TileSet] will remove the source from the first one.
  */
 @GodotBaseType
 public open class TileSetSource internal constructor() : Resource() {
@@ -40,19 +38,19 @@ public open class TileSetSource internal constructor() : Resource() {
   /**
    * Returns how many tiles this atlas source defines (not including alternative tiles).
    */
-  public fun getTilesCount(): Long {
+  public fun getTilesCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_TILES_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the tile coordinates ID of the tile with index [index].
    */
-  public fun getTileId(index: Long): Vector2i {
-    TransferContext.writeArguments(LONG to index)
+  public fun getTileId(index: Int): Vector2i {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_TILE_ID, VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
@@ -61,7 +59,7 @@ public open class TileSetSource internal constructor() : Resource() {
   public fun hasTile(atlasCoords: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_HAS_TILE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -71,31 +69,31 @@ public open class TileSetSource internal constructor() : Resource() {
    *
    * Returns -1 if there is not tile at the given coords.
    */
-  public fun getAlternativeTilesCount(atlasCoords: Vector2i): Long {
+  public fun getAlternativeTilesCount(atlasCoords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_ALTERNATIVE_TILES_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the alternative ID for the tile with coordinates ID [atlasCoords] at index [index].
    */
-  public fun getAlternativeTileId(atlasCoords: Vector2i, index: Long): Long {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to index)
+  public fun getAlternativeTileId(atlasCoords: Vector2i, index: Int): Int {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to index.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_ALTERNATIVE_TILE_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns if the base tile at coordinates [atlasCoords] has an alternative with ID [alternativeTile].
    */
-  public fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Long): Boolean {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile)
+  public fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Int): Boolean {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_HAS_ALTERNATIVE_TILE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
@@ -21,16 +20,16 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * Represents a key on a keyboard being pressed or released.
+ * Input event type for keyboard events.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
- * An input event for keys on a keyboard. Supports key presses, key releases and [echo] events. It can also be received in [godot.Node.UnhandledKeyInput].
+ * Stores key presses on the keyboard. Supports key presses, key releases and [echo] events.
  *
  * **Note:** Events received from the keyboard usually have all properties set. Event mappings should have only one of the [keycode], [physicalKeycode] or [unicode] set.
  *
- * When events are compared, properties are checked in the following priority - [keycode], [physicalKeycode] and [unicode]. Events with the first matching value will be considered equal.
+ * When events are compared, properties are checked in the following priority - [keycode], [physicalKeycode] and [unicode], events with the first matching value will be considered equal.
  */
 @GodotBaseType
 public open class InputEventKey : InputEventWithModifiers() {
@@ -62,7 +61,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE, LONG)
-      return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -79,7 +78,7 @@ public open class InputEventKey : InputEventWithModifiers() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE, LONG)
-      return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -105,7 +104,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEY_LABEL, LONG)
-      return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -119,7 +118,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_UNICODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -152,7 +151,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE_WITH_MODIFIERS, LONG)
-    return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -164,7 +163,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE_WITH_MODIFIERS, LONG)
-    return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -176,7 +175,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEY_LABEL_WITH_MODIFIERS, LONG)
-    return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -186,7 +185,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_AS_TEXT_KEYCODE,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -196,7 +195,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_AS_TEXT_PHYSICAL_KEYCODE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -206,7 +205,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_AS_TEXT_KEY_LABEL,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

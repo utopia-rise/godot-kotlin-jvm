@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -18,18 +17,23 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A container used to provide scrollbars to a child control when needed.
+ * A helper node for displaying scrollable elements such as lists.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * A container used to provide a child control with scrollbars when needed. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.customMinimumSize] of the Control relative to the ScrollContainer.
+ * A ScrollContainer node meant to contain a [godot.Control] child.
+ *
+ * ScrollContainers will automatically create a scrollbar child ([godot.HScrollBar], [godot.VScrollBar], or both) when needed and will only draw the Control within the ScrollContainer area. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.customMinimumSize] of the Control relative to the ScrollContainer.
+ *
+ * Works great with a [godot.Panel] control. You can set [godot.Control.SIZE_EXPAND] on the children's size flags, so they will upscale to the ScrollContainer's size if it's larger (scroll is invisible for the chosen dimension).
  */
 @GodotBaseType
 public open class ScrollContainer : Container() {
@@ -51,7 +55,7 @@ public open class ScrollContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_IS_FOLLOWING_FOCUS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -60,77 +64,57 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   * The current horizontal scroll value. 
-   *
-   * **Note:** If you are setting this value in the [godot.Node.Ready] function or earlier, it needs to be wrapped with [godot.Object.setDeferred], since scroll bar's [godot.Range.maxValue] is not initialized yet.
-   *
-   * ```
-   * 			func _ready():
-   * 			    set_deferred("scroll_horizontal", 600)
-   * 			```
+   * The current horizontal scroll value.
    */
-  public var scrollHorizontal: Long
+  public var scrollHorizontal: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_H_SCROLL, NIL)
     }
 
   /**
    * The current vertical scroll value.
-   *
-   * **Note:** Setting it early needs to be deferred, just like in [scrollHorizontal].
-   *
-   * ```
-   * 			func _ready():
-   * 			    set_deferred("scroll_vertical", 600)
-   * 			```
    */
-  public var scrollVertical: Long
+  public var scrollVertical: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_V_SCROLL, NIL)
     }
 
-  /**
-   * Overrides the [godot.ScrollBar.customStep] used when clicking the internal scroll bar's horizontal increment and decrement buttons or when using arrow keys when the [godot.ScrollBar] is focused.
-   */
-  public var scrollHorizontalCustomStep: Double
+  public var scrollHorizontalCustomStep: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_CUSTOM_STEP, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_HORIZONTAL_CUSTOM_STEP, NIL)
     }
 
-  /**
-   * Overrides the [godot.ScrollBar.customStep] used when clicking the internal scroll bar's vertical increment and decrement buttons or when using arrow keys when the [godot.ScrollBar] is focused.
-   */
-  public var scrollVerticalCustomStep: Double
+  public var scrollVerticalCustomStep: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_CUSTOM_STEP, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_VERTICAL_CUSTOM_STEP, NIL)
     }
@@ -143,7 +127,7 @@ public open class ScrollContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_SCROLL_MODE, LONG)
-      return ScrollContainer.ScrollMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return ScrollContainer.ScrollMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -159,7 +143,7 @@ public open class ScrollContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_SCROLL_MODE, LONG)
-      return ScrollContainer.ScrollMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return ScrollContainer.ScrollMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -170,15 +154,15 @@ public open class ScrollContainer : Container() {
   /**
    * Deadzone for touch scrolling. Lower deadzone makes the scrolling more sensitive.
    */
-  public var scrollDeadzone: Long
+  public var scrollDeadzone: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_DEADZONE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_DEADZONE, NIL)
     }
 
@@ -196,7 +180,7 @@ public open class ScrollContainer : Container() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL_BAR,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as HScrollBar?
+    return (TransferContext.readReturnValue(OBJECT, true) as HScrollBar?)
   }
 
   /**
@@ -208,7 +192,7 @@ public open class ScrollContainer : Container() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL_BAR,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as VScrollBar?
+    return (TransferContext.readReturnValue(OBJECT, true) as VScrollBar?)
   }
 
   /**

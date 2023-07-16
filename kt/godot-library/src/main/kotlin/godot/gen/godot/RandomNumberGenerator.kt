@@ -13,20 +13,21 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides methods for generating pseudo-random numbers.
+ * A class for generating pseudo-random numbers.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/math/random_number_generation.html]($DOCS_URL/tutorials/math/random_number_generation.html)
  *
  * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses [godot.PCG32](https://www.pcg-random.org/).
  *
- * **Note:** The underlying algorithm is an implementation detail and should not be depended upon.
+ * **Note:** The underlying algorithm is an implementation detail. As a result, it should not be depended upon for reproducible random streams across Godot versions.
  *
  * To generate a random float number (within a given range) based on a time-dependant seed:
  *
@@ -35,6 +36,8 @@ import kotlin.Unit
  * 		func _ready():
  * 		    var my_random_number = rng.randf_range(-10.0, 10.0)
  * 		```
+ *
+ * **Note:** The default values of [seed] and [state] properties are pseudo-random, and change when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
  */
 @GodotBaseType
 public open class RandomNumberGenerator : RefCounted() {
@@ -44,8 +47,6 @@ public open class RandomNumberGenerator : RefCounted() {
    * **Note:** The RNG does not have an avalanche effect, and can output similar random streams given similar seeds. Consider using a hash function to improve your seed quality if they're sourced externally.
    *
    * **Note:** Setting this property produces a side effect of changing the internal [state], so make sure to initialize the seed *before* modifying the [state]:
-   *
-   * **Note:** The default value of this property is pseudo-random, and changes when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
    *
    * ```
    * 			var rng = RandomNumberGenerator.new()
@@ -58,7 +59,7 @@ public open class RandomNumberGenerator : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_GET_SEED,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -79,15 +80,13 @@ public open class RandomNumberGenerator : RefCounted() {
    * 			```
    *
    * **Note:** Do not set state to arbitrary values, since the random number generator requires the state to have certain qualities to behave properly. It should only be set to values that came from the state property itself. To initialize the random number generator with arbitrary input, use [seed] instead.
-   *
-   * **Note:** The default value of this property is pseudo-random, and changes when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
    */
   public var state: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_GET_STATE,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -103,49 +102,49 @@ public open class RandomNumberGenerator : RefCounted() {
   /**
    * Returns a pseudo-random 32-bit unsigned integer between `0` and `4294967295` (inclusive).
    */
-  public fun randi(): Long {
+  public fun randi(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDI, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns a pseudo-random float between `0.0` and `1.0` (inclusive).
    */
-  public fun randf(): Double {
+  public fun randf(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDF, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns a [normally-distributed](https://en.wikipedia.org/wiki/Normal_distribution) pseudo-random number, using Box-Muller transform with the specified [mean] and a standard [deviation]. This is also called Gaussian distribution.
    */
-  public fun randfn(mean: Double = 0.0, deviation: Double = 1.0): Double {
-    TransferContext.writeArguments(DOUBLE to mean, DOUBLE to deviation)
+  public fun randfn(mean: Float = 0.0f, deviation: Float = 1.0f): Float {
+    TransferContext.writeArguments(DOUBLE to mean.toDouble(), DOUBLE to deviation.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDFN,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns a pseudo-random float between [from] and [to] (inclusive).
    */
-  public fun randfRange(from: Double, to: Double): Double {
-    TransferContext.writeArguments(DOUBLE to from, DOUBLE to to)
+  public fun randfRange(from: Float, to: Float): Float {
+    TransferContext.writeArguments(DOUBLE to from.toDouble(), DOUBLE to to.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDF_RANGE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns a pseudo-random 32-bit signed integer between [from] and [to] (inclusive).
    */
-  public fun randiRange(from: Long, to: Long): Long {
-    TransferContext.writeArguments(LONG to from, LONG to to)
+  public fun randiRange(from: Int, to: Int): Int {
+    TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDI_RANGE,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

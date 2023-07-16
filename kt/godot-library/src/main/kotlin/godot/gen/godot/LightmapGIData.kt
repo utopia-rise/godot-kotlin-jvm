@@ -37,7 +37,7 @@ public open class LightmapGIData : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_GET_LIGHT_TEXTURE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as TextureLayered?
+      return (TransferContext.readReturnValue(OBJECT, true) as TextureLayered?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -50,7 +50,7 @@ public open class LightmapGIData : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_IS_USING_SPHERICAL_HARMONICS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -69,30 +69,30 @@ public open class LightmapGIData : Resource() {
   public fun addUser(
     path: NodePath,
     uvScale: Rect2,
-    sliceIndex: Long,
-    subInstance: Long,
+    sliceIndex: Int,
+    subInstance: Int,
   ): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, RECT2 to uvScale, LONG to sliceIndex, LONG to subInstance)
+    TransferContext.writeArguments(NODE_PATH to path, RECT2 to uvScale, LONG to sliceIndex.toLong(), LONG to subInstance.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_ADD_USER, NIL)
   }
 
   /**
    * Returns the number of objects that are considered baked within this [godot.LightmapGIData].
    */
-  public fun getUserCount(): Long {
+  public fun getUserCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_GET_USER_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the [godot.core.NodePath] of the baked object at index [userIdx].
    */
-  public fun getUserPath(userIdx: Long): NodePath {
-    TransferContext.writeArguments(LONG to userIdx)
+  public fun getUserPath(userIdx: Int): NodePath {
+    TransferContext.writeArguments(LONG to userIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_GET_USER_PATH,
         NODE_PATH)
-    return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   /**

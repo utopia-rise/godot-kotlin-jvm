@@ -14,13 +14,12 @@ import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -85,13 +84,13 @@ import kotlin.Suppress
  *
  *
  *
- * func _get_preset_name(preset_index):
+ * func _get_preset_name(i):
  *
  *     return "Default"
  *
  *
  *
- * func _get_import_options(path, preset_index):
+ * func _get_import_options(i):
  *
  *     return [{"name": "my_option", "default_value": false}]
  *
@@ -211,7 +210,7 @@ import kotlin.Suppress
  *
  *                 { "name", "myOption" },
  *
- *                 { "default_value", false },
+ *                 { "defaultValue", false },
  *
  *             }
  *
@@ -279,14 +278,14 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
   /**
    * Gets the number of initial presets defined by the plugin. Use [_getImportOptions] to get the default options for the preset and [_getPresetName] to get the name of the preset.
    */
-  public open fun _getPresetCount(): Long {
+  public open fun _getPresetCount(): Int {
     throw NotImplementedError("_get_preset_count is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the name of the options preset at this index.
    */
-  public open fun _getPresetName(presetIndex: Long): String {
+  public open fun _getPresetName(presetIndex: Int): String {
     throw NotImplementedError("_get_preset_name is not implemented for EditorImportPlugin")
   }
 
@@ -300,7 +299,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
   /**
    * Gets the options and default values for the preset at this index. Returns an Array of Dictionaries with the following keys: `name`, `default_value`, `property_hint` (optional), `hint_string` (optional), `usage` (optional).
    */
-  public open fun _getImportOptions(path: String, presetIndex: Long):
+  public open fun _getImportOptions(path: String, presetIndex: Int):
       VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_import_options is not implemented for EditorImportPlugin")
   }
@@ -322,14 +321,14 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
   /**
    * Gets the priority of this plugin for the recognized extension. Higher priority plugins will be preferred. The default priority is `1.0`.
    */
-  public open fun _getPriority(): Double {
+  public open fun _getPriority(): Float {
     throw NotImplementedError("_get_priority is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the order of this importer to be run when importing resources. Importers with *lower* import orders will be called first, and higher values will be called later. Use this to ensure the importer runs after the dependencies are already imported. The default import order is `0` unless overridden by a specific importer. See [enum ResourceImporter.ImportOrder] for some predefined values.
    */
-  public open fun _getImportOrder(): Long {
+  public open fun _getImportOrder(): Int {
     throw NotImplementedError("_get_import_order is not implemented for EditorImportPlugin")
   }
 
@@ -356,17 +355,17 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
    *
    * [csharp]
    *
-   * public void _GetOptionVisibility(string option, Godot.Collections.Dictionary options)
+   * public void GetOptionVisibility(string option, Godot.Collections.Dictionary options)
    *
    * {
    *
    *     // Only show the lossy quality setting if the compression mode is set to "Lossy".
    *
-   *     if (option == "compress/lossy_quality" && options.ContainsKey("compress/mode"))
+   *     if (option == "compress/lossyQuality" && options.Contains("compress/mode"))
    *
    *     {
    *
-   *         return (int)options["compress/mode"] == CompressLossy; // This is a constant you set
+   *         return (int)options["compress/mode"] == COMPRESS_LOSSY; // This is a constant you set
    *
    *     }
    *
@@ -417,7 +416,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
     TransferContext.writeArguments(STRING to path, DICTIONARY to customOptions, STRING to customImporter, ANY to generatorParameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORIMPORTPLUGIN_APPEND_IMPORT_EXTERNAL_RESOURCE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public companion object

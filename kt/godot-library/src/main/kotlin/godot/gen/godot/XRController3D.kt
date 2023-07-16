@@ -11,7 +11,6 @@ import godot.core.StringName
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
@@ -23,7 +22,9 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
+import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
@@ -75,7 +76,7 @@ public open class XRController3D : XRNode3D() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_IS_BUTTON_PRESSED,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -84,16 +85,16 @@ public open class XRController3D : XRNode3D() {
   public fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_INPUT, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
    * Returns a numeric value for the input with the given [name]. This is used for triggers and grip sensors.
    */
-  public fun getFloat(name: StringName): Double {
+  public fun getFloat(name: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_FLOAT, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -102,7 +103,7 @@ public open class XRController3D : XRNode3D() {
   public fun getVector2(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_VECTOR2, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -112,7 +113,7 @@ public open class XRController3D : XRNode3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_TRACKER_HAND,
         LONG)
-    return XRPositionalTracker.TrackerHand.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return XRPositionalTracker.TrackerHand.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public companion object

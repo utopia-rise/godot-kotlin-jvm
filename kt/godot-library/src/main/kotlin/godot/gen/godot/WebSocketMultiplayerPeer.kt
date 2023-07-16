@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -19,6 +18,7 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -32,7 +32,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_SUPPORTED_PROTOCOLS,
           PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
@@ -46,7 +46,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_HANDSHAKE_HEADERS,
           PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
@@ -54,54 +54,54 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_HANDSHAKE_HEADERS, NIL)
     }
 
-  public var inboundBufferSize: Long
+  public var inboundBufferSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_INBOUND_BUFFER_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_INBOUND_BUFFER_SIZE, NIL)
     }
 
-  public var outboundBufferSize: Long
+  public var outboundBufferSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_OUTBOUND_BUFFER_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_OUTBOUND_BUFFER_SIZE, NIL)
     }
 
-  public var handshakeTimeout: Double
+  public var handshakeTimeout: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_HANDSHAKE_TIMEOUT, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_HANDSHAKE_TIMEOUT, NIL)
     }
 
-  public var maxQueuedPackets: Long
+  public var maxQueuedPackets: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_MAX_QUEUED_PACKETS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_MAX_QUEUED_PACKETS, NIL)
     }
@@ -115,39 +115,39 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_CREATE_CLIENT, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public fun createServer(
-    port: Long,
+    port: Int,
     bindAddress: String = "*",
     tlsServerOptions: TLSOptions? = null,
   ): GodotError {
-    TransferContext.writeArguments(LONG to port, STRING to bindAddress, OBJECT to tlsServerOptions)
+    TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress, OBJECT to tlsServerOptions)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_CREATE_SERVER, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
-  public fun getPeer(peerId: Long): WebSocketPeer? {
-    TransferContext.writeArguments(LONG to peerId)
+  public fun getPeer(peerId: Int): WebSocketPeer? {
+    TransferContext.writeArguments(LONG to peerId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_PEER,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as WebSocketPeer?
+    return (TransferContext.readReturnValue(OBJECT, true) as WebSocketPeer?)
   }
 
-  public fun getPeerAddress(id: Long): String {
-    TransferContext.writeArguments(LONG to id)
+  public fun getPeerAddress(id: Int): String {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_PEER_ADDRESS, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun getPeerPort(id: Long): Long {
-    TransferContext.writeArguments(LONG to id)
+  public fun getPeerPort(id: Int): Int {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_PEER_PORT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

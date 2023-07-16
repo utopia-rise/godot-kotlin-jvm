@@ -15,12 +15,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Base class for [godot.AnimationNode]s with more than two input ports that must be synchronized.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
- *
- * An animation node used to combine, mix, or blend two or more animations together while keeping them synchronized within an [godot.AnimationTree].
+ * The base class for [godot.AnimationNode] which has more than two input ports and needs to synchronize them.
  */
 @GodotBaseType
 public open class AnimationNodeSync : AnimationNode() {
@@ -34,7 +29,7 @@ public open class AnimationNodeSync : AnimationNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESYNC_IS_USING_SYNC,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

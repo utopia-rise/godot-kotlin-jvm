@@ -15,31 +15,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * An internal class used by [godot.PackedDataContainer] to pack nested arrays and dictionaries.
- *
- * When packing nested containers using [godot.PackedDataContainer], they are recursively packed into [godot.PackedDataContainerRef] (only applies to [godot.Array] and [godot.core.Dictionary]). Their data can be retrieved the same way as from [godot.PackedDataContainer].
- *
- * ```
- * 		var packed = PackedDataContainer.new()
- * 		packed.pack([1, 2, 3, ["abc", "def"], 4, 5, 6])
- *
- * 		for element in packed:
- * 		    if element is PackedDataContainerRef:
- * 		        for subelement in element:
- * 		            print("::", subelement)
- * 		    else:
- * 		        print(element)
- *
- * 		# Prints:
- * 		# 1
- * 		# 2
- * 		# 3
- * 		# ::abc
- * 		# ::def
- * 		# 4
- * 		# 5
- * 		# 6
- * 		```
+ * Reference-counted version of [godot.PackedDataContainer].
  */
 @GodotBaseType
 public open class PackedDataContainerRef internal constructor() : RefCounted() {
@@ -49,12 +25,12 @@ public open class PackedDataContainerRef internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the size of the packed container (see [godot.Array.size] and [godot.Dictionary.size]).
+   *
    */
-  public fun size(): Long {
+  public fun size(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINERREF_SIZE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

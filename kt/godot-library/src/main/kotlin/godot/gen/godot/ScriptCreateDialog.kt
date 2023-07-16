@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Godot editor's popup dialog for creating new [godot.Script] files.
+ * The Editor's popup dialog for creating new [godot.Script] files.
  *
  * The [godot.ScriptCreateDialog] creates script files according to a given template for a given scripting language. The standard use is to configure its fields prior to calling one of the [godot.Window.popup] methods.
  *

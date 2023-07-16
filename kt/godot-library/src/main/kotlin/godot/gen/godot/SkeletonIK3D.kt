@@ -23,18 +23,19 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node used to rotate all bones of a [godot.Skeleton3D] bone chain a way that places the end bone at a desired 3D position.
+ * SkeletonIK3D is used to place the end bone of a [godot.Skeleton3D] bone chain at a certain point in 3D by rotating all bones in the chain accordingly.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/523](https://godotengine.org/asset-library/asset/523)
  *
- * SkeletonIK3D is used to rotate all bones of a [godot.Skeleton3D] bone chain a way that places the end bone at a desired 3D position. A typical scenario for IK in games is to place a character's feet on the ground or a character's hands on a currently held object. SkeletonIK uses FabrikInverseKinematic internally to solve the bone chain and applies the results to the [godot.Skeleton3D] `bones_global_pose_override` property for all affected bones in the chain. If fully applied, this overwrites any bone transform from [godot.Animation]s or bone custom poses set by users. The applied amount can be controlled with the [interpolation] property.
+ * SkeletonIK3D is used to place the end bone of a [godot.Skeleton3D] bone chain at a certain point in 3D by rotating all bones in the chain accordingly. A typical scenario for IK in games is to place a characters feet on the ground or a characters hands on a currently hold object. SkeletonIK uses FabrikInverseKinematic internally to solve the bone chain and applies the results to the [godot.Skeleton3D] `bones_global_pose_override` property for all affected bones in the chain. If fully applied this overwrites any bone transform from [godot.Animation]s or bone custom poses set by users. The applied amount can be controlled with the `interpolation` property.
  *
  * ```
  * 		# Apply IK effect automatically on every new frame (not the current)
@@ -55,8 +56,6 @@ import kotlin.Unit
  * 		# Apply zero IK effect (a value at or below 0.01 also removes bones_global_pose_override on Skeleton)
  * 		skeleton_ik_node.set_interpolation(0.0)
  * 		```
- *
- * *Deprecated.* This class is deprecated, and might be removed in a future release.
  */
 @GodotBaseType
 public open class SkeletonIK3D : Node() {
@@ -68,7 +67,7 @@ public open class SkeletonIK3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_ROOT_BONE,
           STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
@@ -83,7 +82,7 @@ public open class SkeletonIK3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_TIP_BONE,
           STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
@@ -93,15 +92,15 @@ public open class SkeletonIK3D : Node() {
   /**
    * Interpolation value for how much the IK results are applied to the current skeleton bone chain. A value of `1.0` will overwrite all skeleton bone transforms completely while a value of `0.0` will visually disable the SkeletonIK. A value at or below `0.01` also calls [godot.Skeleton3D.clearBonesGlobalPoseOverride].
    */
-  public var interpolation: Double
+  public var interpolation: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_INTERPOLATION,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_SET_INTERPOLATION,
           NIL)
     }
@@ -114,7 +113,7 @@ public open class SkeletonIK3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_TARGET_TRANSFORM,
           TRANSFORM3D)
-      return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
@@ -130,7 +129,7 @@ public open class SkeletonIK3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_IS_OVERRIDE_TIP_BASIS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -146,7 +145,7 @@ public open class SkeletonIK3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_IS_USING_MAGNET,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -161,7 +160,7 @@ public open class SkeletonIK3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_MAGNET_POSITION,
           VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -177,7 +176,7 @@ public open class SkeletonIK3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_TARGET_NODE,
           NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -187,15 +186,15 @@ public open class SkeletonIK3D : Node() {
   /**
    * The minimum distance between bone and goal target. If the distance is below this value, the IK solver stops further iterations.
    */
-  public var minDistance: Double
+  public var minDistance: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_MIN_DISTANCE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_SET_MIN_DISTANCE,
           NIL)
     }
@@ -203,15 +202,15 @@ public open class SkeletonIK3D : Node() {
   /**
    * Number of iteration loops used by the IK solver to produce more accurate (and elegant) bone chain results.
    */
-  public var maxIterations: Long
+  public var maxIterations: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_MAX_ITERATIONS,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_SET_MAX_ITERATIONS,
           NIL)
     }
@@ -228,7 +227,7 @@ public open class SkeletonIK3D : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_PARENT_SKELETON,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?)
   }
 
   /**
@@ -237,11 +236,11 @@ public open class SkeletonIK3D : Node() {
   public fun isRunning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_IS_RUNNING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
-   * Starts applying IK effects on each frame to the [godot.Skeleton3D] bones but will only take effect starting on the next frame. If [oneTime] is `true`, this will take effect immediately but also reset on the next frame.
+   * Starts applying IK effects on each frame to the [godot.Skeleton3D] bones but will only take effect starting on the next frame. If `one_time` is `true`, this will take effect immediately but also reset on the next frame.
    */
   public fun start(oneTime: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to oneTime)

@@ -12,9 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A horizontal scrollbar that goes from left (min) to right (max).
+ * Horizontal scroll bar.
  *
- * A horizontal scrollbar, typically used to navigate through content that extends beyond the visible width of a control. It is a [godot.Range]-based control and goes from left (min) to right (max).
+ * Horizontal version of [godot.ScrollBar], which goes from left (min) to right (max).
  */
 @GodotBaseType
 public open class HScrollBar : ScrollBar() {

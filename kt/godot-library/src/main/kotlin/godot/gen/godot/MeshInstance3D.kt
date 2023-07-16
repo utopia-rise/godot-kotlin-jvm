@@ -19,6 +19,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -41,7 +42,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_MESH, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Mesh?
+      return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -55,7 +56,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SKIN, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Skin?
+      return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -70,7 +71,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SKELETON_PATH,
           NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -86,18 +87,18 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Returns the number of surface override materials. This is equivalent to [godot.Mesh.getSurfaceCount].
    */
-  public fun getSurfaceOverrideMaterialCount(): Long {
+  public fun getSurfaceOverrideMaterialCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SURFACE_OVERRIDE_MATERIAL_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets the override [material] for the specified [surface] of the [godot.Mesh] resource. This material is associated with this [godot.MeshInstance3D] rather than with [mesh].
    */
-  public fun setSurfaceOverrideMaterial(surface: Long, material: Material): Unit {
-    TransferContext.writeArguments(LONG to surface, OBJECT to material)
+  public fun setSurfaceOverrideMaterial(surface: Int, material: Material): Unit {
+    TransferContext.writeArguments(LONG to surface.toLong(), OBJECT to material)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SURFACE_OVERRIDE_MATERIAL, NIL)
   }
@@ -105,11 +106,11 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Returns the override [godot.Material] for the specified [surface] of the [godot.Mesh] resource.
    */
-  public fun getSurfaceOverrideMaterial(surface: Long): Material? {
-    TransferContext.writeArguments(LONG to surface)
+  public fun getSurfaceOverrideMaterial(surface: Int): Material? {
+    TransferContext.writeArguments(LONG to surface.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SURFACE_OVERRIDE_MATERIAL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Material?
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
   /**
@@ -117,11 +118,11 @@ public open class MeshInstance3D : GeometryInstance3D() {
    *
    * Returns `null` if no material is active, including when [mesh] is `null`.
    */
-  public fun getActiveMaterial(surface: Long): Material? {
-    TransferContext.writeArguments(LONG to surface)
+  public fun getActiveMaterial(surface: Int): Material? {
+    TransferContext.writeArguments(LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_ACTIVE_MATERIAL,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Material?
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
   /**
@@ -147,7 +148,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * This helper creates a [godot.StaticBody3D] child node with multiple [godot.ConvexPolygonShape3D] collision shapes calculated from the mesh geometry via convex decomposition. The convex decomposition operation can be controlled with parameters from the optional [settings].
+   * This helper creates a [godot.StaticBody3D] child node with multiple [godot.ConvexPolygonShape3D] collision shapes calculated from the mesh geometry via convex decomposition. It's mainly used for testing.
    */
   public fun createMultipleConvexCollisions(settings: MeshConvexDecompositionSettings? = null):
       Unit {
@@ -159,38 +160,38 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Returns the number of blend shapes available. Produces an error if [mesh] is `null`.
    */
-  public fun getBlendShapeCount(): Long {
+  public fun getBlendShapeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_BLEND_SHAPE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with this name exists, including when [mesh] is `null`.
    */
-  public fun findBlendShapeByName(name: StringName): Long {
+  public fun findBlendShapeByName(name: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_FIND_BLEND_SHAPE_BY_NAME, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the value of the blend shape at the given [blendShapeIdx]. Returns `0.0` and produces an error if [mesh] is `null` or doesn't have a blend shape at that index.
    */
-  public fun getBlendShapeValue(blendShapeIdx: Long): Double {
-    TransferContext.writeArguments(LONG to blendShapeIdx)
+  public fun getBlendShapeValue(blendShapeIdx: Int): Float {
+    TransferContext.writeArguments(LONG to blendShapeIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_BLEND_SHAPE_VALUE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets the value of the blend shape at [blendShapeIdx] to [value]. Produces an error if [mesh] is `null` or doesn't have a blend shape at that index.
    */
-  public fun setBlendShapeValue(blendShapeIdx: Long, `value`: Double): Unit {
-    TransferContext.writeArguments(LONG to blendShapeIdx, DOUBLE to value)
+  public fun setBlendShapeValue(blendShapeIdx: Int, `value`: Float): Unit {
+    TransferContext.writeArguments(LONG to blendShapeIdx.toLong(), DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_BLEND_SHAPE_VALUE, NIL)
   }

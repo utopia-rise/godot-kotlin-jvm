@@ -19,12 +19,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Abstract base class for all 3D physics joints.
+ * Base class for all 3D joints.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/524](https://godotengine.org/asset-library/asset/524)
  *
- * Abstract base class for all joints in 3D physics. 3D joints bind together two physics bodies and apply a constraint.
+ * Joints are used to bind together two physics bodies. They have a solver priority and can define if the bodies of the two attached nodes should be able to collide with each other. See also [godot.Generic6DOFJoint3D].
  */
 @GodotBaseType
 public open class Joint3D internal constructor() : Node3D() {
@@ -35,7 +35,7 @@ public open class Joint3D internal constructor() : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_A, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -49,7 +49,7 @@ public open class Joint3D internal constructor() : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_B, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -59,14 +59,14 @@ public open class Joint3D internal constructor() : Node3D() {
   /**
    * The priority used to define which solver is executed first for multiple joints. The lower the value, the higher the priority.
    */
-  public var solverPriority: Long
+  public var solverPriority: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_SOLVER_PRIORITY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_SOLVER_PRIORITY, NIL)
     }
 
@@ -78,7 +78,7 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_EXCLUDE_NODES_FROM_COLLISION, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

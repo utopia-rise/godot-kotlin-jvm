@@ -18,12 +18,13 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A singleton that manages all [godot.InputEventAction]s.
+ * Singleton that manages [godot.InputEventAction].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/inputevent.html#inputmap]($DOCS_URL/tutorials/inputs/inputevent.html#inputmap)
@@ -43,7 +44,7 @@ public object InputMap : Object() {
   public fun hasAction(action: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_HAS_ACTION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -52,7 +53,7 @@ public object InputMap : Object() {
   public fun getActions(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_GET_ACTIONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
   }
 
   /**
@@ -60,8 +61,8 @@ public object InputMap : Object() {
    *
    * An [godot.InputEvent] can then be added to this action with [actionAddEvent].
    */
-  public fun addAction(action: StringName, deadzone: Double = 0.5): Unit {
-    TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone)
+  public fun addAction(action: StringName, deadzone: Float = 0.5f): Unit {
+    TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ADD_ACTION, NIL)
   }
 
@@ -76,19 +77,19 @@ public object InputMap : Object() {
   /**
    * Sets a deadzone value for the action.
    */
-  public fun actionSetDeadzone(action: StringName, deadzone: Double): Unit {
-    TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone)
+  public fun actionSetDeadzone(action: StringName, deadzone: Float): Unit {
+    TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_SET_DEADZONE, NIL)
   }
 
   /**
    * Returns a deadzone value for the action.
    */
-  public fun actionGetDeadzone(action: StringName): Double {
+  public fun actionGetDeadzone(action: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_GET_DEADZONE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -105,7 +106,7 @@ public object InputMap : Object() {
   public fun actionHasEvent(action: StringName, event: InputEvent): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_HAS_EVENT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -132,7 +133,7 @@ public object InputMap : Object() {
   public fun actionGetEvents(action: StringName): VariantArray<InputEvent> {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_GET_EVENTS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<InputEvent>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<InputEvent>)
   }
 
   /**
@@ -147,7 +148,7 @@ public object InputMap : Object() {
   ): Boolean {
     TransferContext.writeArguments(OBJECT to event, STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_EVENT_IS_ACTION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

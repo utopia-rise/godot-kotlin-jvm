@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -18,20 +17,25 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 3D physics body specialized for characters moved by script.
+ * Specialized 3D physics body node for characters moved by script.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * [godot.CharacterBody3D] is a specialized class for physics bodies that are meant to be user-controlled. They are not affected by physics at all, but they affect other physics bodies in their path. They are mainly used to provide high-level API to move objects with wall and slope detection ([moveAndSlide] method) in addition to the general collision detection provided by [godot.PhysicsBody3D.moveAndCollide]. This makes it useful for highly configurable physics bodies that must move in specific ways and collide with the world, as is often the case with user-controlled characters.
+ * Character bodies are special types of bodies that are meant to be user-controlled. They are not affected by physics at all; to other types of bodies, such as a rigid body, these are the same as a [godot.AnimatableBody3D]. However, they have two main uses:
  *
- * For game objects that don't require complex movement or collision detection, such as moving platforms, [godot.AnimatableBody3D] is simpler to configure.
+ * *Kinematic characters:* Character bodies have an API for moving objects with walls and slopes detection ([moveAndSlide] method), in addition to collision detection (also done with [godot.PhysicsBody3D.moveAndCollide]). This makes them really useful to implement characters that move in specific ways and collide with the world, but don't require advanced physics.
+ *
+ * *Kinematic motion:* Character bodies can also be used for kinematic motion (same functionality as [godot.AnimatableBody3D]), which allows them to be moved by code and push other bodies on their path.
+ *
+ * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
  */
 @GodotBaseType
 public open class CharacterBody3D : PhysicsBody3D() {
@@ -43,7 +47,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOTION_MODE,
           LONG)
-      return CharacterBody3D.MotionMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return CharacterBody3D.MotionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -59,7 +63,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_UP_DIRECTION,
           VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -75,7 +79,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_SLIDE_ON_CEILING_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -91,7 +95,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_VELOCITY,
           VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -101,15 +105,15 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Maximum number of times the body can change direction before it stops when calling [moveAndSlide].
    */
-  public var maxSlides: Long
+  public var maxSlides: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MAX_SLIDES,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MAX_SLIDES,
           NIL)
     }
@@ -117,15 +121,15 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. When [motionMode] is [MOTION_MODE_GROUNDED], it only affects movement if [floorBlockOnWall] is `true`.
    */
-  public var wallMinSlideAngle: Double
+  public var wallMinSlideAngle: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_WALL_MIN_SLIDE_ANGLE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_WALL_MIN_SLIDE_ANGLE, NIL)
     }
@@ -140,7 +144,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_STOP_ON_SLOPE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -158,7 +162,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_CONSTANT_SPEED_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -174,7 +178,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_BLOCK_ON_WALL_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -185,15 +189,15 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [moveAndSlide]. The default value equals 45 degrees.
    */
-  public var floorMaxAngle: Double
+  public var floorMaxAngle: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_MAX_ANGLE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_MAX_ANGLE, NIL)
     }
@@ -201,17 +205,17 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [moveAndSlide]. The snapping vector is determined by the given distance along the opposite direction of the [upDirection].
    *
-   * As long as the snapping vector is in contact with the ground and the body moves against [upDirection], the body will remain attached to the surface. Snapping is not applied if the body moves along [upDirection], meaning it contains vertical rising velocity, so it will be able to detach from the ground when jumping or when the body is pushed up by something. If you want to apply a snap without taking into account the velocity, use [applyFloorSnap].
+   * As long as the snapping vector is in contact with the ground and the body moves against [upDirection], the body will remain attached to the surface. Snapping is not applied if the body moves along [upDirection], so it will be able to detach from the ground when jumping.
    */
-  public var floorSnapLength: Double
+  public var floorSnapLength: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_SNAP_LENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_SNAP_LENGTH, NIL)
     }
@@ -224,7 +228,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_ON_LEAVE, LONG)
-      return CharacterBody3D.PlatformOnLeave.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return CharacterBody3D.PlatformOnLeave.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -235,15 +239,15 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [godot.CharacterBody3D]. By default, all floor bodies are detected and propagate their velocity.
    */
-  public var platformFloorLayers: Long
+  public var platformFloorLayers: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_FLOOR_LAYERS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_PLATFORM_FLOOR_LAYERS, NIL)
     }
@@ -251,15 +255,15 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [godot.CharacterBody3D]. By default, all wall bodies are ignored.
    */
-  public var platformWallLayers: Long
+  public var platformWallLayers: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_WALL_LAYERS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_PLATFORM_WALL_LAYERS, NIL)
     }
@@ -273,15 +277,15 @@ public open class CharacterBody3D : PhysicsBody3D() {
    *
    * A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.
    */
-  public var safeMargin: Double
+  public var safeMargin: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SAFE_MARGIN,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_SAFE_MARGIN,
           NIL)
     }
@@ -304,12 +308,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_MOVE_AND_SLIDE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   * Allows to manually apply a snap to the floor regardless of the body's velocity. This function does nothing when [isOnFloor] returns `true`.
-   */
   public fun applyFloorSnap(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_APPLY_FLOOR_SNAP,
@@ -322,7 +323,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public fun isOnFloor(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_FLOOR, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -332,7 +333,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_FLOOR_ONLY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -341,7 +342,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public fun isOnCeiling(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_CEILING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -351,7 +352,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_CEILING_ONLY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -360,7 +361,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public fun isOnWall(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_WALL, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -370,7 +371,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_WALL_ONLY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -380,7 +381,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_NORMAL,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -390,7 +391,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_WALL_NORMAL,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -400,7 +401,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_LAST_MOTION,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -410,7 +411,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_POSITION_DELTA,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -420,17 +421,17 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_REAL_VELOCITY,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Returns the floor's collision angle at the last collision point according to [upDirection], which is `Vector3.UP` by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
    */
-  public fun getFloorAngle(upDirection: Vector3 = Vector3(0, 1, 0)): Double {
+  public fun getFloorAngle(upDirection: Vector3 = Vector3(0, 1, 0)): Float {
     TransferContext.writeArguments(VECTOR3 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_ANGLE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -440,7 +441,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_VELOCITY, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -450,27 +451,27 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_ANGULAR_VELOCITY, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Returns the number of times the body collided and changed direction during the last call to [moveAndSlide].
    */
-  public fun getSlideCollisionCount(): Long {
+  public fun getSlideCollisionCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SLIDE_COLLISION_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns a [godot.KinematicCollision3D], which contains information about a collision that occurred during the last call to [moveAndSlide]. Since the body can collide several times in a single call to [moveAndSlide], you must specify the index of the collision in the range 0 to ([getSlideCollisionCount] - 1).
    */
-  public fun getSlideCollision(slideIdx: Long): KinematicCollision3D? {
-    TransferContext.writeArguments(LONG to slideIdx)
+  public fun getSlideCollision(slideIdx: Int): KinematicCollision3D? {
+    TransferContext.writeArguments(LONG to slideIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SLIDE_COLLISION,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?)
   }
 
   /**
@@ -480,7 +481,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_LAST_SLIDE_COLLISION, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?)
   }
 
   public enum class MotionMode(

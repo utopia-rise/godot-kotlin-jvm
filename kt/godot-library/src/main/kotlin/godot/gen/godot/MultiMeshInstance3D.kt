@@ -34,7 +34,7 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE3D_GET_MULTIMESH,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as MultiMesh?
+      return (TransferContext.readReturnValue(OBJECT, true) as MultiMesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

@@ -20,6 +20,7 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -37,28 +38,28 @@ public open class Curve2D : Resource() {
   /**
    * The distance in pixels between two adjacent cached points. Changing it forces the cache to be recomputed the next time the [getBakedPoints] or [getBakedLength] function is called. The smaller the distance, the more points in the cache and the more memory it will consume, so use with care.
    */
-  public var bakeInterval: Double
+  public var bakeInterval: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKE_INTERVAL, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_BAKE_INTERVAL, NIL)
     }
 
   /**
    * The number of points describing the curve.
    */
-  public var pointCount: Long
+  public var pointCount: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_COUNT, NIL)
     }
 
@@ -76,68 +77,68 @@ public open class Curve2D : Resource() {
     position: Vector2,
     _in: Vector2 = Vector2(0, 0),
     `out`: Vector2 = Vector2(0, 0),
-    index: Long = -1,
+    index: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to _in, VECTOR2 to out, LONG to index)
+    TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to _in, VECTOR2 to out, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_ADD_POINT, NIL)
   }
 
   /**
    * Sets the position for the vertex [idx]. If the index is out of bounds, the function sends an error to the console.
    */
-  public fun setPointPosition(idx: Long, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
+  public fun setPointPosition(idx: Int, position: Vector2): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_POSITION, NIL)
   }
 
   /**
    * Returns the position of the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
    */
-  public fun getPointPosition(idx: Long): Vector2 {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getPointPosition(idx: Int): Vector2 {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_POSITION, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Sets the position of the control point leading to the vertex [idx]. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
    */
-  public fun setPointIn(idx: Long, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
+  public fun setPointIn(idx: Int, position: Vector2): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_IN, NIL)
   }
 
   /**
    * Returns the position of the control point leading to the vertex [idx]. The returned position is relative to the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
    */
-  public fun getPointIn(idx: Long): Vector2 {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getPointIn(idx: Int): Vector2 {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_IN, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Sets the position of the control point leading out of the vertex [idx]. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
    */
-  public fun setPointOut(idx: Long, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
+  public fun setPointOut(idx: Int, position: Vector2): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_OUT, NIL)
   }
 
   /**
    * Returns the position of the control point leading out of the vertex [idx]. The returned position is relative to the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
    */
-  public fun getPointOut(idx: Long): Vector2 {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getPointOut(idx: Int): Vector2 {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_OUT, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
-   * Deletes the point [idx] from the curve. Sends an error to the console if [idx] is out of bounds.
+   * Deletes the point `idx` from the curve. Sends an error to the console if `idx` is out of bounds.
    */
-  public fun removePoint(idx: Long): Unit {
-    TransferContext.writeArguments(LONG to idx)
+  public fun removePoint(idx: Int): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_REMOVE_POINT, NIL)
   }
 
@@ -154,28 +155,28 @@ public open class Curve2D : Resource() {
    *
    * If [idx] is out of bounds it is truncated to the first or last vertex, and [t] is ignored. If the curve has no points, the function sends an error to the console, and returns `(0, 0)`.
    */
-  public fun sample(idx: Long, t: Double): Vector2 {
-    TransferContext.writeArguments(LONG to idx, DOUBLE to t)
+  public fun sample(idx: Int, t: Float): Vector2 {
+    TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to t.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Returns the position at the vertex [fofs]. It calls [sample] using the integer part of [fofs] as `idx`, and its fractional part as `t`.
    */
-  public fun samplef(fofs: Double): Vector2 {
-    TransferContext.writeArguments(DOUBLE to fofs)
+  public fun samplef(fofs: Float): Vector2 {
+    TransferContext.writeArguments(DOUBLE to fofs.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLEF, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Returns the total length of the curve, based on the cached points. Given enough density (see [bakeInterval]), it should be approximate enough.
    */
-  public fun getBakedLength(): Double {
+  public fun getBakedLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKED_LENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -185,31 +186,26 @@ public open class Curve2D : Resource() {
    *
    * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
    */
-  public fun sampleBaked(offset: Double = 0.0, cubic: Boolean = false): Vector2 {
-    TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
+  public fun sampleBaked(offset: Float = 0.0f, cubic: Boolean = false): Vector2 {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLE_BAKED, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
-   * Similar to [sampleBaked], but returns [godot.core.Transform2D] that includes a rotation along the curve, with [godot.Transform2D.origin] as the point position, [godot.Transform2D.x] as the sideways vector, and [godot.Transform2D.y] as the forward vector. Returns an empty transform if the length of the curve is `0`.
+   * Similar to [sampleBaked], but returns [godot.core.Transform2D] that includes a rotation along the curve. Returns empty transform if length of the curve is `0`.
    *
    * ```
-   * 				var baked = curve.sample_baked_with_rotation(offset)
-   * 				# This will rotate and position the node with the up direction pointing along the curve.
-   * 				position = baked.get_origin()
-   * 				rotation = baked.get_rotation()
-   * 				# Alternatively, not preserving scale.
-   * 				transform = baked * Transform2D.FLIP_Y
-   * 				# To match the rotation of PathFollow2D, not preserving scale.
-   * 				transform = Transform2D(baked.y, baked.x, baked.origin)
+   * 				var transform = curve.sample_baked_with_rotation(offset)
+   * 				position = transform.get_origin()
+   * 				rotation = transform.get_rotation()
    * 				```
    */
-  public fun sampleBakedWithRotation(offset: Double = 0.0, cubic: Boolean = false): Transform2D {
-    TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
+  public fun sampleBakedWithRotation(offset: Float = 0.0f, cubic: Boolean = false): Transform2D {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLE_BAKED_WITH_ROTATION,
         TRANSFORM2D)
-    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
   /**
@@ -219,7 +215,7 @@ public open class Curve2D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKED_POINTS,
         PACKED_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   /**
@@ -230,7 +226,7 @@ public open class Curve2D : Resource() {
   public fun getClosestPoint(toPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_CLOSEST_POINT, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -238,10 +234,10 @@ public open class Curve2D : Resource() {
    *
    * [toPoint] must be in this curve's local space.
    */
-  public fun getClosestOffset(toPoint: Vector2): Double {
+  public fun getClosestOffset(toPoint: Vector2): Float {
     TransferContext.writeArguments(VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_CLOSEST_OFFSET, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -253,11 +249,11 @@ public open class Curve2D : Resource() {
    *
    * [toleranceDegrees] controls how many degrees the midpoint of a segment may deviate from the real curve, before the segment has to be subdivided.
    */
-  public fun tessellate(maxStages: Long = 5, toleranceDegrees: Double = 4.0): PackedVector2Array {
-    TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceDegrees)
+  public fun tessellate(maxStages: Int = 5, toleranceDegrees: Float = 4.0f): PackedVector2Array {
+    TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceDegrees.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_TESSELLATE,
         PACKED_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   /**
@@ -265,12 +261,12 @@ public open class Curve2D : Resource() {
    *
    * [toleranceLength] controls the maximal distance between two neighboring points, before the segment has to be subdivided.
    */
-  public fun tessellateEvenLength(maxStages: Long = 5, toleranceLength: Double = 20.0):
+  public fun tessellateEvenLength(maxStages: Int = 5, toleranceLength: Float = 20.0f):
       PackedVector2Array {
-    TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceLength)
+    TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceLength.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_TESSELLATE_EVEN_LENGTH,
         PACKED_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   public companion object

@@ -22,9 +22,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Provides parameters for [godot.PhysicsDirectSpaceState3D.intersectPoint].
+ * Parameters to be sent to a 3D point physics query.
  *
- * By changing various properties of this object, such as the point position, you can configure the parameters for [godot.PhysicsDirectSpaceState3D.intersectPoint].
+ * This class contains the position and other parameters to be used for [godot.PhysicsDirectSpaceState3D.intersectPoint].
  */
 @GodotBaseType
 public open class PhysicsPointQueryParameters3D : RefCounted() {
@@ -36,7 +36,7 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS3D_GET_POSITION, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -47,15 +47,15 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
   /**
    * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public var collisionMask: Long
+  public var collisionMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS3D_GET_COLLISION_MASK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS3D_SET_COLLISION_MASK, NIL)
     }
@@ -68,7 +68,7 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS3D_GET_EXCLUDE, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -85,7 +85,7 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS3D_IS_COLLIDE_WITH_BODIES_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -102,7 +102,7 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS3D_IS_COLLIDE_WITH_AREAS_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

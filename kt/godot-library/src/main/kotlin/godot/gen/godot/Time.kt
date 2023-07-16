@@ -23,7 +23,7 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A singleton for working with time data.
+ * Time singleton for working with time.
  *
  * The Time singleton allows converting time between various formats and also getting time information from the system.
  *
@@ -51,7 +51,7 @@ public object Time : Object() {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_UNIX_TIME, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -61,7 +61,7 @@ public object Time : Object() {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATE_DICT_FROM_UNIX_TIME,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -71,7 +71,7 @@ public object Time : Object() {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_DICT_FROM_UNIX_TIME,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -83,7 +83,7 @@ public object Time : Object() {
     TransferContext.writeArguments(LONG to unixTimeVal, BOOL to useSpace)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_UNIX_TIME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -93,7 +93,7 @@ public object Time : Object() {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATE_STRING_FROM_UNIX_TIME,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -103,7 +103,7 @@ public object Time : Object() {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_STRING_FROM_UNIX_TIME,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -118,7 +118,7 @@ public object Time : Object() {
     TransferContext.writeArguments(STRING to datetime, BOOL to weekday)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_DATETIME_STRING, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -135,7 +135,7 @@ public object Time : Object() {
     TransferContext.writeArguments(DICTIONARY to datetime, BOOL to useSpace)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_DATETIME_DICT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -153,7 +153,7 @@ public object Time : Object() {
     TransferContext.writeArguments(DICTIONARY to datetime)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_UNIX_TIME_FROM_DATETIME_DICT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -167,7 +167,7 @@ public object Time : Object() {
     TransferContext.writeArguments(STRING to datetime)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_UNIX_TIME_FROM_DATETIME_STRING, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -177,7 +177,7 @@ public object Time : Object() {
     TransferContext.writeArguments(LONG to offsetMinutes)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_OFFSET_STRING_FROM_OFFSET_MINUTES, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -187,7 +187,7 @@ public object Time : Object() {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_SYSTEM,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -199,7 +199,7 @@ public object Time : Object() {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATE_DICT_FROM_SYSTEM,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -211,7 +211,7 @@ public object Time : Object() {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_DICT_FROM_SYSTEM,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -225,7 +225,7 @@ public object Time : Object() {
     TransferContext.writeArguments(BOOL to utc, BOOL to useSpace)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_SYSTEM, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -237,7 +237,7 @@ public object Time : Object() {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATE_STRING_FROM_SYSTEM,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -249,7 +249,7 @@ public object Time : Object() {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_STRING_FROM_SYSTEM,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -259,7 +259,7 @@ public object Time : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_ZONE_FROM_SYSTEM,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -271,7 +271,7 @@ public object Time : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_UNIX_TIME_FROM_SYSTEM,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
@@ -282,7 +282,7 @@ public object Time : Object() {
   public fun getTicksMsec(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TICKS_MSEC, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -293,7 +293,7 @@ public object Time : Object() {
   public fun getTicksUsec(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TICKS_USEC, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public enum class Month(

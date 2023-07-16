@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -42,11 +41,11 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
     TransferContext.writeArguments(ARRAY to images)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_CREATE_FROM_IMAGES, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
-   * Replaces the existing [godot.Image] data at the given [layer] with this new image.
+   * Replaces the existing [godot.Image] data at the given `layer` with this new image.
    *
    * The given [godot.Image] must have the same width, height, image format and mipmapping setting (a `bool` value) as the rest of the referenced images.
    *
@@ -54,8 +53,8 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    *
    * The update is immediate: it's synchronized with drawing.
    */
-  public fun updateLayer(image: Image, layer: Long): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to layer)
+  public fun updateLayer(image: Image, layer: Int): Unit {
+    TransferContext.writeArguments(OBJECT to image, LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_UPDATE_LAYER,
         NIL)
   }

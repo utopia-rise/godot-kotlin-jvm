@@ -12,40 +12,17 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
 /**
- * An audio stream with utilities for procedural sound generation.
+ * Audio stream that generates sounds procedurally.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/526](https://godotengine.org/asset-library/asset/526)
+ * [https://godotengine.org/article/godot-32-will-get-new-audio-features](https://godotengine.org/article/godot-32-will-get-new-audio-features)
  *
- * [godot.AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own; instead, it expects a script to generate audio data for it. See also [godot.AudioStreamGeneratorPlayback].
- *
- * Here's a sample on how to use it to generate a sine wave:
- *
- * ```
- * 		var playback # Will hold the AudioStreamGeneratorPlayback.
- * 		@onready var sample_hz = $AudioStreamPlayer.stream.mix_rate
- * 		var pulse_hz = 440.0 # The frequency of the sound wave.
- *
- * 		func _ready():
- * 		    $AudioStreamPlayer.play()
- * 		    playback = $AudioStreamPlayer.get_stream_playback()
- * 		    fill_buffer()
- *
- * 		func fill_buffer():
- * 		    var phase = 0.0
- * 		    var increment = pulse_hz / sample_hz
- * 		    var frames_available = playback.get_frames_available()
- *
- * 		    for i in range(frames_available):
- * 		        playback.push_frame(Vector2.ONE * sin(phase * TAU))
- * 		        phase = fmod(phase + increment, 1.0)
- * 		```
- *
- * In the example above, the "AudioStreamPlayer" node must use an [godot.AudioStreamGenerator] as its stream. The `fill_buffer` function provides audio data for approximating a sine wave.
+ * This audio stream does not play back sounds, but expects a script to generate audio data for it instead. See also [godot.AudioStreamGeneratorPlayback].
  *
  * See also [godot.AudioEffectSpectrumAnalyzer] for performing real-time audio spectrum analysis.
  *
@@ -60,15 +37,15 @@ public open class AudioStreamGenerator : AudioStream() {
    *
    * According to the [godot.Nyquist-Shannon sampling theorem](https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem), there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are generating lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in quality.
    */
-  public var mixRate: Double
+  public var mixRate: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_GET_MIX_RATE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_SET_MIX_RATE,
           NIL)
     }
@@ -76,15 +53,15 @@ public open class AudioStreamGenerator : AudioStream() {
   /**
    * The length of the buffer to generate (in seconds). Lower values result in less latency, but require the script to generate audio data faster, resulting in increased CPU usage and more risk for audio cracking if the CPU can't keep up.
    */
-  public var bufferLength: Double
+  public var bufferLength: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_GET_BUFFER_LENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_SET_BUFFER_LENGTH, NIL)
     }

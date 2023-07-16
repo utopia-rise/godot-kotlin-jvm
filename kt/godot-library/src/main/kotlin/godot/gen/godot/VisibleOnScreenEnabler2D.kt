@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -33,7 +32,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER2D_GET_ENABLE_MODE, LONG)
-      return VisibleOnScreenEnabler2D.EnableMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisibleOnScreenEnabler2D.EnableMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -49,7 +48,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER2D_GET_ENABLE_NODE_PATH, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)

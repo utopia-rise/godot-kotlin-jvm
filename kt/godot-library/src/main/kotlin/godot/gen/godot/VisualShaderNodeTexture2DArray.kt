@@ -29,7 +29,7 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY_GET_TEXTURE_ARRAY, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture2DArray?
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2DArray?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

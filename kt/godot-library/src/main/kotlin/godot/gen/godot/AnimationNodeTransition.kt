@@ -16,13 +16,12 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A transition within an [godot.AnimationTree] connecting two [godot.AnimationNode]s.
+ * A generic animation transition node for [godot.AnimationTree].
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
@@ -59,7 +58,7 @@ import kotlin.jvm.JvmName
  *
  * # Get current state index (read-only).
  *
- * animation_tree.get("parameters/Transition/current_index")
+ * animation_tree.get("parameters/Transition/current_index"))
  *
  * # Alternative syntax (same result as above).
  *
@@ -99,7 +98,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_XFADE_TIME, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -115,7 +114,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_XFADE_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
+      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -131,7 +130,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_ALLOW_TRANSITION_TO_SELF, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -140,14 +139,14 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   /**
-   * The number of enabled input ports for this animation node.
+   * The number of enabled input ports for this node.
    */
-  public var inputCount: Long
+  public var inputCount: Int
     @JvmName("getInputCount_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getInputCount()
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_COUNT, NIL)
     }
@@ -160,8 +159,8 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * Enables or disables auto-advance for the given [input] index. If enabled, state changes to the next input after playing the animation once. If enabled for the last input state, it loops to the first.
    */
-  public fun setInputAsAutoAdvance(input: Long, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to input, BOOL to enable)
+  public fun setInputAsAutoAdvance(input: Int, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_AS_AUTO_ADVANCE, NIL)
   }
@@ -169,18 +168,18 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * Returns `true` if auto-advance is enabled for the given [input] index.
    */
-  public fun isInputSetAsAutoAdvance(input: Long): Boolean {
-    TransferContext.writeArguments(LONG to input)
+  public fun isInputSetAsAutoAdvance(input: Int): Boolean {
+    TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * If `true`, the destination animation is restarted when the animation transitions.
    */
-  public fun setInputReset(input: Long, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to input, BOOL to enable)
+  public fun setInputReset(input: Int, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_RESET, NIL)
   }
@@ -188,11 +187,11 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * Returns whether the animation restarts when the animation transitions from the other animation.
    */
-  public fun isInputReset(input: Long): Boolean {
-    TransferContext.writeArguments(LONG to input)
+  public fun isInputReset(input: Int): Boolean {
+    TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_RESET, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

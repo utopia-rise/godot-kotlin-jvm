@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
@@ -42,7 +41,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_SIZE, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -58,7 +57,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_RESOLUTION, LONG)
-      return GPUParticlesCollisionHeightField3D.Resolution.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return GPUParticlesCollisionHeightField3D.Resolution.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -74,7 +73,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_UPDATE_MODE, LONG)
-      return GPUParticlesCollisionHeightField3D.UpdateMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return GPUParticlesCollisionHeightField3D.UpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -93,7 +92,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_IS_FOLLOW_CAMERA_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -154,7 +153,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     id: Long,
   ) {
     /**
-     * Only update the heightmap when the [godot.GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [followCameraEnabled] is `true`. An update can be forced by slightly moving the [godot.GPUParticlesCollisionHeightField3D] in any direction, or by calling [godot.RenderingServer.particlesCollisionHeightFieldUpdate].
+     * Only update the heightmap when the [godot.GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [followCameraEnabled] is `true`. An update can be forced by slightly moving the [godot.GPUParticlesCollisionHeightField3D] in any direction.
      */
     UPDATE_MODE_WHEN_MOVED(0),
     /**

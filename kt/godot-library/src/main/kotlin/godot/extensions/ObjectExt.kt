@@ -90,7 +90,7 @@ inline fun <reified T : KFunction<*>> Object.connect(
     signal: Signal,
     target: Object,
     function: T,
-    flags: Long = 0
+    flags: Int = 0
 ) = connect(
     signal.name,
     Callable(target, function.name.camelToSnakeCase().asStringName()),
@@ -105,7 +105,7 @@ inline fun <reified T : KFunction<*>> Object.connectRawName(
     signal: Signal,
     target: Object,
     function: T,
-    flags: Long = 0
+    flags: Int = 0
 ) = connect(signal.name, Callable(target, function.name.asStringName()), flags)
 
 /**

@@ -40,11 +40,11 @@ public open class TileMapPattern : Resource() {
    */
   public fun setCell(
     coords: Vector2i,
-    sourceId: Long = -1,
+    sourceId: Int = -1,
     atlasCoords: Vector2i = Vector2i(-1, -1),
-    alternativeTile: Long = -1,
+    alternativeTile: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(VECTOR2I to coords, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)
+    TransferContext.writeArguments(VECTOR2I to coords, LONG to sourceId.toLong(), VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_SET_CELL, NIL)
   }
 
@@ -54,7 +54,7 @@ public open class TileMapPattern : Resource() {
   public fun hasCell(coords: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_HAS_CELL, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -68,11 +68,11 @@ public open class TileMapPattern : Resource() {
   /**
    * Returns the tile source ID of the cell at [coords].
    */
-  public fun getCellSourceId(coords: Vector2i): Long {
+  public fun getCellSourceId(coords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_CELL_SOURCE_ID,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -82,17 +82,17 @@ public open class TileMapPattern : Resource() {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_CELL_ATLAS_COORDS, VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
    * Returns the tile alternative ID of the cell at [coords].
    */
-  public fun getCellAlternativeTile(coords: Vector2i): Long {
+  public fun getCellAlternativeTile(coords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_CELL_ALTERNATIVE_TILE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -102,7 +102,7 @@ public open class TileMapPattern : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_USED_CELLS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
   }
 
   /**
@@ -111,7 +111,7 @@ public open class TileMapPattern : Resource() {
   public fun getSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_SIZE, VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
@@ -128,7 +128,7 @@ public open class TileMapPattern : Resource() {
   public fun isEmpty(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_IS_EMPTY, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

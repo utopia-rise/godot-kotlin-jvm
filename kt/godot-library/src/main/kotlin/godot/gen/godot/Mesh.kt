@@ -24,7 +24,7 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -49,7 +49,7 @@ public open class Mesh : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_LIGHTMAP_SIZE_HINT,
           VECTOR2I)
-      return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
@@ -64,90 +64,90 @@ public open class Mesh : Resource() {
   /**
    * Virtual method to override the surface count for a custom class extending [godot.Mesh].
    */
-  public open fun _getSurfaceCount(): Long {
+  public open fun _getSurfaceCount(): Int {
     throw NotImplementedError("_get_surface_count is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the surface array length for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceGetArrayLen(index: Long): Long {
+  public open fun _surfaceGetArrayLen(index: Int): Int {
     throw NotImplementedError("_surface_get_array_len is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the surface array index length for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceGetArrayIndexLen(index: Long): Long {
+  public open fun _surfaceGetArrayIndexLen(index: Int): Int {
     throw NotImplementedError("_surface_get_array_index_len is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the surface arrays for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceGetArrays(index: Long): VariantArray<Any?> {
+  public open fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
     throw NotImplementedError("_surface_get_arrays is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the blend shape arrays for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceGetBlendShapeArrays(index: Long): VariantArray<VariantArray<Any?>> {
+  public open fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
     throw NotImplementedError("_surface_get_blend_shape_arrays is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the surface LODs for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceGetLods(index: Long): Dictionary<Any?, Any?> {
+  public open fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
     throw NotImplementedError("_surface_get_lods is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the surface format for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceGetFormat(index: Long): Long {
+  public open fun _surfaceGetFormat(index: Int): Int {
     throw NotImplementedError("_surface_get_format is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the surface primitive type for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceGetPrimitiveType(index: Long): Long {
+  public open fun _surfaceGetPrimitiveType(index: Int): Int {
     throw NotImplementedError("_surface_get_primitive_type is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the setting of a [material] at the given [index] for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceSetMaterial(index: Long, material: Material): Unit {
+  public open fun _surfaceSetMaterial(index: Int, material: Material): Unit {
   }
 
   /**
    * Virtual method to override the surface material for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceGetMaterial(index: Long): Material? {
+  public open fun _surfaceGetMaterial(index: Int): Material? {
     throw NotImplementedError("_surface_get_material is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the number of blend shapes for a custom class extending [godot.Mesh].
    */
-  public open fun _getBlendShapeCount(): Long {
+  public open fun _getBlendShapeCount(): Int {
     throw NotImplementedError("_get_blend_shape_count is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the retrieval of blend shape names for a custom class extending [godot.Mesh].
    */
-  public open fun _getBlendShapeName(index: Long): StringName {
+  public open fun _getBlendShapeName(index: Int): StringName {
     throw NotImplementedError("_get_blend_shape_name is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the names of blend shapes for a custom class extending [godot.Mesh].
    */
-  public open fun _setBlendShapeName(index: Long, name: StringName): Unit {
+  public open fun _setBlendShapeName(index: Int, name: StringName): Unit {
   }
 
   /**
@@ -166,7 +166,7 @@ public open class Mesh : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_AABB,
         godot.core.VariantType.AABB)
-    return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
   }
 
   /**
@@ -176,52 +176,52 @@ public open class Mesh : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_FACES,
         PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
    * Returns the number of surfaces that the [godot.Mesh] holds.
    */
-  public fun getSurfaceCount(): Long {
+  public fun getSurfaceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_SURFACE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the arrays for the vertices, normals, uvs, etc. that make up the requested surface (see [godot.ArrayMesh.addSurfaceFromArrays]).
    */
-  public fun surfaceGetArrays(surfIdx: Long): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to surfIdx)
+  public fun surfaceGetArrays(surfIdx: Int): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_ARRAYS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
    * Returns the blend shape arrays for the requested surface.
    */
-  public fun surfaceGetBlendShapeArrays(surfIdx: Long): VariantArray<VariantArray<Any?>> {
-    TransferContext.writeArguments(LONG to surfIdx)
+  public fun surfaceGetBlendShapeArrays(surfIdx: Int): VariantArray<VariantArray<Any?>> {
+    TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_BLEND_SHAPE_ARRAYS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>)
   }
 
   /**
    * Sets a [godot.Material] for a given surface. Surface will be rendered using this material.
    */
-  public fun surfaceSetMaterial(surfIdx: Long, material: Material): Unit {
-    TransferContext.writeArguments(LONG to surfIdx, OBJECT to material)
+  public fun surfaceSetMaterial(surfIdx: Int, material: Material): Unit {
+    TransferContext.writeArguments(LONG to surfIdx.toLong(), OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_SET_MATERIAL, NIL)
   }
 
   /**
    * Returns a [godot.Material] in a given surface. Surface is rendered using this material.
    */
-  public fun surfaceGetMaterial(surfIdx: Long): Material? {
-    TransferContext.writeArguments(LONG to surfIdx)
+  public fun surfaceGetMaterial(surfIdx: Int): Material? {
+    TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_MATERIAL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Material?
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
   /**
@@ -230,7 +230,7 @@ public open class Mesh : Resource() {
   public fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_PLACEHOLDER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Resource?
+    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
   /**
@@ -239,7 +239,7 @@ public open class Mesh : Resource() {
   public fun createTrimeshShape(): ConcavePolygonShape3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_TRIMESH_SHAPE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ConcavePolygonShape3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as ConcavePolygonShape3D?)
   }
 
   /**
@@ -253,7 +253,7 @@ public open class Mesh : Resource() {
       ConvexPolygonShape3D? {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_CONVEX_SHAPE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ConvexPolygonShape3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as ConvexPolygonShape3D?)
   }
 
   /**
@@ -261,10 +261,10 @@ public open class Mesh : Resource() {
    *
    * **Note:** This method typically returns the vertices in reverse order (e.g. clockwise to counterclockwise).
    */
-  public fun createOutline(margin: Double): Mesh? {
-    TransferContext.writeArguments(DOUBLE to margin)
+  public fun createOutline(margin: Float): Mesh? {
+    TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_OUTLINE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Mesh?
+    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
   }
 
   /**
@@ -273,7 +273,7 @@ public open class Mesh : Resource() {
   public fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GENERATE_TRIANGLE_MESH, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?
+    return (TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?)
   }
 
   public enum class PrimitiveType(
@@ -339,19 +339,19 @@ public open class Mesh : Resource() {
      */
     ARRAY_TEX_UV2(5),
     /**
-     * Contains custom color channel 0. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 0. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM0_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM0(6),
     /**
-     * Contains custom color channel 1. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM1_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 1. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM1_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM1(7),
     /**
-     * Contains custom color channel 2. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM2_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 2. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM2_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM2(8),
     /**
-     * Contains custom color channel 3. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM3_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 3. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM3_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM3(9),
     /**

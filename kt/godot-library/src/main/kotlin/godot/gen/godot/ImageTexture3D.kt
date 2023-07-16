@@ -11,7 +11,6 @@ import godot.core.GodotError
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -40,19 +39,19 @@ public open class ImageTexture3D : Texture3D() {
    */
   public fun create(
     format: Image.Format,
-    width: Long,
-    height: Long,
-    depth: Long,
+    width: Int,
+    height: Int,
+    depth: Int,
     useMipmaps: Boolean,
     `data`: VariantArray<Image>,
   ): GodotError {
-    TransferContext.writeArguments(LONG to format.id, LONG to width, LONG to height, LONG to depth, BOOL to useMipmaps, ARRAY to data)
+    TransferContext.writeArguments(LONG to format.id, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to useMipmaps, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_CREATE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
-   * Replaces the texture's existing data with the layers specified in [data]. The size of [data] must match the parameters that were used for [create]. In other words, the texture cannot be resized or have its format changed by calling [update].
+   * Replaces the texture's existing data with the layers specified in `data`. The size of `data` must match the parameters that were used for [create]. In other words, the texture cannot be resized or have its format changed by calling [update].
    */
   public fun update(`data`: VariantArray<Image>): Unit {
     TransferContext.writeArguments(ARRAY to data)

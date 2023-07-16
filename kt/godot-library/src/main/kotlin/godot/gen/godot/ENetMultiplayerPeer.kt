@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -28,7 +27,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_GET_HOST,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as ENetConnection?
+      return (TransferContext.readReturnValue(OBJECT, true) as ENetConnection?)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -37,44 +36,44 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   }
 
   public fun createServer(
-    port: Long,
-    maxClients: Long = 32,
-    maxChannels: Long = 0,
-    inBandwidth: Long = 0,
-    outBandwidth: Long = 0,
+    port: Int,
+    maxClients: Int = 32,
+    maxChannels: Int = 0,
+    inBandwidth: Int = 0,
+    outBandwidth: Int = 0,
   ): GodotError {
-    TransferContext.writeArguments(LONG to port, LONG to maxClients, LONG to maxChannels, LONG to inBandwidth, LONG to outBandwidth)
+    TransferContext.writeArguments(LONG to port.toLong(), LONG to maxClients.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_SERVER,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public fun createClient(
     address: String,
-    port: Long,
-    channelCount: Long = 0,
-    inBandwidth: Long = 0,
-    outBandwidth: Long = 0,
-    localPort: Long = 0,
+    port: Int,
+    channelCount: Int = 0,
+    inBandwidth: Int = 0,
+    outBandwidth: Int = 0,
+    localPort: Int = 0,
   ): GodotError {
-    TransferContext.writeArguments(STRING to address, LONG to port, LONG to channelCount, LONG to inBandwidth, LONG to outBandwidth, LONG to localPort)
+    TransferContext.writeArguments(STRING to address, LONG to port.toLong(), LONG to channelCount.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong(), LONG to localPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_CLIENT,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
-  public fun createMesh(uniqueId: Long): GodotError {
-    TransferContext.writeArguments(LONG to uniqueId)
+  public fun createMesh(uniqueId: Int): GodotError {
+    TransferContext.writeArguments(LONG to uniqueId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_MESH,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
-  public fun addMeshPeer(peerId: Long, host: ENetConnection): GodotError {
-    TransferContext.writeArguments(LONG to peerId, OBJECT to host)
+  public fun addMeshPeer(peerId: Int, host: ENetConnection): GodotError {
+    TransferContext.writeArguments(LONG to peerId.toLong(), OBJECT to host)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_ADD_MESH_PEER,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public fun setBindIp(ip: String): Unit {
@@ -83,11 +82,11 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
         NIL)
   }
 
-  public fun getPeer(id: Long): ENetPacketPeer? {
-    TransferContext.writeArguments(LONG to id)
+  public fun getPeer(id: Int): ENetPacketPeer? {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_GET_PEER,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ENetPacketPeer?
+    return (TransferContext.readReturnValue(OBJECT, true) as ENetPacketPeer?)
   }
 
   public companion object

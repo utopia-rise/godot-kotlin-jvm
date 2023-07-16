@@ -15,7 +15,6 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -112,7 +111,7 @@ public open class EditorDebuggerPlugin internal constructor() : RefCounted() {
   /**
    * Override this method to be notified whenever a new [godot.EditorDebuggerSession] is created (the session may be inactive during this stage).
    */
-  public open fun _setupSession(sessionId: Long): Unit {
+  public open fun _setupSession(sessionId: Int): Unit {
   }
 
   /**
@@ -128,7 +127,7 @@ public open class EditorDebuggerPlugin internal constructor() : RefCounted() {
   public open fun _capture(
     message: String,
     `data`: VariantArray<Any?>,
-    sessionId: Long,
+    sessionId: Int,
   ): Boolean {
     throw NotImplementedError("_capture is not implemented for EditorDebuggerPlugin")
   }
@@ -136,11 +135,11 @@ public open class EditorDebuggerPlugin internal constructor() : RefCounted() {
   /**
    * Returns the [godot.EditorDebuggerSession] with the given [id].
    */
-  public fun getSession(id: Long): EditorDebuggerSession? {
-    TransferContext.writeArguments(LONG to id)
+  public fun getSession(id: Int): EditorDebuggerSession? {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_GET_SESSION,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorDebuggerSession?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorDebuggerSession?)
   }
 
   /**
@@ -152,7 +151,7 @@ public open class EditorDebuggerPlugin internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_GET_SESSIONS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public companion object

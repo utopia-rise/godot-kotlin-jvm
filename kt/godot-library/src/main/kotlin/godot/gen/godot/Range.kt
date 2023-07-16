@@ -22,9 +22,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract base class for controls that represent a number within a range.
+ * Abstract base class for range-based controls.
  *
- * Range is an abstract base class for controls that represent a number within a range, using a configured [step] and [page] size. See e.g. [godot.ScrollBar] and [godot.Slider] for examples of higher-level nodes using Range.
+ * Range is a base class for [godot.Control] nodes that change a floating-point [value] between a [minValue] and [maxValue], using a configured [step] and [page] size. See e.g. [godot.ScrollBar] and [godot.Slider] for examples of higher level nodes using Range.
  */
 @GodotBaseType
 public open class Range : Control() {
@@ -41,13 +41,13 @@ public open class Range : Control() {
   public val changed: Signal0 by signal()
 
   /**
-   * Minimum value. Range is clamped if [value] is less than [minValue].
+   * Minimum value. Range is clamped if `value` is less than `min_value`.
    */
   public var minValue: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MIN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -55,13 +55,13 @@ public open class Range : Control() {
     }
 
   /**
-   * Maximum value. Range is clamped if [value] is greater than [maxValue].
+   * Maximum value. Range is clamped if `value` is greater than `max_value`.
    */
   public var maxValue: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MAX, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -69,13 +69,13 @@ public open class Range : Control() {
     }
 
   /**
-   * If greater than 0, [value] will always be rounded to a multiple of this property's value. If [rounded] is also `true`, [value] will first be rounded to a multiple of this property's value, then rounded to the nearest integer.
+   * If greater than 0, `value` will always be rounded to a multiple of `step`. If `rounded` is also `true`, `value` will first be rounded to a multiple of `step` then rounded to the nearest integer.
    */
   public var step: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_STEP, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -83,13 +83,13 @@ public open class Range : Control() {
     }
 
   /**
-   * Page size. Used mainly for [godot.ScrollBar]. ScrollBar's length is its size multiplied by [page] over the difference between [minValue] and [maxValue].
+   * Page size. Used mainly for [godot.ScrollBar]. ScrollBar's length is its size multiplied by `page` over the difference between `min_value` and `max_value`.
    */
   public var page: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_PAGE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -103,7 +103,7 @@ public open class Range : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_VALUE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -117,7 +117,7 @@ public open class Range : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_AS_RATIO, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -125,13 +125,13 @@ public open class Range : Control() {
     }
 
   /**
-   * If `true`, and [minValue] is greater than 0, [value] will be represented exponentially rather than linearly.
+   * If `true`, and `min_value` is greater than 0, `value` will be represented exponentially rather than linearly.
    */
   public var expEdit: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_RATIO_EXP, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -139,14 +139,14 @@ public open class Range : Control() {
     }
 
   /**
-   * If `true`, [value] will always be rounded to the nearest integer.
+   * If `true`, `value` will always be rounded to the nearest integer.
    */
   public var rounded: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_USING_ROUNDED_VALUES,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -160,7 +160,7 @@ public open class Range : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_GREATER_ALLOWED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -174,7 +174,7 @@ public open class Range : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_LESSER_ALLOWED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

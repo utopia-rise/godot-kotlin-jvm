@@ -31,7 +31,7 @@ public open class VisualShaderNodeVec4Parameter : VisualShaderNodeParameter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC4PARAMETER_IS_DEFAULT_VALUE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -47,7 +47,7 @@ public open class VisualShaderNodeVec4Parameter : VisualShaderNodeParameter() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC4PARAMETER_GET_DEFAULT_VALUE, VECTOR4)
-      return TransferContext.readReturnValue(VECTOR4, false) as Vector4
+      return (TransferContext.readReturnValue(VECTOR4, false) as Vector4)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR4 to value)

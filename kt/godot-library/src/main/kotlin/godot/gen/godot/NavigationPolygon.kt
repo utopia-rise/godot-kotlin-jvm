@@ -18,13 +18,14 @@ import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A navigation polygon that defines traversable areas and obstacles.
+ * A node that has methods to draw outlines or use indices of vertices to create navigation polygons.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html)
@@ -110,7 +111,7 @@ public open class NavigationPolygon : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_VERTICES,
           PACKED_VECTOR2_ARRAY)
-      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
@@ -118,18 +119,15 @@ public open class NavigationPolygon : Resource() {
           NIL)
     }
 
-  /**
-   * The cell size used to rasterize the navigation mesh vertices. Must match with the cell size on the navigation map.
-   */
-  public var cellSize: Double
+  public var cellSize: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_CELL_SIZE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_CELL_SIZE,
           NIL)
     }
@@ -150,21 +148,21 @@ public open class NavigationPolygon : Resource() {
   /**
    * Returns the count of all polygons.
    */
-  public fun getPolygonCount(): Long {
+  public fun getPolygonCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_POLYGON_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns a [godot.PackedInt32Array] containing the indices of the vertices of a created polygon.
    */
-  public fun getPolygon(idx: Long): PackedInt32Array {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getPolygon(idx: Int): PackedInt32Array {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_POLYGON,
         PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
@@ -183,7 +181,7 @@ public open class NavigationPolygon : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_NAVIGATION_MESH, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?
+    return (TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?)
   }
 
   /**
@@ -197,8 +195,8 @@ public open class NavigationPolygon : Resource() {
   /**
    * Adds a [godot.PackedVector2Array] that contains the vertices of an outline to the internal array that contains all the outlines at a fixed position. You have to call [makePolygonsFromOutlines] in order for this array to be converted to polygons that the engine will use.
    */
-  public fun addOutlineAtIndex(outline: PackedVector2Array, index: Long): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to outline, LONG to index)
+  public fun addOutlineAtIndex(outline: PackedVector2Array, index: Int): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to outline, LONG to index.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_OUTLINE_AT_INDEX, NIL)
   }
@@ -206,36 +204,36 @@ public open class NavigationPolygon : Resource() {
   /**
    * Returns the number of outlines that were created in the editor or by script.
    */
-  public fun getOutlineCount(): Long {
+  public fun getOutlineCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_OUTLINE_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Changes an outline created in the editor or by script. You have to call [makePolygonsFromOutlines] for the polygons to update.
    */
-  public fun setOutline(idx: Long, outline: PackedVector2Array): Unit {
-    TransferContext.writeArguments(LONG to idx, PACKED_VECTOR2_ARRAY to outline)
+  public fun setOutline(idx: Int, outline: PackedVector2Array): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), PACKED_VECTOR2_ARRAY to outline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_OUTLINE, NIL)
   }
 
   /**
    * Returns a [godot.PackedVector2Array] containing the vertices of an outline that was created in the editor or by script.
    */
-  public fun getOutline(idx: Long): PackedVector2Array {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getOutline(idx: Int): PackedVector2Array {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_OUTLINE,
         PACKED_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   /**
    * Removes an outline created in the editor or by script. You have to call [makePolygonsFromOutlines] for the polygons to update.
    */
-  public fun removeOutline(idx: Long): Unit {
-    TransferContext.writeArguments(LONG to idx)
+  public fun removeOutline(idx: Int): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_REMOVE_OUTLINE,
         NIL)
   }

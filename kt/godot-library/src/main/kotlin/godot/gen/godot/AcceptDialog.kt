@@ -23,9 +23,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A base dialog used for user notification.
+ * Base dialog for user notification.
  *
- * The default use of [godot.AcceptDialog] is to allow it to only be accepted or closed, with the same result. However, the [confirmed] and [canceled] signals allow to make the two actions different, and the [addButton] method allows to add custom buttons and actions.
+ * This dialog is useful for small notifications to the user about an event. It can only be accepted or closed, with the same result.
  */
 @GodotBaseType
 public open class AcceptDialog : Window() {
@@ -52,7 +52,7 @@ public open class AcceptDialog : Window() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_OK_BUTTON_TEXT,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -67,7 +67,7 @@ public open class AcceptDialog : Window() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_TEXT, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -83,7 +83,7 @@ public open class AcceptDialog : Window() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_HIDE_ON_OK, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -98,7 +98,7 @@ public open class AcceptDialog : Window() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_CLOSE_ON_ESCAPE,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -113,7 +113,7 @@ public open class AcceptDialog : Window() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_HAS_AUTOWRAP, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -133,7 +133,7 @@ public open class AcceptDialog : Window() {
   public fun getOkButton(): Button? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_OK_BUTTON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Button?
+    return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
   /**
@@ -144,7 +144,7 @@ public open class AcceptDialog : Window() {
   public fun getLabel(): Label? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_LABEL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Label?
+    return (TransferContext.readReturnValue(OBJECT, true) as Label?)
   }
 
   /**
@@ -161,7 +161,7 @@ public open class AcceptDialog : Window() {
   ): Button? {
     TransferContext.writeArguments(STRING to text, BOOL to right, STRING to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_ADD_BUTTON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Button?
+    return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
   /**
@@ -173,7 +173,7 @@ public open class AcceptDialog : Window() {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_ADD_CANCEL_BUTTON,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Button?
+    return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
   /**

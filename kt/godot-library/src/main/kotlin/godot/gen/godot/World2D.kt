@@ -16,12 +16,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A resource that holds all components of a 2D world, such as a canvas and a physics space.
+ * Class that has everything pertaining to a 2D world.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Class that has everything pertaining to a 2D world: A physics space, a canvas, and a sound space. 2D nodes register their resources into the current 2D world.
+ * Class that has everything pertaining to a 2D world. A physics space, a visual scenario and a sound space. 2D nodes register their resources into the current 2D world.
  */
 @GodotBaseType
 public open class World2D : Resource() {
@@ -32,7 +32,7 @@ public open class World2D : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_CANVAS, _RID)
-      return TransferContext.readReturnValue(_RID, false) as RID
+      return (TransferContext.readReturnValue(_RID, false) as RID)
     }
 
   /**
@@ -42,7 +42,7 @@ public open class World2D : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_SPACE, _RID)
-      return TransferContext.readReturnValue(_RID, false) as RID
+      return (TransferContext.readReturnValue(_RID, false) as RID)
     }
 
   /**
@@ -52,7 +52,7 @@ public open class World2D : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_NAVIGATION_MAP, _RID)
-      return TransferContext.readReturnValue(_RID, false) as RID
+      return (TransferContext.readReturnValue(_RID, false) as RID)
     }
 
   /**
@@ -63,7 +63,7 @@ public open class World2D : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_DIRECT_SPACE_STATE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

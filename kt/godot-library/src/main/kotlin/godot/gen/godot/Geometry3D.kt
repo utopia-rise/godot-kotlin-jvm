@@ -21,15 +21,14 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Provides methods for some common 3D geometric operations.
+ * Helper node to calculate generic geometry operations in 3D space.
  *
- * Provides a set of helper functions to create geometric shapes, compute intersections between shapes, and process various other geometric operations in 3D.
+ * Geometry3D provides users with a set of helper functions to create geometric shapes, compute intersections between shapes, and process various other geometric operations.
  */
 @GodotBaseType
 public object Geometry3D : Object() {
@@ -44,38 +43,38 @@ public object Geometry3D : Object() {
   public fun buildBoxPlanes(extents: Vector3): VariantArray<Plane> {
     TransferContext.writeArguments(VECTOR3 to extents)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_BOX_PLANES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>)
   }
 
   /**
    * Returns an array of [godot.core.Plane]s closely bounding a faceted cylinder centered at the origin with radius [radius] and height [height]. The parameter [sides] defines how many planes will be generated for the round part of the cylinder. The parameter [axis] describes the axis along which the cylinder is oriented (0 for X, 1 for Y, 2 for Z).
    */
   public fun buildCylinderPlanes(
-    radius: Double,
-    height: Double,
-    sides: Long,
+    radius: Float,
+    height: Float,
+    sides: Int,
     axis: Vector3.Axis = Vector3.Axis.Z,
   ): VariantArray<Plane> {
-    TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to axis.id)
+    TransferContext.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CYLINDER_PLANES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>)
   }
 
   /**
    * Returns an array of [godot.core.Plane]s closely bounding a faceted capsule centered at the origin with radius [radius] and height [height]. The parameter [sides] defines how many planes will be generated for the side part of the capsule, whereas [lats] gives the number of latitudinal steps at the bottom and top of the capsule. The parameter [axis] describes the axis along which the capsule is oriented (0 for X, 1 for Y, 2 for Z).
    */
   public fun buildCapsulePlanes(
-    radius: Double,
-    height: Double,
-    sides: Long,
-    lats: Long,
+    radius: Float,
+    height: Float,
+    sides: Int,
+    lats: Int,
     axis: Vector3.Axis = Vector3.Axis.Z,
   ): VariantArray<Plane> {
-    TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to lats, LONG to axis.id)
+    TransferContext.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to lats.toLong(), LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CAPSULE_PLANES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>)
   }
 
   /**
@@ -91,7 +90,7 @@ public object Geometry3D : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_CLOSEST_POINTS_BETWEEN_SEGMENTS,
         PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
@@ -105,7 +104,7 @@ public object Geometry3D : Object() {
     TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_CLOSEST_POINT_TO_SEGMENT, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -119,7 +118,7 @@ public object Geometry3D : Object() {
     TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_CLOSEST_POINT_TO_SEGMENT_UNCAPPED, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -135,7 +134,7 @@ public object Geometry3D : Object() {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to dir, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_RAY_INTERSECTS_TRIANGLE,
         ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -151,7 +150,7 @@ public object Geometry3D : Object() {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_TRIANGLE, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -161,12 +160,12 @@ public object Geometry3D : Object() {
     from: Vector3,
     to: Vector3,
     spherePosition: Vector3,
-    sphereRadius: Double,
+    sphereRadius: Float,
   ): PackedVector3Array {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to spherePosition, DOUBLE to sphereRadius)
+    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to spherePosition, DOUBLE to sphereRadius.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_SPHERE, PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
@@ -175,13 +174,13 @@ public object Geometry3D : Object() {
   public fun segmentIntersectsCylinder(
     from: Vector3,
     to: Vector3,
-    height: Double,
-    radius: Double,
+    height: Float,
+    radius: Float,
   ): PackedVector3Array {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, DOUBLE to height, DOUBLE to radius)
+    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, DOUBLE to height.toDouble(), DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_CYLINDER, PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
@@ -195,7 +194,7 @@ public object Geometry3D : Object() {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, ARRAY to planes)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_CONVEX, PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
@@ -205,6 +204,6 @@ public object Geometry3D : Object() {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to points, PLANE to plane)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_CLIP_POLYGON,
         PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 }

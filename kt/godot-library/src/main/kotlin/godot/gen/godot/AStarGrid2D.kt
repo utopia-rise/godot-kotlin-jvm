@@ -13,7 +13,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
@@ -25,6 +24,7 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -32,11 +32,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An implementation of A* for finding the shortest path between two points on a partial 2D grid.
+ * A* (or "A-Star") pathfinding tailored to find the shortest paths on 2D grids.
  *
- * [godot.AStarGrid2D] is a variant of [godot.AStar2D] that is specialized for partial 2D grids. It is simpler to use because it doesn't require you to manually create points and connect them together. This class also supports multiple types of heuristics, modes for diagonal movement, and a jumping mode to speed up calculations.
+ * Compared to [godot.AStar2D] you don't need to manually create points or connect them together. It also supports multiple type of heuristics and modes for diagonal movement. This class also provides a jumping mode which is faster to calculate than without it in the [godot.AStar2D] class.
  *
- * To use [godot.AStarGrid2D], you only need to set the [region] of the grid, optionally set the [cellSize], and then call the [update] method:
+ * In contrast to [godot.AStar2D], you only need set the [size] of the grid, optionally set the [cellSize] and then call the [update] method:
  *
  * [codeblocks]
  *
@@ -44,7 +44,7 @@ import kotlin.Unit
  *
  * var astar_grid = AStarGrid2D.new()
  *
- * astar_grid.region = Rect2i(0, 0, 32, 32)
+ * astar_grid.size = Vector2i(32, 32)
  *
  * astar_grid.cell_size = Vector2(16, 16)
  *
@@ -73,19 +73,14 @@ import kotlin.Unit
  * [/csharp]
  *
  * [/codeblocks]
- *
- * To remove a point from the pathfinding grid, it must be set as "solid" with [setPointSolid].
  */
 @GodotBaseType
 public open class AStarGrid2D : RefCounted() {
-  /**
-   * The region of grid cells available for pathfinding. If changed, [update] needs to be called before finding the next path.
-   */
   public var region: Rect2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_REGION, RECT2I)
-      return TransferContext.readReturnValue(RECT2I, false) as Rect2i
+      return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
     }
     set(`value`) {
       TransferContext.writeArguments(RECT2I to value)
@@ -94,14 +89,12 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update] needs to be called before finding the next path.
-   *
-   * *Deprecated.* Use [region] instead.
    */
   public var size: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_SIZE, VECTOR2I)
-      return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
@@ -115,7 +108,7 @@ public open class AStarGrid2D : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_OFFSET, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -130,7 +123,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_CELL_SIZE,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -147,7 +140,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_IS_JUMPING_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -163,7 +156,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DEFAULT_COMPUTE_HEURISTIC, LONG)
-      return AStarGrid2D.Heuristic.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return AStarGrid2D.Heuristic.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -179,7 +172,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DEFAULT_ESTIMATE_HEURISTIC, LONG)
-      return AStarGrid2D.Heuristic.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return AStarGrid2D.Heuristic.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -195,7 +188,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DIAGONAL_MODE,
           LONG)
-      return AStarGrid2D.DiagonalMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return AStarGrid2D.DiagonalMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -213,7 +206,7 @@ public open class AStarGrid2D : RefCounted() {
    *
    * Note that this function is hidden in the default `AStarGrid2D` class.
    */
-  public open fun _estimateCost(fromId: Vector2i, toId: Vector2i): Double {
+  public open fun _estimateCost(fromId: Vector2i, toId: Vector2i): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStarGrid2D")
   }
 
@@ -222,17 +215,17 @@ public open class AStarGrid2D : RefCounted() {
    *
    * Note that this function is hidden in the default `AStarGrid2D` class.
    */
-  public open fun _computeCost(fromId: Vector2i, toId: Vector2i): Double {
+  public open fun _computeCost(fromId: Vector2i, toId: Vector2i): Float {
     throw NotImplementedError("_compute_cost is not implemented for AStarGrid2D")
   }
 
   /**
    * Returns `true` if the [x] and [y] is a valid grid coordinate (id).
    */
-  public fun isInBounds(x: Long, y: Long): Boolean {
-    TransferContext.writeArguments(LONG to x, LONG to y)
+  public fun isInBounds(x: Int, y: Int): Boolean {
+    TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_IS_IN_BOUNDS, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -241,7 +234,7 @@ public open class AStarGrid2D : RefCounted() {
   public fun isInBoundsv(id: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_IS_IN_BOUNDSV, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -250,13 +243,11 @@ public open class AStarGrid2D : RefCounted() {
   public fun isDirty(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_IS_DIRTY, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
-   * Updates the internal state of the grid according to the parameters to prepare it to search the path. Needs to be called if parameters like [region], [cellSize] or [offset] are changed. [isDirty] will return `true` if this is the case and this needs to be called.
-   *
-   * **Note:** All point data (solidity and weight scale) will be cleared.
+   * Updates the internal state of the grid according to the parameters to prepare it to search the path. Needs to be called if parameters like [size], [cellSize] or [offset] are changed. [isDirty] will return `true` if this is the case and this needs to be called.
    */
   public fun update(): Unit {
     TransferContext.writeArguments()
@@ -279,7 +270,7 @@ public open class AStarGrid2D : RefCounted() {
   public fun isPointSolid(id: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_IS_POINT_SOLID, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -287,8 +278,8 @@ public open class AStarGrid2D : RefCounted() {
    *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
-  public fun setPointWeightScale(id: Vector2i, weightScale: Double): Unit {
-    TransferContext.writeArguments(VECTOR2I to id, DOUBLE to weightScale)
+  public fun setPointWeightScale(id: Vector2i, weightScale: Float): Unit {
+    TransferContext.writeArguments(VECTOR2I to id, DOUBLE to weightScale.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_SET_POINT_WEIGHT_SCALE,
         NIL)
   }
@@ -296,15 +287,15 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns the weight scale of the point associated with the given [id].
    */
-  public fun getPointWeightScale(id: Vector2i): Double {
+  public fun getPointWeightScale(id: Vector2i): Float {
     TransferContext.writeArguments(VECTOR2I to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_POINT_WEIGHT_SCALE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
-   * Clears the grid and sets the [region] to `Rect2i(0, 0, 0, 0)`.
+   * Clears the grid and sets the [size] to [godot.Vector2i.ZERO].
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
@@ -318,7 +309,7 @@ public open class AStarGrid2D : RefCounted() {
     TransferContext.writeArguments(VECTOR2I to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_POINT_POSITION,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -330,7 +321,7 @@ public open class AStarGrid2D : RefCounted() {
     TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_POINT_PATH,
         PACKED_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   /**
@@ -339,7 +330,7 @@ public open class AStarGrid2D : RefCounted() {
   public fun getIdPath(fromId: Vector2i, toId: Vector2i): VariantArray<Vector2i> {
     TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_ID_PATH, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
   }
 
   public enum class Heuristic(

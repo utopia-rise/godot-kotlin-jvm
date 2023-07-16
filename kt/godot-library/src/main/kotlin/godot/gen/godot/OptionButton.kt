@@ -25,26 +25,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A button that brings up a dropdown with selectable options when pressed.
+ * Button control that provides selectable options when pressed.
  *
- * [godot.OptionButton] is a type of button that brings up a dropdown with selectable items when pressed. The item selected becomes the "current" item and is displayed as the button text.
+ * OptionButton is a type button that provides a selectable list of items when pressed. The item selected becomes the "current" item and is displayed as the button text.
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  *
  * **Note:** Properties [godot.Button.text] and [godot.Button.icon] are automatically set based on the selected item. They shouldn't be changed manually.
- *
- * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
- *
- * **Note:** The ID values used for items are 32-bit, unlike [int] which is always 64-bit. They go from `-2147483648` to `2147483647`.
- *
- * **Note:** The [godot.Button.text] and [godot.Button.icon] properties are set automatically based on the selected item. They shouldn't be changed manually.
  */
 @GodotBaseType
 public open class OptionButton : Button() {
   /**
    * Emitted when the current item has been changed by the user. The index of the item selected is passed as argument.
-   *
-   * [allowReselect] must be enabled to reselect an item.
    */
   public val itemSelected: Signal1<Long> by signal("index")
 
@@ -56,25 +48,25 @@ public open class OptionButton : Button() {
   /**
    * The number of items to select from.
    */
-  public var itemCount: Long
+  public var itemCount: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_COUNT, NIL)
     }
 
   /**
    * The index of the currently selected item, or `-1` if no item is selected.
    */
-  public val selected: Long
+  public val selected: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTED, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
 
   /**
@@ -87,7 +79,7 @@ public open class OptionButton : Button() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_IS_FIT_TO_LONGEST_ITEM, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -95,15 +87,12 @@ public open class OptionButton : Button() {
           ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_FIT_TO_LONGEST_ITEM, NIL)
     }
 
-  /**
-   * If `true`, the currently selected item can be selected again.
-   */
   public var allowReselect: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ALLOW_RESELECT,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -119,8 +108,8 @@ public open class OptionButton : Button() {
   /**
    * Adds an item, with text [label] and (optionally) [id]. If no [id] is passed, the item index will be used as the item's ID. New items are appended at the end.
    */
-  public fun addItem(label: String, id: Long = -1): Unit {
-    TransferContext.writeArguments(STRING to label, LONG to id)
+  public fun addItem(label: String, id: Int = -1): Unit {
+    TransferContext.writeArguments(STRING to label, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_ADD_ITEM, NIL)
   }
 
@@ -130,25 +119,25 @@ public open class OptionButton : Button() {
   public fun addIconItem(
     texture: Texture2D,
     label: String,
-    id: Long = -1,
+    id: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id)
+    TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_ADD_ICON_ITEM, NIL)
   }
 
   /**
    * Sets the text of the item at index [idx].
    */
-  public fun setItemText(idx: Long, text: String): Unit {
-    TransferContext.writeArguments(LONG to idx, STRING to text)
+  public fun setItemText(idx: Int, text: String): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_TEXT, NIL)
   }
 
   /**
    * Sets the icon of the item at index [idx].
    */
-  public fun setItemIcon(idx: Long, texture: Texture2D): Unit {
-    TransferContext.writeArguments(LONG to idx, OBJECT to texture)
+  public fun setItemIcon(idx: Int, texture: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_ICON, NIL)
   }
 
@@ -157,107 +146,107 @@ public open class OptionButton : Button() {
    *
    * Disabled items are drawn differently in the dropdown and are not selectable by the user. If the current selected item is set as disabled, it will remain selected.
    */
-  public fun setItemDisabled(idx: Long, disabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to idx, BOOL to disabled)
+  public fun setItemDisabled(idx: Int, disabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_DISABLED, NIL)
   }
 
   /**
    * Sets the ID of the item at index [idx].
    */
-  public fun setItemId(idx: Long, id: Long): Unit {
-    TransferContext.writeArguments(LONG to idx, LONG to id)
+  public fun setItemId(idx: Int, id: Int): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_ID, NIL)
   }
 
   /**
    * Sets the metadata of an item. Metadata may be of any type and can be used to store extra information about an item, such as an external string ID.
    */
-  public fun setItemMetadata(idx: Long, metadata: Any): Unit {
-    TransferContext.writeArguments(LONG to idx, ANY to metadata)
+  public fun setItemMetadata(idx: Int, metadata: Any): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_METADATA, NIL)
   }
 
   /**
    * Sets the tooltip of the item at index [idx].
    */
-  public fun setItemTooltip(idx: Long, tooltip: String): Unit {
-    TransferContext.writeArguments(LONG to idx, STRING to tooltip)
+  public fun setItemTooltip(idx: Int, tooltip: String): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), STRING to tooltip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_TOOLTIP, NIL)
   }
 
   /**
    * Returns the text of the item at index [idx].
    */
-  public fun getItemText(idx: Long): String {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getItemText(idx: Int): String {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_TEXT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns the icon of the item at index [idx].
    */
-  public fun getItemIcon(idx: Long): Texture2D? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getItemIcon(idx: Int): Texture2D? {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_ICON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   /**
    * Returns the ID of the item at index [idx].
    */
-  public fun getItemId(idx: Long): Long {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getItemId(idx: Int): Int {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the index of the item with the given [id].
    */
-  public fun getItemIndex(id: Long): Long {
-    TransferContext.writeArguments(LONG to id)
+  public fun getItemIndex(id: Int): Int {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_INDEX, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Retrieves the metadata of an item. Metadata may be any type and can be used to store extra information about an item, such as an external string ID.
    */
-  public fun getItemMetadata(idx: Long): Any? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getItemMetadata(idx: Int): Any? {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_METADATA, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
    * Returns the tooltip of the item at index [idx].
    */
-  public fun getItemTooltip(idx: Long): String {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getItemTooltip(idx: Int): String {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_TOOLTIP,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns `true` if the item at index [idx] is disabled.
    */
-  public fun isItemDisabled(idx: Long): Boolean {
-    TransferContext.writeArguments(LONG to idx)
+  public fun isItemDisabled(idx: Int): Boolean {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_IS_ITEM_DISABLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns `true` if the item at index [idx] is marked as a separator.
    */
-  public fun isItemSeparator(idx: Long): Boolean {
-    TransferContext.writeArguments(LONG to idx)
+  public fun isItemSeparator(idx: Int): Boolean {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_IS_ITEM_SEPARATOR,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -281,18 +270,18 @@ public open class OptionButton : Button() {
    *
    * Passing `-1` as the index deselects any currently selected item.
    */
-  public fun select(idx: Long): Unit {
-    TransferContext.writeArguments(LONG to idx)
+  public fun select(idx: Int): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SELECT, NIL)
   }
 
   /**
    * Returns the ID of the selected item, or `-1` if no item is selected.
    */
-  public fun getSelectedId(): Long {
+  public fun getSelectedId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTED_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -302,14 +291,14 @@ public open class OptionButton : Button() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTED_METADATA,
         ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
    * Removes the item at index [idx].
    */
-  public fun removeItem(idx: Long): Unit {
-    TransferContext.writeArguments(LONG to idx)
+  public fun removeItem(idx: Int): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_REMOVE_ITEM, NIL)
   }
 
@@ -321,7 +310,7 @@ public open class OptionButton : Button() {
   public fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_POPUP, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+    return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
   }
 
   /**
@@ -339,7 +328,7 @@ public open class OptionButton : Button() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_HAS_SELECTABLE_ITEMS,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -347,11 +336,11 @@ public open class OptionButton : Button() {
    *
    * Returns `-1` if no item is found.
    */
-  public fun getSelectableItem(fromLast: Boolean = false): Long {
+  public fun getSelectableItem(fromLast: Boolean = false): Int {
     TransferContext.writeArguments(BOOL to fromLast)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTABLE_ITEM,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

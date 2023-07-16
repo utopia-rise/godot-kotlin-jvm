@@ -15,7 +15,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -32,6 +31,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -39,11 +39,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An editor for graph-like structures, using [godot.GraphNode]s.
+ * GraphEdit is a control responsible for displaying and manipulating graph-like data using [godot.GraphNode]s. It provides access to creation, removal, connection, and disconnection of nodes.
  *
- * [godot.GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main purpose in the engine is to power the visual programming systems, such as visual shaders, but it is also available for use in user projects.
+ * **Note:** Please be aware that this node will undergo extensive refactoring in a future 4.x version involving compatibility-breaking API changes.
  *
- * [godot.GraphEdit] by itself is only an empty container, representing an infinite grid where [godot.GraphNode]s can be placed. Each [godot.GraphNode] represents a node in the graph, a single unit of data in the connected scheme. [godot.GraphEdit], in turn, helps to control various interactions with nodes and between nodes. When the user attempts to connect, disconnect, or close a [godot.GraphNode], a signal is emitted in the [godot.GraphEdit], but no action is taken by default. It is the responsibility of the programmer utilizing this control to implement the necessary logic to determine how each request should be handled.
+ * GraphEdit provides tools for creation, manipulation, and display of various graphs. Its main purpose in the engine is to power the visual programming systems, such as visual shaders, but it is also available for use in user projects.
+ *
+ * GraphEdit by itself is only an empty container, representing an infinite grid where [godot.GraphNode]s can be placed. Each [godot.GraphNode] represent a node in the graph, a single unit of data in the connected scheme. GraphEdit, in turn, helps to control various interactions with nodes and between nodes. When the user attempts to connect, disconnect, or close a [godot.GraphNode], a signal is emitted in the GraphEdit, but no action is taken by default. It is the responsibility of the programmer utilizing this control to implement the necessary logic to determine how each request should be handled.
  *
  * **Performance:** It is greatly advised to enable low-processor usage mode (see [godot.OS.lowProcessorUsageMode]) when using GraphEdits.
  */
@@ -142,7 +144,7 @@ public open class GraphEdit : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_RIGHT_DISCONNECTS_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -157,7 +159,7 @@ public open class GraphEdit : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SCROLL_OFS, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -167,14 +169,14 @@ public open class GraphEdit : Control() {
   /**
    * The snapping distance in pixels.
    */
-  public var snapDistance: Long
+  public var snapDistance: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SNAP, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SNAP, NIL)
     }
 
@@ -185,7 +187,7 @@ public open class GraphEdit : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_USING_SNAP, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -200,7 +202,7 @@ public open class GraphEdit : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_PANNING_SCHEME,
           LONG)
-      return GraphEdit.PanningScheme.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return GraphEdit.PanningScheme.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -210,15 +212,15 @@ public open class GraphEdit : Control() {
   /**
    * The curvature of the lines between the nodes. 0 results in straight lines.
    */
-  public var connectionLinesCurvature: Double
+  public var connectionLinesCurvature: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINES_CURVATURE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_LINES_CURVATURE, NIL)
     }
@@ -226,15 +228,15 @@ public open class GraphEdit : Control() {
   /**
    * The thickness of the lines between the nodes.
    */
-  public var connectionLinesThickness: Double
+  public var connectionLinesThickness: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINES_THICKNESS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_LINES_THICKNESS, NIL)
     }
@@ -247,7 +249,7 @@ public open class GraphEdit : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_CONNECTION_LINES_ANTIALIASED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -258,56 +260,56 @@ public open class GraphEdit : Control() {
   /**
    * The current zoom value.
    */
-  public var zoom: Double
+  public var zoom: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM, NIL)
     }
 
   /**
    * The lower zoom limit.
    */
-  public var zoomMin: Double
+  public var zoomMin: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_MIN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_MIN, NIL)
     }
 
   /**
    * The upper zoom limit.
    */
-  public var zoomMax: Double
+  public var zoomMax: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_MAX, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_MAX, NIL)
     }
 
   /**
    * The step of each zoom level.
    */
-  public var zoomStep: Double
+  public var zoomStep: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_STEP, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_STEP, NIL)
     }
 
@@ -319,7 +321,7 @@ public open class GraphEdit : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_ZOOM_LABEL,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -335,7 +337,7 @@ public open class GraphEdit : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_MINIMAP_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -351,7 +353,7 @@ public open class GraphEdit : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_SIZE,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -361,15 +363,15 @@ public open class GraphEdit : Control() {
   /**
    * The opacity of the minimap rectangle.
    */
-  public var minimapOpacity: Double
+  public var minimapOpacity: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_OPACITY,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_OPACITY,
           NIL)
     }
@@ -382,7 +384,7 @@ public open class GraphEdit : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_ARRANGE_NODES_BUTTON_HIDDEN, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -404,8 +406,8 @@ public open class GraphEdit : Control() {
    *
    * ```
    * 				func _is_in_input_hotzone(in_node, in_port, mouse_position):
-   * 				    var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
-   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_connection_input_position(in_port) - port_size / 2
+   * 				    var port_size : Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
+   * 				    var port_pos : Vector2 = in_node.get_position() + in_node.get_connection_input_position(in_port) - port_size / 2
    * 				    var rect = Rect2(port_pos, port_size)
    *
    * 				    return rect.has_point(mouse_position)
@@ -413,7 +415,7 @@ public open class GraphEdit : Control() {
    */
   public open fun _isInInputHotzone(
     inNode: Object,
-    inPort: Long,
+    inPort: Int,
     mousePosition: Vector2,
   ): Boolean {
     throw NotImplementedError("_is_in_input_hotzone is not implemented for GraphEdit")
@@ -426,8 +428,8 @@ public open class GraphEdit : Control() {
    *
    * ```
    * 				func _is_in_output_hotzone(in_node, in_port, mouse_position):
-   * 				    var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
-   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_connection_output_position(in_port) - port_size / 2
+   * 				    var port_size : Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
+   * 				    var port_pos : Vector2 = in_node.get_position() + in_node.get_connection_output_position(in_port) - port_size / 2
    * 				    var rect = Rect2(port_pos, port_size)
    *
    * 				    return rect.has_point(mouse_position)
@@ -435,7 +437,7 @@ public open class GraphEdit : Control() {
    */
   public open fun _isInOutputHotzone(
     inNode: Object,
-    inPort: Long,
+    inPort: Int,
     mousePosition: Vector2,
   ): Boolean {
     throw NotImplementedError("_is_in_output_hotzone is not implemented for GraphEdit")
@@ -482,9 +484,9 @@ public open class GraphEdit : Control() {
    */
   public open fun _isNodeHoverValid(
     fromNode: StringName,
-    fromPort: Long,
+    fromPort: Int,
     toNode: StringName,
-    toPort: Long,
+    toPort: Int,
   ): Boolean {
     throw NotImplementedError("_is_node_hover_valid is not implemented for GraphEdit")
   }
@@ -494,13 +496,13 @@ public open class GraphEdit : Control() {
    */
   public fun connectNode(
     fromNode: StringName,
-    fromPort: Long,
+    fromPort: Int,
     toNode: StringName,
-    toPort: Long,
+    toPort: Int,
   ): GodotError {
-    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort)
+    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CONNECT_NODE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -508,13 +510,13 @@ public open class GraphEdit : Control() {
    */
   public fun isNodeConnected(
     fromNode: StringName,
-    fromPort: Long,
+    fromPort: Int,
     toNode: StringName,
-    toPort: Long,
+    toPort: Int,
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort)
+    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_NODE_CONNECTED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -522,11 +524,11 @@ public open class GraphEdit : Control() {
    */
   public fun disconnectNode(
     fromNode: StringName,
-    fromPort: Long,
+    fromPort: Int,
     toNode: StringName,
-    toPort: Long,
+    toPort: Int,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort)
+    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_DISCONNECT_NODE, NIL)
   }
 
@@ -535,12 +537,12 @@ public open class GraphEdit : Control() {
    */
   public fun setConnectionActivity(
     fromNode: StringName,
-    fromPort: Long,
+    fromPort: Int,
     toNode: StringName,
-    toPort: Long,
-    amount: Double,
+    toPort: Int,
+    amount: Float,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort, STRING_NAME to toNode, LONG to toPort, DOUBLE to amount)
+    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong(), DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_ACTIVITY,
         NIL)
   }
@@ -552,7 +554,7 @@ public open class GraphEdit : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LIST,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -579,8 +581,8 @@ public open class GraphEdit : Control() {
   /**
    * Allows to disconnect nodes when dragging from the right port of the [godot.GraphNode]'s slot if it has the specified type. See also [removeValidRightDisconnectType].
    */
-  public fun addValidRightDisconnectType(type: Long): Unit {
-    TransferContext.writeArguments(LONG to type)
+  public fun addValidRightDisconnectType(type: Int): Unit {
+    TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_RIGHT_DISCONNECT_TYPE, NIL)
   }
@@ -588,8 +590,8 @@ public open class GraphEdit : Control() {
   /**
    * Disallows to disconnect nodes when dragging from the right port of the [godot.GraphNode]'s slot if it has the specified type. Use this to disable disconnection previously allowed with [addValidRightDisconnectType].
    */
-  public fun removeValidRightDisconnectType(type: Long): Unit {
-    TransferContext.writeArguments(LONG to type)
+  public fun removeValidRightDisconnectType(type: Int): Unit {
+    TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_RIGHT_DISCONNECT_TYPE, NIL)
   }
@@ -597,8 +599,8 @@ public open class GraphEdit : Control() {
   /**
    * Allows to disconnect nodes when dragging from the left port of the [godot.GraphNode]'s slot if it has the specified type. See also [removeValidLeftDisconnectType].
    */
-  public fun addValidLeftDisconnectType(type: Long): Unit {
-    TransferContext.writeArguments(LONG to type)
+  public fun addValidLeftDisconnectType(type: Int): Unit {
+    TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_LEFT_DISCONNECT_TYPE, NIL)
   }
@@ -606,8 +608,8 @@ public open class GraphEdit : Control() {
   /**
    * Disallows to disconnect nodes when dragging from the left port of the [godot.GraphNode]'s slot if it has the specified type. Use this to disable disconnection previously allowed with [addValidLeftDisconnectType].
    */
-  public fun removeValidLeftDisconnectType(type: Long): Unit {
-    TransferContext.writeArguments(LONG to type)
+  public fun removeValidLeftDisconnectType(type: Int): Unit {
+    TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_LEFT_DISCONNECT_TYPE, NIL)
   }
@@ -617,8 +619,8 @@ public open class GraphEdit : Control() {
    *
    * See also [isValidConnectionType] and [removeValidConnectionType].
    */
-  public fun addValidConnectionType(fromType: Long, toType: Long): Unit {
-    TransferContext.writeArguments(LONG to fromType, LONG to toType)
+  public fun addValidConnectionType(fromType: Int, toType: Int): Unit {
+    TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_CONNECTION_TYPE,
         NIL)
   }
@@ -628,8 +630,8 @@ public open class GraphEdit : Control() {
    *
    * See also [isValidConnectionType].
    */
-  public fun removeValidConnectionType(fromType: Long, toType: Long): Unit {
-    TransferContext.writeArguments(LONG to fromType, LONG to toType)
+  public fun removeValidConnectionType(fromType: Int, toType: Int): Unit {
+    TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_CONNECTION_TYPE, NIL)
   }
@@ -639,11 +641,11 @@ public open class GraphEdit : Control() {
    *
    * See also [addValidConnectionType] and [removeValidConnectionType].
    */
-  public fun isValidConnectionType(fromType: Long, toType: Long): Boolean {
-    TransferContext.writeArguments(LONG to fromType, LONG to toType)
+  public fun isValidConnectionType(fromType: Int, toType: Int): Boolean {
+    TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_VALID_CONNECTION_TYPE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -653,7 +655,7 @@ public open class GraphEdit : Control() {
     TransferContext.writeArguments(VECTOR2 to fromNode, VECTOR2 to toNode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINE,
         PACKED_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   /**
@@ -664,7 +666,7 @@ public open class GraphEdit : Control() {
   public fun getZoomHbox(): HBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_HBOX, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?
+    return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
   }
 
   /**

@@ -20,16 +20,15 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Provides direct access to a physics space in the [godot.PhysicsServer2D].
+ * Direct access object to a space in the [godot.PhysicsServer2D].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Provides direct access to a physics space in the [godot.PhysicsServer2D]. It's used mainly to do queries against objects and areas residing in a given space.
+ * Direct access object to a space in the [godot.PhysicsServer2D]. It's used mainly to do queries against objects and areas residing in a given space.
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
@@ -53,12 +52,12 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * **Note:** [godot.ConcavePolygonShape2D]s and [godot.CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.
    */
-  public fun intersectPoint(parameters: PhysicsPointQueryParameters2D, maxResults: Long = 32):
+  public fun intersectPoint(parameters: PhysicsPointQueryParameters2D, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
+    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2D_INTERSECT_POINT, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -82,7 +81,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2D_INTERSECT_RAY, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -98,12 +97,12 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * The number of intersections can be limited with the [maxResults] parameter, to reduce the processing time.
    */
-  public fun intersectShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Long = 32):
+  public fun intersectShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
+    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2D_INTERSECT_SHAPE, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -117,7 +116,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2D_CAST_MOTION, PACKED_FLOAT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
   }
 
   /**
@@ -125,12 +124,12 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * Returned points are a list of pairs of contact points. For each pair the first one is in the shape passed in [godot.PhysicsShapeQueryParameters2D] object, second one is in the collided shape from the physics space.
    */
-  public fun collideShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Long = 32):
+  public fun collideShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Int = 32):
       VariantArray<Vector2> {
-    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
+    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2D_COLLIDE_SHAPE, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2>)
   }
 
   /**
@@ -154,7 +153,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2D_GET_REST_INFO, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   public companion object

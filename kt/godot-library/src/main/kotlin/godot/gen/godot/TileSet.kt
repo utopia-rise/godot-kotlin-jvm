@@ -13,7 +13,6 @@ import godot.core.VariantType
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -43,7 +42,7 @@ import kotlin.Unit
  *
  * A TileSet can be configured so that its tiles expose more or less properties. To do so, the TileSet resources uses property layers, that you can add or remove depending on your needs.
  *
- * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer having dedicated properties (physics layer and mask), you may add several TileSet physics layers for each type of collision you need.
+ * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer having dedicated properties (physics layer an mask), you may add several TileSet physics layers for each type of collision you need.
  *
  * See the functions to add new layers for more information.
  */
@@ -56,7 +55,7 @@ public open class TileSet : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_SHAPE, LONG)
-      return TileSet.TileShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TileSet.TileShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -70,7 +69,7 @@ public open class TileSet : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_LAYOUT, LONG)
-      return TileSet.TileLayout.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TileSet.TileLayout.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -85,7 +84,7 @@ public open class TileSet : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_OFFSET_AXIS,
           LONG)
-      return TileSet.TileOffsetAxis.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TileSet.TileOffsetAxis.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -99,7 +98,7 @@ public open class TileSet : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_SIZE, VECTOR2I)
-      return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
@@ -113,7 +112,7 @@ public open class TileSet : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_IS_UV_CLIPPING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -128,85 +127,83 @@ public open class TileSet : Resource() {
   /**
    * Returns a new unused source ID. This generated ID is the same that a call to `add_source` would return.
    */
-  public fun getNextSourceId(): Long {
+  public fun getNextSourceId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NEXT_SOURCE_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Adds a [godot.TileSetSource] to the TileSet. If [atlasSourceIdOverride] is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.
    *
-   * The function returns the added source ID or -1 if the source could not be added.
-   *
-   * **Warning:** A source cannot belong to two TileSets at the same time. If the added source was attached to another [godot.TileSet], it will be removed from that one.
+   * The function returns the added source source ID or -1 if the source could not be added.
    */
-  public fun addSource(source: TileSetSource, atlasSourceIdOverride: Long = -1): Long {
-    TransferContext.writeArguments(OBJECT to source, LONG to atlasSourceIdOverride)
+  public fun addSource(source: TileSetSource, atlasSourceIdOverride: Int = -1): Int {
+    TransferContext.writeArguments(OBJECT to source, LONG to atlasSourceIdOverride.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_SOURCE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Removes the source with the given source ID.
    */
-  public fun removeSource(sourceId: Long): Unit {
-    TransferContext.writeArguments(LONG to sourceId)
+  public fun removeSource(sourceId: Int): Unit {
+    TransferContext.writeArguments(LONG to sourceId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_SOURCE, NIL)
   }
 
   /**
    * Changes a source's ID.
    */
-  public fun setSourceId(sourceId: Long, newSourceId: Long): Unit {
-    TransferContext.writeArguments(LONG to sourceId, LONG to newSourceId)
+  public fun setSourceId(sourceId: Int, newSourceId: Int): Unit {
+    TransferContext.writeArguments(LONG to sourceId.toLong(), LONG to newSourceId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_SOURCE_ID, NIL)
   }
 
   /**
    * Returns the number of [godot.TileSetSource] in this TileSet.
    */
-  public fun getSourceCount(): Long {
+  public fun getSourceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the source ID for source with index [index].
    */
-  public fun getSourceId(index: Long): Long {
-    TransferContext.writeArguments(LONG to index)
+  public fun getSourceId(index: Int): Int {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns if this TileSet has a source for the given source ID.
    */
-  public fun hasSource(sourceId: Long): Boolean {
-    TransferContext.writeArguments(LONG to sourceId)
+  public fun hasSource(sourceId: Int): Boolean {
+    TransferContext.writeArguments(LONG to sourceId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_HAS_SOURCE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the [godot.TileSetSource] with ID [sourceId].
    */
-  public fun getSource(sourceId: Long): TileSetSource? {
-    TransferContext.writeArguments(LONG to sourceId)
+  public fun getSource(sourceId: Int): TileSetSource? {
+    TransferContext.writeArguments(LONG to sourceId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TileSetSource?
+    return (TransferContext.readReturnValue(OBJECT, true) as TileSetSource?)
   }
 
   /**
    * Returns the occlusion layers count.
    */
-  public fun getOcclusionLayersCount(): Long {
+  public fun getOcclusionLayersCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_OCCLUSION_LAYERS_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -214,32 +211,32 @@ public open class TileSet : Resource() {
    *
    * Occlusion layers allow assigning occlusion polygons to atlas tiles.
    */
-  public fun addOcclusionLayer(toPosition: Long = -1): Unit {
-    TransferContext.writeArguments(LONG to toPosition)
+  public fun addOcclusionLayer(toPosition: Int = -1): Unit {
+    TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_OCCLUSION_LAYER, NIL)
   }
 
   /**
    * Moves the occlusion layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
-  public fun moveOcclusionLayer(layerIndex: Long, toPosition: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
+  public fun moveOcclusionLayer(layerIndex: Int, toPosition: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_OCCLUSION_LAYER, NIL)
   }
 
   /**
    * Removes the occlusion layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
-  public fun removeOcclusionLayer(layerIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun removeOcclusionLayer(layerIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_OCCLUSION_LAYER, NIL)
   }
 
   /**
    * Sets the occlusion layer (as in the rendering server) for occluders in the given TileSet occlusion layer.
    */
-  public fun setOcclusionLayerLightMask(layerIndex: Long, lightMask: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to lightMask)
+  public fun setOcclusionLayerLightMask(layerIndex: Int, lightMask: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to lightMask.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_SET_OCCLUSION_LAYER_LIGHT_MASK, NIL)
   }
@@ -247,18 +244,18 @@ public open class TileSet : Resource() {
   /**
    * Returns the light mask of the occlusion layer.
    */
-  public fun getOcclusionLayerLightMask(layerIndex: Long): Long {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun getOcclusionLayerLightMask(layerIndex: Int): Int {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_OCCLUSION_LAYER_LIGHT_MASK, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
-   * Enables or disables SDF collision for occluders in the given TileSet occlusion layer.
+   * Enables or disables sdf collision for occluders in the given TileSet occlusion layer.
    */
-  public fun setOcclusionLayerSdfCollision(layerIndex: Long, sdfCollision: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, BOOL to sdfCollision)
+  public fun setOcclusionLayerSdfCollision(layerIndex: Int, sdfCollision: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), BOOL to sdfCollision)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_SET_OCCLUSION_LAYER_SDF_COLLISION, NIL)
   }
@@ -266,21 +263,21 @@ public open class TileSet : Resource() {
   /**
    * Returns if the occluders from this layer use `sdf_collision`.
    */
-  public fun getOcclusionLayerSdfCollision(layerIndex: Long): Boolean {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun getOcclusionLayerSdfCollision(layerIndex: Int): Boolean {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_OCCLUSION_LAYER_SDF_COLLISION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the physics layers count.
    */
-  public fun getPhysicsLayersCount(): Long {
+  public fun getPhysicsLayersCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYERS_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -288,32 +285,32 @@ public open class TileSet : Resource() {
    *
    * Physics layers allow assigning collision polygons to atlas tiles.
    */
-  public fun addPhysicsLayer(toPosition: Long = -1): Unit {
-    TransferContext.writeArguments(LONG to toPosition)
+  public fun addPhysicsLayer(toPosition: Int = -1): Unit {
+    TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_PHYSICS_LAYER, NIL)
   }
 
   /**
    * Moves the physics layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
-  public fun movePhysicsLayer(layerIndex: Long, toPosition: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
+  public fun movePhysicsLayer(layerIndex: Int, toPosition: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_PHYSICS_LAYER, NIL)
   }
 
   /**
    * Removes the physics layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
-  public fun removePhysicsLayer(layerIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun removePhysicsLayer(layerIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_PHYSICS_LAYER, NIL)
   }
 
   /**
    * Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer.
    */
-  public fun setPhysicsLayerCollisionLayer(layerIndex: Long, layer: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to layer)
+  public fun setPhysicsLayerCollisionLayer(layerIndex: Int, layer: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layer.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_COLLISION_LAYER, NIL)
   }
@@ -321,18 +318,18 @@ public open class TileSet : Resource() {
   /**
    * Returns the collision layer (as in the physics server) bodies on the given TileSet's physics layer are in.
    */
-  public fun getPhysicsLayerCollisionLayer(layerIndex: Long): Long {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun getPhysicsLayerCollisionLayer(layerIndex: Int): Int {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_COLLISION_LAYER, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer.
    */
-  public fun setPhysicsLayerCollisionMask(layerIndex: Long, mask: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to mask)
+  public fun setPhysicsLayerCollisionMask(layerIndex: Int, mask: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to mask.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_COLLISION_MASK, NIL)
   }
@@ -340,19 +337,19 @@ public open class TileSet : Resource() {
   /**
    * Returns the collision mask of bodies on the given TileSet's physics layer.
    */
-  public fun getPhysicsLayerCollisionMask(layerIndex: Long): Long {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun getPhysicsLayerCollisionMask(layerIndex: Int): Int {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_COLLISION_MASK, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets the physics material for bodies in the given TileSet physics layer.
    */
-  public fun setPhysicsLayerPhysicsMaterial(layerIndex: Long, physicsMaterial: PhysicsMaterial):
+  public fun setPhysicsLayerPhysicsMaterial(layerIndex: Int, physicsMaterial: PhysicsMaterial):
       Unit {
-    TransferContext.writeArguments(LONG to layerIndex, OBJECT to physicsMaterial)
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), OBJECT to physicsMaterial)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_PHYSICS_MATERIAL, NIL)
   }
@@ -360,78 +357,78 @@ public open class TileSet : Resource() {
   /**
    * Returns the physics material of bodies on the given TileSet's physics layer.
    */
-  public fun getPhysicsLayerPhysicsMaterial(layerIndex: Long): PhysicsMaterial? {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun getPhysicsLayerPhysicsMaterial(layerIndex: Int): PhysicsMaterial? {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_PHYSICS_MATERIAL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?
+    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
   }
 
   /**
    * Returns the terrain sets count.
    */
-  public fun getTerrainSetsCount(): Long {
+  public fun getTerrainSetsCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_SETS_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Adds a new terrain set at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    */
-  public fun addTerrainSet(toPosition: Long = -1): Unit {
-    TransferContext.writeArguments(LONG to toPosition)
+  public fun addTerrainSet(toPosition: Int = -1): Unit {
+    TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_TERRAIN_SET, NIL)
   }
 
   /**
    * Moves the terrain set at index [terrainSet] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
-  public fun moveTerrainSet(terrainSet: Long, toPosition: Long): Unit {
-    TransferContext.writeArguments(LONG to terrainSet, LONG to toPosition)
+  public fun moveTerrainSet(terrainSet: Int, toPosition: Int): Unit {
+    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_TERRAIN_SET, NIL)
   }
 
   /**
    * Removes the terrain set at index [terrainSet]. Also updates the atlas tiles accordingly.
    */
-  public fun removeTerrainSet(terrainSet: Long): Unit {
-    TransferContext.writeArguments(LONG to terrainSet)
+  public fun removeTerrainSet(terrainSet: Int): Unit {
+    TransferContext.writeArguments(LONG to terrainSet.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_TERRAIN_SET, NIL)
   }
 
   /**
    * Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighboring tiles' terrains.
    */
-  public fun setTerrainSetMode(terrainSet: Long, mode: TerrainMode): Unit {
-    TransferContext.writeArguments(LONG to terrainSet, LONG to mode.id)
+  public fun setTerrainSetMode(terrainSet: Int, mode: TerrainMode): Unit {
+    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_SET_MODE, NIL)
   }
 
   /**
    * Returns a terrain set mode.
    */
-  public fun getTerrainSetMode(terrainSet: Long): TerrainMode {
-    TransferContext.writeArguments(LONG to terrainSet)
+  public fun getTerrainSetMode(terrainSet: Int): TerrainMode {
+    TransferContext.writeArguments(LONG to terrainSet.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_SET_MODE, LONG)
-    return TileSet.TerrainMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return TileSet.TerrainMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Returns the number of terrains in the given terrain set.
    */
-  public fun getTerrainsCount(terrainSet: Long): Long {
-    TransferContext.writeArguments(LONG to terrainSet)
+  public fun getTerrainsCount(terrainSet: Int): Int {
+    TransferContext.writeArguments(LONG to terrainSet.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAINS_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Adds a new terrain to the given terrain set [terrainSet] at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    */
-  public fun addTerrain(terrainSet: Long, toPosition: Long = -1): Unit {
-    TransferContext.writeArguments(LONG to terrainSet, LONG to toPosition)
+  public fun addTerrain(terrainSet: Int, toPosition: Int = -1): Unit {
+    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_TERRAIN, NIL)
   }
 
@@ -439,19 +436,19 @@ public open class TileSet : Resource() {
    * Moves the terrain at index [terrainIndex] for terrain set [terrainSet] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
   public fun moveTerrain(
-    terrainSet: Long,
-    terrainIndex: Long,
-    toPosition: Long,
+    terrainSet: Int,
+    terrainIndex: Int,
+    toPosition: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex, LONG to toPosition)
+    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_TERRAIN, NIL)
   }
 
   /**
    * Removes the terrain at index [terrainIndex] in the given terrain set [terrainSet]. Also updates the atlas tiles accordingly.
    */
-  public fun removeTerrain(terrainSet: Long, terrainIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex)
+  public fun removeTerrain(terrainSet: Int, terrainIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_TERRAIN, NIL)
   }
 
@@ -459,52 +456,52 @@ public open class TileSet : Resource() {
    * Sets a terrain's name.
    */
   public fun setTerrainName(
-    terrainSet: Long,
-    terrainIndex: Long,
+    terrainSet: Int,
+    terrainIndex: Int,
     name: String,
   ): Unit {
-    TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex, STRING to name)
+    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_NAME, NIL)
   }
 
   /**
    * Returns a terrain's name.
    */
-  public fun getTerrainName(terrainSet: Long, terrainIndex: Long): String {
-    TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex)
+  public fun getTerrainName(terrainSet: Int, terrainIndex: Int): String {
+    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Sets a terrain's color. This color is used for identifying the different terrains in the TileSet editor.
    */
   public fun setTerrainColor(
-    terrainSet: Long,
-    terrainIndex: Long,
+    terrainSet: Int,
+    terrainIndex: Int,
     color: Color,
   ): Unit {
-    TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex, COLOR to color)
+    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_COLOR, NIL)
   }
 
   /**
    * Returns a terrain's color.
    */
-  public fun getTerrainColor(terrainSet: Long, terrainIndex: Long): Color {
-    TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex)
+  public fun getTerrainColor(terrainSet: Int, terrainIndex: Int): Color {
+    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_COLOR, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
    * Returns the navigation layers count.
    */
-  public fun getNavigationLayersCount(): Long {
+  public fun getNavigationLayersCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NAVIGATION_LAYERS_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -512,56 +509,56 @@ public open class TileSet : Resource() {
    *
    * Navigation layers allow assigning a navigable area to atlas tiles.
    */
-  public fun addNavigationLayer(toPosition: Long = -1): Unit {
-    TransferContext.writeArguments(LONG to toPosition)
+  public fun addNavigationLayer(toPosition: Int = -1): Unit {
+    TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_NAVIGATION_LAYER, NIL)
   }
 
   /**
    * Moves the navigation layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
-  public fun moveNavigationLayer(layerIndex: Long, toPosition: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
+  public fun moveNavigationLayer(layerIndex: Int, toPosition: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_NAVIGATION_LAYER, NIL)
   }
 
   /**
    * Removes the navigation layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
-  public fun removeNavigationLayer(layerIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun removeNavigationLayer(layerIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_NAVIGATION_LAYER,
         NIL)
   }
 
   /**
-   * Sets the navigation layers (as in the navigation server) for navigation regions in the given TileSet navigation layer.
+   * Sets the navigation layers (as in the navigation server) for navigation regions is the given TileSet navigation layer.
    */
-  public fun setNavigationLayerLayers(layerIndex: Long, layers: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to layers)
+  public fun setNavigationLayerLayers(layerIndex: Int, layers: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layers.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_NAVIGATION_LAYER_LAYERS,
         NIL)
   }
 
   /**
-   * Returns the navigation layers (as in the Navigation server) of the given TileSet navigation layer.
+   * Returns the navigation layers (as in the Navigation server) of the gives TileSet navigation layer.
    */
-  public fun getNavigationLayerLayers(layerIndex: Long): Long {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun getNavigationLayerLayers(layerIndex: Int): Int {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NAVIGATION_LAYER_LAYERS,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Based on [value], enables or disables the specified navigation layer of the TileSet navigation data layer identified by the given [layerIndex], given a navigation_layers [layerNumber] between 1 and 32.
    */
   public fun setNavigationLayerLayerValue(
-    layerIndex: Long,
-    layerNumber: Long,
+    layerIndex: Int,
+    layerNumber: Int,
     `value`: Boolean,
   ): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to layerNumber, BOOL to value)
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_SET_NAVIGATION_LAYER_LAYER_VALUE, NIL)
   }
@@ -569,21 +566,21 @@ public open class TileSet : Resource() {
   /**
    * Returns whether or not the specified navigation layer of the TileSet navigation data layer identified by the given [layerIndex] is enabled, given a navigation_layers [layerNumber] between 1 and 32.
    */
-  public fun getNavigationLayerLayerValue(layerIndex: Long, layerNumber: Long): Boolean {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to layerNumber)
+  public fun getNavigationLayerLayerValue(layerIndex: Int, layerNumber: Int): Boolean {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_NAVIGATION_LAYER_LAYER_VALUE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the custom data layers count.
    */
-  public fun getCustomDataLayersCount(): Long {
+  public fun getCustomDataLayersCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYERS_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -591,24 +588,24 @@ public open class TileSet : Resource() {
    *
    * Custom data layers allow assigning custom properties to atlas tiles.
    */
-  public fun addCustomDataLayer(toPosition: Long = -1): Unit {
-    TransferContext.writeArguments(LONG to toPosition)
+  public fun addCustomDataLayer(toPosition: Int = -1): Unit {
+    TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_CUSTOM_DATA_LAYER, NIL)
   }
 
   /**
    * Moves the custom data layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
-  public fun moveCustomDataLayer(layerIndex: Long, toPosition: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
+  public fun moveCustomDataLayer(layerIndex: Int, toPosition: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_CUSTOM_DATA_LAYER, NIL)
   }
 
   /**
    * Removes the custom data layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
-  public fun removeCustomDataLayer(layerIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun removeCustomDataLayer(layerIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_CUSTOM_DATA_LAYER,
         NIL)
   }
@@ -616,18 +613,18 @@ public open class TileSet : Resource() {
   /**
    * Returns the index of the custom data layer identified by the given name.
    */
-  public fun getCustomDataLayerByName(layerName: String): Long {
+  public fun getCustomDataLayerByName(layerName: String): Int {
     TransferContext.writeArguments(STRING to layerName)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYER_BY_NAME, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Sets the name of the custom data layer identified by the given index. Names are identifiers of the layer therefore if the name is already taken it will fail and raise an error.
    */
-  public fun setCustomDataLayerName(layerIndex: Long, layerName: String): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, STRING to layerName)
+  public fun setCustomDataLayerName(layerIndex: Int, layerName: String): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), STRING to layerName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_CUSTOM_DATA_LAYER_NAME,
         NIL)
   }
@@ -635,18 +632,18 @@ public open class TileSet : Resource() {
   /**
    * Returns the name of the custom data layer identified by the given index.
    */
-  public fun getCustomDataLayerName(layerIndex: Long): String {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun getCustomDataLayerName(layerIndex: Int): String {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYER_NAME,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Sets the type of the custom data layer identified by the given index.
    */
-  public fun setCustomDataLayerType(layerIndex: Long, layerType: VariantType): Unit {
-    TransferContext.writeArguments(LONG to layerIndex, LONG to layerType.id)
+  public fun setCustomDataLayerType(layerIndex: Int, layerType: VariantType): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_CUSTOM_DATA_LAYER_TYPE,
         NIL)
   }
@@ -654,22 +651,22 @@ public open class TileSet : Resource() {
   /**
    * Returns the type of the custom data layer identified by the given index.
    */
-  public fun getCustomDataLayerType(layerIndex: Long): VariantType {
-    TransferContext.writeArguments(LONG to layerIndex)
+  public fun getCustomDataLayerType(layerIndex: Int): VariantType {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYER_TYPE,
         LONG)
-    return VariantType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return VariantType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
-   * Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept the same when using source-level proxies.
+   * Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlac coordinates ID and the alternative tile ID are kept the same when using source-level proxies.
    *
    * This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target source when one is available.
    *
    * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
    */
-  public fun setSourceLevelTileProxy(sourceFrom: Long, sourceTo: Long): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom, LONG to sourceTo)
+  public fun setSourceLevelTileProxy(sourceFrom: Int, sourceTo: Int): Unit {
+    TransferContext.writeArguments(LONG to sourceFrom.toLong(), LONG to sourceTo.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_SOURCE_LEVEL_TILE_PROXY,
         NIL)
   }
@@ -679,28 +676,28 @@ public open class TileSet : Resource() {
    *
    * If the TileSet has no proxy for the given identifier, returns -1.
    */
-  public fun getSourceLevelTileProxy(sourceFrom: Long): Long {
-    TransferContext.writeArguments(LONG to sourceFrom)
+  public fun getSourceLevelTileProxy(sourceFrom: Int): Int {
+    TransferContext.writeArguments(LONG to sourceFrom.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE_LEVEL_TILE_PROXY,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns if there is a source-level proxy for the given source ID.
    */
-  public fun hasSourceLevelTileProxy(sourceFrom: Long): Boolean {
-    TransferContext.writeArguments(LONG to sourceFrom)
+  public fun hasSourceLevelTileProxy(sourceFrom: Int): Boolean {
+    TransferContext.writeArguments(LONG to sourceFrom.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_HAS_SOURCE_LEVEL_TILE_PROXY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Removes a source-level tile proxy.
    */
-  public fun removeSourceLevelTileProxy(sourceFrom: Long): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom)
+  public fun removeSourceLevelTileProxy(sourceFrom: Int): Unit {
+    TransferContext.writeArguments(LONG to sourceFrom.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_SOURCE_LEVEL_TILE_PROXY, NIL)
   }
@@ -713,12 +710,12 @@ public open class TileSet : Resource() {
    * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
    */
   public fun setCoordsLevelTileProxy(
-    pSourceFrom: Long,
+    pSourceFrom: Int,
     coordsFrom: Vector2i,
-    sourceTo: Long,
+    sourceTo: Int,
     coordsTo: Vector2i,
   ): Unit {
-    TransferContext.writeArguments(LONG to pSourceFrom, VECTOR2I to coordsFrom, LONG to sourceTo, VECTOR2I to coordsTo)
+    TransferContext.writeArguments(LONG to pSourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to sourceTo.toLong(), VECTOR2I to coordsTo)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_COORDS_LEVEL_TILE_PROXY,
         NIL)
   }
@@ -728,28 +725,28 @@ public open class TileSet : Resource() {
    *
    * If the TileSet has no proxy for the given identifiers, returns an empty Array.
    */
-  public fun getCoordsLevelTileProxy(sourceFrom: Long, coordsFrom: Vector2i): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom)
+  public fun getCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_COORDS_LEVEL_TILE_PROXY,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
    * Returns if there is a coodinates-level proxy for the given identifiers.
    */
-  public fun hasCoordsLevelTileProxy(sourceFrom: Long, coordsFrom: Vector2i): Boolean {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom)
+  public fun hasCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i): Boolean {
+    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_HAS_COORDS_LEVEL_TILE_PROXY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Removes a coordinates-level proxy for the given identifiers.
    */
-  public fun removeCoordsLevelTileProxy(sourceFrom: Long, coordsFrom: Vector2i): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom)
+  public fun removeCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i): Unit {
+    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_COORDS_LEVEL_TILE_PROXY, NIL)
   }
@@ -762,14 +759,14 @@ public open class TileSet : Resource() {
    * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
    */
   public fun setAlternativeLevelTileProxy(
-    sourceFrom: Long,
+    sourceFrom: Int,
     coordsFrom: Vector2i,
-    alternativeFrom: Long,
-    sourceTo: Long,
+    alternativeFrom: Int,
+    sourceTo: Int,
     coordsTo: Vector2i,
-    alternativeTo: Long,
+    alternativeTo: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom, LONG to sourceTo, VECTOR2I to coordsTo, LONG to alternativeTo)
+    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong(), LONG to sourceTo.toLong(), VECTOR2I to coordsTo, LONG to alternativeTo.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_SET_ALTERNATIVE_LEVEL_TILE_PROXY, NIL)
   }
@@ -780,39 +777,39 @@ public open class TileSet : Resource() {
    * If the TileSet has no proxy for the given identifiers, returns an empty Array.
    */
   public fun getAlternativeLevelTileProxy(
-    sourceFrom: Long,
+    sourceFrom: Int,
     coordsFrom: Vector2i,
-    alternativeFrom: Long,
+    alternativeFrom: Int,
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
+    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_ALTERNATIVE_LEVEL_TILE_PROXY, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
    * Returns if there is an alternative-level proxy for the given identifiers.
    */
   public fun hasAlternativeLevelTileProxy(
-    sourceFrom: Long,
+    sourceFrom: Int,
     coordsFrom: Vector2i,
-    alternativeFrom: Long,
+    alternativeFrom: Int,
   ): Boolean {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
+    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_HAS_ALTERNATIVE_LEVEL_TILE_PROXY, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Removes an alternative-level proxy for the given identifiers.
    */
   public fun removeAlternativeLevelTileProxy(
-    sourceFrom: Long,
+    sourceFrom: Int,
     coordsFrom: Vector2i,
-    alternativeFrom: Long,
+    alternativeFrom: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
+    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_ALTERNATIVE_LEVEL_TILE_PROXY, NIL)
   }
@@ -825,13 +822,13 @@ public open class TileSet : Resource() {
    * If no proxy corresponding to provided identifiers are found, returns the same values the ones used as arguments.
    */
   public fun mapTileProxy(
-    sourceFrom: Long,
+    sourceFrom: Int,
     coordsFrom: Vector2i,
-    alternativeFrom: Long,
+    alternativeFrom: Int,
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
+    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MAP_TILE_PROXY, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
@@ -854,36 +851,36 @@ public open class TileSet : Resource() {
   /**
    * Adds a [godot.TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given [index].
    */
-  public fun addPattern(pattern: TileMapPattern, index: Long = -1): Long {
-    TransferContext.writeArguments(OBJECT to pattern, LONG to index)
+  public fun addPattern(pattern: TileMapPattern, index: Int = -1): Int {
+    TransferContext.writeArguments(OBJECT to pattern, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_PATTERN, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the [godot.TileMapPattern] at the given [index].
    */
-  public fun getPattern(index: Long = -1): TileMapPattern? {
-    TransferContext.writeArguments(LONG to index)
+  public fun getPattern(index: Int = -1): TileMapPattern? {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PATTERN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TileMapPattern?
+    return (TransferContext.readReturnValue(OBJECT, true) as TileMapPattern?)
   }
 
   /**
    * Remove the [godot.TileMapPattern] at the given index.
    */
-  public fun removePattern(index: Long): Unit {
-    TransferContext.writeArguments(LONG to index)
+  public fun removePattern(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_PATTERN, NIL)
   }
 
   /**
    * Returns the number of [godot.TileMapPattern] this tile set handles.
    */
-  public fun getPatternsCount(): Long {
+  public fun getPatternsCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PATTERNS_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public enum class TileShape(

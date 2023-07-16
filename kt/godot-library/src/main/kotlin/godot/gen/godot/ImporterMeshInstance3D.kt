@@ -29,7 +29,7 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESHINSTANCE3D_GET_MESH,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?
+      return (TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -45,7 +45,7 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESHINSTANCE3D_GET_SKIN,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Skin?
+      return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -61,7 +61,7 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_IMPORTERMESHINSTANCE3D_GET_SKELETON_PATH, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)

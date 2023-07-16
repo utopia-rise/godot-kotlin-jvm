@@ -24,6 +24,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -200,11 +201,11 @@ import kotlin.Unit
  *
  * Some [godot.Tweener]s use transitions and eases. The first accepts a [enum TransitionType] constant, and refers to the way the timing of the animation is handled (see [easings.net](https://easings.net/) for some examples). The second accepts an [enum EaseType] constant, and controls where the `trans_type` is applied to the interpolation (in the beginning, the end, or both). If you don't know which transition and easing to pick, you can try different [enum TransitionType] constants with [EASE_IN_OUT], and use the one that looks best.
  *
- * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp)
+ * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.png)
  *
- * **Note:** Tweens are not designed to be re-used and trying to do so results in an undefined behavior. Create a new Tween for each animation and every time you replay an animation from start. Keep in mind that Tweens start immediately, so only create a Tween when you want to start animating.
+ * **Note:** All [godot.Tween]s will automatically start by default. To prevent a [godot.Tween] from autostarting, you can call [stop] immediately after it is created.
  *
- * **Note:** The tween is processed after all of the nodes in the current frame, i.e. node's [godot.Node.Process] method would be called before the timer (or [godot.Node.PhysicsProcess] depending on the value passed to [setProcessMode]).
+ * **Note:** [godot.Tween]s are processing after all of nodes in the current frame, i.e. after [godot.Node.Process] or [godot.Node.PhysicsProcess] (depending on [enum TweenProcessMode]).
  */
 @GodotBaseType
 public open class Tween : RefCounted() {
@@ -220,6 +221,8 @@ public open class Tween : RefCounted() {
 
   /**
    * Emitted when the [godot.Tween] has finished all tweening. Never emitted when the [godot.Tween] is set to infinite looping (see [setLoops]).
+   *
+   * **Note:** The [godot.Tween] is removed (invalidated) in the next processing frame after this signal is emitted. Calling [stop] inside the signal callback will prevent the [godot.Tween] from being removed.
    */
   public val finished: Signal0 by signal()
 
@@ -295,7 +298,7 @@ public open class Tween : RefCounted() {
   ): PropertyTweener? {
     TransferContext.writeArguments(OBJECT to _object, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_PROPERTY, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?
+    return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
   }
 
   /**
@@ -372,7 +375,7 @@ public open class Tween : RefCounted() {
   public fun tweenInterval(time: Double): IntervalTweener? {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_INTERVAL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as IntervalTweener?
+    return (TransferContext.readReturnValue(OBJECT, true) as IntervalTweener?)
   }
 
   /**
@@ -431,7 +434,7 @@ public open class Tween : RefCounted() {
   public fun tweenCallback(callback: Callable): CallbackTweener? {
     TransferContext.writeArguments(CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_CALLBACK, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?
+    return (TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?)
   }
 
   /**
@@ -517,18 +520,20 @@ public open class Tween : RefCounted() {
   ): MethodTweener? {
     TransferContext.writeArguments(CALLABLE to method, ANY to from, ANY to to, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_METHOD, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as MethodTweener?
+    return (TransferContext.readReturnValue(OBJECT, true) as MethodTweener?)
   }
 
   /**
    * Processes the [godot.Tween] by the given [delta] value, in seconds. This is mostly useful for manual control when the [godot.Tween] is paused. It can also be used to end the [godot.Tween] animation immediately, by setting [delta] longer than the whole duration of the [godot.Tween] animation.
    *
    * Returns `true` if the [godot.Tween] still has [godot.Tweener]s that haven't finished.
+   *
+   * **Note:** The [godot.Tween] will become invalid in the next processing frame after its animation finishes. Calling [stop] after performing [customStep] instead keeps and resets the [godot.Tween].
    */
   public fun customStep(delta: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to delta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_CUSTOM_STEP, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -572,7 +577,7 @@ public open class Tween : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_TOTAL_ELAPSED_TIME,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
@@ -581,7 +586,7 @@ public open class Tween : RefCounted() {
   public fun isRunning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_IS_RUNNING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -590,7 +595,7 @@ public open class Tween : RefCounted() {
   public fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_IS_VALID, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -601,18 +606,18 @@ public open class Tween : RefCounted() {
   public fun bindNode(node: Node): Tween? {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_BIND_NODE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
-   * Determines whether the [godot.Tween] should run after process frames (see [godot.Node.Process]) or physics frames (see [godot.Node.PhysicsProcess]).
+   * Determines whether the [godot.Tween] should run during idle frame (see [godot.Node.Process]) or physics frame (see [godot.Node.PhysicsProcess].
    *
    * Default value is [TWEEN_PROCESS_IDLE].
    */
   public fun setProcessMode(mode: TweenProcessMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PROCESS_MODE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -623,7 +628,7 @@ public open class Tween : RefCounted() {
   public fun setPauseMode(mode: TweenPauseMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PAUSE_MODE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -632,7 +637,7 @@ public open class Tween : RefCounted() {
   public fun setParallel(parallel: Boolean = true): Tween? {
     TransferContext.writeArguments(BOOL to parallel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PARALLEL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -642,28 +647,25 @@ public open class Tween : RefCounted() {
    *
    * **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent the game freezing, 0-duration looped animations (e.g. a single [godot.CallbackTweener] with no delay) are stopped after a small number of loops, which may produce unexpected results. If a [godot.Tween]'s lifetime depends on some node, always use [bindNode].
    */
-  public fun setLoops(loops: Long = 0): Tween? {
-    TransferContext.writeArguments(LONG to loops)
+  public fun setLoops(loops: Int = 0): Tween? {
+    TransferContext.writeArguments(LONG to loops.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_LOOPS, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
-  /**
-   * Returns the number of remaining loops for this [godot.Tween] (see [setLoops]). A return value of `-1` indicates an infinitely looping [godot.Tween], and a return value of `0` indicates that the [godot.Tween] has already finished.
-   */
-  public fun getLoopsLeft(): Long {
+  public fun getLoopsLeft(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_LOOPS_LEFT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Scales the speed of tweening. This affects all [godot.Tweener]s and their delays.
    */
-  public fun setSpeedScale(speed: Double): Tween? {
-    TransferContext.writeArguments(DOUBLE to speed)
+  public fun setSpeedScale(speed: Float): Tween? {
+    TransferContext.writeArguments(DOUBLE to speed.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_SPEED_SCALE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -674,7 +676,7 @@ public open class Tween : RefCounted() {
   public fun setTrans(trans: TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_TRANS, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -685,7 +687,7 @@ public open class Tween : RefCounted() {
   public fun setEase(ease: EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_EASE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -728,7 +730,7 @@ public open class Tween : RefCounted() {
   public fun parallel(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_PARALLEL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -765,18 +767,18 @@ public open class Tween : RefCounted() {
   public fun chain(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_CHAIN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   public enum class TweenProcessMode(
     id: Long,
   ) {
     /**
-     * The [godot.Tween] updates after each physics frame (see [godot.Node.PhysicsProcess]).
+     * The [godot.Tween] updates during the physics frame.
      */
     TWEEN_PROCESS_PHYSICS(0),
     /**
-     * The [godot.Tween] updates after each process frame (see [godot.Node.Process]).
+     * The [godot.Tween] updates during the idle frame.
      */
     TWEEN_PROCESS_IDLE(1),
     ;
@@ -865,9 +867,6 @@ public open class Tween : RefCounted() {
      * The animation is interpolated backing out at ends.
      */
     TRANS_BACK(10),
-    /**
-     * The animation is interpolated like a spring towards the end.
-     */
     TRANS_SPRING(11),
     ;
 

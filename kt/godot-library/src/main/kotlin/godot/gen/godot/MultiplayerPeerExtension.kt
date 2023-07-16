@@ -11,7 +11,6 @@ import godot.core.GodotError
 import godot.core.PackedByteArray
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -31,14 +30,14 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   /**
    * Called when the available packet count is internally requested by the [godot.MultiplayerAPI].
    */
-  public open fun _getAvailablePacketCount(): Long {
+  public open fun _getAvailablePacketCount(): Int {
     throw NotImplementedError("_get_available_packet_count is not implemented for MultiplayerPeerExtension")
   }
 
   /**
    * Called when the maximum allowed packet size (in bytes) is requested by the [godot.MultiplayerAPI].
    */
-  public open fun _getMaxPacketSize(): Long {
+  public open fun _getMaxPacketSize(): Int {
     throw NotImplementedError("_get_max_packet_size is not implemented for MultiplayerPeerExtension")
   }
 
@@ -56,16 +55,10 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
     throw NotImplementedError("_put_packet_script is not implemented for MultiplayerPeerExtension")
   }
 
-  /**
-   * Called to get the channel over which the next available packet was received. See [godot.MultiplayerPeer.getPacketChannel].
-   */
-  public open fun _getPacketChannel(): Long {
+  public open fun _getPacketChannel(): Int {
     throw NotImplementedError("_get_packet_channel is not implemented for MultiplayerPeerExtension")
   }
 
-  /**
-   * Called to get the [enum MultiplayerPeer.TransferMode] the remote peer used to send the next available packet. See [godot.MultiplayerPeer.getPacketMode].
-   */
   public open fun _getPacketMode(): MultiplayerPeer.TransferMode {
     throw NotImplementedError("_get_packet_mode is not implemented for MultiplayerPeerExtension")
   }
@@ -73,13 +66,13 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   /**
    * Called when the channel to use is set for this [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.transferChannel]).
    */
-  public open fun _setTransferChannel(pChannel: Long): Unit {
+  public open fun _setTransferChannel(pChannel: Int): Unit {
   }
 
   /**
    * Called when the transfer channel to use is read on this [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.transferChannel]).
    */
-  public open fun _getTransferChannel(): Long {
+  public open fun _getTransferChannel(): Int {
     throw NotImplementedError("_get_transfer_channel is not implemented for MultiplayerPeerExtension")
   }
 
@@ -99,13 +92,13 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   /**
    * Called when the target peer to use is set for this [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.setTargetPeer]).
    */
-  public open fun _setTargetPeer(pPeer: Long): Unit {
+  public open fun _setTargetPeer(pPeer: Int): Unit {
   }
 
   /**
    * Called when the ID of the [godot.MultiplayerPeer] who sent the most recent packet is requested (see [godot.MultiplayerPeer.getPacketPeer]).
    */
-  public open fun _getPacketPeer(): Long {
+  public open fun _getPacketPeer(): Int {
     throw NotImplementedError("_get_packet_peer is not implemented for MultiplayerPeerExtension")
   }
 
@@ -131,13 +124,13 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   /**
    * Called when the connected [pPeer] should be forcibly disconnected (see [godot.MultiplayerPeer.disconnectPeer]).
    */
-  public open fun _disconnectPeer(pPeer: Long, pForce: Boolean): Unit {
+  public open fun _disconnectPeer(pPeer: Int, pForce: Boolean): Unit {
   }
 
   /**
-   * Called when the unique ID of this [godot.MultiplayerPeer] is requested (see [godot.MultiplayerPeer.getUniqueId]). The value must be between `1` and `2147483647`.
+   * Called when the unique ID of this [godot.MultiplayerPeer] is requested (see [godot.MultiplayerPeer.getUniqueId]).
    */
-  public open fun _getUniqueId(): Long {
+  public open fun _getUniqueId(): Int {
     throw NotImplementedError("_get_unique_id is not implemented for MultiplayerPeerExtension")
   }
 
@@ -154,9 +147,6 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
     throw NotImplementedError("_is_refusing_new_connections is not implemented for MultiplayerPeerExtension")
   }
 
-  /**
-   * Called to check if the server can act as a relay in the current configuration. See [godot.MultiplayerPeer.isServerRelaySupported].
-   */
   public open fun _isServerRelaySupported(): Boolean {
     throw NotImplementedError("_is_server_relay_supported is not implemented for MultiplayerPeerExtension")
   }

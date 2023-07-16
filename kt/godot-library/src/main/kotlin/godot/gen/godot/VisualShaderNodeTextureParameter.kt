@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -32,7 +31,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_TYPE, LONG)
-      return VisualShaderNodeTextureParameter.TextureType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeTextureParameter.TextureType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -48,7 +47,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_COLOR_DEFAULT, LONG)
-      return VisualShaderNodeTextureParameter.ColorDefault.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeTextureParameter.ColorDefault.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -64,7 +63,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_FILTER, LONG)
-      return VisualShaderNodeTextureParameter.TextureFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeTextureParameter.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -80,7 +79,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_REPEAT, LONG)
-      return VisualShaderNodeTextureParameter.TextureRepeat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeTextureParameter.TextureRepeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -89,14 +88,14 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   /**
-   * Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness texture. See [enum TextureSource] for options.
+   * Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness texture. see [enum TextureSource] for options.
    */
   public var textureSource: TextureSource
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_SOURCE, LONG)
-      return VisualShaderNodeTextureParameter.TextureSource.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeTextureParameter.TextureSource.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

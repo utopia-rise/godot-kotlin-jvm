@@ -20,12 +20,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Describes a mapping of bone names for retargeting [godot.Skeleton3D] into common names defined by a [godot.SkeletonProfile].
+ * Bone map for retargeting.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html]($DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html)
  *
- * This class contains a dictionary that uses a list of bone names in [godot.SkeletonProfile] as key names.
+ * This class contains a hashmap that uses a list of bone names in [godot.SkeletonProfile] as key names.
  *
  * By assigning the actual [godot.Skeleton3D] bone name as the key value, it maps the [godot.Skeleton3D] to the [godot.SkeletonProfile].
  */
@@ -48,7 +48,7 @@ public open class BoneMap : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_GET_PROFILE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as SkeletonProfile?
+      return (TransferContext.readReturnValue(OBJECT, true) as SkeletonProfile?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -69,7 +69,7 @@ public open class BoneMap : Resource() {
     TransferContext.writeArguments(STRING_NAME to profileBoneName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_GET_SKELETON_BONE_NAME,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
@@ -91,7 +91,7 @@ public open class BoneMap : Resource() {
     TransferContext.writeArguments(STRING_NAME to skeletonBoneName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_FIND_PROFILE_BONE_NAME,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   public companion object

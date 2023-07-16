@@ -18,23 +18,19 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Pipeline specialization constant (used by [godot.RenderingDevice]).
  *
- * A *specialization constant* is a way to create additional variants of shaders without actually increasing the number of shader versions that are compiled. This allows improving performance by reducing the number of shader versions and reducing `if` branching, while still allowing shaders to be flexible for different use cases.
- *
- * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineSpecializationConstant : RefCounted() {
   /**
-   * The specialization constant's value. Only [bool], [int] and [float] types are valid for specialization constants.
+   *
    */
   public var `value`: Any?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT_GET_VALUE, ANY)
-      return TransferContext.readReturnValue(ANY, true) as Any?
+      return (TransferContext.readReturnValue(ANY, true) as Any?)
     }
     set(`value`) {
       TransferContext.writeArguments(ANY to value)
@@ -43,17 +39,17 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
     }
 
   /**
-   * The identifier of the specialization constant. This is a value starting from `0` and that increments for every different specialization constant for a given shader.
+   *
    */
-  public var constantId: Long
+  public var constantId: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT_GET_CONSTANT_ID, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT_SET_CONSTANT_ID, NIL)
     }

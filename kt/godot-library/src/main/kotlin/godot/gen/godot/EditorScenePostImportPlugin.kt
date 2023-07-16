@@ -39,14 +39,14 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
   /**
    * Override to add internal import options. These will appear in the 3D scene import dialog. Add options via [addImportOption] and [addImportOptionAdvanced].
    */
-  public open fun _getInternalImportOptions(category: Long): Unit {
+  public open fun _getInternalImportOptions(category: Int): Unit {
   }
 
   /**
    * Return true or false whether a given option should be visible. Return null to ignore.
    */
   public open fun _getInternalOptionVisibility(
-    category: Long,
+    category: Int,
     forAnimation: Boolean,
     option: String,
   ): Any? {
@@ -56,7 +56,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
   /**
    * Return true whether updating the 3D view of the import dialog needs to be updated if an option has changed.
    */
-  public open fun _getInternalOptionUpdateViewRequired(category: Long, option: String): Any? {
+  public open fun _getInternalOptionUpdateViewRequired(category: Int, option: String): Any? {
     throw NotImplementedError("_get_internal_option_update_view_required is not implemented for EditorScenePostImportPlugin")
   }
 
@@ -64,7 +64,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
    * Process a specific node or resource for a given category.
    */
   public open fun _internalProcess(
-    category: Long,
+    category: Int,
     baseNode: Node,
     node: Node,
     resource: Resource,
@@ -107,7 +107,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_GET_OPTION_VALUE, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -128,9 +128,9 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
     defaultValue: Any,
     hint: PropertyHint = PropertyHint.PROPERTY_HINT_NONE,
     hintString: String = "",
-    usageFlags: Long = 6,
+    usageFlags: Int = 6,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, STRING to name, ANY to defaultValue, LONG to hint.id, STRING to hintString, LONG to usageFlags)
+    TransferContext.writeArguments(LONG to type.id, STRING to name, ANY to defaultValue, LONG to hint.id, STRING to hintString, LONG to usageFlags.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_ADD_IMPORT_OPTION_ADVANCED, NIL)
   }

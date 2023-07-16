@@ -12,9 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A vertical line used for separating other controls.
+ * Vertical version of [godot.Separator].
  *
- * A vertical separator used for separating other controls that are arranged **horizontally**. [godot.VSeparator] is purely visual and normally drawn as a [godot.StyleBoxLine].
+ * Vertical version of [godot.Separator]. Even though it looks vertical, it is used to separate objects horizontally.
  */
 @GodotBaseType
 public open class VSeparator : Separator() {

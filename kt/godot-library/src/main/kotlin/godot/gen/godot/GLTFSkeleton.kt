@@ -31,7 +31,7 @@ public open class GLTFSkeleton : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_JOINTS,
           PACKED_INT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
@@ -43,7 +43,7 @@ public open class GLTFSkeleton : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_ROOTS,
           PACKED_INT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
@@ -55,7 +55,7 @@ public open class GLTFSkeleton : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_UNIQUE_NAMES,
           ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>
+      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -68,7 +68,7 @@ public open class GLTFSkeleton : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_GODOT_BONE_NODE,
           DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
@@ -85,21 +85,21 @@ public open class GLTFSkeleton : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_GODOT_SKELETON,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?)
   }
 
-  public fun getBoneAttachmentCount(): Long {
+  public fun getBoneAttachmentCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_BONE_ATTACHMENT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun getBoneAttachment(idx: Long): BoneAttachment3D? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getBoneAttachment(idx: Int): BoneAttachment3D? {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_BONE_ATTACHMENT,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as BoneAttachment3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as BoneAttachment3D?)
   }
 
   public companion object

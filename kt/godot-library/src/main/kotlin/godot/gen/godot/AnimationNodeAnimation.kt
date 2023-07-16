@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
@@ -19,12 +18,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * An input animation for an [godot.AnimationNodeBlendTree].
+ * Input animation to use in an [godot.AnimationNodeBlendTree].
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * A resource to add to an [godot.AnimationNodeBlendTree]. Only has one output port using the [animation] property. Used as an input for [godot.AnimationNode]s that blend animations together.
+ * A resource to add to an [godot.AnimationNodeBlendTree]. Only features one output set using the [animation] property. Use it as an input for [godot.AnimationNode] that blend animations together.
  */
 @GodotBaseType
 public open class AnimationNodeAnimation : AnimationRootNode() {
@@ -36,7 +35,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEANIMATION_GET_ANIMATION, STRING_NAME)
-      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
@@ -52,7 +51,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEANIMATION_GET_PLAY_MODE, LONG)
-      return AnimationNodeAnimation.PlayMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return AnimationNodeAnimation.PlayMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -31,7 +30,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_GET_OP_TYPE, LONG)
-      return VisualShaderNodeDerivativeFunc.OpType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeDerivativeFunc.OpType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -47,7 +46,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_GET_FUNCTION, LONG)
-      return VisualShaderNodeDerivativeFunc.Function.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeDerivativeFunc.Function.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -63,7 +62,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_GET_PRECISION, LONG)
-      return VisualShaderNodeDerivativeFunc.Precision.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VisualShaderNodeDerivativeFunc.Precision.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

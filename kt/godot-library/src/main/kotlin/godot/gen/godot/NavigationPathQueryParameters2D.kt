@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -22,12 +21,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Provides parameters for 2D navigation path queries.
+ * Parameters to be sent to a 2D navigation path query.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html)
  *
- * By changing various properties of this object, such as the start and target position, you can configure path queries to the [godot.NavigationServer2D].
+ * This class contains the start and target position and other parameters to be used with [godot.NavigationServer2D.queryPath].
  */
 @GodotBaseType
 public open class NavigationPathQueryParameters2D : RefCounted() {
@@ -39,7 +38,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_MAP, _RID)
-      return TransferContext.readReturnValue(_RID, false) as RID
+      return (TransferContext.readReturnValue(_RID, false) as RID)
     }
     set(`value`) {
       TransferContext.writeArguments(_RID to value)
@@ -55,7 +54,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_START_POSITION, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -71,7 +70,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_TARGET_POSITION, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -82,15 +81,15 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   /**
    * The navigation layers the query will use (as a bitmask).
    */
-  public var navigationLayers: Long
+  public var navigationLayers: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_NAVIGATION_LAYERS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_SET_NAVIGATION_LAYERS, NIL)
     }
@@ -103,7 +102,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_PATHFINDING_ALGORITHM, LONG)
-      return NavigationPathQueryParameters2D.PathfindingAlgorithm.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return NavigationPathQueryParameters2D.PathfindingAlgorithm.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -119,7 +118,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_PATH_POSTPROCESSING, LONG)
-      return NavigationPathQueryParameters2D.PathPostProcessing.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return NavigationPathQueryParameters2D.PathPostProcessing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -135,7 +134,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_METADATA_FLAGS, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, false) as Long
+      return (TransferContext.readReturnValue(OBJECT, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

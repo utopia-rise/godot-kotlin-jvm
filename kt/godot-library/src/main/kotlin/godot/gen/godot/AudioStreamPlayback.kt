@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -52,7 +51,7 @@ public open class AudioStreamPlayback : RefCounted() {
   /**
    *
    */
-  public open fun _getLoopCount(): Long {
+  public open fun _getLoopCount(): Int {
     throw NotImplementedError("_get_loop_count is not implemented for AudioStreamPlayback")
   }
 

@@ -9,10 +9,10 @@ import godot.codegen.workarounds.sanitizeApiType
 import godot.codegen.models.Argument
 import godot.codegen.models.Property
 import godot.codegen.traits.CallableTrait
+import godot.codegen.traits.CastableTrait
 import godot.codegen.traits.NullableTrait
-import godot.codegen.traits.TypedTrait
 
-class EnrichedProperty(val internal: Property) : TypedTrait, NullableTrait {
+class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait {
     val name = internal.name.replace("/", "_").convertToCamelCase()
     val getter = internal.getter.convertToCamelCase()
     val setter = internal.setter?.convertToCamelCase()
@@ -46,6 +46,8 @@ class EnrichedProperty(val internal: Property) : TypedTrait, NullableTrait {
             internalType.sanitizeApiType()
         }
     override val nullable = isObjectSubClass() || getTypeClassName().className == ANY
+    override val meta: String?
+        get() = getterMethod?.meta
 }
 
 fun List<Property>.toEnriched() = map {
@@ -57,19 +59,22 @@ fun EnrichedProperty.toSetterCallable() = object : CallableTrait {
         requireNotNull(setterMethod)
     }
 
+    private val setterArgument = Argument("value", internalType, this@toSetterCallable.meta, null).toEnriched()
+
     override val arguments = if (isIndexed) {
         listOf(
             Argument("index", GodotTypes.int, null, null).toEnriched(),
-            Argument("value", internalType, null, null).toEnriched()
+            setterArgument
         )
     } else {
         listOf(
-            Argument("value", internalType, null, null).toEnriched()
+            setterArgument
         )
     }
     override val isVararg = false
     override val engineIndexName = setterMethod!!.engineIndexName
     override val type = ""
+    override val meta: String? = null
     override val nullable = false
 }
 
@@ -86,5 +91,6 @@ fun EnrichedProperty.toGetterCallable() = object : CallableTrait {
     override val isVararg = false
     override val engineIndexName = getterMethod!!.engineIndexName
     override val type = this@toGetterCallable.type
+    override val meta: String? = getterMethod!!.meta
     override val nullable = this@toGetterCallable.nullable
 }

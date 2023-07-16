@@ -17,7 +17,6 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -33,6 +32,7 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -42,7 +42,7 @@ import kotlin.Unit
 /**
  * Holds a paragraph of text.
  *
- * Abstraction over [godot.TextServer] for handling a single paragraph of text.
+ * Abstraction over [godot.TextServer] for handling paragraph of text.
  */
 @GodotBaseType
 public open class TextParagraph : RefCounted() {
@@ -53,7 +53,7 @@ public open class TextParagraph : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DIRECTION, LONG)
-      return TextServer.Direction.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -68,7 +68,7 @@ public open class TextParagraph : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_CUSTOM_PUNCTUATION, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -84,7 +84,7 @@ public open class TextParagraph : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_ORIENTATION,
           LONG)
-      return TextServer.Orientation.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.Orientation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -100,7 +100,7 @@ public open class TextParagraph : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_PRESERVE_INVALID, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -116,7 +116,7 @@ public open class TextParagraph : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_PRESERVE_CONTROL, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -131,7 +131,7 @@ public open class TextParagraph : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_ALIGNMENT, LONG)
-      return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -146,7 +146,7 @@ public open class TextParagraph : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_BREAK_FLAGS,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, false) as Long
+      return (TransferContext.readReturnValue(OBJECT, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -155,14 +155,14 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
+   * Line alignment rules. For more info see [godot.TextServer].
    */
   public var justificationFlags: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_JUSTIFICATION_FLAGS, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, false) as Long
+      return (TransferContext.readReturnValue(OBJECT, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -178,7 +178,7 @@ public open class TextParagraph : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_TEXT_OVERRUN_BEHAVIOR, LONG)
-      return TextServer.OverrunBehavior.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.OverrunBehavior.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -189,29 +189,29 @@ public open class TextParagraph : RefCounted() {
   /**
    * Paragraph width.
    */
-  public var width: Double
+  public var width: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_WIDTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_WIDTH, NIL)
     }
 
   /**
    * Limits the lines of text shown.
    */
-  public var maxLinesVisible: Long
+  public var maxLinesVisible: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_MAX_LINES_VISIBLE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_MAX_LINES_VISIBLE, NIL)
     }
@@ -246,13 +246,13 @@ public open class TextParagraph : RefCounted() {
   public fun setDropcap(
     text: String,
     font: Font,
-    fontSize: Long,
+    fontSize: Int,
     dropcapMargins: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     language: String = "",
   ): Boolean {
-    TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize, RECT2 to dropcapMargins, STRING to language)
+    TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize.toLong(), RECT2 to dropcapMargins, STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_DROPCAP, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -269,13 +269,13 @@ public open class TextParagraph : RefCounted() {
   public fun addString(
     text: String,
     font: Font,
-    fontSize: Long,
+    fontSize: Int,
     language: String = "",
     meta: Any? = null,
   ): Boolean {
-    TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize, STRING to language, ANY to meta)
+    TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize.toLong(), STRING to language, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_STRING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -285,12 +285,12 @@ public open class TextParagraph : RefCounted() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    length: Long = 1,
-    baseline: Double = 0.0,
+    length: Int = 1,
+    baseline: Float = 0.0f,
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length.toLong(), DOUBLE to baseline.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_OBJECT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -300,11 +300,11 @@ public open class TextParagraph : RefCounted() {
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
-    baseline: Double = 0.0,
+    baseline: Float = 0.0f,
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_RESIZE_OBJECT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -322,7 +322,7 @@ public open class TextParagraph : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_NON_WRAPPED_SIZE,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -331,7 +331,7 @@ public open class TextParagraph : RefCounted() {
   public fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SIZE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -340,16 +340,16 @@ public open class TextParagraph : RefCounted() {
   public fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
    * Returns TextServer line buffer RID.
    */
-  public fun getLineRid(line: Long): RID {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineRid(line: Int): RID {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -358,106 +358,106 @@ public open class TextParagraph : RefCounted() {
   public fun getDropcapRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DROPCAP_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
    * Returns number of lines in the paragraph.
    */
-  public fun getLineCount(): Long {
+  public fun getLineCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns array of inline objects in the line.
    */
-  public fun getLineObjects(line: Long): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineObjects(line: Int): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_OBJECTS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
    * Returns bounding rectangle of the inline object.
    */
-  public fun getLineObjectRect(line: Long, key: Any): Rect2 {
-    TransferContext.writeArguments(LONG to line, ANY to key)
+  public fun getLineObjectRect(line: Int, key: Any): Rect2 {
+    TransferContext.writeArguments(LONG to line.toLong(), ANY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_OBJECT_RECT,
         RECT2)
-    return TransferContext.readReturnValue(RECT2, false) as Rect2
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
   /**
    * Returns size of the bounding box of the line of text.
    */
-  public fun getLineSize(line: Long): Vector2 {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineSize(line: Int): Vector2 {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_SIZE,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Returns character range of the line.
    */
-  public fun getLineRange(line: Long): Vector2i {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineRange(line: Int): Vector2i {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_RANGE,
         VECTOR2I)
-    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
    * Returns the text line ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical).
    */
-  public fun getLineAscent(line: Long): Double {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineAscent(line: Int): Float {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_ASCENT,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the text line descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical).
    */
-  public fun getLineDescent(line: Long): Double {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineDescent(line: Int): Float {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_DESCENT,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns width (for horizontal layout) or height (for vertical) of the line of text.
    */
-  public fun getLineWidth(line: Long): Double {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineWidth(line: Int): Float {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_WIDTH,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns pixel offset of the underline below the baseline.
    */
-  public fun getLineUnderlinePosition(line: Long): Double {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineUnderlinePosition(line: Int): Float {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_UNDERLINE_POSITION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns thickness of the underline.
    */
-  public fun getLineUnderlineThickness(line: Long): Double {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineUnderlineThickness(line: Int): Float {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_UNDERLINE_THICKNESS, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -467,17 +467,17 @@ public open class TextParagraph : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DROPCAP_SIZE,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Returns number of lines used by dropcap.
    */
-  public fun getDropcapLines(): Long {
+  public fun getDropcapLines(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DROPCAP_LINES,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -499,11 +499,11 @@ public open class TextParagraph : RefCounted() {
   public fun drawOutline(
     canvas: RID,
     pos: Vector2,
-    outlineSize: Long = 1,
+    outlineSize: Int = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
     dcColor: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize, COLOR to color, COLOR to dcColor)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color, COLOR to dcColor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_OUTLINE, NIL)
   }
 
@@ -513,10 +513,10 @@ public open class TextParagraph : RefCounted() {
   public fun drawLine(
     canvas: RID,
     pos: Vector2,
-    line: Long,
+    line: Int,
     color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line, COLOR to color)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line.toLong(), COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_LINE, NIL)
   }
 
@@ -526,11 +526,11 @@ public open class TextParagraph : RefCounted() {
   public fun drawLineOutline(
     canvas: RID,
     pos: Vector2,
-    line: Long,
-    outlineSize: Long = 1,
+    line: Int,
+    outlineSize: Int = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line, LONG to outlineSize, COLOR to color)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line.toLong(), LONG to outlineSize.toLong(), COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_LINE_OUTLINE,
         NIL)
   }
@@ -553,10 +553,10 @@ public open class TextParagraph : RefCounted() {
   public fun drawDropcapOutline(
     canvas: RID,
     pos: Vector2,
-    outlineSize: Long = 1,
+    outlineSize: Int = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize, COLOR to color)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_DROPCAP_OUTLINE,
         NIL)
   }
@@ -564,10 +564,10 @@ public open class TextParagraph : RefCounted() {
   /**
    * Returns caret character offset at the specified coordinates. This function always returns a valid position.
    */
-  public fun hitTest(coords: Vector2): Long {
+  public fun hitTest(coords: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to coords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_HIT_TEST, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -61,7 +60,7 @@ import kotlin.Unit
  *
  *     if server.is_connection_available():
  *
- *         var peer: PacketPeerUDP = server.take_connection()
+ *         var peer : PacketPeerUDP = server.take_connection()
  *
  *         var packet = peer.get_packet()
  *
@@ -189,7 +188,7 @@ import kotlin.Unit
  *
  *         # Try to contact server
  *
- *         udp.put_packet("The answer is... 42!".to_utf8_buffer())
+ *         udp.put_packet("The answer is... 42!".to_utf8())
  *
  *     if udp.get_available_packet_count() > 0:
  *
@@ -237,7 +236,7 @@ import kotlin.Unit
  *
  *             // Try to contact server
  *
- *             _udp.PutPacket("The Answer Is..42!".ToUtf8Buffer());
+ *             _udp.PutPacket("The Answer Is..42!".ToUtf8());
  *
  *         }
  *
@@ -264,15 +263,15 @@ public open class UDPServer : RefCounted() {
   /**
    * Define the maximum number of pending connections, during [poll], any new pending connection exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents any new pending connection to be accepted (e.g. when all your players have connected).
    */
-  public var maxPendingConnections: Long
+  public var maxPendingConnections: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_UDPSERVER_GET_MAX_PENDING_CONNECTIONS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_UDPSERVER_SET_MAX_PENDING_CONNECTIONS, NIL)
     }
@@ -285,10 +284,10 @@ public open class UDPServer : RefCounted() {
   /**
    * Starts the server by opening a UDP socket listening on the given [port]. You can optionally specify a [bindAddress] to only listen for packets sent to that address. See also [godot.PacketPeerUDP.bind].
    */
-  public fun listen(port: Long, bindAddress: String = "*"): GodotError {
-    TransferContext.writeArguments(LONG to port, STRING to bindAddress)
+  public fun listen(port: Int, bindAddress: String = "*"): GodotError {
+    TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_LISTEN, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -297,7 +296,7 @@ public open class UDPServer : RefCounted() {
   public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_POLL, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -307,16 +306,16 @@ public open class UDPServer : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_IS_CONNECTION_AVAILABLE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the local port this server is listening to.
    */
-  public fun getLocalPort(): Long {
+  public fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_GET_LOCAL_PORT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -325,7 +324,7 @@ public open class UDPServer : RefCounted() {
   public fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_IS_LISTENING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -334,7 +333,7 @@ public open class UDPServer : RefCounted() {
   public fun takeConnection(): PacketPeerUDP? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_TAKE_CONNECTION, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PacketPeerUDP?
+    return (TransferContext.readReturnValue(OBJECT, true) as PacketPeerUDP?)
   }
 
   /**

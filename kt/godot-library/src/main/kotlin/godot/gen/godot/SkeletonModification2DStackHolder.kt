@@ -46,7 +46,7 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER_GET_HELD_MODIFICATION_STACK,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
   }
 
   public companion object

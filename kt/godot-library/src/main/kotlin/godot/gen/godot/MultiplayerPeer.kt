@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -52,7 +51,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_IS_REFUSING_NEW_CONNECTIONS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -68,7 +67,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_TRANSFER_MODE,
           LONG)
-      return MultiplayerPeer.TransferMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return MultiplayerPeer.TransferMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -81,15 +80,15 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    *
    * **Note:** The default channel (`0`) actually works as 3 separate channels (one for each [enum TransferMode]) so that [TRANSFER_MODE_RELIABLE] and [TRANSFER_MODE_UNRELIABLE_ORDERED] does not interact with each other by default. Refer to the specific network API documentation (e.g. ENet or WebRTC) to learn how to set up channels correctly.
    */
-  public var transferChannel: Long
+  public var transferChannel: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_TRANSFER_CHANNEL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TRANSFER_CHANNEL, NIL)
     }
@@ -104,8 +103,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    *
    * The [id] can be one of: [TARGET_PEER_BROADCAST] to send to all connected peers, [TARGET_PEER_SERVER] to send to the peer acting as server, a valid peer ID to send to that specific peer, a negative peer ID to send to all peers except that one. By default, the target peer is [TARGET_PEER_BROADCAST].
    */
-  public fun setTargetPeer(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
+  public fun setTargetPeer(id: Int): Unit {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TARGET_PEER,
         NIL)
   }
@@ -113,21 +112,21 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Returns the ID of the [godot.MultiplayerPeer] who sent the next available packet. See [godot.PacketPeer.getAvailablePacketCount].
    */
-  public fun getPacketPeer(): Long {
+  public fun getPacketPeer(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_PACKET_PEER,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the channel over which the next available packet was received. See [godot.PacketPeer.getAvailablePacketCount].
    */
-  public fun getPacketChannel(): Long {
+  public fun getPacketChannel(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_PACKET_CHANNEL,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -137,7 +136,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_PACKET_MODE,
         LONG)
-    return MultiplayerPeer.TransferMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return MultiplayerPeer.TransferMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -159,8 +158,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Disconnects the given [peer] from this host. If [force] is `true` the [peerDisconnected] signal will not be emitted for this peer.
    */
-  public fun disconnectPeer(peer: Long, force: Boolean = false): Unit {
-    TransferContext.writeArguments(LONG to peer, BOOL to force)
+  public fun disconnectPeer(peer: Int, force: Boolean = false): Unit {
+    TransferContext.writeArguments(LONG to peer.toLong(), BOOL to force)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_DISCONNECT_PEER,
         NIL)
   }
@@ -172,26 +171,26 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_CONNECTION_STATUS, LONG)
-    return MultiplayerPeer.ConnectionStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return MultiplayerPeer.ConnectionStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Returns the ID of this [godot.MultiplayerPeer].
    */
-  public fun getUniqueId(): Long {
+  public fun getUniqueId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_UNIQUE_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns a randomly generated integer that can be used as a network unique ID.
    */
-  public fun generateUniqueId(): Long {
+  public fun generateUniqueId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GENERATE_UNIQUE_ID,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -201,7 +200,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_IS_SERVER_RELAY_SUPPORTED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class ConnectionStatus(

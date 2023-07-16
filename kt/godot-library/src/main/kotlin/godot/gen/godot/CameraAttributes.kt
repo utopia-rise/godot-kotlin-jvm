@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
@@ -32,15 +33,15 @@ public open class CameraAttributes : Resource() {
   /**
    * Sensitivity of camera sensors, measured in ISO. A higher sensitivity results in a brighter image. Only available when [godot.ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. When [autoExposureEnabled] this can be used as a method of exposure compensation, doubling the value will increase the exposure value (measured in EV100) by 1 stop.
    */
-  public var exposureSensitivity: Double
+  public var exposureSensitivity: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTES_GET_EXPOSURE_SENSITIVITY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTES_SET_EXPOSURE_SENSITIVITY, NIL)
     }
@@ -48,15 +49,15 @@ public open class CameraAttributes : Resource() {
   /**
    * Multiplier for the exposure amount. A higher value results in a brighter image.
    */
-  public var exposureMultiplier: Double
+  public var exposureMultiplier: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTES_GET_EXPOSURE_MULTIPLIER, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTES_SET_EXPOSURE_MULTIPLIER, NIL)
     }
@@ -69,7 +70,7 @@ public open class CameraAttributes : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTES_IS_AUTO_EXPOSURE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -80,15 +81,15 @@ public open class CameraAttributes : Resource() {
   /**
    * The scale of the auto exposure effect. Affects the intensity of auto exposure.
    */
-  public var autoExposureScale: Double
+  public var autoExposureScale: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTES_GET_AUTO_EXPOSURE_SCALE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTES_SET_AUTO_EXPOSURE_SCALE, NIL)
     }
@@ -96,15 +97,15 @@ public open class CameraAttributes : Resource() {
   /**
    * The speed of the auto exposure effect. Affects the time needed for the camera to perform auto exposure.
    */
-  public var autoExposureSpeed: Double
+  public var autoExposureSpeed: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTES_GET_AUTO_EXPOSURE_SPEED, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERAATTRIBUTES_SET_AUTO_EXPOSURE_SPEED, NIL)
     }

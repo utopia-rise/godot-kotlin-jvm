@@ -10,7 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -29,7 +29,7 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   /**
    *
    */
-  public open fun _getStreamSamplingRate(): Double {
+  public open fun _getStreamSamplingRate(): Float {
     throw NotImplementedError("_get_stream_sampling_rate is not implemented for AudioStreamPlaybackResampled")
   }
 

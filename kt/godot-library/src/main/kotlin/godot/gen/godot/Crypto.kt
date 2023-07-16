@@ -16,16 +16,15 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
 /**
- * Provides access to advanced cryptographic functionalities.
+ * Access to advanced cryptographic functionalities.
  *
- * The Crypto class provides access to advanced cryptographic functionalities.
+ * The Crypto class allows you to access some more advanced cryptographic functionalities in Godot.
  *
- * Currently, this includes asymmetric key encryption/decryption, signing/verification, and generating cryptographically secure random bytes, RSA keys, HMAC digests, and self-signed [godot.X509Certificate]s.
+ * For now, this includes generating cryptographically secure random bytes, RSA keys and self-signed X509 certificates generation, asymmetric key encryption/decryption, and signing/verification.
  *
  * [codeblocks]
  *
@@ -63,7 +62,7 @@ import kotlin.Suppress
  *
  *     var data = "Some data"
  *
- *     var encrypted = crypto.encrypt(key, data.to_utf8_buffer())
+ *     var encrypted = crypto.encrypt(key, data.to_utf8())
  *
  *     # Decryption
  *
@@ -81,7 +80,7 @@ import kotlin.Suppress
  *
  *     assert(verified)
  *
- *     assert(data.to_utf8_buffer() == decrypted)
+ *     assert(data.to_utf8() == decrypted)
  *
  * [/gdscript]
  *
@@ -127,7 +126,7 @@ import kotlin.Suppress
  *
  *         string data = "Some data";
  *
- *         byte[] encrypted = _crypto.Encrypt(_key, data.ToUtf8Buffer());
+ *         byte[] encrypted = _crypto.Encrypt(_key, data.ToUtf8());
  *
  *         // Decryption
  *
@@ -145,7 +144,7 @@ import kotlin.Suppress
  *
  *         Debug.Assert(verified);
  *
- *         Debug.Assert(data.ToUtf8Buffer() == decrypted);
+ *         Debug.Assert(data.ToUtf8() == decrypted);
  *
  *     }
  *
@@ -165,20 +164,20 @@ public open class Crypto : RefCounted() {
   /**
    * Generates a [godot.PackedByteArray] of cryptographically secure random bytes with given [size].
    */
-  public fun generateRandomBytes(size: Long): PackedByteArray {
-    TransferContext.writeArguments(LONG to size)
+  public fun generateRandomBytes(size: Int): PackedByteArray {
+    TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_RANDOM_BYTES,
         PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
    * Generates an RSA [godot.CryptoKey] that can be used for creating self-signed certificates and passed to [godot.StreamPeerTLS.acceptStream].
    */
-  public fun generateRsa(size: Long): CryptoKey? {
-    TransferContext.writeArguments(LONG to size)
+  public fun generateRsa(size: Int): CryptoKey? {
+    TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_RSA, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as CryptoKey?
+    return (TransferContext.readReturnValue(OBJECT, true) as CryptoKey?)
   }
 
   /**
@@ -227,7 +226,7 @@ public open class Crypto : RefCounted() {
     TransferContext.writeArguments(OBJECT to key, STRING to issuerName, STRING to notBefore, STRING to notAfter)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_SELF_SIGNED_CERTIFICATE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as X509Certificate?
+    return (TransferContext.readReturnValue(OBJECT, true) as X509Certificate?)
   }
 
   /**
@@ -240,7 +239,7 @@ public open class Crypto : RefCounted() {
   ): PackedByteArray {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, OBJECT to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_SIGN, PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
@@ -254,7 +253,7 @@ public open class Crypto : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_VERIFY, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -265,7 +264,7 @@ public open class Crypto : RefCounted() {
   public fun encrypt(key: CryptoKey, plaintext: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to plaintext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_ENCRYPT, PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
@@ -276,7 +275,7 @@ public open class Crypto : RefCounted() {
   public fun decrypt(key: CryptoKey, ciphertext: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to ciphertext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_DECRYPT, PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
@@ -292,7 +291,7 @@ public open class Crypto : RefCounted() {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to msg)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_HMAC_DIGEST,
         PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
@@ -303,7 +302,7 @@ public open class Crypto : RefCounted() {
   public fun constantTimeCompare(trusted: PackedByteArray, received: PackedByteArray): Boolean {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to trusted, PACKED_BYTE_ARRAY to received)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_CONSTANT_TIME_COMPARE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

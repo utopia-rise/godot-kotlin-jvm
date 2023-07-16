@@ -14,7 +14,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -26,6 +25,7 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -35,7 +35,7 @@ import kotlin.Unit
 /**
  * Godot editor's interface.
  *
- * [godot.EditorInterface] gives you control over Godot editor's window. It allows customizing the window, saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects, and provides access to [godot.EditorSettings], [godot.EditorFileSystem], [godot.EditorResourcePreview], [godot.ScriptEditor], the editor viewport, and information about scenes.
+ * EditorInterface gives you control over Godot editor's window. It allows customizing the window, saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects, and provides access to [godot.EditorSettings], [godot.EditorFileSystem], [godot.EditorResourcePreview], [godot.ScriptEditor], the editor viewport, and information about scenes.
  *
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorPlugin.getEditorInterface].
  */
@@ -49,7 +49,7 @@ public open class EditorInterface internal constructor() : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_DISTRACTION_FREE_MODE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -57,15 +57,12 @@ public open class EditorInterface internal constructor() : Object() {
           ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
     }
 
-  /**
-   * If `true`, the Movie Maker mode is enabled in the editor. See [godot.MovieWriter] for more information.
-   */
   public var movieMakerEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_MOVIE_MAKER_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -95,7 +92,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_COMMAND_PALETTE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorCommandPalette?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorCommandPalette?)
   }
 
   /**
@@ -105,7 +102,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_FILESYSTEM, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystem?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorFileSystem?)
   }
 
   /**
@@ -115,7 +112,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_PATHS,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorPaths?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorPaths?)
   }
 
   /**
@@ -125,7 +122,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_PREVIEWER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorResourcePreview?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorResourcePreview?)
   }
 
   /**
@@ -135,7 +132,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTION,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorSelection?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorSelection?)
   }
 
   /**
@@ -145,18 +142,18 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SETTINGS,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorSettings?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorSettings?)
   }
 
   /**
    * Returns mesh previews rendered at the given size as an [godot.Array] of [godot.Texture2D]s.
    */
-  public fun makeMeshPreviews(meshes: VariantArray<Mesh>, previewSize: Long):
+  public fun makeMeshPreviews(meshes: VariantArray<Mesh>, previewSize: Int):
       VariantArray<Texture2D> {
-    TransferContext.writeArguments(ARRAY to meshes, LONG to previewSize)
+    TransferContext.writeArguments(ARRAY to meshes, LONG to previewSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MAKE_MESH_PREVIEWS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Texture2D>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Texture2D>)
   }
 
   /**
@@ -175,7 +172,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments(STRING to plugin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLUGIN_ENABLED,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -187,7 +184,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_BASE_CONTROL,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Control?
+    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
   /**
@@ -199,7 +196,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_MAIN_SCREEN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
+    return (TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?)
   }
 
   /**
@@ -211,7 +208,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SCRIPT_EDITOR,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ScriptEditor?
+    return (TransferContext.readReturnValue(OBJECT, true) as ScriptEditor?)
   }
 
   /**
@@ -228,56 +225,36 @@ public open class EditorInterface internal constructor() : Object() {
    *
    * **Note:** This value is set via the `interface/editor/display_scale` and `interface/editor/custom_display_scale` editor settings. Editor must be restarted for changes to be properly applied.
    */
-  public fun getEditorScale(): Double {
+  public fun getEditorScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SCALE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  /**
-   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusive]. The dialog must have no current parent, otherwise the method fails.
-   *
-   * See also [godot.Window.setUnparentWhenInvisible].
-   */
   public fun popupDialog(dialog: Window, rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
     TransferContext.writeArguments(OBJECT to dialog, RECT2I to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG, NIL)
   }
 
-  /**
-   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusiveCentered]. The dialog must have no current parent, otherwise the method fails.
-   *
-   * See also [godot.Window.setUnparentWhenInvisible].
-   */
   public fun popupDialogCentered(dialog: Window, minsize: Vector2i = Vector2i(0, 0)): Unit {
     TransferContext.writeArguments(OBJECT to dialog, VECTOR2I to minsize)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED, NIL)
   }
 
-  /**
-   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusiveCenteredRatio]. The dialog must have no current parent, otherwise the method fails.
-   *
-   * See also [godot.Window.setUnparentWhenInvisible].
-   */
-  public fun popupDialogCenteredRatio(dialog: Window, ratio: Double = 0.8): Unit {
-    TransferContext.writeArguments(OBJECT to dialog, DOUBLE to ratio)
+  public fun popupDialogCenteredRatio(dialog: Window, ratio: Float = 0.8f): Unit {
+    TransferContext.writeArguments(OBJECT to dialog, DOUBLE to ratio.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED_RATIO, NIL)
   }
 
-  /**
-   * Pops up the [dialog] in the editor UI with [godot.Window.popupExclusiveCenteredClamped]. The dialog must have no current parent, otherwise the method fails.
-   *
-   * See also [godot.Window.setUnparentWhenInvisible].
-   */
   public fun popupDialogCenteredClamped(
     dialog: Window,
     minsize: Vector2i = Vector2i(0, 0),
-    fallbackRatio: Double = 0.75,
+    fallbackRatio: Float = 0.75f,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to dialog, VECTOR2I to minsize, DOUBLE to fallbackRatio)
+    TransferContext.writeArguments(OBJECT to dialog, VECTOR2I to minsize, DOUBLE to fallbackRatio.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED_CLAMPED, NIL)
   }
@@ -291,7 +268,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_FILE_SYSTEM_DOCK, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as FileSystemDock?
+    return (TransferContext.readReturnValue(OBJECT, true) as FileSystemDock?)
   }
 
   /**
@@ -309,7 +286,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATHS,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -319,7 +296,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_PATH,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -329,7 +306,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_DIRECTORY, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -341,7 +318,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_INSPECTOR,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorInspector?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorInspector?)
   }
 
   /**
@@ -377,11 +354,11 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun editScript(
     script: Script,
-    line: Long = -1,
-    column: Long = 0,
+    line: Int = -1,
+    column: Int = 0,
     grabFocus: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to script, LONG to line, LONG to column, BOOL to grabFocus)
+    TransferContext.writeArguments(OBJECT to script, LONG to line.toLong(), LONG to column.toLong(), BOOL to grabFocus)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_SCRIPT, NIL)
   }
 
@@ -410,7 +387,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_OPEN_SCENES,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -420,7 +397,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITED_SCENE_ROOT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
+    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
   /**
@@ -429,7 +406,7 @@ public open class EditorInterface internal constructor() : Object() {
   public fun saveScene(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -440,9 +417,6 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS, NIL)
   }
 
-  /**
-   * Marks the current scene tab as unsaved.
-   */
   public fun markSceneAsUnsaved(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -492,7 +466,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLAYING_SCENE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -502,7 +476,7 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_PLAYING_SCENE,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

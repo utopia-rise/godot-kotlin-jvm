@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -22,12 +21,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A stream peer that handles TLS connections.
+ * TLS stream peer.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
  *
- * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or accept a single TLS client connection.
+ * TLS stream peer. This object can be used to connect to an TLS server or accept a single TLS client connection.
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
@@ -52,7 +51,7 @@ public open class StreamPeerTLS : StreamPeer() {
   public fun acceptStream(stream: StreamPeer, serverOptions: TLSOptions): GodotError {
     TransferContext.writeArguments(OBJECT to stream, OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_ACCEPT_STREAM, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -66,7 +65,7 @@ public open class StreamPeerTLS : StreamPeer() {
     TransferContext.writeArguments(OBJECT to stream, STRING to commonName, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_CONNECT_TO_STREAM,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -75,7 +74,7 @@ public open class StreamPeerTLS : StreamPeer() {
   public fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_GET_STATUS, LONG)
-    return StreamPeerTLS.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return StreamPeerTLS.Status.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -84,7 +83,7 @@ public open class StreamPeerTLS : StreamPeer() {
   public fun getStream(): StreamPeer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_GET_STREAM, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as StreamPeer?
+    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
   }
 
   /**

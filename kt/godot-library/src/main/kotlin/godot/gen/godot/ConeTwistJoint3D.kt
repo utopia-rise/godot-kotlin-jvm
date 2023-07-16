@@ -13,15 +13,20 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint.
+ * A twist joint between two 3D PhysicsBodies.
  *
- * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint. The twist axis is initiated as the X axis of the [godot.ConeTwistJoint3D]. Once the physics bodies swing, the twist axis is calculated as the middle of the X axes of the joint in the local space of the two physics bodies. Useful for limbs like shoulders and hips, lamps hanging off a ceiling, etc.
+ * The joint can rotate the bodies across an axis defined by the local x-axes of the [godot.Joint3D].
+ *
+ * The twist axis is initiated as the X axis of the [godot.Joint3D].
+ *
+ * Once the Bodies swing, the twist axis is calculated as the middle of the x-axes of the Joint3D in the local space of the two Bodies. See also [godot.Generic6DOFJoint3D].
  */
 @GodotBaseType
 public open class ConeTwistJoint3D : Joint3D() {
@@ -31,20 +36,20 @@ public open class ConeTwistJoint3D : Joint3D() {
   }
 
   /**
-   * Sets the value of the specified parameter.
+   *
    */
-  public fun setParam(`param`: Param, `value`: Double): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
+  public fun setParam(`param`: Param, `value`: Float): Unit {
+    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
   }
 
   /**
-   * Returns the value of the specified parameter.
+   *
    */
-  public fun getParam(`param`: Param): Double {
+  public fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class Param(

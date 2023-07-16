@@ -20,11 +20,11 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A group of buttons that doesn't allow more than one button to be pressed at a time.
+ * Group of Buttons.
  *
- * A group of [godot.BaseButton]-derived buttons. The buttons in a [godot.ButtonGroup] are treated like radio buttons: No more than one button can be pressed at a time. Some types of buttons (such as [godot.CheckBox]) may have a special appearance in this state.
+ * Group of [godot.BaseButton]. The members of this group are treated like radio buttons in the sense that only one button can be pressed at the same time.
  *
- * Every member of a [godot.ButtonGroup] should have [godot.BaseButton.toggleMode] set to `true`.
+ * Every member of the ButtonGroup should have [godot.BaseButton.toggleMode] set to `true`.
  */
 @GodotBaseType
 public open class ButtonGroup : Resource() {
@@ -33,15 +33,12 @@ public open class ButtonGroup : Resource() {
    */
   public val pressed: Signal1<BaseButton> by signal("button")
 
-  /**
-   * If `true`, it is possible to unpress all buttons in this [godot.ButtonGroup].
-   */
   public var allowUnpress: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_IS_ALLOW_UNPRESS,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -61,7 +58,7 @@ public open class ButtonGroup : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_PRESSED_BUTTON,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as BaseButton?
+    return (TransferContext.readReturnValue(OBJECT, true) as BaseButton?)
   }
 
   /**
@@ -70,7 +67,7 @@ public open class ButtonGroup : Resource() {
   public fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_BUTTONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>)
   }
 
   public companion object

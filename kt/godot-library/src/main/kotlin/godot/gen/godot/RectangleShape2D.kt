@@ -16,14 +16,14 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 2D rectangle shape used for physics collision.
+ * Rectangle shape resource for 2D physics.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/113](https://godotengine.org/asset-library/asset/113)
  *
- * A 2D rectangle shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape2D].
+ * 2D rectangle shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. This shape is useful for modeling box-like 2D objects.
  *
- * **Performance:** [godot.RectangleShape2D] is fast to check collisions against. It is faster than [godot.CapsuleShape2D], but slower than [godot.CircleShape2D].
+ * **Performance:** Being a primitive collision shape, [godot.RectangleShape2D] is fast to check collisions against (though not as fast as [godot.CircleShape2D]).
  */
 @GodotBaseType
 public open class RectangleShape2D : Shape2D() {
@@ -35,7 +35,7 @@ public open class RectangleShape2D : Shape2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RECTANGLESHAPE2D_GET_SIZE,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)

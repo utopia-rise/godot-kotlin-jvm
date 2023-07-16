@@ -17,6 +17,7 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
@@ -27,7 +28,7 @@ public open class OggPacketSequence : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_PACKET_DATA,
           ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>
+      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -41,7 +42,7 @@ public open class OggPacketSequence : Resource() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_PACKET_GRANULE_POSITIONS,
           PACKED_INT_64_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
+      return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_64_ARRAY to value)
@@ -49,15 +50,15 @@ public open class OggPacketSequence : Resource() {
           ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_SET_PACKET_GRANULE_POSITIONS, NIL)
     }
 
-  public var samplingRate: Double
+  public var samplingRate: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_SAMPLING_RATE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_SET_SAMPLING_RATE, NIL)
     }
@@ -67,11 +68,11 @@ public open class OggPacketSequence : Resource() {
     return true
   }
 
-  public fun getLength(): Double {
+  public fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_LENGTH,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

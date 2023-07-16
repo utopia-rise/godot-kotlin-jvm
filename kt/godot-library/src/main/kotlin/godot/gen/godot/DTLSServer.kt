@@ -8,12 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -57,9 +57,9 @@ import kotlin.Suppress
  *
  *     while server.is_connection_available():
  *
- *         var peer: PacketPeerUDP = server.take_connection()
+ *         var peer : PacketPeerUDP = server.take_connection()
  *
- *         var dtls_peer: PacketPeerDTLS = dtls.take_connection(peer)
+ *         var dtls_peer : PacketPeerDTLS = dtls.take_connection(peer)
  *
  *         if dtls_peer.get_status() != PacketPeerDTLS.STATUS_HANDSHAKING:
  *
@@ -81,7 +81,7 @@ import kotlin.Suppress
  *
  *                 print("Received message from client: %s" % p.get_packet().get_string_from_utf8())
  *
- *                 p.put_packet("Hello DTLS client".to_utf8_buffer())
+ *                 p.put_packet("Hello DTLS client".to_utf8())
  *
  * [/gdscript]
  *
@@ -165,7 +165,7 @@ import kotlin.Suppress
  *
  *                     GD.Print($"Received Message From Client: {p.GetPacket().GetStringFromUtf8()}");
  *
- *                     p.PutPacket("Hello DTLS Client".ToUtf8Buffer());
+ *                     p.PutPacket("Hello DTLS Client".ToUtf8());
  *
  *                 }
  *
@@ -217,7 +217,7 @@ import kotlin.Suppress
  *
  *             # Try to contact server
  *
- *             dtls.put_packet("The answer is... 42!".to_utf8_buffer())
+ *             dtls.put_packet("The answer is... 42!".to_utf8())
  *
  *         while dtls.get_available_packet_count() > 0:
  *
@@ -277,7 +277,7 @@ import kotlin.Suppress
  *
  *                 // Try to contact server
  *
- *                 _dtls.PutPacket("The Answer Is..42!".ToUtf8Buffer());
+ *                 _dtls.PutPacket("The Answer Is..42!".ToUtf8());
  *
  *             }
  *
@@ -314,7 +314,7 @@ public open class DTLSServer : RefCounted() {
   public fun setup(serverOptions: TLSOptions): GodotError {
     TransferContext.writeArguments(OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_SETUP, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -325,7 +325,7 @@ public open class DTLSServer : RefCounted() {
   public fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_TAKE_CONNECTION, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?
+    return (TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?)
   }
 
   public companion object

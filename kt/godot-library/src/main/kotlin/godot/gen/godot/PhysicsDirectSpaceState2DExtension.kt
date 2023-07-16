@@ -16,11 +16,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Provides virtual methods that can be overridden to create custom [godot.PhysicsDirectSpaceState2D] implementations.
  *
- * This class extends [godot.PhysicsDirectSpaceState2D] by providing additional virtual methods that can be overridden. When these methods are overridden, they will be called instead of the internal methods of the physics server.
- *
- * Intended for use with GDExtension to create custom implementations of [godot.PhysicsDirectSpaceState2D].
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
@@ -37,7 +33,7 @@ public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION_IS_BODY_EXCLUDED_FROM_QUERY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

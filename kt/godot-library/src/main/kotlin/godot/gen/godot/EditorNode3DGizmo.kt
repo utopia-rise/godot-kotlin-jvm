@@ -26,9 +26,8 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -57,7 +56,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    *
    * The [secondary] argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
-  public open fun _getHandleName(id: Long, secondary: Boolean): String {
+  public open fun _getHandleName(id: Int, secondary: Boolean): String {
     throw NotImplementedError("_get_handle_name is not implemented for EditorNode3DGizmo")
   }
 
@@ -66,7 +65,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    *
    * The [secondary] argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
-  public open fun _isHandleHighlighted(id: Long, secondary: Boolean): Boolean {
+  public open fun _isHandleHighlighted(id: Int, secondary: Boolean): Boolean {
     throw NotImplementedError("_is_handle_highlighted is not implemented for EditorNode3DGizmo")
   }
 
@@ -75,7 +74,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    *
    * The [secondary] argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
-  public open fun _getHandleValue(id: Long, secondary: Boolean): Any? {
+  public open fun _getHandleValue(id: Int, secondary: Boolean): Any? {
     throw NotImplementedError("_get_handle_value is not implemented for EditorNode3DGizmo")
   }
 
@@ -85,7 +84,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * The [secondary] argument is `true` when the edited handle is secondary (see [addHandles] for more information).
    */
   public open fun _setHandle(
-    id: Long,
+    id: Int,
     secondary: Boolean,
     camera: Camera3D,
     point: Vector2,
@@ -100,7 +99,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * The [secondary] argument is `true` when the committed handle is secondary (see [addHandles] for more information).
    */
   public open fun _commitHandle(
-    id: Long,
+    id: Int,
     secondary: Boolean,
     restore: Any,
     cancel: Boolean,
@@ -110,7 +109,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Override this method to allow selecting subgizmos using mouse clicks. Given a [camera] and a [point] in screen coordinates, this method should return which subgizmo should be selected. The returned value should be a unique subgizmo identifier, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].
    */
-  public open fun _subgizmosIntersectRay(camera: Camera3D, point: Vector2): Long {
+  public open fun _subgizmosIntersectRay(camera: Camera3D, point: Vector2): Int {
     throw NotImplementedError("_subgizmos_intersect_ray is not implemented for EditorNode3DGizmo")
   }
 
@@ -125,13 +124,13 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Override this method to update the node properties during subgizmo editing (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). The [transform] is given in the Node3D's local coordinate system.
    */
-  public open fun _setSubgizmoTransform(id: Long, transform: Transform3D): Unit {
+  public open fun _setSubgizmoTransform(id: Int, transform: Transform3D): Unit {
   }
 
   /**
    * Override this method to return the current transform of a subgizmo. This transform will be requested at the start of an edit and used as the `restore` argument in [_commitSubgizmos].
    */
-  public open fun _getSubgizmoTransform(id: Long): Transform3D {
+  public open fun _getSubgizmoTransform(id: Int): Transform3D {
     throw NotImplementedError("_get_subgizmo_transform is not implemented for EditorNode3DGizmo")
   }
 
@@ -196,10 +195,10 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun addUnscaledBillboard(
     material: Material,
-    defaultScale: Double = 1.0,
+    defaultScale: Float = 1.0f,
     modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to material, DOUBLE to defaultScale, COLOR to modulate)
+    TransferContext.writeArguments(OBJECT to material, DOUBLE to defaultScale.toDouble(), COLOR to modulate)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_UNSCALED_BILLBOARD, NIL)
   }
@@ -237,7 +236,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_NODE_3D,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Node3D?)
   }
 
   /**
@@ -247,7 +246,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_PLUGIN,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorNode3DGizmoPlugin?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorNode3DGizmoPlugin?)
   }
 
   /**
@@ -269,11 +268,11 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Returns `true` if the given subgizmo is currently selected. Can be used to highlight selected elements during [_redraw].
    */
-  public fun isSubgizmoSelected(id: Long): Boolean {
-    TransferContext.writeArguments(LONG to id)
+  public fun isSubgizmoSelected(id: Int): Boolean {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_IS_SUBGIZMO_SELECTED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -283,7 +282,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_SUBGIZMO_SELECTION, PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   public companion object

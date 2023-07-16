@@ -16,15 +16,16 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A singleton that provides access to static information about [godot.Theme] resources used by the engine and by your project.
+ * An engine singleton providing access to static [godot.Theme] information, such as default and project theme, and fallback values.
  *
- * This singleton provides access to static information about [godot.Theme] resources used by the engine and by your projects. You can fetch the default engine theme, as well as your project configured theme.
+ * This engine singleton provides access to static information about [godot.Theme] resources used by the engine and by your projects. You can fetch the default engine theme, as well as your project configured theme.
  *
  * [godot.ThemeDB] also contains fallback values for theme properties.
  */
@@ -46,7 +47,7 @@ public object ThemeDB : Object() {
   public fun getDefaultTheme(): Theme? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_DEFAULT_THEME, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Theme?
+    return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
   }
 
   /**
@@ -57,20 +58,20 @@ public object ThemeDB : Object() {
   public fun getProjectTheme(): Theme? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_PROJECT_THEME, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Theme?
+    return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
   }
 
-  public fun setFallbackBaseScale(baseScale: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to baseScale)
+  public fun setFallbackBaseScale(baseScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to baseScale.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_SET_FALLBACK_BASE_SCALE,
         NIL)
   }
 
-  public fun getFallbackBaseScale(): Double {
+  public fun getFallbackBaseScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_FALLBACK_BASE_SCALE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public fun setFallbackFont(font: Font): Unit {
@@ -81,19 +82,19 @@ public object ThemeDB : Object() {
   public fun getFallbackFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_FALLBACK_FONT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Font?
+    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
   }
 
-  public fun setFallbackFontSize(fontSize: Long): Unit {
-    TransferContext.writeArguments(LONG to fontSize)
+  public fun setFallbackFontSize(fontSize: Int): Unit {
+    TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_SET_FALLBACK_FONT_SIZE, NIL)
   }
 
-  public fun getFallbackFontSize(): Long {
+  public fun getFallbackFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_FALLBACK_FONT_SIZE,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun setFallbackIcon(icon: Texture2D): Unit {
@@ -104,7 +105,7 @@ public object ThemeDB : Object() {
   public fun getFallbackIcon(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_FALLBACK_ICON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   public fun setFallbackStylebox(stylebox: StyleBox): Unit {
@@ -116,6 +117,6 @@ public object ThemeDB : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_FALLBACK_STYLEBOX,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as StyleBox?
+    return (TransferContext.readReturnValue(OBJECT, true) as StyleBox?)
   }
 }

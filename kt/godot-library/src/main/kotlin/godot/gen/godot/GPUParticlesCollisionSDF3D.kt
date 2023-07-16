@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -18,6 +17,7 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -48,7 +48,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_SIZE, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -64,7 +64,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_RESOLUTION, LONG)
-      return GPUParticlesCollisionSDF3D.Resolution.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return GPUParticlesCollisionSDF3D.Resolution.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -75,15 +75,15 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    * The collision shape's thickness. Unlike other particle colliders, [godot.GPUParticlesCollisionSDF3D] is actually hollow on the inside. [thickness] can be increased to prevent particles from tunneling through the collision shape at high speeds, or when the [godot.GPUParticlesCollisionSDF3D] is moved.
    */
-  public var thickness: Double
+  public var thickness: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_THICKNESS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_SET_THICKNESS, NIL)
     }
@@ -91,15 +91,15 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    * The visual layers to account for when baking the particle collision SDF. Only [godot.MeshInstance3D]s whose [godot.VisualInstance3D.layers] match with this [bakeMask] will be included in the generated particle collision SDF. By default, all objects are taken into account for the particle collision SDF baking.
    */
-  public var bakeMask: Long
+  public var bakeMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_BAKE_MASK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_SET_BAKE_MASK, NIL)
     }
@@ -112,7 +112,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture3D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -128,8 +128,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    * Based on [value], enables or disables the specified layer in the [bakeMask], given a [layerNumber] between 1 and 32.
    */
-  public fun setBakeMaskValue(layerNumber: Long, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
+  public fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_SET_BAKE_MASK_VALUE, NIL)
   }
@@ -137,11 +137,11 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [layerNumber] between 1 and 32.
    */
-  public fun getBakeMaskValue(layerNumber: Long): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber)
+  public fun getBakeMaskValue(layerNumber: Int): Boolean {
+    TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_BAKE_MASK_VALUE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class Resolution(

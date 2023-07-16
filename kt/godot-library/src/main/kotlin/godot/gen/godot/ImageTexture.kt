@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -16,6 +15,7 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -48,7 +48,7 @@ import kotlin.Unit
  *
  * ```
  * 		var texture = load("res://icon.svg")
- * 		var image: Image = texture.get_image()
+ * 		var image : Image = texture.get_image()
  * 		```
  *
  * An [godot.ImageTexture] is not meant to be operated from within the editor interface directly, and is mostly useful for rendering images on screen dynamically via code. If you need to generate images procedurally from within the editor, consider saving and importing images as custom texture resources implementing a new [godot.EditorImportPlugin].
@@ -68,7 +68,7 @@ public open class ImageTexture : Texture2D() {
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_GET_FORMAT, LONG)
-    return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Image.Format.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**

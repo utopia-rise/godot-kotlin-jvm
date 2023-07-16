@@ -16,29 +16,27 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 2D polyline shape used for physics collision.
+ * Concave polygon shape resource for 2D physics.
  *
- * A 2D polyline shape, intended for use in physics. Used internally in [godot.CollisionPolygon2D] when it's in `BUILD_SEGMENTS` mode.
+ * 2D concave polygon shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. It is made out of segments and is optimal for complex polygonal concave collisions. However, it is not advised to use for [godot.RigidBody2D] nodes. A CollisionPolygon2D in convex decomposition mode (solids) or several convex objects are advised for that instead. Otherwise, a concave polygon 2D shape is better for static collisions.
  *
- * Being just a collection of interconnected line segments, [godot.ConcavePolygonShape2D] is the most freely configurable single 2D shape. It can be used to form polygons of any nature, or even shapes that don't enclose an area. However, [godot.ConvexPolygonShape2D] is *hollow* even if the interconnected line segments do enclose an area, which often makes it unsuitable for physics or detection.
+ * The main difference between a [godot.ConvexPolygonShape2D] and a [godot.ConcavePolygonShape2D] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex to speed up collision detection.
  *
- * **Note:** When used for collision, [godot.ConcavePolygonShape2D] is intended to work with static [godot.CollisionShape2D] nodes like [godot.StaticBody2D] and will likely not behave well for [godot.CharacterBody2D]s or [godot.RigidBody2D]s in a mode other than Static.
+ * **Performance:** Due to its complexity, [godot.ConcavePolygonShape2D] is the slowest collision shape to check collisions against. Its use should generally be limited to level geometry. For convex geometry, using [godot.ConvexPolygonShape2D] will perform better. For dynamic physics bodies that need concave collision, several [godot.ConvexPolygonShape2D]s can be used to represent its collision by using convex decomposition; see [godot.ConvexPolygonShape2D]'s documentation for instructions. However, consider using primitive collision shapes such as [godot.CircleShape2D] or [godot.RectangleShape2D] first.
  *
- * **Warning:** Physics bodies that are small have a chance to clip through this shape when moving fast. This happens because on one frame, the physics body may be on the "outside" of the shape, and on the next frame it may be "inside" it. [godot.ConcavePolygonShape2D] is hollow, so it won't detect a collision.
- *
- * **Performance:** Due to its complexity, [godot.ConcavePolygonShape2D] is the slowest 2D collision shape to check collisions against. Its use should generally be limited to level geometry. If the polyline is closed, [godot.CollisionPolygon2D]'s `BUILD_SOLIDS` mode can be used, which decomposes the polygon into convex ones; see [godot.ConvexPolygonShape2D]'s documentation for instructions.
+ * **Warning:** Using this shape for an [godot.Area2D] (via a [godot.CollisionShape2D] node) may give unexpected results: the area will only detect collisions with the segments in the [godot.ConcavePolygonShape2D] (and not with any "inside" of the shape, for example).
  */
 @GodotBaseType
 public open class ConcavePolygonShape2D : Shape2D() {
   /**
-   * The array of points that make up the [godot.ConcavePolygonShape2D]'s line segments. The array (of length divisible by two) is naturally divided into pairs (one pair for each segment); each pair consists of the starting point of a segment and the endpoint of a segment.
+   * The array of points that make up the [godot.ConcavePolygonShape2D]'s line segments.
    */
   public var segments: PackedVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE2D_GET_SEGMENTS, PACKED_VECTOR2_ARRAY)
-      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)

@@ -31,6 +31,6 @@ public object JavaClassWrapper : Object() {
   public fun wrap(name: String): JavaClass? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVACLASSWRAPPER_WRAP, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as JavaClass?
+    return (TransferContext.readReturnValue(OBJECT, true) as JavaClass?)
   }
 }

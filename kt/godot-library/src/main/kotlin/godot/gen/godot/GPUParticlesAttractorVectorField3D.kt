@@ -35,7 +35,7 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_GET_SIZE, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -53,7 +53,7 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_GET_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture3D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

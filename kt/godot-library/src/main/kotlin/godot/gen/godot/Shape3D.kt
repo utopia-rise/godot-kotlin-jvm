@@ -13,18 +13,17 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Abstract base class for 3D shapes used for physics collision.
+ * Base class for all 3D shape resources.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
  *
- * Abstract base class for all 3D shapes, intended for use in physics.
- *
- * **Performance:** Primitive shapes, especially [godot.SphereShape3D], are fast to check collisions against. [godot.ConvexPolygonShape3D] and [godot.HeightMapShape3D] are slower, and [godot.ConcavePolygonShape3D] is the slowest.
+ * Base class for all 3D shape resources. Nodes that inherit from this can be used as shapes for a [godot.PhysicsBody3D] or [godot.Area3D] objects.
  */
 @GodotBaseType
 public open class Shape3D internal constructor() : Resource() {
@@ -33,32 +32,32 @@ public open class Shape3D internal constructor() : Resource() {
    *
    * When set to `0`, the default value from [godot.ProjectSettings.physics/3d/solver/defaultContactBias] is used.
    */
-  public var customSolverBias: Double
+  public var customSolverBias: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_CUSTOM_SOLVER_BIAS,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_SET_CUSTOM_SOLVER_BIAS,
           NIL)
     }
 
   /**
-   * The collision margin for the shape. This is not used in Godot Physics.
+   * The collision margin for the shape. Used in Bullet Physics only.
    *
    * Collision margins allow collision detection to be more efficient by adding an extra shell around shapes. Collision algorithms are more expensive when objects overlap by more than their margin, so a higher value for margins is better for performance, at the cost of accuracy around edges as it makes them less sharp.
    */
-  public var margin: Double
+  public var margin: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_MARGIN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_SET_MARGIN, NIL)
     }
 
@@ -73,7 +72,7 @@ public open class Shape3D internal constructor() : Resource() {
   public fun getDebugMesh(): ArrayMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_DEBUG_MESH, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
+    return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
   }
 
   public companion object

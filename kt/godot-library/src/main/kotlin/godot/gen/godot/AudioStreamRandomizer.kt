@@ -8,13 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -30,15 +30,15 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * The number of streams in the stream pool.
    */
-  public var streamsCount: Long
+  public var streamsCount: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAMS_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAMS_COUNT, NIL)
     }
@@ -51,7 +51,7 @@ public open class AudioStreamRandomizer : AudioStream() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_PLAYBACK_MODE, LONG)
-      return AudioStreamRandomizer.PlaybackMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return AudioStreamRandomizer.PlaybackMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -62,15 +62,15 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * The intensity of random pitch variation. A value of 1 means no variation.
    */
-  public var randomPitch: Double
+  public var randomPitch: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_RANDOM_PITCH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_RANDOM_PITCH, NIL)
     }
@@ -78,15 +78,15 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * The intensity of random volume variation. A value of 0 means no variation.
    */
-  public var randomVolumeOffsetDb: Double
+  public var randomVolumeOffsetDb: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_RANDOM_VOLUME_OFFSET_DB, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_RANDOM_VOLUME_OFFSET_DB, NIL)
     }
@@ -100,11 +100,11 @@ public open class AudioStreamRandomizer : AudioStream() {
    * Insert a stream at the specified index. If the index is less than zero, the insertion occurs at the end of the underlying pool.
    */
   public fun addStream(
-    index: Long,
+    index: Int,
     stream: AudioStream,
-    weight: Double = 1.0,
+    weight: Float = 1.0f,
   ): Unit {
-    TransferContext.writeArguments(LONG to index, OBJECT to stream, DOUBLE to weight)
+    TransferContext.writeArguments(LONG to index.toLong(), OBJECT to stream, DOUBLE to weight.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_ADD_STREAM,
         NIL)
   }
@@ -112,8 +112,8 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * Move a stream from one index to another.
    */
-  public fun moveStream(indexFrom: Long, indexTo: Long): Unit {
-    TransferContext.writeArguments(LONG to indexFrom, LONG to indexTo)
+  public fun moveStream(indexFrom: Int, indexTo: Int): Unit {
+    TransferContext.writeArguments(LONG to indexFrom.toLong(), LONG to indexTo.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_MOVE_STREAM,
         NIL)
   }
@@ -121,8 +121,8 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * Remove the stream at the specified index.
    */
-  public fun removeStream(index: Long): Unit {
-    TransferContext.writeArguments(LONG to index)
+  public fun removeStream(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_REMOVE_STREAM,
         NIL)
   }
@@ -130,8 +130,8 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * Set the AudioStream at the specified index.
    */
-  public fun setStream(index: Long, stream: AudioStream): Unit {
-    TransferContext.writeArguments(LONG to index, OBJECT to stream)
+  public fun setStream(index: Int, stream: AudioStream): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), OBJECT to stream)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAM,
         NIL)
   }
@@ -139,18 +139,18 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * Returns the stream at the specified index.
    */
-  public fun getStream(index: Long): AudioStream? {
-    TransferContext.writeArguments(LONG to index)
+  public fun getStream(index: Int): AudioStream? {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAM,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as AudioStream?
+    return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
   }
 
   /**
    * Set the probability weight of the stream at the specified index. The higher this value, the more likely that the randomizer will choose this stream during random playback modes.
    */
-  public fun setStreamProbabilityWeight(index: Long, weight: Double): Unit {
-    TransferContext.writeArguments(LONG to index, DOUBLE to weight)
+  public fun setStreamProbabilityWeight(index: Int, weight: Float): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to weight.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAM_PROBABILITY_WEIGHT, NIL)
   }
@@ -158,11 +158,11 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * Returns the probability weight associated with the stream at the given index.
    */
-  public fun getStreamProbabilityWeight(index: Long): Double {
-    TransferContext.writeArguments(LONG to index)
+  public fun getStreamProbabilityWeight(index: Int): Float {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAM_PROBABILITY_WEIGHT, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class PlaybackMode(

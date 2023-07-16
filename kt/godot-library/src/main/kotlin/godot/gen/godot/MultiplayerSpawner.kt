@@ -38,7 +38,7 @@ public open class MultiplayerSpawner : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_PATH,
           NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -46,15 +46,15 @@ public open class MultiplayerSpawner : Node() {
           NIL)
     }
 
-  public var spawnLimit: Long
+  public var spawnLimit: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_LIMIT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_LIMIT, NIL)
     }
@@ -64,7 +64,7 @@ public open class MultiplayerSpawner : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_FUNCTION, CALLABLE)
-      return TransferContext.readReturnValue(CALLABLE, false) as Callable
+      return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
     }
     set(`value`) {
       TransferContext.writeArguments(CALLABLE to value)
@@ -83,18 +83,18 @@ public open class MultiplayerSpawner : Node() {
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_ADD_SPAWNABLE_SCENE, NIL)
   }
 
-  public fun getSpawnableSceneCount(): Long {
+  public fun getSpawnableSceneCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWNABLE_SCENE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun getSpawnableScene(index: Long): String {
-    TransferContext.writeArguments(LONG to index)
+  public fun getSpawnableScene(index: Int): String {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWNABLE_SCENE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public fun clearSpawnableScenes(): Unit {
@@ -106,7 +106,7 @@ public open class MultiplayerSpawner : Node() {
   public fun spawn(`data`: Any? = null): Node? {
     TransferContext.writeArguments(ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SPAWN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
+    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
   public companion object

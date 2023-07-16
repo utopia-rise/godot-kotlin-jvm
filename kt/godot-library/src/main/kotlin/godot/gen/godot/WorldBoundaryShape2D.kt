@@ -14,25 +14,28 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 2D world boundary (half-plane) shape used for physics collision.
+ * World boundary (infinite plane) shape resource for 2D physics.
  *
- * A 2D world boundary shape, intended for use in physics. [godot.WorldBoundaryShape2D] works like an infinite straight line that forces all physics bodies to stay above it. The line's normal determines which direction is considered as "above" and in the editor, the smaller line over it represents this direction. It can for example be used for endless flat floors.
+ * 2D world boundary shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. [godot.WorldBoundaryShape2D] works like an infinite plane and will not allow any physics body to go to the negative side. Note that the [normal] matters; anything "below" the plane will collide with it. If the [godot.WorldBoundaryShape2D] is used in a [godot.PhysicsBody2D], it will cause colliding objects placed "below" it to teleport "above" the plane.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.WorldBoundaryShape2D] is fast to check collisions against.
  */
 @GodotBaseType
 public open class WorldBoundaryShape2D : Shape2D() {
   /**
-   * The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to `Vector2.UP`.
+   * The line's normal. Defaults to `Vector2.UP`.
    */
   public var normal: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_GET_NORMAL,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -41,19 +44,17 @@ public open class WorldBoundaryShape2D : Shape2D() {
     }
 
   /**
-   * The distance from the origin to the line, expressed in terms of [normal] (according to its direction and magnitude). Actual absolute distance from the origin to the line can be calculated as `abs(distance) / normal.length()`.
-   *
-   * In the scalar equation of the line `ax + by = d`, this is `d`, while the `(a, b)` coordinates are represented by the [normal] property.
+   * The line's distance from the origin.
    */
-  public var distance: Double
+  public var distance: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_GET_DISTANCE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_SET_DISTANCE,
           NIL)
     }

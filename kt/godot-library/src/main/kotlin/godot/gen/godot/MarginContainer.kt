@@ -12,14 +12,14 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A container that keeps a margin around its child controls.
+ * Simple margin container.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * [godot.MarginContainer] adds an adjustable margin on each side of its child controls. The margins are added around all children, not around each individual one. To control the [godot.MarginContainer]'s margins, use the `margin_*` theme properties listed below.
+ * Adds a top, left, bottom, and right margin to all [godot.Control] nodes that are direct children of the container. To control the [godot.MarginContainer]'s margin, use the `margin_*` theme properties listed below.
  *
- * **Note:** The margin sizes are theme overrides, not normal properties. This is an example of how to change them in code:
+ * **Note:** Be careful, [godot.Control] margin values are different from the constant margin values. If you want to change the custom margin values of the [godot.MarginContainer] by code, you should use the following examples:
  *
  * [codeblocks]
  *

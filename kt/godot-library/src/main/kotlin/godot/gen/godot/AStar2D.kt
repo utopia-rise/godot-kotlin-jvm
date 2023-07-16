@@ -20,6 +20,7 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -27,11 +28,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An implementation of A* for finding the shortest path between two vertices on a connected graph in 2D space.
+ * AStar class representation that uses 2D vectors as edges.
  *
- * An implementation of the A* algorithm, used to find the shortest path between two vertices on a connected graph in 2D space.
- *
- * See [godot.AStar3D] for a more thorough explanation on how to use this class. [godot.AStar2D] is a wrapper for [godot.AStar3D] that enforces 2D coordinates.
+ * This is a wrapper for the [godot.AStar3D] class which uses 2D vectors instead of 3D vectors.
  */
 @GodotBaseType
 public open class AStar2D : RefCounted() {
@@ -43,18 +42,18 @@ public open class AStar2D : RefCounted() {
   /**
    * Called when estimating the cost between a point and the path's ending point.
    *
-   * Note that this function is hidden in the default [godot.AStar2D] class.
+   * Note that this function is hidden in the default `AStar2D` class.
    */
-  public open fun _estimateCost(fromId: Long, toId: Long): Double {
+  public open fun _estimateCost(fromId: Long, toId: Long): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStar2D")
   }
 
   /**
    * Called when computing the cost between two connected points.
    *
-   * Note that this function is hidden in the default [godot.AStar2D] class.
+   * Note that this function is hidden in the default `AStar2D` class.
    */
-  public open fun _computeCost(fromId: Long, toId: Long): Double {
+  public open fun _computeCost(fromId: Long, toId: Long): Float {
     throw NotImplementedError("_compute_cost is not implemented for AStar2D")
   }
 
@@ -65,7 +64,7 @@ public open class AStar2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_AVAILABLE_POINT_ID,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -98,9 +97,9 @@ public open class AStar2D : RefCounted() {
   public fun addPoint(
     id: Long,
     position: Vector2,
-    weightScale: Double = 1.0,
+    weightScale: Float = 1.0f,
   ): Unit {
-    TransferContext.writeArguments(LONG to id, VECTOR2 to position, DOUBLE to weightScale)
+    TransferContext.writeArguments(LONG to id, VECTOR2 to position, DOUBLE to weightScale.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_ADD_POINT, NIL)
   }
 
@@ -110,7 +109,7 @@ public open class AStar2D : RefCounted() {
   public fun getPointPosition(id: Long): Vector2 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_POSITION, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -124,18 +123,18 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns the weight scale of the point associated with the given [id].
    */
-  public fun getPointWeightScale(id: Long): Double {
+  public fun getPointWeightScale(id: Long): Float {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_WEIGHT_SCALE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets the [weightScale] for the point with the given [id]. The [weightScale] is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point.
    */
-  public fun setPointWeightScale(id: Long, weightScale: Double): Unit {
-    TransferContext.writeArguments(LONG to id, DOUBLE to weightScale)
+  public fun setPointWeightScale(id: Long, weightScale: Float): Unit {
+    TransferContext.writeArguments(LONG to id, DOUBLE to weightScale.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_SET_POINT_WEIGHT_SCALE, NIL)
   }
 
@@ -153,7 +152,7 @@ public open class AStar2D : RefCounted() {
   public fun hasPoint(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_HAS_POINT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -215,7 +214,7 @@ public open class AStar2D : RefCounted() {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_CONNECTIONS,
         PACKED_INT_64_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
   }
 
   /**
@@ -225,7 +224,7 @@ public open class AStar2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_IDS,
         PACKED_INT_64_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
   }
 
   /**
@@ -242,7 +241,7 @@ public open class AStar2D : RefCounted() {
   public fun isPointDisabled(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_IS_POINT_DISABLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -307,7 +306,7 @@ public open class AStar2D : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_ARE_POINTS_CONNECTED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -316,7 +315,7 @@ public open class AStar2D : RefCounted() {
   public fun getPointCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -325,7 +324,7 @@ public open class AStar2D : RefCounted() {
   public fun getPointCapacity(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_CAPACITY, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -352,7 +351,7 @@ public open class AStar2D : RefCounted() {
   public fun getClosestPoint(toPosition: Vector2, includeDisabled: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR2 to toPosition, BOOL to includeDisabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_CLOSEST_POINT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -396,7 +395,7 @@ public open class AStar2D : RefCounted() {
     TransferContext.writeArguments(VECTOR2 to toPosition)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_CLOSEST_POSITION_IN_SEGMENT, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -408,7 +407,7 @@ public open class AStar2D : RefCounted() {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_PATH,
         PACKED_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   /**
@@ -478,7 +477,7 @@ public open class AStar2D : RefCounted() {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_ID_PATH,
         PACKED_INT_64_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
   }
 
   public companion object

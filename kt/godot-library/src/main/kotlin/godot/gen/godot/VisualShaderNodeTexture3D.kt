@@ -29,7 +29,7 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE3D_GET_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture3D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

@@ -35,25 +35,25 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public fun setBindCount(bindCount: Long): Unit {
-    TransferContext.writeArguments(LONG to bindCount)
+  public fun setBindCount(bindCount: Int): Unit {
+    TransferContext.writeArguments(LONG to bindCount.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_COUNT, NIL)
   }
 
   /**
    *
    */
-  public fun getBindCount(): Long {
+  public fun getBindCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    *
    */
-  public fun addBind(bone: Long, pose: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to bone, TRANSFORM3D to pose)
+  public fun addBind(bone: Int, pose: Transform3D): Unit {
+    TransferContext.writeArguments(LONG to bone.toLong(), TRANSFORM3D to pose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_ADD_BIND, NIL)
   }
 
@@ -68,52 +68,52 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public fun setBindPose(bindIndex: Long, pose: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to bindIndex, TRANSFORM3D to pose)
+  public fun setBindPose(bindIndex: Int, pose: Transform3D): Unit {
+    TransferContext.writeArguments(LONG to bindIndex.toLong(), TRANSFORM3D to pose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_POSE, NIL)
   }
 
   /**
    *
    */
-  public fun getBindPose(bindIndex: Long): Transform3D {
-    TransferContext.writeArguments(LONG to bindIndex)
+  public fun getBindPose(bindIndex: Int): Transform3D {
+    TransferContext.writeArguments(LONG to bindIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_POSE, TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
    *
    */
-  public fun setBindName(bindIndex: Long, name: StringName): Unit {
-    TransferContext.writeArguments(LONG to bindIndex, STRING_NAME to name)
+  public fun setBindName(bindIndex: Int, name: StringName): Unit {
+    TransferContext.writeArguments(LONG to bindIndex.toLong(), STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_NAME, NIL)
   }
 
   /**
    *
    */
-  public fun getBindName(bindIndex: Long): StringName {
-    TransferContext.writeArguments(LONG to bindIndex)
+  public fun getBindName(bindIndex: Int): StringName {
+    TransferContext.writeArguments(LONG to bindIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_NAME, STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
    *
    */
-  public fun setBindBone(bindIndex: Long, bone: Long): Unit {
-    TransferContext.writeArguments(LONG to bindIndex, LONG to bone)
+  public fun setBindBone(bindIndex: Int, bone: Int): Unit {
+    TransferContext.writeArguments(LONG to bindIndex.toLong(), LONG to bone.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_BONE, NIL)
   }
 
   /**
    *
    */
-  public fun getBindBone(bindIndex: Long): Long {
-    TransferContext.writeArguments(LONG to bindIndex)
+  public fun getBindBone(bindIndex: Int): Int {
+    TransferContext.writeArguments(LONG to bindIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_BONE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

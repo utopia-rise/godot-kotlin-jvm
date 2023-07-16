@@ -320,7 +320,7 @@ class GenerationService(
             modifiers.add(KModifier.OPEN)
         }
 
-        val propertyTypeName = property.getTypeClassName()
+        val propertyTypeName = property.getCastedType()
         val propertyType = propertyTypeName.typeName
         val propertySpecBuilder = PropertySpec
             .builder(
@@ -353,7 +353,7 @@ class GenerationService(
             val methodName = property.setter
 
             return FunSpec.setterBuilder()
-                .addParameter("value", property.getTypeClassName().typeName)
+                .addParameter("value", property.getCastedType().typeName)
                 .addStatement(
                     "super.$methodName(value)"
                 )
@@ -372,10 +372,13 @@ class GenerationService(
 
         if (property.hasValidSetterInClass) {
             propertySpecBuilder.mutable()
+
+            val variantTypeToArgumentString = "%T·to·value${property.getToBufferCastingMethod()}"
+
             val argumentStringTemplate = if (property.isIndexed) {
-                "%T to ${property.internal.index}, %T·to·value"
+                "%T to ${property.internal.index}, $variantTypeToArgumentString"
             } else {
-                "%T·to·value"
+                variantTypeToArgumentString
             }
             propertySpecBuilder.setter(
                 FunSpec.setterBuilder()
@@ -433,7 +436,7 @@ class GenerationService(
     }
 
     private fun generateCoreTypeHelper(enrichedClass: EnrichedClass, property: EnrichedProperty): FunSpec {
-        val parameterTypeName = property.getTypeClassName()
+        val parameterTypeName = property.getCastedType()
         val parameterName = property.name
         val propertyFunSpec = FunSpec.builder(parameterName)
 
@@ -482,7 +485,7 @@ class GenerationService(
             .builder(method.name)
             .addModifiers(modifiers)
 
-        val methodTypeName = method.getTypeClassName()
+        val methodTypeName = method.getCastedType()
         val shouldReturn = method.getTypeClassName().typeName != UNIT
 
         if (shouldReturn) {
@@ -606,7 +609,7 @@ class GenerationService(
                             .build(),
                         ParameterSpec.builder("method", kTypeVariable)
                             .build(),
-                        ParameterSpec.builder("flags", Long::class)
+                        ParameterSpec.builder("flags", INT)
                             .defaultValue("0")
                             .build()
                     )
@@ -723,10 +726,11 @@ class GenerationService(
 
                 val sanitisedArgumentName = classGraphService.getSanitisedArgumentName(cl, method, index)
 
-                append("%T·to·$sanitisedArgumentName")
+                append("%T·to·$sanitisedArgumentName${argument.getToBufferCastingMethod()}")
+
                 if (argument.isEnum()) append(".id")
 
-                val argumentTypeClassName = argument.getTypeClassName()
+                val argumentTypeClassName = argument.getCastedType()
                 val parameterBuilder = ParameterSpec.builder(
                     sanitisedArgumentName,
                     argumentTypeClassName.typeName
@@ -777,8 +781,6 @@ class GenerationService(
             it.jvmVariantTypeValue
         }.toTypedArray()
 
-        val methodReturnType = callable.getTypeClassName()
-
         if (callable.isVararg) {
             addStatement(
                 "%T.writeArguments($callArgumentsAsString·*__var_args.map·{·%T·to·it·}.toTypedArray())",
@@ -803,17 +805,19 @@ class GenerationService(
             returnTypeVariantTypeClass
         )
 
+        val methodReturnType = callable.getBufferType()
+
         if (methodReturnType.typeName != UNIT) {
             if (callable.isEnum()) {
                 addStatement(
-                    "return·${methodReturnType.className.simpleNames.joinToString(".")}.values()[%T.readReturnValue(%T)·as·%T]",
+                    "return·${methodReturnType.className.simpleNames.joinToString(".")}.values()[(%T.readReturnValue(%T)·as·%T).toInt()]",
                     TRANSFER_CONTEXT,
-                    ClassName("godot.core.VariantType", "JVM_INT"),
-                    INT
+                    VARIANT_TYPE_LONG,
+                    LONG
                 )
             } else {
                 addStatement(
-                    "return·%T.readReturnValue(%T, %L)·as·%T",
+                    "return·(%T.readReturnValue(%T, %L)·as·%T)${callable.getFromBufferCastingMethod()}",
                     TRANSFER_CONTEXT,
                     returnTypeVariantTypeClass,
                     callable.nullable,

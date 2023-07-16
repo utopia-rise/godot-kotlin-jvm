@@ -12,7 +12,6 @@ import godot.core.NodePath
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -41,7 +40,7 @@ public open class MultiplayerSynchronizer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_GET_ROOT_PATH, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -54,7 +53,7 @@ public open class MultiplayerSynchronizer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_GET_REPLICATION_INTERVAL, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -67,7 +66,7 @@ public open class MultiplayerSynchronizer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_GET_DELTA_INTERVAL, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -80,7 +79,7 @@ public open class MultiplayerSynchronizer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_GET_REPLICATION_CONFIG, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as SceneReplicationConfig?
+      return (TransferContext.readReturnValue(OBJECT, true) as SceneReplicationConfig?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -93,7 +92,7 @@ public open class MultiplayerSynchronizer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_GET_VISIBILITY_UPDATE_MODE, LONG)
-      return MultiplayerSynchronizer.VisibilityUpdateMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return MultiplayerSynchronizer.VisibilityUpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -106,7 +105,7 @@ public open class MultiplayerSynchronizer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_IS_VISIBILITY_PUBLIC, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -119,8 +118,8 @@ public open class MultiplayerSynchronizer : Node() {
     return true
   }
 
-  public fun updateVisibility(forPeer: Long = 0): Unit {
-    TransferContext.writeArguments(LONG to forPeer)
+  public fun updateVisibility(forPeer: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to forPeer.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_UPDATE_VISIBILITY, NIL)
   }
@@ -137,17 +136,17 @@ public open class MultiplayerSynchronizer : Node() {
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_REMOVE_VISIBILITY_FILTER, NIL)
   }
 
-  public fun setVisibilityFor(peer: Long, visible: Boolean): Unit {
-    TransferContext.writeArguments(LONG to peer, BOOL to visible)
+  public fun setVisibilityFor(peer: Int, visible: Boolean): Unit {
+    TransferContext.writeArguments(LONG to peer.toLong(), BOOL to visible)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_VISIBILITY_FOR, NIL)
   }
 
-  public fun getVisibilityFor(peer: Long): Boolean {
-    TransferContext.writeArguments(LONG to peer)
+  public fun getVisibilityFor(peer: Int): Boolean {
+    TransferContext.writeArguments(LONG to peer.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_GET_VISIBILITY_FOR, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class VisibilityUpdateMode(

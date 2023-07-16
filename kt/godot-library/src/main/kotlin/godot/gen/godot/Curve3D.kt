@@ -22,6 +22,7 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -39,28 +40,28 @@ public open class Curve3D : Resource() {
   /**
    * The distance in meters between two adjacent cached points. Changing it forces the cache to be recomputed the next time the [getBakedPoints] or [getBakedLength] function is called. The smaller the distance, the more points in the cache and the more memory it will consume, so use with care.
    */
-  public var bakeInterval: Double
+  public var bakeInterval: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKE_INTERVAL, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_BAKE_INTERVAL, NIL)
     }
 
   /**
    * The number of points describing the curve.
    */
-  public var pointCount: Long
+  public var pointCount: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_COUNT, NIL)
     }
 
@@ -72,7 +73,7 @@ public open class Curve3D : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_IS_UP_VECTOR_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -94,27 +95,27 @@ public open class Curve3D : Resource() {
     position: Vector3,
     _in: Vector3 = Vector3(0, 0, 0),
     `out`: Vector3 = Vector3(0, 0, 0),
-    index: Long = -1,
+    index: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to _in, VECTOR3 to out, LONG to index)
+    TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to _in, VECTOR3 to out, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_ADD_POINT, NIL)
   }
 
   /**
    * Sets the position for the vertex [idx]. If the index is out of bounds, the function sends an error to the console.
    */
-  public fun setPointPosition(idx: Long, position: Vector3): Unit {
-    TransferContext.writeArguments(LONG to idx, VECTOR3 to position)
+  public fun setPointPosition(idx: Int, position: Vector3): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_POSITION, NIL)
   }
 
   /**
    * Returns the position of the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
-  public fun getPointPosition(idx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getPointPosition(idx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_POSITION, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -122,59 +123,59 @@ public open class Curve3D : Resource() {
    *
    * The tilt controls the rotation along the look-at axis an object traveling the path would have. In the case of a curve controlling a [godot.PathFollow3D], this tilt is an offset over the natural tilt the [godot.PathFollow3D] calculates.
    */
-  public fun setPointTilt(idx: Long, tilt: Double): Unit {
-    TransferContext.writeArguments(LONG to idx, DOUBLE to tilt)
+  public fun setPointTilt(idx: Int, tilt: Float): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to tilt.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_TILT, NIL)
   }
 
   /**
    * Returns the tilt angle in radians for the point [idx]. If the index is out of bounds, the function sends an error to the console, and returns `0`.
    */
-  public fun getPointTilt(idx: Long): Double {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getPointTilt(idx: Int): Float {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_TILT, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets the position of the control point leading to the vertex [idx]. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
    */
-  public fun setPointIn(idx: Long, position: Vector3): Unit {
-    TransferContext.writeArguments(LONG to idx, VECTOR3 to position)
+  public fun setPointIn(idx: Int, position: Vector3): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_IN, NIL)
   }
 
   /**
    * Returns the position of the control point leading to the vertex [idx]. The returned position is relative to the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
-  public fun getPointIn(idx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getPointIn(idx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_IN, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Sets the position of the control point leading out of the vertex [idx]. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
    */
-  public fun setPointOut(idx: Long, position: Vector3): Unit {
-    TransferContext.writeArguments(LONG to idx, VECTOR3 to position)
+  public fun setPointOut(idx: Int, position: Vector3): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_OUT, NIL)
   }
 
   /**
    * Returns the position of the control point leading out of the vertex [idx]. The returned position is relative to the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
-  public fun getPointOut(idx: Long): Vector3 {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getPointOut(idx: Int): Vector3 {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_OUT, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
-   * Deletes the point [idx] from the curve. Sends an error to the console if [idx] is out of bounds.
+   * Deletes the point `idx` from the curve. Sends an error to the console if `idx` is out of bounds.
    */
-  public fun removePoint(idx: Long): Unit {
-    TransferContext.writeArguments(LONG to idx)
+  public fun removePoint(idx: Int): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_REMOVE_POINT, NIL)
   }
 
@@ -191,28 +192,28 @@ public open class Curve3D : Resource() {
    *
    * If [idx] is out of bounds it is truncated to the first or last vertex, and [t] is ignored. If the curve has no points, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
-  public fun sample(idx: Long, t: Double): Vector3 {
-    TransferContext.writeArguments(LONG to idx, DOUBLE to t)
+  public fun sample(idx: Int, t: Float): Vector3 {
+    TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to t.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Returns the position at the vertex [fofs]. It calls [sample] using the integer part of [fofs] as `idx`, and its fractional part as `t`.
    */
-  public fun samplef(fofs: Double): Vector3 {
-    TransferContext.writeArguments(DOUBLE to fofs)
+  public fun samplef(fofs: Float): Vector3 {
+    TransferContext.writeArguments(DOUBLE to fofs.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLEF, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Returns the total length of the curve, based on the cached points. Given enough density (see [bakeInterval]), it should be approximate enough.
    */
-  public fun getBakedLength(): Double {
+  public fun getBakedLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_LENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -222,24 +223,24 @@ public open class Curve3D : Resource() {
    *
    * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
    */
-  public fun sampleBaked(offset: Double = 0.0, cubic: Boolean = false): Vector3 {
-    TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
+  public fun sampleBaked(offset: Float = 0.0f, cubic: Boolean = false): Vector3 {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE_BAKED, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
-   * Similar with `interpolate_baked()`. The return value is `Transform3D`, with `origin` as point position, `basis.x` as sideway vector, `basis.y` as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way to calculate the rotation, all vectors aligned with global space axes.
+   * Similar with `interpolate_baked()`. The the return value is `Transform3D`, with `origin` as point position, `basis.x` as sideway vector, `basis.y` as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way to calculate the rotation, all vectors aligned with global space axes.
    */
   public fun sampleBakedWithRotation(
-    offset: Double = 0.0,
+    offset: Float = 0.0f,
     cubic: Boolean = false,
     applyTilt: Boolean = false,
   ): Transform3D {
-    TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic, BOOL to applyTilt)
+    TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic, BOOL to applyTilt)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE_BAKED_WITH_ROTATION,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
@@ -249,11 +250,11 @@ public open class Curve3D : Resource() {
    *
    * If the curve has no up vectors, the function sends an error to the console, and returns `(0, 1, 0)`.
    */
-  public fun sampleBakedUpVector(offset: Double, applyTilt: Boolean = false): Vector3 {
-    TransferContext.writeArguments(DOUBLE to offset, BOOL to applyTilt)
+  public fun sampleBakedUpVector(offset: Float, applyTilt: Boolean = false): Vector3 {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to applyTilt)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SAMPLE_BAKED_UP_VECTOR,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -263,7 +264,7 @@ public open class Curve3D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_POINTS,
         PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
@@ -273,7 +274,7 @@ public open class Curve3D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_TILTS,
         PACKED_FLOAT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
   }
 
   /**
@@ -285,7 +286,7 @@ public open class Curve3D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_UP_VECTORS,
         PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
@@ -296,7 +297,7 @@ public open class Curve3D : Resource() {
   public fun getClosestPoint(toPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_CLOSEST_POINT, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -304,10 +305,10 @@ public open class Curve3D : Resource() {
    *
    * [toPoint] must be in this curve's local space.
    */
-  public fun getClosestOffset(toPoint: Vector3): Double {
+  public fun getClosestOffset(toPoint: Vector3): Float {
     TransferContext.writeArguments(VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_CLOSEST_OFFSET, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -319,11 +320,11 @@ public open class Curve3D : Resource() {
    *
    * [toleranceDegrees] controls how many degrees the midpoint of a segment may deviate from the real curve, before the segment has to be subdivided.
    */
-  public fun tessellate(maxStages: Long = 5, toleranceDegrees: Double = 4.0): PackedVector3Array {
-    TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceDegrees)
+  public fun tessellate(maxStages: Int = 5, toleranceDegrees: Float = 4.0f): PackedVector3Array {
+    TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceDegrees.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_TESSELLATE,
         PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
@@ -331,12 +332,12 @@ public open class Curve3D : Resource() {
    *
    * [toleranceLength] controls the maximal distance between two neighboring points, before the segment has to be subdivided.
    */
-  public fun tessellateEvenLength(maxStages: Long = 5, toleranceLength: Double = 0.2):
+  public fun tessellateEvenLength(maxStages: Int = 5, toleranceLength: Float = 0.2f):
       PackedVector3Array {
-    TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceLength)
+    TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceLength.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_TESSELLATE_EVEN_LENGTH,
         PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   public companion object

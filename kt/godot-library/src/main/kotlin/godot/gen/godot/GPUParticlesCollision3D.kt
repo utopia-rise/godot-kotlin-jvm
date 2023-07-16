@@ -39,15 +39,15 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
    *
    * Particle attraction can also be disabled on a per-process material basis by setting [godot.ParticleProcessMaterial.attractorInteractionEnabled] on the [godot.GPUParticles3D] node.
    */
-  public var cullMask: Long
+  public var cullMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISION3D_GET_CULL_MASK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISION3D_SET_CULL_MASK, NIL)
     }

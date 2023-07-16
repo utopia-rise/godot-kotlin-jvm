@@ -20,8 +20,8 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 
 @GodotBaseType
@@ -31,88 +31,88 @@ public open class Noise internal constructor() : Resource() {
     return true
   }
 
-  public fun getNoise1d(x: Double): Double {
-    TransferContext.writeArguments(DOUBLE to x)
+  public fun getNoise1d(x: Float): Float {
+    TransferContext.writeArguments(DOUBLE to x.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_1D, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun getNoise2d(x: Double, y: Double): Double {
-    TransferContext.writeArguments(DOUBLE to x, DOUBLE to y)
+  public fun getNoise2d(x: Float, y: Float): Float {
+    TransferContext.writeArguments(DOUBLE to x.toDouble(), DOUBLE to y.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_2D, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun getNoise2dv(v: Vector2): Double {
+  public fun getNoise2dv(v: Vector2): Float {
     TransferContext.writeArguments(VECTOR2 to v)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_2DV, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public fun getNoise3d(
-    x: Double,
-    y: Double,
-    z: Double,
-  ): Double {
-    TransferContext.writeArguments(DOUBLE to x, DOUBLE to y, DOUBLE to z)
+    x: Float,
+    y: Float,
+    z: Float,
+  ): Float {
+    TransferContext.writeArguments(DOUBLE to x.toDouble(), DOUBLE to y.toDouble(), DOUBLE to z.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_3D, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun getNoise3dv(v: Vector3): Double {
+  public fun getNoise3dv(v: Vector3): Float {
     TransferContext.writeArguments(VECTOR3 to v)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_3DV, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public fun getImage(
-    width: Long,
-    height: Long,
+    width: Int,
+    height: Int,
     invert: Boolean = false,
     in3dSpace: Boolean = false,
     normalize: Boolean = true,
   ): Image? {
-    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert, BOOL to in3dSpace, BOOL to normalize)
+    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to invert, BOOL to in3dSpace, BOOL to normalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_IMAGE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Image?
+    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
   public fun getSeamlessImage(
-    width: Long,
-    height: Long,
+    width: Int,
+    height: Int,
     invert: Boolean = false,
     in3dSpace: Boolean = false,
-    skirt: Double = 0.1,
+    skirt: Float = 0.1f,
     normalize: Boolean = true,
   ): Image? {
-    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert, BOOL to in3dSpace, DOUBLE to skirt, BOOL to normalize)
+    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to invert, BOOL to in3dSpace, DOUBLE to skirt.toDouble(), BOOL to normalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_SEAMLESS_IMAGE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Image?
+    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
   public fun getImage3d(
-    width: Long,
-    height: Long,
-    depth: Long,
+    width: Int,
+    height: Int,
+    depth: Int,
     invert: Boolean = false,
     normalize: Boolean = true,
   ): VariantArray<Image> {
-    TransferContext.writeArguments(LONG to width, LONG to height, LONG to depth, BOOL to invert, BOOL to normalize)
+    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to invert, BOOL to normalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_IMAGE_3D, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>)
   }
 
   public fun getSeamlessImage3d(
-    width: Long,
-    height: Long,
-    depth: Long,
+    width: Int,
+    height: Int,
+    depth: Int,
     invert: Boolean = false,
-    skirt: Double = 0.1,
+    skirt: Float = 0.1f,
     normalize: Boolean = true,
   ): VariantArray<Image> {
-    TransferContext.writeArguments(LONG to width, LONG to height, LONG to depth, BOOL to invert, DOUBLE to skirt, BOOL to normalize)
+    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to invert, DOUBLE to skirt.toDouble(), BOOL to normalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_SEAMLESS_IMAGE_3D, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>)
   }
 
   public companion object

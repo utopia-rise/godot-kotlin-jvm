@@ -15,7 +15,6 @@ import godot.core.PackedInt32Array
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -45,7 +44,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_GET_ROOT_PATH,
           NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -58,7 +57,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_GET_AUTH_CALLBACK, CALLABLE)
-      return TransferContext.readReturnValue(CALLABLE, false) as Callable
+      return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
     }
     set(`value`) {
       TransferContext.writeArguments(CALLABLE to value)
@@ -71,7 +70,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_GET_AUTH_TIMEOUT,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
@@ -84,7 +83,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_IS_OBJECT_DECODING_ALLOWED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -97,7 +96,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_IS_REFUSING_NEW_CONNECTIONS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -110,7 +109,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_IS_SERVER_RELAY_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -118,28 +117,28 @@ public open class SceneMultiplayer : MultiplayerAPI() {
           ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SET_SERVER_RELAY_ENABLED, NIL)
     }
 
-  public var maxSyncPacketSize: Long
+  public var maxSyncPacketSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_GET_MAX_SYNC_PACKET_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SET_MAX_SYNC_PACKET_SIZE, NIL)
     }
 
-  public var maxDeltaPacketSize: Long
+  public var maxDeltaPacketSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_GET_MAX_DELTA_PACKET_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SET_MAX_DELTA_PACKET_SIZE, NIL)
     }
@@ -154,8 +153,8 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_CLEAR, NIL)
   }
 
-  public fun disconnectPeer(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
+  public fun disconnectPeer(id: Int): Unit {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_DISCONNECT_PEER,
         NIL)
   }
@@ -164,31 +163,31 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_GET_AUTHENTICATING_PEERS, PACKED_INT_32_ARRAY)
-    return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
-  public fun sendAuth(id: Long, `data`: PackedByteArray): GodotError {
-    TransferContext.writeArguments(LONG to id, PACKED_BYTE_ARRAY to data)
+  public fun sendAuth(id: Int, `data`: PackedByteArray): GodotError {
+    TransferContext.writeArguments(LONG to id.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SEND_AUTH, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
-  public fun completeAuth(id: Long): GodotError {
-    TransferContext.writeArguments(LONG to id)
+  public fun completeAuth(id: Int): GodotError {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_COMPLETE_AUTH,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public fun sendBytes(
     bytes: PackedByteArray,
-    id: Long = 0,
+    id: Int = 0,
     mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE,
-    channel: Long = 0,
+    channel: Int = 0,
   ): GodotError {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id, LONG to mode.id, LONG to channel)
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id.toLong(), LONG to mode.id, LONG to channel.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SEND_BYTES, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   public companion object

@@ -15,13 +15,14 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for resources that operate on [godot.Bone2D]s in a [godot.Skeleton2D].
+ * A resource that operates on [godot.Bone2D] nodes in a [godot.Skeleton2D].
  *
  * This resource provides an interface that can be expanded so code that operates on [godot.Bone2D] nodes in a [godot.Skeleton2D] can be mixed and matched together to create complex interactions.
  *
@@ -37,7 +38,7 @@ public open class SkeletonModification2D : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -48,15 +49,15 @@ public open class SkeletonModification2D : Resource() {
   /**
    * The execution mode for the modification. This tells the modification stack when to execute the modification. Some modifications have settings that are only available in certain execution modes.
    */
-  public var executionMode: Long
+  public var executionMode: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_EXECUTION_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_SET_EXECUTION_MODE, NIL)
     }
@@ -93,7 +94,7 @@ public open class SkeletonModification2D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_MODIFICATION_STACK, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
   }
 
   /**
@@ -112,22 +113,22 @@ public open class SkeletonModification2D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_IS_SETUP,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
-   * Takes an angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will inversely clamp the angle, clamping it to the range outside of the given bounds.
+   * Takes a angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will inversely clamp the angle, clamping it to the range outside of the given bounds.
    */
   public fun clampAngle(
-    angle: Double,
-    min: Double,
-    max: Double,
+    angle: Float,
+    min: Float,
+    max: Float,
     invert: Boolean,
-  ): Double {
-    TransferContext.writeArguments(DOUBLE to angle, DOUBLE to min, DOUBLE to max, BOOL to invert)
+  ): Float {
+    TransferContext.writeArguments(DOUBLE to angle.toDouble(), DOUBLE to min.toDouble(), DOUBLE to max.toDouble(), BOOL to invert)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_CLAMP_ANGLE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -146,7 +147,7 @@ public open class SkeletonModification2D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_EDITOR_DRAW_GIZMO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

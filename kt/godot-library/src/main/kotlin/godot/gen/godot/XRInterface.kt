@@ -17,7 +17,6 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
@@ -63,7 +62,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_PRIMARY, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -78,7 +77,7 @@ public open class XRInterface internal constructor() : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA_MODE,
           LONG)
-      return XRInterface.PlayAreaMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return XRInterface.PlayAreaMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
 
   /**
@@ -89,7 +88,7 @@ public open class XRInterface internal constructor() : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_ANCHOR_DETECTION_IS_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -108,16 +107,16 @@ public open class XRInterface internal constructor() : RefCounted() {
   public fun getName(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_NAME, STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
    * Returns a combination of [enum Capabilities] flags providing information about the capabilities of this interface.
    */
-  public fun getCapabilities(): Long {
+  public fun getCapabilities(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_CAPABILITIES, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -126,7 +125,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public fun isInitialized(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_INITIALIZED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -143,7 +142,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public fun initialize(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_INITIALIZE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -154,16 +153,11 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_UNINITIALIZE, NIL)
   }
 
-  /**
-   * Returns a [godot.core.Dictionary] with extra system info. Interfaces are expected to return `XRRuntimeName` and `XRRuntimeVersion` providing info about the used XR runtime. Additional entries may be provided specific to an interface.
-   *
-   * **Note:**This information may only be available after [initialize] was successfully called.
-   */
   public fun getSystemInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_SYSTEM_INFO,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -173,7 +167,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_TRACKING_STATUS,
         LONG)
-    return XRInterface.TrackingStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return XRInterface.TrackingStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -183,16 +177,16 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_RENDER_TARGET_SIZE,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Returns the number of views that need to be rendered for this device. 1 for Monoscopic, 2 for Stereoscopic.
    */
-  public fun getViewCount(): Long {
+  public fun getViewCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_VIEW_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -222,7 +216,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SUPPORTS_PLAY_AREA_MODE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -232,7 +226,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_PLAY_AREA_MODE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -242,17 +236,17 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA,
         PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
    * If this is an AR interface that requires displaying a camera feed as the background, this method returns the feed ID in the [godot.CameraServer] for this interface.
    */
-  public fun getCameraFeedId(): Long {
+  public fun getCameraFeedId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_CAMERA_FEED_ID,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -262,7 +256,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_PASSTHROUGH_SUPPORTED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -272,7 +266,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_PASSTHROUGH_ENABLED,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -283,7 +277,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public fun startPassthrough(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_START_PASSTHROUGH, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -299,28 +293,28 @@ public open class XRInterface internal constructor() : RefCounted() {
    *
    * [view] is the view/eye index.
    *
-   * [camTransform] is the transform that maps device coordinates to scene coordinates, typically the [godot.Node3D.globalTransform] of the current XROrigin3D.
+   * [camTransform] is the transform that maps device coordinates to scene coordinates, typically the global_transform of the current XROrigin3D.
    */
-  public fun getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
-    TransferContext.writeArguments(LONG to view, TRANSFORM3D to camTransform)
+  public fun getTransformForView(view: Int, camTransform: Transform3D): Transform3D {
+    TransferContext.writeArguments(LONG to view.toLong(), TRANSFORM3D to camTransform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_TRANSFORM_FOR_VIEW,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
    * Returns the projection matrix for a view/eye.
    */
   public fun getProjectionForView(
-    view: Long,
+    view: Int,
     aspect: Double,
     near: Double,
     far: Double,
   ): Projection {
-    TransferContext.writeArguments(LONG to view, DOUBLE to aspect, DOUBLE to near, DOUBLE to far)
+    TransferContext.writeArguments(LONG to view.toLong(), DOUBLE to aspect, DOUBLE to near, DOUBLE to far)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PROJECTION_FOR_VIEW,
         PROJECTION)
-    return TransferContext.readReturnValue(PROJECTION, false) as Projection
+    return (TransferContext.readReturnValue(PROJECTION, false) as Projection)
   }
 
   /**
@@ -330,7 +324,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_SUPPORTED_ENVIRONMENT_BLEND_MODES, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
@@ -342,9 +336,9 @@ public open class XRInterface internal constructor() : RefCounted() {
    *
    * ```
    * 				                func _ready():
-   * 				                    var xr_interface: XRInterface = XRServer.find_interface("OpenXR")
+   * 				                    var xr_interface : XRInterface = XRServer.find_interface("OpenXR")
    * 				                    if xr_interface and xr_interface.is_initialized():
-   * 				                        var vp: Viewport = get_viewport()
+   * 				                        var vp : Viewport = get_viewport()
    * 				                        vp.use_xr = true
    * 				                        var acceptable_modes = [ XRInterface.XR_ENV_BLEND_MODE_OPAQUE, XRInterface.XR_ENV_BLEND_MODE_ADDITIVE ]
    * 				                        var modes = xr_interface.get_supported_environment_blend_modes()
@@ -358,7 +352,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_ENVIRONMENT_BLEND_MODE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class Capabilities(
@@ -459,7 +453,7 @@ public open class XRInterface internal constructor() : RefCounted() {
      */
     XR_PLAY_AREA_ROOMSCALE(3),
     /**
-     * Same as [XR_PLAY_AREA_ROOMSCALE] but origin point is fixed to the center of the physical space, [godot.XRServer.centerOnHmd] disabled.
+     * Same as roomscale but origin point is fixed to the center of the physical space, XRServer.center_on_hmd disabled.
      */
     XR_PLAY_AREA_STAGE(4),
     ;
