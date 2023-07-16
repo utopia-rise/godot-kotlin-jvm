@@ -71,7 +71,7 @@ public class JavaTestClass extends Node {
         connect(
                 StringNameUtils.asStringName("test_signal"),
                 new Callable(this, StringNameUtils.asStringName("signal_callback")),
-                ConnectFlags.CONNECT_ONE_SHOT.getId()
+                (int) ConnectFlags.CONNECT_ONE_SHOT.getId()
         );
         emitSignal(StringNameUtils.asStringName("test_signal"));
     }
