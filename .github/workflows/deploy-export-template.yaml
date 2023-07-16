@@ -461,17 +461,13 @@ jobs:
           zip -q -9 -r ios.zip ios_xcode
 
       - name: Upload iOS template app
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-artifact@v3
         with:
-          upload_url: ${{ steps.save_release_info.outputs.upload_url }}
-          asset_path: ios.zip
-          asset_name: ios.zip
-          asset_content_type: application/octet-stream
+          path: ios.zip
+          name: ios.zip
 
     create_export_template_tpz:
-      needs: [ create-macos-export-template-app, build-android-export-template ]
+      needs: [ create-macos-export-template-app, build-android-export-template, create-ios-export-template-app ]
       runs-on: ubuntu-latest
       steps:
         - name: Download release informations
@@ -560,6 +556,15 @@ jobs:
 
         - name: Copy macos export templates
           run: cp macos.zip templates/macos.zip
+          shell: bash
+
+        - name: Download ios export templates
+          uses: actions/download-artifact@v3
+          with:
+            name: ios.zip
+
+        - name: Copy ios export templates
+          run: cp ios.zip templates/ios.zip
           shell: bash
 
         - name: Create version.txt
