@@ -14,12 +14,6 @@ dependencies {
     implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
 }
 
-tasks {
-    withType<KotlinCompile>().all {
-        kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.ExperimentalStdlibApi"
-    }
-}
-
 publishing {
     publications {
         val godotEntryGenerator by creating(MavenPublication::class) {
@@ -31,5 +25,21 @@ publishing {
             description = "Godot Kotlin entry code generator."
             from(components.getByName("java"))
         }
+    }
+}
+
+java {
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks {
+    withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs += listOf(
+                "-opt-in=kotlin.ExperimentalStdlibApi"
+            )
+        }
+
+        kotlinOptions.jvmTarget = "11"
     }
 }

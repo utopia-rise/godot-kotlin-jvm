@@ -23,6 +23,7 @@ dependencies {
 tasks {
     compileKotlin {
         dependsOn(generateAPI)
+        kotlinOptions.jvmTarget = "11"
     }
 
     build.get().finalizedBy(shadowJar)
@@ -71,4 +72,8 @@ publishing {
             artifact(tasks.jar)
         }
     }
+}
+
+java {
+    targetCompatibility = JavaVersion.VERSION_11
 }
