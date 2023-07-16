@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+---
+
+
 [![GitHub](https://img.shields.io/github/license/utopia-rise/godot-kotlin-jvm?style=flat-square)](LICENSE)
 
 Godot Kotlin/JVM is a Godot module which allows you to write your game or application logic in Kotlin on the JVM.
@@ -19,7 +25,7 @@ The items in this list are explicitly mentioned here as these will be implemente
 If you find bugs, please report an [issue on github](https://github.com/utopia-rise/godot-kotlin-jvm/issues) - but check for duplicates first. If you have questions or need help, you can ask on [discord](https://discord.gg/zpb5Ru7v9x) in the channels `questions` and `help` respectively. If you don't have discord or don't want to use it, make a issue on github.
 
 ## Supported languages
-The only language currently supported is Kotlin. That said it is possible to support other Jvm based languages in the future. If you want to add support for another Jvm based language, feel free to open an [issue](https://github.com/utopia-rise/godot-kotlin-jvm/issues) and we'll explain in detail what is necessary to support another language and help you getting started with development.
+The main language supported is Kotlin. We do however support Java experimentally. It should be possible to support other jvm base languages as well but this is not the focus of this project. If you want to have support for other languages, have a look at [support for other jvm based languages](contribution/support_for_other_jvm_based_languages.md).
 
 ## Supported kotlin version
 This module relies on a kotlin compiler plugin for registering your classes and members to godot. As the compiler api from kotlin is not yet stable, we can only support specific kotlin version per release for now. 
@@ -27,7 +33,7 @@ This module relies on a kotlin compiler plugin for registering your classes and 
 The current latest release is compatible with kotlin version `1.7.20`.
 
 ## Custom engine builds
-Get our pre built engine builds and export templates from the latest [github release](https://github.com/utopia-rise/godot-kotlin-jvm/releases).
+Get our pre built engine builds and export templates from the latest [GitHub release](https://github.com/utopia-rise/godot-kotlin-jvm/releases).
 
 ## Developer discussion
 Ask questions and collaborate on [Discord](https://discord.gg/zpb5Ru7v9x)

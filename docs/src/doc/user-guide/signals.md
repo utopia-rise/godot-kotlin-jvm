@@ -7,7 +7,7 @@ Use the delegate `signal` to create a signal and annotate it with `@RegisterSign
 
 ```kotlin
 @RegisterClass
-class RotatingCube: Spatial() {
+class RotatingCube: Node3D() {
     @RegisterSignal
     val reverseChanged by signal<Boolean>("reverse")
 }

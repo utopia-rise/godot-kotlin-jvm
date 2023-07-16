@@ -2,7 +2,7 @@ Any Kotlin function can be registered as long as its parameters and return type 
 
 ```kotlin
 @RegisterClass
-class RotatingCube: Spatial() {
+class RotatingCube: Node3D() {
     @RegisterFunction
     override fun _ready() {
         println("I am ready!")

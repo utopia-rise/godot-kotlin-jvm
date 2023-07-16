@@ -19,7 +19,7 @@ theme:
   logo: assets/img/logo.png
   features:
     - navigation.tabs
-    - navigation.sections
+    - navigation.expand
     - navigation.top
 
 
@@ -39,10 +39,10 @@ markdown_extensions:
   - meta
 
 extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js
   - js/init.js
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css
 
 nav:
   - Home: index.md
@@ -58,6 +58,7 @@ nav:
     - Functions: user-guide/functions.md
     - Exporting: user-guide/exporting.md
     - Debugging: user-guide/debugging.md
+    - Consuming libraries: user-guide/consuming-libraries.md
     - Versioning: user-guide/versioning.md
     - Supported platforms: user-guide/supported-platforms.md
     - Advanced:
@@ -68,11 +69,16 @@ nav:
       - Commandline args: user-guide/advanced/commandline-args.md
       - Kotlin singletons: user-guide/advanced/kotlin-singleton.md
       - GraalVM native-image: user-guide/advanced/graal-vm-native-image.md
+  - Develop libraries:
+      - Introduction: develop-libraries/introduction.md
+      - Setup: develop-libraries/setup.md
+      - Publishing: develop-libraries/publishing.md
   - Contributing:
     - General: contribution/general.md
     - Guidelines: contribution/guidelines.md
     - Setup: contribution/setup.md
     - Build with C# support: contribution/build-with-csharp-support.md
+    - Support for other jvm based languages: contribution/support_for_other_jvm_based_languages.md
     - Knowledge base:
         - Artefact differentiation: contribution/knowledge-base/artefact-differentiation.md
         - Entry generation: contribution/knowledge-base/entry-generation.md

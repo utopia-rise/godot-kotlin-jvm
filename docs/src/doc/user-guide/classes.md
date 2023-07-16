@@ -1,29 +1,101 @@
-To expose a class written in Kotlin it needs to extend `godot.core.Object` (or any of its subtype) and must be annotated with `@RegisterClass`.
+To expose a class written in Kotlin it needs to extend `godot.Object` (or any of its subtype) and must be annotated with `@RegisterClass`.
 
 ```kt
 @RegisterClass
-class RotatingCube: Spatial() {
+class RotatingCube: Node3D() {
     // ...
 }
 ```
 
-## Naming
-Classes need to be registered with a unique name as Godot does not support namespaces (or packages in this case) for script classes. This is why this module registers your classes with the fully qualified name. But as GDScript does not support `.` in the type name, `.` are converted to `_`.  
+## Registration files
+For each class you register, a corresponding registration file is generated (a `gdj` file). These are the files you attach to nodes.
 
-!!! info "A little example"
-    A class with fqname `com.company.game.RotatingCube` will be registered as `com_company_game_RotatingCube`. In GDScript you can use it like:
-    ```js
-    var instance := com_company_game_RotatingCube.new()
-    ```  
+### Location
+By default, these files are generated into a folder called `gdj` in the root of your project.  
+You can however configure this inside your `build.gradle.kts`:
 
-As this can get quite long and convoluted, you can register classes with a custom class name. See [customization](#customization) section found on this page for more details.
+```kotlin
+godot {
+    registrationFileBaseDir.set(<folder>)
+}
+```
+
+### Naming
+Classes need to be registered with a unique name as Godot does not support namespaces (or packages in this case) for script classes.
+
+By default, we register your classes with the name you give them. While a simple approach and enough in most cases, this can lead to naming conflicts if you have classes in different packages with the same name. For example:
+
+- `com.package.a.MyClass`
+- `com.package.b.MyClass`
+
+This leads to a conflict on the Godot side as both classes are registered as `MyClass`.
+
+So you are responsible for making sure that classes have a unique name. We do however provide you with some assistance:
+
+- We have compile time checks in place which should let the build fail if classes would end up having the same name
+- The `@RegisterClass` annotation lets you define a custom registration name: `@RegisterClass("CustomRegistrationName")`
+- Register the class names with the fully qualified name: `com.mygame.MyClass` will be registered as: `com_mygame_MyClass`. This can be configured with:
+    ```kotlin
+    godot {
+        isFqNameRegistrationEnabled.set(true)
+    }
+    ```
+
+!!! warning "Class names from other languages"
+    Even with all these checks and helpers in place, we cannot check the names of classes from other languages like GDScript or C#. It's your responsibility to make sure there are no naming conflicts.
+
+### Hierarchy
+Again: Godot does not have the concept of namespaces. So all classes are registered top level. It does not matter where in the folder hierarchy a script resides in, it still is accessed the same way. Hence, it does not matter if the registration files are all in one directory, or scattered across multiple directories.  
+By default, the registration files are all generated in a folder hierarchy which resembles your package hierarchy:
+
+- `com.mygame.packageA.ClassA`
+- `com.mygame.packageB.ClassB`
+
+```
+[registrationFileBaseDir]/
+└── com/
+    └── mygame/
+        ├── packageA/
+        │   └── ClassA.gdj
+        └── packageB/
+            └── ClassB.gdj
+```
+
+Some do not like this hierarchical structure and especially for small games with not many scripts, this could be undesirable to work with. Hence, we let you turn of the hierarchical generation in your `build.gradle.kts`:
+```kotlin
+godot {
+    isRegistrationFileHierarchyEnabled.set(false)
+}
+```
+
+Which would result in a folder structure like this:
+
+- `com.mygame.packageA.ClassA`
+- `com.mygame.packageB.ClassB`
+
+```
+[registrationFileBaseDir]/
+├── ClassA.gdj
+└── ClassB.gdj
+```
+
+This could also be useful together with the option `isFqNameRegistrationEnabled` from the [Naming section](#naming) which would result in:
+
+- `com.mygame.packageA.ClassA`
+- `com.mygame.packageB.ClassB`
+
+```
+[registrationFileBaseDir]/
+├── com_mygame_packageA_ClassA.gdj
+└── com_mygame_packageA_ClassB.gdj
+```
 
 ## Lifecycle
 If you want to be notified when initialization and destruction of your class happens, use the `init` block and override the `_onDestroy` function respectively.
 
 ```kt
 @RegisterClass
-class RotatingCube: Spatial() {
+class RotatingCube: Node3D() {
     init {
         println("Initializing RotatingCube!")
     }
@@ -74,13 +146,13 @@ Constructors also can have a maximum of 5 arguments and must have a unique argum
 Creating an instance using the default constructor can be done by:
 
 ```kt
-var instance := package_YourClass.new()
+var instance := YourKotlinClass.new()
 ```
 
 While for additional constructors, `load` must be used:
 
 ```kt
-var instance := load("res://package/YourClass").new(oneArg, anotherArg)
+var instance := load("res://gdj/YourClass.gdj").new(oneArg, anotherArg)
 ```
 
 !!! info
