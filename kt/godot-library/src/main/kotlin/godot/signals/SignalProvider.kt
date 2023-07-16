@@ -3,6 +3,44 @@ package godot.signals
 import godot.Object
 import kotlin.reflect.KProperty
 
+/**
+ * For java convenience usage
+ */
+object SignalProvider {
+    @JvmStatic
+    fun signal(thisRef: Object, name: String): Signal0 = Signal0(thisRef, name)
+    @JvmStatic
+    @Suppress("UNUSED_PARAMETER")
+    fun <P0> signal(thisRef: Object, name: String, p0: String) = Signal1<P0>(thisRef, name)
+    @JvmStatic
+    @Suppress("UNUSED_PARAMETER")
+    fun <P0, P1> signal(thisRef: Object, name: String, p0: String, p1: String) = Signal2<P0, P1>(thisRef, name)
+    @JvmStatic
+    @Suppress("UNUSED_PARAMETER")
+    fun <P0, P1, P2> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String) = Signal3<P0, P1, P2>(thisRef, name)
+    @JvmStatic
+    @Suppress("UNUSED_PARAMETER")
+    fun <P0, P1, P2, P3> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String, p3: String) = Signal4<P0, P1, P2, P3>(thisRef, name)
+    @JvmStatic
+    @Suppress("UNUSED_PARAMETER")
+    fun <P0, P1, P2, P3, P4> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String, p3: String, p4: String) = Signal5<P0, P1, P2, P3, P4>(thisRef, name)
+    @JvmStatic
+    @Suppress("UNUSED_PARAMETER")
+    fun <P0, P1, P2, P3, P4, P5> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String, p3: String, p4: String, p5: String) = Signal6<P0, P1, P2, P3, P4, P5>(thisRef, name)
+    @JvmStatic
+    @Suppress("UNUSED_PARAMETER")
+    fun <P0, P1, P2, P3, P4, P5, P6> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String, p3: String, p4: String, p5: String, p6: String) = Signal7<P0, P1, P2, P3, P4, P5, P6>(thisRef, name)
+    @JvmStatic
+    @Suppress("UNUSED_PARAMETER")
+    fun <P0, P1, P2, P3, P4, P5, P6, P7> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String, p3: String, p4: String, p5: String, p6: String, p7: String) = Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(thisRef, name)
+    @JvmStatic
+    @Suppress("UNUSED_PARAMETER")
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String, p3: String, p4: String, p5: String, p6: String, p7: String, p8: String) = Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(thisRef, name)
+    @JvmStatic
+    @Suppress("UNUSED_PARAMETER")
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String, p3: String, p4: String, p5: String, p6: String, p7: String, p8: String, p9: String) = Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(thisRef, name)
+}
+
 class SignalDelegate<T : Signal>(val factory: () -> T) {
     @PublishedApi
     internal var signal: T? = null

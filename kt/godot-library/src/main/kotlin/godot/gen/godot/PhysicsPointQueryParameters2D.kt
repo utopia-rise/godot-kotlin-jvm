@@ -22,9 +22,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Parameters to be sent to a 2D point physics query.
+ * Provides parameters for [godot.PhysicsDirectSpaceState2D.intersectPoint].
  *
- * This class contains the position and other parameters to be used for [godot.PhysicsDirectSpaceState2D.intersectPoint].
+ * By changing various properties of this object, such as the point position, you can configure the parameters for [godot.PhysicsDirectSpaceState2D.intersectPoint].
  */
 @GodotBaseType
 public open class PhysicsPointQueryParameters2D : RefCounted() {

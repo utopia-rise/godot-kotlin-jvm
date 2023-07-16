@@ -37,13 +37,18 @@ publishing {
     }
 }
 
+java {
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 tasks {
-    withType(KotlinCompile::class.java) {
+    withType<KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs += listOf(
-                    "-opt-in=com.google.devtools.ksp.KspExperimental" // needed for resolve by package path
+                "-opt-in=com.google.devtools.ksp.KspExperimental" // needed for resolve by package path
             )
         }
+
+        kotlinOptions.jvmTarget = "11"
     }
 }

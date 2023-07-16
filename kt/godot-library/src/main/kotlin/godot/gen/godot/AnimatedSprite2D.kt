@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Sprite node that contains multiple textures as frames to play for animation.
@@ -240,6 +241,7 @@ public open class AnimatedSprite2D : Node2D() {
    *
    * If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused.
    */
+  @JvmOverloads
   public fun play(
     name: StringName = StringName(""),
     customSpeed: Float = 1.0f,
@@ -254,6 +256,7 @@ public open class AnimatedSprite2D : Node2D() {
    *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.
    */
+  @JvmOverloads
   public fun playBackwards(name: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_PLAY_BACKWARDS,

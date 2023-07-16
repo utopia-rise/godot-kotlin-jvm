@@ -1,3 +1,4 @@
+@file:JvmName("GDMathUtils")
 package godot.global
 
 import godot.core.Color

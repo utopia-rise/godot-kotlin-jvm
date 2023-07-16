@@ -33,6 +33,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * [godot.Mesh] type that provides utility for constructing a surface from arrays.
@@ -237,6 +238,7 @@ public open class ArrayMesh : Mesh() {
    *
    * **Note:** When using indices, it is recommended to only use points, lines, or triangles.
    */
+  @JvmOverloads
   public fun addSurfaceFromArrays(
     primitive: Mesh.PrimitiveType,
     arrays: VariantArray<Any?>,

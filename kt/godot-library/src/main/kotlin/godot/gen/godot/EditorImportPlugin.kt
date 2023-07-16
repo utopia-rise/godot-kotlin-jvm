@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.
@@ -84,13 +85,13 @@ import kotlin.Suppress
  *
  *
  *
- * func _get_preset_name(i):
+ * func _get_preset_name(preset_index):
  *
  *     return "Default"
  *
  *
  *
- * func _get_import_options(i):
+ * func _get_import_options(path, preset_index):
  *
  *     return [{"name": "my_option", "default_value": false}]
  *
@@ -210,7 +211,7 @@ import kotlin.Suppress
  *
  *                 { "name", "myOption" },
  *
- *                 { "defaultValue", false },
+ *                 { "default_value", false },
  *
  *             }
  *
@@ -355,17 +356,17 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
    *
    * [csharp]
    *
-   * public void GetOptionVisibility(string option, Godot.Collections.Dictionary options)
+   * public void _GetOptionVisibility(string option, Godot.Collections.Dictionary options)
    *
    * {
    *
    *     // Only show the lossy quality setting if the compression mode is set to "Lossy".
    *
-   *     if (option == "compress/lossyQuality" && options.Contains("compress/mode"))
+   *     if (option == "compress/lossy_quality" && options.ContainsKey("compress/mode"))
    *
    *     {
    *
-   *         return (int)options["compress/mode"] == COMPRESS_LOSSY; // This is a constant you set
+   *         return (int)options["compress/mode"] == CompressLossy; // This is a constant you set
    *
    *     }
    *
@@ -407,6 +408,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
   /**
    * This function can only be called during the [_import] callback and it allows manually importing resources from it. This is useful when the imported file generates external resources that require importing (as example, images). Custom parameters for the ".import" file can be passed via the [customOptions]. Additionally, in cases where multiple importers can handle a file, the [customImporter] ca be specified to force a specific one. This function performs a resource import and returns immediately with a success or error code. [generatorParameters] defines optional extra metadata which will be stored as `generator_parameters` in the `remap` section of the `.import` file, for example to store a md5 hash of the source data.
    */
+  @JvmOverloads
   public fun appendImportExternalResource(
     path: String,
     customOptions: Dictionary<Any?, Any?> = Dictionary(),

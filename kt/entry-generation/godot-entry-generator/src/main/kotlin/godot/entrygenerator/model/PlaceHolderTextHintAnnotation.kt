@@ -1,3 +1,3 @@
 package godot.entrygenerator.model
 
-object PlaceHolderTextHintAnnotation : PropertyHintAnnotation
+class PlaceHolderTextHintAnnotation(source: Any) : PropertyHintAnnotation(source)

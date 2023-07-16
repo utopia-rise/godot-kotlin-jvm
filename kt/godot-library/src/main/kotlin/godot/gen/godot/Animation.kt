@@ -34,14 +34,15 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Contains data used to animate everything in the engine.
+ * Holds data that can be used to animate anything in the engine.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/index.html]($DOCS_URL/tutorials/animation/index.html)
  *
- * An Animation resource contains data used to animate everything in the engine. Animations are divided into tracks, and each track must be linked to a node. The state of that node can be changed through time, by adding timed keys (events) to the track.
+ * This resource holds data that can be used to animate anything in the engine. Animations are divided into tracks and each track must be linked to a node. The state of that node can be changed through time, by adding timed keys (events) to the track.
  *
  * [codeblocks]
  *
@@ -141,6 +142,7 @@ public open class Animation : Resource() {
   /**
    * Adds a track to the Animation.
    */
+  @JvmOverloads
   public fun addTrack(type: TrackType, atPosition: Int = -1): Int {
     TransferContext.writeArguments(LONG to type.id, LONG to atPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_ADD_TRACK, LONG)
@@ -323,6 +325,9 @@ public open class Animation : Resource() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns the interpolated position value at the given time (in seconds). The [trackIdx] must be the index of a 3D position track.
+   */
   public fun positionTrackInterpolate(trackIdx: Int, timeSec: Double): Vector3 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
     TransferContext.callMethod(rawPtr,
@@ -330,6 +335,9 @@ public open class Animation : Resource() {
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
+  /**
+   * Returns the interpolated rotation value at the given time (in seconds). The [trackIdx] must be the index of a 3D rotation track.
+   */
   public fun rotationTrackInterpolate(trackIdx: Int, timeSec: Double): Quaternion {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
     TransferContext.callMethod(rawPtr,
@@ -337,6 +345,9 @@ public open class Animation : Resource() {
     return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
 
+  /**
+   * Returns the interpolated scale value at the given time (in seconds). The [trackIdx] must be the index of a 3D scale track.
+   */
   public fun scaleTrackInterpolate(trackIdx: Int, timeSec: Double): Vector3 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_SCALE_TRACK_INTERPOLATE,
@@ -344,6 +355,9 @@ public open class Animation : Resource() {
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
+  /**
+   * Returns the interpolated blend shape value at the given time (in seconds). The [trackIdx] must be the index of a blend shape track.
+   */
   public fun blendShapeTrackInterpolate(trackIdx: Int, timeSec: Double): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
     TransferContext.callMethod(rawPtr,
@@ -354,6 +368,7 @@ public open class Animation : Resource() {
   /**
    * Inserts a generic key in a given track. Returns the key index.
    */
+  @JvmOverloads
   public fun trackInsertKey(
     trackIdx: Int,
     time: Double,
@@ -460,6 +475,7 @@ public open class Animation : Resource() {
   /**
    * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time is given.
    */
+  @JvmOverloads
   public fun trackFindKey(
     trackIdx: Int,
     time: Double,
@@ -571,6 +587,7 @@ public open class Animation : Resource() {
    *
    * [inHandle] is the left-side weight of the added Bezier curve point, [outHandle] is the right-side one, while [value] is the actual value at this point.
    */
+  @JvmOverloads
   public fun bezierTrackInsertKey(
     trackIdx: Int,
     time: Double,
@@ -600,6 +617,7 @@ public open class Animation : Resource() {
   /**
    * Sets the in handle of the key identified by [keyIdx] to value [inHandle]. The [trackIdx] must be the index of a Bezier Track.
    */
+  @JvmOverloads
   public fun bezierTrackSetKeyInHandle(
     trackIdx: Int,
     keyIdx: Int,
@@ -614,6 +632,7 @@ public open class Animation : Resource() {
   /**
    * Sets the out handle of the key identified by [keyIdx] to value [outHandle]. The [trackIdx] must be the index of a Bezier Track.
    */
+  @JvmOverloads
   public fun bezierTrackSetKeyOutHandle(
     trackIdx: Int,
     keyIdx: Int,
@@ -670,6 +689,7 @@ public open class Animation : Resource() {
    *
    * [stream] is the [godot.AudioStream] resource to play. [startOffset] is the number of seconds cut off at the beginning of the audio stream, while [endOffset] is at the ending.
    */
+  @JvmOverloads
   public fun audioTrackInsertKey(
     trackIdx: Int,
     time: Double,
@@ -833,6 +853,7 @@ public open class Animation : Resource() {
    *
    * **Note:** Compressed tracks have various limitations (such as not being editable from the editor), so only use compressed animations if you actually need them.
    */
+  @JvmOverloads
   public fun compress(
     pageSize: Int = 8192,
     fps: Int = 120,

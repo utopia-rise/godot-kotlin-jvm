@@ -29,13 +29,14 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Control to show a tree of items.
+ * A control used to show a set of internal [godot.TreeItem]s in a hierarchical structure.
  *
- * This shows a tree of items that can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like text editing, buttons and popups. It can be useful for structured displays and interactions.
+ * A control used to show a set of internal [godot.TreeItem]s in a hierarchical structure. The tree items can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like [godot.LineEdit]s, buttons and popups. It can be useful for structured displays and interactions.
  *
- * Trees are built via code, using [godot.TreeItem] objects to create the structure. They have a single root but multiple roots can be simulated if a dummy hidden root is added.
+ * Trees are built via code, using [godot.TreeItem] objects to create the structure. They have a single root, but multiple roots can be simulated with [hideRoot]:
  *
  * [codeblocks]
  *
@@ -225,6 +226,9 @@ public open class Tree : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_ALLOW_RMB_SELECT, NIL)
     }
 
+  /**
+   * If `true`, allows navigating the [godot.Tree] with letter keys through incremental search.
+   */
   public var allowSearch: Boolean
     get() {
       TransferContext.writeArguments()
@@ -358,6 +362,7 @@ public open class Tree : Control() {
    *
    * The new item will be the [index]-th child of parent, or it will be the last child if there are not enough siblings.
    */
+  @JvmOverloads
   public fun createItem(parent: TreeItem? = null, index: Int = -1): TreeItem? {
     TransferContext.writeArguments(OBJECT to parent, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_CREATE_ITEM, OBJECT)
@@ -564,8 +569,13 @@ public open class Tree : Control() {
   }
 
   /**
-   * Edits the selected tree item as if it was clicked. The item must be set editable with [godot.TreeItem.setEditable]. Returns `true` if the item could be edited. Fails if no item is selected.
+   * Edits the selected tree item as if it was clicked.
+   *
+   * Either the item must be set editable with [godot.TreeItem.setEditable] or [forceEdit] must be `true`.
+   *
+   * Returns `true` if the item could be edited. Fails if no item is selected.
    */
+  @JvmOverloads
   public fun editSelected(forceEdit: Boolean = false): Boolean {
     TransferContext.writeArguments(BOOL to forceEdit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_EDIT_SELECTED, BOOL)
@@ -584,6 +594,7 @@ public open class Tree : Control() {
   /**
    * Returns the rectangle area for the specified [godot.TreeItem]. If [column] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned.
    */
+  @JvmOverloads
   public fun getItemAreaRect(
     item: TreeItem,
     column: Int = -1,
@@ -665,12 +676,18 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
+  /**
+   * Sets the column title alignment. Note that [@GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is not supported for column titles.
+   */
   public fun setColumnTitleAlignment(column: Int, titleAlignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to titleAlignment.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLE_ALIGNMENT,
         NIL)
   }
 
+  /**
+   * Returns the column title alignment.
+   */
   public fun getColumnTitleAlignment(column: Int): HorizontalAlignment {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE_ALIGNMENT,
@@ -727,6 +744,7 @@ public open class Tree : Control() {
   /**
    * Causes the [godot.Tree] to jump to the specified [godot.TreeItem].
    */
+  @JvmOverloads
   public fun scrollToItem(item: TreeItem, centerOnItem: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to item, BOOL to centerOnItem)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SCROLL_TO_ITEM, NIL)

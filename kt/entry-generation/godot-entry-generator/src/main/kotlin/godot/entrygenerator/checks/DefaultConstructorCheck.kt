@@ -11,7 +11,7 @@ class DefaultConstructorCheck(logger: Logger, sourceFiles: List<SourceFile>): Ba
             .forEach { registeredClass ->
                 if (registeredClass.constructors.none { it.parameters.isEmpty() }) {
                     hasIssue = true
-                    logger.error("RegisteredClass ${registeredClass.fqName} does not have a public default constructor")
+                    logger.error(registeredClass, "RegisteredClass does not have a public default constructor")
                 }
             }
         return hasIssue

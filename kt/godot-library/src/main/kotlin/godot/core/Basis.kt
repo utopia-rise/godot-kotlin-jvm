@@ -581,6 +581,7 @@ class Basis() : CoreType {
     /**
      *
      */
+    @JvmOverloads
     fun isEqualApprox(a: Basis, epsilon: RealT = CMP_EPSILON): Boolean {
         if (!isEqualApprox(this._x.x, a._x.x, epsilon)) return false
         if (!isEqualApprox(this._x.y, a._x.y, epsilon)) return false

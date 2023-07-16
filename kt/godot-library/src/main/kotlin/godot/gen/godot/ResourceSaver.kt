@@ -22,13 +22,14 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Singleton for saving Godot-specific resource types.
+ * A singleton for saving [godot.Resource]s to the filesystem.
  *
- * Singleton for saving Godot-specific resource types to the filesystem.
+ * A singleton for saving resource types to the filesystem.
  *
- * It uses the many [godot.ResourceFormatSaver] classes registered in the engine (either built-in or from a plugin) to save engine-specific resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res` or `.scn`).
+ * It uses the many [godot.ResourceFormatSaver] classes registered in the engine (either built-in or from a plugin) to save resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res` or `.scn`).
  */
 @GodotBaseType
 public object ResourceSaver : Object() {
@@ -44,6 +45,7 @@ public object ResourceSaver : Object() {
    *
    * Returns [OK] on success.
    */
+  @JvmOverloads
   public fun save(
     resource: Resource,
     path: String = "",
@@ -69,6 +71,7 @@ public object ResourceSaver : Object() {
    *
    * This method is performed implicitly for ResourceFormatSavers written in GDScript (see [godot.ResourceFormatSaver] for more information).
    */
+  @JvmOverloads
   public fun addResourceFormatSaver(formatSaver: ResourceFormatSaver, atFront: Boolean = false):
       Unit {
     TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)

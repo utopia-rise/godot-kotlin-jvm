@@ -24,14 +24,17 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * A custom shader program.
+ * A shader implemented in the Godot shading language.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/shaders/index.html]($DOCS_URL/tutorials/shaders/index.html)
  *
- * This class allows you to define a custom shader program that can be used by a [godot.ShaderMaterial]. Shaders allow you to write your own custom behavior for rendering objects or updating particle information. For a detailed explanation and usage, please see the tutorials linked below.
+ * A custom shader program implemented in the Godot shading language, saved with the `.gdshader` extension.
+ *
+ * This class is used by a [godot.ShaderMaterial] and allows you to write your own custom behavior for rendering visual items or updating particle information. For a detailed explanation and usage, please see the tutorials linked below.
  */
 @GodotBaseType
 public open class Shader : Resource() {
@@ -55,7 +58,7 @@ public open class Shader : Resource() {
   }
 
   /**
-   * Returns the shader mode for the shader, either [MODE_CANVAS_ITEM], [MODE_SPATIAL] or [MODE_PARTICLES].
+   * Returns the shader mode for the shader.
    */
   public fun getMode(): Mode {
     TransferContext.writeArguments()
@@ -70,6 +73,7 @@ public open class Shader : Resource() {
    *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
+  @JvmOverloads
   public fun setDefaultTextureParameter(
     name: StringName,
     texture: Texture2D,
@@ -87,6 +91,7 @@ public open class Shader : Resource() {
    *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
+  @JvmOverloads
   public fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, LONG to index.toLong())
     TransferContext.callMethod(rawPtr,
@@ -99,6 +104,7 @@ public open class Shader : Resource() {
    *
    * If argument [getGroups] is true, parameter grouping hints will be provided.
    */
+  @JvmOverloads
   public fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {
     TransferContext.writeArguments(BOOL to getGroups)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_SHADER_UNIFORM_LIST,

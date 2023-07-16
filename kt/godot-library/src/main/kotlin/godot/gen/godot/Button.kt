@@ -20,12 +20,12 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Standard themed Button.
+ * A themed button that can contain text and an icon.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
  *
- * Button is the standard themed button. It can contain text and an icon, and will display them according to the current [godot.Theme].
+ * [godot.Button] is the standard themed button. It can contain text and an icon, and it will display them according to the current [godot.Theme].
  *
  * **Example of creating a button and assigning an action when pressed by code:**
  *
@@ -81,11 +81,9 @@ import kotlin.Suppress
  *
  * [/codeblocks]
  *
- * Buttons (like all Control nodes) can also be created in the editor, but some situations may require creating them from code.
- *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  *
- * **Note:** Buttons do not interpret touch input and therefore don't support multitouch, since mouse emulation can only press one button at a given time. Use [godot.TouchScreenButton] for buttons that trigger gameplay movement or actions, as [godot.TouchScreenButton] supports multitouch.
+ * **Note:** Buttons do not interpret touch input and therefore don't support multitouch, since mouse emulation can only press one button at a given time. Use [godot.TouchScreenButton] for buttons that trigger gameplay movement or actions.
  */
 @GodotBaseType
 public open class Button : BaseButton() {
@@ -178,7 +176,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Specifies if the icon should be aligned to the left, right, or center of a button. Uses the same [enum HorizontalAlignment] constants as the text alignment. If centered, text will draw on top of the icon.
+   * Specifies if the icon should be aligned horizontally to the left, right, or center of a button. Uses the same [enum HorizontalAlignment] constants as the text alignment. If centered horizontally and vertically, text will draw on top of the icon.
    */
   public var iconAlignment: HorizontalAlignment
     get() {
@@ -191,6 +189,9 @@ public open class Button : BaseButton() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ICON_ALIGNMENT, NIL)
     }
 
+  /**
+   * Specifies if the icon should be aligned vertically to the top, bottom, or center of a button. Uses the same [enum VerticalAlignment] constants as the text alignment. If centered horizontally and vertically, text will draw on top of the icon.
+   */
   public var verticalIconAlignment: VerticalAlignment
     get() {
       TransferContext.writeArguments()
@@ -205,7 +206,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect.
+   * When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect. See also [theme_item icon_max_width].
    */
   public var expandIcon: Boolean
     get() {

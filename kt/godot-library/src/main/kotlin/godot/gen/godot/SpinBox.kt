@@ -23,9 +23,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Numerical input text field.
+ * An input field for numbers.
  *
- * SpinBox is a numerical input text field. It allows entering integers and floats.
+ * [godot.SpinBox] is a numerical input text field. It allows entering integers and floating point numbers.
  *
  * **Example:**
  *

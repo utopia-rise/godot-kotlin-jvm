@@ -1,3 +1,3 @@
 package godot.entrygenerator.model
 
-object RegisterConstructorAnnotation : ConstructorAnnotation
+class RegisterConstructorAnnotation(override val source: Any) : ConstructorAnnotation

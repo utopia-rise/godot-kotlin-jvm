@@ -1,3 +1,4 @@
+@file:JvmName("NodeUtils")
 package godot.extensions
 
 import godot.Node

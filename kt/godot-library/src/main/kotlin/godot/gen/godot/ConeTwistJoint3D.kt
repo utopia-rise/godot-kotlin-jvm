@@ -20,13 +20,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A twist joint between two 3D PhysicsBodies.
+ * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint.
  *
- * The joint can rotate the bodies across an axis defined by the local x-axes of the [godot.Joint3D].
- *
- * The twist axis is initiated as the X axis of the [godot.Joint3D].
- *
- * Once the Bodies swing, the twist axis is calculated as the middle of the x-axes of the Joint3D in the local space of the two Bodies. See also [godot.Generic6DOFJoint3D].
+ * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint. The twist axis is initiated as the X axis of the [godot.ConeTwistJoint3D]. Once the physics bodies swing, the twist axis is calculated as the middle of the X axes of the joint in the local space of the two physics bodies. Useful for limbs like shoulders and hips, lamps hanging off a ceiling, etc.
  */
 @GodotBaseType
 public open class ConeTwistJoint3D : Joint3D() {
@@ -36,7 +32,7 @@ public open class ConeTwistJoint3D : Joint3D() {
   }
 
   /**
-   *
+   * Sets the value of the specified parameter.
    */
   public fun setParam(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
@@ -44,7 +40,7 @@ public open class ConeTwistJoint3D : Joint3D() {
   }
 
   /**
-   *
+   * Returns the value of the specified parameter.
    */
   public fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)

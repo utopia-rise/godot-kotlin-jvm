@@ -16,12 +16,22 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A synchronization mutex (mutual exclusion).
+ * A binary [godot.Semaphore] for synchronization of multiple [godot.Thread]s.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/performance/using_multiple_threads.html]($DOCS_URL/tutorials/performance/using_multiple_threads.html)
+ * [$DOCS_URL/tutorials/performance/thread_safe_apis.html]($DOCS_URL/tutorials/performance/thread_safe_apis.html)
  *
- * A synchronization mutex (mutual exclusion). This is used to synchronize multiple [godot.Thread]s, and is equivalent to a binary [godot.Semaphore]. It guarantees that only one thread can ever acquire the lock at a time. A mutex can be used to protect a critical section; however, be careful to avoid deadlocks.
+ * A synchronization mutex (mutual exclusion). This is used to synchronize multiple [godot.Thread]s, and is equivalent to a binary [godot.Semaphore]. It guarantees that only one thread can access a critical section at a time.
+ *
+ * This is a reentrant mutex, meaning that it can be locked multiple times by one thread, provided it also unlocks it as many times.
+ *
+ * **Warning:** Mutexes must be used carefully to avoid deadlocks.
+ *
+ * **Warning:** To ensure proper cleanup without crashes or deadlocks, the following conditions must be met:
+ *
+ * - When a [godot.Mutex]'s reference count reaches zero and it is therefore destroyed, no threads (including the one on which the destruction will happen) must have it locked.
+ *
+ * - When a [godot.Thread]'s reference count reaches zero and it is therefore destroyed, it must not have any mutex locked.
  */
 @GodotBaseType
 public open class Mutex : RefCounted() {
@@ -43,7 +53,7 @@ public open class Mutex : RefCounted() {
   /**
    * Tries locking this [godot.Mutex], but does not block. Returns `true` on success, `false` otherwise.
    *
-   * **Note:** This function returns [OK] if the thread already has ownership of the mutex.
+   * **Note:** This function returns `true` if the thread already has ownership of the mutex.
    */
   public fun tryLock(): Boolean {
     TransferContext.writeArguments()
@@ -55,6 +65,8 @@ public open class Mutex : RefCounted() {
    * Unlocks this [godot.Mutex], leaving it to other threads.
    *
    * **Note:** If a thread called [lock] or [tryLock] multiple times while already having ownership of the mutex, it must also call [unlock] the same number of times in order to unlock it correctly.
+   *
+   * **Warning:** Calling [unlock] more times that [lock] on a given thread, thus ending up trying to unlock a non-locked mutex, is wrong and may causes crashes or deadlocks.
    */
   public fun unlock(): Unit {
     TransferContext.writeArguments()

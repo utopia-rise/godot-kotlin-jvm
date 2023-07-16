@@ -18,11 +18,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Separation ray shape resource for 2D physics.
+ * A 2D ray shape used for physics collision that tries to separate itself from any collider.
  *
- * 2D separation ray shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. A ray is not really a collision body; instead, it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
- *
- * **Performance:** Being a primitive collision shape, [godot.SeparationRayShape2D] is fast to check collisions against.
+ * A 2D ray shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape2D]. When a [godot.SeparationRayShape2D] collides with an object, it tries to separate itself from it by moving its endpoint to the collision point. It can for example be used for spears falling from the sky.
  */
 @GodotBaseType
 public open class SeparationRayShape2D : Shape2D() {

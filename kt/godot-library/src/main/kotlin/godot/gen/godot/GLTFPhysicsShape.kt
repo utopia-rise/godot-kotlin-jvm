@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class GLTFPhysicsShape : Resource() {
@@ -122,6 +123,7 @@ public open class GLTFPhysicsShape : Resource() {
     return true
   }
 
+  @JvmOverloads
   public fun toNode(cacheShapes: Boolean = false): CollisionShape3D? {
     TransferContext.writeArguments(BOOL to cacheShapes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSSHAPE_TO_NODE, OBJECT)

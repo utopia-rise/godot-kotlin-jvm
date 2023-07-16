@@ -39,7 +39,7 @@ public open class CurveTexture : Texture2D() {
     }
 
   /**
-   * The format the texture should be generated with. When passing a CurveTexture as a input to a [godot.Shader], this may need to be adjusted.
+   * The format the texture should be generated with. When passing a CurveTexture as an input to a [godot.Shader], this may need to be adjusted.
    */
   public var textureMode: TextureMode
     get() {

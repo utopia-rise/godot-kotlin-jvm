@@ -17,9 +17,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Pin joint for 2D shapes.
+ * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely rotate.
  *
- * Pin joint for 2D rigid bodies. It pins two bodies (dynamic or static) together.
+ * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely rotate. For example, a [godot.RigidBody2D] can be attached to a [godot.StaticBody2D] to create a pendulum or a seesaw.
  */
 @GodotBaseType
 public open class PinJoint2D : Joint2D() {

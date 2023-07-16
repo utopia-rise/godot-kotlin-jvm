@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Plays back audio non-positionally.
@@ -189,6 +190,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Plays the audio from the given [fromPosition], in seconds.
    */
+  @JvmOverloads
   public fun play(fromPosition: Float = 0.0f): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_PLAY, NIL)

@@ -27,11 +27,12 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
- * A script interface to a scene file's data.
+ * Provides access to a scene file's information.
  *
- * Maintains a list of resources, nodes, exported, and overridden properties, and built-in scripts associated with a scene.
+ * Maintains a list of resources, nodes, exported and overridden properties, and built-in scripts associated with a scene. They cannot be modified from a [godot.SceneState], only accessed. Useful for peeking into what a [godot.PackedScene] contains without instantiating it.
  *
  * This class cannot be instantiated directly, it is retrieved for a given scene as the result of [godot.PackedScene.getState].
  */
@@ -78,6 +79,7 @@ public open class SceneState internal constructor() : RefCounted() {
    *
    * If [forParent] is `true`, returns the path of the [idx] node's parent instead.
    */
+  @JvmOverloads
   public fun getNodePath(idx: Int, forParent: Boolean = false): NodePath {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to forParent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_PATH, NODE_PATH)

@@ -1,3 +1,4 @@
+@file:JvmName("ObjectUtils")
 package godot.extensions
 
 import godot.Object

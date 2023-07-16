@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class ENetPacketPeer internal constructor() : PacketPeer() {
@@ -31,17 +32,20 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     return true
   }
 
+  @JvmOverloads
   public fun peerDisconnect(`data`: Int = 0): Unit {
     TransferContext.writeArguments(LONG to data.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT, NIL)
   }
 
+  @JvmOverloads
   public fun peerDisconnectLater(`data`: Int = 0): Unit {
     TransferContext.writeArguments(LONG to data.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT_LATER, NIL)
   }
 
+  @JvmOverloads
   public fun peerDisconnectNow(`data`: Int = 0): Unit {
     TransferContext.writeArguments(LONG to data.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT_NOW,

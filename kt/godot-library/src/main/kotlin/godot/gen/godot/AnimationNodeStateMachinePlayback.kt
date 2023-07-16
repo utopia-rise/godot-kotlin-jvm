@@ -21,9 +21,10 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Playback control for [godot.AnimationNodeStateMachine].
+ * Provides playback control for an [godot.AnimationNodeStateMachine].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
@@ -44,7 +45,7 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback") as AnimationNodeStateMachinePlayback;
+ * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback").As<AnimationNodeStateMachinePlayback>();
  *
  * stateMachine.Travel("some_state");
  *
@@ -66,6 +67,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    *
    * If [resetOnTeleport] is `true`, the animation is played from the beginning when the travel cause a teleportation.
    */
+  @JvmOverloads
   public fun travel(toNode: StringName, resetOnTeleport: Boolean = true): Unit {
     TransferContext.writeArguments(STRING_NAME to toNode, BOOL to resetOnTeleport)
     TransferContext.callMethod(rawPtr,
@@ -77,6 +79,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    *
    * If [reset] is `true`, the animation is played from the beginning.
    */
+  @JvmOverloads
   public fun start(node: StringName, reset: Boolean = true): Unit {
     TransferContext.writeArguments(STRING_NAME to node, BOOL to reset)
     TransferContext.callMethod(rawPtr,

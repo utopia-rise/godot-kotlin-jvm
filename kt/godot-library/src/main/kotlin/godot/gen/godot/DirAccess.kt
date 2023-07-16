@@ -21,14 +21,15 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Type used to handle the filesystem.
+ * Provides methods for managing directories and their content.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/scripting/filesystem.html]($DOCS_URL/tutorials/scripting/filesystem.html)
  *
- * Directory type. It is used to manage directories and their content (not restricted to the project folder).
+ * This class is used to manage directories and their content, even outside of the project folder.
  *
  * [godot.DirAccess] can't be instantiated directly. Instead it is created with a static method that takes a path for which it will be opened.
  *
@@ -155,7 +156,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
   /**
-   * If `true`, hidden files are included when the navigating directory.
+   * If `true`, hidden files are included when navigating the directory.
    *
    * Affects [listDirBegin], [getDirectories] and [getFiles].
    */
@@ -221,6 +222,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns a [godot.PackedStringArray] containing filenames of the directory contents, excluding directories. The array is sorted alphabetically.
    *
    * Affected by [includeHidden].
+   *
+   * **Note:** When used on a `res://` path in an exported project, only the files actually included in the PCK at the given folder level are returned. In practice, this means that since imported resources are stored in a top-level `.godot/` folder, only paths to `*.gd` and `*.import` files are returned (plus a few files such as `project.godot` or `project.binary` and the project icon). In an exported project, the list of returned files will also vary depending on whether [godot.ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`.
    */
   public fun getFiles(): PackedStringArray {
     TransferContext.writeArguments()
@@ -264,6 +267,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Returns the absolute path to the currently opened directory (e.g. `res://folder` or `C:\tmp\folder`).
    */
+  @JvmOverloads
   public fun getCurrentDir(includeDrive: Boolean = true): String {
     TransferContext.writeArguments(BOOL to includeDrive)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_GET_CURRENT_DIR, STRING)
@@ -328,6 +332,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    *
    * Returns one of the [enum Error] code constants ([OK] on success).
    */
+  @JvmOverloads
   public fun copy(
     from: String,
     to: String,

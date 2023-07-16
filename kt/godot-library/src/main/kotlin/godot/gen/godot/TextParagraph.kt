@@ -38,11 +38,12 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Holds a paragraph of text.
  *
- * Abstraction over [godot.TextServer] for handling paragraph of text.
+ * Abstraction over [godot.TextServer] for handling a single paragraph of text.
  */
 @GodotBaseType
 public open class TextParagraph : RefCounted() {
@@ -155,7 +156,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Line alignment rules. For more info see [godot.TextServer].
+   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
    */
   public var justificationFlags: Long
     get() {
@@ -243,6 +244,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Sets drop cap, overrides previously set drop cap. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text.
    */
+  @JvmOverloads
   public fun setDropcap(
     text: String,
     font: Font,
@@ -266,6 +268,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Adds text span and font to draw it.
    */
+  @JvmOverloads
   public fun addString(
     text: String,
     font: Font,
@@ -281,6 +284,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented as [length] object replacement characters.
    */
+  @JvmOverloads
   public fun addObject(
     key: Any,
     size: Vector2,
@@ -296,6 +300,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Sets new size and alignment of embedded object.
    */
+  @JvmOverloads
   public fun resizeObject(
     key: Any,
     size: Vector2,
@@ -483,6 +488,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Draw all lines of the text and drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
+  @JvmOverloads
   public fun draw(
     canvas: RID,
     pos: Vector2,
@@ -496,6 +502,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Draw outlines of all lines of the text and drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
+  @JvmOverloads
   public fun drawOutline(
     canvas: RID,
     pos: Vector2,
@@ -510,6 +517,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Draw single line of text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
+  @JvmOverloads
   public fun drawLine(
     canvas: RID,
     pos: Vector2,
@@ -523,6 +531,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Draw outline of the single line of text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
+  @JvmOverloads
   public fun drawLineOutline(
     canvas: RID,
     pos: Vector2,
@@ -538,6 +547,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Draw drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
+  @JvmOverloads
   public fun drawDropcap(
     canvas: RID,
     pos: Vector2,
@@ -550,6 +560,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Draw drop cap outline into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
+  @JvmOverloads
   public fun drawDropcapOutline(
     canvas: RID,
     pos: Vector2,

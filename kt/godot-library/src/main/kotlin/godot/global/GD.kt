@@ -21,9 +21,12 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
     /** Asserts that the condition is true.
     If the condition is false, an error is generated and the program is halted until you resume it.
     Only executes in debug builds. Use it for debugging purposes, to make sure a statement is true during development. */
+    @JvmStatic
+    @JvmOverloads
     fun assert(condition: Boolean, message: String = "") = assert(condition) { message }
 
     /** Returns whether instance is a valid object (e.g. has not been deleted from memory).*/
+    @JvmStatic
     fun isInstanceValid(instance: Object?): Boolean {
         if (instance != null) {
             return instance.rawPtr != nullptr && GarbageCollector.isInstanceValid(instance)
@@ -34,6 +37,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
     /** Returns length of Variant var
      * Note: Generates a fatal error if Variant can not provide a length.
      * */
+    @JvmStatic
     fun len(what: Any?): Int {
         if (what is Collection<*>) {
             return what.size
@@ -63,6 +67,8 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
      * Important: The path must be absolute, a local path will just return null.
      * */
     @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
+    @JvmStatic
+    @JvmOverloads
     inline fun <T : Resource> load(
         path: String,
         typeHint: String = "",

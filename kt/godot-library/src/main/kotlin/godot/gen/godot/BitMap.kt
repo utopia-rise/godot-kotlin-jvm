@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Boolean matrix.
@@ -50,6 +51,7 @@ public open class BitMap : Resource() {
   /**
    * Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to `false` if the alpha value of the image at that position is equal to [threshold] or less, and `true` in other case.
    */
+  @JvmOverloads
   public fun createFromImageAlpha(image: Image, threshold: Float = 0.1f): Unit {
     TransferContext.writeArguments(OBJECT to image, DOUBLE to threshold.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_CREATE_FROM_IMAGE_ALPHA, NIL)
@@ -155,6 +157,7 @@ public open class BitMap : Resource() {
    *
    * [epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower [epsilon] corresponds to more points in the polygons.
    */
+  @JvmOverloads
   public fun opaqueToPolygons(rect: Rect2i, epsilon: Float = 2.0f):
       VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(RECT2I to rect, DOUBLE to epsilon.toDouble())

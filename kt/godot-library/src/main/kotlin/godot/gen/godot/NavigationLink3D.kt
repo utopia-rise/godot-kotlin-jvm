@@ -23,12 +23,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Creates a link between two positions that [godot.NavigationServer3D] can route agents through.
+ * A link between two positions on [godot.NavigationRegion3D]s that agents can be routed through.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationlinks.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationlinks.html)
  *
- * Creates a link between two positions that [godot.NavigationServer3D] can route agents through. Links can be used to express navigation methods that aren't just traveling along the surface of the navigation mesh, like zip-lines, teleporters, or jumping across gaps.
+ * A link between two positions on [godot.NavigationRegion3D]s that agents can be routed through. These positions can be on the same [godot.NavigationRegion3D] or on two different ones. Links are useful to express navigation methods other than traveling along the surface of the navigation mesh, such as ziplines, teleporters, or gaps that can be jumped across.
  */
 @GodotBaseType
 public open class NavigationLink3D : Node3D() {
@@ -119,7 +119,7 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * When pathfinding enters this link from another regions navigation mesh the `enter_cost` value is added to the path distance for determining the shortest path.
+   * When pathfinding enters this link from another regions navigation mesh the [enterCost] value is added to the path distance for determining the shortest path.
    */
   public var enterCost: Float
     get() {
@@ -135,7 +135,7 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * When pathfinding moves along the link the traveled distance is multiplied with `travel_cost` for determining the shortest path.
+   * When pathfinding moves along the link the traveled distance is multiplied with [travelCost] for determining the shortest path.
    */
   public var travelCost: Float
     get() {
@@ -156,7 +156,7 @@ public open class NavigationLink3D : Node3D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [navigationLayers] bitmask, given a `layer_number` between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -165,7 +165,7 @@ public open class NavigationLink3D : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given a `layer_number` between 1 and 32.
+   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
    */
   public fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())

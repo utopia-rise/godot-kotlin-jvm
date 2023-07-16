@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Helper class to handle INI-style files.
@@ -214,6 +215,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Returns the current value for the specified section and key. If either the section or the key do not exist, the method returns the fallback [default] value. If [default] is not specified or set to `null`, an error is also raised.
    */
+  @JvmOverloads
   public fun getValue(
     section: String,
     key: String,

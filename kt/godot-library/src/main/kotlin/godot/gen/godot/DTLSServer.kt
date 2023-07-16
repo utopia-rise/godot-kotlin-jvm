@@ -57,9 +57,9 @@ import kotlin.Suppress
  *
  *     while server.is_connection_available():
  *
- *         var peer : PacketPeerUDP = server.take_connection()
+ *         var peer: PacketPeerUDP = server.take_connection()
  *
- *         var dtls_peer : PacketPeerDTLS = dtls.take_connection(peer)
+ *         var dtls_peer: PacketPeerDTLS = dtls.take_connection(peer)
  *
  *         if dtls_peer.get_status() != PacketPeerDTLS.STATUS_HANDSHAKING:
  *
@@ -81,7 +81,7 @@ import kotlin.Suppress
  *
  *                 print("Received message from client: %s" % p.get_packet().get_string_from_utf8())
  *
- *                 p.put_packet("Hello DTLS client".to_utf8())
+ *                 p.put_packet("Hello DTLS client".to_utf8_buffer())
  *
  * [/gdscript]
  *
@@ -165,7 +165,7 @@ import kotlin.Suppress
  *
  *                     GD.Print($"Received Message From Client: {p.GetPacket().GetStringFromUtf8()}");
  *
- *                     p.PutPacket("Hello DTLS Client".ToUtf8());
+ *                     p.PutPacket("Hello DTLS Client".ToUtf8Buffer());
  *
  *                 }
  *
@@ -217,7 +217,7 @@ import kotlin.Suppress
  *
  *             # Try to contact server
  *
- *             dtls.put_packet("The answer is... 42!".to_utf8())
+ *             dtls.put_packet("The answer is... 42!".to_utf8_buffer())
  *
  *         while dtls.get_available_packet_count() > 0:
  *
@@ -277,7 +277,7 @@ import kotlin.Suppress
  *
  *                 // Try to contact server
  *
- *                 _dtls.PutPacket("The Answer Is..42!".ToUtf8());
+ *                 _dtls.PutPacket("The Answer Is..42!".ToUtf8Buffer());
  *
  *             }
  *

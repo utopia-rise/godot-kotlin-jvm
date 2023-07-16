@@ -20,12 +20,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Pipeline depth/stencil state (used by [godot.RenderingDevice]).
  *
+ * [godot.RDPipelineDepthStencilState] controls the way depth and stencil comparisons are performed when sampling those values using [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineDepthStencilState : RefCounted() {
   /**
-   *
+   * If `true`, enables depth testing which allows objects to be automatically occluded by other objects based on their depth. This also allows objects to be partially occluded by other objects. If `false`, objects will appear in the order they were drawn (like in Godot's 2D renderer).
    */
   public var enableDepthTest: Boolean
     get() {

@@ -1,0 +1,32 @@
+// THIS FILE IS GENERATED! DO NOT EDIT, MOVE OR DELETE IT. EDIT, MOVE OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+
+registeredName = JavaTestClass
+fqName = godot.tests.JavaTestClass
+baseType = Node
+supertypes = [
+    godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    test_signal,
+	test_signal2
+]
+properties = [
+    java_enum,
+	exported_int,
+	exported_long,
+	exported_float,
+	exported_double,
+	exported_boolean,
+	exported_string,
+	exported_byte,
+	exported_button,
+	signal_emitted
+]
+functions = [
+    greeting,
+	connect_and_trigger_signal,
+	signal_callback
+]

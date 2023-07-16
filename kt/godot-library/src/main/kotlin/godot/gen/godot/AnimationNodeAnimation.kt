@@ -18,12 +18,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Input animation to use in an [godot.AnimationNodeBlendTree].
+ * An input animation for an [godot.AnimationNodeBlendTree].
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * A resource to add to an [godot.AnimationNodeBlendTree]. Only features one output set using the [animation] property. Use it as an input for [godot.AnimationNode] that blend animations together.
+ * A resource to add to an [godot.AnimationNodeBlendTree]. Only has one output port using the [animation] property. Used as an input for [godot.AnimationNode]s that blend animations together.
  */
 @GodotBaseType
 public open class AnimationNodeAnimation : AnimationRootNode() {

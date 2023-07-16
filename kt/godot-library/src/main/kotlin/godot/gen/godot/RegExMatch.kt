@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class RegExMatch : RefCounted() {
@@ -57,18 +58,21 @@ public open class RegExMatch : RefCounted() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  @JvmOverloads
   public fun getString(name: Any = 0): String {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_STRING, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
+  @JvmOverloads
   public fun getStart(name: Any = 0): Int {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_START, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  @JvmOverloads
   public fun getEnd(name: Any = 0): Int {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_END, LONG)

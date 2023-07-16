@@ -45,7 +45,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
   }
 
   /**
-   * Replaces the existing [godot.Image] data at the given `layer` with this new image.
+   * Replaces the existing [godot.Image] data at the given [layer] with this new image.
    *
    * The given [godot.Image] must have the same width, height, image format and mipmapping setting (a `bool` value) as the rest of the referenced images.
    *

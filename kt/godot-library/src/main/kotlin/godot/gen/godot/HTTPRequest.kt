@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A node with the ability to send HTTP(S) requests.
@@ -79,7 +80,7 @@ import kotlin.Unit
  *
  *     var body = JSON.new().stringify({"name": "Godette"})
  *
- *     error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
+ *     error = http_request.request("https://httpbin.org/post", [], HTTPClient.METHOD_POST, body)
  *
  *     if error != OK:
  *
@@ -149,7 +150,7 @@ import kotlin.Unit
  *
  *     });
  *
- *     error = httpRequest.Request("https://httpbin.org/post", null, true, HTTPClient.Method.Post, body);
+ *     error = httpRequest.Request("https://httpbin.org/post", null, HTTPClient.Method.Post, body);
  *
  *     if (error != Error.Ok)
  *
@@ -440,7 +441,7 @@ public open class HTTPRequest : Node() {
     }
 
   /**
-   * If set to a value greater than `0.0` before the request starts, the HTTP request will time out after `timeout` seconds have passed and the request is not *completed* yet. For small HTTP requests such as REST API usage, set [timeout] to a value between `10.0` and `30.0` to prevent the application from getting stuck if the request fails to get a response in a timely manner. For file downloads, leave this to `0.0` to prevent the download from failing if it takes too much time.
+   * The duration to wait in seconds before a request times out. If [timeout] is set to `0.0` then the request will never time out. For simple requests, such as communication with a REST API, it is recommended that [timeout] is set to a value suitable for the server response time (e.g. between `1.0` and `10.0`). This will help prevent unwanted timeouts caused by variation in server response times while still allowing the application to detect when a request has timed out. For larger requests such as file downloads it is suggested the [timeout] be set to `0.0`, disabling the timeout functionality. This will help to prevent large transfers from failing due to exceeding the timeout value.
    */
   public var timeout: Double
     get() {
@@ -467,6 +468,7 @@ public open class HTTPRequest : Node() {
    *
    * **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.
    */
+  @JvmOverloads
   public fun request(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
@@ -483,6 +485,7 @@ public open class HTTPRequest : Node() {
    *
    * Returns [OK] if request is successfully created. (Does not imply that the server has responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT] if not using thread and the [godot.HTTPClient] cannot connect to host.
    */
+  @JvmOverloads
   public fun requestRaw(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
@@ -617,7 +620,7 @@ public open class HTTPRequest : Node() {
      */
     RESULT_REDIRECT_LIMIT_REACHED(12),
     /**
-     *
+     * Request failed due to a timeout. If you expect requests to take a long time, try increasing the value of [timeout] or setting it to `0.0` to remove the timeout completely.
      */
     RESULT_TIMEOUT(13),
     ;

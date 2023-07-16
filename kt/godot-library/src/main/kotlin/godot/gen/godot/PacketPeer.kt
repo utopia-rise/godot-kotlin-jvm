@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Abstraction and base class for packet-based protocols.
@@ -60,6 +61,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
+  @JvmOverloads
   public fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_VAR, ANY)
@@ -71,6 +73,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    *
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
+  @JvmOverloads
   public fun putVar(_var: Any, fullObjects: Boolean = false): GodotError {
     TransferContext.writeArguments(ANY to _var, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_PUT_VAR, LONG)

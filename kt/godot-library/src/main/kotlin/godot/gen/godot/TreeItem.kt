@@ -33,13 +33,16 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Control for a single item inside a [godot.Tree].
+ * An internal control for a single item inside [godot.Tree].
  *
- * Control for a single item inside a [godot.Tree]. May have child [godot.TreeItem]s and be styled as well as contain buttons.
+ * A single item of a [godot.Tree] control. It can contain other [godot.TreeItem]s as children, which allows it to create a hierarchy. It can also contain text and buttons. [godot.TreeItem] is not a [godot.Node], it is internal to the [godot.Tree].
  *
- * You can remove a [godot.TreeItem] by using [godot.Object.free].
+ * To create a [godot.TreeItem], use [godot.Tree.createItem] or [godot.TreeItem.createChild]. To remove a [godot.TreeItem], use [godot.Object.free].
+ *
+ * **Note:** The ID values used for buttons are 32-bit, unlike [int] which is always 64-bit. They go from `-2147483648` to `2147483647`.
  */
 @GodotBaseType
 public open class TreeItem internal constructor() : Object() {
@@ -126,11 +129,19 @@ public open class TreeItem internal constructor() : Object() {
     return TreeItem.TreeCellMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
+  /**
+   * If [multiline] is `true`, the given [column] is multiline editable.
+   *
+   * **Note:** This option only affects the type of control ([godot.LineEdit] or [godot.TextEdit]) that appears when editing the column. You can set multiline values with [setText] even if the column is not multiline editable.
+   */
   public fun setEditMultiline(column: Int, multiline: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to multiline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_EDIT_MULTILINE, NIL)
   }
 
+  /**
+   * Returns `true` if the given [column] is multiline editable.
+   */
   public fun isEditMultiline(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_EDIT_MULTILINE, BOOL)
@@ -138,7 +149,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If `true`, the given [column] is checked. Clears column's indeterminate status.
+   * If [checked] is `true`, the given [column] is checked. Clears column's indeterminate status.
    */
   public fun setChecked(column: Int, checked: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to checked)
@@ -146,7 +157,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If `true`, the given [column] is marked [indeterminate].
+   * If [indeterminate] is `true`, the given [column] is marked indeterminate.
    *
    * **Note:** If set `true` from `false`, then column is cleared of checked status.
    */
@@ -176,6 +187,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Propagates this item's checked status to its children and parents for the given [column]. It is possible to process the items affected by this method call by connecting to [godot.Tree.checkPropagatedToItem]. The order that the items affected will be processed is as follows: the item invoking this method, children of that item, and finally parents of that item. If [emitSignal] is `false`, then [godot.Tree.checkPropagatedToItem] will not be emitted.
    */
+  @JvmOverloads
   public fun propagateCheck(column: Int, emitSignal: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to emitSignal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_PROPAGATE_CHECK, NIL)
@@ -215,11 +227,17 @@ public open class TreeItem internal constructor() : Object() {
     return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
+  /**
+   * Sets the autowrap mode in the given [column]. If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the cell's bounding rectangle.
+   */
   public fun setAutowrapMode(column: Int, autowrapMode: TextServer.AutowrapMode): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to autowrapMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_AUTOWRAP_MODE, NIL)
   }
 
+  /**
+   * Returns the text autowrap mode in the given [column]. By default it is [godot.TextServer.AUTOWRAP_OFF].
+   */
   public fun getAutowrapMode(column: Int): TextServer.AutowrapMode {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_AUTOWRAP_MODE, LONG)
@@ -334,7 +352,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's icon's maximum width.
+   * Sets the maximum allowed width of the icon in the given [column]. This limit is applied on top of the default size of the icon and on top of [theme_item Tree.icon_max_width]. The height is adjusted according to the icon's ratio.
    */
   public fun setIconMaxWidth(column: Int, width: Int): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to width.toLong())
@@ -342,7 +360,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the column's icon's maximum width.
+   * Returns the maximum allowed width of the icon in the given [column].
    */
   public fun getIconMaxWidth(column: Int): Int {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -389,6 +407,7 @@ public open class TreeItem internal constructor() : Object() {
    *
    * If [expr] is `true`, the edit mode slider will use an exponential scale as with [godot.Range.expEdit].
    */
+  @JvmOverloads
   public fun setRangeConfig(
     column: Int,
     min: Double,
@@ -455,6 +474,7 @@ public open class TreeItem internal constructor() : Object() {
    *
    * If [onlyVisible] is `true` it ignores non-visible [godot.TreeItem]s.
    */
+  @JvmOverloads
   public fun isAnyCollapsed(onlyVisible: Boolean = false): Boolean {
     TransferContext.writeArguments(BOOL to onlyVisible)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_ANY_COLLAPSED, BOOL)
@@ -470,7 +490,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If `true`, the given column is selectable.
+   * If [selectable] is `true`, the given [column] is selectable.
    */
   public fun setSelectable(column: Int, selectable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to selectable)
@@ -512,7 +532,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If `true`, the given [column] is editable.
+   * If [enabled] is `true`, the given [column] is editable.
    */
   public fun setEditable(column: Int, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enabled)
@@ -590,6 +610,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's custom background color and whether to just use it as an outline.
    */
+  @JvmOverloads
   public fun setCustomBgColor(
     column: Int,
     color: Color,
@@ -637,6 +658,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Adds a button with [godot.Texture2D] [button] at column [column]. The [id] is used to identify the button in the according [godot.Tree.buttonClicked] signal and can be different from the buttons index. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can be [disabled] and have a [tooltipText].
    */
+  @JvmOverloads
   public fun addButton(
     column: Int,
     button: Texture2D,
@@ -782,7 +804,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If `true`, the given [column] is expanded to the right.
+   * If [enable] is `true`, the given [column] is expanded to the right.
    */
   public fun setExpandRight(column: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
@@ -803,19 +825,25 @@ public open class TreeItem internal constructor() : Object() {
    *
    * The new item will be inserted as position [index] (the default value `-1` means the last position), or it will be the last child if [index] is higher than the child count.
    */
+  @JvmOverloads
   public fun createChild(index: Int = -1): TreeItem? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CREATE_CHILD, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
+  /**
+   * Adds a previously unparented [godot.TreeItem] as a direct child of this one. The [child] item must not be a part of any [godot.Tree] or parented to any [godot.TreeItem]. See also [removeChild].
+   */
   public fun addChild(child: TreeItem): Unit {
     TransferContext.writeArguments(OBJECT to child)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ADD_CHILD, NIL)
   }
 
   /**
-   * Removes the given child [godot.TreeItem] and all its children from the [godot.Tree]. Note that it doesn't free the item from memory, so it can be reused later. To completely remove a [godot.TreeItem] use [godot.Object.free].
+   * Removes the given child [godot.TreeItem] and all its children from the [godot.Tree]. Note that it doesn't free the item from memory, so it can be reused later (see [addChild]). To completely remove a [godot.TreeItem] use [godot.Object.free].
+   *
+   * **Note:** If you want to move a child from one [godot.Tree] to another, then instead of removing and adding it manually you can use [moveBefore] or [moveAfter].
    */
   public fun removeChild(child: TreeItem): Unit {
     TransferContext.writeArguments(OBJECT to child)
@@ -867,12 +895,24 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
+  /**
+   * Returns the next TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
+   *
+   * If [wrap] is enabled, the method will wrap around to the first element in the tree when called on the last element, otherwise it returns `null`.
+   */
+  @JvmOverloads
   public fun getNextInTree(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_NEXT_IN_TREE, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
   }
 
+  /**
+   * Returns the previous TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
+   *
+   * If [wrap] is enabled, the method will wrap around to the last element in the tree when called on the first visible element, otherwise it returns `null`.
+   */
+  @JvmOverloads
   public fun getPrevInTree(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PREV_IN_TREE, OBJECT)
@@ -880,10 +920,11 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the next visible sibling TreeItem in the tree or a null object if there is none.
+   * Returns the next visible TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
    *
    * If [wrap] is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns `null`.
    */
+  @JvmOverloads
   public fun getNextVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_NEXT_VISIBLE, OBJECT)
@@ -891,10 +932,11 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the previous visible sibling TreeItem in the tree or a null object if there is none.
+   * Returns the previous visible sibling TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
    *
    * If [wrap] is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns `null`.
    */
+  @JvmOverloads
   public fun getPrevVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PREV_VISIBLE, OBJECT)

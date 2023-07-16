@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class MultiplayerSpawner : Node() {
@@ -103,6 +104,7 @@ public open class MultiplayerSpawner : Node() {
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_CLEAR_SPAWNABLE_SCENES, NIL)
   }
 
+  @JvmOverloads
   public fun spawn(`data`: Any? = null): Node? {
     TransferContext.writeArguments(ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SPAWN, OBJECT)

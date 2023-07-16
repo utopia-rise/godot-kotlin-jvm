@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Data transformation (marshaling) and encoding helpers.
@@ -36,6 +37,7 @@ public object Marshalls : Object() {
    *
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
+  @JvmOverloads
   public fun variantToBase64(variant: Any, fullObjects: Boolean = false): String {
     TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_VARIANT_TO_BASE64, STRING)
@@ -49,6 +51,7 @@ public object Marshalls : Object() {
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
+  @JvmOverloads
   public fun base64ToVariant(base64Str: String, allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to base64Str, BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_BASE64_TO_VARIANT, ANY)

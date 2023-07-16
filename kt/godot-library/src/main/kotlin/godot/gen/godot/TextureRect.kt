@@ -18,12 +18,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Control for drawing textures.
+ * A control that displays a texture.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * Used to draw icons and sprites in a user interface. The texture's placement can be controlled with the [stretchMode] property. It can scale, tile, or stay centered inside its bounding rectangle.
+ * A control that displays a texture, for example an icon inside a GUI. The texture's placement can be controlled with the [stretchMode] property. It can scale, tile, or stay centered inside its bounding rectangle.
  */
 @GodotBaseType
 public open class TextureRect : Control() {

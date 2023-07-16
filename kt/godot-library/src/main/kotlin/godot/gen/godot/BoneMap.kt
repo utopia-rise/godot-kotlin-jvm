@@ -20,12 +20,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Bone map for retargeting.
+ * Describes a mapping of bone names for retargeting [godot.Skeleton3D] into common names defined by a [godot.SkeletonProfile].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html]($DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html)
  *
- * This class contains a hashmap that uses a list of bone names in [godot.SkeletonProfile] as key names.
+ * This class contains a dictionary that uses a list of bone names in [godot.SkeletonProfile] as key names.
  *
  * By assigning the actual [godot.Skeleton3D] bone name as the key value, it maps the [godot.Skeleton3D] to the [godot.SkeletonProfile].
  */

@@ -16,11 +16,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * World boundary (infinite plane) shape resource for 3D physics.
+ * A 3D world boundary (half-space) shape used for physics collision.
  *
- * 3D world boundary shape to be added as a *direct* child of a [godot.PhysicsBody3D] or [godot.Area3D] using a [godot.CollisionShape3D] node. [godot.WorldBoundaryShape3D] works like an infinite plane and will not allow any physics body to go to the negative side. Note that the [godot.core.Plane]'s normal matters; anything "below" the plane will collide with it. If the [godot.WorldBoundaryShape3D] is used in a [godot.PhysicsBody3D], it will cause colliding objects placed "below" it to teleport "above" the plane.
- *
- * **Performance:** Being a primitive collision shape, [godot.WorldBoundaryShape3D] is fast to check collisions against.
+ * A 3D world boundary shape, intended for use in physics. [godot.WorldBoundaryShape3D] works like an infinite plane that forces all physics bodies to stay above it. The [plane]'s normal determines which direction is considered as "above" and in the editor, the line over the plane represents this direction. It can for example be used for endless flat floors.
  */
 @GodotBaseType
 public open class WorldBoundaryShape3D : Shape3D() {

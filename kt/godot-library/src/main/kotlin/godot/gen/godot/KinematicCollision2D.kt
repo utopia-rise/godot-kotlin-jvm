@@ -21,13 +21,14 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
- * Collision data for [godot.PhysicsBody2D.moveAndCollide] collisions.
+ * Holds collision data from the movement of a [godot.PhysicsBody2D].
  *
- * Contains collision data for [godot.PhysicsBody2D.moveAndCollide] collisions. When a [godot.PhysicsBody2D] is moved using [godot.PhysicsBody2D.moveAndCollide], it stops if it detects a collision with another body. If a collision is detected, a [godot.KinematicCollision2D] object is returned.
+ * Holds collision data from the movement of a [godot.PhysicsBody2D], usually from [godot.PhysicsBody2D.moveAndCollide]. When a [godot.PhysicsBody2D] is moved, it stops if it detects a collision with another body. If a collision is detected, a [godot.KinematicCollision2D] object is returned.
  *
- * This object contains information about the collision, including the colliding object, the remaining motion, and the collision position. This information can be used to calculate a collision response.
+ * The collision data includes the colliding object, the remaining motion, and the collision position. This data can be used to determine a custom response to the collision.
  */
 @GodotBaseType
 public open class KinematicCollision2D : RefCounted() {
@@ -79,6 +80,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the collision angle according to [upDirection], which is [godot.Vector2.UP] by default. This value is always positive.
    */
+  @JvmOverloads
   public fun getAngle(upDirection: Vector2 = Vector2(0, -1)): Float {
     TransferContext.writeArguments(VECTOR2 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_ANGLE,

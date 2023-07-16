@@ -17,9 +17,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * General-purpose progress bar.
+ * A control used for visual representation of a percentage.
  *
- * General-purpose progress bar. Shows fill percentage from right to left.
+ * A control used for visual representation of a percentage. Shows fill percentage from right to left.
  */
 @GodotBaseType
 public open class ProgressBar : Range() {

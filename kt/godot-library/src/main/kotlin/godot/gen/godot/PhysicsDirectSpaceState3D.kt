@@ -21,14 +21,15 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
- * Direct access object to a space in the [godot.PhysicsServer3D].
+ * Provides direct access to a physics space in the [godot.PhysicsServer3D].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Direct access object to a space in the [godot.PhysicsServer3D]. It's used mainly to do queries against objects and areas residing in a given space.
+ * Provides direct access to a physics space in the [godot.PhysicsServer3D]. It's used mainly to do queries against objects and areas residing in a given space.
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
@@ -50,6 +51,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * The number of intersections can be limited with the [maxResults] parameter, to reduce the processing time.
    */
+  @JvmOverloads
   public fun intersectPoint(parameters: PhysicsPointQueryParameters3D, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
@@ -97,6 +99,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * **Note:** This method does not take into account the `motion` property of the object.
    */
+  @JvmOverloads
   public fun intersectShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
@@ -126,6 +129,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * **Note:** This method does not take into account the `motion` property of the object.
    */
+  @JvmOverloads
   public fun collideShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Int = 32):
       VariantArray<Vector3> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())

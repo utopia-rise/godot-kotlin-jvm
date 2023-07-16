@@ -11,7 +11,7 @@ class FunctionArgCountCheck(logger: Logger, sourceFiles: List<SourceFile>): Base
             .flatMap { it.functions }
             .forEach { registeredFunction ->
                 if (registeredFunction.parameters.size > 5) {
-                    logger.error("RegisteredFunction ${registeredFunction.fqName} has more than 5 arguments. More than that is currently not supported. If you need more, either wrap them in a wrapper object or pass a VariantArray containing your values.")
+                    logger.error(registeredFunction, "RegisteredFunction ${registeredFunction.fqName} has more than 5 arguments. More than that is currently not supported. If you need more, either wrap them in a wrapper object or pass a VariantArray containing your values.")
                     hasIssues = true
                 }
             }

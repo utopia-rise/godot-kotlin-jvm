@@ -139,7 +139,7 @@ public open class Sky : Resource() {
     /**
      * Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [godot.ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
      *
-     * **Note:** The fast filtering algorithm is limited to 256x256 cubemaps, so [radianceSize] must be set to [godot.RADIANCE_SIZE_256].
+     * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [radianceSize] must be set to [godot.RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size is ignored.
      */
     PROCESS_MODE_REALTIME(3),
     ;

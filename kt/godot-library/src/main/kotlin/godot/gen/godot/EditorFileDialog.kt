@@ -23,11 +23,12 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A modified version of [godot.FileDialog] used by the editor.
  *
- * [godot.EditorFileDialog] is an enhanced version of [godot.FileDialog] available only to editor plugins. Additional features include list of favorited/recent files and ability to see files as thumbnails grid instead of list.
+ * [godot.EditorFileDialog] is an enhanced version of [godot.FileDialog] available only to editor plugins. Additional features include list of favorited/recent files and the ability to see files as thumbnails grid instead of list.
  */
 @GodotBaseType
 public open class EditorFileDialog internal constructor() : ConfirmationDialog() {
@@ -77,7 +78,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     }
 
   /**
-   * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode]
+   * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode].
    */
   public var fileMode: FileMode
     get() {
@@ -207,6 +208,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
    *
    * For example, a [filter] of `"*.tscn, *.scn"` and a [description] of `"Scenes"` results in filter text "Scenes (*.tscn, *.scn)".
    */
+  @JvmOverloads
   public fun addFilter(filter: String, description: String = ""): Unit {
     TransferContext.writeArguments(STRING to filter, STRING to description)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_ADD_FILTER, NIL)

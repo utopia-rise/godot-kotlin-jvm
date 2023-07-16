@@ -1,10 +1,12 @@
 package godot.entrygenerator.utils
 
+import godot.entrygenerator.model.GodotJvmSourceElement
+
 interface Logger {
-    fun logging(message: String)
-    fun info(message: String)
-    fun warn(message: String)
-    fun error(message: String)
+    fun logging(sourceElement: GodotJvmSourceElement, message: String)
+    fun info(sourceElement: GodotJvmSourceElement, message: String)
+    fun warn(sourceElement: GodotJvmSourceElement, message: String)
+    fun error(sourceElement: GodotJvmSourceElement, message: String)
 
     fun exception(e: Throwable)
 }

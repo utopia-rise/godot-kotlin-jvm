@@ -1,3 +1,4 @@
+@file:JvmName("PackedSceneUtils")
 package godot.extensions
 
 import godot.Node

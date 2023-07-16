@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Exposes a set of scenes as tiles for a [godot.TileSet] resource.
@@ -67,6 +68,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    *
    * Returns a newly generated unique ID.
    */
+  @JvmOverloads
   public fun createSceneTile(packedScene: PackedScene, idOverride: Int = -1): Int {
     TransferContext.writeArguments(OBJECT to packedScene, LONG to idOverride.toLong())
     TransferContext.callMethod(rawPtr,
@@ -75,7 +77,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Changes a scene tile's ID from [id] to [newId]. This will fail if there is already a tile with a ID equal to [newId].
+   * Changes a scene tile's ID from [id] to [newId]. This will fail if there is already a tile with an ID equal to [newId].
    */
   public fun setSceneTileId(id: Int, newId: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to newId.toLong())

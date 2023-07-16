@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class WebRTCPeerConnection : RefCounted() {
@@ -40,6 +41,7 @@ public open class WebRTCPeerConnection : RefCounted() {
     return true
   }
 
+  @JvmOverloads
   public fun initialize(configuration: Dictionary<Any?, Any?> = Dictionary()): GodotError {
     TransferContext.writeArguments(DICTIONARY to configuration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_INITIALIZE,
@@ -47,6 +49,7 @@ public open class WebRTCPeerConnection : RefCounted() {
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
+  @JvmOverloads
   public fun createDataChannel(label: String, options: Dictionary<Any?, Any?> = Dictionary()):
       WebRTCDataChannel? {
     TransferContext.writeArguments(STRING to label, DICTIONARY to options)

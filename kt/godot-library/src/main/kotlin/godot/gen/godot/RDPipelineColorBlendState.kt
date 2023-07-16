@@ -21,12 +21,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Pipeline color blend state (used by [godot.RenderingDevice]).
  *
+ * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineColorBlendState : RefCounted() {
   /**
-   *
+   * If `true`, performs the logic operation defined in [logicOp].
    */
   public var enableLogicOp: Boolean
     get() {
@@ -42,7 +44,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
     }
 
   /**
-   *
+   * The logic operation to perform for blending. Only effective if [enableLogicOp] is `true`.
    */
   public var logicOp: RenderingDevice.LogicOperation
     get() {
@@ -58,7 +60,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
     }
 
   /**
-   *
+   * The constant color to blend with. See also [godot.RenderingDevice.drawListSetBlendConstants].
    */
   public var blendConstant: Color
     get() {
@@ -74,7 +76,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
     }
 
   /**
-   *
+   * The attachments that are blended together.
    */
   public var attachments: VariantArray<RDPipelineColorBlendStateAttachment>
     get() {

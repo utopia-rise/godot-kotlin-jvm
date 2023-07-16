@@ -4,7 +4,8 @@ data class RpcAnnotation(
     val rpcMode: RpcMode,
     val sync: Sync,
     val transferMode: TransferMode,
-    val transferChannel: Int
+    val transferChannel: Int,
+    override val source: Any
 ) : FunctionAnnotation
 
 enum class RpcMode {

@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Tile library for tilemaps.
@@ -42,7 +43,7 @@ import kotlin.Unit
  *
  * A TileSet can be configured so that its tiles expose more or less properties. To do so, the TileSet resources uses property layers, that you can add or remove depending on your needs.
  *
- * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer having dedicated properties (physics layer an mask), you may add several TileSet physics layers for each type of collision you need.
+ * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer having dedicated properties (physics layer and mask), you may add several TileSet physics layers for each type of collision you need.
  *
  * See the functions to add new layers for more information.
  */
@@ -136,8 +137,11 @@ public open class TileSet : Resource() {
   /**
    * Adds a [godot.TileSetSource] to the TileSet. If [atlasSourceIdOverride] is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.
    *
-   * The function returns the added source source ID or -1 if the source could not be added.
+   * The function returns the added source ID or -1 if the source could not be added.
+   *
+   * **Warning:** A source cannot belong to two TileSets at the same time. If the added source was attached to another [godot.TileSet], it will be removed from that one.
    */
+  @JvmOverloads
   public fun addSource(source: TileSetSource, atlasSourceIdOverride: Int = -1): Int {
     TransferContext.writeArguments(OBJECT to source, LONG to atlasSourceIdOverride.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_SOURCE, LONG)
@@ -211,6 +215,7 @@ public open class TileSet : Resource() {
    *
    * Occlusion layers allow assigning occlusion polygons to atlas tiles.
    */
+  @JvmOverloads
   public fun addOcclusionLayer(toPosition: Int = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_OCCLUSION_LAYER, NIL)
@@ -252,7 +257,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Enables or disables sdf collision for occluders in the given TileSet occlusion layer.
+   * Enables or disables SDF collision for occluders in the given TileSet occlusion layer.
    */
   public fun setOcclusionLayerSdfCollision(layerIndex: Int, sdfCollision: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), BOOL to sdfCollision)
@@ -285,6 +290,7 @@ public open class TileSet : Resource() {
    *
    * Physics layers allow assigning collision polygons to atlas tiles.
    */
+  @JvmOverloads
   public fun addPhysicsLayer(toPosition: Int = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_PHYSICS_LAYER, NIL)
@@ -377,6 +383,7 @@ public open class TileSet : Resource() {
   /**
    * Adds a new terrain set at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    */
+  @JvmOverloads
   public fun addTerrainSet(toPosition: Int = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_TERRAIN_SET, NIL)
@@ -427,6 +434,7 @@ public open class TileSet : Resource() {
   /**
    * Adds a new terrain to the given terrain set [terrainSet] at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    */
+  @JvmOverloads
   public fun addTerrain(terrainSet: Int, toPosition: Int = -1): Unit {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_TERRAIN, NIL)
@@ -509,6 +517,7 @@ public open class TileSet : Resource() {
    *
    * Navigation layers allow assigning a navigable area to atlas tiles.
    */
+  @JvmOverloads
   public fun addNavigationLayer(toPosition: Int = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_NAVIGATION_LAYER, NIL)
@@ -532,7 +541,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets the navigation layers (as in the navigation server) for navigation regions is the given TileSet navigation layer.
+   * Sets the navigation layers (as in the navigation server) for navigation regions in the given TileSet navigation layer.
    */
   public fun setNavigationLayerLayers(layerIndex: Int, layers: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layers.toLong())
@@ -541,7 +550,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the navigation layers (as in the Navigation server) of the gives TileSet navigation layer.
+   * Returns the navigation layers (as in the Navigation server) of the given TileSet navigation layer.
    */
   public fun getNavigationLayerLayers(layerIndex: Int): Int {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
@@ -588,6 +597,7 @@ public open class TileSet : Resource() {
    *
    * Custom data layers allow assigning custom properties to atlas tiles.
    */
+  @JvmOverloads
   public fun addCustomDataLayer(toPosition: Int = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_CUSTOM_DATA_LAYER, NIL)
@@ -659,7 +669,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlac coordinates ID and the alternative tile ID are kept the same when using source-level proxies.
+   * Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept the same when using source-level proxies.
    *
    * This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target source when one is available.
    *
@@ -851,6 +861,7 @@ public open class TileSet : Resource() {
   /**
    * Adds a [godot.TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given [index].
    */
+  @JvmOverloads
   public fun addPattern(pattern: TileMapPattern, index: Int = -1): Int {
     TransferContext.writeArguments(OBJECT to pattern, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_PATTERN, LONG)
@@ -860,6 +871,7 @@ public open class TileSet : Resource() {
   /**
    * Returns the [godot.TileMapPattern] at the given [index].
    */
+  @JvmOverloads
   public fun getPattern(index: Int = -1): TileMapPattern? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PATTERN, OBJECT)

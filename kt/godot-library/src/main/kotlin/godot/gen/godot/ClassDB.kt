@@ -26,9 +26,10 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
- * Class information repository.
+ * A class information repository.
  *
  * Provides access to metadata stored for every available class.
  */
@@ -127,6 +128,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [godot.core.Dictionary] as described in [classGetSignal].
    */
+  @JvmOverloads
   public fun classGetSignalList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
@@ -138,6 +140,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is `false`.
    */
+  @JvmOverloads
   public fun classGetPropertyList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
@@ -171,6 +174,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called [method] or not.
    */
+  @JvmOverloads
   public fun classHasMethod(
     _class: StringName,
     method: StringName,
@@ -186,6 +190,7 @@ public object ClassDB : Object() {
    *
    * **Note:** In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.
    */
+  @JvmOverloads
   public fun classGetMethodList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
@@ -197,6 +202,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with the names all the integer constants of [class] or its ancestry.
    */
+  @JvmOverloads
   public fun classGetIntegerConstantList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
@@ -228,6 +234,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether [class] or its ancestry has an enum called [name] or not.
    */
+  @JvmOverloads
   public fun classHasEnum(
     _class: StringName,
     name: StringName,
@@ -241,6 +248,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the enums of [class] or its ancestry.
    */
+  @JvmOverloads
   public fun classGetEnumList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
@@ -252,6 +260,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the keys in [enum] of [class] or its ancestry.
    */
+  @JvmOverloads
   public fun classGetEnumConstants(
     _class: StringName,
     _enum: StringName,
@@ -266,6 +275,7 @@ public object ClassDB : Object() {
   /**
    * Returns which enum the integer constant [name] of [class] or its ancestry belongs to.
    */
+  @JvmOverloads
   public fun classGetIntegerConstantEnum(
     _class: StringName,
     name: StringName,

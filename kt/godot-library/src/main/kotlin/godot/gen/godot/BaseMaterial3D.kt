@@ -36,7 +36,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class BaseMaterial3D internal constructor() : Material() {
   /**
-   * If `true`, transparency is enabled on the body. Some transparency modes will disable shadow casting. Any transparency mode other than Disabled has a greater performance impact compared to opaque rendering. See also [blendMode].
+   * The material's transparency mode. Some transparency modes will disable shadow casting. Any transparency mode other than [TRANSPARENCY_DISABLED] has a greater performance impact compared to opaque rendering. See also [blendMode].
    */
   public var transparency: Transparency
     get() {
@@ -601,7 +601,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The strength of the subsurface scattering effect.
+   * The strength of the subsurface scattering effect. The depth of the effect is also controlled by [godot.ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringScale], which is set globally.
    */
   public var subsurfScatterStrength: Float
     get() {

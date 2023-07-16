@@ -28,14 +28,15 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Direct access object to a physics body in the [godot.PhysicsServer3D].
+ * Provides direct access to a physics body in the [godot.PhysicsServer3D].
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Provides direct access to a physics body in the [godot.PhysicsServer3D], allowing safe changes to physics properties. This object is passed via the direct state callback of rigid bodies, and is intended for changing the direct state of that body. See [godot.RigidBody3D.IntegrateForces].
+ * Provides direct access to a physics body in the [godot.PhysicsServer3D], allowing safe changes to physics properties. This object is passed via the direct state callback of [godot.RigidBody3D], and is intended for changing the direct state of that body. See [godot.RigidBody3D.IntegrateForces].
  */
 @GodotBaseType
 public open class PhysicsDirectBodyState3D internal constructor() : Object() {
@@ -235,6 +236,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
+  @JvmOverloads
   public fun applyCentralImpulse(impulse: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr,
@@ -248,6 +250,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
@@ -272,6 +275,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
+  @JvmOverloads
   public fun applyCentralForce(force: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
@@ -283,6 +287,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
@@ -305,6 +310,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
+  @JvmOverloads
   public fun addConstantCentralForce(force: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
@@ -316,6 +322,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
@@ -390,7 +397,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Returns the local position of the contact point.
+   * Returns the position of the contact point on the body in the global coordinate system.
    */
   public fun getContactLocalPosition(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
@@ -429,6 +436,9 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns the linear velocity vector at the body's contact point.
+   */
   public fun getContactLocalVelocityAtPosition(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr,
@@ -448,7 +458,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Returns the contact position in the collider.
+   * Returns the position of the contact point on the collider in the global coordinate system.
    */
   public fun getContactColliderPosition(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())

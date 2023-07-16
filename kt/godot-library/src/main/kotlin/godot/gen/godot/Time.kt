@@ -21,9 +21,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
- * Time singleton for working with time.
+ * A singleton for working with time data.
  *
  * The Time singleton allows converting time between various formats and also getting time information from the system.
  *
@@ -79,6 +80,7 @@ public object Time : Object() {
    *
    * If [useSpace] is `true`, the date and time bits are separated by an empty space character instead of the letter T.
    */
+  @JvmOverloads
   public fun getDatetimeStringFromUnixTime(unixTimeVal: Long, useSpace: Boolean = false): String {
     TransferContext.writeArguments(LONG to unixTimeVal, BOOL to useSpace)
     TransferContext.callMethod(rawPtr,
@@ -183,6 +185,7 @@ public object Time : Object() {
   /**
    * Returns the current date as a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, `second`, and `dst` (Daylight Savings Time).
    */
+  @JvmOverloads
   public fun getDatetimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_SYSTEM,
@@ -195,6 +198,7 @@ public object Time : Object() {
    *
    * The returned values are in the system's local time when [utc] is `false`, otherwise they are in UTC.
    */
+  @JvmOverloads
   public fun getDateDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATE_DICT_FROM_SYSTEM,
@@ -207,6 +211,7 @@ public object Time : Object() {
    *
    * The returned values are in the system's local time when [utc] is `false`, otherwise they are in UTC.
    */
+  @JvmOverloads
   public fun getTimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_DICT_FROM_SYSTEM,
@@ -221,6 +226,7 @@ public object Time : Object() {
    *
    * If [useSpace] is `true`, the date and time bits are separated by an empty space character instead of the letter T.
    */
+  @JvmOverloads
   public fun getDatetimeStringFromSystem(utc: Boolean = false, useSpace: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc, BOOL to useSpace)
     TransferContext.callMethod(rawPtr,
@@ -233,6 +239,7 @@ public object Time : Object() {
    *
    * The returned values are in the system's local time when [utc] is `false`, otherwise they are in UTC.
    */
+  @JvmOverloads
   public fun getDateStringFromSystem(utc: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATE_STRING_FROM_SYSTEM,
@@ -245,6 +252,7 @@ public object Time : Object() {
    *
    * The returned values are in the system's local time when [utc] is `false`, otherwise they are in UTC.
    */
+  @JvmOverloads
   public fun getTimeStringFromSystem(utc: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_STRING_FROM_SYSTEM,

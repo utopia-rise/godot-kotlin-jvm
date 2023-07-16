@@ -27,19 +27,18 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * GraphNode is a [godot.Container] control that represents a single data unit in a [godot.GraphEdit] graph. You can customize the number, type, and color of left- and right-side connection ports.
+ * A container with connection ports, representing a node in a [godot.GraphEdit].
  *
- * **Note:** Please be aware that this node will undergo extensive refactoring in a future 4.x version involving compatibility-breaking API changes.
+ * [godot.GraphNode] allows to create nodes for a [godot.GraphEdit] graph with customizable content based on its child controls. [godot.GraphNode] is derived from [godot.Container] and it is responsible for placing its children on screen. This works similar to [godot.VBoxContainer]. Children, in turn, provide [godot.GraphNode] with so-called slots, each of which can have a connection port on either side.
  *
- * GraphNode allows to create nodes for a [godot.GraphEdit] graph with customizable content based on its child [godot.Control]s. GraphNode is a [godot.Container] and is responsible for placing its children on screen. This works similar to [godot.VBoxContainer]. Children, in turn, provide GraphNode with so-called slots, each of which can have a connection port on either side. This is similar to how [godot.TabContainer] uses children to create the tabs.
- *
- * Each GraphNode slot is defined by its index and can provide the node with up to two ports: one on the left, and one on the right. By convention the left port is also referred to as the input port and the right port is referred to as the output port. Each port can be enabled and configured individually, using different type and color. The type is an arbitrary value that you can define using your own considerations. The parent [godot.GraphEdit] will receive this information on each connect and disconnect request.
+ * Each [godot.GraphNode] slot is defined by its index and can provide the node with up to two ports: one on the left, and one on the right. By convention the left port is also referred to as the **input port** and the right port is referred to as the **output port**. Each port can be enabled and configured individually, using different type and color. The type is an arbitrary value that you can define using your own considerations. The parent [godot.GraphEdit] will receive this information on each connect and disconnect request.
  *
  * Slots can be configured in the Inspector dock once you add at least one child [godot.Control]. The properties are grouped by each slot's index in the "Slot" section.
  *
- * **Note:** While GraphNode is set up using slots and slot indices, connections are made between the ports which are enabled. Because of that [godot.GraphEdit] uses port's index and not slot's index. You can use [getConnectionInputSlot] and [getConnectionOutputSlot] to get the slot index from the port index.
+ * **Note:** While GraphNode is set up using slots and slot indices, connections are made between the ports which are enabled. Because of that, [godot.GraphEdit] uses the port's index and not the slot's index. You can use [getConnectionInputSlot] and [getConnectionOutputSlot] to get the slot index from the port index.
  */
 @GodotBaseType
 public open class GraphNode : Container() {
@@ -268,6 +267,7 @@ public open class GraphNode : Container() {
    *
    * **Note:** This method only sets properties of the slot. To create the slot itself, add a [godot.Control]-derived child to the GraphNode.
    */
+  @JvmOverloads
   public fun setSlot(
     slotIndex: Int,
     enableLeftPort: Boolean,

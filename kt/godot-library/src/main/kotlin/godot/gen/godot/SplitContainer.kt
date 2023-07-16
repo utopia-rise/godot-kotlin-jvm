@@ -20,12 +20,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Container for splitting and adjusting.
+ * A container that splits two child controls horizontally or vertically and provides a grabber for adjusting the split ratio.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * Container for splitting two [godot.Control]s vertically or horizontally, with a grabber that allows adjusting the split offset or ratio.
+ * A container that accepts only two child controls, then arranges them horizontally or vertically and creates a divisor between them. The divisor can be dragged around to change the size relation between the child controls.
  */
 @GodotBaseType
 public open class SplitContainer : Container() {

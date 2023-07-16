@@ -19,14 +19,15 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * TLS stream peer.
+ * A stream peer that handles TLS connections.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
  *
- * TLS stream peer. This object can be used to connect to an TLS server or accept a single TLS client connection.
+ * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or accept a single TLS client connection.
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
@@ -57,6 +58,7 @@ public open class StreamPeerTLS : StreamPeer() {
   /**
    * Connects to a peer using an underlying [godot.StreamPeer] [stream] and verifying the remote certificate is correctly signed for the given [commonName]. You can pass the optional [clientOptions] parameter to customize the trusted certification authorities, or disable the common name verification. See [godot.TLSOptions.client] and [godot.TLSOptions.clientUnsafe].
    */
+  @JvmOverloads
   public fun connectToStream(
     stream: StreamPeer,
     commonName: String,

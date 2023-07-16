@@ -24,9 +24,7 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * Font loaded from a system font.
- *
- * **Note:** This class is implemented on iOS, Linux, macOS and Windows, on other platforms it will fallback to default theme font.
+ * A font loaded from a system font. Falls back to a default theme font if not implemented on the host OS.
  *
  * [godot.SystemFont] loads a font from a system font with the first matching name from [fontNames].
  *
@@ -35,6 +33,8 @@ import kotlin.jvm.JvmName
  * The returned font might be part of a font collection or be a variable font with OpenType "weight", "width" and/or "italic" features set.
  *
  * You can create [godot.FontVariation] of the system font for fine control over its features.
+ *
+ * **Note:** This class is implemented on iOS, Linux, macOS and Windows, on other platforms it will fallback to default theme font.
  */
 @GodotBaseType
 public open class SystemFont : Font() {

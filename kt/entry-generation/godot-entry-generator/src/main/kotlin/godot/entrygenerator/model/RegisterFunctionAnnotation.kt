@@ -1,3 +1,3 @@
 package godot.entrygenerator.model
 
-object RegisterFunctionAnnotation : FunctionAnnotation
+class RegisterFunctionAnnotation(override val source: Any) : FunctionAnnotation

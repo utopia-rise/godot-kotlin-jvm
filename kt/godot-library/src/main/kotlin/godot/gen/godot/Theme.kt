@@ -32,12 +32,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Theme resource for styling/skinning [godot.Control]s and [godot.Window]s.
+ * A resource used for styling/skinning [godot.Control]s and [godot.Window]s.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_using_theme_editor.html]($DOCS_URL/tutorials/ui/gui_using_theme_editor.html)
  *
- * A theme resource is used for styling/skinning [godot.Control] and [godot.Window] nodes. While individual controls can be styled using their local theme overrides (see [godot.Control.addThemeColorOverride]), theme resources allow you to store and apply the same settings between all controls sharing the same type (e.g. style all [godot.Button]s the same). One theme resource can be used for the entire project, but you can also set a separate theme resource to a branch of control nodes. A theme resources assigned to a control node applies to the control itself, as well as all of its direct and indirect children (as long as a chain of controls is uninterrupted).
+ * A resource used for styling/skinning [godot.Control] and [godot.Window] nodes. While individual controls can be styled using their local theme overrides (see [godot.Control.addThemeColorOverride]), theme resources allow you to store and apply the same settings across all controls sharing the same type (e.g. style all [godot.Button]s the same). One theme resource can be used for the entire project, but you can also set a separate theme resource to a branch of control nodes. A theme resource assigned to a control applies to the control itself, as well as all of its direct and indirect children (as long as a chain of controls is uninterrupted).
  *
  * Use [godot.ProjectSettings.gui/theme/custom] to set up a project-scope theme that will be available to every control in your project.
  *
@@ -624,7 +624,7 @@ public open class Theme : Resource() {
   /**
    * Returns the theme property of [dataType] defined by [name] and [themeType], if it exists.
    *
-   * Returns the engine fallback icon value if the property doesn't exist (see [godot.ThemeDB]). Use [hasThemeItem] to check for existence.
+   * Returns the engine fallback value if the property doesn't exist (see [godot.ThemeDB]). Use [hasThemeItem] to check for existence.
    *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */

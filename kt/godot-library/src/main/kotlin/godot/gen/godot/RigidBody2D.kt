@@ -29,22 +29,23 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Physics Body which is moved by 2D physics simulation. Useful for objects that have gravity and can be pushed by other objects.
+ * A 2D physics body that is moved by a physics simulation.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/148](https://godotengine.org/asset-library/asset/148)
  *
- * This node implements simulated 2D physics. You do not control a RigidBody2D directly. Instead, you apply forces to it (gravity, impulses, etc.) and the physics simulation calculates the resulting movement based on its mass, friction, and other physical properties.
+ * [godot.RigidBody2D] implements full 2D physics. It cannot be controlled directly, instead, you must apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the resulting movement, rotation, react to collisions, and affect other physics bodies in its path.
  *
- * You can switch the body's behavior using [lockRotation], [freeze], and [freezeMode].
+ * The body's behavior can be adjusted via [lockRotation], [freeze], and [freezeMode]. By changing various properties of the object, such as [mass], you can control how the physics simulation acts on it.
  *
- * **Note:** You should not change a RigidBody2D's `position` or `linear_velocity` every frame or even very often. If you need to directly affect the body's state, use [_integrateForces], which allows you to directly access the physics state.
+ * A rigid body will always maintain its shape and size, even when forces are applied to it. It is useful for objects that can be interacted with in an environment, such as a tree that can be knocked over or a stack of crates that can be pushed around.
  *
- * Please also keep in mind that physics bodies manage their own transform which overwrites the ones you set. So any direct or indirect transformation (including scaling of the node or its parent) will be visible in the editor only, and immediately reset at runtime.
+ * If you need to override the default physics behavior, you can write a custom force integration function. See [customIntegrator].
  *
- * If you need to override the default physics behavior or add a transformation at runtime, you can write a custom force integration. See [customIntegrator].
+ * **Note:** Changing the 2D transform or [linearVelocity] of a [godot.RigidBody2D] very often may lead to some unpredictable behaviors. If you need to directly affect the body, prefer [_integrateForces] as it allows you to directly access the physics state.
  */
 @GodotBaseType
 public open class RigidBody2D : PhysicsBody2D() {
@@ -561,6 +562,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
+  @JvmOverloads
   public fun applyCentralImpulse(impulse: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_CENTRAL_IMPULSE,
@@ -574,6 +576,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_IMPULSE, NIL)
@@ -608,6 +611,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_FORCE, NIL)
@@ -639,6 +643,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_ADD_CONSTANT_FORCE, NIL)
@@ -692,7 +697,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     id: Long,
   ) {
     /**
-     * In this mode, the body's center of mass is calculated automatically based on its shapes.
+     * In this mode, the body's center of mass is calculated automatically based on its shapes. This assumes that the shapes' origins are also their center of mass.
      */
     CENTER_OF_MASS_MODE_AUTO(0),
     /**

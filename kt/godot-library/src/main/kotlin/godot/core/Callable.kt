@@ -1,3 +1,4 @@
+@file:JvmName("CallableUtils")
 package godot.core
 
 import godot.Object

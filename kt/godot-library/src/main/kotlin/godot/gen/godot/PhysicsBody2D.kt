@@ -23,14 +23,15 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Base class for all objects affected by physics in 2D space.
+ * Abstract base class for 2D game objects affected by physics.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
  *
- * PhysicsBody2D is an abstract base class for implementing a physics body. All *Body2D types inherit from it.
+ * [godot.PhysicsBody2D] is an abstract base class for 2D game objects affected by physics. All 2D physics bodies inherit from it.
  */
 @GodotBaseType
 public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
@@ -50,6 +51,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    *
    * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [godot.CharacterBody2D] for improving floor detection during floor snapping.
    */
+  @JvmOverloads
   public fun moveAndCollide(
     motion: Vector2,
     testOnly: Boolean = false,
@@ -73,6 +75,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    *
    * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would *touch* any other bodies.
    */
+  @JvmOverloads
   public fun testMove(
     from: Transform2D,
     motion: Vector2,

@@ -21,11 +21,12 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
- * Result from a 3D body motion test.
+ * Describes the motion and collision result from [godot.PhysicsServer3D.bodyTestMotion].
  *
- * This class contains the motion and collision result from [godot.PhysicsServer3D.bodyTestMotion].
+ * Describes the motion and collision result from [godot.PhysicsServer3D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult3D : RefCounted() {
@@ -87,6 +88,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the point of collision in global coordinates given a collision index (the deepest collision by default), if a collision occurred.
    */
+  @JvmOverloads
   public fun getCollisionPoint(collisionIndex: Int = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr,
@@ -97,6 +99,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the colliding body's shape's normal at the point of collision given a collision index (the deepest collision by default), if a collision occurred.
    */
+  @JvmOverloads
   public fun getCollisionNormal(collisionIndex: Int = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr,
@@ -107,6 +110,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the colliding body's velocity given a collision index (the deepest collision by default), if a collision occurred.
    */
+  @JvmOverloads
   public fun getColliderVelocity(collisionIndex: Int = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr,
@@ -117,6 +121,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the unique instance ID of the colliding body's attached [godot.Object] given a collision index (the deepest collision by default), if a collision occurred. See [godot.Object.getInstanceId].
    */
+  @JvmOverloads
   public fun getColliderId(collisionIndex: Int = 0): Long {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr,
@@ -127,6 +132,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the colliding body's [RID] used by the [godot.PhysicsServer3D] given a collision index (the deepest collision by default), if a collision occurred.
    */
+  @JvmOverloads
   public fun getColliderRid(collisionIndex: Int = 0): RID {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr,
@@ -137,6 +143,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the colliding body's attached [godot.Object] given a collision index (the deepest collision by default), if a collision occurred.
    */
+  @JvmOverloads
   public fun getCollider(collisionIndex: Int = 0): Object? {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr,
@@ -147,6 +154,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the colliding body's shape index given a collision index (the deepest collision by default), if a collision occurred. See [godot.CollisionObject3D].
    */
+  @JvmOverloads
   public fun getColliderShape(collisionIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr,
@@ -157,6 +165,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the moving object's colliding shape given a collision index (the deepest collision by default), if a collision occurred.
    */
+  @JvmOverloads
   public fun getCollisionLocalShape(collisionIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr,
@@ -167,6 +176,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the length of overlap along the collision normal given a collision index (the deepest collision by default), if a collision occurred.
    */
+  @JvmOverloads
   public fun getCollisionDepth(collisionIndex: Int = 0): Float {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr,

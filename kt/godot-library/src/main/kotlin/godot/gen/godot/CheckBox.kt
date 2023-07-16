@@ -12,11 +12,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Binary choice user interface widget. See also [godot.CheckButton].
+ * A button that represents a binary choice.
  *
- * A checkbox allows the user to make a binary choice (choosing only one of two possible options). It's similar to [godot.CheckButton] in functionality, but it has a different appearance. To follow established UX patterns, it's recommended to use CheckBox when toggling it has **no** immediate effect on something. For example, it could be used when toggling it will only do something once a confirmation button is pressed.
+ * [godot.CheckBox] allows the user to choose one of only two possible options. It's similar to [godot.CheckButton] in functionality, but it has a different appearance. To follow established UX patterns, it's recommended to use [godot.CheckBox] when toggling it has **no** immediate effect on something. For example, it could be used when toggling it will only do something once a confirmation button is pressed.
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
+ *
+ * When [godot.BaseButton.buttonGroup] specifies a [godot.ButtonGroup], [godot.CheckBox] changes its appearance to that of a radio button and uses the various `radio_*` theme properties.
  */
 @GodotBaseType
 public open class CheckBox : Button() {

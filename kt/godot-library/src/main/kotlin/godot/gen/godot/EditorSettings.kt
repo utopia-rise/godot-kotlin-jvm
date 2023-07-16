@@ -29,6 +29,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Object that holds the project-independent editor settings.
@@ -43,7 +44,7 @@ import kotlin.Unit
  *
  * [gdscript]
  *
- * var settings = EditorInterface.get_editor_settings()
+ * var settings = get_editor_interface().get_editor_settings()
  *
  * # `settings.set("some/property", 10)` also works as this class overrides `_set()` internally.
  *
@@ -227,6 +228,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Returns project-specific metadata for the [section] and [key] specified. If the metadata doesn't exist, [default] will be returned instead. See also [setProjectMetadata].
    */
+  @JvmOverloads
   public fun getProjectMetadata(
     section: String,
     key: String,
@@ -294,7 +296,7 @@ public open class EditorSettings internal constructor() : Resource() {
   }
 
   /**
-   * Gets an array of the settings which have been changed since the last save. Note that internally `changed_settings` is cleared after a successful save, so generally the most appropriate place to use this method is when processing [NOTIFICATION_EDITOR_SETTINGS_CHANGED]
+   * Gets an array of the settings which have been changed since the last save. Note that internally `changed_settings` is cleared after a successful save, so generally the most appropriate place to use this method is when processing [NOTIFICATION_EDITOR_SETTINGS_CHANGED].
    */
   public fun getChangedSettings(): PackedStringArray {
     TransferContext.writeArguments()

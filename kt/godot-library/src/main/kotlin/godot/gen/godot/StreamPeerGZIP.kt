@@ -17,11 +17,12 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Stream peer handling GZIP and deflate compression/decompresison.
+ * A stream peer that handles GZIP and deflate compression/decompression.
  *
- * This class allows to compress or decompress data using GZIP/deflate in a streaming fashion. This is particularly useful when compressing or decompressing files that has to be sent through the network without having to allocate them all in memory.
+ * This class allows to compress or decompress data using GZIP/deflate in a streaming fashion. This is particularly useful when compressing or decompressing files that have to be sent through the network without needing to allocate them all in memory.
  *
  * After starting the stream via [startCompression] (or [startDecompression]), calling [godot.StreamPeer.putPartialData] on this stream will compress (or decompress) the data, writing it to the internal buffer. Calling [godot.StreamPeer.getAvailableBytes] will return the pending bytes in the internal buffer, and [godot.StreamPeer.getPartialData] will retrieve the compressed (or decompressed) bytes from it. When the stream is over, you must call [finish] to ensure the internal buffer is properly flushed (make sure to call [godot.StreamPeer.getAvailableBytes] on last time to check if more data needs to be read after that).
  */
@@ -35,6 +36,7 @@ public open class StreamPeerGZIP : StreamPeer() {
   /**
    * Start the stream in compression mode with the given [bufferSize], if [useDeflate] is `true` uses deflate instead of GZIP.
    */
+  @JvmOverloads
   public fun startCompression(useDeflate: Boolean = false, bufferSize: Int = 65535): GodotError {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERGZIP_START_COMPRESSION,
@@ -45,6 +47,7 @@ public open class StreamPeerGZIP : StreamPeer() {
   /**
    * Start the stream in decompression mode with the given [bufferSize], if [useDeflate] is `true` uses deflate instead of GZIP.
    */
+  @JvmOverloads
   public fun startDecompression(useDeflate: Boolean = false, bufferSize: Int = 65535): GodotError {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERGZIP_START_DECOMPRESSION,

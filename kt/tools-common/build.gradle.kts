@@ -1,5 +1,6 @@
 import godot.dependencies.gradle.DependenciesVersions
 import godot.dependencies.gradle.fullGodotKotlinJvmVersion
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `kotlin-dsl`
@@ -39,5 +40,15 @@ publishing {
             description = "Godot common module for all tools."
             from(components.getByName("java"))
         }
+    }
+}
+
+java {
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks {
+    withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "11"
     }
 }

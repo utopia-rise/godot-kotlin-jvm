@@ -21,9 +21,10 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Base class for all resources.
+ * Base class for serializable objects.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/best_practices/node_alternatives.html]($DOCS_URL/tutorials/best_practices/node_alternatives.html)
@@ -65,7 +66,7 @@ public open class Resource : RefCounted() {
     }
 
   /**
-   * The unique path to this resource. If it has been saved to disk, the value will be its filepath. If the resource is exclusively contained within a scene, the value will be the [godot.PackedScene]'s filepath, followed by an unique identifier.
+   * The unique path to this resource. If it has been saved to disk, the value will be its filepath. If the resource is exclusively contained within a scene, the value will be the [godot.PackedScene]'s filepath, followed by a unique identifier.
    *
    * **Note:** Setting this property manually may fail if a resource with the same path has already been previously loaded. If necessary, use [takeOverPath].
    */
@@ -176,6 +177,7 @@ public open class Resource : RefCounted() {
    *
    * **Note:** For custom resources, this method will fail if [godot.Object.Init] has been defined with required parameters.
    */
+  @JvmOverloads
   public fun duplicate(subresources: Boolean = false): Resource? {
     TransferContext.writeArguments(BOOL to subresources)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_DUPLICATE, OBJECT)

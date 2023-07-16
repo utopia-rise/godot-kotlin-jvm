@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Base class for nodes in a visual shader graph.
@@ -67,6 +68,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Sets the default [value] for the selected input [port].
    */
+  @JvmOverloads
   public fun setInputPortDefaultValue(
     port: Int,
     `value`: Any,

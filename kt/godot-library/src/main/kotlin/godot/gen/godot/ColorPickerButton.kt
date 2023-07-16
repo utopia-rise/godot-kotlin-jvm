@@ -21,12 +21,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Button that pops out a [godot.ColorPicker].
+ * A button that brings up a [godot.ColorPicker] when pressed.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/517](https://godotengine.org/asset-library/asset/517)
  *
- * Encapsulates a [godot.ColorPicker] making it accessible by pressing a button. Pressing the button will toggle the [godot.ColorPicker] visibility.
+ * Encapsulates a [godot.ColorPicker], making it accessible by pressing a button. Pressing the button will toggle the [godot.ColorPicker]'s visibility.
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  *

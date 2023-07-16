@@ -34,9 +34,13 @@ public open class VisualInstance3D : Node3D() {
   /**
    * The render layer(s) this [godot.VisualInstance3D] is drawn on.
    *
-   * This object will only be visible for [godot.Camera3D]s whose cull mask includes the render object this [godot.VisualInstance3D] is set to.
+   * This object will only be visible for [godot.Camera3D]s whose cull mask includes any of the render layers this [godot.VisualInstance3D] is set to.
    *
    * For [godot.Light3D]s, this can be used to control which [godot.VisualInstance3D]s are affected by a specific light. For [godot.GPUParticles3D], this can be used to control which particles are effected by a specific attractor. For [godot.Decal]s, this can be used to control which [godot.VisualInstance3D]s are affected by a specific decal.
+   *
+   * To adjust [layers] more easily using a script, use [getLayerMaskValue] and [setLayerMaskValue].
+   *
+   * **Note:** [godot.VoxelGI], SDFGI and [godot.LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [godot.GeometryInstance3D.giMode] to [godot.GeometryInstance3D.GI_MODE_DISABLED] for meshes and [godot.Light3D.lightBakeMode] to [godot.Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.
    */
   public var layers: Int
     get() {
@@ -133,7 +137,7 @@ public open class VisualInstance3D : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [layers] is enabled, given a `layer_number` between 1 and 20.
+   * Returns whether or not the specified layer of the [layers] is enabled, given a [layerNumber] between 1 and 20.
    */
   public fun getLayerMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())

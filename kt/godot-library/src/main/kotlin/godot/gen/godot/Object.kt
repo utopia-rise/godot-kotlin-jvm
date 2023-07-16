@@ -45,6 +45,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 import kotlin.reflect.KCallable
 
 /**
@@ -106,6 +108,7 @@ public open class Object : KtObject() {
     emit(this@Object)
   }
 
+  @JvmOverloads
   public inline fun <reified K : () -> Unit> Signal0.connect(
     target: Object,
     method: K,
@@ -119,6 +122,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0)
   }
 
+  @JvmOverloads
   public inline fun <A0, reified K : (A0) -> Unit> Signal1<A0>.connect(
     target: Object,
     method: K,
@@ -132,6 +136,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, reified K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
     target: Object,
     method: K,
@@ -149,6 +154,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, reified K : (
     A0,
     A1,
@@ -171,6 +177,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, reified K : (
     A0,
     A1,
@@ -195,6 +202,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, reified K : (
     A0,
     A1,
@@ -221,6 +229,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4, a5)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, reified K : (
     A0,
     A1,
@@ -249,6 +258,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, A6, reified K : (
     A0,
     A1,
@@ -279,6 +289,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, reified K : (
     A0,
     A1,
@@ -311,6 +322,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, reified K : (
     A0,
     A1,
@@ -346,6 +358,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, reified K : (
     A0,
     A1,
@@ -371,6 +384,7 @@ public open class Object : KtObject() {
    *
    * **Note:** This method ignores `class_name` declarations. If this object's script has defined a `class_name`, the base, built-in class name is returned instead.
    */
+  @JvmName("getGodotClass")
   public fun getClass(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_CLASS, STRING)
@@ -681,6 +695,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun notification(what: Int, reversed: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to what.toLong(), BOOL to reversed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_NOTIFICATION, NIL)
@@ -728,7 +743,9 @@ public open class Object : KtObject() {
    *
    * If [value] is `null`, the entry is removed. This is the equivalent of using [removeMeta]. See also [hasMeta] and [getMeta].
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector dock and should not be edited.
+   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
+   *
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
   public fun setMeta(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
@@ -738,7 +755,9 @@ public open class Object : KtObject() {
   /**
    * Removes the given entry [name] from the object's metadata. See also [hasMeta], [getMeta] and [setMeta].
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited.
+   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
+   *
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
   public fun removeMeta(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -748,8 +767,11 @@ public open class Object : KtObject() {
   /**
    * Returns the object's metadata value for the given entry [name]. If the entry does not exist, returns [default]. If [default] is `null`, an error is also generated.
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector dock and should not be edited.
+   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
+   *
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
+  @JvmOverloads
   public fun getMeta(name: StringName, default: Any? = null): Any? {
     TransferContext.writeArguments(STRING_NAME to name, ANY to default)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_META, ANY)
@@ -758,6 +780,8 @@ public open class Object : KtObject() {
 
   /**
    * Returns `true` if a metadata entry is found with the given [name]. See also [getMeta], [setMeta] and [removeMeta].
+   *
+   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
    *
    * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
@@ -825,6 +849,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun addUserSignal(signal: String, arguments: VariantArray<Any?> =
       godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(STRING to signal, ARRAY to arguments)
@@ -905,7 +930,11 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the [method] on the object during idle time. This method supports a variable number of arguments, so parameters can be passed as a comma separated list.
+   * Calls the [method] on the object during idle time. Always returns null, **not** the method's result.
+   *
+   * Idle time happens mainly at the end of process and physics frames. In it, deferred calls will be run until there are none left, which means you can defer calls from other deferred calls and they'll still be run in the current idle time cycle. If not done carefully, this can result in infinite recursion without causing a stack overflow, which will hang the game similarly to an infinite loop.
+   *
+   * This method supports a variable number of arguments, so parameters can be passed as a comma separated list.
    *
    * [codeblocks]
    *
@@ -927,7 +956,20 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    *
+   * See also [godot.Callable.callDeferred].
+   *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [godot.StringName] on each call.
+   *
+   * **Note:** If you're looking to delay the function call by a frame, refer to the [godot.SceneTree.processFrame] and [godot.SceneTree.physicsFrame] signals.
+   *
+   * ```
+   * 				var node = Node3D.new()
+   * 				# Make a Callable and bind the arguments to the node's rotate() call.
+   * 				var callable = node.rotate.bind(Vector3(1.0, 0.0, 0.0), 1.571)
+   * 				# Connect the callable to the process_frame signal, so it gets called in the next process frame.
+   * 				# CONNECT_ONE_SHOT makes sure it only gets called once instead of every frame.
+   * 				get_tree().process_frame.connect(callable, CONNECT_ONE_SHOT)
+   * 				```
    */
   public fun callDeferred(method: StringName, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
@@ -936,7 +978,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns [value] to the given [property], after the current frame's physics step. This is equivalent to calling [set] through [callDeferred].
+   * Assigns [value] to the given [property], at the end of the current frame. This is equivalent to calling [set] through [callDeferred].
    *
    * [codeblocks]
    *
@@ -1021,7 +1063,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the the given [method] name exists in the object.
+   * Returns `true` if the given [method] name exists in the object.
    *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [godot.StringName] on each call.
    */
@@ -1338,6 +1380,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun connect(
     signal: StringName,
     callable: Callable,
@@ -1417,6 +1460,7 @@ public open class Object : KtObject() {
    *
    * For detailed examples, see [godot.Internationalizing games]($DOCS_URL/tutorials/i18n/internationalizing_games.html).
    */
+  @JvmOverloads
   public fun tr(message: StringName, context: StringName = StringName("")): String {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_TR, STRING)
@@ -1434,6 +1478,7 @@ public open class Object : KtObject() {
    *
    * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's recommended handling these cases with [tr].
    */
+  @JvmOverloads
   public fun trN(
     message: StringName,
     pluralMessage: StringName,
@@ -1454,6 +1499,9 @@ public open class Object : KtObject() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * If this method is called during [NOTIFICATION_PREDELETE], this object will reject being freed and will remain allocated. This is mostly an internal function used for error handling to avoid the user from freeing objects when they are not intended to.
+   */
   public fun cancelFree(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CANCEL_FREE, NIL)
@@ -1463,7 +1511,7 @@ public open class Object : KtObject() {
     id: Long,
   ) {
     /**
-     * Deferred connections trigger their [godot.Callable]s on idle time, rather than instantly.
+     * Deferred connections trigger their [godot.Callable]s on idle time (at the end of the frame), rather than instantly.
      */
     CONNECT_DEFERRED(1),
     /**

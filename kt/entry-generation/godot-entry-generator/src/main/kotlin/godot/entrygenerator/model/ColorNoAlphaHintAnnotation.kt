@@ -1,3 +1,5 @@
 package godot.entrygenerator.model
 
-object ColorNoAlphaHintAnnotation : PropertyHintAnnotation
+class ColorNoAlphaHintAnnotation(
+    source: Any
+) : PropertyHintAnnotation(source)

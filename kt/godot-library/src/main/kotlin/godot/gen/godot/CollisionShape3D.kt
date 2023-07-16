@@ -17,16 +17,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Node that represents collision shape data in 3D space.
+ * A node that provides a [godot.Shape3D] to a [godot.CollisionObject3D] parent.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * Editor facility for creating and editing collision shapes in 3D space. Set the [shape] property to configure the shape. **IMPORTANT**: this is an Editor-only helper to create shapes, use [godot.CollisionObject3D.shapeOwnerGetShape] to get the actual shape.
+ * A node that provides a [godot.Shape3D] to a [godot.CollisionObject3D] parent and allows to edit it. This can give a detection shape to an [godot.Area3D] or turn a [godot.PhysicsBody3D] into a solid object.
  *
- * You can use this node to represent all sorts of collision shapes, for example, add this to an [godot.Area3D] to give it a detection shape, or add it to a [godot.PhysicsBody3D] to create a solid object.
- *
- * **Warning:** A non-uniformly scaled CollisionShape3D node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size of its [shape] resource instead.
+ * **Warning:** A non-uniformly scaled [godot.CollisionShape3D] will likely not behave as expected. Make sure to keep its scale the same on all axes and adjust its [shape] resource instead.
  */
 @GodotBaseType
 public open class CollisionShape3D : Node3D() {

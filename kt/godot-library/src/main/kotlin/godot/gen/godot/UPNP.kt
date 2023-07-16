@@ -19,6 +19,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class UPNP : RefCounted() {
@@ -101,6 +102,7 @@ public open class UPNP : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?)
   }
 
+  @JvmOverloads
   public fun discover(
     timeout: Int = 2000,
     ttl: Int = 2,
@@ -117,6 +119,7 @@ public open class UPNP : RefCounted() {
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
+  @JvmOverloads
   public fun addPortMapping(
     port: Int,
     portInternal: Int = 0,
@@ -129,6 +132,7 @@ public open class UPNP : RefCounted() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  @JvmOverloads
   public fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to proto)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_DELETE_PORT_MAPPING, LONG)

@@ -35,14 +35,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 2D Agent used in navigation for collision avoidance.
+ * A 2D agent used to pathfind to a position while avoiding obstacles.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationagents.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationagents.html)
  *
- * 2D Agent that is used in navigation to reach a position while avoiding static and dynamic obstacles. The dynamic obstacles are avoided using RVO collision avoidance. The agent needs navigation data to work correctly. [godot.NavigationAgent2D] is physics safe.
+ * A 2D agent used to pathfind to a position while avoiding static and dynamic obstacles. The calculation can be used by the parent node to dynamically move it along the path. Requires navigation data to work correctly.
  *
- * **Note:** After setting [targetPosition] it is required to use the [getNextPathPosition] function once every physics frame to update the internal path logic of the NavigationAgent. The returned vector position from this function should be used as the next movement position for the agent's parent Node.
+ * Dynamic obstacles are avoided using RVO collision avoidance. Avoidance is computed before physics, so the pathfinding information can be used safely in the physics step.
+ *
+ * **Note:** After setting the [targetPosition] property, the [getNextPathPosition] method must be used once every physics frame to update the internal path logic of the navigation agent. The vector position it returns should be used as the next movement position for the agent's parent node.
  */
 @GodotBaseType
 public open class NavigationAgent2D : Node() {
@@ -96,12 +98,12 @@ public open class NavigationAgent2D : Node() {
   public val navigationFinished: Signal0 by signal()
 
   /**
-   * Notifies when the collision avoidance velocity is calculated. Emitted by [setVelocity]. Only emitted when [avoidanceEnabled] is true.
+   * Notifies when the collision avoidance velocity is calculated. Emitted when [velocity] is set. Only emitted when [avoidanceEnabled] is true.
    */
   public val velocityComputed: Signal1<Vector2> by signal("safeVelocity")
 
   /**
-   * The user-defined target position. Setting this property will clear the current navigation path.
+   * If set a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
    */
   public var targetPosition: Vector2
     get() {
@@ -117,7 +119,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   /**
-   * The distance threshold before a path point is considered to be reached. This will allow an agent to not have to hit a path point on the path exactly, but in the area. If this value is set to high the NavigationAgent will skip points on the path which can lead to leaving the navigation mesh. If this value is set to low the NavigationAgent will be stuck in a repath loop cause it will constantly overshoot or undershoot the distance to the next point on each physics frame update.
+   * The distance threshold before a path point is considered to be reached. This allows agents to not have to hit a path point on the path exactly, but only to reach its general area. If this value is set too high, the NavigationAgent will skip points on the path, which can lead too leaving the navigation mesh. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it will constantly overshoot or undershoot the distance to the next point on each physics frame update.
    */
   public var pathDesiredDistance: Float
     get() {
@@ -133,7 +135,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   /**
-   * The distance threshold before the final target point is considered to be reached. This will allow an agent to not have to hit the point of the final target exactly, but only the area. If this value is set to low the NavigationAgent will be stuck in a repath loop cause it will constantly overshoot or undershoot the distance to the final target point on each physics frame update.
+   * The distance threshold before the final target point is considered to be reached. This allows agents to not have to hit the point of the final target exactly, but only to reach its general area. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it will constantly overshoot or undershoot the distance to the final target point on each physics frame update.
    */
   public var targetDesiredDistance: Float
     get() {
@@ -165,7 +167,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   /**
-   * A bitfield determining what navigation layers of navigation regions this agent will use to calculate path. Changing it runtime will clear current navigation path and generate new one, according to new navigation layers.
+   * A bitfield determining which navigation layers of navigation regions this agent will use to calculate a path. Changing it during runtime will clear the current navigation path and generate a new one, according to the new navigation layers.
    */
   public var navigationLayers: Int
     get() {
@@ -180,6 +182,9 @@ public open class NavigationAgent2D : Node() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION_LAYERS, NIL)
     }
 
+  /**
+   * The pathfinding algorithm used in the path query.
+   */
   public var pathfindingAlgorithm: NavigationPathQueryParameters2D.PathfindingAlgorithm
     get() {
       TransferContext.writeArguments()
@@ -193,6 +198,9 @@ public open class NavigationAgent2D : Node() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATHFINDING_ALGORITHM, NIL)
     }
 
+  /**
+   * The path postprocessing applied to the raw path corridor found by the [pathfindingAlgorithm].
+   */
   public var pathPostprocessing: NavigationPathQueryParameters2D.PathPostProcessing
     get() {
       TransferContext.writeArguments()
@@ -223,7 +231,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   /**
-   * If `true` the agent is registered for an RVO avoidance callback on the [godot.NavigationServer2D]. When [godot.NavigationAgent2D.setVelocity] is used and the processing is completed a `safe_velocity` Vector2 is received with a signal connection to [velocityComputed]. Avoidance processing with many registered agents has a significant performance cost and should only be enabled on agents that currently require it.
+   * If `true` the agent is registered for an RVO avoidance callback on the [godot.NavigationServer2D]. When [velocity] is used and the processing is completed a `safe_velocity` Vector2 is received with a signal connection to [velocityComputed]. Avoidance processing with many registered agents has a significant performance cost and should only be enabled on agents that currently require it.
    */
   public var avoidanceEnabled: Boolean
     get() {
@@ -238,6 +246,9 @@ public open class NavigationAgent2D : Node() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_ENABLED, NIL)
     }
 
+  /**
+   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agents and obstacles. When an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal simulation velocity.
+   */
   public var velocity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -300,6 +311,9 @@ public open class NavigationAgent2D : Node() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_MAX_NEIGHBORS, NIL)
     }
 
+  /**
+   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to other agents. The larger the number, the sooner the agent will respond to other agents, but less freedom in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive.
+   */
   public var timeHorizonAgents: Float
     get() {
       TransferContext.writeArguments()
@@ -313,6 +327,9 @@ public open class NavigationAgent2D : Node() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_TIME_HORIZON_AGENTS, NIL)
     }
 
+  /**
+   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to static avoidance obstacles. The larger the number, the sooner the agent will respond to static avoidance obstacles, but less freedom in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive.
+   */
   public var timeHorizonObstacles: Float
     get() {
       TransferContext.writeArguments()
@@ -342,6 +359,9 @@ public open class NavigationAgent2D : Node() {
           NIL)
     }
 
+  /**
+   * A bitfield determining the avoidance layers for this NavigationAgent. Other agents with a matching bit on the [avoidanceMask] will avoid this agent.
+   */
   public var avoidanceLayers: Int
     get() {
       TransferContext.writeArguments()
@@ -355,6 +375,9 @@ public open class NavigationAgent2D : Node() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_LAYERS, NIL)
     }
 
+  /**
+   * A bitfield determining what other avoidance agents and obstacles this NavigationAgent will avoid when a bit matches at least one of their [avoidanceLayers].
+   */
   public var avoidanceMask: Int
     get() {
       TransferContext.writeArguments()
@@ -368,6 +391,9 @@ public open class NavigationAgent2D : Node() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_MASK, NIL)
     }
 
+  /**
+   * The agent does not adjust the velocity for other agents that would match the [avoidanceMask] but have a lower [avoidancePriority]. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.
+   */
   public var avoidancePriority: Float
     get() {
       TransferContext.writeArguments()
@@ -523,6 +549,9 @@ public open class NavigationAgent2D : Node() {
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
+  /**
+   * Replaces the internal velocity in the collision avoidance simulation with [velocity]. When an agent is teleported to a new position this function should be used in the same frame. If called frequently this function can get agents stuck.
+   */
   public fun setVelocityForced(velocity: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to velocity)
     TransferContext.callMethod(rawPtr,
@@ -581,7 +610,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
-   * Returns true if [targetPosition] is reachable.
+   * Returns true if [targetPosition] is reachable. The target position is set using [targetPosition].
    */
   public fun isTargetReachable(): Boolean {
     TransferContext.writeArguments()
@@ -601,7 +630,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
-   * Returns the reachable final position in global coordinates. This can change if the navigation path is altered in any way. Because of this, it would be best to check this each frame.
+   * Returns the reachable final position of the current navigation path in global coordinates. This can change if the navigation path is altered in any way. Because of this, it would be best to check this each frame.
    */
   public fun getFinalPosition(): Vector2 {
     TransferContext.writeArguments()
@@ -610,12 +639,18 @@ public open class NavigationAgent2D : Node() {
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
+  /**
+   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask, given a [layerNumber] between 1 and 32.
+   */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_LAYER_VALUE, NIL)
   }
 
+  /**
+   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
+   */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr,
@@ -623,12 +658,18 @@ public open class NavigationAgent2D : Node() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Based on [value], enables or disables the specified mask in the [avoidanceMask] bitmask, given a [maskNumber] between 1 and 32.
+   */
   public fun setAvoidanceMaskValue(maskNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to maskNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_MASK_VALUE, NIL)
   }
 
+  /**
+   * Returns whether or not the specified mask of the [avoidanceMask] bitmask is enabled, given a [maskNumber] between 1 and 32.
+   */
   public fun getAvoidanceMaskValue(maskNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to maskNumber.toLong())
     TransferContext.callMethod(rawPtr,

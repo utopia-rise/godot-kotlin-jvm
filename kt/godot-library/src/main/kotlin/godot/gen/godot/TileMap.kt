@@ -34,6 +34,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Node for 2D tile-based maps.
@@ -81,7 +82,7 @@ public open class TileMap : Node2D() {
   /**
    * If enabled, the TileMap will see its collisions synced to the physics tick and change its collision type from static to kinematic. This is required to create TileMap-based moving platform.
    *
-   * **Note:** Enabling `collision_animatable` may have a small performance impact, only do it if the TileMap is moving and has colliding tiles.
+   * **Note:** Enabling [collisionAnimatable] may have a small performance impact, only do it if the TileMap is moving and has colliding tiles.
    */
   public var collisionAnimatable: Boolean
     get() {
@@ -194,7 +195,7 @@ public open class TileMap : Node2D() {
   /**
    * Sets a layer's name. This is mostly useful in the editor.
    *
-   * If `layer` is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerName(layer: Int, name: String): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), STRING to name)
@@ -232,7 +233,7 @@ public open class TileMap : Node2D() {
   /**
    * Sets a layer's color. It will be multiplied by tile's color and TileMap's modulate.
    *
-   * If `layer` is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerModulate(layer: Int, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), COLOR to modulate)
@@ -253,7 +254,7 @@ public open class TileMap : Node2D() {
    *
    * Y-sorted layers should usually be on different Z-index values than not Y-sorted layers, otherwise, each of those layer will be Y-sorted as whole with the Y-sorted one. This is usually an undesired behavior.
    *
-   * If `layer` is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerYSortEnabled(layer: Int, ySortEnabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), BOOL to ySortEnabled)
@@ -276,7 +277,7 @@ public open class TileMap : Node2D() {
    *
    * This allows, for example, to fake a different height level on each layer. This can be useful for top-down view games.
    *
-   * If `layer` is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerYSortOrigin(layer: Int, ySortOrigin: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), LONG to ySortOrigin.toLong())
@@ -297,7 +298,7 @@ public open class TileMap : Node2D() {
   /**
    * Sets a layers Z-index value. This Z-index is added to each tile's Z-index value.
    *
-   * If `layer` is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerZIndex(layer: Int, zIndex: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), LONG to zIndex.toLong())
@@ -349,6 +350,7 @@ public open class TileMap : Node2D() {
    *
    * If [sourceId] is set to `-1`, [atlasCoords] to `Vector2i(-1, -1)` or [alternativeTile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
    */
+  @JvmOverloads
   public fun setCell(
     layer: Int,
     coords: Vector2i,
@@ -373,6 +375,7 @@ public open class TileMap : Node2D() {
    *
    * If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
+  @JvmOverloads
   public fun getCellSourceId(
     layer: Int,
     coords: Vector2i,
@@ -386,6 +389,7 @@ public open class TileMap : Node2D() {
   /**
    * Returns the tile atlas coordinates ID of the cell on layer [layer] at coordinates [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
+  @JvmOverloads
   public fun getCellAtlasCoords(
     layer: Int,
     coords: Vector2i,
@@ -400,6 +404,7 @@ public open class TileMap : Node2D() {
   /**
    * Returns the tile alternative ID of the cell on layer [layer] at [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
+  @JvmOverloads
   public fun getCellAlternativeTile(
     layer: Int,
     coords: Vector2i,
@@ -426,6 +431,7 @@ public open class TileMap : Node2D() {
    * 				        return 0
    * 				```
    */
+  @JvmOverloads
   public fun getCellTileData(
     layer: Int,
     coords: Vector2i,
@@ -446,6 +452,9 @@ public open class TileMap : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
+  /**
+   * Returns the tilemap layer of the tile for given physics body RID. Such RID can be retrieved from [godot.KinematicCollision2D.getColliderRid], when colliding with a tile.
+   */
   public fun getLayerForBodyRid(body: RID): Int {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_FOR_BODY_RID,
@@ -492,8 +501,9 @@ public open class TileMap : Node2D() {
    *
    * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
    *
-   * **Note:** To work correctly, `set_cells_terrain_connect` requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+   * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
+  @JvmOverloads
   public fun setCellsTerrainConnect(
     layer: Int,
     cells: VariantArray<Vector2i>,
@@ -511,8 +521,9 @@ public open class TileMap : Node2D() {
    *
    * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
    *
-   * **Note:** To work correctly, `set_cells_terrain_path` requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+   * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
+  @JvmOverloads
   public fun setCellsTerrainPath(
     layer: Int,
     path: VariantArray<Vector2i>,
@@ -555,6 +566,7 @@ public open class TileMap : Node2D() {
    *
    * **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of updates and the tiles they impact (by placing frequently updated tiles in a dedicated layer for example).
    */
+  @JvmOverloads
   public fun forceUpdate(layer: Int = -1): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FORCE_UPDATE, NIL)
@@ -586,6 +598,7 @@ public open class TileMap : Node2D() {
    *
    * A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
    */
+  @JvmOverloads
   public fun getUsedCellsById(
     layer: Int,
     sourceId: Int = -1,

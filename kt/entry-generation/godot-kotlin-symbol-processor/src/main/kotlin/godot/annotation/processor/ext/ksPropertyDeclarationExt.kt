@@ -39,12 +39,13 @@ internal fun KSPropertyDeclaration.mapToRegisteredProperty(): RegisteredProperty
     ) {
         annotations.add(
             EnumHintStringAnnotation(
-                typeDeclaration
+                enumValueNames = typeDeclaration
                     .declarations
                     .filterIsInstance<KSClassDeclaration>()
                     .filter { it.classKind == ClassKind.ENUM_ENTRY }
                     .map { it.simpleName.asString() }
-                    .toList()
+                    .toList(),
+                source = this
             )
         )
     }
@@ -56,12 +57,13 @@ internal fun KSPropertyDeclaration.mapToRegisteredProperty(): RegisteredProperty
         if (containingTypeDeclaration?.classKind == ClassKind.ENUM_CLASS) {
             annotations.add(
                 EnumListHintStringAnnotation( //here we already know it has to be a enumList as enumFlags are already covered in the annotation resolving
-                    containingTypeDeclaration
+                    enumValueNames = containingTypeDeclaration
                         .declarations
                         .filterIsInstance<KSClassDeclaration>()
                         .filter { it.classKind == ClassKind.ENUM_ENTRY }
                         .map { it.simpleName.asString() }
-                        .toList()
+                        .toList(),
+                    source = this
                 )
             )
         }
@@ -72,12 +74,13 @@ internal fun KSPropertyDeclaration.mapToRegisteredProperty(): RegisteredProperty
     }
 
     return RegisteredProperty(
-        fqName,
-        mappedType,
-        isMutable,
-        modifiers.contains(Modifier.LATEINIT),
-        findOverridee() != null,
-        annotations.toList()
+        fqName = fqName,
+        type = mappedType,
+        isMutable = isMutable,
+        isLateinit = modifiers.contains(Modifier.LATEINIT),
+        isOverridee = findOverridee() != null,
+        annotations = annotations.toList(),
+        source = this
     )
 }
 
@@ -95,26 +98,25 @@ internal fun KSPropertyDeclaration.mapToRegisteredSignal(declaredProperties: Lis
     val isInheritedButNotOverridden = !declaredProperties.map { it.qualifiedName?.asString() }.contains(fqName)
 
     val signalParameterNames = PsiProvider.provideSignalArgumentNames(
+        this,
         if (isInheritedButNotOverridden) {
             "${findOverridee()?.qualifiedName?.asString()}"
         } else fqName
     )
 
     return RegisteredSignal(
-        fqName,
-        mappedType,
-        type.resolve().arguments.mapIndexed { index, ksTypeArgument ->
-            val argumentType = requireNotNull(requireNotNull(ksTypeArgument.type) {
+        fqName = fqName,
+        type = mappedType,
+        parameterTypes = type.resolve().arguments.map { ksTypeArgument ->
+            requireNotNull(requireNotNull(ksTypeArgument.type) {
                 "typeArgument's type of type $mappedType cannot be null"
             }.mapToType()) {
                 "Type of signal $fqName cannot be null"
             }
-
-            val argumentName = signalParameterNames[index]
-
-            argumentName to argumentType
-        }.toMap(),
-        findOverridee() != null,
-        annotations.toList()
+        },
+        parameterNames = signalParameterNames,
+        isOverridee = findOverridee() != null,
+        annotations = annotations.toList(),
+        source = this
     )
 }

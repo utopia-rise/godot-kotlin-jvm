@@ -26,11 +26,14 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * AStar class representation that uses 2D vectors as edges.
+ * An implementation of A* for finding the shortest path between two vertices on a connected graph in 2D space.
  *
- * This is a wrapper for the [godot.AStar3D] class which uses 2D vectors instead of 3D vectors.
+ * An implementation of the A* algorithm, used to find the shortest path between two vertices on a connected graph in 2D space.
+ *
+ * See [godot.AStar3D] for a more thorough explanation on how to use this class. [godot.AStar2D] is a wrapper for [godot.AStar3D] that enforces 2D coordinates.
  */
 @GodotBaseType
 public open class AStar2D : RefCounted() {
@@ -42,7 +45,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Called when estimating the cost between a point and the path's ending point.
    *
-   * Note that this function is hidden in the default `AStar2D` class.
+   * Note that this function is hidden in the default [godot.AStar2D] class.
    */
   public open fun _estimateCost(fromId: Long, toId: Long): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStar2D")
@@ -51,7 +54,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Called when computing the cost between two connected points.
    *
-   * Note that this function is hidden in the default `AStar2D` class.
+   * Note that this function is hidden in the default [godot.AStar2D] class.
    */
   public open fun _computeCost(fromId: Long, toId: Long): Float {
     throw NotImplementedError("_compute_cost is not implemented for AStar2D")
@@ -94,6 +97,7 @@ public open class AStar2D : RefCounted() {
    *
    * If there already exists a point for the given [id], its position and weight scale are updated to the given values.
    */
+  @JvmOverloads
   public fun addPoint(
     id: Long,
     position: Vector2,
@@ -230,6 +234,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Disables or enables the specified point for pathfinding. Useful for making a temporary obstacle.
    */
+  @JvmOverloads
   public fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_SET_POINT_DISABLED, NIL)
@@ -275,6 +280,7 @@ public open class AStar2D : RefCounted() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun connectPoints(
     id: Long,
     toId: Long,
@@ -287,6 +293,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Deletes the segment between the given points. If [bidirectional] is `false`, only movement from [id] to [toId] is prevented, and a unidirectional segment possibly remains.
    */
+  @JvmOverloads
   public fun disconnectPoints(
     id: Long,
     toId: Long,
@@ -299,6 +306,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns whether there is a connection/segment between the given points. If [bidirectional] is `false`, returns whether movement from [id] to [toId] is possible through this segment.
    */
+  @JvmOverloads
   public fun arePointsConnected(
     id: Long,
     toId: Long,
@@ -348,6 +356,7 @@ public open class AStar2D : RefCounted() {
    *
    * **Note:** If several points are the closest to [toPosition], the one with the smallest ID will be returned, ensuring a deterministic result.
    */
+  @JvmOverloads
   public fun getClosestPoint(toPosition: Vector2, includeDisabled: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR2 to toPosition, BOOL to includeDisabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_CLOSEST_POINT, LONG)

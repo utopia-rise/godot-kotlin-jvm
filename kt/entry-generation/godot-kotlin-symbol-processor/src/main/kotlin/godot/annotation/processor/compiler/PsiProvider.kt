@@ -1,8 +1,15 @@
 package godot.annotation.processor.compiler
 
+import com.google.devtools.ksp.symbol.KSPropertyDeclaration
+import godot.annotation.processor.GodotKotlinSymbolProcessor
+import godot.entrygenerator.exceptions.EntryGeneratorException
 import org.jetbrains.kotlin.com.intellij.openapi.vfs.StandardFileSystems
 import org.jetbrains.kotlin.com.intellij.openapi.vfs.VirtualFile
 import org.jetbrains.kotlin.com.intellij.openapi.vfs.VirtualFileManager
+import org.jetbrains.kotlin.com.intellij.psi.PsiClass
+import org.jetbrains.kotlin.com.intellij.psi.PsiClassOwner
+import org.jetbrains.kotlin.com.intellij.psi.PsiExpression
+import org.jetbrains.kotlin.com.intellij.psi.PsiJavaFile
 import org.jetbrains.kotlin.com.intellij.psi.PsiManager
 import org.jetbrains.kotlin.extensions.PreprocessedFileCreator
 import org.jetbrains.kotlin.idea.KotlinFileType
@@ -17,19 +24,71 @@ import java.io.File
  * Abstracted here rather than in the entry gen to keep it independent of compiler and psi classes
  */
 internal object PsiProvider {
-    fun provideSignalArgumentNames(signalFqName: String): List<String> {
-        return requireNotNull(getPropertyInitializerExpression(signalFqName)) {
-            "signal $signalFqName does not have an initializer expression"
-        }
-            .children
-            .last() //value argument list
-            .children
-            .map { it.text } //use with %L rather than with %S as these strings already are surrounded with ""
+    private val psiFiles by lazy { providePsiFiles() }
+    private val ktClasses by lazy {
+        psiFiles
+            .flatMap { psiFile ->
+                psiFile
+                    .children
+                    .filterIsInstance<KtClass>()
+            }
     }
+    private val javaClasses by lazy {
+        psiFiles
+            .flatMap { psiFile ->
+                psiFile
+                    .children
+                    .filterIsInstance<PsiClass>()
+            }
+    }
+
+    /**
+     * use with %L rather than with %S as these strings already are surrounded with ""
+     */
+    fun provideSignalArgumentNames(signal: KSPropertyDeclaration, signalFqName: String): List<String> {
+        return findSignalNameInKotlinFiles(signalFqName)
+            ?: findSignalNameInJavaFiles(signal, signalFqName)
+            ?: run {
+                val message = "No initializer expression found for signal $signalFqName! Signals always have to be initialized! For kotlin use the signal delegate. For java use the the SignalProvider::signal function."
+                GodotKotlinSymbolProcessor.logger.error(message, signal)
+                throw EntryGeneratorException(message)
+            }
+    }
+
+    private fun findSignalNameInJavaFiles(signal: KSPropertyDeclaration, propertyFqName: String): List<String>? {
+        val classFqName = propertyFqName.substringBeforeLast(".")
+
+        val fieldInitializer = javaClasses
+            .firstOrNull { javaClass -> javaClass.qualifiedName == classFqName }
+            ?.allFields
+            ?.firstOrNull { javaField -> javaField.name == propertyFqName.substringAfterLast(".") }
+            ?.initializer
+
+        if (fieldInitializer != null && !fieldInitializer.text.contains("SignalProvider")) {
+            val message = "Initialisation expression does not use SignalProvider! Only use the SignalProvider::signal function to initialize a Signal"
+            GodotKotlinSymbolProcessor.logger.error(message, signal)
+            throw EntryGeneratorException(message)
+        }
+
+        return fieldInitializer
+            ?.children
+            ?.last()
+            ?.children
+            ?.filterIsInstance<PsiExpression>()
+            ?.drop(2) // thisRef and signalName
+            ?.map { it.text }
+    }
+
+    private fun findSignalNameInKotlinFiles(propertyFqName: String): List<String>? = getPropertyInitializerExpression(propertyFqName)
+        ?.children
+        ?.last() // value argument list
+        ?.children
+        ?.map { it.text }
 
     private fun getPropertyInitializerExpression(propertyFqName: String): KtExpression? {
         val containingClassFqName = propertyFqName.substringBeforeLast(".")
-        return provideKtClasses()
+
+        return ktClasses
             .firstOrNull { ktClass -> ktClass.fqName?.asString() == containingClassFqName }
             ?.getProperties()
             ?.firstOrNull { ktProperty -> ktProperty.fqName?.asString() == propertyFqName }
@@ -38,7 +97,7 @@ internal object PsiProvider {
             }
     }
 
-    private fun provideKtClasses(): List<KtClass> {
+    private fun providePsiFiles(): List<PsiClassOwner> {
         //Start: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
         val localFileSystem = VirtualFileManager
             .getInstance()
@@ -68,19 +127,15 @@ internal object PsiProvider {
                             ?.let(virtualFileCreator::create)
 
                         if (virtualFile != null && processedFiles.add(virtualFile)) {
-                            val psiFile = psiManager.findFile(virtualFile)
-                            if (psiFile is KtFile) {
-                                psiFile
-                            } else null
+                            when (val psiFile = psiManager.findFile(virtualFile)) {
+                                is KtFile -> psiFile
+                                is PsiJavaFile -> psiFile
+                                else -> null
+                            }
                         } else null
                     }
                     //End: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
                     .filterNotNull()
-                    .flatMap { ktFile ->
-                        ktFile
-                            .children
-                            .filterIsInstance<KtClass>()
-                    }
             }
     }
 }

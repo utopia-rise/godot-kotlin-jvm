@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Sprite frame library for AnimatedSprite2D and AnimatedSprite3D.
@@ -121,6 +122,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Adds a frame to the [anim] animation. If [atPosition] is `-1`, the frame will be added to the end of the animation.
    */
+  @JvmOverloads
   public fun addFrame(
     anim: StringName,
     texture: Texture2D,
@@ -134,6 +136,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Sets the [texture] and the [duration] of the frame [idx] in the [anim] animation.
    */
+  @JvmOverloads
   public fun setFrame(
     anim: StringName,
     idx: Int,

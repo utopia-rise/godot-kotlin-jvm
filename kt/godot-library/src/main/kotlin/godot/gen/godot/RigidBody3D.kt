@@ -31,22 +31,23 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Physics Body which is moved by 3D physics simulation. Useful for objects that have gravity and can be pushed by other objects.
+ * A 3D physics body that is moved by a physics simulation.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
  *
- * This is the node that implements full 3D physics. This means that you do not control a RigidBody3D directly. Instead, you can apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the resulting movement, collision, bouncing, rotating, etc.
+ * [godot.RigidBody3D] implements full 3D physics. It cannot be controlled directly, instead, you must apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the resulting movement, rotation, react to collisions, and affect other physics bodies in its path.
  *
- * You can switch the body's behavior using [lockRotation], [freeze], and [freezeMode].
+ * The body's behavior can be adjusted via [lockRotation], [freeze], and [freezeMode]. By changing various properties of the object, such as [mass], you can control how the physics simulation acts on it.
  *
- * **Note:** Don't change a RigidBody3D's position every frame or very often. Sporadic changes work fine, but physics runs at a different granularity (fixed Hz) than usual rendering (process callback) and maybe even in a separate thread, so changing this from a process loop may result in strange behavior. If you need to directly affect the body's state, use [_integrateForces], which allows you to directly access the physics state.
+ * A rigid body will always maintain its shape and size, even when forces are applied to it. It is useful for objects that can be interacted with in an environment, such as a tree that can be knocked over or a stack of crates that can be pushed around.
  *
  * If you need to override the default physics behavior, you can write a custom force integration function. See [customIntegrator].
  *
- * **Warning:** With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
+ * **Note:** Changing the 3D transform or [linearVelocity] of a [godot.RigidBody3D] very often may lead to some unpredictable behaviors. If you need to directly affect the body, prefer [_integrateForces] as it allows you to directly access the physics state.
  */
 @GodotBaseType
 public open class RigidBody3D : PhysicsBody3D() {
@@ -586,6 +587,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_APPLY_IMPULSE, NIL)
@@ -620,6 +622,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_APPLY_FORCE, NIL)
@@ -651,6 +654,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_ADD_CONSTANT_FORCE, NIL)
@@ -704,7 +708,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     id: Long,
   ) {
     /**
-     * In this mode, the body's center of mass is calculated automatically based on its shapes.
+     * In this mode, the body's center of mass is calculated automatically based on its shapes. This assumes that the shapes' origins are also their center of mass.
      */
     CENTER_OF_MASS_MODE_AUTO(0),
     /**

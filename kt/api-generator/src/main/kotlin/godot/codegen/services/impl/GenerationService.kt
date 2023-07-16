@@ -1,12 +1,42 @@
 package godot.codegen.services.impl
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ANY
+import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.INT
+import com.squareup.kotlinpoet.LONG
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.LambdaTypeName
+import com.squareup.kotlinpoet.MemberName
+import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import godot.codegen.constants.*
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.TypeVariableName
+import com.squareup.kotlinpoet.UNIT
+import com.squareup.kotlinpoet.asClassName
+import godot.codegen.constants.jvmMethodToNotGenerate
+import godot.codegen.constants.jvmReservedMethods
 import godot.codegen.exceptions.ClassGenerationException
-import godot.codegen.extensions.*
+import godot.codegen.extensions.applyJvmNameIfNecessary
+import godot.codegen.extensions.getDefaultValueKotlinString
+import godot.codegen.extensions.getTypeClassName
+import godot.codegen.extensions.isCoreTypeReimplementedInKotlin
+import godot.codegen.extensions.isEnum
+import godot.codegen.extensions.jvmVariantTypeValue
 import godot.codegen.models.custom.AdditionalImport
-import godot.codegen.models.enriched.*
+import godot.codegen.models.enriched.EnrichedClass
+import godot.codegen.models.enriched.EnrichedConstant
+import godot.codegen.models.enriched.EnrichedEnum
+import godot.codegen.models.enriched.EnrichedMethod
+import godot.codegen.models.enriched.EnrichedProperty
+import godot.codegen.models.enriched.EnrichedSignal
+import godot.codegen.models.enriched.isSameSignature
+import godot.codegen.models.enriched.toGetterCallable
+import godot.codegen.models.enriched.toSetterCallable
 import godot.codegen.poet.RegistrationFileSpec
 import godot.codegen.repositories.IDocRepository
 import godot.codegen.repositories.INativeStructureRepository
@@ -15,7 +45,22 @@ import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
-import godot.tools.common.constants.*
+import godot.tools.common.constants.CORE_TYPE_HELPER
+import godot.tools.common.constants.GENERATED_COMMENT
+import godot.tools.common.constants.GODOT_BASE_TYPE
+import godot.tools.common.constants.GODOT_CALLABLE
+import godot.tools.common.constants.GODOT_ERROR
+import godot.tools.common.constants.GODOT_OBJECT
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.KT_OBJECT
+import godot.tools.common.constants.TRANSFER_CONTEXT
+import godot.tools.common.constants.TYPE_MANAGER
+import godot.tools.common.constants.VARIANT_TYPE_ANY
+import godot.tools.common.constants.VARIANT_TYPE_LONG
+import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotUtilPackage
+import godot.tools.common.constants.signalPackage
 import org.gradle.kotlin.dsl.support.appendReproducibleNewLine
 
 class GenerationService(
@@ -484,6 +529,7 @@ class GenerationService(
         val generatedFunBuilder = FunSpec
             .builder(method.name)
             .addModifiers(modifiers)
+            .applyJvmNameIfNecessary(method.name)
 
         val methodTypeName = method.getCastedType()
         val shouldReturn = method.getTypeClassName().typeName != UNIT
@@ -614,6 +660,9 @@ class GenerationService(
                             .build()
                     )
                 )
+                // add @JvmOverloads annotation for java support
+                .addAnnotation(JvmOverloads::class.asClassName())
+
             connectFun.addCode(
                 """
                             |val methodName = (method as %T<*>).name.%M().%M()
@@ -745,7 +794,15 @@ class GenerationService(
                 } else {
                     defaultValueKotlinCode
                 }
-                if (appliedDefault != null) parameterBuilder.defaultValue(appliedDefault)
+                if (appliedDefault != null) {
+                    parameterBuilder.defaultValue(appliedDefault)
+
+                    // add @JvmOverloads annotation for java support if not already present
+                    val jvmOverloadAnnotationSpec = AnnotationSpec.builder(JvmOverloads::class.asClassName()).build()
+                    if (!generatedFunBuilder.annotations.contains(jvmOverloadAnnotationSpec)) {
+                        generatedFunBuilder.addAnnotation(jvmOverloadAnnotationSpec)
+                    }
+                }
 
                 generatedFunBuilder.addParameter(parameterBuilder.build())
             }

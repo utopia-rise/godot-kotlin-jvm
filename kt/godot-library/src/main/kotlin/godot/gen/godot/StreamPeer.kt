@@ -28,11 +28,12 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Abstraction and base class for stream-based protocols.
+ * Abstract base class for interacting with streams.
  *
- * StreamPeer is an abstraction and base class for stream-based protocols (such as TCP). It provides an API for sending and receiving data through streams as raw data or strings.
+ * StreamPeer is an abstract base class mostly used for stream-based protocols (such as TCP). It provides an API for sending and receiving data through streams as raw data or strings.
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
@@ -193,13 +194,13 @@ public open class StreamPeer internal constructor() : RefCounted() {
    *
    * [gdscript]
    *
-   * put_data("Hello world".to_ascii())
+   * put_data("Hello world".to_ascii_buffer())
    *
    * [/gdscript]
    *
    * [csharp]
    *
-   * PutData("Hello World".ToAscii());
+   * PutData("Hello World".ToAsciiBuffer());
    *
    * [/csharp]
    *
@@ -213,19 +214,19 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer representing its size.
    *
-   * **Note:** To put an UTF-8 string without prepending its size, you can use [putData]:
+   * **Note:** To put a UTF-8 string without prepending its size, you can use [putData]:
    *
    * [codeblocks]
    *
    * [gdscript]
    *
-   * put_data("Hello world".to_utf8())
+   * put_data("Hello world".to_utf8_buffer())
    *
    * [/gdscript]
    *
    * [csharp]
    *
-   * PutData("Hello World".ToUtf8());
+   * PutData("Hello World".ToUtf8Buffer());
    *
    * [/csharp]
    *
@@ -241,6 +242,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    *
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
+  @JvmOverloads
   public fun putVar(`value`: Any, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_VAR, NIL)
@@ -339,6 +341,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an ASCII string with byte-length [bytes] from the stream. If [bytes] is negative (default) the length will be read from the stream using the reverse process of [putString].
    */
+  @JvmOverloads
   public fun getString(bytes: Int = -1): String {
     TransferContext.writeArguments(LONG to bytes.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_STRING, STRING)
@@ -346,8 +349,9 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Gets an UTF-8 string with byte-length [bytes] from the stream (this decodes the string sent as UTF-8). If [bytes] is negative (default) the length will be read from the stream using the reverse process of [putUtf8String].
+   * Gets a UTF-8 string with byte-length [bytes] from the stream (this decodes the string sent as UTF-8). If [bytes] is negative (default) the length will be read from the stream using the reverse process of [putUtf8String].
    */
+  @JvmOverloads
   public fun getUtf8String(bytes: Int = -1): String {
     TransferContext.writeArguments(LONG to bytes.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_UTF8_STRING, STRING)
@@ -361,6 +365,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
+  @JvmOverloads
   public fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_VAR, ANY)

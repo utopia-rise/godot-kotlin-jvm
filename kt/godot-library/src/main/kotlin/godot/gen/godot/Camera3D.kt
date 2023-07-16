@@ -31,6 +31,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Camera node, displays from a point of view.
@@ -59,7 +60,13 @@ public open class Camera3D : Node3D() {
     }
 
   /**
-   * The culling mask that describes which 3D render layers are rendered by this camera.
+   * The culling mask that describes which [godot.VisualInstance3D.layers] are rendered by this camera. By default, all 20 user-visible layers are rendered.
+   *
+   * **Note:** Since the [cullMask] allows for 32 layers to be stored in total, there are an additional 12 layers that are only used internally by the engine and aren't exposed in the editor. Setting [cullMask] using a script allows you to toggle those reserved layers, which can be useful for editor plugins.
+   *
+   * To adjust [cullMask] more easily using a script, use [getCullMaskValue] and [setCullMaskValue].
+   *
+   * **Note:** [godot.VoxelGI], SDFGI and [godot.LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [godot.GeometryInstance3D.giMode] to [godot.GeometryInstance3D.GI_MODE_DISABLED] for meshes and [godot.Light3D.lightBakeMode] to [godot.Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.
    */
   public var cullMask: Int
     get() {
@@ -230,7 +237,7 @@ public open class Camera3D : Node3D() {
     }
 
   /**
-   * The distance to the near culling boundary for this camera relative to its local Z axis.
+   * The distance to the near culling boundary for this camera relative to its local Z axis. Lower values allow the camera to see objects more up close to its origin, at the cost of lower precision across the *entire* range. Values lower than the default can lead to increased Z-fighting.
    */
   public var near: Float
     get() {
@@ -244,7 +251,7 @@ public open class Camera3D : Node3D() {
     }
 
   /**
-   * The distance to the far culling boundary for this camera relative to its local Z axis.
+   * The distance to the far culling boundary for this camera relative to its local Z axis. Higher values allow the camera to see further away, while decreasing [far] can improve performance if it results in objects being partially or fully culled.
    */
   public var far: Float
     get() {
@@ -379,6 +386,7 @@ public open class Camera3D : Node3D() {
   /**
    * If this is the current camera, remove it from being current. If [enableNext] is `true`, request to make the next camera current, if any.
    */
+  @JvmOverloads
   public fun clearCurrent(enableNext: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to enableNext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_CLEAR_CURRENT, NIL)

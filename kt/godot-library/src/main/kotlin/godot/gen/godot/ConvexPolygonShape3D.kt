@@ -16,16 +16,18 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Convex polygon shape resource for 3D physics.
+ * A 3D convex polyhedron shape used for physics collision.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
  *
- * 3D convex polygon shape resource to be added as a *direct* child of a [godot.PhysicsBody3D] or [godot.Area3D] using a [godot.CollisionShape3D] node. Unlike [godot.ConcavePolygonShape3D], [godot.ConvexPolygonShape3D] cannot store concave polygon shapes. [godot.ConvexPolygonShape3D]s can be manually drawn in the editor using the [godot.CollisionPolygon3D] node.
+ * A 3D convex polyhedron shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape3D].
  *
- * **Convex decomposition:** Concave objects' collisions can be represented accurately using *several* [godot.ConvexPolygonShape3D]s. This allows dynamic physics bodies to have complex concave collisions (at a performance cost). This is available in the editor by selecting the [godot.MeshInstance3D], going to the **Mesh** menu and choosing **Create Multiple Convex Collision Siblings**. Alternatively, [godot.MeshInstance3D.createMultipleConvexCollisions] can be called in a script to perform this decomposition at run-time.
+ * [godot.ConvexPolygonShape3D] is *solid*, which means it detects collisions from objects that are fully inside it, unlike [godot.ConcavePolygonShape3D] which is hollow. This makes it more suitable for both detection and physics.
  *
- * **Performance:** [godot.ConvexPolygonShape3D] is faster to check collisions against compared to [godot.ConcavePolygonShape3D], but it is slower than primitive collision shapes such as [godot.SphereShape3D] or [godot.BoxShape3D]. Its use should generally be limited to medium-sized objects that cannot have their collision accurately represented by a primitive shape.
+ * **Convex decomposition:** A concave polyhedron can be split up into several convex polyhedra. This allows dynamic physics bodies to have complex concave collisions (at a performance cost) and can be achieved by using several [godot.ConvexPolygonShape3D] nodes. To generate a convex decomposition from a mesh, select the [godot.MeshInstance3D] node, go to the **Mesh** menu that appears above the viewport, and choose **Create Multiple Convex Collision Siblings**. Alternatively, [godot.MeshInstance3D.createMultipleConvexCollisions] can be called in a script to perform this decomposition at run-time.
+ *
+ * **Performance:** [godot.ConvexPolygonShape3D] is faster to check collisions against compared to [godot.ConcavePolygonShape3D], but it is slower than primitive collision shapes such as [godot.SphereShape3D] and [godot.BoxShape3D]. Its use should generally be limited to medium-sized objects that cannot have their collision accurately represented by primitive shapes.
  */
 @GodotBaseType
 public open class ConvexPolygonShape3D : Shape3D() {

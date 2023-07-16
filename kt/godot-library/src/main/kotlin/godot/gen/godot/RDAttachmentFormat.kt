@@ -16,12 +16,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Attachment format (used by [godot.RenderingDevice]).
  *
+ * This object is used by [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDAttachmentFormat : RefCounted() {
   /**
-   *
+   * The attachment's data format.
    */
   public var format: RenderingDevice.DataFormat
     get() {
@@ -37,7 +39,7 @@ public open class RDAttachmentFormat : RefCounted() {
     }
 
   /**
-   *
+   * The number of samples used when sampling the attachment.
    */
   public var samples: RenderingDevice.TextureSamples
     get() {
@@ -53,7 +55,7 @@ public open class RDAttachmentFormat : RefCounted() {
     }
 
   /**
-   *
+   * The attachment's usage flags, which determine what can be done with it.
    */
   public var usageFlags: Int
     get() {

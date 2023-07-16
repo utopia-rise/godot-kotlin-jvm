@@ -1,3 +1,4 @@
+@file:JvmName("StringNameUtils")
 package godot.core
 
 import godot.core.memory.GarbageCollector

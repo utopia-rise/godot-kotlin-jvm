@@ -28,11 +28,12 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Custom control to edit properties for adding into the inspector.
+ * Custom control for editing properties that can be added to the [godot.EditorInspector].
  *
- * This control allows property editing for one or multiple properties into [godot.EditorInspector]. It is added via [godot.EditorInspectorPlugin].
+ * A custom control for editing properties that can be added to the [godot.EditorInspector]. It is added via [godot.EditorInspectorPlugin].
  */
 @GodotBaseType
 public open class EditorProperty internal constructor() : Container() {
@@ -261,6 +262,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * If one or several properties have changed, this must be called. [field] is used in case your editor can modify fields separately (as an example, Vector3.x). The [changing] argument avoids the editor requesting this property to be refreshed (leave as `false` if unsure).
    */
+  @JvmOverloads
   public fun emitChanged(
     `property`: StringName,
     `value`: Any,

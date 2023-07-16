@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * 2D sprite node in 3D world, that can use multiple 2D textures for animation.
@@ -177,6 +178,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    *
    * If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused.
    */
+  @JvmOverloads
   public fun play(
     name: StringName = StringName(""),
     customSpeed: Float = 1.0f,
@@ -191,6 +193,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.
    */
+  @JvmOverloads
   public fun playBackwards(name: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_PLAY_BACKWARDS,

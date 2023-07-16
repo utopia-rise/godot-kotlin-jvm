@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * Input event for gamepad buttons.
+ * Represents a gamepad button being pressed or released.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)

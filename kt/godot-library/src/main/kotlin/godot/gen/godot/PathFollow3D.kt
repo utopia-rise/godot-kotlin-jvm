@@ -102,6 +102,9 @@ public open class PathFollow3D : Node3D() {
           NIL)
     }
 
+  /**
+   * If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also [godot.Vector3.FORWARD] and [godot.Vector3.MODEL_FRONT].
+   */
   public var useModelFront: Boolean
     get() {
       TransferContext.writeArguments()

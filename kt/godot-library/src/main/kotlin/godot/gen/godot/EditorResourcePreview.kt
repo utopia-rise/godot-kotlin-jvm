@@ -24,9 +24,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Helper to generate previews of resources or files.
+ * A node used to generate previews of resources or files.
  *
- * This object is used to generate previews for resources of files.
+ * This node is used to generate previews for resources of files.
  *
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getResourcePreviewer].
  */

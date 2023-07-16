@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Playback instance for [godot.AudioStreamPolyphonic].
@@ -35,12 +36,13 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   /**
    * Play an [godot.AudioStream] at a given offset, volume and pitch scale. Playback starts immediately.
    *
-   * The return value is an unique integer ID that is associated to this playback stream and which can be used to control it.
+   * The return value is a unique integer ID that is associated to this playback stream and which can be used to control it.
    *
    * This ID becomes invalid when the stream ends (if it does not loop), when the [godot.AudioStreamPlaybackPolyphonic] is stopped, or when [stopStream] is called.
    *
    * This function returns [INVALID_ID] if the amount of streams currently playing equals [godot.AudioStreamPolyphonic.polyphony]. If you need a higher amount of maximum polyphony, raise this value.
    */
+  @JvmOverloads
   public fun playStream(
     stream: AudioStream,
     fromOffset: Float = 0.0f,

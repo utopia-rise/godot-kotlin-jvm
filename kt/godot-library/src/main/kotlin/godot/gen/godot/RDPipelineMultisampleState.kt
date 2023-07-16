@@ -22,12 +22,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
+ * Pipeline multisample state (used by [godot.RenderingDevice]).
  *
+ * [godot.RDPipelineMultisampleState] is used to control how multisample or supersample antialiasing is being performed when rendering using [godot.RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineMultisampleState : RefCounted() {
   /**
-   *
+   * The number of MSAA samples (or SSAA samples if [enableSampleShading] is `true`) to perform. Higher values result in better antialiasing, at the cost of performance.
    */
   public var sampleCount: RenderingDevice.TextureSamples
     get() {
@@ -43,7 +45,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   *
+   * If `true`, enables per-sample shading which replaces MSAA by SSAA. This provides higher quality antialiasing that works with transparent (alpha scissor) edges. This has a very high performance cost. See also [minSampleShading]. See the [per-sample shading Vulkan documentation](https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-sampleshading) for more details.
    */
   public var enableSampleShading: Boolean
     get() {
@@ -59,7 +61,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   *
+   * The multiplier of [sampleCount] that determines how many samples are performed for each fragment. Must be between `0.0` and `1.0` (inclusive). Only effective if [enableSampleShading] is `true`. If [minSampleShading] is `1.0`, fragment invocation must only read from the coverage index sample. Tile image access must not be used if [enableSampleShading] is *not* `1.0`.
    */
   public var minSampleShading: Float
     get() {
@@ -75,7 +77,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   *
+   * If `true`, alpha to coverage is enabled. This generates a temporary coverage value based on the alpha component of the fragment's first color output. This allows alpha transparency to make use of multisample antialiasing.
    */
   public var enableAlphaToCoverage: Boolean
     get() {
@@ -91,7 +93,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   *
+   * If `true`, alpha is forced to either `0.0` or `1.0`. This allows hardening the edges of antialiased alpha transparencies. Only relevant if [enableAlphaToCoverage] is `true`.
    */
   public var enableAlphaToOne: Boolean
     get() {
@@ -107,7 +109,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   *
+   * The sampleSee the [sample mask Vulkan documentation](https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-samplemask) for more details.
    */
   public var sampleMasks: VariantArray<Long>
     get() {

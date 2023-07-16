@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A class to interact with the editor debugger.
@@ -61,6 +62,7 @@ public open class EditorDebuggerSession internal constructor() : RefCounted() {
   /**
    * Sends the given [message] to the attached remote instance, optionally passing additionally [data]. See [godot.EngineDebugger] for how to retrieve those messages.
    */
+  @JvmOverloads
   public fun sendMessage(message: String, `data`: VariantArray<Any?> = godot.core.variantArrayOf()):
       Unit {
     TransferContext.writeArguments(STRING to message, ARRAY to data)
@@ -71,6 +73,7 @@ public open class EditorDebuggerSession internal constructor() : RefCounted() {
   /**
    * Toggle the given [profiler] on the attached remote instance, optionally passing additionally [data]. See [godot.EngineProfiler] for more details.
    */
+  @JvmOverloads
   public fun toggleProfiler(
     profiler: String,
     enable: Boolean,

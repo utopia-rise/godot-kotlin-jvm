@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class MultiplayerSynchronizer : Node() {
@@ -118,6 +119,7 @@ public open class MultiplayerSynchronizer : Node() {
     return true
   }
 
+  @JvmOverloads
   public fun updateVisibility(forPeer: Int = 0): Unit {
     TransferContext.writeArguments(LONG to forPeer.toLong())
     TransferContext.callMethod(rawPtr,

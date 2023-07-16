@@ -24,14 +24,15 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * A region of the navigation map.
+ * A traversable 3D region that [godot.NavigationAgent3D]s can use for pathfinding.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationregions.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationregions.html)
  *
- * A region of the navigation map. It tells the [godot.NavigationServer3D] what can be navigated and what cannot, based on its [godot.NavigationMesh] resource.
+ * A traversable 3D region based on a [godot.NavigationMesh] that [godot.NavigationAgent3D]s can use for pathfinding.
  *
  * Two regions can be connected to each other if they share a similar edge. You can set the minimum distance between two vertices required to connect two edges by using [godot.NavigationServer3D.mapSetEdgeConnectionMargin].
  *
@@ -89,6 +90,9 @@ public open class NavigationRegion3D : Node3D() {
           NIL)
     }
 
+  /**
+   * If enabled the navigation region will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   */
   public var useEdgeConnections: Boolean
     get() {
       TransferContext.writeArguments()
@@ -187,6 +191,7 @@ public open class NavigationRegion3D : Node3D() {
   /**
    * Bakes the [godot.NavigationMesh]. If [onThread] is set to `true` (default), the baking is done on a separate thread. Baking on separate thread is useful because navigation baking is not a cheap operation. When it is completed, it automatically sets the new [godot.NavigationMesh]. Please note that baking on separate thread may be very slow if geometry is parsed from meshes as async access to each mesh involves heavy synchronization. Also, please note that baking on a separate thread is automatically disabled on operating systems that cannot use threads (such as Web with threads disabled).
    */
+  @JvmOverloads
   public fun bakeNavigationMesh(onThread: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to onThread)
     TransferContext.callMethod(rawPtr,

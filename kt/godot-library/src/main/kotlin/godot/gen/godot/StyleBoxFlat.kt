@@ -25,17 +25,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Customizable [godot.StyleBox] with a given set of parameters (no texture required).
+ * A customizable [godot.StyleBox] that doesn't use a texture.
  *
- * This [godot.StyleBox] can be used to achieve all kinds of looks without the need of a texture. The following properties are customizable:
- *
- * - Color
- *
- * - Border width (individual width for each border)
- *
- * - Rounded corners (individual radius for each corner)
- *
- * - Shadow (with blur and offset)
+ * By configuring various properties of this style box, you can achieve many common looks without the need of a texture. This includes optionally rounded borders, antialiasing, shadows, and skew.
  *
  * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will switch to a relative system.
  *
@@ -219,7 +211,9 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * This changes the size of the faded ring. Higher values can be used to achieve a "blurry" effect.
+   * This changes the size of the antialiasing effect. `1.0` is recommended for an optimal result at 100% scale, identical to how rounded rectangles are rendered in web browsers and most vector drawing software.
+   *
+   * **Note:** Higher values may produce a blur effect but can also create undesired artifacts on small boxes with large-radius corners.
    */
   public var antiAliasingSize: Float
     get() {

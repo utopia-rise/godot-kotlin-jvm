@@ -1,3 +1,3 @@
 package godot.entrygenerator.exceptions
 
-abstract class EntryGeneratorException(message: String): Exception(message)
+open class EntryGeneratorException(message: String): Exception(message)

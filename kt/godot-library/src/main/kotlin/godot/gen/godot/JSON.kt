@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Helper class for creating and parsing JSON data.
@@ -38,6 +39,7 @@ import kotlin.Suppress
  * 		# Save data
  * 		# ...
  * 		# Retrieve data
+ * 		var json = JSON.new()
  * 		var error = json.parse(json_string)
  * 		if error == OK:
  * 		    var data_received = json.data
@@ -95,6 +97,7 @@ public open class JSON : Resource() {
    *
    * The optional [keepText] argument instructs the parser to keep a copy of the original text. This text can be obtained later by using the [getParsedText] function and is used when saving the resource (instead of generating new text from [data]).
    */
+  @JvmOverloads
   public fun parse(jsonText: String, keepText: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to jsonText, BOOL to keepText)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_PARSE, LONG)

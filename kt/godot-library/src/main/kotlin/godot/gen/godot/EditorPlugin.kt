@@ -28,6 +28,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Used by the editor to extend its functionality.
@@ -833,6 +834,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * See [addInspectorPlugin] for an example of how to register a plugin.
    */
+  @JvmOverloads
   public fun addImportPlugin(importer: EditorImportPlugin, firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to importer, BOOL to firstPriority)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_IMPORT_PLUGIN, NIL)
@@ -852,6 +854,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * If [firstPriority] is `true`, the new import plugin is inserted first in the list and takes precedence over pre-existing plugins.
    */
+  @JvmOverloads
   public fun addSceneFormatImporterPlugin(sceneFormatImporter: EditorSceneFormatImporter,
       firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sceneFormatImporter, BOOL to firstPriority)
@@ -873,6 +876,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * If [firstPriority] is `true`, the new import plugin is inserted first in the list and takes precedence over pre-existing plugins.
    */
+  @JvmOverloads
   public fun addScenePostImportPlugin(sceneImportPlugin: EditorScenePostImportPlugin,
       firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sceneImportPlugin, BOOL to firstPriority)
@@ -1011,7 +1015,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Returns the [godot.EditorInterface] object that gives you control over Godot editor's window and its functionalities.
+   * Returns the [godot.EditorInterface] singleton. It provides access to some parts of the editor GUI as well as various inner states and tools.
    */
   public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()

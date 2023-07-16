@@ -20,9 +20,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Manager for 3D physics server implementations.
+ * A singleton for managing [godot.PhysicsServer3D] implementations.
  *
- * [godot.PhysicsServer3DManager] is the API for registering [godot.PhysicsServer3D] implementations, and for setting the default implementation.
+ * [godot.PhysicsServer3DManager] is the API for registering [godot.PhysicsServer3D] implementations and for setting the default implementation.
  *
  * **Note:** It is not possible to switch physics servers at runtime. This class is only used on startup at the server initialization level, by Godot itself and possibly by GDExtensions.
  */

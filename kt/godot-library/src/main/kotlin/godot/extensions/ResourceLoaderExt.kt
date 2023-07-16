@@ -1,3 +1,4 @@
+@file:JvmName("ResourceLoaderUtils")
 package godot.extensions
 
 import godot.Resource

@@ -261,6 +261,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * If false, the returned index comes after all existing entries of the value in the array.
      * Note: Calling bsearch on an unsorted array results in unexpected behavior.
      */
+    @JvmOverloads
     fun bsearch(value: T, before: Boolean = true): Int {
         TransferContext.writeArguments(variantType to value, VariantType.BOOL to before)
         Bridge.engine_call_bsearch(_handle)
@@ -274,6 +275,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * The custom method receives two arguments (an element from the array and the value searched for) and must return true if the first argument is less than the second, and return false otherwise.
      * Note: Calling bsearch on an unsorted array results in unexpected behavior.
      */
+    @JvmOverloads
     fun bsearchCustom(value: T, obj: KtObject, func: String, before: Boolean = true): Int {
         TransferContext.writeArguments(
             variantType to value, VariantType.OBJECT to obj,

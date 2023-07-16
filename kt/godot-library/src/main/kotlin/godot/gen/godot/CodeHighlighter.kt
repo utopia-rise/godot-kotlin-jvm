@@ -21,11 +21,12 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * A syntax highlighter for code.
+ * A syntax highlighter intended for code.
  *
- * A syntax highlighter for code.
+ * By adjusting various properties of this resource, you can change the colors of strings, comments, numbers, and other text patterns inside a [godot.TextEdit] control.
  */
 @GodotBaseType
 public open class CodeHighlighter : SyntaxHighlighter() {
@@ -253,6 +254,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    *
    * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
+  @JvmOverloads
   public fun addColorRegion(
     startKey: String,
     endKey: String,

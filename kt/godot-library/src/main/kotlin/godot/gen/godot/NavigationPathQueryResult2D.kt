@@ -25,12 +25,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Result from a [godot.NavigationPathQueryParameters2D] navigation path query.
+ * Represents the result of a 2D pathfinding query.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html)
  *
- * This class contains the result of a navigation path query from [godot.NavigationServer2D.queryPath].
+ * This class stores the result of a 2D navigation path query from the [godot.NavigationServer2D].
  */
 @GodotBaseType
 public open class NavigationPathQueryResult2D : RefCounted() {

@@ -24,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class WebSocketPeer : PacketPeer() {
@@ -97,6 +98,7 @@ public open class WebSocketPeer : PacketPeer() {
     return true
   }
 
+  @JvmOverloads
   public fun connectToUrl(url: String, tlsClientOptions: TLSOptions? = null): GodotError {
     TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_CONNECT_TO_URL, LONG)
@@ -109,6 +111,7 @@ public open class WebSocketPeer : PacketPeer() {
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
+  @JvmOverloads
   public fun send(message: PackedByteArray, writeMode: WriteMode =
       WebSocketPeer.WriteMode.WRITE_MODE_BINARY): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to message, LONG to writeMode.id)
@@ -134,6 +137,7 @@ public open class WebSocketPeer : PacketPeer() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_POLL, NIL)
   }
 
+  @JvmOverloads
   public fun close(code: Int = 1000, reason: String = ""): Unit {
     TransferContext.writeArguments(LONG to code.toLong(), STRING to reason)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_CLOSE, NIL)

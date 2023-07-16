@@ -17,18 +17,22 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Convex polygon shape resource for 2D physics.
+ * A 2D convex polygon shape used for physics collision.
  *
- * 2D convex polygon shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. A convex polygon, whatever its shape, is internally decomposed into as many convex polygons as needed to ensure all collision checks against it are always done on convex polygons (which are faster to check). See also [godot.CollisionPolygon2D].
+ * A 2D convex polygon shape, intended for use in physics. Used internally in [godot.CollisionPolygon2D] when it's in `BUILD_SOLIDS` mode.
  *
- * The main difference between a [godot.ConvexPolygonShape2D] and a [godot.ConcavePolygonShape2D] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex to speed up collision detection.
+ * [godot.ConvexPolygonShape2D] is *solid*, which means it detects collisions from objects that are fully inside it, unlike [godot.ConcavePolygonShape2D] which is hollow. This makes it more suitable for both detection and physics.
  *
- * **Performance:** [godot.ConvexPolygonShape2D] is faster to check collisions against compared to [godot.ConcavePolygonShape2D], but it is slower than primitive collision shapes such as [godot.CircleShape2D] or [godot.RectangleShape2D]. Its use should generally be limited to medium-sized objects that cannot have their collision accurately represented by a primitive shape.
+ * **Convex decomposition:** A concave polygon can be split up into several convex polygons. This allows dynamic physics bodies to have complex concave collisions (at a performance cost) and can be achieved by using several [godot.ConvexPolygonShape3D] nodes or by using the [godot.CollisionPolygon2D] node in `BUILD_SOLIDS` mode. To generate a collision polygon from a sprite, select the [godot.Sprite2D] node, go to the **Sprite2D** menu that appears above the viewport, and choose **Create Polygon2D Sibling**.
+ *
+ * **Performance:** [godot.ConvexPolygonShape2D] is faster to check collisions against compared to [godot.ConcavePolygonShape2D], but it is slower than primitive collision shapes such as [godot.CircleShape2D] and [godot.RectangleShape2D]. Its use should generally be limited to medium-sized objects that cannot have their collision accurately represented by primitive shapes.
  */
 @GodotBaseType
 public open class ConvexPolygonShape2D : Shape2D() {
   /**
-   * The polygon's list of vertices. Can be in either clockwise or counterclockwise order. Only set this property with convex hull points, use [setPointCloud] to generate a convex hull shape from concave shape points.
+   * The polygon's list of vertices that form a convex hull. Can be in either clockwise or counterclockwise order.
+   *
+   * **Warning:** Only set this property to a list of points that actually form a convex hull. Use [setPointCloud] to generate the convex hull of an arbitrary set of points.
    */
   public var points: PackedVector2Array
     get() {
@@ -49,7 +53,7 @@ public open class ConvexPolygonShape2D : Shape2D() {
   }
 
   /**
-   * Based on the set of points provided, this creates and assigns the [points] property using the convex hull algorithm. Removing all unneeded points. See [godot.Geometry2D.convexHull] for details.
+   * Based on the set of points provided, this assigns the [points] property using the convex hull algorithm, removing all unneeded points. See [godot.Geometry2D.convexHull] for details.
    */
   public fun setPointCloud(pointCloud: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to pointCloud)

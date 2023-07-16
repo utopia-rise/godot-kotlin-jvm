@@ -26,11 +26,11 @@ object PropertyHintStringGeneratorProvider {
     ): PropertyHintStringGenerator<out PropertyHintAnnotation> {
         val hintAnnotations = registeredProperty.annotations.filterIsInstance<PropertyHintAnnotation>()
         if (hintAnnotations.size > 1) {
-            EntryGenerator.logger.error("RegisteredProperty ${registeredProperty.fqName} has more than one Hint annotation: ${hintAnnotations.joinToString()}")
+            EntryGenerator.logger.error(registeredProperty, "RegisteredProperty has more than one Hint annotation: ${hintAnnotations.joinToString()}")
         }
 
         return when(hintAnnotations.firstOrNull()) {
-            ColorNoAlphaHintAnnotation -> ColorNoAlphaHintStringGenerator(registeredProperty)
+            is ColorNoAlphaHintAnnotation -> ColorNoAlphaHintStringGenerator(registeredProperty)
             is DirHintAnnotation -> DirHintStringGenerator(registeredProperty)
             is EnumFlagHintStringAnnotation,
             is EnumHintStringAnnotation -> EnumHintStringGenerator(registeredProperty)
@@ -38,8 +38,8 @@ object PropertyHintStringGeneratorProvider {
             is ExpEasingHintAnnotation -> ExpEasingHintStringGenerator(registeredProperty)
             is FileHintAnnotation -> FileHintStringGenerator(registeredProperty)
             is IntFlagHintAnnotation -> IntFlagHintStringGenerator(registeredProperty)
-            MultilineTextHintAnnotation -> MultilineTextHintStringGenerator(registeredProperty)
-            PlaceHolderTextHintAnnotation -> PlaceHolderTextHintStringGenerator(registeredProperty)
+            is MultilineTextHintAnnotation -> MultilineTextHintStringGenerator(registeredProperty)
+            is PlaceHolderTextHintAnnotation -> PlaceHolderTextHintStringGenerator(registeredProperty)
             is RangeHintAnnotation<*> -> RangeHintStringGenerator(registeredProperty)
             null -> when {
                 registeredProperty.type.isNodeType() -> NodeTypeHintStringGenerator(registeredProperty)

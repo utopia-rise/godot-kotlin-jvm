@@ -17,15 +17,17 @@ import kotlin.Suppress
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
- * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations together linearly out of three based on a value in the `[-1.0, 1.0]` range.
+ * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations out of three linearly out of three based on the amounmt value.
  *
- * This node has three inputs:
+ * This animation node has three inputs:
  *
- * - The base animation
+ * - The base animation to blend with
  *
- * - A -blend animation to blend with when the blend amount is in the `[-1.0, 0.0]` range.
+ * - A "-blend" animation to blend with when the blend amount is negative value
  *
- * - A +blend animation to blend with when the blend amount is in the `[0.0, 1.0]` range
+ * - A "+blend" animation to blend with when the blend amount is positive value
+ *
+ * In general, the blend value should be in the `[-1.0, 1.0]` range. Values outside of this range can blend amplified animations, however, [godot.AnimationNodeAdd3] works better for this purpose.
  */
 @GodotBaseType
 public open class AnimationNodeBlend3 : AnimationNodeSync() {

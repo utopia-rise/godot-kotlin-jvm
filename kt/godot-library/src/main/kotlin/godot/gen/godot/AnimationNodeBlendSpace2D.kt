@@ -23,18 +23,19 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Blends linearly between three [godot.AnimationNode] of any type placed in a 2D space.
+ * A set of [godot.AnimationRootNode]s placed on 2D coordinates, crossfading between the three adjacent ones. Used by [godot.AnimationTree].
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * A resource to add to an [godot.AnimationNodeBlendTree].
+ * A resource used by [godot.AnimationNodeBlendTree].
  *
- * This node allows you to blend linearly between three animations using a [godot.core.Vector2] weight.
+ * [godot.AnimationNodeBlendSpace1D] represents a virtual 2D space on which [godot.AnimationRootNode]s are placed. Outputs the linear blend of the three adjacent animations using a [godot.core.Vector2] weight. Adjacent in this context means the three [godot.AnimationRootNode]s making up the triangle that contains the current value.
  *
- * You can add vertices to the blend space with [addBlendPoint] and automatically triangulate it by setting [autoTriangles] to `true`. Otherwise, use [addTriangle] and [removeTriangle] to create up the blend space by hand.
+ * You can add vertices to the blend space with [addBlendPoint] and automatically triangulate it by setting [autoTriangles] to `true`. Otherwise, use [addTriangle] and [removeTriangle] to triangulate the blend space by hand.
  */
 @GodotBaseType
 public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
@@ -181,6 +182,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Adds a new point that represents a [node] at the position set by [pos]. You can insert it at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
+  @JvmOverloads
   public fun addBlendPoint(
     node: AnimationRootNode,
     pos: Vector2,
@@ -251,6 +253,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Creates a new triangle using three points [x], [y], and [z]. Triangles can overlap. You can insert the triangle at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
+  @JvmOverloads
   public fun addTriangle(
     x: Int,
     y: Int,
@@ -299,7 +302,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
      */
     BLEND_MODE_INTERPOLATED(0),
     /**
-     * The blend space plays the animation of the node the blending position is closest to. Useful for frame-by-frame 2D animations.
+     * The blend space plays the animation of the animation node which blending position is closest to. Useful for frame-by-frame 2D animations.
      */
     BLEND_MODE_DISCRETE(1),
     /**

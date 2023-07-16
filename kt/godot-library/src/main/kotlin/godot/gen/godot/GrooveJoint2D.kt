@@ -17,9 +17,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Groove constraint for 2D physics.
+ * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis.
  *
- * Groove constraint for 2D physics. This is useful for making a body "slide" through a segment placed in another.
+ * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For example, a [godot.StaticBody2D] representing a piston base can be attached to a [godot.RigidBody2D] representing the piston head, moving up and down.
  */
 @GodotBaseType
 public open class GrooveJoint2D : Joint2D() {

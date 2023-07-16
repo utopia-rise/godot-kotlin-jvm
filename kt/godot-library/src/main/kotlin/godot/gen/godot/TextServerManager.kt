@@ -27,9 +27,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Manager for the font and complex text layout servers.
+ * A singleton for managing [godot.TextServer] implementations.
  *
- * [godot.TextServerManager] is the API backend for loading, enumeration and switching [godot.TextServer]s.
+ * [godot.TextServerManager] is the API backend for loading, enumerating, and switching [godot.TextServer]s.
  *
  * **Note:** Switching text server at runtime is possible, but will invalidate all fonts and text buffers. Make sure to unload all controls, fonts, and themes before doing so.
  */
@@ -51,7 +51,7 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Registers an [godot.TextServer] interface.
+   * Registers a [godot.TextServer] interface.
    */
   public fun addInterface(_interface: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
@@ -70,7 +70,7 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Removes interface. All fonts and shaped text caches should be freed before removing interface.
+   * Removes an interface. All fonts and shaped text caches should be freed before removing an interface.
    */
   public fun removeInterface(_interface: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
@@ -89,7 +89,7 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Returns a list of available interfaces the index and name of each interface.
+   * Returns a list of available interfaces, with the index and name of each interface.
    */
   public fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -99,7 +99,7 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Finds an interface by its name.
+   * Finds an interface by its [name].
    */
   public fun findInterface(name: String): TextServer? {
     TransferContext.writeArguments(STRING to name)

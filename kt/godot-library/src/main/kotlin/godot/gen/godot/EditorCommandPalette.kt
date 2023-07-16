@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Godot editor's command palette.
@@ -73,6 +74,7 @@ public open class EditorCommandPalette internal constructor() : ConfirmationDial
    *
    * - [shortcutText]: [godot.String] (Shortcut text of the **Command** if available.)
    */
+  @JvmOverloads
   public fun addCommand(
     commandName: String,
     keyName: String,

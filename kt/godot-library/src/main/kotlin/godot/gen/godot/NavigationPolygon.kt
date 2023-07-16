@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node that has methods to draw outlines or use indices of vertices to create navigation polygons.
+ * A navigation polygon that defines traversable areas and obstacles.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html)
@@ -119,6 +119,9 @@ public open class NavigationPolygon : Resource() {
           NIL)
     }
 
+  /**
+   * The cell size used to rasterize the navigation mesh vertices. Must match with the cell size on the navigation map.
+   */
   public var cellSize: Float
     get() {
       TransferContext.writeArguments()

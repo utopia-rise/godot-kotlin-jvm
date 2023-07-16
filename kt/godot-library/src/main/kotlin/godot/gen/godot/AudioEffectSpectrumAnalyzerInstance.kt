@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  *
@@ -32,6 +33,7 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
   /**
    *
    */
+  @JvmOverloads
   public fun getMagnitudeForFrequencyRange(
     fromHz: Float,
     toHz: Float,

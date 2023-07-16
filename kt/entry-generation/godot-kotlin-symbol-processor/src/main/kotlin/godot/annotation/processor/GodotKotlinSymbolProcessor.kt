@@ -6,7 +6,11 @@ import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
 import godot.annotation.processor.compiler.CompilerDataProvider
-import godot.annotation.processor.processing.*
+import godot.annotation.processor.processing.ProcessingRound
+import godot.annotation.processor.processing.ProcessingRoundsBlackboard
+import godot.annotation.processor.processing.RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistrationFiles
+import godot.annotation.processor.processing.RoundGenerateRegistrationFilesForCurrentCompilation
+import godot.annotation.processor.processing.RoundUpdateRegistrationFiles
 import java.io.File
 
 /**
@@ -18,11 +22,19 @@ import java.io.File
 class GodotKotlinSymbolProcessor(
     private val options: Map<String, String>,
     private val codeGenerator: CodeGenerator,
-    private val logger: KSPLogger
+    private val kspLogger: KSPLogger
 ) : SymbolProcessor {
     private lateinit var settings: Settings
     private val processingRoundsBlackboard = ProcessingRoundsBlackboard()
     private var processingRound = -1
+
+    companion object {
+        lateinit var logger: KSPLogger
+    }
+
+    init {
+        logger = kspLogger
+    }
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
         processingRound++
@@ -38,16 +50,16 @@ class GodotKotlinSymbolProcessor(
 
         val currentProcessingRound = ProcessingRound.values().getOrNull(processingRound)
             ?: return emptyList<KSAnnotated>().also {
-                logger.warn("Unexpected processing round: $processingRound. Only expecting ${ProcessingRound.values().size} rounds. No op.")
+                kspLogger.warn("Unexpected processing round: $processingRound. Only expecting ${ProcessingRound.values().size} rounds. No op.")
             }
-        logger.info("Current processing round: $currentProcessingRound")
+        kspLogger.info("Current processing round: $currentProcessingRound")
 
         return when (currentProcessingRound) {
             ProcessingRound.GENERATE_REGISTRARS_FOR_THIS_PROJECT_AND_REGISTRATION_FILES_FOR_DEPENDENCIES -> RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistrationFiles(
                 blackboard = processingRoundsBlackboard,
                 resolver = resolver,
                 codeGenerator = codeGenerator,
-                logger = logger,
+                logger = kspLogger,
                 settings = settings
             )
 
@@ -55,7 +67,7 @@ class GodotKotlinSymbolProcessor(
                 blackboard = processingRoundsBlackboard,
                 resolver = resolver,
                 codeGenerator = codeGenerator,
-                logger = logger,
+                logger = kspLogger,
                 settings = settings
             )
 
@@ -63,7 +75,7 @@ class GodotKotlinSymbolProcessor(
                 blackboard = processingRoundsBlackboard,
                 resolver = resolver,
                 codeGenerator = codeGenerator,
-                logger = logger,
+                logger = kspLogger,
                 settings = settings
             )
         }.execute()

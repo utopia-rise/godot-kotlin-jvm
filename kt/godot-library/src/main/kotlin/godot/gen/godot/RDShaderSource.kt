@@ -19,12 +19,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Shader source code (used by [godot.RenderingDevice]).
  *
+ * Shader source code in text form.
+ *
+ * See also [godot.RDShaderFile]. [godot.RDShaderSource] is only meant to be used with the [godot.RenderingDevice] API. It should not be confused with Godot's own [godot.Shader] resource, which is what Godot's various nodes use for high-level shader programming.
  */
 @GodotBaseType
 public open class RDShaderSource : RefCounted() {
   /**
-   *
+   * The language the shader is written in.
    */
   public var language: RenderingDevice.ShaderLanguage
     get() {
@@ -43,7 +47,7 @@ public open class RDShaderSource : RefCounted() {
   }
 
   /**
-   *
+   * Sets [source] code for the specified shader [stage]. Equivalent to setting one of [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or [sourceVertex].
    */
   public fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
     TransferContext.writeArguments(LONG to stage.id, STRING to source)
@@ -52,7 +56,7 @@ public open class RDShaderSource : RefCounted() {
   }
 
   /**
-   *
+   * Returns source code for the specified shader [stage]. Equivalent to getting one of [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or [sourceVertex].
    */
   public fun getStageSource(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)

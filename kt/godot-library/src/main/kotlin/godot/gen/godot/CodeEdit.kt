@@ -36,13 +36,14 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Multiline text control intended for editing code.
+ * A multiline text editor designed for editing code.
  *
- * CodeEdit is a specialized [godot.TextEdit] designed for editing plain text code files. It contains a bunch of features commonly found in code editors such as line numbers, line folding, code completion, indent management and string / comment management.
+ * CodeEdit is a specialized [godot.TextEdit] designed for editing plain text code files. It has many features commonly found in code editors such as line numbers, line folding, code completion, indent management, and string/comment management.
  *
- * **Note:** By default [godot.CodeEdit] always use left-to-right text direction to correctly display source code.
+ * **Note:** Regardless of locale, [godot.CodeEdit] will by default always use left-to-right text direction to correctly display source code.
  */
 @GodotBaseType
 public open class CodeEdit : TextEdit() {
@@ -435,6 +436,12 @@ public open class CodeEdit : TextEdit() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UNINDENT_LINES, NIL)
   }
 
+  /**
+   * Converts the indents of lines between [fromLine] and [toLine] to tabs or spaces as set by [indentUseSpaces].
+   *
+   * Values of `-1` convert the entire text.
+   */
+  @JvmOverloads
   public fun convertIndent(fromLine: Int = -1, toLine: Int = -1): Unit {
     TransferContext.writeArguments(LONG to fromLine.toLong(), LONG to toLine.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CONVERT_INDENT, NIL)
@@ -664,6 +671,7 @@ public open class CodeEdit : TextEdit() {
    *
    * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
+  @JvmOverloads
   public fun addStringDelimiter(
     startKey: String,
     endKey: String,
@@ -703,6 +711,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns the delimiter index if [line] [column] is in a string. If [column] is not provided, will return the delimiter index if the entire [line] is a string. Otherwise `-1`.
    */
+  @JvmOverloads
   public fun isInString(line: Int, column: Int = -1): Int {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_IN_STRING, LONG)
@@ -716,6 +725,7 @@ public open class CodeEdit : TextEdit() {
    *
    * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
+  @JvmOverloads
   public fun addCommentDelimiter(
     startKey: String,
     endKey: String,
@@ -756,6 +766,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns delimiter index if [line] [column] is in a comment. If [column] is not provided, will return delimiter index if the entire [line] is a comment. Otherwise `-1`.
    */
+  @JvmOverloads
   public fun isInComment(line: Int, column: Int = -1): Int {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_IN_COMMENT, LONG)
@@ -832,6 +843,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Emits [codeCompletionRequested], if [force] is true will bypass all checks. Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request if all current options are of type file path, node path or signal.
    */
+  @JvmOverloads
   public fun requestCodeCompletion(force: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to force)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REQUEST_CODE_COMPLETION,
@@ -841,8 +853,11 @@ public open class CodeEdit : TextEdit() {
   /**
    * Submits an item to the queue of potential candidates for the autocomplete menu. Call [updateCodeCompletionOptions] to update the list.
    *
+   * [location] indicates location of the option relative to the location of the code completion query. See [enum CodeEdit.CodeCompletionLocation] for how to set this value.
+   *
    * **Note:** This list will replace all current candidates.
    */
+  @JvmOverloads
   public fun addCodeCompletionOption(
     type: CodeCompletionKind,
     displayText: String,
@@ -922,6 +937,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Inserts the selected entry into the text. If [replace] is true, any existing text is replaced rather then merged.
    */
+  @JvmOverloads
   public fun confirmCodeCompletion(replace: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to replace)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CONFIRM_CODE_COMPLETION,
@@ -980,7 +996,7 @@ public open class CodeEdit : TextEdit() {
      */
     KIND_MEMBER(4),
     /**
-     * Marks the option as a enum entry.
+     * Marks the option as an enum entry.
      */
     KIND_ENUM(5),
     /**
@@ -1014,9 +1030,21 @@ public open class CodeEdit : TextEdit() {
   public enum class CodeCompletionLocation(
     id: Long,
   ) {
+    /**
+     * The option is local to the location of the code completion query - e.g. a local variable. Subsequent value of location represent options from the outer class, the exact value represent how far they are (in terms of inner classes).
+     */
     LOCATION_LOCAL(0),
+    /**
+     * The option is from the containing class or a parent class, relative to the location of the code completion query. Perform a bitwise OR with the class depth (e.g. 0 for the local class, 1 for the parent, 2 for the grandparent, etc) to store the depth of an option in the class or a parent class.
+     */
     LOCATION_PARENT_MASK(256),
+    /**
+     * The option is from user code which is not local and not in a derived class (e.g. Autoload Singletons).
+     */
     LOCATION_OTHER_USER_CODE(512),
+    /**
+     * The option is from other engine code, not covered by the other enum constants - e.g. built-in classes.
+     */
     LOCATION_OTHER(1024),
     ;
 

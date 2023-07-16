@@ -12,12 +12,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Horizontal box container.
+ * A container that arranges its child controls horizontally.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
  *
- * Horizontal box container. See [godot.BoxContainer].
+ * A variant of [godot.BoxContainer] that can only arrange its child controls horizontally. Child controls are rearranged automatically when their minimum size changes.
  */
 @GodotBaseType
 public open class HBoxContainer : BoxContainer() {

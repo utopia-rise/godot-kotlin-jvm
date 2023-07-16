@@ -480,11 +480,11 @@ public open class Camera2D : Node2D() {
     id: Long,
   ) {
     /**
-     * The camera updates with the `_physics_process` callback.
+     * The camera updates during physics frames (see [godot.Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     CAMERA2D_PROCESS_PHYSICS(0),
     /**
-     * The camera updates with the `_process` callback.
+     * The camera updates during process frames (see [godot.Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     CAMERA2D_PROCESS_IDLE(1),
     ;

@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Creates packages that can be loaded into a running project.
@@ -63,6 +64,7 @@ public open class PCKPacker : RefCounted() {
   /**
    * Creates a new PCK file with the name [pckName]. The `.pck` file extension isn't added automatically, so it should be part of [pckName] (even though it's not required).
    */
+  @JvmOverloads
   public fun pckStart(
     pckName: String,
     alignment: Int = 32,
@@ -77,6 +79,7 @@ public open class PCKPacker : RefCounted() {
   /**
    * Adds the [sourcePath] file to the current PCK package at the [pckPath] internal path (should start with `res://`).
    */
+  @JvmOverloads
   public fun addFile(
     pckPath: String,
     sourcePath: String,
@@ -90,6 +93,7 @@ public open class PCKPacker : RefCounted() {
   /**
    * Writes the files specified using all [addFile] calls since the last flush. If [verbose] is `true`, a list of files added will be printed to the console for easier debugging.
    */
+  @JvmOverloads
   public fun flush(verbose: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to verbose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_FLUSH, LONG)

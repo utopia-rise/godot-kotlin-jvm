@@ -22,14 +22,15 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Language Translation.
+ * A language translation that maps a collection of strings to their individual translations.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/i18n/locales.html]($DOCS_URL/tutorials/i18n/locales.html)
  *
- * Translations are resources that can be loaded and unloaded on demand. They map a string to another string.
+ * [godot.Translation]s are resources that can be loaded and unloaded on demand. They map a collection of strings to their individual translations, and they also provide convenience methods for pluralization.
  */
 @GodotBaseType
 public open class Translation : Resource() {
@@ -76,6 +77,7 @@ public open class Translation : Resource() {
    *
    * An additional context could be used to specify the translation context or differentiate polysemic words.
    */
+  @JvmOverloads
   public fun addMessage(
     srcMessage: StringName,
     xlatedMessage: StringName,
@@ -90,6 +92,7 @@ public open class Translation : Resource() {
    *
    * An additional context could be used to specify the translation context or differentiate polysemic words.
    */
+  @JvmOverloads
   public fun addPluralMessage(
     srcMessage: StringName,
     xlatedMessages: PackedStringArray,
@@ -102,6 +105,7 @@ public open class Translation : Resource() {
   /**
    * Returns a message's translation.
    */
+  @JvmOverloads
   public fun getMessage(srcMessage: StringName, context: StringName = StringName("")): StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE,
@@ -114,6 +118,7 @@ public open class Translation : Resource() {
    *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
    */
+  @JvmOverloads
   public fun getPluralMessage(
     srcMessage: StringName,
     srcPluralMessage: StringName,
@@ -129,6 +134,7 @@ public open class Translation : Resource() {
   /**
    * Erases a message.
    */
+  @JvmOverloads
   public fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ERASE_MESSAGE, NIL)

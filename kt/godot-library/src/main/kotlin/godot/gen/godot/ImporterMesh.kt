@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A [godot.Resource] that contains vertex array-based geometry during the import process.
@@ -107,6 +108,7 @@ public open class ImporterMesh : Resource() {
    *
    * **Note:** When using indices, it is recommended to only use points, lines, or triangles.
    */
+  @JvmOverloads
   public fun addSurface(
     primitive: Mesh.PrimitiveType,
     arrays: VariantArray<Any?>,
@@ -262,6 +264,7 @@ public open class ImporterMesh : Resource() {
    *
    * If not yet cached and [baseMesh] is provided, [baseMesh] will be used and mutated.
    */
+  @JvmOverloads
   public fun getMesh(baseMesh: ArrayMesh? = null): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to baseMesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_MESH, OBJECT)

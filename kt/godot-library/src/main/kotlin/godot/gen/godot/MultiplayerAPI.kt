@@ -28,6 +28,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * High-level multiplayer API interface.
@@ -144,6 +145,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    *
    * **Note:** Prefer using [godot.Node.rpc], [godot.Node.rpcId], or `my_method.rpc(peer, arg1, arg2, ...)` (in GDScript), since they are faster. This method is mostly useful in conjunction with [godot.MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.
    */
+  @JvmOverloads
   public fun rpc(
     peer: Int,
     _object: Object,

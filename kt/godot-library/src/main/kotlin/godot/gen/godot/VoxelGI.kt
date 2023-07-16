@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Real-time global illumination (GI) probe.
@@ -104,12 +105,13 @@ public open class VoxelGI : VisualInstance3D() {
   }
 
   /**
-   * Bakes the effect from all [godot.GeometryInstance3D]s marked with [godot.GeometryInstance3D.GI_MODE_STATIC] and [godot.Light3D]s marked with either [godot.Light3D.BAKE_STATIC] or [godot.Light3D.BAKE_DYNAMIC]. If `create_visual_debug` is `true`, after baking the light, this will generate a [godot.MultiMesh] that has a cube representing each solid cell with each cube colored to the cell's albedo color. This can be used to visualize the [godot.VoxelGI]'s data and debug any issues that may be occurring.
+   * Bakes the effect from all [godot.GeometryInstance3D]s marked with [godot.GeometryInstance3D.GI_MODE_STATIC] and [godot.Light3D]s marked with either [godot.Light3D.BAKE_STATIC] or [godot.Light3D.BAKE_DYNAMIC]. If [createVisualDebug] is `true`, after baking the light, this will generate a [godot.MultiMesh] that has a cube representing each solid cell with each cube colored to the cell's albedo color. This can be used to visualize the [godot.VoxelGI]'s data and debug any issues that may be occurring.
    *
    * **Note:** [bake] works from the editor and in exported projects. This makes it suitable for procedurally generated or user-built levels. Baking a [godot.VoxelGI] node generally takes from 5 to 20 seconds in most scenes. Reducing [subdiv] can speed up baking.
    *
    * **Note:** [godot.GeometryInstance3D]s and [godot.Light3D]s must be fully ready before [bake] is called. If you are procedurally creating those and some meshes or lights are missing from your baked [godot.VoxelGI], use `call_deferred("bake")` instead of calling [bake] directly.
    */
+  @JvmOverloads
   public fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, BOOL to createVisualDebug)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_BAKE, NIL)

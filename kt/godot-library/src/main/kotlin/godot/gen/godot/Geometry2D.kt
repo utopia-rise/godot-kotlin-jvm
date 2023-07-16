@@ -29,11 +29,12 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
- * Helper node to calculate generic geometry operations in 2D space.
+ * Provides methods for some common 2D geometric operations.
  *
- * Geometry2D provides users with a set of helper functions to create geometric shapes, compute intersections between shapes, and process various other geometric operations.
+ * Provides a set of helper functions to create geometric shapes, compute intersections between shapes, and process various other geometric operations in 2D.
  */
 @GodotBaseType
 public object Geometry2D : Object() {
@@ -330,6 +331,7 @@ public object Geometry2D : Object() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun offsetPolygon(
     polygon: PackedVector2Array,
     delta: Float,
@@ -349,6 +351,7 @@ public object Geometry2D : Object() {
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
+  @JvmOverloads
   public fun offsetPolyline(
     polyline: PackedVector2Array,
     delta: Float,

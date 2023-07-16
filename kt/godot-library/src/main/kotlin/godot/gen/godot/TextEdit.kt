@@ -43,11 +43,12 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
- * Multiline text editing control.
+ * A multiline text editor.
  *
- * TextEdit is meant for editing large, multiline text. It also has facilities for editing code, such as syntax highlighting support and multiple levels of undo/redo.
+ * A multiline text editor. It also has limited facilities for editing code, such as syntax highlighting support. For more advanced facilities for editing code, see [godot.CodeEdit].
  *
  * **Note:** Most viewport, caret and edit methods contain a `caret_index` argument for [caretMultiple] support. The argument should be one of the following: `-1` for all carets, `0` for the main caret, or greater than `0` for secondary carets.
  *
@@ -266,6 +267,9 @@ public open class TextEdit : Control() {
           NIL)
     }
 
+  /**
+   * If [wrapMode] is set to [LINE_WRAPPING_BOUNDARY], sets text wrapping mode. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   */
   public var autowrapMode: TextServer.AutowrapMode
     get() {
       TransferContext.writeArguments()
@@ -503,7 +507,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * Sets if the caret should blink.
+   * If `true`, makes the caret blink.
    */
   public var caretBlink: Boolean
     get() {
@@ -519,7 +523,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * Duration (in seconds) of a caret's blinking cycle.
+   * The interval at which the caret blinks (in seconds).
    */
   public var caretBlinkInterval: Float
     get() {
@@ -534,6 +538,9 @@ public open class TextEdit : Control() {
           NIL)
     }
 
+  /**
+   * If `true`, caret will be visible when [editable] is disabled.
+   */
   public var caretDrawWhenEditableDisabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -784,6 +791,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the width in pixels of the [wrapIndex] on [line].
    */
+  @JvmOverloads
   public fun getLineWidth(line: Int, wrapIndex: Int = -1): Int {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to wrapIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WIDTH, LONG)
@@ -791,7 +799,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the height of a largest line.
+   * Returns the maximum value of the line height among all lines.
+   *
+   * **Note:** The return value is influenced by [theme_item line_spacing] and [theme_item font_size]. And it will not be less than `1`.
    */
   public fun getLineHeight(): Int {
     TransferContext.writeArguments()
@@ -837,6 +847,7 @@ public open class TextEdit : Control() {
   /**
    * Insert the specified text at the caret position.
    */
+  @JvmOverloads
   public fun insertTextAtCaret(text: String, caretIndex: Int = -1): Unit {
     TransferContext.writeArguments(STRING to text, LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_INSERT_TEXT_AT_CARET, NIL)
@@ -894,6 +905,7 @@ public open class TextEdit : Control() {
   /**
    * Called when the user presses the backspace key. Can be overridden with [_backspace].
    */
+  @JvmOverloads
   public fun backspace(caretIndex: Int = -1): Unit {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_BACKSPACE, NIL)
@@ -902,6 +914,7 @@ public open class TextEdit : Control() {
   /**
    * Cut's the current selection. Can be overridden with [_cut].
    */
+  @JvmOverloads
   public fun cut(caretIndex: Int = -1): Unit {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CUT, NIL)
@@ -910,6 +923,7 @@ public open class TextEdit : Control() {
   /**
    * Copies the current text selection. Can be overridden with [_copy].
    */
+  @JvmOverloads
   public fun copy(caretIndex: Int = -1): Unit {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_COPY, NIL)
@@ -918,6 +932,7 @@ public open class TextEdit : Control() {
   /**
    * Paste at the current location. Can be overridden with [_paste].
    */
+  @JvmOverloads
   public fun paste(caretIndex: Int = -1): Unit {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_PASTE, NIL)
@@ -926,6 +941,7 @@ public open class TextEdit : Control() {
   /**
    * Pastes the primary clipboard.
    */
+  @JvmOverloads
   public fun pastePrimaryClipboard(caretIndex: Int = -1): Unit {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_PASTE_PRIMARY_CLIPBOARD,
@@ -933,7 +949,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Starts an action, will end the current action if `action` is different.
+   * Starts an action, will end the current action if [action] is different.
    *
    * An action will also end after a call to [endAction], after [godot.ProjectSettings.gui/timers/textEditIdleDetectSec] is triggered or a new undoable step outside the [startAction] and [endAction] calls.
    */
@@ -1134,6 +1150,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the line and column at the given position. In the returned vector, `x` is the column, `y` is the line. If [allowOutOfBounds] is `false` and the position is not over the text, both vector values will be set to `-1`.
    */
+  @JvmOverloads
   public fun getLineColumnAtPos(position: Vector2i, allowOutOfBounds: Boolean = true): Vector2i {
     TransferContext.writeArguments(VECTOR2I to position, BOOL to allowOutOfBounds)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_COLUMN_AT_POS,
@@ -1187,6 +1204,7 @@ public open class TextEdit : Control() {
   /**
    * Returns whether the mouse is over selection. If [edges] is `true`, the edges are considered part of the selection.
    */
+  @JvmOverloads
   public fun isMouseOverSelection(edges: Boolean, caretIndex: Int = -1): Boolean {
     TransferContext.writeArguments(BOOL to edges, LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MOUSE_OVER_SELECTION,
@@ -1278,6 +1296,7 @@ public open class TextEdit : Control() {
   /**
    * Returns `true` if the caret is visible on the screen.
    */
+  @JvmOverloads
   public fun isCaretVisible(caretIndex: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_VISIBLE, BOOL)
@@ -1287,6 +1306,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the caret pixel draw position.
    */
+  @JvmOverloads
   public fun getCaretDrawPos(caretIndex: Int = 0): Vector2 {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_DRAW_POS,
@@ -1299,10 +1319,11 @@ public open class TextEdit : Control() {
    *
    * If [adjustViewport] is `true`, the viewport will center at the caret position after the move occurs.
    *
-   * If [canBeHidden] is `true`, the specified `line` can be hidden.
+   * If [canBeHidden] is `true`, the specified [line] can be hidden.
    *
    * **Note:** If supporting multiple carets this will not check for any overlap. See [mergeOverlappingCarets].
    */
+  @JvmOverloads
   public fun setCaretLine(
     line: Int,
     adjustViewport: Boolean = true,
@@ -1317,6 +1338,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the line the editing caret is on.
    */
+  @JvmOverloads
   public fun getCaretLine(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_LINE, LONG)
@@ -1330,6 +1352,7 @@ public open class TextEdit : Control() {
    *
    * **Note:** If supporting multiple carets this will not check for any overlap. See [mergeOverlappingCarets].
    */
+  @JvmOverloads
   public fun setCaretColumn(
     column: Int,
     adjustViewport: Boolean = true,
@@ -1342,6 +1365,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the column the editing caret is at.
    */
+  @JvmOverloads
   public fun getCaretColumn(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_COLUMN, LONG)
@@ -1351,6 +1375,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the wrap index the editing caret is on.
    */
+  @JvmOverloads
   public fun getCaretWrapIndex(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_WRAP_INDEX, LONG)
@@ -1360,6 +1385,7 @@ public open class TextEdit : Control() {
   /**
    * Returns a [godot.String] text with the word under the caret's location.
    */
+  @JvmOverloads
   public fun getWordUnderCaret(caretIndex: Int = -1): String {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_WORD_UNDER_CARET,
@@ -1370,6 +1396,7 @@ public open class TextEdit : Control() {
   /**
    * Sets the current selection mode.
    */
+  @JvmOverloads
   public fun setSelectionMode(
     mode: SelectionMode,
     line: Int = -1,
@@ -1402,6 +1429,7 @@ public open class TextEdit : Control() {
   /**
    * Selects the word under the caret.
    */
+  @JvmOverloads
   public fun selectWordUnderCaret(caretIndex: Int = -1): Unit {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT_WORD_UNDER_CARET,
@@ -1422,6 +1450,7 @@ public open class TextEdit : Control() {
    *
    * If [selectingEnabled] is `false`, no selection will occur.
    */
+  @JvmOverloads
   public fun select(
     fromLine: Int,
     fromColumn: Int,
@@ -1436,6 +1465,7 @@ public open class TextEdit : Control() {
   /**
    * Returns `true` if the user has selected text.
    */
+  @JvmOverloads
   public fun hasSelection(caretIndex: Int = -1): Boolean {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_SELECTION, BOOL)
@@ -1443,8 +1473,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the text inside the selection.
+   * Returns the text inside the selection of a caret, or all the carets if [caretIndex] is its default value `-1`.
    */
+  @JvmOverloads
   public fun getSelectedText(caretIndex: Int = -1): String {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTED_TEXT, STRING)
@@ -1454,6 +1485,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the original start line of the selection.
    */
+  @JvmOverloads
   public fun getSelectionLine(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_LINE, LONG)
@@ -1463,6 +1495,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the original start column of the selection.
    */
+  @JvmOverloads
   public fun getSelectionColumn(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_COLUMN, LONG)
@@ -1472,6 +1505,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the selection begin line.
    */
+  @JvmOverloads
   public fun getSelectionFromLine(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_LINE,
@@ -1482,6 +1516,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the selection begin column.
    */
+  @JvmOverloads
   public fun getSelectionFromColumn(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_COLUMN,
@@ -1492,6 +1527,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the selection end line.
    */
+  @JvmOverloads
   public fun getSelectionToLine(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_LINE,
@@ -1502,6 +1538,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the selection end column.
    */
+  @JvmOverloads
   public fun getSelectionToColumn(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_COLUMN,
@@ -1512,6 +1549,7 @@ public open class TextEdit : Control() {
   /**
    * Deselects the current selection.
    */
+  @JvmOverloads
   public fun deselect(caretIndex: Int = -1): Unit {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DESELECT, NIL)
@@ -1520,6 +1558,7 @@ public open class TextEdit : Control() {
   /**
    * Deletes the selected text.
    */
+  @JvmOverloads
   public fun deleteSelection(caretIndex: Int = -1): Unit {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DELETE_SELECTION, NIL)
@@ -1584,6 +1623,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the scroll position for [wrapIndex] of [line].
    */
+  @JvmOverloads
   public fun getScrollPosForLine(line: Int, wrapIndex: Int = 0): Double {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to wrapIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SCROLL_POS_FOR_LINE,
@@ -1594,6 +1634,7 @@ public open class TextEdit : Control() {
   /**
    * Positions the [wrapIndex] of [line] at the top of the viewport.
    */
+  @JvmOverloads
   public fun setLineAsFirstVisible(line: Int, wrapIndex: Int = 0): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to wrapIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_FIRST_VISIBLE,
@@ -1613,6 +1654,7 @@ public open class TextEdit : Control() {
   /**
    * Positions the [wrapIndex] of [line] at the center of the viewport.
    */
+  @JvmOverloads
   public fun setLineAsCenterVisible(line: Int, wrapIndex: Int = 0): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to wrapIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_CENTER_VISIBLE,
@@ -1622,6 +1664,7 @@ public open class TextEdit : Control() {
   /**
    * Positions the [wrapIndex] of [line] at the bottom of the viewport.
    */
+  @JvmOverloads
   public fun setLineAsLastVisible(line: Int, wrapIndex: Int = 0): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to wrapIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_LAST_VISIBLE,
@@ -1681,6 +1724,7 @@ public open class TextEdit : Control() {
   /**
    * Adjust the viewport so the caret is visible.
    */
+  @JvmOverloads
   public fun adjustViewportToCaret(caretIndex: Int = 0): Unit {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADJUST_VIEWPORT_TO_CARET,
@@ -1690,6 +1734,7 @@ public open class TextEdit : Control() {
   /**
    * Centers the viewport on the line the editing caret is at. This also resets the [scrollHorizontal] value to `0`.
    */
+  @JvmOverloads
   public fun centerViewportToCaret(caretIndex: Int = 0): Unit {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CENTER_VIEWPORT_TO_CARET,
@@ -1709,6 +1754,7 @@ public open class TextEdit : Control() {
   /**
    * Register a new gutter to this [godot.TextEdit]. Use [at] to have a specific gutter order. A value of `-1` appends the gutter to the right.
    */
+  @JvmOverloads
   public fun addGutter(at: Int = -1): Unit {
     TransferContext.writeArguments(LONG to at.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADD_GUTTER, NIL)
@@ -2340,7 +2386,7 @@ public open class TextEdit : Control() {
      */
     SELECTION_MODE_WORD(3),
     /**
-     * Select whole lines as if the user tripped clicked.
+     * Select whole lines as if the user triple clicked.
      */
     SELECTION_MODE_LINE(4),
     ;
