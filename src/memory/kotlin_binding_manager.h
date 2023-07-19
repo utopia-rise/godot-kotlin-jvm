@@ -33,7 +33,7 @@ public:
     // Doesn't set the KtObject as it doesn't exist yet, bind_object has be used later.
     static KotlinBinding* get_instance_binding(Object* p_object);
 
-    static void bind_object(KotlinBinding* binding, KtBinding* kt_binding);
+    static void bind_object(Object* p_object, KtBinding* kt_binding);
 };
 
 #endif// GODOT_JVM_KOTLIN_BINDING_MANAGER_H

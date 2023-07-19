@@ -22,7 +22,6 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     // There are 2 cases, either an Object has been freed, and we have to release its reference OR it's a Refcounted and the JVM instance is already dead.
     KotlinBinding* binding = reinterpret_cast<KotlinBinding*>(p_binding);
     memdelete(binding);
-    LOG_INFO("DELETE");
 }
 
 GDExtensionBool KotlinBindingManager::_instance_binding_reference_callback(void* p_token, void* p_binding, GDExtensionBool p_reference) {
@@ -46,9 +45,11 @@ KotlinBinding* KotlinBindingManager::set_instance_binding(Object* p_object) {
     KotlinBinding* binding = memnew(KotlinBinding());
     binding->owner = p_object;
 
-    if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->init_ref(); }
-
     p_object->set_instance_binding(&GDKotlin::get_instance(), binding, &_instance_binding_callbacks);
+
+    if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->init_ref(); }
+    binding->set_ready();
+
     return binding;
 }
 
@@ -58,12 +59,16 @@ KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
     KotlinBinding* binding =
       reinterpret_cast<KotlinBinding*>(p_object->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
 
-    if (p_object->is_ref_counted() && !binding->is_bound()) { reinterpret_cast<RefCounted*>(p_object)->reference(); }
+    if (!binding->is_ready()) {
+        if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->reference(); }
+        binding->set_ready();
+    }
 
     return binding;
 }
 
-void KotlinBindingManager::bind_object(KotlinBinding* binding, KtBinding* kt_binding) {
-    LOG_INFO("BIND");
+void KotlinBindingManager::bind_object(Object* p_object, KtBinding* kt_binding) {
+    KotlinBinding* binding =
+      reinterpret_cast<KotlinBinding*>(p_object->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
     binding->set_kt_binding(kt_binding);
 }

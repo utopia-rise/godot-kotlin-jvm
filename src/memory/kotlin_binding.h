@@ -11,11 +11,19 @@ class KotlinBinding {
     friend class KotlinBindingManager;
     friend class KotlinInstance;
 
+    enum class BindingStatus {
+        CREATED,
+        READY,
+        BOUND
+    };
+
     KtBinding* kt_binding;
     Object* owner;
+    BindingStatus status = BindingStatus::CREATED;
 
     KotlinBinding();
 
+    void set_ready();
     void set_kt_binding(KtBinding* p_kt_binding);
 
 public:
@@ -25,6 +33,7 @@ public:
 
     bool refcount_decremented_unsafe();
 
+    bool is_ready();
     bool is_bound();
 };
 

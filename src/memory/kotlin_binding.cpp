@@ -52,10 +52,15 @@ void KotlinBinding::set_kt_binding(KtBinding* p_kt_binding) {
     }
 
     kt_binding = p_kt_binding;
+    status = BindingStatus::BOUND;
+}
+
+bool KotlinBinding::is_ready() {
+    return status != BindingStatus::CREATED;
 }
 
 bool KotlinBinding::is_bound() {
-    return kt_binding != nullptr;
+    return status == BindingStatus::BOUND;
 }
 
 KotlinBinding::KotlinBinding() : kt_binding(nullptr), owner(nullptr) {}
@@ -66,4 +71,8 @@ KotlinBinding::~KotlinBinding() {
         memdelete(kt_binding);
         kt_binding = nullptr;
     }
+}
+
+void KotlinBinding::set_ready() {
+    status = BindingStatus::READY;
 }
