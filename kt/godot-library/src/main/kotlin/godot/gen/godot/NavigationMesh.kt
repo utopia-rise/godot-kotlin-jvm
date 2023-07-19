@@ -292,7 +292,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The maximum distance a simplfied contour's border edges should deviate the original raw contour.
+   * The maximum distance a simplified contour's border edges should deviate the original raw contour.
    */
   public var edgeMaxError: Float
     get() {

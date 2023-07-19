@@ -15,13 +15,13 @@ PackedColorArrayBridge::PackedColorArrayBridge(jni::JObject p_wrapped, jni::JObj
       const_cast<char*>("()J"),
       (void*) PackedColorArrayBridge::engine_call_constructor};
     jni::JNativeMethod engine_call_constructor_packed_array_method {
-            const_cast<char*>("engine_call_constructor_packed_array"),
-            const_cast<char*>("()J"),
+      const_cast<char*>("engine_call_constructor_packed_array"),
+      const_cast<char*>("()J"),
       (void*) PackedColorArrayBridge::engine_call_constructor_packed_array};
     jni::JNativeMethod engine_call_constructor_array_method {
-            const_cast<char*>("engine_call_constructor_array"),
-            const_cast<char*>("()J"),
-            (void*) PackedColorArrayBridge::engine_call_constructor_array};
+      const_cast<char*>("engine_call_constructor_array"),
+      const_cast<char*>("()J"),
+      (void*) PackedColorArrayBridge::engine_call_constructor_array};
 
     jni::JNativeMethod engine_call_append_method {
       const_cast<char*>("engine_call_append"),
@@ -32,31 +32,29 @@ PackedColorArrayBridge::PackedColorArrayBridge(jni::JObject p_wrapped, jni::JObj
       const_cast<char*>("(J)V"),
       (void*) PackedColorArrayBridge::engine_call_appendArray};
     jni::JNativeMethod engine_call_bsearch_method {
-            const_cast<char*>("engine_call_bsearch"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_bsearch};
+      const_cast<char*>("engine_call_bsearch"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_bsearch};
     jni::JNativeMethod engine_call_clear_method {
-            const_cast<char*>("engine_call_clear"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_clear};
+      const_cast<char*>("engine_call_clear"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_clear};
     jni::JNativeMethod engine_call_count_method {
-            const_cast<char*>("engine_call_count"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_count};
+      const_cast<char*>("engine_call_count"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_count};
     jni::JNativeMethod engine_call_duplicate_method {
-            const_cast<char*>("engine_call_duplicate"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_duplicate};
+      const_cast<char*>("engine_call_duplicate"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_duplicate};
     jni::JNativeMethod engine_call_fill_method {
-            const_cast<char*>("engine_call_fill"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_fill
-    };
+      const_cast<char*>("engine_call_fill"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_fill};
     jni::JNativeMethod engine_call_find_method {
-            const_cast<char*>("engine_call_find"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_find
-    };
+      const_cast<char*>("engine_call_find"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_find};
     jni::JNativeMethod engine_call_is_empty_method {
       const_cast<char*>("engine_call_is_empty"),
       const_cast<char*>("(J)V"),
@@ -66,9 +64,9 @@ PackedColorArrayBridge::PackedColorArrayBridge(jni::JObject p_wrapped, jni::JObj
       const_cast<char*>("(J)V"),
       (void*) PackedColorArrayBridge::engine_call_get};
     jni::JNativeMethod engine_call_has_method {
-            const_cast<char*>("engine_call_has"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_has};
+      const_cast<char*>("engine_call_has"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_has};
     jni::JNativeMethod engine_call_insert_method {
       const_cast<char*>("engine_call_insert"),
       const_cast<char*>("(J)V"),
@@ -90,9 +88,9 @@ PackedColorArrayBridge::PackedColorArrayBridge(jni::JObject p_wrapped, jni::JObj
       const_cast<char*>("(J)V"),
       (void*) PackedColorArrayBridge::engine_call_resize};
     jni::JNativeMethod engine_call_rfind_method {
-            const_cast<char*>("engine_call_rfind"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_rfind};
+      const_cast<char*>("engine_call_rfind"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_rfind};
     jni::JNativeMethod engine_call_set_method {
       const_cast<char*>("engine_call_set"),
       const_cast<char*>("(J)V"),
@@ -102,17 +100,17 @@ PackedColorArrayBridge::PackedColorArrayBridge(jni::JObject p_wrapped, jni::JObj
       const_cast<char*>("(J)V"),
       (void*) PackedColorArrayBridge::engine_call_size};
     jni::JNativeMethod engine_call_slice_method {
-            const_cast<char*>("engine_call_slice"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_slice};
+      const_cast<char*>("engine_call_slice"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_slice};
     jni::JNativeMethod engine_call_sort_method {
-            const_cast<char*>("engine_call_sort"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_sort};
+      const_cast<char*>("engine_call_sort"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_sort};
     jni::JNativeMethod engine_call_to_byte_array_method {
-            const_cast<char*>("engine_call_to_byte_array"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedColorArrayBridge::engine_call_to_byte_array};
+      const_cast<char*>("engine_call_to_byte_array"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedColorArrayBridge::engine_call_to_byte_array};
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(engine_call_constructor_method);
@@ -186,12 +184,7 @@ void PackedColorArrayBridge::engine_call_bsearch(JNIEnv* p_raw_env, jobject p_in
     Variant args[2] = {};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant ret {
-            from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->bsearch(
-                    args[0].operator Color(),
-                    args[1].operator bool()
-            )
-    };
+    Variant ret {from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->bsearch(args[0].operator Color(), args[1].operator bool())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -205,9 +198,7 @@ void PackedColorArrayBridge::engine_call_count(JNIEnv* p_raw_env, jobject p_inst
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-            from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->count(args[0].operator Color())
-    };
+    Variant ret {from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->count(args[0].operator Color())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -229,9 +220,7 @@ void PackedColorArrayBridge::engine_call_find(JNIEnv* p_raw_env, jobject p_insta
     Variant args[1] = {};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant ret {
-            from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->find(args[0].operator Color())
-    };
+    Variant ret {from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->find(args[0].operator Color())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -302,9 +291,7 @@ void PackedColorArrayBridge::engine_call_rfind(JNIEnv* p_raw_env, jobject p_inst
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-            from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->rfind(args[0].operator Color(), args->operator int())
-    };
+    Variant ret {from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->rfind(args[0].operator Color(), args->operator int())};
 }
 
 void PackedColorArrayBridge::engine_call_set(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -327,9 +314,7 @@ void PackedColorArrayBridge::engine_call_slice(JNIEnv* p_raw_env, jobject p_inst
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-            from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->slice(args[0].operator int(), args[1].operator int())
-    };
+    Variant ret {from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->slice(args[0].operator int(), args[1].operator int())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -339,8 +324,6 @@ void PackedColorArrayBridge::engine_call_sort(JNIEnv* p_raw_env, jobject p_insta
 
 void PackedColorArrayBridge::engine_call_to_byte_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant ret {
-            from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->to_byte_array()
-    };
+    Variant ret {from_uint_to_ptr<PackedColorArray>(p_raw_ptr)->to_byte_array()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, ret);
 }

@@ -9,7 +9,6 @@ GDExtensionInstanceBindingCallbacks KotlinBindingManager::_instance_binding_call
   &_instance_binding_reference_callback};
 
 void* KotlinBindingManager::_instance_binding_create_callback(void* p_token, void* p_instance) {
-
     Object* owner = reinterpret_cast<Object*>(p_instance);
     KotlinBinding* binding = memnew(KotlinBinding());
     binding->owner = owner;
@@ -23,6 +22,7 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     // There are 2 cases, either an Object has been freed, and we have to release its reference OR it's a Refcounted and the JVM instance is already dead.
     KotlinBinding* binding = reinterpret_cast<KotlinBinding*>(p_binding);
     memdelete(binding);
+    LOG_INFO("DELETE");
 }
 
 GDExtensionBool KotlinBindingManager::_instance_binding_reference_callback(void* p_token, void* p_binding, GDExtensionBool p_reference) {
@@ -55,7 +55,8 @@ KotlinBinding* KotlinBindingManager::set_instance_binding(Object* p_object) {
 KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
     // Godot being weird but this is how you create a binding if it doesn't exist already, otherwise just retrieve it.
     //  Use this function to bind an existing object to the JVM, the callbacks provided will handle the creation of the binding.
-    KotlinBinding* binding = reinterpret_cast<KotlinBinding*>(p_object->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
+    KotlinBinding* binding =
+      reinterpret_cast<KotlinBinding*>(p_object->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
 
     if (p_object->is_ref_counted() && !binding->is_bound()) { reinterpret_cast<RefCounted*>(p_object)->reference(); }
 
@@ -63,5 +64,6 @@ KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
 }
 
 void KotlinBindingManager::bind_object(KotlinBinding* binding, KtBinding* kt_binding) {
+    LOG_INFO("BIND");
     binding->set_kt_binding(kt_binding);
 }

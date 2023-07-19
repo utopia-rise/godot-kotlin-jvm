@@ -35,7 +35,8 @@ bool KotlinBinding::refcount_decremented_unsafe() {
 }
 
 void KotlinBinding::set_kt_binding(KtBinding* p_kt_binding) {
-    JVM_CRASH_COND_MSG(!p_kt_binding, "Trying to set a KtObject null pointer to a binding");
+    JVM_CRASH_COND_MSG(!p_kt_binding, "Trying to set a null KtBinding  pointer to a binding");
+    JVM_CRASH_COND_MSG(kt_binding, "Trying to set a KtBinding on an already bound Object");
     if (!owner->is_ref_counted()) {
         kt_binding = p_kt_binding;
         return;
@@ -62,7 +63,7 @@ KotlinBinding::KotlinBinding() : kt_binding(nullptr), owner(nullptr) {}
 KotlinBinding::~KotlinBinding() {
     owner = nullptr;
     if (kt_binding != nullptr) {
-        delete kt_binding;
+        memdelete(kt_binding);
         kt_binding = nullptr;
     }
 }

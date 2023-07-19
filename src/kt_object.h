@@ -9,8 +9,11 @@
 #include <core/variant/variant.h>
 
 class KtObject : public JavaInstanceWrapper<KtObject> {
+private:
+    bool is_ref;
+
 public:
-    KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader);
+    KtObject(jni::JObject p_wrapped, bool p_is_ref, jni::JObject p_class_loader);
     ~KtObject();
 
     const jni::JObject& get_wrapped() const;

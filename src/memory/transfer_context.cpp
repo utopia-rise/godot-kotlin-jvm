@@ -174,10 +174,10 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance
 
     KotlinBindingManager::set_instance_binding(ptr);
     int script_index {static_cast<int>(p_script_index)};
-    if (script_index >= 0) {
-        KtObject* kt_object {new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
+    if (script_index != -1) {
+        KtObject* kt_object = memnew(KtObject(jni::JObject(p_object), ptr->is_ref_counted(), jni::JObject(p_class_loader)));
         Ref<KotlinScript> kotlin_script {TypeManager::get_instance().get_user_script_for_index(script_index)};
-        auto script {memnew(KotlinInstance(ptr, kt_object, kotlin_script.ptr()))};
+        KotlinInstance* script = memnew(KotlinInstance(ptr, kt_object, kotlin_script.ptr()));
         ptr->set_script_instance(script);
     }
 

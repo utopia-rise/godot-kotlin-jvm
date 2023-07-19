@@ -83,7 +83,7 @@ class ClassBuilderDsl<T : KtObject>(
         hint: PropertyHint = PropertyHint.NONE,
         hintString: String = "",
         visibleInEditor: Boolean = true,
-        isRef: Boolean = false
+        is_ref: Boolean = false
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -100,7 +100,7 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             variantType,
-            isRef
+            is_ref
         )
     }
 

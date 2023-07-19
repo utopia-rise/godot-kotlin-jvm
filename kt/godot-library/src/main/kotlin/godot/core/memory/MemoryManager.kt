@@ -307,14 +307,13 @@ internal object MemoryManager {
                     buildString {
                         appendLine("Some JVM godot instances are leaked.")
                         if (shouldDisplayLeakInstancesOnClose) {
-                            appendLine("Leaked Objects:")
-                            for (entry in ObjectDB) {
-                                if (entry != null) {
-                                    append("    ${entry.get()}")
-                                    append(System.lineSeparator())
-                                }
+                            val leakedObjects = ObjectDB.filterNotNull()
+                            appendLine("${leakedObjects.size} Objects:")
+                            for (entry in leakedObjects) {
+                                append("    ${entry.get()!!.value!!::class.simpleName} ${entry.id.id}")
+                                append(System.lineSeparator())
                             }
-                            appendLine("Leaked native core types:")
+                            appendLine("${nativeCoreTypeMap.size} Leaked native core types:")
                             for (entry in nativeCoreTypeMap) {
                                 append("    ${entry.key}: ${entry.value.get()}")
                                 append(System.lineSeparator())

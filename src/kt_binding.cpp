@@ -6,6 +6,4 @@ KtBinding::KtBinding(jni::JObject p_wrapped, jni::JObject p_class_loader) :
     p_wrapped.delete_local_ref(env);
 }
 
-KtBinding::~KtBinding() {
-
-}
+KtBinding::~KtBinding() {}

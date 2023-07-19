@@ -20,5 +20,5 @@ KtObject* KtConstructor::create_instance(const Variant** p_args, Object* p_owner
     jvalue args[2] = {jni::to_jni_arg(p_owner), jni::to_jni_arg(id)};
     jni::MethodId constructor_method {get_method_id(env, jni_methods.CONSTRUCT)};
     jni::JObject j_kt_object {wrapped.call_object_method(env, constructor_method, args)};
-    return new KtObject(j_kt_object, class_loader);
+    return memnew(KtObject(j_kt_object, p_owner->is_ref_counted(), class_loader));
 }

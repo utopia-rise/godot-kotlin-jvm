@@ -1,10 +1,11 @@
 #ifndef GODOT_JVM_TYPE_MANAGER_H
 #define GODOT_JVM_TYPE_MANAGER_H
 
+#include "kotlin_script.h"
+
 #include <core/string/string_name.h>
 #include <core/templates/hash_map.h>
 #include <modules/kotlin_jvm/src/jni/env.h>
-#include "kotlin_script.h"
 
 class TypeManager {
 public:

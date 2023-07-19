@@ -61,14 +61,14 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 #endif
     jni::Env env(p_env);
 
-    jni::JObjectArray engine_types{p_engine_types};
+    jni::JObjectArray engine_types {p_engine_types};
     TypeManager::get_instance().register_engine_types(env, engine_types);
 
-    jni::JObjectArray singleton_names{p_singleton_names};
+    jni::JObjectArray singleton_names {p_singleton_names};
     TypeManager::get_instance().register_engine_singletons(env, singleton_names);
 
-    jni::JObjectArray method_names{p_method_names};
-    jni::JObjectArray types_of_methods{p_types_of_methods};
+    jni::JObjectArray method_names {p_method_names};
+    jni::JObjectArray types_of_methods {p_types_of_methods};
     TypeManager::get_instance().register_methods(env, method_names, types_of_methods);
 
     jni::JObject j_object {p_this};
@@ -84,7 +84,7 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 
 void register_user_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_types) {
     jni::Env env(p_env);
-    jni::JObjectArray types{p_types};
+    jni::JObjectArray types {p_types};
     TypeManager::get_instance().register_user_types(env, types);
 }
 

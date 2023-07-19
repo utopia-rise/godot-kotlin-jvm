@@ -10,15 +10,13 @@ KotlinInstance::KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinScr
   kt_object(p_kt_object),
   kt_class(p_script->get_kotlin_class()),
   script(p_script),
-  delete_flag(true)
-{
+  delete_flag(true) {
     kt_object->swap_to_weak_unsafe();
 }
 
 KotlinInstance::~KotlinInstance() {
-    if(delete_flag){
-        GDKotlin::get_instance().transfer_context->remove_script_instance(owner->get_instance_id());
-    }
+    if (delete_flag) { GDKotlin::get_instance().transfer_context->remove_script_instance(owner->get_instance_id()); }
+    memdelete(kt_object);
 }
 
 Object* KotlinInstance::get_owner() {
@@ -106,7 +104,7 @@ void KotlinInstance::notification(int p_notification) {
     if (function) {
         Variant ret_var;
         Variant value = p_notification;
-        const Variant *args[1] = { &value };
+        const Variant* args[1] = {&value};
         function->invoke(kt_object, args, 1, ret_var);
     }
 }
