@@ -44,7 +44,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
     override fun getName() = builderName
 
     override fun getModuleType(): ModuleType<*> {
-        return GodotModuleType
+        return GodotModuleType()
     }
 
     override fun getPresentableName() = GodotPluginBundle.message("module.presentableName")
