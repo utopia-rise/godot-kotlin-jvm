@@ -8,6 +8,7 @@ class DefaultConstructorCheck(logger: Logger, sourceFiles: List<SourceFile>): Ba
         var hasIssue = false
         sourceFiles
             .flatMap { it.registeredClasses }
+            .filter { !it.isAbstract }
             .forEach { registeredClass ->
                 if (registeredClass.constructors.none { it.parameters.isEmpty() }) {
                     hasIssue = true
