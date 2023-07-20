@@ -2,7 +2,7 @@ The purpose of this page is to give some clarification about how Godot and the J
 
 ## Regular Godot memory management
 ### Object and Refcounted
-Godot got two ways to manage memory. Classes belonging to the `Object` category are manually freed. If not done, it will remain in memory until the program terminates and leak. To make memory management easier, another category called `Refcounted` existed. They keep an internal counter of the numbers of how many times they are references by other parts of the program. It's only when reaching 0 that it will automatically be freed from memory.
+Godot got two ways to manage memory. Classes belonging to the `Object` category are manually freed. If not done, it will remain in memory until the program terminates and leak. To make memory management easier, another category called `Refcounted` exists. They keep an internal counter of the numbers of how many times they are references by other parts of the program. It's only when reaching 0 that it will automatically be freed from memory.
 
 ### Instance binding
 Other languages can have different ways to handle memory than Godot. To help with it, Godot objects can hold `instance bindings`.  It's a set of callbacks that can be implemented by whoever wish to add a language to Godot. There are callbacks for the different phases of the lifecycle of an object: creation, destruction and counter updates. Using those callbacks, one can then synchronize the state of the Godot object with the memory of the targeted languages.
