@@ -23,6 +23,7 @@
         <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator" language="JVM"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.function.RpcAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.signal.RegisterSignalAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.reference.FunctionReferenceAnnotator" language="JVM"/>
