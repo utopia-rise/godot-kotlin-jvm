@@ -81,23 +81,6 @@ class RegisterClassAnnotator : Annotator {
                     checkConstructorParameterCount(element, holder)
                     checkConstructorOverloading(element, holder)
                     checkRegisteredClassName(element, holder)
-                    checkOneRegisteredClassPerFile(element, holder)
-                    checkFileName(element, holder)
-                }
-            }
-            is KtPackageDirective -> {
-                val isAnyContainingClassRegistered = element
-                    .containingKtFile
-                    .classes
-                    .any { ktClass ->
-                        ktClass
-                            .annotations
-                            .mapNotNull { it.qualifiedName }
-                            .any { annotationFqName -> annotationFqName == REGISTER_CLASS_ANNOTATION }
-                    }
-
-                if (isAnyContainingClassRegistered) {
-                    checkPackagePath(element, holder)
                 }
             }
         }
@@ -193,54 +176,6 @@ class RegisterClassAnnotator : Annotator {
                 GodotPluginBundle.message("problem.class.nameAlreadyRegistered"),
                 psiElement,
                 ClassAlreadyRegisteredQuickFix(registeredName)
-            )
-        }
-    }
-
-    private fun checkOneRegisteredClassPerFile(ktClass: KtClass, holder: AnnotationHolder) {
-        val containingFileContainsMoreRegisteredClasses = ktClass
-            .containingKtFile
-            .classes
-            .filter { ktClassInSameFile ->
-                ktClassInSameFile
-                    .annotations
-                    .firstOrNull { annotation -> annotation.qualifiedName == REGISTER_CLASS_ANNOTATION } != null
-            }
-            .size > 1
-
-        if (containingFileContainsMoreRegisteredClasses) {
-            holder.registerProblem(
-                GodotPluginBundle.message("problem.class.moreThanOneRegisteredClass"),
-                ktClass.identifyingElement ?: ktClass
-            )
-        }
-    }
-
-    private fun checkFileName(ktClass: KtClass, holder: AnnotationHolder) {
-        if (ktClass.containingKtFile.virtualFile.name.removeSuffix(".kt") != ktClass.name) {
-            holder.registerProblem(
-                GodotPluginBundle.message("problem.class.wrongFileName"),
-                ktClass.identifyingElement ?: ktClass
-                // no quick fix needed -> already one present from the kotlin plugin
-            )
-        }
-    }
-
-    private fun checkPackagePath(ktPackageDirective: KtPackageDirective, holder: AnnotationHolder) {
-        var containingFilePath = ktPackageDirective.containingKtFile.virtualFile.path
-        val srcDirs = ktPackageDirective.module?.sourceRoots?.map { it.path } ?: return
-        srcDirs.forEach { srcDir ->
-            containingFilePath = containingFilePath.removePrefix(srcDir)
-        }
-        containingFilePath =
-            containingFilePath.substringBeforeLast("/").removePrefix("/").removeSuffix(".kt") // not File.separator as the virtual file path is platform independent with "/"
-        val packagePath = ktPackageDirective.fqName.asString().replace(".", "/") // not File.separator as the virtual file path is platform independent with "/"
-
-        if (packagePath != containingFilePath) {
-            holder.registerProblem(
-                GodotPluginBundle.message("problem.class.wrongPackagePath"),
-                ktPackageDirective
-                // no quick fix needed -> already one present from the kotlin plugin
             )
         }
     }
