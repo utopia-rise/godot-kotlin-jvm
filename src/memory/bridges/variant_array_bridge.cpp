@@ -8,7 +8,6 @@ using namespace bridges;
 
 JNI_INIT_STATICS_FOR_CLASS(VariantArrayBridge)
 
-// TODO/4.0: Implement all missing methods
 VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
   JavaInstanceWrapper(VARIANT_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method {

@@ -55,7 +55,8 @@
       { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "java.lang.ClassLoader", "int"] },
       { "name" : "getSingleton", "parameterTypes" : ["int"] },
       { "name" : "freeObject", "parameterTypes" : ["long"] },
-      { "name" : "getBuffer", "parameterTypes" : [] }
+      { "name" : "getBuffer", "parameterTypes" : [] },
+      { "name" : "removeScriptInstance", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -91,6 +92,14 @@
       { "name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
       { "name" : "notifyLeak", "parameterTypes" : [] }
     ]
+  },
+  {
+    "name" : "godot.core.memory.GodotBinding",
+    "fields" : [
+      { "name" : "wrapper" },
+      { "name" : "scriptInstance" }
+    ],
+    "methods" : []
   },
   {
     "name" : "godot.global.GDPrint$Bridge",

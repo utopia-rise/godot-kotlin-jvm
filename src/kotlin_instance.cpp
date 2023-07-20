@@ -93,11 +93,7 @@ Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args
 }
 
 void KotlinInstance::notification(int p_notification) {
-    switch (p_notification) {
-        case Object::NOTIFICATION_PREDELETE: {
-            delete_flag = false;
-        } break;
-    }
+    if (p_notification == Object::NOTIFICATION_PREDELETE) { delete_flag = false; }
 
     KtFunction* function {kt_class->get_method(CoreStringNames::get_singleton()->notification)};
 
