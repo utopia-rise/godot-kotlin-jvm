@@ -3,7 +3,7 @@ package godot.core.memory
 internal interface GodotStatic {
 
     fun registerAsSingleton() {
-        GarbageCollector.registerStatic(this)
+        MemoryManager.registerStatic(this)
     }
 
     fun collect()

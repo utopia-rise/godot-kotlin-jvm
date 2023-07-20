@@ -1,8 +1,8 @@
 #include "string_name_bridge.h"
 
+#include "bridges_utils.h"
 #include "constants.h"
 #include "gd_kotlin.h"
-#include "bridges_utils.h"
 
 using namespace bridges;
 
@@ -22,10 +22,10 @@ StringNameBridge::StringNameBridge(jni::JObject p_wrapped, jni::JObject p_class_
       const_cast<char*>("engine_call_constructor_string"),
       const_cast<char*>("()J"),
       (void*) StringNameBridge::engine_call_constructor_string};
-    jni::JNativeMethod engine_call_operator_string{
-        const_cast<char*>("engine_call_operator_string"),
-        const_cast<char*>("(J)V"),
-        (void*) StringNameBridge::engine_call_operator_string};
+    jni::JNativeMethod engine_call_operator_string {
+      const_cast<char*>("engine_call_operator_string"),
+      const_cast<char*>("(J)V"),
+      (void*) StringNameBridge::engine_call_operator_string};
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(engine_call_constructor_method);

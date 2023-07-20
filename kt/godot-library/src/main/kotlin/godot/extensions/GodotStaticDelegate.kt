@@ -4,7 +4,7 @@ package godot.extensions
 
 import godot.Object
 import godot.RefCounted
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.GodotStatic
 import godot.core.variantMapper
 import kotlin.properties.ReadWriteProperty
@@ -32,7 +32,7 @@ class GodotStaticDelegate<T : Any?>(val factory: () -> T) : GodotStatic, ReadWri
 
         if (v1 != UNINITIALIZED_VALUE && v1 != null) {
             require(v1 is Object)
-            if (v1 !is RefCounted && GarbageCollector.isInstanceValid(v1)) {
+            if (v1 !is RefCounted && MemoryManager.isInstanceValid(v1)) {
                 v1.free()
             }
         }

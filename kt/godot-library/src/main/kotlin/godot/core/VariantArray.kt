@@ -1,7 +1,7 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
@@ -17,7 +17,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     internal constructor(handle: VoidPtr) {
         variantType = VariantType.ANY
         _handle = handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.ARRAY)
     }
 
     @PublishedApi
@@ -33,7 +33,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         } else {
             Bridge.engine_call_constructor()
         }
-        GarbageCollector.registerNativeCoreType(this, VariantType.ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.ARRAY)
     }
 
 //########################PUBLIC###############################
@@ -53,7 +53,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     constructor(other: VariantArray<T>) {
         this.variantType = other.variantType
         this._handle = other._handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.ARRAY)
     }
 
     //COMMON API

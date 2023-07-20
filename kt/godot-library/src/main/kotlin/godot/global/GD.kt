@@ -7,7 +7,7 @@ import godot.ResourceLoader
 import godot.core.*
 import godot.extensions.godotStatic
 import godot.core.Dictionary
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.extensions.loadAs
 
 import godot.util.nullptr
@@ -29,7 +29,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
     @JvmStatic
     fun isInstanceValid(instance: Object?): Boolean {
         if (instance != null) {
-            return instance.rawPtr != nullptr && GarbageCollector.isInstanceValid(instance)
+            return instance.rawPtr != nullptr && MemoryManager.isInstanceValid(instance)
         }
         return false
     }

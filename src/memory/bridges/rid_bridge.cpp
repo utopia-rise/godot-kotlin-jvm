@@ -19,23 +19,16 @@ RidBridge::RidBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
       const_cast<char*>("(J)J"),
       (void*) RidBridge::engine_call_constructor_arg};
 
-    jni::JNativeMethod engine_call_getID_method {
-        const_cast<char*>("engine_call_getID"),
-        const_cast<char*>("(J)V"),
-        (void*) RidBridge::engine_call_getID};
+    jni::JNativeMethod engine_call_getID_method {const_cast<char*>("engine_call_getID"), const_cast<char*>("(J)V"), (void*) RidBridge::engine_call_getID};
     jni::JNativeMethod engine_call_isValid_method {
-            const_cast<char*>("engine_call_isValid"),
-            const_cast<char*>("(J)V"),
-            (void*) RidBridge::engine_call_isValid};
+      const_cast<char*>("engine_call_isValid"),
+      const_cast<char*>("(J)V"),
+      (void*) RidBridge::engine_call_isValid};
     jni::JNativeMethod engine_call_compareTo_method {
       const_cast<char*>("engine_call_compareTo"),
       const_cast<char*>("(J)V"),
       (void*) RidBridge::engine_call_compareTo};
-    jni::JNativeMethod engine_call_equals_method {
-        const_cast<char*>("engine_call_equals"),
-        const_cast<char*>("(J)V"),
-        (void*) RidBridge::engine_call_equals
-    };
+    jni::JNativeMethod engine_call_equals_method {const_cast<char*>("engine_call_equals"), const_cast<char*>("(J)V"), (void*) RidBridge::engine_call_equals};
 
     Vector<jni::JNativeMethod> methods;
 

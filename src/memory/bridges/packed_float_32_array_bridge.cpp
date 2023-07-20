@@ -50,13 +50,11 @@ PackedFloat32ArrayBridge::PackedFloat32ArrayBridge(jni::JObject p_wrapped, jni::
     jni::JNativeMethod engine_call_fill_method {
       const_cast<char*>("engine_call_fill"),
       const_cast<char*>("(J)V"),
-      (void*) PackedFloat32ArrayBridge::engine_call_fill
-    };
+      (void*) PackedFloat32ArrayBridge::engine_call_fill};
     jni::JNativeMethod engine_call_find_method {
       const_cast<char*>("engine_call_find"),
       const_cast<char*>("(J)V"),
-      (void*) PackedFloat32ArrayBridge::engine_call_find
-    };
+      (void*) PackedFloat32ArrayBridge::engine_call_find};
     jni::JNativeMethod engine_call_is_empty_method {
       const_cast<char*>("engine_call_is_empty"),
       const_cast<char*>("(J)V"),
@@ -185,12 +183,7 @@ void PackedFloat32ArrayBridge::engine_call_bsearch(JNIEnv* p_raw_env, jobject p_
     Variant args[2] = {};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant ret {
-      from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->bsearch(
-        args[0].operator float(),
-        args[1].operator bool()
-      )
-    };
+    Variant ret {from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->bsearch(args[0].operator float(), args[1].operator bool())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -204,9 +197,7 @@ void PackedFloat32ArrayBridge::engine_call_count(JNIEnv* p_raw_env, jobject p_in
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-      from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->count(args[0].operator float())
-    };
+    Variant ret {from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->count(args[0].operator float())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -228,9 +219,7 @@ void PackedFloat32ArrayBridge::engine_call_find(JNIEnv* p_raw_env, jobject p_ins
     Variant args[1] = {};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant ret {
-      from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->find(args[0].operator float())
-    };
+    Variant ret {from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->find(args[0].operator float())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -278,9 +267,7 @@ void PackedFloat32ArrayBridge::engine_call_rfind(JNIEnv* p_raw_env, jobject p_in
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-      from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->rfind(args[0].operator float(), args->operator int())
-    };
+    Variant ret {from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->rfind(args[0].operator float(), args->operator int())};
 }
 
 void PackedFloat32ArrayBridge::engine_call_pushback(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -327,9 +314,7 @@ void PackedFloat32ArrayBridge::engine_call_slice(JNIEnv* p_raw_env, jobject p_in
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-      from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->slice(args[0].operator int(), args[1].operator int())
-    };
+    Variant ret {from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->slice(args[0].operator int(), args[1].operator int())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -339,8 +324,6 @@ void PackedFloat32ArrayBridge::engine_call_sort(JNIEnv* p_raw_env, jobject p_ins
 
 void PackedFloat32ArrayBridge::engine_call_to_byte_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant ret {
-        from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->to_byte_array()
-    };
+    Variant ret {from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->to_byte_array()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, ret);
 }

@@ -1,19 +1,18 @@
 #include "kotlin_binding_manager.h"
 
+#include "gd_kotlin.h"
+#include "kt_binding.h"
+
 GDExtensionInstanceBindingCallbacks KotlinBindingManager::_instance_binding_callbacks = {
   &_instance_binding_create_callback,
   &_instance_binding_free_callback,
   &_instance_binding_reference_callback};
 
 void* KotlinBindingManager::_instance_binding_create_callback(void* p_token, void* p_instance) {
-    KotlinBindingManager& manager = get_instance();
     Object* owner = reinterpret_cast<Object*>(p_instance);
-
-    manager.spin.lock();
-    KotlinBinding* binding = &manager.binding_map.insert(owner, KotlinBinding())->value;
-    manager.spin.unlock();
-
+    KotlinBinding* binding = memnew(KotlinBinding());
     binding->owner = owner;
+
     return reinterpret_cast<void*>(binding);
 }
 
@@ -21,17 +20,8 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     // Called in the destructor of the Object.
     //  It's the very last action done in the destructor so assume variables local to the Object have been cleaned (including script and extension).
     // There are 2 cases, either an Object has been freed, and we have to release its reference OR it's a Refcounted and the JVM instance is already dead.
-    KtObject* binded_kt_object{reinterpret_cast<KotlinBinding*>(p_binding)->kt_object};
-
-    KotlinBindingManager& manager = get_instance();
-
-    Object* owner = reinterpret_cast<Object*>(p_instance);
-    // We avoid concurrent modification of the map. Before that it should be safe as the destructor of an object is not supposed to be called multiple times.
-    manager.spin.lock();
-    manager.binding_map.erase(owner);
-    manager.spin.unlock();
-
-    delete binded_kt_object;
+    KotlinBinding* binding = reinterpret_cast<KotlinBinding*>(p_binding);
+    memdelete(binding);
 }
 
 GDExtensionBool KotlinBindingManager::_instance_binding_reference_callback(void* p_token, void* p_binding, GDExtensionBool p_reference) {
@@ -48,85 +38,37 @@ GDExtensionBool KotlinBindingManager::_instance_binding_reference_callback(void*
     }
 }
 
-void KotlinBindingManager::set_instance_binding(Object* p_object, KtObject* ktObject) {
+KotlinBinding* KotlinBindingManager::set_instance_binding(Object* p_object) {
     // Godot being weird. Call this function only if the JVM is the creator of the object, otherwise it will crash in case the object has any other bindings.
     // If not the creator (When you want to bind an existing object to JVM), use get_instance_binding instead.
-    KotlinBindingManager& manager = get_instance();
 
-    manager.spin.lock();
-    KotlinBinding* binding = &manager.binding_map.insert(p_object, KotlinBinding())->value;
-    manager.spin.unlock();
-
+    KotlinBinding* binding = memnew(KotlinBinding());
     binding->owner = p_object;
-    binding->set_kt_object(ktObject);
+
+    p_object->set_instance_binding(&GDKotlin::get_instance(), binding, &_instance_binding_callbacks);
 
     if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->init_ref(); }
+    binding->set_ready();
 
-    p_object->set_instance_binding(&get_instance(), binding, &_instance_binding_callbacks);
+    return binding;
 }
 
 KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
     // Godot being weird but this is how you create a binding if it doesn't exist already, otherwise just retrieve it.
     //  Use this function to bind an existing object to the JVM, the callbacks provided will handle the creation of the binding.
-    KotlinBindingManager& manager = get_instance();
-    manager.spin.lock();
-    if (HashMap<Object*, KotlinBinding>::Iterator cached {manager.binding_map.find(p_object)}) {
-        KotlinBinding* ret {&cached->value};
-        manager.spin.unlock();
-        return ret;
+    KotlinBinding* binding =
+      reinterpret_cast<KotlinBinding*>(p_object->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
+
+    if (!binding->is_ready()) {
+        if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->reference(); }
+        binding->set_ready();
     }
-    manager.spin.unlock();
-
-    if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->reference(); }
-
-    return static_cast<KotlinBinding*>(p_object->get_instance_binding(&get_instance(), &_instance_binding_callbacks));
-}
-
-bool KotlinBindingManager::bind_object(Object* p_object, KtObject* ktObject) {
-    KotlinBindingManager& manager = get_instance();
-    manager.spin.lock();
-    KotlinBinding* binding = &manager.binding_map.find(p_object)->value;
-    if (binding) {
-        manager.spin.unlock();
-        binding->set_kt_object(ktObject);
-        return true;
-    }
-    manager.spin.unlock();
-    return false;
-}
-
-KotlinBinding* KotlinBindingManager::create_script_binding(Object* p_object, KtObject* ktObject) {
-    KotlinBindingManager& manager = get_instance();
-
-    // We avoid concurrent modification of the map.
-    manager.spin.lock();
-    KotlinBinding* binding = &manager.binding_map.insert(p_object, KotlinBinding())->value;
-    manager.spin.unlock();
-
-    binding->owner = p_object;
-    binding->set_kt_object(ktObject);
-
-    if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->reference(); }
 
     return binding;
 }
 
-void KotlinBindingManager::delete_script_binding(KotlinBinding* binding) {
-    KotlinBindingManager& manager = get_instance();
-
-    KtObject* binded_kt_object{binding->kt_object};
-
-    // We avoid concurrent modification of the map. Before that it should be safe as the destructor of an object is not supposed to be called multiple times.
-    manager.spin.lock();
-    manager.binding_map.erase(binding->owner);
-    manager.spin.unlock();
-
-    delete binded_kt_object;
+void KotlinBindingManager::bind_object(Object* p_object, KtBinding* kt_binding) {
+    KotlinBinding* binding =
+      reinterpret_cast<KotlinBinding*>(p_object->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
+    binding->set_kt_binding(kt_binding);
 }
-
-KotlinBindingManager& KotlinBindingManager::get_instance() {
-    static KotlinBindingManager instance;
-    return instance;
-}
-
-KotlinBindingManager::KotlinBindingManager() : spin() {}

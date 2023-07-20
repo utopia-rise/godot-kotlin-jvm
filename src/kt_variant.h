@@ -235,7 +235,7 @@ namespace ktvariant {
 
         // We only need to retrieve the constructor if the binding is not ready yet.
         int constructorID = 0;
-        if (!binding->is_ready()) {
+        if (!binding->is_bound()) {
             StringName class_name {ptr->get_class_name()};
             do {
                 if (!TypeManager::get_instance().java_engine_type_constructor_for_type_exists(class_name)) {
@@ -304,31 +304,31 @@ namespace ktvariant {
         to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
         to_kt_array[Variant::CALLABLE] = to_kvariant_from_CALLABLE;
         to_kt_array[Variant::SIGNAL] = to_kvariant_fromSIGNAL;
-        to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE<Variant::DICTIONARY, Dictionary,
+        to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE < Variant::DICTIONARY, Dictionary,
         &Variant::operator Dictionary>;
-        to_kt_array[Variant::ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::ARRAY, Array, &Variant::operator Array>;
-        to_kt_array[Variant::STRING_NAME] = to_kvariant_fromNATIVECORETYPE<Variant::STRING_NAME, StringName,
+        to_kt_array[Variant::ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::ARRAY, Array, &Variant::operator Array>;
+        to_kt_array[Variant::STRING_NAME] = to_kvariant_fromNATIVECORETYPE < Variant::STRING_NAME, StringName,
         &Variant::operator StringName>;
-        to_kt_array[Variant::NODE_PATH] = to_kvariant_fromNATIVECORETYPE<Variant::NODE_PATH, NodePath,
+        to_kt_array[Variant::NODE_PATH] = to_kvariant_fromNATIVECORETYPE < Variant::NODE_PATH, NodePath,
         &Variant::operator NodePath>;
-        to_kt_array[Variant::RID] = to_kvariant_fromNATIVECORETYPE<Variant::RID, RID, &Variant::operator ::RID>;
-        to_kt_array[Variant::PACKED_BYTE_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_BYTE_ARRAY,
+        to_kt_array[Variant::RID] = to_kvariant_fromNATIVECORETYPE < Variant::RID, RID, &Variant::operator ::RID>;
+        to_kt_array[Variant::PACKED_BYTE_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_BYTE_ARRAY,
         PackedByteArray, &Variant::operator PackedByteArray>;
-        to_kt_array[Variant::PACKED_INT32_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_INT32_ARRAY,
+        to_kt_array[Variant::PACKED_INT32_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_INT32_ARRAY,
         PackedInt32Array, &Variant::operator PackedInt32Array>;
-        to_kt_array[Variant::PACKED_INT64_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_INT64_ARRAY,
+        to_kt_array[Variant::PACKED_INT64_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_INT64_ARRAY,
         PackedInt64Array, &Variant::operator PackedInt64Array>;
-        to_kt_array[Variant::PACKED_FLOAT32_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_FLOAT32_ARRAY,
+        to_kt_array[Variant::PACKED_FLOAT32_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_FLOAT32_ARRAY,
         PackedFloat32Array, &Variant::operator PackedFloat32Array>;
-        to_kt_array[Variant::PACKED_FLOAT64_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_FLOAT64_ARRAY,
+        to_kt_array[Variant::PACKED_FLOAT64_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_FLOAT64_ARRAY,
         PackedFloat64Array, &Variant::operator PackedFloat64Array>;
-        to_kt_array[Variant::PACKED_STRING_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_STRING_ARRAY,
+        to_kt_array[Variant::PACKED_STRING_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_STRING_ARRAY,
         PackedStringArray, &Variant::operator PackedStringArray>;
-        to_kt_array[Variant::PACKED_VECTOR2_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_VECTOR2_ARRAY,
+        to_kt_array[Variant::PACKED_VECTOR2_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_VECTOR2_ARRAY,
         PackedVector2Array, &Variant::operator PackedVector2Array>;
-        to_kt_array[Variant::PACKED_VECTOR3_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_VECTOR3_ARRAY,
+        to_kt_array[Variant::PACKED_VECTOR3_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_VECTOR3_ARRAY,
         PackedVector3Array, &Variant::operator PackedVector3Array>;
-        to_kt_array[Variant::PACKED_COLOR_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_COLOR_ARRAY,
+        to_kt_array[Variant::PACKED_COLOR_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_COLOR_ARRAY,
         PackedColorArray, &Variant::operator PackedColorArray>;
         to_kt_array[Variant::OBJECT] = to_kvariant_fromOBJECT;
     }
@@ -617,7 +617,7 @@ namespace ktvariant {
     }
 
     static void get_variant_from_buffer(SharedBuffer* byte_buffer, Variant& res) {
-        static Variant (*TO_GODOT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer * byte_buffer);
+        static Variant (*TO_GODOT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer* byte_buffer);
         if (unlikely(!TO_GODOT_VARIANT_FROM[0])) { init_to_gd_methods(TO_GODOT_VARIANT_FROM); }
         uint32_t variant_type_int {decode_uint32(byte_buffer->get_cursor())};
         byte_buffer->increment_position(4);

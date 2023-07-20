@@ -9,12 +9,14 @@
 
 class KotlinInstance : public ScriptInstance {
 private:
-    KotlinBinding* binding;
+    Object* owner;
+    KtObject* kt_object;
     KtClass* kt_class;
     Ref<KotlinScript> script;
+    bool delete_flag;
 
 public:
-    KotlinInstance(KtObject* p_wrapped_object, Object* p_owner, KtClass* p_kt_class, KotlinScript* p_script);
+    KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinScript* p_script);
     ~KotlinInstance() override;
 
     bool set(const StringName& p_name, const Variant& p_value) override;

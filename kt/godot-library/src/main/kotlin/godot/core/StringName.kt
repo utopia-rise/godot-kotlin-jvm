@@ -1,7 +1,7 @@
 @file:JvmName("StringNameUtils")
 package godot.core
 
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 
@@ -10,25 +10,25 @@ class StringName : NativeCoreType {
     //INTERNAL
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.STRING_NAME)
+        MemoryManager.registerNativeCoreType(this, VariantType.STRING_NAME)
     }
 
     //CONSTRUCTORS
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.STRING_NAME)
+        MemoryManager.registerNativeCoreType(this, VariantType.STRING_NAME)
     }
 
     constructor(string: String) {
         TransferContext.writeArguments(VariantType.STRING to string)
         _handle = Bridge.engine_call_constructor_string()
-        GarbageCollector.registerNativeCoreType(this, VariantType.STRING_NAME)
+        MemoryManager.registerNativeCoreType(this, VariantType.STRING_NAME)
     }
 
     constructor(stringName: StringName) {
         TransferContext.writeArguments(VariantType.STRING_NAME to stringName)
         _handle = Bridge.engine_call_copy_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.STRING_NAME)
+        MemoryManager.registerNativeCoreType(this, VariantType.STRING_NAME)
     }
 
     override fun toString(): String {

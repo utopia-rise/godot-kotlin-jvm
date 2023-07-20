@@ -1,6 +1,7 @@
 package godot.core
 
-import godot.core.memory.GarbageCollector
+import godot.core.memory.GodotBinding
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import godot.util.nullObjectID
@@ -15,13 +16,11 @@ abstract class KtObject {
         var shouldOverride = false
         var ptr: VoidPtr = nullptr
         var id: ObjectID = ObjectID(-1)
-        var needBind = false
 
         fun reset() {
             shouldOverride = false
             ptr = nullptr
             id = ObjectID(-1)
-            needBind = false
         }
     }
 
@@ -41,29 +40,37 @@ abstract class KtObject {
             field = value
         }
 
+    private var binding: GodotBinding
+
     init {
         val config = initConfig.get()
 
-        if (config.shouldOverride) {
+        val scriptIndex = TypeManager.userTypeToId[this::class] ?: -1
+
+        binding = if (config.shouldOverride) {
             //Native object already exists, so we know the id and ptr without going back to the other side.
             rawPtr = config.ptr
             id = config.id
             //Singletons are never initialized here as we force their initialization on JVM side at engine start
-            if (config.needBind) {
-                GarbageCollector.registerObjectAndBind(this)
-            } else {
-                GarbageCollector.registerObject(this)
-            }
             config.reset()
+            if(scriptIndex != - 1){
+                MemoryManager.registerScriptInstance(this)
+            } else {
+                MemoryManager.registerObject(this)
+            }
         } else {
+
             //Native object doesn't exist yet, we have to create it.
-            val scriptIndex = TypeManager.userTypeToId[this::class] ?: -1
             //If the class is a script, the ScriptInstance is going to be created at the same time as the native object.
             val isSingleton = !new(scriptIndex)
             if (isSingleton) {
-                GarbageCollector.registerSingleton(this)
+                MemoryManager.registerSingleton(this)
             } else {
-                GarbageCollector.registerObject(this)
+                if(scriptIndex != - 1){
+                    MemoryManager.registerScriptInstance(this)
+                } else {
+                    MemoryManager.registerObject(this)
+                }
             }
         }
     }
@@ -96,12 +103,11 @@ abstract class KtObject {
     companion object {
         private val initConfig = ThreadLocal.withInitial { InitConfiguration() }
 
-        fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, id: Long, needBind: Boolean, constructor: () -> T): T {
+        fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, id: Long, constructor: () -> T): T {
             val config = initConfig.get()
             config.ptr = rawPtr
             config.id = ObjectID(id)
             config.shouldOverride = true
-            config.needBind = needBind
             return constructor()
         }
     }

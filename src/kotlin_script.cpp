@@ -35,30 +35,37 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_global_name() const {
-    if (KtClass* kt_class {get_kotlin_class()}) {
-        return kt_class->registered_class_name;
-    }
+    if (KtClass* kt_class {get_kotlin_class()}) { return kt_class->registered_class_name; }
     return StringName();
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    if (KtClass * kt_class {get_kotlin_class()}) { return kt_class->base_godot_class; }
+    if (KtClass* kt_class {get_kotlin_class()}) { return kt_class->base_godot_class; }
     // not found
     return StringName();
 }
 
 ScriptInstance* KotlinScript::instance_create(Object* p_this) {
-    return _instance_create(nullptr, 0, p_this);
+    return _instance_create<false>(nullptr, 0, p_this);
 }
 
+template<bool isCreator>
 ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_argcount, Object* p_this) {
     KtClass* kt_class {get_kotlin_class()};
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->resource_path));
 #endif
+
     jni::Env env = jni::Jvm::current_env();
     KtObject* wrapped = kt_class->create_instance(env, p_args, p_argcount, p_this);
-    return memnew(KotlinInstance(wrapped, p_this, kt_class, this));
+
+    if (isCreator) {
+        KotlinBindingManager::set_instance_binding(p_this);
+    } else {
+        KotlinBindingManager::get_instance_binding(p_this);
+    }
+
+    return memnew(KotlinInstance(p_this, wrapped, this));
 }
 
 bool KotlinScript::instance_has(const Object* p_this) const {
@@ -91,8 +98,8 @@ bool KotlinScript::has_method(const StringName& p_method) const {
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
-    if (KtClass * kt_class {get_kotlin_class()}) {
-        if (KtFunction * method {kt_class->get_method(p_method)}) { return method->get_member_info(); }
+    if (KtClass* kt_class {get_kotlin_class()}) {
+        if (KtFunction* method {kt_class->get_method(p_method)}) { return method->get_member_info(); }
     }
     return MethodInfo();
 }
@@ -115,12 +122,12 @@ bool KotlinScript::has_script_signal(const StringName& p_signal) const {
 }
 
 void KotlinScript::get_script_signal_list(List<MethodInfo>* r_signals) const {
-    if (KtClass * kt_class {get_kotlin_class()}) { kt_class->get_signal_list(r_signals); }
+    if (KtClass* kt_class {get_kotlin_class()}) { kt_class->get_signal_list(r_signals); }
 }
 
 bool KotlinScript::get_property_default_value(const StringName& p_property, Variant& r_value) const {
 #ifdef TOOLS_ENABLED
-    HashMap<StringName, Variant>::ConstIterator it { exported_members_default_value_cache.find(p_property) };
+    HashMap<StringName, Variant>::ConstIterator it {exported_members_default_value_cache.find(p_property)};
     if (it) {
         r_value = it->value;
         return true;
@@ -153,24 +160,14 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::Cal
 
     Object* owner {ClassDB::instantiate(get_kotlin_class()->base_godot_class)};
 
-    Ref<Resource> ref;
-    auto* r {Object::cast_to<RefCounted>(owner)};
-    if (r) { ref = Ref<Resource>(r); }
-
-    ScriptInstance* instance {_instance_create(p_args, p_argcount, owner)};
+    ScriptInstance* instance {_instance_create<true>(p_args, p_argcount, owner)};
     owner->set_script_instance(instance);
     if (!instance) {
-        if (ref.is_null()) {
-            memdelete(owner);// no owner, sorry
-        }
+        memdelete(owner);// no owner, sorry
         return Variant();
     }
 
-    if (ref.is_valid()) {
-        return ref;
-    } else {
-        return owner;
-    }
+    return Variant(owner);
 }
 
 void KotlinScript::set_path(const String& p_path, bool p_take_over) {
@@ -235,30 +232,29 @@ void KotlinScript::update_exports() {
 void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) {
 #ifdef TOOLS_ENABLED
     exported_members_default_value_cache.clear();
-    if (KtClass * kt_class {get_kotlin_class()}) {
-        Object* tmp_object {ClassDB::instantiate(kt_class->base_godot_class)};
-        KotlinInstance* script_instance {
-          dynamic_cast<KotlinInstance*>(_instance_create({}, 0, tmp_object))};
 
-        List<PropertyInfo> all_properties;
-        get_script_property_list(&all_properties);
+    Callable::CallError call;
+    Object* tmp_object {_new({}, 0, call)};
+    KotlinInstance* script_instance {reinterpret_cast<KotlinInstance*>(tmp_object->get_script_instance())};
 
-        List<PropertyInfo> exported_properties;
-        for (const PropertyInfo& property_info : all_properties) {
-            if (property_info.usage & PropertyUsageFlags::PROPERTY_USAGE_EDITOR) {
-                exported_properties.push_back(property_info);
-            }
+    List<PropertyInfo> all_properties;
+    get_script_property_list(&all_properties);
+
+    List<PropertyInfo> exported_properties;
+    for (const PropertyInfo& property_info : all_properties) {
+        if (property_info.usage & PropertyUsageFlags::PROPERTY_USAGE_EDITOR) {
+            exported_properties.push_back(property_info);
         }
-
-        for (int i = 0; i < exported_properties.size(); ++i) {
-            Variant default_value;
-            const String& property_name {exported_properties[i].name};
-            script_instance->get_or_default(property_name, default_value);
-            exported_members_default_value_cache[property_name] = default_value;
-        }
-        placeholder->update(exported_properties, exported_members_default_value_cache);
-        memdelete(tmp_object);
     }
+
+    for (int i = 0; i < exported_properties.size(); ++i) {
+        Variant default_value;
+        const String& property_name {exported_properties[i].name};
+        script_instance->get_or_default(property_name, default_value);
+        exported_members_default_value_cache[property_name] = default_value;
+    }
+    placeholder->update(exported_properties, exported_members_default_value_cache);
+    memdelete(tmp_object);
 #endif
 }
 

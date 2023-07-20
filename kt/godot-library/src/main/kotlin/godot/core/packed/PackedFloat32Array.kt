@@ -2,7 +2,7 @@
 
 package godot.core
 
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.RealT
@@ -14,7 +14,7 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
     }
 
     //PROPERTIES
@@ -30,7 +30,7 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
      */
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
     }
 
     /**
@@ -39,7 +39,7 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
     constructor(from: PackedFloat32Array) {
         TransferContext.writeArguments(VariantType.PACKED_FLOAT_32_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
     }
 
     /**
@@ -48,7 +48,7 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
     constructor(from: VariantArray<Float>) {
         TransferContext.writeArguments(VariantType.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
     }
 
     //POOL ARRAY API SHARED

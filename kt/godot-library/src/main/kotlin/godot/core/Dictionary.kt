@@ -3,7 +3,7 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.MapIterator
 import godot.util.VoidPtr
@@ -18,7 +18,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         keyVariantType = VariantType.ANY
         valueVariantType = VariantType.ANY
         _handle = handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.DICTIONARY)
+        MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
 
     @PublishedApi
@@ -26,7 +26,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         this.keyVariantType = keyVariantType
         this.valueVariantType = valueVariantType
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.DICTIONARY)
+        MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
 
     //########################PUBLIC###############################
@@ -137,7 +137,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         keyVariantType = other.keyVariantType
         valueVariantType = other.valueVariantType
         _handle = other._handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.DICTIONARY)
+        MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
 
 

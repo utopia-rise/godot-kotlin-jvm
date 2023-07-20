@@ -22,7 +22,7 @@ PackedVector2ArrayBridge::PackedVector2ArrayBridge(jni::JObject p_wrapped, jni::
       const_cast<char*>("engine_call_constructor_array"),
       const_cast<char*>("()J"),
       (void*) PackedVector2ArrayBridge::engine_call_constructor_array};
-    
+
     jni::JNativeMethod engine_call_append_method {
       const_cast<char*>("engine_call_append"),
       const_cast<char*>("(J)V"),
@@ -50,13 +50,11 @@ PackedVector2ArrayBridge::PackedVector2ArrayBridge(jni::JObject p_wrapped, jni::
     jni::JNativeMethod engine_call_fill_method {
       const_cast<char*>("engine_call_fill"),
       const_cast<char*>("(J)V"),
-      (void*) PackedVector2ArrayBridge::engine_call_fill
-    };
+      (void*) PackedVector2ArrayBridge::engine_call_fill};
     jni::JNativeMethod engine_call_find_method {
       const_cast<char*>("engine_call_find"),
       const_cast<char*>("(J)V"),
-      (void*) PackedVector2ArrayBridge::engine_call_find
-    };
+      (void*) PackedVector2ArrayBridge::engine_call_find};
     jni::JNativeMethod engine_call_is_empty_method {
       const_cast<char*>("engine_call_is_empty"),
       const_cast<char*>("(J)V"),
@@ -186,12 +184,7 @@ void PackedVector2ArrayBridge::engine_call_bsearch(JNIEnv* p_raw_env, jobject p_
     Variant args[2] = {};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant ret {
-      from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->bsearch(
-        args[0].operator Vector2(),
-        args[1].operator bool()
-      )
-    };
+    Variant ret {from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->bsearch(args[0].operator Vector2(), args[1].operator bool())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -205,9 +198,7 @@ void PackedVector2ArrayBridge::engine_call_count(JNIEnv* p_raw_env, jobject p_in
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-      from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->count(args[0].operator Vector2())
-    };
+    Variant ret {from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->count(args[0].operator Vector2())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -229,9 +220,7 @@ void PackedVector2ArrayBridge::engine_call_find(JNIEnv* p_raw_env, jobject p_ins
     Variant args[1] = {};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant ret {
-      from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->find(args[0].operator Vector2())
-    };
+    Variant ret {from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->find(args[0].operator Vector2())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -303,9 +292,7 @@ void PackedVector2ArrayBridge::engine_call_rfind(JNIEnv* p_raw_env, jobject p_in
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-      from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->rfind(args[0].operator Vector2(), args->operator int())
-    };
+    Variant ret {from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->rfind(args[0].operator Vector2(), args->operator int())};
 }
 
 void PackedVector2ArrayBridge::engine_call_set(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -328,9 +315,7 @@ void PackedVector2ArrayBridge::engine_call_slice(JNIEnv* p_raw_env, jobject p_in
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-      from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->slice(args[0].operator int(), args[1].operator int())
-    };
+    Variant ret {from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->slice(args[0].operator int(), args[1].operator int())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -340,8 +325,6 @@ void PackedVector2ArrayBridge::engine_call_sort(JNIEnv* p_raw_env, jobject p_ins
 
 void PackedVector2ArrayBridge::engine_call_to_byte_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant ret {
-      from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->to_byte_array()
-    };
+    Variant ret {from_uint_to_ptr<PackedVector2Array>(p_raw_ptr)->to_byte_array()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, ret);
 }

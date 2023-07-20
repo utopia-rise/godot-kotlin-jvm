@@ -27,6 +27,8 @@ public:
 
     void read_args(jni::Env& p_env, Variant* args);
 
+    void remove_script_instance(uint64_t id);
+
     static void icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType);
 
     static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jobject p_class_loader, jint p_script_index);
@@ -60,6 +62,7 @@ private:
     // clang-format off
     DECLARE_JNI_METHODS(
             JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
+            JNI_METHOD(REMOVE_SCRIPT, "removeScriptInstance", "(J)V")
     )
     // clang-format on
 };

@@ -15,21 +15,18 @@ NodePathBridge::NodePathBridge(jni::JObject p_wrapped, jni::JObject p_class_load
       const_cast<char*>("()J"),
       (void*) NodePathBridge::engine_call_constructor};
     jni::JNativeMethod engine_call_constructor_string_method {
-            const_cast<char*>("engine_call_constructor_string"),
-            const_cast<char*>("()J"),
-            (void*) NodePathBridge::engine_call_constructor_string};
+      const_cast<char*>("engine_call_constructor_string"),
+      const_cast<char*>("()J"),
+      (void*) NodePathBridge::engine_call_constructor_string};
     jni::JNativeMethod engine_call_constructor_node_path_method {
-            const_cast<char*>("engine_call_constructor_node_path"),
-            const_cast<char*>("()J"),
-            (void*) NodePathBridge::engine_call_constructor_node_path};
-    jni::JNativeMethod engine_call_path_method {
-            const_cast<char*>("engine_call_path"),
-            const_cast<char*>("(J)V"),
-            (void*) NodePathBridge::engine_call_path};
+      const_cast<char*>("engine_call_constructor_node_path"),
+      const_cast<char*>("()J"),
+      (void*) NodePathBridge::engine_call_constructor_node_path};
+    jni::JNativeMethod engine_call_path_method {const_cast<char*>("engine_call_path"), const_cast<char*>("(J)V"), (void*) NodePathBridge::engine_call_path};
     jni::JNativeMethod engine_call_getAsPropertyPath_method {
-            const_cast<char*>("engine_call_getAsPropertyPath"),
-            const_cast<char*>("(J)V"),
-            (void*) NodePathBridge::engine_call_getAsPropertyPath};
+      const_cast<char*>("engine_call_getAsPropertyPath"),
+      const_cast<char*>("(J)V"),
+      (void*) NodePathBridge::engine_call_getAsPropertyPath};
     jni::JNativeMethod engine_call_getName_method {
       const_cast<char*>("engine_call_getName"),
       const_cast<char*>("(J)V"),
@@ -50,10 +47,7 @@ NodePathBridge::NodePathBridge(jni::JObject p_wrapped, jni::JObject p_class_load
       const_cast<char*>("engine_call_isAbsolute"),
       const_cast<char*>("(J)V"),
       (void*) NodePathBridge::engine_call_isAbsolute};
-    jni::JNativeMethod engine_call_hash_method {
-            const_cast<char*>("engine_call_hash"),
-            const_cast<char*>("(J)V"),
-            (void*) NodePathBridge::engine_call_hash};
+    jni::JNativeMethod engine_call_hash_method {const_cast<char*>("engine_call_hash"), const_cast<char*>("(J)V"), (void*) NodePathBridge::engine_call_hash};
     jni::JNativeMethod engine_call_isEmpty_method {
       const_cast<char*>("engine_call_isEmpty"),
       const_cast<char*>("(J)V"),
@@ -63,9 +57,9 @@ NodePathBridge::NodePathBridge(jni::JObject p_wrapped, jni::JObject p_class_load
       const_cast<char*>("(J)V"),
       (void*) NodePathBridge::engine_call_getConcatenatedSubnames};
     jni::JNativeMethod engine_call_getConcatenatedNames_method {
-            const_cast<char*>("engine_call_getConcatenatedNames"),
-            const_cast<char*>("(J)V"),
-            (void*) NodePathBridge::engine_call_getConcatenatedNames};
+      const_cast<char*>("engine_call_getConcatenatedNames"),
+      const_cast<char*>("(J)V"),
+      (void*) NodePathBridge::engine_call_getConcatenatedNames};
     jni::JNativeMethod engine_call_equals_method {
       const_cast<char*>("engine_call_equals"),
       const_cast<char*>("(J)V"),
@@ -111,9 +105,9 @@ uintptr_t NodePathBridge::engine_call_constructor_node_path(JNIEnv* p_raw_env, j
     return reinterpret_cast<uintptr_t>(memnew(NodePath(args[0].operator NodePath())));
 }
 
-void NodePathBridge::engine_call_path(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};
-    Variant variant{from_uint_to_ptr<NodePath>(p_raw_ptr)->operator String()};
+void NodePathBridge::engine_call_path(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant variant {from_uint_to_ptr<NodePath>(p_raw_ptr)->operator String()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 

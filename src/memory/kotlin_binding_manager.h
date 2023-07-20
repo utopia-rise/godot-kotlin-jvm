@@ -1,18 +1,21 @@
 #ifndef GODOT_JVM_KOTLIN_BINDING_MANAGER_H
 #define GODOT_JVM_KOTLIN_BINDING_MANAGER_H
 
+#include "core/extension/gdextension_interface.h"
 #include "kotlin_binding.h"
+#include "kt_binding.h"
 
 #include <cstdint>
 
 class KotlinBindingManager {
 private:
-    KotlinBindingManager();
+    KotlinBindingManager() = default;
 
     ~KotlinBindingManager() = default;
 
-    SpinLock spin;
-    HashMap<Object*, KotlinBinding> binding_map;
+    KotlinBindingManager(KotlinBindingManager const& other) = delete;
+
+    KotlinBindingManager& operator=(const KotlinBindingManager&) = delete;
 
     // Callbacks required by Godot for instance bindings.
     static GDExtensionInstanceBindingCallbacks _instance_binding_callbacks;
@@ -24,24 +27,13 @@ private:
     static GDExtensionBool _instance_binding_reference_callback(void* p_token, void* p_binding, GDExtensionBool p_reference);
 
 public:
-    KotlinBindingManager(KotlinBindingManager const& other) = delete;
-
-    KotlinBindingManager& operator=(const KotlinBindingManager&) = delete;
-
     // For instance bindings, they are to bind native Godot objects to their JVM wrappers, not for the scripts.
-    static void set_instance_binding(Object* p_object, KtObject* ktObject);
+    static KotlinBinding* set_instance_binding(Object* p_object);
 
     // Doesn't set the KtObject as it doesn't exist yet, bind_object has be used later.
     static KotlinBinding* get_instance_binding(Object* p_object);
 
-    static bool bind_object(Object* p_object, KtObject* ktObject);
-
-    // For script bindings, they are to bind user defined Godot objects to their JVM scripts, not for native objects.
-    static KotlinBinding* create_script_binding(Object* p_object, KtObject* ktObject);
-
-    static void delete_script_binding(KotlinBinding* binding);
-
-    static KotlinBindingManager& get_instance();
+    static void bind_object(Object* p_object, KtBinding* kt_binding);
 };
 
 #endif// GODOT_JVM_KOTLIN_BINDING_MANAGER_H

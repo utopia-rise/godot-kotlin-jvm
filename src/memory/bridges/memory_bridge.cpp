@@ -2,6 +2,7 @@
 
 #include "constants.h"
 #include "core/object/object.h"
+#include "kt_binding.h"
 #include "logging.h"
 #include "memory/kotlin_binding_manager.h"
 
@@ -20,7 +21,7 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
 
     jni::JNativeMethod bind_instance_method {
       const_cast<char*>("bindInstance"),
-      const_cast<char*>("(JLgodot/core/KtObject;Ljava/lang/ClassLoader;)V"),
+      const_cast<char*>("(JLgodot/core/memory/GodotBinding;Ljava/lang/ClassLoader;)V"),
       (void*) MemoryBridge::bind_instance};
 
     jni::JNativeMethod unref_native_core_type_method {
@@ -48,10 +49,10 @@ bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p
 }
 
 void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object, jobject p_class_loader) {
-    auto* obj {ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)))};
+    Object* obj {ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)))};
     if (obj) {
-        KtObject* ktObject {new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
-        if (!KotlinBindingManager::bind_object(obj, ktObject)) { delete ktObject; }
+        KtBinding* kt_binding = memnew(KtBinding(jni::JObject(p_object), jni::JObject(p_class_loader)));
+        KotlinBindingManager::bind_object(obj, kt_binding);
     }
 }
 

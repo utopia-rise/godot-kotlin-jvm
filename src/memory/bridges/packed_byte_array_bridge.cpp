@@ -17,13 +17,13 @@ PackedByteArrayBridge::PackedByteArrayBridge(jni::JObject p_wrapped, jni::JObjec
       const_cast<char*>("()J"),
       (void*) PackedByteArrayBridge::engine_call_constructor};
     jni::JNativeMethod engine_call_constructor_packed_byte_array_method {
-            const_cast<char*>("engine_call_constructor_packed_array"),
-            const_cast<char*>("()J"),
+      const_cast<char*>("engine_call_constructor_packed_array"),
+      const_cast<char*>("()J"),
       (void*) PackedByteArrayBridge::engine_call_constructor_packed_array};
     jni::JNativeMethod engine_call_constructor_array_method {
-            const_cast<char*>("engine_call_constructor_array"),
-            const_cast<char*>("()J"),
-            (void*) PackedByteArrayBridge::engine_call_constructor_array};
+      const_cast<char*>("engine_call_constructor_array"),
+      const_cast<char*>("()J"),
+      (void*) PackedByteArrayBridge::engine_call_constructor_array};
 
     jni::JNativeMethod engine_call_append_method {
       const_cast<char*>("engine_call_append"),
@@ -34,168 +34,141 @@ PackedByteArrayBridge::PackedByteArrayBridge(jni::JObject p_wrapped, jni::JObjec
       const_cast<char*>("(J)V"),
       (void*) PackedByteArrayBridge::engine_call_appendArray};
     jni::JNativeMethod engine_call_bsearch_method {
-            const_cast<char*>("engine_call_bsearch"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_bsearch};
+      const_cast<char*>("engine_call_bsearch"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_bsearch};
     jni::JNativeMethod engine_call_clear_method {
-            const_cast<char*>("engine_call_clear"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_clear};
+      const_cast<char*>("engine_call_clear"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_clear};
     jni::JNativeMethod engine_call_compress_method {
       const_cast<char*>("engine_call_compress"),
       const_cast<char*>("(J)V"),
       (void*) PackedByteArrayBridge::engine_call_compress};
     jni::JNativeMethod engine_call_count_method {
-            const_cast<char*>("engine_call_count"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_count};
-    jni::JNativeMethod  engine_call_decode_double_method{
-        const_cast<char*>("engine_call_decode_double"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_double
-    };
-    jni::JNativeMethod  engine_call_decode_float_method{
-        const_cast<char*>("engine_call_decode_float"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_float
-    };
-    jni::JNativeMethod  engine_call_decode_half_method{
-        const_cast<char*>("engine_call_decode_half"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_half
-    };
-    jni::JNativeMethod  engine_call_decode_s16_method{
-        const_cast<char*>("engine_call_decode_s16"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_s16
-    };
-    jni::JNativeMethod  engine_call_decode_s32_method{
-        const_cast<char*>("engine_call_decode_s32"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_s32
-    };
-    jni::JNativeMethod  engine_call_decode_s64_method{
-        const_cast<char*>("engine_call_decode_s64"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_s64
-    };
-    jni::JNativeMethod  engine_call_decode_s8_method{
-        const_cast<char*>("engine_call_decode_s8"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_s8
-    };
-    jni::JNativeMethod  engine_call_decode_u16_method{
-        const_cast<char*>("engine_call_decode_u16"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_u16
-    };
-    jni::JNativeMethod  engine_call_decode_u32_method{
-        const_cast<char*>("engine_call_decode_u32"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_u32
-    };
-    jni::JNativeMethod  engine_call_decode_u64_method{
-        const_cast<char*>("engine_call_decode_u64"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_u64
-    };
-    jni::JNativeMethod  engine_call_decode_u8_method{
-        const_cast<char*>("engine_call_decode_u8"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_u8
-    };
-    jni::JNativeMethod  engine_call_decode_var_method{
-        const_cast<char*>("engine_call_decode_var"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_decode_var
-    };
-    jni::JNativeMethod  engine_call_decode_var_size_method{
-            const_cast<char*>("engine_call_decode_var_size"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_decode_var_size
-    };
+      const_cast<char*>("engine_call_count"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_count};
+    jni::JNativeMethod engine_call_decode_double_method {
+      const_cast<char*>("engine_call_decode_double"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_double};
+    jni::JNativeMethod engine_call_decode_float_method {
+      const_cast<char*>("engine_call_decode_float"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_float};
+    jni::JNativeMethod engine_call_decode_half_method {
+      const_cast<char*>("engine_call_decode_half"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_half};
+    jni::JNativeMethod engine_call_decode_s16_method {
+      const_cast<char*>("engine_call_decode_s16"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_s16};
+    jni::JNativeMethod engine_call_decode_s32_method {
+      const_cast<char*>("engine_call_decode_s32"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_s32};
+    jni::JNativeMethod engine_call_decode_s64_method {
+      const_cast<char*>("engine_call_decode_s64"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_s64};
+    jni::JNativeMethod engine_call_decode_s8_method {
+      const_cast<char*>("engine_call_decode_s8"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_s8};
+    jni::JNativeMethod engine_call_decode_u16_method {
+      const_cast<char*>("engine_call_decode_u16"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_u16};
+    jni::JNativeMethod engine_call_decode_u32_method {
+      const_cast<char*>("engine_call_decode_u32"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_u32};
+    jni::JNativeMethod engine_call_decode_u64_method {
+      const_cast<char*>("engine_call_decode_u64"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_u64};
+    jni::JNativeMethod engine_call_decode_u8_method {
+      const_cast<char*>("engine_call_decode_u8"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_u8};
+    jni::JNativeMethod engine_call_decode_var_method {
+      const_cast<char*>("engine_call_decode_var"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_var};
+    jni::JNativeMethod engine_call_decode_var_size_method {
+      const_cast<char*>("engine_call_decode_var_size"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decode_var_size};
     jni::JNativeMethod engine_call_decompress_method {
       const_cast<char*>("engine_call_decompress"),
       const_cast<char*>("(J)V"),
       (void*) PackedByteArrayBridge::engine_call_decompress};
     jni::JNativeMethod engine_call_decompress_dynamic_method {
-            const_cast<char*>("engine_call_decompress_dynamic"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_decompress_dynamic};
+      const_cast<char*>("engine_call_decompress_dynamic"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_decompress_dynamic};
     jni::JNativeMethod engine_call_duplicate_method {
-            const_cast<char*>("engine_call_duplicate"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_duplicate};
+      const_cast<char*>("engine_call_duplicate"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_duplicate};
     jni::JNativeMethod engine_call_encode_double_method {
-        const_cast<char*>("engine_call_encode_double"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_double
-    };
+      const_cast<char*>("engine_call_encode_double"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_double};
     jni::JNativeMethod engine_call_encode_float_method {
-        const_cast<char*>("engine_call_encode_float"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_float
-    };
+      const_cast<char*>("engine_call_encode_float"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_float};
     jni::JNativeMethod engine_call_encode_half_method {
-        const_cast<char*>("engine_call_encode_half"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_half
-    };
+      const_cast<char*>("engine_call_encode_half"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_half};
     jni::JNativeMethod engine_call_encode_s16_method {
-        const_cast<char*>("engine_call_encode_s16"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_s16
-    };
+      const_cast<char*>("engine_call_encode_s16"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_s16};
     jni::JNativeMethod engine_call_encode_s32_method {
-        const_cast<char*>("engine_call_encode_s32"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_s32
-    };
+      const_cast<char*>("engine_call_encode_s32"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_s32};
     jni::JNativeMethod engine_call_encode_s64_method {
-        const_cast<char*>("engine_call_encode_s64"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_s64
-    };
+      const_cast<char*>("engine_call_encode_s64"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_s64};
     jni::JNativeMethod engine_call_encode_s8_method {
-        const_cast<char*>("engine_call_encode_s8"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_s8
-    };
+      const_cast<char*>("engine_call_encode_s8"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_s8};
     jni::JNativeMethod engine_call_encode_u16_method {
-        const_cast<char*>("engine_call_encode_u16"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_u16
-    };
+      const_cast<char*>("engine_call_encode_u16"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_u16};
     jni::JNativeMethod engine_call_encode_u32_method {
-        const_cast<char*>("engine_call_encode_u32"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_u32
-    };
+      const_cast<char*>("engine_call_encode_u32"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_u32};
     jni::JNativeMethod engine_call_encode_u64_method {
-        const_cast<char*>("engine_call_encode_u64"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_u64
-    };
+      const_cast<char*>("engine_call_encode_u64"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_u64};
     jni::JNativeMethod engine_call_encode_u8_method {
-        const_cast<char*>("engine_call_encode_u8"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_u8
-    };
+      const_cast<char*>("engine_call_encode_u8"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_u8};
     jni::JNativeMethod engine_call_encode_var_method {
-        const_cast<char*>("engine_call_encode_var"),
-        const_cast<char*>("(J)V"),
-        (void*) PackedByteArrayBridge::engine_call_encode_var
-    };
+      const_cast<char*>("engine_call_encode_var"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_encode_var};
     jni::JNativeMethod engine_call_fill_method {
-            const_cast<char*>("engine_call_fill"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_fill
-    };
+      const_cast<char*>("engine_call_fill"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_fill};
     jni::JNativeMethod engine_call_find_method {
-            const_cast<char*>("engine_call_find"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_find
-    };
+      const_cast<char*>("engine_call_find"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_find};
     jni::JNativeMethod engine_call_is_empty_method {
       const_cast<char*>("engine_call_is_empty"),
       const_cast<char*>("(J)V"),
@@ -205,25 +178,25 @@ PackedByteArrayBridge::PackedByteArrayBridge(jni::JObject p_wrapped, jni::JObjec
       const_cast<char*>("(J)V"),
       (void*) PackedByteArrayBridge::engine_call_get_string_from_ascii};
     jni::JNativeMethod engine_call_get_string_from_utf16_method {
-            const_cast<char*>("engine_call_get_string_from_utf16"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_get_string_from_utf16};
+      const_cast<char*>("engine_call_get_string_from_utf16"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_get_string_from_utf16};
     jni::JNativeMethod engine_call_get_string_from_utf32_method {
-            const_cast<char*>("engine_call_get_string_from_utf32"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_get_string_from_utf32};
+      const_cast<char*>("engine_call_get_string_from_utf32"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_get_string_from_utf32};
     jni::JNativeMethod engine_call_get_string_from_utf8_method {
       const_cast<char*>("engine_call_get_string_from_utf8"),
       const_cast<char*>("(J)V"),
       (void*) PackedByteArrayBridge::engine_call_get_string_from_utf8};
     jni::JNativeMethod engine_call_has_method {
-            const_cast<char*>("engine_call_has"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_has};
+      const_cast<char*>("engine_call_has"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_has};
     jni::JNativeMethod engine_call_has_encoded_var_method {
-            const_cast<char*>("engine_call_has_encoded_var"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_has_encoded_var};
+      const_cast<char*>("engine_call_has_encoded_var"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_has_encoded_var};
     jni::JNativeMethod engine_call_hex_encode_method {
       const_cast<char*>("engine_call_hex_encode"),
       const_cast<char*>("(J)V"),
@@ -241,9 +214,9 @@ PackedByteArrayBridge::PackedByteArrayBridge(jni::JObject p_wrapped, jni::JObjec
       const_cast<char*>("(J)V"),
       (void*) PackedByteArrayBridge::engine_call_reverse};
     jni::JNativeMethod engine_call_rfind_method {
-            const_cast<char*>("engine_call_rfind"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_rfind};
+      const_cast<char*>("engine_call_rfind"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_rfind};
     jni::JNativeMethod engine_call_pushback_method {
       const_cast<char*>("engine_call_pushback"),
       const_cast<char*>("(J)V"),
@@ -265,29 +238,29 @@ PackedByteArrayBridge::PackedByteArrayBridge(jni::JObject p_wrapped, jni::JObjec
       const_cast<char*>("(J)V"),
       (void*) PackedByteArrayBridge::engine_call_size};
     jni::JNativeMethod engine_call_slice_method {
-            const_cast<char*>("engine_call_slice"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_slice};
+      const_cast<char*>("engine_call_slice"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_slice};
     jni::JNativeMethod engine_call_sort_method {
-            const_cast<char*>("engine_call_sort"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_sort};
+      const_cast<char*>("engine_call_sort"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_sort};
     jni::JNativeMethod engine_call_to_float32_array_method {
-            const_cast<char*>("engine_call_to_float32_array"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_to_float32_array};
+      const_cast<char*>("engine_call_to_float32_array"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_to_float32_array};
     jni::JNativeMethod engine_call_to_float64_array_method {
-            const_cast<char*>("engine_call_to_float64_array"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_to_float64_array};
+      const_cast<char*>("engine_call_to_float64_array"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_to_float64_array};
     jni::JNativeMethod engine_call_to_int32_array_method {
-            const_cast<char*>("engine_call_to_int32_array"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_to_int32_array};
+      const_cast<char*>("engine_call_to_int32_array"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_to_int32_array};
     jni::JNativeMethod engine_call_to_int64_array_method {
-            const_cast<char*>("engine_call_to_int64_array"),
-            const_cast<char*>("(J)V"),
-            (void*) PackedByteArrayBridge::engine_call_to_int64_array};
+      const_cast<char*>("engine_call_to_int64_array"),
+      const_cast<char*>("(J)V"),
+      (void*) PackedByteArrayBridge::engine_call_to_int64_array};
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(engine_call_constructor_method);
@@ -440,12 +413,7 @@ void PackedByteArrayBridge::engine_call_bsearch(JNIEnv* p_raw_env, jobject p_ins
     Variant args[2] = {};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant ret {
-            from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->bsearch(
-                    args[0].operator uint8_t(),
-                    args[1].operator bool()
-            )
-    };
+    Variant ret {from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->bsearch(args[0].operator uint8_t(), args[1].operator bool())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -472,9 +440,7 @@ void PackedByteArrayBridge::engine_call_count(JNIEnv* p_raw_env, jobject p_insta
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-            from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->count(args[0].operator uint8_t())
-    };
+    Variant ret {from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->count(args[0].operator uint8_t())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -486,7 +452,7 @@ void PackedByteArrayBridge::engine_call_decode_double(JNIEnv* p_raw_env, jobject
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_double_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_double_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -498,7 +464,7 @@ void PackedByteArrayBridge::engine_call_decode_float(JNIEnv* p_raw_env, jobject 
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_float_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_float_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -510,7 +476,7 @@ void PackedByteArrayBridge::engine_call_decode_half(JNIEnv* p_raw_env, jobject p
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_half_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_half_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -522,7 +488,7 @@ void PackedByteArrayBridge::engine_call_decode_s16(JNIEnv* p_raw_env, jobject p_
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_s16_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_s16_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -534,7 +500,7 @@ void PackedByteArrayBridge::engine_call_decode_s32(JNIEnv* p_raw_env, jobject p_
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_s32_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_s32_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -546,7 +512,7 @@ void PackedByteArrayBridge::engine_call_decode_s64(JNIEnv* p_raw_env, jobject p_
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_s64_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_s64_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -558,7 +524,7 @@ void PackedByteArrayBridge::engine_call_decode_s8(JNIEnv* p_raw_env, jobject p_i
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_s8_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_s8_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -570,7 +536,7 @@ void PackedByteArrayBridge::engine_call_decode_u16(JNIEnv* p_raw_env, jobject p_
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_u16_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_u16_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -582,7 +548,7 @@ void PackedByteArrayBridge::engine_call_decode_u32(JNIEnv* p_raw_env, jobject p_
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_u32_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_u32_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -594,7 +560,7 @@ void PackedByteArrayBridge::engine_call_decode_u64(JNIEnv* p_raw_env, jobject p_
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_u64_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_u64_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -606,7 +572,7 @@ void PackedByteArrayBridge::engine_call_decode_u8(JNIEnv* p_raw_env, jobject p_i
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_u8_name, args[0]) };
+    Variant ret {instance.call(string_names.func_decode_u8_name, args[0])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -618,7 +584,7 @@ void PackedByteArrayBridge::engine_call_decode_var(JNIEnv* p_raw_env, jobject p_
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_var_name, args[0], args[1]) };
+    Variant ret {instance.call(string_names.func_decode_var_name, args[0], args[1])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -630,7 +596,7 @@ void PackedByteArrayBridge::engine_call_decode_var_size(JNIEnv* p_raw_env, jobje
 
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
-    Variant ret { instance.call(string_names.func_decode_var_size_name, args[0], args[1]) };
+    Variant ret {instance.call(string_names.func_decode_var_size_name, args[0], args[1])};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -776,9 +742,7 @@ void PackedByteArrayBridge::engine_call_find(JNIEnv* p_raw_env, jobject p_instan
     Variant args[1] = {};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant ret {
-            from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->find(args[0].operator uint8_t())
-    };
+    Variant ret {from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->find(args[0].operator uint8_t())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -801,12 +765,12 @@ void PackedByteArrayBridge::engine_call_get_string_from_ascii(JNIEnv* p_raw_env,
 }
 
 void PackedByteArrayBridge::engine_call_get_string_from_utf16(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    Variant instance { *from_uint_to_ptr<PackedByteArray>(p_raw_ptr) };
+    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
     instance.call(string_names.func_get_string_from_utf16_name);
 }
 
 void PackedByteArrayBridge::engine_call_get_string_from_utf32(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    Variant instance { *from_uint_to_ptr<PackedByteArray>(p_raw_ptr) };
+    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
     instance.call(string_names.func_get_string_from_utf32_name);
 }
 
@@ -879,9 +843,7 @@ void PackedByteArrayBridge::engine_call_rfind(JNIEnv* p_raw_env, jobject p_insta
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-        from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->rfind(args[0].operator uint8_t(), args->operator int())
-    };
+    Variant ret {from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->rfind(args[0].operator uint8_t(), args->operator int())};
 }
 
 void PackedByteArrayBridge::engine_call_pushback(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -928,9 +890,7 @@ void PackedByteArrayBridge::engine_call_slice(JNIEnv* p_raw_env, jobject p_insta
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
 
-    Variant ret {
-            from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->slice(args[0].operator int(), args[1].operator int())
-    };
+    Variant ret {from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->slice(args[0].operator int(), args[1].operator int())};
     transfer_context->write_return_value(env, ret);
 }
 
@@ -941,36 +901,28 @@ void PackedByteArrayBridge::engine_call_sort(JNIEnv* p_raw_env, jobject p_instan
 void PackedByteArrayBridge::engine_call_to_float32_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {
-            instance.call(string_names.func_to_float32_array_name)
-    };
+    Variant ret {instance.call(string_names.func_to_float32_array_name)};
     GDKotlin::get_instance().transfer_context->write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_to_float64_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {
-            instance.call(string_names.func_to_float64_array_name)
-    };
+    Variant ret {instance.call(string_names.func_to_float64_array_name)};
     GDKotlin::get_instance().transfer_context->write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_to_int32_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {
-            instance.call(string_names.func_to_int32_array_name)
-    };
+    Variant ret {instance.call(string_names.func_to_int32_array_name)};
     GDKotlin::get_instance().transfer_context->write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_to_int64_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {
-            instance.call(string_names.func_to_int64_array_name)
-    };
+    Variant ret {instance.call(string_names.func_to_int64_array_name)};
     GDKotlin::get_instance().transfer_context->write_return_value(env, ret);
 }
 

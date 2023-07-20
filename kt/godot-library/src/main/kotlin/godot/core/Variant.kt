@@ -3,7 +3,7 @@ package godot.core
 import godot.Object
 import godot.core.VariantType.*
 import godot.core.VariantType.AABB
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.signals.Signal
 import godot.util.toRealT
 import java.nio.ByteBuffer
@@ -123,7 +123,7 @@ private var ByteBuffer.basis: Basis
 private var ByteBuffer.stringName: Any
     get() {
         val ptr = long
-        return GarbageCollector.getNativeCoreTypeInstance(ptr) ?: StringName(ptr)
+        return MemoryManager.getNativeCoreTypeInstance(ptr) ?: StringName(ptr)
     }
     set(value) {
         STRING_NAME.toGodotNativeCoreType<StringName>(this, value)
@@ -135,10 +135,9 @@ private var ByteBuffer.obj: KtObject
         val constructorIndex = int
         val id = long
 
-        return GarbageCollector.getInstance(id) ?: KtObject.instantiateWith(
+        return MemoryManager.getInstance(id) ?: KtObject.instantiateWith(
             ptr,
             id,
-            true,
             TypeManager.engineTypesConstructors[constructorIndex],
         )
     }
@@ -479,7 +478,7 @@ enum class VariantType(
         22,
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long
-            GarbageCollector.getNativeCoreTypeInstance(ptr) ?: NodePath(ptr)
+            MemoryManager.getNativeCoreTypeInstance(ptr) ?: NodePath(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
             NODE_PATH.toGodotNativeCoreType<NodePath>(buffer, any)
@@ -489,7 +488,7 @@ enum class VariantType(
         23,
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long
-            GarbageCollector.getNativeCoreTypeInstance(ptr) ?: RID(ptr)
+            MemoryManager.getNativeCoreTypeInstance(ptr) ?: RID(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
             _RID.toGodotNativeCoreType<RID>(buffer, any)
@@ -512,7 +511,7 @@ enum class VariantType(
             val isCustom = buffer.bool
             val ptr = buffer.long
 
-            GarbageCollector.getNativeCoreTypeInstance(ptr) ?: if (!isCustom) {
+            MemoryManager.getNativeCoreTypeInstance(ptr) ?: if (!isCustom) {
                 val obj = buffer.obj
                 val stringNamePtr = buffer.long
                 Callable(ptr, obj as godot.Object, StringName(stringNamePtr))
@@ -543,7 +542,7 @@ enum class VariantType(
         27,
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long
-            GarbageCollector.getNativeCoreTypeInstance(ptr) ?: Dictionary<Any, Any?>(ptr)
+            MemoryManager.getNativeCoreTypeInstance(ptr) ?: Dictionary<Any, Any?>(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
             DICTIONARY.toGodotNativeCoreType<Dictionary<*, *>>(buffer, any)
@@ -553,7 +552,7 @@ enum class VariantType(
         28,
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long
-            GarbageCollector.getNativeCoreTypeInstance(ptr) ?: VariantArray<Any?>(ptr)
+            MemoryManager.getNativeCoreTypeInstance(ptr) ?: VariantArray<Any?>(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
             ARRAY.toGodotNativeCoreType<VariantArray<*>>(buffer, any)

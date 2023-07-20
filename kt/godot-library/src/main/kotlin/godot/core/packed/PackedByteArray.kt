@@ -2,7 +2,7 @@
 
 package godot.core
 
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
@@ -35,7 +35,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
     //INTERNALS
     internal constructor(handle: VoidPtr) {
         this._handle = handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
 
     //PROPERTIES
@@ -51,7 +51,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
      */
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
 
     /**
@@ -60,7 +60,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
     constructor(from: PackedByteArray) {
         TransferContext.writeArguments(VariantType.PACKED_BYTE_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
 
     /**
@@ -69,7 +69,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
     constructor(from: VariantArray<Byte>) {
         TransferContext.writeArguments(VariantType.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
 
     //POOL ARRAY API SHARED

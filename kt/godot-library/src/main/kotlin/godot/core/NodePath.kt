@@ -1,6 +1,6 @@
 package godot.core
 
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 
@@ -10,26 +10,26 @@ class NodePath : NativeCoreType {
     //INTERNAL
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.NODE_PATH)
+        MemoryManager.registerNativeCoreType(this, VariantType.NODE_PATH)
     }
 
     //CONSTRUCTORS
 
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.NODE_PATH)
+        MemoryManager.registerNativeCoreType(this, VariantType.NODE_PATH)
     }
 
     constructor(from: String) {
         TransferContext.writeArguments(VariantType.STRING to from)
         _handle = Bridge.engine_call_constructor_string()
-        GarbageCollector.registerNativeCoreType(this, VariantType.NODE_PATH)
+        MemoryManager.registerNativeCoreType(this, VariantType.NODE_PATH)
     }
 
     constructor(from: NodePath) {
         TransferContext.writeArguments(VariantType.NODE_PATH to from)
         _handle = Bridge.engine_call_constructor_node_path()
-        GarbageCollector.registerNativeCoreType(this, VariantType.NODE_PATH)
+        MemoryManager.registerNativeCoreType(this, VariantType.NODE_PATH)
     }
 
     //API

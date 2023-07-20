@@ -3,7 +3,7 @@ package godot.core
 
 import godot.Object
 import godot.core.callable.*
-import godot.core.memory.GarbageCollector
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 
@@ -15,13 +15,13 @@ class Callable internal constructor(
 
     constructor() : this(null, null, null) {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
     constructor(target: Object, methodName: StringName) : this(target, methodName, null) {
         TransferContext.writeArguments(VariantType.OBJECT to target, VariantType.STRING_NAME to methodName)
         _handle = Bridge.engine_call_constructor_object_string_name()
-        GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
     constructor(target: Object, kFunction: KtCallable<KtObject, *>) : this(
@@ -30,23 +30,23 @@ class Callable internal constructor(
         KtCustomCallable(target, kFunction)
     ) {
         _handle = Bridge.engine_call_constructor_kt_custom_callable(customCallable!!)
-        GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
     constructor(jvmCall: () -> Any?) : this(null, null, KtCustomCallable(jvmCall)) {
         _handle = Bridge.engine_call_constructor_kt_custom_callable(customCallable!!)
-        GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
     constructor(callable: Callable) : this(callable.target, callable.methodName, callable.customCallable) {
         TransferContext.writeArguments(VariantType.CALLABLE to callable)
         _handle = Bridge.engine_call_copy_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
     internal constructor(_handle: VoidPtr, target: Object?, methodName: StringName?) : this(target, methodName, null) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
     fun bind(vararg args: Any?): Callable {

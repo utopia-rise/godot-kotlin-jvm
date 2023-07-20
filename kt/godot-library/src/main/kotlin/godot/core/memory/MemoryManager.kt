@@ -16,7 +16,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
-internal object GarbageCollector {
+internal object MemoryManager {
 
     /** Minimum time before 2 iterations of the thread.*/
     private const val MIN_DELAY = 0L
@@ -46,17 +46,17 @@ internal object GarbageCollector {
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
 
     /** Queue of objects that need to be bound to native objects*/
-    private val bindingQueue = ArrayDeque<KtObject>()
+    private val bindingQueue = ArrayDeque<GodotBinding>()
 
     /**
      * Queue of objects which will to be bound to native objects in a given iteration.
      *
      * At the start of a garbage collection iteration. The objects from the [bindingQueue] are copied into this list in order to spend as little time as possible in a `synchonized` block. Later we loop through this list to actually bind the objects.
      */
-    private val bindingList = ArrayList<KtObject>(CHECK_NUMBER)
+    private val bindingList = ArrayList<GodotBinding>(CHECK_NUMBER)
 
     /** Queues so we are notified when the GC runs on References.*/
-    private val refReferenceQueue = ReferenceQueue<KtObject>()
+    private val refReferenceQueue = ReferenceQueue<GodotBinding>()
 
     /** List of element to remove from ObjectDB*/
     private val deleteList = ArrayList<GodotWeakReference>(CHECK_NUMBER)
@@ -81,26 +81,55 @@ internal object GarbageCollector {
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
 
-    fun registerObject(instance: KtObject) {
+    fun registerObject(instance: KtObject): GodotBinding {
         synchronized(ObjectDB) {
-            val index = instance.id.index
-            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.id)
+            val id = instance.id
+            val binding = getBinding(id.id)
+            return if (binding == null) {
+                GodotBinding().also {
+                    it.wrapper = instance
+                    ObjectDB[id.index] = GodotWeakReference(it, refReferenceQueue, instance.id)
+                    bindingQueue.addLast(it)
+                }
+            } else {
+                binding.wrapper = instance
+                binding
+            }
         }
     }
 
-    fun registerSingleton(instance: KtObject) {
+    fun registerScriptInstance(instance: KtObject): GodotBinding {
         synchronized(ObjectDB) {
-            val index = instance.id.index
-            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.id)
-            singletonIndexes.add(index)
+            val id = instance.id
+            val binding = getBinding(id.id)
+            return if (binding == null) {
+                GodotBinding().also {
+                    it.scriptInstance = instance
+                    ObjectDB[id.index] = GodotWeakReference(it, refReferenceQueue, instance.id)
+                    bindingQueue.addLast(it)
+                }
+            } else {
+                binding.scriptInstance = instance
+                binding
+            }
         }
     }
 
-    fun registerObjectAndBind(instance: KtObject) {
+    fun unregisterScriptInstance(id: Long) {
+        synchronized(ObjectDB) {
+            getBinding(id)?.scriptInstance = null
+        }
+    }
+
+    fun registerSingleton(instance: KtObject): GodotBinding {
         synchronized(ObjectDB) {
             val index = instance.id.index
-            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.id)
-            bindingQueue.addLast(instance)
+            return GodotBinding().also {
+                it.wrapper = instance
+                ObjectDB[index] = GodotWeakReference(it, refReferenceQueue, instance.id)
+                singletonIndexes.add(index)
+                bindingQueue.addLast(it)
+            }
         }
     }
 
@@ -114,10 +143,14 @@ internal object GarbageCollector {
     }
 
     fun getInstance(id: Long): KtObject? {
+        return getBinding(id)?.value
+    }
+
+    private fun getBinding(id: Long): GodotBinding? {
         val objectID = ObjectID(id)
-        val ktObject = ObjectDB[objectID.index]?.get()
-        if (ktObject != null && objectID == ktObject.id) {
-            return ktObject
+        val ref = ObjectDB[objectID.index]
+        if (ref != null && ref.id.id == objectID.id) {
+            return ref.get()
         }
         return null
     }
@@ -129,10 +162,10 @@ internal object GarbageCollector {
     fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.id.id)
 
     fun start(forceJvmGarbageCollector: Boolean) {
-        GarbageCollector.forceJvmGarbageCollector = forceJvmGarbageCollector
+        MemoryManager.forceJvmGarbageCollector = forceJvmGarbageCollector
         gcState = GCState.STARTED
         info("Starting GC thread")
-        executor.schedule(GarbageCollector::run, 0, TimeUnit.MILLISECONDS)
+        executor.schedule(MemoryManager::run, 0, TimeUnit.MILLISECONDS)
     }
 
     private fun run() {
@@ -176,7 +209,7 @@ internal object GarbageCollector {
         }
 
         for (ref in bindingList) {
-            MemoryBridge.bindInstance(ref.id.id, ref, ref::class.java.classLoader)
+            MemoryBridge.bindInstance(ref.value!!.id.id, ref, ref::class.java.classLoader)
             isActive = true
         }
         bindingList.clear()
@@ -274,14 +307,13 @@ internal object GarbageCollector {
                     buildString {
                         appendLine("Some JVM godot instances are leaked.")
                         if (shouldDisplayLeakInstancesOnClose) {
-                            appendLine("Leaked Objects:")
-                            for (entry in ObjectDB) {
-                                if (entry != null) {
-                                    append("    ${entry.get()}")
-                                    append(System.lineSeparator())
-                                }
+                            val leakedObjects = ObjectDB.filterNotNull()
+                            appendLine("${leakedObjects.size} Objects:")
+                            for (entry in leakedObjects) {
+                                append("    ${entry.get()!!.value!!::class.simpleName} ${entry.id.id}")
+                                append(System.lineSeparator())
                             }
-                            appendLine("Leaked native core types:")
+                            appendLine("${nativeCoreTypeMap.size} Leaked native core types:")
                             for (entry in nativeCoreTypeMap) {
                                 append("    ${entry.key}: ${entry.value.get()}")
                                 append(System.lineSeparator())
@@ -310,7 +342,7 @@ internal object GarbageCollector {
 
     private object MemoryBridge {
         external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-        external fun bindInstance(instanceId: Long, obj: KtObject, classLoader: ClassLoader)
+        external fun bindInstance(instanceId: Long, obj: GodotBinding, classLoader: ClassLoader)
         external fun decrementRefCounter(instanceId: Long)
         external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
         external fun notifyLeak()

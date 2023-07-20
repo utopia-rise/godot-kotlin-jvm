@@ -55,7 +55,8 @@
       { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "java.lang.ClassLoader", "int"] },
       { "name" : "getSingleton", "parameterTypes" : ["int"] },
       { "name" : "freeObject", "parameterTypes" : ["long"] },
-      { "name" : "getBuffer", "parameterTypes" : [] }
+      { "name" : "getBuffer", "parameterTypes" : [] },
+      { "name" : "removeScriptInstance", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -69,7 +70,7 @@
     ]
   },
   {
-    "name":"godot.core.memory.GarbageCollector",
+    "name":"godot.core.memory.MemoryManager",
     "fields":[{"name":"INSTANCE"}],
     "methods":[
       {"name":"cleanUp","parameterTypes":[] },
@@ -80,17 +81,25 @@
     ]
   },
   {
-    "name" : "godot.core.memory.GarbageCollector$MemoryBridge",
+    "name" : "godot.core.memory.MemoryManager$MemoryBridge",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
     "methods" : [
       { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
-      { "name" : "bindInstance", "parameterTypes" : ["long", "godot.core.KtObject", "java.lang.ClassLoader"] },
+      { "name" : "bindInstance", "parameterTypes" : ["long", "godot.core.memory.GodotBinding", "java.lang.ClassLoader"] },
       { "name" : "decrementRefCounter", "parameterTypes" : ["long"] },
       { "name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
       { "name" : "notifyLeak", "parameterTypes" : [] }
     ]
+  },
+  {
+    "name" : "godot.core.memory.GodotBinding",
+    "fields" : [
+      { "name" : "wrapper" },
+      { "name" : "scriptInstance" }
+    ],
+    "methods" : []
   },
   {
     "name" : "godot.global.GDPrint$Bridge",

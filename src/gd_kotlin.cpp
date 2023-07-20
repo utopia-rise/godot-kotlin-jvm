@@ -61,14 +61,14 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 #endif
     jni::Env env(p_env);
 
-    jni::JObjectArray engine_types{p_engine_types};
+    jni::JObjectArray engine_types {p_engine_types};
     TypeManager::get_instance().register_engine_types(env, engine_types);
 
-    jni::JObjectArray singleton_names{p_singleton_names};
+    jni::JObjectArray singleton_names {p_singleton_names};
     TypeManager::get_instance().register_engine_singletons(env, singleton_names);
 
-    jni::JObjectArray method_names{p_method_names};
-    jni::JObjectArray types_of_methods{p_types_of_methods};
+    jni::JObjectArray method_names {p_method_names};
+    jni::JObjectArray types_of_methods {p_types_of_methods};
     TypeManager::get_instance().register_methods(env, method_names, types_of_methods);
 
     jni::JObject j_object {p_this};
@@ -84,7 +84,7 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 
 void register_user_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_types) {
     jni::Env env(p_env);
-    jni::JObjectArray types{p_types};
+    jni::JObjectArray types {p_types};
     TypeManager::get_instance().register_user_types(env, types);
 }
 
@@ -271,11 +271,11 @@ void GDKotlin::init() {
     }
 
     // Garbage Collector
-    jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.GarbageCollector", class_loader)};
+    jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", class_loader)};
     jni::FieldId garbage_collector_instance_field {
-      garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/GarbageCollector;")};
+      garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")};
     jni::JObject garbage_collector_instance {garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)};
-    JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve GarbageCollector instance");
+    JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve MemoryManager instance");
 
     BridgesManager::get_instance().initialize_bridges(env, class_loader);
 
@@ -353,11 +353,11 @@ void GDKotlin::finish() {
     bootstrap = nullptr;
 
     if (is_gc_started) {
-        jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.GarbageCollector", ClassLoader::get_default_loader())};
+        jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", ClassLoader::get_default_loader())};
         jni::FieldId garbage_collector_instance_field {
-          garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/GarbageCollector;")};
+          garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")};
         jni::JObject garbage_collector_instance {garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)};
-        JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve GarbageCollector instance");
+        JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve MemoryManager instance");
         jni::MethodId close_method_id {garbage_collector_cls.get_method_id(env, "close", "()V")};
         garbage_collector_instance.call_void_method(env, close_method_id);
         jni::MethodId has_closed_method_id {garbage_collector_cls.get_method_id(env, "isClosed", "()Z")};
