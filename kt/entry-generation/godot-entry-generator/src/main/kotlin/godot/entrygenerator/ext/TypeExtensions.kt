@@ -27,6 +27,7 @@ import godot.tools.common.constants.VARIANT_TYPE_PACKED_STRING_ARRAY
 import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR2_ARRAY
 import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR3_ARRAY
 import godot.tools.common.constants.VARIANT_TYPE_STRING
+import godot.tools.common.constants.VARIANT_TYPE_STRING_NAME
 import godot.tools.common.constants.VARIANT_TYPE_TRANSFORM2D
 import godot.tools.common.constants.VARIANT_TYPE_TRANSFORM3D
 import godot.tools.common.constants.VARIANT_TYPE__RID
@@ -50,6 +51,7 @@ fun Type?.toKtVariantType(): ClassName = when {
     fqName == Boolean::class.qualifiedName -> VARIANT_TYPE_BOOL
     fqName == Byte::class.qualifiedName -> VARIANT_TYPE_JVM_BYTE
     fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> VARIANT_TYPE_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.stringName}" -> VARIANT_TYPE_STRING_NAME
     fqName == "$godotCorePackage.${GodotTypes.rid}" -> VARIANT_TYPE__RID
     fqName == "$godotCorePackage.${GodotTypes.aabb}" -> VARIANT_TYPE_AABB
     fqName == "$godotCorePackage.${GodotTypes.nodePath}" -> VARIANT_TYPE_NODE_PATH
