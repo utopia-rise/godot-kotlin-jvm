@@ -1,4 +1,4 @@
-@file:JvmName("NodeUtils")
+@file:JvmName("StringUtils")
 package godot.extensions
 
 import godot.core.NodePath
