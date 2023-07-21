@@ -26,7 +26,7 @@ open class Signal(
     fun connect(
         callable: Callable,
         flags: Int
-    ) = godotObject.connect(name, callable, flags)
+    ) = godotObject.connect(name, callable, flags.toLong())
 
     fun disconnect(callable: Callable) = godotObject.disconnect(name, callable)
 

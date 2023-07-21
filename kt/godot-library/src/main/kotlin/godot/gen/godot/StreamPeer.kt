@@ -148,8 +148,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned 32-bit value into the stream.
    */
-  public fun putU32(`value`: Int): Unit {
-    TransferContext.writeArguments(LONG to value.toLong())
+  public fun putU32(`value`: Long): Unit {
+    TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U32, NIL)
   }
 
@@ -296,10 +296,10 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an unsigned 32-bit value from the stream.
    */
-  public fun getU32(): Int {
+  public fun getU32(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U32, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

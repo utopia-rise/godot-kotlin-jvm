@@ -293,7 +293,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * If `true`, the RigidBody2D will emit signals when it collides with another body.
+   * If `true`, the RigidBody2D will emit signals when it collides with another RigidBody2D.
    *
    * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [maxContactsReported].
    */

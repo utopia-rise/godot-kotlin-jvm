@@ -295,7 +295,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * If `true`, the RigidBody3D will emit signals when it collides with another body.
+   * If `true`, the RigidBody3D will emit signals when it collides with another RigidBody3D.
    *
    * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [maxContactsReported].
    */

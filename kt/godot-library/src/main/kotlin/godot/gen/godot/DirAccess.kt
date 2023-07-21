@@ -12,6 +12,7 @@ import godot.core.PackedStringArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
@@ -367,5 +368,139 @@ public open class DirAccess internal constructor() : RefCounted() {
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Creates a new [godot.DirAccess] object and opens an existing directory of the filesystem. The [path] argument can be within the project tree (`res://folder`), the user directory (`user://folder`) or an absolute path of the user filesystem (e.g. `/tmp/folder` or `C:\tmp\folder`).
+     *
+     * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error that occurred.
+     */
+    public fun `open`(path: String): DirAccess? {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_OPEN, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as DirAccess?)
+    }
+
+    /**
+     * Returns the result of the last [open] call in the current thread.
+     */
+    public fun getOpenError(): GodotError {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_GET_OPEN_ERROR, LONG)
+      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    }
+
+    /**
+     * Returns a [godot.PackedStringArray] containing filenames of the directory contents, excluding directories, at the given [path]. The array is sorted alphabetically.
+     *
+     * Use [getFiles] if you want more control of what gets included.
+     */
+    public fun getFilesAt(path: String): PackedStringArray {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_GET_FILES_AT,
+          PACKED_STRING_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    }
+
+    /**
+     * Returns a [godot.PackedStringArray] containing filenames of the directory contents, excluding files, at the given [path]. The array is sorted alphabetically.
+     *
+     * Use [getDirectories] if you want more control of what gets included.
+     */
+    public fun getDirectoriesAt(path: String): PackedStringArray {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_GET_DIRECTORIES_AT,
+          PACKED_STRING_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    }
+
+    /**
+     * On Windows, returns the number of drives (partitions) mounted on the current filesystem.
+     *
+     * On macOS, returns the number of mounted volumes.
+     *
+     * On Linux, returns the number of mounted volumes and GTK 3 bookmarks.
+     *
+     * On other platforms, the method returns 0.
+     */
+    public fun getDriveCount(): Int {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_GET_DRIVE_COUNT, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+
+    /**
+     * On Windows, returns the name of the drive (partition) passed as an argument (e.g. `C:`).
+     *
+     * On macOS, returns the path to the mounted volume passed as an argument.
+     *
+     * On Linux, returns the path to the mounted volume or GTK 3 bookmark passed as an argument.
+     *
+     * On other platforms, or if the requested drive does not exist, the method returns an empty String.
+     */
+    public fun getDriveName(idx: Int): String {
+      TransferContext.writeArguments(LONG to idx.toLong())
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_GET_DRIVE_NAME, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+
+    /**
+     * Static version of [makeDir]. Supports only absolute paths.
+     */
+    public fun makeDirAbsolute(path: String): GodotError {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_MAKE_DIR_ABSOLUTE, LONG)
+      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    }
+
+    /**
+     * Static version of [makeDirRecursive]. Supports only absolute paths.
+     */
+    public fun makeDirRecursiveAbsolute(path: String): GodotError {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null,
+          ENGINEMETHOD_ENGINECLASS_DIRACCESS_MAKE_DIR_RECURSIVE_ABSOLUTE, LONG)
+      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    }
+
+    /**
+     * Static version of [dirExists]. Supports only absolute paths.
+     */
+    public fun dirExistsAbsolute(path: String): Boolean {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_DIR_EXISTS_ABSOLUTE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+
+    /**
+     * Static version of [copy]. Supports only absolute paths.
+     */
+    @JvmOverloads
+    public fun copyAbsolute(
+      from: String,
+      to: String,
+      chmodFlags: Int = -1,
+    ): GodotError {
+      TransferContext.writeArguments(STRING to from, STRING to to, LONG to chmodFlags.toLong())
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_COPY_ABSOLUTE, LONG)
+      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    }
+
+    /**
+     * Static version of [rename]. Supports only absolute paths.
+     */
+    public fun renameAbsolute(from: String, to: String): GodotError {
+      TransferContext.writeArguments(STRING to from, STRING to to)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_RENAME_ABSOLUTE, LONG)
+      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    }
+
+    /**
+     * Static version of [remove]. Supports only absolute paths.
+     */
+    public fun removeAbsolute(path: String): GodotError {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_DIRACCESS_REMOVE_ABSOLUTE, LONG)
+      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    }
+  }
 }

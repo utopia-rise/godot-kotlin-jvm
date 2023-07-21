@@ -81,15 +81,15 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   /**
    * The navigation layers the query will use (as a bitmask).
    */
-  public var navigationLayers: Int
+  public var navigationLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_GET_NAVIGATION_LAYERS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_SET_NAVIGATION_LAYERS, NIL)
     }

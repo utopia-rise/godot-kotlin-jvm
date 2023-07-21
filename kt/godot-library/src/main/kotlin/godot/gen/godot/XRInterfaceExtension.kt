@@ -30,6 +30,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
+import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -57,7 +58,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the capabilities of this interface.
    */
-  public open fun _getCapabilities(): Int {
+  public open fun _getCapabilities(): Long {
     throw NotImplementedError("_get_capabilities is not implemented for XRInterfaceExtension")
   }
 
@@ -126,7 +127,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the number of views this interface requires, 1 for mono, 2 for stereoscopic.
    */
-  public open fun _getViewCount(): Int {
+  public open fun _getViewCount(): Long {
     throw NotImplementedError("_get_view_count is not implemented for XRInterfaceExtension")
   }
 
@@ -140,7 +141,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns a [godot.Transform3D] for a given view.
    */
-  public open fun _getTransformForView(view: Int, camTransform: Transform3D): Transform3D {
+  public open fun _getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
     throw NotImplementedError("_get_transform_for_view is not implemented for XRInterfaceExtension")
   }
 
@@ -148,7 +149,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns the projection matrix for the given view as a [godot.PackedFloat64Array].
    */
   public open fun _getProjectionForView(
-    view: Int,
+    view: Long,
     aspect: Double,
     zNear: Double,
     zFar: Double,
@@ -307,7 +308,7 @@ public open class XRInterfaceExtension : XRInterface() {
     srcRect: Rect2,
     dstRect: Rect2i,
     useLayer: Boolean,
-    layer: Int,
+    layer: Long,
     applyLensDistortion: Boolean,
     eyeCenter: Vector2,
     k1: Double,
@@ -315,7 +316,7 @@ public open class XRInterfaceExtension : XRInterface() {
     upscale: Double,
     aspectRatio: Double,
   ): Unit {
-    TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer.toLong(), BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
+    TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_ADD_BLIT, NIL)
   }
 

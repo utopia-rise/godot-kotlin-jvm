@@ -8,9 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.Vector2i
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -43,7 +47,7 @@ public open class MovieWriter : Object() {
   /**
    * Called when the audio sample rate used for recording the audio is requested by the engine. The value returned must be specified in Hz. Defaults to 48000 Hz if [_getAudioMixRate] is not overridden.
    */
-  public open fun _getAudioMixRate(): Int {
+  public open fun _getAudioMixRate(): Long {
     throw NotImplementedError("_get_audio_mix_rate is not implemented for MovieWriter")
   }
 
@@ -73,7 +77,7 @@ public open class MovieWriter : Object() {
    */
   public open fun _writeBegin(
     movieSize: Vector2i,
-    fps: Int,
+    fps: Long,
     basePath: String,
   ): GodotError {
     throw NotImplementedError("_write_begin is not implemented for MovieWriter")
@@ -87,5 +91,15 @@ public open class MovieWriter : Object() {
   public open fun _writeEnd(): Unit {
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Adds a writer to be usable by the engine. The supported file extensions can be set by overriding [_handlesFile].
+     *
+     * **Note:** [addWriter] must be called early enough in the engine initialization to work, as movie writing is designed to start at the same time as the rest of the engine.
+     */
+    public fun addWriter(writer: MovieWriter): Unit {
+      TransferContext.writeArguments(OBJECT to writer)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_MOVIEWRITER_ADD_WRITER, NIL)
+    }
+  }
 }

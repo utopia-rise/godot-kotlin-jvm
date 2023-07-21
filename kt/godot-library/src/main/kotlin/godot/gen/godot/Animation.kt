@@ -855,11 +855,11 @@ public open class Animation : Resource() {
    */
   @JvmOverloads
   public fun compress(
-    pageSize: Int = 8192,
-    fps: Int = 120,
+    pageSize: Long = 8192,
+    fps: Long = 120,
     splitTolerance: Float = 4.0f,
   ): Unit {
-    TransferContext.writeArguments(LONG to pageSize.toLong(), LONG to fps.toLong(), DOUBLE to splitTolerance.toDouble())
+    TransferContext.writeArguments(LONG to pageSize, LONG to fps, DOUBLE to splitTolerance.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_COMPRESS, NIL)
   }
 

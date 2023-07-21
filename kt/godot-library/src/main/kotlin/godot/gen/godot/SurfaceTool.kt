@@ -239,8 +239,8 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue` instead of `-1` to produce a mesh with flat normals.
    */
-  public fun setSmoothGroup(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
+  public fun setSmoothGroup(index: Long): Unit {
+    TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SMOOTH_GROUP, NIL)
   }
 
@@ -404,8 +404,8 @@ public open class SurfaceTool : RefCounted() {
    * **FIXME:** Document possible values for [flags], it changed in 4.0. Likely some combinations of [enum Mesh.ArrayFormat].
    */
   @JvmOverloads
-  public fun commit(existing: ArrayMesh? = null, flags: Int = 0): ArrayMesh? {
-    TransferContext.writeArguments(OBJECT to existing, LONG to flags.toLong())
+  public fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
+    TransferContext.writeArguments(OBJECT to existing, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
   }

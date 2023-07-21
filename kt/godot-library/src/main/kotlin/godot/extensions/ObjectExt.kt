@@ -95,7 +95,7 @@ inline fun <reified T : KFunction<*>> Object.connect(
 ) = connect(
     signal.name,
     Callable(target, function.name.camelToSnakeCase().asStringName()),
-    flags
+    flags.toLong()
 )
 
 /**
@@ -107,7 +107,7 @@ inline fun <reified T : KFunction<*>> Object.connectRawName(
     target: Object,
     function: T,
     flags: Int = 0
-) = connect(signal.name, Callable(target, function.name.asStringName()), flags)
+) = connect(signal.name, Callable(target, function.name.asStringName()), flags.toLong())
 
 /**
  * **Note:** The function name is converted to snake_case

@@ -916,5 +916,31 @@ public open class Tween : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * This method can be used for manual interpolation of a value, when you don't want [godot.Tween] to do animating for you. It's similar to [@GlobalScope.lerp], but with support for custom transition and easing.
+     *
+     * [initialValue] is the starting value of the interpolation.
+     *
+     * [deltaValue] is the change of the value in the interpolation, i.e. it's equal to `final_value - initial_value`.
+     *
+     * [elapsedTime] is the time in seconds that passed after the interpolation started and it's used to control the position of the interpolation. E.g. when it's equal to half of the [duration], the interpolated value will be halfway between initial and final values. This value can also be greater than [duration] or lower than 0, which will extrapolate the value.
+     *
+     * [duration] is the total time of the interpolation.
+     *
+     * **Note:** If [duration] is equal to `0`, the method will always return the final value, regardless of [elapsedTime] provided.
+     */
+    public fun interpolateValue(
+      initialValue: Any,
+      deltaValue: Any,
+      elapsedTime: Double,
+      duration: Double,
+      transType: TransitionType,
+      easeType: EaseType,
+    ): Any? {
+      TransferContext.writeArguments(ANY to initialValue, ANY to deltaValue, DOUBLE to elapsedTime, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_TWEEN_INTERPOLATE_VALUE, ANY)
+      return (TransferContext.readReturnValue(ANY, true) as Any?)
+    }
+  }
 }

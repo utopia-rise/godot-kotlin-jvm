@@ -47,7 +47,7 @@ public open class TextureLayered : Texture() {
   /**
    * Called when the layers' type in the [godot.TextureLayered] is queried.
    */
-  public open fun _getLayeredType(): Int {
+  public open fun _getLayeredType(): Long {
     throw NotImplementedError("_get_layered_type is not implemented for TextureLayered")
   }
 

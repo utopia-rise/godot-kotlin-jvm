@@ -189,15 +189,15 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The rendering layer in which this [godot.CanvasItem] is rendered by [godot.Viewport] nodes. A [godot.Viewport] will render a [godot.CanvasItem] if it and all its parents share a layer with the [godot.Viewport]'s canvas cull mask.
    */
-  public var visibilityLayer: Int
+  public var visibilityLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_VISIBILITY_LAYER,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_VISIBILITY_LAYER,
           NIL)
     }
@@ -1080,8 +1080,8 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Set/clear individual bits on the rendering visibility layer. This simplifies editing this [godot.CanvasItem]'s visibility layer.
    */
-  public fun setVisibilityLayerBit(layer: Int, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layer.toLong(), BOOL to enabled)
+  public fun setVisibilityLayerBit(layer: Long, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layer, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_VISIBILITY_LAYER_BIT,
         NIL)
   }
@@ -1089,8 +1089,8 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns an individual bit on the rendering visibility layer.
    */
-  public fun getVisibilityLayerBit(layer: Int): Boolean {
-    TransferContext.writeArguments(LONG to layer.toLong())
+  public fun getVisibilityLayerBit(layer: Long): Boolean {
+    TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_VISIBILITY_LAYER_BIT,
         BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

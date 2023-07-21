@@ -7,8 +7,8 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.INT
-import com.squareup.kotlinpoet.LONG
 import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.LONG
 import com.squareup.kotlinpoet.LambdaTypeName
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterSpec
@@ -150,6 +150,11 @@ class GenerationService(
             constantsTypeReceiver.addProperty(generateConstant(constant, name))
         }
 
+        for (method in enrichedClass.methods.filter { it.internal.isStatic }) {
+            //TODO/4.0: Change implementation for static method
+            constantsTypeReceiver.addFunction(generateMethod(enrichedClass, method, true))
+        }
+
         if (constantsTypeReceiver != classTypeBuilder) {
             constantsTypeReceiver.build().let { classTypeBuilder.addType(it) }
         }
@@ -179,11 +184,6 @@ class GenerationService(
             if (shouldGenerate) {
                 classTypeBuilder.addFunction(generateMethod(enrichedClass, method))
             }
-        }
-
-        for (method in enrichedClass.methods.filter { it.internal.isStatic }) {
-            //TODO/4.0: Change implementation for static method
-            constantsTypeReceiver.addFunction(generateMethod(enrichedClass, method))
         }
 
         val generatedClass = classTypeBuilder.build()
@@ -429,8 +429,9 @@ class GenerationService(
                 FunSpec.setterBuilder()
                     .addParameter("value", propertyType)
                     .generateJvmMethodCall(
-                        property.toSetterCallable(),
-                        argumentStringTemplate
+                        callable = property.toSetterCallable(),
+                        callArgumentsAsString = argumentStringTemplate,
+                        isStatic = false
                     )
                     .build()
             )
@@ -453,8 +454,9 @@ class GenerationService(
             propertySpecBuilder.getter(
                 FunSpec.getterBuilder()
                     .generateJvmMethodCall(
-                        property.toGetterCallable(),
-                        argumentStringTemplate
+                        callable = property.toGetterCallable(),
+                        callArgumentsAsString = argumentStringTemplate,
+                        isStatic = false
                     )
                     .build()
             )
@@ -513,7 +515,7 @@ class GenerationService(
             .build()
     }
 
-    private fun generateMethod(enrichedClass: EnrichedClass, method: EnrichedMethod): FunSpec {
+    private fun generateMethod(enrichedClass: EnrichedClass, method: EnrichedMethod, isStatic: Boolean = false): FunSpec {
         val modifiers = mutableListOf<KModifier>()
 
         if (classGraphService.doAncestorsHaveMethod(
@@ -565,7 +567,7 @@ class GenerationService(
             )
         }
 
-        generatedFunBuilder.generateCodeBlock(enrichedClass, method, callArgumentsAsString)
+        generatedFunBuilder.generateCodeBlock(enrichedClass, method, callArgumentsAsString, isStatic)
 
         val kDoc = docRepository.findByClassName(enrichedClass.name)?.functions?.get(method.internal.name)?.description
         if (kDoc != null) {
@@ -813,12 +815,14 @@ class GenerationService(
     private fun FunSpec.Builder.generateCodeBlock(
         clazz: EnrichedClass,
         enrichedMethod: EnrichedMethod,
-        callArgumentsAsString: String
+        callArgumentsAsString: String,
+        isStatic: Boolean
     ) {
         if (!enrichedMethod.internal.isVirtual) {
             generateJvmMethodCall(
-                enrichedMethod,
-                callArgumentsAsString
+                callable = enrichedMethod,
+                callArgumentsAsString = callArgumentsAsString,
+                isStatic = isStatic
             )
         } else if (enrichedMethod.getTypeClassName().typeName != UNIT) {
             addStatement(
@@ -833,6 +837,7 @@ class GenerationService(
     private fun <T : CallableTrait> FunSpec.Builder.generateJvmMethodCall(
         callable: T,
         callArgumentsAsString: String,
+        isStatic: Boolean
     ): FunSpec.Builder {
         val ktVariantClassNames = callable.arguments.map {
             it.jvmVariantTypeValue
@@ -855,8 +860,14 @@ class GenerationService(
 
         val returnTypeVariantTypeClass = callable.jvmVariantTypeValue
 
+        val rawPtr = if (isStatic) {
+            null
+        } else {
+            "rawPtr"
+        }
+
         addStatement(
-            "%T.callMethod(rawPtr, %M, %T)",
+            "%T.callMethod($rawPtr, %M, %T)",
             TRANSFER_CONTEXT,
             MemberName("godot", callable.engineIndexName),
             returnTypeVariantTypeClass

@@ -1157,5 +1157,43 @@ public open class Image : Resource() {
      * The maximal height allowed for [godot.Image] resources.
      */
     public final const val MAX_HEIGHT: Long = 16777216
+
+    /**
+     * Creates an empty image of given size and format. See [enum Format] constants. If [useMipmaps] is `true`, then generate mipmaps for this image. See the [generateMipmaps].
+     */
+    public fun create(
+      width: Int,
+      height: Int,
+      useMipmaps: Boolean,
+      format: Format,
+    ): Image? {
+      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    }
+
+    /**
+     * Creates a new image of given size and format. See [enum Format] constants. Fills the image with the given raw data. If [useMipmaps] is `true` then loads mipmaps for this image from [data]. See [generateMipmaps].
+     */
+    public fun createFromData(
+      width: Int,
+      height: Int,
+      useMipmaps: Boolean,
+      format: Format,
+      `data`: PackedByteArray,
+    ): Image? {
+      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE_FROM_DATA, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    }
+
+    /**
+     * Creates a new [godot.Image] and loads data from the specified file.
+     */
+    public fun loadFromFile(path: String): Image? {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_FROM_FILE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    }
   }
 }

@@ -109,5 +109,18 @@ public open class GLTFPhysicsBody : Resource() {
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
-  public companion object
+  public companion object {
+    public fun fromNode(bodyNode: CollisionObject3D): GLTFPhysicsBody? {
+      TransferContext.writeArguments(OBJECT to bodyNode)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_FROM_NODE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsBody?)
+    }
+
+    public fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsBody? {
+      TransferContext.writeArguments(DICTIONARY to dictionary)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_FROM_DICTIONARY,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsBody?)
+    }
+  }
 }

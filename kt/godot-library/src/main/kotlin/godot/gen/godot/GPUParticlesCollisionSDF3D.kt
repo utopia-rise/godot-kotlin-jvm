@@ -91,15 +91,15 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    * The visual layers to account for when baking the particle collision SDF. Only [godot.MeshInstance3D]s whose [godot.VisualInstance3D.layers] match with this [bakeMask] will be included in the generated particle collision SDF. By default, all objects are taken into account for the particle collision SDF baking.
    */
-  public var bakeMask: Int
+  public var bakeMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_GET_BAKE_MASK, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_SET_BAKE_MASK, NIL)
     }

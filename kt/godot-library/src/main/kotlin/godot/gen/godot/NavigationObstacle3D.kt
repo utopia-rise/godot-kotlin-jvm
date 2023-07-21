@@ -125,15 +125,15 @@ public open class NavigationObstacle3D : Node3D() {
   /**
    * A bitfield determining the avoidance layers for this obstacle. Agent's with a matching bit on the their avoidance mask will avoid this obstacle.
    */
-  public var avoidanceLayers: Int
+  public var avoidanceLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_AVOIDANCE_LAYERS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_AVOIDANCE_LAYERS, NIL)
     }

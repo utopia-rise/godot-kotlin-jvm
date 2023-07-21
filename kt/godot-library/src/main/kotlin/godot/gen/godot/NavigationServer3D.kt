@@ -240,9 +240,9 @@ public object NavigationServer3D : Object() {
     origin: Vector3,
     destination: Vector3,
     optimize: Boolean,
-    navigationLayers: Int = 1,
+    navigationLayers: Long = 1,
   ): PackedVector3Array {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to navigationLayers.toLong())
+    TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to navigationLayers)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_PATH,
         PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
@@ -480,8 +480,8 @@ public object NavigationServer3D : Object() {
   /**
    * Set the region's navigation layers. This allows selecting regions from a path request (when using [godot.NavigationServer3D.mapGetPath]).
    */
-  public fun regionSetNavigationLayers(region: RID, navigationLayers: Int): Unit {
-    TransferContext.writeArguments(_RID to region, LONG to navigationLayers.toLong())
+  public fun regionSetNavigationLayers(region: RID, navigationLayers: Long): Unit {
+    TransferContext.writeArguments(_RID to region, LONG to navigationLayers)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_NAVIGATION_LAYERS, NIL)
   }
@@ -489,11 +489,11 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the region's navigation layers.
    */
-  public fun regionGetNavigationLayers(region: RID): Int {
+  public fun regionGetNavigationLayers(region: RID): Long {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_NAVIGATION_LAYERS, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -604,8 +604,8 @@ public object NavigationServer3D : Object() {
   /**
    * Set the links's navigation layers. This allows selecting links from a path request (when using [godot.NavigationServer3D.mapGetPath]).
    */
-  public fun linkSetNavigationLayers(link: RID, navigationLayers: Int): Unit {
-    TransferContext.writeArguments(_RID to link, LONG to navigationLayers.toLong())
+  public fun linkSetNavigationLayers(link: RID, navigationLayers: Long): Unit {
+    TransferContext.writeArguments(_RID to link, LONG to navigationLayers)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_NAVIGATION_LAYERS, NIL)
   }
@@ -613,11 +613,11 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the navigation layers for this [link].
    */
-  public fun linkGetNavigationLayers(link: RID): Int {
+  public fun linkGetNavigationLayers(link: RID): Long {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_NAVIGATION_LAYERS, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -919,8 +919,8 @@ public object NavigationServer3D : Object() {
   /**
    * Set the agent's `avoidance_layers` bitmask.
    */
-  public fun agentSetAvoidanceLayers(agent: RID, layers: Int): Unit {
-    TransferContext.writeArguments(_RID to agent, LONG to layers.toLong())
+  public fun agentSetAvoidanceLayers(agent: RID, layers: Long): Unit {
+    TransferContext.writeArguments(_RID to agent, LONG to layers)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_AVOIDANCE_LAYERS, NIL)
   }
@@ -928,8 +928,8 @@ public object NavigationServer3D : Object() {
   /**
    * Set the agent's `avoidance_mask` bitmask.
    */
-  public fun agentSetAvoidanceMask(agent: RID, mask: Int): Unit {
-    TransferContext.writeArguments(_RID to agent, LONG to mask.toLong())
+  public fun agentSetAvoidanceMask(agent: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to agent, LONG to mask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_AVOIDANCE_MASK, NIL)
   }
@@ -1079,8 +1079,8 @@ public object NavigationServer3D : Object() {
   /**
    * Set the obstacles's `avoidance_layers` bitmask.
    */
-  public fun obstacleSetAvoidanceLayers(obstacle: RID, layers: Int): Unit {
-    TransferContext.writeArguments(_RID to obstacle, LONG to layers.toLong())
+  public fun obstacleSetAvoidanceLayers(obstacle: RID, layers: Long): Unit {
+    TransferContext.writeArguments(_RID to obstacle, LONG to layers)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_OBSTACLE_SET_AVOIDANCE_LAYERS, NIL)
   }
@@ -1089,8 +1089,6 @@ public object NavigationServer3D : Object() {
    * Parses the [godot.SceneTree] for source geometry according to the properties of [navigationMesh]. Updates the provided [sourceGeometryData] resource with the resulting data. The resource can then be used to bake a navigation mesh with [bakeFromSourceGeometryData]. After the process is finished the optional [callback] will be called.
    *
    * **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.
-   *
-   * **Performance:** While convenient, reading data arrays from [godot.Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [godot.RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.
    */
   @JvmOverloads
   public fun parseSourceGeometryData(

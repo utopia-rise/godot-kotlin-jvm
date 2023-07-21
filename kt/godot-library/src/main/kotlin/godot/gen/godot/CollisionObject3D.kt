@@ -81,15 +81,15 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public var collisionLayer: Int
+  public var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_LAYER, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_LAYER, NIL)
     }
@@ -99,15 +99,15 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public var collisionMask: Int
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_MASK, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_MASK, NIL)
     }
@@ -241,18 +241,18 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference.
    */
-  public fun createShapeOwner(owner: Object): Int {
+  public fun createShapeOwner(owner: Object): Long {
     TransferContext.writeArguments(OBJECT to owner)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_CREATE_SHAPE_OWNER, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Removes the given shape owner.
    */
-  public fun removeShapeOwner(ownerId: Int): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun removeShapeOwner(ownerId: Long): Unit {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_REMOVE_SHAPE_OWNER, NIL)
   }
@@ -270,8 +270,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Sets the [godot.Transform3D] of the given shape owner.
    */
-  public fun shapeOwnerSetTransform(ownerId: Int, transform: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), TRANSFORM3D to transform)
+  public fun shapeOwnerSetTransform(ownerId: Long, transform: Transform3D): Unit {
+    TransferContext.writeArguments(LONG to ownerId, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_SET_TRANSFORM, NIL)
   }
@@ -279,8 +279,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Returns the shape owner's [godot.Transform3D].
    */
-  public fun shapeOwnerGetTransform(ownerId: Int): Transform3D {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun shapeOwnerGetTransform(ownerId: Long): Transform3D {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_TRANSFORM, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
@@ -289,8 +289,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Returns the parent object of the given shape owner.
    */
-  public fun shapeOwnerGetOwner(ownerId: Int): Object? {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun shapeOwnerGetOwner(ownerId: Long): Object? {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_OWNER, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Object?)
@@ -299,8 +299,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * If `true`, disables the given shape owner.
    */
-  public fun shapeOwnerSetDisabled(ownerId: Int, disabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), BOOL to disabled)
+  public fun shapeOwnerSetDisabled(ownerId: Long, disabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to ownerId, BOOL to disabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_SET_DISABLED, NIL)
   }
@@ -308,8 +308,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * If `true`, the shape owner and its shapes are disabled.
    */
-  public fun isShapeOwnerDisabled(ownerId: Int): Boolean {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun isShapeOwnerDisabled(ownerId: Long): Boolean {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_IS_SHAPE_OWNER_DISABLED, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -318,8 +318,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Adds a [godot.Shape3D] to the shape owner.
    */
-  public fun shapeOwnerAddShape(ownerId: Int, shape: Shape3D): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), OBJECT to shape)
+  public fun shapeOwnerAddShape(ownerId: Long, shape: Shape3D): Unit {
+    TransferContext.writeArguments(LONG to ownerId, OBJECT to shape)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_ADD_SHAPE, NIL)
   }
@@ -327,8 +327,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Returns the number of shapes the given shape owner contains.
    */
-  public fun shapeOwnerGetShapeCount(ownerId: Int): Int {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun shapeOwnerGetShapeCount(ownerId: Long): Int {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_SHAPE_COUNT, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -337,8 +337,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Returns the [godot.Shape3D] with the given ID from the given shape owner.
    */
-  public fun shapeOwnerGetShape(ownerId: Int, shapeId: Int): Shape3D? {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), LONG to shapeId.toLong())
+  public fun shapeOwnerGetShape(ownerId: Long, shapeId: Int): Shape3D? {
+    TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_SHAPE, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
@@ -347,8 +347,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Returns the child index of the [godot.Shape3D] with the given ID from the given shape owner.
    */
-  public fun shapeOwnerGetShapeIndex(ownerId: Int, shapeId: Int): Int {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), LONG to shapeId.toLong())
+  public fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Int): Int {
+    TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_SHAPE_INDEX, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -357,8 +357,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Removes a shape from the given shape owner.
    */
-  public fun shapeOwnerRemoveShape(ownerId: Int, shapeId: Int): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), LONG to shapeId.toLong())
+  public fun shapeOwnerRemoveShape(ownerId: Long, shapeId: Int): Unit {
+    TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_REMOVE_SHAPE, NIL)
   }
@@ -366,8 +366,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Removes all shapes from the shape owner.
    */
-  public fun shapeOwnerClearShapes(ownerId: Int): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun shapeOwnerClearShapes(ownerId: Long): Unit {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_CLEAR_SHAPES, NIL)
   }
@@ -375,11 +375,11 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Returns the `owner_id` of the given shape.
    */
-  public fun shapeFindOwner(shapeIndex: Int): Int {
+  public fun shapeFindOwner(shapeIndex: Int): Long {
     TransferContext.writeArguments(LONG to shapeIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_FIND_OWNER,
         LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public enum class DisableMode(

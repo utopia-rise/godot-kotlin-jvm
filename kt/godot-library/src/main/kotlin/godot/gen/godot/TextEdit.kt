@@ -1036,19 +1036,19 @@ public open class TextEdit : Control() {
   /**
    * Returns the current version of the [godot.TextEdit]. The version is a count of recorded operations by the undo/redo history.
    */
-  public fun getVersion(): Int {
+  public fun getVersion(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VERSION, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Returns the last tagged saved version from [tagSavedVersion].
    */
-  public fun getSavedVersion(): Int {
+  public fun getSavedVersion(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SAVED_VERSION, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -1062,8 +1062,8 @@ public open class TextEdit : Control() {
   /**
    * Sets the search [flags]. This is used with [setSearchText] to highlight occurrences of the searched text. Search flags can be specified from the [enum SearchFlags] enum.
    */
-  public fun setSearchFlags(flags: Int): Unit {
-    TransferContext.writeArguments(LONG to flags.toLong())
+  public fun setSearchFlags(flags: Long): Unit {
+    TransferContext.writeArguments(LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SEARCH_FLAGS, NIL)
   }
 
@@ -1110,11 +1110,11 @@ public open class TextEdit : Control() {
    */
   public fun search(
     text: String,
-    flags: Int,
+    flags: Long,
     fromLine: Int,
     fromColum: Int,
   ): Vector2i {
-    TransferContext.writeArguments(STRING to text, LONG to flags.toLong(), LONG to fromLine.toLong(), LONG to fromColum.toLong())
+    TransferContext.writeArguments(STRING to text, LONG to flags, LONG to fromLine.toLong(), LONG to fromColum.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SEARCH, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }

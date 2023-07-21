@@ -42,15 +42,15 @@ public open class VisualInstance3D : Node3D() {
    *
    * **Note:** [godot.VoxelGI], SDFGI and [godot.LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [godot.GeometryInstance3D.giMode] to [godot.GeometryInstance3D.GI_MODE_DISABLED] for meshes and [godot.Light3D.lightBakeMode] to [godot.Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.
    */
-  public var layers: Int
+  public var layers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYER_MASK,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYER_MASK,
           NIL)
     }

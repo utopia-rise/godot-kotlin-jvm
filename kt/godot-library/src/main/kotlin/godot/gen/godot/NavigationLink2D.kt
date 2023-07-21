@@ -65,15 +65,15 @@ public open class NavigationLink2D : Node2D() {
   /**
    * A bitfield determining all navigation layers the link belongs to. These navigation layers will be checked when requesting a path with [godot.NavigationServer2D.mapGetPath].
    */
-  public var navigationLayers: Int
+  public var navigationLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK2D_GET_NAVIGATION_LAYERS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONLINK2D_SET_NAVIGATION_LAYERS, NIL)
     }

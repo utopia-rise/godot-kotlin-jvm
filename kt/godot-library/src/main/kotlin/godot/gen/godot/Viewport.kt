@@ -736,15 +736,15 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The rendering layers in which this [godot.Viewport] renders [godot.CanvasItem] nodes.
    */
-  public var canvasCullMask: Int
+  public var canvasCullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_CULL_MASK,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_CULL_MASK,
           NIL)
     }
@@ -1015,8 +1015,8 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Set/clear individual bits on the rendering layer mask. This simplifies editing this [godot.Viewport]'s layers.
    */
-  public fun setCanvasCullMaskBit(layer: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layer.toLong(), BOOL to enable)
+  public fun setCanvasCullMaskBit(layer: Long, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layer, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_CULL_MASK_BIT,
         NIL)
   }
@@ -1024,8 +1024,8 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns an individual bit on the rendering layer mask.
    */
-  public fun getCanvasCullMaskBit(layer: Int): Boolean {
-    TransferContext.writeArguments(LONG to layer.toLong())
+  public fun getCanvasCullMaskBit(layer: Long): Boolean {
+    TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_CULL_MASK_BIT,
         BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
