@@ -112,10 +112,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
     JVM_CRASH_COND_MSG(args_size > VARIANT_ARG_MAX, vformat("Cannot have more than %s arguments for method call.", VARIANT_ARG_MAX));
 #endif
 
-    Object* ptr;
-    if (j_ptr) {
-        ptr = reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr));
-    }
+    auto* ptr {reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
 
     int method_index {static_cast<int>(p_method_index)};
     MethodBind* methodBind {TypeManager::get_instance().get_engine_type_method_for_index(method_index)};
