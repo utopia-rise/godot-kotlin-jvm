@@ -13,6 +13,7 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.LONG
+import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Any
@@ -21,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -136,5 +138,26 @@ public open class Thread : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Sets whether the thread safety checks the engine normally performs in methods of certain classes (e.g., [godot.Node]) should happen **on the current thread**.
+     *
+     * The default, for every thread, is that they are enabled (as if called with [enabled] being `true`).
+     *
+     * Those checks are conservative. That means that they will only succeed in considering a call thread-safe (and therefore allow it to happen) if the engine can guarantee such safety.
+     *
+     * Because of that, there may be cases where the user may want to disable them ([enabled] being `false`) to make certain operations allowed again. By doing so, it becomes the user's responsibility to ensure thread safety (e.g., by using [godot.Mutex]) for those objects that are otherwise protected by the engine.
+     *
+     * **Note:** This is an advanced usage of the engine. You are advised to use it only if you know what you are doing and there is no safer way.
+     *
+     * **Note:** This is useful for scripts running on either arbitrary [godot.Thread] objects or tasks submitted to the [godot.WorkerThreadPool]. It doesn't apply to code running during [godot.Node] group processing, where the checks will be always performed.
+     *
+     * **Note:** Even in the case of having disabled the checks in a [godot.WorkerThreadPool] task, there's no need to re-enable them at the end. The engine will do so.
+     */
+    public fun setThreadSafetyChecksEnabled(enabled: Boolean): Unit {
+      TransferContext.writeArguments(BOOL to enabled)
+      TransferContext.callMethod(null,
+          ENGINEMETHOD_ENGINECLASS_THREAD_SET_THREAD_SAFETY_CHECKS_ENABLED, NIL)
+    }
+  }
 }

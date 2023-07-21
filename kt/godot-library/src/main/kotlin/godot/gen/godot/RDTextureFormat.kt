@@ -41,57 +41,57 @@ public open class RDTextureFormat : RefCounted() {
   /**
    * The texture's width (in pixels).
    */
-  public var width: Int
+  public var width: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_WIDTH, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_WIDTH, NIL)
     }
 
   /**
    * The texture's height (in pixels).
    */
-  public var height: Int
+  public var height: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_HEIGHT, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_HEIGHT, NIL)
     }
 
   /**
    * The texture's depth (in pixels). This is always `1` for 2D textures.
    */
-  public var depth: Int
+  public var depth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_DEPTH, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_DEPTH, NIL)
     }
 
   /**
    * The number of layers in the texture. Only relevant for 2D texture arrays.
    */
-  public var arrayLayers: Int
+  public var arrayLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_ARRAY_LAYERS,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_ARRAY_LAYERS,
           NIL)
     }
@@ -99,14 +99,14 @@ public open class RDTextureFormat : RefCounted() {
   /**
    * The number of mipmaps available in the texture.
    */
-  public var mipmaps: Int
+  public var mipmaps: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_MIPMAPS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_MIPMAPS, NIL)
     }
 

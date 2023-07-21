@@ -99,15 +99,15 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Maximum number of voxels generated during the voxelization stage.
    */
-  public var resolution: Int
+  public var resolution: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_GET_RESOLUTION, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_RESOLUTION, NIL)
     }
@@ -115,16 +115,16 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Controls the maximum number of triangles per convex-hull. Ranges from `4` to `1024`.
    */
-  public var maxNumVerticesPerConvexHull: Int
+  public var maxNumVerticesPerConvexHull: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_GET_MAX_NUM_VERTICES_PER_CONVEX_HULL,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_MAX_NUM_VERTICES_PER_CONVEX_HULL,
           NIL)
@@ -133,15 +133,15 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Controls the granularity of the search for the "best" clipping plane. Ranges from `1` to `16`.
    */
-  public var planeDownsampling: Int
+  public var planeDownsampling: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_GET_PLANE_DOWNSAMPLING, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_PLANE_DOWNSAMPLING, NIL)
     }
@@ -149,16 +149,16 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Controls the precision of the convex-hull generation process during the clipping plane selection stage. Ranges from `1` to `16`.
    */
-  public var convexHullDownsampling: Int
+  public var convexHullDownsampling: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_GET_CONVEX_HULL_DOWNSAMPLING,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_CONVEX_HULL_DOWNSAMPLING,
           NIL)
@@ -217,15 +217,15 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * The maximum number of convex hulls to produce from the merge operation.
    */
-  public var maxConvexHulls: Int
+  public var maxConvexHulls: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_GET_MAX_CONVEX_HULLS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_SET_MAX_CONVEX_HULLS, NIL)
     }

@@ -188,11 +188,11 @@ public object WorkerThreadPool : Object() {
    *
    * **Note:** If a thread has started executing the [godot.Callable] but is yet to finish, it won't be counted.
    */
-  public fun getGroupProcessedElementCount(groupId: Long): Int {
+  public fun getGroupProcessedElementCount(groupId: Long): Long {
     TransferContext.writeArguments(LONG to groupId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WORKERTHREADPOOL_GET_GROUP_PROCESSED_ELEMENT_COUNT, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

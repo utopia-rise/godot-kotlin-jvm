@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.TRANSFORM3D
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
@@ -208,5 +210,15 @@ public open class PathFollow3D : Node3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Correct the [transform]. [rotationMode] implicitly specifies how posture (forward, up and sideway direction) is calculated.
+     */
+    public fun correctPosture(transform: Transform3D, rotationMode: RotationMode): Transform3D {
+      TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_CORRECT_POSTURE,
+          TRANSFORM3D)
+      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    }
+  }
 }

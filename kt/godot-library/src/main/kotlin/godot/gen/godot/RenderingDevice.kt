@@ -105,12 +105,12 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun textureCreateSharedFromSlice(
     view: RDTextureView,
     withTexture: RID,
-    layer: Int,
-    mipmap: Int,
-    mipmaps: Int = 1,
+    layer: Long,
+    mipmap: Long,
+    mipmaps: Long = 1,
     sliceType: TextureSliceType = RenderingDevice.TextureSliceType.TEXTURE_SLICE_2D,
   ): RID {
-    TransferContext.writeArguments(OBJECT to view, _RID to withTexture, LONG to layer.toLong(), LONG to mipmap.toLong(), LONG to mipmaps.toLong(), LONG to sliceType.id)
+    TransferContext.writeArguments(OBJECT to view, _RID to withTexture, LONG to layer, LONG to mipmap, LONG to mipmaps, LONG to sliceType.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CREATE_SHARED_FROM_SLICE, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -128,11 +128,11 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public fun textureUpdate(
     texture: RID,
-    layer: Int,
+    layer: Long,
     `data`: PackedByteArray,
     postBarrier: Long = 7,
   ): GodotError {
-    TransferContext.writeArguments(_RID to texture, LONG to layer.toLong(), PACKED_BYTE_ARRAY to data, OBJECT to postBarrier)
+    TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_UPDATE,
         LONG)
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
@@ -145,8 +145,8 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * **Note:** [texture] requires the [TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be retrieved. Otherwise, an error is printed and a empty [godot.PackedByteArray] is returned.
    */
-  public fun textureGetData(texture: RID, layer: Int): PackedByteArray {
-    TransferContext.writeArguments(_RID to texture, LONG to layer.toLong())
+  public fun textureGetData(texture: RID, layer: Long): PackedByteArray {
+    TransferContext.writeArguments(_RID to texture, LONG to layer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_GET_DATA,
         PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -202,13 +202,13 @@ public open class RenderingDevice internal constructor() : Object() {
     fromPos: Vector3,
     toPos: Vector3,
     size: Vector3,
-    srcMipmap: Int,
-    dstMipmap: Int,
-    srcLayer: Int,
-    dstLayer: Int,
+    srcMipmap: Long,
+    dstMipmap: Long,
+    srcLayer: Long,
+    dstLayer: Long,
     postBarrier: Long = 7,
   ): GodotError {
-    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap.toLong(), LONG to dstMipmap.toLong(), LONG to srcLayer.toLong(), LONG to dstLayer.toLong(), OBJECT to postBarrier)
+    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_COPY, LONG)
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
@@ -222,13 +222,13 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun textureClear(
     texture: RID,
     color: Color,
-    baseMipmap: Int,
-    mipmapCount: Int,
-    baseLayer: Int,
-    layerCount: Int,
+    baseMipmap: Long,
+    mipmapCount: Long,
+    baseLayer: Long,
+    layerCount: Long,
     postBarrier: Long = 7,
   ): GodotError {
-    TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap.toLong(), LONG to mipmapCount.toLong(), LONG to baseLayer.toLong(), LONG to layerCount.toLong(), OBJECT to postBarrier)
+    TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CLEAR, LONG)
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
@@ -280,9 +280,9 @@ public open class RenderingDevice internal constructor() : Object() {
    * If [viewCount] is greater than or equal to `2`, enables multiview which is used for VR rendering. This requires support for the Vulkan multiview extension.
    */
   @JvmOverloads
-  public fun framebufferFormatCreate(attachments: VariantArray<RDAttachmentFormat>, viewCount: Int =
-      1): Long {
-    TransferContext.writeArguments(ARRAY to attachments, LONG to viewCount.toLong())
+  public fun framebufferFormatCreate(attachments: VariantArray<RDAttachmentFormat>, viewCount: Long
+      = 1): Long {
+    TransferContext.writeArguments(ARRAY to attachments, LONG to viewCount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_CREATE, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -295,9 +295,9 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun framebufferFormatCreateMultipass(
     attachments: VariantArray<RDAttachmentFormat>,
     passes: VariantArray<RDFramebufferPass>,
-    viewCount: Int = 1,
+    viewCount: Long = 1,
   ): Long {
-    TransferContext.writeArguments(ARRAY to attachments, ARRAY to passes, LONG to viewCount.toLong())
+    TransferContext.writeArguments(ARRAY to attachments, ARRAY to passes, LONG to viewCount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_CREATE_MULTIPASS, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -319,8 +319,9 @@ public open class RenderingDevice internal constructor() : Object() {
    * Returns the number of texture samples used for the given framebuffer [format] ID (returned by [framebufferGetFormat]).
    */
   @JvmOverloads
-  public fun framebufferFormatGetTextureSamples(format: Long, renderPass: Int = 0): TextureSamples {
-    TransferContext.writeArguments(LONG to format, LONG to renderPass.toLong())
+  public fun framebufferFormatGetTextureSamples(format: Long, renderPass: Long = 0):
+      TextureSamples {
+    TransferContext.writeArguments(LONG to format, LONG to renderPass)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_GET_TEXTURE_SAMPLES, LONG)
     return RenderingDevice.TextureSamples.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
@@ -335,9 +336,9 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun framebufferCreate(
     textures: VariantArray<RID>,
     validateWithFormat: Long = -1,
-    viewCount: Int = 1,
+    viewCount: Long = 1,
   ): RID {
-    TransferContext.writeArguments(ARRAY to textures, LONG to validateWithFormat, LONG to viewCount.toLong())
+    TransferContext.writeArguments(ARRAY to textures, LONG to validateWithFormat, LONG to viewCount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_CREATE,
         _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -353,9 +354,9 @@ public open class RenderingDevice internal constructor() : Object() {
     textures: VariantArray<RID>,
     passes: VariantArray<RDFramebufferPass>,
     validateWithFormat: Long = -1,
-    viewCount: Int = 1,
+    viewCount: Long = 1,
   ): RID {
-    TransferContext.writeArguments(ARRAY to textures, ARRAY to passes, LONG to validateWithFormat, LONG to viewCount.toLong())
+    TransferContext.writeArguments(ARRAY to textures, ARRAY to passes, LONG to validateWithFormat, LONG to viewCount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_CREATE_MULTIPASS, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -428,11 +429,11 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   @JvmOverloads
   public fun vertexBufferCreate(
-    sizeBytes: Int,
+    sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
     useAsStorage: Boolean = false,
   ): RID {
-    TransferContext.writeArguments(LONG to sizeBytes.toLong(), PACKED_BYTE_ARRAY to data, BOOL to useAsStorage)
+    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, BOOL to useAsStorage)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_VERTEX_BUFFER_CREATE, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -453,12 +454,12 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   @JvmOverloads
   public fun vertexArrayCreate(
-    vertexCount: Int,
+    vertexCount: Long,
     vertexFormat: Long,
     srcBuffers: VariantArray<RID>,
     offsets: PackedInt64Array = PackedInt64Array(),
   ): RID {
-    TransferContext.writeArguments(LONG to vertexCount.toLong(), LONG to vertexFormat, ARRAY to srcBuffers, PACKED_INT_64_ARRAY to offsets)
+    TransferContext.writeArguments(LONG to vertexCount, LONG to vertexFormat, ARRAY to srcBuffers, PACKED_INT_64_ARRAY to offsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_VERTEX_ARRAY_CREATE,
         _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -471,12 +472,12 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   @JvmOverloads
   public fun indexBufferCreate(
-    sizeIndices: Int,
+    sizeIndices: Long,
     format: IndexBufferFormat,
     `data`: PackedByteArray = PackedByteArray(),
     useRestartIndices: Boolean = false,
   ): RID {
-    TransferContext.writeArguments(LONG to sizeIndices.toLong(), LONG to format.id, PACKED_BYTE_ARRAY to data, BOOL to useRestartIndices)
+    TransferContext.writeArguments(LONG to sizeIndices, LONG to format.id, PACKED_BYTE_ARRAY to data, BOOL to useRestartIndices)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_INDEX_BUFFER_CREATE,
         _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -489,10 +490,10 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun indexArrayCreate(
     indexBuffer: RID,
-    indexOffset: Int,
-    indexCount: Int,
+    indexOffset: Long,
+    indexCount: Long,
   ): RID {
-    TransferContext.writeArguments(_RID to indexBuffer, LONG to indexOffset.toLong(), LONG to indexCount.toLong())
+    TransferContext.writeArguments(_RID to indexBuffer, LONG to indexOffset, LONG to indexCount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_INDEX_ARRAY_CREATE,
         _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -555,11 +556,11 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
-  public fun shaderGetVertexInputAttributeMask(shader: RID): Int {
+  public fun shaderGetVertexInputAttributeMask(shader: RID): Long {
     TransferContext.writeArguments(_RID to shader)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SHADER_GET_VERTEX_INPUT_ATTRIBUTE_MASK, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -568,8 +569,9 @@ public open class RenderingDevice internal constructor() : Object() {
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's [freeRid] method.
    */
   @JvmOverloads
-  public fun uniformBufferCreate(sizeBytes: Int, `data`: PackedByteArray = PackedByteArray()): RID {
-    TransferContext.writeArguments(LONG to sizeBytes.toLong(), PACKED_BYTE_ARRAY to data)
+  public fun uniformBufferCreate(sizeBytes: Long, `data`: PackedByteArray = PackedByteArray()):
+      RID {
+    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_UNIFORM_BUFFER_CREATE, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -582,11 +584,11 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   @JvmOverloads
   public fun storageBufferCreate(
-    sizeBytes: Int,
+    sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
     usage: Long = 0,
   ): RID {
-    TransferContext.writeArguments(LONG to sizeBytes.toLong(), PACKED_BYTE_ARRAY to data, OBJECT to usage)
+    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, OBJECT to usage)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_STORAGE_BUFFER_CREATE, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -599,11 +601,11 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   @JvmOverloads
   public fun textureBufferCreate(
-    sizeBytes: Int,
+    sizeBytes: Long,
     format: DataFormat,
     `data`: PackedByteArray = PackedByteArray(),
   ): RID {
-    TransferContext.writeArguments(LONG to sizeBytes.toLong(), LONG to format.id, PACKED_BYTE_ARRAY to data)
+    TransferContext.writeArguments(LONG to sizeBytes, LONG to format.id, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_BUFFER_CREATE, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -617,9 +619,9 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun uniformSetCreate(
     uniforms: VariantArray<RDUniform>,
     shader: RID,
-    shaderSet: Int,
+    shaderSet: Long,
   ): RID {
-    TransferContext.writeArguments(ARRAY to uniforms, _RID to shader, LONG to shaderSet.toLong())
+    TransferContext.writeArguments(ARRAY to uniforms, _RID to shader, LONG to shaderSet)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_UNIFORM_SET_CREATE,
         _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -641,12 +643,12 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public fun bufferUpdate(
     buffer: RID,
-    offset: Int,
-    sizeBytes: Int,
+    offset: Long,
+    sizeBytes: Long,
     `data`: PackedByteArray,
     postBarrier: Long = 7,
   ): GodotError {
-    TransferContext.writeArguments(_RID to buffer, LONG to offset.toLong(), LONG to sizeBytes.toLong(), PACKED_BYTE_ARRAY to data, OBJECT to postBarrier)
+    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_UPDATE, LONG)
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
@@ -657,11 +659,11 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public fun bufferClear(
     buffer: RID,
-    offset: Int,
-    sizeBytes: Int,
+    offset: Long,
+    sizeBytes: Long,
     postBarrier: Long = 7,
   ): GodotError {
-    TransferContext.writeArguments(_RID to buffer, LONG to offset.toLong(), LONG to sizeBytes.toLong(), OBJECT to postBarrier)
+    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_CLEAR, LONG)
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
@@ -672,10 +674,10 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public fun bufferGetData(
     buffer: RID,
-    offsetBytes: Int = 0,
-    sizeBytes: Int = 0,
+    offsetBytes: Long = 0,
+    sizeBytes: Long = 0,
   ): PackedByteArray {
-    TransferContext.writeArguments(_RID to buffer, LONG to offsetBytes.toLong(), LONG to sizeBytes.toLong())
+    TransferContext.writeArguments(_RID to buffer, LONG to offsetBytes, LONG to sizeBytes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_GET_DATA,
         PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -697,11 +699,11 @@ public open class RenderingDevice internal constructor() : Object() {
     stencilState: RDPipelineDepthStencilState,
     colorBlendState: RDPipelineColorBlendState,
     dynamicStateFlags: Long = 0,
-    forRenderPass: Int = 0,
+    forRenderPass: Long = 0,
     specializationConstants: VariantArray<RDPipelineSpecializationConstant> =
         godot.core.variantArrayOf(),
   ): RID {
-    TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, OBJECT to dynamicStateFlags, LONG to forRenderPass.toLong(), ARRAY to specializationConstants)
+    TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, OBJECT to dynamicStateFlags, LONG to forRenderPass, ARRAY to specializationConstants)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_RENDER_PIPELINE_CREATE, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -829,11 +831,11 @@ public open class RenderingDevice internal constructor() : Object() {
     finalDepthAction: FinalAction,
     clearColorValues: PackedColorArray = PackedColorArray(),
     clearDepth: Float = 1.0f,
-    clearStencil: Int = 0,
+    clearStencil: Long = 0,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     storageTextures: VariantArray<RID> = godot.core.variantArrayOf(),
   ): Long {
-    TransferContext.writeArguments(_RID to framebuffer, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil.toLong(), RECT2 to region, ARRAY to storageTextures)
+    TransferContext.writeArguments(_RID to framebuffer, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil, RECT2 to region, ARRAY to storageTextures)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BEGIN,
         LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -845,18 +847,18 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public fun drawListBeginSplit(
     framebuffer: RID,
-    splits: Int,
+    splits: Long,
     initialColorAction: InitialAction,
     finalColorAction: FinalAction,
     initialDepthAction: InitialAction,
     finalDepthAction: FinalAction,
     clearColorValues: PackedColorArray = PackedColorArray(),
     clearDepth: Float = 1.0f,
-    clearStencil: Int = 0,
+    clearStencil: Long = 0,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     storageTextures: VariantArray<RID> = godot.core.variantArrayOf(),
   ): PackedInt64Array {
-    TransferContext.writeArguments(_RID to framebuffer, LONG to splits.toLong(), LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil.toLong(), RECT2 to region, ARRAY to storageTextures)
+    TransferContext.writeArguments(_RID to framebuffer, LONG to splits, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil, RECT2 to region, ARRAY to storageTextures)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BEGIN_SPLIT, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
@@ -886,9 +888,9 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun drawListBindUniformSet(
     drawList: Long,
     uniformSet: RID,
-    setIndex: Int,
+    setIndex: Long,
   ): Unit {
-    TransferContext.writeArguments(LONG to drawList, _RID to uniformSet, LONG to setIndex.toLong())
+    TransferContext.writeArguments(LONG to drawList, _RID to uniformSet, LONG to setIndex)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BIND_UNIFORM_SET, NIL)
   }
@@ -917,9 +919,9 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun drawListSetPushConstant(
     drawList: Long,
     buffer: PackedByteArray,
-    sizeBytes: Int,
+    sizeBytes: Long,
   ): Unit {
-    TransferContext.writeArguments(LONG to drawList, PACKED_BYTE_ARRAY to buffer, LONG to sizeBytes.toLong())
+    TransferContext.writeArguments(LONG to drawList, PACKED_BYTE_ARRAY to buffer, LONG to sizeBytes)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_SET_PUSH_CONSTANT, NIL)
   }
@@ -931,10 +933,10 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun drawListDraw(
     drawList: Long,
     useIndices: Boolean,
-    instances: Int,
-    proceduralVertexCount: Int = 0,
+    instances: Long,
+    proceduralVertexCount: Long = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to drawList, BOOL to useIndices, LONG to instances.toLong(), LONG to proceduralVertexCount.toLong())
+    TransferContext.writeArguments(LONG to drawList, BOOL to useIndices, LONG to instances, LONG to proceduralVertexCount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_DRAW, NIL)
   }
 
@@ -972,8 +974,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Switches to the next draw pass, with the number of splits allocated specified in [splits]. The return value is an array containing the ID of each split. For single-split usage, see [drawListSwitchToNextPass].
    */
-  public fun drawListSwitchToNextPassSplit(splits: Int): PackedInt64Array {
-    TransferContext.writeArguments(LONG to splits.toLong())
+  public fun drawListSwitchToNextPassSplit(splits: Long): PackedInt64Array {
+    TransferContext.writeArguments(LONG to splits)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_SWITCH_TO_NEXT_PASS_SPLIT,
         PACKED_INT_64_ARRAY)
@@ -1035,9 +1037,9 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun computeListSetPushConstant(
     computeList: Long,
     buffer: PackedByteArray,
-    sizeBytes: Int,
+    sizeBytes: Long,
   ): Unit {
-    TransferContext.writeArguments(LONG to computeList, PACKED_BYTE_ARRAY to buffer, LONG to sizeBytes.toLong())
+    TransferContext.writeArguments(LONG to computeList, PACKED_BYTE_ARRAY to buffer, LONG to sizeBytes)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_SET_PUSH_CONSTANT, NIL)
   }
@@ -1048,9 +1050,9 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun computeListBindUniformSet(
     computeList: Long,
     uniformSet: RID,
-    setIndex: Int,
+    setIndex: Long,
   ): Unit {
-    TransferContext.writeArguments(LONG to computeList, _RID to uniformSet, LONG to setIndex.toLong())
+    TransferContext.writeArguments(LONG to computeList, _RID to uniformSet, LONG to setIndex)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_BIND_UNIFORM_SET, NIL)
   }
@@ -1060,11 +1062,11 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun computeListDispatch(
     computeList: Long,
-    xGroups: Int,
-    yGroups: Int,
-    zGroups: Int,
+    xGroups: Long,
+    yGroups: Long,
+    zGroups: Long,
   ): Unit {
-    TransferContext.writeArguments(LONG to computeList, LONG to xGroups.toLong(), LONG to yGroups.toLong(), LONG to zGroups.toLong())
+    TransferContext.writeArguments(LONG to computeList, LONG to xGroups, LONG to yGroups, LONG to zGroups)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_DISPATCH, NIL)
   }
@@ -1108,11 +1110,11 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns the total number of timestamps (rendering steps) available for profiling.
    */
-  public fun getCapturedTimestampsCount(): Int {
+  public fun getCapturedTimestampsCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_CAPTURED_TIMESTAMPS_COUNT, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -1128,8 +1130,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns the timestamp in GPU time for the rendering step specified by [index] (in microseconds since the engine started). See also [getCapturedTimestampCpuTime] and [captureTimestamp].
    */
-  public fun getCapturedTimestampGpuTime(index: Int): Long {
-    TransferContext.writeArguments(LONG to index.toLong())
+  public fun getCapturedTimestampGpuTime(index: Long): Long {
+    TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_CAPTURED_TIMESTAMP_GPU_TIME, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1138,8 +1140,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns the timestamp in CPU time for the rendering step specified by [index] (in microseconds since the engine started). See also [getCapturedTimestampGpuTime] and [captureTimestamp].
    */
-  public fun getCapturedTimestampCpuTime(index: Int): Long {
-    TransferContext.writeArguments(LONG to index.toLong())
+  public fun getCapturedTimestampCpuTime(index: Long): Long {
+    TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_CAPTURED_TIMESTAMP_CPU_TIME, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1148,8 +1150,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns the timestamp's name for the rendering step specified by [index]. See also [captureTimestamp].
    */
-  public fun getCapturedTimestampName(index: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong())
+  public fun getCapturedTimestampName(index: Long): String {
+    TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_CAPTURED_TIMESTAMP_NAME, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -1169,11 +1171,11 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns the frame count kept by the graphics API. Higher values result in higher input lag, but with more consistent throughput. For the main [godot.RenderingDevice], frames are cycled (usually 3 with triple-buffered V-Sync enabled). However, local [godot.RenderingDevice]s only have 1 frame.
    */
-  public fun getFrameDelay(): Int {
+  public fun getFrameDelay(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_FRAME_DELAY,
         LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

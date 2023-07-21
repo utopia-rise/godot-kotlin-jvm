@@ -1384,9 +1384,9 @@ public open class Object : KtObject() {
   public fun connect(
     signal: StringName,
     callable: Callable,
-    flags: Int = 0,
+    flags: Long = 0,
   ): GodotError {
-    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags.toLong())
+    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CONNECT, LONG)
     return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }

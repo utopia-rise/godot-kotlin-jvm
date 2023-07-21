@@ -62,7 +62,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
     features: PackedStringArray,
     isDebug: Boolean,
     path: String,
-    flags: Int,
+    flags: Long,
   ): Unit {
   }
 
@@ -198,9 +198,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Adds a custom file to be exported. [path] is the virtual path that can be used to load the file, [file] is the binary data of the file.
-   *
-   * When called inside [_exportFile] and [remap] is `true`, the current file will not be exported, but instead remapped to this custom file. [remap] is ignored when called in other places.
+   * Adds a custom file to be exported. [path] is the virtual path that can be used to load the file, [file] is the binary data of the file. If [remap] is `true`, file will not be exported, but instead remapped to the given [path].
    */
   public fun addFile(
     path: String,

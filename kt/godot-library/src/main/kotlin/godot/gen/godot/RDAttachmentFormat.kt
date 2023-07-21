@@ -57,15 +57,15 @@ public open class RDAttachmentFormat : RefCounted() {
   /**
    * The attachment's usage flags, which determine what can be done with it.
    */
-  public var usageFlags: Int
+  public var usageFlags: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDATTACHMENTFORMAT_GET_USAGE_FLAGS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDATTACHMENTFORMAT_SET_USAGE_FLAGS, NIL)
     }

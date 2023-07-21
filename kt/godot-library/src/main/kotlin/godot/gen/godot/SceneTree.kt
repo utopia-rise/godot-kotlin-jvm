@@ -415,11 +415,11 @@ public open class SceneTree : MainLoop() {
    * **Note:** Group call flags are used to control the notification sending behavior. By default, notifications will be sent immediately in a way similar to [notifyGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, notifications will be sent at the end of the current frame in a way similar to using `Object.call_deferred("notification", ...)`.
    */
   public fun notifyGroupFlags(
-    callFlags: Int,
+    callFlags: Long,
     group: StringName,
     notification: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to callFlags.toLong(), STRING_NAME to group, LONG to notification.toLong())
+    TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, LONG to notification.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_NOTIFY_GROUP_FLAGS, NIL)
   }
 
@@ -429,12 +429,12 @@ public open class SceneTree : MainLoop() {
    * **Note:** Group call flags are used to control the property setting behavior. By default, properties will be set immediately in a way similar to [setGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, properties will be set at the end of the frame in a way similar to [godot.Object.callDeferred].
    */
   public fun setGroupFlags(
-    callFlags: Int,
+    callFlags: Long,
     group: StringName,
     `property`: String,
     `value`: Any,
   ): Unit {
-    TransferContext.writeArguments(LONG to callFlags.toLong(), STRING_NAME to group, STRING to property, ANY to value)
+    TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP_FLAGS, NIL)
   }
 

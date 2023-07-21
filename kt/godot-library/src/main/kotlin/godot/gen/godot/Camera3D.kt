@@ -68,14 +68,14 @@ public open class Camera3D : Node3D() {
    *
    * **Note:** [godot.VoxelGI], SDFGI and [godot.LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [godot.GeometryInstance3D.giMode] to [godot.GeometryInstance3D.GI_MODE_DISABLED] for meshes and [godot.Light3D.lightBakeMode] to [godot.Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.
    */
-  public var cullMask: Int
+  public var cullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CULL_MASK, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_CULL_MASK, NIL)
     }
 

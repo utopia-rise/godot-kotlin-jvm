@@ -15,6 +15,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
@@ -256,10 +257,10 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the next 32 bits from the file as an integer. See [store32] for details on what values can be stored and retrieved this way.
    */
-  public fun get32(): Int {
+  public fun get32(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_32, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -472,8 +473,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * To store a signed integer, use [store64], or convert it manually (see [store16] for an example).
    */
-  public fun store32(`value`: Int): Unit {
-    TransferContext.writeArguments(LONG to value.toLong())
+  public fun store32(`value`: Long): Unit {
+    TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_STORE_32, NIL)
   }
 
@@ -659,5 +660,136 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Creates a new [godot.FileAccess] object and opens the file for writing or reading, depending on the flags.
+     *
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
+     */
+    public fun `open`(path: String, flags: ModeFlags): FileAccess? {
+      TransferContext.writeArguments(STRING to path, LONG to flags.id)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as FileAccess?)
+    }
+
+    /**
+     * Creates a new [godot.FileAccess] object and opens an encrypted file in write or read mode. You need to pass a binary key to encrypt/decrypt it.
+     *
+     * **Note:** The provided key must be 32 bytes long.
+     *
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
+     */
+    public fun openEncrypted(
+      path: String,
+      modeFlags: ModeFlags,
+      key: PackedByteArray,
+    ): FileAccess? {
+      TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, PACKED_BYTE_ARRAY to key)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN_ENCRYPTED, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as FileAccess?)
+    }
+
+    /**
+     * Creates a new [godot.FileAccess] object and opens an encrypted file in write or read mode. You need to pass a password to encrypt/decrypt it.
+     *
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
+     */
+    public fun openEncryptedWithPass(
+      path: String,
+      modeFlags: ModeFlags,
+      pass: String,
+    ): FileAccess? {
+      TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, STRING to pass)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN_ENCRYPTED_WITH_PASS,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as FileAccess?)
+    }
+
+    /**
+     * Creates a new [godot.FileAccess] object and opens a compressed file for reading or writing.
+     *
+     * **Note:** [openCompressed] can only read files that were saved by Godot, not third-party compression formats. See [godot.GitHub issue #28999](https://github.com/godotengine/godot/issues/28999) for a workaround.
+     *
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
+     */
+    @JvmOverloads
+    public fun openCompressed(
+      path: String,
+      modeFlags: ModeFlags,
+      compressionMode: CompressionMode = FileAccess.CompressionMode.COMPRESSION_FASTLZ,
+    ): FileAccess? {
+      TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, LONG to compressionMode.id)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN_COMPRESSED, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as FileAccess?)
+    }
+
+    /**
+     * Returns the result of the last [open] call in the current thread.
+     */
+    public fun getOpenError(): GodotError {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_OPEN_ERROR, LONG)
+      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    }
+
+    /**
+     * Returns the whole [path] file contents as a [godot.PackedByteArray] without any decoding.
+     */
+    public fun getFileAsBytes(path: String): PackedByteArray {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_FILE_AS_BYTES,
+          PACKED_BYTE_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    }
+
+    /**
+     * Returns the whole [path] file contents as a [godot.String]. Text is interpreted as being UTF-8 encoded.
+     */
+    public fun getFileAsString(path: String): String {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_FILE_AS_STRING,
+          STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+
+    /**
+     * Returns an MD5 String representing the file at the given path or an empty [godot.String] on failure.
+     */
+    public fun getMd5(path: String): String {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_MD5, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+
+    /**
+     * Returns a SHA-256 [godot.String] representing the file at the given path or an empty [godot.String] on failure.
+     */
+    public fun getSha256(path: String): String {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_SHA256, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+
+    /**
+     * Returns `true` if the file exists in the given path.
+     *
+     * **Note:** Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. See [godot.ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
+     *
+     * For a non-static, relative equivalent, use [godot.DirAccess.fileExists].
+     */
+    public fun fileExists(path: String): Boolean {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_FILE_EXISTS, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+
+    /**
+     * Returns the last time the [file] was modified in Unix timestamp format or returns a [godot.String] "ERROR IN [file]". This Unix timestamp can be converted to another format using the [godot.Time] singleton.
+     */
+    public fun getModifiedTime(`file`: String): Long {
+      TransferContext.writeArguments(STRING to file)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_MODIFIED_TIME, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long)
+    }
+  }
 }

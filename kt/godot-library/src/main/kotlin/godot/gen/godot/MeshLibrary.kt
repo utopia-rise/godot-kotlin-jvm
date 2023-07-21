@@ -99,8 +99,8 @@ public open class MeshLibrary : Resource() {
   /**
    * Sets the item's navigation layers bitmask.
    */
-  public fun setItemNavigationLayers(id: Int, navigationLayers: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), LONG to navigationLayers.toLong())
+  public fun setItemNavigationLayers(id: Int, navigationLayers: Long): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), LONG to navigationLayers)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVIGATION_LAYERS, NIL)
   }
@@ -174,11 +174,11 @@ public open class MeshLibrary : Resource() {
   /**
    * Returns the item's navigation layers bitmask.
    */
-  public fun getItemNavigationLayers(id: Int): Int {
+  public fun getItemNavigationLayers(id: Int): Long {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVIGATION_LAYERS, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

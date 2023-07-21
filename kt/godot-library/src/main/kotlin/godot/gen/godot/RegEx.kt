@@ -104,5 +104,11 @@ public open class RegEx : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
-  public companion object
+  public companion object {
+    public fun createFromString(pattern: String): RegEx? {
+      TransferContext.writeArguments(STRING to pattern)
+      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_REGEX_CREATE_FROM_STRING, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as RegEx?)
+    }
+  }
 }

@@ -65,15 +65,15 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public var collisionMask: Int
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_COLLISION_MASK, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLISION_MASK, NIL)
     }

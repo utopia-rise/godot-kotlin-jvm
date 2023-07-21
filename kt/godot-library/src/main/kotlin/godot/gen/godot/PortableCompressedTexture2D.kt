@@ -155,5 +155,25 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Overrides the flag globally for all textures of this type. This is used primarily by the editor.
+     */
+    public fun setKeepAllCompressedBuffers(keep: Boolean): Unit {
+      TransferContext.writeArguments(BOOL to keep)
+      TransferContext.callMethod(null,
+          ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_SET_KEEP_ALL_COMPRESSED_BUFFERS, NIL)
+    }
+
+    /**
+     * Return whether the flag is overridden for all textures of this type.
+     */
+    public fun isKeepingAllCompressedBuffers(): Boolean {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(null,
+          ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_IS_KEEPING_ALL_COMPRESSED_BUFFERS,
+          BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+  }
 }

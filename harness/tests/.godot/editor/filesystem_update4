@@ -1,1 +1,6 @@
-res://test/unit/test_instances.gd
+res://Spatial.tscn
+res://scripts/godot/tests/FuncRefTest.gdj
+res://scripts/godot/tests/Invocation.gdj
+res://scripts/godot/tests/instance/RefCountedInstance.gdj
+res://scripts/ScriptInOtherSourceDir.gdj
+res://test/unit/test_static_call.gd

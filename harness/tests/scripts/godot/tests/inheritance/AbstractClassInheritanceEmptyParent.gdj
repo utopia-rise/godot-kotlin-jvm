@@ -2,7 +2,7 @@
 
 registeredName = AbstractClassInheritanceEmptyParent
 fqName = godot.tests.inheritance.AbstractClassInheritanceEmptyParent
-baseType = CharacterBody3D
+baseType = 
 supertypes = [
     godot.CharacterBody3D,
 	godot.PhysicsBody3D,

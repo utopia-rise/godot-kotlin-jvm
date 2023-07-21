@@ -107,14 +107,14 @@ public open class Mesh : Resource() {
   /**
    * Virtual method to override the surface format for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceGetFormat(index: Int): Int {
+  public open fun _surfaceGetFormat(index: Int): Long {
     throw NotImplementedError("_surface_get_format is not implemented for Mesh")
   }
 
   /**
    * Virtual method to override the surface primitive type for a custom class extending [godot.Mesh].
    */
-  public open fun _surfaceGetPrimitiveType(index: Int): Int {
+  public open fun _surfaceGetPrimitiveType(index: Int): Long {
     throw NotImplementedError("_surface_get_primitive_type is not implemented for Mesh")
   }
 

@@ -89,15 +89,15 @@ public open class NavigationMesh : Resource() {
    *
    * Only used when [geometryParsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or [PARSED_GEOMETRY_BOTH].
    */
-  public var geometryCollisionMask: Int
+  public var geometryCollisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_COLLISION_MASK,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_COLLISION_MASK,
           NIL)
     }
@@ -292,7 +292,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The maximum distance a simplified contour's border edges should deviate the original raw contour.
+   * The maximum distance a simplfied contour's border edges should deviate the original raw contour.
    */
   public var edgeMaxError: Float
     get() {
