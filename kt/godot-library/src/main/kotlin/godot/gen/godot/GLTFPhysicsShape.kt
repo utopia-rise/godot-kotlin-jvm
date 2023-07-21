@@ -140,13 +140,13 @@ public open class GLTFPhysicsShape : Resource() {
   public companion object {
     public fun fromNode(shapeNode: CollisionShape3D): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeNode)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSSHAPE_FROM_NODE, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSSHAPE_FROM_NODE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
     }
 
     public fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsShape? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSSHAPE_FROM_DICTIONARY,
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSSHAPE_FROM_DICTIONARY,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
     }

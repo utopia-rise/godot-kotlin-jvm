@@ -164,7 +164,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
       exclude: VariantArray<RID> = godot.core.variantArrayOf(),
     ): PhysicsRayQueryParameters2D? {
       TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, LONG to collisionMask, ARRAY to exclude)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_CREATE,
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_CREATE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as PhysicsRayQueryParameters2D?)
     }

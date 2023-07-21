@@ -99,7 +99,7 @@ public open class MovieWriter : Object() {
      */
     public fun addWriter(writer: MovieWriter): Unit {
       TransferContext.writeArguments(OBJECT to writer)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_MOVIEWRITER_ADD_WRITER, NIL)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_MOVIEWRITER_ADD_WRITER, NIL)
     }
   }
 }

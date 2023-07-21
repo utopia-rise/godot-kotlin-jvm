@@ -101,13 +101,13 @@ public open class GLTFDocument : Resource() {
     public fun registerGltfDocumentExtension(extension: GLTFDocumentExtension,
         firstPriority: Boolean = false): Unit {
       TransferContext.writeArguments(OBJECT to extension, BOOL to firstPriority)
-      TransferContext.callMethod(null,
+      TransferContext.callMethod(0,
           ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_REGISTER_GLTF_DOCUMENT_EXTENSION, NIL)
     }
 
     public fun unregisterGltfDocumentExtension(extension: GLTFDocumentExtension): Unit {
       TransferContext.writeArguments(OBJECT to extension)
-      TransferContext.callMethod(null,
+      TransferContext.callMethod(0,
           ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_UNREGISTER_GLTF_DOCUMENT_EXTENSION, NIL)
     }
   }

@@ -156,7 +156,7 @@ public open class Thread : RefCounted() {
      */
     public fun setThreadSafetyChecksEnabled(enabled: Boolean): Unit {
       TransferContext.writeArguments(BOOL to enabled)
-      TransferContext.callMethod(null,
+      TransferContext.callMethod(0,
           ENGINEMETHOD_ENGINECLASS_THREAD_SET_THREAD_SAFETY_CHECKS_ENABLED, NIL)
     }
   }

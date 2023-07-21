@@ -939,7 +939,7 @@ public open class Tween : RefCounted() {
       easeType: EaseType,
     ): Any? {
       TransferContext.writeArguments(ANY to initialValue, ANY to deltaValue, DOUBLE to elapsedTime, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_TWEEN_INTERPOLATE_VALUE, ANY)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_TWEEN_INTERPOLATE_VALUE, ANY)
       return (TransferContext.readReturnValue(ANY, true) as Any?)
     }
   }

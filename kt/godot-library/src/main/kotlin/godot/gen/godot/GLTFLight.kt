@@ -116,13 +116,13 @@ public open class GLTFLight : Resource() {
   public companion object {
     public fun fromNode(lightNode: Light3D): GLTFLight? {
       TransferContext.writeArguments(OBJECT to lightNode)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_FROM_NODE, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_FROM_NODE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFLight?)
     }
 
     public fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFLight? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_FROM_DICTIONARY, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_FROM_DICTIONARY, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFLight?)
     }
   }

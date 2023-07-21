@@ -861,7 +861,7 @@ class GenerationService(
         val returnTypeVariantTypeClass = callable.jvmVariantTypeValue
 
         val rawPtr = if (isStatic) {
-            null
+            "0" //nullpointer
         } else {
             "rawPtr"
         }

@@ -187,7 +187,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public companion object {
     public fun setDefaultExtension(extensionClass: StringName): Unit {
       TransferContext.writeArguments(STRING_NAME to extensionClass)
-      TransferContext.callMethod(null,
+      TransferContext.callMethod(0,
           ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_SET_DEFAULT_EXTENSION, NIL)
     }
   }

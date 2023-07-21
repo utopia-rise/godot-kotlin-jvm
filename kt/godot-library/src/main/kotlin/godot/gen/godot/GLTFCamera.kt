@@ -99,13 +99,13 @@ public open class GLTFCamera : Resource() {
   public companion object {
     public fun fromNode(cameraNode: Camera3D): GLTFCamera? {
       TransferContext.writeArguments(OBJECT to cameraNode)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_GLTFCAMERA_FROM_NODE, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_GLTFCAMERA_FROM_NODE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFCamera?)
     }
 
     public fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFCamera? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_GLTFCAMERA_FROM_DICTIONARY, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_GLTFCAMERA_FROM_DICTIONARY, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFCamera?)
     }
   }

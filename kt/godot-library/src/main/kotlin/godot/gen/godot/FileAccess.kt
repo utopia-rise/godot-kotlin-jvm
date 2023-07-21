@@ -668,7 +668,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun `open`(path: String, flags: ModeFlags): FileAccess? {
       TransferContext.writeArguments(STRING to path, LONG to flags.id)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as FileAccess?)
     }
 
@@ -685,7 +685,7 @@ public open class FileAccess internal constructor() : RefCounted() {
       key: PackedByteArray,
     ): FileAccess? {
       TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, PACKED_BYTE_ARRAY to key)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN_ENCRYPTED, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN_ENCRYPTED, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as FileAccess?)
     }
 
@@ -700,7 +700,7 @@ public open class FileAccess internal constructor() : RefCounted() {
       pass: String,
     ): FileAccess? {
       TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, STRING to pass)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN_ENCRYPTED_WITH_PASS,
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN_ENCRYPTED_WITH_PASS,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as FileAccess?)
     }
@@ -719,7 +719,7 @@ public open class FileAccess internal constructor() : RefCounted() {
       compressionMode: CompressionMode = FileAccess.CompressionMode.COMPRESSION_FASTLZ,
     ): FileAccess? {
       TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, LONG to compressionMode.id)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN_COMPRESSED, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_OPEN_COMPRESSED, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as FileAccess?)
     }
 
@@ -728,7 +728,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun getOpenError(): GodotError {
       TransferContext.writeArguments()
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_OPEN_ERROR, LONG)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_OPEN_ERROR, LONG)
       return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
 
@@ -737,7 +737,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun getFileAsBytes(path: String): PackedByteArray {
       TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_FILE_AS_BYTES,
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_FILE_AS_BYTES,
           PACKED_BYTE_ARRAY)
       return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
     }
@@ -747,8 +747,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun getFileAsString(path: String): String {
       TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_FILE_AS_STRING,
-          STRING)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_FILE_AS_STRING, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
@@ -757,7 +756,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun getMd5(path: String): String {
       TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_MD5, STRING)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_MD5, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
@@ -766,7 +765,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun getSha256(path: String): String {
       TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_SHA256, STRING)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_SHA256, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
@@ -779,7 +778,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun fileExists(path: String): Boolean {
       TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_FILE_EXISTS, BOOL)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_FILE_EXISTS, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
 
@@ -788,7 +787,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun getModifiedTime(`file`: String): Long {
       TransferContext.writeArguments(STRING to file)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_MODIFIED_TIME, LONG)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_MODIFIED_TIME, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
   }

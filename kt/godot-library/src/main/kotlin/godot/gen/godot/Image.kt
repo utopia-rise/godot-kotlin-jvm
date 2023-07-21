@@ -1168,7 +1168,7 @@ public open class Image : Resource() {
       format: Format,
     ): Image? {
       TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Image?)
     }
 
@@ -1183,7 +1183,7 @@ public open class Image : Resource() {
       `data`: PackedByteArray,
     ): Image? {
       TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE_FROM_DATA, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE_FROM_DATA, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Image?)
     }
 
@@ -1192,7 +1192,7 @@ public open class Image : Resource() {
      */
     public fun loadFromFile(path: String): Image? {
       TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_FROM_FILE, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_FROM_FILE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Image?)
     }
   }

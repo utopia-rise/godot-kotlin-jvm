@@ -107,8 +107,7 @@ public open class ImageTexture : Texture2D() {
      */
     public fun createFromImage(image: Image): ImageTexture? {
       TransferContext.writeArguments(OBJECT to image)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_CREATE_FROM_IMAGE,
-          OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_CREATE_FROM_IMAGE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as ImageTexture?)
     }
   }

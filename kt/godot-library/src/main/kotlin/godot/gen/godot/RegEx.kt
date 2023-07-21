@@ -107,7 +107,7 @@ public open class RegEx : RefCounted() {
   public companion object {
     public fun createFromString(pattern: String): RegEx? {
       TransferContext.writeArguments(STRING to pattern)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_REGEX_CREATE_FROM_STRING, OBJECT)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_REGEX_CREATE_FROM_STRING, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as RegEx?)
     }
   }

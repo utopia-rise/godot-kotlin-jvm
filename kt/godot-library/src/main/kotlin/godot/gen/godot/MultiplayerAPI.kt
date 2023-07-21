@@ -225,8 +225,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      */
     public fun setDefaultInterface(interfaceName: StringName): Unit {
       TransferContext.writeArguments(STRING_NAME to interfaceName)
-      TransferContext.callMethod(null,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_DEFAULT_INTERFACE, NIL)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_DEFAULT_INTERFACE,
+          NIL)
     }
 
     /**
@@ -234,8 +234,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      */
     public fun getDefaultInterface(): StringName {
       TransferContext.writeArguments()
-      TransferContext.callMethod(null,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_DEFAULT_INTERFACE, STRING_NAME)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_DEFAULT_INTERFACE,
+          STRING_NAME)
       return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
 
@@ -244,7 +244,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      */
     public fun createDefaultInterface(): MultiplayerAPI? {
       TransferContext.writeArguments()
-      TransferContext.callMethod(null,
+      TransferContext.callMethod(0,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_CREATE_DEFAULT_INTERFACE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?)
     }

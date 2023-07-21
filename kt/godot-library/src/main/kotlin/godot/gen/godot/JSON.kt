@@ -188,7 +188,7 @@ public open class JSON : Resource() {
       fullPrecision: Boolean = false,
     ): String {
       TransferContext.writeArguments(ANY to data, STRING to indent, BOOL to sortKeys, BOOL to fullPrecision)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_JSON_STRINGIFY, STRING)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_JSON_STRINGIFY, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
@@ -197,7 +197,7 @@ public open class JSON : Resource() {
      */
     public fun parseString(jsonString: String): Any? {
       TransferContext.writeArguments(STRING to jsonString)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_JSON_PARSE_STRING, ANY)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_JSON_PARSE_STRING, ANY)
       return (TransferContext.readReturnValue(ANY, true) as Any?)
     }
   }

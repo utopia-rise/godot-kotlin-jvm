@@ -216,7 +216,7 @@ public open class PathFollow3D : Node3D() {
      */
     public fun correctPosture(transform: Transform3D, rotationMode: RotationMode): Transform3D {
       TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_CORRECT_POSTURE,
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_CORRECT_POSTURE,
           TRANSFORM3D)
       return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
     }

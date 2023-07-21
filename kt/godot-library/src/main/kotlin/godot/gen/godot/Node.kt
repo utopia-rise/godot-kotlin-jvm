@@ -2127,7 +2127,7 @@ public open class Node : Object() {
      */
     public fun printOrphanNodes(): Unit {
       TransferContext.writeArguments()
-      TransferContext.callMethod(null, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_ORPHAN_NODES, NIL)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_ORPHAN_NODES, NIL)
     }
   }
 }

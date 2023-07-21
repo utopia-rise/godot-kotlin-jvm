@@ -52,9 +52,9 @@ internal object TransferContext {
         return ret
     }
 
-    fun callMethod(ptr: VoidPtr?, methodIndex: Int, expectedReturnType: VariantType) {
+    fun callMethod(ptr: VoidPtr, methodIndex: Int, expectedReturnType: VariantType) {
         icall(
-            ptr ?: 0,
+            ptr,
             methodIndex,
             expectedReturnType.ordinal
         )

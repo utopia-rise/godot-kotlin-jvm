@@ -161,7 +161,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
      */
     public fun setKeepAllCompressedBuffers(keep: Boolean): Unit {
       TransferContext.writeArguments(BOOL to keep)
-      TransferContext.callMethod(null,
+      TransferContext.callMethod(0,
           ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_SET_KEEP_ALL_COMPRESSED_BUFFERS, NIL)
     }
 
@@ -170,7 +170,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
      */
     public fun isKeepingAllCompressedBuffers(): Boolean {
       TransferContext.writeArguments()
-      TransferContext.callMethod(null,
+      TransferContext.callMethod(0,
           ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_IS_KEEPING_ALL_COMPRESSED_BUFFERS,
           BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
