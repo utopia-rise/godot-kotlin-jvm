@@ -14,6 +14,8 @@ KtRpcConfig::KtRpcConfig(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
     rpc_transfer_mode = static_cast<MultiplayerPeer::TransferMode>(wrapped.call_int_method(env, getRPCTransferModeIdMethod));
     jni::MethodId getRPCChannelMethod {get_method_id(env, jni_methods.GET_RPC_CHANNEL)};
     rpc_channel = wrapped.call_int_method(env, getRPCChannelMethod);
+
+    p_wrapped.delete_local_ref(env);
 }
 
 Dictionary KtRpcConfig::toRpcConfigDictionary() {

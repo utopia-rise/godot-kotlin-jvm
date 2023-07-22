@@ -8,10 +8,11 @@ KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
   JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader),
   constructors {} {
     jni::Env env {jni::Jvm::current_env()};
+    LOCAL_FRAME(3);
     resource_path = get_resource_path(env);
     registered_class_name = get_registered_name(env);
-    super_class = get_super_class(env);
     base_godot_class = get_base_godot_class(env);
+    p_wrapped.delete_local_ref(env);
 }
 
 KtClass::~KtClass() {
@@ -73,28 +74,37 @@ String KtClass::get_registered_name(jni::Env& env) {
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
-StringName KtClass::get_super_class(jni::Env& env) {
-    jni::MethodId getter {get_method_id(env, jni_methods.GET_SUPER_CLASS)};
-    jni::JObject ret {wrapped.call_object_method(env, getter)};
-    return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
-}
-
 StringName KtClass::get_base_godot_class(jni::Env& env) {
     jni::MethodId getter {get_method_id(env, jni_methods.GET_BASE_GODOT_CLASS)};
     jni::JObject ret {wrapped.call_object_method(env, getter)};
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
+void KtClass::fetch_super_classes(jni::Env& env) {
+    jni::MethodId getSuperClassesMethod {get_method_id(env, jni_methods.GET_SUPER_CLASSES)};
+    jni::JObjectArray classesArray {wrapped.call_object_method(env, getSuperClassesMethod)};
+    for (int i = 0; i < classesArray.length(env); i++) {
+        StringName parent_name = StringName(env.from_jstring(jni::JString( classesArray.get(env, i))));
+        super_classes.append(parent_name);
+#ifdef DEBUG_ENABLED
+        LOG_VERBOSE(vformat("%s user type is parent of %s.", parent_name, registered_class_name));
+#endif
+    }
+    classesArray.delete_local_ref(env);
+}
+
 void KtClass::fetch_methods(jni::Env& env) {
     jni::MethodId getFunctionsMethod {get_method_id(env, jni_methods.GET_FUNCTIONS)};
     jni::JObjectArray functionsArray {wrapped.call_object_method(env, getFunctionsMethod)};
     for (int i = 0; i < functionsArray.length(env); i++) {
-        auto* ktFunction {new KtFunction(functionsArray.get(env, i), ClassLoader::get_default_loader())};
+        jni::JObject object = functionsArray.get(env, i);
+        auto* ktFunction {new KtFunction(object, ClassLoader::get_default_loader())};
         methods[ktFunction->get_name()] = ktFunction;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Fetched method %s for class %s", ktFunction->get_name(), resource_path));
 #endif
     }
+    functionsArray.delete_local_ref(env);
 }
 
 void KtClass::fetch_properties(jni::Env& env) {
@@ -107,6 +117,7 @@ void KtClass::fetch_properties(jni::Env& env) {
         LOG_VERBOSE(vformat("Fetched property %s for class %s", ktProperty->get_name(), resource_path));
 #endif
     }
+    propertiesArray.delete_local_ref(env);
 }
 
 void KtClass::fetch_signals(jni::Env& env) {
@@ -119,12 +130,13 @@ void KtClass::fetch_signals(jni::Env& env) {
         LOG_VERBOSE(vformat("Fetched signal %s for class %s", kt_signal_info->name, resource_path));
 #endif
     }
+    signal_info_array.delete_local_ref(env);
 }
 
 void KtClass::fetch_constructors(jni::Env& env) {
     jni::MethodId get_constructors_method {get_method_id(env, jni_methods.GET_CONSTRUCTORS)};
     jni::JObjectArray constructors_array {wrapped.call_object_method(env, get_constructors_method)};
-    for (int i = 0; i < constructors_array.length(env); ++i) {
+    for (int i = 0; i < constructors_array.length(env); i++) {
         const jni::JObject& constructor {constructors_array.get(env, i)};
         KtConstructor* kt_constructor {nullptr};
         if (constructor.obj != nullptr) {
@@ -135,6 +147,7 @@ void KtClass::fetch_constructors(jni::Env& env) {
         }
         constructors[i] = kt_constructor;
     }
+    constructors_array.delete_local_ref(env);
 }
 
 void KtClass::get_method_list(List<MethodInfo>* p_list) {
@@ -161,6 +174,7 @@ const Dictionary KtClass::get_rpc_config() {
 
 void KtClass::fetch_members() {
     jni::Env env {jni::Jvm::current_env()};
+    fetch_super_classes(env);
     fetch_methods(env);
     fetch_properties(env);
     fetch_signals(env);

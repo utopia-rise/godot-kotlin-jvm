@@ -10,6 +10,7 @@ KtConstructor::KtConstructor(jni::JObject p_wrapped, jni::JObject& p_class_loade
     jni::Env env {jni::Jvm::current_env()};
     jni::MethodId get_parameter_count_method {get_method_id(env, jni_methods.GET_PARAMETER_COUNT)};
     parameter_count = static_cast<int>(wrapped.call_int_method(env, get_parameter_count_method));
+    p_wrapped.delete_local_ref(env);
 }
 
 KtObject* KtConstructor::create_instance(const Variant** p_args, Object* p_owner) {

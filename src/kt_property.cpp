@@ -9,18 +9,32 @@ JNI_INIT_STATICS_FOR_CLASS(KtProperty)
 KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
   JavaInstanceWrapper("godot.core.KtPropertyInfo", p_wrapped, p_class_loader) {
     jni::Env env {jni::Jvm::current_env()};
+
     jni::MethodId getTypeMethod {get_method_id(env, jni_methods.GET_TYPE)};
     type = static_cast<Variant::Type>(wrapped.call_int_method(env, getTypeMethod));
+
     jni::MethodId getNameMethod {get_method_id(env, jni_methods.GET_NAME)};
-    name = env.from_jstring(wrapped.call_object_method(env, getNameMethod));
+    jni::JString jname = wrapped.call_object_method(env, getNameMethod);
+    name = env.from_jstring(jname);
+
     jni::MethodId getClassNameMethod {get_method_id(env, jni_methods.GET_CLASS_NAME)};
-    class_name = env.from_jstring(wrapped.call_object_method(env, getClassNameMethod));
+    jni::JString jclass_name = wrapped.call_object_method(env, getClassNameMethod);
+    class_name = env.from_jstring(jclass_name);
+
     jni::MethodId getPropertyHintMethod {get_method_id(env, jni_methods.GET_HINT)};
     hint = static_cast<PropertyHint>(wrapped.call_int_method(env, getPropertyHintMethod));
+
     jni::MethodId getHintStringMethod {get_method_id(env, jni_methods.GET_HINT_STRING)};
-    hint_string = env.from_jstring(wrapped.call_object_method(env, getHintStringMethod));
+    jni::JString jhint_string = wrapped.call_object_method(env, getHintStringMethod);
+    hint_string = env.from_jstring(jhint_string);
+
     jni::MethodId getVisibleInEditorMethod {get_method_id(env, jni_methods.GET_VISIBLE_IN_EDITOR)};
     visible_in_editor = wrapped.call_boolean_method(env, getVisibleInEditorMethod);
+
+    jhint_string.delete_local_ref(env);
+    jclass_name.delete_local_ref(env);
+    jname.delete_local_ref(env);
+    p_wrapped.delete_local_ref(env);
 }
 
 PropertyInfo KtPropertyInfo::toPropertyInfo() {
@@ -45,6 +59,7 @@ KtProperty::KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
     propertyInfo = new KtPropertyInfo(wrapped.call_object_method(env, getKtPropertyInfoMethod), ClassLoader::get_default_loader());
     jni::MethodId getIsRefMethod {get_method_id(env, jni_methods.IS_REF)};
     is_ref = wrapped.call_boolean_method(env, getIsRefMethod);
+    p_wrapped.delete_local_ref(env);
 }
 
 KtProperty::~KtProperty() {

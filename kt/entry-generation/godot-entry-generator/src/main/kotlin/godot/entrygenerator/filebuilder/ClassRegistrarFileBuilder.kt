@@ -1,12 +1,6 @@
 package godot.entrygenerator.filebuilder
 
-import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.TypeSpec
-import com.squareup.kotlinpoet.asClassName
+import com.squareup.kotlinpoet.*
 import godot.annotation.RegisteredClassMetadata
 import godot.entrygenerator.generator.ConstructorRegistrationGenerator
 import godot.entrygenerator.generator.FunctionRegistrationGenerator
@@ -56,11 +50,14 @@ class ClassRegistrarFileBuilder(
         .beginControlFlow("with(registry)") //START: with registry
         .let { funSpecBuilder ->
             if (!registeredClass.isAbstract) {
+                val superClasses = registeredClass.supertypes.takeWhile {
+                    //Used to implement script inheritance methods, so we remove base types and abstract parents.
+                    it.name != registeredClass.godotBaseClass && !it.isAbstract
+                }.map { "\"${it.name}\"" }.reduceOrNull{ acc, string -> "$acc,$string" }?:""
                 funSpecBuilder.beginControlFlow(
-                    "registerClass<%T>(%S,·%S,·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
+                    "registerClass<%T>(%S, listOf($superClasses),·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
                     className,
                     registeredClass.localResourcePathProvider(registeredClass),
-                    registeredClass.supertypes.first().fqName,
                     className,
                     registeredClass.godotBaseClass,
                     registeredClass.registeredName

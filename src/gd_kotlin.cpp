@@ -391,13 +391,11 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 #endif
     jni::JObject class_loader = ClassLoader::get_default_loader();
     for (auto i = 0; i < p_classes.length(p_env); i++) {
-        jni::JObject clazz = p_classes.get(p_env, i);
-        auto* kt_class = new KtClass(clazz, class_loader);
+        auto* kt_class = new KtClass(p_classes.get(p_env, i), class_loader);
         classes[kt_class->resource_path] = kt_class;
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->resource_path, kt_class->super_class, kt_class->registered_class_name));
+        LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->resource_path, kt_class->base_godot_class, kt_class->registered_class_name));
 #endif
-        clazz.delete_local_ref(p_env);
     }
 }
 
@@ -408,7 +406,7 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
     for (const KeyValue<StringName, KtClass*>& item : classes) {
         KtClass* kt_class {item.value};
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Unloading class %s : %s", kt_class->resource_path, kt_class->super_class));
+        LOG_VERBOSE(vformat("Unloading class %s : %s", kt_class->resource_path, kt_class->super_classes));
 #endif
         delete kt_class;
     }

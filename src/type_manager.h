@@ -16,6 +16,7 @@ public:
     MethodBind* get_engine_type_method_for_index(int p_index) const;
     const String& get_engine_singleton_name_for_index(int p_index) const;
     const Ref<KotlinScript>& get_user_script_for_index(int p_index) const;
+    const Ref<KotlinScript>& get_user_script_from_name(StringName name) const;
 
     void register_engine_types(jni::Env& p_env, jni::JObjectArray& p_engine_types);
     void register_engine_singletons(jni::Env& p_env, jni::JObjectArray& p_singletons);
@@ -34,7 +35,9 @@ private:
     Vector<String> engine_singleton_names;
     Vector<MethodBind*> engine_type_method;
 
+    //TODO: Simplify the storage and use of KotlinScript across the module (GDKotlin has a hashmap path --> Script)
     Vector<Ref<KotlinScript>> user_scripts;
+    HashMap<StringName, Ref<KotlinScript>> user_scripts_map;
 
     TypeManager() = default;
     ~TypeManager() = default;

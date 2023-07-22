@@ -14,6 +14,7 @@ KtFunction::KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
     method_info = new KtFunctionInfo(wrapped.call_object_method(env, getFunctionInfoMethod), ClassLoader::get_default_loader());
     jni::MethodId getParameterCountMethod {get_method_id(env, jni_methods.GET_PARAMETER_COUNT)};
     parameter_count = wrapped.call_int_method(env, getParameterCountMethod);
+    p_wrapped.delete_local_ref(env);
 }
 
 KtFunction::~KtFunction() {
@@ -54,18 +55,26 @@ void KtFunction::invoke(const KtObject* instance, const Variant** p_args, int ar
 KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
   JavaInstanceWrapper("godot.core.KtFunctionInfo", p_wrapped, p_class_loader) {
     jni::Env env {jni::Jvm::current_env()};
+
     jni::MethodId getNameMethod {get_method_id(env, jni_methods.GET_NAME)};
-    name = env.from_jstring(wrapped.call_object_method(env, getNameMethod));
+    jni::JString string = wrapped.call_object_method(env, getNameMethod);
+    name = env.from_jstring(string);
+
     jni::MethodId getPropertyInfosMethod {get_method_id(env, jni_methods.GET_ARGUMENTS)};
     jni::JObjectArray propertyInfoArray {wrapped.call_object_method(env, getPropertyInfosMethod)};
     for (int i = 0; i < propertyInfoArray.length(env); i++) {
         arguments.push_back(new KtPropertyInfo(propertyInfoArray.get(env, i), ClassLoader::get_default_loader()));
     }
+
     jni::MethodId getReturnValMethod {get_method_id(env, jni_methods.GET_RETURN_VAL)};
     return_val = new KtPropertyInfo(wrapped.call_object_method(env, getReturnValMethod), ClassLoader::get_default_loader());
 
     jni::MethodId getRpcConfigMethod {get_method_id(env, jni_methods.GET_RPC_CONFIG)};
     rpc_config = new KtRpcConfig(wrapped.call_object_method(env, getRpcConfigMethod), ClassLoader::get_default_loader());
+
+    propertyInfoArray.delete_local_ref(env);
+    string.delete_local_ref(env);
+    p_wrapped.delete_local_ref(env);
 }
 
 KtFunctionInfo::~KtFunctionInfo() {

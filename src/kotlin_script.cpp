@@ -27,11 +27,14 @@ bool KotlinScript::inherits_script(const Ref<Script>& p_script) const {
 
     if (inheritor_class == parent_class) { return true; }
 
-    return parent_class->is_assignable_from(inheritor_class);
+    return inheritor_class->super_classes.find(parent_class->registered_class_name);
 }
 
 Ref<Script> KotlinScript::get_base_script() const {
-    return Ref<Script>();
+    KtClass* clazz = get_kotlin_class();
+    if (!clazz || clazz->super_classes.size() == 0) { return Ref<Script>(); }
+    StringName parent_name = clazz->super_classes[0];
+    return TypeManager::get_instance().get_user_script_from_name(parent_name);
 }
 
 StringName KotlinScript::get_global_name() const {
