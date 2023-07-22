@@ -427,8 +427,10 @@ class Quaternion(
     }
 
     internal fun xform(v: Vector3): Vector3 {
-        require(isNormalized()) {
-            "The quaternion must be normalized."
+        if (GodotJvmDefinitions.DEBUG) {
+            require(isNormalized()) {
+                "The quaternion must be normalized."
+            }
         }
 
         val u = Vector3(x, y, z)

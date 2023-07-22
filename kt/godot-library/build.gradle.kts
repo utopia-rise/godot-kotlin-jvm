@@ -7,10 +7,7 @@ plugins {
     id("com.utopia-rise.godot-publish")
     id("com.utopia-rise.versioninfo")
     alias(libs.plugins.shadowJar)
-    id("com.utopia-rise.godot-dependencies")
-    id("com.github.johnrengelman.shadow")
-
-    id("com.utopia-rise.kotlin-preprocessors") version "0.1.4"
+    alias(libs.plugins.kotlinPreProcessors)
 }
 
 val isRelease = project.hasProperty("release")
@@ -81,15 +78,17 @@ tasks {
     }
 }
 
+val targetSuffix = if (isRelease) "release" else "debug"
+
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
         val godotLibraryPublication by creating(MavenPublication::class) {
             pom {
-                name.set(project.name)
+                name.set("${project.name}-$targetSuffix")
                 description.set("Contains godot api as kotlin classes and jvm cpp interaction code.")
             }
-            artifactId = "godot-library"
+            artifactId = "godot-library-$targetSuffix"
             description = "Contains godot api as kotlin classes and jvm cpp interaction code."
             artifact(tasks.jar)
             artifact(tasks.getByName("sourcesJar"))
