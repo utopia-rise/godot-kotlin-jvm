@@ -8,7 +8,7 @@
 #include <core/object/object.h>
 
 struct KtPropertyInfo : public JavaInstanceWrapper<KtPropertyInfo> {
-    KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    KtPropertyInfo(jni::JObject p_wrapped);
     ~KtPropertyInfo() = default;
 
     Variant::Type type;
@@ -38,7 +38,7 @@ private:
     bool is_ref;
 
 public:
-    KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    KtProperty(jni::JObject p_wrapped);
     ~KtProperty();
 
     StringName get_name() const;

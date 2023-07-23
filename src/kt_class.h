@@ -41,8 +41,6 @@ public:
 
     void fetch_members();
 
-    bool is_assignable_from(KtClass* p_class) const;
-
     const Dictionary get_rpc_config();
 
 private:

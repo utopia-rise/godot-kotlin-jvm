@@ -5,7 +5,7 @@
 
 class LongStringQueue : public JavaSingletonWrapper<LongStringQueue> {
 private:
-    LongStringQueue(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    LongStringQueue(jni::JObject p_wrapped);
 
 public:
     static int max_string_size;

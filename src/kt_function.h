@@ -7,7 +7,7 @@
 #include "kt_rpc_config.h"
 
 struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
-    KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    KtFunctionInfo(jni::JObject p_wrapped);
     ~KtFunctionInfo();
 
     String name;
@@ -33,7 +33,7 @@ private:
     KtFunctionInfo* method_info;
 
 public:
-    KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    KtFunction(jni::JObject p_wrapped);
     ~KtFunction();
 
     StringName get_name() const;

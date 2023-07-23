@@ -23,7 +23,6 @@ namespace jni {
         ~LocalFrame();
     };
 
-
 }// namespace jni
 
 #endif// GODOT_JVM_LOCAL_FRAME_H

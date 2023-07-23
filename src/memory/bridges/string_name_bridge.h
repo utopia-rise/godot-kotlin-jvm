@@ -6,7 +6,7 @@
 namespace bridges {
     class StringNameBridge : public JavaInstanceWrapper<StringNameBridge> {
     public:
-        StringNameBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+        StringNameBridge(jni::JObject p_wrapped);
         ~StringNameBridge() = default;
 
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);

@@ -7,7 +7,7 @@
 
 class TransferContext : public JavaInstanceWrapper<TransferContext> {
 public:
-    TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader);
+    TransferContext(jni::JObject p_wrapped);
 
     ~TransferContext();
 
@@ -31,7 +31,7 @@ public:
 
     static void icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType);
 
-    static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jobject p_class_loader, jint p_script_index);
+    static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jint p_script_index);
 
     static void get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
 

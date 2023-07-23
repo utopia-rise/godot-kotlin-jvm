@@ -16,7 +16,7 @@ public:
     static bool compare_equal(const CallableCustom* p_a, const CallableCustom* p_b);
     static bool compare_less(const CallableCustom* p_a, const CallableCustom* p_b);
 
-    KtCustomCallable(jni::JObject p_wrapped, jni::JObject p_class_loader);
+    KtCustomCallable(jni::JObject p_wrapped);
     ~KtCustomCallable() = default;
 
 private:

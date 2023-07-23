@@ -1,21 +1,27 @@
 #include "kt_rpc_config.h"
 
-JNI_INIT_STATICS_FOR_CLASS(KtRpcConfig)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    KtRpcConfig,
+    INIT_JNI_METHOD(GET_RPC_MODE_ID)
+    INIT_JNI_METHOD(GET_RPC_CALL_LOCAL)
+    INIT_JNI_METHOD(GET_RPC_TRANSFER_MODE_ID)
+    INIT_JNI_METHOD(GET_RPC_CHANNEL)
+)
 
-KtRpcConfig::KtRpcConfig(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
-  JavaInstanceWrapper("godot.core.KtRpcConfig", p_wrapped, p_class_loader) {
+// clang-format on
+
+KtRpcConfig::KtRpcConfig(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {
     jni::Env env {jni::Jvm::current_env()};
 
-    jni::MethodId getRPCModeIdMethod {get_method_id(env, jni_methods.GET_RPC_MODE_ID)};
+    jni::MethodId getRPCModeIdMethod {jni_methods.GET_RPC_MODE_ID.method_id};
     rpc_mode = static_cast<MultiplayerAPI::RPCMode>(wrapped.call_int_method(env, getRPCModeIdMethod));
-    jni::MethodId getRPCCallLocalMethod {get_method_id(env, jni_methods.GET_RPC_CALL_LOCAL)};
+    jni::MethodId getRPCCallLocalMethod {jni_methods.GET_RPC_CALL_LOCAL.method_id};
     rpc_call_local = wrapped.call_boolean_method(env, getRPCCallLocalMethod);
-    jni::MethodId getRPCTransferModeIdMethod {get_method_id(env, jni_methods.GET_RPC_TRANSFER_MODE_ID)};
+    jni::MethodId getRPCTransferModeIdMethod {jni_methods.GET_RPC_TRANSFER_MODE_ID.method_id};
     rpc_transfer_mode = static_cast<MultiplayerPeer::TransferMode>(wrapped.call_int_method(env, getRPCTransferModeIdMethod));
-    jni::MethodId getRPCChannelMethod {get_method_id(env, jni_methods.GET_RPC_CHANNEL)};
+    jni::MethodId getRPCChannelMethod {jni_methods.GET_RPC_CHANNEL.method_id};
     rpc_channel = wrapped.call_int_method(env, getRPCChannelMethod);
-
-    p_wrapped.delete_local_ref(env);
 }
 
 Dictionary KtRpcConfig::toRpcConfigDictionary() {

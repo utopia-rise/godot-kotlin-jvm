@@ -7,7 +7,7 @@ namespace bridges {
 
     class RidBridge : JavaInstanceWrapper<RidBridge> {
     public:
-        RidBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+        RidBridge(jni::JObject p_wrapped);
         ~RidBridge() = default;
 
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);

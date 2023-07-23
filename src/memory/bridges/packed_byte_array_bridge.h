@@ -54,7 +54,7 @@ namespace bridges {
         static StringNames string_names;
 
     public:
-        PackedByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+        PackedByteArrayBridge(jni::JObject p_wrapped);
 
         ~PackedByteArrayBridge();
 

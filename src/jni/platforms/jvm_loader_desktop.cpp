@@ -2,10 +2,9 @@
 
 #include "modules/kotlin_jvm/src/jni/jvm_loader.h"
 
-#include <jni/jni_constants.h>
-
 #include <core/config/project_settings.h>
 #include <core/os/os.h>
+#include <jni/jni_constants.h>
 
 void* jni::JvmLoader::jvmLib {nullptr};
 

@@ -6,7 +6,7 @@
 
 class KtConstructor : public JavaInstanceWrapper<KtConstructor> {
 public:
-    KtConstructor(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    KtConstructor(jni::JObject p_wrapped);
     ~KtConstructor() = default;
     KtObject* create_instance(const Variant** p_args, Object* p_owner);
 

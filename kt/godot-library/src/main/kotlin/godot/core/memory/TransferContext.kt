@@ -68,7 +68,7 @@ internal object TransferContext {
         freeObject(obj.rawPtr)
     }
 
-    external fun createNativeObject(classIndex: Int, instance: KtObject, classLoader: ClassLoader, scriptIndex: Int)
+    external fun createNativeObject(classIndex: Int, instance: KtObject, scriptIndex: Int)
     external fun getSingleton(classIndex: Int)
     external fun freeObject(rawPtr: VoidPtr)
 

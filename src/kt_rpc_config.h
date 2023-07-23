@@ -7,7 +7,7 @@
 #include "scene/main/multiplayer_api.h"
 
 struct KtRpcConfig : public JavaInstanceWrapper<KtRpcConfig> {
-    KtRpcConfig(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    KtRpcConfig(jni::JObject p_wrapped);
     ~KtRpcConfig() = default;
 
     MultiplayerAPI::RPCMode rpc_mode;

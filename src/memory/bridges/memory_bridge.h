@@ -9,13 +9,13 @@
 namespace bridges {
 
     struct MemoryBridge : public JavaInstanceWrapper<MemoryBridge> {
-        MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+        MemoryBridge(jni::JObject p_wrapped);
 
         ~MemoryBridge() = default;
 
         static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
 
-        static void bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jobject p_object, jobject p_class_loader);
+        static void bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jobject p_object);
 
         static void decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id);
 

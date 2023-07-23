@@ -3,7 +3,17 @@
 #include "gd_kotlin.h"
 #include "kotlin_language.h"
 
-JNI_INIT_STATICS_FOR_CLASS(KtCustomCallable)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    KtCustomCallable,
+    INIT_JNI_METHOD(SEND_TARGET_TO_NATIVE)
+    INIT_JNI_METHOD(CALL_TARGETED)
+    INIT_JNI_METHOD(CALL_NOT_TARGETED)
+    INIT_JNI_METHOD(HASHCODE)
+    INIT_JNI_METHOD(EQUALS)
+)
+
+// clang-format on
 
 uint32_t KtCustomCallable::hash() const {
     return hashcode;
@@ -36,13 +46,13 @@ void KtCustomCallable::call(const Variant** p_arguments, int p_argcount, Variant
 
     jni::Env env {jni::Jvm::current_env()};
     if (target) {
-        jni::MethodId call_targeted_method_id {get_method_id(env, jni_methods.CALL_TARGETED)};
+        jni::MethodId call_targeted_method_id {jni_methods.CALL_TARGETED.method_id};
         TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
         transfer_context->write_args(env, p_arguments, p_argcount);
         wrapped.call_void_method(env, call_targeted_method_id);
         transfer_context->read_return_value(env, r_return_value);
     } else {
-        jni::MethodId call_non_targeted_method_id {get_method_id(env, jni_methods.CALL_NOT_TARGETED)};
+        jni::MethodId call_non_targeted_method_id {jni_methods.CALL_NOT_TARGETED.method_id};
         wrapped.call_void_method(env, call_non_targeted_method_id);
         GDKotlin::get_instance().transfer_context->read_return_value(env, r_return_value);
     }
@@ -66,18 +76,17 @@ bool KtCustomCallable::compare_less(const CallableCustom* p_a, const CallableCus
 
 bool KtCustomCallable::equals(const KtCustomCallable* other) const {
     jni::Env env {jni::Jvm::current_env()};
-    jni::MethodId equal_method_id {get_method_id(env, jni_methods.EQUALS)};
+    jni::MethodId equal_method_id {jni_methods.EQUALS.method_id};
     jvalue equal_args[1] = {jni::to_jni_arg(other->wrapped)};
     return static_cast<bool>(wrapped.call_boolean_method(env, equal_method_id, equal_args));
 }
 
-KtCustomCallable::KtCustomCallable(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper<KtCustomCallable>("godot.core.KtCustomCallable", p_wrapped, p_class_loader) {
+KtCustomCallable::KtCustomCallable(jni::JObject p_wrapped) : JavaInstanceWrapper<KtCustomCallable>(p_wrapped) {
     jni::Env env {jni::Jvm::current_env()};
-    jni::MethodId hashcode_method_id {get_method_id(env, jni_methods.HASHCODE)};
+    jni::MethodId hashcode_method_id {jni_methods.HASHCODE.method_id};
     hashcode = p_wrapped.call_int_method(env, hashcode_method_id);
 
-    jni::MethodId send_target_to_native_method_id {get_method_id(env, jni_methods.SEND_TARGET_TO_NATIVE)};
+    jni::MethodId send_target_to_native_method_id {jni_methods.SEND_TARGET_TO_NATIVE.method_id};
     p_wrapped.call_void_method(env, send_target_to_native_method_id);
     Variant ret;
     GDKotlin::get_instance().transfer_context->read_return_value(env, ret);

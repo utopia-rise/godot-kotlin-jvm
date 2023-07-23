@@ -8,8 +8,8 @@
 #include "godotkotlin_defs.h"
 
 #include <core/config/project_settings.h>
-#include <editor/filesystem_dock.h>
 #include <editor/editor_interface.h>
+#include <editor/filesystem_dock.h>
 
 void GodotKotlinJvmEditor::on_file_system_dock_file_moved(// NOLINT(readability-convert-member-functions-to-static)
   const String& file,

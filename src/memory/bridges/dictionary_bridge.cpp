@@ -6,98 +6,33 @@
 
 using namespace bridges;
 
-JNI_INIT_STATICS_FOR_CLASS(DictionaryBridge)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    DictionaryBridge,
+    INIT_NATIVE_METHOD(engine_call_constructor_method, "engine_call_constructor", "()J", DictionaryBridge::engine_call_constructor)
+    INIT_NATIVE_METHOD(engine_call_clear_method, "engine_call_clear", "(J)V", DictionaryBridge::engine_call_clear)
+    INIT_NATIVE_METHOD(engine_call_duplicate_method, "engine_call_duplicate", "(J)V", DictionaryBridge::engine_call_duplicate)
+    INIT_NATIVE_METHOD(engine_call_is_empty_method, "engine_call_is_empty","(J)V", DictionaryBridge::engine_call_is_empty)
+    INIT_NATIVE_METHOD(engine_call_erase_method, "engine_call_erase", "(J)V", DictionaryBridge::engine_call_erase)
+    INIT_NATIVE_METHOD(engine_call_find_key_method, "engine_call_find_key", "(J)V", DictionaryBridge::engine_call_find_key)
+    INIT_NATIVE_METHOD(engine_call_get_method, "engine_call_get", "(J)V", DictionaryBridge::engine_call_get)
+    INIT_NATIVE_METHOD(engine_call_has_method, "engine_call_has", "(J)V", DictionaryBridge::engine_call_has)
+    INIT_NATIVE_METHOD(engine_call_hasAll_method, "engine_call_hasAll", "(J)V", DictionaryBridge::engine_call_hasAll)
+    INIT_NATIVE_METHOD(engine_call_hash_method, "engine_call_hash", "(J)V", DictionaryBridge::engine_call_hash)
+    INIT_NATIVE_METHOD(engine_call_is_read_only_method, "engine_call_is_read_only", "(J)V", DictionaryBridge::engine_call_is_read_only)
+    INIT_NATIVE_METHOD(engine_call_keys_method, "engine_call_keys", "(J)V", DictionaryBridge::engine_call_keys)
+    INIT_NATIVE_METHOD(engine_call_make_read_only_method, "engine_call_make_read_only", "(J)V", DictionaryBridge::engine_call_make_read_only)
+    INIT_NATIVE_METHOD(engine_call_merge_method, "engine_call_merge", "(J)V", DictionaryBridge::engine_call_merge)
+    INIT_NATIVE_METHOD(engine_call_size_method, "engine_call_size", "(J)V", DictionaryBridge::engine_call_size)
+    INIT_NATIVE_METHOD(engine_call_values_method, "engine_call_values", "(J)V", DictionaryBridge::engine_call_values)
+    INIT_NATIVE_METHOD(engine_call_operator_get_method, "engine_call_operator_get", "(J)V", DictionaryBridge::engine_call_operator_get)
+    INIT_NATIVE_METHOD(engine_call_operator_set_method, "engine_call_operator_set", "(J)V", DictionaryBridge::engine_call_operator_set)
+    INIT_NATIVE_METHOD(engine_call_equals_method, "engine_call_equals", "(J)V", DictionaryBridge::engine_call_equals)
+  )
 
-DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper(DICTIONARY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
-    jni::JNativeMethod engine_call_constructor_method {
-      const_cast<char*>("engine_call_constructor"),
-      const_cast<char*>("()J"),
-      (void*) DictionaryBridge::engine_call_constructor};
+// clang-format on
 
-    jni::JNativeMethod engine_call_clear_method {
-      const_cast<char*>("engine_call_clear"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_clear};
-    jni::JNativeMethod engine_call_duplicate_method {
-      const_cast<char*>("engine_call_duplicate"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_duplicate};
-    jni::JNativeMethod engine_call_is_empty_method {
-      const_cast<char*>("engine_call_is_empty"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_is_empty};
-    jni::JNativeMethod engine_call_erase_method {
-      const_cast<char*>("engine_call_erase"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_erase};
-    jni::JNativeMethod engine_call_find_key_method {
-      const_cast<char*>("engine_call_find_key"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_find_key};
-    jni::JNativeMethod engine_call_get_method {const_cast<char*>("engine_call_get"), const_cast<char*>("(J)V"), (void*) DictionaryBridge::engine_call_get};
-    jni::JNativeMethod engine_call_has_method {const_cast<char*>("engine_call_has"), const_cast<char*>("(J)V"), (void*) DictionaryBridge::engine_call_has};
-    jni::JNativeMethod engine_call_hasAll_method {
-      const_cast<char*>("engine_call_hasAll"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_hasAll};
-    jni::JNativeMethod engine_call_hash_method {const_cast<char*>("engine_call_hash"), const_cast<char*>("(J)V"), (void*) DictionaryBridge::engine_call_hash};
-    jni::JNativeMethod engine_call_is_read_only_method {
-      const_cast<char*>("engine_call_is_read_only"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_is_read_only};
-    jni::JNativeMethod engine_call_keys_method {const_cast<char*>("engine_call_keys"), const_cast<char*>("(J)V"), (void*) DictionaryBridge::engine_call_keys};
-    jni::JNativeMethod engine_call_make_read_only_method {
-      const_cast<char*>("engine_call_make_read_only"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_make_read_only};
-    jni::JNativeMethod engine_call_merge_method {
-      const_cast<char*>("engine_call_merge"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_merge};
-    jni::JNativeMethod engine_call_size_method {const_cast<char*>("engine_call_size"), const_cast<char*>("(J)V"), (void*) DictionaryBridge::engine_call_size};
-    jni::JNativeMethod engine_call_values_method {
-      const_cast<char*>("engine_call_values"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_values};
-    jni::JNativeMethod engine_call_operator_get_method {
-      const_cast<char*>("engine_call_operator_get"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_operator_get};
-    jni::JNativeMethod engine_call_operator_set_method {
-      const_cast<char*>("engine_call_operator_set"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_operator_set};
-    jni::JNativeMethod engine_call_equals_method {
-      const_cast<char*>("engine_call_equals"),
-      const_cast<char*>("(J)V"),
-      (void*) DictionaryBridge::engine_call_equals};
-
-    Vector<jni::JNativeMethod> methods;
-    methods.push_back(engine_call_constructor_method);
-    methods.push_back(engine_call_clear_method);
-    methods.push_back(engine_call_duplicate_method);
-    methods.push_back(engine_call_is_empty_method);
-    methods.push_back(engine_call_erase_method);
-    methods.push_back(engine_call_find_key_method);
-    methods.push_back(engine_call_get_method);
-    methods.push_back(engine_call_has_method);
-    methods.push_back(engine_call_hasAll_method);
-    methods.push_back(engine_call_hash_method);
-    methods.push_back(engine_call_is_read_only_method);
-    methods.push_back(engine_call_keys_method);
-    methods.push_back(engine_call_make_read_only_method);
-    methods.push_back(engine_call_merge_method);
-    methods.push_back(engine_call_size_method);
-    methods.push_back(engine_call_values_method);
-    methods.push_back(engine_call_operator_get_method);
-    methods.push_back(engine_call_operator_set_method);
-    methods.push_back(engine_call_equals_method);
-
-    jni::Env env {jni::Jvm::current_env()};
-    j_class.register_natives(env, methods);
-    p_wrapped.delete_local_ref(env);
-}
+DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 uintptr_t DictionaryBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(Dictionary));

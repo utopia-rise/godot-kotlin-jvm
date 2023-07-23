@@ -7,7 +7,7 @@ namespace bridges {
 
     class PackedColorArrayBridge : JavaInstanceWrapper<PackedColorArrayBridge> {
     public:
-        PackedColorArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+        PackedColorArrayBridge(jni::JObject p_wrapped);
         ~PackedColorArrayBridge() = default;
 
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);

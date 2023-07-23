@@ -6,213 +6,59 @@
 
 using namespace bridges;
 
-JNI_INIT_STATICS_FOR_CLASS(VariantArrayBridge)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    VariantArrayBridge,
+    INIT_NATIVE_METHOD(engine_call_constructor_method, "engine_call_constructor", "()J", VariantArrayBridge::engine_call_constructor)
+    INIT_NATIVE_METHOD(engine_call_constructor_typed_method, "engine_call_constructor_typed","()J", VariantArrayBridge::engine_call_constructor_typed)
+    INIT_NATIVE_METHOD(engine_call_size_method, "engine_call_size","(J)V", VariantArrayBridge::engine_call_size)
+    INIT_NATIVE_METHOD(engine_call_clear_method, "engine_call_clear","(J)V", VariantArrayBridge::engine_call_clear)
+    INIT_NATIVE_METHOD(engine_call_is_empty_method, "engine_call_isEmpty","(J)V", VariantArrayBridge::engine_call_is_empty)
+    INIT_NATIVE_METHOD(engine_call_hash_method, "engine_call_hash","(J)V", VariantArrayBridge::engine_call_hash)
+    INIT_NATIVE_METHOD(engine_call_reverse_method, "engine_call_reverse","(J)V", VariantArrayBridge::engine_call_reverse)
+    INIT_NATIVE_METHOD(engine_call_remove_at_method, "engine_call_removeAt","(J)V", VariantArrayBridge::engine_call_remove_at)
+    INIT_NATIVE_METHOD(engine_call_resize_method, "engine_call_resize","(J)V", VariantArrayBridge::engine_call_resize)
+    INIT_NATIVE_METHOD(engine_call_shuffle_method, "engine_call_shuffle","(J)V", VariantArrayBridge::engine_call_shuffle)
+    INIT_NATIVE_METHOD(engine_call_sort_method, "engine_call_sort","(J)V", VariantArrayBridge::engine_call_sort)
+    INIT_NATIVE_METHOD(engine_call_sortCustom_method, "engine_call_sortCustom","(J)V", VariantArrayBridge::engine_call_sortCustom)
+    INIT_NATIVE_METHOD(engine_call_append_method, "engine_call_append","(J)V", VariantArrayBridge::engine_call_append)
+    INIT_NATIVE_METHOD(engine_call_bsearch_method, "engine_call_bsearch","(J)V", VariantArrayBridge::engine_call_bsearch)
+    INIT_NATIVE_METHOD(engine_call_bsearchCustom_method, "engine_call_bsearchCustom","(J)V", VariantArrayBridge::engine_call_bsearchCustom)
+    INIT_NATIVE_METHOD(engine_call_count_method, "engine_call_count","(J)V", VariantArrayBridge::engine_call_count)
+    INIT_NATIVE_METHOD(engine_call_duplicate_method, "engine_call_duplicate","(J)V", VariantArrayBridge::engine_call_duplicate)
+    INIT_NATIVE_METHOD(engine_call_erase_method, "engine_call_erase","(J)V", VariantArrayBridge::engine_call_erase)
+    INIT_NATIVE_METHOD(engine_call_find_method, "engine_call_find","(J)V", VariantArrayBridge::engine_call_find)
+    INIT_NATIVE_METHOD(engine_call_front_method, "engine_call_front","(J)V", VariantArrayBridge::engine_call_front)
+    INIT_NATIVE_METHOD(engine_call_has_method, "engine_call_has","(J)V", VariantArrayBridge::engine_call_has)
+    INIT_NATIVE_METHOD(engine_call_insert_method, "engine_call_insert","(J)V", VariantArrayBridge::engine_call_insert)
+    INIT_NATIVE_METHOD(engine_call_max_method, "engine_call_max","(J)V", VariantArrayBridge::engine_call_max)
+    INIT_NATIVE_METHOD(engine_call_min_method, "engine_call_min","(J)V", VariantArrayBridge::engine_call_min)
+    INIT_NATIVE_METHOD(engine_call_popBack_method, "engine_call_popBack","(J)V", VariantArrayBridge::engine_call_popBack)
+    INIT_NATIVE_METHOD(engine_call_popFront_method, "engine_call_popFront","(J)V", VariantArrayBridge::engine_call_popFront)
+    INIT_NATIVE_METHOD(engine_call_pushBack_method, "engine_call_pushBack","(J)V", VariantArrayBridge::engine_call_pushBack)
+    INIT_NATIVE_METHOD(engine_call_pushFront_method, "engine_call_pushFront","(J)V", VariantArrayBridge::engine_call_pushFront)
+    INIT_NATIVE_METHOD(engine_call_rfind_method, "engine_call_rfind","(J)V", VariantArrayBridge::engine_call_rfind)
+    INIT_NATIVE_METHOD(engine_call_slice_method, "engine_call_slice","(J)V", VariantArrayBridge::engine_call_slice)
+    INIT_NATIVE_METHOD(engine_call_operator_set_method, "engine_call_operator_set","(J)V", VariantArrayBridge::engine_call_operator_set)
+    INIT_NATIVE_METHOD(engine_call_operator_get_method, "engine_call_operator_get","(J)V", VariantArrayBridge::engine_call_operator_get)
+    INIT_NATIVE_METHOD(engine_call_all, "engine_call_all","(J)V", VariantArrayBridge::engine_call_all)
+    INIT_NATIVE_METHOD(engine_call_any, "engine_call_any","(J)V", VariantArrayBridge::engine_call_any)
+    INIT_NATIVE_METHOD(engine_call_appendArray, "engine_call_appendArray","(J)V", VariantArrayBridge::engine_call_appendArray)
+    INIT_NATIVE_METHOD(engine_call_back, "engine_call_back","(J)V", VariantArrayBridge::engine_call_back)
+    INIT_NATIVE_METHOD(engine_call_fill, "engine_call_fill","(J)V", VariantArrayBridge::engine_call_fill)
+    INIT_NATIVE_METHOD(engine_call_filter, "engine_call_filter","(J)V", VariantArrayBridge::engine_call_filter)
+    INIT_NATIVE_METHOD(engine_call_getTypedClassName, "engine_call_getTypedClassName","(J)V", VariantArrayBridge::engine_call_getTypedClassName)
+    INIT_NATIVE_METHOD(engine_call_getTypedScript, "engine_call_getTypedScript","(J)V", VariantArrayBridge::engine_call_getTypedScript)
+    INIT_NATIVE_METHOD(engine_call_isReadOnly, "engine_call_isReadOnly","(J)V", VariantArrayBridge::engine_call_isReadOnly)
+    INIT_NATIVE_METHOD(engine_call_isTyped, "engine_call_isTyped","(J)V", VariantArrayBridge::engine_call_isTyped)
+    INIT_NATIVE_METHOD(engine_call_map, "engine_call_map","(J)V", VariantArrayBridge::engine_call_map)
+    INIT_NATIVE_METHOD(engine_call_pickRandom, "engine_call_pickRandom","(J)V", VariantArrayBridge::engine_call_pickRandom)
+    INIT_NATIVE_METHOD(engine_call_reduce, "engine_call_reduce","(J)V", VariantArrayBridge::engine_call_reduce)
+  )
 
-VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper(VARIANT_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
-    jni::JNativeMethod engine_call_constructor_method {
-      const_cast<char*>("engine_call_constructor"),
-      const_cast<char*>("()J"),
-      (void*) VariantArrayBridge::engine_call_constructor};
-    jni::JNativeMethod engine_call_constructor_typed_method {
-      const_cast<char*>("engine_call_constructor_typed"),
-      const_cast<char*>("()J"),
-      (void*) VariantArrayBridge::engine_call_constructor_typed};
-    jni::JNativeMethod engine_call_size_method {
-      const_cast<char*>("engine_call_size"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_size};
-    jni::JNativeMethod engine_call_clear_method {
-      const_cast<char*>("engine_call_clear"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_clear};
-    jni::JNativeMethod engine_call_is_empty_method {
-      const_cast<char*>("engine_call_isEmpty"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_is_empty};
-    jni::JNativeMethod engine_call_hash_method {
-      const_cast<char*>("engine_call_hash"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_hash};
-    jni::JNativeMethod engine_call_reverse_method {
-      const_cast<char*>("engine_call_reverse"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_reverse};
-    jni::JNativeMethod engine_call_remove_at_method {
-      const_cast<char*>("engine_call_removeAt"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_remove_at};
-    jni::JNativeMethod engine_call_resize_method {
-      const_cast<char*>("engine_call_resize"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_resize};
-    jni::JNativeMethod engine_call_shuffle_method {
-      const_cast<char*>("engine_call_shuffle"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_shuffle};
-    jni::JNativeMethod engine_call_sort_method {
-      const_cast<char*>("engine_call_sort"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_sort};
-    jni::JNativeMethod engine_call_sortCustom_method {
-      const_cast<char*>("engine_call_sortCustom"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_sortCustom};
-    jni::JNativeMethod engine_call_append_method {
-      const_cast<char*>("engine_call_append"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_append};
-    jni::JNativeMethod engine_call_bsearch_method {
-      const_cast<char*>("engine_call_bsearch"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_bsearch};
-    jni::JNativeMethod engine_call_bsearchCustom_method {
-      const_cast<char*>("engine_call_bsearchCustom"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_bsearchCustom};
-    jni::JNativeMethod engine_call_count_method {
-      const_cast<char*>("engine_call_count"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_count};
-    jni::JNativeMethod engine_call_duplicate_method {
-      const_cast<char*>("engine_call_duplicate"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_duplicate};
-    jni::JNativeMethod engine_call_erase_method {
-      const_cast<char*>("engine_call_erase"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_erase};
-    jni::JNativeMethod engine_call_find_method {
-      const_cast<char*>("engine_call_find"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_find};
-    jni::JNativeMethod engine_call_front_method {
-      const_cast<char*>("engine_call_front"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_front};
-    jni::JNativeMethod engine_call_has_method {const_cast<char*>("engine_call_has"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_has};
-    jni::JNativeMethod engine_call_insert_method {
-      const_cast<char*>("engine_call_insert"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_insert};
-    jni::JNativeMethod engine_call_max_method {const_cast<char*>("engine_call_max"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_max};
-    jni::JNativeMethod engine_call_min_method {const_cast<char*>("engine_call_min"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_min};
-    jni::JNativeMethod engine_call_popBack_method {
-      const_cast<char*>("engine_call_popBack"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_popBack};
-    jni::JNativeMethod engine_call_popFront_method {
-      const_cast<char*>("engine_call_popFront"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_popFront};
-    jni::JNativeMethod engine_call_pushBack_method {
-      const_cast<char*>("engine_call_pushBack"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_pushBack};
-    jni::JNativeMethod engine_call_pushFront_method {
-      const_cast<char*>("engine_call_pushFront"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_pushFront};
-    jni::JNativeMethod engine_call_rfind_method {
-      const_cast<char*>("engine_call_rfind"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_rfind};
-    jni::JNativeMethod engine_call_slice_method {
-      const_cast<char*>("engine_call_slice"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_slice};
-    jni::JNativeMethod engine_call_operator_set_method {
-      const_cast<char*>("engine_call_operator_set"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_operator_set};
-    jni::JNativeMethod engine_call_operator_get_method {
-      const_cast<char*>("engine_call_operator_get"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_operator_get};
-    jni::JNativeMethod engine_call_all {const_cast<char*>("engine_call_all"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_all};
-    jni::JNativeMethod engine_call_any {const_cast<char*>("engine_call_any"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_any};
-    jni::JNativeMethod engine_call_appendArray {
-      const_cast<char*>("engine_call_appendArray"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_appendArray};
-    jni::JNativeMethod engine_call_back {const_cast<char*>("engine_call_back"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_back};
-    jni::JNativeMethod engine_call_fill {const_cast<char*>("engine_call_fill"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_fill};
-    jni::JNativeMethod engine_call_filter {const_cast<char*>("engine_call_filter"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_filter};
-    jni::JNativeMethod engine_call_getTypedClassName {
-      const_cast<char*>("engine_call_getTypedClassName"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_getTypedClassName};
-    jni::JNativeMethod engine_call_getTypedScript {
-      const_cast<char*>("engine_call_getTypedScript"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_getTypedScript};
-    jni::JNativeMethod engine_call_isReadOnly {
-      const_cast<char*>("engine_call_isReadOnly"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_isReadOnly};
-    jni::JNativeMethod engine_call_isTyped {
-      const_cast<char*>("engine_call_isTyped"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_isTyped};
-    jni::JNativeMethod engine_call_map {const_cast<char*>("engine_call_map"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_map};
-    jni::JNativeMethod engine_call_pickRandom {
-      const_cast<char*>("engine_call_pickRandom"),
-      const_cast<char*>("(J)V"),
-      (void*) VariantArrayBridge::engine_call_pickRandom};
-    jni::JNativeMethod engine_call_reduce {const_cast<char*>("engine_call_reduce"), const_cast<char*>("(J)V"), (void*) VariantArrayBridge::engine_call_reduce};
+// clang-format on
 
-    Vector<jni::JNativeMethod> methods;
-    methods.push_back(engine_call_constructor_method);
-    methods.push_back(engine_call_constructor_typed_method);
-
-    methods.push_back(engine_call_size_method);
-    methods.push_back(engine_call_clear_method);
-    methods.push_back(engine_call_is_empty_method);
-    methods.push_back(engine_call_hash_method);
-    methods.push_back(engine_call_reverse_method);
-    methods.push_back(engine_call_remove_at_method);
-    methods.push_back(engine_call_resize_method);
-    methods.push_back(engine_call_shuffle_method);
-    methods.push_back(engine_call_sort_method);
-    methods.push_back(engine_call_sortCustom_method);
-    methods.push_back(engine_call_append_method);
-    methods.push_back(engine_call_bsearch_method);
-    methods.push_back(engine_call_bsearchCustom_method);
-    methods.push_back(engine_call_count_method);
-    methods.push_back(engine_call_duplicate_method);
-    methods.push_back(engine_call_erase_method);
-    methods.push_back(engine_call_find_method);
-    methods.push_back(engine_call_front_method);
-    methods.push_back(engine_call_has_method);
-    methods.push_back(engine_call_insert_method);
-    methods.push_back(engine_call_max_method);
-    methods.push_back(engine_call_min_method);
-    methods.push_back(engine_call_popBack_method);
-    methods.push_back(engine_call_popFront_method);
-    methods.push_back(engine_call_pushBack_method);
-    methods.push_back(engine_call_pushFront_method);
-    methods.push_back(engine_call_rfind_method);
-    methods.push_back(engine_call_slice_method);
-    methods.push_back(engine_call_operator_set_method);
-    methods.push_back(engine_call_operator_get_method);
-    methods.push_back(engine_call_all);
-    methods.push_back(engine_call_any);
-    methods.push_back(engine_call_appendArray);
-    methods.push_back(engine_call_back);
-    methods.push_back(engine_call_fill);
-    methods.push_back(engine_call_filter);
-    methods.push_back(engine_call_getTypedClassName);
-    methods.push_back(engine_call_getTypedScript);
-    methods.push_back(engine_call_isReadOnly);
-    methods.push_back(engine_call_isTyped);
-    methods.push_back(engine_call_map);
-    methods.push_back(engine_call_pickRandom);
-    methods.push_back(engine_call_reduce);
-
-    jni::Env env {jni::Jvm::current_env()};
-    j_class.register_natives(env, methods);
-    p_wrapped.delete_local_ref(env);
-}
+VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 uintptr_t VariantArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(Array));

@@ -6,37 +6,18 @@
 
 using namespace bridges;
 
-JNI_INIT_STATICS_FOR_CLASS(StringNameBridge)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    StringNameBridge,
+    INIT_NATIVE_METHOD(engine_call_constructor_method, "engine_call_constructor","()J", StringNameBridge::engine_call_constructor)
+    INIT_NATIVE_METHOD(engine_call_constructor_arg_method, "engine_call_copy_constructor","()J", StringNameBridge::engine_call_copy_constructor)
+    INIT_NATIVE_METHOD(engine_call_getID_method, "engine_call_constructor_string", ("()J"), StringNameBridge::engine_call_constructor_string)
+    INIT_NATIVE_METHOD(engine_call_isValid_method, "engine_call_operator_string","(J)V", StringNameBridge::engine_call_operator_string)
+  )
 
-StringNameBridge::StringNameBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper<StringNameBridge>(STRING_NAME_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
-    jni::JNativeMethod engine_call_constructor_method {
-      const_cast<char*>("engine_call_constructor"),
-      const_cast<char*>("()J"),
-      (void*) StringNameBridge::engine_call_constructor};
-    jni::JNativeMethod engine_call_copy_constructor {
-      const_cast<char*>("engine_call_copy_constructor"),
-      const_cast<char*>("()J"),
-      (void*) StringNameBridge::engine_call_copy_constructor};
-    jni::JNativeMethod engine_call_constructor_string {
-      const_cast<char*>("engine_call_constructor_string"),
-      const_cast<char*>("()J"),
-      (void*) StringNameBridge::engine_call_constructor_string};
-    jni::JNativeMethod engine_call_operator_string {
-      const_cast<char*>("engine_call_operator_string"),
-      const_cast<char*>("(J)V"),
-      (void*) StringNameBridge::engine_call_operator_string};
+// clang-format on
 
-    Vector<jni::JNativeMethod> methods;
-    methods.push_back(engine_call_constructor_method);
-    methods.push_back(engine_call_copy_constructor);
-    methods.push_back(engine_call_constructor_string);
-    methods.push_back(engine_call_operator_string);
-
-    jni::Env env {jni::Jvm::current_env()};
-    j_class.register_natives(env, methods);
-    p_wrapped.delete_local_ref(env);
-}
+StringNameBridge::StringNameBridge(jni::JObject p_wrapped) : JavaInstanceWrapper<StringNameBridge>(p_wrapped) {}
 
 uintptr_t StringNameBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(StringName));

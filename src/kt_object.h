@@ -13,14 +13,14 @@ private:
     bool is_ref;
 
 public:
-    KtObject(jni::JObject p_wrapped, bool p_is_ref, jni::JObject p_class_loader);
+    KtObject(jni::JObject p_wrapped, bool p_is_ref);
     ~KtObject();
 
     const jni::JObject& get_wrapped() const;
 
     // clang-format off
     DECLARE_JNI_METHODS(
-                JNI_METHOD(ON_DESTROY, "_onDestroy", "()V")
+        JNI_METHOD(ON_DESTROY, "_onDestroy", "()V")
     )
     // clang-format on
 };

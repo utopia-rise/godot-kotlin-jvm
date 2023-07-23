@@ -6,43 +6,20 @@
 
 using namespace bridges;
 
-JNI_INIT_STATICS_FOR_CLASS(RidBridge)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    RidBridge,
+    INIT_NATIVE_METHOD(engine_call_constructor_method, "engine_call_constructor","()J", RidBridge::engine_call_constructor)
+    INIT_NATIVE_METHOD(engine_call_constructor_arg_method, "engine_call_constructor","(J)J", RidBridge::engine_call_constructor_arg)
+    INIT_NATIVE_METHOD(engine_call_getID_method, "engine_call_getID", ("(J)V"), RidBridge::engine_call_getID)
+    INIT_NATIVE_METHOD(engine_call_isValid_method, "engine_call_isValid","(J)V", RidBridge::engine_call_isValid)
+    INIT_NATIVE_METHOD(engine_call_compareTo_method, "engine_call_compareTo","(J)V", RidBridge::engine_call_compareTo)
+    INIT_NATIVE_METHOD(engine_call_equals_method, "engine_call_equals", ("(J)V"), RidBridge::engine_call_equals)
+  )
 
-RidBridge::RidBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper(RID_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
-    jni::JNativeMethod engine_call_constructor_method {
-      const_cast<char*>("engine_call_constructor"),
-      const_cast<char*>("()J"),
-      (void*) RidBridge::engine_call_constructor};
-    jni::JNativeMethod engine_call_constructor_arg_method {
-      const_cast<char*>("engine_call_constructor"),
-      const_cast<char*>("(J)J"),
-      (void*) RidBridge::engine_call_constructor_arg};
+// clang-format on
 
-    jni::JNativeMethod engine_call_getID_method {const_cast<char*>("engine_call_getID"), const_cast<char*>("(J)V"), (void*) RidBridge::engine_call_getID};
-    jni::JNativeMethod engine_call_isValid_method {
-      const_cast<char*>("engine_call_isValid"),
-      const_cast<char*>("(J)V"),
-      (void*) RidBridge::engine_call_isValid};
-    jni::JNativeMethod engine_call_compareTo_method {
-      const_cast<char*>("engine_call_compareTo"),
-      const_cast<char*>("(J)V"),
-      (void*) RidBridge::engine_call_compareTo};
-    jni::JNativeMethod engine_call_equals_method {const_cast<char*>("engine_call_equals"), const_cast<char*>("(J)V"), (void*) RidBridge::engine_call_equals};
-
-    Vector<jni::JNativeMethod> methods;
-
-    methods.push_back(engine_call_constructor_method);
-    methods.push_back(engine_call_constructor_arg_method);
-    methods.push_back(engine_call_getID_method);
-    methods.push_back(engine_call_isValid_method);
-    methods.push_back(engine_call_compareTo_method);
-    methods.push_back(engine_call_equals_method);
-
-    jni::Env env {jni::Jvm::current_env()};
-    j_class.register_natives(env, methods);
-    p_wrapped.delete_local_ref(env);
-}
+RidBridge::RidBridge(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 uintptr_t RidBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(RID));

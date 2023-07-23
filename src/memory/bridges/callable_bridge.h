@@ -41,7 +41,7 @@ namespace bridges {
         static void engine_call_rpc_id(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_unbind(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
-        CallableBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+        CallableBridge(jni::JObject p_wrapped);
         ~CallableBridge() = default;
 
         // clang-format off

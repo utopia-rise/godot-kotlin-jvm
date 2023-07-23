@@ -5,25 +5,17 @@
 
 using namespace bridges;
 
-JNI_INIT_STATICS_FOR_CLASS(GDPrintBridge)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    GDPrintBridge,
+    INIT_NATIVE_METHOD(print_method, "print", "()V", GDPrintBridge::print)
+    INIT_NATIVE_METHOD(print_err_method, "printErr", "()V", GDPrintBridge::print_err)
+    INIT_NATIVE_METHOD(print_raw_method, "printRaw", "()V", GDPrintBridge::print_raw)
+  )
 
-GDPrintBridge::GDPrintBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper(GD_PRINT_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
-    jni::JNativeMethod print_method {const_cast<char*>("print"), const_cast<char*>("()V"), (void*) GDPrintBridge::print};
+// clang-format on
 
-    jni::JNativeMethod print_err_method {const_cast<char*>("printErr"), const_cast<char*>("()V"), (void*) GDPrintBridge::print_err};
-
-    jni::JNativeMethod print_raw_method {const_cast<char*>("printRaw"), const_cast<char*>("()V"), (void*) GDPrintBridge::print_raw};
-
-    Vector<jni::JNativeMethod> methods;
-    methods.push_back(print_method);
-    methods.push_back(print_err_method);
-    methods.push_back(print_raw_method);
-
-    jni::Env env {jni::Jvm::current_env()};
-    j_class.register_natives(env, methods);
-    p_wrapped.delete_local_ref(env);
-}
+GDPrintBridge::GDPrintBridge(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 void GDPrintBridge::print(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};

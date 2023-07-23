@@ -35,7 +35,7 @@ private:
     Vector<String> engine_singleton_names;
     Vector<MethodBind*> engine_type_method;
 
-    //TODO: Simplify the storage and use of KotlinScript across the module (GDKotlin has a hashmap path --> Script)
+    // TODO: Simplify the storage and use of KotlinScript across the module (GDKotlin has a hashmap path --> Script)
     Vector<Ref<KotlinScript>> user_scripts;
     HashMap<StringName, Ref<KotlinScript>> user_scripts_map;
 
