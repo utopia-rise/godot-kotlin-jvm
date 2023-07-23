@@ -72,3 +72,9 @@ void KotlinBindingManager::bind_object(Object* p_object, KtBinding* kt_binding) 
       reinterpret_cast<KotlinBinding*>(p_object->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
     binding->set_kt_binding(kt_binding);
 }
+
+void KotlinBindingManager::unbind_object(Object* p_object) {
+    KotlinBinding* binding =
+      reinterpret_cast<KotlinBinding*>(p_object->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
+    binding->unset_kt_binding();
+}

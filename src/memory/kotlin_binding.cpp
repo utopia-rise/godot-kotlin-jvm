@@ -55,6 +55,13 @@ void KotlinBinding::set_kt_binding(KtBinding* p_kt_binding) {
     status = BindingStatus::BOUND;
 }
 
+void KotlinBinding::unset_kt_binding() {
+    if(!kt_binding) {return;}
+    status = BindingStatus::READY;
+    memdelete(kt_binding);
+    kt_binding = nullptr;
+}
+
 bool KotlinBinding::is_ready() {
     return status != BindingStatus::CREATED;
 }

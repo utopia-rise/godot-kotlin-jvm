@@ -14,6 +14,7 @@ JNI_INIT_STATICS_FOR_CLASS(
     INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryBridge::check_instance)
     INIT_NATIVE_METHOD("decrementRefCounter", "(J)V", MemoryBridge::decrement_ref_counter)
     INIT_NATIVE_METHOD("bindInstance", "(JLgodot/core/memory/GodotBinding;)V", MemoryBridge::bind_instance)
+    INIT_NATIVE_METHOD("unbindInstance", "(J)V", MemoryBridge::unbind_instance)
     INIT_NATIVE_METHOD("unrefNativeCoreType", "(JI)Z", MemoryBridge::unref_native_core_type)
     INIT_NATIVE_METHOD("notifyLeak", "()V", MemoryBridge::notify_leak)
   )
@@ -32,6 +33,13 @@ void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong in
     if (obj) {
         KtBinding* kt_binding = memnew(KtBinding(jni::JObject(p_object)));
         KotlinBindingManager::bind_object(obj, kt_binding);
+    }
+}
+
+void MemoryBridge::unbind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object) {
+    Object* obj {ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)))};
+    if (obj) {
+        KotlinBindingManager::unbind_object(obj);
     }
 }
 
