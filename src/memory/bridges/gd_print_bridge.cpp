@@ -8,9 +8,9 @@ using namespace bridges;
 // clang-format off
 JNI_INIT_STATICS_FOR_CLASS(
     GDPrintBridge,
-    INIT_NATIVE_METHOD(print_method, "print", "()V", GDPrintBridge::print)
-    INIT_NATIVE_METHOD(print_err_method, "printErr", "()V", GDPrintBridge::print_err)
-    INIT_NATIVE_METHOD(print_raw_method, "printRaw", "()V", GDPrintBridge::print_raw)
+    INIT_NATIVE_METHOD("print", "()V", GDPrintBridge::print)
+    INIT_NATIVE_METHOD("printErr", "()V", GDPrintBridge::print_err)
+    INIT_NATIVE_METHOD("printRaw", "()V", GDPrintBridge::print_raw)
   )
 
 // clang-format on

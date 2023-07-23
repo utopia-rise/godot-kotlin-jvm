@@ -8,7 +8,7 @@
 
 namespace bridges {
 
-    struct MemoryBridge : public JavaInstanceWrapper<MemoryBridge> {
+    struct MemoryBridge : public JavaInstanceWrapper {
         MemoryBridge(jni::JObject p_wrapped);
 
         ~MemoryBridge() = default;

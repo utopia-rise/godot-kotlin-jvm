@@ -4,7 +4,7 @@
 #include "java_instance_wrapper.h"
 #include "kt_object.h"
 
-class KtConstructor : public JavaInstanceWrapper<KtConstructor> {
+class KtConstructor : public JavaInstanceWrapper {
 public:
     KtConstructor(jni::JObject p_wrapped);
     ~KtConstructor() = default;

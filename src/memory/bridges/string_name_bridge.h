@@ -4,7 +4,7 @@
 #include "java_instance_wrapper.h"
 
 namespace bridges {
-    class StringNameBridge : public JavaInstanceWrapper<StringNameBridge> {
+    class StringNameBridge : public JavaInstanceWrapper {
     public:
         StringNameBridge(jni::JObject p_wrapped);
         ~StringNameBridge() = default;

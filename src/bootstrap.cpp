@@ -5,11 +5,11 @@ JNI_INIT_STATICS_FOR_CLASS(
     Bootstrap,
     INIT_JNI_METHOD(INIT)
     INIT_JNI_METHOD(FINISH)
-    INIT_NATIVE_METHOD(load_class_hook_method, "loadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::load_classes)
-    INIT_NATIVE_METHOD(unload_class_hook_method, "unloadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::unload_classes)
-    INIT_NATIVE_METHOD(register_managed_engine_types_method, "registerManagedEngineTypes", "([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/Integer;)V", Bootstrap::register_engine_type)
-    INIT_NATIVE_METHOD(register_user_types_names_method, "registerUserTypesNames", "([Ljava/lang/String;)V", Bootstrap::register_user_types_names)
-    INIT_NATIVE_METHOD(register_user_types_members_method, "registerUserTypesMembers", "()V", Bootstrap::register_user_types_members)
+    INIT_NATIVE_METHOD("loadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::load_classes)
+    INIT_NATIVE_METHOD("unloadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::unload_classes)
+    INIT_NATIVE_METHOD("registerManagedEngineTypes", "([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/Integer;)V", Bootstrap::register_engine_type)
+    INIT_NATIVE_METHOD("registerUserTypesNames", "([Ljava/lang/String;)V", Bootstrap::register_user_types_names)
+    INIT_NATIVE_METHOD("registerUserTypesMembers", "()V", Bootstrap::register_user_types_members)
 )
 // clang-format on
 

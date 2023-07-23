@@ -14,7 +14,7 @@
 const int CONSTRUCTOR_MAX_ARGS_SIZE = 5;
 const int MAX_CONSTRUCTOR_SIZE = CONSTRUCTOR_MAX_ARGS_SIZE + 1;
 
-class KtClass : public JavaInstanceWrapper<KtClass> {
+class KtClass : public JavaInstanceWrapper {
 public:
     StringName resource_path;
     StringName registered_class_name;

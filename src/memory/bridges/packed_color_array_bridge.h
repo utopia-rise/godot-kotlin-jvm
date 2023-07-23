@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    class PackedColorArrayBridge : JavaInstanceWrapper<PackedColorArrayBridge> {
+    class PackedColorArrayBridge : JavaInstanceWrapper {
     public:
         PackedColorArrayBridge(jni::JObject p_wrapped);
         ~PackedColorArrayBridge() = default;

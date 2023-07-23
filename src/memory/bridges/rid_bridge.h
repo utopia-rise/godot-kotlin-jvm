@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    class RidBridge : JavaInstanceWrapper<RidBridge> {
+    class RidBridge : JavaInstanceWrapper {
     public:
         RidBridge(jni::JObject p_wrapped);
         ~RidBridge() = default;

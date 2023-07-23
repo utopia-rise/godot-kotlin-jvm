@@ -81,7 +81,7 @@ bool KtCustomCallable::equals(const KtCustomCallable* other) const {
     return static_cast<bool>(wrapped.call_boolean_method(env, equal_method_id, equal_args));
 }
 
-KtCustomCallable::KtCustomCallable(jni::JObject p_wrapped) : JavaInstanceWrapper<KtCustomCallable>(p_wrapped) {
+KtCustomCallable::KtCustomCallable(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {
     jni::Env env {jni::Jvm::current_env()};
     jni::MethodId hashcode_method_id {jni_methods.HASHCODE.method_id};
     hashcode = p_wrapped.call_int_method(env, hashcode_method_id);

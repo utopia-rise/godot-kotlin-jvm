@@ -7,7 +7,7 @@ JNI_INIT_STATICS_FOR_CLASS(
     LongStringQueue,
     INIT_JNI_METHOD(QUEUE_STRING)
     INIT_JNI_METHOD(SET_STRING_MAX_SIZE)
-    INIT_NATIVE_METHOD(send_string_to_cpp_method, "sendStringToCPP", "(Ljava/lang/String;)V", LongStringQueue::send_string_to_cpp)
+    INIT_NATIVE_METHOD("sendStringToCPP", "(Ljava/lang/String;)V", LongStringQueue::send_string_to_cpp)
 )
 // clang-format on
 

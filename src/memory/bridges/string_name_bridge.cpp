@@ -9,15 +9,15 @@ using namespace bridges;
 // clang-format off
 JNI_INIT_STATICS_FOR_CLASS(
     StringNameBridge,
-    INIT_NATIVE_METHOD(engine_call_constructor_method, "engine_call_constructor","()J", StringNameBridge::engine_call_constructor)
-    INIT_NATIVE_METHOD(engine_call_constructor_arg_method, "engine_call_copy_constructor","()J", StringNameBridge::engine_call_copy_constructor)
-    INIT_NATIVE_METHOD(engine_call_getID_method, "engine_call_constructor_string", ("()J"), StringNameBridge::engine_call_constructor_string)
-    INIT_NATIVE_METHOD(engine_call_isValid_method, "engine_call_operator_string","(J)V", StringNameBridge::engine_call_operator_string)
+    INIT_NATIVE_METHOD("engine_call_constructor","()J", StringNameBridge::engine_call_constructor)
+    INIT_NATIVE_METHOD("engine_call_copy_constructor","()J", StringNameBridge::engine_call_copy_constructor)
+    INIT_NATIVE_METHOD("engine_call_constructor_string", ("()J"), StringNameBridge::engine_call_constructor_string)
+    INIT_NATIVE_METHOD("engine_call_operator_string","(J)V", StringNameBridge::engine_call_operator_string)
   )
 
 // clang-format on
 
-StringNameBridge::StringNameBridge(jni::JObject p_wrapped) : JavaInstanceWrapper<StringNameBridge>(p_wrapped) {}
+StringNameBridge::StringNameBridge(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 uintptr_t StringNameBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(StringName));

@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    class GDPrintBridge : public JavaInstanceWrapper<GDPrintBridge> {
+    class GDPrintBridge : public JavaInstanceWrapper {
     public:
         GDPrintBridge(jni::JObject p_wrapped);
         ~GDPrintBridge() = default;

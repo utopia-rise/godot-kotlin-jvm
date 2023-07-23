@@ -4,7 +4,7 @@
 #include "java_instance_wrapper.h"
 
 namespace bridges {
-    class CallableBridge : public JavaInstanceWrapper<CallableBridge> {
+    class CallableBridge : public JavaInstanceWrapper {
     private:
         struct StringNames {
             StringName func_rpc;

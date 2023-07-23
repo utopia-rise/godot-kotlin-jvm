@@ -7,7 +7,7 @@
 
 #include <core/object/object.h>
 
-struct KtPropertyInfo : public JavaInstanceWrapper<KtPropertyInfo> {
+struct KtPropertyInfo : public JavaInstanceWrapper {
     KtPropertyInfo(jni::JObject p_wrapped);
     ~KtPropertyInfo() = default;
 
@@ -32,7 +32,7 @@ struct KtPropertyInfo : public JavaInstanceWrapper<KtPropertyInfo> {
     // clang-format on
 };
 
-class KtProperty : JavaInstanceWrapper<KtProperty> {
+class KtProperty : JavaInstanceWrapper {
 private:
     KtPropertyInfo* propertyInfo;
     bool is_ref;

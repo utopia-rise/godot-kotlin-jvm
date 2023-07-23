@@ -3,7 +3,7 @@
 
 #include "java_instance_wrapper.h"
 
-class Bootstrap : public JavaInstanceWrapper<Bootstrap> {
+class Bootstrap : public JavaInstanceWrapper {
 public:
     // clang-format off
     typedef void (*LoadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);

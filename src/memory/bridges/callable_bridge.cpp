@@ -10,28 +10,28 @@ using namespace bridges;
 // clang-format off
 JNI_INIT_STATICS_FOR_CLASS(
     CallableBridge,
-    INIT_NATIVE_METHOD(engine_call_constructor_method, "engine_call_constructor", "()J", CallableBridge::engine_call_constructor)
-    INIT_NATIVE_METHOD(engine_call_constructor_object_string_name_method, "engine_call_constructor_object_string_name", "()J", CallableBridge::engine_call_constructor_object_string_name)
-    INIT_NATIVE_METHOD(engine_call_constructor_kt_custom_callable_method, "engine_call_constructor_kt_custom_callable", "(Lgodot/core/KtCustomCallable;", CallableBridge::engine_call_constructor_kt_custom_callable)
-    INIT_NATIVE_METHOD(engine_call_copy_constructor_method, "engine_call_copy_constructor", "()J", CallableBridge::engine_call_copy_constructor)
-    INIT_NATIVE_METHOD(engine_call_bind_method, "engine_call_bind", "(J)V", CallableBridge::engine_call_bind)
-    INIT_NATIVE_METHOD(engine_call_bindv_method, "engine_call_bindv", "(J)V", CallableBridge::engine_call_bindv)
-    INIT_NATIVE_METHOD(engine_call_call_method, "engine_call_call", "(J)V", CallableBridge::engine_call_call)
-    INIT_NATIVE_METHOD(engine_call_call_deferred_method, "engine_call_call_deferred", "(J)V", CallableBridge::engine_call_call_deferred)
-    INIT_NATIVE_METHOD(engine_call_callv_method, "engine_call_callv", "(J)V", CallableBridge::engine_call_callv)
-    INIT_NATIVE_METHOD(engine_call_get_bound_arguments_method, "engine_call_get_bound_arguments", "(J)V", CallableBridge::engine_call_get_bound_arguments)
-    INIT_NATIVE_METHOD(engine_call_get_bound_arguments_count_method, "engine_call_get_bound_arguments_count", "(J)V", CallableBridge::engine_call_get_bound_arguments_count)
-    INIT_NATIVE_METHOD(engine_call_get_method_method, "engine_call_get_method", "(J)V", CallableBridge::engine_call_get_method)
-    INIT_NATIVE_METHOD(engine_call_get_object_method, "engine_call_get_object", "(J)V", CallableBridge::engine_call_get_object)
-    INIT_NATIVE_METHOD(engine_call_get_object_id_method, "engine_call_get_object_id", "(J)V", CallableBridge::engine_call_get_object_id)
-    INIT_NATIVE_METHOD(engine_call_hash_method, "engine_call_hash", "(J)V", CallableBridge::engine_call_hash)
-    INIT_NATIVE_METHOD(engine_call_is_custom_method, "engine_call_is_custom", "(J)V", CallableBridge::engine_call_is_custom)
-    INIT_NATIVE_METHOD(engine_call_is_null_method, "engine_call_is_null", "(J)V",CallableBridge::engine_call_is_null)
-    INIT_NATIVE_METHOD(engine_call_is_standard_method, "engine_call_is_standard", "(J)V", CallableBridge::engine_call_is_standard)
-    INIT_NATIVE_METHOD(engine_call_is_valid_method, "engine_call_is_valid", "(J)V", CallableBridge::engine_call_is_valid)
-    INIT_NATIVE_METHOD(engine_call_rpc_method, "engine_call_rpc", "(J)V", CallableBridge::engine_call_rpc)
-    INIT_NATIVE_METHOD(engine_call_rpc_id_method, "engine_call_rpc_id", "(J)V",CallableBridge::engine_call_rpc_id)
-    INIT_NATIVE_METHOD(engine_call_unbind_method, "engine_call_unbind", "(J)V", CallableBridge::engine_call_unbind)
+    INIT_NATIVE_METHOD("engine_call_constructor", "()J", CallableBridge::engine_call_constructor)
+    INIT_NATIVE_METHOD("engine_call_constructor_object_string_name", "()J", CallableBridge::engine_call_constructor_object_string_name)
+    INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/KtCustomCallable;", CallableBridge::engine_call_constructor_kt_custom_callable)
+    INIT_NATIVE_METHOD("engine_call_copy_constructor", "()J", CallableBridge::engine_call_copy_constructor)
+    INIT_NATIVE_METHOD("engine_call_bind", "(J)V", CallableBridge::engine_call_bind)
+    INIT_NATIVE_METHOD("engine_call_bindv", "(J)V", CallableBridge::engine_call_bindv)
+    INIT_NATIVE_METHOD("engine_call_call", "(J)V", CallableBridge::engine_call_call)
+    INIT_NATIVE_METHOD("engine_call_call_deferred", "(J)V", CallableBridge::engine_call_call_deferred)
+    INIT_NATIVE_METHOD("engine_call_callv", "(J)V", CallableBridge::engine_call_callv)
+    INIT_NATIVE_METHOD("engine_call_get_bound_arguments", "(J)V", CallableBridge::engine_call_get_bound_arguments)
+    INIT_NATIVE_METHOD("engine_call_get_bound_arguments_count", "(J)V", CallableBridge::engine_call_get_bound_arguments_count)
+    INIT_NATIVE_METHOD("engine_call_get_method", "(J)V", CallableBridge::engine_call_get_method)
+    INIT_NATIVE_METHOD("engine_call_get_object", "(J)V", CallableBridge::engine_call_get_object)
+    INIT_NATIVE_METHOD("engine_call_get_object_id", "(J)V", CallableBridge::engine_call_get_object_id)
+    INIT_NATIVE_METHOD("engine_call_hash", "(J)V", CallableBridge::engine_call_hash)
+    INIT_NATIVE_METHOD("engine_call_is_custom", "(J)V", CallableBridge::engine_call_is_custom)
+    INIT_NATIVE_METHOD("engine_call_is_null", "(J)V",CallableBridge::engine_call_is_null)
+    INIT_NATIVE_METHOD("engine_call_is_standard", "(J)V", CallableBridge::engine_call_is_standard)
+    INIT_NATIVE_METHOD("engine_call_is_valid", "(J)V", CallableBridge::engine_call_is_valid)
+    INIT_NATIVE_METHOD("engine_call_rpc", "(J)V", CallableBridge::engine_call_rpc)
+    INIT_NATIVE_METHOD("engine_call_rpc_id", "(J)V",CallableBridge::engine_call_rpc_id)
+    INIT_NATIVE_METHOD("engine_call_unbind", "(J)V", CallableBridge::engine_call_unbind)
   )
 // clang-format on
 
@@ -232,7 +232,7 @@ void CallableBridge::engine_call_unbind(JNIEnv* p_raw_env, jobject p_instance, j
     transfer_context->write_return_value(env, result);
 }
 
-CallableBridge::CallableBridge(jni::JObject p_wrapped) : JavaInstanceWrapper<CallableBridge>(p_wrapped) {
+CallableBridge::CallableBridge(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {
     string_names.func_rpc = _scs_create("rpc");
     string_names.func_rpc_id = _scs_create("rpc_id");
 }

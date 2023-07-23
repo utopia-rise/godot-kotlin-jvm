@@ -30,20 +30,17 @@ private:                                                    \
 
 #define INIT_JNI_METHOD(name) jni_methods.name.init(env, clazz);
 
-#define INIT_NATIVE_METHOD(name, string_name, signature, function)                                            \
-    jni::JNativeMethod name {const_cast<char*>(string_name), const_cast<char*>(signature), (void*) function}; \
-    methods.push_back(name);
+#define INIT_NATIVE_METHOD(string_name, signature, function)                                            \
+    methods.push_back({const_cast<char*>(string_name), const_cast<char*>(signature), (void*) function});
 
 /**
- * JavaInstanceWrapper CRTP. It wraps a JObject representing a JVM instance.
+ * This class wraps a JObject representing a JVM instance.
  * This class is a base that allows to setup JavaToNative and NativeToJava call easily.
  * One implementation must be provided for every JVM class you wish to use.
  * Use JNI_INIT_STATICS_FOR_CLASS macro to create a static instance that will handle the JNI setup for that class.
  * Note that the jni::JObject p_wrapped argument in the constructor must be a local reference.
  * It will automatically be promoted to global and the local deleted.
- * @tparam Derived
  */
-template<class Derived>
 class JavaInstanceWrapper {
 protected:
     bool is_weak;
@@ -61,50 +58,5 @@ public:
 
     void swap_to_weak_unsafe();
 };
-
-template<class Derived>
-JavaInstanceWrapper<Derived>::JavaInstanceWrapper(jni::JObject p_wrapped) {
-    // When created, it's a strong reference by default
-    jni::Env env {jni::Jvm::current_env()};
-    wrapped = p_wrapped.new_global_ref<jni::JObject>(env);
-    is_weak = false;
-    p_wrapped.delete_local_ref(env);
-}
-
-template<class Derived>
-JavaInstanceWrapper<Derived>::~JavaInstanceWrapper() {
-    jni::Env env {jni::Jvm::current_env()};
-    if (is_weak) {
-        wrapped.delete_weak_ref(env);
-    } else {
-        wrapped.delete_global_ref(env);
-    }
-    class_loader.delete_global_ref(env);
-}
-
-template<class Derived>
-bool JavaInstanceWrapper<Derived>::is_ref_weak() const {
-    return is_weak;
-}
-
-template<class Derived>
-void JavaInstanceWrapper<Derived>::swap_to_strong_unsafe() {
-    // Assume the reference is currently weak
-    jni::Env env {jni::Jvm::current_env()};
-    jni::JObject new_ref = wrapped.new_global_ref<jni::JObject>(env);
-    wrapped.delete_weak_ref(env);
-    wrapped = new_ref;
-    is_weak = false;
-}
-
-template<class Derived>
-void JavaInstanceWrapper<Derived>::swap_to_weak_unsafe() {
-    // Assume the reference is currently strong
-    jni::Env env {jni::Jvm::current_env()};
-    jni::JObject new_ref = wrapped.new_weak_ref<jni::JObject>(env);
-    wrapped.delete_global_ref(env);
-    wrapped = new_ref;
-    is_weak = true;
-}
 
 #endif// GODOT_JVM_JAVAINSTANCEWRAPPER_H

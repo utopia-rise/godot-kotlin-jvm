@@ -9,12 +9,12 @@ using namespace bridges;
 // clang-format off
 JNI_INIT_STATICS_FOR_CLASS(
     RidBridge,
-    INIT_NATIVE_METHOD(engine_call_constructor_method, "engine_call_constructor","()J", RidBridge::engine_call_constructor)
-    INIT_NATIVE_METHOD(engine_call_constructor_arg_method, "engine_call_constructor","(J)J", RidBridge::engine_call_constructor_arg)
-    INIT_NATIVE_METHOD(engine_call_getID_method, "engine_call_getID", ("(J)V"), RidBridge::engine_call_getID)
-    INIT_NATIVE_METHOD(engine_call_isValid_method, "engine_call_isValid","(J)V", RidBridge::engine_call_isValid)
-    INIT_NATIVE_METHOD(engine_call_compareTo_method, "engine_call_compareTo","(J)V", RidBridge::engine_call_compareTo)
-    INIT_NATIVE_METHOD(engine_call_equals_method, "engine_call_equals", ("(J)V"), RidBridge::engine_call_equals)
+    INIT_NATIVE_METHOD("engine_call_constructor","()J", RidBridge::engine_call_constructor)
+    INIT_NATIVE_METHOD("engine_call_constructor","(J)J", RidBridge::engine_call_constructor_arg)
+    INIT_NATIVE_METHOD("engine_call_getID", ("(J)V"), RidBridge::engine_call_getID)
+    INIT_NATIVE_METHOD("engine_call_isValid","(J)V", RidBridge::engine_call_isValid)
+    INIT_NATIVE_METHOD("engine_call_compareTo","(J)V", RidBridge::engine_call_compareTo)
+    INIT_NATIVE_METHOD("engine_call_equals", ("(J)V"), RidBridge::engine_call_equals)
   )
 
 // clang-format on

@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    class PackedVector3ArrayBridge : JavaInstanceWrapper<PackedVector3ArrayBridge> {
+    class PackedVector3ArrayBridge : JavaInstanceWrapper {
     public:
         PackedVector3ArrayBridge(jni::JObject p_wrapped);
         ~PackedVector3ArrayBridge() = default;

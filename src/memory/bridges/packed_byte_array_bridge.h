@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    class PackedByteArrayBridge : JavaInstanceWrapper<PackedByteArrayBridge> {
+    class PackedByteArrayBridge : JavaInstanceWrapper {
     private:
         struct StringNames {
             StringName func_compress_name;

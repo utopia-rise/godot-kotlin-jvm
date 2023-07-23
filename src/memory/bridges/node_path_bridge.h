@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    class NodePathBridge : JavaInstanceWrapper<NodePathBridge> {
+    class NodePathBridge : JavaInstanceWrapper {
     public:
         NodePathBridge(jni::JObject p_wrapped);
         ~NodePathBridge() = default;

@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    class VariantArrayBridge : public JavaInstanceWrapper<VariantArrayBridge> {
+    class VariantArrayBridge : public JavaInstanceWrapper {
     public:
         VariantArrayBridge(jni::JObject p_wrapped);
         ~VariantArrayBridge() = default;

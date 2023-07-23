@@ -8,10 +8,10 @@ JNI_INIT_STATICS_FOR_CLASS(
     TransferContext,
     INIT_JNI_METHOD(GET_BUFFER)
     INIT_JNI_METHOD(REMOVE_SCRIPT)
-    INIT_NATIVE_METHOD(icall_method, "icall", "(JII)V", TransferContext::icall)
-    INIT_NATIVE_METHOD(create_native_objectmethod, "createNativeObject", "(ILgodot/core/KtObject;I)V", TransferContext::create_native_object)
-    INIT_NATIVE_METHOD(get_singleton_method, "getSingleton", "(I)V", TransferContext::get_singleton)
-    INIT_NATIVE_METHOD(free_object_method, "freeObject", "(J)V", TransferContext::free_object)
+    INIT_NATIVE_METHOD("icall", "(JII)V", TransferContext::icall)
+    INIT_NATIVE_METHOD("createNativeObject", "(ILgodot/core/KtObject;I)V", TransferContext::create_native_object)
+    INIT_NATIVE_METHOD("getSingleton", "(I)V", TransferContext::get_singleton)
+    INIT_NATIVE_METHOD("freeObject", "(J)V", TransferContext::free_object)
 )
 // clang-format on
 

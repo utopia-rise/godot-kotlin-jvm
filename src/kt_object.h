@@ -8,7 +8,7 @@
 #include <core/string/string_name.h>
 #include <core/variant/variant.h>
 
-class KtObject : public JavaInstanceWrapper<KtObject> {
+class KtObject : public JavaInstanceWrapper {
 private:
     bool is_ref;
 

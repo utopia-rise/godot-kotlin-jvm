@@ -12,7 +12,7 @@ JNI_INIT_STATICS_FOR_CLASS(
 // clang-format on
 
 KtConstructor::KtConstructor(jni::JObject p_wrapped) :
-  JavaInstanceWrapper<KtConstructor>(p_wrapped),
+  JavaInstanceWrapper(p_wrapped),
   parameter_count(0) {
     jni::Env env {jni::Jvm::current_env()};
     jni::MethodId get_parameter_count_method {jni_methods.GET_PARAMETER_COUNT.method_id};

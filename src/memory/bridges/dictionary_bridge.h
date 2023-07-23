@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    class DictionaryBridge : public JavaInstanceWrapper<DictionaryBridge> {
+    class DictionaryBridge : public JavaInstanceWrapper {
     public:
         DictionaryBridge(jni::JObject p_wrapped);
         ~DictionaryBridge() = default;

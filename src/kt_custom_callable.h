@@ -3,7 +3,7 @@
 
 #include "java_instance_wrapper.h"
 
-class KtCustomCallable : public JavaInstanceWrapper<KtCustomCallable>,
+class KtCustomCallable : public JavaInstanceWrapper,
                          public CallableCustom {
 public:
     uint32_t hash() const override;

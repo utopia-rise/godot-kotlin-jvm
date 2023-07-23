@@ -11,11 +11,11 @@ using namespace bridges;
 // clang-format off
 JNI_INIT_STATICS_FOR_CLASS(
     MemoryBridge,
-    INIT_NATIVE_METHOD(check_instance_method, "checkInstance", "(JJ)Z", MemoryBridge::check_instance)
-    INIT_NATIVE_METHOD(decrement_ref_counter_method, "decrementRefCounter", "(J)V", MemoryBridge::decrement_ref_counter)
-    INIT_NATIVE_METHOD(bind_instance_method, "bindInstance", "(JLgodot/core/memory/GodotBinding;)V", MemoryBridge::bind_instance)
-    INIT_NATIVE_METHOD(unref_native_core_type_method, "unrefNativeCoreType", "(JI)Z", MemoryBridge::unref_native_core_type)
-    INIT_NATIVE_METHOD(notify_leak_method, "notifyLeak", "()V", MemoryBridge::notify_leak)
+    INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryBridge::check_instance)
+    INIT_NATIVE_METHOD("decrementRefCounter", "(J)V", MemoryBridge::decrement_ref_counter)
+    INIT_NATIVE_METHOD("bindInstance", "(JLgodot/core/memory/GodotBinding;)V", MemoryBridge::bind_instance)
+    INIT_NATIVE_METHOD("unrefNativeCoreType", "(JI)Z", MemoryBridge::unref_native_core_type)
+    INIT_NATIVE_METHOD("notifyLeak", "()V", MemoryBridge::notify_leak)
   )
 
 // clang-format on

@@ -6,7 +6,7 @@
 #include "jni/types.h"
 #include "scene/main/multiplayer_api.h"
 
-struct KtRpcConfig : public JavaInstanceWrapper<KtRpcConfig> {
+struct KtRpcConfig : public JavaInstanceWrapper {
     KtRpcConfig(jni::JObject p_wrapped);
     ~KtRpcConfig() = default;
 

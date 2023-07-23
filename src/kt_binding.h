@@ -4,7 +4,7 @@
 #include "java_instance_wrapper.h"
 #include "jni/wrapper.h"
 
-class KtBinding : public JavaInstanceWrapper<KtBinding> {
+class KtBinding : public JavaInstanceWrapper {
 public:
     KtBinding(jni::JObject p_wrapped);
     ~KtBinding();

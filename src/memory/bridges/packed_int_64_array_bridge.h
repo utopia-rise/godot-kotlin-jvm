@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    class PackedInt64IntArrayBridge : JavaInstanceWrapper<PackedInt64IntArrayBridge> {
+    class PackedInt64IntArrayBridge : JavaInstanceWrapper {
     public:
         PackedInt64IntArrayBridge(jni::JObject p_wrapped);
         ~PackedInt64IntArrayBridge() = default;

@@ -5,7 +5,7 @@
 #include "kt_variant.h"
 #include "shared_buffer.h"
 
-class TransferContext : public JavaInstanceWrapper<TransferContext> {
+class TransferContext : public JavaInstanceWrapper {
 public:
     TransferContext(jni::JObject p_wrapped);
 
