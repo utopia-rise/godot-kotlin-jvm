@@ -57,7 +57,11 @@ data class RegisteredClass(
         get() = annotations.getAnnotation<ToolAnnotation>() != null
 
     internal val godotBaseClass: String
-        get() = supertypes
-            .first { it.annotations.hasAnnotation<GodotBaseTypeAnnotation>() }
-            .name
+        get() = if (isAbstract) {
+            ""
+        } else {
+            supertypes
+                .first { it.annotations.hasAnnotation<GodotBaseTypeAnnotation>() }
+                .name
+        }
 }
