@@ -7,7 +7,7 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 
 @RegisterClass
-class Simple: Node3D() {
+open class Simple: Node3D() {
 
     @Export
     @RegisterProperty

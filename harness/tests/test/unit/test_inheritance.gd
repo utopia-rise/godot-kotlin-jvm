@@ -43,9 +43,17 @@ func test_call_parent_open_var_from_child() -> void:
 	
 func test_script_is_child_of() -> void:
 	var child = ClassInheritanceChild.new()
-	var chid_script: Script = child.get_script()
+	var child_script: Script = child.get_script()
 	var parent = ClassInheritanceParent.new()
-	var parent_script = parent.get_script()
-	assert_eq(chid_script.get_base_script(), parent_script)
+	var parent_script: Script = parent.get_script()
+	assert_eq(child_script.get_base_script(), parent_script)
+	child.free()
+	parent.free()
+	
+	child = godot_tests_library_fqname_FQNLSimpleChild.new()
+	child_script= child.get_script()
+	parent = godot_tests_library_fqname_FQNLSimple.new()
+	parent_script = parent.get_script()
+	assert_eq(child_script.get_base_script(), parent_script)
 	child.free()
 	parent.free()
