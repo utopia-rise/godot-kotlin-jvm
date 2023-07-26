@@ -18,7 +18,7 @@ class KtClass : public JavaInstanceWrapper {
 public:
     StringName resource_path;
     StringName registered_class_name;
-    Vector<StringName> super_classes;
+    Vector<StringName> registered_supertypes;
     StringName base_godot_class;
 
     KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -55,7 +55,7 @@ private:
 
     StringName get_base_godot_class(jni::Env& env);
 
-    void fetch_super_classes(jni::Env& env);
+    void fetch_registered_supertypes(jni::Env& env);
 
     void fetch_methods(jni::Env& env);
 
@@ -84,7 +84,7 @@ private:
     DECLARE_JNI_METHODS(
             JNI_METHOD(GET_RESOURCE_PATH, "getResourcePath", "()Ljava/lang/String;")
             JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
-            JNI_METHOD(GET_SUPER_CLASSES, "getSuperClasses", "()[Ljava/lang/String;")
+            JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
             JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
             JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
             JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")

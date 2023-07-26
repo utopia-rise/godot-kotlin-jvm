@@ -4,15 +4,15 @@ package godot.core
 data class KtClass<T : KtObject>(
     val resourcePath: String,
     val registeredName: String,
-    private val _superClasses: List<String>,
+    private val _registeredSupertypes: List<String>,
     private val _constructors: List<KtConstructor<T>?>,
     private val _properties: Map<String, KtProperty<T, *>>,
     private val _functions: Map<String, KtFunction<T, *>>,
     private val _signalInfos: Map<String, KtSignalInfo>,
     val baseGodotClass: String
 ) {
-    val superClasses: Array<String>
-        get() = _superClasses.toTypedArray()
+    val registeredSupertypes: Array<String>
+        get() = _registeredSupertypes.toTypedArray()
     val constructors: Array<KtConstructor<T>?>
         get() = _constructors.toTypedArray()
     val functions: Array<KtFunction<T, *>>

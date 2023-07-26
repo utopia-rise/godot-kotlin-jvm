@@ -8,7 +8,7 @@ JNI_INIT_STATICS_FOR_CLASS(
     INIT_JNI_METHOD(GET_RESOURCE_PATH)
     INIT_JNI_METHOD(GET_RESOURCE_PATH)
     INIT_JNI_METHOD(GET_REGISTERED_NAME)
-    INIT_JNI_METHOD(GET_SUPER_CLASSES)
+    INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES)
     INIT_JNI_METHOD(GET_BASE_GODOT_CLASS)
     INIT_JNI_METHOD(GET_FUNCTIONS)
     INIT_JNI_METHOD(GET_PROPERTIES)
@@ -93,12 +93,12 @@ StringName KtClass::get_base_godot_class(jni::Env& env) {
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
-void KtClass::fetch_super_classes(jni::Env& env) {
-    jni::MethodId getSuperClassesMethod {jni_methods.GET_SUPER_CLASSES.method_id};
+void KtClass::fetch_registered_supertypes(jni::Env& env) {
+    jni::MethodId getSuperClassesMethod {jni_methods.GET_REGISTERED_SUPERTYPES.method_id};
     jni::JObjectArray classesArray {wrapped.call_object_method(env, getSuperClassesMethod)};
     for (int i = 0; i < classesArray.length(env); i++) {
         StringName parent_name = StringName(env.from_jstring(jni::JString(classesArray.get(env, i))));
-        super_classes.append(parent_name);
+        registered_supertypes.append(parent_name);
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("%s user type is parent of %s.", parent_name, registered_class_name));
 #endif
@@ -187,7 +187,7 @@ const Dictionary KtClass::get_rpc_config() {
 
 void KtClass::fetch_members() {
     jni::Env env {jni::Jvm::current_env()};
-    fetch_super_classes(env);
+    fetch_registered_supertypes(env);
     fetch_methods(env);
     fetch_properties(env);
     fetch_signals(env);
