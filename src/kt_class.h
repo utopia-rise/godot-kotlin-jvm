@@ -14,11 +14,11 @@
 const int CONSTRUCTOR_MAX_ARGS_SIZE = 5;
 const int MAX_CONSTRUCTOR_SIZE = CONSTRUCTOR_MAX_ARGS_SIZE + 1;
 
-class KtClass : public JavaInstanceWrapper<KtClass> {
+class KtClass : public JavaInstanceWrapper {
 public:
     StringName resource_path;
-    String registered_class_name;
-    StringName super_class;
+    StringName registered_class_name;
+    Vector<StringName> registered_supertypes;
     StringName base_godot_class;
 
     KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -41,8 +41,6 @@ public:
 
     void fetch_members();
 
-    bool is_assignable_from(KtClass* p_class) const;
-
     const Dictionary get_rpc_config();
 
 private:
@@ -55,9 +53,9 @@ private:
 
     String get_registered_name(jni::Env& env);
 
-    StringName get_super_class(jni::Env& env);
-
     StringName get_base_godot_class(jni::Env& env);
+
+    void fetch_registered_supertypes(jni::Env& env);
 
     void fetch_methods(jni::Env& env);
 
@@ -86,7 +84,7 @@ private:
     DECLARE_JNI_METHODS(
             JNI_METHOD(GET_RESOURCE_PATH, "getResourcePath", "()Ljava/lang/String;")
             JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
-            JNI_METHOD(GET_SUPER_CLASS, "getSuperClass", "()Ljava/lang/String;")
+            JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
             JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
             JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
             JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")

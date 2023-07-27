@@ -78,7 +78,7 @@ abstract class KtObject {
     protected abstract fun new(scriptIndex: Int): Boolean
 
     internal inline fun callConstructor(classIndex: Int, scriptIndex: Int): Unit {
-        TransferContext.createNativeObject(classIndex, this, this::class.java.classLoader, scriptIndex)
+        TransferContext.createNativeObject(classIndex, this, scriptIndex)
         readPtrAndIdFromBuffer()
     }
 

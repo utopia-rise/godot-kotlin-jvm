@@ -3,6 +3,7 @@
 #include "jvm.h"
 
 namespace jni {
+
     Env::Env(JNIEnv* env) {
         this->env = env;
     }

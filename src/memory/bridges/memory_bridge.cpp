@@ -8,50 +8,29 @@
 
 using namespace bridges;
 
-JNI_INIT_STATICS_FOR_CLASS(MemoryBridge)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    MemoryBridge,
+    INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryBridge::check_instance)
+    INIT_NATIVE_METHOD("decrementRefCounter", "(J)V", MemoryBridge::decrement_ref_counter)
+    INIT_NATIVE_METHOD("bindInstance", "(JLgodot/core/memory/GodotBinding;)V", MemoryBridge::bind_instance)
+    INIT_NATIVE_METHOD("unrefNativeCoreType", "(JI)Z", MemoryBridge::unref_native_core_type)
+    INIT_NATIVE_METHOD("notifyLeak", "()V", MemoryBridge::notify_leak)
+  )
 
-MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper(MEMORY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
-    jni::JNativeMethod check_instance_method {const_cast<char*>("checkInstance"), const_cast<char*>("(JJ)Z"), (void*) MemoryBridge::check_instance};
+// clang-format on
 
-    jni::JNativeMethod decrement_ref_counter_method {
-      const_cast<char*>("decrementRefCounter"),
-      const_cast<char*>("(J)V"),
-      (void*) MemoryBridge::decrement_ref_counter};
-
-    jni::JNativeMethod bind_instance_method {
-      const_cast<char*>("bindInstance"),
-      const_cast<char*>("(JLgodot/core/memory/GodotBinding;Ljava/lang/ClassLoader;)V"),
-      (void*) MemoryBridge::bind_instance};
-
-    jni::JNativeMethod unref_native_core_type_method {
-      const_cast<char*>("unrefNativeCoreType"),
-      const_cast<char*>("(JI)Z"),
-      (void*) MemoryBridge::unref_native_core_type};
-
-    jni::JNativeMethod notify_leak_method {const_cast<char*>("notifyLeak"), const_cast<char*>("()V"), (void*) MemoryBridge::notify_leak};
-
-    Vector<jni::JNativeMethod> methods;
-    methods.push_back(check_instance_method);
-    methods.push_back(decrement_ref_counter_method);
-    methods.push_back(bind_instance_method);
-    methods.push_back(unref_native_core_type_method);
-    methods.push_back(notify_leak_method);
-
-    jni::Env env {jni::Jvm::current_env()};
-    j_class.register_natives(env, methods);
-    p_wrapped.delete_local_ref(env);
-}
+MemoryBridge::MemoryBridge(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
     auto* instance {reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
     return instance == ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
 }
 
-void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object, jobject p_class_loader) {
+void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object) {
     Object* obj {ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)))};
     if (obj) {
-        KtBinding* kt_binding = memnew(KtBinding(jni::JObject(p_object), jni::JObject(p_class_loader)));
+        KtBinding* kt_binding = memnew(KtBinding(jni::JObject(p_object)));
         KotlinBindingManager::bind_object(obj, kt_binding);
     }
 }

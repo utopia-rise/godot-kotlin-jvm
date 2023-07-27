@@ -6,8 +6,8 @@
 #include "kt_property.h"
 #include "kt_rpc_config.h"
 
-struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
-    KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+struct KtFunctionInfo : public JavaInstanceWrapper {
+    KtFunctionInfo(jni::JObject p_wrapped);
     ~KtFunctionInfo();
 
     String name;
@@ -27,13 +27,13 @@ struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     // clang-format on
 };
 
-class KtFunction : public JavaInstanceWrapper<KtFunction> {
+class KtFunction : public JavaInstanceWrapper {
 private:
     int parameter_count;
     KtFunctionInfo* method_info;
 
 public:
-    KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    KtFunction(jni::JObject p_wrapped);
     ~KtFunction();
 
     StringName get_name() const;

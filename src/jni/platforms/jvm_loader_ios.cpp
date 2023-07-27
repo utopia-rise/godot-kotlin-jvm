@@ -1,6 +1,7 @@
 #ifdef IOS_ENABLED
 
 #include "../jvm_loader.h"
+
 #include <jni.h>
 
 using namespace jni;
@@ -14,11 +15,11 @@ GetCreatedJavaVMs JvmLoader::get_get_created_java_vm_function() {
 }
 
 void JvmLoader::close_jvm_lib() {
-    //Nothing to do, everything is statically linked
+    // Nothing to do, everything is statically linked
 }
 
 void JvmLoader::load_jvm_lib() {
-    //Nothing to do, everything is statically linked
+    // Nothing to do, everything is statically linked
 }
 
 String JvmLoader::get_jvm_lib_path() {

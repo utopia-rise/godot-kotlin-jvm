@@ -56,11 +56,19 @@ class ClassRegistrarFileBuilder(
         .beginControlFlow("with(registry)") //START: with registry
         .let { funSpecBuilder ->
             if (!registeredClass.isAbstract) {
+                val superClasses = registeredClass.supertypes.mapNotNull { supertype ->
+                    //Used to implement script inheritance methods, so we remove base types and abstract parents.
+                    val value = if (supertype is RegisteredClass && !supertype.isAbstract) {
+                        "\"${supertype.registeredName}\""
+                    } else {
+                        null
+                    }
+                    value
+                }.reduceOrNull { statement, name -> "$statement,$name" } ?: ""
                 funSpecBuilder.beginControlFlow(
-                    "registerClass<%T>(%S,·%S,·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
+                    "registerClass<%T>(%S, listOf($superClasses),·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
                     className,
                     registeredClass.localResourcePathProvider(registeredClass),
-                    registeredClass.supertypes.first().fqName,
                     className,
                     registeredClass.godotBaseClass,
                     registeredClass.registeredName

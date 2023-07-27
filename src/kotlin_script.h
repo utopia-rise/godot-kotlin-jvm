@@ -10,12 +10,14 @@ class KotlinInstance;
 class KotlinScript : public Script {
     GDCLASS(KotlinScript, Script);
     friend class KotlinInstance;
+    friend class TypeManager;
 
 private:
     String source;
 
     // Stored kotlin_class should be nullptr when in TOOL
     KtClass* kotlin_class;
+    Vector<Ref<KotlinScript>> parent_scripts;
 
     template<bool isCreator>
     ScriptInstance* _instance_create(const Variant** p_args, int p_argcount, Object* p_this);

@@ -209,7 +209,7 @@ internal object MemoryManager {
         }
 
         for (ref in bindingList) {
-            MemoryBridge.bindInstance(ref.value!!.id.id, ref, ref::class.java.classLoader)
+            MemoryBridge.bindInstance(ref.value!!.id.id, ref)
             isActive = true
         }
         bindingList.clear()
@@ -342,7 +342,7 @@ internal object MemoryManager {
 
     private object MemoryBridge {
         external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-        external fun bindInstance(instanceId: Long, obj: GodotBinding, classLoader: ClassLoader)
+        external fun bindInstance(instanceId: Long, obj: GodotBinding)
         external fun decrementRefCounter(instanceId: Long)
         external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
         external fun notifyLeak()

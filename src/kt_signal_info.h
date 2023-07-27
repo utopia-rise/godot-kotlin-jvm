@@ -6,8 +6,8 @@
 
 #include <core/object/object.h>
 
-struct KtSignalInfo : public JavaInstanceWrapper<KtSignalInfo> {
-    KtSignalInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+struct KtSignalInfo : public JavaInstanceWrapper {
+    KtSignalInfo(jni::JObject p_wrapped);
     ~KtSignalInfo();
 
     String name;

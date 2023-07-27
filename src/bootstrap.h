@@ -3,7 +3,7 @@
 
 #include "java_instance_wrapper.h"
 
-class Bootstrap : public JavaInstanceWrapper<Bootstrap> {
+class Bootstrap : public JavaInstanceWrapper {
 public:
     // clang-format off
     typedef void (*LoadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
@@ -17,17 +17,23 @@ public:
     typedef void (*RegisterUserTypesMembersHook)(JNIEnv* p_env, jobject p_this);
     // clang-format on
 
-    Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader);
-    ~Bootstrap() = default;
+    static LoadClassesHook load_classes;
+    static UnloadClassesHook unload_classes;
+    static RegisterManagedEngineTypesHook register_engine_type;
+    static RegisterUserTypesNamesHook register_user_types_names;
+    static RegisterUserTypesMembersHook register_user_types_members;
 
-    void register_hooks(
-      jni::Env& p_env,
+    static void register_hooks(
       LoadClassesHook p_load_classes_hook,
       UnloadClassesHook p_unload_classes_hook,
       RegisterManagedEngineTypesHook p_register_managed_engine_types_hook,
       RegisterUserTypesNamesHook p_user_types_names_hook,
-      RegisterUserTypesMembersHook p_user_types_nmembers_hook
+      RegisterUserTypesMembersHook p_user_types_members_hook
     );
+
+    Bootstrap(jni::JObject p_wrapped);
+    ~Bootstrap() = default;
+
     void init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file, const jni::JObject& p_class_loader);
     void finish(jni::Env& p_env);
 

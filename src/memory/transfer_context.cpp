@@ -3,7 +3,18 @@
 #include "gd_kotlin.h"
 #include "kotlin_instance.h"
 
-JNI_INIT_STATICS_FOR_CLASS(TransferContext)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    TransferContext,
+    INIT_JNI_METHOD(GET_BUFFER)
+    INIT_JNI_METHOD(REMOVE_SCRIPT)
+    INIT_NATIVE_METHOD("icall", "(JII)V", TransferContext::icall)
+    INIT_NATIVE_METHOD("createNativeObject", "(ILgodot/core/KtObject;I)V", TransferContext::create_native_object)
+    INIT_NATIVE_METHOD("getSingleton", "(I)V", TransferContext::get_singleton)
+    INIT_NATIVE_METHOD("freeObject", "(J)V", TransferContext::free_object)
+)
+// clang-format on
+
 // when changed, also update ConstructorArgCountCheck.kt!
 const int VARIANT_ARG_MAX {5};
 const int MAX_STACK_SIZE = VARIANT_ARG_MAX * 8;
@@ -12,27 +23,7 @@ thread_local static Variant variant_args[MAX_STACK_SIZE];// NOLINT(cert-err58-cp
 thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
 thread_local static int stack_offset = -1;
 
-TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper("godot.core.memory.TransferContext", p_wrapped, p_class_loader) {
-    jni::JNativeMethod icall_method {const_cast<char*>("icall"), const_cast<char*>("(JII)V"), (void*) TransferContext::icall};
-
-    jni::JNativeMethod create_native_objectmethod {
-      const_cast<char*>("createNativeObject"),
-      const_cast<char*>("(ILgodot/core/KtObject;Ljava/lang/ClassLoader;I)V"),
-      (void*) TransferContext::create_native_object};
-
-    jni::JNativeMethod get_singleton_method {const_cast<char*>("getSingleton"), const_cast<char*>("(I)V"), (void*) TransferContext::get_singleton};
-
-    jni::JNativeMethod free_object_method {const_cast<char*>("freeObject"), const_cast<char*>("(J)V"), (void*) TransferContext::free_object};
-
-    Vector<jni::JNativeMethod> methods;
-    methods.push_back(icall_method);
-    methods.push_back(create_native_objectmethod);
-    methods.push_back(get_singleton_method);
-    methods.push_back(free_object_method);
-    jni::Env env {jni::Jvm::current_env()};
-    j_class.register_natives(env, methods);
-}
+TransferContext::TransferContext(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 TransferContext::~TransferContext() {
     for (auto& variant_arg : variant_args) {
@@ -44,7 +35,7 @@ SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
     thread_local static SharedBuffer shared_buffer;
 
     if (unlikely(!shared_buffer.is_init())) {
-        jni::MethodId method = get_method_id(p_env, jni_methods.GET_BUFFER);
+        jni::MethodId method = jni_methods.GET_BUFFER.method_id;
         jni::JObject buffer = wrapped.call_object_method(p_env, method);
         JVM_CRASH_COND_MSG(buffer.is_null(), "Buffer is null");
         auto* address {static_cast<uint8_t*>(p_env.get_direct_buffer_address(buffer))};
@@ -60,7 +51,7 @@ SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
 
 void TransferContext::remove_script_instance(uint64_t id) {
     jni::Env env {jni::Jvm::current_env()};
-    jni::MethodId method = get_method_id(env, jni_methods.REMOVE_SCRIPT);
+    jni::MethodId method = jni_methods.REMOVE_SCRIPT.method_id;
     jvalue args[1] = {jni::to_jni_arg(id)};
     wrapped.call_object_method(env, method, args);
 }
@@ -161,7 +152,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
 #endif
 }
 
-void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index, jobject p_object, jobject p_class_loader, jint p_script_index) {
+void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index, jobject p_object, jint p_script_index) {
     const StringName& class_name {TypeManager::get_instance().get_engine_type_for_index(static_cast<int>(p_class_index))};
     Object* ptr = ClassDB::instantiate(class_name);
 
@@ -175,7 +166,7 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance
     KotlinBindingManager::set_instance_binding(ptr);
     int script_index {static_cast<int>(p_script_index)};
     if (script_index != -1) {
-        KtObject* kt_object = memnew(KtObject(jni::JObject(p_object), ptr->is_ref_counted(), jni::JObject(p_class_loader)));
+        KtObject* kt_object = memnew(KtObject(jni::JObject(p_object), ptr->is_ref_counted()));
         Ref<KotlinScript> kotlin_script {TypeManager::get_instance().get_user_script_for_index(script_index)};
         KotlinInstance* script = memnew(KotlinInstance(ptr, kt_object, kotlin_script.ptr()));
         ptr->set_script_instance(script);

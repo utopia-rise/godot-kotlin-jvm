@@ -13,7 +13,7 @@
  * @tparam Derived
  */
 template<class Derived>
-class JavaSingletonWrapper : public JavaInstanceWrapper<Derived> {
+class JavaSingletonWrapper : public JavaInstanceWrapper {
 public:
     static Derived& get_instance();
     static void destroy();
@@ -24,7 +24,7 @@ public:
     JavaSingletonWrapper(JavaSingletonWrapper<Derived>&& instance) noexcept = delete;
 
 protected:
-    JavaSingletonWrapper(const char* p_class_name, jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    JavaSingletonWrapper(jni::JObject p_wrapped);
     ~JavaSingletonWrapper() = default;
 
 private:
@@ -47,7 +47,6 @@ void JavaSingletonWrapper<Derived>::destroy() {
 }
 
 template<class Derived>
-JavaSingletonWrapper<Derived>::JavaSingletonWrapper(const char* p_class_name, jni::JObject p_wrapped, jni::JObject& p_class_loader) :
-  JavaInstanceWrapper<Derived>(p_class_name, p_wrapped, p_class_loader) {}
+JavaSingletonWrapper<Derived>::JavaSingletonWrapper(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 #endif// GODOT_JVM_JAVA_SINGLETON_WRAPPER_H

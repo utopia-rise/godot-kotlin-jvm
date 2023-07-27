@@ -46,11 +46,12 @@ class BridgesManager {
 
     template<class T>
     void initialize_bridge(jni::Env& env, jni::JObject class_loader, const char* jvm_class_name, T*& fill) {
+        T::initialize_class(jvm_class_name);
         jni::JClass bridge_class {env.load_class(jvm_class_name, class_loader)};
         jni::FieldId bridge_instance_field {
           bridge_class.get_static_field_id(env, "INSTANCE", vformat("L%s;", jvm_class_name).replace(".", "/").utf8().ptr())};
         jni::JObject bridge_instance {bridge_class.get_static_object_field(env, bridge_instance_field)};
-        fill = new T(bridge_instance, class_loader);
+        fill = new T(bridge_instance);
     }
 
 public:

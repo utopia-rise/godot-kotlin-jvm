@@ -5,9 +5,9 @@
 
 namespace bridges {
 
-    class DictionaryBridge : public JavaInstanceWrapper<DictionaryBridge> {
+    class DictionaryBridge : public JavaInstanceWrapper {
     public:
-        DictionaryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+        DictionaryBridge(jni::JObject p_wrapped);
         ~DictionaryBridge() = default;
 
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);

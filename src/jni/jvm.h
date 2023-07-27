@@ -8,6 +8,8 @@ namespace jni {
     typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);
     typedef jint(JNICALL* GetCreatedJavaVMs)(JavaVM**, jsize, jsize*);
 
+#define LOCAL_FRAME(size) jni::LocalFrame frame = jni::LocalFrame(size)
+
     class Jvm {
     public:
         enum Type {

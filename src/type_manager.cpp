@@ -14,6 +14,7 @@ void TypeManager::clear() {
     engine_singleton_names.clear();
     engine_type_method.clear();
     user_scripts.clear();
+    user_scripts_map.clear();
 }
 
 int TypeManager::get_java_engine_type_constructor_index_for_type(const StringName& p_type_name) const {
@@ -38,6 +39,10 @@ const String& TypeManager::get_engine_singleton_name_for_index(int p_index) cons
 
 const Ref<KotlinScript>& TypeManager::get_user_script_for_index(int p_index) const {
     return user_scripts[p_index];
+}
+
+const Ref<KotlinScript>& TypeManager::get_user_script_from_name(StringName name) const {
+    return user_scripts_map[name];
 }
 
 void TypeManager::register_engine_types(jni::Env& p_env, jni::JObjectArray& p_engine_types) {
@@ -80,7 +85,9 @@ void TypeManager::register_user_types(jni::Env& p_env, jni::JObjectArray& p_type
     LOG_VERBOSE("Starting to register user types...");
     for (int i = 0; i < p_types.length(p_env); ++i) {
         const String& script_path {p_env.from_jstring(static_cast<jni::JString>(p_types.get(p_env, i)))};
-        user_scripts.insert(i, ResourceLoader::load(script_path, "KotlinScript"));
+        Ref<KotlinScript> script = ResourceLoader::load(script_path, "KotlinScript");
+        user_scripts.insert(i, script);
+        user_scripts_map[script->get_global_name()] = script;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Registered %s user type with index %s.", script_path, i));
 #endif

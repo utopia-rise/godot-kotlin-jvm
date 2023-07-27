@@ -258,11 +258,13 @@ void GDKotlin::init() {
     }
 #endif
 
+    initialize_classes();
+
     jni::JClass transfer_ctx_cls = env.load_class("godot.core.memory.TransferContext", class_loader);
     jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/TransferContext;");
     jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
     JVM_CRASH_COND_MSG(transfer_ctx_instance.is_null(), "Failed to retrieve TransferContext instance");
-    transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
+    transfer_context = new TransferContext(transfer_ctx_instance);
 
     LongStringQueue::get_instance();
     int max_string_size {configuration.get_max_string_size()};
@@ -304,9 +306,9 @@ void GDKotlin::init() {
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
-    bootstrap = new Bootstrap(instance, class_loader);
-
-    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook, register_user_types_hook, register_user_types_members_hook);
+    bootstrap = new Bootstrap(instance);
+    Bootstrap::register_hooks(load_classes_hook, unload_classes_hook, register_engine_types_hook, register_user_types_hook, register_user_types_members_hook);
+    Bootstrap::initialize_class("godot.runtime.Bootstrap");
     bool is_editor = Engine::get_singleton()->is_editor_hint();
 
 #ifdef TOOLS_ENABLED
@@ -391,13 +393,11 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 #endif
     jni::JObject class_loader = ClassLoader::get_default_loader();
     for (auto i = 0; i < p_classes.length(p_env); i++) {
-        jni::JObject clazz = p_classes.get(p_env, i);
-        auto* kt_class = new KtClass(clazz, class_loader);
+        auto* kt_class = new KtClass(p_classes.get(p_env, i), class_loader);
         classes[kt_class->resource_path] = kt_class;
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->resource_path, kt_class->super_class, kt_class->registered_class_name));
+        LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->resource_path, kt_class->base_godot_class, kt_class->registered_class_name));
 #endif
-        clazz.delete_local_ref(p_env);
     }
 }
 
@@ -408,7 +408,7 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
     for (const KeyValue<StringName, KtClass*>& item : classes) {
         KtClass* kt_class {item.value};
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Unloading class %s : %s", kt_class->resource_path, kt_class->super_class));
+        LOG_VERBOSE(vformat("Unloading class %s : %s, as %s", kt_class->resource_path, kt_class->base_godot_class, kt_class->registered_class_name));
 #endif
         delete kt_class;
     }
@@ -546,4 +546,21 @@ bool GDKotlin::initialized() const {
 
 const Vector<Pair<String, String>>& GDKotlin::get_configuration_errors() const {
     return configuration_errors;
+}
+
+void GDKotlin::initialize_classes() {
+    TransferContext::initialize_class("godot.core.memory.TransferContext");
+    LongStringQueue::initialize_class("godot.core.LongStringQueue");
+
+    KtObject::initialize_class("godot.core.KtObject");
+
+    KtPropertyInfo::initialize_class("godot.core.KtPropertyInfo");
+    KtProperty::initialize_class("godot.core.KtProperty");
+    KtConstructor::initialize_class("godot.core.KtConstructor");
+    KtSignalInfo::initialize_class("godot.core.KtSignalInfo");
+    KtRpcConfig::initialize_class("godot.core.KtRpcConfig");
+    KtFunctionInfo::initialize_class("godot.core.KtFunctionInfo");
+    KtFunction::initialize_class("godot.core.KtFunction");
+    KtCustomCallable::initialize_class("godot.core.KtCustomCallable");
+    KtClass::initialize_class("godot.core.KtClass");
 }

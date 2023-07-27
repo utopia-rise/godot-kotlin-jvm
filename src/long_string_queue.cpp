@@ -2,30 +2,26 @@
 
 #include "jni/class_loader.h"
 
-JNI_INIT_STATICS_FOR_CLASS(LongStringQueue)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    LongStringQueue,
+    INIT_JNI_METHOD(QUEUE_STRING)
+    INIT_JNI_METHOD(SET_STRING_MAX_SIZE)
+    INIT_NATIVE_METHOD("sendStringToCPP", "(Ljava/lang/String;)V", LongStringQueue::send_string_to_cpp)
+)
+// clang-format on
 
 // If changed, remember to change also LongStringQueue::stringMaxSize on JVM side  and the StringTest.kt
 int LongStringQueue::max_string_size = 512;
 
 thread_local static List<String> string_queue;// NOLINT(cert-err58-cpp)
 
-LongStringQueue::LongStringQueue(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
-  JavaSingletonWrapper<LongStringQueue>("godot.core.LongStringQueue", p_wrapped, p_class_loader) {
-    jni::JNativeMethod send_string_to_cpp_method {
-      const_cast<char*>("sendStringToCPP"),
-      const_cast<char*>("(Ljava/lang/String;)V"),
-      (void*) LongStringQueue::send_string_to_cpp};
-
-    Vector<jni::JNativeMethod> methods;
-    methods.push_back(send_string_to_cpp_method);
-    jni::Env env {jni::Jvm::current_env()};
-    j_class.register_natives(env, methods);
-}
+LongStringQueue::LongStringQueue(jni::JObject p_wrapped) : JavaSingletonWrapper<LongStringQueue>(p_wrapped) {}
 
 void LongStringQueue::set_string_max_size(int max_size) {
     jni::Env env {jni::Jvm::current_env()};
     LongStringQueue::max_string_size = max_size;
-    jni::MethodId method = get_method_id(env, jni_methods.SET_STRING_MAX_SIZE);
+    jni::MethodId method = jni_methods.SET_STRING_MAX_SIZE.method_id;
     jvalue buffer_size[1] = {jni::to_jni_arg(max_size)};
     wrapped.call_void_method(env, method, buffer_size);
 }
@@ -42,7 +38,7 @@ void LongStringQueue::queue_string(const String& str) {
 
 void LongStringQueue::send_string_to_jvm(const String& str) {
     jni::Env env {jni::Jvm::current_env()};
-    jni::MethodId method = get_method_id(env, jni_methods.QUEUE_STRING);
+    jni::MethodId method = jni_methods.QUEUE_STRING.method_id;
     jni::JString java_string = env.new_string(str.utf8().get_data());
     jvalue args[1] = {jni::to_jni_arg(java_string)};
     wrapped.call_void_method(env, method, args);
@@ -57,18 +53,14 @@ void LongStringQueue::send_string_to_cpp(JNIEnv* p_raw_env, jobject p_instance, 
 LongStringQueue* LongStringQueue::init() {
     jni::Env env {jni::Jvm::current_env()};
     jni::JObject class_loader = ClassLoader::get_default_loader();
+
     jni::JClass long_string_queue_cls = env.load_class("godot.core.LongStringQueue", class_loader);
-
     jni::FieldId long_string_queue_instance_field = long_string_queue_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/LongStringQueue;");
-
     jni::JObject long_string_queue_instance = long_string_queue_cls.get_static_object_field(env, long_string_queue_instance_field);
-
     JVM_CRASH_COND_MSG(long_string_queue_instance.is_null(), "Failed to retrieve LongStringQueue instance");
 
-    auto* instance {new LongStringQueue(long_string_queue_instance, class_loader)};
-
+    auto* instance {new LongStringQueue(long_string_queue_instance)};
     long_string_queue_cls.delete_local_ref(env);
-    long_string_queue_instance.delete_local_ref(env);
 
     return instance;
 }

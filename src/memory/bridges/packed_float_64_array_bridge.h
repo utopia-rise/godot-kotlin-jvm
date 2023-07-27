@@ -5,9 +5,9 @@
 
 namespace bridges {
 
-    class PackedFloat64ArrayBridge : JavaInstanceWrapper<PackedFloat64ArrayBridge> {
+    class PackedFloat64ArrayBridge : JavaInstanceWrapper {
     public:
-        PackedFloat64ArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+        PackedFloat64ArrayBridge(jni::JObject p_wrapped);
         ~PackedFloat64ArrayBridge() = default;
 
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);

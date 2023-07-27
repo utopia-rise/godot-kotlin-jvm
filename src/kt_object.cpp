@@ -1,18 +1,19 @@
 #include "kt_object.h"
 
-JNI_INIT_STATICS_FOR_CLASS(KtObject)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+  KtObject,
+  INIT_JNI_METHOD(ON_DESTROY)
+  )
 
-KtObject::KtObject(jni::JObject p_wrapped, bool p_is_ref, jni::JObject p_class_loader) :
-  JavaInstanceWrapper("godot.core.KtObject", p_wrapped, p_class_loader),
-  is_ref(p_is_ref) {
-    jni::Env env {jni::Jvm::current_env()};
-    p_wrapped.delete_local_ref(env);
-}
+// clang-format on
+
+KtObject::KtObject(jni::JObject p_wrapped, bool p_is_ref) : JavaInstanceWrapper(p_wrapped), is_ref(p_is_ref) {}
 
 KtObject::~KtObject() {
     if (is_ref) { return; }
     jni::Env env {jni::Jvm::current_env()};
-    jni::MethodId on_destroy_method = get_method_id(env, jni_methods.ON_DESTROY);
+    jni::MethodId on_destroy_method = jni_methods.ON_DESTROY.method_id;
     wrapped.call_void_method(env, on_destroy_method);
 }
 

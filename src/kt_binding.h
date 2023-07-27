@@ -4,10 +4,10 @@
 #include "java_instance_wrapper.h"
 #include "jni/wrapper.h"
 
-class KtBinding : public JavaInstanceWrapper<KtBinding> {
+class KtBinding : public JavaInstanceWrapper {
 public:
-    KtBinding(jni::JObject p_wrapped, jni::JObject p_class_loader);
+    KtBinding(jni::JObject p_wrapped);
     ~KtBinding();
 };
 
-#endif// GODOT_JVM_KT_OBJECT_H
+#endif// GODOT_JVM_KT_BINDING_H

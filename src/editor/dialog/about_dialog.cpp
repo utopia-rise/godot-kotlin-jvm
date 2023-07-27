@@ -5,8 +5,8 @@
 
 #include "editor/godot_kotlin_jvm_editor.h"
 
-#include <editor/editor_scale.h>
 #include <editor/editor_interface.h>
+#include <editor/editor_scale.h>
 #include <scene/gui/texture_rect.h>
 
 AboutDialog::AboutDialog() : AcceptDialog(), about_dialog_check_box(memnew(CheckBox)) {

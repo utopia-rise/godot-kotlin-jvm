@@ -6,144 +6,39 @@
 
 using namespace bridges;
 
-JNI_INIT_STATICS_FOR_CLASS(PackedStringArrayBridge)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    PackedStringArrayBridge,
+    INIT_NATIVE_METHOD("engine_call_constructor", "()J", PackedStringArrayBridge::engine_call_constructor)
+    INIT_NATIVE_METHOD("engine_call_constructor_packed_array", "()J", PackedStringArrayBridge::engine_call_constructor_packed_array)
+    INIT_NATIVE_METHOD("engine_call_constructor_array", "()J", PackedStringArrayBridge::engine_call_constructor_array)
+    INIT_NATIVE_METHOD("engine_call_append", "(J)V", PackedStringArrayBridge::engine_call_append)
+    INIT_NATIVE_METHOD("engine_call_appendArray", "(J)V", PackedStringArrayBridge::engine_call_appendArray)
+    INIT_NATIVE_METHOD("engine_call_bsearch", "(J)V", PackedStringArrayBridge::engine_call_bsearch)
+    INIT_NATIVE_METHOD("engine_call_clear", "(J)V", PackedStringArrayBridge::engine_call_clear)
+    INIT_NATIVE_METHOD("engine_call_count", "(J)V", PackedStringArrayBridge::engine_call_count)
+    INIT_NATIVE_METHOD("engine_call_duplicate", "(J)V", PackedStringArrayBridge::engine_call_duplicate)
+    INIT_NATIVE_METHOD("engine_call_fill", "(J)V", PackedStringArrayBridge::engine_call_fill)
+    INIT_NATIVE_METHOD("engine_call_find", "(J)V", PackedStringArrayBridge::engine_call_find)
+    INIT_NATIVE_METHOD("engine_call_is_empty", "(J)V", PackedStringArrayBridge::engine_call_is_empty)
+    INIT_NATIVE_METHOD("engine_call_get", "(J)V", PackedStringArrayBridge::engine_call_get)
+    INIT_NATIVE_METHOD("engine_call_has", "(J)V", PackedStringArrayBridge::engine_call_has)
+    INIT_NATIVE_METHOD("engine_call_insert", "(J)V", PackedStringArrayBridge::engine_call_insert)
+    INIT_NATIVE_METHOD("engine_call_reverse", "(J)V", PackedStringArrayBridge::engine_call_reverse)
+    INIT_NATIVE_METHOD("engine_call_pushback", "(J)V", PackedStringArrayBridge::engine_call_pushback)
+    INIT_NATIVE_METHOD("engine_call_remove_at", "(J)V", PackedStringArrayBridge::engine_call_remove_at)
+    INIT_NATIVE_METHOD("engine_call_resize", "(J)V", PackedStringArrayBridge::engine_call_resize)
+    INIT_NATIVE_METHOD("engine_call_rfind", "(J)V", PackedStringArrayBridge::engine_call_rfind)
+    INIT_NATIVE_METHOD("engine_call_set", "(J)V", PackedStringArrayBridge::engine_call_set)
+    INIT_NATIVE_METHOD("engine_call_size", "(J)V", PackedStringArrayBridge::engine_call_size)
+    INIT_NATIVE_METHOD("engine_call_slice", "(J)V", PackedStringArrayBridge::engine_call_slice)
+    INIT_NATIVE_METHOD("engine_call_sort", "(J)V", PackedStringArrayBridge::engine_call_sort)
+    INIT_NATIVE_METHOD("engine_call_to_byte_array", "(J)V", PackedStringArrayBridge::engine_call_to_byte_array)
+  )
 
-PackedStringArrayBridge::PackedStringArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper(PACKED_STRING_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
-    jni::JNativeMethod engine_call_constructor_method {
-      const_cast<char*>("engine_call_constructor"),
-      const_cast<char*>("()J"),
-      (void*) PackedStringArrayBridge::engine_call_constructor};
-    jni::JNativeMethod engine_call_constructor_packed_int_64_array_method {
-      const_cast<char*>("engine_call_constructor_packed_array"),
-      const_cast<char*>("()J"),
-      (void*) PackedStringArrayBridge::engine_call_constructor_packed_array};
-    jni::JNativeMethod engine_call_constructor_array_method {
-      const_cast<char*>("engine_call_constructor_array"),
-      const_cast<char*>("()J"),
-      (void*) PackedStringArrayBridge::engine_call_constructor_array};
+// clang-format on
 
-    jni::JNativeMethod engine_call_append_method {
-      const_cast<char*>("engine_call_append"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_append};
-    jni::JNativeMethod engine_call_appendArray_method {
-      const_cast<char*>("engine_call_appendArray"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_appendArray};
-    jni::JNativeMethod engine_call_bsearch_method {
-      const_cast<char*>("engine_call_bsearch"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_bsearch};
-    jni::JNativeMethod engine_call_clear_method {
-      const_cast<char*>("engine_call_clear"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_clear};
-    jni::JNativeMethod engine_call_count_method {
-      const_cast<char*>("engine_call_count"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_count};
-    jni::JNativeMethod engine_call_duplicate_method {
-      const_cast<char*>("engine_call_duplicate"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_duplicate};
-    jni::JNativeMethod engine_call_fill_method {
-      const_cast<char*>("engine_call_fill"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_fill};
-    jni::JNativeMethod engine_call_find_method {
-      const_cast<char*>("engine_call_find"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_find};
-    jni::JNativeMethod engine_call_is_empty_method {
-      const_cast<char*>("engine_call_is_empty"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_is_empty};
-    jni::JNativeMethod engine_call_get_method {
-      const_cast<char*>("engine_call_get"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_get};
-    jni::JNativeMethod engine_call_has_method {
-      const_cast<char*>("engine_call_has"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_has};
-    jni::JNativeMethod engine_call_insert_method {
-      const_cast<char*>("engine_call_insert"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_insert};
-    jni::JNativeMethod engine_call_reverse_method {
-      const_cast<char*>("engine_call_reverse"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_reverse};
-    jni::JNativeMethod engine_call_pushback_method {
-      const_cast<char*>("engine_call_pushback"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_pushback};
-    jni::JNativeMethod engine_call_remove_at_method {
-      const_cast<char*>("engine_call_remove_at"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_remove_at};
-    jni::JNativeMethod engine_call_resize_method {
-      const_cast<char*>("engine_call_resize"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_resize};
-    jni::JNativeMethod engine_call_rfind_method {
-      const_cast<char*>("engine_call_rfind"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_rfind};
-    jni::JNativeMethod engine_call_set_method {
-      const_cast<char*>("engine_call_set"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_set};
-    jni::JNativeMethod engine_call_size_method {
-      const_cast<char*>("engine_call_size"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_size};
-    jni::JNativeMethod engine_call_slice_method {
-      const_cast<char*>("engine_call_slice"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_slice};
-    jni::JNativeMethod engine_call_sort_method {
-      const_cast<char*>("engine_call_sort"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_sort};
-    jni::JNativeMethod engine_call_to_byte_array_method {
-      const_cast<char*>("engine_call_to_byte_array"),
-      const_cast<char*>("(J)V"),
-      (void*) PackedStringArrayBridge::engine_call_to_byte_array};
-
-    Vector<jni::JNativeMethod> methods;
-    methods.push_back(engine_call_constructor_method);
-    methods.push_back(engine_call_constructor_packed_int_64_array_method);
-    methods.push_back(engine_call_constructor_array_method);
-
-    methods.push_back(engine_call_append_method);
-    methods.push_back(engine_call_appendArray_method);
-    methods.push_back(engine_call_bsearch_method);
-    methods.push_back(engine_call_clear_method);
-    methods.push_back(engine_call_count_method);
-    methods.push_back(engine_call_duplicate_method);
-    methods.push_back(engine_call_fill_method);
-    methods.push_back(engine_call_find_method);
-    methods.push_back(engine_call_get_method);
-    methods.push_back(engine_call_has_method);
-    methods.push_back(engine_call_insert_method);
-    methods.push_back(engine_call_is_empty_method);
-    methods.push_back(engine_call_reverse_method);
-    methods.push_back(engine_call_pushback_method);
-    methods.push_back(engine_call_remove_at_method);
-    methods.push_back(engine_call_resize_method);
-    methods.push_back(engine_call_rfind_method);
-    methods.push_back(engine_call_set_method);
-    methods.push_back(engine_call_size_method);
-    methods.push_back(engine_call_slice_method);
-    methods.push_back(engine_call_sort_method);
-    methods.push_back(engine_call_to_byte_array_method);
-
-    jni::Env env {jni::Jvm::current_env()};
-    j_class.register_natives(env, methods);
-    p_wrapped.delete_local_ref(env);
-}
+PackedStringArrayBridge::PackedStringArrayBridge(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 uintptr_t PackedStringArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(PackedStringArray));

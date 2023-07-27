@@ -1,54 +1,42 @@
 #include "bootstrap.h"
 
-JNI_INIT_STATICS_FOR_CLASS(Bootstrap)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    Bootstrap,
+    INIT_JNI_METHOD(INIT)
+    INIT_JNI_METHOD(FINISH)
+    INIT_NATIVE_METHOD("loadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::load_classes)
+    INIT_NATIVE_METHOD("unloadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::unload_classes)
+    INIT_NATIVE_METHOD("registerManagedEngineTypes", "([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/Integer;)V", Bootstrap::register_engine_type)
+    INIT_NATIVE_METHOD("registerUserTypesNames", "([Ljava/lang/String;)V", Bootstrap::register_user_types_names)
+    INIT_NATIVE_METHOD("registerUserTypesMembers", "()V", Bootstrap::register_user_types_members)
+)
+// clang-format on
 
-Bootstrap::Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper("godot.runtime.Bootstrap", p_wrapped, p_class_loader) {}
+Bootstrap::LoadClassesHook Bootstrap::load_classes {};
+Bootstrap::UnloadClassesHook Bootstrap::unload_classes {};
+Bootstrap::RegisterManagedEngineTypesHook Bootstrap::register_engine_type {};
+Bootstrap::RegisterUserTypesNamesHook Bootstrap::register_user_types_names {};
+Bootstrap::RegisterUserTypesMembersHook Bootstrap::register_user_types_members {};
+
+Bootstrap::Bootstrap(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 void Bootstrap::register_hooks(
-  jni::Env& p_env,
   LoadClassesHook p_load_classes_hook,
   UnloadClassesHook p_unload_classes_hook,
   RegisterManagedEngineTypesHook p_register_managed_engine_types_hook,
   RegisterUserTypesNamesHook p_user_types_names_hook,
-  RegisterUserTypesMembersHook p_user_types_nmembers_hook
+  RegisterUserTypesMembersHook p_user_types_members_hook
 ) {
-    jni::JNativeMethod load_class_hook_method {
-      const_cast<char*>("loadClasses"),
-      const_cast<char*>("([Lgodot/core/KtClass;)V"),
-      (void*) p_load_classes_hook};
-
-    jni::JNativeMethod unload_class_hook_method {
-      const_cast<char*>("unloadClasses"),
-      const_cast<char*>("([Lgodot/core/KtClass;)V"),
-      (void*) p_unload_classes_hook};
-
-    jni::JNativeMethod register_managed_engine_types_method {
-      const_cast<char*>("registerManagedEngineTypes"),
-      const_cast<char*>("([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/Integer;)V"),
-      (void*) p_register_managed_engine_types_hook};
-
-    jni::JNativeMethod register_user_types_names {
-      const_cast<char*>("registerUserTypesNames"),
-      const_cast<char*>("([Ljava/lang/String;)V"),
-      (void*) p_user_types_names_hook};
-
-    jni::JNativeMethod register_user_types_members {
-      const_cast<char*>("registerUserTypesMembers"),
-      const_cast<char*>("()V"),
-      (void*) p_user_types_nmembers_hook};
-
-    Vector<jni::JNativeMethod> methods;
-    methods.push_back(load_class_hook_method);
-    methods.push_back(unload_class_hook_method);
-    methods.push_back(register_managed_engine_types_method);
-    methods.push_back(register_user_types_names);
-    methods.push_back(register_user_types_members);
-    j_class.register_natives(p_env, methods);
+    Bootstrap::load_classes = p_load_classes_hook;
+    Bootstrap::unload_classes = p_unload_classes_hook;
+    Bootstrap::register_engine_type = p_register_managed_engine_types_hook;
+    Bootstrap::register_user_types_names = p_user_types_names_hook;
+    Bootstrap::register_user_types_members = p_user_types_members_hook;
 }
 
 void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file, const jni::JObject& p_class_loader) {
-    jni::MethodId init_method = get_method_id(p_env, jni_methods.INIT);
+    jni::MethodId init_method = jni_methods.INIT.method_id;
     jni::JObject project_path = p_env.new_string(p_project_path.utf8().get_data());
     jni::JObject jar_path = p_env.new_string(p_jar_path.utf8().get_data());
     jni::JObject jar_file {p_env.new_string(p_jar_file.utf8().get_data())};
@@ -62,6 +50,6 @@ void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_
 }
 
 void Bootstrap::finish(jni::Env& p_env) {
-    jni::MethodId finish_method = get_method_id(p_env, jni_methods.FINISH);
+    jni::MethodId finish_method = jni_methods.FINISH.method_id;
     wrapped.call_void_method(p_env, finish_method);
 }

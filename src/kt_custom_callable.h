@@ -3,7 +3,7 @@
 
 #include "java_instance_wrapper.h"
 
-class KtCustomCallable : public JavaInstanceWrapper<KtCustomCallable>,
+class KtCustomCallable : public JavaInstanceWrapper,
                          public CallableCustom {
 public:
     uint32_t hash() const override;
@@ -16,7 +16,7 @@ public:
     static bool compare_equal(const CallableCustom* p_a, const CallableCustom* p_b);
     static bool compare_less(const CallableCustom* p_a, const CallableCustom* p_b);
 
-    KtCustomCallable(jni::JObject p_wrapped, jni::JObject p_class_loader);
+    KtCustomCallable(jni::JObject p_wrapped);
     ~KtCustomCallable() = default;
 
 private:

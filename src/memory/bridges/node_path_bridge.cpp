@@ -6,86 +6,29 @@
 
 using namespace bridges;
 
-JNI_INIT_STATICS_FOR_CLASS(NodePathBridge)
+// clang-format off
+JNI_INIT_STATICS_FOR_CLASS(
+    NodePathBridge,
+    INIT_NATIVE_METHOD("engine_call_constructor", "()J", NodePathBridge::engine_call_constructor)
+    INIT_NATIVE_METHOD("engine_call_constructor_string", "()J", NodePathBridge::engine_call_constructor_string)
+    INIT_NATIVE_METHOD("engine_call_constructor_node_path", "()J", NodePathBridge::engine_call_constructor_node_path)
+    INIT_NATIVE_METHOD("engine_call_path", "(J)V", NodePathBridge::engine_call_path)
+    INIT_NATIVE_METHOD("engine_call_getAsPropertyPath", "(J)V", NodePathBridge::engine_call_getAsPropertyPath)
+    INIT_NATIVE_METHOD("engine_call_getName", "(J)V", NodePathBridge::engine_call_getName)
+    INIT_NATIVE_METHOD("engine_call_getNameCount", "(J)V", NodePathBridge::engine_call_getNameCount)
+    INIT_NATIVE_METHOD("engine_call_getSubname", "(J)V", NodePathBridge::engine_call_getSubname)
+    INIT_NATIVE_METHOD("engine_call_getSubnameCount", "(J)V", NodePathBridge::engine_call_getSubnameCount)
+    INIT_NATIVE_METHOD("engine_call_isAbsolute", "(J)V", NodePathBridge::engine_call_isAbsolute)
+    INIT_NATIVE_METHOD("engine_call_hash", "(J)V",  NodePathBridge::engine_call_hash)
+    INIT_NATIVE_METHOD("engine_call_isEmpty", "(J)V", NodePathBridge::engine_call_isEmpty)
+    INIT_NATIVE_METHOD("engine_call_getConcatenatedSubnames", "(J)V", NodePathBridge::engine_call_getConcatenatedSubnames)
+    INIT_NATIVE_METHOD("engine_call_getConcatenatedNames", "(J)V", NodePathBridge::engine_call_getConcatenatedNames)
+    INIT_NATIVE_METHOD("engine_call_equals", "(J)V", NodePathBridge::engine_call_equals)
+  )
 
-NodePathBridge::NodePathBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-  JavaInstanceWrapper(NODE_PATH_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
-    jni::JNativeMethod engine_call_constructor_method {
-      const_cast<char*>("engine_call_constructor"),
-      const_cast<char*>("()J"),
-      (void*) NodePathBridge::engine_call_constructor};
-    jni::JNativeMethod engine_call_constructor_string_method {
-      const_cast<char*>("engine_call_constructor_string"),
-      const_cast<char*>("()J"),
-      (void*) NodePathBridge::engine_call_constructor_string};
-    jni::JNativeMethod engine_call_constructor_node_path_method {
-      const_cast<char*>("engine_call_constructor_node_path"),
-      const_cast<char*>("()J"),
-      (void*) NodePathBridge::engine_call_constructor_node_path};
-    jni::JNativeMethod engine_call_path_method {const_cast<char*>("engine_call_path"), const_cast<char*>("(J)V"), (void*) NodePathBridge::engine_call_path};
-    jni::JNativeMethod engine_call_getAsPropertyPath_method {
-      const_cast<char*>("engine_call_getAsPropertyPath"),
-      const_cast<char*>("(J)V"),
-      (void*) NodePathBridge::engine_call_getAsPropertyPath};
-    jni::JNativeMethod engine_call_getName_method {
-      const_cast<char*>("engine_call_getName"),
-      const_cast<char*>("(J)V"),
-      (void*) NodePathBridge::engine_call_getName};
-    jni::JNativeMethod engine_call_getNameCount_method {
-      const_cast<char*>("engine_call_getNameCount"),
-      const_cast<char*>("(J)V"),
-      (void*) NodePathBridge::engine_call_getNameCount};
-    jni::JNativeMethod engine_call_getSubname_method {
-      const_cast<char*>("engine_call_getSubname"),
-      const_cast<char*>("(J)V"),
-      (void*) NodePathBridge::engine_call_getSubname};
-    jni::JNativeMethod engine_call_getSubnameCount_method {
-      const_cast<char*>("engine_call_getSubnameCount"),
-      const_cast<char*>("(J)V"),
-      (void*) NodePathBridge::engine_call_getSubnameCount};
-    jni::JNativeMethod engine_call_isAbsolute_method {
-      const_cast<char*>("engine_call_isAbsolute"),
-      const_cast<char*>("(J)V"),
-      (void*) NodePathBridge::engine_call_isAbsolute};
-    jni::JNativeMethod engine_call_hash_method {const_cast<char*>("engine_call_hash"), const_cast<char*>("(J)V"), (void*) NodePathBridge::engine_call_hash};
-    jni::JNativeMethod engine_call_isEmpty_method {
-      const_cast<char*>("engine_call_isEmpty"),
-      const_cast<char*>("(J)V"),
-      (void*) NodePathBridge::engine_call_isEmpty};
-    jni::JNativeMethod engine_call_getConcatenatedSubnames_method {
-      const_cast<char*>("engine_call_getConcatenatedSubnames"),
-      const_cast<char*>("(J)V"),
-      (void*) NodePathBridge::engine_call_getConcatenatedSubnames};
-    jni::JNativeMethod engine_call_getConcatenatedNames_method {
-      const_cast<char*>("engine_call_getConcatenatedNames"),
-      const_cast<char*>("(J)V"),
-      (void*) NodePathBridge::engine_call_getConcatenatedNames};
-    jni::JNativeMethod engine_call_equals_method {
-      const_cast<char*>("engine_call_equals"),
-      const_cast<char*>("(J)V"),
-      (void*) NodePathBridge::engine_call_equals};
+// clang-format on
 
-    Vector<jni::JNativeMethod> methods;
-    methods.push_back(engine_call_constructor_method);
-    methods.push_back(engine_call_constructor_string_method);
-    methods.push_back(engine_call_constructor_node_path_method);
-    methods.push_back(engine_call_path_method);
-    methods.push_back(engine_call_getAsPropertyPath_method);
-    methods.push_back(engine_call_getName_method);
-    methods.push_back(engine_call_getNameCount_method);
-    methods.push_back(engine_call_getSubname_method);
-    methods.push_back(engine_call_getSubnameCount_method);
-    methods.push_back(engine_call_isAbsolute_method);
-    methods.push_back(engine_call_hash_method);
-    methods.push_back(engine_call_isEmpty_method);
-    methods.push_back(engine_call_getConcatenatedNames_method);
-    methods.push_back(engine_call_getConcatenatedSubnames_method);
-    methods.push_back(engine_call_equals_method);
-
-    jni::Env env {jni::Jvm::current_env()};
-    j_class.register_natives(env, methods);
-    p_wrapped.delete_local_ref(env);
-}
+NodePathBridge::NodePathBridge(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
 uintptr_t NodePathBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(NodePath));

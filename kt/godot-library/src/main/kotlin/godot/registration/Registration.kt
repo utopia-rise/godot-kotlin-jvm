@@ -53,7 +53,7 @@ data class KtFunctionArgument(
 class ClassBuilderDsl<T : KtObject>(
     @PublishedApi internal val localResourcePath: String,
     private val registeredName: String,
-    private val superClass: String,
+    private val superClasses: List<String>,
     private val baseGodotClass: String
 ) {
     private val constructors = mutableMapOf<Int, KtConstructor<T>>()
@@ -536,7 +536,7 @@ class ClassBuilderDsl<T : KtObject>(
         return KtClass(
             localResourcePath,
             registeredName,
-            superClass,
+            superClasses,
             constructorArray.toList(),
             properties,
             functions,
@@ -556,7 +556,7 @@ class ClassRegistry(
 
     fun <T : KtObject> registerClass(
         localResourcePath: String,
-        superClass: String,
+        superClass: List<String>,
         kClass: KClass<out KtObject>,
         isTool: Boolean = false,
         baseGodotClass: String,
