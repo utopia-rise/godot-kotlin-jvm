@@ -52,7 +52,7 @@
     ],
     "methods" : [
       { "name" : "icall", "parameterTypes" : ["long", "int", "int"] },
-      { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "java.lang.ClassLoader", "int"] },
+      { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "int"] },
       { "name" : "getSingleton", "parameterTypes" : ["int"] },
       { "name" : "freeObject", "parameterTypes" : ["long"] },
       { "name" : "getBuffer", "parameterTypes" : [] },
@@ -87,7 +87,8 @@
     ],
     "methods" : [
       { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
-      { "name" : "bindInstance", "parameterTypes" : ["long", "godot.core.memory.GodotBinding", "java.lang.ClassLoader"] },
+      { "name" : "bindInstance", "parameterTypes" : ["long", "godot.core.memory.GodotBinding"] },
+      { "name" : "unbindInstance", "parameterTypes" : ["long"] },
       { "name" : "decrementRefCounter", "parameterTypes" : ["long"] },
       { "name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
       { "name" : "notifyLeak", "parameterTypes" : [] }
@@ -286,7 +287,6 @@
       { "name" : "engine_call_constructor", "parameterTypes" : [] },
       { "name" : "engine_call_constructor_packed_array", "parameterTypes" : [] },
       { "name" : "engine_call_constructor_array", "parameterTypes" : [] },
-      
       { "name" : "engine_call_append", "parameterTypes" : ["long"] },
       { "name" : "engine_call_append", "parameterTypes" : ["long"] },
       { "name" : "engine_call_appendArray", "parameterTypes" : ["long"] },
@@ -682,7 +682,7 @@
       {"name":"getProperties","parameterTypes":[] },
       {"name":"getRegisteredName","parameterTypes":[] },
       {"name":"getSignalInfos","parameterTypes":[] },
-      {"name":"getSuperClass","parameterTypes":[] }
+      {"name":"getRegisteredSupertypes","parameterTypes":[] }
     ]
   },
   {

@@ -282,6 +282,8 @@ internal object MemoryManager {
     @Suppress("unused")
     fun cleanUp() {
         for (singletonIndex in singletonIndexes) {
+            val id = ObjectDB[singletonIndex]!!.id
+            MemoryBridge.unbindInstance(id.id)
             ObjectDB[singletonIndex] = null
         }
 
@@ -343,6 +345,7 @@ internal object MemoryManager {
     private object MemoryBridge {
         external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
         external fun bindInstance(instanceId: Long, obj: GodotBinding)
+        external fun unbindInstance(instanceId: Long)
         external fun decrementRefCounter(instanceId: Long)
         external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
         external fun notifyLeak()

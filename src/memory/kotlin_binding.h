@@ -25,6 +25,7 @@ class KotlinBinding {
 
     void set_ready();
     void set_kt_binding(KtBinding* p_kt_binding);
+    void unset_kt_binding();
 
 public:
     ~KotlinBinding();
