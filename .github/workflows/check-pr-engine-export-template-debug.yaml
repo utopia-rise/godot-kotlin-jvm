@@ -115,6 +115,7 @@ jobs:
         include:
           - os: ubuntu-latest
             java-version: 11
+            base-path: platform/android/java/lib/libs/debug
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine
@@ -131,3 +132,4 @@ jobs:
         uses: ./modules/kotlin_jvm/.github/actions/create-android-export-template
         with:
           target: template_debug
+          base-path: ${{ matrix.base-path }}
