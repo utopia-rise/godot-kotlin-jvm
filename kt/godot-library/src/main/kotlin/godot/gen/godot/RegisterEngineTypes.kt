@@ -3760,6 +3760,7 @@ private fun registerEngineTypeMethodForCamera3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA3D to "set_current")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA3D to "is_current")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA3D to "get_camera_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA3D to "get_camera_projection")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA3D to "get_fov")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA3D to "get_frustum_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA3D to "get_size")
@@ -9300,6 +9301,90 @@ private fun registerEngineTypeMethodForOggPacketSequencePlayback(): Unit {
 private fun registerEngineTypeMethodForOmniLight3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OMNILIGHT3D to "set_shadow_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OMNILIGHT3D to "get_shadow_mode")
+}
+
+private fun registerEngineTypeMethodForOpenXRAction(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "set_localized_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "get_localized_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "set_action_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "get_action_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "set_toplevel_paths")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "get_toplevel_paths")
+}
+
+private fun registerEngineTypeMethodForOpenXRActionMap(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "set_action_sets")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_action_sets")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_action_set_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "find_action_set")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_action_set")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "add_action_set")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "remove_action_set")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "set_interaction_profiles")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_interaction_profiles")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_interaction_profile_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "find_interaction_profile")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_interaction_profile")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "add_interaction_profile")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "remove_interaction_profile")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "create_default_action_sets")
+}
+
+private fun registerEngineTypeMethodForOpenXRActionSet(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "set_localized_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_localized_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "set_priority")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_priority")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_action_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "set_actions")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_actions")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "add_action")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "remove_action")
+}
+
+private fun registerEngineTypeMethodForOpenXRHand(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "set_hand")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "get_hand")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "set_hand_skeleton")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "get_hand_skeleton")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "set_motion_range")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRHAND to "get_motion_range")
+}
+
+private fun registerEngineTypeMethodForOpenXRIPBinding(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "set_action")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "get_action")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "get_path_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "set_paths")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "get_paths")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "has_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "add_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "remove_path")
+}
+
+private fun registerEngineTypeMethodForOpenXRInteractionProfile(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to
+      "set_interaction_profile_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to
+      "get_interaction_profile_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "get_binding_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "get_binding")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "set_bindings")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "get_bindings")
+}
+
+private fun registerEngineTypeMethodForOpenXRInterface(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to "get_display_refresh_rate")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to "set_display_refresh_rate")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to
+      "get_render_target_size_multiplier")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to
+      "set_render_target_size_multiplier")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to "is_action_set_active")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to "set_action_set_active")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to "get_action_sets")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to
+      "get_available_display_refresh_rates")
 }
 
 private fun registerEngineTypeMethodForOptimizedTranslation(): Unit {
@@ -16833,6 +16918,14 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("OggPacketSequencePlayback", OggPacketSequencePlayback::class,
       ::OggPacketSequencePlayback)
   TypeManager.registerEngineType("OmniLight3D", OmniLight3D::class, ::OmniLight3D)
+  TypeManager.registerEngineType("OpenXRAction", OpenXRAction::class, ::OpenXRAction)
+  TypeManager.registerEngineType("OpenXRActionMap", OpenXRActionMap::class, ::OpenXRActionMap)
+  TypeManager.registerEngineType("OpenXRActionSet", OpenXRActionSet::class, ::OpenXRActionSet)
+  TypeManager.registerEngineType("OpenXRHand", OpenXRHand::class, ::OpenXRHand)
+  TypeManager.registerEngineType("OpenXRIPBinding", OpenXRIPBinding::class, ::OpenXRIPBinding)
+  TypeManager.registerEngineType("OpenXRInteractionProfile", OpenXRInteractionProfile::class,
+      ::OpenXRInteractionProfile)
+  TypeManager.registerEngineType("OpenXRInterface", OpenXRInterface::class, ::OpenXRInterface)
   TypeManager.registerEngineType("OptimizedTranslation", OptimizedTranslation::class,
       ::OptimizedTranslation)
   TypeManager.registerEngineType("OptionButton", OptionButton::class, ::OptionButton)
@@ -17870,6 +17963,13 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OggPacketSequence::class] = OBJECT
   variantMapper[OggPacketSequencePlayback::class] = OBJECT
   variantMapper[OmniLight3D::class] = OBJECT
+  variantMapper[OpenXRAction::class] = OBJECT
+  variantMapper[OpenXRActionMap::class] = OBJECT
+  variantMapper[OpenXRActionSet::class] = OBJECT
+  variantMapper[OpenXRHand::class] = OBJECT
+  variantMapper[OpenXRIPBinding::class] = OBJECT
+  variantMapper[OpenXRInteractionProfile::class] = OBJECT
+  variantMapper[OpenXRInterface::class] = OBJECT
   variantMapper[OptimizedTranslation::class] = OBJECT
   variantMapper[OptionButton::class] = OBJECT
   variantMapper[PCKPacker::class] = OBJECT
@@ -18716,6 +18816,13 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForOggPacketSequence()
   registerEngineTypeMethodForOggPacketSequencePlayback()
   registerEngineTypeMethodForOmniLight3D()
+  registerEngineTypeMethodForOpenXRAction()
+  registerEngineTypeMethodForOpenXRActionMap()
+  registerEngineTypeMethodForOpenXRActionSet()
+  registerEngineTypeMethodForOpenXRHand()
+  registerEngineTypeMethodForOpenXRIPBinding()
+  registerEngineTypeMethodForOpenXRInteractionProfile()
+  registerEngineTypeMethodForOpenXRInterface()
   registerEngineTypeMethodForOptimizedTranslation()
   registerEngineTypeMethodForOptionButton()
   registerEngineTypeMethodForPCKPacker()
