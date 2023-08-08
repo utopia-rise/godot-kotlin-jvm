@@ -9,6 +9,7 @@ import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait
 import godot.codegen.traits.WithDefaultValueTrait
 import godot.tools.common.constants.*
+import java.util.*
 
 private const val enumPrefix = "enum::"
 private const val bitfieldPrefix = "bitfield::"
@@ -115,7 +116,7 @@ val TypedTrait.jvmVariantTypeValue: ClassName
             type == GodotTypes.packedVector3Array -> VARIANT_TYPE_PACKED_VECTOR3_ARRAY
             type == GodotTypes.packedColorArray -> VARIANT_TYPE_PACKED_COLOR_ARRAY
             type == GodotTypes.variant -> VARIANT_TYPE_ANY
-            isCoreType() || isPrimitive() -> ClassName(variantTypePackage, type!!.toUpperCase())
+            isCoreType() || isPrimitive() -> ClassName(variantTypePackage, type!!.uppercase(Locale.US))
             else -> VARIANT_TYPE_OBJECT
         }
     }
@@ -131,7 +132,7 @@ fun <T> T.getDefaultValueKotlinString(): String?
         when {
             type == GodotTypes.color -> "${GodotKotlinJvmTypes.color}($defaultValueString)"
             type == GodotTypes.variant -> defaultValueString
-            type == GodotTypes.bool -> defaultValueString.toLowerCase()
+            type == GodotTypes.bool -> defaultValueString.lowercase(Locale.US)
             type == GodotTypes.float && meta == GodotMeta.Float.float -> "${intToFloat(defaultValueString)}f"
             type == GodotTypes.float -> intToFloat(defaultValueString)
             type == GodotTypes.stringName -> "${GodotKotlinJvmTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")

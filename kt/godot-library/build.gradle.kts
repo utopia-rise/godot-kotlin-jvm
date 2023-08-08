@@ -1,17 +1,21 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
     id("com.utopia-rise.api-generator")
     id("com.utopia-rise.godot-publish")
     id("com.utopia-rise.godot-dependencies")
-    id("com.github.johnrengelman.shadow")
+    alias(libs.plugins.shadowJar)
 }
 
 apiGenerator {
     outputDir.set(project.file("$rootDir/godot-library/src/main/kotlin/godot/gen"))
     sourceJson.set(project.file("$rootDir/api-generator/src/main/resources/api.json"))
     docsDir.set(project.file("$projectDir/../../../../doc/classes"))
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
@@ -23,7 +27,6 @@ dependencies {
 tasks {
     compileKotlin {
         dependsOn(generateAPI)
-        kotlinOptions.jvmTarget = "11"
     }
 
     build.get().finalizedBy(shadowJar)
@@ -72,8 +75,4 @@ publishing {
             artifact(tasks.jar)
         }
     }
-}
-
-java {
-    targetCompatibility = JavaVersion.VERSION_11
 }

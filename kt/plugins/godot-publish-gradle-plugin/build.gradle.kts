@@ -1,19 +1,11 @@
-import godot.dependencies.gradle.DependenciesVersions
 
 plugins {
-    `kotlin-dsl`
-    id("com.utopia-rise.godot-dependencies")
+    alias(libs.plugins.kotlin.jvm)
+    `java-gradle-plugin`
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-repositories {
-    mavenCentral()
-    gradlePluginPortal()
+kotlin {
+    jvmToolchain(17)
 }
 
 gradlePlugin {
@@ -25,8 +17,4 @@ gradlePlugin {
         }
     }
     isAutomatedPublishing = false
-}
-
-dependencies {
-    implementation(kotlin("gradle-plugin", version = DependenciesVersions.supportedKotlinVersion))
 }

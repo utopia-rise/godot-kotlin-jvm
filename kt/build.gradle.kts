@@ -2,6 +2,8 @@ import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
+    // prevents the kotlin plugin being applied multiple times (once per subproject) as this is not supported. Done as suggested by the kotlin plugin
+    alias(libs.plugins.kotlin.jvm) apply false
     id("com.utopia-rise.godot-dependencies")
 }
 
@@ -12,13 +14,10 @@ val versionString = project.version.toString()
 subprojects {
     group = "com.utopia-rise"
     version = versionString
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-    }
 }
 
 tasks {
+    @Suppress("UNUSED_VARIABLE")
     val generateChangelog by creating {
         group = "godot-kotlin-jvm"
 
@@ -130,11 +129,13 @@ tasks {
                 commandLine("${workingDir.absolutePath}/godot.x11.opt.tools.64", "-v")
         }
     }
+    @Suppress("UNUSED_VARIABLE")
     val buildAndRunEngineDebug by creating {
         group = "godot-kotlin-jvm"
         dependsOn(buildEngineDebug, getTasksByName("copyBootstrapJar", true).first())
         finalizedBy(runEngineDebug)
     }
+    @Suppress("UNUSED_VARIABLE")
     val buildAndRunEngineReleaseDebug by creating {
         group = "godot-kotlin-jvm"
         dependsOn(buildEngineReleaseDebug, getTasksByName("copyBootstrapJar", true).first())

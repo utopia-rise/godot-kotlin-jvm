@@ -6,12 +6,13 @@ import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.RPC_ANNOTATION
-import godot.intellij.plugin.extension.getKotlinFqName
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.TransferModeIgnoresChannelQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotAnnotationPackage
+import org.jetbrains.kotlin.idea.base.utils.fqname.getKotlinFqName
+import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.nj2k.postProcessing.resolve
@@ -38,6 +39,7 @@ class RpcAnnotator : Annotator {
             val isTransferModeUnreliableOrdered = transferModeValueArgument
                 ?.getArgumentExpression()
                 ?.getChildOfType<KtNameReferenceExpression>()
+                ?.mainReference
                 ?.resolve()
                 ?.getKotlinFqName()
                 ?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.transferMode}.UNRELIABLE_ORDERED"

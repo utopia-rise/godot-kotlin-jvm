@@ -22,6 +22,7 @@
         <moduleBuilder builderClass="godot.intellij.plugin.module.GodotModuleBuilder"/>
         <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.clazz.com.github.chippmann.kotlinpsirepro.annotator.TestAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.function.RpcAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator" language="JVM"/>

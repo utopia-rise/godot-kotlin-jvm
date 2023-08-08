@@ -18,16 +18,19 @@ import godot.intellij.plugin.extension.getGodotRoot
 import godot.intellij.plugin.extension.getRegisteredClassName
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.gradle.GodotKotlinJvmSettings
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
 import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
+import org.jetbrains.kotlin.idea.gradleJava.scripting.getGradleProjectSettings
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.idea.util.projectStructure.module
 import org.jetbrains.kotlin.idea.util.sourceRoots
 import org.jetbrains.kotlin.name.FqName
+import org.jetbrains.kotlin.psi.KtAnnotation
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtPackageDirective
 import org.jetbrains.kotlin.psi.allConstructors
@@ -35,13 +38,32 @@ import org.jetbrains.kotlin.psi.psiUtil.isAbstract
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.resolve.descriptorUtil.getAllSuperclassesWithoutAny
 
+class TestAnnotator: Annotator {
+    override fun annotate(element: PsiElement, holder: AnnotationHolder) {
+        when (element) {
+            is KtAnnotation -> {
+                println("KtAnnotation")
+            }
+            is KtClass -> {
+                println("KtAnnotation")
+            }
+        }
+    }
+}
+
 class RegisterClassAnnotator : Annotator {
     private val classNotRegisteredQuickFix by lazy { ClassNotRegisteredQuickFix() }
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (!element.isInGodotRoot()) return
 
+        val blubb = GodotKotlinJvmSettings[element.module].isFqNameRegistrationEnabled
+        println(blubb)
+
         when (element) {
+            is KtAnnotation -> {
+                println("blubb")
+            }
             is KtClass -> {
                 if (element.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) == null) {
                     val errorLocation = element.nameIdentifier ?: element.navigationElement

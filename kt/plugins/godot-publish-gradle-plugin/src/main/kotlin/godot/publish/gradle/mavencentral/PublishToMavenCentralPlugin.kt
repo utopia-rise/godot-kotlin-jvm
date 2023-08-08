@@ -5,7 +5,6 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 
@@ -18,71 +17,71 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
         setupSigning(target)
 
         target.afterEvaluate {
-            target.extensions.getByType(JavaPluginExtension::class).apply {
+            target.extensions.getByType(JavaPluginExtension::class.java).apply {
                 withJavadocJar()
                 withSourcesJar()
             }
 
-            target.extensions.configure(PublishingExtension::class.java) {
-                repositories {
-                    maven {
+            target.extensions.getByType(PublishingExtension::class.java).apply {
+                repositories.apply {
+                    maven { mavenArtifactRepository ->
                         val targetRepo = if (isReleaseMode) {
                             "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
                         } else {
                             "https://s01.oss.sonatype.org/content/repositories/snapshots/"
                         }
-                        setUrl(targetRepo)
+                        mavenArtifactRepository.setUrl(targetRepo)
                     }
                 }
-                publications {
-                    all {
+                publications { publicationContainer ->
+                    publicationContainer.all {
                         if (this is MavenPublication) {
                             groupId = "com.utopia-rise"
                             artifactId = target.name
                             version = target.version as String
 
-                            pom {
-                                url.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
+                            pom { mavenPom ->
+                                mavenPom.url.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
 
-                                scm {
-                                    connection.set("scm:git:https://github.com/utopia-rise/godot-kotlin-jvm")
-                                    developerConnection.set("scm:git:github.com:utopia-rise/godot-kotlin-jvm.git")
-                                    tag.set("master") //FIXME
-                                    url.set("https://github.com/utopia-rise/godot-kotlin-jvm")
+                                mavenPom.scm { mavenPomScm ->
+                                    mavenPomScm.connection.set("scm:git:https://github.com/utopia-rise/godot-kotlin-jvm")
+                                    mavenPomScm.developerConnection.set("scm:git:github.com:utopia-rise/godot-kotlin-jvm.git")
+                                    mavenPomScm.tag.set("master") //FIXME
+                                    mavenPomScm.url.set("https://github.com/utopia-rise/godot-kotlin-jvm")
                                 }
 
-                                licenses {
-                                    license {
-                                        name.set("MIT License")
-                                        url.set("https://github.com/utopia-rise/godot-kotlin-jvm/blob/master/LICENSE")
-                                        distribution.set("repo")
+                                mavenPom.licenses { mavenPomLicenseSpec ->
+                                    mavenPomLicenseSpec.license { mavenPomLicense ->
+                                        mavenPomLicense.name.set("MIT License")
+                                        mavenPomLicense.url.set("https://github.com/utopia-rise/godot-kotlin-jvm/blob/master/LICENSE")
+                                        mavenPomLicense.distribution.set("repo")
                                     }
                                 }
 
-                                developers {
-                                    developer {
-                                        id.set("core")
-                                        name.set("Ranie Jade Ramiso")
-                                        url.set("https://github.com/raniejade")
-                                        email.set("raniejaderamiso@gmail.com")
+                                mavenPom.developers { mavenPomDevelopersSpec ->
+                                    mavenPomDevelopersSpec.developer { mavenPomDeveloper ->
+                                        mavenPomDeveloper.id.set("core")
+                                        mavenPomDeveloper.name.set("Ranie Jade Ramiso")
+                                        mavenPomDeveloper.url.set("https://github.com/raniejade")
+                                        mavenPomDeveloper.email.set("raniejaderamiso@gmail.com")
                                     }
-                                    developer {
-                                        id.set("core")
-                                        name.set("Pierre-Thomas Meisels")
-                                        url.set("https://github.com/piiertho")
-                                        email.set("meisels27@yahoo.fr")
+                                    mavenPomDevelopersSpec.developer { mavenPomDeveloper ->
+                                        mavenPomDeveloper.id.set("core")
+                                        mavenPomDeveloper.name.set("Pierre-Thomas Meisels")
+                                        mavenPomDeveloper.url.set("https://github.com/piiertho")
+                                        mavenPomDeveloper.email.set("meisels27@yahoo.fr")
                                     }
-                                    developer {
-                                        id.set("core")
-                                        name.set("Cedric Hippmann")
-                                        url.set("https://github.com/chippmann")
-                                        email.set("cedric.hippmann@hotmail.com")
+                                    mavenPomDevelopersSpec.developer { mavenPomDeveloper ->
+                                        mavenPomDeveloper.id.set("core")
+                                        mavenPomDeveloper.name.set("Cedric Hippmann")
+                                        mavenPomDeveloper.url.set("https://github.com/chippmann")
+                                        mavenPomDeveloper.email.set("cedric.hippmann@hotmail.com")
                                     }
-                                    developer {
-                                        id.set("core")
-                                        name.set("Tristan Grespinet")
-                                        url.set("https://github.com/CedNaru")
-                                        email.set("ced.naru@gmail.com")
+                                    mavenPomDevelopersSpec.developer { mavenPomDeveloper ->
+                                        mavenPomDeveloper.id.set("core")
+                                        mavenPomDeveloper.name.set("Tristan Grespinet")
+                                        mavenPomDeveloper.url.set("https://github.com/CedNaru")
+                                        mavenPomDeveloper.email.set("ced.naru@gmail.com")
                                     }
                                 }
                             }
@@ -102,11 +101,10 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
         if (signingKey != null && signingPassword != null) { // for local development, If missing in CI it will fail later on deploy so we would notice the issue then
             target.plugins.apply("signing")
 
-            target.extensions.configure(SigningExtension::class.java) {
-                @Suppress("UnstableApiUsage")
-                useInMemoryPgpKeys(signingKey, signingPassword)
-                target.extensions.findByType(PublishingExtension::class.java)?.publications?.all {
-                    sign(this)
+            target.extensions.configure(SigningExtension::class.java) { signingExtension ->
+                signingExtension.useInMemoryPgpKeys(signingKey, signingPassword)
+                target.extensions.findByType(PublishingExtension::class.java)?.publications?.all { publication ->
+                    signingExtension.sign(publication)
 
                     target
                         .tasks
@@ -117,12 +115,12 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                 }
             }
 
-            target.extensions.configure(PublishingExtension::class.java) {
-                repositories {
-                    maven {
-                        credentials {
-                            username = ossrhUser
-                            password = ossrhPassword
+            target.extensions.configure(PublishingExtension::class.java) { publishingExtension ->
+                publishingExtension.repositories { repositoryHandler ->
+                    repositoryHandler.maven { mavenArtifactRepository ->
+                        mavenArtifactRepository.credentials { passwordCredentials ->
+                            passwordCredentials.username = ossrhUser
+                            passwordCredentials.password = ossrhPassword
                         }
                     }
                 }

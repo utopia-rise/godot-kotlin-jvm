@@ -1,5 +1,7 @@
 package godot.tools.common.extensions
 
+import java.util.*
+
 fun String.escapeUnderscore(): String {
     if (this == "") return this
 
@@ -26,7 +28,7 @@ fun String.convertToCamelCase(): String {
     val first = split[0]
     split = split.drop(1)
 
-    return prefix + first + split.joinToString("") { it.capitalize() }
+    return prefix + first + split.joinToString("") { string -> string.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString() } }
 }
 
 fun String.convertToSnakeCase(): String =

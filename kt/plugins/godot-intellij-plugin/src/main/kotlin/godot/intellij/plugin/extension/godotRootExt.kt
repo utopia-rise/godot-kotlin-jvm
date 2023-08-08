@@ -5,6 +5,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
+import org.jetbrains.kotlin.idea.configuration.isGradleModule
 import org.jetbrains.kotlin.idea.core.util.toVirtualFile
 import org.jetbrains.kotlin.idea.util.projectStructure.getModule
 import org.jetbrains.kotlin.idea.util.projectStructure.module

@@ -3,59 +3,40 @@ import godot.dependencies.gradle.helper.BuildConfig
 import godot.dependencies.gradle.helper.VersionRange
 import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 import godot.dependencies.gradle.isSnapshot
+import org.jetbrains.changelog.Changelog
 
 plugins {
     // Java support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm")
+    alias(libs.plugins.kotlin.jvm)
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "1.13.2"
+    alias(libs.plugins.gradleIntelliJPlugin)
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
-    id("org.jetbrains.changelog") version "1.3.1"
+    alias(libs.plugins.changelog)
+
     id("com.utopia-rise.godot-dependencies")
 }
 
 //sdk version: https://github.com/JetBrains/intellij-community/tags
 //kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
 val buildMatrix: Map<String, BuildConfig> = mapOf(
-    "IJ213" to BuildConfig(
-        sdk = "213.6777.52",
-        prefix = "IJ2021.3",
-        extraSource = "IJ213",
-        version = VersionRange("213.2", "213.*"),
-        ideVersionsForVerifierTask = listOf("2021.3"),
-        deps = listOf("java", "org.jetbrains.kotlin:213-1.6.21-release-334-IJ6777.52", "gradle")
-    ),
-    "IJ221" to BuildConfig(
-        sdk = "221.5591.52",
-        prefix = "IJ2022.1",
-        extraSource = "IJ221",
-        version = VersionRange("221.3", "999.*"),
-        ideVersionsForVerifierTask = listOf("2022.1"),
-        deps = listOf("java", "org.jetbrains.kotlin:221-1.7.10-release-333-IJ5591.52", "gradle")
-    ),
     "IJ222" to BuildConfig(
-        sdk = "222.3345.118",
+        sdk = "222.4554.10",
         prefix = "IJ2022.2",
-        extraSource = "IJ221", // hasn't changed. Thus no need to update
-        version = VersionRange("222.2", "999.*"),
+        extraSource = "",
+        version = VersionRange("222.1", "999.*"),
         ideVersionsForVerifierTask = listOf("2022.2"),
         deps = listOf("java", "org.jetbrains.kotlin", "gradle") // kotlin plugin version no longer needed as it's now bundled with the IDE
     )
 )
 
+// needed as the intellij plugin does add its own repositories and thus the ones defined in the settings.gradle.kts are ignored. Hence, we need to redefine them here
 repositories {
+    mavenLocal()
     mavenCentral()
-    maven {
-        url = uri("https://www.jetbrains.com/intellij-repository/releases/")
-    }
-    maven {
-        url = uri("https://www.jetbrains.com/intellij-repository/snapshots/")
-    }
-    maven {
-        url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-    }
+    google()
+    maven { url = uri("https://plugins.gradle.org/m2/") } // needed for shadowJar plugin dependency implementation in `godot-gradle-plugin`
 }
 
 version = fullGodotKotlinJvmVersion
@@ -78,6 +59,8 @@ intellij {
 }
 
 kotlin {
+    jvmToolchain(17)
+
     sourceSets {
         main {
             kotlin.srcDirs("src/${settings.extraSource}/kotlin")
@@ -89,9 +72,14 @@ dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
+    implementation(project(":godot-gradle-plugin"))
 }
 
 tasks {
+    runIde {
+        jvmArgs("-Xmx2000m")
+    }
+
     patchPluginXml {
         if (isSnapshot) {
             val projectVersion = project.version as String
@@ -116,7 +104,7 @@ tasks {
         )
 
         // Get the latest available change notes from the changelog file
-        changeNotes.set(changelog.getLatest().toHTML())
+        changeNotes.set(changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML))
     }
 
     runPluginVerifier {
@@ -138,7 +126,6 @@ tasks {
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
         kotlinOptions {
             freeCompilerArgs += "-Xjvm-default=all"
         }

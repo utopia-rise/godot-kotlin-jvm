@@ -16,6 +16,3 @@ class DependenciesPlugin: Plugin<Project> {
 }
 
 internal lateinit var grgit: Grgit
-
-val KotlinDependencyHandler.deps get() = DependenciesVersions
-val DependencyHandler.deps get() = DependenciesVersions

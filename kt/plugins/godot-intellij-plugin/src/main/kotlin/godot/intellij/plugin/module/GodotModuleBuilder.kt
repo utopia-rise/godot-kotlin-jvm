@@ -146,7 +146,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                         .readText()
                         .replace(
                             "GODOT_KOTLIN_JVM_VERSION",
-                            GodotBuildProperties.godotKotlinVersion
+                            GodotBuildProperties.godotKotlinJvmVersion
                         )
                         .replace("ANDROID_ENABLED", wizardContext.getUserData(androidEnabledKey)?.toString() ?: "false")
                         .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8")
@@ -192,7 +192,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             } else {
                                 content.replace(
                                     "GODOT_KOTLIN_DEPENDENCY",
-                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"${GodotBuildProperties.godotKotlinVersion}\""
+                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"${GodotBuildProperties.godotKotlinJvmVersion}\""
                                 )
                             }
                         }

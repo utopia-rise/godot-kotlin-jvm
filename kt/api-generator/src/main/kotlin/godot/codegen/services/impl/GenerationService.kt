@@ -61,7 +61,7 @@ import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.signalPackage
-import org.gradle.kotlin.dsl.support.appendReproducibleNewLine
+import java.util.*
 
 class GenerationService(
     private val docRepository: IDocRepository,
@@ -117,16 +117,16 @@ class GenerationService(
             classTypeBuilder.addKdoc(
                 "%L",
                 buildString {
-                    appendReproducibleNewLine(classDoc.briefDescription)
-                    appendReproducibleNewLine()
+                    appendLine(classDoc.briefDescription)
+                    appendLine()
                     if (classDoc.tutorialLinks.isNotEmpty()) {
-                        appendReproducibleNewLine("Tutorials:")
+                        appendLine("Tutorials:")
                         classDoc.tutorialLinks.forEach {
-                            appendReproducibleNewLine("[$it]($it)")
+                            appendLine("[$it]($it)")
                         }
-                        appendReproducibleNewLine()
+                        appendLine()
                     }
-                    appendReproducibleNewLine(classDoc.description)
+                    appendLine(classDoc.description)
                 }.replace(System.lineSeparator(), "\n")
                     .replace("/*", "&#47;*")
             )
@@ -580,8 +580,8 @@ class GenerationService(
                         .addMember(
                             CodeBlock.of(
                                 "\"%L%L\"",
-                                enrichedClass.name.decapitalize(),
-                                method.name.capitalize()
+                                enrichedClass.name.replaceFirstChar { it.lowercase(Locale.US) },
+                                method.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString() }
                             )
                         )
                         .build()
@@ -595,7 +595,7 @@ class GenerationService(
     private fun TypeSpec.Builder.generateSignalExtensions() {
 
         fun List<TypeVariableName>.toParameterTypes() = this.map {
-            ParameterSpec.builder(it.name.toLowerCase(), it).build()
+            ParameterSpec.builder(it.name.lowercase(Locale.US), it).build()
         }
 
         val typeVariablesNames = mutableListOf<TypeVariableName>()

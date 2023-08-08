@@ -4,6 +4,7 @@ import godot.tools.common.extensions.escapeUnderscore
 import godot.codegen.models.Class
 import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.traits.TypedTrait
+import java.util.*
 
 class EnrichedClass(val internal: Class) : TypedTrait {
     val enums = internal.enums?.toEnriched(this) ?: listOf()
@@ -11,7 +12,7 @@ class EnrichedClass(val internal: Class) : TypedTrait {
     val signals = internal.signals?.toEnriched() ?: listOf()
     val name = internal.name.escapeUnderscore()
     val inherits = internal.inherits?.escapeUnderscore()
-    val engineClassDBIndexName = "ENGINECLASS_${internal.name.toUpperCase()}"
+    val engineClassDBIndexName = "ENGINECLASS_${internal.name.uppercase(Locale.US)}"
     val properties= internal.properties?.toEnriched() ?: listOf()
     val methods = internal.methods?.toEnriched(engineClassDBIndexName) ?: listOf()
 

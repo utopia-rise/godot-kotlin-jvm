@@ -1,25 +1,34 @@
 package godot.intellij.plugin.extension
 
+import godot.intellij.plugin.gradle.GodotKotlinJvmSettings
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import org.jetbrains.kotlin.idea.util.findAnnotation
+import org.jetbrains.kotlin.idea.util.projectStructure.module
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtValueArgumentList
 import org.jetbrains.kotlin.psi.KtValueArgumentName
 
 /**
- * Gets custom name defined in `@RegisterClass` annotation if defined, fqName otherwise
+ * Gets custom name defined in `@RegisterClass` annotation if defined, fqName or simple name otherwise
  *
  * @return fqName to registered class name or `null` if not annotated with `@RegisterClass`
  */
 fun KtClass.getRegisteredClassName(): Pair<String, String>? {
+    val fqName = fqName ?: return null
+    val isFqNameRegistrationEnabled = GodotKotlinJvmSettings[module].isFqNameRegistrationEnabled
+
     // the whole `@RegisterClass(...)` annotation
     val ktAnnotationEntry = annotationEntries
         .firstOrNull { it.shortName?.asString() == GodotKotlinJvmTypes.Annotations.registerClass }
 
-    val fqName = fqName?.asString()
+    val defaultRegistrationName = if (isFqNameRegistrationEnabled) {
+        fqName.asString()
+    } else {
+        name
+    }
 
-    if (ktAnnotationEntry == null || fqName == null) {
+    if (ktAnnotationEntry == null || defaultRegistrationName == null) {
         return null
     }
 
@@ -41,9 +50,9 @@ fun KtClass.getRegisteredClassName(): Pair<String, String>? {
         null
     }
         // we already know the annotation is present. So if no custom name was define in the annotation, the class is registered with the fqName
-        ?: fqName
+        ?: defaultRegistrationName
 
-    return fqName to registeredClassName
+    return fqName.asString() to registeredClassName
 }
 
 fun KtClass.anyFunctionHasAnnotation(annotationFqName: String) = this

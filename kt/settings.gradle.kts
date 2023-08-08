@@ -1,10 +1,17 @@
 
-include("godot-library")
-
 pluginManagement {
+    includeBuild("build-logic")
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        google()
+    }
+
     resolutionStrategy.eachPlugin {
         when(requested.id.id) {
-            "com.utopia-rise.godot-dependencies" -> useModule("com.utopia-rise:godot-dependencies-gradle-plugin:0.0.1")
+            "com.utopia-rise.godot-dependencies" -> useModule("com.utopia-rise:godot-convention-gradle-plugin:0.0.1")
             "com.utopia-rise.api-generator" -> useModule("com.utopia-rise:api-generator:0.0.1")
             "com.utopia-rise.godot-publish" -> useModule("com.utopia-rise:godot-publish-gradle-plugin:0.0.1")
             "com.github.johnrengelman.shadow" -> useVersion("7.1.2")
@@ -12,11 +19,26 @@ pluginManagement {
     }
 }
 
-includeBuild("api-generator") {
-    dependencySubstitution {
-        substitute(module("com.utopia-rise:api-generator")).using(project(":")) // assuming api-generator is the root project of api-generator
+dependencyResolutionManagement {
+    // cannot be used as the intellij plugin adds maven repositories itself. Uncomment the following line once that is no longer the case
+//    this.repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
+
+    @Suppress("UnstableApiUsage")
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+        maven { url = uri("https://plugins.gradle.org/m2/") } // needed for shadowJar plugin dependency implementation in `godot-gradle-plugin`
     }
 }
+
+includeBuild("api-generator") {
+    dependencySubstitution {
+        substitute(module("com.utopia-rise:api-generator")).using(project(":"))
+    }
+}
+
+include("godot-library")
 
 subdir("entry-generation") {
     include("godot-kotlin-symbol-processor")
@@ -27,15 +49,15 @@ subdir("plugins") {
     include("godot-gradle-plugin")
     include("godot-intellij-plugin")
 
-    includeBuild("godot-dependencies-gradle-plugin") {
+    this.includeBuild("godot-convention-gradle-plugin") {
         dependencySubstitution {
-            substitute(module("com.utopia-rise:godot-dependencies-gradle-plugin")).using(project(":")) // assuming godot-dependencies-gradle-plugin is the root project of godot-dependencies-gradle-plugin
+            substitute(module("com.utopia-rise:godot-convention-gradle-plugin")).using(project(":"))
         }
     }
 
-    includeBuild("godot-publish-gradle-plugin") {
+    this.includeBuild("godot-publish-gradle-plugin") {
         dependencySubstitution {
-            substitute(module("com.utopia-rise:godot-publish-gradle-plugin")).using(project(":")) // assuming godot-publish-gradle-plugin is the root project of godot-publish-gradle-plugin
+            substitute(module("com.utopia-rise:godot-publish-gradle-plugin")).using(project(":"))
         }
     }
 }
@@ -46,7 +68,7 @@ subdir("utils") {
 
 includeBuild("tools-common") {
     dependencySubstitution {
-        substitute(module("com.utopia-rise:tools-common")).using(project(":")) // assuming tools-common is the root project of tools-common
+        substitute(module("com.utopia-rise:tools-common")).using(project(":"))
     }
 }
 

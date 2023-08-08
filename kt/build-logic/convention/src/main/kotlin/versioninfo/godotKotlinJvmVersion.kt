@@ -1,6 +1,26 @@
-package godot.dependencies.gradle
+package versioninfo
 
 import org.ajoberstar.grgit.Commit
+import java.util.*
+
+private object LoadObject
+private val buildProperties by lazy {
+    val props = Properties()
+    props.load(LoadObject::class.java.classLoader.getResourceAsStream("build.properties"))
+    props
+}
+
+private val godotKotlinJvmVersion by lazy {
+    buildProperties["godot.kotlin.jvm.version"] as String
+}
+
+private val godotVersion by lazy {
+    buildProperties["godot.version"] as String
+}
+
+private val supportedKotlinVersion by lazy {
+    buildProperties["kotlin.version"] as String
+}
 
 val fullGodotKotlinJvmVersion: String by lazy {
     provideAssembledVersion()
@@ -24,9 +44,9 @@ private fun provideAssembledVersion(): String {
     val isSnapshot = !releaseMode || requireNotNull(tagOnCurrentCommit).name.contains("-SNAPSHOT")
 
     return if (!releaseMode) {
-        "$godotKotlinJvmVersion-${DependenciesVersions.godotVersion}-${currentCommit.abbreviatedId}-SNAPSHOT"
+        "$godotKotlinJvmVersion-${godotVersion}-${currentCommit.abbreviatedId}-SNAPSHOT"
     } else {
-        val baseVersion = "$godotKotlinJvmVersion-${DependenciesVersions.godotVersion}"
+        val baseVersion = "$godotKotlinJvmVersion-${godotVersion}"
         if (isSnapshot) {
             "$baseVersion-SNAPSHOT"
         } else {

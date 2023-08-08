@@ -8,12 +8,13 @@ import godot.codegen.workarounds.sanitizeApiType
 import godot.codegen.models.Argument
 import godot.codegen.models.Method
 import godot.codegen.traits.CallableTrait
+import java.util.*
 
 class EnrichedMethod(val internal: Method, engineClassIndexName: String) : CallableTrait {
     override val arguments = internal.arguments?.toEnriched() ?: listOf()
     override val isVararg = internal.isVararg
     val name: String
-    override val engineIndexName = "ENGINEMETHOD_${engineClassIndexName}_${internal.name.toUpperCase()}"
+    override val engineIndexName = "ENGINEMETHOD_${engineClassIndexName}_${internal.name.uppercase(Locale.US)}"
 
     init {
         var kotlinName = internal.name.convertToCamelCase()
