@@ -21,12 +21,12 @@ plugins {
 //sdk version: https://github.com/JetBrains/intellij-community/tags
 //kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
 val buildMatrix: Map<String, BuildConfig> = mapOf(
-    "IJ222" to BuildConfig(
-        sdk = "222.4554.10",
-        prefix = "IJ2022.2",
+    "IJ232" to BuildConfig(
+        sdk = "232.8660.185",
+        prefix = "IJ2023.2",
         extraSource = "",
-        version = VersionRange("222.1", "999.*"),
-        ideVersionsForVerifierTask = listOf("2022.2"),
+        version = VersionRange("232.1", "999.*"),
+        ideVersionsForVerifierTask = listOf("2023.2"),
         deps = listOf(
             "java",
             "org.jetbrains.kotlin",
@@ -47,7 +47,7 @@ version = fullGodotKotlinJvmVersion
 
 group = "com.utopia-rise"
 
-val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ222"
+val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ232"
 val settings = checkNotNull(buildMatrix[sdkVersion])
 
 // Configure gradle-intellij-plugin plugin.
