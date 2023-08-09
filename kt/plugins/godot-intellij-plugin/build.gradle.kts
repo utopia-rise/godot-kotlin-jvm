@@ -76,7 +76,7 @@ dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
-    implementation(project(":godot-gradle-plugin"))
+    implementation(project(":godot-plugins-common"))
 }
 
 tasks {

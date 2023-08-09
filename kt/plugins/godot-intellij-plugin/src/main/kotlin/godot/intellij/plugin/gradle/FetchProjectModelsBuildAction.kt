@@ -1,6 +1,6 @@
 package godot.intellij.plugin.gradle
 
-import godot.gradle.GodotKotlinJvmPropertiesFile
+import godot.plugins.common.GodotKotlinJvmPropertiesFile
 import org.gradle.tooling.BuildAction
 import org.gradle.tooling.BuildController
 import org.gradle.tooling.UnknownModelException

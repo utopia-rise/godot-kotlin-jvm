@@ -25,6 +25,11 @@ dependencyResolutionManagement {
     }
 }
 
+plugins {
+    // to automatically download the toolchain jdk if missing
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.6.0"
+}
+
 includeBuild("../tools-common") {
     dependencySubstitution {
         substitute(module("com.utopia-rise:tools-common")).using(project(":")) // assuming api-generator is the root project of api-generator/api-generator

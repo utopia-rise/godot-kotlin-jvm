@@ -22,7 +22,7 @@
         <moduleBuilder builderClass="godot.intellij.plugin.module.GodotModuleBuilder"/>
         <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.clazz.com.github.chippmann.kotlinpsirepro.annotator.TestAnnotator" language="JVM"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.clazz.TestAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.function.RpcAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator" language="JVM"/>
@@ -36,6 +36,10 @@
             language="godotScene"
             extensions="tscn"
             implementationClass="godot.intellij.plugin.language.scene.filetype.GodotSceneFileType"/>
+        <editorNotificationProvider
+            implementation="godot.intellij.plugin.notification.FileIndexingNotification" />
+        <externalSystemTaskNotificationListener
+                implementation="godot.intellij.plugin.gradle.GradleSystemListener"/>
     </extensions>
 
     <resource-bundle>messages.generalLabels</resource-bundle>

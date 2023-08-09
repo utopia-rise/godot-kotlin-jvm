@@ -10,9 +10,9 @@ import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task
 import com.intellij.ui.EditorNotifications
-import godot.gradle.GodotKotlinJvmPropertiesFile
-import godot.gradle.GodotKotlinJvmPropertiesFileImpl
 import godot.intellij.plugin.notification.FileIndexingNotification
+import godot.plugins.common.GodotKotlinJvmPropertiesFile
+import godot.plugins.common.GodotKotlinJvmPropertiesFileImpl
 import org.jetbrains.plugins.gradle.service.execution.GradleExecutionHelper
 import org.jetbrains.plugins.gradle.settings.DistributionType
 import org.jetbrains.plugins.gradle.settings.GradleExecutionSettings
@@ -30,6 +30,8 @@ internal object GodotKotlinJvmSettings {
         fetchThread?.interrupt()
         fetchThread = null
         initialized = false
+        fileIndices.clear()
+        retries = 0
     }
 
     operator fun get(module: Module?): GodotKotlinJvmPropertiesFile {
@@ -99,6 +101,7 @@ internal object GodotKotlinJvmSettings {
                             .run()
                     },
                 )
+                FileIndexingNotification.getInstance(project).hide()
                 EditorNotifications.getInstance(module.project).updateAllNotifications()
             } catch (externalException: ExternalSystemException) {
                 // Expected interrupt from calling close() on the index.

@@ -27,7 +27,9 @@ fun Project.configureThirdPartyPlugins() {
                     .getByName("main")
                     .kotlin
                     .srcDirs
-                    .joinToString(File.pathSeparator) { it.absolutePath.replace(File.separator, "/") }
+                    .joinToString(File.pathSeparator) {
+                        it.absolutePath.replace(File.separator, "/")
+                    }
             )
             arg(
                 "projectBasePath",

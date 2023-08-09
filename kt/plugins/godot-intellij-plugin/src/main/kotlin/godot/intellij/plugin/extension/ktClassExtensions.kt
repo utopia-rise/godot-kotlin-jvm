@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.psi.KtValueArgumentName
  */
 fun KtClass.getRegisteredClassName(): Pair<String, String>? {
     val fqName = fqName ?: return null
-    val isFqNameRegistrationEnabled = GodotKotlinJvmSettings[module].isFqNameRegistrationEnabled
+    val isFqNameRegistrationEnabled = false //GodotKotlinJvmSettings[module].isFqNameRegistrationEnabled
 
     // the whole `@RegisterClass(...)` annotation
     val ktAnnotationEntry = annotationEntries

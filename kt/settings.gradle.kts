@@ -31,6 +31,11 @@ dependencyResolutionManagement {
     }
 }
 
+plugins {
+    // to automatically download the toolchain jdk if missing
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.6.0"
+}
+
 includeBuild("api-generator") {
     dependencySubstitution {
         substitute(module("com.utopia-rise:api-generator")).using(project(":"))
@@ -47,6 +52,7 @@ subdir("entry-generation") {
 subdir("plugins") {
     include("godot-gradle-plugin")
     include("godot-intellij-plugin")
+    include("godot-plugins-common")
 
     this.includeBuild("godot-publish-gradle-plugin") {
         dependencySubstitution {

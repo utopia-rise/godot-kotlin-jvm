@@ -30,10 +30,16 @@ import javax.swing.text.DefaultCaret
 class FileIndexingNotification(
     private val project: Project,
 ) : DumbAware, EditorNotificationProvider {
+    private var isHidden: Boolean = true
   internal var unconfiguredReason: UnconfiguredReason = UnconfiguredReason.GradleSyncing
     set(value) {
       field = value
+        isHidden = false
       EditorNotifications.getInstance(project).updateAllNotifications()
+    }
+
+    fun hide() {
+        isHidden = true
     }
 
   override fun collectNotificationData(project: Project, file: VirtualFile): Function<in FileEditor, out JComponent?> {
@@ -41,10 +47,10 @@ class FileIndexingNotification(
   }
 
     private fun createNotificationPanel(file: VirtualFile, project: Project): EditorNotificationPanel? {
-        if (file.fileType != KotlinFileType.INSTANCE || file.fileType != JavaFileType.INSTANCE) return null
+        if (file.fileType != KotlinFileType.INSTANCE && file.fileType != JavaFileType.INSTANCE) return null
         if (!file.isInGodotRoot(project)) return null
 
-        return if (!DumbService.isDumb(project)) {
+        return if (!DumbService.isDumb(project) && !isHidden) {
             val message = when (val unconfiguredReason = unconfiguredReason) {
                 is UnconfiguredReason.GradleSyncing -> "GodotKotlinJvm is waiting for Gradle to finish syncing."
                 is UnconfiguredReason.Syncing -> "GodotKotlinJvm is setting up..."

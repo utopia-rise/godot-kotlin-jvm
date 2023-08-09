@@ -3,7 +3,6 @@ import versioninfo.fullGodotKotlinJvmVersion
 plugins {
     alias(libs.plugins.kotlin.jvm)
     `java-gradle-plugin`
-    id("com.gradle.plugin-publish") version "1.1.0"
     id("com.utopia-rise.godot-publish")
     id("com.utopia-rise.versioninfo")
 }
@@ -32,7 +31,7 @@ gradlePlugin {
 }
 
 dependencies {
-    compileOnly(kotlin("gradle-plugin"))
+    implementation(kotlin("gradle-plugin", version = libs.versions.kotlin.get()))
     implementation(libs.shadowJar)
     implementation(libs.kspGradlePlugin)
 
@@ -40,6 +39,7 @@ dependencies {
     implementation(libs.ideaSync)
 
     implementation(project(":godot-build-props"))
+    implementation(project(":godot-plugins-common"))
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
 }
 

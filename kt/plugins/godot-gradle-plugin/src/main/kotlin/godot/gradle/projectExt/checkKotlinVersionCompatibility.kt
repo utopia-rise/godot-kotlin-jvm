@@ -27,11 +27,11 @@ fun Project.checkKotlinVersionCompatibility() {
                 "Detected that kotlin plugin version $kotlinPluginVersion is already defined. But Godot-Kotlin is only compatible with kotlin ${GodotBuildProperties.supportedKotlinVersion}, please change the version to ${GodotBuildProperties.supportedKotlinVersion}"
             )
             kotlinPlugin == null && kotlinPluginVersion == null || kotlinPluginVersion == GodotBuildProperties.supportedKotlinVersion -> {
-                pluginManager.apply("org.jetbrains.kotlin.jvm") // the version will be the one with which this plugin was built
+                pluginManager.apply(KotlinPluginWrapper::class.java) // the version will be the one with which this plugin was built
             }
         }
     } else {
         // warn is not really visible enough in the log. As this is a very important print, error is used to print it more visible
-        logger.error("Found property \"godot.jvm.suppressKotlinIncompatibility\" is set to \"true\". This is an advanced feature! Only use it if you know what you're doing. We cannot guarantee that our compiler plugin is compatible with other kotlin version that ${GodotBuildProperties.supportedKotlinVersion} (found version: $kotlinPluginVersion). Setting this property to true can lead to build and/or runtime errors.")
+        logger.error("Found property \"godot.jvm.suppressKotlinIncompatibility\" is set to \"true\". This is an advanced feature! Only use it if you know what you're doing. We cannot guarantee that our compiler plugin is compatible with other kotlin version tha ${GodotBuildProperties.supportedKotlinVersion} (found version: $kotlinPluginVersion). Setting this property to true can lead to build and/or runtime errors.")
     }
 }

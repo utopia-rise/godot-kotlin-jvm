@@ -1,6 +1,6 @@
 package godot.intellij.plugin.gradle
 
-import godot.gradle.GodotKotlinJvmPropertiesFile
+import godot.plugins.common.GodotKotlinJvmPropertiesFile
 import godot.utils.GodotBuildProperties
 
 object GradleCompatibility {

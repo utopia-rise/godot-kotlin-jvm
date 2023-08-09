@@ -4,6 +4,8 @@ import godot.gradle.projectExt.checkKotlinVersionCompatibility
 import godot.gradle.projectExt.configureThirdPartyPlugins
 import godot.gradle.projectExt.setupConfigurationsAndCompilations
 import godot.gradle.projectExt.setupTasks
+import godot.plugins.common.GodotKotlinJvmPropertiesFile
+import godot.plugins.common.GodotKotlinJvmPropertiesFileImpl
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -48,15 +50,3 @@ abstract class GodotPlugin : Plugin<Project> {
         }
     }
 }
-
-interface GodotKotlinJvmPropertiesFile : Serializable {
-    val currentGradlePluginVersion: String
-    val minimumIdePluginVersion: String
-    val isFqNameRegistrationEnabled: Boolean
-}
-
-data class GodotKotlinJvmPropertiesFileImpl(
-    override val isFqNameRegistrationEnabled: Boolean = false,
-    override val currentGradlePluginVersion: String = GodotBuildProperties.godotKotlinJvmVersion,
-    override val minimumIdePluginVersion: String = GodotBuildProperties.godotKotlinJvmVersion,
-) : GodotKotlinJvmPropertiesFile
