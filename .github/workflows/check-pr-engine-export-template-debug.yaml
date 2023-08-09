@@ -3,8 +3,8 @@ on: [pull_request]
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true
-  GODOT_BASE_VERSION: 4.1.0
-  GODOT_BASE_BRANCH: 4.1.0
+  GODOT_BASE_VERSION: 4.1.1
+  GODOT_BASE_BRANCH: 4.1.1
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-check-pr-engine-export-template-debug
@@ -63,7 +63,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.1-stable
+          ref: 4.1.1-stable
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
@@ -122,7 +122,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.1-stable
+          ref: 4.1.1-stable
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:

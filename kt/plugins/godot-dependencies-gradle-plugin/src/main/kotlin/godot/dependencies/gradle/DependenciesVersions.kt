@@ -3,7 +3,7 @@ package godot.dependencies.gradle
 const val godotKotlinJvmVersion = "0.5.1"
 
 object DependenciesVersions {
-    const val godotVersion: String = "4.1.0"
+    const val godotVersion: String = "4.1.1"
 
     // https://github.com/johnrengelman/shadow/releases
     const val shadowJarPluginVersion: String = "8.0.0"

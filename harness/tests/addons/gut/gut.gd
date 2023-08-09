@@ -342,6 +342,8 @@ func _notification(what):
 				test_script.free()
 
 		_test_script_objects = []
+		if(is_instance_valid(_awaiter)):
+			_awaiter.free()
 
 
 func _print_versions(send_all = true):
@@ -545,10 +547,6 @@ func _end_run():
 	_run_hook_script(_post_run_script_instance)
 	_export_results()
 	end_run.emit()
-
-	if _utils.should_display_latest_version:
-		p("")
-		p(str("GUT version ",_utils.latest_version," is now available."))
 
 
 # ------------------------------------------------------------------------------
@@ -1093,8 +1091,6 @@ func p(text, level=0):
 # Runs all the scripts that were added using add_script
 # ------------------------------------------------------------------------------
 func test_scripts(run_rest=false):
-	clear_text()
-
 	if(_script_name != null and _script_name != ''):
 		var indexes = _get_indexes_matching_script_name(_script_name)
 		if(indexes == []):

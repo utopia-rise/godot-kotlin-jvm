@@ -1,4 +1,6 @@
 # ------------------------------------------------------------------------------
+# Choose an existing directory from res://.  Dialog allows for creating a 
+# directory.
 # ------------------------------------------------------------------------------
 class DirectoryCtrl:
 	extends HBoxContainer
@@ -9,21 +11,22 @@ class DirectoryCtrl:
 		set(val):
 			_txt_path.text = val
 
-	var _txt_path = LineEdit.new()
-	var _btn_dir = Button.new()
-	var _dialog = FileDialog.new()
+	var _txt_path := LineEdit.new()
+	var _btn_dir := Button.new()
+	var _dialog := FileDialog.new()
 
 	func _init():
 		_btn_dir.text = '...'
-		_btn_dir.connect('pressed',Callable(self,'_on_dir_button_pressed'))
+		_btn_dir.pressed.connect(_on_dir_button_pressed)
 
 		_txt_path.size_flags_horizontal = _txt_path.SIZE_EXPAND_FILL
 
-		_dialog.mode = _dialog.FILE_MODE_OPEN_DIR
+		_dialog.file_mode = _dialog.FILE_MODE_OPEN_DIR
 		_dialog.unresizable = false
-		_dialog.connect("dir_selected",Callable(self,'_on_selected'))
-		_dialog.connect("file_selected",Callable(self,'_on_selected'))
+		_dialog.dir_selected.connect(_on_selected)
+		_dialog.file_selected.connect(_on_selected)
 		_dialog.size = Vector2(1000, 700)
+
 
 	func _on_selected(path):
 		text = path
@@ -43,13 +46,30 @@ class DirectoryCtrl:
 	func get_line_edit():
 		return _txt_path
 
+
 # ------------------------------------------------------------------------------
+# Choose an existing file in res://
 # ------------------------------------------------------------------------------
 class FileCtrl:
 	extends DirectoryCtrl
 
 	func _init():
-		_dialog.mode = _dialog.FILE_MODE_OPEN_FILE
+		super._init()
+		_dialog.file_mode = _dialog.FILE_MODE_OPEN_FILE
+
+
+# ------------------------------------------------------------------------------
+# Choose a save location.  Can pick anywhere on file system.  Will warn if you
+# pick a file that already exists.
+# ------------------------------------------------------------------------------
+class SaveFileAnywhere:
+	extends DirectoryCtrl
+
+	func _init():
+		super._init()
+		_dialog.file_mode = _dialog.FILE_MODE_SAVE_FILE
+		_dialog.access = _dialog.ACCESS_FILESYSTEM
+	
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
@@ -169,7 +189,7 @@ func _add_number(key, value, disp_text, v_min, v_max, hint=''):
 	value_ctrl.max_value = v_max
 	_wire_select_on_focus(value_ctrl.get_line_edit())
 
-	_new_row(key, disp_text, value_ctrl, hint)
+	return _new_row(key, disp_text, value_ctrl, hint)
 
 
 func _add_select(key, value, values, disp_text, hint=''):
@@ -182,7 +202,7 @@ func _add_select(key, value, values, disp_text, hint=''):
 	value_ctrl.selected = select_idx
 	value_ctrl.size_flags_horizontal = value_ctrl.SIZE_EXPAND_FILL
 
-	_new_row(key, disp_text, value_ctrl, hint)
+	return _new_row(key, disp_text, value_ctrl, hint)
 
 
 func _add_value(key, value, disp_text, hint=''):
@@ -191,14 +211,14 @@ func _add_value(key, value, disp_text, hint=''):
 	value_ctrl.text = value
 	_wire_select_on_focus(value_ctrl)
 
-	_new_row(key, disp_text, value_ctrl, hint)
+	return _new_row(key, disp_text, value_ctrl, hint)
 
 
 func _add_boolean(key, value, disp_text, hint=''):
 	var value_ctrl = CheckBox.new()
 	value_ctrl.button_pressed = value
 
-	_new_row(key, disp_text, value_ctrl, hint)
+	return _new_row(key, disp_text, value_ctrl, hint)
 
 
 func _add_directory(key, value, disp_text, hint=''):
@@ -207,7 +227,7 @@ func _add_directory(key, value, disp_text, hint=''):
 	value_ctrl.text = value
 	_wire_select_on_focus(value_ctrl.get_line_edit())
 
-	_new_row(key, disp_text, value_ctrl, hint)
+	return _new_row(key, disp_text, value_ctrl, hint)
 
 
 func _add_file(key, value, disp_text, hint=''):
@@ -216,7 +236,16 @@ func _add_file(key, value, disp_text, hint=''):
 	value_ctrl.text = value
 	_wire_select_on_focus(value_ctrl.get_line_edit())
 
-	_new_row(key, disp_text, value_ctrl, hint)
+	return _new_row(key, disp_text, value_ctrl, hint)
+
+func _add_save_file_anywhere(key, value, disp_text, hint=''):
+	var value_ctrl = SaveFileAnywhere.new()
+	value_ctrl.size_flags_horizontal = value_ctrl.SIZE_EXPAND_FILL
+	value_ctrl.text = value
+	_wire_select_on_focus(value_ctrl.get_line_edit())
+
+	return _new_row(key, disp_text, value_ctrl, hint)
+	
 
 
 func _add_color(key, value, disp_text, hint=''):
@@ -224,7 +253,7 @@ func _add_color(key, value, disp_text, hint=''):
 	value_ctrl.size_flags_horizontal = value_ctrl.SIZE_EXPAND_FILL
 	value_ctrl.color = value
 
-	_new_row(key, disp_text, value_ctrl, hint)
+	return _new_row(key, disp_text, value_ctrl, hint)
 
 
 func _add_vector2(key, value, disp_text, hint=''):
@@ -234,7 +263,7 @@ func _add_vector2(key, value, disp_text, hint=''):
 	_wire_select_on_focus(value_ctrl.x_spin.get_line_edit())
 	_wire_select_on_focus(value_ctrl.y_spin.get_line_edit())
 
-	_new_row(key, disp_text, value_ctrl, hint)
+	return _new_row(key, disp_text, value_ctrl, hint)
 # -----------------------------
 
 
@@ -285,6 +314,19 @@ func get_config_issues():
 	return to_return
 
 
+# --------------
+# SUPER dumb but VERY fun hack to hide settings.  The various _add methods will
+# return what they add.  If you want to hide it, just assign the result to this.
+# YES, I could have just put .visible at the end, but I didn't think of that 
+# until just now, and this was fun, non-permanent and the .visible at the end
+# isn't as obvious as hide_this =
+# 
+# Also, we can't just skip adding the controls because other things are looking
+# for them and things start to blow up if you don't add them.
+var hide_this = null :
+	set(val): 
+		val.visible = false
+# --------------
 func set_options(options):
 	_add_title("Settings")
 	_add_number("log_level", options.log_level, "Log Level", 0, 3,
@@ -306,16 +348,16 @@ func set_options(options):
 	_add_title("Panel Output")
 	_add_select('output_font_name', options.panel_options.font_name, _avail_fonts, 'Font',
 		"The name of the font to use when running tests and in the output panel to the left.")
-	_add_number('output_font_size', options.panel_options.font_size, 'Font Size', 5, 100,
+	hide_this = _add_number('output_font_size', options.panel_options.font_size, 'Font Size', 5, 100,
 		"The font size to use when running tests and in the output panel to the left.")
 
 
 	_add_title('Runner Window')
-	_add_boolean("gut_on_top", options.gut_on_top, "On Top",
+	hide_this = _add_boolean("gut_on_top", options.gut_on_top, "On Top",
 		"The GUT Runner appears above children added during tests.")
 	_add_number('opacity', options.opacity, 'Opacity', 0, 100,
 		"The opacity of GUT when tests are running.")
-	_add_boolean('should_maximize', options.should_maximize, 'Maximize',
+	hide_this = _add_boolean('should_maximize', options.should_maximize, 'Maximize',
 		"Maximize GUT when tests are being run.")
 	_add_boolean('compact_mode', options.compact_mode, 'Compact Mode',
 		'The runner will be in compact mode.  This overrides Maximize.')
@@ -323,9 +365,9 @@ func set_options(options):
 	_add_title('Runner Appearance')
 	_add_select('font_name', options.font_name, _avail_fonts, 'Font',
 		"The font to use for text output in the Gut Runner.")
-	_add_number('font_size', options.font_size, 'Font Size', 5, 100,
+	hide_this = _add_number('font_size', options.font_size, 'Font Size', 5, 100,
 		"The font size for text output in the Gut Runner.")
-	_add_color('font_color', options.font_color, 'Font Color',
+	hide_this = _add_color('font_color', options.font_color, 'Font Color',
 		"The font color for text output in the Gut Runner.")
 	_add_color('background_color', options.background_color, 'Background Color',
 		"The background color for text output in the Gut Runner.")
@@ -343,7 +385,7 @@ func set_options(options):
 		_add_directory(str('directory_', i), value, str('Directory ', i))
 
 	_add_title("XML Output")
-	_add_value("junit_xml_file", options.junit_xml_file, "Output Path3D",
+	_add_save_file_anywhere("junit_xml_file", options.junit_xml_file, "Output Path",
 		"Path3D and filename where GUT should create a JUnit compliant XML file.  " +
 		"This file will contain the results of the last test run.  To avoid " +
 		"overriding the file use Include Timestamp.")
@@ -370,7 +412,7 @@ func set_options(options):
 	_cfg_ctrls.paint_after.step = .05
 	_cfg_ctrls.paint_after.value = options.paint_after
 
-	print('paint after = ', options.paint_after)
+	print('GUT config loaded')
 
 func get_options(base_opts):
 	var to_return = base_opts.duplicate()

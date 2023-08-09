@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
+import godot.core.Projection
 import godot.core.RID
 import godot.core.Transform3D
 import godot.core.VariantArray
@@ -17,6 +18,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PROJECTION
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
@@ -400,6 +402,16 @@ public open class Camera3D : Node3D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CAMERA_TRANSFORM,
         TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+  }
+
+  /**
+   * Returns the projection matrix that this camera uses to render to its associated viewport. The camera must be part of the scene tree to function.
+   */
+  public fun getCameraProjection(): Projection {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CAMERA_PROJECTION,
+        PROJECTION)
+    return (TransferContext.readReturnValue(PROJECTION, false) as Projection)
   }
 
   /**
