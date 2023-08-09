@@ -151,7 +151,6 @@ class GenerationService(
         }
 
         for (method in enrichedClass.methods.filter { it.internal.isStatic }) {
-            //TODO/4.0: Change implementation for static method
             constantsTypeReceiver.addFunction(generateMethod(enrichedClass, method, true))
         }
 
