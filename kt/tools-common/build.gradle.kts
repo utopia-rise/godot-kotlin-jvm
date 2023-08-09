@@ -1,10 +1,10 @@
-import godot.dependencies.gradle.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.grgit)
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependencies")
+    id("com.utopia-rise.versioninfo")
 }
 
 // the version is not inherited from the root build.gradle.kts as this here is a separate gradle project. Hence, we set it

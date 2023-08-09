@@ -1,3 +1,3 @@
-package godot.dependencies.gradle.helper
+package versioninfo.intellij
 
 data class VersionRange(val since: String, val until: String)

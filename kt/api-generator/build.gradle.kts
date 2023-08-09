@@ -1,9 +1,9 @@
-import godot.dependencies.gradle.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
     `java-gradle-plugin`
-    id("com.utopia-rise.godot-dependencies")
+    id("com.utopia-rise.versioninfo")
 }
 
 kotlin {

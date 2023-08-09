@@ -1,8 +1,8 @@
 import org.jetbrains.changelog.markdownToHTML
-import godot.dependencies.gradle.helper.BuildConfig
-import godot.dependencies.gradle.helper.VersionRange
-import godot.dependencies.gradle.fullGodotKotlinJvmVersion
-import godot.dependencies.gradle.isSnapshot
+import versioninfo.intellij.BuildConfig
+import versioninfo.intellij.VersionRange
+import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.isSnapshot
 import org.jetbrains.changelog.Changelog
 
 plugins {
@@ -15,7 +15,7 @@ plugins {
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
     alias(libs.plugins.changelog)
 
-    id("com.utopia-rise.godot-dependencies")
+    id("com.utopia-rise.versioninfo")
 }
 
 //sdk version: https://github.com/JetBrains/intellij-community/tags
@@ -27,7 +27,11 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
         extraSource = "",
         version = VersionRange("222.1", "999.*"),
         ideVersionsForVerifierTask = listOf("2022.2"),
-        deps = listOf("java", "org.jetbrains.kotlin", "gradle") // kotlin plugin version no longer needed as it's now bundled with the IDE
+        deps = listOf(
+            "java",
+            "org.jetbrains.kotlin",
+            "gradle"
+        ) // kotlin plugin version no longer needed as it's now bundled with the IDE
     )
 )
 

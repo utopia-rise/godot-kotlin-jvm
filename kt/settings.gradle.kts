@@ -11,7 +11,6 @@ pluginManagement {
 
     resolutionStrategy.eachPlugin {
         when(requested.id.id) {
-            "com.utopia-rise.godot-dependencies" -> useModule("com.utopia-rise:godot-convention-gradle-plugin:0.0.1")
             "com.utopia-rise.api-generator" -> useModule("com.utopia-rise:api-generator:0.0.1")
             "com.utopia-rise.godot-publish" -> useModule("com.utopia-rise:godot-publish-gradle-plugin:0.0.1")
             "com.github.johnrengelman.shadow" -> useVersion("7.1.2")
@@ -48,12 +47,6 @@ subdir("entry-generation") {
 subdir("plugins") {
     include("godot-gradle-plugin")
     include("godot-intellij-plugin")
-
-    this.includeBuild("godot-convention-gradle-plugin") {
-        dependencySubstitution {
-            substitute(module("com.utopia-rise:godot-convention-gradle-plugin")).using(project(":"))
-        }
-    }
 
     this.includeBuild("godot-publish-gradle-plugin") {
         dependencySubstitution {

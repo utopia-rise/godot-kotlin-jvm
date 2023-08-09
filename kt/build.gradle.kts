@@ -1,10 +1,10 @@
-import godot.dependencies.gradle.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotKotlinJvmVersion
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
     // prevents the kotlin plugin being applied multiple times (once per subproject) as this is not supported. Done as suggested by the kotlin plugin
     alias(libs.plugins.kotlin.jvm) apply false
-    id("com.utopia-rise.godot-dependencies")
+    id("com.utopia-rise.versioninfo")
 }
 
 version = fullGodotKotlinJvmVersion
