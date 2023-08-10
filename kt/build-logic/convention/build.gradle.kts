@@ -20,6 +20,13 @@ gradlePlugin {
             implementationClass = "versioninfo.VersionInfoPlugin"
         }
     }
+    plugins {
+        create("godotPublishPlugin") {
+            id = "com.utopia-rise.godot-publish"
+            displayName = "Gradle plugin for publishing godot kotlin jvm to maven central"
+            implementationClass = "publish.PublishToMavenCentralPlugin"
+        }
+    }
 }
 
 tasks {
