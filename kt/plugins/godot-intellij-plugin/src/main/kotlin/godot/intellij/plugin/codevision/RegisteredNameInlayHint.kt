@@ -15,7 +15,7 @@ import com.intellij.openapi.ide.CopyPasteManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.refactoring.suggested.startOffset
-import com.intellij.ui.layout.panel
+import com.intellij.ui.dsl.builder.panel
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION

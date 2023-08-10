@@ -5,6 +5,7 @@ import com.utopiarise.serialization.godot.model.SignalConnection
 import godot.intellij.plugin.data.model.IncomingSignalConnectionDataContainer
 import godot.intellij.plugin.data.model.OutgoingSignalConnectionDataContainer
 import godot.tools.common.extensions.convertToCamelCase
+import java.util.*
 
 class SignalConnectionCache {
     private val incomingSignalConnectionDataContainers: MutableMap<String, MutableMap<String, List<IncomingSignalConnectionDataContainer>>> =
@@ -39,7 +40,7 @@ class SignalConnectionCache {
             }
             .map { signalConnection ->
                 val signalName = if (signalConnection.from.script?.endsWith("kt") == true) {
-                    "signal${signalConnection.signal.convertToCamelCase().capitalize()}"
+                    "signal${signalConnection.signal.convertToCamelCase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString() }}"
                 } else {
                     signalConnection.signal
                 }
@@ -74,7 +75,7 @@ class SignalConnectionCache {
             }
             .map { signalConnection ->
                 val toScriptIsAlsoKt = signalConnection.to.script?.endsWith("kt") == true
-                val signalName = "signal${signalConnection.signal.convertToCamelCase().capitalize()}"
+                val signalName = "signal${signalConnection.signal.convertToCamelCase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString() }}"
                 val toMethodName = if (toScriptIsAlsoKt) {
                     signalConnection.method.convertToCamelCase()
                 } else {

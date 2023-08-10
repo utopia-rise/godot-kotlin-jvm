@@ -4,15 +4,16 @@ import com.intellij.lang.annotation.AnnotationHolder
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotApiPackage
 import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
+import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.resolve
-import org.jetbrains.kotlin.nj2k.postProcessing.type
+
+
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtClass
@@ -40,7 +41,7 @@ object CallFunctionReferenceChecker {
     fun checkGeneralTargetFunction(element: KtCallableReferenceExpression, holder: AnnotationHolder) {
         val relevantParent = element.parent.parent.parent
         val callReference = relevantParent.children.firstIsInstanceOrNull<KtNameReferenceExpression>()
-        val containingClass = (callReference?.resolve() as? KtNamedFunction)?.containingClass()
+        val containingClass = (callReference?.mainReference?.resolve() as? KtNamedFunction)?.containingClass()
         if (
             relevantParent is KtCallExpression &&
             functionNames.contains(callReference?.text) &&
@@ -48,6 +49,7 @@ object CallFunctionReferenceChecker {
         ) {
             val targetFunction = element
                 .callableReference
+                .mainReference
                 .resolve() as? KtNamedFunction
 
             val registerFunctionAnnotation = targetFunction?.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION))
@@ -67,7 +69,7 @@ object CallFunctionReferenceChecker {
             isGodotExtensionFunction(callReference)
 
     private fun isGodotExtensionFunction(callReference: KtNameReferenceExpression?): Boolean {
-        return (callReference?.resolve() as? KtNamedFunction)?.isExtensionDeclaration() == true &&
-            (callReference.resolve() as? KtNamedFunction)?.fqName?.asString() == "$godotApiPackage.${callReference.text}"
+        return (callReference?.mainReference?.resolve() as? KtNamedFunction)?.isExtensionDeclaration() == true &&
+            (callReference.mainReference.resolve() as? KtNamedFunction)?.fqName?.asString() == "$godotApiPackage.${callReference.text}"
     }
 }

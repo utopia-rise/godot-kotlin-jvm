@@ -1,9 +1,7 @@
 package godot.intellij.plugin.extension
 
-import godot.intellij.plugin.gradle.GodotKotlinJvmSettings
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.idea.util.projectStructure.module
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtValueArgumentList

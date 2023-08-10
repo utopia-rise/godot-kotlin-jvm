@@ -12,10 +12,12 @@ import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotApiPackage
-import org.jetbrains.kotlin.idea.base.utils.fqname.getKotlinFqName
+import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
+
+import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.resolve
+
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
@@ -42,10 +44,11 @@ object RpcFunctionReferenceChecker {
         if (
             relevantParent is KtCallExpression &&
             rpcFunctionNames.contains(callReference?.text) &&
-            (callReference?.resolve() as? KtNamedFunction)?.containingClass()?.fqName?.asString() == "$godotApiPackage.${GodotTypes.node}"
+            (callReference?.mainReference?.resolve() as? KtNamedFunction)?.containingClass()?.fqName?.asString() == "$godotApiPackage.${GodotTypes.node}"
         ) {
             val targetFunction = element
                 .callableReference
+                .mainReference
                 .resolve() as? KtNamedFunction
 
             val registerFunctionAnnotation = targetFunction?.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION))
@@ -81,8 +84,9 @@ object RpcFunctionReferenceChecker {
                             ?.getArgumentExpression()
                             ?.getChildrenOfType<KtNameReferenceExpression>()
                             ?.lastOrNull()
+                            ?.mainReference
                             ?.resolve()
-                            ?.getKotlinFqName()
+                            ?.kotlinFqName
                             ?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.rpcMode}.DISABLED"
                     ) {
                         holder.registerProblem(

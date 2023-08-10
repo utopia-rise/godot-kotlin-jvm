@@ -123,7 +123,7 @@ open class GodotExtension(objects: ObjectFactory) {
     /**
      * path to the native-image tool used to convert jar to native.
      *
-     * example: "${System.getenv("GRAALVM_HOME")}/bin/native-image"
+     * example: "${System.getenv("GRAALVM_HOME")}"
      */
     val graalVmDirectory: RegularFileProperty = objects.fileProperty()
 
@@ -131,7 +131,7 @@ open class GodotExtension(objects: ObjectFactory) {
      * Windows specific.
      * Path to Visual Studio VCVARS to initialize native developer tools.
      *
-     * example: System.getenv("VC_VARS_PATH")
+     * example: ${System.getenv("VC_VARS_PATH")}
      */
     val windowsDeveloperVCVarsPath: Property<String> = objects.property(String::class.java)
 

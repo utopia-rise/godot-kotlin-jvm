@@ -7,8 +7,6 @@ import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiTreeChangeEvent
-import com.intellij.psi.search.FileTypeIndex
-import com.intellij.psi.search.GlobalSearchScope
 import godot.intellij.plugin.ProjectDisposable
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.extension.getGodotRoot
@@ -17,9 +15,8 @@ import godot.intellij.plugin.refactor.SceneAction
 import godot.intellij.plugin.wrapper.PsiTreeChangeListenerKt
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotAnnotationPackage
-import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.KotlinLanguage
-import org.jetbrains.kotlin.idea.base.utils.fqname.getKotlinFqName
+import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 
@@ -90,7 +87,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                                     newPath = (event.newParent as? PsiDirectory)?.virtualFile?.path ?: return,
                                     fqNames = (event.child.containingFile as? KtFile)
                                         ?.classes
-                                        ?.mapNotNull { it.getKotlinFqName()?.asString() }
+                                        ?.mapNotNull { it.kotlinFqName?.asString() }
                                         ?: return
                                 )
                             }
