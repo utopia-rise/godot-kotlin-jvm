@@ -12,12 +12,8 @@
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
-    <applicationListeners>
-        <listener class="godot.intellij.plugin.listener.GodotProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
-
     <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="godot.intellij.plugin.listener.GodotProjectManagerListener"/>
         <moduleBuilder builderClass="godot.intellij.plugin.module.GodotModuleBuilder"/>
         <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>
@@ -38,6 +34,7 @@
             implementation="godot.intellij.plugin.notification.SettingsFetchingNotification" />
         <externalSystemTaskNotificationListener
                 implementation="godot.intellij.plugin.gradle.GradleSystemListener"/>
+        <refactoring.elementListenerProvider implementation="godot.intellij.plugin.listener.refactoring.RefactoringListenerProvider"/>
     </extensions>
 
     <resource-bundle>messages.generalLabels</resource-bundle>

@@ -14,6 +14,7 @@ import godot.intellij.plugin.ProjectDisposable
 import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
 import godot.intellij.plugin.extension.getGodotRoot
 import godot.intellij.plugin.language.scene.filetype.GodotSceneFileType
+import org.jetbrains.kotlin.idea.util.projectStructure.getModule
 
 class GodotSceneBulkFileListener(private val project: Project) : BulkFileListener, ProjectDisposable {
 
@@ -62,6 +63,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
 
     private fun virtualFileChanged(file: VirtualFile) {
         val godotRoot = file.getGodotRoot(project) ?: return
+        val module = file.getModule(project) ?: return
 
         if (file.extension == GodotSceneFileType.EXTENSION && file.isValid && file.isInLocalFileSystem) {
             val path = file.canonicalPath ?: return
@@ -77,7 +79,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
             SignalConnectionCacheProvider
                 .provide(godotRoot)
                 .updateSignalConnections(
-                    project,
+                    module,
                     path,
                     signals
                 )

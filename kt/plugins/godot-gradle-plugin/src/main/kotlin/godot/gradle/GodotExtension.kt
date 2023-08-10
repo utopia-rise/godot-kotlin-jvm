@@ -1,5 +1,6 @@
 package godot.gradle
 
+import org.gradle.api.Project
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
@@ -163,7 +164,7 @@ open class GodotExtension(objects: ObjectFactory) {
      */
     val isGraalVmNativeImageGenerationVerbose: Property<Boolean> = objects.property(Boolean::class.java)
 
-    internal fun configureExtensionDefaults() {
+    internal fun configureExtensionDefaults(target: Project) {
         val buildToolsDir = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
             File("$androidSdkRoot/build-tools/")
         }
@@ -179,6 +180,7 @@ open class GodotExtension(objects: ObjectFactory) {
             ?.listFiles()
             ?.last { it.isDirectory }
 
+        registrationFileBaseDir.set(target.projectDir.resolve("gdj").apply { mkdirs() })
         isRegistrationFileHierarchyEnabled.set(true)
         isFqNameRegistrationEnabled.set(false)
 

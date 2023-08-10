@@ -12,5 +12,6 @@ import com.intellij.openapi.vfs.VirtualFile
 data class RegisteredClassDataContainer(
     val fqName: String,
     val registeredName: String,
+    val registrationFilePath: ResPath,
     val vFile: VirtualFile
 )

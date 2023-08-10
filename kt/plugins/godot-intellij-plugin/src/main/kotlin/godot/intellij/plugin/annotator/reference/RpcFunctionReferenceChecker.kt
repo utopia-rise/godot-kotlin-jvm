@@ -14,6 +14,7 @@ import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotApiPackage
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 
+
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName

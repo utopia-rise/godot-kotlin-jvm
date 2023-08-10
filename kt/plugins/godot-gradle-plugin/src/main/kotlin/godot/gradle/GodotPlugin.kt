@@ -22,7 +22,7 @@ abstract class GodotPlugin : Plugin<Project> {
         target.checkKotlinVersionCompatibility()
 
         val extension = target.extensions.create("godot", GodotExtension::class.java).also {
-            it.configureExtensionDefaults()
+            it.configureExtensionDefaults(target)
         }
 
         target.configureThirdPartyPlugins()
@@ -30,12 +30,20 @@ abstract class GodotPlugin : Plugin<Project> {
         target.setupTasks()
 
         target.afterEvaluate {
-            registry.register(PropertiesModelBuilder(extension.isFqNameRegistrationEnabled.get()))
+            registry.register(
+                PropertiesModelBuilder(
+                    isFqNameRegistrationEnabled = extension.isFqNameRegistrationEnabled.get(),
+                    isRegistrationFileHierarchyEnabled = extension.isRegistrationFileHierarchyEnabled.get(),
+                    registrationFileBaseDir = extension.registrationFileBaseDir.get().asFile.relativeTo(target.projectDir).path
+                )
+            )
         }
     }
 
     class PropertiesModelBuilder(
-        private val isFqNameRegistrationEnabled: Boolean
+        private val isFqNameRegistrationEnabled: Boolean,
+        private val isRegistrationFileHierarchyEnabled: Boolean,
+        private val registrationFileBaseDir: String,
     ): ToolingModelBuilder {
         override fun canBuild(modelName: String): Boolean {
             return modelName == GodotKotlinJvmPropertiesFile::class.java.name
@@ -43,7 +51,9 @@ abstract class GodotPlugin : Plugin<Project> {
 
         override fun buildAll(modelName: String, project: Project): Any {
             return GodotKotlinJvmPropertiesFileImpl(
-                isFqNameRegistrationEnabled = isFqNameRegistrationEnabled
+                isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
+                isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled,
+                registrationFileBaseDir = registrationFileBaseDir,
             )
         }
     }

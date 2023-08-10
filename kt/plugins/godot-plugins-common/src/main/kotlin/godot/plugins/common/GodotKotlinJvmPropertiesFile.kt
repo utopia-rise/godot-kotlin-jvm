@@ -15,4 +15,8 @@ interface GodotKotlinJvmPropertiesFile : Serializable {
         get() = GodotBuildProperties.godotKotlinJvmVersion
     val isFqNameRegistrationEnabled: Boolean
         get() = false
+    val isRegistrationFileHierarchyEnabled: Boolean
+        get() = true
+    val registrationFileBaseDir: String
+        get() = "gdj"
 }

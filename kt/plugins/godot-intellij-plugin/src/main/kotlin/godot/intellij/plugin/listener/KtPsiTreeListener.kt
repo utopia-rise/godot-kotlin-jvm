@@ -3,20 +3,27 @@ package godot.intellij.plugin.listener
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.Project
+import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
+import com.intellij.psi.PsiPackage
 import com.intellij.psi.PsiTreeChangeEvent
+import com.intellij.psi.search.FileTypeIndex
+import com.intellij.psi.search.GlobalSearchScope
 import godot.intellij.plugin.ProjectDisposable
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
+import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
+import godot.intellij.plugin.data.model.ResPath
 import godot.intellij.plugin.extension.getGodotRoot
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.refactor.SceneAction
 import godot.intellij.plugin.wrapper.PsiTreeChangeListenerKt
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.godotAnnotationPackage
+import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.KotlinLanguage
-import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
+import org.jetbrains.kotlin.idea.base.util.module
+import org.jetbrains.kotlin.idea.core.getPackage
+import org.jetbrains.kotlin.j2k.getContainingClass
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 
@@ -70,28 +77,35 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
 
                     override fun beforeChildMovement(event: PsiTreeChangeEvent) {
                         val containingFile: PsiFile = event.child.containingFile ?: return
+                        val oldParentPackage: PsiPackage = (event.oldParent as? PsiDirectory)?.getPackage() ?: return
+                        val newParentPackage: PsiPackage = (event.newParent as? PsiDirectory)?.getPackage() ?: return
+
                         if (!containingFile.isInGodotRoot()) return
 
-                        if (containingFile.language == KotlinLanguage.INSTANCE && containingFile is KtFile) {
-                            val isAnyClassRegisteredInFile = containingFile
-                                .classes
-                                .any { ktClass ->
-                                    ktClass
-                                        .annotations
-                                        .any { ktAnnotation -> ktAnnotation.qualifiedName == "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerClass}" }
-                                }
-                            if (isAnyClassRegisteredInFile) {
-                                SceneAction.scriptMoved(
-                                    project = project,
-                                    oldPath = (event.oldParent as? PsiDirectory)?.virtualFile?.path ?: return,
-                                    newPath = (event.newParent as? PsiDirectory)?.virtualFile?.path ?: return,
-                                    fqNames = (event.child.containingFile as? KtFile)
-                                        ?.classes
-                                        ?.mapNotNull { it.kotlinFqName?.asString() }
-                                        ?: return
-                                )
-                            }
+                        val containingClasses: List<PsiClass> = when(containingFile) {
+                            is KtFile -> containingFile.classes.toList()
+                            else -> containingFile.getContainingClass()?.let { clazz -> listOf(clazz) } ?: emptyList()
                         }
+
+                        containingClasses
+                            .filter { clazz -> clazz.annotations.any { annotation -> annotation.qualifiedName == REGISTER_CLASS_ANNOTATION } }
+                            .forEach { registeredClass ->
+                                val module = containingFile.module ?: return@forEach
+                                val simpleName = registeredClass.qualifiedName?.substringAfterLast(".") ?: return@forEach
+                                val oldFqName = "${oldParentPackage.qualifiedName}.${simpleName}"
+                                val newFqName = "${newParentPackage.qualifiedName}.${simpleName}"
+
+                                val oldResPath = ResPath.fromFqName(oldFqName, registeredClass.module)
+                                val newResPath = ResPath.fromFqName(newFqName, registeredClass.module)
+
+                                if (oldResPath != newResPath) {
+                                    SceneAction.scriptMoved(
+                                        module = module,
+                                        oldResPath = oldResPath,
+                                        newResPath = newResPath
+                                    )
+                                }
+                            }
                     }
                 },
                 this
@@ -99,24 +113,23 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
     }
 
     private fun initialIndexing() {
-//        ApplicationManager.getApplication().runReadAction {
-//            @Suppress("UnstableApiUsage")
-//            val files = FileTypeIndex
-//                .getFiles(KotlinFileType.INSTANCE, GlobalSearchScope.allScope(project))
-//                .toList()
-//
-//            ApplicationManager.getApplication().executeOnPooledThread {
-//                files
-//                    .filter { it.isInGodotRoot(project) }
-//                    .forEach { vFile ->
-//                        ApplicationManager.getApplication().runReadAction {
-//                            PsiManager.getInstance(project).findFile(vFile)?.let { psiFile ->
-//                                psiFileChanged(psiFile)
-//                            }
-//                        }
-//                    }
-//            }
-//        }
+        ApplicationManager.getApplication().runReadAction {
+            val files = FileTypeIndex
+                .getFiles(KotlinFileType.INSTANCE, GlobalSearchScope.allScope(project))
+                .toList()
+
+            ApplicationManager.getApplication().executeOnPooledThread {
+                files
+                    .filter { it.isInGodotRoot(project) }
+                    .forEach { vFile ->
+                        ApplicationManager.getApplication().runReadAction {
+                            PsiManager.getInstance(project).findFile(vFile)?.let { psiFile ->
+                                psiFileChanged(psiFile)
+                            }
+                        }
+                    }
+            }
+        }
     }
 
     private fun psiFileRemoved(psiFile: PsiFile) {

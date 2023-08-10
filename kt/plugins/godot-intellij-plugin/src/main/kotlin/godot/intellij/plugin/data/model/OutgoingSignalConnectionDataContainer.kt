@@ -10,7 +10,7 @@ package godot.intellij.plugin.data.model
  * @property fromNodeName name of the node which emits the signal
  * @property targetNodeName name of the node which receives emitted data
  * @property targetFunctionName name of the method which receives emitted data
- * @property fromKtClassFqName fqName of the KtClass which contains the emitting signal
+ * @property fromClassFqName fqName of the KtClass which contains the emitting signal
  * @property targetScriptPath res:// path to script which receives emitted data
  */
 data class OutgoingSignalConnectionDataContainer(
@@ -19,6 +19,6 @@ data class OutgoingSignalConnectionDataContainer(
     val fromNodeName: String,
     val targetNodeName: String,
     val targetFunctionName: String,
-    val fromKtClassFqName: String,
+    val fromClassFqName: String,
     val targetScriptPath: String
 )

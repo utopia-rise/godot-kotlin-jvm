@@ -24,6 +24,7 @@ class GodotSceneFileType private constructor() : LanguageFileType(GodotSceneLang
         return myIcon
     }
 
+    @Suppress("CompanionObjectInExtension")
     companion object {
         const val EXTENSION = "tscn"
         @JvmStatic

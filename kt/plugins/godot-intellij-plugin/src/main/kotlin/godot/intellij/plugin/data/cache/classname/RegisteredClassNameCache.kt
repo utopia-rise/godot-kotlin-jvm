@@ -4,7 +4,9 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiRecursiveElementWalkingVisitor
 import godot.intellij.plugin.data.model.RegisteredClassDataContainer
+import godot.intellij.plugin.extension.asResPath
 import godot.intellij.plugin.extension.getRegisteredClassName
+import godot.intellij.plugin.extension.getRegistrationFilePath
 import org.jetbrains.kotlin.psi.KtClass
 
 class RegisteredClassNameCache {
@@ -31,9 +33,11 @@ class RegisteredClassNameCache {
                             fqNameToRegisteredName.remove(element.fqName?.asString())
                             return
                         }
+                        val registrationFilePath = element.getRegistrationFilePath() ?: return
                         fqNameToRegisteredName[fqName] = RegisteredClassDataContainer(
                             fqName,
                             registeredName,
+                            registrationFilePath.asResPath,
                             element.containingFile.virtualFile
                         )
                     }

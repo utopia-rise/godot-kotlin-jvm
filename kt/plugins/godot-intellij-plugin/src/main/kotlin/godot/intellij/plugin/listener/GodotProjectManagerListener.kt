@@ -1,15 +1,15 @@
 package godot.intellij.plugin.listener
 
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.project.ProjectManagerListener
+import com.intellij.openapi.startup.ProjectActivity
 import com.intellij.openapi.vfs.VirtualFileManager
 import com.intellij.openapi.vfs.newvfs.BulkFileListener
 import godot.intellij.plugin.ProjectDisposable
 
-class GodotProjectManagerListener : ProjectManagerListener {
+class GodotProjectManagerListener : ProjectActivity, ProjectDisposable {
     private val listenerPerProject: MutableMap<Project, List<ProjectDisposable>> = mutableMapOf()
 
-    override fun projectOpened(project: Project) {
+    override suspend fun execute(project: Project) {
         listenerPerProject[project] = listOf(
             KtPsiTreeListener(project),
             GodotSceneBulkFileListener(project)
@@ -24,7 +24,7 @@ class GodotProjectManagerListener : ProjectManagerListener {
             }
     }
 
-    override fun projectClosing(project: Project) {
+    override fun dispose(project: Project) {
         listenerPerProject.remove(project)?.forEach { godotListener ->
             godotListener.dispose(project)
         }

@@ -18,7 +18,7 @@ fun Module?.getGodotRoot(): GodotRoot? {
     return if (this != null && !isDisposed && isGradleModule) {
         @Suppress("UnstableApiUsage")
         GradleUtil.findGradleModuleData(this)?.data?.let { moduleData ->
-            File(moduleData.linkedExternalProjectPath).toVirtualFile()?.findChild("project.godot")?.path
+            File(moduleData.linkedExternalProjectPath).toVirtualFile()?.findChild("project.godot")?.parent?.path
         }
     } else null
 }
