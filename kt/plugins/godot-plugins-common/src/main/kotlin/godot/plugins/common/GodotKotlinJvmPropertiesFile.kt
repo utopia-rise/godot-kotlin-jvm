@@ -3,14 +3,16 @@ package godot.plugins.common
 import godot.utils.GodotBuildProperties
 import java.io.Serializable
 
+/**
+ * Properties file to load gradle configuration from ide plugin
+ *
+ * This enables us to read the users configuration of our gradle extension and use that information for code checks in the IDE plugin
+ */
 interface GodotKotlinJvmPropertiesFile : Serializable {
     val currentGradlePluginVersion: String
+        get() = GodotBuildProperties.godotKotlinJvmVersion
     val minimumIdePluginVersion: String
+        get() = GodotBuildProperties.godotKotlinJvmVersion
     val isFqNameRegistrationEnabled: Boolean
+        get() = false
 }
-
-data class GodotKotlinJvmPropertiesFileImpl(
-    override val isFqNameRegistrationEnabled: Boolean = false,
-    override val currentGradlePluginVersion: String = GodotBuildProperties.godotKotlinJvmVersion,
-    override val minimumIdePluginVersion: String = GodotBuildProperties.godotKotlinJvmVersion,
-) : GodotKotlinJvmPropertiesFile

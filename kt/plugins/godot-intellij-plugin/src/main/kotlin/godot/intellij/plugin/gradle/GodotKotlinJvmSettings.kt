@@ -10,18 +10,23 @@ import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task
 import com.intellij.ui.EditorNotifications
-import godot.intellij.plugin.notification.FileIndexingNotification
+import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.notification.SettingsFetchingNotification
 import godot.plugins.common.GodotKotlinJvmPropertiesFile
-import godot.plugins.common.GodotKotlinJvmPropertiesFileImpl
 import org.jetbrains.plugins.gradle.service.execution.GradleExecutionHelper
 import org.jetbrains.plugins.gradle.settings.DistributionType
 import org.jetbrains.plugins.gradle.settings.GradleExecutionSettings
 import java.io.File
 
+/**
+ * Loads the users configuration of our gradle extension for each module it is configured and provides it
+ *
+ * This setup is inspired by https://github.com/cashapp/sqldelight/blob/4b3602ca6a38887683249554c8f71f97ada04bf2/sqldelight-idea-plugin/src/main/kotlin/app/cash/sqldelight/intellij/gradle/FileIndexMap.kt
+ */
 internal object GodotKotlinJvmSettings {
     private var fetchThread: Thread? = null
-    private val fileIndices = mutableMapOf<String, GodotKotlinJvmPropertiesFile>()
-    private val defaultIndex: GodotKotlinJvmPropertiesFile = GodotKotlinJvmPropertiesFileImpl()
+    private val settingsPerModule = mutableMapOf<String, GodotKotlinJvmPropertiesFile>()
+    private val defaultSettings: GodotKotlinJvmPropertiesFile = object : GodotKotlinJvmPropertiesFile {}
 
     private var initialized = false
     private var retries = 0
@@ -30,19 +35,22 @@ internal object GodotKotlinJvmSettings {
         fetchThread?.interrupt()
         fetchThread = null
         initialized = false
-        fileIndices.clear()
+        settingsPerModule.clear()
         retries = 0
     }
 
     operator fun get(module: Module?): GodotKotlinJvmPropertiesFile {
-        if (module == null) return defaultIndex
-        val projectPath = ExternalSystemApiUtil.getExternalProjectPath(module) ?: return defaultIndex
-        val result = fileIndices[projectPath]
+        if (module == null) return defaultSettings
+        val projectPath = ExternalSystemApiUtil.getExternalProjectPath(module) ?: return defaultSettings
+
+        val result = settingsPerModule[projectPath]
         if (result != null) return result
+
         ApplicationManager.getApplication().invokeLater {
             synchronized(this) {
                 if (!initialized) {
                     initialized = true
+
                     if (!module.isDisposed && !module.project.isDisposed) {
                         try {
                             ProgressManager.getInstance().runProcessWithProgressAsynchronously(
@@ -59,7 +67,7 @@ internal object GodotKotlinJvmSettings {
                 }
             }
         }
-        return fileIndices[projectPath] ?: defaultIndex
+        return settingsPerModule[projectPath] ?: defaultSettings
     }
 
     private class FetchModuleModels(
@@ -69,10 +77,11 @@ internal object GodotKotlinJvmSettings {
         /* project = */
         module.project,
         /* title = */
-        "Importing ${module.name} GodotKotlinJvm",
+        GodotPluginBundle.message("settingsIndex.action.title", module.name),
     ) {
         override fun run(indicator: ProgressIndicator) {
-            FileIndexingNotification.getInstance(module.project).unconfiguredReason = FileIndexingNotification.UnconfiguredReason.Syncing
+            SettingsFetchingNotification.getInstance(module.project).unconfiguredReason =
+                SettingsFetchingNotification.UnconfiguredReason.Syncing
 
             val executionSettings = GradleExecutionSettings(
                 /* gradleHome = */
@@ -84,35 +93,42 @@ internal object GodotKotlinJvmSettings {
                 /* isOfflineWork = */
                 false,
             )
+
             try {
-                fileIndices.putAll(
-                    GradleExecutionHelper().execute(projectPath, executionSettings) { connection ->
-                        fetchThread = Thread.currentThread()
-                        if (!initialized) return@execute emptyMap()
+                val properties = GradleExecutionHelper().execute(projectPath, executionSettings) { connection ->
+                    fetchThread = Thread.currentThread()
+                    if (!initialized) return@execute emptyMap()
 
-                        val javaHome = (
-                            ExternalSystemJdkUtil.getJavaHome()
-                                ?: ExternalSystemJdkUtil.getAvailableJdk(project).second.homePath
-                            )?.let { File(it) }
+                    val javaHomePath = ExternalSystemJdkUtil.getJavaHome()
+                        ?: ExternalSystemJdkUtil.getAvailableJdk(project).second.homePath
+                    val javaHome = javaHomePath?.let { File(it) }
 
-                        connection
-                            .action(FetchProjectModelsBuildAction)
-                            .setJavaHome(javaHome)
-                            .run()
-                    },
-                )
-                FileIndexingNotification.getInstance(project).hide()
+                    connection
+                        .action(FetchProjectModelsBuildAction)
+                        .setJavaHome(javaHome)
+                        .run()
+                }
+
+                properties.mapValues { (_, value) ->
+                    val compatibility = GradleCompatibility.validate(value)
+
+                    if (compatibility is GradleCompatibility.CompatibilityReport.Incompatible) {
+                        SettingsFetchingNotification.getInstance(project).unconfiguredReason =
+                            SettingsFetchingNotification.UnconfiguredReason.Incompatible(compatibility.reason, null)
+                    } else {
+                        settingsPerModule.putAll(properties)
+                        SettingsFetchingNotification.getInstance(project).hide()
+                    }
+                }
                 EditorNotifications.getInstance(module.project).updateAllNotifications()
             } catch (externalException: ExternalSystemException) {
                 // Expected interrupt from calling close() on the index.
                 if (externalException.rootCause() !is InterruptedException) {
                     // It's a gradle error, ignore and let the user fix when they try and build the project
 
-                    FileIndexingNotification.getInstance(project).unconfiguredReason =
-                        FileIndexingNotification.UnconfiguredReason.Incompatible(
-                            """
-                                Connecting with the GodotKotlinJvm plugin failed: try building from the command line.
-                            """.trimIndent(),
+                    SettingsFetchingNotification.getInstance(project).unconfiguredReason =
+                        SettingsFetchingNotification.UnconfiguredReason.Incompatible(
+                            GodotPluginBundle.message("settingsIndex.error.connectionFailed"),
                             externalException,
                         )
                 }

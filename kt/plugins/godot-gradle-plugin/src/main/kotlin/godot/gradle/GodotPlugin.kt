@@ -4,14 +4,12 @@ import godot.gradle.projectExt.checkKotlinVersionCompatibility
 import godot.gradle.projectExt.configureThirdPartyPlugins
 import godot.gradle.projectExt.setupConfigurationsAndCompilations
 import godot.gradle.projectExt.setupTasks
+import godot.gradle.properties.GodotKotlinJvmPropertiesFileImpl
 import godot.plugins.common.GodotKotlinJvmPropertiesFile
-import godot.plugins.common.GodotKotlinJvmPropertiesFileImpl
-import godot.utils.GodotBuildProperties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.tooling.provider.model.ToolingModelBuilder
 import org.gradle.tooling.provider.model.ToolingModelBuilderRegistry
-import java.io.Serializable
 import javax.inject.Inject
 
 

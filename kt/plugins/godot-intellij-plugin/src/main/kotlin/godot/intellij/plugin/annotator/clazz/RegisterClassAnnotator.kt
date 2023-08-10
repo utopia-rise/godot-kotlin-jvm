@@ -38,27 +38,11 @@ import org.jetbrains.kotlin.psi.psiUtil.isAbstract
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.resolve.descriptorUtil.getAllSuperclassesWithoutAny
 
-class TestAnnotator: Annotator {
-    override fun annotate(element: PsiElement, holder: AnnotationHolder) {
-        when (element) {
-            is KtAnnotation -> {
-                println("KtAnnotation")
-            }
-            is KtClass -> {
-                println("KtAnnotation")
-            }
-        }
-    }
-}
-
 class RegisterClassAnnotator : Annotator {
     private val classNotRegisteredQuickFix by lazy { ClassNotRegisteredQuickFix() }
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (!element.isInGodotRoot()) return
-
-        val blubb = GodotKotlinJvmSettings[element.module].isFqNameRegistrationEnabled
-        println(blubb)
 
         when (element) {
             is KtAnnotation -> {
