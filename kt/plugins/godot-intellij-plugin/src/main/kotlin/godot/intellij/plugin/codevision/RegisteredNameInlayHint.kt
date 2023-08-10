@@ -6,7 +6,6 @@ import com.intellij.codeInsight.hints.ImmediateConfigurable
 import com.intellij.codeInsight.hints.InlayHintsCollector
 import com.intellij.codeInsight.hints.InlayHintsProvider
 import com.intellij.codeInsight.hints.InlayHintsSink
-import com.intellij.codeInsight.hints.InlayPresentationFactory
 import com.intellij.codeInsight.hints.NoSettings
 import com.intellij.codeInsight.hints.SettingsKey
 import com.intellij.openapi.editor.Editor
@@ -30,9 +29,7 @@ import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.psiUtil.isAbstract
-import java.awt.Point
 import java.awt.datatransfer.StringSelection
-import java.awt.event.MouseEvent
 import javax.swing.JPanel
 
 @Suppress("UnstableApiUsage")
@@ -167,15 +164,10 @@ class RegisteredNameInlayHint : InlayHintsProvider<Any> {
                                     "codeVision.registeredName.text",
                                     convertedName
                                 )
-                            ),
-                            // has to be explicit for backwards compatibility with IJ203
-                            @Suppress("ObjectLiteralToLambda")
-                            object : InlayPresentationFactory.ClickListener {
-                                override fun onClick(event: MouseEvent, translated: Point) {
-                                    CopyPasteManager.getInstance().setContents(StringSelection(convertedName))
-                                }
-                            }
-                        )
+                            )
+                        ) { _, _ ->
+                            CopyPasteManager.getInstance().setContents(StringSelection(convertedName))
+                        }
                     ),
                     indent
                 )
