@@ -13,6 +13,7 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
@@ -20,6 +21,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Provides parameters for [godot.PhysicsDirectSpaceState2D.intersectRay].
@@ -63,15 +65,15 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   /**
    * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public var collisionMask: Int
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_GET_COLLISION_MASK, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_SET_COLLISION_MASK, NIL)
     }
@@ -145,5 +147,26 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     return true
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Returns a new, pre-configured [godot.PhysicsRayQueryParameters2D] object. Use it to quickly create query parameters using the most common options.
+     *
+     * ```
+     * 				var query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(0, 100))
+     * 				var collision = get_world_2d().direct_space_state.intersect_ray(query)
+     * 				```
+     */
+    @JvmOverloads
+    public fun create(
+      from: Vector2,
+      to: Vector2,
+      collisionMask: Long = 4294967295,
+      exclude: VariantArray<RID> = godot.core.variantArrayOf(),
+    ): PhysicsRayQueryParameters2D? {
+      TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, LONG to collisionMask, ARRAY to exclude)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_CREATE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsRayQueryParameters2D?)
+    }
+  }
 }

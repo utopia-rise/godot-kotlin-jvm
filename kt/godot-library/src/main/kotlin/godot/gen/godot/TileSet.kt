@@ -315,8 +315,8 @@ public open class TileSet : Resource() {
   /**
    * Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer.
    */
-  public fun setPhysicsLayerCollisionLayer(layerIndex: Int, layer: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layer.toLong())
+  public fun setPhysicsLayerCollisionLayer(layerIndex: Int, layer: Long): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layer)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_COLLISION_LAYER, NIL)
   }
@@ -324,18 +324,18 @@ public open class TileSet : Resource() {
   /**
    * Returns the collision layer (as in the physics server) bodies on the given TileSet's physics layer are in.
    */
-  public fun getPhysicsLayerCollisionLayer(layerIndex: Int): Int {
+  public fun getPhysicsLayerCollisionLayer(layerIndex: Int): Long {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_COLLISION_LAYER, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer.
    */
-  public fun setPhysicsLayerCollisionMask(layerIndex: Int, mask: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to mask.toLong())
+  public fun setPhysicsLayerCollisionMask(layerIndex: Int, mask: Long): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to mask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_COLLISION_MASK, NIL)
   }
@@ -343,11 +343,11 @@ public open class TileSet : Resource() {
   /**
    * Returns the collision mask of bodies on the given TileSet's physics layer.
    */
-  public fun getPhysicsLayerCollisionMask(layerIndex: Int): Int {
+  public fun getPhysicsLayerCollisionMask(layerIndex: Int): Long {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_COLLISION_MASK, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -543,8 +543,8 @@ public open class TileSet : Resource() {
   /**
    * Sets the navigation layers (as in the navigation server) for navigation regions in the given TileSet navigation layer.
    */
-  public fun setNavigationLayerLayers(layerIndex: Int, layers: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layers.toLong())
+  public fun setNavigationLayerLayers(layerIndex: Int, layers: Long): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layers)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_NAVIGATION_LAYER_LAYERS,
         NIL)
   }
@@ -552,11 +552,11 @@ public open class TileSet : Resource() {
   /**
    * Returns the navigation layers (as in the Navigation server) of the given TileSet navigation layer.
    */
-  public fun getNavigationLayerLayers(layerIndex: Int): Int {
+  public fun getNavigationLayerLayers(layerIndex: Int): Long {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NAVIGATION_LAYER_LAYERS,
         LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

@@ -21,7 +21,7 @@ internal interface GDRandom {
 
     /** Random from seed: pass a seed, and an array with both number and new seed is returned. "Seed" here refers to the internal state of the pseudo random number generator.
      * The internal state of the current implementation is 64 bits. */
-    fun randSeed(seed: Long): Pair<Long, Int> {
+    fun randSeed(seed: Long): Pair<Long, Long> {
         rng!!.seed = seed
         //Call to randi() should change the value of the seed, that's why we retrieve it again in the return statement
         val randomValue = rng!!.randi()

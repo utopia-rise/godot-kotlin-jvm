@@ -407,7 +407,7 @@ public object OS : Object() {
    *
    * Use [godot.ProjectSettings.globalizePath] to convert a `res://` or `user://` path into a system path for use with this method.
    *
-   * **Note:** Currently this method is only implemented on Windows and macOS. On other platforms, it will fallback to [shellOpen] with a directory path of [fileOrDirPath] with prefix `file://`.
+   * **Note:** Currently this method is only implemented on Windows. On other platforms, it will fallback to [shellOpen] with a directory path for [fileOrDirPath].
    */
   @JvmOverloads
   public fun shellShowInFileManager(fileOrDirPath: String, openFolder: Boolean = true): GodotError {

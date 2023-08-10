@@ -137,5 +137,18 @@ public open class GLTFPhysicsShape : Resource() {
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
-  public companion object
+  public companion object {
+    public fun fromNode(shapeNode: CollisionShape3D): GLTFPhysicsShape? {
+      TransferContext.writeArguments(OBJECT to shapeNode)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSSHAPE_FROM_NODE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
+    }
+
+    public fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsShape? {
+      TransferContext.writeArguments(DICTIONARY to dictionary)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSSHAPE_FROM_DICTIONARY,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
+    }
+  }
 }

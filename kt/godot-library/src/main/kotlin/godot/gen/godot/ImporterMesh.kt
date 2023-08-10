@@ -116,9 +116,9 @@ public open class ImporterMesh : Resource() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     material: Material? = null,
     name: String = "",
-    flags: Int = 0,
+    flags: Long = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags.toLong())
+    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_ADD_SURFACE, NIL)
   }
 
@@ -215,11 +215,11 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the format of the surface that the mesh holds.
    */
-  public fun getSurfaceFormat(surfaceIdx: Int): Int {
+  public fun getSurfaceFormat(surfaceIdx: Int): Long {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_FORMAT,
         LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

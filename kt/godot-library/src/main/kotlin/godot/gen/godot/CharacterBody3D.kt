@@ -236,15 +236,15 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [godot.CharacterBody3D]. By default, all floor bodies are detected and propagate their velocity.
    */
-  public var platformFloorLayers: Int
+  public var platformFloorLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_FLOOR_LAYERS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_PLATFORM_FLOOR_LAYERS, NIL)
     }
@@ -252,15 +252,15 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [godot.CharacterBody3D]. By default, all wall bodies are ignored.
    */
-  public var platformWallLayers: Int
+  public var platformWallLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_WALL_LAYERS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_PLATFORM_WALL_LAYERS, NIL)
     }

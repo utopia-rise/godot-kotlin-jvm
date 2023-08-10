@@ -113,10 +113,10 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Returns a combination of [enum Capabilities] flags providing information about the capabilities of this interface.
    */
-  public fun getCapabilities(): Int {
+  public fun getCapabilities(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_CAPABILITIES, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -188,10 +188,10 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Returns the number of views that need to be rendered for this device. 1 for Monoscopic, 2 for Stereoscopic.
    */
-  public fun getViewCount(): Int {
+  public fun getViewCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_VIEW_COUNT, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -300,8 +300,8 @@ public open class XRInterface internal constructor() : RefCounted() {
    *
    * [camTransform] is the transform that maps device coordinates to scene coordinates, typically the [godot.Node3D.globalTransform] of the current XROrigin3D.
    */
-  public fun getTransformForView(view: Int, camTransform: Transform3D): Transform3D {
-    TransferContext.writeArguments(LONG to view.toLong(), TRANSFORM3D to camTransform)
+  public fun getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
+    TransferContext.writeArguments(LONG to view, TRANSFORM3D to camTransform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_TRANSFORM_FOR_VIEW,
         TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
@@ -311,12 +311,12 @@ public open class XRInterface internal constructor() : RefCounted() {
    * Returns the projection matrix for a view/eye.
    */
   public fun getProjectionForView(
-    view: Int,
+    view: Long,
     aspect: Double,
     near: Double,
     far: Double,
   ): Projection {
-    TransferContext.writeArguments(LONG to view.toLong(), DOUBLE to aspect, DOUBLE to near, DOUBLE to far)
+    TransferContext.writeArguments(LONG to view, DOUBLE to aspect, DOUBLE to near, DOUBLE to far)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PROJECTION_FOR_VIEW,
         PROJECTION)
     return (TransferContext.readReturnValue(PROJECTION, false) as Projection)

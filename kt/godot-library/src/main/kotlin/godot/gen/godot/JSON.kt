@@ -131,5 +131,74 @@ public open class JSON : Resource() {
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Converts a [Variant] var to JSON text and returns the result. Useful for serializing data to store or send over the network.
+     *
+     * **Note:** The JSON specification does not define integer or float types, but only a *number* type. Therefore, converting a Variant to JSON text will convert all numerical values to [float] types.
+     *
+     * **Note:** If [fullPrecision] is `true`, when stringifying floats, the unreliable digits are stringified in addition to the reliable digits to guarantee exact decoding.
+     *
+     * The [indent] parameter controls if and how something is indented, the string used for this parameter will be used where there should be an indent in the output, even spaces like `"   "` will work. `\t` and `\n` can also be used for a tab indent, or to make a newline for each indent respectively.
+     *
+     * **Example output:**
+     *
+     * ```
+     * 				## JSON.stringify(my_dictionary)
+     * 				{"name":"my_dictionary","version":"1.0.0","entities":[{"name":"entity_0","value":"value_0"},{"name":"entity_1","value":"value_1"}]}
+     *
+     * 				## JSON.stringify(my_dictionary, "\t")
+     * 				{
+     * 				    "name": "my_dictionary",
+     * 				    "version": "1.0.0",
+     * 				    "entities": [
+     * 				        {
+     * 				            "name": "entity_0",
+     * 				            "value": "value_0"
+     * 				        },
+     * 				        {
+     * 				            "name": "entity_1",
+     * 				            "value": "value_1"
+     * 				        }
+     * 				    ]
+     * 				}
+     *
+     * 				## JSON.stringify(my_dictionary, "...")
+     * 				{
+     * 				..."name": "my_dictionary",
+     * 				..."version": "1.0.0",
+     * 				..."entities": [
+     * 				......{
+     * 				........."name": "entity_0",
+     * 				........."value": "value_0"
+     * 				......},
+     * 				......{
+     * 				........."name": "entity_1",
+     * 				........."value": "value_1"
+     * 				......}
+     * 				...]
+     * 				}
+     * 				```
+     */
+    @JvmOverloads
+    public fun stringify(
+      `data`: Any,
+      indent: String = "",
+      sortKeys: Boolean = true,
+      fullPrecision: Boolean = false,
+    ): String {
+      TransferContext.writeArguments(ANY to data, STRING to indent, BOOL to sortKeys, BOOL to fullPrecision)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_JSON_STRINGIFY, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+
+    /**
+     * Attempts to parse the [jsonString] provided and returns the parsed data. Returns `null` if parse failed.
+     */
+    public fun parseString(jsonString: String): Any? {
+      TransferContext.writeArguments(STRING to jsonString)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_JSON_PARSE_STRING, ANY)
+      return (TransferContext.readReturnValue(ANY, true) as Any?)
+    }
+  }
 }

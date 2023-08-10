@@ -188,11 +188,11 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Returns a randomly generated integer that can be used as a network unique ID.
    */
-  public fun generateUniqueId(): Int {
+  public fun generateUniqueId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GENERATE_UNIQUE_ID,
         LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

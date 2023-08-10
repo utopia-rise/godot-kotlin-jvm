@@ -28,6 +28,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -218,5 +219,34 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Sets the default MultiplayerAPI implementation class. This method can be used by modules and extensions to configure which implementation will be used by [godot.SceneTree] when the engine starts.
+     */
+    public fun setDefaultInterface(interfaceName: StringName): Unit {
+      TransferContext.writeArguments(STRING_NAME to interfaceName)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_DEFAULT_INTERFACE,
+          NIL)
+    }
+
+    /**
+     * Returns the default MultiplayerAPI implementation class name. This is usually `"SceneMultiplayer"` when [godot.SceneMultiplayer] is available. See [setDefaultInterface].
+     */
+    public fun getDefaultInterface(): StringName {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_DEFAULT_INTERFACE,
+          STRING_NAME)
+      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    }
+
+    /**
+     * Returns a new instance of the default MultiplayerAPI.
+     */
+    public fun createDefaultInterface(): MultiplayerAPI? {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(0,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_CREATE_DEFAULT_INTERFACE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?)
+    }
+  }
 }

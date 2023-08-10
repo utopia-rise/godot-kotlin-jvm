@@ -9,11 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
+import godot.core.StringName
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
@@ -182,5 +184,11 @@ public open class WebRTCPeerConnection : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    public fun setDefaultExtension(extensionClass: StringName): Unit {
+      TransferContext.writeArguments(STRING_NAME to extensionClass)
+      TransferContext.callMethod(0,
+          ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_SET_DEFAULT_EXTENSION, NIL)
+    }
+  }
 }

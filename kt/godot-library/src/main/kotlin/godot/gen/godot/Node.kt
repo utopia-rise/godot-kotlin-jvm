@@ -186,9 +186,9 @@ public open class Node : Object() {
     }
 
   /**
-   * The node owner. A node can have any ancestor node as owner (i.e. a parent, grandparent, etc. node ascending in the tree). This implies that [addChild] should be called before setting the owner, so that this relationship of parenting exists. When saving a node (using [godot.PackedScene]), all the nodes it owns will be saved with it. This allows for the creation of complex scene trees, with instancing and subinstancing.
+   * The node owner. A node can have any other node as owner (as long as it is a valid parent, grandparent, etc. ascending in the tree). When saving a node (using [godot.PackedScene]), all the nodes it owns will be saved with it. This allows for the creation of complex [godot.SceneTree]s, with instancing and subinstancing.
    *
-   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/plugins/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If a new node is added to the tree without setting its owner as an ancestor in that tree, it will be visible in the 2D/3D view, but not in the scene tree (and not persisted when packing or saving).
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/plugins/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
   public var owner: Node?
     get() {
@@ -2119,5 +2119,15 @@ public open class Node : Object() {
      * Notification received when text server is changed.
      */
     public final const val NOTIFICATION_TEXT_SERVER_CHANGED: Long = 2018
+
+    /**
+     * Prints all orphan nodes (nodes outside the [godot.SceneTree]). Used for debugging.
+     *
+     * **Note:** [printOrphanNodes] only works in debug builds. When called in a project exported in release mode, [printOrphanNodes] will not print anything.
+     */
+    public fun printOrphanNodes(): Unit {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_ORPHAN_NODES, NIL)
+    }
   }
 }

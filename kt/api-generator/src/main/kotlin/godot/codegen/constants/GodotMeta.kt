@@ -1,6 +1,10 @@
 package godot.codegen.constants
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.DOUBLE
+import com.squareup.kotlinpoet.FLOAT
+import com.squareup.kotlinpoet.INT
+import com.squareup.kotlinpoet.LONG
 import godot.codegen.exceptions.MetaNotFoundException
 
 object GodotMeta {
@@ -37,7 +41,7 @@ object GodotMeta {
 
         Int.uint8 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt),
         Int.uint16 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt),
-        Int.uint32 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt),
+        Int.uint32 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none),
         Int.uint64 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none),
 
         Float.float to MetaInformation(FLOAT, DOUBLE, CastLiterals.toDouble, CastLiterals.toFloat),

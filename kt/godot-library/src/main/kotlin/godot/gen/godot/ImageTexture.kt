@@ -101,5 +101,14 @@ public open class ImageTexture : Texture2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_SIZE_OVERRIDE, NIL)
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Creates a new [godot.ImageTexture] and initializes it by allocating and setting the data from an [godot.Image].
+     */
+    public fun createFromImage(image: Image): ImageTexture? {
+      TransferContext.writeArguments(OBJECT to image)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_CREATE_FROM_IMAGE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as ImageTexture?)
+    }
+  }
 }

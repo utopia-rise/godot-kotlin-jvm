@@ -90,15 +90,15 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public var collisionLayer: Int
+  public var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_GET_COLLISION_LAYER, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SET_COLLISION_LAYER, NIL)
     }
@@ -108,15 +108,15 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public var collisionMask: Int
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_GET_COLLISION_MASK, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SET_COLLISION_MASK, NIL)
     }
@@ -244,18 +244,18 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference.
    */
-  public fun createShapeOwner(owner: Object): Int {
+  public fun createShapeOwner(owner: Object): Long {
     TransferContext.writeArguments(OBJECT to owner)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_CREATE_SHAPE_OWNER, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Removes the given shape owner.
    */
-  public fun removeShapeOwner(ownerId: Int): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun removeShapeOwner(ownerId: Long): Unit {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_REMOVE_SHAPE_OWNER, NIL)
   }
@@ -273,8 +273,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Sets the [godot.core.Transform2D] of the given shape owner.
    */
-  public fun shapeOwnerSetTransform(ownerId: Int, transform: Transform2D): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), TRANSFORM2D to transform)
+  public fun shapeOwnerSetTransform(ownerId: Long, transform: Transform2D): Unit {
+    TransferContext.writeArguments(LONG to ownerId, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_SET_TRANSFORM, NIL)
   }
@@ -282,8 +282,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Returns the shape owner's [godot.core.Transform2D].
    */
-  public fun shapeOwnerGetTransform(ownerId: Int): Transform2D {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun shapeOwnerGetTransform(ownerId: Long): Transform2D {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_GET_TRANSFORM, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
@@ -292,8 +292,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Returns the parent object of the given shape owner.
    */
-  public fun shapeOwnerGetOwner(ownerId: Int): Object? {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun shapeOwnerGetOwner(ownerId: Long): Object? {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_GET_OWNER, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Object?)
@@ -302,8 +302,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * If `true`, disables the given shape owner.
    */
-  public fun shapeOwnerSetDisabled(ownerId: Int, disabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), BOOL to disabled)
+  public fun shapeOwnerSetDisabled(ownerId: Long, disabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to ownerId, BOOL to disabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_SET_DISABLED, NIL)
   }
@@ -311,8 +311,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * If `true`, the shape owner and its shapes are disabled.
    */
-  public fun isShapeOwnerDisabled(ownerId: Int): Boolean {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun isShapeOwnerDisabled(ownerId: Long): Boolean {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_IS_SHAPE_OWNER_DISABLED, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -321,8 +321,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * If [enable] is `true`, collisions for the shape owner originating from this [godot.CollisionObject2D] will not be reported to collided with [godot.CollisionObject2D]s.
    */
-  public fun shapeOwnerSetOneWayCollision(ownerId: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), BOOL to enable)
+  public fun shapeOwnerSetOneWayCollision(ownerId: Long, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to ownerId, BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_SET_ONE_WAY_COLLISION, NIL)
   }
@@ -330,8 +330,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Returns `true` if collisions for the shape owner originating from this [godot.CollisionObject2D] will not be reported to collided with [godot.CollisionObject2D]s.
    */
-  public fun isShapeOwnerOneWayCollisionEnabled(ownerId: Int): Boolean {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun isShapeOwnerOneWayCollisionEnabled(ownerId: Long): Boolean {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_IS_SHAPE_OWNER_ONE_WAY_COLLISION_ENABLED, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -340,8 +340,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Sets the `one_way_collision_margin` of the shape owner identified by given [ownerId] to [margin] pixels.
    */
-  public fun shapeOwnerSetOneWayCollisionMargin(ownerId: Int, margin: Float): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), DOUBLE to margin.toDouble())
+  public fun shapeOwnerSetOneWayCollisionMargin(ownerId: Long, margin: Float): Unit {
+    TransferContext.writeArguments(LONG to ownerId, DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_SET_ONE_WAY_COLLISION_MARGIN, NIL)
   }
@@ -349,8 +349,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Returns the `one_way_collision_margin` of the shape owner identified by given [ownerId].
    */
-  public fun getShapeOwnerOneWayCollisionMargin(ownerId: Int): Float {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun getShapeOwnerOneWayCollisionMargin(ownerId: Long): Float {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_GET_SHAPE_OWNER_ONE_WAY_COLLISION_MARGIN, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -359,8 +359,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Adds a [godot.Shape2D] to the shape owner.
    */
-  public fun shapeOwnerAddShape(ownerId: Int, shape: Shape2D): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), OBJECT to shape)
+  public fun shapeOwnerAddShape(ownerId: Long, shape: Shape2D): Unit {
+    TransferContext.writeArguments(LONG to ownerId, OBJECT to shape)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_ADD_SHAPE, NIL)
   }
@@ -368,8 +368,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Returns the number of shapes the given shape owner contains.
    */
-  public fun shapeOwnerGetShapeCount(ownerId: Int): Int {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun shapeOwnerGetShapeCount(ownerId: Long): Int {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_GET_SHAPE_COUNT, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -378,8 +378,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Returns the [godot.Shape2D] with the given ID from the given shape owner.
    */
-  public fun shapeOwnerGetShape(ownerId: Int, shapeId: Int): Shape2D? {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), LONG to shapeId.toLong())
+  public fun shapeOwnerGetShape(ownerId: Long, shapeId: Int): Shape2D? {
+    TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_GET_SHAPE, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Shape2D?)
@@ -388,8 +388,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Returns the child index of the [godot.Shape2D] with the given ID from the given shape owner.
    */
-  public fun shapeOwnerGetShapeIndex(ownerId: Int, shapeId: Int): Int {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), LONG to shapeId.toLong())
+  public fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Int): Int {
+    TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_GET_SHAPE_INDEX, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -398,8 +398,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Removes a shape from the given shape owner.
    */
-  public fun shapeOwnerRemoveShape(ownerId: Int, shapeId: Int): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong(), LONG to shapeId.toLong())
+  public fun shapeOwnerRemoveShape(ownerId: Long, shapeId: Int): Unit {
+    TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_REMOVE_SHAPE, NIL)
   }
@@ -407,8 +407,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Removes all shapes from the shape owner.
    */
-  public fun shapeOwnerClearShapes(ownerId: Int): Unit {
-    TransferContext.writeArguments(LONG to ownerId.toLong())
+  public fun shapeOwnerClearShapes(ownerId: Long): Unit {
+    TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_CLEAR_SHAPES, NIL)
   }
@@ -416,11 +416,11 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Returns the `owner_id` of the given shape.
    */
-  public fun shapeFindOwner(shapeIndex: Int): Int {
+  public fun shapeFindOwner(shapeIndex: Int): Long {
     TransferContext.writeArguments(LONG to shapeIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_FIND_OWNER,
         LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public enum class DisableMode(

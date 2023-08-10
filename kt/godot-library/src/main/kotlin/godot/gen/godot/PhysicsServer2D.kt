@@ -376,8 +376,8 @@ public object PhysicsServer2D : Object() {
   /**
    * Assigns the area to one or many physics layers, via a bitmask.
    */
-  public fun areaSetCollisionLayer(area: RID, layer: Int): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to layer.toLong())
+  public fun areaSetCollisionLayer(area: RID, layer: Long): Unit {
+    TransferContext.writeArguments(_RID to area, LONG to layer)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_COLLISION_LAYER, NIL)
   }
@@ -385,18 +385,18 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the physics layer or layers the area belongs to, as a bitmask.
    */
-  public fun areaGetCollisionLayer(area: RID): Int {
+  public fun areaGetCollisionLayer(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_COLLISION_LAYER, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Sets which physics layers the area will monitor, via a bitmask.
    */
-  public fun areaSetCollisionMask(area: RID, mask: Int): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to mask.toLong())
+  public fun areaSetCollisionMask(area: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to area, LONG to mask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_COLLISION_MASK, NIL)
   }
@@ -404,11 +404,11 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the physics layer or layers the area can contact with, as a bitmask.
    */
-  public fun areaGetCollisionMask(area: RID): Int {
+  public fun areaGetCollisionMask(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_COLLISION_MASK, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -766,8 +766,8 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the physics layer or layers the body belongs to, via a bitmask.
    */
-  public fun bodySetCollisionLayer(body: RID, layer: Int): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to layer.toLong())
+  public fun bodySetCollisionLayer(body: RID, layer: Long): Unit {
+    TransferContext.writeArguments(_RID to body, LONG to layer)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_COLLISION_LAYER, NIL)
   }
@@ -775,18 +775,18 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the physics layer or layers the body belongs to, as a bitmask.
    */
-  public fun bodyGetCollisionLayer(body: RID): Int {
+  public fun bodyGetCollisionLayer(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_COLLISION_LAYER, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Sets the physics layer or layers the body can collide with, via a bitmask.
    */
-  public fun bodySetCollisionMask(body: RID, mask: Int): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to mask.toLong())
+  public fun bodySetCollisionMask(body: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to body, LONG to mask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_COLLISION_MASK, NIL)
   }
@@ -794,11 +794,11 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the physics layer or layers the body can collide with, as a bitmask.
    */
-  public fun bodyGetCollisionMask(body: RID): Int {
+  public fun bodyGetCollisionMask(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_COLLISION_MASK, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

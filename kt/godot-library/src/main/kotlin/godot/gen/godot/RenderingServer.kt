@@ -626,41 +626,41 @@ public object RenderingServer : Object() {
     format: Long,
     vertexCount: Int,
     arrayIndex: Int,
-  ): Int {
+  ): Long {
     TransferContext.writeArguments(OBJECT to format, LONG to vertexCount.toLong(), LONG to arrayIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_OFFSET, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    *
    */
-  public fun meshSurfaceGetFormatVertexStride(format: Long, vertexCount: Int): Int {
+  public fun meshSurfaceGetFormatVertexStride(format: Long, vertexCount: Int): Long {
     TransferContext.writeArguments(OBJECT to format, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_VERTEX_STRIDE, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    *
    */
-  public fun meshSurfaceGetFormatAttributeStride(format: Long, vertexCount: Int): Int {
+  public fun meshSurfaceGetFormatAttributeStride(format: Long, vertexCount: Int): Long {
     TransferContext.writeArguments(OBJECT to format, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_ATTRIBUTE_STRIDE, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    *
    */
-  public fun meshSurfaceGetFormatSkinStride(format: Long, vertexCount: Int): Int {
+  public fun meshSurfaceGetFormatSkinStride(format: Long, vertexCount: Int): Long {
     TransferContext.writeArguments(OBJECT to format, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_SKIN_STRIDE, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -1267,8 +1267,8 @@ public object RenderingServer : Object() {
   /**
    * Sets the cull mask for this 3D light. Lights only affect objects in the selected layers. Equivalent to [godot.Light3D.lightCullMask].
    */
-  public fun lightSetCullMask(light: RID, mask: Int): Unit {
-    TransferContext.writeArguments(_RID to light, LONG to mask.toLong())
+  public fun lightSetCullMask(light: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to light, LONG to mask)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_SET_CULL_MASK,
         NIL)
   }
@@ -1309,8 +1309,8 @@ public object RenderingServer : Object() {
   /**
    * Sets the maximum SDFGI cascade in which the 3D light's indirect lighting is rendered. Higher values allow the light to be rendered in SDFGI further away from the camera.
    */
-  public fun lightSetMaxSdfgiCascade(light: RID, cascade: Int): Unit {
-    TransferContext.writeArguments(_RID to light, LONG to cascade.toLong())
+  public fun lightSetMaxSdfgiCascade(light: RID, cascade: Long): Unit {
+    TransferContext.writeArguments(_RID to light, LONG to cascade)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_SET_MAX_SDFGI_CASCADE, NIL)
   }
@@ -1505,8 +1505,8 @@ public object RenderingServer : Object() {
   /**
    * Sets the render cull mask for this reflection probe. Only instances with a matching cull mask will be rendered by this probe. Equivalent to [godot.ReflectionProbe.cullMask].
    */
-  public fun reflectionProbeSetCullMask(probe: RID, layers: Int): Unit {
-    TransferContext.writeArguments(_RID to probe, LONG to layers.toLong())
+  public fun reflectionProbeSetCullMask(probe: RID, layers: Long): Unit {
+    TransferContext.writeArguments(_RID to probe, LONG to layers)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_REFLECTION_PROBE_SET_CULL_MASK, NIL)
   }
@@ -1595,8 +1595,8 @@ public object RenderingServer : Object() {
   /**
    * Sets the cull [mask] in the decal specified by the [decal] RID. Equivalent to [godot.Decal.cullMask].
    */
-  public fun decalSetCullMask(decal: RID, mask: Int): Unit {
-    TransferContext.writeArguments(_RID to decal, LONG to mask.toLong())
+  public fun decalSetCullMask(decal: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to decal, LONG to mask)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_DECAL_SET_CULL_MASK,
         NIL)
   }
@@ -2200,9 +2200,9 @@ public object RenderingServer : Object() {
     velocity: Vector3,
     color: Color,
     custom: Color,
-    emitFlags: Int,
+    emitFlags: Long,
   ): Unit {
-    TransferContext.writeArguments(_RID to particles, TRANSFORM3D to transform, VECTOR3 to velocity, COLOR to color, COLOR to custom, LONG to emitFlags.toLong())
+    TransferContext.writeArguments(_RID to particles, TRANSFORM3D to transform, VECTOR3 to velocity, COLOR to color, COLOR to custom, LONG to emitFlags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_EMIT, NIL)
   }
 
@@ -2282,8 +2282,8 @@ public object RenderingServer : Object() {
   /**
    * Sets the cull [mask] for the 3D GPU particles collision or attractor specified by the [particlesCollision] RID. Equivalent to [godot.GPUParticlesCollision3D.cullMask] or [godot.GPUParticlesAttractor3D.cullMask] depending on the [particlesCollision] type.
    */
-  public fun particlesCollisionSetCullMask(particlesCollision: RID, mask: Int): Unit {
-    TransferContext.writeArguments(_RID to particlesCollision, LONG to mask.toLong())
+  public fun particlesCollisionSetCullMask(particlesCollision: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to particlesCollision, LONG to mask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_COLLISION_SET_CULL_MASK, NIL)
   }
@@ -2540,8 +2540,8 @@ public object RenderingServer : Object() {
   /**
    * Sets the cull mask associated with this camera. The cull mask describes which 3D layers are rendered by this camera. Equivalent to [godot.Camera3D.cullMask].
    */
-  public fun cameraSetCullMask(camera: RID, layers: Int): Unit {
-    TransferContext.writeArguments(_RID to camera, LONG to layers.toLong())
+  public fun cameraSetCullMask(camera: RID, layers: Long): Unit {
+    TransferContext.writeArguments(_RID to camera, LONG to layers)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_SET_CULL_MASK, NIL)
   }
@@ -2673,8 +2673,8 @@ public object RenderingServer : Object() {
   /**
    * Sets the rendering mask associated with this [godot.Viewport]. Only [godot.CanvasItem] nodes with a matching rendering visibility layer will be rendered by this [godot.Viewport].
    */
-  public fun viewportSetCanvasCullMask(viewport: RID, canvasCullMask: Int): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to canvasCullMask.toLong())
+  public fun viewportSetCanvasCullMask(viewport: RID, canvasCullMask: Long): Unit {
+    TransferContext.writeArguments(_RID to viewport, LONG to canvasCullMask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_CANVAS_CULL_MASK, NIL)
   }
@@ -3754,8 +3754,8 @@ public object RenderingServer : Object() {
   /**
    * Sets the render layers that this instance will be drawn to. Equivalent to [godot.VisualInstance3D.layers].
    */
-  public fun instanceSetLayerMask(instance: RID, mask: Int): Unit {
-    TransferContext.writeArguments(_RID to instance, LONG to mask.toLong())
+  public fun instanceSetLayerMask(instance: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to instance, LONG to mask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCE_SET_LAYER_MASK, NIL)
   }
@@ -4238,8 +4238,8 @@ public object RenderingServer : Object() {
   /**
    * Sets the rendering visibility layer associated with this [godot.CanvasItem]. Only [godot.Viewport] nodes with a matching rendering mask will render this [godot.CanvasItem].
    */
-  public fun canvasItemSetVisibilityLayer(item: RID, visibilityLayer: Int): Unit {
-    TransferContext.writeArguments(_RID to item, LONG to visibilityLayer.toLong())
+  public fun canvasItemSetVisibilityLayer(item: RID, visibilityLayer: Long): Unit {
+    TransferContext.writeArguments(_RID to item, LONG to visibilityLayer)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_SET_VISIBILITY_LAYER, NIL)
   }

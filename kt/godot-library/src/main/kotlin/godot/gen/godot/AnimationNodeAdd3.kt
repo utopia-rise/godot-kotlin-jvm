@@ -17,7 +17,7 @@ import kotlin.Suppress
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations out of three additively out of three based on the amount value.
+ * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations out of three additively out of three based on the amounmt value.
  *
  * This animation node has three inputs:
  *
