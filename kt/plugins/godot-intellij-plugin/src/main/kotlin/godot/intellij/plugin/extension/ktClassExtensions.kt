@@ -1,6 +1,8 @@
 package godot.intellij.plugin.extension
 
+import godot.intellij.plugin.gradle.GodotKotlinJvmSettings
 import godot.tools.common.constants.GodotKotlinJvmTypes
+import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
@@ -14,12 +16,13 @@ import org.jetbrains.kotlin.psi.KtValueArgumentName
  */
 fun KtClass.getRegisteredClassName(): Pair<String, String>? {
     val fqName = fqName ?: return null
-    val isFqNameRegistrationEnabled = false //GodotKotlinJvmSettings[module].isFqNameRegistrationEnabled
+    val isFqNameRegistrationEnabled = GodotKotlinJvmSettings[module].isFqNameRegistrationEnabled
 
     // the whole `@RegisterClass(...)` annotation
     val ktAnnotationEntry = annotationEntries
         .firstOrNull { it.shortName?.asString() == GodotKotlinJvmTypes.Annotations.registerClass }
 
+    // if `isFqNameRegistrationEnabled` is true we take the fqName, otherwise we'll use the simpleName
     val defaultRegistrationName = if (isFqNameRegistrationEnabled) {
         fqName.asString()
     } else {

@@ -18,7 +18,6 @@ import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinCollectionsPackage
-import org.jetbrains.kotlin.idea.intentions.loopToCallChain.isConstant
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.name.FqName
@@ -30,7 +29,6 @@ class RegisterPropertiesAnnotator : Annotator {
     private val mutabilityQuickFix by lazy { RegisterPropertyMutabilityQuickFix() }
     private val propertyNotRegisteredQuickFix by lazy { PropertyNotRegisteredQuickFix() }
     private val propertyRemoveExportAnnotationQuickFix by lazy { PropertyRemoveExportAnnotationQuickFix() }
-    private val ktExpressionConstantChecker by lazy { KtExpressionConstantChecker() }
     private val propertyHintAnnotationChecker by lazy { PropertyHintAnnotationChecker() }
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
@@ -41,7 +39,6 @@ class RegisterPropertiesAnnotator : Annotator {
                 checkNotGeneric(element, holder)
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
-                checkIfDefaultValueIsConstantWhenExported(element, holder)
             }
             // outside to check if the property is also registered
             propertyHintAnnotationChecker.checkPropertyHintAnnotations(element, holder)
@@ -104,21 +101,6 @@ class RegisterPropertiesAnnotator : Annotator {
                 GodotPluginBundle.message("problem.property.registeredEnumListWithVariantArray"),
                 getInitializerProblemLocation(ktProperty)
             )
-        }
-    }
-
-    private fun checkIfDefaultValueIsConstantWhenExported(ktProperty: KtProperty, holder: AnnotationHolder) {
-        if (ktProperty.findAnnotation(FqName(EXPORT_ANNOTATION)) != null) {
-            ktProperty
-                .initializer
-                ?.let {
-                    if (!it.isConstant() && !ktExpressionConstantChecker.isConstantEnoughForRegistration(it)) {
-                        holder.registerProblem(
-                            GodotPluginBundle.message("problem.property.defaultValue.notConstant"),
-                            getInitializerProblemLocation(ktProperty)
-                        )
-                    }
-                }
         }
     }
 
