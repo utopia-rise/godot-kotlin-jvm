@@ -11,7 +11,7 @@ class GodotProjectManagerListener : ProjectActivity, ProjectDisposable {
 
     override suspend fun execute(project: Project) {
         listenerPerProject[project] = listOf(
-            KtPsiTreeListener(project),
+            PsiTreeListener(project),
             GodotSceneBulkFileListener(project)
         )
 
