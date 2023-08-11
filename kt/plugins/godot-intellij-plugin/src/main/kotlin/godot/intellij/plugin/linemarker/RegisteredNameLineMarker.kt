@@ -44,9 +44,7 @@ class RegisteredNameLineMarker : LineMarkerProvider {
             return null
         }
 
-        val parent = element.parent
-
-        val lineMarkerData = when(parent) {
+        val lineMarkerData = when(val parent = element.parent) {
             is KtClass -> if (parent.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null) {
                 val name = if (parent.isAbstract()) {
                     GodotPluginBundle.message(
