@@ -26,7 +26,6 @@ import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.psi.KtAnnotation
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.allConstructors
 import org.jetbrains.kotlin.psi.psiUtil.isAbstract
@@ -40,9 +39,6 @@ class RegisterClassAnnotator : Annotator {
         if (!element.isInGodotRoot()) return
 
         when (element) {
-            is KtAnnotation -> {
-                println("blubb")
-            }
             is KtClass -> {
                 if (element.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) == null) {
                     val errorLocation = element.nameIdentifier ?: element.navigationElement
