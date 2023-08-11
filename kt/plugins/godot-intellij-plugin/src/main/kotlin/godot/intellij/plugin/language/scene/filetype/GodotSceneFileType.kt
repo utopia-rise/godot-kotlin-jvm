@@ -3,6 +3,7 @@ package godot.intellij.plugin.language.scene.filetype
 import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.util.IconLoader
 import godot.intellij.plugin.language.scene.language.GodotSceneLanguage
+import godot.tools.common.constants.FileExtensions
 import javax.swing.Icon
 
 class GodotSceneFileType private constructor() : LanguageFileType(GodotSceneLanguage.INSTANCE) {
@@ -26,7 +27,8 @@ class GodotSceneFileType private constructor() : LanguageFileType(GodotSceneLang
 
     @Suppress("CompanionObjectInExtension")
     companion object {
-        const val EXTENSION = "tscn"
+        val EXTENSION = FileExtensions.Godot.sceneFile
+
         @JvmStatic
         val INSTANCE = GodotSceneFileType()
     }
