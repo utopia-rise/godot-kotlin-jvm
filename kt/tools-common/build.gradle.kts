@@ -12,7 +12,7 @@ plugins {
 version = fullGodotKotlinJvmVersion
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(11)
 }
 
 dependencies {

@@ -6,10 +6,11 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(11)
 }
 
 dependencies {
+    compileOnly(kotlin("gradle-plugin", version = libs.versions.kotlin.get()))
     implementation(libs.grgit)
 }
 

@@ -1,5 +1,5 @@
-import versioninfo.fullGodotKotlinJvmVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -8,7 +8,7 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(11)
 }
 
 dependencies {
