@@ -30,6 +30,11 @@
             language="godotScene"
             extensions="tscn"
             implementationClass="godot.intellij.plugin.language.scene.filetype.GodotSceneFileType"/>
+        <fileType name="GodotKotlinJvmRegistrationFile"
+            fieldName="INSTANCE"
+            language="godotKotlinJvmRegistrationFile"
+            extensions="gdj"
+            implementationClass="godot.intellij.plugin.language.registrationfile.filetype.GodotKotlinJvmRegistrationFileFileType"/>
         <editorNotificationProvider
             implementation="godot.intellij.plugin.notification.SettingsFetchingNotification" />
         <externalSystemTaskNotificationListener
