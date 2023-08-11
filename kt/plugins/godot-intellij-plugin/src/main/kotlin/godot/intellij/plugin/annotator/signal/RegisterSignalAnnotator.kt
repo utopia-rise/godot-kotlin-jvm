@@ -14,12 +14,14 @@ import godot.intellij.plugin.quickfix.RegisterSignalInitializerQuickFix
 import godot.intellij.plugin.quickfix.RegisterSignalMutabilityQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.signalPackage
+import org.jetbrains.kotlin.asJava.toLightElements
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 
 import org.jetbrains.kotlin.name.FqName
 
 import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.utils.addToStdlib.firstIsInstance
 
 class RegisterSignalAnnotator : Annotator {
     private val mutabilityQuickFix by lazy { RegisterSignalMutabilityQuickFix() }
@@ -29,7 +31,7 @@ class RegisterSignalAnnotator : Annotator {
         if (!element.isInGodotRoot()) return
 
         if (element is KtProperty && element.findAnnotation(FqName(REGISTER_SIGNAL_ANNOTATION)) != null) {
-            checkNotGeneric(element, holder)
+            checkNotGeneric(element.toLightElements().firstIsInstance(), holder)
             checkMutability(element, holder)
             checkRegisteredType(element, holder)
         }

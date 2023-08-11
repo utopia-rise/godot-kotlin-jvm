@@ -1,5 +1,7 @@
 package godot.intellij.plugin.listener
 
+import com.intellij.ide.highlighter.JavaFileType
+import com.intellij.lang.java.JavaLanguage
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.Project
@@ -53,13 +55,14 @@ class PsiTreeListener(private val project: Project) : ProjectDisposable {
                             child is KtFile && event.file == null -> psiFileRemoved(child)
                             // class in file removed (just annotation removed covered in [childrenChanged]
                             child is KtClass -> psiFileChanged(child.containingFile)
+                            child is PsiClass -> psiFileChanged(child.containingFile)
                         }
                     }
 
                     override fun beforeChildrenChange(event: PsiTreeChangeEvent) {
                         val psiFile = event.file
                         if (psiFile == null || !psiFile.isInGodotRoot()) return
-                        if (psiFile.language == KotlinLanguage.INSTANCE) {
+                        if (psiFile.language == KotlinLanguage.INSTANCE || psiFile.language == JavaLanguage.INSTANCE) {
                             // remove class names (will be re registered in [childrenChanged])
                             // needed because [childrenChanged] gets triggered for each char typed. So for class name's a "new" class gets registered for each typed char
                             // no way to delete those obsolete class names again after [childrenChanged] as they simply don't exist anymore
@@ -70,7 +73,7 @@ class PsiTreeListener(private val project: Project) : ProjectDisposable {
                     override fun childrenChanged(event: PsiTreeChangeEvent) {
                         val psiFile = event.file
                         if (psiFile == null || !psiFile.isInGodotRoot()) return
-                        if (psiFile.language == KotlinLanguage.INSTANCE) {
+                        if (psiFile.language == KotlinLanguage.INSTANCE || psiFile.language == JavaLanguage.INSTANCE) {
                             psiFileChanged(psiFile)
                         }
                     }
@@ -114,9 +117,17 @@ class PsiTreeListener(private val project: Project) : ProjectDisposable {
 
     private fun initialIndexing() {
         ApplicationManager.getApplication().runReadAction {
-            val files = FileTypeIndex
+            val ktFiles = FileTypeIndex
                 .getFiles(KotlinFileType.INSTANCE, GlobalSearchScope.allScope(project))
                 .toList()
+            val javaFiles = FileTypeIndex
+                .getFiles(JavaFileType.INSTANCE, GlobalSearchScope.allScope(project))
+                .toList()
+
+            val files = listOf(
+                *ktFiles.toTypedArray(),
+                *javaFiles.toTypedArray()
+            )
 
             ApplicationManager.getApplication().executeOnPooledThread {
                 files

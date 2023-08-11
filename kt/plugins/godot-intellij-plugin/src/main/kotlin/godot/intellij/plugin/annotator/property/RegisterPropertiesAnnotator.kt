@@ -18,12 +18,14 @@ import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinCollectionsPackage
+import org.jetbrains.kotlin.asJava.toLightElements
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.types.typeUtil.isEnum
 import org.jetbrains.kotlin.types.typeUtil.supertypes
+import org.jetbrains.kotlin.utils.addToStdlib.firstIsInstance
 
 class RegisterPropertiesAnnotator : Annotator {
     private val mutabilityQuickFix by lazy { RegisterPropertyMutabilityQuickFix() }
@@ -36,7 +38,7 @@ class RegisterPropertiesAnnotator : Annotator {
 
         if (element is KtProperty) {
             if (element.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) != null) {
-                checkNotGeneric(element, holder)
+                checkNotGeneric(element.toLightElements().firstIsInstance(), holder)
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
             }
