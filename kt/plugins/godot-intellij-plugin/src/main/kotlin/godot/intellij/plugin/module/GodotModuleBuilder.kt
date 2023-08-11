@@ -128,7 +128,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
 
                         group(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.title")) {
                             row {
-                                icon(IconLoader.getIcon("", this@GodotModuleBuilder::class.java))
+                                icon(IconLoader.getIcon("/icon_warning.svg", this@GodotModuleBuilder::class.java))
                                 label(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.message"))
                                 @Suppress("DialogTitleCapitalization")
                                 link(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.linkText")) {
@@ -184,7 +184,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                 context.putUserData(isGraalNativeImageEnabledDirKey, isGraalNativeImageEnabled)
                 context.putUserData(graalVmDirectoryKey, graalVmDirectory)
                 context.putUserData(windowsDeveloperVCVarsPathKey, windowsDeveloperVCVarsPath)
-                context.putUserData(isIOSEnabledKey, isIOSEnabled)
+                context.putUserData(isIOSEnabledKey, isIOSEnabled && isGraalNativeImageEnabled)
             }
         }
     }
@@ -208,7 +208,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                         .readText()
                         .replace(
                             "GODOT_KOTLIN_JVM_VERSION",
-                            GodotBuildProperties.godotKotlinJvmVersion
+                            GodotBuildProperties.assembledGodotKotlinJvmVersion
                         )
                         .replace("ANDROID_ENABLED", wizardContext.getUserData(isAndroidEnabledKey)?.toString() ?: "false")
                         .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8")
@@ -258,7 +258,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             } else {
                                 content.replace(
                                     "GODOT_KOTLIN_DEPENDENCY",
-                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"${GodotBuildProperties.godotKotlinJvmVersion}\""
+                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"${GodotBuildProperties.assembledGodotKotlinJvmVersion}\""
                                 )
                             }
                         }

@@ -9,6 +9,10 @@ object GodotBuildProperties {
         props
     }
 
+    val assembledGodotKotlinJvmVersion by lazy {
+        "$godotKotlinJvmVersion-$godotVersion"
+    }
+
     val godotKotlinJvmVersion by lazy {
         buildProperties["godot.kotlin.jvm.version"] as String
     }

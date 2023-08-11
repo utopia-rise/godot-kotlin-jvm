@@ -10,9 +10,9 @@ import java.io.Serializable
  */
 interface GodotKotlinJvmPropertiesFile : Serializable {
     val currentGradlePluginVersion: String
-        get() = GodotBuildProperties.godotKotlinJvmVersion
+        get() = GodotBuildProperties.assembledGodotKotlinJvmVersion
     val minimumIdePluginVersion: String
-        get() = GodotBuildProperties.godotKotlinJvmVersion
+        get() = GodotBuildProperties.assembledGodotKotlinJvmVersion
     val isFqNameRegistrationEnabled: Boolean
         get() = false
     val isRegistrationFileHierarchyEnabled: Boolean

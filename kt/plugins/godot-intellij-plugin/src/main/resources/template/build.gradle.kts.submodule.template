@@ -50,6 +50,6 @@ godot {
     isGraalNativeImageExportEnabled.set(IS_GRAAL_VM_ENABLED)
     graalVmDirectory.set(File("GRAAL_VM_DIR"))
     windowsDeveloperVCVarsPath.set(File("WINDOWS_DEVELOPER_VS_VARS_PATH"))
-    isIOSExportEnabled.set(File("IS_IOS_ENABLED"))
+    isIOSExportEnabled.set(IS_IOS_ENABLED)
     // END: graal native image export options
 }
