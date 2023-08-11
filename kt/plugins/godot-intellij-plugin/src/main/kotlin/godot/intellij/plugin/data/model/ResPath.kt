@@ -14,7 +14,6 @@ import java.io.File
 value class ResPath(private val path: String) {
 
     fun scriptClassFqName(module: Module): String? {
-        val godotRoot = module.godotRoot ?: return  null
         val registrationFileBaseDir = GodotKotlinJvmSettings[module]
             .registrationFileBaseDir
             .suffixIfNot("/")

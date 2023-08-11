@@ -65,26 +65,3 @@ fun PsiClass.getRegistrationFilePath(): String? {
         null
     }
 }
-
-//fun PsiClass.anyFunctionHasAnnotation(annotationFqName: String) = this
-//    .ownDeclarations
-//    .filterIsInstance<PsiAnnotationOwner>()
-//    .any { declaration ->
-//        declaration.findAnnotation(annotationFqName) != null
-//    }
-//
-//fun KtClass.anyFunctionHasAnnotation(annotationFqName: String) = this
-//    .declarations
-//    .any { declaration ->
-//        declaration.findAnnotation(FqName(annotationFqName)) != null
-//    }
-//
-//fun KtClass.anyPropertyHasAnnotation(annotationFqName: String) = this
-//    .getProperties()
-//    .any { ktProperty ->
-//        ktProperty.findAnnotation(FqName(annotationFqName)) != null
-//    }
-//
-//val KtClass.isRegistered: Boolean
-//    get() = annotations
-//        .any { annotation -> annotation.kotlinFqName?.asString() == REGISTER_CLASS_ANNOTATION }

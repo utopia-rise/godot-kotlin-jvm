@@ -1,6 +1,12 @@
 package godot.codegen.extensions
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ANY
+import com.squareup.kotlinpoet.BOOLEAN
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.DOUBLE
+import com.squareup.kotlinpoet.LONG
+import com.squareup.kotlinpoet.STRING
+import com.squareup.kotlinpoet.UNIT
 import godot.codegen.constants.GodotMeta
 import godot.codegen.models.enriched.EnrichedSignal
 import godot.codegen.poet.ClassTypeNameWrapper
@@ -8,7 +14,34 @@ import godot.codegen.traits.CastableTrait
 import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait
 import godot.codegen.traits.WithDefaultValueTrait
-import godot.tools.common.constants.*
+import godot.tools.common.constants.GODOT_ARRAY
+import godot.tools.common.constants.GODOT_DICTIONARY
+import godot.tools.common.constants.GODOT_ERROR
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.VARIANT_TYPE_ANY
+import godot.tools.common.constants.VARIANT_TYPE_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_BOOL
+import godot.tools.common.constants.VARIANT_TYPE_DOUBLE
+import godot.tools.common.constants.VARIANT_TYPE_LONG
+import godot.tools.common.constants.VARIANT_TYPE_NIL
+import godot.tools.common.constants.VARIANT_TYPE_NODE_PATH
+import godot.tools.common.constants.VARIANT_TYPE_OBJECT
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_BYTE_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_COLOR_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_FLOAT_32_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_FLOAT_64_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_INT_32_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_INT_64_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_STRING_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR2_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR3_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_STRING_NAME
+import godot.tools.common.constants.VARIANT_TYPE__RID
+import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.signalPackage
+import godot.tools.common.constants.variantTypePackage
 import java.util.*
 
 private const val enumPrefix = "enum::"

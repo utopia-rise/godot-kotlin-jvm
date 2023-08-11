@@ -40,7 +40,7 @@ abstract class GodotPlugin : Plugin<Project> {
         }
     }
 
-    class PropertiesModelBuilder(
+    internal class PropertiesModelBuilder(
         private val isFqNameRegistrationEnabled: Boolean,
         private val isRegistrationFileHierarchyEnabled: Boolean,
         private val registrationFileBaseDir: String,

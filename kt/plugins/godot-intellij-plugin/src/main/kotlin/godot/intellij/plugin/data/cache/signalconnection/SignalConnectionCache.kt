@@ -49,7 +49,6 @@ class SignalConnectionCache {
                 val fromNode = signalConnection.from
                 val toNode = signalConnection.to
 
-                // res path is a registration file. we need to convert that to the associated class fqName
                 val scriptClassFqName = signalConnection
                     .from
                     .script
@@ -85,7 +84,6 @@ class SignalConnectionCache {
                     signalConnection.method
                 }
 
-                // res path is a registration file. we need to convert that to the associated class fqName
                 val scriptClassFqName = signalConnection
                     .from
                     .script

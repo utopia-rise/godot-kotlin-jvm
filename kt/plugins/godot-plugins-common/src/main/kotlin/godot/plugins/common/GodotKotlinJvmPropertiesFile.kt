@@ -1,5 +1,6 @@
 package godot.plugins.common
 
+import godot.tools.common.constants.FileExtensions
 import godot.utils.GodotBuildProperties
 import java.io.Serializable
 
@@ -18,5 +19,5 @@ interface GodotKotlinJvmPropertiesFile : Serializable {
     val isRegistrationFileHierarchyEnabled: Boolean
         get() = true
     val registrationFileBaseDir: String
-        get() = "gdj"
+        get() = FileExtensions.GodotKotlinJvm.registrationFile
 }

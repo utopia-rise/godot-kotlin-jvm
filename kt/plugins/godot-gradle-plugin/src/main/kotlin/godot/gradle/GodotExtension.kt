@@ -1,5 +1,6 @@
 package godot.gradle
 
+import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
@@ -180,7 +181,7 @@ open class GodotExtension(objects: ObjectFactory) {
             ?.listFiles()
             ?.last { it.isDirectory }
 
-        registrationFileBaseDir.set(target.projectDir.resolve("gdj").apply { mkdirs() })
+        registrationFileBaseDir.set(target.projectDir.resolve(FileExtensions.GodotKotlinJvm.registrationFile).apply { mkdirs() })
         isRegistrationFileHierarchyEnabled.set(true)
         isFqNameRegistrationEnabled.set(false)
 

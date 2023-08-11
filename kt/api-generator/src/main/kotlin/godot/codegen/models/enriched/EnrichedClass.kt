@@ -1,9 +1,9 @@
 package godot.codegen.models.enriched
 
-import godot.tools.common.extensions.escapeUnderscore
 import godot.codegen.models.Class
 import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.traits.TypedTrait
+import godot.tools.common.extensions.escapeUnderscore
 import java.util.*
 
 class EnrichedClass(val internal: Class) : TypedTrait {

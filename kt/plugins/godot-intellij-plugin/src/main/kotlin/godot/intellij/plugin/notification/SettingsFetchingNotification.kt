@@ -29,7 +29,7 @@ import javax.swing.UIManager
 import javax.swing.text.DefaultCaret
 
 /**
- * Displays a in editor banner notification when retrieving the gradle settings
+ * Displays an in editor banner notification when retrieving the gradle settings
  */
 class SettingsFetchingNotification(
     private val project: Project,

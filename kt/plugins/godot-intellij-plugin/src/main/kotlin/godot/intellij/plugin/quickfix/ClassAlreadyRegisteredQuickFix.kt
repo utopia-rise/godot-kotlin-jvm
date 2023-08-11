@@ -54,6 +54,7 @@ class ClassAlreadyRegisteredQuickFix(private val registeredClassName: String) : 
                 .getInstance(project)
                 .openTextEditor(OpenFileDescriptor(project, targetContainer.vFile, line ?: 0, 0), true)
         } else {
+            @Suppress("DialogTitleCapitalization")
             val popup = JBPopupFactory
                 .getInstance()
                 .createPopupChooserBuilder(

@@ -1,3 +1,4 @@
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -10,6 +11,7 @@ kotlin {
 
 dependencies {
     implementation(project(":godot-build-props"))
+    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
 }
 
 publishing {

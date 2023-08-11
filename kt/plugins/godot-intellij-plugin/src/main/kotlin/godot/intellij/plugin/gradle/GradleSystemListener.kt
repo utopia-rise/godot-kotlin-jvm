@@ -20,13 +20,4 @@ class GradleSystemListener : ExternalSystemTaskNotificationListenerAdapter() {
             }
         }
     }
-
-    override fun onSuccess(id: ExternalSystemTaskId) {
-//        if (id.projectSystemId == GRADLE_SYSTEM_ID && id.type == RESOLVE_PROJECT) {
-//            // Gradle sync just finished
-//            id.findProject()?.let { project ->
-//
-//            }
-//        }
-    }
 }
