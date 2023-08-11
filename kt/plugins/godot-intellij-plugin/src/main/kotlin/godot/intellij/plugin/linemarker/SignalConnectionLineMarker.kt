@@ -55,7 +55,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
             if (signalConnections.isEmpty()) return null
             val signalIdentifyingElement = parent.identifyingElement ?: return null
 
-            val imageIcon = IconLoader.getIcon("/icon_signals.svg", this::class.java)
+            val imageIcon = IconLoader.getIcon("/linemarkerIcons/icon_signals.svg", this::class.java)
             return LineMarkerInfo(
                 signalIdentifyingElement,
                 signalIdentifyingElement.textRange,
