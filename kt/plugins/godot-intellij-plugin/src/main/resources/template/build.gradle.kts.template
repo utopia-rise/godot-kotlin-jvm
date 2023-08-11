@@ -6,6 +6,10 @@ repositories {
     mavenCentral()
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 godot {
     // START: registration options
     // regular setup
