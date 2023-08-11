@@ -2,8 +2,8 @@ package godot.intellij.plugin.data.model
 
 import com.intellij.openapi.module.Module
 import com.intellij.psi.PsiClass
-import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
-import godot.intellij.plugin.extension.getGodotRoot
+import godot.intellij.plugin.extension.godotRoot
+import godot.intellij.plugin.extension.registeredClassNameCache
 import godot.intellij.plugin.gradle.GodotKotlinJvmSettings
 import godot.tools.common.constants.FileExtensions
 import org.jetbrains.kotlin.idea.base.util.module
@@ -14,7 +14,7 @@ import java.io.File
 value class ResPath(private val path: String) {
 
     fun scriptClassFqName(module: Module): String? {
-        val godotRoot = module.getGodotRoot() ?: return  null
+        val godotRoot = module.godotRoot ?: return  null
         val registrationFileBaseDir = GodotKotlinJvmSettings[module]
             .registrationFileBaseDir
             .suffixIfNot("/")
@@ -24,8 +24,8 @@ value class ResPath(private val path: String) {
             .replace("/", ".")
             .removeSuffix(FileExtensions.GodotKotlinJvm.registrationFile)
 
-        return RegisteredClassNameCacheProvider
-            .provide(godotRoot)
+        return module
+            .registeredClassNameCache
             .getContainersByName(registeredName)
             .firstOrNull()
             ?.fqName
@@ -37,7 +37,7 @@ value class ResPath(private val path: String) {
     val relativeFilePath: String
         get() = path.removePrefix("res://")
 
-    fun asFile(module: Module): File? = module.getGodotRoot()?.let { godotRoot -> File(godotRoot).resolve(relativeFilePath) }
+    fun asFile(module: Module): File? = module.godotRoot?.godotRootDir?.resolve(relativeFilePath)
 
     companion object {
         fun fromPsiClass(psiClass: PsiClass): ResPath? {

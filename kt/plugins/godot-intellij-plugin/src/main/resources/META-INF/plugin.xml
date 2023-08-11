@@ -13,7 +13,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="godot.intellij.plugin.listener.GodotProjectManagerListener"/>
+        <postStartupActivity implementation="godot.intellij.plugin.listener.GodotKotlinJvmStartupActivity"/>
+        <projectService serviceInterface="godot.intellij.plugin.project.GodotKotlinJvmProjectService" serviceImplementation="godot.intellij.plugin.project.GodotKotlinJvmProjectServiceImpl"/>
         <moduleBuilder builderClass="godot.intellij.plugin.module.GodotModuleBuilder"/>
         <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>

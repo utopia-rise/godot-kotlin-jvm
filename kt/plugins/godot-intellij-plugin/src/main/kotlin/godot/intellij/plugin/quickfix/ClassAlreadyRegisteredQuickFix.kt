@@ -8,10 +8,10 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.popup.JBPopupFactory
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.data.model.RegisteredClassDataContainer
-import godot.intellij.plugin.extension.getGodotRoot
+import godot.intellij.plugin.extension.registeredClassNameCache
 import org.jetbrains.kotlin.idea.base.psi.getLineNumber
+import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.idea.codeinsight.utils.findExistingEditor
 import org.jetbrains.kotlin.idea.core.util.toPsiFile
 import org.jetbrains.kotlin.j2k.getContainingClass
@@ -30,11 +30,12 @@ class ClassAlreadyRegisteredQuickFix(private val registeredClassName: String) : 
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
         val psiElement = descriptor.psiElement
-        val godotRoot = psiElement.getGodotRoot() ?: return
+        val registeredClassNameCache = psiElement
+            .module
+            ?.registeredClassNameCache
+            ?: return
 
-        val containers = RegisteredClassNameCacheProvider
-            .provide(godotRoot)
-            .getContainersByName(registeredClassName)
+        val containers = registeredClassNameCache.getContainersByName(registeredClassName)
 
         val containingClassFqName = if (psiElement is PsiElement) {
             psiElement.getContainingClass()?.qualifiedName
@@ -56,16 +57,13 @@ class ClassAlreadyRegisteredQuickFix(private val registeredClassName: String) : 
             val popup = JBPopupFactory
                 .getInstance()
                 .createPopupChooserBuilder(
-                    RegisteredClassNameCacheProvider
-                        .provide(godotRoot)
-                        .getContainersByName(registeredClassName)
+                    containers
                         .map { container -> container.fqName }
                         .toList()
                 )
                 .setTitle(GodotPluginBundle.message("quickFix.class.alreadyRegistered.popup.title"))
                 .setItemChosenCallback { chosenFqName ->
-                    val container = RegisteredClassNameCacheProvider
-                        .provide(godotRoot)
+                    val container = registeredClassNameCache
                         .getContainerByFqName(chosenFqName) ?: return@setItemChosenCallback
 
                     val line = getSourceCodeLineOfClassDefinition(container, project)

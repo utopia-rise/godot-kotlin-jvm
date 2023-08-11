@@ -2,8 +2,9 @@ package godot.intellij.plugin.listener
 
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.lang.java.JavaLanguage
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.project.DumbService
+import com.intellij.openapi.module.Module
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiDirectory
@@ -13,11 +14,9 @@ import com.intellij.psi.PsiPackage
 import com.intellij.psi.PsiTreeChangeEvent
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
-import godot.intellij.plugin.ProjectDisposable
-import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
+import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCache
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.ResPath
-import godot.intellij.plugin.extension.getGodotRoot
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.refactor.SceneAction
 import godot.intellij.plugin.wrapper.PsiTreeChangeListenerKt
@@ -29,20 +28,10 @@ import org.jetbrains.kotlin.j2k.getContainingClass
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 
-class PsiTreeListener(private val project: Project) : ProjectDisposable {
-
-    init {
-        DumbService.getInstance(project).runWhenSmart {
-            setupListener()
-            ApplicationManager.getApplication().executeOnPooledThread {
-                // needs to run in background initially to avoid:
-                // java.lang.Throwable: Slow operations are prohibited on EDT. See SlowOperations.assertSlowOperationsAreAllowed javadoc.
-                initialIndexing()
-            }
-        }
-    }
-
-    private fun setupListener() {
+class PsiTreeListener(
+    private val registeredClassNameCacheProvider: (Module) -> RegisteredClassNameCache
+) : Indexer {
+    private fun setupListener(parentDisposable: Disposable, project: Project) {
         PsiManager
             .getInstance(project)
             .addPsiTreeChangeListener(
@@ -111,11 +100,21 @@ class PsiTreeListener(private val project: Project) : ProjectDisposable {
                             }
                     }
                 },
-                this
+                parentDisposable
             )
     }
 
-    private fun initialIndexing() {
+    private fun psiFileRemoved(psiFile: PsiFile) {
+        val module = psiFile.module ?: return
+        registeredClassNameCacheProvider(module).psiFileRemoved(psiFile)
+    }
+
+    private fun psiFileChanged(psiFile: PsiFile) {
+        val module = psiFile.module ?: return
+        registeredClassNameCacheProvider(module).psiFileChanged(psiFile)
+    }
+
+    override fun initialIndex(parentDisposable: Disposable, project: Project) {
         ApplicationManager.getApplication().runReadAction {
             val ktFiles = FileTypeIndex
                 .getFiles(KotlinFileType.INSTANCE, GlobalSearchScope.allScope(project))
@@ -131,29 +130,20 @@ class PsiTreeListener(private val project: Project) : ProjectDisposable {
 
             ApplicationManager.getApplication().executeOnPooledThread {
                 files
-                    .filter { it.isInGodotRoot(project) }
+                    .filter {
+                        !project.isDisposed && it.isInGodotRoot(project)
+                    }
                     .forEach { vFile ->
                         ApplicationManager.getApplication().runReadAction {
-                            PsiManager.getInstance(project).findFile(vFile)?.let { psiFile ->
-                                psiFileChanged(psiFile)
+                            if (!project.isDisposed) {
+                                PsiManager.getInstance(project).findFile(vFile)?.let { psiFile ->
+                                    psiFileChanged(psiFile)
+                                }
                             }
                         }
                     }
             }
         }
-    }
-
-    private fun psiFileRemoved(psiFile: PsiFile) {
-        val godotRoot = psiFile.getGodotRoot() ?: return
-        RegisteredClassNameCacheProvider.provide(godotRoot).psiFileRemoved(psiFile)
-    }
-
-    private fun psiFileChanged(psiFile: PsiFile) {
-        val godotRoot = psiFile.getGodotRoot() ?: return
-        RegisteredClassNameCacheProvider.provide(godotRoot).psiFileChanged(psiFile)
-    }
-
-    override fun dispose(project: Project) {
-        RegisteredClassNameCacheProvider.disposeForProject(project)
+        setupListener(parentDisposable, project)
     }
 }

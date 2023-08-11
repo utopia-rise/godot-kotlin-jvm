@@ -4,6 +4,7 @@ import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.LineMarkerProvider
 import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.openapi.ide.CopyPasteManager
+import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.JavaTokenType
 import com.intellij.psi.PsiClass
@@ -25,7 +26,6 @@ import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
-
 import org.jetbrains.kotlin.psi.KtProperty
 import java.awt.datatransfer.StringSelection
 import javax.swing.Icon
@@ -38,6 +38,7 @@ private data class LineMarkerData(
 
 class RegisteredNameLineMarker : LineMarkerProvider {
     override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
+        if (DumbService.getInstance(element.project).isDumb) return null
         if (!element.isInGodotRoot()) return null
 
         if (element !is LeafPsiElement || (element.elementType != KtTokens.IDENTIFIER && element.elementType != JavaTokenType.IDENTIFIER)) {

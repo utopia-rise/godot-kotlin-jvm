@@ -6,7 +6,6 @@ import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.annotator.base.BaseAnnotator
 import godot.intellij.plugin.annotator.general.checkNotGeneric
-import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_CONSTRUCTOR_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
@@ -15,16 +14,17 @@ import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
 import godot.intellij.plugin.data.model.TOOL_ANNOTATION
 import godot.intellij.plugin.extension.anyFunctionHasAnnotation
 import godot.intellij.plugin.extension.anyPropertyHasAnnotation
-import godot.intellij.plugin.extension.getGodotRoot
 import godot.intellij.plugin.extension.getRegisteredClassName
 import godot.intellij.plugin.extension.isAbstract
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.extension.registeredClassNameCache
 import godot.intellij.plugin.extension.resolveToDescriptor
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
 import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotCorePackage
+import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.resolve.descriptorUtil.getAllSuperclassesWithoutAny
 
@@ -135,10 +135,12 @@ class RegisterClassAnnotator : BaseAnnotator {
 
     private fun checkRegisteredClassName(psiClass: PsiClass, holder: AnnotationHolder) {
         val (fqName, registeredName) = psiClass.getRegisteredClassName() ?: return
-        val godotRoot = psiClass.getGodotRoot() ?: return
-        val fqNames = RegisteredClassNameCacheProvider.provide(godotRoot)
-            .getContainersByName(registeredName)
-            .map { container -> container.fqName }
+        val fqNames = psiClass
+            .module
+            ?.registeredClassNameCache
+            ?.getContainersByName(registeredName)
+            ?.map { container -> container.fqName }
+            ?: return
 
         if (fqNames.size > 1 || (fqNames.size == 1 && !fqNames.contains(fqName))) {
             val registerClassAnnotation = psiClass.getAnnotation(REGISTER_CLASS_ANNOTATION)
