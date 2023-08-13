@@ -29,6 +29,7 @@ abstract class GodotPlugin : Plugin<Project> {
         target.setupConfigurationsAndCompilations()
         target.setupTasks()
 
+        // registers the tooling model builder, so it can be used by the ide plugin
         target.afterEvaluate {
             registry.register(
                 PropertiesModelBuilder(
@@ -40,6 +41,16 @@ abstract class GodotPlugin : Plugin<Project> {
         }
     }
 
+
+    /**
+     * The PropertiesModelBuilder class is responsible for building the tooling model for the Godot Kotlin-JVM properties file.
+     *
+     * This file is only virtually present and is then loaded by `FetchProjectModelsBuildAction` in the IDE plugin to load the users gradle configuration of our gradle plugin.
+     *
+     * @property isFqNameRegistrationEnabled A boolean value indicating whether fully qualified name registration is enabled.
+     * @property isRegistrationFileHierarchyEnabled A boolean value indicating whether registration file hierarchy is enabled.
+     * @property registrationFileBaseDir The base directory for the registration file.
+     */
     internal class PropertiesModelBuilder(
         private val isFqNameRegistrationEnabled: Boolean,
         private val isRegistrationFileHierarchyEnabled: Boolean,
