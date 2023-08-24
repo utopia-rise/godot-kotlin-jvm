@@ -11,6 +11,7 @@ set(GODOT_ROOT_DIR ../../)
 #add_compile_definitions(MONO_GLUE_ENABLED)
 add_compile_definitions(TOOLS_ENABLED)
 add_compile_definitions(DEBUG_ENABLED)
+add_compile_definitions(DEV_ENABLED)
 
 # platforms
 #add_compile_definitions(WINDOWS_ENABLED)

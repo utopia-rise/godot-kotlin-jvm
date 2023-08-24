@@ -51,7 +51,7 @@ void TypeManager::register_engine_types(jni::Env& p_env, jni::JObjectArray& p_en
         const String& class_name = p_env.from_jstring(static_cast<jni::JString>(type));
         engine_type_names.insert(i, class_name);
         java_engine_types_constructors[class_name] = i;
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Registered %s engine type with index %s.", class_name, i));
 #endif
         type.delete_local_ref(p_env);
@@ -82,7 +82,9 @@ void TypeManager::register_methods(jni::Env& p_env, jni::JObjectArray& method_na
 }
 
 void TypeManager::register_user_types(jni::Env& p_env, jni::JObjectArray& p_types) {
+#ifdef DEBUG_ENABLED
     LOG_VERBOSE("Starting to register user types...");
+#endif
     for (int i = 0; i < p_types.length(p_env); ++i) {
         const String& script_path {p_env.from_jstring(static_cast<jni::JString>(p_types.get(p_env, i)))};
         Ref<KotlinScript> script = ResourceLoader::load(script_path, "KotlinScript");
@@ -92,5 +94,7 @@ void TypeManager::register_user_types(jni::Env& p_env, jni::JObjectArray& p_type
         LOG_VERBOSE(vformat("Registered %s user type with index %s.", script_path, i));
 #endif
     }
+#ifdef DEBUG_ENABLED
     LOG_VERBOSE("Done registering user types.");
+#endif
 }

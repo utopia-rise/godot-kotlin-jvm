@@ -53,7 +53,7 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
 
     KtObject* jvm_instance {constructor->create_instance(p_args, p_owner)};
 
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
     LOG_VERBOSE(vformat("Instantiated an object with resource path %s", resource_path));
 #endif
 
@@ -113,7 +113,7 @@ void KtClass::fetch_methods(jni::Env& env) {
         jni::JObject object = functionsArray.get(env, i);
         auto* ktFunction {new KtFunction(object)};
         methods[ktFunction->get_name()] = ktFunction;
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Fetched method %s for class %s", ktFunction->get_name(), resource_path));
 #endif
     }
@@ -126,7 +126,7 @@ void KtClass::fetch_properties(jni::Env& env) {
     for (int i = 0; i < propertiesArray.length(env); i++) {
         auto* ktProperty {new KtProperty(propertiesArray.get(env, i))};
         properties[ktProperty->get_name()] = ktProperty;
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Fetched property %s for class %s", ktProperty->get_name(), resource_path));
 #endif
     }
@@ -139,7 +139,7 @@ void KtClass::fetch_signals(jni::Env& env) {
     for (int i = 0; i < signal_info_array.length(env); i++) {
         auto* kt_signal_info {new KtSignalInfo(signal_info_array.get(env, i))};
         signal_infos[kt_signal_info->name] = kt_signal_info;
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Fetched signal %s for class %s", kt_signal_info->name, resource_path));
 #endif
     }
@@ -154,7 +154,7 @@ void KtClass::fetch_constructors(jni::Env& env) {
         KtConstructor* kt_constructor {nullptr};
         if (constructor.obj != nullptr) {
             kt_constructor = new KtConstructor(constructor);
-#ifdef DEBUG_ENABLED
+#ifdef DEV_ENABLED
             LOG_VERBOSE(vformat("Fetched constructor with %s parameters for class %s", i, resource_path));
 #endif
         }
