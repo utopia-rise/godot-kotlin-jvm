@@ -108,10 +108,6 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
     SharedBuffer* buffer {transfer_context->get_buffer(env)};
     uint32_t args_size {read_args_size(env, buffer)};
 
-#ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(args_size > VARIANT_ARG_MAX, vformat("Cannot have more than %s arguments for method call.", VARIANT_ARG_MAX));
-#endif
-
     auto* ptr {reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
 
     int method_index {static_cast<int>(p_method_index)};
@@ -119,6 +115,10 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
 
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index));
+#endif
+
+#ifdef DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(args_size > VARIANT_ARG_MAX, vformat("Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args", VARIANT_ARG_MAX, methodBind->get_instance_class(), methodBind->get_name(), args_size));
 #endif
 
     Callable::CallError r_error {Callable::CallError::CALL_OK};
