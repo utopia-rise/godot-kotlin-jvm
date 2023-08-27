@@ -118,7 +118,7 @@ public open class TabBar : Control() {
       return TabBar.AlignmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_ALIGNMENT, NIL)
     }
 
@@ -147,7 +147,7 @@ public open class TabBar : Control() {
       return TabBar.CloseButtonDisplayPolicy.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_CLOSE_DISPLAY_POLICY, NIL)
     }

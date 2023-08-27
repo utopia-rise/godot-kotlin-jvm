@@ -41,7 +41,7 @@ public open class InputEventJoypadButton : InputEvent() {
       return JoyButton.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADBUTTON_SET_BUTTON_INDEX, NIL)
     }

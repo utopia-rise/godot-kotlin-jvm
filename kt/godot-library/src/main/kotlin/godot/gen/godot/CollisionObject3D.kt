@@ -71,7 +71,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
       return CollisionObject3D.DisableMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_DISABLE_MODE, NIL)
     }

@@ -55,7 +55,7 @@ public open class AspectRatioContainer : Container() {
       return AspectRatioContainer.StretchMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_STRETCH_MODE, NIL)
     }
@@ -71,7 +71,7 @@ public open class AspectRatioContainer : Container() {
       return AspectRatioContainer.AlignmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_ALIGNMENT_HORIZONTAL, NIL)
     }
@@ -87,7 +87,7 @@ public open class AspectRatioContainer : Container() {
       return AspectRatioContainer.AlignmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_ALIGNMENT_VERTICAL, NIL)
     }

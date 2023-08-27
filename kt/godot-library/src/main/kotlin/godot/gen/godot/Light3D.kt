@@ -107,7 +107,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
       return Light3D.BakeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_BAKE_MODE, NIL)
     }
 

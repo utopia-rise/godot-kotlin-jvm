@@ -37,7 +37,7 @@ public open class RDUniform : RefCounted() {
       return RenderingDevice.UniformType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_SET_UNIFORM_TYPE, NIL)
     }
 

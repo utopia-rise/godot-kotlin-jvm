@@ -34,7 +34,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
       return VisualShaderNodeIntParameter.Hint.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_HINT, NIL)
     }

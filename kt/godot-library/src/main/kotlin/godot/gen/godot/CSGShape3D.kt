@@ -32,7 +32,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       return CSGShape3D.Operation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_SET_OPERATION, NIL)
     }
 

@@ -52,7 +52,7 @@ public open class Timer : Node() {
       return Timer.TimerProcessCallback.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_SET_TIMER_PROCESS_CALLBACK,
           NIL)
     }

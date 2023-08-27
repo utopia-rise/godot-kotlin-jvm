@@ -59,7 +59,7 @@ public open class TileSet : Resource() {
       return TileSet.TileShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_SHAPE, NIL)
     }
 
@@ -73,7 +73,7 @@ public open class TileSet : Resource() {
       return TileSet.TileLayout.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_LAYOUT, NIL)
     }
 
@@ -88,7 +88,7 @@ public open class TileSet : Resource() {
       return TileSet.TileOffsetAxis.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_OFFSET_AXIS, NIL)
     }
 

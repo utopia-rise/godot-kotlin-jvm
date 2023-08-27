@@ -34,7 +34,7 @@ public open class CanvasItemMaterial : Material() {
       return CanvasItemMaterial.BlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_BLEND_MODE,
           NIL)
     }
@@ -50,7 +50,7 @@ public open class CanvasItemMaterial : Material() {
       return CanvasItemMaterial.LightMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_LIGHT_MODE,
           NIL)
     }

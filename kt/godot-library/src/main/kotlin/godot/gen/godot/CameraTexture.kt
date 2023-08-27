@@ -52,7 +52,7 @@ public open class CameraTexture : Texture2D() {
       return CameraServer.FeedImage.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERATEXTURE_SET_WHICH_FEED, NIL)
     }
 

@@ -37,7 +37,7 @@ public open class RDShaderSource : RefCounted() {
       return RenderingDevice.ShaderLanguage.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_LANGUAGE, NIL)
     }
 

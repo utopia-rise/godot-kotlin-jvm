@@ -45,7 +45,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       return CSGPolygon3D.Mode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_MODE, NIL)
     }
 
@@ -104,7 +104,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       return CSGPolygon3D.PathIntervalType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_INTERVAL_TYPE, NIL)
     }
@@ -143,7 +143,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       return CSGPolygon3D.PathRotation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_ROTATION,
           NIL)
     }

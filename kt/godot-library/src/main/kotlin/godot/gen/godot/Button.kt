@@ -141,7 +141,7 @@ public open class Button : BaseButton() {
       return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_ALIGNMENT, NIL)
     }
 
@@ -156,7 +156,7 @@ public open class Button : BaseButton() {
       return TextServer.OverrunBehavior.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_OVERRUN_BEHAVIOR,
           NIL)
     }
@@ -185,7 +185,7 @@ public open class Button : BaseButton() {
       return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ICON_ALIGNMENT, NIL)
     }
 
@@ -200,7 +200,7 @@ public open class Button : BaseButton() {
       return VerticalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BUTTON_SET_VERTICAL_ICON_ALIGNMENT, NIL)
     }
@@ -229,7 +229,7 @@ public open class Button : BaseButton() {
       return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_DIRECTION, NIL)
     }
 

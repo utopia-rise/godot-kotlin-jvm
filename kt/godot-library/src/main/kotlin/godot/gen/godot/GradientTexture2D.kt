@@ -93,7 +93,7 @@ public open class GradientTexture2D : Texture2D() {
       return GradientTexture2D.Fill.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_FILL, NIL)
     }
 
@@ -140,7 +140,7 @@ public open class GradientTexture2D : Texture2D() {
       return GradientTexture2D.Repeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_REPEAT, NIL)
     }
 

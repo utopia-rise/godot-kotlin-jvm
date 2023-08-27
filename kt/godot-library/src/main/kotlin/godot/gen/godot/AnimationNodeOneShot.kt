@@ -130,7 +130,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
       return AnimationNodeOneShot.MixMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_MIX_MODE,
           NIL)
     }

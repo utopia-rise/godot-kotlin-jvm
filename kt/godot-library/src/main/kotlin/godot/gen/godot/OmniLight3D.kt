@@ -39,7 +39,7 @@ public open class OmniLight3D : Light3D() {
       return OmniLight3D.ShadowMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OMNILIGHT3D_SET_SHADOW_MODE, NIL)
     }
 

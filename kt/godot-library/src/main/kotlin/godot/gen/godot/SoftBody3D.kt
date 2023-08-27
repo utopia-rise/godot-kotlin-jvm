@@ -212,7 +212,7 @@ public open class SoftBody3D : MeshInstance3D() {
       return SoftBody3D.DisableMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY3D_SET_DISABLE_MODE, NIL)
     }
 

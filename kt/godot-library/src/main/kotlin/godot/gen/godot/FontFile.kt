@@ -134,7 +134,7 @@ public open class FontFile : Font() {
       return TextServer.FontAntialiasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_ANTIALIASING, NIL)
     }
 
@@ -209,7 +209,7 @@ public open class FontFile : Font() {
       return TextServer.SubpixelPositioning.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_SUBPIXEL_POSITIONING,
           NIL)
     }
@@ -306,7 +306,7 @@ public open class FontFile : Font() {
       return TextServer.Hinting.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_HINTING, NIL)
     }
 

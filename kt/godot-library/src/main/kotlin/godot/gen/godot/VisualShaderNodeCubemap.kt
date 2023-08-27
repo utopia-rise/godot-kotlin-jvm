@@ -34,7 +34,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
       return VisualShaderNodeCubemap.Source.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_SET_SOURCE, NIL)
     }
@@ -66,7 +66,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
       return VisualShaderNodeCubemap.TextureType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_SET_TEXTURE_TYPE, NIL)
     }

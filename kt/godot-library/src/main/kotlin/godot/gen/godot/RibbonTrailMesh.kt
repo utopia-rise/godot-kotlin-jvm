@@ -41,7 +41,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
       return RibbonTrailMesh.Shape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_SET_SHAPE, NIL)
     }
 

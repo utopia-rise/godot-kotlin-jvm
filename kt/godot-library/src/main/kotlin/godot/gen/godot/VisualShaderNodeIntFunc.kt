@@ -33,7 +33,7 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
       return VisualShaderNodeIntFunc.Function.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTFUNC_SET_FUNCTION, NIL)
     }

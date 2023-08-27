@@ -203,7 +203,7 @@ public open class GraphEdit : Control() {
       return GraphEdit.PanningScheme.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_PANNING_SCHEME, NIL)
     }
 

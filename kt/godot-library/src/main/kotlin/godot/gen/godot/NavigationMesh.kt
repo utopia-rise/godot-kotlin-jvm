@@ -63,7 +63,7 @@ public open class NavigationMesh : Resource() {
       return NavigationMesh.SamplePartitionType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SAMPLE_PARTITION_TYPE, NIL)
     }
@@ -79,7 +79,7 @@ public open class NavigationMesh : Resource() {
       return NavigationMesh.ParsedGeometryType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_PARSED_GEOMETRY_TYPE, NIL)
     }
@@ -113,7 +113,7 @@ public open class NavigationMesh : Resource() {
       return NavigationMesh.SourceGeometryMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SOURCE_GEOMETRY_MODE, NIL)
     }
@@ -292,7 +292,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The maximum distance a simplfied contour's border edges should deviate the original raw contour.
+   * The maximum distance a simplified contour's border edges should deviate the original raw contour.
    */
   public var edgeMaxError: Float
     get() {

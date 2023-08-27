@@ -91,7 +91,7 @@ public open class NinePatchRect : Control() {
       return NinePatchRect.AxisStretchMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_H_AXIS_STRETCH_MODE, NIL)
     }
@@ -107,7 +107,7 @@ public open class NinePatchRect : Control() {
       return NinePatchRect.AxisStretchMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_V_AXIS_STRETCH_MODE, NIL)
     }

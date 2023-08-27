@@ -64,7 +64,7 @@ public open class RDVertexAttribute : RefCounted() {
       return RenderingDevice.DataFormat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_SET_FORMAT, NIL)
     }
 
@@ -94,7 +94,7 @@ public open class RDVertexAttribute : RefCounted() {
       return RenderingDevice.VertexFrequency.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_SET_FREQUENCY,
           NIL)
     }

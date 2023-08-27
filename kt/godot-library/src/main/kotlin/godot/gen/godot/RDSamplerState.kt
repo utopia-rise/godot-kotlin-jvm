@@ -37,7 +37,7 @@ public open class RDSamplerState : RefCounted() {
       return RenderingDevice.SamplerFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MAG_FILTER,
           NIL)
     }
@@ -53,7 +53,7 @@ public open class RDSamplerState : RefCounted() {
       return RenderingDevice.SamplerFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MIN_FILTER,
           NIL)
     }
@@ -69,7 +69,7 @@ public open class RDSamplerState : RefCounted() {
       return RenderingDevice.SamplerFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MIP_FILTER,
           NIL)
     }
@@ -84,7 +84,7 @@ public open class RDSamplerState : RefCounted() {
       return RenderingDevice.SamplerRepeatMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_REPEAT_U, NIL)
     }
 
@@ -98,7 +98,7 @@ public open class RDSamplerState : RefCounted() {
       return RenderingDevice.SamplerRepeatMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_REPEAT_V, NIL)
     }
 
@@ -112,7 +112,7 @@ public open class RDSamplerState : RefCounted() {
       return RenderingDevice.SamplerRepeatMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_REPEAT_W, NIL)
     }
 
@@ -192,7 +192,7 @@ public open class RDSamplerState : RefCounted() {
       return RenderingDevice.CompareOperator.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_COMPARE_OP,
           NIL)
     }
@@ -238,7 +238,7 @@ public open class RDSamplerState : RefCounted() {
       return RenderingDevice.SamplerBorderColor.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_BORDER_COLOR,
           NIL)
     }

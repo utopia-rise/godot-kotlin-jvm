@@ -140,7 +140,7 @@ public open class ArrayMesh : Mesh() {
       return Mesh.BlendShapeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_BLEND_SHAPE_MODE,
           NIL)
     }

@@ -64,7 +64,7 @@ public open class InputEventKey : InputEventWithModifiers() {
       return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_KEYCODE, NIL)
     }
 
@@ -81,7 +81,7 @@ public open class InputEventKey : InputEventWithModifiers() {
       return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_PHYSICAL_KEYCODE, NIL)
     }
@@ -107,7 +107,7 @@ public open class InputEventKey : InputEventWithModifiers() {
       return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_KEY_LABEL, NIL)
     }
 

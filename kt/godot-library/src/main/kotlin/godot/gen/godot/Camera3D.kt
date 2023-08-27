@@ -56,7 +56,7 @@ public open class Camera3D : Node3D() {
       return Camera3D.KeepAspect.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_KEEP_ASPECT_MODE,
           NIL)
     }
@@ -148,7 +148,7 @@ public open class Camera3D : Node3D() {
       return Camera3D.DopplerTracking.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_DOPPLER_TRACKING,
           NIL)
     }
@@ -163,7 +163,7 @@ public open class Camera3D : Node3D() {
       return Camera3D.ProjectionType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_PROJECTION, NIL)
     }
 

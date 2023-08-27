@@ -132,7 +132,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       return Vector3.Axis.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_AXIS, NIL)
     }
 
@@ -147,7 +147,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       return BaseMaterial3D.BillboardMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_BILLBOARD_MODE,
           NIL)
     }
@@ -163,7 +163,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       return SpriteBase3D.AlphaCutMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_ALPHA_CUT_MODE,
           NIL)
     }
@@ -211,7 +211,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       return BaseMaterial3D.AlphaAntiAliasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_ALPHA_ANTIALIASING, NIL)
     }
@@ -243,7 +243,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       return BaseMaterial3D.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_TEXTURE_FILTER,
           NIL)
     }

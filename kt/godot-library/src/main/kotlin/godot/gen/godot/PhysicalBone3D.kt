@@ -43,7 +43,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       return PhysicalBone3D.JointType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_JOINT_TYPE,
           NIL)
     }
@@ -182,7 +182,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       return PhysicalBone3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_LINEAR_DAMP_MODE, NIL)
     }
@@ -216,7 +216,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       return PhysicalBone3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_ANGULAR_DAMP_MODE, NIL)
     }

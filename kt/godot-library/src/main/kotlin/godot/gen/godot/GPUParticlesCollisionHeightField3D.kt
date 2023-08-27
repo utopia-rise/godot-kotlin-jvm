@@ -60,7 +60,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       return GPUParticlesCollisionHeightField3D.Resolution.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_RESOLUTION, NIL)
     }
@@ -76,7 +76,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       return GPUParticlesCollisionHeightField3D.UpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_UPDATE_MODE, NIL)
     }

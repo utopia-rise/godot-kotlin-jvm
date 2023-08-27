@@ -57,7 +57,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       return EditorFileDialog.Access.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_ACCESS, NIL)
     }
 
@@ -72,7 +72,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       return EditorFileDialog.DisplayMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_DISPLAY_MODE,
           NIL)
     }
@@ -88,7 +88,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       return EditorFileDialog.FileMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_FILE_MODE,
           NIL)
     }

@@ -57,7 +57,7 @@ public open class AudioStreamWAV : AudioStream() {
       return AudioStreamWAV.Format.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SET_FORMAT, NIL)
     }
 
@@ -72,7 +72,7 @@ public open class AudioStreamWAV : AudioStream() {
       return AudioStreamWAV.LoopMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SET_LOOP_MODE, NIL)
     }
 

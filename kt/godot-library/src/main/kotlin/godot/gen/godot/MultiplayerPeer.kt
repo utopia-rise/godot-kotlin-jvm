@@ -71,7 +71,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
       return MultiplayerPeer.TransferMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TRANSFER_MODE,
           NIL)
     }

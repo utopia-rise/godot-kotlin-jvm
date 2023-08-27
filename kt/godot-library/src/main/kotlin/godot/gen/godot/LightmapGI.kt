@@ -51,7 +51,7 @@ public open class LightmapGI : VisualInstance3D() {
       return LightmapGI.BakeQuality.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_BAKE_QUALITY, NIL)
     }
 
@@ -157,7 +157,7 @@ public open class LightmapGI : VisualInstance3D() {
       return LightmapGI.EnvironmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_ENVIRONMENT_MODE,
           NIL)
     }
@@ -241,7 +241,7 @@ public open class LightmapGI : VisualInstance3D() {
       return LightmapGI.GenerateProbes.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_GENERATE_PROBES,
           NIL)
     }

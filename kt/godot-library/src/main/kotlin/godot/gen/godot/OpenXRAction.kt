@@ -42,7 +42,7 @@ public open class OpenXRAction : Resource() {
       return OpenXRAction.ActionType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_SET_ACTION_TYPE, NIL)
     }
 

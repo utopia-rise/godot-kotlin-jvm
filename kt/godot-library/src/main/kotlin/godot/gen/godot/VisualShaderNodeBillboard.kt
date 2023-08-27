@@ -34,7 +34,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
       return VisualShaderNodeBillboard.BillboardType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_SET_BILLBOARD_TYPE, NIL)
     }

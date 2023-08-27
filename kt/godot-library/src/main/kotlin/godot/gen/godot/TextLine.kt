@@ -55,7 +55,7 @@ public open class TextLine : RefCounted() {
       return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_SET_DIRECTION, NIL)
     }
 
@@ -69,7 +69,7 @@ public open class TextLine : RefCounted() {
       return TextServer.Orientation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_SET_ORIENTATION, NIL)
     }
 
@@ -130,7 +130,7 @@ public open class TextLine : RefCounted() {
       return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_SET_HORIZONTAL_ALIGNMENT,
           NIL)
     }
@@ -160,7 +160,7 @@ public open class TextLine : RefCounted() {
       return TextServer.OverrunBehavior.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTLINE_SET_TEXT_OVERRUN_BEHAVIOR, NIL)
     }
