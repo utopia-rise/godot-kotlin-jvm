@@ -233,7 +233,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
       return CPUParticles3D.DrawOrder.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_DRAW_ORDER,
           NIL)
     }
@@ -263,7 +263,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
       return CPUParticles3D.EmissionShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_SHAPE,
           NIL)
     }

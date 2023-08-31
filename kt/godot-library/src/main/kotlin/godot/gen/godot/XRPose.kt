@@ -123,7 +123,7 @@ public open class XRPose : RefCounted() {
       return XRPose.TrackingConfidence.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_TRACKING_CONFIDENCE,
           NIL)
     }

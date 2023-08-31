@@ -49,7 +49,7 @@ public open class VoxelGI : VisualInstance3D() {
       return VoxelGI.Subdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_SUBDIV, NIL)
     }
 

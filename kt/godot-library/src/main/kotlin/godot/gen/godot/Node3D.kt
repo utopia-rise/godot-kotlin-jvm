@@ -189,7 +189,7 @@ public open class Node3D : Node() {
       return Node3D.RotationEditMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_ROTATION_EDIT_MODE,
           NIL)
     }
@@ -204,7 +204,7 @@ public open class Node3D : Node() {
       return EulerOrder.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_ROTATION_ORDER, NIL)
     }
 

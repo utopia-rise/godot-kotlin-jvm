@@ -99,7 +99,7 @@ public open class PathFollow3D : Node3D() {
       return PathFollow3D.RotationMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_ROTATION_MODE,
           NIL)
     }

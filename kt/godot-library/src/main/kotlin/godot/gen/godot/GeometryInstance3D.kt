@@ -100,7 +100,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       return GeometryInstance3D.ShadowCastingSetting.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CAST_SHADOWS_SETTING, NIL)
     }
@@ -186,7 +186,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       return GeometryInstance3D.GIMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_GI_MODE,
           NIL)
     }
@@ -202,7 +202,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       return GeometryInstance3D.LightmapScale.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_LIGHTMAP_SCALE, NIL)
     }
@@ -286,7 +286,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       return GeometryInstance3D.VisibilityRangeFadeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_FADE_MODE, NIL)
     }

@@ -417,7 +417,15 @@ class GenerationService(
         if (property.hasValidSetterInClass) {
             propertySpecBuilder.mutable()
 
-            val variantTypeToArgumentString = "%T·to·value${property.getToBufferCastingMethod()}"
+            val variantTypeToArgumentString = buildString {
+                append("%T·to·value")
+                
+                if (property.isEnum()) {
+                    append(".id")
+                }
+                
+                append(property.getToBufferCastingMethod())
+            }
 
             val argumentStringTemplate = if (property.isIndexed) {
                 "%T to ${property.internal.index}, $variantTypeToArgumentString"

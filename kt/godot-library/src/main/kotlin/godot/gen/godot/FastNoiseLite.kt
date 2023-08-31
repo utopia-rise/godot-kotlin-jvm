@@ -31,7 +31,7 @@ public open class FastNoiseLite : Noise() {
       return FastNoiseLite.NoiseType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_NOISE_TYPE, NIL)
     }
 
@@ -77,7 +77,7 @@ public open class FastNoiseLite : Noise() {
       return FastNoiseLite.FractalType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_FRACTAL_TYPE,
           NIL)
     }
@@ -155,7 +155,7 @@ public open class FastNoiseLite : Noise() {
       return FastNoiseLite.CellularDistanceFunction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_CELLULAR_DISTANCE_FUNCTION, NIL)
     }
@@ -181,7 +181,7 @@ public open class FastNoiseLite : Noise() {
       return FastNoiseLite.CellularReturnType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_CELLULAR_RETURN_TYPE, NIL)
     }
@@ -207,7 +207,7 @@ public open class FastNoiseLite : Noise() {
       return FastNoiseLite.DomainWarpType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_TYPE, NIL)
     }
@@ -246,7 +246,7 @@ public open class FastNoiseLite : Noise() {
       return FastNoiseLite.DomainWarpFractalType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_FRACTAL_TYPE, NIL)
     }

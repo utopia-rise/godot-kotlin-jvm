@@ -51,7 +51,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
       return VisualShaderNodeParameter.Qualifier.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARAMETER_SET_QUALIFIER, NIL)
     }

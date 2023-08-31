@@ -80,7 +80,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
       return CollisionObject2D.DisableMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SET_DISABLE_MODE, NIL)
     }

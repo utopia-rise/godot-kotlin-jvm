@@ -30,7 +30,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
       return WebRTCDataChannel.WriteMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_SET_WRITE_MODE,
           NIL)
     }

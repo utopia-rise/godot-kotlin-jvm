@@ -73,7 +73,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
       return AudioEffectSpectrumAnalyzer.FFTSize.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_SET_FFT_SIZE, NIL)
     }

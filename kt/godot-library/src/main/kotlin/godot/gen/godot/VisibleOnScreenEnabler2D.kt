@@ -35,7 +35,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
       return VisibleOnScreenEnabler2D.EnableMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER2D_SET_ENABLE_MODE, NIL)
     }

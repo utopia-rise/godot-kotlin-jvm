@@ -49,7 +49,7 @@ public open class CurveTexture : Texture2D() {
       return CurveTexture.TextureMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_TEXTURE_MODE,
           NIL)
     }

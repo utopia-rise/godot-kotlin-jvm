@@ -75,7 +75,7 @@ public open class Label3D : GeometryInstance3D() {
       return BaseMaterial3D.BillboardMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_BILLBOARD_MODE, NIL)
     }
 
@@ -89,7 +89,7 @@ public open class Label3D : GeometryInstance3D() {
       return Label3D.AlphaCutMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_ALPHA_CUT_MODE, NIL)
     }
 
@@ -135,7 +135,7 @@ public open class Label3D : GeometryInstance3D() {
       return BaseMaterial3D.AlphaAntiAliasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_ALPHA_ANTIALIASING,
           NIL)
     }
@@ -166,7 +166,7 @@ public open class Label3D : GeometryInstance3D() {
       return BaseMaterial3D.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_TEXTURE_FILTER, NIL)
     }
 
@@ -306,7 +306,7 @@ public open class Label3D : GeometryInstance3D() {
       return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_HORIZONTAL_ALIGNMENT,
           NIL)
     }
@@ -322,7 +322,7 @@ public open class Label3D : GeometryInstance3D() {
       return VerticalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_VERTICAL_ALIGNMENT,
           NIL)
     }
@@ -365,7 +365,7 @@ public open class Label3D : GeometryInstance3D() {
       return TextServer.AutowrapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_AUTOWRAP_MODE, NIL)
     }
 
@@ -409,7 +409,7 @@ public open class Label3D : GeometryInstance3D() {
       return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_TEXT_DIRECTION, NIL)
     }
 
@@ -438,7 +438,7 @@ public open class Label3D : GeometryInstance3D() {
       return TextServer.StructuredTextParser.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
     }

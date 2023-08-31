@@ -63,7 +63,7 @@ public open class ParticleProcessMaterial : Material() {
       return ParticleProcessMaterial.EmissionShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_EMISSION_SHAPE, NIL)
     }
@@ -448,7 +448,7 @@ public open class ParticleProcessMaterial : Material() {
       return ParticleProcessMaterial.SubEmitterMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_SUB_EMITTER_MODE, NIL)
     }
@@ -551,7 +551,7 @@ public open class ParticleProcessMaterial : Material() {
       return ParticleProcessMaterial.CollisionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_COLLISION_MODE, NIL)
     }

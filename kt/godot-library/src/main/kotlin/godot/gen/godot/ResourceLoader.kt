@@ -160,6 +160,14 @@ public object ResourceLoader : Object() {
 
   /**
    * Returns the dependencies for the resource at the given [path].
+   *
+   * **Note:** The dependencies are returned with slices separated by `::`. You can use [godot.String.getSlice] to get their components.
+   *
+   * ```
+   * 				for dep in ResourceLoader.get_dependencies(path):
+   * 				    print(dep.get_slice("::", 0)) # Prints UID.
+   * 				    print(dep.get_slice("::", 2)) # Prints path.
+   * 				```
    */
   public fun getDependencies(path: String): PackedStringArray {
     TransferContext.writeArguments(STRING to path)

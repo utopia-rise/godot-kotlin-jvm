@@ -57,7 +57,7 @@ public open class FogVolume : VisualInstance3D() {
       return RenderingServer.FogVolumeShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGVOLUME_SET_SHAPE, NIL)
     }
 

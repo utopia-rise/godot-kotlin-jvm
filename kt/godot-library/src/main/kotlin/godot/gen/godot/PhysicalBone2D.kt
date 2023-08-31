@@ -31,7 +31,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class PhysicalBone2D : RigidBody2D() {
   /**
-   * The [godot.core.NodePath] to the [godot.Bone2D] that this [godot.PhysicalBone2D] isshould simulate.
+   * The [godot.core.NodePath] to the [godot.Bone2D] that this [godot.PhysicalBone2D] should simulate.
    */
   public var bone2dNodepath: NodePath
     get() {

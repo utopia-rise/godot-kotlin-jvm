@@ -96,7 +96,7 @@ public open class MultiplayerSynchronizer : Node() {
       return MultiplayerSynchronizer.VisibilityUpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_VISIBILITY_UPDATE_MODE, NIL)
     }

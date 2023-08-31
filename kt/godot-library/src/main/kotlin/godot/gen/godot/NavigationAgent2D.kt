@@ -193,7 +193,7 @@ public open class NavigationAgent2D : Node() {
       return NavigationPathQueryParameters2D.PathfindingAlgorithm.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATHFINDING_ALGORITHM, NIL)
     }
@@ -209,7 +209,7 @@ public open class NavigationAgent2D : Node() {
       return NavigationPathQueryParameters2D.PathPostProcessing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_POSTPROCESSING, NIL)
     }

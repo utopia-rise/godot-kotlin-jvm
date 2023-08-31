@@ -183,7 +183,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       return RigidBody2D.CenterOfMassMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CENTER_OF_MASS_MODE, NIL)
     }
@@ -269,7 +269,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       return RigidBody2D.CCDMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CONTINUOUS_COLLISION_DETECTION_MODE, NIL)
     }
@@ -293,7 +293,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * If `true`, the RigidBody2D will emit signals when it collides with another RigidBody2D.
+   * If `true`, the RigidBody2D will emit signals when it collides with another body.
    *
    * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [maxContactsReported].
    */
@@ -387,7 +387,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       return RigidBody2D.FreezeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_FREEZE_MODE, NIL)
     }
 
@@ -418,7 +418,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       return RigidBody2D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_LINEAR_DAMP_MODE,
           NIL)
     }
@@ -467,7 +467,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       return RigidBody2D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_ANGULAR_DAMP_MODE,
           NIL)
     }

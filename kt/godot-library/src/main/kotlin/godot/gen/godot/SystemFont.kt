@@ -101,7 +101,7 @@ public open class SystemFont : Font() {
       return TextServer.FontAntialiasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_ANTIALIASING, NIL)
     }
 
@@ -163,7 +163,7 @@ public open class SystemFont : Font() {
       return TextServer.Hinting.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_HINTING, NIL)
     }
 
@@ -178,7 +178,7 @@ public open class SystemFont : Font() {
       return TextServer.SubpixelPositioning.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_SUBPIXEL_POSITIONING, NIL)
     }

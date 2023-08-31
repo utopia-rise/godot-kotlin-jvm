@@ -167,7 +167,7 @@ public open class AStarGrid2D : RefCounted() {
       return AStarGrid2D.Heuristic.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_SET_DEFAULT_COMPUTE_HEURISTIC, NIL)
     }
@@ -183,7 +183,7 @@ public open class AStarGrid2D : RefCounted() {
       return AStarGrid2D.Heuristic.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_SET_DEFAULT_ESTIMATE_HEURISTIC, NIL)
     }
@@ -199,7 +199,7 @@ public open class AStarGrid2D : RefCounted() {
       return AStarGrid2D.DiagonalMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_SET_DIAGONAL_MODE,
           NIL)
     }

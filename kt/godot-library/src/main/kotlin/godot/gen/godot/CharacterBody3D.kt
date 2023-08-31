@@ -47,7 +47,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
       return CharacterBody3D.MotionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOTION_MODE,
           NIL)
     }
@@ -228,7 +228,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
       return CharacterBody3D.PlatformOnLeave.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_PLATFORM_ON_LEAVE, NIL)
     }

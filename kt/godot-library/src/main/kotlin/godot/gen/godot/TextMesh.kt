@@ -91,7 +91,7 @@ public open class TextMesh : PrimitiveMesh() {
       return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_SET_HORIZONTAL_ALIGNMENT,
           NIL)
     }
@@ -107,7 +107,7 @@ public open class TextMesh : PrimitiveMesh() {
       return VerticalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_SET_VERTICAL_ALIGNMENT,
           NIL)
     }
@@ -150,7 +150,7 @@ public open class TextMesh : PrimitiveMesh() {
       return TextServer.AutowrapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_SET_AUTOWRAP_MODE, NIL)
     }
 
@@ -250,7 +250,7 @@ public open class TextMesh : PrimitiveMesh() {
       return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_SET_TEXT_DIRECTION, NIL)
     }
 
@@ -279,7 +279,7 @@ public open class TextMesh : PrimitiveMesh() {
       return TextServer.StructuredTextParser.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTMESH_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
     }

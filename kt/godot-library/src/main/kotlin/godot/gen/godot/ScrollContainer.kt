@@ -146,7 +146,7 @@ public open class ScrollContainer : Container() {
       return ScrollContainer.ScrollMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_HORIZONTAL_SCROLL_MODE, NIL)
     }
@@ -162,7 +162,7 @@ public open class ScrollContainer : Container() {
       return ScrollContainer.ScrollMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_VERTICAL_SCROLL_MODE, NIL)
     }

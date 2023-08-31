@@ -47,7 +47,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       return CharacterBody2D.MotionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_SET_MOTION_MODE,
           NIL)
     }
@@ -228,7 +228,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       return CharacterBody2D.PlatformOnLeave.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_SET_PLATFORM_ON_LEAVE, NIL)
     }

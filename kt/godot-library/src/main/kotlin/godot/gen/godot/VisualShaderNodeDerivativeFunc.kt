@@ -33,7 +33,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
       return VisualShaderNodeDerivativeFunc.OpType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_SET_OP_TYPE, NIL)
     }
@@ -49,7 +49,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
       return VisualShaderNodeDerivativeFunc.Function.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_SET_FUNCTION, NIL)
     }
@@ -65,7 +65,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
       return VisualShaderNodeDerivativeFunc.Precision.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_SET_PRECISION, NIL)
     }

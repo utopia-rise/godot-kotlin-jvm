@@ -61,6 +61,8 @@ public object NavigationMeshGenerator : Object() {
    * Parses the [godot.SceneTree] for source geometry according to the properties of [navigationMesh]. Updates the provided [sourceGeometryData] resource with the resulting data. The resource can then be used to bake a navigation mesh with [bakeFromSourceGeometryData]. After the process is finished the optional [callback] will be called.
    *
    * **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.
+   *
+   * **Performance:** While convenient, reading data arrays from [godot.Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [godot.RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.
    */
   @JvmOverloads
   public fun parseSourceGeometryData(

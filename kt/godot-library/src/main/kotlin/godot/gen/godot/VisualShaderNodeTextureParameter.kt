@@ -34,7 +34,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       return VisualShaderNodeTextureParameter.TextureType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_TEXTURE_TYPE, NIL)
     }
@@ -50,7 +50,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       return VisualShaderNodeTextureParameter.ColorDefault.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_COLOR_DEFAULT, NIL)
     }
@@ -66,7 +66,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       return VisualShaderNodeTextureParameter.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_TEXTURE_FILTER, NIL)
     }
@@ -82,7 +82,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       return VisualShaderNodeTextureParameter.TextureRepeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_TEXTURE_REPEAT, NIL)
     }
@@ -98,7 +98,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       return VisualShaderNodeTextureParameter.TextureSource.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_TEXTURE_SOURCE, NIL)
     }

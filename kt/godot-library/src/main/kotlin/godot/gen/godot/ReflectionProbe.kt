@@ -52,7 +52,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       return ReflectionProbe.UpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_UPDATE_MODE,
           NIL)
     }
@@ -218,7 +218,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       return ReflectionProbe.AmbientMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_AMBIENT_MODE,
           NIL)
     }

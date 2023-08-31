@@ -17,7 +17,7 @@ import kotlin.Suppress
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
- * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations out of three linearly out of three based on the amounmt value.
+ * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations out of three linearly out of three based on the amount value.
  *
  * This animation node has three inputs:
  *

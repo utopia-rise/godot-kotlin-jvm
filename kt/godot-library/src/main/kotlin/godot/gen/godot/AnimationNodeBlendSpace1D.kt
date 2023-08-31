@@ -113,7 +113,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
       return AnimationNodeBlendSpace1D.BlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_BLEND_MODE, NIL)
     }

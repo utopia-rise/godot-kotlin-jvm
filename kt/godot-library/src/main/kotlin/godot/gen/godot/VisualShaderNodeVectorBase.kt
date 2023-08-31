@@ -33,7 +33,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
       return VisualShaderNodeVectorBase.OpType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVECTORBASE_SET_OP_TYPE, NIL)
     }
