@@ -11,7 +11,9 @@ import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.FunctionNotRegisteredQuickFix
+import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GodotTypes
+import org.jetbrains.kotlin.asJava.toLightMethods
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
@@ -40,7 +42,8 @@ class RegisterFunctionAnnotator : Annotator {
             }
 
             if (element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) != null) {
-                checkNotGeneric(element, holder)
+                checkNotGeneric(element.toLightMethods().first(), holder)
+                checkFunctionParameterCount(element, holder)
             }
         }
     }
@@ -55,4 +58,18 @@ class RegisterFunctionAnnotator : Annotator {
         element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
             GodotTypes.notificationFunctions.contains(element.name) &&
             element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null
+
+
+    private fun checkFunctionParameterCount(element: KtNamedFunction, holder: AnnotationHolder) {
+        if (element.valueParameters.size > Constraints.MAX_FUNCTION_ARG_COUNT) {
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.function.toManyParams", Constraints.MAX_FUNCTION_ARG_COUNT),
+                element
+                    .valueParameterList
+                    ?.psiOrParent
+                    ?: element.nameIdentifier
+                    ?: element.navigationElement
+            )
+        }
+    }
 }

@@ -13,14 +13,16 @@ import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.descriptors.impl.ClassConstructorDescriptorImpl
+import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.idea.caches.resolve.analyze
+import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.idea.util.module
-import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
+
+import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.js.resolve.diagnostics.findPsi
 import org.jetbrains.kotlin.lexer.KtSingleValueToken
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.resolve
+
 import org.jetbrains.kotlin.psi.KtAnnotated
 import org.jetbrains.kotlin.psi.KtArrayAccessExpression
 import org.jetbrains.kotlin.psi.KtBinaryExpression
@@ -83,10 +85,10 @@ class CopyModificationAnnotator : Annotator {
             is KtDotQualifiedExpression -> {
                 val receiverType = element.receiverExpression.resolveTypeSafe()
 
-                receiverType?.getJetTypeFqName(false) != "$godotCorePackage.${GodotTypes.dictionary}" &&
-                    receiverType?.getJetTypeFqName(false) != "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" &&
+                receiverType?.getKotlinTypeFqName(false) != "$godotCorePackage.${GodotTypes.dictionary}" &&
+                    receiverType?.getKotlinTypeFqName(false) != "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" &&
                     receiverType?.isCoreType() == true &&
-                    (((element.selectorExpression as? KtCallExpression)?.calleeExpression as? KtReferenceExpression)?.resolve() as? KtAnnotated)?.findAnnotation(FqName(CORE_TYPE_HELPER_ANNOTATION)) != null
+                    (((element.selectorExpression as? KtCallExpression)?.calleeExpression as? KtReferenceExpression)?.mainReference?.resolve() as? KtAnnotated)?.findAnnotation(FqName(CORE_TYPE_HELPER_ANNOTATION)) != null
             }
             else -> false
         }
@@ -172,7 +174,7 @@ class CopyModificationAnnotator : Annotator {
     }
 
     private fun evaluateKtNameReferenceExpression(ktNameReferenceExpression: KtNameReferenceExpression): Boolean {
-        val resolvedExpression = ktNameReferenceExpression.resolve()
+        val resolvedExpression = ktNameReferenceExpression.mainReference.resolve()
         return if (resolvedExpression is KtProperty) {
             val isUsedAsAssignmentLater = ReferencesSearch.search(resolvedExpression).any { psiReference ->
                 val referenceElement = psiReference.element
@@ -200,7 +202,7 @@ class CopyModificationAnnotator : Annotator {
     }
 
     private fun evaluateKtCallExpression(ktCallExpression: KtCallExpression): Boolean {
-        return when (val function = (ktCallExpression.calleeExpression as? KtReferenceExpression)?.resolve()) {
+        return when (val function = (ktCallExpression.calleeExpression as? KtReferenceExpression)?.mainReference?.resolve()) {
             is KtNamedFunction ->
                 if (function.hasBlockBody()) {
                     function
@@ -232,10 +234,10 @@ private fun KtExpression.isConstructorCall(): Boolean {
 }
 
 private fun KotlinType.isCoreType(): Boolean = coreTypes
-    .contains(getJetTypeFqName(false).removeSuffix("?"))
+    .contains(getKotlinTypeFqName(false).removeSuffix("?"))
 
 private fun KotlinType.isPoolArray(): Boolean = packedArrays
-    .contains(getJetTypeFqName(false).removeSuffix("?"))
+    .contains(getKotlinTypeFqName(false).removeSuffix("?"))
 
 private fun KtExpression.resolveTypeSafe(): KotlinType? {
     return try {

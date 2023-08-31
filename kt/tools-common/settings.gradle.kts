@@ -1,14 +1,30 @@
 
 pluginManagement {
-    resolutionStrategy.eachPlugin {
-        when (requested.id.id) {
-            "com.utopia-rise.godot-dependencies" -> useModule("com.utopia-rise:godot-dependencies-gradle-plugin:0.0.1")
+    includeBuild("../build-logic")
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        google()
+    }
+}
+
+dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+    }
+
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
         }
     }
 }
 
-includeBuild("../plugins/godot-dependencies-gradle-plugin") {
-    dependencySubstitution {
-        substitute(module("com.utopia-rise:godot-dependencies-gradle-plugin")).using(project(":")) // assuming api-generator is the root project of api-generator/api-generator
-    }
+plugins {
+    // to automatically download the toolchain jdk if missing
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.6.0"
 }

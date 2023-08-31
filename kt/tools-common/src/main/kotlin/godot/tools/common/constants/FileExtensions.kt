@@ -5,4 +5,8 @@ object FileExtensions {
         // keep in sync with godotkotlin_defs.h!
         val registrationFile = "gdj"
     }
+
+    object Godot {
+        val sceneFile = "tscn"
+    }
 }

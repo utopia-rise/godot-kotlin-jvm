@@ -1,21 +1,13 @@
-import godot.dependencies.gradle.DependenciesVersions
-import godot.dependencies.gradle.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
-    `kotlin-dsl`
+    alias(libs.plugins.kotlin.jvm)
     `java-gradle-plugin`
-    id("com.utopia-rise.godot-dependencies")
+    id("com.utopia-rise.versioninfo")
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-repositories {
-    mavenCentral()
-    gradlePluginPortal()
+kotlin {
+    jvmToolchain(11)
 }
 
 gradlePlugin {
@@ -28,9 +20,8 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation(kotlin("gradle-plugin", version = DependenciesVersions.supportedKotlinVersion))
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
-    implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
-    implementation("com.fasterxml.jackson.core:jackson-databind:${DependenciesVersions.jacksonDatabindVersion}")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${DependenciesVersions.jacksonDataformatXmlVersion}")
+    implementation(libs.kotlinPoet)
+    implementation(libs.jacksonDataBind)
+    implementation(libs.jacksonDataFormatXml)
 }

@@ -1,32 +1,22 @@
-import godot.dependencies.gradle.DependenciesVersions
-import godot.dependencies.gradle.fullGodotKotlinJvmVersion
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
-    `kotlin-dsl`
-    id("org.ajoberstar.grgit") version "4.1.1"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.grgit)
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependencies")
+    id("com.utopia-rise.versioninfo")
 }
 
 // the version is not inherited from the root build.gradle.kts as this here is a separate gradle project. Hence, we set it
 // through the godot-dependencies plugin
 version = fullGodotKotlinJvmVersion
 
-buildscript {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-repositories {
-    mavenCentral()
-    gradlePluginPortal()
+kotlin {
+    jvmToolchain(11)
 }
 
 dependencies {
-    implementation(kotlin("gradle-plugin", version = DependenciesVersions.supportedKotlinVersion))
-    implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
+    implementation(libs.kotlinPoet)
 }
 
 publishing {
@@ -40,15 +30,5 @@ publishing {
             description = "Godot common module for all tools."
             from(components.getByName("java"))
         }
-    }
-}
-
-java {
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
-tasks {
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "11"
     }
 }

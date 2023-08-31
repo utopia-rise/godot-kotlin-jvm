@@ -1,21 +1,24 @@
-import godot.dependencies.gradle.DependenciesVersions
-import godot.dependencies.gradle.fullGodotKotlinJvmVersion
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependencies")
+    id("com.utopia-rise.versioninfo")
+}
+
+kotlin {
+    jvmToolchain(11)
 }
 
 dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     implementation(project(":godot-library"))
-    implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
+    implementation(libs.kotlinPoet)
 }
 
 publishing {
     publications {
+        @Suppress("UNUSED_VARIABLE")
         val godotEntryGenerator by creating(MavenPublication::class) {
             pom {
                 name.set(project.name)
@@ -25,21 +28,5 @@ publishing {
             description = "Godot Kotlin entry code generator."
             from(components.getByName("java"))
         }
-    }
-}
-
-java {
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
-tasks {
-    withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs += listOf(
-                "-opt-in=kotlin.ExperimentalStdlibApi"
-            )
-        }
-
-        kotlinOptions.jvmTarget = "11"
     }
 }

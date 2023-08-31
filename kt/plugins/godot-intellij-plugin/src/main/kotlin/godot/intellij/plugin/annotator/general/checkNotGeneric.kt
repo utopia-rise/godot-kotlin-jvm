@@ -1,28 +1,37 @@
 package godot.intellij.plugin.annotator.general
 
 import com.intellij.lang.annotation.AnnotationHolder
+import com.intellij.psi.PsiField
+import com.intellij.psi.PsiTypeParameterListOwner
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.extension.registerProblem
-import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtProperty
-import org.jetbrains.kotlin.psi.KtTypeParameterListOwner
-import org.jetbrains.kotlin.types.typeUtil.containsTypeParameter
 
-fun checkNotGeneric(ktTypeParameterListOwner: KtTypeParameterListOwner, holder: AnnotationHolder) {
-    if (ktTypeParameterListOwner.typeParameters.isNotEmpty()) {
-        holder.registerProblem(
+
+fun checkNotGeneric(typeParameterListOwner: PsiTypeParameterListOwner, holder: AnnotationHolder) {
+    when {
+        typeParameterListOwner.typeParameters.isNotEmpty() -> holder.registerProblem(
             GodotPluginBundle.message("problem.general.cannotRegisterGenerics"),
-            ktTypeParameterListOwner.typeParameterList
-                ?: ktTypeParameterListOwner.nameIdentifier
-                ?: ktTypeParameterListOwner.navigationElement
+            typeParameterListOwner.typeParameterList
+                ?: typeParameterListOwner.navigationElement
         )
-    } else if (ktTypeParameterListOwner is KtProperty && ktTypeParameterListOwner.type()?.containsTypeParameter() == true) {
-        holder.registerProblem(
-            GodotPluginBundle.message("problem.general.cannotRegisterGenerics"),
-            ktTypeParameterListOwner.typeParameterList
-                ?: ktTypeParameterListOwner.typeReference
-                ?: ktTypeParameterListOwner.nameIdentifier
-                ?: ktTypeParameterListOwner.navigationElement
-        )
+        typeParameterListOwner is KtProperty && typeParameterListOwner.hasTypeParameters() -> {
+            val ktProperty = (typeParameterListOwner as KtProperty)
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.general.cannotRegisterGenerics"),
+                ktProperty.typeParameterList
+                    ?: ktProperty.typeReference
+                    ?: ktProperty.nameIdentifier
+                    ?: ktProperty.navigationElement
+            )
+        }
+        typeParameterListOwner is PsiField && typeParameterListOwner.hasTypeParameters() -> {
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.general.cannotRegisterGenerics"),
+                typeParameterListOwner.typeParameterList
+                    ?: typeParameterListOwner.typeElement
+                    ?: typeParameterListOwner.nameIdentifier
+            )
+        }
     }
 }

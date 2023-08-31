@@ -5,6 +5,7 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.PropertyNotExportedQuickFix
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
@@ -13,10 +14,9 @@ import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
+import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.js.resolve.diagnostics.findPsi
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtEnumEntry
 import org.jetbrains.kotlin.psi.KtProperty
@@ -53,7 +53,7 @@ class PropertyHintAnnotationChecker {
 
     private fun checkColorNoAlpha(ktProperty: KtProperty, holder: AnnotationHolder) {
         checkForRegistrationAnnotation(ktProperty, holder)
-        if (ktProperty.type()?.getJetTypeFqName(false) != "$godotCorePackage.${GodotTypes.color}") {
+        if (ktProperty.type()?.getKotlinTypeFqName(false) != "$godotCorePackage.${GodotTypes.color}") {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.property.hint.wrongType", "$godotCorePackage.${GodotTypes.color}"),
                 ktProperty.findAnnotation(FqName("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.colorNoAlpha}"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
@@ -63,7 +63,7 @@ class PropertyHintAnnotationChecker {
 
     private fun checkPlaceholderText(ktProperty: KtProperty, holder: AnnotationHolder) {
         checkForRegistrationAnnotation(ktProperty, holder)
-        if (ktProperty.type()?.getJetTypeFqName(false) != String::class.qualifiedName) {
+        if (ktProperty.type()?.getKotlinTypeFqName(false) != String::class.qualifiedName) {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.property.hint.wrongType", String::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.placeHolderText}"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
@@ -73,7 +73,7 @@ class PropertyHintAnnotationChecker {
 
     private fun checkMultilineText(ktProperty: KtProperty, holder: AnnotationHolder) {
         checkForRegistrationAnnotation(ktProperty, holder)
-        if (ktProperty.type()?.getJetTypeFqName(false) != String::class.qualifiedName) {
+        if (ktProperty.type()?.getKotlinTypeFqName(false) != String::class.qualifiedName) {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.property.hint.wrongType", String::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.multilineText}"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
@@ -83,7 +83,7 @@ class PropertyHintAnnotationChecker {
 
     private fun checkDir(ktProperty: KtProperty, holder: AnnotationHolder) {
         checkForRegistrationAnnotation(ktProperty, holder)
-        if (ktProperty.type()?.getJetTypeFqName(false) != String::class.qualifiedName) {
+        if (ktProperty.type()?.getKotlinTypeFqName(false) != String::class.qualifiedName) {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.property.hint.wrongType", String::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.dir}"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
@@ -93,7 +93,7 @@ class PropertyHintAnnotationChecker {
 
     private fun checkFile(ktProperty: KtProperty, holder: AnnotationHolder) {
         checkForRegistrationAnnotation(ktProperty, holder)
-        if (ktProperty.type()?.getJetTypeFqName(false) != String::class.qualifiedName) {
+        if (ktProperty.type()?.getKotlinTypeFqName(false) != String::class.qualifiedName) {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.property.hint.wrongType", String::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.file}"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement

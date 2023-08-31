@@ -1,11 +1,11 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
     id("com.utopia-rise.api-generator")
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependencies")
-    id("com.github.johnrengelman.shadow")
+    id("com.utopia-rise.versioninfo")
+    alias(libs.plugins.shadowJar)
 }
 
 apiGenerator {
@@ -14,16 +14,19 @@ apiGenerator {
     docsDir.set(project.file("$projectDir/../../../../doc/classes"))
 }
 
+kotlin {
+    jvmToolchain(11)
+}
+
 dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
-    api(kotlin("reflect"))
+    api(kotlin("reflect", version = libs.versions.kotlin.get()))
 }
 
 tasks {
     compileKotlin {
         dependsOn(generateAPI)
-        kotlinOptions.jvmTarget = "11"
     }
 
     build.get().finalizedBy(shadowJar)
@@ -72,8 +75,4 @@ publishing {
             artifact(tasks.jar)
         }
     }
-}
-
-java {
-    targetCompatibility = JavaVersion.VERSION_11
 }

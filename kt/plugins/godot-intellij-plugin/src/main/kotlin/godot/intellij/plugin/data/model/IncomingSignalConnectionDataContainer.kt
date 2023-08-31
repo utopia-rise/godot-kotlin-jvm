@@ -11,7 +11,7 @@ package godot.intellij.plugin.data.model
  * @property toNodeName name of the node which contains the receiving function
  * @property fromScriptPath res:// path to the script that defines the emitting signal
  * @property toFunctionName name of the receiving function
- * @property toKtClassFqName fqName of the KtClass which contains the receiving function
+ * @property toClassFqName fqName of the KtClass which contains the receiving function
  */
 data class IncomingSignalConnectionDataContainer(
     val scenePath: String,
@@ -20,5 +20,5 @@ data class IncomingSignalConnectionDataContainer(
     val toNodeName: String,
     val fromScriptPath: String?,
     val toFunctionName: String,
-    val toKtClassFqName: String
+    val toClassFqName: String
 )

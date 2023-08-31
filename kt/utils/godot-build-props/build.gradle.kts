@@ -1,23 +1,23 @@
 import org.apache.tools.ant.filters.ReplaceTokens
-import godot.dependencies.gradle.DependenciesVersions
 
 plugins {
-    kotlin("jvm")
-    `maven-publish`
+    alias(libs.plugins.kotlin.jvm)
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependencies")
+    id("com.utopia-rise.versioninfo")
 }
 
-dependencies {
-    compileOnly(kotlin("stdlib"))
+kotlin {
+    jvmToolchain(11)
 }
 
 tasks {
+    @Suppress("UNUSED_VARIABLE")
     val processResources by getting(Copy::class) {
         outputs.upToDateWhen { false }
         val tokens = mapOf(
-            "version" to version.toString(),
-            "kotlin.version" to DependenciesVersions.supportedKotlinVersion
+            "godot.kotlin.jvm.version" to libs.versions.godotKotlinJvm.get(),
+            "godot.version" to libs.versions.godot.get(),
+            "kotlin.version" to libs.versions.kotlin.get(),
         )
         from("src/main/resources") {
             include("*.properties")
@@ -33,6 +33,7 @@ tasks {
 publishing {
     publications {
         // this is only used for publishing locally.
+        @Suppress("UNUSED_VARIABLE")
         val buildProps by creating(MavenPublication::class) {
             pom {
                 name.set(project.name)

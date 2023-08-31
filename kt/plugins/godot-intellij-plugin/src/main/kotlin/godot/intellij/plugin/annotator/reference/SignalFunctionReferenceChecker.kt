@@ -5,15 +5,17 @@ import com.intellij.psi.util.parentOfType
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.signalPackage
 import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.references.KtSimpleNameReference
+import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.resolve
-import org.jetbrains.kotlin.nj2k.postProcessing.type
+
+
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtNamedFunction
@@ -42,6 +44,7 @@ object SignalFunctionReferenceChecker {
         ) {
             val targetFunction = element
                 .callableReference
+                .mainReference
                 .resolve() as? KtNamedFunction
 
             if (targetFunction != null && targetFunction.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null) {

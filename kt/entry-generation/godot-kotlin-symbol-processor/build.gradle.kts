@@ -1,15 +1,14 @@
-import godot.dependencies.gradle.DependenciesVersions
-import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependencies")
+    id("com.utopia-rise.versioninfo")
 }
 
-repositories {
-    google()
+kotlin {
+    jvmToolchain(11)
 }
 
 dependencies {
@@ -17,14 +16,15 @@ dependencies {
     implementation(project(":godot-library"))
     implementation(project(":godot-entry-generator"))
 
-    implementation("com.google.devtools.ksp:symbol-processing-api:${DependenciesVersions.kspVersion}")
-    implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
+    implementation(libs.ksp)
+    implementation(libs.kotlinPoet)
 
     compileOnly(kotlin("compiler-embeddable"))
 }
 
 publishing {
     publications {
+        @Suppress("UNUSED_VARIABLE")
         val godotKotlinSymbolProcessor by creating(MavenPublication::class) {
             pom {
                 name.set(project.name)
@@ -37,10 +37,6 @@ publishing {
     }
 }
 
-java {
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
 tasks {
     withType<KotlinCompile> {
         kotlinOptions {
@@ -48,7 +44,5 @@ tasks {
                 "-opt-in=com.google.devtools.ksp.KspExperimental" // needed for resolve by package path
             )
         }
-
-        kotlinOptions.jvmTarget = "11"
     }
 }

@@ -23,10 +23,10 @@ class RegisterSignalMutabilityQuickFix : LocalQuickFix {
                     .getInstance()
                     .getNotificationGroup(GodotPluginBundle.message("notification.group.error"))
                     .createNotification(
+                        @Suppress("DialogTitleCapitalization")
                         GodotPluginBundle.message("notification.signal.mutability.error.title"),
                         GodotPluginBundle.message("notification.signal.mutability.error.content", signalName),
-                        NotificationType.ERROR,
-                        null
+                        NotificationType.ERROR
                     )
             )
         }

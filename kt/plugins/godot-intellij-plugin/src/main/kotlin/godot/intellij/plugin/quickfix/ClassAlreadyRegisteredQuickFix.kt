@@ -6,16 +6,16 @@ import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.fileEditor.OpenFileDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.popup.JBPopupFactory
+import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.data.model.RegisteredClassDataContainer
-import godot.intellij.plugin.extension.getGodotRoot
-import org.jetbrains.kotlin.idea.core.util.getLineNumber
+import godot.intellij.plugin.extension.registeredClassNameCache
+import org.jetbrains.kotlin.idea.base.psi.getLineNumber
+import org.jetbrains.kotlin.idea.base.util.module
+import org.jetbrains.kotlin.idea.codeinsight.utils.findExistingEditor
 import org.jetbrains.kotlin.idea.core.util.toPsiFile
-import org.jetbrains.kotlin.idea.inspections.findExistingEditor
+import org.jetbrains.kotlin.j2k.getContainingClass
 import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtElement
-import org.jetbrains.kotlin.psi.psiUtil.containingClass
 
 /**
  * Not really a quick fix.
@@ -30,14 +30,15 @@ class ClassAlreadyRegisteredQuickFix(private val registeredClassName: String) : 
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
         val psiElement = descriptor.psiElement
-        val godotRoot = psiElement.getGodotRoot() ?: return
+        val registeredClassNameCache = psiElement
+            .module
+            ?.registeredClassNameCache
+            ?: return
 
-        val containers = RegisteredClassNameCacheProvider
-            .provide(godotRoot)
-            .getContainersByName(registeredClassName)
+        val containers = registeredClassNameCache.getContainersByName(registeredClassName)
 
-        val containingClassFqName = if (psiElement is KtElement) {
-            psiElement.containingClass()?.fqName?.asString()
+        val containingClassFqName = if (psiElement is PsiElement) {
+            psiElement.getContainingClass()?.qualifiedName
         } else null
 
         // when only two classes are registered with the same name and on of those is the class that triggered this quick fix,
@@ -53,19 +54,17 @@ class ClassAlreadyRegisteredQuickFix(private val registeredClassName: String) : 
                 .getInstance(project)
                 .openTextEditor(OpenFileDescriptor(project, targetContainer.vFile, line ?: 0, 0), true)
         } else {
+            @Suppress("DialogTitleCapitalization")
             val popup = JBPopupFactory
                 .getInstance()
                 .createPopupChooserBuilder(
-                    RegisteredClassNameCacheProvider
-                        .provide(godotRoot)
-                        .getContainersByName(registeredClassName)
+                    containers
                         .map { container -> container.fqName }
                         .toList()
                 )
                 .setTitle(GodotPluginBundle.message("quickFix.class.alreadyRegistered.popup.title"))
                 .setItemChosenCallback { chosenFqName ->
-                    val container = RegisteredClassNameCacheProvider
-                        .provide(godotRoot)
+                    val container = registeredClassNameCache
                         .getContainerByFqName(chosenFqName) ?: return@setItemChosenCallback
 
                     val line = getSourceCodeLineOfClassDefinition(container, project)

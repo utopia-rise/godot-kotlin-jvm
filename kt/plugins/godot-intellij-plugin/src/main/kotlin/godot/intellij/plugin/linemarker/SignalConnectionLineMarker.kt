@@ -6,13 +6,14 @@ import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
-import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
-import godot.intellij.plugin.extension.getGodotRoot
+import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.isSignal
+import godot.intellij.plugin.extension.signalConnectionCache
+import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.ui.dialog.IncomingSignalConnectionsDialog
 import godot.intellij.plugin.ui.dialog.OutgoingSignalConnectionsDialog
+import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.lexer.KtTokens
-import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.psiUtil.containingClass
@@ -20,17 +21,18 @@ import kotlin.text.Typography.nbsp
 
 class SignalConnectionLineMarker : LineMarkerProvider {
     override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
-        val godotRoot = element.getGodotRoot() ?: return null
+        if (!element.isInGodotRoot()) return null
 
         if (element !is LeafPsiElement || element.elementType != KtTokens.IDENTIFIER) {
             return null
         }
 
+        val signalConnectionHandler = element.module?.signalConnectionCache ?: return null
+
         val parent = element.parent
         if (parent is KtProperty && parent.type().isSignal()) {
             val containingClassFqName = parent.containingClass()?.fqName?.asString() ?: return null
             val propertyName = parent.name ?: return null
-            val signalConnectionHandler = SignalConnectionCacheProvider.provide(godotRoot)
 
             val signalConnections = signalConnectionHandler
                 .getOutgoingKtSignalConnection(
@@ -54,7 +56,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
             if (signalConnections.isEmpty()) return null
             val signalIdentifyingElement = parent.identifyingElement ?: return null
 
-            val imageIcon = IconLoader.getIcon("/icon_signals.svg", this::class.java)
+            val imageIcon = IconLoader.getIcon("/linemarkerIcons/icon_signals.svg", this::class.java)
             return LineMarkerInfo(
                 signalIdentifyingElement,
                 signalIdentifyingElement.textRange,
@@ -71,7 +73,6 @@ class SignalConnectionLineMarker : LineMarkerProvider {
         if (parent is KtFunction) {
             val containingClassFqName = parent.containingClass()?.fqName?.asString() ?: return null
             val functionName = parent.name ?: return null
-            val signalConnectionHandler = SignalConnectionCacheProvider.provide(godotRoot)
 
             val signalConnections = signalConnectionHandler
                 .getIncomingKtSignalConnection(

@@ -9,7 +9,7 @@ class OutgoingSignalConnectionTable(
 ) : JBTable(model) {
     private val sceneCellRenderer = IconCellRenderer("/icon_packed_scene.svg")
     private val sourceCellRenderer = IconCellRenderer("/icon_node.svg")
-    private val signalCellRenderer = IconCellRenderer("/icon_signals.svg")
+    private val signalCellRenderer = IconCellRenderer("/linemarkerIcons/icon_signals.svg")
     private val targetCellRenderer = IconCellRenderer("/icon_node.svg")
 
     init {

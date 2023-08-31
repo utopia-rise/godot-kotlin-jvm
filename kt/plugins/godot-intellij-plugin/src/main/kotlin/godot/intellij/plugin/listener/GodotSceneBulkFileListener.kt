@@ -1,7 +1,8 @@
 package godot.intellij.plugin.listener
 
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.project.DumbService
+import com.intellij.openapi.module.Module
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.roots.ProjectFileIndex
 import com.intellij.openapi.vfs.VirtualFile
@@ -10,22 +11,14 @@ import com.intellij.openapi.vfs.newvfs.events.VFileEvent
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.utopiarise.serialization.godot.scene.sceneFromTscn
-import godot.intellij.plugin.ProjectDisposable
-import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
-import godot.intellij.plugin.extension.getGodotRoot
+import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCache
 import godot.intellij.plugin.language.scene.filetype.GodotSceneFileType
+import org.jetbrains.kotlin.idea.util.projectStructure.getModule
 
-class GodotSceneBulkFileListener(private val project: Project) : BulkFileListener, ProjectDisposable {
-
-    init {
-        DumbService.getInstance(project).runWhenSmart {
-            ApplicationManager.getApplication().executeOnPooledThread {
-                // needs to run in background initially to avoid:
-                // java.lang.Throwable: Slow operations are prohibited on EDT. See SlowOperations.assertSlowOperationsAreAllowed javadoc.
-                initialIndexing()
-            }
-        }
-    }
+class GodotSceneBulkFileListener(
+    private val project: Project,
+    private val signalCacheProvider: (Module) -> SignalConnectionCache
+) : BulkFileListener, Indexer {
 
     override fun after(events: MutableList<out VFileEvent>) {
         events
@@ -41,13 +34,6 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
             }
     }
 
-    private fun initialIndexing() = provideContainingFilesAsync { vFiles ->
-        vFiles.forEach { vFile ->
-            virtualFileChanged(vFile)
-        }
-    }
-
-    @Suppress("UnstableApiUsage")
     private fun provideContainingFilesAsync(callback: (List<VirtualFile>) -> Unit) {
         ApplicationManager.getApplication().runReadAction {
             val files = FileTypeIndex
@@ -61,7 +47,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
     }
 
     private fun virtualFileChanged(file: VirtualFile) {
-        val godotRoot = file.getGodotRoot(project) ?: return
+        val module = file.getModule(project) ?: return
 
         if (file.extension == GodotSceneFileType.EXTENSION && file.isValid && file.isInLocalFileSystem) {
             val path = file.canonicalPath ?: return
@@ -74,25 +60,31 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
                 ?.signalConnections
                 ?: return
 
-            SignalConnectionCacheProvider
-                .provide(godotRoot)
+            signalCacheProvider(module)
                 .updateSignalConnections(
-                    project,
+                    module,
                     path,
                     signals
                 )
         } else {
             val path = file.canonicalPath ?: return
-            SignalConnectionCacheProvider
-                .provide(godotRoot)
+            signalCacheProvider(module)
                 .removeSignalConnections(
                     path
                 )
         }
     }
 
-    override fun dispose(project: Project) {
-        SignalConnectionCacheProvider
-            .disposeForProject(project)
+    override fun initialIndex(parentDisposable: Disposable, project: Project) {
+        ApplicationManager.getApplication().executeOnPooledThread {
+            // needs to run in background initially to avoid:
+            // java.lang.Throwable: Slow operations are prohibited on EDT. See SlowOperations.assertSlowOperationsAreAllowed javadoc.
+            provideContainingFilesAsync { vFiles ->
+                vFiles.forEach { vFile ->
+                    if (project.isDisposed) return@forEach
+                    virtualFileChanged(vFile)
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,7 @@
 package godot.gradle
 
+import godot.tools.common.constants.FileExtensions
+import org.gradle.api.Project
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
@@ -123,7 +125,7 @@ open class GodotExtension(objects: ObjectFactory) {
     /**
      * path to the native-image tool used to convert jar to native.
      *
-     * example: "${System.getenv("GRAALVM_HOME")}/bin/native-image"
+     * example: "${System.getenv("GRAALVM_HOME")}"
      */
     val graalVmDirectory: RegularFileProperty = objects.fileProperty()
 
@@ -131,7 +133,7 @@ open class GodotExtension(objects: ObjectFactory) {
      * Windows specific.
      * Path to Visual Studio VCVARS to initialize native developer tools.
      *
-     * example: System.getenv("VC_VARS_PATH")
+     * example: ${System.getenv("VC_VARS_PATH")}
      */
     val windowsDeveloperVCVarsPath: Property<String> = objects.property(String::class.java)
 
@@ -163,7 +165,7 @@ open class GodotExtension(objects: ObjectFactory) {
      */
     val isGraalVmNativeImageGenerationVerbose: Property<Boolean> = objects.property(Boolean::class.java)
 
-    internal fun configureExtensionDefaults() {
+    internal fun configureExtensionDefaults(target: Project) {
         val buildToolsDir = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
             File("$androidSdkRoot/build-tools/")
         }
@@ -179,6 +181,7 @@ open class GodotExtension(objects: ObjectFactory) {
             ?.listFiles()
             ?.last { it.isDirectory }
 
+        registrationFileBaseDir.set(target.projectDir.resolve(FileExtensions.GodotKotlinJvm.registrationFile).apply { mkdirs() })
         isRegistrationFileHierarchyEnabled.set(true)
         isFqNameRegistrationEnabled.set(false)
 

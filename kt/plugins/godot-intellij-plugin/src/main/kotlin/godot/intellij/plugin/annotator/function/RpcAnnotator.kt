@@ -10,12 +10,14 @@ import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.TransferModeIgnoresChannelQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotAnnotationPackage
-import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
+import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
+
+
+import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.resolve
+
 import org.jetbrains.kotlin.psi.KtAnnotated
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.psiUtil.getChildOfType
@@ -39,8 +41,9 @@ class RpcAnnotator : Annotator {
             val isTransferModeUnreliableOrdered = transferModeValueArgument
                 ?.getArgumentExpression()
                 ?.getChildOfType<KtNameReferenceExpression>()
+                ?.mainReference
                 ?.resolve()
-                ?.getKotlinFqName()
+                ?.kotlinFqName
                 ?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.transferMode}.UNRELIABLE_ORDERED"
 
             val channelElement = valueArgumentList

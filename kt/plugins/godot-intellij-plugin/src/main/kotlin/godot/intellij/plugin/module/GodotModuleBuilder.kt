@@ -1,5 +1,6 @@
 package godot.intellij.plugin.module
 
+import com.intellij.ide.BrowserUtil
 import com.intellij.ide.util.projectWizard.ModuleBuilder
 import com.intellij.ide.util.projectWizard.ModuleBuilderListener
 import com.intellij.ide.util.projectWizard.ModuleWizardStep
@@ -9,27 +10,33 @@ import com.intellij.openapi.externalSystem.model.project.dependencies.ProjectDep
 import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.module.ModuleType
-import com.intellij.openapi.ui.TextFieldWithBrowseButton
 import com.intellij.openapi.util.IconLoader
 import com.intellij.openapi.util.Key
-import com.intellij.ui.layout.GrowPolicy
-import com.intellij.ui.layout.panel
-import com.intellij.ui.layout.selected
+import com.intellij.ui.dsl.builder.COLUMNS_MEDIUM
+import com.intellij.ui.dsl.builder.Cell
+import com.intellij.ui.dsl.builder.bindSelected
+import com.intellij.ui.dsl.builder.bindText
+import com.intellij.ui.dsl.builder.columns
+import com.intellij.ui.dsl.builder.panel
+import com.intellij.ui.dsl.builder.selected
 import godot.intellij.plugin.GodotPluginBundle
 import godot.utils.GodotBuildProperties
 import org.jetbrains.plugins.gradle.util.GradleUtil
 import java.io.File
 import javax.swing.JCheckBox
 import javax.swing.JComponent
-import javax.swing.JTextField
 
 class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
     private val groupIdKey = Key<String>("GROUP_ID")
     private val artifactIdKey = Key<String>("ARTIFACT_ID")
     private val versionKey = Key<String>("VERSION")
-    private val androidEnabledKey = Key<Boolean>("ANDROID_ENABLED")
+    private val isAndroidEnabledKey = Key<Boolean>("ANDROID_ENABLED")
     private val d8ToolPathKey = Key<String>("D8_TOOL_PATH")
     private val androidCompileSdkDirKey = Key<String>("ANDROID_COMPILE_SDK_DIR")
+    private val isGraalNativeImageEnabledDirKey = Key<Boolean>("IS_GRAAL_VM_ENABLED")
+    private val graalVmDirectoryKey = Key<String>("GRAAL_VM_DIR")
+    private val windowsDeveloperVCVarsPathKey = Key<String>("WINDOWS_DEVELOPER_VS_VARS_PATH")
+    private val isIOSEnabledKey = Key<Boolean>("IS_IOS_ENABLED")
 
     private lateinit var wizardContext: WizardContext
 
@@ -44,7 +51,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
     override fun getName() = builderName
 
     override fun getModuleType(): ModuleType<*> {
-        return GodotModuleType
+        return GodotModuleType()
     }
 
     override fun getPresentableName() = GodotPluginBundle.message("module.presentableName")
@@ -55,74 +62,129 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
     override fun getCustomOptionsStep(context: WizardContext, parentDisposable: Disposable): ModuleWizardStep {
         wizardContext = context
         return object : ModuleWizardStep() {
-            val groupIdTextField = JTextField("com.example")
-            val artifactIdTextField = JTextField("game")
-            val versionTextField = JTextField("0.0.1-SNAPSHOT")
-            lateinit var androidEnabledCheckBox: JCheckBox
-            lateinit var d8ToolPathTextField: TextFieldWithBrowseButton
-            lateinit var androidCompileSdkDirTextField: TextFieldWithBrowseButton
+            private var group = "com.example"
+            private var artifact = "game"
+            private var version = "0.0.1-SNAPSHOT"
+            private var isAndroidEnabled = false
+            private var d8Path = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8"
+            private var androidCompileSdkDir = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30"
+
+            private var isGraalNativeImageEnabled = false
+            private var graalVmDirectory = "\${System.getenv(\"GRAALVM_HOME\")}"
+            private var windowsDeveloperVCVarsPath = "\${System.getenv(\"VC_VARS_PATH\")}"
+            private var isIOSEnabled = false
 
             override fun getComponent(): JComponent {
                 return panel {
-                    titledRow(GodotPluginBundle.message("wizard.projectSettings.general.title")) {
+                    group(GodotPluginBundle.message("wizard.projectSettings.general.title")) {
                         row(GodotPluginBundle.message("wizard.projectSettings.general.groupId")) {
-                            groupIdTextField().growPolicy(GrowPolicy.MEDIUM_TEXT)
+                            textField()
+                                .bindText(::group)
+                                .columns(COLUMNS_MEDIUM)
                         }
                         row(GodotPluginBundle.message("wizard.projectSettings.general.artifactId")) {
-                            artifactIdTextField().growPolicy(GrowPolicy.MEDIUM_TEXT)
+                            textField()
+                                .bindText(::artifact)
+                                .columns(COLUMNS_MEDIUM)
                         }
                         row(GodotPluginBundle.message("wizard.projectSettings.general.version")) {
-                            versionTextField().growPolicy(GrowPolicy.MEDIUM_TEXT)
+                            textField()
+                                .bindText(::version)
+                                .columns(COLUMNS_MEDIUM)
                         }
                     }
-                    titledRow(GodotPluginBundle.message("wizard.projectSettings.buildSettings.title")) {
-                        row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidEnabled")) {
-                            checkBox("", false).apply { androidEnabledCheckBox = this.component }
-                        }
-                        row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath")) {
-                            textFieldWithBrowseButton(
-                                GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath.browseDialogTitle"),
-                                "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8",
-                                context.project,
-                                FileChooserDescriptor(true, false, false, false, false, false)
-                            ) {
-                                it.path
+
+                    lateinit var isAndroidEnabledCheckBox: Cell<JCheckBox>
+                    lateinit var isGraalVmEnabledCheckBox: Cell<JCheckBox>
+                    group(GodotPluginBundle.message("wizard.projectSettings.buildSettings.title")) {
+                        group(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.title")) {
+                            row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.isAndroidEnabled")) {
+                                isAndroidEnabledCheckBox = checkBox("")
+                                    .bindSelected(::isAndroidEnabled)
                             }
-                                .growPolicy(GrowPolicy.SHORT_TEXT)
-                                .enableIf(androidEnabledCheckBox.selected)
-                                .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath.comment"))
-                                .apply {
-                                    d8ToolPathTextField = component
-                                }
-                        }
-                        row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir")) {
-                            textFieldWithBrowseButton(
-                                GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir.browseDialogTitle"),
-                                "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30",
-                                context.project,
-                                FileChooserDescriptor(false, true, false, false, false, false)
-                            ) {
-                                it.path
+                            row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.d8ToolPath")) {
+                                textFieldWithBrowseButton(
+                                    GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.d8ToolPath.browseDialogTitle"),
+                                    context.project,
+                                    FileChooserDescriptor(true, false, false, false, false, false)
+                                )
+                                    .bindText(::d8Path)
+                                    .columns(COLUMNS_MEDIUM)
+                                    .enabledIf(isAndroidEnabledCheckBox.selected)
+                                    .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.d8ToolPath.comment"))
                             }
-                                .growPolicy(GrowPolicy.SHORT_TEXT)
-                                .enableIf(androidEnabledCheckBox.selected)
-                                .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir.comment"))
-                                .apply {
-                                    androidCompileSdkDirTextField = component
+                            row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDir")) {
+                                textFieldWithBrowseButton(
+                                    GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDir.browseDialogTitle"),
+                                    context.project,
+                                    FileChooserDescriptor(false, true, false, false, false, false)
+                                )
+                                    .bindText(::androidCompileSdkDir)
+                                    .columns(COLUMNS_MEDIUM)
+                                    .enabledIf(isAndroidEnabledCheckBox.selected)
+                                    .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDir.comment"))
+                            }
+                        }
+
+                        group(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.title")) {
+                            row {
+                                icon(IconLoader.getIcon("/icon_warning.svg", this@GodotModuleBuilder::class.java))
+                                label(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.message"))
+                                @Suppress("DialogTitleCapitalization")
+                                link(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.linkText")) {
+                                    BrowserUtil.browse(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.link"))
                                 }
+                            }
+                            row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.isGraalVmEnabled")) {
+                                isGraalVmEnabledCheckBox = checkBox("")
+                                    .bindSelected(::isGraalNativeImageEnabled)
+                            }
+                            row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmDirectory")) {
+                                textFieldWithBrowseButton(
+                                    @Suppress("DialogTitleCapitalization")
+                                    GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmDirectory.browseDialogTitle"),
+                                    context.project,
+                                    FileChooserDescriptor(true, false, false, false, false, false)
+                                )
+                                    .bindText(::graalVmDirectory)
+                                    .columns(COLUMNS_MEDIUM)
+                                    .enabledIf(isGraalVmEnabledCheckBox.selected)
+                                    .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmDirectory.comment"))
+                            }
+                            row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVCVarsPath")) {
+                                textFieldWithBrowseButton(
+                                    @Suppress("DialogTitleCapitalization")
+                                    GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVCVarsPath.browseDialogTitle"),
+                                    context.project,
+                                    FileChooserDescriptor(true, false, false, false, false, false)
+                                )
+                                    .bindText(::windowsDeveloperVCVarsPath)
+                                    .columns(COLUMNS_MEDIUM)
+                                    .enabledIf(isGraalVmEnabledCheckBox.selected)
+                                    .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVCVarsPath.comment"))
+                            }
+                            row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.isIOSEnabled")) {
+                                checkBox("")
+                                    .bindSelected(::isIOSEnabled)
+                                    .enabledIf(isGraalVmEnabledCheckBox.selected)
+                            }
                         }
                     }
                 }
             }
 
             override fun updateDataModel() {
-                context.projectName = artifactIdTextField.text
-                context.putUserData(groupIdKey, groupIdTextField.text)
-                context.putUserData(artifactIdKey, artifactIdTextField.text)
-                context.putUserData(versionKey, versionTextField.text)
-                context.putUserData(androidEnabledKey, androidEnabledCheckBox.isSelected)
-                context.putUserData(d8ToolPathKey, d8ToolPathTextField.text)
-                context.putUserData(androidCompileSdkDirKey, androidCompileSdkDirTextField.text)
+                context.projectName = artifact
+                context.putUserData(groupIdKey, group)
+                context.putUserData(artifactIdKey, artifact)
+                context.putUserData(versionKey, version)
+                context.putUserData(isAndroidEnabledKey, isAndroidEnabled)
+                context.putUserData(d8ToolPathKey, d8Path)
+                context.putUserData(androidCompileSdkDirKey, androidCompileSdkDir)
+                context.putUserData(isGraalNativeImageEnabledDirKey, isGraalNativeImageEnabled)
+                context.putUserData(graalVmDirectoryKey, graalVmDirectory)
+                context.putUserData(windowsDeveloperVCVarsPathKey, windowsDeveloperVCVarsPath)
+                context.putUserData(isIOSEnabledKey, isIOSEnabled && isGraalNativeImageEnabled)
             }
         }
     }
@@ -146,11 +208,15 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                         .readText()
                         .replace(
                             "GODOT_KOTLIN_JVM_VERSION",
-                            GodotBuildProperties.godotKotlinVersion
+                            GodotBuildProperties.assembledGodotKotlinJvmVersion
                         )
-                        .replace("ANDROID_ENABLED", wizardContext.getUserData(androidEnabledKey)?.toString() ?: "false")
+                        .replace("ANDROID_ENABLED", wizardContext.getUserData(isAndroidEnabledKey)?.toString() ?: "false")
                         .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8")
                         .replace("ANDROID_COMPILE_SDK_DIR", wizardContext.getUserData(androidCompileSdkDirKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30")
+                        .replace("IS_GRAAL_VM_ENABLED", wizardContext.getUserData(isGraalNativeImageEnabledDirKey)?.toString() ?: "false")
+                        .replace("GRAAL_VM_DIR", wizardContext.getUserData(graalVmDirectoryKey) ?: "\${System.getenv(\"GRAALVM_HOME\")}")
+                        .replace("WINDOWS_DEVELOPER_VS_VARS_PATH", wizardContext.getUserData(windowsDeveloperVCVarsPathKey) ?: "\${System.getenv(\"VC_VARS_PATH\")}")
+                        .replace("IS_IOS_ENABLED", wizardContext.getUserData(isIOSEnabledKey)?.toString() ?: "false")
                 )
             }
             copyTemplateFile(basePath, "settings.gradle.kts") { outFile ->
@@ -180,9 +246,13 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                 outFile.writeText(
                     outFile
                         .readText()
-                        .replace("ANDROID_ENABLED", wizardContext.getUserData(androidEnabledKey)?.toString() ?: "false")
+                        .replace("ANDROID_ENABLED", wizardContext.getUserData(isAndroidEnabledKey)?.toString() ?: "false")
                         .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8")
                         .replace("ANDROID_COMPILE_SDK_DIR", wizardContext.getUserData(androidCompileSdkDirKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30")
+                        .replace("IS_GRAAL_VM_ENABLED", wizardContext.getUserData(isGraalNativeImageEnabledDirKey)?.toString() ?: "false")
+                        .replace("GRAAL_VM_DIR", wizardContext.getUserData(graalVmDirectoryKey) ?: "\${System.getenv(\"GRAALVM_HOME\")}")
+                        .replace("WINDOWS_DEVELOPER_VS_VARS_PATH", wizardContext.getUserData(windowsDeveloperVCVarsPathKey) ?: "\${System.getenv(\"VC_VARS_PATH\")}")
+                        .replace("IS_IOS_ENABLED", wizardContext.getUserData(isIOSEnabledKey)?.toString() ?: "false")
                         .let { content ->
                             if (module.parentProjectAlreadyContainsDependency(wizardContext, "godot-library")) {
                                 content.replace(
@@ -192,7 +262,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             } else {
                                 content.replace(
                                     "GODOT_KOTLIN_DEPENDENCY",
-                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"${GodotBuildProperties.godotKotlinVersion}\""
+                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"${GodotBuildProperties.assembledGodotKotlinJvmVersion}\""
                                 )
                             }
                         }

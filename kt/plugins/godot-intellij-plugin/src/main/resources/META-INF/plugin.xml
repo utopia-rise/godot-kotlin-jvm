@@ -12,28 +12,35 @@
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
-    <applicationListeners>
-        <listener class="godot.intellij.plugin.listener.GodotProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
-
     <extensions defaultExtensionNs="com.intellij">
-        <moduleType id="MY_MODULE" implementationClass="godot.intellij.plugin.module.GodotModuleType"/>
+        <postStartupActivity implementation="godot.intellij.plugin.listener.GodotKotlinJvmStartupActivity"/>
+        <projectService serviceInterface="godot.intellij.plugin.project.GodotKotlinJvmProjectService" serviceImplementation="godot.intellij.plugin.project.GodotKotlinJvmProjectServiceImpl"/>
         <moduleBuilder builderClass="godot.intellij.plugin.module.GodotModuleBuilder"/>
         <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator" language="JVM"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.function.RpcAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.signal.RegisterSignalAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.reference.FunctionReferenceAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.copy.CopyModificationAnnotator" language="JVM"/>
         <codeInsight.lineMarkerProvider language="JVM" implementationClass="godot.intellij.plugin.linemarker.SignalConnectionLineMarker"/>
-        <codeInsight.inlayProvider language="JVM" implementationClass="godot.intellij.plugin.codevision.RegisteredNameInlayHint"/>
+        <codeInsight.lineMarkerProvider language="JVM" implementationClass="godot.intellij.plugin.linemarker.RegisteredNameLineMarker"/>
         <fileType name="GodotSceneFile"
             fieldName="INSTANCE"
             language="godotScene"
             extensions="tscn"
             implementationClass="godot.intellij.plugin.language.scene.filetype.GodotSceneFileType"/>
+        <fileType name="GodotKotlinJvmRegistrationFile"
+            fieldName="INSTANCE"
+            language="godotKotlinJvmRegistrationFile"
+            extensions="gdj"
+            implementationClass="godot.intellij.plugin.language.registrationfile.filetype.GodotKotlinJvmRegistrationFileFileType"/>
+        <editorNotificationProvider
+            implementation="godot.intellij.plugin.notification.SettingsFetchingNotification" />
+        <externalSystemTaskNotificationListener
+                implementation="godot.intellij.plugin.gradle.GradleSystemListener"/>
+        <refactoring.elementListenerProvider implementation="godot.intellij.plugin.listener.refactoring.RefactoringListenerProvider"/>
     </extensions>
 
     <resource-bundle>messages.generalLabels</resource-bundle>

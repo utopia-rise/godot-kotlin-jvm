@@ -1,16 +1,20 @@
-import godot.dependencies.gradle.DependenciesVersions
-import godot.dependencies.gradle.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
     `java-gradle-plugin`
-    id("com.gradle.plugin-publish") version "1.1.0"
     id("com.utopia-rise.godot-publish")
-    id("com.utopia-rise.godot-dependencies")
+    id("com.utopia-rise.versioninfo")
+}
+
+kotlin {
+    jvmToolchain(11)
 }
 
 gradlePlugin {
+    @Suppress("UnstableApiUsage")
     website.set("https://github.com/utopia-rise/godot-kotlin-jvm")
+    @Suppress("UnstableApiUsage")
     vcsUrl.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
 
     plugins {
@@ -20,26 +24,22 @@ gradlePlugin {
             implementationClass = "godot.gradle.GodotPlugin"
             description = "Automatically setup of godot kotlin jvm specific project configurations"
 
+            @Suppress("UnstableApiUsage")
             tags.set(listOf("kotlin", "godot", "gamedev"))
         }
     }
 }
 
-repositories {
-    google()
-}
-
 dependencies {
-    implementation(kotlin("stdlib"))
-    implementation(kotlin("gradle-plugin"))
-    implementation(kotlin("gradle-plugin-api"))
-    implementation("gradle.plugin.com.github.johnrengelman:shadow:${DependenciesVersions.shadowJarPluginVersion}")
-    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${DependenciesVersions.kspVersion}")
+    implementation(kotlin("gradle-plugin", version = libs.versions.kotlin.get()))
+    implementation(libs.shadowJar)
+    implementation(libs.kspGradlePlugin)
 
     // used for idea sync gradle task integration (ex. generateGdIgnoreFilesTask)
-    implementation("org.jetbrains.gradle.plugin.idea-ext:org.jetbrains.gradle.plugin.idea-ext.gradle.plugin:1.1.6")
+    implementation(libs.ideaSync)
 
     implementation(project(":godot-build-props"))
+    implementation(project(":godot-plugins-common"))
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
 }
 
@@ -51,6 +51,7 @@ tasks {
 
 publishing {
     publications {
+        @Suppress("UNUSED_VARIABLE")
         val godotGradlePlugin by creating(MavenPublication::class) {
             pom {
                 name.set(project.name)
