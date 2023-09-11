@@ -15,9 +15,7 @@ JNI_INIT_STATICS_FOR_CLASS(
 )
 // clang-format on
 
-// when changed, also update godot.tools.common.constants.Constraints.MAX_FUNCTION_ARG_COUNT!
-const int VARIANT_ARG_MAX {8};
-const int MAX_STACK_SIZE = VARIANT_ARG_MAX * 8;
+const int MAX_STACK_SIZE = MAX_FUNCTION_ARG_COUNT * 8;
 
 thread_local static Variant variant_args[MAX_STACK_SIZE];// NOLINT(cert-err58-cpp)
 thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
@@ -118,16 +116,16 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
 #endif
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(args_size > VARIANT_ARG_MAX, vformat("Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args", VARIANT_ARG_MAX, methodBind->get_instance_class(), methodBind->get_name(), args_size));
+    JVM_CRASH_COND_MSG(args_size > MAX_FUNCTION_ARG_COUNT, vformat("Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args", MAX_FUNCTION_ARG_COUNT, methodBind->get_instance_class(), methodBind->get_name(), args_size));
 #endif
 
     Callable::CallError r_error {Callable::CallError::CALL_OK};
 
     if (unlikely(stack_offset + args_size > MAX_STACK_SIZE)) {
-        Variant args[VARIANT_ARG_MAX];
+        Variant args[MAX_FUNCTION_ARG_COUNT];
         read_args_to_array(buffer, args, args_size);
 
-        const Variant* args_ptr[VARIANT_ARG_MAX];
+        const Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
         for (uint32_t i = 0; i < args_size; i++) {
             args_ptr[i] = &args[i];
         }

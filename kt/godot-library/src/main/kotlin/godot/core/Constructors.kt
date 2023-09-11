@@ -3,11 +3,9 @@
 package godot.core
 
 import godot.core.memory.TransferContext
+import godot.tools.common.constants.Constraints
 import godot.util.VoidPtr
 import godot.util.threadLocal
-
-// Change also in kt_class.h when changing it.
-const val CONSTRUCTOR_MAX_ARGS = 5
 
 abstract class KtConstructor<T : KtObject>(
     vararg argsTypes: Pair<VariantType, Boolean>
@@ -33,7 +31,7 @@ abstract class KtConstructor<T : KtObject>(
     }
 
     companion object {
-        val paramsArray by threadLocal { arrayOfNulls<Any>(CONSTRUCTOR_MAX_ARGS) }
+        val paramsArray by threadLocal { arrayOfNulls<Any>(Constraints.MAX_CONSTRUCTOR_ARG_COUNT) }
 
         fun resetParamsArray() {
             paramsArray.fill(null)

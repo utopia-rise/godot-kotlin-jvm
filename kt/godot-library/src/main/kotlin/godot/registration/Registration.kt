@@ -1,6 +1,5 @@
 package godot.registration
 
-import godot.core.CONSTRUCTOR_MAX_ARGS
 import godot.core.KtClass
 import godot.core.KtConstructor
 import godot.core.KtEnumListProperty
@@ -23,6 +22,7 @@ import godot.core.TypeManager
 import godot.core.VariantType
 import godot.core.toVariantArray
 import godot.core.variantArrayOf
+import godot.tools.common.constants.Constraints
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction1
@@ -69,8 +69,8 @@ class ClassBuilderDsl<T : KtObject>(
         require(!constructors.containsKey(constructor.parameterCount)) {
             "A constructor with ${constructor.parameterCount} argument(s) already exists."
         }
-        require(constructor.parameterCount <= CONSTRUCTOR_MAX_ARGS) {
-            "Cannot register a constructor with ${constructor.parameterCount} arguments, max argument count is $CONSTRUCTOR_MAX_ARGS"
+        require(constructor.parameterCount <= Constraints.MAX_CONSTRUCTOR_ARG_COUNT) {
+            "Cannot register a constructor with ${constructor.parameterCount} arguments, max argument count is ${Constraints.MAX_CONSTRUCTOR_ARG_COUNT}"
         }
         constructors[constructor.parameterCount] = constructor
     }
@@ -528,8 +528,8 @@ class ClassBuilderDsl<T : KtObject>(
 
     internal fun build(): KtClass<T> {
         check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
-        // CONSTRUCTOR_MAX_ARGS + 1 because we have no arg constructor.
-        val constructorArray = arrayOfNulls<KtConstructor<T>>(CONSTRUCTOR_MAX_ARGS + 1)
+        // Constraints.MAX_CONSTRUCTOR_ARG_COUNT + 1 because we have no arg constructor.
+        val constructorArray = arrayOfNulls<KtConstructor<T>>(Constraints.MAX_CONSTRUCTOR_ARG_COUNT + 1)
         constructors.forEach {
             constructorArray[it.key] = it.value
         }

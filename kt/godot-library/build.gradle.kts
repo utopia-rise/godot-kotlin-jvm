@@ -1,4 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -22,6 +23,7 @@ dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
     api(kotlin("reflect", version = libs.versions.kotlin.get()))
+    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
 }
 
 tasks {

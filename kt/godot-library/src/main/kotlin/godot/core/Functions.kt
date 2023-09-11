@@ -191,3 +191,108 @@ class KtFunction5<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
         paramsArray[4] as P4,
     )
 }
+
+class KtFunction6<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, R : Any?>(
+    functionInfo: KtFunctionInfo,
+    private val function: (T, P0, P1, P2, P3, P4, P5) -> R,
+    variantType: VariantType,
+    p0Type: Pair<VariantType, Boolean>,
+    p1Type: Pair<VariantType, Boolean>,
+    p2Type: Pair<VariantType, Boolean>,
+    p3Type: Pair<VariantType, Boolean>,
+    p4Type: Pair<VariantType, Boolean>,
+    p5Type: Pair<VariantType, Boolean>,
+) : KtFunction<T, R>(
+    functionInfo,
+    6,
+    variantType,
+    p0Type,
+    p1Type,
+    p2Type,
+    p3Type,
+    p4Type,
+    p5Type,
+) {
+    override fun invokeKt(instance: T) = function(
+        instance,
+        paramsArray[0] as P0,
+        paramsArray[1] as P1,
+        paramsArray[2] as P2,
+        paramsArray[3] as P3,
+        paramsArray[4] as P4,
+        paramsArray[5] as P5,
+    )
+}
+
+class KtFunction7<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, R : Any?>(
+    functionInfo: KtFunctionInfo,
+    private val function: (T, P0, P1, P2, P3, P4, P5, P6) -> R,
+    variantType: VariantType,
+    p0Type: Pair<VariantType, Boolean>,
+    p1Type: Pair<VariantType, Boolean>,
+    p2Type: Pair<VariantType, Boolean>,
+    p3Type: Pair<VariantType, Boolean>,
+    p4Type: Pair<VariantType, Boolean>,
+    p5Type: Pair<VariantType, Boolean>,
+    p6Type: Pair<VariantType, Boolean>,
+) : KtFunction<T, R>(
+    functionInfo,
+    7,
+    variantType,
+    p0Type,
+    p1Type,
+    p2Type,
+    p3Type,
+    p4Type,
+    p5Type,
+    p6Type,
+) {
+    override fun invokeKt(instance: T) = function(
+        instance,
+        paramsArray[0] as P0,
+        paramsArray[1] as P1,
+        paramsArray[2] as P2,
+        paramsArray[3] as P3,
+        paramsArray[4] as P4,
+        paramsArray[5] as P5,
+        paramsArray[6] as P6,
+    )
+}
+
+class KtFunction8<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, P7 : Any?, R : Any?>(
+    functionInfo: KtFunctionInfo,
+    private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7) -> R,
+    variantType: VariantType,
+    p0Type: Pair<VariantType, Boolean>,
+    p1Type: Pair<VariantType, Boolean>,
+    p2Type: Pair<VariantType, Boolean>,
+    p3Type: Pair<VariantType, Boolean>,
+    p4Type: Pair<VariantType, Boolean>,
+    p5Type: Pair<VariantType, Boolean>,
+    p6Type: Pair<VariantType, Boolean>,
+    p7Type: Pair<VariantType, Boolean>,
+) : KtFunction<T, R>(
+    functionInfo,
+    8,
+    variantType,
+    p0Type,
+    p1Type,
+    p2Type,
+    p3Type,
+    p4Type,
+    p5Type,
+    p6Type,
+    p7Type,
+) {
+    override fun invokeKt(instance: T) = function(
+        instance,
+        paramsArray[0] as P0,
+        paramsArray[1] as P1,
+        paramsArray[2] as P2,
+        paramsArray[3] as P3,
+        paramsArray[4] as P4,
+        paramsArray[5] as P5,
+        paramsArray[6] as P6,
+        paramsArray[6] as P7,
+    )
+}
