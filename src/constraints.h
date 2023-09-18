@@ -6,7 +6,7 @@
 #define GODOT_JVM_CONSTRAINTS_H
 
 // when changed, also update godot.tools.common.constants.Constraints.MAX_CONSTRUCTOR_ARG_COUNT!
-const int MAX_CONSTRUCTOR_ARG_COUNT {5};
+const int MAX_CONSTRUCTOR_ARG_COUNT {8};
 
 // when changed, also update godot.tools.common.constants.Constraints.MAX_FUNCTION_ARG_COUNT!
 const int MAX_FUNCTION_ARG_COUNT {8};
