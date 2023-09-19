@@ -293,6 +293,6 @@ class KtFunction8<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
         paramsArray[4] as P4,
         paramsArray[5] as P5,
         paramsArray[6] as P6,
-        paramsArray[6] as P7,
+        paramsArray[7] as P7,
     )
 }
