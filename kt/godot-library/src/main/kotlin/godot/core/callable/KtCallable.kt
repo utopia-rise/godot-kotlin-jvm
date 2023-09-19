@@ -3,6 +3,7 @@ package godot.core.callable
 import godot.core.KtObject
 import godot.core.memory.TransferContext
 import godot.core.VariantType
+import godot.tools.common.constants.Constraints
 import godot.util.threadLocal
 
 abstract class KtCallable<T : KtObject, R : Any?>(
@@ -32,7 +33,11 @@ abstract class KtCallable<T : KtObject, R : Any?>(
     }
 
     companion object {
-        val paramsArray by threadLocal { arrayOf<Any?>(null, null, null, null, null) }
+        val paramsArray by threadLocal {
+            Array<Any?>(Constraints.MAX_FUNCTION_ARG_COUNT) {
+                null
+            }
+        }
 
         fun resetParamsArray() {
             paramsArray.fill(null)
