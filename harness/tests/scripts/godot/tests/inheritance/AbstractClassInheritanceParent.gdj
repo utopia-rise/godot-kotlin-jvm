@@ -2,7 +2,7 @@
 
 registeredName = AbstractClassInheritanceParent
 fqName = godot.tests.inheritance.AbstractClassInheritanceParent
-baseType = Node
+baseType = 
 supertypes = [
     godot.Node,
 	godot.Object,
