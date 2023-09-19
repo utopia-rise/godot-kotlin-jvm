@@ -16,6 +16,9 @@ Function names should follow Kotlin's style which is camelCase. For consistency 
 ## Virtual functions
 Virtual functions (like `_ready`, `_process` and `_physics_process`) are declared as overridable functions. The default implementation throws a `NotImplementedException`, so you have to override it if you plan to expose a virtual function to Godot. Remember, just overriding is not enough to use that function - you have to explicitly register it as well with `@RegisterFunction`.
 
+## Arg count
+Godot limits the allowed argument count of functions to `8`. Thus, this binding also has this limitation. If you want to pass more than 8 parameters in a function, you need to wrap them in a container (like a custom container class or a `VariantArray` or `Dictionary`).
+
 ## Customization
 You can customize to some extent how your function should be registered in Godot. The `@RegisterFunction` annotation takes one argument:
 
