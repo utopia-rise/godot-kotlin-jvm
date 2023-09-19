@@ -3,15 +3,13 @@ package godot.core.memory
 import godot.core.KtObject
 import godot.core.LongStringQueue
 import godot.core.VariantType
+import godot.tools.common.constants.Constraints
 import godot.util.VoidPtr
 import godot.util.threadLocalLazy
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 internal object TransferContext {
-
-    private const val ARGUMENT_MAX_COUNT = 5
-
     private val bufferSize: Int
         get() {
             /**
@@ -21,7 +19,7 @@ internal object TransferContext {
              * In case, the size of the String become smaller than any other types, we force a value of at least 68 bytes.
              * 68 bytes is the size of the second largest CoreType: Projection (64 for the data, 4 for the VariantType)
              */
-            return (LongStringQueue.stringMaxSize + 12).coerceAtLeast(68) * ARGUMENT_MAX_COUNT + 4
+            return (LongStringQueue.stringMaxSize + 12).coerceAtLeast(68) * Constraints.MAX_FUNCTION_ARG_COUNT + 4
         }
 
     val buffer by threadLocalLazy<ByteBuffer> {

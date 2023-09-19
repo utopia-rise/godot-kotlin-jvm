@@ -7,7 +7,7 @@ The classical way of making the JVM and C++ code interact with each other is to 
 The only data written in that buffer are the usual Godot types: primitives, strings, coreTypes, and objects. We don't need a generic way of serializing data like protobuff. We tried that solution at first, but it was too slow for an interprocess job. Writing data to the buffer is quite simple in C++, we just use the Marshalls utility of the Godot Engine. On the Kotlin side, we just reimplement them from scratch.
 
 ## Memory
-To avoid unnecessary locks, we create one buffer for each thread that works with both C++ and the JVM. That way, one thread doesn't need to wait for another to finish its job with the buffer. The buffer currently has a size of 2.5 KB by default. The reason for that is that we allow strings up to 512 bytes in size and only 5 parameters for a registered Kotlin function.
+To avoid unnecessary locks, we create one buffer for each thread that works with both C++ and the JVM. That way, one thread doesn't need to wait for another to finish its job with the buffer. The buffer currently has a size of 4 KB by default. The reason for that is that we allow strings up to 512 bytes in size and only 8 parameters for a registered Kotlin function.
 
 ## String
 String is a special case because it has a dynamic size so they can potentially have any size. We have set a maximum size allowed in the buffer. If we go above it, it switches to a regular JNI call. When it is done that way, the string is stored in a queue so we can retrieve the strings from it instead of reading from the buffer. In most cases, you would rarely reach that maximum size in a video game. Other dynamic types like `Array` and `Dictionary` are not an issue as only their pointers is sent to the JVM.

@@ -7,12 +7,11 @@
 #include "kt_function.h"
 #include "kt_object.h"
 #include "kt_signal_info.h"
+#include "constraints.h"
 
 #include <core/object/ref_counted.h>
 
-// Change also in Constructors.kt when changing it.
-const int CONSTRUCTOR_MAX_ARGS_SIZE = 5;
-const int MAX_CONSTRUCTOR_SIZE = CONSTRUCTOR_MAX_ARGS_SIZE + 1;
+const int MAX_CONSTRUCTOR_SIZE = MAX_CONSTRUCTOR_ARG_COUNT + 1;
 
 class KtClass : public JavaInstanceWrapper {
 public:

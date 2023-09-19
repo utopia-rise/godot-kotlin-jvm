@@ -1,0 +1,28 @@
+// THIS FILE IS GENERATED! DO NOT EDIT, MOVE OR DELETE IT. EDIT, MOVE OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+
+registeredName = FunctionArgSizeTest
+fqName = godot.tests.args.FunctionArgSizeTest
+baseType = Node
+supertypes = [
+	godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+	
+]
+properties = [
+	
+]
+functions = [
+	arg0,
+	arg1,
+	arg2,
+	arg3,
+	arg4,
+	arg5,
+	arg6,
+	arg7,
+	arg8
+]

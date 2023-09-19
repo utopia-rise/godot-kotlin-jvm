@@ -301,4 +301,139 @@ inline fun <T : KtObject, reified P0 : Any?, reified P1 : Any?, reified P2 : Any
     ) as KtCallable<KtObject, *>
 )
 
+@Suppress("UNCHECKED_CAST")
+inline fun <
+    T : KtObject,
+    reified P0 : Any?,
+    reified P1 : Any?,
+    reified P2 : Any?,
+    reified P3 : Any?,
+    reified P4 : Any?,
+    reified P5 : Any?,
+    reified R : Any?,
+    > callable(
+    target: Object,
+    noinline function: T.(P0, P1, P2, P3, P4, P5) -> R
+) = Callable(
+    target,
+    TargetedCall6(
+        function,
+        checkNotNull(variantMapper[R::class]) {
+            "Cannot map return type ${R::class} to variant."
+        },
+        checkNotNull(variantMapper[P0::class]) {
+            "Cannot map parameter type ${P0::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P1::class]) {
+            "Cannot map parameter type ${P1::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P2::class]) {
+            "Cannot map parameter type ${P2::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P3::class]) {
+            "Cannot map parameter type ${P3::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P4::class]) {
+            "Cannot map parameter type ${P4::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P5::class]) {
+            "Cannot map parameter type ${P5::class} to variant."
+        } to true,
+    ) as KtCallable<KtObject, *>
+)
+
+@Suppress("UNCHECKED_CAST")
+inline fun <
+    T : KtObject,
+    reified P0 : Any?,
+    reified P1 : Any?,
+    reified P2 : Any?,
+    reified P3 : Any?,
+    reified P4 : Any?,
+    reified P5 : Any?,
+    reified P6 : Any?,
+    reified R : Any?,
+    > callable(
+    target: Object,
+    noinline function: T.(P0, P1, P2, P3, P4, P5, P6) -> R
+) = Callable(
+    target,
+    TargetedCall7(
+        function,
+        checkNotNull(variantMapper[R::class]) {
+            "Cannot map return type ${R::class} to variant."
+        },
+        checkNotNull(variantMapper[P0::class]) {
+            "Cannot map parameter type ${P0::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P1::class]) {
+            "Cannot map parameter type ${P1::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P2::class]) {
+            "Cannot map parameter type ${P2::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P3::class]) {
+            "Cannot map parameter type ${P3::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P4::class]) {
+            "Cannot map parameter type ${P4::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P5::class]) {
+            "Cannot map parameter type ${P5::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P6::class]) {
+            "Cannot map parameter type ${P6::class} to variant."
+        } to true,
+    ) as KtCallable<KtObject, *>
+)
+
+@Suppress("UNCHECKED_CAST")
+inline fun <
+    T : KtObject,
+    reified P0 : Any?,
+    reified P1 : Any?,
+    reified P2 : Any?,
+    reified P3 : Any?,
+    reified P4 : Any?,
+    reified P5 : Any?,
+    reified P6 : Any?,
+    reified P7 : Any?,
+    reified R : Any?,
+    > callable(
+    target: Object,
+    noinline function: T.(P0, P1, P2, P3, P4, P5, P6, P7) -> R
+) = Callable(
+    target,
+    TargetedCall8(
+        function,
+        checkNotNull(variantMapper[R::class]) {
+            "Cannot map return type ${R::class} to variant."
+        },
+        checkNotNull(variantMapper[P0::class]) {
+            "Cannot map parameter type ${P0::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P1::class]) {
+            "Cannot map parameter type ${P1::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P2::class]) {
+            "Cannot map parameter type ${P2::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P3::class]) {
+            "Cannot map parameter type ${P3::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P4::class]) {
+            "Cannot map parameter type ${P4::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P5::class]) {
+            "Cannot map parameter type ${P5::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P6::class]) {
+            "Cannot map parameter type ${P6::class} to variant."
+        } to true,
+        checkNotNull(variantMapper[P7::class]) {
+            "Cannot map parameter type ${P7::class} to variant."
+        } to true,
+    ) as KtCallable<KtObject, *>
+)
+
 fun callable(jvmCall: () -> Unit) = Callable(jvmCall)

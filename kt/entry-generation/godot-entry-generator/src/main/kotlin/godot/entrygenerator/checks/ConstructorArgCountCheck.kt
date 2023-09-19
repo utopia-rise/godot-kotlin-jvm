@@ -14,7 +14,7 @@ class ConstructorArgCountCheck(logger: Logger, sourceFiles: List<SourceFile>): B
                 // keep in sync with VARIANT_ARG_MAX in transfer_context.cpp!
                 if (registeredConstructor.parameters.size > Constraints.MAX_CONSTRUCTOR_ARG_COUNT) {
                     hasIssue = true
-                    logger.error(registeredConstructor, "RegisteredConstructor has more than 5 arguments")
+                    logger.error(registeredConstructor, "RegisteredConstructor has more than ${Constraints.MAX_CONSTRUCTOR_ARG_COUNT} arguments")
                 }
             }
         return hasIssue

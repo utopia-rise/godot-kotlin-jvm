@@ -1,6 +1,5 @@
 package godot.registration
 
-import godot.core.CONSTRUCTOR_MAX_ARGS
 import godot.core.KtClass
 import godot.core.KtConstructor
 import godot.core.KtEnumListProperty
@@ -12,6 +11,9 @@ import godot.core.KtFunction2
 import godot.core.KtFunction3
 import godot.core.KtFunction4
 import godot.core.KtFunction5
+import godot.core.KtFunction6
+import godot.core.KtFunction7
+import godot.core.KtFunction8
 import godot.core.KtFunctionInfo
 import godot.core.KtObject
 import godot.core.KtProperty
@@ -23,6 +25,7 @@ import godot.core.TypeManager
 import godot.core.VariantType
 import godot.core.toVariantArray
 import godot.core.variantArrayOf
+import godot.tools.common.constants.Constraints
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction1
@@ -31,6 +34,9 @@ import kotlin.reflect.KFunction3
 import kotlin.reflect.KFunction4
 import kotlin.reflect.KFunction5
 import kotlin.reflect.KFunction6
+import kotlin.reflect.KFunction7
+import kotlin.reflect.KFunction8
+import kotlin.reflect.KFunction9
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty
 
@@ -69,8 +75,8 @@ class ClassBuilderDsl<T : KtObject>(
         require(!constructors.containsKey(constructor.parameterCount)) {
             "A constructor with ${constructor.parameterCount} argument(s) already exists."
         }
-        require(constructor.parameterCount <= CONSTRUCTOR_MAX_ARGS) {
-            "Cannot register a constructor with ${constructor.parameterCount} arguments, max argument count is $CONSTRUCTOR_MAX_ARGS"
+        require(constructor.parameterCount <= Constraints.MAX_CONSTRUCTOR_ARG_COUNT) {
+            "Cannot register a constructor with ${constructor.parameterCount} arguments, max argument count is ${Constraints.MAX_CONSTRUCTOR_ARG_COUNT}"
         }
         constructors[constructor.parameterCount] = constructor
     }
@@ -415,6 +421,153 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
+    fun <P0, P1, P2, P3, P4, P5, R : Any?> function(
+        func: KFunction7<T, P0, P1, P2, P3, P4, P5, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction6(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+            )
+        )
+    }
+
+    fun <P0, P1, P2, P3, P4, P5, P6, R : Any?> function(
+        func: KFunction8<T, P0, P1, P2, P3, P4, P5, P6, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p6Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        p6: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction7(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                        p6.toKtPropertyInfo(),
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+                p6Type = p6Type,
+            )
+        )
+    }
+
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, R : Any?> function(
+        func: KFunction9<T, P0, P1, P2, P3, P4, P5, P6, P7, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p6Type: Pair<VariantType, Boolean>,
+        p7Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        p6: KtFunctionArgument,
+        p7: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction8(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                        p6.toKtPropertyInfo(),
+                        p7.toKtPropertyInfo(),
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+                p6Type = p6Type,
+                p7Type = p7Type,
+            )
+        )
+    }
+
     fun <T> signal(kProperty: KProperty<T>) {
         appendSignal(
             KtSignalInfo(kProperty.name.camelToSnakeCase(), listOf())
@@ -528,8 +681,8 @@ class ClassBuilderDsl<T : KtObject>(
 
     internal fun build(): KtClass<T> {
         check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
-        // CONSTRUCTOR_MAX_ARGS + 1 because we have no arg constructor.
-        val constructorArray = arrayOfNulls<KtConstructor<T>>(CONSTRUCTOR_MAX_ARGS + 1)
+        // Constraints.MAX_CONSTRUCTOR_ARG_COUNT + 1 because we have no arg constructor.
+        val constructorArray = arrayOfNulls<KtConstructor<T>>(Constraints.MAX_CONSTRUCTOR_ARG_COUNT + 1)
         constructors.forEach {
             constructorArray[it.key] = it.value
         }
