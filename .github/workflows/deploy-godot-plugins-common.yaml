@@ -1,4 +1,4 @@
-name: Deploy Entry Generator
+name: Deploy Plugins Common
 
 on:
   push:
