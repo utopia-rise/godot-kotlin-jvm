@@ -12,7 +12,6 @@ JNI_INIT_STATICS_FOR_CLASS(
     INIT_JNI_METHOD(HASHCODE)
     INIT_JNI_METHOD(EQUALS)
 )
-
 // clang-format on
 
 uint32_t KtCustomCallable::hash() const {
@@ -41,7 +40,7 @@ ObjectID KtCustomCallable::get_object() const {
 }
 
 void KtCustomCallable::call(const Variant** p_arguments, int p_argcount, Variant& r_return_value, Callable::CallError& r_call_error) const {
-    r_call_error.error = Callable::CallError::CALL_ERROR_INVALID_METHOD;
+    r_call_error.error = Callable::CallError::CALL_OK;
     r_return_value = Variant();
 
     jni::Env env {jni::Jvm::current_env()};
@@ -84,10 +83,10 @@ bool KtCustomCallable::equals(const KtCustomCallable* other) const {
 KtCustomCallable::KtCustomCallable(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {
     jni::Env env {jni::Jvm::current_env()};
     jni::MethodId hashcode_method_id {jni_methods.HASHCODE.method_id};
-    hashcode = p_wrapped.call_int_method(env, hashcode_method_id);
+    hashcode = wrapped.call_int_method(env, hashcode_method_id);
 
     jni::MethodId send_target_to_native_method_id {jni_methods.SEND_TARGET_TO_NATIVE.method_id};
-    p_wrapped.call_void_method(env, send_target_to_native_method_id);
+    wrapped.call_void_method(env, send_target_to_native_method_id);
     Variant ret;
     GDKotlin::get_instance().transfer_context->read_return_value(env, ret);
     target = ret;
