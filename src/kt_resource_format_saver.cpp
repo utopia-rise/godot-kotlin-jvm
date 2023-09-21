@@ -1,11 +1,11 @@
 #include "kt_resource_format_saver.h"
 
-#include "kotlin_language.h"
+#include "godotkotlin_defs.h"
 #include "kotlin_script.h"
 
 void KtResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
     if (Object::cast_to<KotlinScript>(p_resource.ptr())) {
-        KotlinLanguage::get_instance()->get_recognized_extensions(p_extensions);
+        p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
     }
 }
 

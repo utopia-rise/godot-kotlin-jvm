@@ -4,8 +4,6 @@
 #include "godotkotlin_defs.h"
 #include "kotlin_script.h"
 
-#include <core/config/project_settings.h>
-
 static const String GODOT_ENTRY_PATH {"res://build/generated/ksp"};
 
 KotlinLanguage* KotlinLanguage::get_instance() {
@@ -24,10 +22,6 @@ void KotlinLanguage::init() {
 
 String KotlinLanguage::get_type() const {
     return "KotlinScript";
-}
-
-String KotlinLanguage::get_extension() const {
-    return GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION;
 }
 
 void KotlinLanguage::finish() {
@@ -149,60 +143,53 @@ void KotlinLanguage::get_string_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("\" \"");
 }
 
-// TODO/4.0: Create template files like gdscript and c# and load them with KotlinLanguage::get_built_in_templates
-// Ref<Script> KotlinLanguage::get_template(const String& p_class_name, const String& p_base_class_name) const {
-//     String kotlinClassTemplate {
-//         "%PACKAGE%"
-//         "import " GODOT_KOTLIN_PACKAGE ".%BASE%\n"
-//         "import godot.annotation.RegisterClass\n"
-//         "import godot.annotation.RegisterFunction\n"
-//         "\n"
-//         "@RegisterClass\n"
-//         "class %CLASS% : %BASE%() {\n"
-//         "\n"
-//         "    // Declare member variables here. Examples:\n"
-//         "    // val a = 2;\n"
-//         "    // val b = \"text\";\n"
-//         "\n"
-//         "    // Called when the node enters the scene tree for the first time.\n"
-//         "    @RegisterFunction\n"
-//         "    override fun _ready() {\n"
-//         "        \n"
-//         "    }\n"
-//         "\n"
-//         "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
-//         "    @RegisterFunction\n"
-//         "    override fun _process(delta: Double) {\n"
-//         "        \n"
-//         "    }\n"
-//         "}\n"
-//     };
-//     kotlinClassTemplate = kotlinClassTemplate.replace("%BASE%", p_base_class_name).replace("%CLASS%", p_class_name);
-//     Ref<KotlinScript> script;
-//     script.instance();
-//     script->set_source_code(kotlinClassTemplate);
-//     script->set_name(p_class_name);
-//     return script;
-// }
+String KotlinLanguage::get_template(const String& p_class_name, const String& p_base_class_name) const {
+    String kotlinClassTemplate {"%PACKAGE%"
+                                "import " GODOT_KOTLIN_PACKAGE ".%BASE%\n"
+                                "import godot.annotation.RegisterClass\n"
+                                "import godot.annotation.RegisterFunction\n"
+                                "\n"
+                                "@RegisterClass\n"
+                                "class %CLASS% : %BASE%() {\n"
+                                "\n"
+                                "    // Declare member variables here. Examples:\n"
+                                "    // val a = 2;\n"
+                                "    // val b = \"text\";\n"
+                                "\n"
+                                "    // Called when the node enters the scene tree for the first time.\n"
+                                "    @RegisterFunction\n"
+                                "    override fun _ready() {\n"
+                                "        \n"
+                                "    }\n"
+                                "\n"
+                                "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
+                                "    @RegisterFunction\n"
+                                "    override fun _process(delta: Double) {\n"
+                                "        \n"
+                                "    }\n"
+                                "}\n"};
+    return kotlinClassTemplate.replace("%BASE%", p_base_class_name).replace("%CLASS%", p_class_name);
+}
 
 Ref<Script> KotlinLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
     Ref<KotlinScript> script;
-    // TODO/4.0: process template
-    // script.instantiate();
-    //
-    // String processed_template{
-    //     p_template
-    //         .replace("_BASE_", p_base_class_name)
-    //         .replace("_CLASS_", p_class_name)
-    //         .replace("_TS_", GODOT_KOTLIN_IDENTATION)
-    // };
-    // script->set_source_code(processed_template);
+    script.instantiate();
+    String processed_template {
+      p_template.replace("_BASE_", p_base_class_name).replace("_CLASS_", p_class_name).replace("_TS_", GODOT_KOTLIN_IDENTATION)};
+    script->set_source_code(processed_template);
+    script->set_name(p_class_name);
     return script;
 }
 
 Vector<ScriptLanguage::ScriptTemplate> KotlinLanguage::get_built_in_templates(StringName p_object) {
-    // TODO/4.0: load templates
-    return {};
+    Vector<ScriptLanguage::ScriptTemplate> templates;
+    ScriptLanguage::ScriptTemplate script_template {
+      String("Node"),
+      String("Default"),
+      String("Base template for Node with default Godot cycle methods"),
+      get_template(p_object, "Node")};
+    templates.append(script_template);
+    return templates;
 }
 
 bool KotlinLanguage::is_using_templates() {
@@ -341,7 +328,11 @@ void KotlinLanguage::reload_all_scripts() {}
 void KotlinLanguage::reload_tool_script(const Ref<Script>& p_script, bool p_soft_reload) {}
 
 void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const {
-    p_extensions->push_back(GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION);
+    p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
+}
+
+String KotlinLanguage::get_extension() const {
+    return GODOT_KOTLIN_SCRIPT_EXTENSION;
 }
 
 void KotlinLanguage::get_public_functions(List<MethodInfo>* p_functions) const {}

@@ -1,4 +1,4 @@
-#include "kt_resource_format_loader.h"
+#include "gdj_resource_format_loader.h"
 
 #include "godotkotlin_defs.h"
 #include "kotlin_language.h"
@@ -26,7 +26,7 @@ Error kt_read_all_file_utf8(const String& p_path, String& r_content) {
     return OK;
 }
 
-Ref<Resource> KtResourceFormatLoader::load(const String& p_path, const String& p_original_path, Error* r_error, bool p_use_sub_threads, float* r_progress, CacheMode p_cache_mode) {
+Ref<Resource> GdjResourceFormatLoader::load(const String& p_path, const String& p_original_path, Error* r_error, bool p_use_sub_threads, float* r_progress, CacheMode p_cache_mode) {
 #ifdef TOOLS_ENABLED
     // TODO: check if we need to take CacheMode into account like GDScript does
     Ref<KotlinScript> ref = KotlinScriptCache::get_or_create_script(p_path);
@@ -49,15 +49,15 @@ Ref<Resource> KtResourceFormatLoader::load(const String& p_path, const String& p
     return ref;
 }
 
-void KtResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
-    KotlinLanguage::get_instance()->get_recognized_extensions(p_extensions);
+void GdjResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
+    p_extensions->push_back(GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION);
 }
 
-bool KtResourceFormatLoader::handles_type(const String& p_type) const {
+bool GdjResourceFormatLoader::handles_type(const String& p_type) const {
     return p_type == "Script" || p_type == KotlinLanguage::get_instance()->get_type();
 }
 
-String KtResourceFormatLoader::get_resource_type(const String& p_path) const {
+String GdjResourceFormatLoader::get_resource_type(const String& p_path) const {
     return p_path.get_extension().to_lower() == GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION
            ? KotlinLanguage::get_instance()->get_type()
            : "";

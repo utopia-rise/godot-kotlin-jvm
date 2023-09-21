@@ -2,12 +2,12 @@
 #define GODOT_JVM_KT_RESOURCE_LOADER_H
 #include <core/io/resource_loader.h>
 
-class KtResourceFormatLoader : public ResourceFormatLoader {
+class GdjResourceFormatLoader : public ResourceFormatLoader {
 public:
-    KtResourceFormatLoader() = default;
-    ~KtResourceFormatLoader() = default;
-    KtResourceFormatLoader(const KtResourceFormatLoader&) = delete;
-    void operator=(const KtResourceFormatLoader&) = delete;
+    GdjResourceFormatLoader() = default;
+    ~GdjResourceFormatLoader() = default;
+    GdjResourceFormatLoader(const GdjResourceFormatLoader&) = delete;
+    void operator=(const GdjResourceFormatLoader&) = delete;
 
     Ref<Resource> load(
       const String& p_path,

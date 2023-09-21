@@ -1,18 +1,17 @@
 #ifdef TOOLS_ENABLED
-#include <editor/editor_node.h>
-#include <editor/export/editor_export.h>
 #include "kotlin_editor_export_plugin.h"
 #include "src/editor/godot_kotlin_jvm_editor.h"
+#include <editor/editor_node.h>
+#include <editor/export/editor_export.h>
 #endif
 
+#include "kt_resource_format_saver.h"
 #include "register_types.h"
-
+#include "src/gdj_resource_format_loader.h"
 #include "src/kotlin_language.h"
 #include "src/kotlin_script.h"
-#include "src/kt_resource_format_loader.h"
-#include "src/kt_resource_format_saver.h"
 
-Ref<KtResourceFormatLoader> resource_format_loader;
+Ref<GdjResourceFormatLoader> resource_format_loader;
 Ref<KtResourceFormatSaver> resource_format_saver;
 
 #ifdef TOOLS_ENABLED
@@ -46,14 +45,12 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
 }
 
 void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SERVERS) {
-        return;
-    }
+    if (p_level != MODULE_INITIALIZATION_LEVEL_SERVERS) { return; }
 
-    KotlinLanguage* kotlin_language{KotlinLanguage::get_instance()};
+    KotlinLanguage* kotlin_language {KotlinLanguage::get_instance()};
     ScriptServer::unregister_language(kotlin_language);
     memdelete(kotlin_language);
-    
+
     ResourceLoader::remove_resource_format_loader((resource_format_loader));
     ResourceSaver::remove_resource_format_saver(resource_format_saver);
     resource_format_loader.unref();
