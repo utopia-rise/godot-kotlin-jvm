@@ -46,6 +46,7 @@ import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
 import godot.tools.common.constants.CORE_TYPE_HELPER
+import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.GODOT_CALLABLE
@@ -607,37 +608,15 @@ class GenerationService(
         }
 
         val typeVariablesNames = mutableListOf<TypeVariableName>()
-        for (i in 0..10) {
+        for (i in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
             if (i != 0) typeVariablesNames.add(TypeVariableName.invoke("A${i - 1}"))
 
             val signalType = ClassName("godot.signals", "Signal$i")
-
-            val emitFunBuilder = FunSpec.builder("emit")
-
             val signalParameterizedType = if (typeVariablesNames.isNotEmpty()) {
-                val parameterSpecs = typeVariablesNames.toParameterTypes()
-                emitFunBuilder.addTypeVariables(typeVariablesNames)
-                emitFunBuilder.addParameters(parameterSpecs)
-                emitFunBuilder.addStatement(
-                    "%L(this@Object, ${
-                        parameterSpecs
-                            .map { it.name }
-                            .reduce { acc, string -> "$acc, $string" }
-                    })",
-                    "emit"
-                )
                 signalType.parameterizedBy(typeVariablesNames)
             } else {
-                emitFunBuilder.addStatement(
-                    "%L(this@Object)",
-                    "emit"
-                )
                 signalType
             }
-
-            emitFunBuilder.receiver(signalParameterizedType)
-
-            addFunction(emitFunBuilder.build())
 
             val kTypeVariable = TypeVariableName.invoke(
                 "K",

@@ -27,7 +27,6 @@ import godot.core.asStringName
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
-import godot.signals.Signal10
 import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.Signal4
@@ -35,7 +34,6 @@ import godot.signals.Signal5
 import godot.signals.Signal6
 import godot.signals.Signal7
 import godot.signals.Signal8
-import godot.signals.Signal9
 import godot.signals.signal
 import godot.util.camelToSnakeCase
 import kotlin.Any
@@ -104,10 +102,6 @@ public open class Object : KtObject() {
     return true
   }
 
-  public fun Signal0.emit(): Unit {
-    emit(this@Object)
-  }
-
   @JvmOverloads
   public inline fun <reified K : () -> Unit> Signal0.connect(
     target: Object,
@@ -116,10 +110,6 @@ public open class Object : KtObject() {
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0> Signal1<A0>.emit(a0: A0): Unit {
-    emit(this@Object, a0)
   }
 
   @JvmOverloads
@@ -132,10 +122,6 @@ public open class Object : KtObject() {
     return connect(Callable(target, methodName), flags)
   }
 
-  public fun <A0, A1> Signal2<A0, A1>.emit(a0: A0, a1: A1): Unit {
-    emit(this@Object, a0, a1)
-  }
-
   @JvmOverloads
   public inline fun <A0, A1, reified K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
     target: Object,
@@ -144,14 +130,6 @@ public open class Object : KtObject() {
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2> Signal3<A0, A1, A2>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-  ): Unit {
-    emit(this@Object, a0, a1, a2)
   }
 
   @JvmOverloads
@@ -168,15 +146,6 @@ public open class Object : KtObject() {
     return connect(Callable(target, methodName), flags)
   }
 
-  public fun <A0, A1, A2, A3> Signal4<A0, A1, A2, A3>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3)
-  }
-
   @JvmOverloads
   public inline fun <A0, A1, A2, A3, reified K : (
     A0,
@@ -190,16 +159,6 @@ public open class Object : KtObject() {
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3, A4> Signal5<A0, A1, A2, A3, A4>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4)
   }
 
   @JvmOverloads
@@ -218,17 +177,6 @@ public open class Object : KtObject() {
     return connect(Callable(target, methodName), flags)
   }
 
-  public fun <A0, A1, A2, A3, A4, A5> Signal6<A0, A1, A2, A3, A4, A5>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-    a5: A5,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4, a5)
-  }
-
   @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, reified K : (
     A0,
@@ -244,18 +192,6 @@ public open class Object : KtObject() {
   ): GodotError {
     val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
     return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3, A4, A5, A6> Signal7<A0, A1, A2, A3, A4, A5, A6>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-    a5: A5,
-    a6: A6,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4, a5, a6)
   }
 
   @JvmOverloads
@@ -276,19 +212,6 @@ public open class Object : KtObject() {
     return connect(Callable(target, methodName), flags)
   }
 
-  public fun <A0, A1, A2, A3, A4, A5, A6, A7> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-    a5: A5,
-    a6: A6,
-    a7: A7,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7)
-  }
-
   @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, reified K : (
     A0,
@@ -300,77 +223,6 @@ public open class Object : KtObject() {
     A6,
     A7,
   ) -> Unit> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3, A4, A5, A6, A7, A8> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-    a5: A5,
-    a6: A6,
-    a7: A7,
-    a8: A8,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-    A6,
-    A7,
-    A8,
-  ) -> Unit> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>
-      Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-    a5: A5,
-    a6: A6,
-    a7: A7,
-    a8: A8,
-    a9: A9,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-    A6,
-    A7,
-    A8,
-    A9,
-  ) -> Unit> Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>.connect(
     target: Object,
     method: K,
     flags: Int = 0,
