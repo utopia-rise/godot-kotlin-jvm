@@ -73,6 +73,7 @@ class Basis() : CoreType {
         fun fromEuler(euler: Vector3, order: EulerOrder = EulerOrder.EULER_ORDER_YXZ) = Basis().also {
             it.setEuler(euler, order)
         }
+
         fun fromScale(scale: Vector3) = Basis(scale.x, 0, 0, 0, scale.y, 0, 0, 0, scale.z)
 
         /**
@@ -210,7 +211,7 @@ class Basis() : CoreType {
      * Consider using the [getRotationQuaternion] method instead, which returns a [Quaternion] quaternion instead of
      * Euler angles.
      */
-    fun getEuler(order: EulerOrder = EulerOrder.EULER_ORDER_YXZ) = when(order) {
+    fun getEuler(order: EulerOrder = EulerOrder.EULER_ORDER_YXZ) = when (order) {
         EulerOrder.EULER_ORDER_XYZ -> getEulerXyz()
         EulerOrder.EULER_ORDER_XZY -> getEulerXzy()
         EulerOrder.EULER_ORDER_YXZ -> getEulerYxz()
@@ -616,9 +617,9 @@ class Basis() : CoreType {
     internal fun orthonormalize() {
         require(!isEqualApprox(determinant(), 0.0)) { "Determinant is zero!" }
 
-        val x = getAxis(0)
-        var y = getAxis(1)
-        var z = getAxis(2)
+        val x = getColumn(0)
+        var y = getColumn(1)
+        var z = getColumn(2)
 
         x.normalize()
         y = (y - x * (x.dot(y)))
@@ -626,20 +627,26 @@ class Basis() : CoreType {
         z = (z - x * (x.dot(z)) - y * (y.dot(z)))
         z.normalize()
 
-        setAxis(0, x)
-        setAxis(1, y)
-        setAxis(2, z)
+        setColumn(0, x)
+        setColumn(1, y)
+        setColumn(2, z)
     }
 
     @PublishedApi
-    internal fun getAxis(axis: Int): Vector3 =
-        Vector3(this._x[axis], this._y[axis], this._z[axis])
+    internal fun getColumn(column: Int): Vector3 =
+        Vector3(this._x[column], this._y[column], this._z[column])
 
     @PublishedApi
-    internal fun setAxis(axis: Int, value: Vector3) {
-        this._x[axis] = value.x
-        this._y[axis] = value.y
-        this._z[axis] = value.z
+    internal fun setColumn(column: Int, value: Vector3) {
+        this._x[column] = value.x
+        this._y[column] = value.y
+        this._z[column] = value.z
+    }
+
+    internal fun setColumns(x: Vector3, y: Vector3, z: Vector3) {
+        setColumn(0, x)
+        setColumn(1, y)
+        setColumn(2, z)
     }
 
     /**
@@ -697,7 +704,7 @@ class Basis() : CoreType {
         s = sin(euler.z)
         val zmat = Basis(c, -s, 0.0, s, c, 0.0, 0.0, 0.0, 1.0)
 
-        when(order) {
+        when (order) {
             EulerOrder.EULER_ORDER_XYZ -> set(xmat * (ymat * zmat))
             EulerOrder.EULER_ORDER_XZY -> set(xmat * zmat * ymat)
             EulerOrder.EULER_ORDER_YXZ -> set(ymat * xmat * zmat)
@@ -811,18 +818,6 @@ class Basis() : CoreType {
         }
     }
 
-    internal fun setColumns(x: Vector3, y: Vector3, z: Vector3) {
-        setColumn(0, x)
-        setColumn(1, y)
-        setColumn(2, z)
-    }
-
-    internal fun setColumn(index: Int, value: Vector3) {
-        _x[index] = value.x
-        _y[index] = value.y
-        _z[index] = value.z
-    }
-
     fun set(
         xx: RealT,
         xy: RealT,
@@ -882,6 +877,8 @@ class Basis() : CoreType {
         it._z = this._z * scalar
     }
 
+    operator fun times(vector: Vector3) = this.xform(vector)
+
     override fun toString(): String {
         return buildString {
             append("${this@Basis._x.x}, ${this@Basis._x.y}, ${this@Basis._x.z}, ")
@@ -908,9 +905,9 @@ class Basis() : CoreType {
 
 
     fun set(xAxis: Vector3, yAxis: Vector3, zAxis: Vector3) {
-        setAxis(0, xAxis)
-        setAxis(1, yAxis)
-        setAxis(2, zAxis)
+        setColumn(0, xAxis)
+        setColumn(1, yAxis)
+        setColumn(2, zAxis)
     }
 
     /*
@@ -926,16 +923,16 @@ class Basis() : CoreType {
      * To modify it, use x().
      * */
     var x
-        get() = getAxis(0)
+        get() = getColumn(0)
         set(value) {
-            setAxis(0, value)
+            setColumn(0, value)
         }
 
     @CoreTypeHelper
     inline fun <T> x(block: Vector3.() -> T): T {
-        val x = getAxis(0)
+        val x = getColumn(0)
         val ret = x.block()
-        setAxis(0, x)
+        setColumn(0, x)
         return ret
     }
 
@@ -944,16 +941,16 @@ class Basis() : CoreType {
      * To modify it, use y().
      * */
     var y
-        get() = getAxis(1)
+        get() = getColumn(1)
         set(value) {
-            setAxis(1, value)
+            setColumn(1, value)
         }
 
     @CoreTypeHelper
     inline fun <T> y(block: Vector3.() -> T): T {
-        val y = getAxis(1)
+        val y = getColumn(1)
         val ret = y.block()
-        setAxis(1, y)
+        setColumn(1, y)
         return ret
     }
 
@@ -962,25 +959,25 @@ class Basis() : CoreType {
      * To modify it, use z().
      * */
     var z
-        get() = getAxis(2)
+        get() = getColumn(2)
         set(value) {
-            setAxis(2, value)
+            setColumn(2, value)
         }
 
     @CoreTypeHelper
     inline fun <T> z(block: Vector3.() -> T): T {
-        val z = getAxis(2)
+        val z = getColumn(2)
         val ret = z.block()
-        setAxis(2, z)
+        setColumn(2, z)
         return ret
     }
 
     operator fun get(index: Int): Vector3 {
-        return getAxis(index)
+        return getColumn(index)
     }
 
     operator fun set(index: Int, value: Vector3) {
-        setAxis(index, value)
+        setColumn(index, value)
     }
 }
 
@@ -988,3 +985,4 @@ operator fun Int.times(basis: Basis) = basis * this
 operator fun Long.times(basis: Basis) = basis * this
 operator fun Float.times(basis: Basis) = basis * this
 operator fun Double.times(basis: Basis) = basis * this
+operator fun Vector3.times(basis: Basis) = basis.xformInv(this)
