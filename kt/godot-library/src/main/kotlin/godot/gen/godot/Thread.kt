@@ -66,7 +66,7 @@ public open class Thread : RefCounted() {
       GodotError {
     TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_START, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -134,7 +134,7 @@ public open class Thread : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

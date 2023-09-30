@@ -141,7 +141,7 @@ public open class Window : Viewport() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MODE, LONG)
-      return Window.Mode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Window.Mode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -169,7 +169,7 @@ public open class Window : Viewport() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_INITIAL_POSITION, LONG)
-      return Window.WindowInitialPosition.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Window.WindowInitialPosition.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -408,7 +408,7 @@ public open class Window : Viewport() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_MODE,
           LONG)
-      return Window.ContentScaleMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Window.ContentScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -424,7 +424,7 @@ public open class Window : Viewport() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_ASPECT,
           LONG)
-      return Window.ContentScaleAspect.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Window.ContentScaleAspect.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -1094,7 +1094,7 @@ public open class Window : Viewport() {
   public fun getLayoutDirection(): LayoutDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_LAYOUT_DIRECTION, LONG)
-    return Window.LayoutDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Window.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1256,7 +1256,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1317,7 +1317,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1344,7 +1344,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1379,7 +1379,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1410,7 +1410,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1449,7 +1449,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

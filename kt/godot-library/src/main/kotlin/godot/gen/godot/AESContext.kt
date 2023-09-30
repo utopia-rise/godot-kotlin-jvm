@@ -183,7 +183,7 @@ public open class AESContext : RefCounted() {
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_START, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -249,7 +249,7 @@ public open class AESContext : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

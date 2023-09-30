@@ -120,7 +120,7 @@ public open class XRPose : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRACKING_CONFIDENCE,
           LONG)
-      return XRPose.TrackingConfidence.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return XRPose.TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -166,7 +166,7 @@ public open class XRPose : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

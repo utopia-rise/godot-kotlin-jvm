@@ -87,7 +87,7 @@ public open class SubViewport : Viewport() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_CLEAR_MODE, LONG)
-      return SubViewport.ClearMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return SubViewport.ClearMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -101,7 +101,7 @@ public open class SubViewport : Viewport() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_UPDATE_MODE, LONG)
-      return SubViewport.UpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return SubViewport.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -136,7 +136,7 @@ public open class SubViewport : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -171,7 +171,7 @@ public open class SubViewport : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

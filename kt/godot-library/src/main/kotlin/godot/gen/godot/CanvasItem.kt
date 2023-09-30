@@ -164,7 +164,7 @@ public open class CanvasItem internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_CLIP_CHILDREN_MODE,
           LONG)
-      return CanvasItem.ClipChildrenMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CanvasItem.ClipChildrenMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -258,7 +258,7 @@ public open class CanvasItem internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TEXTURE_FILTER,
           LONG)
-      return CanvasItem.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -274,7 +274,7 @@ public open class CanvasItem internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TEXTURE_REPEAT,
           LONG)
-      return CanvasItem.TextureRepeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -1143,7 +1143,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1178,7 +1178,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1209,7 +1209,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

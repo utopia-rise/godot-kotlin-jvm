@@ -197,7 +197,7 @@ public open class VisualShader : Shader() {
   ): GodotError {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -323,7 +323,7 @@ public open class VisualShader : Shader() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -350,7 +350,7 @@ public open class VisualShader : Shader() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -401,7 +401,7 @@ public open class VisualShader : Shader() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

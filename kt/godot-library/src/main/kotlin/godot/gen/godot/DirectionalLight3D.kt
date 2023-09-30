@@ -34,7 +34,7 @@ public open class DirectionalLight3D : Light3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SHADOW_MODE, LONG)
-      return DirectionalLight3D.ShadowMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return DirectionalLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -66,7 +66,7 @@ public open class DirectionalLight3D : Light3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SKY_MODE,
           LONG)
-      return DirectionalLight3D.SkyMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return DirectionalLight3D.SkyMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -102,7 +102,7 @@ public open class DirectionalLight3D : Light3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -129,7 +129,7 @@ public open class DirectionalLight3D : Light3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

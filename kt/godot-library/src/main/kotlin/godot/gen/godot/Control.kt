@@ -168,7 +168,7 @@ public open class Control : CanvasItem() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_LAYOUT_DIRECTION,
           LONG)
-      return Control.LayoutDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Control.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -183,7 +183,7 @@ public open class Control : CanvasItem() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_H_GROW_DIRECTION,
           LONG)
-      return Control.GrowDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -198,7 +198,7 @@ public open class Control : CanvasItem() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_V_GROW_DIRECTION,
           LONG)
-      return Control.GrowDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -469,7 +469,7 @@ public open class Control : CanvasItem() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_MODE, LONG)
-      return Control.FocusMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -483,7 +483,7 @@ public open class Control : CanvasItem() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_MOUSE_FILTER, LONG)
-      return Control.MouseFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Control.MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -518,7 +518,7 @@ public open class Control : CanvasItem() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_DEFAULT_CURSOR_SHAPE,
           LONG)
-      return Control.CursorShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Control.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -1749,7 +1749,7 @@ public open class Control : CanvasItem() {
   public fun getCursorShape(position: Vector2 = Vector2(0, 0)): CursorShape {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_CURSOR_SHAPE, LONG)
-    return Control.CursorShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Control.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1951,7 +1951,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2034,7 +2034,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2113,7 +2113,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2144,7 +2144,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2185,7 +2185,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2212,7 +2212,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2239,7 +2239,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2262,7 +2262,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2293,7 +2293,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2324,7 +2324,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

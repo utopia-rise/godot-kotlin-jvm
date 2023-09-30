@@ -44,7 +44,7 @@ public open class StreamPeerTCP : StreamPeer() {
   public fun bind(port: Int, host: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to host)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_BIND, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -53,7 +53,7 @@ public open class StreamPeerTCP : StreamPeer() {
   public fun connectToHost(host: String, port: Int): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_CONNECT_TO_HOST, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -62,7 +62,7 @@ public open class StreamPeerTCP : StreamPeer() {
   public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_POLL, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -71,7 +71,7 @@ public open class StreamPeerTCP : StreamPeer() {
   public fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_STATUS, LONG)
-    return StreamPeerTCP.Status.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return StreamPeerTCP.Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -149,7 +149,7 @@ public open class StreamPeerTCP : StreamPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

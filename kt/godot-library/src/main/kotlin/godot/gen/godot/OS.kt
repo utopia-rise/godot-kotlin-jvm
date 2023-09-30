@@ -376,7 +376,7 @@ public object OS : Object() {
   public fun kill(pid: Int): GodotError {
     TransferContext.writeArguments(LONG to pid.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_KILL, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -397,7 +397,7 @@ public object OS : Object() {
   public fun shellOpen(uri: String): GodotError {
     TransferContext.writeArguments(STRING to uri)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SHELL_OPEN, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -413,7 +413,7 @@ public object OS : Object() {
   public fun shellShowInFileManager(fileOrDirPath: String, openFolder: Boolean = true): GodotError {
     TransferContext.writeArguments(STRING to fileOrDirPath, BOOL to openFolder)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SHELL_SHOW_IN_FILE_MANAGER, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -944,7 +944,7 @@ public object OS : Object() {
   public fun moveToTrash(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_MOVE_TO_TRASH, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1056,7 +1056,7 @@ public object OS : Object() {
   public fun findKeycodeFromString(string: String): Key {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_FIND_KEYCODE_FROM_STRING, LONG)
-    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1074,7 +1074,7 @@ public object OS : Object() {
   public fun setThreadName(name: String): GodotError {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_THREAD_NAME, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1163,7 +1163,7 @@ public object OS : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1210,7 +1210,7 @@ public object OS : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 }

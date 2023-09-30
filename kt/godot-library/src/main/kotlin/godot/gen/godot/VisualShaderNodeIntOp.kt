@@ -30,7 +30,7 @@ public open class VisualShaderNodeIntOp : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTOP_GET_OPERATOR, LONG)
-      return VisualShaderNodeIntOp.Operator.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeIntOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -106,7 +106,7 @@ public open class VisualShaderNodeIntOp : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

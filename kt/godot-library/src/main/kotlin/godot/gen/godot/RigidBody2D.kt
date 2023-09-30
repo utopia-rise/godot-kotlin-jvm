@@ -180,7 +180,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CENTER_OF_MASS_MODE, LONG)
-      return RigidBody2D.CenterOfMassMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -266,7 +266,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
-      return RigidBody2D.CCDMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -384,7 +384,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_FREEZE_MODE, LONG)
-      return RigidBody2D.FreezeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody2D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -415,7 +415,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_LINEAR_DAMP_MODE,
           LONG)
-      return RigidBody2D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -464,7 +464,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_ANGULAR_DAMP_MODE,
           LONG)
-      return RigidBody2D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -689,7 +689,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -712,7 +712,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -735,7 +735,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -762,7 +762,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -61,7 +61,7 @@ public object ResourceLoader : Object() {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads, LONG to cacheMode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_REQUEST, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -75,7 +75,7 @@ public object ResourceLoader : Object() {
     TransferContext.writeArguments(STRING to path, ARRAY to progress)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_GET_STATUS, LONG)
-    return ResourceLoader.ThreadLoadStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return ResourceLoader.ThreadLoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -236,7 +236,7 @@ public object ResourceLoader : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -263,7 +263,7 @@ public object ResourceLoader : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 }

@@ -34,7 +34,7 @@ public open class BackBufferCopy : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_COPY_MODE,
           LONG)
-      return BackBufferCopy.CopyMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -83,7 +83,7 @@ public open class BackBufferCopy : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

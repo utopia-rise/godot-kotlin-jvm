@@ -230,7 +230,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_DRAW_ORDER,
           LONG)
-      return CPUParticles3D.DrawOrder.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -260,7 +260,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_SHAPE,
           LONG)
-      return CPUParticles3D.EmissionShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CPUParticles3D.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -707,7 +707,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -774,7 +774,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -805,7 +805,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -852,7 +852,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

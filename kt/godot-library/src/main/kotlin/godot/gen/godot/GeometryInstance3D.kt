@@ -97,7 +97,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CAST_SHADOWS_SETTING, LONG)
-      return GeometryInstance3D.ShadowCastingSetting.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GeometryInstance3D.ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -183,7 +183,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_GI_MODE,
           LONG)
-      return GeometryInstance3D.GIMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GeometryInstance3D.GIMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -199,7 +199,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LIGHTMAP_SCALE, LONG)
-      return GeometryInstance3D.LightmapScale.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GeometryInstance3D.LightmapScale.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -283,7 +283,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_FADE_MODE, LONG)
-      return GeometryInstance3D.VisibilityRangeFadeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -354,7 +354,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -381,7 +381,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -416,7 +416,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -443,7 +443,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

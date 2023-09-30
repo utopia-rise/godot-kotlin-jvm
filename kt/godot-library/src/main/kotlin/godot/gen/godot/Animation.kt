@@ -113,7 +113,7 @@ public open class Animation : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_GET_LOOP_MODE, LONG)
-      return Animation.LoopMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -172,7 +172,7 @@ public open class Animation : Resource() {
   public fun trackGetType(trackIdx: Int): TrackType {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_TYPE, LONG)
-    return Animation.TrackType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Animation.TrackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -502,7 +502,7 @@ public open class Animation : Resource() {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_INTERPOLATION_TYPE, LONG)
-    return Animation.InterpolationType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Animation.InterpolationType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -549,7 +549,7 @@ public open class Animation : Resource() {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_GET_UPDATE_MODE, LONG)
-    return Animation.UpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Animation.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -910,7 +910,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -949,7 +949,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -976,7 +976,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1003,7 +1003,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1030,7 +1030,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1057,7 +1057,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

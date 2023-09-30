@@ -137,7 +137,7 @@ public open class ArrayMesh : Mesh() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_MODE,
           LONG)
-      return Mesh.BlendShapeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Mesh.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -335,7 +335,7 @@ public open class ArrayMesh : Mesh() {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_PRIMITIVE_TYPE, LONG)
-    return Mesh.PrimitiveType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Mesh.PrimitiveType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -379,7 +379,7 @@ public open class ArrayMesh : Mesh() {
   public fun lightmapUnwrap(transform: Transform3D, texelSize: Float): GodotError {
     TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_LIGHTMAP_UNWRAP, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

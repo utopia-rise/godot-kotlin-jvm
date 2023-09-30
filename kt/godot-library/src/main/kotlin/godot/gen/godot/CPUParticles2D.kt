@@ -233,7 +233,7 @@ public open class CPUParticles2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_DRAW_ORDER,
           LONG)
-      return CPUParticles2D.DrawOrder.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CPUParticles2D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -264,7 +264,7 @@ public open class CPUParticles2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_SHAPE,
           LONG)
-      return CPUParticles2D.EmissionShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CPUParticles2D.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -608,7 +608,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -675,7 +675,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -706,7 +706,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -749,7 +749,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

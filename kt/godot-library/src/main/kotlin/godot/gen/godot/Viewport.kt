@@ -212,7 +212,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_2D, LONG)
-      return Viewport.MSAA.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -226,7 +226,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_3D, LONG)
-      return Viewport.MSAA.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -241,7 +241,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_SPACE_AA,
           LONG)
-      return Viewport.ScreenSpaceAA.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.ScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -325,7 +325,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBUG_DRAW, LONG)
-      return Viewport.DebugDraw.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.DebugDraw.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -342,7 +342,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_MODE,
           LONG)
-      return Viewport.Scaling3DMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.Scaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -415,7 +415,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VRS_MODE, LONG)
-      return Viewport.VRSMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.VRSMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -459,7 +459,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, LONG)
-      return Viewport.DefaultCanvasItemTextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.DefaultCanvasItemTextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -475,7 +475,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, LONG)
-      return Viewport.DefaultCanvasItemTextureRepeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.DefaultCanvasItemTextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -602,7 +602,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_OVERSIZE, LONG)
-      return Viewport.SDFOversize.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.SDFOversize.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -616,7 +616,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_SCALE, LONG)
-      return Viewport.SDFScale.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.SDFScale.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -665,7 +665,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
   /**
@@ -676,7 +676,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
   /**
@@ -687,7 +687,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
   /**
@@ -698,7 +698,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
   /**
@@ -1092,7 +1092,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1119,7 +1119,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1154,7 +1154,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1181,7 +1181,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1212,7 +1212,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1239,7 +1239,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1358,7 +1358,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1393,7 +1393,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1424,7 +1424,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1459,7 +1459,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1490,7 +1490,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1521,7 +1521,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

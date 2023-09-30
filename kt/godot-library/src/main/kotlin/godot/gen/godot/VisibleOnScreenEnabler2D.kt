@@ -32,7 +32,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER2D_GET_ENABLE_MODE, LONG)
-      return VisibleOnScreenEnabler2D.EnableMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisibleOnScreenEnabler2D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -84,7 +84,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -36,7 +36,7 @@ public open class InputEventJoypadMotion : InputEvent() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADMOTION_GET_AXIS,
           LONG)
-      return JoyAxis.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return JoyAxis.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

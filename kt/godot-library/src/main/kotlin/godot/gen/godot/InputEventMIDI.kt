@@ -160,7 +160,7 @@ public open class InputEventMIDI : InputEvent() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_GET_MESSAGE, LONG)
-      return MIDIMessage.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return MIDIMessage.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

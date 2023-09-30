@@ -148,7 +148,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_MODE, LONG)
-      return AnimationNodeBlendSpace2D.BlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AnimationNodeBlendSpace2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -317,7 +317,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

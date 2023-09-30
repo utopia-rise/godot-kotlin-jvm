@@ -81,7 +81,7 @@ public open class AudioEffectFilter : AudioEffect() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_GET_DB, LONG)
-      return AudioEffectFilter.FilterDB.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AudioEffectFilter.FilterDB.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -120,7 +120,7 @@ public open class AudioEffectFilter : AudioEffect() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

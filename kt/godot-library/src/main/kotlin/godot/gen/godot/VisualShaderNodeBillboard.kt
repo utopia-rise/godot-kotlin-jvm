@@ -31,7 +31,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_GET_BILLBOARD_TYPE, LONG)
-      return VisualShaderNodeBillboard.BillboardType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeBillboard.BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -91,7 +91,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

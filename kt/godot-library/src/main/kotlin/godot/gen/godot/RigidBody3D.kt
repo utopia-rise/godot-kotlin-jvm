@@ -182,7 +182,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CENTER_OF_MASS_MODE, LONG)
-      return RigidBody3D.CenterOfMassMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody3D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -386,7 +386,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_FREEZE_MODE, LONG)
-      return RigidBody3D.FreezeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody3D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -417,7 +417,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_LINEAR_DAMP_MODE,
           LONG)
-      return RigidBody3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -466,7 +466,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_ANGULAR_DAMP_MODE,
           LONG)
-      return RigidBody3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -700,7 +700,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -723,7 +723,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -746,7 +746,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -44,7 +44,7 @@ public open class Sky : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_PROCESS_MODE, LONG)
-      return Sky.ProcessMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Sky.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -62,7 +62,7 @@ public open class Sky : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_RADIANCE_SIZE, LONG)
-      return Sky.RadianceSize.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Sky.RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -117,7 +117,7 @@ public open class Sky : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -150,7 +150,7 @@ public open class Sky : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

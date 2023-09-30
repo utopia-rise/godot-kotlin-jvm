@@ -90,7 +90,7 @@ public open class ImporterMesh : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_MODE,
         LONG)
-    return Mesh.BlendShapeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Mesh.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -139,7 +139,7 @@ public open class ImporterMesh : Resource() {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_PRIMITIVE_TYPE, LONG)
-    return Mesh.PrimitiveType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Mesh.PrimitiveType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

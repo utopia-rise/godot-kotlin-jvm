@@ -96,7 +96,7 @@ public open class Script internal constructor() : Resource() {
   public fun reload(keepState: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to keepState)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_RELOAD, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

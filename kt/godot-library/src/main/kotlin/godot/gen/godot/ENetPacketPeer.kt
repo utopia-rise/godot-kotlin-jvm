@@ -74,7 +74,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   ): GodotError {
     TransferContext.writeArguments(LONG to channel.toLong(), PACKED_BYTE_ARRAY to packet, LONG to flags.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SEND, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun throttleConfigure(
@@ -120,7 +120,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public fun getState(): PeerState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATE, LONG)
-    return ENetPacketPeer.PeerState.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return ENetPacketPeer.PeerState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun getChannels(): Int {
@@ -156,7 +156,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -185,7 +185,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

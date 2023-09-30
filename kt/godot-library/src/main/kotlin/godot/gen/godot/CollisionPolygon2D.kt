@@ -38,7 +38,7 @@ public open class CollisionPolygon2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_BUILD_MODE,
           LONG)
-      return CollisionPolygon2D.BuildMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CollisionPolygon2D.BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -138,7 +138,7 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

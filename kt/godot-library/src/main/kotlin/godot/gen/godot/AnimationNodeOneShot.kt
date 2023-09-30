@@ -127,7 +127,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_MIX_MODE,
           LONG)
-      return AnimationNodeOneShot.MixMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AnimationNodeOneShot.MixMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -281,7 +281,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -304,7 +304,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

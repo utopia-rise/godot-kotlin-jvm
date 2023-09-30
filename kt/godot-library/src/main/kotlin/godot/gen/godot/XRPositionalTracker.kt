@@ -85,7 +85,7 @@ public open class XRPositionalTracker : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_TYPE, LONG)
-      return XRServer.TrackerType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return XRServer.TrackerType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -153,7 +153,7 @@ public open class XRPositionalTracker : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_HAND, LONG)
-      return XRPositionalTracker.TrackerHand.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -248,7 +248,7 @@ public open class XRPositionalTracker : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

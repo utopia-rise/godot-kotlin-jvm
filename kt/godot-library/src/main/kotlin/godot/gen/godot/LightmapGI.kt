@@ -48,7 +48,7 @@ public open class LightmapGI : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BAKE_QUALITY, LONG)
-      return LightmapGI.BakeQuality.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return LightmapGI.BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -154,7 +154,7 @@ public open class LightmapGI : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_ENVIRONMENT_MODE,
           LONG)
-      return LightmapGI.EnvironmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return LightmapGI.EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -238,7 +238,7 @@ public open class LightmapGI : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_GENERATE_PROBES,
           LONG)
-      return LightmapGI.GenerateProbes.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return LightmapGI.GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -292,7 +292,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -327,7 +327,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -378,7 +378,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -411,7 +411,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -88,7 +88,7 @@ public open class TextMesh : PrimitiveMesh() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_HORIZONTAL_ALIGNMENT,
           LONG)
-      return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -104,7 +104,7 @@ public open class TextMesh : PrimitiveMesh() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_VERTICAL_ALIGNMENT,
           LONG)
-      return VerticalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -147,7 +147,7 @@ public open class TextMesh : PrimitiveMesh() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_AUTOWRAP_MODE, LONG)
-      return TextServer.AutowrapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -247,7 +247,7 @@ public open class TextMesh : PrimitiveMesh() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_TEXT_DIRECTION, LONG)
-      return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -276,7 +276,7 @@ public open class TextMesh : PrimitiveMesh() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TextServer.StructuredTextParser.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

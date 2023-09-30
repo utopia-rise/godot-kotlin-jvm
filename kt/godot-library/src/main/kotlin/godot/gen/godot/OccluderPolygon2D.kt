@@ -47,7 +47,7 @@ public open class OccluderPolygon2D : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_GET_CULL_MODE,
           LONG)
-      return OccluderPolygon2D.CullMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return OccluderPolygon2D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -101,7 +101,7 @@ public open class OccluderPolygon2D : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

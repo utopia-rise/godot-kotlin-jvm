@@ -90,7 +90,7 @@ public open class GradientTexture2D : Texture2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL, LONG)
-      return GradientTexture2D.Fill.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GradientTexture2D.Fill.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -137,7 +137,7 @@ public open class GradientTexture2D : Texture2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_REPEAT,
           LONG)
-      return GradientTexture2D.Repeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GradientTexture2D.Repeat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -172,7 +172,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -199,7 +199,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

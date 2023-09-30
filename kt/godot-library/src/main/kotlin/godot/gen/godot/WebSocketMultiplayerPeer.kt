@@ -117,7 +117,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_CREATE_CLIENT, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmOverloads
@@ -129,7 +129,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress, OBJECT to tlsServerOptions)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_CREATE_SERVER, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun getPeer(peerId: Int): WebSocketPeer? {

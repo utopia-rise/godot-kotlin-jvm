@@ -30,7 +30,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_COMPARISON_TYPE, LONG)
-      return VisualShaderNodeCompare.ComparisonType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeCompare.ComparisonType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -46,7 +46,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_FUNCTION, LONG)
-      return VisualShaderNodeCompare.Function.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeCompare.Function.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -62,7 +62,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_CONDITION, LONG)
-      return VisualShaderNodeCompare.Condition.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeCompare.Condition.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -122,7 +122,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -165,7 +165,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -192,7 +192,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -86,7 +86,7 @@ public open class ColorPicker : VBoxContainer() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_COLOR_MODE, LONG)
-      return ColorPicker.ColorModeType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ColorPicker.ColorModeType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -117,7 +117,7 @@ public open class ColorPicker : VBoxContainer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PICKER_SHAPE,
           LONG)
-      return ColorPicker.PickerShapeType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ColorPicker.PickerShapeType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -311,7 +311,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -346,7 +346,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

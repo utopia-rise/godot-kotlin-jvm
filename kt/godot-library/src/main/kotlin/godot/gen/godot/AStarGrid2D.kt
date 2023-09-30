@@ -164,7 +164,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DEFAULT_COMPUTE_HEURISTIC, LONG)
-      return AStarGrid2D.Heuristic.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -180,7 +180,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DEFAULT_ESTIMATE_HEURISTIC, LONG)
-      return AStarGrid2D.Heuristic.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -196,7 +196,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DIAGONAL_MODE,
           LONG)
-      return AStarGrid2D.DiagonalMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AStarGrid2D.DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -404,7 +404,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -439,7 +439,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

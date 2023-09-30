@@ -284,7 +284,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_ORDER,
           LONG)
-      return GPUParticles3D.DrawOrder.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -300,7 +300,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRANSFORM_ALIGN, LONG)
-      return GPUParticles3D.TransformAlign.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GPUParticles3D.TransformAlign.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -507,7 +507,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -542,7 +542,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -573,7 +573,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

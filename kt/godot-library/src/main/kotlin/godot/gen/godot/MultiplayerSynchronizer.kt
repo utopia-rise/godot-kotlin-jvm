@@ -93,7 +93,7 @@ public open class MultiplayerSynchronizer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_GET_VISIBILITY_UPDATE_MODE, LONG)
-      return MultiplayerSynchronizer.VisibilityUpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return MultiplayerSynchronizer.VisibilityUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -165,7 +165,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

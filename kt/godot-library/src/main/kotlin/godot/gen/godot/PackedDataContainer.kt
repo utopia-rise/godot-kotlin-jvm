@@ -59,7 +59,7 @@ public open class PackedDataContainer : Resource() {
   public fun pack(`value`: Any): GodotError {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_PACK, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

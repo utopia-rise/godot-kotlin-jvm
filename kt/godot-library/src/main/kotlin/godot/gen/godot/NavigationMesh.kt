@@ -60,7 +60,7 @@ public open class NavigationMesh : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SAMPLE_PARTITION_TYPE, LONG)
-      return NavigationMesh.SamplePartitionType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationMesh.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -76,7 +76,7 @@ public open class NavigationMesh : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_PARSED_GEOMETRY_TYPE, LONG)
-      return NavigationMesh.ParsedGeometryType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationMesh.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -110,7 +110,7 @@ public open class NavigationMesh : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SOURCE_GEOMETRY_MODE, LONG)
-      return NavigationMesh.SourceGeometryMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationMesh.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -534,7 +534,7 @@ public open class NavigationMesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -565,7 +565,7 @@ public open class NavigationMesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -596,7 +596,7 @@ public open class NavigationMesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

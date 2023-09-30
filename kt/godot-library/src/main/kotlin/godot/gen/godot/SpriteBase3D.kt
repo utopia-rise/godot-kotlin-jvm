@@ -129,7 +129,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_AXIS, LONG)
-      return Vector3.Axis.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -144,7 +144,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_BILLBOARD_MODE,
           LONG)
-      return BaseMaterial3D.BillboardMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -160,7 +160,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ALPHA_CUT_MODE,
           LONG)
-      return SpriteBase3D.AlphaCutMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return SpriteBase3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -208,7 +208,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ALPHA_ANTIALIASING, LONG)
-      return BaseMaterial3D.AlphaAntiAliasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -240,7 +240,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_TEXTURE_FILTER,
           LONG)
-      return BaseMaterial3D.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -344,7 +344,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -375,7 +375,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

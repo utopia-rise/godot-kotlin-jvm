@@ -131,7 +131,7 @@ public open class FontFile : Font() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_ANTIALIASING, LONG)
-      return TextServer.FontAntialiasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -206,7 +206,7 @@ public open class FontFile : Font() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_SUBPIXEL_POSITIONING,
           LONG)
-      return TextServer.SubpixelPositioning.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -303,7 +303,7 @@ public open class FontFile : Font() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_HINTING, LONG)
-      return TextServer.Hinting.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -380,7 +380,7 @@ public open class FontFile : Font() {
   public fun loadBitmapFont(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_LOAD_BITMAP_FONT, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -391,7 +391,7 @@ public open class FontFile : Font() {
   public fun loadDynamicFont(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_LOAD_DYNAMIC_FONT, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

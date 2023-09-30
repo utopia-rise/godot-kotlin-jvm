@@ -77,7 +77,7 @@ public open class XRInterface internal constructor() : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA_MODE,
           LONG)
-      return XRInterface.PlayAreaMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return XRInterface.PlayAreaMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
   /**
@@ -172,7 +172,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_TRACKING_STATUS,
         LONG)
-    return XRInterface.TrackingStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return XRInterface.TrackingStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -399,7 +399,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -434,7 +434,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -469,7 +469,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -496,7 +496,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

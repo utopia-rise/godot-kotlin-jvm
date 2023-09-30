@@ -120,7 +120,7 @@ public open class CanvasTexture : Texture2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_FILTER,
           LONG)
-      return CanvasItem.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -136,7 +136,7 @@ public open class CanvasTexture : Texture2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_REPEAT,
           LONG)
-      return CanvasItem.TextureRepeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

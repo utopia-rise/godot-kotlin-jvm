@@ -70,7 +70,7 @@ public open class AnimationLibrary : Resource() {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONLIBRARY_ADD_ANIMATION,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -50,7 +50,7 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND, LONG)
-      return Environment.BGMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.BGMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -187,7 +187,7 @@ public open class Environment : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_SOURCE,
           LONG)
-      return Environment.AmbientSource.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -253,7 +253,7 @@ public open class Environment : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_REFLECTION_SOURCE,
           LONG)
-      return Environment.ReflectionSource.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -268,7 +268,7 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAPPER, LONG)
-      return Environment.ToneMapper.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -754,7 +754,7 @@ public open class Environment : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_Y_SCALE,
           LONG)
-      return Environment.SDFGIYScale.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -910,7 +910,7 @@ public open class Environment : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLEND_MODE,
           LONG)
-      return Environment.GlowBlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -1510,7 +1510,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1541,7 +1541,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1568,7 +1568,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1601,7 +1601,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1636,7 +1636,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1663,7 +1663,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

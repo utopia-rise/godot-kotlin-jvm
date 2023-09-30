@@ -211,7 +211,7 @@ public open class GraphNode : Container() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OVERLAY, LONG)
-      return GraphNode.Overlay.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GraphNode.Overlay.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -226,7 +226,7 @@ public open class GraphNode : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_TEXT_DIRECTION,
           LONG)
-      return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -570,7 +570,7 @@ public open class GraphNode : Container() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

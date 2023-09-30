@@ -72,7 +72,7 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_BILLBOARD_MODE, LONG)
-      return BaseMaterial3D.BillboardMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -86,7 +86,7 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_ALPHA_CUT_MODE, LONG)
-      return Label3D.AlphaCutMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Label3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -132,7 +132,7 @@ public open class Label3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_ALPHA_ANTIALIASING,
           LONG)
-      return BaseMaterial3D.AlphaAntiAliasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -163,7 +163,7 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_TEXTURE_FILTER, LONG)
-      return BaseMaterial3D.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -303,7 +303,7 @@ public open class Label3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_HORIZONTAL_ALIGNMENT,
           LONG)
-      return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -319,7 +319,7 @@ public open class Label3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_VERTICAL_ALIGNMENT,
           LONG)
-      return VerticalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -362,7 +362,7 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_AUTOWRAP_MODE, LONG)
-      return TextServer.AutowrapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -406,7 +406,7 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_TEXT_DIRECTION, LONG)
-      return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -435,7 +435,7 @@ public open class Label3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TextServer.StructuredTextParser.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -522,7 +522,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -559,7 +559,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

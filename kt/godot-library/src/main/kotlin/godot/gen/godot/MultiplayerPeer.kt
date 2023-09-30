@@ -68,7 +68,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_TRANSFER_MODE,
           LONG)
-      return MultiplayerPeer.TransferMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -137,7 +137,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_PACKET_MODE,
         LONG)
-    return MultiplayerPeer.TransferMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -173,7 +173,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_CONNECTION_STATUS, LONG)
-    return MultiplayerPeer.ConnectionStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return MultiplayerPeer.ConnectionStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -228,7 +228,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -255,7 +255,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -456,7 +456,7 @@ public object Input : Object() {
   public fun getMouseMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG)
-    return Input.MouseMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Input.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -512,7 +512,7 @@ public object Input : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CURRENT_CURSOR_SHAPE,
         LONG)
-    return Input.CursorShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Input.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -632,7 +632,7 @@ public object Input : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -717,7 +717,7 @@ public object Input : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 }

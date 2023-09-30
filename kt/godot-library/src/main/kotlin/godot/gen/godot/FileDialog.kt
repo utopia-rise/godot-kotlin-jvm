@@ -70,7 +70,7 @@ public open class FileDialog : ConfirmationDialog() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILE_MODE, LONG)
-      return FileDialog.FileMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FileDialog.FileMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -86,7 +86,7 @@ public open class FileDialog : ConfirmationDialog() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ACCESS, LONG)
-      return FileDialog.Access.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FileDialog.Access.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -280,7 +280,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -307,7 +307,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

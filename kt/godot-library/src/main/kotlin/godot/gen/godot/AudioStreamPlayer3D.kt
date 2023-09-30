@@ -71,7 +71,7 @@ public open class AudioStreamPlayer3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_GET_ATTENUATION_MODEL, LONG)
-      return AudioStreamPlayer3D.AttenuationModel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AudioStreamPlayer3D.AttenuationModel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -357,7 +357,7 @@ public open class AudioStreamPlayer3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_GET_DOPPLER_TRACKING, LONG)
-      return AudioStreamPlayer3D.DopplerTracking.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AudioStreamPlayer3D.DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -452,7 +452,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -479,7 +479,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

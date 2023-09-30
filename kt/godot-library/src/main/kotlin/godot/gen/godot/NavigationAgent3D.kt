@@ -206,7 +206,7 @@ public open class NavigationAgent3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_PATHFINDING_ALGORITHM, LONG)
-      return NavigationPathQueryParameters3D.PathfindingAlgorithm.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationPathQueryParameters3D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -222,7 +222,7 @@ public open class NavigationAgent3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_PATH_POSTPROCESSING, LONG)
-      return NavigationPathQueryParameters3D.PathPostProcessing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationPathQueryParameters3D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

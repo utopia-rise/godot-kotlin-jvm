@@ -57,7 +57,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_RESOLUTION, LONG)
-      return GPUParticlesCollisionHeightField3D.Resolution.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GPUParticlesCollisionHeightField3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -73,7 +73,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_UPDATE_MODE, LONG)
-      return GPUParticlesCollisionHeightField3D.UpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -145,7 +145,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -168,7 +168,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

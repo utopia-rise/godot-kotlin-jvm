@@ -40,7 +40,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_TYPE,
           LONG)
-      return PhysicalBone3D.JointType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return PhysicalBone3D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -179,7 +179,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_DAMP_MODE, LONG)
-      return PhysicalBone3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -213,7 +213,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_DAMP_MODE, LONG)
-      return PhysicalBone3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -363,7 +363,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -402,7 +402,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

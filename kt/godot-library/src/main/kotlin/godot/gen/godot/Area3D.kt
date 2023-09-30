@@ -188,7 +188,7 @@ public open class Area3D : CollisionObject3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_SPACE_OVERRIDE_MODE, LONG)
-      return Area3D.SpaceOverride.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -281,7 +281,7 @@ public open class Area3D : CollisionObject3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AREA3D_GET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
-      return Area3D.SpaceOverride.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -313,7 +313,7 @@ public open class Area3D : CollisionObject3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AREA3D_GET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
-      return Area3D.SpaceOverride.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -578,7 +578,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

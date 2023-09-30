@@ -51,7 +51,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_LOGIC_OP, LONG)
-      return RenderingDevice.LogicOperation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.LogicOperation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

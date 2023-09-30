@@ -34,7 +34,7 @@ public open class BoxContainer : Container() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_GET_ALIGNMENT, LONG)
-      return BoxContainer.AlignmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BoxContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -94,7 +94,7 @@ public open class BoxContainer : Container() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

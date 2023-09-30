@@ -49,7 +49,7 @@ public open class Timer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_TIMER_PROCESS_CALLBACK,
           LONG)
-      return Timer.TimerProcessCallback.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Timer.TimerProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -181,7 +181,7 @@ public open class Timer : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

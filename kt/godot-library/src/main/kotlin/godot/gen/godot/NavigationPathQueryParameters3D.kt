@@ -102,7 +102,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_GET_PATHFINDING_ALGORITHM, LONG)
-      return NavigationPathQueryParameters3D.PathfindingAlgorithm.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationPathQueryParameters3D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -118,7 +118,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_GET_PATH_POSTPROCESSING, LONG)
-      return NavigationPathQueryParameters3D.PathPostProcessing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationPathQueryParameters3D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -162,7 +162,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -185,7 +185,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -220,7 +220,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

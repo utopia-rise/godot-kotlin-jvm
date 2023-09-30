@@ -53,7 +53,7 @@ public open class Camera3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_KEEP_ASPECT_MODE,
           LONG)
-      return Camera3D.KeepAspect.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Camera3D.KeepAspect.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -145,7 +145,7 @@ public open class Camera3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_DOPPLER_TRACKING,
           LONG)
-      return Camera3D.DopplerTracking.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Camera3D.DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -160,7 +160,7 @@ public open class Camera3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PROJECTION, LONG)
-      return Camera3D.ProjectionType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Camera3D.ProjectionType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -492,7 +492,7 @@ public open class Camera3D : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -515,7 +515,7 @@ public open class Camera3D : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -542,7 +542,7 @@ public open class Camera3D : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

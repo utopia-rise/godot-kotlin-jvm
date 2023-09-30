@@ -40,7 +40,7 @@ public open class AudioEffectRecord : AudioEffect() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_GET_FORMAT,
           LONG)
-      return AudioStreamWAV.Format.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

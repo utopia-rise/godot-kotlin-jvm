@@ -31,7 +31,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_TYPE, LONG)
-      return VisualShaderNodeTextureParameter.TextureType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeTextureParameter.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -47,7 +47,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_COLOR_DEFAULT, LONG)
-      return VisualShaderNodeTextureParameter.ColorDefault.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeTextureParameter.ColorDefault.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -63,7 +63,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_FILTER, LONG)
-      return VisualShaderNodeTextureParameter.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeTextureParameter.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -79,7 +79,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_REPEAT, LONG)
-      return VisualShaderNodeTextureParameter.TextureRepeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeTextureParameter.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -95,7 +95,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_SOURCE, LONG)
-      return VisualShaderNodeTextureParameter.TextureSource.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeTextureParameter.TextureSource.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -139,7 +139,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -170,7 +170,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -221,7 +221,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -252,7 +252,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -287,7 +287,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -82,7 +82,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINERASTERIZATIONSTATE_GET_CULL_MODE, LONG)
-      return RenderingDevice.PolygonCullMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.PolygonCullMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -98,7 +98,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINERASTERIZATIONSTATE_GET_FRONT_FACE, LONG)
-      return RenderingDevice.PolygonFrontFace.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.PolygonFrontFace.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

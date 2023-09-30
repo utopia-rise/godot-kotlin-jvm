@@ -52,7 +52,7 @@ public open class AudioStreamRandomizer : AudioStream() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_PLAYBACK_MODE, LONG)
-      return AudioStreamRandomizer.PlaybackMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AudioStreamRandomizer.PlaybackMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -190,7 +190,7 @@ public open class AudioStreamRandomizer : AudioStream() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

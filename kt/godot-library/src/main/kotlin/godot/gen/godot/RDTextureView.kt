@@ -30,7 +30,7 @@ public open class RDTextureView : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_FORMAT_OVERRIDE,
           LONG)
-      return RenderingDevice.DataFormat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -45,7 +45,7 @@ public open class RDTextureView : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_R, LONG)
-      return RenderingDevice.TextureSwizzle.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -59,7 +59,7 @@ public open class RDTextureView : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_G, LONG)
-      return RenderingDevice.TextureSwizzle.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -73,7 +73,7 @@ public open class RDTextureView : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_B, LONG)
-      return RenderingDevice.TextureSwizzle.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -87,7 +87,7 @@ public open class RDTextureView : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_A, LONG)
-      return RenderingDevice.TextureSwizzle.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

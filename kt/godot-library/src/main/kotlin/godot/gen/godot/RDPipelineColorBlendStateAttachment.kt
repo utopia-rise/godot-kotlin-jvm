@@ -116,7 +116,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_GET_SRC_COLOR_BLEND_FACTOR,
           LONG)
-      return RenderingDevice.BlendFactor.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -134,7 +134,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_GET_DST_COLOR_BLEND_FACTOR,
           LONG)
-      return RenderingDevice.BlendFactor.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -151,7 +151,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_GET_COLOR_BLEND_OP, LONG)
-      return RenderingDevice.BlendOperation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.BlendOperation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -168,7 +168,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_GET_SRC_ALPHA_BLEND_FACTOR,
           LONG)
-      return RenderingDevice.BlendFactor.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -186,7 +186,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_GET_DST_ALPHA_BLEND_FACTOR,
           LONG)
-      return RenderingDevice.BlendFactor.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -203,7 +203,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_GET_ALPHA_BLEND_OP, LONG)
-      return RenderingDevice.BlendOperation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.BlendOperation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

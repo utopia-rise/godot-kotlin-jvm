@@ -101,7 +101,7 @@ public open class BaseButton : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_ACTION_MODE, LONG)
-      return BaseButton.ActionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseButton.ActionMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -249,7 +249,7 @@ public open class BaseButton : Control() {
   public fun getDrawMode(): DrawMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_DRAW_MODE, LONG)
-    return BaseButton.DrawMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return BaseButton.DrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class DrawMode(
@@ -283,7 +283,7 @@ public open class BaseButton : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -306,7 +306,7 @@ public open class BaseButton : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

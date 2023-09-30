@@ -48,7 +48,7 @@ public open class WebRTCPeerConnection : RefCounted() {
     TransferContext.writeArguments(DICTIONARY to configuration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_INITIALIZE,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmOverloads
@@ -64,21 +64,21 @@ public open class WebRTCPeerConnection : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_CREATE_OFFER,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun setLocalDescription(type: String, sdp: String): GodotError {
     TransferContext.writeArguments(STRING to type, STRING to sdp)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_SET_LOCAL_DESCRIPTION, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun setRemoteDescription(type: String, sdp: String): GodotError {
     TransferContext.writeArguments(STRING to type, STRING to sdp)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_SET_REMOTE_DESCRIPTION, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun addIceCandidate(
@@ -89,13 +89,13 @@ public open class WebRTCPeerConnection : RefCounted() {
     TransferContext.writeArguments(STRING to media, LONG to index.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_ADD_ICE_CANDIDATE, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_POLL, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun close(): Unit {
@@ -107,21 +107,21 @@ public open class WebRTCPeerConnection : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_CONNECTION_STATE, LONG)
-    return WebRTCPeerConnection.ConnectionState.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return WebRTCPeerConnection.ConnectionState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun getGatheringState(): GatheringState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_GATHERING_STATE, LONG)
-    return WebRTCPeerConnection.GatheringState.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return WebRTCPeerConnection.GatheringState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun getSignalingState(): SignalingState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_SIGNALING_STATE, LONG)
-    return WebRTCPeerConnection.SignalingState.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return WebRTCPeerConnection.SignalingState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ConnectionState(
@@ -141,7 +141,7 @@ public open class WebRTCPeerConnection : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -159,7 +159,7 @@ public open class WebRTCPeerConnection : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -180,7 +180,7 @@ public open class WebRTCPeerConnection : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -41,7 +41,7 @@ public open class StreamPeerGZIP : StreamPeer() {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERGZIP_START_COMPRESSION,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -52,7 +52,7 @@ public open class StreamPeerGZIP : StreamPeer() {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERGZIP_START_DECOMPRESSION,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -61,7 +61,7 @@ public open class StreamPeerGZIP : StreamPeer() {
   public fun finish(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERGZIP_FINISH, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

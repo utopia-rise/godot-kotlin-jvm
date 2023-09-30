@@ -186,7 +186,7 @@ public open class Node3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_EDIT_MODE,
           LONG)
-      return Node3D.RotationEditMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Node3D.RotationEditMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -201,7 +201,7 @@ public open class Node3D : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_ORDER, LONG)
-      return EulerOrder.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return EulerOrder.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -654,7 +654,7 @@ public open class Node3D : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

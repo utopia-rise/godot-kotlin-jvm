@@ -42,7 +42,7 @@ public open class Gradient : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_INTERPOLATION_MODE,
           LONG)
-      return Gradient.InterpolationMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Gradient.InterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -60,7 +60,7 @@ public open class Gradient : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_INTERPOLATION_COLOR_SPACE, LONG)
-      return Gradient.ColorSpace.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Gradient.ColorSpace.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -208,7 +208,7 @@ public open class Gradient : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -235,7 +235,7 @@ public open class Gradient : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

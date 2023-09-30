@@ -49,7 +49,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_UPDATE_MODE,
           LONG)
-      return ReflectionProbe.UpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ReflectionProbe.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -215,7 +215,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_MODE,
           LONG)
-      return ReflectionProbe.AmbientMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ReflectionProbe.AmbientMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -279,7 +279,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -306,7 +306,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

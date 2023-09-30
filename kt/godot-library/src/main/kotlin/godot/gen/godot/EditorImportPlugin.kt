@@ -418,7 +418,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
     TransferContext.writeArguments(STRING to path, DICTIONARY to customOptions, STRING to customImporter, ANY to generatorParameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORIMPORTPLUGIN_APPEND_IMPORT_EXTERNAL_RESOURCE, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

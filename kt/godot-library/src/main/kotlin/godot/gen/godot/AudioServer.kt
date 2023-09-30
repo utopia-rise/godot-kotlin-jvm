@@ -357,7 +357,7 @@ public object AudioServer : Object() {
   public fun getSpeakerMode(): SpeakerMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_SPEAKER_MODE, LONG)
-    return AudioServer.SpeakerMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return AudioServer.SpeakerMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -499,7 +499,7 @@ public object AudioServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 }

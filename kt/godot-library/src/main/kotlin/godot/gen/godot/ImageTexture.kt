@@ -68,7 +68,7 @@ public open class ImageTexture : Texture2D() {
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_GET_FORMAT, LONG)
-    return Image.Format.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

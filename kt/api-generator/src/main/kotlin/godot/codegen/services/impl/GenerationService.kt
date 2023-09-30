@@ -258,7 +258,7 @@ class GenerationService(
             .addFunction(
                 FunSpec.builder("from")
                     .addParameter("value", Long::class)
-                    .addStatement("return values().single { it.%N == %N }", "id", "value")
+                    .addStatement("return entries.single { it.%N == %N }", "id", "value")
                     .build()
             )
             .build()
@@ -863,8 +863,9 @@ class GenerationService(
 
         if (methodReturnType.typeName != UNIT) {
             if (callable.isEnum()) {
+                if (callable.isEnum())
                 addStatement(
-                    "return·${methodReturnType.className.simpleNames.joinToString(".")}.values()[(%T.readReturnValue(%T)·as·%T).toInt()]",
+                    "return·${methodReturnType.className.simpleNames.joinToString(".")}.from(%T.readReturnValue(%T)·as·%T)",
                     TRANSFER_CONTEXT,
                     VARIANT_TYPE_LONG,
                     LONG

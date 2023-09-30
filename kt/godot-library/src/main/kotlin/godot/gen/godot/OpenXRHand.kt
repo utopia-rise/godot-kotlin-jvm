@@ -23,7 +23,7 @@ public open class OpenXRHand : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_GET_HAND, LONG)
-      return OpenXRHand.Hands.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return OpenXRHand.Hands.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -34,7 +34,7 @@ public open class OpenXRHand : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_GET_MOTION_RANGE, LONG)
-      return OpenXRHand.MotionRange.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return OpenXRHand.MotionRange.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -72,7 +72,7 @@ public open class OpenXRHand : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -90,7 +90,7 @@ public open class OpenXRHand : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

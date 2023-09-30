@@ -103,7 +103,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_FORMAT, LONG)
-    return Image.Format.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -113,7 +113,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_COMPRESSION_MODE, LONG)
-    return PortableCompressedTexture2D.CompressionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return PortableCompressedTexture2D.CompressionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class CompressionMode(
@@ -151,7 +151,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

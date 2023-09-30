@@ -545,7 +545,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_ACCELERATOR, LONG)
-    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1100,7 +1100,7 @@ public object DisplayServer : Object() {
   public fun mouseGetMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_MODE, LONG)
-    return DisplayServer.MouseMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return DisplayServer.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1424,7 +1424,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_ORIENTATION, LONG)
-    return DisplayServer.ScreenOrientation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return DisplayServer.ScreenOrientation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1813,7 +1813,7 @@ public object DisplayServer : Object() {
   public fun windowGetMode(windowId: Int = 0): WindowMode {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_MODE, LONG)
-    return DisplayServer.WindowMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return DisplayServer.WindowMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1984,7 +1984,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_VSYNC_MODE,
         LONG)
-    return DisplayServer.VSyncMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return DisplayServer.VSyncMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2110,7 +2110,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CURSOR_GET_SHAPE,
         LONG)
-    return DisplayServer.CursorShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return DisplayServer.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2163,7 +2163,7 @@ public object DisplayServer : Object() {
   ): GodotError {
     TransferContext.writeArguments(STRING to title, STRING to description, PACKED_STRING_ARRAY to buttons, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_SHOW, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2180,7 +2180,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_INPUT_TEXT,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2251,7 +2251,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_GET_KEYCODE_FROM_PHYSICAL, LONG)
-    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2431,7 +2431,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2468,7 +2468,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2511,7 +2511,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2560,7 +2560,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2647,7 +2647,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2696,7 +2696,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2757,7 +2757,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2810,7 +2810,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2843,7 +2843,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2902,7 +2902,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2933,7 +2933,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 }

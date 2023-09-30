@@ -46,7 +46,7 @@ public open class CurveTexture : Texture2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_TEXTURE_MODE,
           LONG)
-      return CurveTexture.TextureMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CurveTexture.TextureMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -92,7 +92,7 @@ public open class CurveTexture : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

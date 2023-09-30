@@ -92,7 +92,7 @@ public open class ItemList : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECT_MODE, LONG)
-      return ItemList.SelectMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ItemList.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -181,7 +181,7 @@ public open class ItemList : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_TEXT_OVERRUN_BEHAVIOR, LONG)
-      return TextServer.OverrunBehavior.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -264,7 +264,7 @@ public open class ItemList : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_MODE, LONG)
-      return ItemList.IconMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ItemList.IconMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -385,7 +385,7 @@ public open class ItemList : Control() {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TEXT_DIRECTION,
         LONG)
-    return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -740,7 +740,7 @@ public open class ItemList : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -763,7 +763,7 @@ public open class ItemList : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

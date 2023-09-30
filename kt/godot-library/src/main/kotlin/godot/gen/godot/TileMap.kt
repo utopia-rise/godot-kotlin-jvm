@@ -105,7 +105,7 @@ public open class TileMap : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_VISIBILITY_MODE, LONG)
-      return TileMap.VisibilityMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TileMap.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -121,7 +121,7 @@ public open class TileMap : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_VISIBILITY_MODE, LONG)
-      return TileMap.VisibilityMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TileMap.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -671,7 +671,7 @@ public open class TileMap : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

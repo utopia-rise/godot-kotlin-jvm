@@ -60,7 +60,7 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_EMISSION_SHAPE, LONG)
-      return ParticleProcessMaterial.EmissionShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ParticleProcessMaterial.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -445,7 +445,7 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_SUB_EMITTER_MODE, LONG)
-      return ParticleProcessMaterial.SubEmitterMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ParticleProcessMaterial.SubEmitterMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -548,7 +548,7 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_COLLISION_MODE, LONG)
-      return ParticleProcessMaterial.CollisionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ParticleProcessMaterial.CollisionMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -760,7 +760,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -791,7 +791,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -838,7 +838,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -873,7 +873,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -904,7 +904,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

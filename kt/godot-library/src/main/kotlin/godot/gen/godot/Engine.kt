@@ -470,7 +470,7 @@ public object Engine : Object() {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_REGISTER_SCRIPT_LANGUAGE,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -486,7 +486,7 @@ public object Engine : Object() {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_UNREGISTER_SCRIPT_LANGUAGE,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -133,7 +133,7 @@ public open class HashingContext : RefCounted() {
   public fun start(type: HashType): GodotError {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_START, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -142,7 +142,7 @@ public open class HashingContext : RefCounted() {
   public fun update(chunk: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_UPDATE, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -178,7 +178,7 @@ public open class HashingContext : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

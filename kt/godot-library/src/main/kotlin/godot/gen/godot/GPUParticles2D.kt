@@ -318,7 +318,7 @@ public open class GPUParticles2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_DRAW_ORDER,
           LONG)
-      return GPUParticles2D.DrawOrder.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GPUParticles2D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -451,7 +451,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -486,7 +486,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

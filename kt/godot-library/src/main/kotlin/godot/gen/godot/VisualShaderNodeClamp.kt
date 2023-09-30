@@ -30,7 +30,7 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECLAMP_GET_OP_TYPE,
           LONG)
-      return VisualShaderNodeClamp.OpType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeClamp.OpType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -82,7 +82,7 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

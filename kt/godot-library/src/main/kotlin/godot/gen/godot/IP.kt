@@ -86,7 +86,7 @@ public object IP : Object() {
   public fun getResolveItemStatus(id: Int): ResolverStatus {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_STATUS, LONG)
-    return IP.ResolverStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return IP.ResolverStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -182,7 +182,7 @@ public object IP : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -213,7 +213,7 @@ public object IP : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 }

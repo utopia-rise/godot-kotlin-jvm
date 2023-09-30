@@ -608,7 +608,7 @@ public open class PopupMenu : Popup() {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TEXT_DIRECTION,
         LONG)
-    return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -683,7 +683,7 @@ public open class PopupMenu : Popup() {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ACCELERATOR,
         LONG)
-    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

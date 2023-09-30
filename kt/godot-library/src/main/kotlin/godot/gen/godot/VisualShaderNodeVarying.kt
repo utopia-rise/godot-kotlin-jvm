@@ -48,7 +48,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_GET_VARYING_TYPE, LONG)
-      return VisualShader.VaryingType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShader.VaryingType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

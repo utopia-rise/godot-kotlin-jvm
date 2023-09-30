@@ -104,7 +104,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_BAKE_MODE, LONG)
-      return Light3D.BakeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Light3D.BakeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -371,7 +371,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -400,7 +400,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

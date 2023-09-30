@@ -50,7 +50,7 @@ public open class TextureRect : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_EXPAND_MODE, LONG)
-      return TextureRect.ExpandMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextureRect.ExpandMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -65,7 +65,7 @@ public open class TextureRect : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_STRETCH_MODE,
           LONG)
-      return TextureRect.StretchMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextureRect.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -140,7 +140,7 @@ public open class TextureRect : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -183,7 +183,7 @@ public open class TextureRect : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

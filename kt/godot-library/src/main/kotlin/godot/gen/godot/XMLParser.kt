@@ -42,7 +42,7 @@ public open class XMLParser : RefCounted() {
   public fun read(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_READ, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -51,7 +51,7 @@ public open class XMLParser : RefCounted() {
   public fun getNodeType(): NodeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_TYPE, LONG)
-    return XMLParser.NodeType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return XMLParser.NodeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -171,7 +171,7 @@ public open class XMLParser : RefCounted() {
   public fun seek(position: Long): GodotError {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_SEEK, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -180,7 +180,7 @@ public open class XMLParser : RefCounted() {
   public fun `open`(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_OPEN, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -189,7 +189,7 @@ public open class XMLParser : RefCounted() {
   public fun openBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_OPEN_BUFFER, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class NodeType(
@@ -231,7 +231,7 @@ public open class XMLParser : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

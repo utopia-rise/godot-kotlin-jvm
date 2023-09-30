@@ -54,7 +54,7 @@ public open class InputEventMouseButton : InputEventMouse() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_GET_BUTTON_INDEX, LONG)
-      return MouseButton.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return MouseButton.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

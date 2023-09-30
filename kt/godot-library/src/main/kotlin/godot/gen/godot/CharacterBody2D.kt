@@ -44,7 +44,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_MOTION_MODE,
           LONG)
-      return CharacterBody2D.MotionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CharacterBody2D.MotionMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -225,7 +225,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_PLATFORM_ON_LEAVE, LONG)
-      return CharacterBody2D.PlatformOnLeave.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CharacterBody2D.PlatformOnLeave.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -526,7 +526,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -553,7 +553,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

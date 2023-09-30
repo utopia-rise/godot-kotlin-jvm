@@ -143,7 +143,7 @@ public open class ScrollContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_SCROLL_MODE, LONG)
-      return ScrollContainer.ScrollMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -159,7 +159,7 @@ public open class ScrollContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_SCROLL_MODE, LONG)
-      return ScrollContainer.ScrollMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -255,7 +255,7 @@ public open class ScrollContainer : Container() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

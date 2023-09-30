@@ -123,7 +123,7 @@ public open class HMACContext : RefCounted() {
   public fun start(hashType: HashingContext.HashType, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_START, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -132,7 +132,7 @@ public open class HMACContext : RefCounted() {
   public fun update(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_UPDATE, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -201,7 +201,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_PROCESS_CALLBACK, LONG)
-      return AnimationPlayer.AnimationProcessCallback.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AnimationPlayer.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -265,7 +265,7 @@ public open class AnimationPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_METHOD_CALL_MODE, LONG)
-      return AnimationPlayer.AnimationMethodCallMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AnimationPlayer.AnimationMethodCallMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -334,7 +334,7 @@ public open class AnimationPlayer : Node() {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_ADD_ANIMATION_LIBRARY, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -630,7 +630,7 @@ public open class AnimationPlayer : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -653,7 +653,7 @@ public open class AnimationPlayer : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

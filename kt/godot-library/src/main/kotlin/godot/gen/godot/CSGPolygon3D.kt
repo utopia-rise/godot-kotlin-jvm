@@ -42,7 +42,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_MODE, LONG)
-      return CSGPolygon3D.Mode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CSGPolygon3D.Mode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -101,7 +101,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_PATH_INTERVAL_TYPE, LONG)
-      return CSGPolygon3D.PathIntervalType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CSGPolygon3D.PathIntervalType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -140,7 +140,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_PATH_ROTATION,
           LONG)
-      return CSGPolygon3D.PathRotation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CSGPolygon3D.PathRotation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -239,7 +239,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -257,7 +257,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -274,7 +274,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

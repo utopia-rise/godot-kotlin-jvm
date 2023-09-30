@@ -178,7 +178,7 @@ public open class TouchScreenButton : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_VISIBILITY_MODE, LONG)
-      return TouchScreenButton.VisibilityMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TouchScreenButton.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -219,7 +219,7 @@ public open class TouchScreenButton : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

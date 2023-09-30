@@ -259,7 +259,7 @@ public open class TextEdit : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPING_MODE,
           LONG)
-      return TextEdit.LineWrappingMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextEdit.LineWrappingMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -274,7 +274,7 @@ public open class TextEdit : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_AUTOWRAP_MODE, LONG)
-      return TextServer.AutowrapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -499,7 +499,7 @@ public open class TextEdit : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_TYPE, LONG)
-      return TextEdit.CaretType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextEdit.CaretType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -613,7 +613,7 @@ public open class TextEdit : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TEXT_DIRECTION, LONG)
-      return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -642,7 +642,7 @@ public open class TextEdit : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TextServer.StructuredTextParser.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -1413,7 +1413,7 @@ public open class TextEdit : Control() {
   public fun getSelectionMode(): SelectionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_MODE, LONG)
-    return TextEdit.SelectionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextEdit.SelectionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1808,7 +1808,7 @@ public open class TextEdit : Control() {
   public fun getGutterType(gutter: Int): GutterType {
     TransferContext.writeArguments(LONG to gutter.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_TYPE, LONG)
-    return TextEdit.GutterType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextEdit.GutterType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2281,7 +2281,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2312,7 +2312,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2339,7 +2339,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2362,7 +2362,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2397,7 +2397,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2420,7 +2420,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2447,7 +2447,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -82,7 +82,7 @@ public open class TabContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_ALIGNMENT,
           LONG)
-      return TabBar.AlignmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TabBar.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

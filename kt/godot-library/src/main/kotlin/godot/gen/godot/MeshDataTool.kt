@@ -145,7 +145,7 @@ public open class MeshDataTool : RefCounted() {
     TransferContext.writeArguments(OBJECT to mesh, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_CREATE_FROM_SURFACE,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -155,7 +155,7 @@ public open class MeshDataTool : RefCounted() {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_COMMIT_TO_SURFACE,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

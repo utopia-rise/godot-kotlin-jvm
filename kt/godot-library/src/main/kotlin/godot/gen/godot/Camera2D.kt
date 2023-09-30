@@ -60,7 +60,7 @@ public open class Camera2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ANCHOR_MODE, LONG)
-      return Camera2D.AnchorMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Camera2D.AnchorMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -137,7 +137,7 @@ public open class Camera2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_PROCESS_CALLBACK,
           LONG)
-      return Camera2D.Camera2DProcessCallback.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Camera2D.Camera2DProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -472,7 +472,7 @@ public open class Camera2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -495,7 +495,7 @@ public open class Camera2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

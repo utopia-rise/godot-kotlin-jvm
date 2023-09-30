@@ -174,7 +174,7 @@ public object PhysicsServer3D : Object() {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SHAPE_GET_TYPE,
         LONG)
-    return PhysicsServer3D.ShapeType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return PhysicsServer3D.ShapeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -572,7 +572,7 @@ public object PhysicsServer3D : Object() {
   public fun bodyGetMode(body: RID): BodyMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_MODE, LONG)
-    return PhysicsServer3D.BodyMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return PhysicsServer3D.BodyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1375,7 +1375,7 @@ public object PhysicsServer3D : Object() {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_GET_TYPE,
         LONG)
-    return PhysicsServer3D.JointType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return PhysicsServer3D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1548,7 +1548,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1579,7 +1579,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1626,7 +1626,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1649,7 +1649,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1756,7 +1756,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1801,7 +1801,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1880,7 +1880,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1911,7 +1911,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1970,7 +1970,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2043,7 +2043,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2078,7 +2078,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2109,7 +2109,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2168,7 +2168,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2191,7 +2191,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2226,7 +2226,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2249,7 +2249,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2276,7 +2276,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2323,7 +2323,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2362,7 +2362,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 }

@@ -188,7 +188,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public fun listDirBegin(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_LIST_DIR_BEGIN, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -262,7 +262,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public fun changeDir(toDir: String): GodotError {
     TransferContext.writeArguments(STRING to toDir)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_CHANGE_DIR, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -283,7 +283,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public fun makeDir(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_MAKE_DIR, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -294,7 +294,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public fun makeDirRecursive(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_MAKE_DIR_RECURSIVE, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -341,7 +341,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   ): GodotError {
     TransferContext.writeArguments(STRING to from, STRING to to, LONG to chmodFlags.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_COPY, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -352,7 +352,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public fun rename(from: String, to: String): GodotError {
     TransferContext.writeArguments(STRING to from, STRING to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_RENAME, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -365,7 +365,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public fun remove(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_REMOVE, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object {
@@ -386,7 +386,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     public fun getOpenError(): GodotError {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_DIRACCESS_GET_OPEN_ERROR, LONG)
-      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -449,7 +449,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     public fun makeDirAbsolute(path: String): GodotError {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_DIRACCESS_MAKE_DIR_ABSOLUTE, LONG)
-      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -459,7 +459,7 @@ public open class DirAccess internal constructor() : RefCounted() {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_DIRACCESS_MAKE_DIR_RECURSIVE_ABSOLUTE,
           LONG)
-      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -482,7 +482,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     ): GodotError {
       TransferContext.writeArguments(STRING to from, STRING to to, LONG to chmodFlags.toLong())
       TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_DIRACCESS_COPY_ABSOLUTE, LONG)
-      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -491,7 +491,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     public fun renameAbsolute(from: String, to: String): GodotError {
       TransferContext.writeArguments(STRING to from, STRING to to)
       TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_DIRACCESS_RENAME_ABSOLUTE, LONG)
-      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -500,7 +500,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     public fun removeAbsolute(path: String): GodotError {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_DIRACCESS_REMOVE_ABSOLUTE, LONG)
-      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
   }
 }

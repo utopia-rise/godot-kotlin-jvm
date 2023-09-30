@@ -361,7 +361,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun getError(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_ERROR, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -621,7 +621,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -656,7 +656,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -729,7 +729,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     public fun getOpenError(): GodotError {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_OPEN_ERROR, LONG)
-      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**

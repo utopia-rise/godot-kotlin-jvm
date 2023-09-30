@@ -38,7 +38,7 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_GET_ENABLE_MODE, LONG)
-      return VisibleOnScreenEnabler3D.EnableMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisibleOnScreenEnabler3D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -90,7 +90,7 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

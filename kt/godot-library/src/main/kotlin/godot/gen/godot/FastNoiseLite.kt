@@ -28,7 +28,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_NOISE_TYPE,
           LONG)
-      return FastNoiseLite.NoiseType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.NoiseType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -74,7 +74,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_FRACTAL_TYPE,
           LONG)
-      return FastNoiseLite.FractalType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.FractalType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -152,7 +152,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_CELLULAR_DISTANCE_FUNCTION, LONG)
-      return FastNoiseLite.CellularDistanceFunction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.CellularDistanceFunction.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -178,7 +178,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_CELLULAR_RETURN_TYPE, LONG)
-      return FastNoiseLite.CellularReturnType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.CellularReturnType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -204,7 +204,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_DOMAIN_WARP_TYPE, LONG)
-      return FastNoiseLite.DomainWarpType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.DomainWarpType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -243,7 +243,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_DOMAIN_WARP_FRACTAL_TYPE, LONG)
-      return FastNoiseLite.DomainWarpFractalType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.DomainWarpFractalType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -312,7 +312,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -331,7 +331,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -350,7 +350,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -372,7 +372,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -390,7 +390,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -408,7 +408,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

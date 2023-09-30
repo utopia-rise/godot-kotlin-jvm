@@ -56,7 +56,7 @@ public open class TileSet : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_SHAPE, LONG)
-      return TileSet.TileShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TileSet.TileShape.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -70,7 +70,7 @@ public open class TileSet : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_LAYOUT, LONG)
-      return TileSet.TileLayout.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TileSet.TileLayout.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -85,7 +85,7 @@ public open class TileSet : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_OFFSET_AXIS,
           LONG)
-      return TileSet.TileOffsetAxis.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TileSet.TileOffsetAxis.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -419,7 +419,7 @@ public open class TileSet : Resource() {
   public fun getTerrainSetMode(terrainSet: Int): TerrainMode {
     TransferContext.writeArguments(LONG to terrainSet.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_SET_MODE, LONG)
-    return TileSet.TerrainMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TileSet.TerrainMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -665,7 +665,7 @@ public open class TileSet : Resource() {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYER_TYPE,
         LONG)
-    return VariantType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return VariantType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -924,7 +924,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -963,7 +963,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -986,7 +986,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1065,7 +1065,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1092,7 +1092,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

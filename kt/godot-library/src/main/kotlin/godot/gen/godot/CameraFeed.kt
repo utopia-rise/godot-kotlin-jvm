@@ -87,7 +87,7 @@ public open class CameraFeed : RefCounted() {
   public fun getPosition(): FeedPosition {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_POSITION, LONG)
-    return CameraFeed.FeedPosition.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return CameraFeed.FeedPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -96,7 +96,7 @@ public open class CameraFeed : RefCounted() {
   public fun getDatatype(): FeedDataType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_DATATYPE, LONG)
-    return CameraFeed.FeedDataType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return CameraFeed.FeedDataType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class FeedDataType(
@@ -126,7 +126,7 @@ public open class CameraFeed : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -153,7 +153,7 @@ public open class CameraFeed : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

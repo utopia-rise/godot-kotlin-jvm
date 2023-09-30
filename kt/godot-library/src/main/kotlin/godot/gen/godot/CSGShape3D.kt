@@ -29,7 +29,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_OPERATION, LONG)
-      return CSGShape3D.Operation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CSGShape3D.Operation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -168,7 +168,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

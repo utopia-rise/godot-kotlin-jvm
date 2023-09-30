@@ -762,6 +762,10 @@ enum class VariantType(
     }
 
     internal val toKotlin = this.getToKotlinLambdaToExecute(toKotlinWithoutNullCheck)
+
+    companion object {
+        fun from(value: Long) = entries[value.toInt()]
+    }
 }
 
 internal fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> Any?): (ByteBuffer, Boolean) -> Any? {

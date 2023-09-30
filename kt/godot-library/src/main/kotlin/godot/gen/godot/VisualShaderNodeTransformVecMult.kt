@@ -30,7 +30,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT_GET_OPERATOR, LONG)
-      return VisualShaderNodeTransformVecMult.Operator.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeTransformVecMult.Operator.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -74,7 +74,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

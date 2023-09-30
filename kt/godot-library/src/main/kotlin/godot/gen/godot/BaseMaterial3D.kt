@@ -43,7 +43,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSPARENCY,
           LONG)
-      return BaseMaterial3D.Transparency.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.Transparency.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -91,7 +91,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_ANTIALIASING, LONG)
-      return BaseMaterial3D.AlphaAntiAliasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -125,7 +125,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BLEND_MODE,
           LONG)
-      return BaseMaterial3D.BlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -141,7 +141,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CULL_MODE,
           LONG)
-      return BaseMaterial3D.CullMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -156,7 +156,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DEPTH_DRAW_MODE, LONG)
-      return BaseMaterial3D.DepthDrawMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -174,7 +174,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SHADING_MODE,
           LONG)
-      return BaseMaterial3D.ShadingMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -190,7 +190,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DIFFUSE_MODE,
           LONG)
-      return BaseMaterial3D.DiffuseMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -208,7 +208,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR_MODE,
           LONG)
-      return BaseMaterial3D.SpecularMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.SpecularMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -272,7 +272,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_METALLIC_TEXTURE_CHANNEL, LONG)
-      return BaseMaterial3D.TextureChannel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -303,7 +303,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ROUGHNESS_TEXTURE_CHANNEL, LONG)
-      return BaseMaterial3D.TextureChannel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -366,7 +366,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_OPERATOR, LONG)
-      return BaseMaterial3D.EmissionOperator.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -490,7 +490,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_AO_TEXTURE_CHANNEL, LONG)
-      return BaseMaterial3D.TextureChannel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -703,7 +703,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_REFRACTION_TEXTURE_CHANNEL, LONG)
-      return BaseMaterial3D.TextureChannel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -719,7 +719,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_BLEND_MODE, LONG)
-      return BaseMaterial3D.BlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -735,7 +735,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_UV,
           LONG)
-      return BaseMaterial3D.DetailUV.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -850,7 +850,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE_FILTER,
           LONG)
-      return BaseMaterial3D.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -868,7 +868,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BILLBOARD_MODE,
           LONG)
-      return BaseMaterial3D.BillboardMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -1044,7 +1044,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE,
           LONG)
-      return BaseMaterial3D.DistanceFadeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -1231,7 +1231,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1274,7 +1274,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1297,7 +1297,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1336,7 +1336,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1367,7 +1367,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1434,7 +1434,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1465,7 +1465,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1492,7 +1492,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1521,7 +1521,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1548,7 +1548,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1653,7 +1653,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1684,7 +1684,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1711,7 +1711,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1744,7 +1744,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1779,7 +1779,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1802,7 +1802,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1833,7 +1833,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

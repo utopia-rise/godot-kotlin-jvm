@@ -141,7 +141,7 @@ public open class AudioStreamPlayer : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_MIX_TARGET,
           LONG)
-      return AudioStreamPlayer.MixTarget.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AudioStreamPlayer.MixTarget.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -265,7 +265,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

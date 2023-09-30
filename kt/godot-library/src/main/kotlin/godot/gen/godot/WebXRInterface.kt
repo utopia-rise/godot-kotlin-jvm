@@ -155,7 +155,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_INPUT_SOURCE_TARGET_RAY_MODE, LONG)
-    return WebXRInterface.TargetRayMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return WebXRInterface.TargetRayMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun getDisplayRefreshRate(): Float {
@@ -193,7 +193,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
