@@ -9,6 +9,8 @@
 #endif
 
 #include "../jvm_loader.h"
+#include "jni/jvm.h"
+
 
 namespace jni {
     JavaVM* Jvm::vm = nullptr;
@@ -75,11 +77,8 @@ namespace jni {
 
     Env Jvm::attach() {
         JNIEnv* r_env;
-        auto result = vm->GetEnv((void**) &r_env, version);
-        if (result == JNI_EDETACHED) {
-            result = vm->AttachCurrentThread((void**) &r_env, nullptr);
-            JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to attach vm to current thread!");
-        }
+        auto result = vm->AttachCurrentThread((void**) &r_env, nullptr);
+        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to attach vm to current thread!");
         Jvm::env = new Env(r_env);
         return Env(r_env);
     }

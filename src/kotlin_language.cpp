@@ -277,11 +277,11 @@ void KotlinLanguage::remove_named_global_constant(const StringName& p_name) {
 }
 
 void KotlinLanguage::thread_enter() {
-    ScriptLanguage::thread_enter();
+    jni::Jvm::attach();
 }
 
 void KotlinLanguage::thread_exit() {
-    ScriptLanguage::thread_exit();
+    jni::Jvm::detach();
 }
 
 String KotlinLanguage::debug_get_error() const {
