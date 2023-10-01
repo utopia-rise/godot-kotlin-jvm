@@ -48,6 +48,7 @@ uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_r
     return reinterpret_cast<uintptr_t>(memnew(Callable(args[0].operator Object*(), args[1].operator StringName())));
 }
 
+//TODO: Enable that code again when KtCustomCallable is back
 //uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance) {
 //    return reinterpret_cast<uintptr_t>(
 //      memnew(Callable(memnew(KtCustomCallable(p_kt_custom_callable_instance))))

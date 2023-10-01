@@ -160,6 +160,8 @@ class Callable : NativeCoreType {
     }
 }
 
+
+//TODO: Enable that code again when KtCustomCallable is back
 //@Suppress("UNCHECKED_CAST")
 //inline fun <T : KtObject, reified R : Any?> callable(
 //    target: Object,

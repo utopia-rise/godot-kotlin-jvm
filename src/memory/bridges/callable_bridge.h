@@ -18,6 +18,7 @@ namespace bridges {
 
         static uintptr_t engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance);
 
+        //TODO: Enable that code again when KtCustomCallable is back
         //static uintptr_t engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance);
 
         static uintptr_t engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance);
