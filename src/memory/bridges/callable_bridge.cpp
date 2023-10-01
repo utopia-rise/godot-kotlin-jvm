@@ -12,7 +12,7 @@ JNI_INIT_STATICS_FOR_CLASS(
     CallableBridge,
     INIT_NATIVE_METHOD("engine_call_constructor", "()J", CallableBridge::engine_call_constructor)
     INIT_NATIVE_METHOD("engine_call_constructor_object_string_name", "()J", CallableBridge::engine_call_constructor_object_string_name)
-    INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/KtCustomCallable;)J", CallableBridge::engine_call_constructor_kt_custom_callable)
+    //INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/KtCustomCallable;)J", CallableBridge::engine_call_constructor_kt_custom_callable)
     INIT_NATIVE_METHOD("engine_call_copy_constructor", "()J", CallableBridge::engine_call_copy_constructor)
     INIT_NATIVE_METHOD("engine_call_bind", "(J)V", CallableBridge::engine_call_bind)
     INIT_NATIVE_METHOD("engine_call_bindv", "(J)V", CallableBridge::engine_call_bindv)
@@ -48,11 +48,11 @@ uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_r
     return reinterpret_cast<uintptr_t>(memnew(Callable(args[0].operator Object*(), args[1].operator StringName())));
 }
 
-uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance) {
-    return reinterpret_cast<uintptr_t>(
-      memnew(Callable(memnew(KtCustomCallable(p_kt_custom_callable_instance))))
-    );
-}
+//uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance) {
+//    return reinterpret_cast<uintptr_t>(
+//      memnew(Callable(memnew(KtCustomCallable(p_kt_custom_callable_instance))))
+//    );
+//}
 
 uintptr_t CallableBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};

@@ -23,19 +23,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
-import godot.core.asStringName
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
-import godot.signals.Signal1
-import godot.signals.Signal2
-import godot.signals.Signal3
-import godot.signals.Signal4
-import godot.signals.Signal5
-import godot.signals.Signal6
-import godot.signals.Signal7
-import godot.signals.Signal8
 import godot.signals.signal
-import godot.util.camelToSnakeCase
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -45,7 +35,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.reflect.KCallable
 
 /**
  * Base class for all other classes in the engine.
@@ -100,135 +89,6 @@ public open class Object : KtObject() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_OBJECT, scriptIndex)
     return true
-  }
-
-  @JvmOverloads
-  public inline fun <reified K : () -> Unit> Signal0.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, reified K : (A0) -> Unit> Signal1<A0>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, reified K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, reified K : (
-    A0,
-    A1,
-    A2,
-  ) -> Unit> Signal3<A0, A1, A2>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-  ) -> Unit> Signal4<A0, A1, A2, A3>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-  ) -> Unit> Signal5<A0, A1, A2, A3, A4>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, A5, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-  ) -> Unit> Signal6<A0, A1, A2, A3, A4, A5>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, A5, A6, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-    A6,
-  ) -> Unit> Signal7<A0, A1, A2, A3, A4, A5, A6>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-    A6,
-    A7,
-  ) -> Unit> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
   }
 
   /**

@@ -561,6 +561,5 @@ void GDKotlin::initialize_classes() {
     KtRpcConfig::initialize_class("godot.core.KtRpcConfig");
     KtFunctionInfo::initialize_class("godot.core.KtFunctionInfo");
     KtFunction::initialize_class("godot.core.KtFunction");
-    KtCustomCallable::initialize_class("godot.core.KtCustomCallable");
     KtClass::initialize_class("godot.core.KtClass");
 }

@@ -46,13 +46,10 @@ import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
 import godot.tools.common.constants.CORE_TYPE_HELPER
-import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GODOT_BASE_TYPE
-import godot.tools.common.constants.GODOT_CALLABLE
-import godot.tools.common.constants.GODOT_ERROR
-import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KT_OBJECT
 import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.TYPE_MANAGER
@@ -137,9 +134,8 @@ class GenerationService(
 
         if (name == GodotKotlinJvmTypes.obj) {
             classTypeBuilder.superclass(KT_OBJECT)
-            classTypeBuilder.generateSignalExtensions()
         }
-        if (name == "Node") {
+        if (name == GodotTypes.node) {
             classTypeBuilder.generateTypesafeRpc()
         }
 
@@ -599,70 +595,6 @@ class GenerationService(
         }
 
         return generatedFunBuilder.build()
-    }
-
-    private fun TypeSpec.Builder.generateSignalExtensions() {
-
-        fun List<TypeVariableName>.toParameterTypes() = this.map {
-            ParameterSpec.builder(it.name.lowercase(Locale.US), it).build()
-        }
-
-        val typeVariablesNames = mutableListOf<TypeVariableName>()
-        for (i in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            if (i != 0) typeVariablesNames.add(TypeVariableName.invoke("A${i - 1}"))
-
-            val signalType = ClassName("godot.signals", "Signal$i")
-            val signalParameterizedType = if (typeVariablesNames.isNotEmpty()) {
-                signalType.parameterizedBy(typeVariablesNames)
-            } else {
-                signalType
-            }
-
-            val kTypeVariable = TypeVariableName.invoke(
-                "K",
-                bounds = arrayOf(
-                    LambdaTypeName.get(
-                        returnType = UNIT,
-                        parameters = typeVariablesNames.toTypedArray()
-                    )
-                )
-            ).copy(reified = true)
-            val connectTypeVariableNames = listOf(
-                *typeVariablesNames.toTypedArray(),
-                kTypeVariable
-            )
-
-            val connectFun = FunSpec.builder("connect")
-                .receiver(signalParameterizedType)
-                .addTypeVariables(connectTypeVariableNames)
-                .addModifiers(KModifier.INLINE)
-                .returns(GODOT_ERROR)
-                .addParameters(
-                    listOf(
-                        ParameterSpec.builder("target", GODOT_OBJECT)
-                            .build(),
-                        ParameterSpec.builder("method", kTypeVariable)
-                            .build(),
-                        ParameterSpec.builder("flags", INT)
-                            .defaultValue("0")
-                            .build()
-                    )
-                )
-                // add @JvmOverloads annotation for java support
-                .addAnnotation(JvmOverloads::class.asClassName())
-
-            connectFun.addCode(
-                """
-                            |val methodName = (method as %T<*>).name.%M().%M()
-                            |return connect(%T(target, methodName), flags)
-                            |""".trimMargin(),
-                ClassName("kotlin.reflect", "KCallable"),
-                MemberName(godotUtilPackage, "camelToSnakeCase"),
-                MemberName(godotCorePackage, "asStringName"),
-                GODOT_CALLABLE
-            )
-            addFunction(connectFun.build())
-        }
     }
 
     private fun TypeSpec.Builder.generateTypesafeRpc() {
