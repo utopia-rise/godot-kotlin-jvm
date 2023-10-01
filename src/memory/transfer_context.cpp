@@ -69,27 +69,14 @@ void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int ar
     buffer->rewind();
 }
 
-uint32_t TransferContext::read_args_size(jni::Env& p_env) {
+uint32_t TransferContext::read_args(jni::Env& p_env, Variant* args) {
     SharedBuffer* buffer {get_buffer(p_env)};
-    uint32_t size {decode_uint32(buffer->get_cursor())};
-    buffer->increment_position(4);
-    return size;
-}
-
-Variant TransferContext::read_single_arg(jni::Env& p_env) {
-    SharedBuffer* buffer {get_buffer(p_env)};
-    Variant r_ret;
-    ktvariant::get_variant_from_buffer(buffer, r_ret);
-    return r_ret;
-}
-
-void TransferContext::read_args(jni::Env& p_env, Variant* args) {
-    SharedBuffer* buffer {get_buffer(p_env)};
-    uint32_t size {read_args_size(p_env)};
+    uint32_t size {read_args_size(buffer)};
     for (uint32_t i = 0; i < size; ++i) {
         ktvariant::get_variant_from_buffer(buffer, args[i]);
     }
     buffer->rewind();
+    return size;
 }
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType) {
@@ -104,7 +91,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
     jni::Env env {rawEnv};
 
     SharedBuffer* buffer {transfer_context->get_buffer(env)};
-    uint32_t args_size {read_args_size(env, buffer)};
+    uint32_t args_size {read_args_size(buffer)};
 
     auto* ptr {reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
 
