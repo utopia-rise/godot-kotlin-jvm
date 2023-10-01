@@ -30,7 +30,7 @@ class FuncRefTest : Node() {
 
     @RegisterFunction
     override fun _ready() {
-        test.connect(this, ::testSignalCallback)
+        test.connect(this, FuncRefTest::testSignalCallback)
     }
 
     @Rpc
