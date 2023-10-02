@@ -320,7 +320,7 @@ public open class AnimationPlayer : Node() {
   public open fun _postProcessKeyValue(
     animation: Animation,
     track: Int,
-    `value`: Any,
+    `value`: Any?,
     _object: Object,
     objectIdx: Int,
   ): Any? {

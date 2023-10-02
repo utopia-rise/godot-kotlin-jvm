@@ -330,7 +330,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    *
    * **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D equivalent of this method.
    */
-  public fun setInstanceShaderParameter(name: StringName, `value`: Any): Unit {
+  public fun setInstanceShaderParameter(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_INSTANCE_SHADER_PARAMETER, NIL)

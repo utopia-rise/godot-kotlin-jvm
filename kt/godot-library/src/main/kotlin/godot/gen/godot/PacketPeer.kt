@@ -74,7 +74,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
-  public fun putVar(_var: Any, fullObjects: Boolean = false): GodotError {
+  public fun putVar(_var: Any?, fullObjects: Boolean = false): GodotError {
     TransferContext.writeArguments(ANY to _var, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_PUT_VAR, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

@@ -182,7 +182,7 @@ public open class JSON : Resource() {
      */
     @JvmOverloads
     public fun stringify(
-      `data`: Any,
+      `data`: Any?,
       indent: String = "",
       sortKeys: Boolean = true,
       fullPrecision: Boolean = false,

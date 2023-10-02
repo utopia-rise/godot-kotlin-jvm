@@ -479,7 +479,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the metadata of an item, which may be of any type. You can later get it with [getItemMetadata], which provides a simple way of assigning context data to items.
    */
-  public fun setItemMetadata(index: Int, metadata: Any): Unit {
+  public fun setItemMetadata(index: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_METADATA, NIL)
   }

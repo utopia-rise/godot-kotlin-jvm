@@ -527,7 +527,7 @@ public open class ItemList : Control() {
   /**
    * Sets a value (of any type) to be stored with the item associated with the specified index.
    */
-  public fun setItemMetadata(idx: Int, metadata: Any): Unit {
+  public fun setItemMetadata(idx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_METADATA, NIL)
   }

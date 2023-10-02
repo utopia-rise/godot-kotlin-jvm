@@ -56,7 +56,7 @@ public open class PackedDataContainer : Resource() {
    *
    * **Note:** Subsequent calls to this method will overwrite the existing data.
    */
-  public fun pack(`value`: Any): GodotError {
+  public fun pack(`value`: Any?): GodotError {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_PACK, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

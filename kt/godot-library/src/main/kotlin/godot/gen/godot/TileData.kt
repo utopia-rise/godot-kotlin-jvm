@@ -457,7 +457,7 @@ public open class TileData : Object() {
   /**
    * Sets the tile's custom data value for the TileSet custom data layer with name [layerName].
    */
-  public fun setCustomData(layerName: String, `value`: Any): Unit {
+  public fun setCustomData(layerName: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to layerName, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_CUSTOM_DATA, NIL)
   }
@@ -474,7 +474,7 @@ public open class TileData : Object() {
   /**
    * Sets the tile's custom data value for the TileSet custom data layer with index [layerId].
    */
-  public fun setCustomDataByLayerId(layerId: Int, `value`: Any): Unit {
+  public fun setCustomDataByLayerId(layerId: Int, `value`: Any?): Unit {
     TransferContext.writeArguments(LONG to layerId.toLong(), ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_CUSTOM_DATA_BY_LAYER_ID, NIL)

@@ -162,7 +162,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [shapeGetType].
    */
-  public fun shapeSetData(shape: RID, `data`: Any): Unit {
+  public fun shapeSetData(shape: RID, `data`: Any?): Unit {
     TransferContext.writeArguments(_RID to shape, ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SHAPE_SET_DATA, NIL)
   }
@@ -418,7 +418,7 @@ public object PhysicsServer3D : Object() {
   public fun areaSetParam(
     area: RID,
     `param`: AreaParameter,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_PARAM, NIL)
@@ -780,7 +780,7 @@ public object PhysicsServer3D : Object() {
   public fun bodySetParam(
     body: RID,
     `param`: BodyParameter,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_PARAM, NIL)
@@ -810,7 +810,7 @@ public object PhysicsServer3D : Object() {
   public fun bodySetState(
     body: RID,
     state: BodyState,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_STATE, NIL)

@@ -680,7 +680,7 @@ enum class VariantType(
     ANY(
         ANY_VARIANT_TYPE,
         { buffer: ByteBuffer, expectedType: Int ->
-            values()[expectedType].toKotlinWithoutNullCheck(buffer, expectedType)
+            entries[expectedType].toKotlinWithoutNullCheck(buffer, expectedType)
         },
         { buffer: ByteBuffer, any: Any ->
             when (any) {

@@ -209,7 +209,7 @@ public open class TextLine : RefCounted() {
    */
   @JvmOverloads
   public fun addObject(
-    key: Any,
+    key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     length: Int = 1,
@@ -225,7 +225,7 @@ public open class TextLine : RefCounted() {
    */
   @JvmOverloads
   public fun resizeObject(
-    key: Any,
+    key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     baseline: Float = 0.0f,
@@ -255,7 +255,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns bounding rectangle of the inline object.
    */
-  public fun getObjectRect(key: Any): Rect2 {
+  public fun getObjectRect(key: Any?): Rect2 {
     TransferContext.writeArguments(ANY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_OBJECT_RECT, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)

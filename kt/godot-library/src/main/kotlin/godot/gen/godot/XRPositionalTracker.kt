@@ -220,7 +220,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Changes the value for the given input. This method is called by a [godot.XRInterface] implementation and should not be used directly.
    */
-  public fun setInput(name: StringName, `value`: Any): Unit {
+  public fun setInput(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_INPUT, NIL)
   }

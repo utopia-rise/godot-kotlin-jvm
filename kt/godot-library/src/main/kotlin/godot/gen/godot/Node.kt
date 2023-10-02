@@ -1623,7 +1623,7 @@ public open class Node : Object() {
    *
    * See [enum MultiplayerAPI.RPCMode] and [enum MultiplayerPeer.TransferMode]. An alternative is annotating methods and properties with the corresponding [annotation @GDScript.@rpc] annotation (`@rpc("any_peer")`, `@rpc("authority")`). By default, methods are not exposed to networking (and RPCs).
    */
-  public fun rpcConfig(method: StringName, config: Any): Unit {
+  public fun rpcConfig(method: StringName, config: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to method, ANY to config)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_CONFIG, NIL)
   }
@@ -1676,7 +1676,7 @@ public open class Node : Object() {
   /**
    * Similar to [callDeferredThreadGroup], but for setting properties.
    */
-  public fun setDeferredThreadGroup(`property`: StringName, `value`: Any): Unit {
+  public fun setDeferredThreadGroup(`property`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_DEFERRED_THREAD_GROUP, NIL)
   }
@@ -1702,7 +1702,7 @@ public open class Node : Object() {
   /**
    * Similar to [callThreadSafe], but for setting properties.
    */
-  public fun setThreadSafe(`property`: StringName, `value`: Any): Unit {
+  public fun setThreadSafe(`property`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_THREAD_SAFE, NIL)
   }

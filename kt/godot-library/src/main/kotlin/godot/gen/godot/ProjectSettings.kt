@@ -82,7 +82,7 @@ public object ProjectSettings : Object() {
    *
    * This can also be used to erase custom project settings. To do this change the setting value to `null`.
    */
-  public fun setSetting(name: String, `value`: Any): Unit {
+  public fun setSetting(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_SETTING, NIL)
   }
@@ -195,7 +195,7 @@ public object ProjectSettings : Object() {
   /**
    * Sets the specified setting's initial value. This is the value the setting reverts to.
    */
-  public fun setInitialValue(name: String, `value`: Any): Unit {
+  public fun setInitialValue(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_INITIAL_VALUE,
         NIL)

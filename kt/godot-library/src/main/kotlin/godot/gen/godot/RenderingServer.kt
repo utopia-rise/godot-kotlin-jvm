@@ -557,7 +557,7 @@ public object RenderingServer : Object() {
   public fun materialSetParam(
     material: RID,
     parameter: StringName,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to material, STRING_NAME to parameter, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MATERIAL_SET_PARAM,
@@ -3972,7 +3972,7 @@ public object RenderingServer : Object() {
   public fun instanceGeometrySetShaderParameter(
     instance: RID,
     parameter: StringName,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter, ANY to value)
     TransferContext.callMethod(rawPtr,
@@ -5036,7 +5036,7 @@ public object RenderingServer : Object() {
   public fun globalShaderParameterAdd(
     name: StringName,
     type: GlobalShaderParameterType,
-    defaultValue: Any,
+    defaultValue: Any?,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, LONG to type.id, ANY to defaultValue)
     TransferContext.callMethod(rawPtr,
@@ -5067,7 +5067,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the global shader uniform [name] to [value].
    */
-  public fun globalShaderParameterSet(name: StringName, `value`: Any): Unit {
+  public fun globalShaderParameterSet(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_SHADER_PARAMETER_SET, NIL)
@@ -5076,7 +5076,7 @@ public object RenderingServer : Object() {
   /**
    * Overrides the global shader uniform [name] with [value]. Equivalent to the [godot.ShaderGlobalsOverride] node.
    */
-  public fun globalShaderParameterSetOverride(name: StringName, `value`: Any): Unit {
+  public fun globalShaderParameterSetOverride(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_SHADER_PARAMETER_SET_OVERRIDE, NIL)

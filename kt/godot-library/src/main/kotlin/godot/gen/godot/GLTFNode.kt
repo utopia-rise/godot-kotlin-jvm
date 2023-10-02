@@ -263,7 +263,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
-  public fun setAdditionalData(extensionName: StringName, additionalData: Any): Unit {
+  public fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_ADDITIONAL_DATA, NIL)
   }

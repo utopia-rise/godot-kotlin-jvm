@@ -292,7 +292,7 @@ public open class Tween : RefCounted() {
   public fun tweenProperty(
     _object: Object,
     `property`: NodePath,
-    finalVal: Any,
+    finalVal: Any?,
     duration: Double,
   ): PropertyTweener? {
     TransferContext.writeArguments(OBJECT to _object, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
@@ -513,8 +513,8 @@ public open class Tween : RefCounted() {
    */
   public fun tweenMethod(
     method: Callable,
-    from: Any,
-    to: Any,
+    from: Any?,
+    to: Any?,
     duration: Double,
   ): MethodTweener? {
     TransferContext.writeArguments(CALLABLE to method, ANY to from, ANY to to, DOUBLE to duration)
@@ -931,8 +931,8 @@ public open class Tween : RefCounted() {
      * **Note:** If [duration] is equal to `0`, the method will always return the final value, regardless of [elapsedTime] provided.
      */
     public fun interpolateValue(
-      initialValue: Any,
-      deltaValue: Any,
+      initialValue: Any?,
+      deltaValue: Any?,
       elapsedTime: Double,
       duration: Double,
       transType: TransitionType,

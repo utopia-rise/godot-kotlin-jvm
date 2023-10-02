@@ -42,7 +42,7 @@ public open class PropertyTweener : Tweener() {
    * 				tween.tween_property(self, "position", Vector2(200, 100), 1).from(Vector2(100, 100)) #this will move the node from position (100, 100) to (200, 100)
    * 				```
    */
-  public fun from(`value`: Any): PropertyTweener? {
+  public fun from(`value`: Any?): PropertyTweener? {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_FROM, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)

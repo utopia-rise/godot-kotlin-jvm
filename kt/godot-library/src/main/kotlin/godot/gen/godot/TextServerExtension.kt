@@ -1137,7 +1137,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     opentypeFeatures: Dictionary<Any?, Any?>,
     language: String,
-    meta: Any,
+    meta: Any?,
   ): Boolean {
     throw NotImplementedError("_shaped_text_add_string is not implemented for TextServerExtension")
   }
@@ -1147,7 +1147,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _shapedTextAddObject(
     shaped: RID,
-    key: Any,
+    key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment,
     length: Long,
@@ -1161,7 +1161,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _shapedTextResizeObject(
     shaped: RID,
-    key: Any,
+    key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment,
     baseline: Double,
@@ -1346,7 +1346,7 @@ public open class TextServerExtension : TextServer() {
   /**
    *
    */
-  public open fun _shapedTextGetObjectRect(shaped: RID, key: Any): Rect2 {
+  public open fun _shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2 {
     throw NotImplementedError("_shaped_text_get_object_rect is not implemented for TextServerExtension")
   }
 

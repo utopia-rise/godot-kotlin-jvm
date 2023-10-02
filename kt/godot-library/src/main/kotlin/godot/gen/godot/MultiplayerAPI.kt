@@ -163,7 +163,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    *
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI behavior via [godot.MultiplayerAPIExtension].
    */
-  public fun objectConfigurationAdd(_object: Object, configuration: Any): GodotError {
+  public fun objectConfigurationAdd(_object: Object, configuration: Any?): GodotError {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_OBJECT_CONFIGURATION_ADD, LONG)
@@ -175,7 +175,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    *
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI behavior via [godot.MultiplayerAPIExtension].
    */
-  public fun objectConfigurationRemove(_object: Object, configuration: Any): GodotError {
+  public fun objectConfigurationRemove(_object: Object, configuration: Any?): GodotError {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_OBJECT_CONFIGURATION_REMOVE, LONG)

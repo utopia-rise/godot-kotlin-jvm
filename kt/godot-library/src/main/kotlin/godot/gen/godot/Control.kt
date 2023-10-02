@@ -782,7 +782,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    */
-  public open fun _canDropData(atPosition: Vector2, `data`: Any): Boolean {
+  public open fun _canDropData(atPosition: Vector2, `data`: Any?): Boolean {
     throw NotImplementedError("_can_drop_data is not implemented for Control")
   }
 
@@ -829,7 +829,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    */
-  public open fun _dropData(atPosition: Vector2, `data`: Any): Unit {
+  public open fun _dropData(atPosition: Vector2, `data`: Any?): Unit {
   }
 
   /**
@@ -1854,7 +1854,7 @@ public open class Control : CanvasItem() {
    *
    * The methods [_canDropData] and [_dropData] must be implemented on controls that want to receive drop data.
    */
-  public fun forceDrag(`data`: Any, preview: Control): Unit {
+  public fun forceDrag(`data`: Any?, preview: Control): Unit {
     TransferContext.writeArguments(ANY to data, OBJECT to preview)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_FORCE_DRAG, NIL)
   }

@@ -1914,7 +1914,7 @@ public open class TextEdit : Control() {
   public fun setLineGutterMetadata(
     line: Int,
     gutter: Int,
-    metadata: Any,
+    metadata: Any?,
   ): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to gutter.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_METADATA,

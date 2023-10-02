@@ -1606,7 +1606,7 @@ public open class TextServer internal constructor() : RefCounted() {
   @JvmOverloads
   public fun shapedTextAddObject(
     shaped: RID,
-    key: Any,
+    key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     length: Long = 1,
@@ -1624,7 +1624,7 @@ public open class TextServer internal constructor() : RefCounted() {
   @JvmOverloads
   public fun shapedTextResizeObject(
     shaped: RID,
-    key: Any,
+    key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     baseline: Double = 0.0,
@@ -1901,7 +1901,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns bounding rectangle of the inline object.
    */
-  public fun shapedTextGetObjectRect(shaped: RID, key: Any): Rect2 {
+  public fun shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2 {
     TransferContext.writeArguments(_RID to shaped, ANY to key)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_OBJECT_RECT, RECT2)

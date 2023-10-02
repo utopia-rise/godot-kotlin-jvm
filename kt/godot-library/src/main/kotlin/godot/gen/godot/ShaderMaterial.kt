@@ -55,7 +55,7 @@ public open class ShaderMaterial : Material() {
    *
    * **Note:** Changes to the shader uniform will be effective on all instances using this [godot.ShaderMaterial]. To prevent this, use per-instance uniforms with [godot.GeometryInstance3D.setInstanceShaderParameter] or duplicate the [godot.ShaderMaterial] resource using [godot.Resource.duplicate]. Per-instance uniforms allow for better shader reuse and are therefore faster, so they should be preferred over duplicating the [godot.ShaderMaterial] when possible.
    */
-  public fun setShaderParameter(`param`: StringName, `value`: Any): Unit {
+  public fun setShaderParameter(`param`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to param, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAMETER,
         NIL)

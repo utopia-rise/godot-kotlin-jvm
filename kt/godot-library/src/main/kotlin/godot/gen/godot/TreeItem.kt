@@ -432,7 +432,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the metadata value for the given column, which can be retrieved later using [getMetadata]. This can be used, for example, to store a reference to the original data.
    */
-  public fun setMetadata(column: Int, meta: Any): Unit {
+  public fun setMetadata(column: Int, meta: Any?): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_METADATA, NIL)
   }

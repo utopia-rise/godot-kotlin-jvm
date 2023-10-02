@@ -372,7 +372,7 @@ public open class Animation : Resource() {
   public fun trackInsertKey(
     trackIdx: Int,
     time: Double,
-    key: Any,
+    key: Any?,
     transition: Float = 1.0f,
   ): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, ANY to key, DOUBLE to transition.toDouble())
@@ -403,7 +403,7 @@ public open class Animation : Resource() {
   public fun trackSetKeyValue(
     trackIdx: Int,
     key: Int,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to key.toLong(), ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_KEY_VALUE, NIL)

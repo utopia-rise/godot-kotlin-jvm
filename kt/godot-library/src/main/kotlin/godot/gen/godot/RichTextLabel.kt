@@ -64,17 +64,17 @@ public open class RichTextLabel : Control() {
   /**
    * Triggered when the user clicks on content between meta tags. If the meta is defined in text, e.g. `[hi]({"data"="hi"})`, then the parameter for this signal will be a [godot.String] type. If a particular type or an object is desired, the [pushMeta] method must be used to manually insert the data into the tag stack.
    */
-  public val metaClicked: Signal1<Any> by signal("meta")
+  public val metaClicked: Signal1<Any?> by signal("meta")
 
   /**
    * Triggers when the mouse enters a meta tag.
    */
-  public val metaHoverStarted: Signal1<Any> by signal("meta")
+  public val metaHoverStarted: Signal1<Any?> by signal("meta")
 
   /**
    * Triggers when the mouse exits a meta tag.
    */
-  public val metaHoverEnded: Signal1<Any> by signal("meta")
+  public val metaHoverEnded: Signal1<Any?> by signal("meta")
 
   /**
    * Triggered when the document is fully loaded.
@@ -637,7 +637,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a meta tag to the tag stack. Similar to the BBCode `[{text}](something)`, but supports non-[godot.String] metadata types.
    */
-  public fun pushMeta(`data`: Any): Unit {
+  public fun pushMeta(`data`: Any?): Unit {
     TransferContext.writeArguments(ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_META, NIL)
   }
@@ -1052,7 +1052,7 @@ public open class RichTextLabel : Control() {
   /**
    * Installs a custom effect. [effect] should be a valid [godot.RichTextEffect].
    */
-  public fun installEffect(effect: Any): Unit {
+  public fun installEffect(effect: Any?): Unit {
     TransferContext.writeArguments(ANY to effect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_INSTALL_EFFECT, NIL)
   }

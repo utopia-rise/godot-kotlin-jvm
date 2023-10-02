@@ -161,7 +161,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     gizmo: EditorNode3DGizmo,
     handleId: Int,
     secondary: Boolean,
-    restore: Any,
+    restore: Any?,
     cancel: Boolean,
   ): Unit {
   }

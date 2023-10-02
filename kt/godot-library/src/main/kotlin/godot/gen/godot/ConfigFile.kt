@@ -206,7 +206,7 @@ public open class ConfigFile : RefCounted() {
   public fun setValue(
     section: String,
     key: String,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SET_VALUE, NIL)

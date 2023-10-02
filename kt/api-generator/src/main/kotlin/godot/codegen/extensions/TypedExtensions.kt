@@ -113,13 +113,13 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
             .parameterizedBy(ANY.copy(nullable = true))
         type == GodotTypes.dictionary -> ClassTypeNameWrapper(GODOT_DICTIONARY)
             .parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
-        type == GodotTypes.variant -> ClassTypeNameWrapper(ANY)
+        type == GodotTypes.variant -> ClassTypeNameWrapper(ANY).modify(nullable = true)
         isCoreType() -> ClassTypeNameWrapper(ClassName(godotCorePackage, type!!))
         else -> ClassTypeNameWrapper(ClassName(godotApiPackage, type!!))
     }
 
     if (this is NullableTrait) {
-        typeNameWrapper.modify(nullable = nullable)
+        typeNameWrapper.modify(nullable = nullable || typeNameWrapper.typeName.isNullable)
     }
 
     return typeNameWrapper

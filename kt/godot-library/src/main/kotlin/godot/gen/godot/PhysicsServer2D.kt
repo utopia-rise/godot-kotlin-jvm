@@ -159,7 +159,7 @@ public object PhysicsServer2D : Object() {
    *
    * **Warning:** In the case of [SHAPE_CONVEX_POLYGON], this method does not check if the points supplied actually form a convex polygon (unlike the [godot.CollisionPolygon2D.polygon] property).
    */
-  public fun shapeSetData(shape: RID, `data`: Any): Unit {
+  public fun shapeSetData(shape: RID, `data`: Any?): Unit {
     TransferContext.writeArguments(_RID to shape, ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_SET_DATA, NIL)
   }
@@ -417,7 +417,7 @@ public object PhysicsServer2D : Object() {
   public fun areaSetParam(
     area: RID,
     `param`: AreaParameter,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_PARAM, NIL)
@@ -826,7 +826,7 @@ public object PhysicsServer2D : Object() {
   public fun bodySetParam(
     body: RID,
     `param`: BodyParameter,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_PARAM, NIL)
@@ -858,7 +858,7 @@ public object PhysicsServer2D : Object() {
   public fun bodySetState(
     body: RID,
     state: BodyState,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_STATE, NIL)

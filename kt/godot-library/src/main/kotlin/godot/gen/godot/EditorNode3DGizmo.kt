@@ -102,7 +102,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   public open fun _commitHandle(
     id: Int,
     secondary: Boolean,
-    restore: Any,
+    restore: Any?,
     cancel: Boolean,
   ): Unit {
   }

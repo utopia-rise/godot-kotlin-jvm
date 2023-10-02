@@ -431,7 +431,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any): Int {
+  public fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any?): Int {
     TransferContext.writeArguments(STRING to menuRoot, ANY to tag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_INDEX_FROM_TAG, LONG)
@@ -711,7 +711,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemTag(
     menuRoot: String,
     idx: Int,
-    tag: Any,
+    tag: Any?,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), ANY to tag)
     TransferContext.callMethod(rawPtr,

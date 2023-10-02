@@ -412,7 +412,7 @@ public open class TabBar : Control() {
   /**
    * Sets the metadata value for the tab at index [tabIdx], which can be retrieved later using [getTabMetadata].
    */
-  public fun setTabMetadata(tabIdx: Int, metadata: Any): Unit {
+  public fun setTabMetadata(tabIdx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_METADATA, NIL)
   }

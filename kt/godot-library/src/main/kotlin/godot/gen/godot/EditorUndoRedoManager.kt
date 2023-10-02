@@ -142,7 +142,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   public fun addDoProperty(
     _object: Object,
     `property`: StringName,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr,
@@ -157,7 +157,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   public fun addUndoProperty(
     _object: Object,
     `property`: StringName,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr,

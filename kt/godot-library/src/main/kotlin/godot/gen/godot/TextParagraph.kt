@@ -286,7 +286,7 @@ public open class TextParagraph : RefCounted() {
    */
   @JvmOverloads
   public fun addObject(
-    key: Any,
+    key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     length: Int = 1,
@@ -302,7 +302,7 @@ public open class TextParagraph : RefCounted() {
    */
   @JvmOverloads
   public fun resizeObject(
-    key: Any,
+    key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     baseline: Float = 0.0f,
@@ -388,7 +388,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Returns bounding rectangle of the inline object.
    */
-  public fun getLineObjectRect(line: Int, key: Any): Rect2 {
+  public fun getLineObjectRect(line: Int, key: Any?): Rect2 {
     TransferContext.writeArguments(LONG to line.toLong(), ANY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_OBJECT_RECT,
         RECT2)

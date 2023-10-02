@@ -102,7 +102,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Sets the [value] of the setting specified by [name]. This is equivalent to using [godot.Object.set] on the EditorSettings instance.
    */
-  public fun setSetting(name: String, `value`: Any): Unit {
+  public fun setSetting(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_SETTING, NIL)
   }
@@ -129,7 +129,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun setInitialValue(
     name: StringName,
-    `value`: Any,
+    `value`: Any?,
     updateCurrent: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value, BOOL to updateCurrent)
@@ -218,7 +218,7 @@ public open class EditorSettings internal constructor() : Resource() {
   public fun setProjectMetadata(
     section: String,
     key: String,
-    `data`: Any,
+    `data`: Any?,
   ): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_PROJECT_METADATA,

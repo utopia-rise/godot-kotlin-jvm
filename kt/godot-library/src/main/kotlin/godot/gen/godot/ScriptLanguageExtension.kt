@@ -246,13 +246,13 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    *
    */
-  public open fun _addGlobalConstant(name: StringName, `value`: Any): Unit {
+  public open fun _addGlobalConstant(name: StringName, `value`: Any?): Unit {
   }
 
   /**
    *
    */
-  public open fun _addNamedGlobalConstant(name: StringName, `value`: Any): Unit {
+  public open fun _addNamedGlobalConstant(name: StringName, `value`: Any?): Unit {
   }
 
   /**

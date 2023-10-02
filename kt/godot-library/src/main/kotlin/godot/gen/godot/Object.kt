@@ -171,7 +171,7 @@ public open class Object : KtObject() {
    *
    * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    */
-  public fun `set`(`property`: StringName, `value`: Any): Unit {
+  public fun `set`(`property`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET, NIL)
   }
@@ -244,7 +244,7 @@ public open class Object : KtObject() {
    *
    * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    */
-  public fun setIndexed(propertyPath: NodePath, `value`: Any): Unit {
+  public fun setIndexed(propertyPath: NodePath, `value`: Any?): Unit {
     TransferContext.writeArguments(NODE_PATH to propertyPath, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_INDEXED, NIL)
   }
@@ -436,7 +436,7 @@ public open class Object : KtObject() {
    *
    * If a script already exists, its instance is detached, and its property values and state are lost. Built-in property values are still kept.
    */
-  public fun setScript(script: Any): Unit {
+  public fun setScript(script: Any?): Unit {
     TransferContext.writeArguments(ANY to script)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_SCRIPT, NIL)
   }
@@ -459,7 +459,7 @@ public open class Object : KtObject() {
    *
    * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
-  public fun setMeta(name: StringName, `value`: Any): Unit {
+  public fun setMeta(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_META, NIL)
   }
@@ -738,7 +738,7 @@ public open class Object : KtObject() {
    *
    * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    */
-  public fun setDeferred(`property`: StringName, `value`: Any): Unit {
+  public fun setDeferred(`property`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_DEFERRED, NIL)
   }
