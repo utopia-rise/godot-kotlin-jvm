@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
@@ -593,6 +594,128 @@ public open class CPUParticles3D : GeometryInstance3D() {
     callConstructor(ENGINECLASS_CPUPARTICLES3D, scriptIndex)
     return true
   }
+
+  /**
+   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles3d.emissionBoxExtents
+   * //Your changes
+   * cpuparticles3d.emissionBoxExtents = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun emissionBoxExtents(block: Vector3.() -> Unit): Vector3 = emissionBoxExtents.apply{
+      block(this)
+      emissionBoxExtents = this
+  }
+
+
+  /**
+   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles3d.emissionRingAxis
+   * //Your changes
+   * cpuparticles3d.emissionRingAxis = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun emissionRingAxis(block: Vector3.() -> Unit): Vector3 = emissionRingAxis.apply{
+      block(this)
+      emissionRingAxis = this
+  }
+
+
+  /**
+   * Unit vector specifying the particles' emission direction.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles3d.direction
+   * //Your changes
+   * cpuparticles3d.direction = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun direction(block: Vector3.() -> Unit): Vector3 = direction.apply{
+      block(this)
+      direction = this
+  }
+
+
+  /**
+   * Gravity applied to every particle.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles3d.gravity
+   * //Your changes
+   * cpuparticles3d.gravity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun gravity(block: Vector3.() -> Unit): Vector3 = gravity.apply{
+      block(this)
+      gravity = this
+  }
+
+
+  /**
+   * Each particle's initial color.
+   *
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles3d.color
+   * //Your changes
+   * cpuparticles3d.color = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun color(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
+  }
+
 
   /**
    * Restarts the particle emitter.

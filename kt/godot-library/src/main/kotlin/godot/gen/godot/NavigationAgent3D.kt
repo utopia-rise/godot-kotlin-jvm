@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -524,6 +525,78 @@ public open class NavigationAgent3D : Node() {
     callConstructor(ENGINECLASS_NAVIGATIONAGENT3D, scriptIndex)
     return true
   }
+
+  /**
+   * If set a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationagent3d.targetPosition
+   * //Your changes
+   * navigationagent3d.targetPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun targetPosition(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
+      block(this)
+      targetPosition = this
+  }
+
+
+  /**
+   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agents and obstacles. When an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal simulation velocity.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationagent3d.velocity
+   * //Your changes
+   * navigationagent3d.velocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun velocity(block: Vector3.() -> Unit): Vector3 = velocity.apply{
+      block(this)
+      velocity = this
+  }
+
+
+  /**
+   * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationagent3d.debugPathCustomColor
+   * //Your changes
+   * navigationagent3d.debugPathCustomColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun debugPathCustomColor(block: Color.() -> Unit): Color = debugPathCustomColor.apply{
+      block(this)
+      debugPathCustomColor = this
+  }
+
 
   /**
    * Returns the [RID] of this agent on the [godot.NavigationServer3D].

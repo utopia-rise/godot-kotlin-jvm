@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -76,6 +77,30 @@ public open class PortableCompressedTexture2D : Texture2D() {
     callConstructor(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D, scriptIndex)
     return true
   }
+
+  /**
+   * Allow overriding the texture size (for 2D only).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = portablecompressedtexture2d.sizeOverride
+   * //Your changes
+   * portablecompressedtexture2d.sizeOverride = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun sizeOverride(block: Vector2.() -> Unit): Vector2 = sizeOverride.apply{
+      block(this)
+      sizeOverride = this
+  }
+
 
   /**
    * Initializes the compressed texture from a base image. The compression mode must be provided.

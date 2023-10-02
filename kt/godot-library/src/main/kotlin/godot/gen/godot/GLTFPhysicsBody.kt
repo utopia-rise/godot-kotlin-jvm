@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.Dictionary
@@ -25,6 +26,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFPhysicsBody : Resource() {
@@ -95,6 +97,72 @@ public open class GLTFPhysicsBody : Resource() {
     callConstructor(ENGINECLASS_GLTFPHYSICSBODY, scriptIndex)
     return true
   }
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfphysicsbody.linearVelocity
+   * //Your changes
+   * gltfphysicsbody.linearVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun linearVelocity(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+      block(this)
+      linearVelocity = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfphysicsbody.angularVelocity
+   * //Your changes
+   * gltfphysicsbody.angularVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun angularVelocity(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+      block(this)
+      angularVelocity = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfphysicsbody.inertiaTensor
+   * //Your changes
+   * gltfphysicsbody.inertiaTensor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun inertiaTensor(block: Basis.() -> Unit): Basis = inertiaTensor.apply{
+      block(this)
+      inertiaTensor = this
+  }
+
 
   public fun toNode(): CollisionObject3D? {
     TransferContext.writeArguments()

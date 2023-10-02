@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantType.LONG
@@ -19,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Provides parameters for 3D navigation path queries.
@@ -146,6 +148,54 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     callConstructor(ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D, scriptIndex)
     return true
   }
+
+  /**
+   * The pathfinding start position in global coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpathqueryparameters3d.startPosition
+   * //Your changes
+   * navigationpathqueryparameters3d.startPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun startPosition(block: Vector3.() -> Unit): Vector3 = startPosition.apply{
+      block(this)
+      startPosition = this
+  }
+
+
+  /**
+   * The pathfinding target position in global coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpathqueryparameters3d.targetPosition
+   * //Your changes
+   * navigationpathqueryparameters3d.targetPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun targetPosition(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
+      block(this)
+      targetPosition = this
+  }
+
 
   public enum class PathfindingAlgorithm(
     id: Long,

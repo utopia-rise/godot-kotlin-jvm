@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
@@ -15,6 +16,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A node used to create a parallax scrolling background.
@@ -125,6 +127,126 @@ public open class ParallaxBackground : CanvasLayer() {
     callConstructor(ENGINECLASS_PARALLAXBACKGROUND, scriptIndex)
     return true
   }
+
+  /**
+   * The ParallaxBackground's scroll value. Calculated automatically when using a [godot.Camera2D], but can be used to manually manage scrolling when no camera is present.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = parallaxbackground.scrollOffset
+   * //Your changes
+   * parallaxbackground.scrollOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scrollOffset(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
+      block(this)
+      scrollOffset = this
+  }
+
+
+  /**
+   * The base position offset for all [godot.ParallaxLayer] children.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = parallaxbackground.scrollBaseOffset
+   * //Your changes
+   * parallaxbackground.scrollBaseOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scrollBaseOffset(block: Vector2.() -> Unit): Vector2 = scrollBaseOffset.apply{
+      block(this)
+      scrollBaseOffset = this
+  }
+
+
+  /**
+   * The base motion scale for all [godot.ParallaxLayer] children.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = parallaxbackground.scrollBaseScale
+   * //Your changes
+   * parallaxbackground.scrollBaseScale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scrollBaseScale(block: Vector2.() -> Unit): Vector2 = scrollBaseScale.apply{
+      block(this)
+      scrollBaseScale = this
+  }
+
+
+  /**
+   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background will stop scrolling. Must be lower than [scrollLimitEnd] to work.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = parallaxbackground.scrollLimitBegin
+   * //Your changes
+   * parallaxbackground.scrollLimitBegin = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scrollLimitBegin(block: Vector2.() -> Unit): Vector2 = scrollLimitBegin.apply{
+      block(this)
+      scrollLimitBegin = this
+  }
+
+
+  /**
+   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = parallaxbackground.scrollLimitEnd
+   * //Your changes
+   * parallaxbackground.scrollLimitEnd = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scrollLimitEnd(block: Vector2.() -> Unit): Vector2 = scrollLimitEnd.apply{
+      block(this)
+      scrollLimitEnd = this
+  }
+
 
   public companion object
 }

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
@@ -17,6 +18,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 2D world boundary (half-plane) shape used for physics collision.
@@ -63,6 +65,30 @@ public open class WorldBoundaryShape2D : Shape2D() {
     callConstructor(ENGINECLASS_WORLDBOUNDARYSHAPE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to `Vector2.UP`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = worldboundaryshape2d.normal
+   * //Your changes
+   * worldboundaryshape2d.normal = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun normal(block: Vector2.() -> Unit): Vector2 = normal.apply{
+      block(this)
+      normal = this
+  }
+
 
   public companion object
 }

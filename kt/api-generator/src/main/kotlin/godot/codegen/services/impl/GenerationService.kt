@@ -163,7 +163,7 @@ class GenerationService(
             val propertySpec = generateProperty(enrichedClass, property) ?: continue
             classTypeBuilder.addProperty(propertySpec)
             if (property.hasValidSetterInClass && property.isCoreTypeReimplementedInKotlin()) {
-                generateCoreTypeHelper(enrichedClass, property)
+                classTypeBuilder.addFunction(generateCoreTypeHelper(enrichedClass, property))
             }
         }
 
@@ -416,11 +416,11 @@ class GenerationService(
 
             val variantTypeToArgumentString = buildString {
                 append("%T·to·value")
-                
+
                 if (property.isEnum()) {
                     append(".id")
                 }
-                
+
                 append(property.getToBufferCastingMethod())
             }
 
@@ -500,7 +500,7 @@ class GenerationService(
         return propertyFunSpec
             .addParameter(
                 ParameterSpec.builder(
-                    "schedule",
+                    "block",
                     LambdaTypeName.get(
                         receiver = parameterTypeName.typeName,
                         returnType = UNIT
@@ -511,11 +511,36 @@ class GenerationService(
             .returns(parameterTypeName.typeName)
             .addStatement(
                 """return $parameterName.apply{
-                                            |    schedule(this)
+                                            |    block(this)
                                             |    $parameterName = this
                                             |}
                                             |""".trimMargin()
-            )
+            ).apply {
+                val kDoc = buildString {
+                    val propertyKdoc =
+                        docRepository.findByClassName(enrichedClass.name)?.properties?.get(property.internal.name)?.description
+                    if (propertyKdoc != null) {
+                        appendLine(propertyKdoc.replace("/*", "&#47;*"))
+                        appendLine()
+                    }
+
+                    appendLine("""This is a helper function to make dealing with local copies easier. 
+                    |
+                    |For more information, see our [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+                    |
+                    |Allow to directly modify the local copy of the property and assign it back to the Object.
+                    |
+                    |Prefer that over writing:
+                    |``````
+                    |val myCoreType = ${enrichedClass.name.lowercase()}.${property.name}
+                    |//Your changes
+                    |${enrichedClass.name.lowercase()}.${property.name} = myCoreType
+                    |``````
+                    |""".trimMargin()
+                    )
+                }
+                addKdoc(kDoc)
+            }
             .build()
     }
 

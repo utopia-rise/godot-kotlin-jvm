@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
@@ -316,6 +317,56 @@ public open class CanvasItem internal constructor() : Node() {
     callConstructor(ENGINECLASS_CANVASITEM, scriptIndex)
     return true
   }
+
+  /**
+   * The color applied to this [godot.CanvasItem]. This property does affect child [godot.CanvasItem]s, unlike [selfModulate] which only affects the node itself.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = canvasitem.modulate
+   * //Your changes
+   * canvasitem.modulate = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun modulate(block: Color.() -> Unit): Color = modulate.apply{
+      block(this)
+      modulate = this
+  }
+
+
+  /**
+   * The color applied to this [godot.CanvasItem]. This property does **not** affect child [godot.CanvasItem]s, unlike [modulate] which affects both the node itself and its children.
+   *
+   * **Note:** Internal children (e.g. sliders in [godot.ColorPicker] or tab bar in [godot.TabContainer]) are also not affected by this property (see `include_internal` parameter of [godot.Node.getChild] and other similar methods).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = canvasitem.selfModulate
+   * //Your changes
+   * canvasitem.selfModulate = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun selfModulate(block: Color.() -> Unit): Color = selfModulate.apply{
+      block(this)
+      selfModulate = this
+  }
+
 
   /**
    * Called when [godot.CanvasItem] has been requested to redraw (after [queueRedraw] is called, either manually or by the engine).

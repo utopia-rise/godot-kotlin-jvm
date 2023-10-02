@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -103,6 +104,32 @@ public open class VoxelGI : VisualInstance3D() {
     callConstructor(ENGINECLASS_VOXELGI, scriptIndex)
     return true
   }
+
+  /**
+   * The size of the area covered by the [godot.VoxelGI]. If you make the size larger without increasing the subdivisions with [subdiv], the size of each cell will increase and result in lower detailed lighting.
+   *
+   * **Note:** Size is clamped to 1.0 unit or more on each axis.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = voxelgi.size
+   * //Your changes
+   * voxelgi.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun size(block: Vector3.() -> Unit): Vector3 = size.apply{
+      block(this)
+      size = this
+  }
+
 
   /**
    * Bakes the effect from all [godot.GeometryInstance3D]s marked with [godot.GeometryInstance3D.GI_MODE_STATIC] and [godot.Light3D]s marked with either [godot.Light3D.BAKE_STATIC] or [godot.Light3D.BAKE_DYNAMIC]. If [createVisualDebug] is `true`, after baking the light, this will generate a [godot.MultiMesh] that has a cube representing each solid cell with each cube colored to the cell's albedo color. This can be used to visualize the [godot.VoxelGI]'s data and debug any issues that may be occurring.

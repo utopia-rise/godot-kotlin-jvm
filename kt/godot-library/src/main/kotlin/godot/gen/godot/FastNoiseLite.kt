@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -20,6 +21,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class FastNoiseLite : Noise() {
@@ -294,6 +296,28 @@ public open class FastNoiseLite : Noise() {
     callConstructor(ENGINECLASS_FASTNOISELITE, scriptIndex)
     return true
   }
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = fastnoiselite.offset
+   * //Your changes
+   * fastnoiselite.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offset(block: Vector3.() -> Unit): Vector3 = offset.apply{
+      block(this)
+      offset = this
+  }
+
 
   public enum class NoiseType(
     id: Long,

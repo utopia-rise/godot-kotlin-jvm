@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedVector2Array
@@ -229,6 +230,30 @@ public open class Line2D : Node2D() {
     callConstructor(ENGINECLASS_LINE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The line's color. Will not be used if a gradient is set.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = line2d.defaultColor
+   * //Your changes
+   * line2d.defaultColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun defaultColor(block: Color.() -> Unit): Color = defaultColor.apply{
+      block(this)
+      defaultColor = this
+  }
+
 
   /**
    * Overwrites the position of the point at index [index] with the supplied [position].

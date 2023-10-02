@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform3D
@@ -25,6 +26,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Provides parameters for [godot.PhysicsServer3D.bodyTestMotion].
@@ -173,6 +175,54 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     callConstructor(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D, scriptIndex)
     return true
   }
+
+  /**
+   * Transform in global space where the motion should start. Usually set to [godot.Node3D.globalTransform] for the current body's transform.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicstestmotionparameters3d.from
+   * //Your changes
+   * physicstestmotionparameters3d.from = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun from(block: Transform3D.() -> Unit): Transform3D = from.apply{
+      block(this)
+      from = this
+  }
+
+
+  /**
+   * Motion vector to define the length and direction of the motion to test.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicstestmotionparameters3d.motion
+   * //Your changes
+   * physicstestmotionparameters3d.motion = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun motion(block: Vector3.() -> Unit): Vector3 = motion.apply{
+      block(this)
+      motion = this
+  }
+
 
   public companion object
 }

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
@@ -290,6 +291,126 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     callConstructor(ENGINECLASS_PHYSICALBONE3D, scriptIndex)
     return true
   }
+
+  /**
+   * Sets the joint's transform.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalbone3d.jointOffset
+   * //Your changes
+   * physicalbone3d.jointOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun jointOffset(block: Transform3D.() -> Unit): Transform3D = jointOffset.apply{
+      block(this)
+      jointOffset = this
+  }
+
+
+  /**
+   * Sets the joint's rotation in radians.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalbone3d.jointRotation
+   * //Your changes
+   * physicalbone3d.jointRotation = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun jointRotation(block: Vector3.() -> Unit): Vector3 = jointRotation.apply{
+      block(this)
+      jointRotation = this
+  }
+
+
+  /**
+   * Sets the body's transform.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalbone3d.bodyOffset
+   * //Your changes
+   * physicalbone3d.bodyOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun bodyOffset(block: Transform3D.() -> Unit): Transform3D = bodyOffset.apply{
+      block(this)
+      bodyOffset = this
+  }
+
+
+  /**
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalbone3d.linearVelocity
+   * //Your changes
+   * physicalbone3d.linearVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun linearVelocity(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+      block(this)
+      linearVelocity = this
+  }
+
+
+  /**
+   * The PhysicalBone3D's rotational velocity in *radians* per second.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalbone3d.angularVelocity
+   * //Your changes
+   * physicalbone3d.angularVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun angularVelocity(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+      block(this)
+      angularVelocity = this
+  }
+
 
   /**
    * Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it works in addition to the usual physics behavior, but the [customIntegrator] property allows you to disable the default behavior and do fully custom force integration for a body.

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
@@ -396,6 +397,32 @@ public open class GPUParticles2D : Node2D() {
     callConstructor(ENGINECLASS_GPUPARTICLES2D, scriptIndex)
     return true
   }
+
+  /**
+   * The [godot.core.Rect2] that determines the node's region which needs to be visible on screen for the particle system to be active.
+   *
+   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [godot.core.Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gpuparticles2d.visibilityRect
+   * //Your changes
+   * gpuparticles2d.visibilityRect = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun visibilityRect(block: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
+      block(this)
+      visibilityRect = this
+  }
+
 
   /**
    * Returns a rectangle containing the positions of all existing particles.

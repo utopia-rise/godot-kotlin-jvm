@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -20,6 +21,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Texture with optional normal and specular maps for use in 2D rendering.
@@ -148,6 +150,30 @@ public open class CanvasTexture : Texture2D() {
     callConstructor(ENGINECLASS_CANVASTEXTURE, scriptIndex)
     return true
   }
+
+  /**
+   * The multiplier for specular reflection colors. The [godot.Light2D]'s color is also taken into account when determining the reflection color. Only has a visible effect if [godot.Light2D]s are affecting this [godot.CanvasTexture].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = canvastexture.specularColor
+   * //Your changes
+   * canvastexture.specularColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun specularColor(block: Color.() -> Unit): Color = specularColor.apply{
+      block(this)
+      specularColor = this
+  }
+
 
   public companion object
 }

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -14,6 +15,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Flat plane shape for use with occlusion culling in [godot.OccluderInstance3D].
@@ -42,6 +44,30 @@ public open class QuadOccluder3D : Occluder3D() {
     callConstructor(ENGINECLASS_QUADOCCLUDER3D, scriptIndex)
     return true
   }
+
+  /**
+   * The quad's size in 3D units.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = quadoccluder3d.size
+   * //Your changes
+   * quadoccluder3d.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun size(block: Vector2.() -> Unit): Vector2 = size.apply{
+      block(this)
+      size = this
+  }
+
 
   public companion object
 }

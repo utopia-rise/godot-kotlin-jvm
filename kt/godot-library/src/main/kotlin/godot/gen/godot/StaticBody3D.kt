@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -15,6 +16,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 3D physics body that can't be moved by external forces. When moved manually, it doesn't affect other bodies in its path.
@@ -84,6 +86,56 @@ public open class StaticBody3D : PhysicsBody3D() {
     callConstructor(ENGINECLASS_STATICBODY3D, scriptIndex)
     return true
   }
+
+  /**
+   * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = staticbody3d.constantLinearVelocity
+   * //Your changes
+   * staticbody3d.constantLinearVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun constantLinearVelocity(block: Vector3.() -> Unit): Vector3 =
+      constantLinearVelocity.apply{
+      block(this)
+      constantLinearVelocity = this
+  }
+
+
+  /**
+   * The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = staticbody3d.constantAngularVelocity
+   * //Your changes
+   * staticbody3d.constantAngularVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun constantAngularVelocity(block: Vector3.() -> Unit): Vector3 =
+      constantAngularVelocity.apply{
+      block(this)
+      constantAngularVelocity = this
+  }
+
 
   public companion object
 }

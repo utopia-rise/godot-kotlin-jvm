@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -14,6 +15,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Abstract base class for touch gestures.
@@ -45,6 +47,30 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
     callConstructor(ENGINECLASS_INPUTEVENTGESTURE, scriptIndex)
     return true
   }
+
+  /**
+   * The local gesture position relative to the [godot.Viewport]. If used in [godot.Control.GuiInput], the position is relative to the current [godot.Control] that received this gesture.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventgesture.position
+   * //Your changes
+   * inputeventgesture.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun position(block: Vector2.() -> Unit): Vector2 = position.apply{
+      block(this)
+      position = this
+  }
+
 
   public companion object
 }

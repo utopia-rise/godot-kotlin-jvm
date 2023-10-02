@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -230,6 +231,128 @@ public open class StyleBoxFlat : StyleBox() {
     callConstructor(ENGINECLASS_STYLEBOXFLAT, scriptIndex)
     return true
   }
+
+  /**
+   * The background color of the stylebox.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = styleboxflat.bgColor
+   * //Your changes
+   * styleboxflat.bgColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun bgColor(block: Color.() -> Unit): Color = bgColor.apply{
+      block(this)
+      bgColor = this
+  }
+
+
+  /**
+   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left (X axis) and downwards (Y axis).
+   *
+   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the [godot.StyleBox]'s content margin (see [godot.StyleBox.contentMarginBottom]). It is preferable to increase the content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand margin does not increase the size of the clickable area for [godot.Control]s.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = styleboxflat.skew
+   * //Your changes
+   * styleboxflat.skew = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun skew(block: Vector2.() -> Unit): Vector2 = skew.apply{
+      block(this)
+      skew = this
+  }
+
+
+  /**
+   * Sets the color of the border.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = styleboxflat.borderColor
+   * //Your changes
+   * styleboxflat.borderColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun borderColor(block: Color.() -> Unit): Color = borderColor.apply{
+      block(this)
+      borderColor = this
+  }
+
+
+  /**
+   * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = styleboxflat.shadowColor
+   * //Your changes
+   * styleboxflat.shadowColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun shadowColor(block: Color.() -> Unit): Color = shadowColor.apply{
+      block(this)
+      shadowColor = this
+  }
+
+
+  /**
+   * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = styleboxflat.shadowOffset
+   * //Your changes
+   * styleboxflat.shadowOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun shadowOffset(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
+      block(this)
+      shadowOffset = this
+  }
+
 
   /**
    * Sets the border width to [width] pixels for all sides.

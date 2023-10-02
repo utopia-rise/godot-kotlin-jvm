@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
 import godot.core.Projection
@@ -270,6 +271,32 @@ public open class Camera3D : Node3D() {
     callConstructor(ENGINECLASS_CAMERA3D, scriptIndex)
     return true
   }
+
+  /**
+   * The camera's frustum offset. This can be changed from the default to create "tilted frustum" effects such as [godot.Y-shearing](https://zdoom.org/wiki/Y-shearing).
+   *
+   * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = camera3d.frustumOffset
+   * //Your changes
+   * camera3d.frustumOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun frustumOffset(block: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
+      block(this)
+      frustumOffset = this
+  }
+
 
   /**
    * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.

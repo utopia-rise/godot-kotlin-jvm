@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -22,6 +23,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Captures its surroundings to create fast, accurate reflections from a given point.
@@ -259,6 +261,80 @@ public open class ReflectionProbe : VisualInstance3D() {
     callConstructor(ENGINECLASS_REFLECTIONPROBE, scriptIndex)
     return true
   }
+
+  /**
+   * The size of the reflection probe. The larger the size, the more space covered by the probe, which will lower the perceived resolution. It is best to keep the size only as large as you need it.
+   *
+   * **Note:** To better fit areas that are not aligned to the grid, you can rotate the [godot.ReflectionProbe] node.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = reflectionprobe.size
+   * //Your changes
+   * reflectionprobe.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun size(block: Vector3.() -> Unit): Vector3 = size.apply{
+      block(this)
+      size = this
+  }
+
+
+  /**
+   * Sets the origin offset to be used when this [godot.ReflectionProbe] is in [boxProjection] mode. This can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing the number of objects that "get in the way" of the reflection.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = reflectionprobe.originOffset
+   * //Your changes
+   * reflectionprobe.originOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun originOffset(block: Vector3.() -> Unit): Vector3 = originOffset.apply{
+      block(this)
+      originOffset = this
+  }
+
+
+  /**
+   * The custom ambient color to use within the [godot.ReflectionProbe]'s box defined by its [size]. Only effective if [ambientMode] is [AMBIENT_COLOR].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = reflectionprobe.ambientColor
+   * //Your changes
+   * reflectionprobe.ambientColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun ambientColor(block: Color.() -> Unit): Color = ambientColor.apply{
+      block(this)
+      ambientColor = this
+  }
+
 
   public enum class UpdateMode(
     id: Long,

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.RID
@@ -31,6 +32,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A region of 3D space that detects other [godot.CollisionObject3D]s entering or exiting it.
@@ -477,6 +479,54 @@ public open class Area3D : CollisionObject3D() {
     callConstructor(ENGINECLASS_AREA3D, scriptIndex)
     return true
   }
+
+  /**
+   * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = area3d.gravityPointCenter
+   * //Your changes
+   * area3d.gravityPointCenter = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun gravityPointCenter(block: Vector3.() -> Unit): Vector3 = gravityPointCenter.apply{
+      block(this)
+      gravityPointCenter = this
+  }
+
+
+  /**
+   * The area's gravity vector (not normalized).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = area3d.gravityDirection
+   * //Your changes
+   * area3d.gravityDirection = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun gravityDirection(block: Vector3.() -> Unit): Vector3 = gravityDirection.apply{
+      block(this)
+      gravityDirection = this
+  }
+
 
   /**
    * Returns a list of intersecting [godot.PhysicsBody3D]s and [godot.GridMap]s. The overlapping body's [godot.CollisionObject3D.collisionLayer] must be part of this area's [godot.CollisionObject3D.collisionMask] in order to be detected.

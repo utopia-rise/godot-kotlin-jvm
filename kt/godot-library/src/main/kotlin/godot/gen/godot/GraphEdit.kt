@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
@@ -394,6 +395,54 @@ public open class GraphEdit : Control() {
     callConstructor(ENGINECLASS_GRAPHEDIT, scriptIndex)
     return true
   }
+
+  /**
+   * The scroll offset.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = graphedit.scrollOffset
+   * //Your changes
+   * graphedit.scrollOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scrollOffset(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
+      block(this)
+      scrollOffset = this
+  }
+
+
+  /**
+   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is scaled to fit this rectangle.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = graphedit.minimapSize
+   * //Your changes
+   * graphedit.minimapSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun minimapSize(block: Vector2.() -> Unit): Vector2 = minimapSize.apply{
+      block(this)
+      minimapSize = this
+  }
+
 
   /**
    * Returns whether the [mousePosition] is in the input hot zone.

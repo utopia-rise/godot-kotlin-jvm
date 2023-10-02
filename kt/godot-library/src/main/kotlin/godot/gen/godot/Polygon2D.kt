@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
@@ -270,6 +271,102 @@ public open class Polygon2D : Node2D() {
     callConstructor(ENGINECLASS_POLYGON2D, scriptIndex)
     return true
   }
+
+  /**
+   * The polygon's fill color. If `texture` is defined, it will be multiplied by this color. It will also be the default color for vertices not set in `vertex_colors`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = polygon2d.color
+   * //Your changes
+   * polygon2d.color = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun color(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
+  }
+
+
+  /**
+   * The offset applied to each vertex.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = polygon2d.offset
+   * //Your changes
+   * polygon2d.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+      block(this)
+      offset = this
+  }
+
+
+  /**
+   * Amount to offset the polygon's `texture`. If `(0, 0)` the texture's origin (its top-left corner) will be placed at the polygon's `position`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = polygon2d.textureOffset
+   * //Your changes
+   * polygon2d.textureOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun textureOffset(block: Vector2.() -> Unit): Vector2 = textureOffset.apply{
+      block(this)
+      textureOffset = this
+  }
+
+
+  /**
+   * Amount to multiply the `uv` coordinates when using a `texture`. Larger values make the texture smaller, and vice versa.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = polygon2d.textureScale
+   * //Your changes
+   * polygon2d.textureScale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun textureScale(block: Vector2.() -> Unit): Vector2 = textureScale.apply{
+      block(this)
+      textureScale = this
+  }
+
 
   /**
    * Adds a bone with the specified [path] and [weights].

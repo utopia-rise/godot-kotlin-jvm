@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -16,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base input event type for mouse events.
@@ -82,6 +84,58 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     callConstructor(ENGINECLASS_INPUTEVENTMOUSE, scriptIndex)
     return true
   }
+
+  /**
+   * When received in [godot.Node.Input] or [godot.Node.UnhandledInput], returns the mouse's position in the [godot.Viewport] this [godot.Node] is in using the coordinate system of this [godot.Viewport].
+   *
+   * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.Control] using the local coordinate system of the [godot.Control].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventmouse.position
+   * //Your changes
+   * inputeventmouse.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun position(block: Vector2.() -> Unit): Vector2 = position.apply{
+      block(this)
+      position = this
+  }
+
+
+  /**
+   * When received in [godot.Node.Input] or [godot.Node.UnhandledInput], returns the mouse's position in the root [godot.Viewport] using the coordinate system of the root [godot.Viewport].
+   *
+   * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.CanvasLayer] that the [godot.Control] is in using the coordinate system of the [godot.CanvasLayer].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventmouse.globalPosition
+   * //Your changes
+   * inputeventmouse.globalPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalPosition(block: Vector2.() -> Unit): Vector2 = globalPosition.apply{
+      block(this)
+      globalPosition = this
+  }
+
 
   public companion object
 }

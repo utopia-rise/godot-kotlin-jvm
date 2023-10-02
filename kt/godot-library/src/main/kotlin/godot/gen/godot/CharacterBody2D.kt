@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -291,6 +292,54 @@ public open class CharacterBody2D : PhysicsBody2D() {
     callConstructor(ENGINECLASS_CHARACTERBODY2D, scriptIndex)
     return true
   }
+
+  /**
+   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [moveAndSlide]. Defaults to `Vector2.UP`. As the vector will be normalized it can't be equal to [godot.Vector2.ZERO], if you want all collisions to be reported as walls, consider using [MOTION_MODE_FLOATING] as [motionMode].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = characterbody2d.upDirection
+   * //Your changes
+   * characterbody2d.upDirection = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun upDirection(block: Vector2.() -> Unit): Vector2 = upDirection.apply{
+      block(this)
+      upDirection = this
+  }
+
+
+  /**
+   * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = characterbody2d.velocity
+   * //Your changes
+   * characterbody2d.velocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun velocity(block: Vector2.() -> Unit): Vector2 = velocity.apply{
+      block(this)
+      velocity = this
+  }
+
 
   /**
    * Moves the body based on [velocity]. If the body collides with another, it will slide along the other body (by default only on floor) rather than stop immediately. If the other body is a [godot.CharacterBody2D] or [godot.RigidBody2D], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.

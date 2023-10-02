@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -16,6 +17,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A texture that crops out part of another Texture2D.
@@ -89,6 +91,54 @@ public open class AtlasTexture : Texture2D() {
     callConstructor(ENGINECLASS_ATLASTEXTURE, scriptIndex)
     return true
   }
+
+  /**
+   * The region used to draw the [atlas].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = atlastexture.region
+   * //Your changes
+   * atlastexture.region = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun region(block: Rect2.() -> Unit): Rect2 = region.apply{
+      block(this)
+      region = this
+  }
+
+
+  /**
+   * The margin around the [region]. Useful for small adjustments. If the [godot.Rect2.size] of this property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the margin.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = atlastexture.margin
+   * //Your changes
+   * atlastexture.margin = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun margin(block: Rect2.() -> Unit): Rect2 = margin.apply{
+      block(this)
+      margin = this
+  }
+
 
   public companion object
 }

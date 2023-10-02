@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -210,6 +211,56 @@ public open class Decal : VisualInstance3D() {
     callConstructor(ENGINECLASS_DECAL, scriptIndex)
     return true
   }
+
+  /**
+   * Sets the size of the [AABB] used by the decal. All dimensions must be set to a value greater than zero (they will be clamped to `0.001` if this is not the case). The AABB goes from `-size/2` to `size/2`.
+   *
+   * **Note:** To improve culling efficiency of "hard surface" decals, set their [upperFade] and [lowerFade] to `0.0` and set the Y component of the [size] as low as possible. This will reduce the decals' AABB size without affecting their appearance.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = decal.size
+   * //Your changes
+   * decal.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun size(block: Vector3.() -> Unit): Vector3 = size.apply{
+      block(this)
+      size = this
+  }
+
+
+  /**
+   * Changes the [godot.core.Color] of the Decal by multiplying the albedo and emission colors with this value. The alpha component is only taken into account when multiplying the albedo color, not the emission color. See also [emissionEnergy] and [albedoMix] to change the emission and albedo intensity independently of each other.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = decal.modulate
+   * //Your changes
+   * decal.modulate = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun modulate(block: Color.() -> Unit): Color = modulate.apply{
+      block(this)
+      modulate = this
+  }
+
 
   /**
    * Sets the [godot.Texture2D] associated with the specified [enum DecalTexture]. This is a convenience method, in most cases you should access the texture directly.

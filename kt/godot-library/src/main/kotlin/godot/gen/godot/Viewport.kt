@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Rect2
@@ -753,6 +754,56 @@ public open class Viewport internal constructor() : Node() {
     callConstructor(ENGINECLASS_VIEWPORT, scriptIndex)
     return true
   }
+
+  /**
+   * The canvas transform of the viewport, useful for changing the on-screen positions of all child [godot.CanvasItem]s. This is relative to the global canvas transform of the viewport.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = viewport.canvasTransform
+   * //Your changes
+   * viewport.canvasTransform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun canvasTransform(block: Transform2D.() -> Unit): Transform2D =
+      canvasTransform.apply{
+      block(this)
+      canvasTransform = this
+  }
+
+
+  /**
+   * The global canvas transform of the viewport. The canvas transform is relative to this.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = viewport.globalCanvasTransform
+   * //Your changes
+   * viewport.globalCanvasTransform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalCanvasTransform(block: Transform2D.() -> Unit): Transform2D =
+      globalCanvasTransform.apply{
+      block(this)
+      globalCanvasTransform = this
+  }
+
 
   /**
    * Returns the first valid [godot.World2D] for this viewport, searching the [world2d] property of itself and any Viewport ancestor.

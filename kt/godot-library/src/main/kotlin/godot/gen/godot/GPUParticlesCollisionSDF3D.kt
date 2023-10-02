@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -124,6 +125,30 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D, scriptIndex)
     return true
   }
+
+  /**
+   * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small as possible while covering the parts of the scene you need.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gpuparticlescollisionsdf3d.size
+   * //Your changes
+   * gpuparticlescollisionsdf3d.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun size(block: Vector3.() -> Unit): Vector3 = size.apply{
+      block(this)
+      size = this
+  }
+
 
   /**
    * Based on [value], enables or disables the specified layer in the [bakeMask], given a [layerNumber] between 1 and 32.

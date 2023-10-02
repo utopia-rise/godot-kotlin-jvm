@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.StringName
@@ -295,6 +296,30 @@ public open class GeometryInstance3D : VisualInstance3D() {
     callConstructor(ENGINECLASS_GEOMETRYINSTANCE3D, scriptIndex)
     return true
   }
+
+  /**
+   * Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [godot.MeshInstance3D] or to have fine control over the [godot.MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [godot.RenderingServer.instanceSetIgnoreCulling] on the [godot.GeometryInstance3D]'s [RID].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = geometryinstance3d.customAabb
+   * //Your changes
+   * geometryinstance3d.customAabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun customAabb(block: AABB.() -> Unit): AABB = customAabb.apply{
+      block(this)
+      customAabb = this
+  }
+
 
   /**
    * Set the value of a shader uniform for this instance only ([per-instance uniform]($DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms)). See also [godot.ShaderMaterial.setShaderParameter] to assign a uniform on all instances using the same [godot.ShaderMaterial].

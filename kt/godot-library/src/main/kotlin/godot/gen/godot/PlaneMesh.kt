@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -18,6 +19,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Class representing a planar [godot.PrimitiveMesh].
@@ -107,6 +109,54 @@ public open class PlaneMesh : PrimitiveMesh() {
     callConstructor(ENGINECLASS_PLANEMESH, scriptIndex)
     return true
   }
+
+  /**
+   * Size of the generated plane.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = planemesh.size
+   * //Your changes
+   * planemesh.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun size(block: Vector2.() -> Unit): Vector2 = size.apply{
+      block(this)
+      size = this
+  }
+
+
+  /**
+   * Offset of the generated plane. Useful for particles.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = planemesh.centerOffset
+   * //Your changes
+   * planemesh.centerOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun centerOffset(block: Vector3.() -> Unit): Vector3 = centerOffset.apply{
+      block(this)
+      centerOffset = this
+  }
+
 
   public enum class Orientation(
     id: Long,

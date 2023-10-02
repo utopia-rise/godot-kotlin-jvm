@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
@@ -14,6 +15,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [godot.core.Vector3] constant to be used within the visual shader graph.
@@ -42,6 +44,30 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT, scriptIndex)
     return true
   }
+
+  /**
+   * A [godot.core.Vector3] constant which represents the state of this node.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visualshadernodevec3constant.constant
+   * //Your changes
+   * visualshadernodevec3constant.constant = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun constant(block: Vector3.() -> Unit): Vector3 = constant.apply{
+      block(this)
+      constant = this
+  }
+
 
   public companion object
 }

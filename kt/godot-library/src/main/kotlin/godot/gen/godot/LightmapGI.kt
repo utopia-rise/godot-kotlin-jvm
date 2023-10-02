@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -21,6 +22,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Computes and stores baked lightmaps for fast global illumination.
@@ -264,6 +266,31 @@ public open class LightmapGI : VisualInstance3D() {
     callConstructor(ENGINECLASS_LIGHTMAPGI, scriptIndex)
     return true
   }
+
+  /**
+   * The color to use for environment lighting. Only effective if [environmentMode] is [ENVIRONMENT_MODE_CUSTOM_COLOR].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = lightmapgi.environmentCustomColor
+   * //Your changes
+   * lightmapgi.environmentCustomColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun environmentCustomColor(block: Color.() -> Unit): Color =
+      environmentCustomColor.apply{
+      block(this)
+      environmentCustomColor = this
+  }
+
 
   public enum class BakeQuality(
     id: Long,

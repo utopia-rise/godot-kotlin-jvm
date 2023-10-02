@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Transform2D
@@ -194,6 +195,33 @@ public open class FontVariation : Font() {
     callConstructor(ENGINECLASS_FONTVARIATION, scriptIndex)
     return true
   }
+
+  /**
+   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
+   *
+   * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = fontvariation.variationTransform
+   * //Your changes
+   * fontvariation.variationTransform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun variationTransform(block: Transform2D.() -> Unit): Transform2D =
+      variationTransform.apply{
+      block(this)
+      variationTransform = this
+  }
+
 
   /**
    * Sets the spacing for `type` (see [enum TextServer.SpacingType]) to [value] in pixels (not relative to the font size).

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
@@ -14,6 +15,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 3D box shape used for physics collision.
@@ -45,6 +47,30 @@ public open class BoxShape3D : Shape3D() {
     callConstructor(ENGINECLASS_BOXSHAPE3D, scriptIndex)
     return true
   }
+
+  /**
+   * The box's width, height and depth.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = boxshape3d.size
+   * //Your changes
+   * boxshape3d.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun size(block: Vector3.() -> Unit): Vector3 = size.apply{
+      block(this)
+      size = this
+  }
+
 
   public companion object
 }

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
 import godot.core.VariantType.NIL
@@ -14,6 +15,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 3D world boundary (half-space) shape used for physics collision.
@@ -42,6 +44,30 @@ public open class WorldBoundaryShape3D : Shape3D() {
     callConstructor(ENGINECLASS_WORLDBOUNDARYSHAPE3D, scriptIndex)
     return true
   }
+
+  /**
+   * The [godot.core.Plane] used by the [godot.WorldBoundaryShape3D] for collision.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = worldboundaryshape3d.plane
+   * //Your changes
+   * worldboundaryshape3d.plane = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun plane(block: Plane.() -> Unit): Plane = plane.apply{
+      block(this)
+      plane = this
+  }
+
 
   public companion object
 }

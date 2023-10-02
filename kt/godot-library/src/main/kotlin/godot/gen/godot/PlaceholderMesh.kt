@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.VariantType.NIL
@@ -13,6 +14,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -42,6 +44,30 @@ public open class PlaceholderMesh : Mesh() {
     callConstructor(ENGINECLASS_PLACEHOLDERMESH, scriptIndex)
     return true
   }
+
+  /**
+   * The smallest [AABB] enclosing this mesh in local space.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = placeholdermesh.aabb
+   * //Your changes
+   * placeholdermesh.aabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun aabb(block: AABB.() -> Unit): AABB = aabb.apply{
+      block(this)
+      aabb = this
+  }
+
 
   public companion object
 }

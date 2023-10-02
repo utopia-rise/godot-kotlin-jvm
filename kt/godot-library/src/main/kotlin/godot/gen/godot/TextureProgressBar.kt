@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -232,6 +233,127 @@ public open class TextureProgressBar : Range() {
     callConstructor(ENGINECLASS_TEXTUREPROGRESSBAR, scriptIndex)
     return true
   }
+
+  /**
+   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy borders, to avoid transparent margins in your progress texture.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.textureProgressOffset
+   * //Your changes
+   * textureprogressbar.textureProgressOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun textureProgressOffset(block: Vector2.() -> Unit): Vector2 =
+      textureProgressOffset.apply{
+      block(this)
+      textureProgressOffset = this
+  }
+
+
+  /**
+   * Multiplies the color of the bar's `texture_under` texture.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.tintUnder
+   * //Your changes
+   * textureprogressbar.tintUnder = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun tintUnder(block: Color.() -> Unit): Color = tintUnder.apply{
+      block(this)
+      tintUnder = this
+  }
+
+
+  /**
+   * Multiplies the color of the bar's `texture_over` texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.tintOver
+   * //Your changes
+   * textureprogressbar.tintOver = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun tintOver(block: Color.() -> Unit): Color = tintOver.apply{
+      block(this)
+      tintOver = this
+  }
+
+
+  /**
+   * Multiplies the color of the bar's `texture_progress` texture.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.tintProgress
+   * //Your changes
+   * textureprogressbar.tintProgress = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun tintProgress(block: Color.() -> Unit): Color = tintProgress.apply{
+      block(this)
+      tintProgress = this
+  }
+
+
+  /**
+   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.radialCenterOffset
+   * //Your changes
+   * textureprogressbar.radialCenterOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun radialCenterOffset(block: Vector2.() -> Unit): Vector2 = radialCenterOffset.apply{
+      block(this)
+      radialCenterOffset = this
+  }
+
 
   /**
    * Sets the stretch margin with the specified index. See [stretchMarginBottom] and related properties.

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
@@ -15,6 +16,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [godot.core.Vector3] parameter to be used within the visual shader graph.
@@ -59,6 +61,30 @@ public open class VisualShaderNodeVec3Parameter : VisualShaderNodeParameter() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC3PARAMETER, scriptIndex)
     return true
   }
+
+  /**
+   * A default value to be assigned within the shader.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visualshadernodevec3parameter.defaultValue
+   * //Your changes
+   * visualshadernodevec3parameter.defaultValue = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun defaultValue(block: Vector3.() -> Unit): Vector3 = defaultValue.apply{
+      block(this)
+      defaultValue = this
+  }
+
 
   public companion object
 }

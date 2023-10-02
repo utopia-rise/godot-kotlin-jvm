@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantArray
@@ -463,6 +464,78 @@ public open class Label3D : GeometryInstance3D() {
     callConstructor(ENGINECLASS_LABEL3D, scriptIndex)
     return true
   }
+
+  /**
+   * The text drawing offset (in pixels).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = label3d.offset
+   * //Your changes
+   * label3d.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+      block(this)
+      offset = this
+  }
+
+
+  /**
+   * Text [godot.core.Color] of the [godot.Label3D].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = label3d.modulate
+   * //Your changes
+   * label3d.modulate = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun modulate(block: Color.() -> Unit): Color = modulate.apply{
+      block(this)
+      modulate = this
+  }
+
+
+  /**
+   * The tint of text outline.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = label3d.outlineModulate
+   * //Your changes
+   * label3d.outlineModulate = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun outlineModulate(block: Color.() -> Unit): Color = outlineModulate.apply{
+      block(this)
+      outlineModulate = this
+  }
+
 
   /**
    * If `true`, the specified flag will be enabled. See [enum Label3D.DrawFlags] for a list of flags.

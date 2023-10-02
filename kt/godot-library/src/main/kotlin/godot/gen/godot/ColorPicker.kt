@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
@@ -222,6 +223,30 @@ public open class ColorPicker : VBoxContainer() {
     callConstructor(ENGINECLASS_COLORPICKER, scriptIndex)
     return true
   }
+
+  /**
+   * The currently selected color.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = colorpicker.color
+   * //Your changes
+   * colorpicker.color = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun color(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
+  }
+
 
   /**
    * Adds the given color to a list of color presets. The presets are displayed in the color picker and the user will be able to select them.

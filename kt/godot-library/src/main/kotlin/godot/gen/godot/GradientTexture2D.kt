@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -18,6 +19,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -148,6 +150,54 @@ public open class GradientTexture2D : Texture2D() {
     callConstructor(ENGINECLASS_GRADIENTTEXTURE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The initial offset used to fill the texture specified in UV coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gradienttexture2d.fillFrom
+   * //Your changes
+   * gradienttexture2d.fillFrom = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun fillFrom(block: Vector2.() -> Unit): Vector2 = fillFrom.apply{
+      block(this)
+      fillFrom = this
+  }
+
+
+  /**
+   * The final offset used to fill the texture specified in UV coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gradienttexture2d.fillTo
+   * //Your changes
+   * gradienttexture2d.fillTo = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun fillTo(block: Vector2.() -> Unit): Vector2 = fillTo.apply{
+      block(this)
+      fillTo = this
+  }
+
 
   public enum class Fill(
     id: Long,

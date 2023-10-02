@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Color
@@ -438,6 +439,32 @@ public open class GPUParticles3D : GeometryInstance3D() {
     callConstructor(ENGINECLASS_GPUPARTICLES3D, scriptIndex)
     return true
   }
+
+  /**
+   * The [AABB] that determines the node's region which needs to be visible on screen for the particle system to be active.
+   *
+   * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gpuparticles3d.visibilityAabb
+   * //Your changes
+   * gpuparticles3d.visibilityAabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun visibilityAabb(block: AABB.() -> Unit): AABB = visibilityAabb.apply{
+      block(this)
+      visibilityAabb = this
+  }
+
 
   /**
    * Sets the [godot.Mesh] that is drawn at index [pass].

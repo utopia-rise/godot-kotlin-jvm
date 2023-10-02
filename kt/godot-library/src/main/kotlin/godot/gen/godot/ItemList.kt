@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedInt32Array
@@ -306,6 +307,32 @@ public open class ItemList : Control() {
     callConstructor(ENGINECLASS_ITEMLIST, scriptIndex)
     return true
   }
+
+  /**
+   * The size all icons will be adjusted to.
+   *
+   * If either X or Y component is not greater than zero, icon size won't be affected.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = itemlist.fixedIconSize
+   * //Your changes
+   * itemlist.fixedIconSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun fixedIconSize(block: Vector2i.() -> Unit): Vector2i = fixedIconSize.apply{
+      block(this)
+      fixedIconSize = this
+  }
+
 
   /**
    * Adds an item to the item list with specified text. Returns the index of an added item.

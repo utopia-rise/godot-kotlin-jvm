@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.VariantType.BOOL
@@ -151,6 +152,30 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DJIGGLE, scriptIndex)
     return true
   }
+
+  /**
+   * The default amount of gravity applied to the Jiggle joints, if they are not overridden.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = skeletonmodification2djiggle.gravity
+   * //Your changes
+   * skeletonmodification2djiggle.gravity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun gravity(block: Vector2.() -> Unit): Vector2 = gravity.apply{
+      block(this)
+      gravity = this
+  }
+
 
   /**
    * If `true`, the Jiggle modifier will take colliders into account, keeping them from entering into these collision objects.

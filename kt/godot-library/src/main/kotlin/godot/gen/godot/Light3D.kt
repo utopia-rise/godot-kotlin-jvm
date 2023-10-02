@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -245,6 +246,30 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     callConstructor(ENGINECLASS_LIGHT3D, scriptIndex)
     return true
   }
+
+  /**
+   * The light's color. An *overbright* color can be used to achieve a result equivalent to increasing the light's [lightEnergy].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = light3d.lightColor
+   * //Your changes
+   * light3d.lightColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun lightColor(block: Color.() -> Unit): Color = lightColor.apply{
+      block(this)
+      lightColor = this
+  }
+
 
   /**
    * Sets the value of the specified [enum Light3D.Param] parameter.

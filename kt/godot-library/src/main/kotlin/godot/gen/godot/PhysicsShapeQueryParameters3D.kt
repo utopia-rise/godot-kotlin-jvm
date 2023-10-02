@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform3D
@@ -27,6 +28,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Provides parameters for [godot.PhysicsDirectSpaceState3D.intersectShape].
@@ -241,6 +243,54 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     callConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D, scriptIndex)
     return true
   }
+
+  /**
+   * The motion of the shape being queried for.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsshapequeryparameters3d.motion
+   * //Your changes
+   * physicsshapequeryparameters3d.motion = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun motion(block: Vector3.() -> Unit): Vector3 = motion.apply{
+      block(this)
+      motion = this
+  }
+
+
+  /**
+   * The queried shape's transform matrix.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsshapequeryparameters3d.transform
+   * //Your changes
+   * physicsshapequeryparameters3d.transform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun transform(block: Transform3D.() -> Unit): Transform3D = transform.apply{
+      block(this)
+      transform = this
+  }
+
 
   public companion object
 }

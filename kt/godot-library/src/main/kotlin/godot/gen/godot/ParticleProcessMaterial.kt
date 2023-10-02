@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -608,6 +609,155 @@ public open class ParticleProcessMaterial : Material() {
     callConstructor(ENGINECLASS_PARTICLEPROCESSMATERIAL, scriptIndex)
     return true
   }
+
+  /**
+   * The box's extents if `emission_shape` is set to [EMISSION_SHAPE_BOX].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.emissionBoxExtents
+   * //Your changes
+   * particleprocessmaterial.emissionBoxExtents = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun emissionBoxExtents(block: Vector3.() -> Unit): Vector3 = emissionBoxExtents.apply{
+      block(this)
+      emissionBoxExtents = this
+  }
+
+
+  /**
+   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.emissionRingAxis
+   * //Your changes
+   * particleprocessmaterial.emissionRingAxis = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun emissionRingAxis(block: Vector3.() -> Unit): Vector3 = emissionRingAxis.apply{
+      block(this)
+      emissionRingAxis = this
+  }
+
+
+  /**
+   * Unit vector specifying the particles' emission direction.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.direction
+   * //Your changes
+   * particleprocessmaterial.direction = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun direction(block: Vector3.() -> Unit): Vector3 = direction.apply{
+      block(this)
+      direction = this
+  }
+
+
+  /**
+   * Gravity applied to every particle.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.gravity
+   * //Your changes
+   * particleprocessmaterial.gravity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun gravity(block: Vector3.() -> Unit): Vector3 = gravity.apply{
+      block(this)
+      gravity = this
+  }
+
+
+  /**
+   * Each particle's initial color. If the [godot.GPUParticles2D]'s `texture` is defined, it will be multiplied by this color.
+   *
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.color
+   * //Your changes
+   * particleprocessmaterial.color = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun color(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
+  }
+
+
+  /**
+   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to move in over time.
+   *
+   * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.turbulenceNoiseSpeed
+   * //Your changes
+   * particleprocessmaterial.turbulenceNoiseSpeed = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun turbulenceNoiseSpeed(block: Vector3.() -> Unit): Vector3 =
+      turbulenceNoiseSpeed.apply{
+      block(this)
+      turbulenceNoiseSpeed = this
+  }
+
 
   /**
    * Sets the minimum value range for the given parameter.

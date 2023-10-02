@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.PackedInt32Array
@@ -440,6 +441,55 @@ public open class NavigationMesh : Resource() {
     callConstructor(ENGINECLASS_NAVIGATIONMESH, scriptIndex)
     return true
   }
+
+  /**
+   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its enclosing area.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationmesh.filterBakingAabb
+   * //Your changes
+   * navigationmesh.filterBakingAabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun filterBakingAabb(block: AABB.() -> Unit): AABB = filterBakingAabb.apply{
+      block(this)
+      filterBakingAabb = this
+  }
+
+
+  /**
+   * The position offset applied to the [filterBakingAabb] [AABB].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationmesh.filterBakingAabbOffset
+   * //Your changes
+   * navigationmesh.filterBakingAabbOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun filterBakingAabbOffset(block: Vector3.() -> Unit): Vector3 =
+      filterBakingAabbOffset.apply{
+      block(this)
+      filterBakingAabbOffset = this
+  }
+
 
   /**
    * Based on [value], enables or disables the specified layer in the [geometryCollisionMask], given a [layerNumber] between 1 and 32.

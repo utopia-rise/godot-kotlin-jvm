@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
 import godot.core.RID
@@ -160,6 +161,30 @@ public open class NavigationObstacle3D : Node3D() {
     callConstructor(ENGINECLASS_NAVIGATIONOBSTACLE3D, scriptIndex)
     return true
   }
+
+  /**
+   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationobstacle3d.velocity
+   * //Your changes
+   * navigationobstacle3d.velocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun velocity(block: Vector3.() -> Unit): Vector3 = velocity.apply{
+      block(this)
+      velocity = this
+  }
+
 
   /**
    * Returns the [RID] of this obstacle on the [godot.NavigationServer3D].

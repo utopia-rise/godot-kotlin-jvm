@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
@@ -53,6 +54,30 @@ public open class Bone2D : Node2D() {
     callConstructor(ENGINECLASS_BONE2D, scriptIndex)
     return true
   }
+
+  /**
+   * Rest transform of the bone. You can reset the node's transforms to this value using [applyRest].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = bone2d.rest
+   * //Your changes
+   * bone2d.rest = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun rest(block: Transform2D.() -> Unit): Transform2D = rest.apply{
+      block(this)
+      rest = this
+  }
+
 
   /**
    * Stores the node's current transforms in [rest].

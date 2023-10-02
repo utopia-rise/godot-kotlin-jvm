@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -1453,6 +1454,151 @@ public open class Environment : Resource() {
     callConstructor(ENGINECLASS_ENVIRONMENT, scriptIndex)
     return true
   }
+
+  /**
+   * The [godot.core.Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR] background mode.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.backgroundColor
+   * //Your changes
+   * environment.backgroundColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun backgroundColor(block: Color.() -> Unit): Color = backgroundColor.apply{
+      block(this)
+      backgroundColor = this
+  }
+
+
+  /**
+   * The rotation to use for sky rendering.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.skyRotation
+   * //Your changes
+   * environment.skyRotation = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun skyRotation(block: Vector3.() -> Unit): Vector3 = skyRotation.apply{
+      block(this)
+      skyRotation = this
+  }
+
+
+  /**
+   * The ambient light's [godot.core.Color]. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.ambientLightColor
+   * //Your changes
+   * environment.ambientLightColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun ambientLightColor(block: Color.() -> Unit): Color = ambientLightColor.apply{
+      block(this)
+      ambientLightColor = this
+  }
+
+
+  /**
+   * The fog's color.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.fogLightColor
+   * //Your changes
+   * environment.fogLightColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun fogLightColor(block: Color.() -> Unit): Color = fogLightColor.apply{
+      block(this)
+      fogLightColor = this
+  }
+
+
+  /**
+   * The [godot.core.Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.volumetricFogAlbedo
+   * //Your changes
+   * environment.volumetricFogAlbedo = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun volumetricFogAlbedo(block: Color.() -> Unit): Color = volumetricFogAlbedo.apply{
+      block(this)
+      volumetricFogAlbedo = this
+  }
+
+
+  /**
+   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh shadows.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.volumetricFogEmission
+   * //Your changes
+   * environment.volumetricFogEmission = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun volumetricFogEmission(block: Color.() -> Unit): Color =
+      volumetricFogEmission.apply{
+      block(this)
+      volumetricFogEmission = this
+  }
+
 
   /**
    * Sets the intensity of the glow level [idx]. A value above `0.0` enables the level. Each level relies on the previous level. This means that enabling higher glow levels will slow down the glow effect rendering, even if previous levels aren't enabled.

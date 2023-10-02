@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -14,6 +15,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 2D line segment shape used for physics collision.
@@ -54,6 +56,54 @@ public open class SegmentShape2D : Shape2D() {
     callConstructor(ENGINECLASS_SEGMENTSHAPE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The segment's first point position.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = segmentshape2d.a
+   * //Your changes
+   * segmentshape2d.a = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun a(block: Vector2.() -> Unit): Vector2 = a.apply{
+      block(this)
+      a = this
+  }
+
+
+  /**
+   * The segment's second point position.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = segmentshape2d.b
+   * //Your changes
+   * segmentshape2d.b = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun b(block: Vector2.() -> Unit): Vector2 = b.apply{
+      block(this)
+      b = this
+  }
+
 
   public companion object
 }

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.NodePath
@@ -303,6 +304,282 @@ public open class Node3D : Node() {
     callConstructor(ENGINECLASS_NODE3D, scriptIndex)
     return true
   }
+
+  /**
+   * Local space [godot.Transform3D] of this node, with respect to the parent node.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.transform
+   * //Your changes
+   * node3d.transform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun transform(block: Transform3D.() -> Unit): Transform3D = transform.apply{
+      block(this)
+      transform = this
+  }
+
+
+  /**
+   * World3D space (global) [godot.Transform3D] of this node.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.globalTransform
+   * //Your changes
+   * node3d.globalTransform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalTransform(block: Transform3D.() -> Unit): Transform3D =
+      globalTransform.apply{
+      block(this)
+      globalTransform = this
+  }
+
+
+  /**
+   * Local position or translation of this node relative to the parent. This is equivalent to `transform.origin`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.position
+   * //Your changes
+   * node3d.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun position(block: Vector3.() -> Unit): Vector3 = position.apply{
+      block(this)
+      position = this
+  }
+
+
+  /**
+   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotaton in the order specified by the [rotationOrder] property.
+   *
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   *
+   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [rotationDegrees].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.rotation
+   * //Your changes
+   * node3d.rotation = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun rotation(block: Vector3.() -> Unit): Vector3 = rotation.apply{
+      block(this)
+      rotation = this
+  }
+
+
+  /**
+   * Helper property to access [rotation] in degrees instead of radians.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.rotationDegrees
+   * //Your changes
+   * node3d.rotationDegrees = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun rotationDegrees(block: Vector3.() -> Unit): Vector3 = rotationDegrees.apply{
+      block(this)
+      rotationDegrees = this
+  }
+
+
+  /**
+   * Access to the node rotation as a [godot.Quaternion]. This property is ideal for tweening complex rotations.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.quaternion
+   * //Your changes
+   * node3d.quaternion = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun quaternion(block: Quaternion.() -> Unit): Quaternion = quaternion.apply{
+      block(this)
+      quaternion = this
+  }
+
+
+  /**
+   * Direct access to the 3x3 basis of the [godot.Transform3D] property.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.basis
+   * //Your changes
+   * node3d.basis = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun basis(block: Basis.() -> Unit): Basis = basis.apply{
+      block(this)
+      basis = this
+  }
+
+
+  /**
+   * Scale part of the local transformation.
+   *
+   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
+   *
+   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [godot.Light3D]s are not visually affected by [scale].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.scale
+   * //Your changes
+   * node3d.scale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scale(block: Vector3.() -> Unit): Vector3 = scale.apply{
+      block(this)
+      scale = this
+  }
+
+
+  /**
+   * Global position of this node. This is equivalent to `global_transform.origin`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.globalPosition
+   * //Your changes
+   * node3d.globalPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalPosition(block: Vector3.() -> Unit): Vector3 = globalPosition.apply{
+      block(this)
+      globalPosition = this
+  }
+
+
+  /**
+   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
+   *
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.globalRotation
+   * //Your changes
+   * node3d.globalRotation = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalRotation(block: Vector3.() -> Unit): Vector3 = globalRotation.apply{
+      block(this)
+      globalRotation = this
+  }
+
+
+  /**
+   * Helper property to access [globalRotation] in degrees instead of radians.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.globalRotationDegrees
+   * //Your changes
+   * node3d.globalRotationDegrees = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalRotationDegrees(block: Vector3.() -> Unit): Vector3 =
+      globalRotationDegrees.apply{
+      block(this)
+      globalRotationDegrees = this
+  }
+
 
   /**
    * Returns the parent [godot.Node3D], or an empty [godot.Object] if no parent exists or parent is not of type [godot.Node3D].

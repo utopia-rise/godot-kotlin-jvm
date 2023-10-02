@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.RID
@@ -187,6 +188,57 @@ public open class RayCast3D : Node3D() {
     callConstructor(ENGINECLASS_RAYCAST3D, scriptIndex)
     return true
   }
+
+  /**
+   * The ray's destination point, relative to the RayCast's `position`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = raycast3d.targetPosition
+   * //Your changes
+   * raycast3d.targetPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun targetPosition(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
+      block(this)
+      targetPosition = this
+  }
+
+
+  /**
+   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the [godot.RayCast3D] is colliding with something.
+   *
+   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [godot.ProjectSettings.debug/shapes/collision/shapeColor] is used.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = raycast3d.debugShapeCustomColor
+   * //Your changes
+   * raycast3d.debugShapeCustomColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun debugShapeCustomColor(block: Color.() -> Unit): Color =
+      debugShapeCustomColor.apply{
+      block(this)
+      debugShapeCustomColor = this
+  }
+
 
   /**
    * Returns whether any object is intersecting with the ray's vector (considering the vector length).

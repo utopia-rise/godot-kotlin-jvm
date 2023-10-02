@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -18,6 +19,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFSpecGloss : Resource() {
@@ -90,6 +92,50 @@ public open class GLTFSpecGloss : Resource() {
     callConstructor(ENGINECLASS_GLTFSPECGLOSS, scriptIndex)
     return true
   }
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfspecgloss.diffuseFactor
+   * //Your changes
+   * gltfspecgloss.diffuseFactor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun diffuseFactor(block: Color.() -> Unit): Color = diffuseFactor.apply{
+      block(this)
+      diffuseFactor = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfspecgloss.specularFactor
+   * //Your changes
+   * gltfspecgloss.specularFactor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun specularFactor(block: Color.() -> Unit): Color = specularFactor.apply{
+      block(this)
+      specularFactor = this
+  }
+
 
   public companion object
 }

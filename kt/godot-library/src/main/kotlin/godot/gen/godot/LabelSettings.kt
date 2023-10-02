@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -22,6 +23,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Provides common settings to customize the text in a [godot.Label].
@@ -173,6 +175,102 @@ public open class LabelSettings : Resource() {
     callConstructor(ENGINECLASS_LABELSETTINGS, scriptIndex)
     return true
   }
+
+  /**
+   * Color of the text.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = labelsettings.fontColor
+   * //Your changes
+   * labelsettings.fontColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun fontColor(block: Color.() -> Unit): Color = fontColor.apply{
+      block(this)
+      fontColor = this
+  }
+
+
+  /**
+   * The color of the outline.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = labelsettings.outlineColor
+   * //Your changes
+   * labelsettings.outlineColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun outlineColor(block: Color.() -> Unit): Color = outlineColor.apply{
+      block(this)
+      outlineColor = this
+  }
+
+
+  /**
+   * Color of the shadow effect. If alpha is `0`, no shadow will be drawn.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = labelsettings.shadowColor
+   * //Your changes
+   * labelsettings.shadowColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun shadowColor(block: Color.() -> Unit): Color = shadowColor.apply{
+      block(this)
+      shadowColor = this
+  }
+
+
+  /**
+   * Offset of the shadow effect, in pixels.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = labelsettings.shadowOffset
+   * //Your changes
+   * labelsettings.shadowOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun shadowOffset(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
+      block(this)
+      shadowOffset = this
+  }
+
 
   public companion object
 }

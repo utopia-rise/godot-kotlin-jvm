@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedStringArray
@@ -498,6 +499,134 @@ public open class Window : Viewport() {
     callConstructor(ENGINECLASS_WINDOW, scriptIndex)
     return true
   }
+
+  /**
+   * The window's position in pixels.
+   *
+   * If [godot.ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`, the window's position is in the coordinates of its parent [godot.Viewport].
+   *
+   * **Note:** This property only works if [initialPosition] is set to [WINDOW_INITIAL_POSITION_ABSOLUTE].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.position
+   * //Your changes
+   * window.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun position(block: Vector2i.() -> Unit): Vector2i = position.apply{
+      block(this)
+      position = this
+  }
+
+
+  /**
+   * The window's size in pixels.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.size
+   * //Your changes
+   * window.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun size(block: Vector2i.() -> Unit): Vector2i = size.apply{
+      block(this)
+      size = this
+  }
+
+
+  /**
+   * If non-zero, the [godot.Window] can't be resized to be smaller than this size.
+   *
+   * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls] is enabled and if its size is bigger.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.minSize
+   * //Your changes
+   * window.minSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun minSize(block: Vector2i.() -> Unit): Vector2i = minSize.apply{
+      block(this)
+      minSize = this
+  }
+
+
+  /**
+   * If non-zero, the [godot.Window] can't be resized to be bigger than this size.
+   *
+   * **Note:** This property will be ignored if the value is lower than [minSize].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.maxSize
+   * //Your changes
+   * window.maxSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun maxSize(block: Vector2i.() -> Unit): Vector2i = maxSize.apply{
+      block(this)
+      maxSize = this
+  }
+
+
+  /**
+   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [godot.Window]'s content will be scaled when the window is resized to a different size.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.contentScaleSize
+   * //Your changes
+   * window.contentScaleSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun contentScaleSize(block: Vector2i.() -> Unit): Vector2i = contentScaleSize.apply{
+      block(this)
+      contentScaleSize = this
+  }
+
 
   /**
    * Returns the ID of the window.

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Color
@@ -583,6 +584,84 @@ public open class Control : CanvasItem() {
     callConstructor(ENGINECLASS_CONTROL, scriptIndex)
     return true
   }
+
+  /**
+   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.customMinimumSize
+   * //Your changes
+   * control.customMinimumSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun customMinimumSize(block: Vector2.() -> Unit): Vector2 = customMinimumSize.apply{
+      block(this)
+      customMinimumSize = this
+  }
+
+
+  /**
+   * The node's scale, relative to its [size]. Change this property to scale the node around its [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
+   *
+   * **Note:** This property is mainly intended to be used for animation purposes. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) instead of scaling Controls individually.
+   *
+   * **Note:** [godot.FontFile.oversampling] does *not* take [godot.Control] [scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [godot.ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [godot.SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
+   *
+   * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [scale] property.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.scale
+   * //Your changes
+   * control.scale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scale(block: Vector2.() -> Unit): Vector2 = scale.apply{
+      block(this)
+      scale = this
+  }
+
+
+  /**
+   * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale], it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the Control's center.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.pivotOffset
+   * //Your changes
+   * control.pivotOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun pivotOffset(block: Vector2.() -> Unit): Vector2 = pivotOffset.apply{
+      block(this)
+      pivotOffset = this
+  }
+
 
   /**
    * Virtual method to be implemented by the user. Returns whether the given [point] is inside this control.

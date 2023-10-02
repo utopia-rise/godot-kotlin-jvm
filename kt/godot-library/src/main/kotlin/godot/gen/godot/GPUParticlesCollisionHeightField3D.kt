@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -17,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Real-time heightmap-shaped 3D particle attractor affecting [godot.GPUParticles3D] nodes.
@@ -105,6 +107,30 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D, scriptIndex)
     return true
   }
+
+  /**
+   * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set as small as possible while covering the parts of the scene you need.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gpuparticlescollisionheightfield3d.size
+   * //Your changes
+   * gpuparticlescollisionheightfield3d.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun size(block: Vector3.() -> Unit): Vector3 = size.apply{
+      block(this)
+      size = this
+  }
+
 
   public enum class Resolution(
     id: Long,

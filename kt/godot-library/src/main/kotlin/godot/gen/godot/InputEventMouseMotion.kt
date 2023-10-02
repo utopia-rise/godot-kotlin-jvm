@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -18,6 +19,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Represents a mouse or a pen movement.
@@ -119,6 +121,80 @@ public open class InputEventMouseMotion : InputEventMouse() {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION, scriptIndex)
     return true
   }
+
+  /**
+   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventmousemotion.tilt
+   * //Your changes
+   * inputeventmousemotion.tilt = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun tilt(block: Vector2.() -> Unit): Vector2 = tilt.apply{
+      block(this)
+      tilt = this
+  }
+
+
+  /**
+   * The mouse position relative to the previous position (position at the last frame).
+   *
+   * **Note:** Since [godot.InputEventMouseMotion] is only emitted when the mouse moves, the last event won't have a relative position of `Vector2(0, 0)` when the user stops moving the mouse.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventmousemotion.relative
+   * //Your changes
+   * inputeventmousemotion.relative = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun relative(block: Vector2.() -> Unit): Vector2 = relative.apply{
+      block(this)
+      relative = this
+  }
+
+
+  /**
+   * The mouse velocity in pixels per second.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventmousemotion.velocity
+   * //Your changes
+   * inputeventmousemotion.velocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun velocity(block: Vector2.() -> Unit): Vector2 = velocity.apply{
+      block(this)
+      velocity = this
+  }
+
 
   public companion object
 }

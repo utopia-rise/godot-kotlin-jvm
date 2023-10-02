@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
@@ -191,6 +192,78 @@ public open class CanvasLayer : Node() {
     callConstructor(ENGINECLASS_CANVASLAYER, scriptIndex)
     return true
   }
+
+  /**
+   * The layer's base offset.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = canvaslayer.offset
+   * //Your changes
+   * canvaslayer.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+      block(this)
+      offset = this
+  }
+
+
+  /**
+   * The layer's scale.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = canvaslayer.scale
+   * //Your changes
+   * canvaslayer.scale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scale(block: Vector2.() -> Unit): Vector2 = scale.apply{
+      block(this)
+      scale = this
+  }
+
+
+  /**
+   * The layer's transform.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = canvaslayer.transform
+   * //Your changes
+   * canvaslayer.transform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun transform(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+      block(this)
+      transform = this
+  }
+
 
   /**
    * Shows any [godot.CanvasItem] under this [godot.CanvasLayer]. This is equivalent to setting [visible] to `true`.

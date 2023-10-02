@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Rect2
@@ -134,6 +135,58 @@ public open class StyleBoxTexture : StyleBox() {
     callConstructor(ENGINECLASS_STYLEBOXTEXTURE, scriptIndex)
     return true
   }
+
+  /**
+   * Species a sub-region of the texture to use.
+   *
+   * This is equivalent to first wrapping the texture in an [godot.AtlasTexture] with the same region.
+   *
+   * If empty (`Rect2(0, 0, 0, 0)`), the whole texture will be used.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = styleboxtexture.regionRect
+   * //Your changes
+   * styleboxtexture.regionRect = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun regionRect(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
+      block(this)
+      regionRect = this
+  }
+
+
+  /**
+   * Modulates the color of the texture when this style box is drawn.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = styleboxtexture.modulateColor
+   * //Your changes
+   * styleboxtexture.modulateColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun modulateColor(block: Color.() -> Unit): Color = modulateColor.apply{
+      block(this)
+      modulateColor = this
+  }
+
 
   /**
    * Sets the margin to [size] pixels for the specified [enum Side].

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -351,6 +352,56 @@ public open class Camera2D : Node2D() {
     callConstructor(ENGINECLASS_CAMERA2D, scriptIndex)
     return true
   }
+
+  /**
+   * The camera's relative offset. Useful for looking around or camera shake animations. The offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and [limitRight].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = camera2d.offset
+   * //Your changes
+   * camera2d.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+      block(this)
+      offset = this
+  }
+
+
+  /**
+   * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of `Vector(0.5, 0.5)` halves the size seen in the viewport.
+   *
+   * **Note:** [godot.FontFile.oversampling] does *not* take [godot.Camera2D] zoom into account. This means that zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated unless the font is part of a [godot.CanvasLayer] that makes it ignore camera zoom. To ensure text remains crisp regardless of zoom, you can enable MSDF font rendering by enabling [godot.ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [godot.SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = camera2d.zoom
+   * //Your changes
+   * camera2d.zoom = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun zoom(block: Vector2.() -> Unit): Vector2 = zoom.apply{
+      block(this)
+      zoom = this
+  }
+
 
   /**
    * Forces this [godot.Camera2D] to become the current active one. [enabled] must be `true`.

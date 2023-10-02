@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Dictionary
@@ -178,6 +179,30 @@ public open class ArrayMesh : Mesh() {
     callConstructor(ENGINECLASS_ARRAYMESH, scriptIndex)
     return true
   }
+
+  /**
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = arraymesh.customAabb
+   * //Your changes
+   * arraymesh.customAabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun customAabb(block: AABB.() -> Unit): AABB = customAabb.apply{
+      block(this)
+      customAabb = this
+  }
+
 
   /**
    * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called before surface is added.

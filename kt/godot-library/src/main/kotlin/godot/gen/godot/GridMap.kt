@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.RID
@@ -179,6 +180,28 @@ public open class GridMap : Node3D() {
     callConstructor(ENGINECLASS_GRIDMAP, scriptIndex)
     return true
   }
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gridmap.cellSize
+   * //Your changes
+   * gridmap.cellSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun cellSize(block: Vector3.() -> Unit): Vector3 = cellSize.apply{
+      block(this)
+      cellSize = this
+  }
+
 
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
@@ -19,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A camera feed gives you access to a single physical camera attached to your device.
@@ -62,6 +64,30 @@ public open class CameraFeed : RefCounted() {
     callConstructor(ENGINECLASS_CAMERAFEED, scriptIndex)
     return true
   }
+
+  /**
+   * The transform applied to the camera's image.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = camerafeed.feedTransform
+   * //Your changes
+   * camerafeed.feedTransform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun feedTransform(block: Transform2D.() -> Unit): Transform2D = feedTransform.apply{
+      block(this)
+      feedTransform = this
+  }
+
 
   /**
    * Returns the unique ID for this feed.

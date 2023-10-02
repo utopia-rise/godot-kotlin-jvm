@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
@@ -167,6 +168,94 @@ public open class GLTFNode : Resource() {
     callConstructor(ENGINECLASS_GLTFNODE, scriptIndex)
     return true
   }
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfnode.xform
+   * //Your changes
+   * gltfnode.xform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun xform(block: Transform3D.() -> Unit): Transform3D = xform.apply{
+      block(this)
+      xform = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfnode.position
+   * //Your changes
+   * gltfnode.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun position(block: Vector3.() -> Unit): Vector3 = position.apply{
+      block(this)
+      position = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfnode.rotation
+   * //Your changes
+   * gltfnode.rotation = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun rotation(block: Quaternion.() -> Unit): Quaternion = rotation.apply{
+      block(this)
+      rotation = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfnode.scale
+   * //Your changes
+   * gltfnode.scale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scale(block: Vector3.() -> Unit): Vector3 = scale.apply{
+      block(this)
+      scale = this
+  }
+
 
   public fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)

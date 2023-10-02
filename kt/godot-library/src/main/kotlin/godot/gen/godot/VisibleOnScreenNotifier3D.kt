@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.VariantType.BOOL
@@ -16,6 +17,7 @@ import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -56,6 +58,30 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
     callConstructor(ENGINECLASS_VISIBLEONSCREENNOTIFIER3D, scriptIndex)
     return true
   }
+
+  /**
+   * The VisibleOnScreenNotifier3D's bounding box.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visibleonscreennotifier3d.aabb
+   * //Your changes
+   * visibleonscreennotifier3d.aabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun aabb(block: AABB.() -> Unit): AABB = aabb.apply{
+      block(this)
+      aabb = this
+  }
+
 
   /**
    * If `true`, the bounding box is on the screen.

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantArray
@@ -124,6 +125,30 @@ public open class TileSet : Resource() {
     callConstructor(ENGINECLASS_TILESET, scriptIndex)
     return true
   }
+
+  /**
+   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = tileset.tileSize
+   * //Your changes
+   * tileset.tileSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun tileSize(block: Vector2i.() -> Unit): Vector2i = tileSize.apply{
+      block(this)
+      tileSize = this
+  }
+
 
   /**
    * Returns a new unused source ID. This generated ID is the same that a call to `add_source` would return.
