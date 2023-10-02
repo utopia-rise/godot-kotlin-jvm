@@ -418,7 +418,7 @@ public open class GPUParticles2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun visibilityRect(block: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
+  public open fun visibilityRectMutate(block: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
       block(this)
       visibilityRect = this
   }

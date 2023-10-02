@@ -140,7 +140,7 @@ public open class CollisionShape2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun debugColor(block: Color.() -> Unit): Color = debugColor.apply{
+  public open fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply{
       block(this)
       debugColor = this
   }

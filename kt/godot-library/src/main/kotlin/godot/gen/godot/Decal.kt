@@ -232,7 +232,7 @@ public open class Decal : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
@@ -256,7 +256,7 @@ public open class Decal : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun modulate(block: Color.() -> Unit): Color = modulate.apply{
+  public open fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
       block(this)
       modulate = this
   }

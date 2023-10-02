@@ -105,7 +105,7 @@ public open class StaticBody3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantLinearVelocity(block: Vector3.() -> Unit): Vector3 =
+  public open fun constantLinearVelocityMutate(block: Vector3.() -> Unit): Vector3 =
       constantLinearVelocity.apply{
       block(this)
       constantLinearVelocity = this
@@ -130,7 +130,7 @@ public open class StaticBody3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantAngularVelocity(block: Vector3.() -> Unit): Vector3 =
+  public open fun constantAngularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
       constantAngularVelocity.apply{
       block(this)
       constantAngularVelocity = this

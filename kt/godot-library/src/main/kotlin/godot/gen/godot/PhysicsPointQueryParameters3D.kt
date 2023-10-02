@@ -135,7 +135,7 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun position(block: Vector3.() -> Unit): Vector3 = position.apply{
+  public open fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply{
       block(this)
       position = this
   }

@@ -238,7 +238,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun angularVelocity(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+  public open fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
       block(this)
       angularVelocity = this
   }
@@ -262,7 +262,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun linearVelocity(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+  public open fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
       block(this)
       linearVelocity = this
   }
@@ -286,7 +286,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun transform(block: Transform3D.() -> Unit): Transform3D = transform.apply{
+  public open fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
       block(this)
       transform = this
   }

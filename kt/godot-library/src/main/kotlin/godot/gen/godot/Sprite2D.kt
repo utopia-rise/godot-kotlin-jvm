@@ -241,7 +241,7 @@ public open class Sprite2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -265,7 +265,7 @@ public open class Sprite2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun frameCoords(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply{
+  public open fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply{
       block(this)
       frameCoords = this
   }
@@ -289,7 +289,7 @@ public open class Sprite2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun regionRect(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
+  public open fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
       block(this)
       regionRect = this
   }

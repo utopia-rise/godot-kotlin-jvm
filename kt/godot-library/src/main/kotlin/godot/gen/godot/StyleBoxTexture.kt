@@ -158,7 +158,7 @@ public open class StyleBoxTexture : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun regionRect(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
+  public open fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
       block(this)
       regionRect = this
   }
@@ -182,7 +182,7 @@ public open class StyleBoxTexture : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun modulateColor(block: Color.() -> Unit): Color = modulateColor.apply{
+  public open fun modulateColorMutate(block: Color.() -> Unit): Color = modulateColor.apply{
       block(this)
       modulateColor = this
   }

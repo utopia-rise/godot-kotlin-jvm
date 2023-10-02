@@ -83,7 +83,8 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
    * ``````
    */
   @CoreTypeHelper
-  public open fun defaultValue(block: Transform3D.() -> Unit): Transform3D = defaultValue.apply{
+  public open fun defaultValueMutate(block: Transform3D.() -> Unit): Transform3D =
+      defaultValue.apply{
       block(this)
       defaultValue = this
   }

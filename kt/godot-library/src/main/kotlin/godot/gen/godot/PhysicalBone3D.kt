@@ -310,7 +310,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun jointOffset(block: Transform3D.() -> Unit): Transform3D = jointOffset.apply{
+  public open fun jointOffsetMutate(block: Transform3D.() -> Unit): Transform3D = jointOffset.apply{
       block(this)
       jointOffset = this
   }
@@ -334,7 +334,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun jointRotation(block: Vector3.() -> Unit): Vector3 = jointRotation.apply{
+  public open fun jointRotationMutate(block: Vector3.() -> Unit): Vector3 = jointRotation.apply{
       block(this)
       jointRotation = this
   }
@@ -358,7 +358,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun bodyOffset(block: Transform3D.() -> Unit): Transform3D = bodyOffset.apply{
+  public open fun bodyOffsetMutate(block: Transform3D.() -> Unit): Transform3D = bodyOffset.apply{
       block(this)
       bodyOffset = this
   }
@@ -382,7 +382,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun linearVelocity(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+  public open fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
       block(this)
       linearVelocity = this
   }
@@ -406,7 +406,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun angularVelocity(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+  public open fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
       block(this)
       angularVelocity = this
   }

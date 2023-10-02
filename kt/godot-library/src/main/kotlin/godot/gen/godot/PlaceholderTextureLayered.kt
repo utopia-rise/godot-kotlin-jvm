@@ -84,7 +84,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
    * ``````
    */
   @CoreTypeHelper
-  public open fun size(block: Vector2i.() -> Unit): Vector2i = size.apply{
+  public open fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
       block(this)
       size = this
   }

@@ -178,7 +178,7 @@ public open class NavigationLink3D : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun startPosition(block: Vector3.() -> Unit): Vector3 = startPosition.apply{
+  public open fun startPositionMutate(block: Vector3.() -> Unit): Vector3 = startPosition.apply{
       block(this)
       startPosition = this
   }
@@ -206,7 +206,7 @@ public open class NavigationLink3D : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun endPosition(block: Vector3.() -> Unit): Vector3 = endPosition.apply{
+  public open fun endPositionMutate(block: Vector3.() -> Unit): Vector3 = endPosition.apply{
       block(this)
       endPosition = this
   }

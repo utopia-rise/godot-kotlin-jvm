@@ -262,7 +262,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motion(block: Vector3.() -> Unit): Vector3 = motion.apply{
+  public open fun motionMutate(block: Vector3.() -> Unit): Vector3 = motion.apply{
       block(this)
       motion = this
   }
@@ -286,7 +286,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun transform(block: Transform3D.() -> Unit): Transform3D = transform.apply{
+  public open fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
       block(this)
       transform = this
   }

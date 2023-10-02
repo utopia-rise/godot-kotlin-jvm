@@ -177,7 +177,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun from(block: Transform2D.() -> Unit): Transform2D = from.apply{
+  public open fun fromMutate(block: Transform2D.() -> Unit): Transform2D = from.apply{
       block(this)
       from = this
   }
@@ -201,7 +201,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motion(block: Vector2.() -> Unit): Vector2 = motion.apply{
+  public open fun motionMutate(block: Vector2.() -> Unit): Vector2 = motion.apply{
       block(this)
       motion = this
   }

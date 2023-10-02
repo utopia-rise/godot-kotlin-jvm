@@ -255,7 +255,7 @@ public open class CharFXTransform : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun range(block: Vector2i.() -> Unit): Vector2i = range.apply{
+  public open fun rangeMutate(block: Vector2i.() -> Unit): Vector2i = range.apply{
       block(this)
       range = this
   }
@@ -279,7 +279,7 @@ public open class CharFXTransform : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -303,7 +303,7 @@ public open class CharFXTransform : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun color(block: Color.() -> Unit): Color = color.apply{
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }

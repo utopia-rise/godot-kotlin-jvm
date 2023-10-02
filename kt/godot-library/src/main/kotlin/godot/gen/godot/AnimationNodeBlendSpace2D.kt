@@ -198,7 +198,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun minSpace(block: Vector2.() -> Unit): Vector2 = minSpace.apply{
+  public open fun minSpaceMutate(block: Vector2.() -> Unit): Vector2 = minSpace.apply{
       block(this)
       minSpace = this
   }
@@ -222,7 +222,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun maxSpace(block: Vector2.() -> Unit): Vector2 = maxSpace.apply{
+  public open fun maxSpaceMutate(block: Vector2.() -> Unit): Vector2 = maxSpace.apply{
       block(this)
       maxSpace = this
   }
@@ -246,7 +246,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun snap(block: Vector2.() -> Unit): Vector2 = snap.apply{
+  public open fun snapMutate(block: Vector2.() -> Unit): Vector2 = snap.apply{
       block(this)
       snap = this
   }

@@ -128,7 +128,7 @@ public open class PlaneMesh : PrimitiveMesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size(block: Vector2.() -> Unit): Vector2 = size.apply{
+  public open fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
       block(this)
       size = this
   }
@@ -152,7 +152,7 @@ public open class PlaneMesh : PrimitiveMesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun centerOffset(block: Vector3.() -> Unit): Vector3 = centerOffset.apply{
+  public open fun centerOffsetMutate(block: Vector3.() -> Unit): Vector3 = centerOffset.apply{
       block(this)
       centerOffset = this
   }

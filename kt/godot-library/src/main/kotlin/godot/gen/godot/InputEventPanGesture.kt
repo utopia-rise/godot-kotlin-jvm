@@ -66,7 +66,7 @@ public open class InputEventPanGesture : InputEventGesture() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun delta(block: Vector2.() -> Unit): Vector2 = delta.apply{
+  public open fun deltaMutate(block: Vector2.() -> Unit): Vector2 = delta.apply{
       block(this)
       delta = this
   }

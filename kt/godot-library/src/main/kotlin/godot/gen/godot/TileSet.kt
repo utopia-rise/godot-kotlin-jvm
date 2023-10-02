@@ -144,7 +144,7 @@ public open class TileSet : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun tileSize(block: Vector2i.() -> Unit): Vector2i = tileSize.apply{
+  public open fun tileSizeMutate(block: Vector2i.() -> Unit): Vector2i = tileSize.apply{
       block(this)
       tileSize = this
   }

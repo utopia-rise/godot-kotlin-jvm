@@ -80,7 +80,7 @@ public open class BackBufferCopy : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun rect(block: Rect2.() -> Unit): Rect2 = rect.apply{
+  public open fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
       block(this)
       rect = this
   }

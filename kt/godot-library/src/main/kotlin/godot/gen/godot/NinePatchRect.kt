@@ -136,7 +136,7 @@ public open class NinePatchRect : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun regionRect(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
+  public open fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
       block(this)
       regionRect = this
   }

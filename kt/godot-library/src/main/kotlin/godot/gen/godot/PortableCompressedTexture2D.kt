@@ -96,7 +96,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeOverride(block: Vector2.() -> Unit): Vector2 = sizeOverride.apply{
+  public open fun sizeOverrideMutate(block: Vector2.() -> Unit): Vector2 = sizeOverride.apply{
       block(this)
       sizeOverride = this
   }

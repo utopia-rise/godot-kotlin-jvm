@@ -371,7 +371,7 @@ public open class Camera2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -397,7 +397,7 @@ public open class Camera2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun zoom(block: Vector2.() -> Unit): Vector2 = zoom.apply{
+  public open fun zoomMutate(block: Vector2.() -> Unit): Vector2 = zoom.apply{
       block(this)
       zoom = this
   }

@@ -273,7 +273,7 @@ public open class GraphNode : Container() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun positionOffset(block: Vector2.() -> Unit): Vector2 = positionOffset.apply{
+  public open fun positionOffsetMutate(block: Vector2.() -> Unit): Vector2 = positionOffset.apply{
       block(this)
       positionOffset = this
   }

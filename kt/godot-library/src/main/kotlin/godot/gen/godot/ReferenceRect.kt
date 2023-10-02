@@ -99,7 +99,7 @@ public open class ReferenceRect : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun borderColor(block: Color.() -> Unit): Color = borderColor.apply{
+  public open fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply{
       block(this)
       borderColor = this
   }

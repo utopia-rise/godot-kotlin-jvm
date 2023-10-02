@@ -270,7 +270,7 @@ public open class Light2D internal constructor() : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun color(block: Color.() -> Unit): Color = color.apply{
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
@@ -294,7 +294,7 @@ public open class Light2D internal constructor() : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowColor(block: Color.() -> Unit): Color = shadowColor.apply{
+  public open fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
       block(this)
       shadowColor = this
   }

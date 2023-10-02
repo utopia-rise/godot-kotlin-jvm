@@ -313,7 +313,7 @@ public open class FastNoiseLite : Noise() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offset(block: Vector3.() -> Unit): Vector3 = offset.apply{
+  public open fun offsetMutate(block: Vector3.() -> Unit): Vector3 = offset.apply{
       block(this)
       offset = this
   }

@@ -498,7 +498,8 @@ public open class Area3D : CollisionObject3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun gravityPointCenter(block: Vector3.() -> Unit): Vector3 = gravityPointCenter.apply{
+  public open fun gravityPointCenterMutate(block: Vector3.() -> Unit): Vector3 =
+      gravityPointCenter.apply{
       block(this)
       gravityPointCenter = this
   }
@@ -522,7 +523,8 @@ public open class Area3D : CollisionObject3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun gravityDirection(block: Vector3.() -> Unit): Vector3 = gravityDirection.apply{
+  public open fun gravityDirectionMutate(block: Vector3.() -> Unit): Vector3 =
+      gravityDirection.apply{
       block(this)
       gravityDirection = this
   }

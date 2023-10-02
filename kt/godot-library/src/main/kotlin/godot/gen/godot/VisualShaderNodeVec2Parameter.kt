@@ -80,7 +80,7 @@ public open class VisualShaderNodeVec2Parameter : VisualShaderNodeParameter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun defaultValue(block: Vector2.() -> Unit): Vector2 = defaultValue.apply{
+  public open fun defaultValueMutate(block: Vector2.() -> Unit): Vector2 = defaultValue.apply{
       block(this)
       defaultValue = this
   }

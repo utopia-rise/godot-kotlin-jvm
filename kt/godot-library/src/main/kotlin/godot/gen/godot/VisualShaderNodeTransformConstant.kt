@@ -63,7 +63,7 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
    * ``````
    */
   @CoreTypeHelper
-  public open fun constant(block: Transform3D.() -> Unit): Transform3D = constant.apply{
+  public open fun constantMutate(block: Transform3D.() -> Unit): Transform3D = constant.apply{
       block(this)
       constant = this
   }

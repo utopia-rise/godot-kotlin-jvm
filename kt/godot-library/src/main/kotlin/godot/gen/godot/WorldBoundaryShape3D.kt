@@ -63,7 +63,7 @@ public open class WorldBoundaryShape3D : Shape3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun plane(block: Plane.() -> Unit): Plane = plane.apply{
+  public open fun planeMutate(block: Plane.() -> Unit): Plane = plane.apply{
       block(this)
       plane = this
   }

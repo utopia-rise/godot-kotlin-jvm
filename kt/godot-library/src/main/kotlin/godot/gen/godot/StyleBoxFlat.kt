@@ -250,7 +250,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun bgColor(block: Color.() -> Unit): Color = bgColor.apply{
+  public open fun bgColorMutate(block: Color.() -> Unit): Color = bgColor.apply{
       block(this)
       bgColor = this
   }
@@ -276,7 +276,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun skew(block: Vector2.() -> Unit): Vector2 = skew.apply{
+  public open fun skewMutate(block: Vector2.() -> Unit): Vector2 = skew.apply{
       block(this)
       skew = this
   }
@@ -300,7 +300,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun borderColor(block: Color.() -> Unit): Color = borderColor.apply{
+  public open fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply{
       block(this)
       borderColor = this
   }
@@ -324,7 +324,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowColor(block: Color.() -> Unit): Color = shadowColor.apply{
+  public open fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
       block(this)
       shadowColor = this
   }
@@ -348,7 +348,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowOffset(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
+  public open fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
       block(this)
       shadowOffset = this
   }

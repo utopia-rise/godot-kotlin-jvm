@@ -311,7 +311,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun upDirection(block: Vector2.() -> Unit): Vector2 = upDirection.apply{
+  public open fun upDirectionMutate(block: Vector2.() -> Unit): Vector2 = upDirection.apply{
       block(this)
       upDirection = this
   }
@@ -335,7 +335,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun velocity(block: Vector2.() -> Unit): Vector2 = velocity.apply{
+  public open fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
       block(this)
       velocity = this
   }

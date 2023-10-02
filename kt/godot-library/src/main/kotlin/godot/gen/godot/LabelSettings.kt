@@ -194,7 +194,7 @@ public open class LabelSettings : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fontColor(block: Color.() -> Unit): Color = fontColor.apply{
+  public open fun fontColorMutate(block: Color.() -> Unit): Color = fontColor.apply{
       block(this)
       fontColor = this
   }
@@ -218,7 +218,7 @@ public open class LabelSettings : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun outlineColor(block: Color.() -> Unit): Color = outlineColor.apply{
+  public open fun outlineColorMutate(block: Color.() -> Unit): Color = outlineColor.apply{
       block(this)
       outlineColor = this
   }
@@ -242,7 +242,7 @@ public open class LabelSettings : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowColor(block: Color.() -> Unit): Color = shadowColor.apply{
+  public open fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
       block(this)
       shadowColor = this
   }
@@ -266,7 +266,7 @@ public open class LabelSettings : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowOffset(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
+  public open fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
       block(this)
       shadowOffset = this
   }

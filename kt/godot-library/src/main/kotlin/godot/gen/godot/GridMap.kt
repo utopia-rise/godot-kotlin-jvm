@@ -197,7 +197,7 @@ public open class GridMap : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun cellSize(block: Vector3.() -> Unit): Vector3 = cellSize.apply{
+  public open fun cellSizeMutate(block: Vector3.() -> Unit): Vector3 = cellSize.apply{
       block(this)
       cellSize = this
   }

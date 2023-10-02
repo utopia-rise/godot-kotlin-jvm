@@ -135,7 +135,7 @@ public open class PrimitiveMesh : Mesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun customAabb(block: AABB.() -> Unit): AABB = customAabb.apply{
+  public open fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
       block(this)
       customAabb = this
   }

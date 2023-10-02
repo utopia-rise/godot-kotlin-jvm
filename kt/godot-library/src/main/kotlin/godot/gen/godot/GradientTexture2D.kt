@@ -169,7 +169,7 @@ public open class GradientTexture2D : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fillFrom(block: Vector2.() -> Unit): Vector2 = fillFrom.apply{
+  public open fun fillFromMutate(block: Vector2.() -> Unit): Vector2 = fillFrom.apply{
       block(this)
       fillFrom = this
   }
@@ -193,7 +193,7 @@ public open class GradientTexture2D : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fillTo(block: Vector2.() -> Unit): Vector2 = fillTo.apply{
+  public open fun fillToMutate(block: Vector2.() -> Unit): Vector2 = fillTo.apply{
       block(this)
       fillTo = this
   }

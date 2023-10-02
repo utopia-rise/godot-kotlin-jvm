@@ -143,7 +143,7 @@ public open class FogMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun albedo(block: Color.() -> Unit): Color = albedo.apply{
+  public open fun albedoMutate(block: Color.() -> Unit): Color = albedo.apply{
       block(this)
       albedo = this
   }
@@ -167,7 +167,7 @@ public open class FogMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun emission(block: Color.() -> Unit): Color = emission.apply{
+  public open fun emissionMutate(block: Color.() -> Unit): Color = emission.apply{
       block(this)
       emission = this
   }

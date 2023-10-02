@@ -171,7 +171,7 @@ public open class RayCast2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun targetPosition(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
+  public open fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
       block(this)
       targetPosition = this
   }

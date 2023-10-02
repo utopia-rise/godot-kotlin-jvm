@@ -117,7 +117,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun blendConstant(block: Color.() -> Unit): Color = blendConstant.apply{
+  public open fun blendConstantMutate(block: Color.() -> Unit): Color = blendConstant.apply{
       block(this)
       blendConstant = this
   }

@@ -773,7 +773,7 @@ public open class Viewport internal constructor() : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun canvasTransform(block: Transform2D.() -> Unit): Transform2D =
+  public open fun canvasTransformMutate(block: Transform2D.() -> Unit): Transform2D =
       canvasTransform.apply{
       block(this)
       canvasTransform = this
@@ -798,7 +798,7 @@ public open class Viewport internal constructor() : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun globalCanvasTransform(block: Transform2D.() -> Unit): Transform2D =
+  public open fun globalCanvasTransformMutate(block: Transform2D.() -> Unit): Transform2D =
       globalCanvasTransform.apply{
       block(this)
       globalCanvasTransform = this

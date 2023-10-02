@@ -483,7 +483,7 @@ public open class Label3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -507,7 +507,7 @@ public open class Label3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun modulate(block: Color.() -> Unit): Color = modulate.apply{
+  public open fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
       block(this)
       modulate = this
   }
@@ -531,7 +531,7 @@ public open class Label3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun outlineModulate(block: Color.() -> Unit): Color = outlineModulate.apply{
+  public open fun outlineModulateMutate(block: Color.() -> Unit): Color = outlineModulate.apply{
       block(this)
       outlineModulate = this
   }

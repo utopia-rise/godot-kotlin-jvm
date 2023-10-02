@@ -185,7 +185,7 @@ public open class GLTFNode : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun xform(block: Transform3D.() -> Unit): Transform3D = xform.apply{
+  public open fun xformMutate(block: Transform3D.() -> Unit): Transform3D = xform.apply{
       block(this)
       xform = this
   }
@@ -207,7 +207,7 @@ public open class GLTFNode : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun position(block: Vector3.() -> Unit): Vector3 = position.apply{
+  public open fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply{
       block(this)
       position = this
   }
@@ -229,7 +229,7 @@ public open class GLTFNode : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun rotation(block: Quaternion.() -> Unit): Quaternion = rotation.apply{
+  public open fun rotationMutate(block: Quaternion.() -> Unit): Quaternion = rotation.apply{
       block(this)
       rotation = this
   }
@@ -251,7 +251,7 @@ public open class GLTFNode : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scale(block: Vector3.() -> Unit): Vector3 = scale.apply{
+  public open fun scaleMutate(block: Vector3.() -> Unit): Vector3 = scale.apply{
       block(this)
       scale = this
   }

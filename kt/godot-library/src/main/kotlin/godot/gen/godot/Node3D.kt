@@ -323,7 +323,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun transform(block: Transform3D.() -> Unit): Transform3D = transform.apply{
+  public open fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
       block(this)
       transform = this
   }
@@ -347,7 +347,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun globalTransform(block: Transform3D.() -> Unit): Transform3D =
+  public open fun globalTransformMutate(block: Transform3D.() -> Unit): Transform3D =
       globalTransform.apply{
       block(this)
       globalTransform = this
@@ -372,7 +372,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun position(block: Vector3.() -> Unit): Vector3 = position.apply{
+  public open fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply{
       block(this)
       position = this
   }
@@ -400,7 +400,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun rotation(block: Vector3.() -> Unit): Vector3 = rotation.apply{
+  public open fun rotationMutate(block: Vector3.() -> Unit): Vector3 = rotation.apply{
       block(this)
       rotation = this
   }
@@ -424,7 +424,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun rotationDegrees(block: Vector3.() -> Unit): Vector3 = rotationDegrees.apply{
+  public open fun rotationDegreesMutate(block: Vector3.() -> Unit): Vector3 = rotationDegrees.apply{
       block(this)
       rotationDegrees = this
   }
@@ -448,7 +448,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun quaternion(block: Quaternion.() -> Unit): Quaternion = quaternion.apply{
+  public open fun quaternionMutate(block: Quaternion.() -> Unit): Quaternion = quaternion.apply{
       block(this)
       quaternion = this
   }
@@ -472,7 +472,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun basis(block: Basis.() -> Unit): Basis = basis.apply{
+  public open fun basisMutate(block: Basis.() -> Unit): Basis = basis.apply{
       block(this)
       basis = this
   }
@@ -500,7 +500,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scale(block: Vector3.() -> Unit): Vector3 = scale.apply{
+  public open fun scaleMutate(block: Vector3.() -> Unit): Vector3 = scale.apply{
       block(this)
       scale = this
   }
@@ -524,7 +524,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun globalPosition(block: Vector3.() -> Unit): Vector3 = globalPosition.apply{
+  public open fun globalPositionMutate(block: Vector3.() -> Unit): Vector3 = globalPosition.apply{
       block(this)
       globalPosition = this
   }
@@ -550,7 +550,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun globalRotation(block: Vector3.() -> Unit): Vector3 = globalRotation.apply{
+  public open fun globalRotationMutate(block: Vector3.() -> Unit): Vector3 = globalRotation.apply{
       block(this)
       globalRotation = this
   }
@@ -574,7 +574,7 @@ public open class Node3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun globalRotationDegrees(block: Vector3.() -> Unit): Vector3 =
+  public open fun globalRotationDegreesMutate(block: Vector3.() -> Unit): Vector3 =
       globalRotationDegrees.apply{
       block(this)
       globalRotationDegrees = this

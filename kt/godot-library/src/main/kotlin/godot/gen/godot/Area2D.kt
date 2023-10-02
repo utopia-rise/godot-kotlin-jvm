@@ -389,7 +389,8 @@ public open class Area2D : CollisionObject2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun gravityPointCenter(block: Vector2.() -> Unit): Vector2 = gravityPointCenter.apply{
+  public open fun gravityPointCenterMutate(block: Vector2.() -> Unit): Vector2 =
+      gravityPointCenter.apply{
       block(this)
       gravityPointCenter = this
   }
@@ -413,7 +414,8 @@ public open class Area2D : CollisionObject2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun gravityDirection(block: Vector2.() -> Unit): Vector2 = gravityDirection.apply{
+  public open fun gravityDirectionMutate(block: Vector2.() -> Unit): Vector2 =
+      gravityDirection.apply{
       block(this)
       gravityDirection = this
   }

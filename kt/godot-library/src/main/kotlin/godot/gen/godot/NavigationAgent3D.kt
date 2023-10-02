@@ -544,7 +544,7 @@ public open class NavigationAgent3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun targetPosition(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
+  public open fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
       block(this)
       targetPosition = this
   }
@@ -568,7 +568,7 @@ public open class NavigationAgent3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun velocity(block: Vector3.() -> Unit): Vector3 = velocity.apply{
+  public open fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply{
       block(this)
       velocity = this
   }
@@ -592,7 +592,8 @@ public open class NavigationAgent3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun debugPathCustomColor(block: Color.() -> Unit): Color = debugPathCustomColor.apply{
+  public open fun debugPathCustomColorMutate(block: Color.() -> Unit): Color =
+      debugPathCustomColor.apply{
       block(this)
       debugPathCustomColor = this
   }

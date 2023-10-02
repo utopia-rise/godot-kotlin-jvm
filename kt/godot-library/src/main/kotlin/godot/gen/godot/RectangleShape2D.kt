@@ -67,7 +67,7 @@ public open class RectangleShape2D : Shape2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size(block: Vector2.() -> Unit): Vector2 = size.apply{
+  public open fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
       block(this)
       size = this
   }

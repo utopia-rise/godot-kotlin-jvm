@@ -252,7 +252,7 @@ public open class TextureProgressBar : Range() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun textureProgressOffset(block: Vector2.() -> Unit): Vector2 =
+  public open fun textureProgressOffsetMutate(block: Vector2.() -> Unit): Vector2 =
       textureProgressOffset.apply{
       block(this)
       textureProgressOffset = this
@@ -277,7 +277,7 @@ public open class TextureProgressBar : Range() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun tintUnder(block: Color.() -> Unit): Color = tintUnder.apply{
+  public open fun tintUnderMutate(block: Color.() -> Unit): Color = tintUnder.apply{
       block(this)
       tintUnder = this
   }
@@ -301,7 +301,7 @@ public open class TextureProgressBar : Range() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun tintOver(block: Color.() -> Unit): Color = tintOver.apply{
+  public open fun tintOverMutate(block: Color.() -> Unit): Color = tintOver.apply{
       block(this)
       tintOver = this
   }
@@ -325,7 +325,7 @@ public open class TextureProgressBar : Range() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun tintProgress(block: Color.() -> Unit): Color = tintProgress.apply{
+  public open fun tintProgressMutate(block: Color.() -> Unit): Color = tintProgress.apply{
       block(this)
       tintProgress = this
   }
@@ -349,7 +349,8 @@ public open class TextureProgressBar : Range() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun radialCenterOffset(block: Vector2.() -> Unit): Vector2 = radialCenterOffset.apply{
+  public open fun radialCenterOffsetMutate(block: Vector2.() -> Unit): Vector2 =
+      radialCenterOffset.apply{
       block(this)
       radialCenterOffset = this
   }

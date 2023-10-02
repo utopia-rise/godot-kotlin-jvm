@@ -65,7 +65,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constant(block: Color.() -> Unit): Color = constant.apply{
+  public open fun constantMutate(block: Color.() -> Unit): Color = constant.apply{
       block(this)
       constant = this
   }

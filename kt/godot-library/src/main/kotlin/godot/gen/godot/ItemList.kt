@@ -328,7 +328,7 @@ public open class ItemList : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fixedIconSize(block: Vector2i.() -> Unit): Vector2i = fixedIconSize.apply{
+  public open fun fixedIconSizeMutate(block: Vector2i.() -> Unit): Vector2i = fixedIconSize.apply{
       block(this)
       fixedIconSize = this
   }

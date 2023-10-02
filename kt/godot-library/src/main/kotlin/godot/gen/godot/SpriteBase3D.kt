@@ -292,7 +292,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -318,7 +318,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun modulate(block: Color.() -> Unit): Color = modulate.apply{
+  public open fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
       block(this)
       modulate = this
   }

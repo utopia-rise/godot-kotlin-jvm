@@ -551,7 +551,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun centerOfMass(block: Vector2.() -> Unit): Vector2 = centerOfMass.apply{
+  public open fun centerOfMassMutate(block: Vector2.() -> Unit): Vector2 = centerOfMass.apply{
       block(this)
       centerOfMass = this
   }
@@ -575,7 +575,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun linearVelocity(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
+  public open fun linearVelocityMutate(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
       block(this)
       linearVelocity = this
   }
@@ -601,7 +601,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantForce(block: Vector2.() -> Unit): Vector2 = constantForce.apply{
+  public open fun constantForceMutate(block: Vector2.() -> Unit): Vector2 = constantForce.apply{
       block(this)
       constantForce = this
   }

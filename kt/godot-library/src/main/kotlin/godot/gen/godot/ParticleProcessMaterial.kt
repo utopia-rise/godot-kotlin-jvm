@@ -628,7 +628,8 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun emissionBoxExtents(block: Vector3.() -> Unit): Vector3 = emissionBoxExtents.apply{
+  public open fun emissionBoxExtentsMutate(block: Vector3.() -> Unit): Vector3 =
+      emissionBoxExtents.apply{
       block(this)
       emissionBoxExtents = this
   }
@@ -652,7 +653,8 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun emissionRingAxis(block: Vector3.() -> Unit): Vector3 = emissionRingAxis.apply{
+  public open fun emissionRingAxisMutate(block: Vector3.() -> Unit): Vector3 =
+      emissionRingAxis.apply{
       block(this)
       emissionRingAxis = this
   }
@@ -676,7 +678,7 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun direction(block: Vector3.() -> Unit): Vector3 = direction.apply{
+  public open fun directionMutate(block: Vector3.() -> Unit): Vector3 = direction.apply{
       block(this)
       direction = this
   }
@@ -700,7 +702,7 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun gravity(block: Vector3.() -> Unit): Vector3 = gravity.apply{
+  public open fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply{
       block(this)
       gravity = this
   }
@@ -726,7 +728,7 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun color(block: Color.() -> Unit): Color = color.apply{
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
@@ -752,7 +754,7 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun turbulenceNoiseSpeed(block: Vector3.() -> Unit): Vector3 =
+  public open fun turbulenceNoiseSpeedMutate(block: Vector3.() -> Unit): Vector3 =
       turbulenceNoiseSpeed.apply{
       block(this)
       turbulenceNoiseSpeed = this

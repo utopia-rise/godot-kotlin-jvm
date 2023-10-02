@@ -63,7 +63,7 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constant(block: Quaternion.() -> Unit): Quaternion = constant.apply{
+  public open fun constantMutate(block: Quaternion.() -> Unit): Quaternion = constant.apply{
       block(this)
       constant = this
   }

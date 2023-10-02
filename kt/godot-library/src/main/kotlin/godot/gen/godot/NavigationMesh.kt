@@ -460,7 +460,7 @@ public open class NavigationMesh : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun filterBakingAabb(block: AABB.() -> Unit): AABB = filterBakingAabb.apply{
+  public open fun filterBakingAabbMutate(block: AABB.() -> Unit): AABB = filterBakingAabb.apply{
       block(this)
       filterBakingAabb = this
   }
@@ -484,7 +484,7 @@ public open class NavigationMesh : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun filterBakingAabbOffset(block: Vector3.() -> Unit): Vector3 =
+  public open fun filterBakingAabbOffsetMutate(block: Vector3.() -> Unit): Vector3 =
       filterBakingAabbOffset.apply{
       block(this)
       filterBakingAabbOffset = this

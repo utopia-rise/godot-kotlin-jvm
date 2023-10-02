@@ -1114,7 +1114,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun albedoColor(block: Color.() -> Unit): Color = albedoColor.apply{
+  public open fun albedoColorMutate(block: Color.() -> Unit): Color = albedoColor.apply{
       block(this)
       albedoColor = this
   }
@@ -1138,7 +1138,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun emission(block: Color.() -> Unit): Color = emission.apply{
+  public open fun emissionMutate(block: Color.() -> Unit): Color = emission.apply{
       block(this)
       emission = this
   }
@@ -1162,7 +1162,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun subsurfScatterTransmittanceColor(block: Color.() -> Unit): Color =
+  public open fun subsurfScatterTransmittanceColorMutate(block: Color.() -> Unit): Color =
       subsurfScatterTransmittanceColor.apply{
       block(this)
       subsurfScatterTransmittanceColor = this
@@ -1187,7 +1187,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun backlight(block: Color.() -> Unit): Color = backlight.apply{
+  public open fun backlightMutate(block: Color.() -> Unit): Color = backlight.apply{
       block(this)
       backlight = this
   }
@@ -1211,7 +1211,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun uv1Scale(block: Vector3.() -> Unit): Vector3 = uv1Scale.apply{
+  public open fun uv1ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv1Scale.apply{
       block(this)
       uv1Scale = this
   }
@@ -1235,7 +1235,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun uv1Offset(block: Vector3.() -> Unit): Vector3 = uv1Offset.apply{
+  public open fun uv1OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv1Offset.apply{
       block(this)
       uv1Offset = this
   }
@@ -1259,7 +1259,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun uv2Scale(block: Vector3.() -> Unit): Vector3 = uv2Scale.apply{
+  public open fun uv2ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv2Scale.apply{
       block(this)
       uv2Scale = this
   }
@@ -1283,7 +1283,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun uv2Offset(block: Vector3.() -> Unit): Vector3 = uv2Offset.apply{
+  public open fun uv2OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv2Offset.apply{
       block(this)
       uv2Offset = this
   }

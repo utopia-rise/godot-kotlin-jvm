@@ -102,7 +102,7 @@ public open class ParallaxLayer : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motionScale(block: Vector2.() -> Unit): Vector2 = motionScale.apply{
+  public open fun motionScaleMutate(block: Vector2.() -> Unit): Vector2 = motionScale.apply{
       block(this)
       motionScale = this
   }
@@ -126,7 +126,7 @@ public open class ParallaxLayer : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motionOffset(block: Vector2.() -> Unit): Vector2 = motionOffset.apply{
+  public open fun motionOffsetMutate(block: Vector2.() -> Unit): Vector2 = motionOffset.apply{
       block(this)
       motionOffset = this
   }
@@ -154,7 +154,7 @@ public open class ParallaxLayer : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motionMirroring(block: Vector2.() -> Unit): Vector2 = motionMirroring.apply{
+  public open fun motionMirroringMutate(block: Vector2.() -> Unit): Vector2 = motionMirroring.apply{
       block(this)
       motionMirroring = this
   }

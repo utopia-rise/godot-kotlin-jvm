@@ -262,7 +262,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motion(block: Vector2.() -> Unit): Vector2 = motion.apply{
+  public open fun motionMutate(block: Vector2.() -> Unit): Vector2 = motion.apply{
       block(this)
       motion = this
   }
@@ -286,7 +286,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun transform(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+  public open fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
       block(this)
       transform = this
   }

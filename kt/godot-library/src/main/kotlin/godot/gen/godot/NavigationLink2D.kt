@@ -178,7 +178,7 @@ public open class NavigationLink2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun startPosition(block: Vector2.() -> Unit): Vector2 = startPosition.apply{
+  public open fun startPositionMutate(block: Vector2.() -> Unit): Vector2 = startPosition.apply{
       block(this)
       startPosition = this
   }
@@ -206,7 +206,7 @@ public open class NavigationLink2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun endPosition(block: Vector2.() -> Unit): Vector2 = endPosition.apply{
+  public open fun endPositionMutate(block: Vector2.() -> Unit): Vector2 = endPosition.apply{
       block(this)
       endPosition = this
   }

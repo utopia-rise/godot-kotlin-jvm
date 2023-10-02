@@ -234,7 +234,7 @@ public open class Node2D : CanvasItem() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun position(block: Vector2.() -> Unit): Vector2 = position.apply{
+  public open fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
       block(this)
       position = this
   }
@@ -260,7 +260,7 @@ public open class Node2D : CanvasItem() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scale(block: Vector2.() -> Unit): Vector2 = scale.apply{
+  public open fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
       block(this)
       scale = this
   }
@@ -284,7 +284,7 @@ public open class Node2D : CanvasItem() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun transform(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+  public open fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
       block(this)
       transform = this
   }
@@ -308,7 +308,7 @@ public open class Node2D : CanvasItem() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun globalPosition(block: Vector2.() -> Unit): Vector2 = globalPosition.apply{
+  public open fun globalPositionMutate(block: Vector2.() -> Unit): Vector2 = globalPosition.apply{
       block(this)
       globalPosition = this
   }
@@ -332,7 +332,7 @@ public open class Node2D : CanvasItem() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun globalScale(block: Vector2.() -> Unit): Vector2 = globalScale.apply{
+  public open fun globalScaleMutate(block: Vector2.() -> Unit): Vector2 = globalScale.apply{
       block(this)
       globalScale = this
   }
@@ -356,7 +356,7 @@ public open class Node2D : CanvasItem() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun globalTransform(block: Transform2D.() -> Unit): Transform2D =
+  public open fun globalTransformMutate(block: Transform2D.() -> Unit): Transform2D =
       globalTransform.apply{
       block(this)
       globalTransform = this

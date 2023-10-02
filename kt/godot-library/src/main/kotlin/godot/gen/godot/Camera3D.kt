@@ -292,7 +292,7 @@ public open class Camera3D : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun frustumOffset(block: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
+  public open fun frustumOffsetMutate(block: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
       block(this)
       frustumOffset = this
   }

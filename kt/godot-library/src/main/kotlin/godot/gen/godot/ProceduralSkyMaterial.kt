@@ -264,7 +264,7 @@ public open class ProceduralSkyMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun skyTopColor(block: Color.() -> Unit): Color = skyTopColor.apply{
+  public open fun skyTopColorMutate(block: Color.() -> Unit): Color = skyTopColor.apply{
       block(this)
       skyTopColor = this
   }
@@ -288,7 +288,7 @@ public open class ProceduralSkyMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun skyHorizonColor(block: Color.() -> Unit): Color = skyHorizonColor.apply{
+  public open fun skyHorizonColorMutate(block: Color.() -> Unit): Color = skyHorizonColor.apply{
       block(this)
       skyHorizonColor = this
   }
@@ -312,7 +312,7 @@ public open class ProceduralSkyMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun skyCoverModulate(block: Color.() -> Unit): Color = skyCoverModulate.apply{
+  public open fun skyCoverModulateMutate(block: Color.() -> Unit): Color = skyCoverModulate.apply{
       block(this)
       skyCoverModulate = this
   }
@@ -336,7 +336,7 @@ public open class ProceduralSkyMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun groundBottomColor(block: Color.() -> Unit): Color = groundBottomColor.apply{
+  public open fun groundBottomColorMutate(block: Color.() -> Unit): Color = groundBottomColor.apply{
       block(this)
       groundBottomColor = this
   }
@@ -360,7 +360,8 @@ public open class ProceduralSkyMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun groundHorizonColor(block: Color.() -> Unit): Color = groundHorizonColor.apply{
+  public open fun groundHorizonColorMutate(block: Color.() -> Unit): Color =
+      groundHorizonColor.apply{
       block(this)
       groundHorizonColor = this
   }

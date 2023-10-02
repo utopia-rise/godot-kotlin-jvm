@@ -153,7 +153,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun position(block: Vector2.() -> Unit): Vector2 = position.apply{
+  public open fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
       block(this)
       position = this
   }

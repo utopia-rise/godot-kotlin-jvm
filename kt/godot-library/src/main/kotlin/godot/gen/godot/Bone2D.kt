@@ -73,7 +73,7 @@ public open class Bone2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun rest(block: Transform2D.() -> Unit): Transform2D = rest.apply{
+  public open fun restMutate(block: Transform2D.() -> Unit): Transform2D = rest.apply{
       block(this)
       rest = this
   }

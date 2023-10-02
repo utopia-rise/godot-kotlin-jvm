@@ -183,7 +183,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun from(block: Vector3.() -> Unit): Vector3 = from.apply{
+  public open fun fromMutate(block: Vector3.() -> Unit): Vector3 = from.apply{
       block(this)
       from = this
   }
@@ -207,7 +207,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun to(block: Vector3.() -> Unit): Vector3 = to.apply{
+  public open fun toMutate(block: Vector3.() -> Unit): Vector3 = to.apply{
       block(this)
       to = this
   }

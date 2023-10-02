@@ -518,7 +518,7 @@ public open class CPUParticles2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun emissionRectExtents(block: Vector2.() -> Unit): Vector2 =
+  public open fun emissionRectExtentsMutate(block: Vector2.() -> Unit): Vector2 =
       emissionRectExtents.apply{
       block(this)
       emissionRectExtents = this
@@ -543,7 +543,7 @@ public open class CPUParticles2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun direction(block: Vector2.() -> Unit): Vector2 = direction.apply{
+  public open fun directionMutate(block: Vector2.() -> Unit): Vector2 = direction.apply{
       block(this)
       direction = this
   }
@@ -567,7 +567,7 @@ public open class CPUParticles2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun gravity(block: Vector2.() -> Unit): Vector2 = gravity.apply{
+  public open fun gravityMutate(block: Vector2.() -> Unit): Vector2 = gravity.apply{
       block(this)
       gravity = this
   }
@@ -591,7 +591,7 @@ public open class CPUParticles2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun color(block: Color.() -> Unit): Color = color.apply{
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }

@@ -171,7 +171,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun gravity(block: Vector2.() -> Unit): Vector2 = gravity.apply{
+  public open fun gravityMutate(block: Vector2.() -> Unit): Vector2 = gravity.apply{
       block(this)
       gravity = this
   }

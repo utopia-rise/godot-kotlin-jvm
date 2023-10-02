@@ -226,7 +226,7 @@ public open class TileData : Object() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun textureOrigin(block: Vector2i.() -> Unit): Vector2i = textureOrigin.apply{
+  public open fun textureOriginMutate(block: Vector2i.() -> Unit): Vector2i = textureOrigin.apply{
       block(this)
       textureOrigin = this
   }
@@ -250,7 +250,7 @@ public open class TileData : Object() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun modulate(block: Color.() -> Unit): Color = modulate.apply{
+  public open fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
       block(this)
       modulate = this
   }

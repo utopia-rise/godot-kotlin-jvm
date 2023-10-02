@@ -460,7 +460,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun visibilityAabb(block: AABB.() -> Unit): AABB = visibilityAabb.apply{
+  public open fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply{
       block(this)
       visibilityAabb = this
   }

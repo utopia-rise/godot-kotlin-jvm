@@ -414,7 +414,7 @@ public open class GraphEdit : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollOffset(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
+  public open fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
       block(this)
       scrollOffset = this
   }
@@ -438,7 +438,7 @@ public open class GraphEdit : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun minimapSize(block: Vector2.() -> Unit): Vector2 = minimapSize.apply{
+  public open fun minimapSizeMutate(block: Vector2.() -> Unit): Vector2 = minimapSize.apply{
       block(this)
       minimapSize = this
   }

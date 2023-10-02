@@ -169,7 +169,7 @@ public open class CanvasTexture : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun specularColor(block: Color.() -> Unit): Color = specularColor.apply{
+  public open fun specularColorMutate(block: Color.() -> Unit): Color = specularColor.apply{
       block(this)
       specularColor = this
   }

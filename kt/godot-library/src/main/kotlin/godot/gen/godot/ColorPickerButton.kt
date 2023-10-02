@@ -106,7 +106,7 @@ public open class ColorPickerButton : Button() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun color(block: Color.() -> Unit): Color = color.apply{
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }

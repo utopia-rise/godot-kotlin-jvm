@@ -105,7 +105,7 @@ public open class StaticBody2D : PhysicsBody2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantLinearVelocity(block: Vector2.() -> Unit): Vector2 =
+  public open fun constantLinearVelocityMutate(block: Vector2.() -> Unit): Vector2 =
       constantLinearVelocity.apply{
       block(this)
       constantLinearVelocity = this

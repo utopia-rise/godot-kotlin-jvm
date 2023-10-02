@@ -164,7 +164,7 @@ public open class Sprite3D : SpriteBase3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun frameCoords(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply{
+  public open fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply{
       block(this)
       frameCoords = this
   }
@@ -188,7 +188,7 @@ public open class Sprite3D : SpriteBase3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun regionRect(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
+  public open fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
       block(this)
       regionRect = this
   }

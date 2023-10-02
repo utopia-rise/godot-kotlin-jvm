@@ -92,7 +92,7 @@ public open class MeshTexture : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun imageSize(block: Vector2.() -> Unit): Vector2 = imageSize.apply{
+  public open fun imageSizeMutate(block: Vector2.() -> Unit): Vector2 = imageSize.apply{
       block(this)
       imageSize = this
   }

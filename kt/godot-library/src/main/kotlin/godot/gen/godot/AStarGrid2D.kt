@@ -228,7 +228,7 @@ public open class AStarGrid2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun region(block: Rect2i.() -> Unit): Rect2i = region.apply{
+  public open fun regionMutate(block: Rect2i.() -> Unit): Rect2i = region.apply{
       block(this)
       region = this
   }
@@ -254,7 +254,7 @@ public open class AStarGrid2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size(block: Vector2i.() -> Unit): Vector2i = size.apply{
+  public open fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
       block(this)
       size = this
   }
@@ -278,7 +278,7 @@ public open class AStarGrid2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -302,7 +302,7 @@ public open class AStarGrid2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun cellSize(block: Vector2.() -> Unit): Vector2 = cellSize.apply{
+  public open fun cellSizeMutate(block: Vector2.() -> Unit): Vector2 = cellSize.apply{
       block(this)
       cellSize = this
   }

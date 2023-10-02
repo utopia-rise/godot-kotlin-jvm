@@ -249,7 +249,7 @@ public open class Line2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun defaultColor(block: Color.() -> Unit): Color = defaultColor.apply{
+  public open fun defaultColorMutate(block: Color.() -> Unit): Color = defaultColor.apply{
       block(this)
       defaultColor = this
   }

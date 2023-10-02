@@ -105,7 +105,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * ``````
    */
   @CoreTypeHelper
-  public open fun position(block: Vector2.() -> Unit): Vector2 = position.apply{
+  public open fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
       block(this)
       position = this
   }
@@ -131,7 +131,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * ``````
    */
   @CoreTypeHelper
-  public open fun globalPosition(block: Vector2.() -> Unit): Vector2 = globalPosition.apply{
+  public open fun globalPositionMutate(block: Vector2.() -> Unit): Vector2 = globalPosition.apply{
       block(this)
       globalPosition = this
   }

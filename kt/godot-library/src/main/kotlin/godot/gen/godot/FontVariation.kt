@@ -216,7 +216,7 @@ public open class FontVariation : Font() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun variationTransform(block: Transform2D.() -> Unit): Transform2D =
+  public open fun variationTransformMutate(block: Transform2D.() -> Unit): Transform2D =
       variationTransform.apply{
       block(this)
       variationTransform = this

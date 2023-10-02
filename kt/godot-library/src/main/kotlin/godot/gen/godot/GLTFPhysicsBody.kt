@@ -114,7 +114,7 @@ public open class GLTFPhysicsBody : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun linearVelocity(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+  public open fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
       block(this)
       linearVelocity = this
   }
@@ -136,7 +136,7 @@ public open class GLTFPhysicsBody : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun angularVelocity(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+  public open fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
       block(this)
       angularVelocity = this
   }
@@ -158,7 +158,7 @@ public open class GLTFPhysicsBody : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun inertiaTensor(block: Basis.() -> Unit): Basis = inertiaTensor.apply{
+  public open fun inertiaTensorMutate(block: Basis.() -> Unit): Basis = inertiaTensor.apply{
       block(this)
       inertiaTensor = this
   }

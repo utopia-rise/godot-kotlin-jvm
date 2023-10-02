@@ -141,7 +141,7 @@ public open class GLTFPhysicsShape : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }

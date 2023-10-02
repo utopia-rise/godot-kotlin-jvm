@@ -211,7 +211,7 @@ public open class CanvasLayer : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -235,7 +235,7 @@ public open class CanvasLayer : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scale(block: Vector2.() -> Unit): Vector2 = scale.apply{
+  public open fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
       block(this)
       scale = this
   }
@@ -259,7 +259,7 @@ public open class CanvasLayer : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun transform(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+  public open fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
       block(this)
       transform = this
   }

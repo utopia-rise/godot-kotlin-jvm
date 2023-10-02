@@ -84,7 +84,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun normal(block: Vector2.() -> Unit): Vector2 = normal.apply{
+  public open fun normalMutate(block: Vector2.() -> Unit): Vector2 = normal.apply{
       block(this)
       normal = this
   }

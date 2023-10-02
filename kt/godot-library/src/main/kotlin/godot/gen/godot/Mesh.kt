@@ -81,7 +81,8 @@ public open class Mesh : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun lightmapSizeHint(block: Vector2i.() -> Unit): Vector2i = lightmapSizeHint.apply{
+  public open fun lightmapSizeHintMutate(block: Vector2i.() -> Unit): Vector2i =
+      lightmapSizeHint.apply{
       block(this)
       lightmapSizeHint = this
   }

@@ -290,7 +290,7 @@ public open class Polygon2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun color(block: Color.() -> Unit): Color = color.apply{
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
@@ -314,7 +314,7 @@ public open class Polygon2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offset(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -338,7 +338,7 @@ public open class Polygon2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun textureOffset(block: Vector2.() -> Unit): Vector2 = textureOffset.apply{
+  public open fun textureOffsetMutate(block: Vector2.() -> Unit): Vector2 = textureOffset.apply{
       block(this)
       textureOffset = this
   }
@@ -362,7 +362,7 @@ public open class Polygon2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun textureScale(block: Vector2.() -> Unit): Vector2 = textureScale.apply{
+  public open fun textureScaleMutate(block: Vector2.() -> Unit): Vector2 = textureScale.apply{
       block(this)
       textureScale = this
   }

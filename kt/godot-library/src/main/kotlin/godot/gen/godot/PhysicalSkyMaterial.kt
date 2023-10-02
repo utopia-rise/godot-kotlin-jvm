@@ -232,7 +232,7 @@ public open class PhysicalSkyMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun rayleighColor(block: Color.() -> Unit): Color = rayleighColor.apply{
+  public open fun rayleighColorMutate(block: Color.() -> Unit): Color = rayleighColor.apply{
       block(this)
       rayleighColor = this
   }
@@ -256,7 +256,7 @@ public open class PhysicalSkyMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun mieColor(block: Color.() -> Unit): Color = mieColor.apply{
+  public open fun mieColorMutate(block: Color.() -> Unit): Color = mieColor.apply{
       block(this)
       mieColor = this
   }
@@ -280,7 +280,7 @@ public open class PhysicalSkyMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun groundColor(block: Color.() -> Unit): Color = groundColor.apply{
+  public open fun groundColorMutate(block: Color.() -> Unit): Color = groundColor.apply{
       block(this)
       groundColor = this
   }

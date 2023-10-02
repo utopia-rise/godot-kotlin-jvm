@@ -282,7 +282,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
@@ -306,7 +306,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun originOffset(block: Vector3.() -> Unit): Vector3 = originOffset.apply{
+  public open fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply{
       block(this)
       originOffset = this
   }
@@ -330,7 +330,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun ambientColor(block: Color.() -> Unit): Color = ambientColor.apply{
+  public open fun ambientColorMutate(block: Color.() -> Unit): Color = ambientColor.apply{
       block(this)
       ambientColor = this
   }

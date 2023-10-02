@@ -146,7 +146,7 @@ public open class NavigationObstacle2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun velocity(block: Vector2.() -> Unit): Vector2 = velocity.apply{
+  public open fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
       block(this)
       velocity = this
   }

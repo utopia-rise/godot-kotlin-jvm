@@ -69,7 +69,7 @@ public open class PlaceholderTexture3D : Texture3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size(block: Vector3i.() -> Unit): Vector3i = size.apply{
+  public open fun sizeMutate(block: Vector3i.() -> Unit): Vector3i = size.apply{
       block(this)
       size = this
   }

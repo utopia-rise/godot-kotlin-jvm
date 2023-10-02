@@ -265,7 +265,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun lightColor(block: Color.() -> Unit): Color = lightColor.apply{
+  public open fun lightColorMutate(block: Color.() -> Unit): Color = lightColor.apply{
       block(this)
       lightColor = this
   }

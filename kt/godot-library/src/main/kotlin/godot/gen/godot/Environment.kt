@@ -1473,7 +1473,7 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun backgroundColor(block: Color.() -> Unit): Color = backgroundColor.apply{
+  public open fun backgroundColorMutate(block: Color.() -> Unit): Color = backgroundColor.apply{
       block(this)
       backgroundColor = this
   }
@@ -1497,7 +1497,7 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun skyRotation(block: Vector3.() -> Unit): Vector3 = skyRotation.apply{
+  public open fun skyRotationMutate(block: Vector3.() -> Unit): Vector3 = skyRotation.apply{
       block(this)
       skyRotation = this
   }
@@ -1521,7 +1521,7 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun ambientLightColor(block: Color.() -> Unit): Color = ambientLightColor.apply{
+  public open fun ambientLightColorMutate(block: Color.() -> Unit): Color = ambientLightColor.apply{
       block(this)
       ambientLightColor = this
   }
@@ -1545,7 +1545,7 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fogLightColor(block: Color.() -> Unit): Color = fogLightColor.apply{
+  public open fun fogLightColorMutate(block: Color.() -> Unit): Color = fogLightColor.apply{
       block(this)
       fogLightColor = this
   }
@@ -1569,7 +1569,8 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun volumetricFogAlbedo(block: Color.() -> Unit): Color = volumetricFogAlbedo.apply{
+  public open fun volumetricFogAlbedoMutate(block: Color.() -> Unit): Color =
+      volumetricFogAlbedo.apply{
       block(this)
       volumetricFogAlbedo = this
   }
@@ -1593,7 +1594,7 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun volumetricFogEmission(block: Color.() -> Unit): Color =
+  public open fun volumetricFogEmissionMutate(block: Color.() -> Unit): Color =
       volumetricFogEmission.apply{
       block(this)
       volumetricFogEmission = this

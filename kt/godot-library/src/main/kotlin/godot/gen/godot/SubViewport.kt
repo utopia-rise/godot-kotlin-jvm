@@ -135,7 +135,7 @@ public open class SubViewport : Viewport() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size(block: Vector2i.() -> Unit): Vector2i = size.apply{
+  public open fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
       block(this)
       size = this
   }
@@ -159,7 +159,7 @@ public open class SubViewport : Viewport() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size2dOverride(block: Vector2i.() -> Unit): Vector2i = size2dOverride.apply{
+  public open fun size2dOverrideMutate(block: Vector2i.() -> Unit): Vector2i = size2dOverride.apply{
       block(this)
       size2dOverride = this
   }

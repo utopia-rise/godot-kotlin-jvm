@@ -146,7 +146,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollOffset(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
+  public open fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
       block(this)
       scrollOffset = this
   }
@@ -170,7 +170,8 @@ public open class ParallaxBackground : CanvasLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollBaseOffset(block: Vector2.() -> Unit): Vector2 = scrollBaseOffset.apply{
+  public open fun scrollBaseOffsetMutate(block: Vector2.() -> Unit): Vector2 =
+      scrollBaseOffset.apply{
       block(this)
       scrollBaseOffset = this
   }
@@ -194,7 +195,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollBaseScale(block: Vector2.() -> Unit): Vector2 = scrollBaseScale.apply{
+  public open fun scrollBaseScaleMutate(block: Vector2.() -> Unit): Vector2 = scrollBaseScale.apply{
       block(this)
       scrollBaseScale = this
   }
@@ -218,7 +219,8 @@ public open class ParallaxBackground : CanvasLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollLimitBegin(block: Vector2.() -> Unit): Vector2 = scrollLimitBegin.apply{
+  public open fun scrollLimitBeginMutate(block: Vector2.() -> Unit): Vector2 =
+      scrollLimitBegin.apply{
       block(this)
       scrollLimitBegin = this
   }
@@ -242,7 +244,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollLimitEnd(block: Vector2.() -> Unit): Vector2 = scrollLimitEnd.apply{
+  public open fun scrollLimitEndMutate(block: Vector2.() -> Unit): Vector2 = scrollLimitEnd.apply{
       block(this)
       scrollLimitEnd = this
   }

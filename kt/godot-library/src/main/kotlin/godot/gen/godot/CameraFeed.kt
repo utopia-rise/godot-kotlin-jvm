@@ -83,7 +83,8 @@ public open class CameraFeed : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun feedTransform(block: Transform2D.() -> Unit): Transform2D = feedTransform.apply{
+  public open fun feedTransformMutate(block: Transform2D.() -> Unit): Transform2D =
+      feedTransform.apply{
       block(this)
       feedTransform = this
   }

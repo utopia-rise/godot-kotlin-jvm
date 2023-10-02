@@ -522,7 +522,7 @@ public open class Window : Viewport() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun position(block: Vector2i.() -> Unit): Vector2i = position.apply{
+  public open fun positionMutate(block: Vector2i.() -> Unit): Vector2i = position.apply{
       block(this)
       position = this
   }
@@ -546,7 +546,7 @@ public open class Window : Viewport() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size(block: Vector2i.() -> Unit): Vector2i = size.apply{
+  public open fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
       block(this)
       size = this
   }
@@ -572,7 +572,7 @@ public open class Window : Viewport() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun minSize(block: Vector2i.() -> Unit): Vector2i = minSize.apply{
+  public open fun minSizeMutate(block: Vector2i.() -> Unit): Vector2i = minSize.apply{
       block(this)
       minSize = this
   }
@@ -598,7 +598,7 @@ public open class Window : Viewport() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun maxSize(block: Vector2i.() -> Unit): Vector2i = maxSize.apply{
+  public open fun maxSizeMutate(block: Vector2i.() -> Unit): Vector2i = maxSize.apply{
       block(this)
       maxSize = this
   }
@@ -622,7 +622,8 @@ public open class Window : Viewport() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun contentScaleSize(block: Vector2i.() -> Unit): Vector2i = contentScaleSize.apply{
+  public open fun contentScaleSizeMutate(block: Vector2i.() -> Unit): Vector2i =
+      contentScaleSize.apply{
       block(this)
       contentScaleSize = this
   }

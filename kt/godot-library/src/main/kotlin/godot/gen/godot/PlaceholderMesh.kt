@@ -63,7 +63,7 @@ public open class PlaceholderMesh : Mesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun aabb(block: AABB.() -> Unit): AABB = aabb.apply{
+  public open fun aabbMutate(block: AABB.() -> Unit): AABB = aabb.apply{
       block(this)
       aabb = this
   }

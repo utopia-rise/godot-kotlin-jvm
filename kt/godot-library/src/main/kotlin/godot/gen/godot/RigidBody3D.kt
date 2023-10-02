@@ -597,7 +597,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun inertia(block: Vector3.() -> Unit): Vector3 = inertia.apply{
+  public open fun inertiaMutate(block: Vector3.() -> Unit): Vector3 = inertia.apply{
       block(this)
       inertia = this
   }
@@ -623,7 +623,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun centerOfMass(block: Vector3.() -> Unit): Vector3 = centerOfMass.apply{
+  public open fun centerOfMassMutate(block: Vector3.() -> Unit): Vector3 = centerOfMass.apply{
       block(this)
       centerOfMass = this
   }
@@ -647,7 +647,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun linearVelocity(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+  public open fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
       block(this)
       linearVelocity = this
   }
@@ -671,7 +671,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun angularVelocity(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+  public open fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
       block(this)
       angularVelocity = this
   }
@@ -697,7 +697,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantForce(block: Vector3.() -> Unit): Vector3 = constantForce.apply{
+  public open fun constantForceMutate(block: Vector3.() -> Unit): Vector3 = constantForce.apply{
       block(this)
       constantForce = this
   }
@@ -723,7 +723,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantTorque(block: Vector3.() -> Unit): Vector3 = constantTorque.apply{
+  public open fun constantTorqueMutate(block: Vector3.() -> Unit): Vector3 = constantTorque.apply{
       block(this)
       constantTorque = this
   }

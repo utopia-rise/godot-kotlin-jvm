@@ -336,7 +336,7 @@ public open class CanvasItem internal constructor() : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun modulate(block: Color.() -> Unit): Color = modulate.apply{
+  public open fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
       block(this)
       modulate = this
   }
@@ -362,7 +362,7 @@ public open class CanvasItem internal constructor() : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun selfModulate(block: Color.() -> Unit): Color = selfModulate.apply{
+  public open fun selfModulateMutate(block: Color.() -> Unit): Color = selfModulate.apply{
       block(this)
       selfModulate = this
   }

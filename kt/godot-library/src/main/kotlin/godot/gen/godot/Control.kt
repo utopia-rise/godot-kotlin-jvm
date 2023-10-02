@@ -603,7 +603,8 @@ public open class Control : CanvasItem() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun customMinimumSize(block: Vector2.() -> Unit): Vector2 = customMinimumSize.apply{
+  public open fun customMinimumSizeMutate(block: Vector2.() -> Unit): Vector2 =
+      customMinimumSize.apply{
       block(this)
       customMinimumSize = this
   }
@@ -633,7 +634,7 @@ public open class Control : CanvasItem() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scale(block: Vector2.() -> Unit): Vector2 = scale.apply{
+  public open fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
       block(this)
       scale = this
   }
@@ -657,7 +658,7 @@ public open class Control : CanvasItem() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun pivotOffset(block: Vector2.() -> Unit): Vector2 = pivotOffset.apply{
+  public open fun pivotOffsetMutate(block: Vector2.() -> Unit): Vector2 = pivotOffset.apply{
       block(this)
       pivotOffset = this
   }

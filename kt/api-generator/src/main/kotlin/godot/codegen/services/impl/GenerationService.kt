@@ -489,7 +489,7 @@ class GenerationService(
     private fun generateCoreTypeHelper(enrichedClass: EnrichedClass, property: EnrichedProperty): FunSpec {
         val parameterTypeName = property.getCastedType()
         val parameterName = property.name
-        val propertyFunSpec = FunSpec.builder(parameterName)
+        val propertyFunSpec = FunSpec.builder("${parameterName}Mutate")
 
         if (classGraphService.doAncestorsHaveProperty(enrichedClass, property)) {
             propertyFunSpec.addModifiers(KModifier.OVERRIDE)

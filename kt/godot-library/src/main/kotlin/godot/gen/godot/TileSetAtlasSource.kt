@@ -149,7 +149,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun margins(block: Vector2i.() -> Unit): Vector2i = margins.apply{
+  public open fun marginsMutate(block: Vector2i.() -> Unit): Vector2i = margins.apply{
       block(this)
       margins = this
   }
@@ -173,7 +173,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun separation(block: Vector2i.() -> Unit): Vector2i = separation.apply{
+  public open fun separationMutate(block: Vector2i.() -> Unit): Vector2i = separation.apply{
       block(this)
       separation = this
   }
@@ -197,7 +197,8 @@ public open class TileSetAtlasSource : TileSetSource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun textureRegionSize(block: Vector2i.() -> Unit): Vector2i = textureRegionSize.apply{
+  public open fun textureRegionSizeMutate(block: Vector2i.() -> Unit): Vector2i =
+      textureRegionSize.apply{
       block(this)
       textureRegionSize = this
   }

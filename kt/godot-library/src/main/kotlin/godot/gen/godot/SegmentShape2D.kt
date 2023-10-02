@@ -75,7 +75,7 @@ public open class SegmentShape2D : Shape2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun a(block: Vector2.() -> Unit): Vector2 = a.apply{
+  public open fun aMutate(block: Vector2.() -> Unit): Vector2 = a.apply{
       block(this)
       a = this
   }
@@ -99,7 +99,7 @@ public open class SegmentShape2D : Shape2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun b(block: Vector2.() -> Unit): Vector2 = b.apply{
+  public open fun bMutate(block: Vector2.() -> Unit): Vector2 = b.apply{
       block(this)
       b = this
   }

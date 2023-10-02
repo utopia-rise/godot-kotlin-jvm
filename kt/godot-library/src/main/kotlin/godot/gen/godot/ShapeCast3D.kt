@@ -216,7 +216,7 @@ public open class ShapeCast3D : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun targetPosition(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
+  public open fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
       block(this)
       targetPosition = this
   }
@@ -242,7 +242,7 @@ public open class ShapeCast3D : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun debugShapeCustomColor(block: Color.() -> Unit): Color =
+  public open fun debugShapeCustomColorMutate(block: Color.() -> Unit): Color =
       debugShapeCustomColor.apply{
       block(this)
       debugShapeCustomColor = this

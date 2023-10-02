@@ -242,7 +242,7 @@ public open class SkeletonIK3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun target(block: Transform3D.() -> Unit): Transform3D = target.apply{
+  public open fun targetMutate(block: Transform3D.() -> Unit): Transform3D = target.apply{
       block(this)
       target = this
   }
@@ -266,7 +266,7 @@ public open class SkeletonIK3D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun magnet(block: Vector3.() -> Unit): Vector3 = magnet.apply{
+  public open fun magnetMutate(block: Vector3.() -> Unit): Vector3 = magnet.apply{
       block(this)
       magnet = this
   }

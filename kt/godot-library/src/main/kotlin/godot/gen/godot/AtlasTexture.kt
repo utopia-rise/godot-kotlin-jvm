@@ -110,7 +110,7 @@ public open class AtlasTexture : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun region(block: Rect2.() -> Unit): Rect2 = region.apply{
+  public open fun regionMutate(block: Rect2.() -> Unit): Rect2 = region.apply{
       block(this)
       region = this
   }
@@ -134,7 +134,7 @@ public open class AtlasTexture : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun margin(block: Rect2.() -> Unit): Rect2 = margin.apply{
+  public open fun marginMutate(block: Rect2.() -> Unit): Rect2 = margin.apply{
       block(this)
       margin = this
   }

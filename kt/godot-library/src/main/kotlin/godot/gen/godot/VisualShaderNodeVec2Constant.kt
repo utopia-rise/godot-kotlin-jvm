@@ -63,7 +63,7 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constant(block: Vector2.() -> Unit): Vector2 = constant.apply{
+  public open fun constantMutate(block: Vector2.() -> Unit): Vector2 = constant.apply{
       block(this)
       constant = this
   }

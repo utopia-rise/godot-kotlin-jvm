@@ -511,7 +511,7 @@ public open class NavigationAgent2D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun targetPosition(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
+  public open fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
       block(this)
       targetPosition = this
   }
@@ -535,7 +535,7 @@ public open class NavigationAgent2D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun velocity(block: Vector2.() -> Unit): Vector2 = velocity.apply{
+  public open fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
       block(this)
       velocity = this
   }
@@ -559,7 +559,8 @@ public open class NavigationAgent2D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun debugPathCustomColor(block: Color.() -> Unit): Color = debugPathCustomColor.apply{
+  public open fun debugPathCustomColorMutate(block: Color.() -> Unit): Color =
+      debugPathCustomColor.apply{
       block(this)
       debugPathCustomColor = this
   }

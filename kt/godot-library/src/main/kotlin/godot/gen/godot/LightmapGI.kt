@@ -285,7 +285,7 @@ public open class LightmapGI : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun environmentCustomColor(block: Color.() -> Unit): Color =
+  public open fun environmentCustomColorMutate(block: Color.() -> Unit): Color =
       environmentCustomColor.apply{
       block(this)
       environmentCustomColor = this

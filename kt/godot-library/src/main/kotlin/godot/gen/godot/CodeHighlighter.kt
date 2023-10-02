@@ -166,7 +166,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun numberColor(block: Color.() -> Unit): Color = numberColor.apply{
+  public open fun numberColorMutate(block: Color.() -> Unit): Color = numberColor.apply{
       block(this)
       numberColor = this
   }
@@ -190,7 +190,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun symbolColor(block: Color.() -> Unit): Color = symbolColor.apply{
+  public open fun symbolColorMutate(block: Color.() -> Unit): Color = symbolColor.apply{
       block(this)
       symbolColor = this
   }
@@ -214,7 +214,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun functionColor(block: Color.() -> Unit): Color = functionColor.apply{
+  public open fun functionColorMutate(block: Color.() -> Unit): Color = functionColor.apply{
       block(this)
       functionColor = this
   }
@@ -238,7 +238,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun memberVariableColor(block: Color.() -> Unit): Color = memberVariableColor.apply{
+  public open fun memberVariableColorMutate(block: Color.() -> Unit): Color =
+      memberVariableColor.apply{
       block(this)
       memberVariableColor = this
   }

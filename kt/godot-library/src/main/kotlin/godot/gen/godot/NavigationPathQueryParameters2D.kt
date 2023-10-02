@@ -167,7 +167,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun startPosition(block: Vector2.() -> Unit): Vector2 = startPosition.apply{
+  public open fun startPositionMutate(block: Vector2.() -> Unit): Vector2 = startPosition.apply{
       block(this)
       startPosition = this
   }
@@ -191,7 +191,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun targetPosition(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
+  public open fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
       block(this)
       targetPosition = this
   }

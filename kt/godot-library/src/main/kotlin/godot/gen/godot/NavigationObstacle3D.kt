@@ -180,7 +180,7 @@ public open class NavigationObstacle3D : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun velocity(block: Vector3.() -> Unit): Vector3 = velocity.apply{
+  public open fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply{
       block(this)
       velocity = this
   }

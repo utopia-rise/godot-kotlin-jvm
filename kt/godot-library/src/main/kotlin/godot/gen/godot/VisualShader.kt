@@ -80,7 +80,7 @@ public open class VisualShader : Shader() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun graphOffset(block: Vector2.() -> Unit): Vector2 = graphOffset.apply{
+  public open fun graphOffsetMutate(block: Vector2.() -> Unit): Vector2 = graphOffset.apply{
       block(this)
       graphOffset = this
   }

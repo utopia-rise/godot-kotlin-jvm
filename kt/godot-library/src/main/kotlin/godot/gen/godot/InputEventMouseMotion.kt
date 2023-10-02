@@ -140,7 +140,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun tilt(block: Vector2.() -> Unit): Vector2 = tilt.apply{
+  public open fun tiltMutate(block: Vector2.() -> Unit): Vector2 = tilt.apply{
       block(this)
       tilt = this
   }
@@ -166,7 +166,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun relative(block: Vector2.() -> Unit): Vector2 = relative.apply{
+  public open fun relativeMutate(block: Vector2.() -> Unit): Vector2 = relative.apply{
       block(this)
       relative = this
   }
@@ -190,7 +190,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun velocity(block: Vector2.() -> Unit): Vector2 = velocity.apply{
+  public open fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
       block(this)
       velocity = this
   }

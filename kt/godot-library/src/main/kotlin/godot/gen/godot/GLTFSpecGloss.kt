@@ -109,7 +109,7 @@ public open class GLTFSpecGloss : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun diffuseFactor(block: Color.() -> Unit): Color = diffuseFactor.apply{
+  public open fun diffuseFactorMutate(block: Color.() -> Unit): Color = diffuseFactor.apply{
       block(this)
       diffuseFactor = this
   }
@@ -131,7 +131,7 @@ public open class GLTFSpecGloss : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun specularFactor(block: Color.() -> Unit): Color = specularFactor.apply{
+  public open fun specularFactorMutate(block: Color.() -> Unit): Color = specularFactor.apply{
       block(this)
       specularFactor = this
   }

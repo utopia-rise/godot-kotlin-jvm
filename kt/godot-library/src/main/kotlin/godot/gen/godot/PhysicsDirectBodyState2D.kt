@@ -214,7 +214,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun linearVelocity(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
+  public open fun linearVelocityMutate(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
       block(this)
       linearVelocity = this
   }
@@ -238,7 +238,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun transform(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+  public open fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
       block(this)
       transform = this
   }
