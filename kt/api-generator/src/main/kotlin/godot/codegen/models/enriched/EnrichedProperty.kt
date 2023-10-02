@@ -45,7 +45,7 @@ class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait {
             // There are inconsistencies between property type and getter type in api.
             internalType.sanitizeApiType()
         }
-    override val nullable = isObjectSubClass() || getTypeClassName().className == ANY
+    override val nullable = isObjectSubClass() || type == GodotTypes.variant
     override val meta: String?
         get() = getterMethod?.meta
 }

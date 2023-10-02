@@ -113,13 +113,13 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
             .parameterizedBy(ANY.copy(nullable = true))
         type == GodotTypes.dictionary -> ClassTypeNameWrapper(GODOT_DICTIONARY)
             .parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
-        type == GodotTypes.variant -> ClassTypeNameWrapper(ANY).modify(nullable = true)
+        type == GodotTypes.variant -> ClassTypeNameWrapper(ANY)
         isCoreType() -> ClassTypeNameWrapper(ClassName(godotCorePackage, type!!))
         else -> ClassTypeNameWrapper(ClassName(godotApiPackage, type!!))
     }
 
     if (this is NullableTrait) {
-        typeNameWrapper.modify(nullable = nullable || typeNameWrapper.typeName.isNullable)
+        typeNameWrapper.modify(nullable = nullable)
     }
 
     return typeNameWrapper
@@ -155,37 +155,37 @@ val TypedTrait.jvmVariantTypeValue: ClassName
     }
 
 fun <T> T.getDefaultValueKotlinString(): String?
-        where T : WithDefaultValueTrait,
-              T : NullableTrait,
-              T : CastableTrait {
-    val defaultValueString = defaultValue
-    return if (defaultValueString != null && nullable) {
-        "null"
-    } else if (defaultValueString != null) {
-        when {
-            type == GodotTypes.color -> "${GodotKotlinJvmTypes.color}($defaultValueString)"
-            type == GodotTypes.variant -> defaultValueString
-            type == GodotTypes.bool -> defaultValueString.lowercase(Locale.US)
-            type == GodotTypes.float && meta == GodotMeta.Float.float -> "${intToFloat(defaultValueString)}f"
-            type == GodotTypes.float -> intToFloat(defaultValueString)
-            type == GodotTypes.stringName -> "${GodotKotlinJvmTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
-            type == GodotTypes.array || isTypedArray() ->
-                if (defaultValueString.startsWith("Array")) {
-                    val defaultArrayValues = defaultValueString
-                        .replace("Array.*\\(\\[".toRegex(), "")
-                        .removeSuffix("])")
-                    "$godotCorePackage.variantArrayOf(".plus(defaultArrayValues).plus(")")
-                } else {
-                    "$godotCorePackage.variantArrayOf("
-                        .plus(defaultValueString.removePrefix("[").removeSuffix("]"))
-                        .plus(")")
-                }
+    where T : WithDefaultValueTrait,
+          T : NullableTrait,
+          T : CastableTrait {
+    val defaultValueString = defaultValue ?: return null
+    return when {
+        nullable && defaultValue == "null" -> defaultValueString
+        type == GodotTypes.color -> "${GodotKotlinJvmTypes.color}($defaultValueString)"
+        type == GodotTypes.variant -> defaultValueString
+        type == GodotTypes.bool -> defaultValueString.lowercase(Locale.US)
+        type == GodotTypes.float && meta == GodotMeta.Float.float -> "${intToFloat(defaultValueString)}f"
+        type == GodotTypes.float -> intToFloat(defaultValueString)
+        type == GodotTypes.stringName -> "${GodotKotlinJvmTypes.stringName}(".plus(defaultValueString.replace("&", ""))
+            .plus(")")
 
-            type == GodotTypes.rect2 -> defaultValueString
-                .replace(",", ".0,")
-                .replace(")", ".0)")
+        type == GodotTypes.array || isTypedArray() ->
+            if (defaultValueString.startsWith("Array")) {
+                val defaultArrayValues = defaultValueString
+                    .replace("Array.*\\(\\[".toRegex(), "")
+                    .removeSuffix("])")
+                "$godotCorePackage.variantArrayOf(".plus(defaultArrayValues).plus(")")
+            } else {
+                "$godotCorePackage.variantArrayOf("
+                    .plus(defaultValueString.removePrefix("[").removeSuffix("]"))
+                    .plus(")")
+            }
 
-            type == GodotTypes.rid ||
+        type == GodotTypes.rect2 -> defaultValueString
+            .replace(",", ".0,")
+            .replace(")", ".0)")
+
+        type == GodotTypes.rid ||
             type == GodotTypes.callable ||
             type == GodotTypes.dictionary ||
             type == GodotTypes.transform2D ||
@@ -199,12 +199,9 @@ fun <T> T.getDefaultValueKotlinString(): String?
             type == GodotTypes.packedInt64Array ||
             type == GodotTypes.packedVector2Array ||
             type == GodotTypes.packedVector3Array
-            -> "$type()"
+        -> "$type()"
 
-            else -> defaultValueString
-        }
-    } else {
-        null
+        else -> defaultValueString
     }
 }
 
