@@ -820,7 +820,6 @@ class GenerationService(
 
         if (methodReturnType.typeName != UNIT) {
             if (callable.isEnum()) {
-                if (callable.isEnum())
                 addStatement(
                     "return·${methodReturnType.className.simpleNames.joinToString(".")}.from(%T.readReturnValue(%T)·as·%T)",
                     TRANSFER_CONTEXT,
