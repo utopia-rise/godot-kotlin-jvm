@@ -79,19 +79,22 @@ class Basis() : CoreType {
         /**
          * Creates a Basis with a rotation such that the forward axis (-Z) points towards the [target] position.
          *
-         * The up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the forward
-         * axis.
-         * The resulting Basis is orthonormalized. The [target] and [up] vectors cannot be zero, and cannot be parallel
-         * to each other.
+         * The up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the forward axis. The resulting Basis is orthonormalized. The [target] and [up] vectors cannot be zero, and cannot be parallel to each other.
+         *
+         * If [useModelFront] is true, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).
          */
-        fun lookingAt(target: Vector3, up: Vector3 = Vector3(0, 1, 0)): Basis {
+        fun lookingAt(target: Vector3, up: Vector3 = Vector3(0, 1, 0), useModelFront: Boolean = false): Basis {
             require(!target.isZeroApprox()) {
                 "The target vector can't be zero."
             }
             require(!up.isZeroApprox()) {
                 "The up vector can't be zero."
             }
-            val vZ: Vector3 = -target.normalized()
+            val vZ: Vector3 = if (!useModelFront) {
+                target.normalized()
+            } else {
+                -target.normalized()
+            }
             val vX: Vector3 = up.cross(vZ)
 
             require(!vX.isZeroApprox()) {
@@ -102,7 +105,6 @@ class Basis() : CoreType {
             val vY = vZ.cross(vX)
 
             val basis = Basis()
-
             basis.setColumns(vX, vY, vZ)
             return basis
         }
