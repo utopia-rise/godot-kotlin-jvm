@@ -95,6 +95,70 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
+   * Border width for the left border.
+   */
+  public var borderWidthLeft: Int
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH,
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH,
+          NIL)
+    }
+
+  /**
+   * Border width for the top border.
+   */
+  public var borderWidthTop: Int
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH,
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH,
+          NIL)
+    }
+
+  /**
+   * Border width for the right border.
+   */
+  public var borderWidthRight: Int
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH,
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH,
+          NIL)
+    }
+
+  /**
+   * Border width for the bottom border.
+   */
+  public var borderWidthBottom: Int
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH,
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH,
+          NIL)
+    }
+
+  /**
    * Sets the color of the border.
    */
   public var borderColor: Color
@@ -127,6 +191,70 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
+   * The top-left corner's radius. If `0`, the corner is not rounded.
+   */
+  public var cornerRadiusTopLeft: Int
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS,
+          NIL)
+    }
+
+  /**
+   * The top-right corner's radius. If `0`, the corner is not rounded.
+   */
+  public var cornerRadiusTopRight: Int
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS,
+          NIL)
+    }
+
+  /**
+   * The bottom-right corner's radius. If `0`, the corner is not rounded.
+   */
+  public var cornerRadiusBottomRight: Int
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS,
+          NIL)
+    }
+
+  /**
+   * The bottom-left corner's radius. If `0`, the corner is not rounded.
+   */
+  public var cornerRadiusBottomLeft: Int
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS,
+          NIL)
+    }
+
+  /**
    * This sets the number of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius ([setCornerRadiusAll]) into account.
    *
    * For corner radii less than 10, `4` or `5` should be enough. For corner radii less than 30, values between `8` and `12` should be enough.
@@ -143,6 +271,78 @@ public open class StyleBoxFlat : StyleBox() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_DETAIL,
+          NIL)
+    }
+
+  /**
+   * Expands the stylebox outside of the control rect on the left edge. Useful in combination with [borderWidthLeft] to draw a border outside the control rect.
+   *
+   * **Note:** Unlike [godot.StyleBox.contentMarginLeft], [expandMarginLeft] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
+   */
+  public var expandMarginLeft: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN,
+          NIL)
+    }
+
+  /**
+   * Expands the stylebox outside of the control rect on the top edge. Useful in combination with [borderWidthTop] to draw a border outside the control rect.
+   *
+   * **Note:** Unlike [godot.StyleBox.contentMarginTop], [expandMarginTop] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
+   */
+  public var expandMarginTop: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN,
+          NIL)
+    }
+
+  /**
+   * Expands the stylebox outside of the control rect on the right edge. Useful in combination with [borderWidthRight] to draw a border outside the control rect.
+   *
+   * **Note:** Unlike [godot.StyleBox.contentMarginRight], [expandMarginRight] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
+   */
+  public var expandMarginRight: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN,
+          NIL)
+    }
+
+  /**
+   * Expands the stylebox outside of the control rect on the bottom edge. Useful in combination with [borderWidthBottom] to draw a border outside the control rect.
+   *
+   * **Note:** Unlike [godot.StyleBox.contentMarginBottom], [expandMarginBottom] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
+   */
+  public var expandMarginBottom: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN,
           NIL)
     }
 
@@ -374,23 +574,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the specified [enum Side]'s border width to [width] pixels.
-   */
-  public fun setBorderWidth(margin: Side, width: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH, NIL)
-  }
-
-  /**
-   * Returns the specified [enum Side]'s border width.
-   */
-  public fun getBorderWidth(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-  }
-
-  /**
    * Sets the corner radius to [radius] pixels for all corners.
    */
   public fun setCornerRadiusAll(radius: Int): Unit {
@@ -400,48 +583,12 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the corner radius to [radius] pixels for the given [corner]. See [enum Corner] for possible values.
-   */
-  public fun setCornerRadius(corner: Corner, radius: Int): Unit {
-    TransferContext.writeArguments(LONG to corner.id, LONG to radius.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS, NIL)
-  }
-
-  /**
-   * Returns the given [corner]'s radius. See [enum Corner] for possible values.
-   */
-  public fun getCornerRadius(corner: Corner): Int {
-    TransferContext.writeArguments(LONG to corner.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
-        LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-  }
-
-  /**
-   * Sets the expand margin to [size] pixels for the specified [enum Side].
-   */
-  public fun setExpandMargin(margin: Side, size: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN, NIL)
-  }
-
-  /**
    * Sets the expand margin to [size] pixels for all sides.
    */
   public fun setExpandMarginAll(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_ALL,
         NIL)
-  }
-
-  /**
-   * Returns the size of the specified [enum Side]'s expand margin.
-   */
-  public fun getExpandMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
-        DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

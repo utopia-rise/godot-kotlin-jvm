@@ -35,6 +35,40 @@ import kotlin.Unit
 @GodotBaseType
 public open class Light3D internal constructor() : VisualInstance3D() {
   /**
+   * Used by positional lights ([godot.OmniLight3D] and [godot.SpotLight3D]) when [godot.ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`. Sets the intensity of the light source measured in Lumens. Lumens are a measure of luminous flux, which is the total amount of visible light emitted by a light source per unit of time.
+   *
+   * For [godot.SpotLight3D]s, we assume that the area outside the visible cone is surrounded by a perfect light absorbing material. Accordingly, the apparent brightness of the cone area does not change as the cone increases and decreases in size.
+   *
+   * A typical household lightbulb can range from around 600 lumens to 1,200 lumens, a candle is about 13 lumens, while a streetlight can be approximately 60,000 lumens.
+   */
+  public var lightIntensityLumens: Float
+    get() {
+      TransferContext.writeArguments(LONG to 20)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 20, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * Used by [godot.DirectionalLight3D]s when [godot.ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`. Sets the intensity of the light source measured in Lux. Lux is a measure of luminous flux per unit area, it is equal to one lumen per square meter. Lux is the measure of how much light hits a surface at a given time.
+   *
+   * On a clear sunny day a surface in direct sunlight may be approximately 100,000 lux, a typical room in a home may be approximately 50 lux, while the moonlit ground may be approximately 0.1 lux.
+   */
+  public var lightIntensityLux: Float
+    get() {
+      TransferContext.writeArguments(LONG to 20)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 20, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
    * Sets the color temperature of the light source, measured in Kelvin. This is used to calculate a correlated color temperature which tints the [lightColor].
    *
    * The sun on a cloudy day is approximately 6500 Kelvin, on a clear day it is between 5500 to 6000 Kelvin, and on a clear day at sunrise or sunset it ranges to around 1850 Kelvin.
@@ -65,6 +99,52 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
+   * The light's strength multiplier (this is not a physical unit). For [godot.OmniLight3D] and [godot.SpotLight3D], changing this value will only change the light color's intensity, not the light's radius.
+   */
+  public var lightEnergy: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * Secondary multiplier used with indirect light (light bounces). Used with [godot.VoxelGI] and SDFGI (see [godot.Environment.sdfgiEnabled]).
+   *
+   * **Note:** This property is ignored if [lightEnergy] is equal to `0.0`, as the light won't be present at all in the GI shader.
+   */
+  public var lightIndirectEnergy: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * Secondary multiplier multiplied with [lightEnergy] then used with the [godot.Environment]'s volumetric fog (if enabled). If set to `0.0`, computing volumetric fog will be skipped for this light, which can improve performance for large amounts of lights when volumetric fog is enabled.
+   *
+   * **Note:** To prevent short-lived dynamic light effects from poorly interacting with volumetric fog, lights used in those effects should have [lightVolumetricFogEnergy] set to `0.0` unless [godot.Environment.volumetricFogTemporalReprojectionEnabled] is disabled (or unless the reprojection amount is significantly lowered).
+   */
+  public var lightVolumetricFogEnergy: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
    * [godot.Texture2D] projected by light. [shadowEnabled] must be on for the projector to work. Light projectors make the light appear as if it is shining through a colored but transparent object, almost like light shining through stained-glass.
    *
    * **Note:** Unlike [godot.BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for light projector textures is set globally with [godot.ProjectSettings.rendering/textures/lightProjectors/filter].
@@ -83,6 +163,42 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
+   * The size of the light in Godot units. Only available for [godot.OmniLight3D]s and [godot.SpotLight3D]s. Increasing this value will make the light fade out slower and shadows appear blurrier (also called percentage-closer soft shadows, or PCSS). This can be used to simulate area lights to an extent. Increasing this value above `0.0` for lights with shadows enabled will have a noticeable performance cost due to PCSS.
+   *
+   * **Note:** [lightSize] is not affected by [godot.Node3D.scale] (the light's scale or its parent's scale).
+   *
+   * **Note:** PCSS for positional lights is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
+   */
+  public var lightSize: Float
+    get() {
+      TransferContext.writeArguments(LONG to 5)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * The light's angular size in degrees. Increasing this will make shadows softer at greater distances (also called percentage-closer soft shadows, or PCSS). Only available for [godot.DirectionalLight3D]s. For reference, the Sun from the Earth is approximately `0.5`. Increasing this value above `0.0` for lights with shadows enabled will have a noticeable performance cost due to PCSS.
+   *
+   * **Note:** [lightAngularDistance] is not affected by [godot.Node3D.scale] (the light's scale or its parent's scale).
+   *
+   * **Note:** PCSS for directional lights is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+   */
+  public var lightAngularDistance: Float
+    get() {
+      TransferContext.writeArguments(LONG to 5)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
    * If `true`, the light's effect is reversed, darkening areas and casting bright shadows.
    */
   public var lightNegative: Boolean
@@ -94,6 +210,20 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_NEGATIVE, NIL)
+    }
+
+  /**
+   * The intensity of the specular blob in objects affected by the light. At `0`, the light becomes a pure diffuse light. When not baking emission, this can be used to avoid unrealistic reflections when placing lights above an emissive surface.
+   */
+  public var lightSpecular: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
   /**
@@ -141,6 +271,34 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
+   * Used to adjust shadow appearance. Too small a value results in self-shadowing ("shadow acne"), while too large a value causes shadows to separate from casters ("peter-panning"). Adjust as needed.
+   */
+  public var shadowBias: Float
+    get() {
+      TransferContext.writeArguments(LONG to 15)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 15, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * Offsets the lookup into the shadow map by the object's normal. This can be used to reduce self-shadowing artifacts without using [shadowBias]. In practice, this value should be tweaked along with [shadowBias] to reduce artifacts as much as possible.
+   */
+  public var shadowNormalBias: Float
+    get() {
+      TransferContext.writeArguments(LONG to 14)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 14, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
    * If `true`, reverses the backface culling of the mesh. This can be useful when you have a flat mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the mesh to use double-sided shadows with [godot.GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED].
    */
   public var shadowReverseCullFace: Boolean
@@ -154,6 +312,48 @@ public open class Light3D internal constructor() : VisualInstance3D() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_SHADOW_REVERSE_CULL_FACE, NIL)
+    }
+
+  /**
+   *
+   */
+  public var shadowTransmittanceBias: Float
+    get() {
+      TransferContext.writeArguments(LONG to 19)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 19, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * The opacity to use when rendering the light's shadow map. Values lower than `1.0` make the light appear through shadows. This can be used to fake global illumination at a low performance cost.
+   */
+  public var shadowOpacity: Float
+    get() {
+      TransferContext.writeArguments(LONG to 17)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 17, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * Blurs the edges of the shadow. Can be used to hide pixel artifacts in low-resolution shadow maps. A high value can impact performance, make shadows appear grainy and can cause other unwanted artifacts. Try to keep as near default as possible.
+   */
+  public var shadowBlur: Float
+    get() {
+      TransferContext.writeArguments(LONG to 18)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 18, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
   /**
@@ -270,23 +470,6 @@ public open class Light3D internal constructor() : VisualInstance3D() {
       lightColor = this
   }
 
-
-  /**
-   * Sets the value of the specified [enum Light3D.Param] parameter.
-   */
-  public fun setParam(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
-  }
-
-  /**
-   * Returns the value of the specified [enum Light3D.Param] parameter.
-   */
-  public fun getParam(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-  }
 
   /**
    * Returns the [godot.core.Color] of an idealized blackbody at the given [lightTemperature]. This value is calculated internally based on the [lightTemperature]. This [godot.core.Color] is multiplied by [lightColor] before being sent to the [godot.RenderingServer].

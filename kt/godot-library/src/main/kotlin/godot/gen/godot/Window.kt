@@ -354,6 +354,132 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If `true`, the window can't be resized. Minimize and maximize buttons are disabled.
+   */
+  public var unresizable: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the window will have no borders.
+   */
+  public var borderless: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the window will be on top of all other windows. Does not work if [transient] is enabled.
+   */
+  public var alwaysOnTop: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.Window]'s background can be transparent. This is best used with embedded windows.
+   *
+   * **Note:** Transparency support is implemented on Linux, macOS and Windows, but availability might vary depending on GPU driver, display manager, and compositor capabilities.
+   *
+   * **Note:** This property has no effect if either [godot.ProjectSettings.display/window/perPixelTransparency/allowed], or the window's [godot.Viewport.transparentBg] is set to `false`.
+   */
+  public var transparent: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.Window] can't be focused nor interacted with. It can still be visible.
+   */
+  public var unfocusable: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 4)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.Window] will be considered a popup. Popups are sub-windows that don't show as separate windows in system's window manager's window list and will send close request when anything is clicked outside of them (unless [exclusive] is enabled).
+   *
+   * **Note:** This property only works with native windows.
+   */
+  public var popupWindow: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 5)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.Window] contents is expanded to the full size of the window, window title bar is transparent.
+   *
+   * **Note:** This property is implemented only on macOS.
+   *
+   * **Note:** This property only works with native windows.
+   */
+  public var extendToTitle: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 6)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 6, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, all mouse events will be passed to the underlying window of the same application. See also [mousePassthroughPolygon].
+   *
+   * **Note:** This property is implemented on Linux (X11), macOS and Windows.
+   *
+   * **Note:** This property only works with native windows.
+   */
+  public var mousePassthrough: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 7)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 7, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
    * If non-zero, the [godot.Window] can't be resized to be smaller than this size.
    *
    * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls] is enabled and if its size is bigger.
@@ -664,23 +790,6 @@ public open class Window : Viewport() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_SIZE_WITH_DECORATIONS,
         VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-  }
-
-  /**
-   * Sets a specified window flag.
-   */
-  public fun setFlag(flag: Flags, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
-  }
-
-  /**
-   * Returns `true` if the [flag] is set.
-   */
-  public fun getFlag(flag: Flags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

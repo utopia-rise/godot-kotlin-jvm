@@ -25,6 +25,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.UninitializedPropertyAccessException
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
@@ -191,6 +192,57 @@ public open class FontVariation : Font() {
           ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_OPENTYPE_FEATURES, NIL)
     }
 
+  /**
+   * Extra spacing between graphical glyphs.
+   */
+  public var spacingGlyph: Long
+    get() {
+      throw
+          UninitializedPropertyAccessException("Cannot access property spacingGlyph: has no getter")
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+    }
+
+  /**
+   * Extra width of the space glyphs.
+   */
+  public var spacingSpace: Long
+    get() {
+      throw
+          UninitializedPropertyAccessException("Cannot access property spacingSpace: has no getter")
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+    }
+
+  /**
+   * Extra spacing at the top of the line in pixels.
+   */
+  public var spacingTop: Long
+    get() {
+      throw UninitializedPropertyAccessException("Cannot access property spacingTop: has no getter")
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+    }
+
+  /**
+   * Extra spacing at the bottom of the line in pixels.
+   */
+  public var spacingBottom: Long
+    get() {
+      throw
+          UninitializedPropertyAccessException("Cannot access property spacingBottom: has no getter")
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FONTVARIATION, scriptIndex)
     return true
@@ -222,14 +274,6 @@ public open class FontVariation : Font() {
       variationTransform = this
   }
 
-
-  /**
-   * Sets the spacing for `type` (see [enum TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
-   */
-  public fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to spacing.id, LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
-  }
 
   public companion object
 }

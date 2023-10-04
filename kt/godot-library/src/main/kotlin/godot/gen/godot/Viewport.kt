@@ -661,45 +661,65 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The subdivision amount of the first quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad0: PositionalShadowAtlasQuadrantSubdiv
+  public var positionalShadowAtlasQuad0: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
+    }
 
   /**
    * The subdivision amount of the second quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad1: PositionalShadowAtlasQuadrantSubdiv
+  public var positionalShadowAtlasQuad1: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
+    }
 
   /**
    * The subdivision amount of the third quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad2: PositionalShadowAtlasQuadrantSubdiv
+  public var positionalShadowAtlasQuad2: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
+    }
 
   /**
    * The subdivision amount of the fourth quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad3: PositionalShadowAtlasQuadrantSubdiv
+  public var positionalShadowAtlasQuad3: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
 
   /**
@@ -1028,16 +1048,6 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_FOCUS_OWNER,
         OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
-  }
-
-  /**
-   * Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
-   */
-  public fun setPositionalShadowAtlasQuadrantSubdiv(quadrant: Int,
-      subdiv: PositionalShadowAtlasQuadrantSubdiv): Unit {
-    TransferContext.writeArguments(LONG to quadrant.toLong(), LONG to subdiv.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
   }
 
   /**

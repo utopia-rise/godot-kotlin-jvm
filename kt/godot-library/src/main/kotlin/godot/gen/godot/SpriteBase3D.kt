@@ -154,6 +154,76 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
+   * If `true`, the texture's transparency and the opacity are used to make those parts of the sprite invisible.
+   */
+  public var transparent: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.Light3D] in the [godot.Environment] has effects on the sprite.
+   */
+  public var shaded: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, texture can be seen from the back as well, if `false`, it is invisible when looking at it from behind.
+   */
+  public var doubleSided: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, depth testing is disabled and the object will be drawn in render order.
+   */
+  public var noDepthTest: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the label is rendered at the same size regardless of distance.
+   */
+  public var fixedSize: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 4)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
+    }
+
+  /**
    * The alpha cutting mode to use for the sprite. See [enum AlphaCutMode] for possible values.
    */
   public var alphaCut: AlphaCutMode
@@ -323,23 +393,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       modulate = this
   }
 
-
-  /**
-   * If `true`, the specified flag will be enabled. See [enum SpriteBase3D.DrawFlags] for a list of flags.
-   */
-  public fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
-  }
-
-  /**
-   * Returns the value of the specified flag.
-   */
-  public fun getDrawFlag(flag: DrawFlags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
 
   /**
    * Returns the rectangle representing this sprite.

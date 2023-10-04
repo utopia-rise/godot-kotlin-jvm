@@ -60,6 +60,74 @@ public open class Decal : VisualInstance3D() {
     }
 
   /**
+   * [godot.Texture2D] with the base [godot.core.Color] of the Decal. Either this or the [textureEmission] must be set for the Decal to be visible. Use the alpha channel like a mask to smoothly blend the edges of the decal with the underlying object.
+   *
+   * **Note:** Unlike [godot.BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for [godot.Decal] textures is set globally with [godot.ProjectSettings.rendering/textures/decals/filter].
+   */
+  public var textureAlbedo: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * [godot.Texture2D] with the per-pixel normal map for the decal. Use this to add extra detail to decals.
+   *
+   * **Note:** Unlike [godot.BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for [godot.Decal] textures is set globally with [godot.ProjectSettings.rendering/textures/decals/filter].
+   *
+   * **Note:** Setting this texture alone will not result in a visible decal, as [textureAlbedo] must also be set. To create a normal-only decal, load an albedo texture into [textureAlbedo] and set [albedoMix] to `0.0`. The albedo texture's alpha channel will be used to determine where the underlying surface's normal map should be overridden (and its intensity).
+   */
+  public var textureNormal: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * [godot.Texture2D] storing ambient occlusion, roughness, and metallic for the decal. Use this to add extra detail to decals.
+   *
+   * **Note:** Unlike [godot.BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for [godot.Decal] textures is set globally with [godot.ProjectSettings.rendering/textures/decals/filter].
+   *
+   * **Note:** Setting this texture alone will not result in a visible decal, as [textureAlbedo] must also be set. To create an ORM-only decal, load an albedo texture into [textureAlbedo] and set [albedoMix] to `0.0`. The albedo texture's alpha channel will be used to determine where the underlying surface's ORM map should be overridden (and its intensity).
+   */
+  public var textureOrm: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * [godot.Texture2D] with the emission [godot.core.Color] of the Decal. Either this or the [textureAlbedo] must be set for the Decal to be visible. Use the alpha channel like a mask to smoothly blend the edges of the decal with the underlying object.
+   *
+   * **Note:** Unlike [godot.BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for [godot.Decal] textures is set globally with [godot.ProjectSettings.rendering/textures/decals/filter].
+   */
+  public var textureEmission: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
+    }
+
+  /**
    * Energy multiplier for the emission texture. This will make the decal emit light at a higher or lower intensity, independently of the albedo color. See also [modulate].
    */
   public var emissionEnergy: Float
@@ -261,79 +329,6 @@ public open class Decal : VisualInstance3D() {
       modulate = this
   }
 
-
-  /**
-   * Sets the [godot.Texture2D] associated with the specified [enum DecalTexture]. This is a convenience method, in most cases you should access the texture directly.
-   *
-   * For example, instead of `$Decal.set_texture(Decal.TEXTURE_ALBEDO, albedo_tex)`, use `$Decal.texture_albedo = albedo_tex`.
-   *
-   * One case where this is better than accessing the texture directly is when you want to copy one Decal's textures to another. For example:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
-   * for i in Decal.TEXTURE_MAX:
-   *
-   *     $NewDecal.set_texture(i, $OldDecal.get_texture(i))
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
-   * for (int i = 0; i < (int)Decal.DecalTexture.Max; i++)
-   *
-   * {
-   *
-   *     GetNode<Decal>("NewDecal").SetTexture(i, GetNode<Decal>("OldDecal").GetTexture(i));
-   *
-   * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   */
-  public fun setTexture(type: DecalTexture, texture: Texture2D): Unit {
-    TransferContext.writeArguments(LONG to type.id, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
-  }
-
-  /**
-   * Returns the [godot.Texture2D] associated with the specified [enum DecalTexture]. This is a convenience method, in most cases you should access the texture directly.
-   *
-   * For example, instead of `albedo_tex = $Decal.get_texture(Decal.TEXTURE_ALBEDO)`, use `albedo_tex = $Decal.texture_albedo`.
-   *
-   * One case where this is better than accessing the texture directly is when you want to copy one Decal's textures to another. For example:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
-   * for i in Decal.TEXTURE_MAX:
-   *
-   *     $NewDecal.set_texture(i, $OldDecal.get_texture(i))
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
-   * for (int i = 0; i < (int)Decal.DecalTexture.Max; i++)
-   *
-   * {
-   *
-   *     GetNode<Decal>("NewDecal").SetTexture(i, GetNode<Decal>("OldDecal").GetTexture(i));
-   *
-   * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   */
-  public fun getTexture(type: DecalTexture): Texture2D? {
-    TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-  }
 
   public enum class DecalTexture(
     id: Long,

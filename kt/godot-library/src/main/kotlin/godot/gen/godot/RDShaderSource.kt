@@ -16,7 +16,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Shader source code (used by [godot.RenderingDevice]).
@@ -27,6 +26,86 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RDShaderSource : RefCounted() {
+  /**
+   * Source code for the shader's vertex stage.
+   */
+  public var sourceVertex: String
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
+          STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
+          NIL)
+    }
+
+  /**
+   * Source code for the shader's fragment stage.
+   */
+  public var sourceFragment: String
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
+          STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
+          NIL)
+    }
+
+  /**
+   * Source code for the shader's tessellation control stage.
+   */
+  public var sourceTesselationControl: String
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
+          STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
+          NIL)
+    }
+
+  /**
+   * Source code for the shader's tessellation evaluation stage.
+   */
+  public var sourceTesselationEvaluation: String
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
+          STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
+          NIL)
+    }
+
+  /**
+   * Source code for the shader's compute stage.
+   */
+  public var sourceCompute: String
+    get() {
+      TransferContext.writeArguments(LONG to 4)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
+          STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4, STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
+          NIL)
+    }
+
   /**
    * The language the shader is written in.
    */
@@ -44,25 +123,6 @@ public open class RDShaderSource : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RDSHADERSOURCE, scriptIndex)
     return true
-  }
-
-  /**
-   * Sets [source] code for the specified shader [stage]. Equivalent to setting one of [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or [sourceVertex].
-   */
-  public fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
-    TransferContext.writeArguments(LONG to stage.id, STRING to source)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
-        NIL)
-  }
-
-  /**
-   * Returns source code for the specified shader [stage]. Equivalent to getting one of [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or [sourceVertex].
-   */
-  public fun getStageSource(stage: RenderingDevice.ShaderStage): String {
-    TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
-        STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

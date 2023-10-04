@@ -147,6 +147,62 @@ public open class Camera2D : Node2D() {
     }
 
   /**
+   * Left scroll limit in pixels. The camera stops moving when reaching this value, but [offset] can push the view past the limit.
+   */
+  public var limitLeft: Int
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT, NIL)
+    }
+
+  /**
+   * Top scroll limit in pixels. The camera stops moving when reaching this value, but [offset] can push the view past the limit.
+   */
+  public var limitTop: Int
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT, NIL)
+    }
+
+  /**
+   * Right scroll limit in pixels. The camera stops moving when reaching this value, but [offset] can push the view past the limit.
+   */
+  public var limitRight: Int
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT, NIL)
+    }
+
+  /**
+   * Bottom scroll limit in pixels. The camera stops moving when reaching this value, but [offset] can push the view past the limit.
+   */
+  public var limitBottom: Int
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT, NIL)
+    }
+
+  /**
    * If `true`, the camera smoothly stops when reaches its limits.
    *
    * This property has no effect if [positionSmoothingEnabled] is `false`.
@@ -301,6 +357,62 @@ public open class Camera2D : Node2D() {
     }
 
   /**
+   * Left margin needed to drag the camera. A value of `1` makes the camera move only when reaching the left edge of the screen.
+   */
+  public var dragLeftMargin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN, NIL)
+    }
+
+  /**
+   * Top margin needed to drag the camera. A value of `1` makes the camera move only when reaching the top edge of the screen.
+   */
+  public var dragTopMargin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN, NIL)
+    }
+
+  /**
+   * Right margin needed to drag the camera. A value of `1` makes the camera move only when reaching the right edge of the screen.
+   */
+  public var dragRightMargin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN, NIL)
+    }
+
+  /**
+   * Bottom margin needed to drag the camera. A value of `1` makes the camera move only when reaching the bottom edge of the screen.
+   */
+  public var dragBottomMargin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN, NIL)
+    }
+
+  /**
    * If `true`, draws the camera's screen rectangle in the editor.
    */
   public var editorDrawScreen: Boolean
@@ -418,40 +530,6 @@ public open class Camera2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_CURRENT, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
-
-  /**
-   * Sets the camera limit for the specified [enum Side]. See also [limitBottom], [limitTop], [limitLeft], and [limitRight].
-   */
-  public fun setLimit(margin: Side, limit: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to limit.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT, NIL)
-  }
-
-  /**
-   * Returns the camera limit for the specified [enum Side]. See also [limitBottom], [limitTop], [limitLeft], and [limitRight].
-   */
-  public fun getLimit(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-  }
-
-  /**
-   * Sets the specified [enum Side]'s margin. See also [dragBottomMargin], [dragTopMargin], [dragLeftMargin], and [dragRightMargin].
-   */
-  public fun setDragMargin(margin: Side, dragMargin: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to dragMargin.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN, NIL)
-  }
-
-  /**
-   * Returns the specified [enum Side]'s margin. See also [dragBottomMargin], [dragTopMargin], [dragLeftMargin], and [dragRightMargin].
-   */
-  public fun getDragMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**

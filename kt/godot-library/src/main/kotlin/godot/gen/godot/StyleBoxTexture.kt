@@ -49,6 +49,150 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
+   * Increases the left margin of the 3×3 texture box.
+   *
+   * A higher value means more of the source texture is considered to be part of the left border of the 3×3 box.
+   *
+   * This is also the value used as fallback for [godot.StyleBox.contentMarginLeft] if it is negative.
+   */
+  public var textureMarginLeft: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
+    }
+
+  /**
+   * Increases the top margin of the 3×3 texture box.
+   *
+   * A higher value means more of the source texture is considered to be part of the top border of the 3×3 box.
+   *
+   * This is also the value used as fallback for [godot.StyleBox.contentMarginTop] if it is negative.
+   */
+  public var textureMarginTop: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
+    }
+
+  /**
+   * Increases the right margin of the 3×3 texture box.
+   *
+   * A higher value means more of the source texture is considered to be part of the right border of the 3×3 box.
+   *
+   * This is also the value used as fallback for [godot.StyleBox.contentMarginRight] if it is negative.
+   */
+  public var textureMarginRight: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
+    }
+
+  /**
+   * Increases the bottom margin of the 3×3 texture box.
+   *
+   * A higher value means more of the source texture is considered to be part of the bottom border of the 3×3 box.
+   *
+   * This is also the value used as fallback for [godot.StyleBox.contentMarginBottom] if it is negative.
+   */
+  public var textureMarginBottom: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
+    }
+
+  /**
+   * Expands the left margin of this style box when drawing, causing it to be drawn larger than requested.
+   */
+  public var expandMarginLeft: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
+          NIL)
+    }
+
+  /**
+   * Expands the top margin of this style box when drawing, causing it to be drawn larger than requested.
+   */
+  public var expandMarginTop: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
+          NIL)
+    }
+
+  /**
+   * Expands the right margin of this style box when drawing, causing it to be drawn larger than requested.
+   */
+  public var expandMarginRight: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
+          NIL)
+    }
+
+  /**
+   * Expands the bottom margin of this style box when drawing, causing it to be drawn larger than requested.
+   */
+  public var expandMarginBottom: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
+          NIL)
+    }
+
+  /**
    * Controls how the stylebox's texture will be stretched or tiled horizontally. See [enum AxisStretchMode] for possible values.
    */
   public var axisStretchHorizontal: AxisStretchMode
@@ -189,15 +333,6 @@ public open class StyleBoxTexture : StyleBox() {
 
 
   /**
-   * Sets the margin to [size] pixels for the specified [enum Side].
-   */
-  public fun setTextureMargin(margin: Side, size: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN,
-        NIL)
-  }
-
-  /**
    * Sets the margin to [size] pixels for all sides.
    */
   public fun setTextureMarginAll(size: Float): Unit {
@@ -207,41 +342,12 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   /**
-   * Returns the margin size of the specified [enum Side].
-   */
-  public fun getTextureMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN,
-        DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-  }
-
-  /**
-   * Sets the expand margin to [size] pixels for the specified [enum Side].
-   */
-  public fun setExpandMargin(margin: Side, size: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
-        NIL)
-  }
-
-  /**
    * Sets the expand margin to [size] pixels for all sides.
    */
   public fun setExpandMarginAll(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN_ALL, NIL)
-  }
-
-  /**
-   * Returns the expand margin size of the specified [enum Side].
-   */
-  public fun getExpandMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
-        DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class AxisStretchMode(

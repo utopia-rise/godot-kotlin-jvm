@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * SPIR-V intermediate representation as part of a [godot.RDShaderFile] (used by [godot.RenderingDevice]).
@@ -28,47 +27,169 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RDShaderSPIRV : Resource() {
+  /**
+   * The SPIR-V bytecode for the vertex shader stage.
+   */
+  public var bytecodeVertex: PackedByteArray
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
+          PACKED_BYTE_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, PACKED_BYTE_ARRAY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
+          NIL)
+    }
+
+  /**
+   * The SPIR-V bytecode for the fragment shader stage.
+   */
+  public var bytecodeFragment: PackedByteArray
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
+          PACKED_BYTE_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, PACKED_BYTE_ARRAY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
+          NIL)
+    }
+
+  /**
+   * The SPIR-V bytecode for the tessellation control shader stage.
+   */
+  public var bytecodeTesselationControl: PackedByteArray
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
+          PACKED_BYTE_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, PACKED_BYTE_ARRAY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
+          NIL)
+    }
+
+  /**
+   * The SPIR-V bytecode for the tessellation evaluation shader stage.
+   */
+  public var bytecodeTesselationEvaluation: PackedByteArray
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
+          PACKED_BYTE_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, PACKED_BYTE_ARRAY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
+          NIL)
+    }
+
+  /**
+   * The SPIR-V bytecode for the compute shader stage.
+   */
+  public var bytecodeCompute: PackedByteArray
+    get() {
+      TransferContext.writeArguments(LONG to 4)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
+          PACKED_BYTE_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4, PACKED_BYTE_ARRAY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
+          NIL)
+    }
+
+  /**
+   * The compilation error message for the vertex shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful.
+   */
+  public var compileErrorVertex: String
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, STRING to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
+    }
+
+  /**
+   * The compilation error message for the fragment shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful.
+   */
+  public var compileErrorFragment: String
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, STRING to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
+    }
+
+  /**
+   * The compilation error message for the tessellation control shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful.
+   */
+  public var compileErrorTesselationControl: String
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, STRING to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
+    }
+
+  /**
+   * The compilation error message for the tessellation evaluation shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful.
+   */
+  public var compileErrorTesselationEvaluation: String
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, STRING to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
+    }
+
+  /**
+   * The compilation error message for the compute shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful.
+   */
+  public var compileErrorCompute: String
+    get() {
+      TransferContext.writeArguments(LONG to 4)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4, STRING to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RDSHADERSPIRV, scriptIndex)
     return true
-  }
-
-  /**
-   * Sets the SPIR-V [bytecode] for the given shader [stage]. Equivalent to setting one of [bytecodeCompute], [bytecodeFragment], [bytecodeTesselationControl], [bytecodeTesselationEvaluation], [bytecodeVertex].
-   */
-  public fun setStageBytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray): Unit {
-    TransferContext.writeArguments(LONG to stage.id, PACKED_BYTE_ARRAY to bytecode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
-        NIL)
-  }
-
-  /**
-   * Equivalent to getting one of [bytecodeCompute], [bytecodeFragment], [bytecodeTesselationControl], [bytecodeTesselationEvaluation], [bytecodeVertex].
-   */
-  public fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
-    TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
-        PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
-  }
-
-  /**
-   * Sets the compilation error message for the given shader [stage] to [compileError]. Equivalent to setting one of [compileErrorCompute], [compileErrorFragment], [compileErrorTesselationControl], [compileErrorTesselationEvaluation], [compileErrorVertex].
-   */
-  public fun setStageCompileError(stage: RenderingDevice.ShaderStage, compileError: String): Unit {
-    TransferContext.writeArguments(LONG to stage.id, STRING to compileError)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
-  }
-
-  /**
-   * Returns the compilation error message for the given shader [stage]. Equivalent to getting one of [compileErrorCompute], [compileErrorFragment], [compileErrorTesselationControl], [compileErrorTesselationEvaluation], [compileErrorVertex].
-   */
-  public fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
-    TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

@@ -66,6 +66,70 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
+   * The width of the 9-patch's left column.
+   */
+  public var stretchMarginLeft: Int
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
+    }
+
+  /**
+   * The height of the 9-patch's top row.
+   */
+  public var stretchMarginTop: Int
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
+    }
+
+  /**
+   * The width of the 9-patch's right column.
+   */
+  public var stretchMarginRight: Int
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
+    }
+
+  /**
+   * The height of the 9-patch's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   */
+  public var stretchMarginBottom: Int
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
+    }
+
+  /**
    * [godot.Texture2D] that draws under the progress bar. The bar's background.
    */
   public var textureUnder: Texture2D?
@@ -355,25 +419,6 @@ public open class TextureProgressBar : Range() {
       radialCenterOffset = this
   }
 
-
-  /**
-   * Sets the stretch margin with the specified index. See [stretchMarginBottom] and related properties.
-   */
-  public fun setStretchMargin(margin: Side, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
-  }
-
-  /**
-   * Returns the stretch margin with the specified index. See [stretchMarginBottom] and related properties.
-   */
-  public fun getStretchMargin(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-  }
 
   public enum class FillMode(
     id: Long,

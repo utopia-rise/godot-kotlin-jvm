@@ -17,7 +17,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint.
@@ -26,26 +25,94 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ConeTwistJoint3D : Joint3D() {
+  /**
+   * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
+   *
+   * The swing span defines, how much rotation will not get corrected along the swing axis.
+   *
+   * Could be defined as looseness in the [godot.ConeTwistJoint3D].
+   *
+   * If below 0.05, this behavior is locked.
+   */
+  public var swingSpan: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
+   *
+   * Twist is locked if below 0.05.
+   */
+  public var twistSpan: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * The speed with which the swing or twist will take place.
+   *
+   * The higher, the faster.
+   */
+  public var bias: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * The ease with which the joint starts to twist. If it's too low, it takes more force to start twisting the joint.
+   */
+  public var softness: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
+    }
+
+  /**
+   * Defines, how fast the swing- and twist-speed-difference on both sides gets synced.
+   */
+  public var relaxation: Float
+    get() {
+      TransferContext.writeArguments(LONG to 4)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CONETWISTJOINT3D, scriptIndex)
     return true
-  }
-
-  /**
-   * Sets the value of the specified parameter.
-   */
-  public fun setParam(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
-  }
-
-  /**
-   * Returns the value of the specified parameter.
-   */
-  public fun getParam(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class Param(

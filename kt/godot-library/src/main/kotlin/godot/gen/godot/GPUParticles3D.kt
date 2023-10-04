@@ -380,45 +380,65 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * [godot.Mesh] that is drawn for the first draw pass.
    */
-  public val drawPass1: Mesh?
+  public var drawPass1: Mesh?
     get() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
+          NIL)
+    }
 
   /**
    * [godot.Mesh] that is drawn for the second draw pass.
    */
-  public val drawPass2: Mesh?
+  public var drawPass2: Mesh?
     get() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
+          NIL)
+    }
 
   /**
    * [godot.Mesh] that is drawn for the third draw pass.
    */
-  public val drawPass3: Mesh?
+  public var drawPass3: Mesh?
     get() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
+          NIL)
+    }
 
   /**
    * [godot.Mesh] that is drawn for the fourth draw pass.
    */
-  public val drawPass4: Mesh?
+  public var drawPass4: Mesh?
     get() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
+          NIL)
     }
 
   /**
@@ -465,15 +485,6 @@ public open class GPUParticles3D : GeometryInstance3D() {
       visibilityAabb = this
   }
 
-
-  /**
-   * Sets the [godot.Mesh] that is drawn at index [pass].
-   */
-  public fun setDrawPassMesh(pass: Int, mesh: Mesh): Unit {
-    TransferContext.writeArguments(LONG to pass.toLong(), OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
-        NIL)
-  }
 
   /**
    * Restarts the particle emission, clearing existing particles.

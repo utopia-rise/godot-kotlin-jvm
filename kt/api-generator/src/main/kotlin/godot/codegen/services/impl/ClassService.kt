@@ -3,6 +3,7 @@ package godot.codegen.services.impl
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.exceptions.NoMatchingClassFoundException
 import godot.codegen.extensions.getTypeClassName
+import godot.codegen.extensions.isEnum
 import godot.codegen.models.Argument
 import godot.codegen.models.Method
 import godot.codegen.models.ReturnValue
@@ -11,6 +12,7 @@ import godot.codegen.repositories.ClassRepository
 import godot.codegen.repositories.SingletonRepository
 import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IClassService
+import godot.tools.common.constants.GodotTypes
 
 class ClassService(
     private val classRepository: ClassRepository,
@@ -88,7 +90,7 @@ class ClassService(
 
                             if (!property.isIndexed && method.arguments.size == 1) continue
 
-                            if (method.arguments.size == 1 && method.arguments[0].type != "int") continue
+                            if (method.arguments.size == 1 && !method.arguments[0].isEnum() && method.arguments[0].type != GodotTypes.int) continue
 
                             property.getterMethod = method
                             method.isGetterOrSetter = true
@@ -98,7 +100,7 @@ class ClassService(
 
                             if (!property.isIndexed && method.arguments.size == 2) continue
 
-                            if (method.arguments.size == 2 && method.arguments[0].type != "Long") continue
+                            if (method.arguments.size == 2 && !method.arguments[0].isEnum() && method.arguments[0].type != GodotTypes.int) continue
 
                             property.setterMethod = method
                             method.isGetterOrSetter = true

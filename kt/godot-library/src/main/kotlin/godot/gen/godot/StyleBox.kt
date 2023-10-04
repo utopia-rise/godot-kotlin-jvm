@@ -36,6 +36,78 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class StyleBox : Resource() {
+  /**
+   * The left margin for the contents of this style box.Increasing this value reduces the space available to the contents from the left.
+   *
+   * Refer to [contentMarginBottom] for extra considerations.
+   */
+  public var contentMarginLeft: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN, NIL)
+    }
+
+  /**
+   * The top margin for the contents of this style box. Increasing this value reduces the space available to the contents from the top.
+   *
+   * Refer to [contentMarginBottom] for extra considerations.
+   */
+  public var contentMarginTop: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN, NIL)
+    }
+
+  /**
+   * The right margin for the contents of this style box. Increasing this value reduces the space available to the contents from the right.
+   *
+   * Refer to [contentMarginBottom] for extra considerations.
+   */
+  public var contentMarginRight: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN, NIL)
+    }
+
+  /**
+   * The bottom margin for the contents of this style box. Increasing this value reduces the space available to the contents from the bottom.
+   *
+   * If this value is negative, it is ignored and a child-specific margin is used instead. For example for [godot.StyleBoxFlat] the border thickness (if any) is used instead.
+   *
+   * It is up to the code using this style box to decide what these contents are: for example, a [godot.Button] respects this content margin for the textual contents of the button.
+   *
+   * [getMargin] should be used to fetch this value as consumer instead of reading these properties directly. This is because it correctly respects negative values and the fallback mentioned above.
+   */
+  public var contentMarginBottom: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_STYLEBOX, scriptIndex)
     return true
@@ -78,29 +150,12 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   * Sets the default value of the specified [enum Side] to [offset] pixels.
-   */
-  public fun setContentMargin(margin: Side, offset: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN, NIL)
-  }
-
-  /**
    * Sets the default margin to [offset] pixels for all sides.
    */
   public fun setContentMarginAll(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN_ALL,
         NIL)
-  }
-
-  /**
-   * Returns the default margin of the specified [enum Side].
-   */
-  public fun getContentMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**

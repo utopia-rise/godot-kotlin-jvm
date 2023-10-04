@@ -177,6 +177,110 @@ public open class Control : CanvasItem() {
     }
 
   /**
+   * Anchors the left edge of the node to the origin, the center or the end of its parent control. It changes how the left offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+   */
+  public val anchorLeft: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ANCHOR, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+
+  /**
+   * Anchors the top edge of the node to the origin, the center or the end of its parent control. It changes how the top offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+   */
+  public val anchorTop: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ANCHOR, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+
+  /**
+   * Anchors the right edge of the node to the origin, the center or the end of its parent control. It changes how the right offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+   */
+  public val anchorRight: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ANCHOR, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+
+  /**
+   * Anchors the bottom edge of the node to the origin, the center, or the end of its parent control. It changes how the bottom offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+   */
+  public val anchorBottom: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ANCHOR, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+
+  /**
+   * Distance between the node's left edge and its parent control, based on [anchorLeft].
+   *
+   * Offsets are often controlled by one or multiple parent [godot.Container] nodes, so you should not modify them manually if your node is a direct child of a [godot.Container]. Offsets update automatically when you move or resize the node.
+   */
+  public var offsetLeft: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_OFFSET, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_OFFSET, NIL)
+    }
+
+  /**
+   * Distance between the node's top edge and its parent control, based on [anchorTop].
+   *
+   * Offsets are often controlled by one or multiple parent [godot.Container] nodes, so you should not modify them manually if your node is a direct child of a [godot.Container]. Offsets update automatically when you move or resize the node.
+   */
+  public var offsetTop: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_OFFSET, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_OFFSET, NIL)
+    }
+
+  /**
+   * Distance between the node's right edge and its parent control, based on [anchorRight].
+   *
+   * Offsets are often controlled by one or multiple parent [godot.Container] nodes, so you should not modify them manually if your node is a direct child of a [godot.Container]. Offsets update automatically when you move or resize the node.
+   */
+  public var offsetRight: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_OFFSET, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_OFFSET, NIL)
+    }
+
+  /**
+   * Distance between the node's bottom edge and its parent control, based on [anchorBottom].
+   *
+   * Offsets are often controlled by one or multiple parent [godot.Container] nodes, so you should not modify them manually if your node is a direct child of a [godot.Container]. Offsets update automatically when you move or resize the node.
+   */
+  public var offsetBottom: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_OFFSET, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_OFFSET, NIL)
+    }
+
+  /**
    * Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
    */
   public var growHorizontal: GrowDirection
@@ -428,6 +532,66 @@ public open class Control : CanvasItem() {
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_TOOLTIP_TEXT, NIL)
+    }
+
+  /**
+   * Tells Godot which node it should give focus to if the user presses the left arrow on the keyboard or left on a gamepad by default. You can change the key by editing the [godot.ProjectSettings.input/uiLeft] input action. The node must be a [godot.Control]. If this property is not set, Godot will give focus to the closest [godot.Control] to the left of this one.
+   */
+  public var focusNeighborLeft: NodePath
+    get() {
+      TransferContext.writeArguments(LONG to 0)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEIGHBOR,
+          NODE_PATH)
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0, NODE_PATH to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FOCUS_NEIGHBOR, NIL)
+    }
+
+  /**
+   * Tells Godot which node it should give focus to if the user presses the top arrow on the keyboard or top on a gamepad by default. You can change the key by editing the [godot.ProjectSettings.input/uiUp] input action. The node must be a [godot.Control]. If this property is not set, Godot will give focus to the closest [godot.Control] to the top of this one.
+   */
+  public var focusNeighborTop: NodePath
+    get() {
+      TransferContext.writeArguments(LONG to 1)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEIGHBOR,
+          NODE_PATH)
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1, NODE_PATH to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FOCUS_NEIGHBOR, NIL)
+    }
+
+  /**
+   * Tells Godot which node it should give focus to if the user presses the right arrow on the keyboard or right on a gamepad by default. You can change the key by editing the [godot.ProjectSettings.input/uiRight] input action. The node must be a [godot.Control]. If this property is not set, Godot will give focus to the closest [godot.Control] to the right of this one.
+   */
+  public var focusNeighborRight: NodePath
+    get() {
+      TransferContext.writeArguments(LONG to 2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEIGHBOR,
+          NODE_PATH)
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2, NODE_PATH to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FOCUS_NEIGHBOR, NIL)
+    }
+
+  /**
+   * Tells Godot which node it should give focus to if the user presses the down arrow on the keyboard or down on a gamepad by default. You can change the key by editing the [godot.ProjectSettings.input/uiDown] input action. The node must be a [godot.Control]. If this property is not set, Godot will give focus to the closest [godot.Control] to the bottom of this one.
+   */
+  public var focusNeighborBottom: NodePath
+    get() {
+      TransferContext.writeArguments(LONG to 3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEIGHBOR,
+          NODE_PATH)
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3, NODE_PATH to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FOCUS_NEIGHBOR, NIL)
     }
 
   /**
@@ -1065,32 +1229,6 @@ public open class Control : CanvasItem() {
   ): Unit {
     TransferContext.writeArguments(LONG to side.id, DOUBLE to anchor.toDouble(), BOOL to keepOffset, BOOL to pushOppositeAnchor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_ANCHOR, NIL)
-  }
-
-  /**
-   * Returns the anchor for the specified [enum Side]. A getter method for [anchorBottom], [anchorLeft], [anchorRight] and [anchorTop].
-   */
-  public fun getAnchor(side: Side): Float {
-    TransferContext.writeArguments(LONG to side.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ANCHOR, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-  }
-
-  /**
-   * Sets the offset for the specified [enum Side] to [offset]. A setter method for [offsetBottom], [offsetLeft], [offsetRight] and [offsetTop].
-   */
-  public fun setOffset(side: Side, offset: Float): Unit {
-    TransferContext.writeArguments(LONG to side.id, DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_OFFSET, NIL)
-  }
-
-  /**
-   * Returns the offset for the specified [enum Side]. A getter method for [offsetBottom], [offsetLeft], [offsetRight] and [offsetTop].
-   */
-  public fun getOffset(offset: Side): Float {
-    TransferContext.writeArguments(LONG to offset.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_OFFSET, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -1830,24 +1968,6 @@ public open class Control : CanvasItem() {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_CURSOR_SHAPE, LONG)
     return Control.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
-  }
-
-  /**
-   * Sets the focus neighbor for the specified [enum Side] to the [godot.Control] at [neighbor] node path. A setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and [focusNeighborTop].
-   */
-  public fun setFocusNeighbor(side: Side, neighbor: NodePath): Unit {
-    TransferContext.writeArguments(LONG to side.id, NODE_PATH to neighbor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FOCUS_NEIGHBOR, NIL)
-  }
-
-  /**
-   * Returns the focus neighbor for the specified [enum Side]. A getter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and [focusNeighborTop].
-   */
-  public fun getFocusNeighbor(side: Side): NodePath {
-    TransferContext.writeArguments(LONG to side.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEIGHBOR,
-        NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   /**
