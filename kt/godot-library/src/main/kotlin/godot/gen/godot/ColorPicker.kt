@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
@@ -54,6 +55,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * The currently selected color.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -36,6 +37,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
   /**
    * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
    */
+  @CoreTypeLocalCopy
   public var tilt: Vector2
     get() {
       TransferContext.writeArguments()
@@ -88,6 +90,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
    *
    * **Note:** Since [godot.InputEventMouseMotion] is only emitted when the mouse moves, the last event won't have a relative position of `Vector2(0, 0)` when the user stops moving the mouse.
    */
+  @CoreTypeLocalCopy
   public var relative: Vector2
     get() {
       TransferContext.writeArguments()
@@ -104,6 +107,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
   /**
    * The mouse velocity in pixels per second.
    */
+  @CoreTypeLocalCopy
   public var velocity: Vector2
     get() {
       TransferContext.writeArguments()

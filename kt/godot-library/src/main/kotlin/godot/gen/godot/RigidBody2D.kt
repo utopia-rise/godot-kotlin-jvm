@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantArray
@@ -194,6 +195,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
    */
+  @CoreTypeLocalCopy
   public var centerOfMass: Vector2
     get() {
       TransferContext.writeArguments()
@@ -395,6 +397,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   /**
    * The body's linear velocity in pixels per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -495,6 +498,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * See [addConstantForce] and [addConstantCentralForce].
    */
+  @CoreTypeLocalCopy
   public var constantForce: Vector2
     get() {
       TransferContext.writeArguments()

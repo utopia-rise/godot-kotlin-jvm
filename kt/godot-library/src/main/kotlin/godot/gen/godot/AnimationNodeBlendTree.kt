@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL
@@ -46,6 +47,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * The global offset of all sub animation nodes.
    */
+  @CoreTypeLocalCopy
   public var graphOffset: Vector2
     get() {
       TransferContext.writeArguments()

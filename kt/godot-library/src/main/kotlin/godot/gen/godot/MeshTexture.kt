@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -57,6 +58,7 @@ public open class MeshTexture : Texture2D() {
   /**
    * Sets the size of the image, needed for reference.
    */
+  @CoreTypeLocalCopy
   public var imageSize: Vector2
     get() {
       TransferContext.writeArguments()

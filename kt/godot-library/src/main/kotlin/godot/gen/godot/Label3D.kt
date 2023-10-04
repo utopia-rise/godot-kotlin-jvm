@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantArray
@@ -55,6 +56,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The text drawing offset (in pixels).
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -268,6 +270,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Text [godot.core.Color] of the [godot.Label3D].
    */
+  @CoreTypeLocalCopy
   public var modulate: Color
     get() {
       TransferContext.writeArguments()
@@ -282,6 +285,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The tint of text outline.
    */
+  @CoreTypeLocalCopy
   public var outlineModulate: Color
     get() {
       TransferContext.writeArguments()

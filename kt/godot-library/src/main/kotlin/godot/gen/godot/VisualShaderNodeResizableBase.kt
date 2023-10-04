@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -27,6 +28,7 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
   /**
    * The size of the node in the visual shader graph.
    */
+  @CoreTypeLocalCopy
   public var size: Vector2
     get() {
       TransferContext.writeArguments()

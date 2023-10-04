@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -52,6 +53,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Controls the [godot.core.Color] of the [godot.Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering). While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [godot.core.Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
    */
+  @CoreTypeLocalCopy
   public var rayleighColor: Color
     get() {
       TransferContext.writeArguments()
@@ -100,6 +102,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Controls the [godot.core.Color] of the [godot.Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering) effect. While not physically accurate, this allows for the creation of alien-looking planets.
    */
+  @CoreTypeLocalCopy
   public var mieColor: Color
     get() {
       TransferContext.writeArguments()
@@ -148,6 +151,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Modulates the [godot.core.Color] on the bottom half of the sky to represent the ground.
    */
+  @CoreTypeLocalCopy
   public var groundColor: Color
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -56,6 +57,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [moveAndSlide]. Defaults to `Vector2.UP`. As the vector will be normalized it can't be equal to [godot.Vector2.ZERO], if you want all collisions to be reported as walls, consider using [MOTION_MODE_FLOATING] as [motionMode].
    */
+  @CoreTypeLocalCopy
   public var upDirection: Vector2
     get() {
       TransferContext.writeArguments()
@@ -72,6 +74,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
    */
+  @CoreTypeLocalCopy
   public var velocity: Vector2
     get() {
       TransferContext.writeArguments()

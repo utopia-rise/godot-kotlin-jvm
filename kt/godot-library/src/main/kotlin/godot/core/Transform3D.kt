@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import godot.util.RealT
 
@@ -20,6 +21,7 @@ class Transform3D(
      * Warning: Writing basis.x = 2 will only modify a copy, not the actual object.
      * To modify it, use basis().
      * */
+    @CoreTypeLocalCopy
     var basis
         get() = Basis(_basis)
         set(value) {
@@ -35,6 +37,7 @@ class Transform3D(
      * Warning: Writing origin.x = 2 will only modify a copy, not the actual object.
      * To modify it, use origin().
      * */
+    @CoreTypeLocalCopy
     var origin
         get() = Vector3(_origin)
         set(value) {

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -32,6 +33,7 @@ public open class RectangleShape2D : Shape2D() {
   /**
    * The rectangle's width and height.
    */
+  @CoreTypeLocalCopy
   public var size: Vector2
     get() {
       TransferContext.writeArguments()

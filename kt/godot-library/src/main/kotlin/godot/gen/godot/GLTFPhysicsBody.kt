@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.Dictionary
@@ -54,6 +55,7 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_SET_MASS, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -67,6 +69,7 @@ public open class GLTFPhysicsBody : Resource() {
           ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_SET_LINEAR_VELOCITY, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -80,6 +83,7 @@ public open class GLTFPhysicsBody : Resource() {
           ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_SET_ANGULAR_VELOCITY, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var inertiaTensor: Basis
     get() {
       TransferContext.writeArguments()

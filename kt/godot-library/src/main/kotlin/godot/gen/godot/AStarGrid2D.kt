@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
@@ -83,6 +84,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The region of grid cells available for pathfinding. If changed, [update] needs to be called before finding the next path.
    */
+  @CoreTypeLocalCopy
   public var region: Rect2i
     get() {
       TransferContext.writeArguments()
@@ -99,6 +101,7 @@ public open class AStarGrid2D : RefCounted() {
    *
    * *Deprecated.* Use [region] instead.
    */
+  @CoreTypeLocalCopy
   public var size: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -113,6 +116,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The offset of the grid which will be applied to calculate the resulting point position returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -127,6 +131,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The size of the point cell which will be applied to calculate the resulting point position returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
+  @CoreTypeLocalCopy
   public var cellSize: Vector2
     get() {
       TransferContext.writeArguments()

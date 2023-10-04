@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedInt32Array
@@ -291,6 +292,7 @@ public open class ItemList : Control() {
    *
    * If either X or Y component is not greater than zero, icon size won't be affected.
    */
+  @CoreTypeLocalCopy
   public var fixedIconSize: Vector2i
     get() {
       TransferContext.writeArguments()

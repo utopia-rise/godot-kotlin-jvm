@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.RID
@@ -88,6 +89,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The inverse of the inertia of the body.
    */
+  @CoreTypeLocalCopy
   public val inverseInertia: Vector3
     get() {
       TransferContext.writeArguments()
@@ -99,6 +101,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The inverse of the inertia tensor of the body.
    */
+  @CoreTypeLocalCopy
   public val inverseInertiaTensor: Basis
     get() {
       TransferContext.writeArguments()
@@ -110,6 +113,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The total gravity vector being currently applied to this body.
    */
+  @CoreTypeLocalCopy
   public val totalGravity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -121,6 +125,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's center of mass position relative to the body's center in the global coordinate system.
    */
+  @CoreTypeLocalCopy
   public val centerOfMass: Vector3
     get() {
       TransferContext.writeArguments()
@@ -132,6 +137,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's center of mass position in the body's local coordinate system.
    */
+  @CoreTypeLocalCopy
   public val centerOfMassLocal: Vector3
     get() {
       TransferContext.writeArguments()
@@ -143,6 +149,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    *
    */
+  @CoreTypeLocalCopy
   public val principalInertiaAxes: Basis
     get() {
       TransferContext.writeArguments()
@@ -154,6 +161,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's rotational velocity in *radians* per second.
    */
+  @CoreTypeLocalCopy
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -170,6 +178,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's linear velocity in units per second.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -202,6 +211,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's transformation matrix.
    */
+  @CoreTypeLocalCopy
   public var transform: Transform3D
     get() {
       TransferContext.writeArguments()

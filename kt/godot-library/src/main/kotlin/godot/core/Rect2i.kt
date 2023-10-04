@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.Side
+import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import kotlin.math.max
 import kotlin.math.min
@@ -32,6 +33,7 @@ class Rect2i(
      *
      * See: [Documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types)
      * */
+    @CoreTypeLocalCopy
     var position
         get() = Point2i(_position)
         set(value) {
@@ -63,6 +65,7 @@ class Rect2i(
      *
      * See: [Documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types)
      * */
+    @CoreTypeLocalCopy
     var size
         get() = Size2i(_size)
         set(value) {
@@ -85,6 +88,7 @@ class Rect2i(
     /**
      * Ending corner. This is calculated as `position + size`. Setting this value will change the size.
      */
+    @CoreTypeLocalCopy
     var end: Vector2i
         get() = _position + _size
         set(value) { _size = value - _position }

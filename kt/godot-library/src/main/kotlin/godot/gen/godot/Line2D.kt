@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedVector2Array
@@ -85,6 +86,7 @@ public open class Line2D : Node2D() {
   /**
    * The line's color. Will not be used if a gradient is set.
    */
+  @CoreTypeLocalCopy
   public var defaultColor: Color
     get() {
       TransferContext.writeArguments()

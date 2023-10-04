@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -34,6 +35,7 @@ public open class PlaceholderTexture2D : Texture2D() {
   /**
    * The texture's size (in pixels).
    */
+  @CoreTypeLocalCopy
   public var size: Vector2
     @JvmName("getSize_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")

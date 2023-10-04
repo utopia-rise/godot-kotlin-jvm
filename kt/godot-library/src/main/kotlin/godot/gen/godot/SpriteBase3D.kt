@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Rect2
@@ -53,6 +54,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The texture's drawing offset.
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -97,6 +99,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    *
    * **Note:** If a [godot.GeometryInstance3D.materialOverride] is defined on the [godot.SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [modulate] will be ignored. For a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    */
+  @CoreTypeLocalCopy
   public var modulate: Color
     get() {
       TransferContext.writeArguments()

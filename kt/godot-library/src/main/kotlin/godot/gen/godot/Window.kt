@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedStringArray
@@ -184,6 +185,7 @@ public open class Window : Viewport() {
    *
    * **Note:** This property only works if [initialPosition] is set to [WINDOW_INITIAL_POSITION_ABSOLUTE].
    */
+  @CoreTypeLocalCopy
   public var position: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -198,6 +200,7 @@ public open class Window : Viewport() {
   /**
    * The window's size in pixels.
    */
+  @CoreTypeLocalCopy
   public var size: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -484,6 +487,7 @@ public open class Window : Viewport() {
    *
    * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls] is enabled and if its size is bigger.
    */
+  @CoreTypeLocalCopy
   public var minSize: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -500,6 +504,7 @@ public open class Window : Viewport() {
    *
    * **Note:** This property will be ignored if the value is lower than [minSize].
    */
+  @CoreTypeLocalCopy
   public var maxSize: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -514,6 +519,7 @@ public open class Window : Viewport() {
   /**
    * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [godot.Window]'s content will be scaled when the window is resized to a different size.
    */
+  @CoreTypeLocalCopy
   public var contentScaleSize: Vector2i
     get() {
       TransferContext.writeArguments()

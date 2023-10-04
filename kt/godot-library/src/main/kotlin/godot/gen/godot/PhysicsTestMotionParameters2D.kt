@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
@@ -37,6 +38,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   /**
    * Transform in global space where the motion should start. Usually set to [godot.Node2D.globalTransform] for the current body's transform.
    */
+  @CoreTypeLocalCopy
   public var from: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -53,6 +55,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   /**
    * Motion vector to define the length and direction of the motion to test.
    */
+  @CoreTypeLocalCopy
   public var motion: Vector2
     get() {
       TransferContext.writeArguments()

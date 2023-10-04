@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
@@ -288,6 +289,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
    */
+  @CoreTypeLocalCopy
   public var emissionBoxExtents: Vector3
     get() {
       TransferContext.writeArguments()
@@ -354,6 +356,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
+  @CoreTypeLocalCopy
   public var emissionRingAxis: Vector3
     get() {
       TransferContext.writeArguments()
@@ -466,6 +469,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Unit vector specifying the particles' emission direction.
    */
+  @CoreTypeLocalCopy
   public var direction: Vector3
     get() {
       TransferContext.writeArguments()
@@ -510,6 +514,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Gravity applied to every particle.
    */
+  @CoreTypeLocalCopy
   public var gravity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -989,6 +994,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    *
    * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -42,6 +43,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Allow overriding the texture size (for 2D only).
    */
+  @CoreTypeLocalCopy
   public var sizeOverride: Vector2
     get() {
       TransferContext.writeArguments()

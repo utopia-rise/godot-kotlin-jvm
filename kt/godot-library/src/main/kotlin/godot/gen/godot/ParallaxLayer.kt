@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -31,6 +32,7 @@ public open class ParallaxLayer : Node2D() {
   /**
    * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
    */
+  @CoreTypeLocalCopy
   public var motionScale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -47,6 +49,7 @@ public open class ParallaxLayer : Node2D() {
   /**
    * The ParallaxLayer's offset relative to the parent ParallaxBackground's [godot.ParallaxBackground.scrollOffset].
    */
+  @CoreTypeLocalCopy
   public var motionOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -67,6 +70,7 @@ public open class ParallaxLayer : Node2D() {
    *
    * **Note:** Despite its name, the texture will not be mirrored, it will simply be repeated.
    */
+  @CoreTypeLocalCopy
   public var motionMirroring: Vector2
     get() {
       TransferContext.writeArguments()

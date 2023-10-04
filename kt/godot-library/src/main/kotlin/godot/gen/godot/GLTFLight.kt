@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -28,6 +29,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFLight : Resource() {
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()

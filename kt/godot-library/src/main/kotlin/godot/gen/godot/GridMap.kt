@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.RID
@@ -63,6 +64,7 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_PHYSICS_MATERIAL, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var cellSize: Vector3
     get() {
       TransferContext.writeArguments()

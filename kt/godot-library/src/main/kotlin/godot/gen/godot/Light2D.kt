@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -64,6 +65,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The Light2D's [godot.core.Color].
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()
@@ -192,6 +194,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * [godot.core.Color] of shadows cast by the Light2D.
    */
+  @CoreTypeLocalCopy
   public var shadowColor: Color
     get() {
       TransferContext.writeArguments()

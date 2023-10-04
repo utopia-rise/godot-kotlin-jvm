@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
@@ -282,6 +283,7 @@ public open class GPUParticles2D : Node2D() {
    *
    * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [godot.core.Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    */
+  @CoreTypeLocalCopy
   public var visibilityRect: Rect2
     get() {
       TransferContext.writeArguments()

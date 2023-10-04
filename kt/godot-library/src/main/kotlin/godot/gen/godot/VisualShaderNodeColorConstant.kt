@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -29,6 +30,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
   /**
    * A [godot.core.Color] constant which represents a state of this node.
    */
+  @CoreTypeLocalCopy
   public var constant: Color
     get() {
       TransferContext.writeArguments()

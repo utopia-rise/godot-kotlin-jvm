@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
@@ -30,6 +31,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
   /**
    * The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to `Vector2.UP`.
    */
+  @CoreTypeLocalCopy
   public var normal: Vector2
     get() {
       TransferContext.writeArguments()

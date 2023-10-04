@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -35,6 +36,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
   /**
    * The size of each texture layer (in pixels).
    */
+  @CoreTypeLocalCopy
   public var size: Vector2i
     get() {
       TransferContext.writeArguments()

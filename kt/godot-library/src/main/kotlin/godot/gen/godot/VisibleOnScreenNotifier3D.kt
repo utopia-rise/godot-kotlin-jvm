@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.VariantType.BOOL
@@ -44,6 +45,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
   /**
    * The VisibleOnScreenNotifier3D's bounding box.
    */
+  @CoreTypeLocalCopy
   public var aabb: AABB
     @JvmName("getAabb_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")

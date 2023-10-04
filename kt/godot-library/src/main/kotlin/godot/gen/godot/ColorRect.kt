@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -30,6 +31,7 @@ public open class ColorRect : Control() {
   /**
    * The fill color of the rectangle.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()

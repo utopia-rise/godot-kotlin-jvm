@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -48,6 +49,7 @@ public open class Decal : VisualInstance3D() {
    *
    * **Note:** To improve culling efficiency of "hard surface" decals, set their [upperFade] and [lowerFade] to `0.0` and set the Y component of the [size] as low as possible. This will reduce the decals' AABB size without affecting their appearance.
    */
+  @CoreTypeLocalCopy
   public var size: Vector3
     get() {
       TransferContext.writeArguments()
@@ -144,6 +146,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Changes the [godot.core.Color] of the Decal by multiplying the albedo and emission colors with this value. The alpha component is only taken into account when multiplying the albedo color, not the emission color. See also [emissionEnergy] and [albedoMix] to change the emission and albedo intensity independently of each other.
    */
+  @CoreTypeLocalCopy
   public var modulate: Color
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantArray
@@ -96,6 +97,7 @@ public open class TileSet : Resource() {
   /**
    * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
    */
+  @CoreTypeLocalCopy
   public var tileSize: Vector2i
     get() {
       TransferContext.writeArguments()

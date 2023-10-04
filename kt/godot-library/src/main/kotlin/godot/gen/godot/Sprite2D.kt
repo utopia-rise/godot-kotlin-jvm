@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -78,6 +79,7 @@ public open class Sprite2D : Node2D() {
   /**
    * The texture's drawing offset.
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -162,6 +164,7 @@ public open class Sprite2D : Node2D() {
   /**
    * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    */
+  @CoreTypeLocalCopy
   public var frameCoords: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -191,6 +194,7 @@ public open class Sprite2D : Node2D() {
   /**
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
    */
+  @CoreTypeLocalCopy
   public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()

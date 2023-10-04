@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
@@ -154,6 +155,7 @@ public open class GraphEdit : Control() {
   /**
    * The scroll offset.
    */
+  @CoreTypeLocalCopy
   public var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -347,6 +349,7 @@ public open class GraphEdit : Control() {
   /**
    * The size of the minimap rectangle. The map itself is based on the size of the grid area and is scaled to fit this rectangle.
    */
+  @CoreTypeLocalCopy
   public var minimapSize: Vector2
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantArray
@@ -33,6 +34,7 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
   /**
    * The position being queried for, in global coordinates.
    */
+  @CoreTypeLocalCopy
   public var position: Vector3
     get() {
       TransferContext.writeArguments()

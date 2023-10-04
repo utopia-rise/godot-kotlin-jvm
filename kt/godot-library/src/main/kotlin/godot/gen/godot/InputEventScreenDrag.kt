@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -52,6 +53,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
    */
+  @CoreTypeLocalCopy
   public var tilt: Vector2
     get() {
       TransferContext.writeArguments()
@@ -100,6 +102,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag position.
    */
+  @CoreTypeLocalCopy
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
@@ -116,6 +119,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag position relative to the previous position (position at the last frame).
    */
+  @CoreTypeLocalCopy
   public var relative: Vector2
     get() {
       TransferContext.writeArguments()
@@ -132,6 +136,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag velocity.
    */
+  @CoreTypeLocalCopy
   public var velocity: Vector2
     get() {
       TransferContext.writeArguments()

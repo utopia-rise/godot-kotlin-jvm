@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3I
@@ -33,6 +34,7 @@ public open class PlaceholderTexture3D : Texture3D() {
   /**
    * The texture's size (in pixels).
    */
+  @CoreTypeLocalCopy
   public var size: Vector3i
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
@@ -292,6 +293,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
    */
+  @CoreTypeLocalCopy
   public var emissionRectExtents: Vector2
     get() {
       TransferContext.writeArguments()
@@ -372,6 +374,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Unit vector specifying the particles' emission direction.
    */
+  @CoreTypeLocalCopy
   public var direction: Vector2
     get() {
       TransferContext.writeArguments()
@@ -401,6 +404,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Gravity applied to every particle.
    */
+  @CoreTypeLocalCopy
   public var gravity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -866,6 +870,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Each particle's initial color. If [texture] is defined, it will be multiplied by this color.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()

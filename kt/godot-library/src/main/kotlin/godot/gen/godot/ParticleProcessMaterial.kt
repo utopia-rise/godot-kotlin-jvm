@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -88,6 +89,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The box's extents if `emission_shape` is set to [EMISSION_SHAPE_BOX].
    */
+  @CoreTypeLocalCopy
   public var emissionBoxExtents: Vector3
     get() {
       TransferContext.writeArguments()
@@ -170,6 +172,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
+  @CoreTypeLocalCopy
   public var emissionRingAxis: Vector3
     get() {
       TransferContext.writeArguments()
@@ -282,6 +285,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Unit vector specifying the particles' emission direction.
    */
+  @CoreTypeLocalCopy
   public var direction: Vector3
     get() {
       TransferContext.writeArguments()
@@ -330,6 +334,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Gravity applied to every particle.
    */
+  @CoreTypeLocalCopy
   public var gravity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -770,6 +775,7 @@ public open class ParticleProcessMaterial : Material() {
    *
    * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()
@@ -924,6 +930,7 @@ public open class ParticleProcessMaterial : Material() {
    *
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    */
+  @CoreTypeLocalCopy
   public var turbulenceNoiseSpeed: Vector3
     get() {
       TransferContext.writeArguments()

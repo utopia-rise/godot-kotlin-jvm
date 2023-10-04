@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import godot.util.CMP_EPSILON
 import godot.util.RealT
@@ -21,6 +22,7 @@ class Plane(
      * Warning: Writing normal.x = 2 will only modify a copy, not the actual object.
      * To modify it, use normal().
      * */
+    @CoreTypeLocalCopy
     var normal
         get() = Vector3(_normal)
         set(value) {

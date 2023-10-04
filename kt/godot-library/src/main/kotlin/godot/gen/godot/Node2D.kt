@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
@@ -39,6 +40,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Position, relative to the node's parent.
    */
+  @CoreTypeLocalCopy
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
@@ -86,6 +88,7 @@ public open class Node2D : CanvasItem() {
    *
    * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, negative scales on the X axis will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
    */
+  @CoreTypeLocalCopy
   public var scale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -116,6 +119,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Local [godot.core.Transform2D].
    */
+  @CoreTypeLocalCopy
   public var transform: Transform2D
     @JvmName("getTransform_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
@@ -128,6 +132,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Global position.
    */
+  @CoreTypeLocalCopy
   public var globalPosition: Vector2
     get() {
       TransferContext.writeArguments()
@@ -174,6 +179,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Global scale.
    */
+  @CoreTypeLocalCopy
   public var globalScale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -202,6 +208,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Global [godot.core.Transform2D].
    */
+  @CoreTypeLocalCopy
   public var globalTransform: Transform2D
     @JvmName("getGlobalTransform_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -37,6 +38,7 @@ public open class SubViewport : Viewport() {
    *
    * **Note:** If the parent node is a [godot.SubViewportContainer] and its [godot.SubViewportContainer.stretch] is `true`, the viewport size cannot be changed manually.
    */
+  @CoreTypeLocalCopy
   public var size: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -51,6 +53,7 @@ public open class SubViewport : Viewport() {
   /**
    * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is disabled.
    */
+  @CoreTypeLocalCopy
   public var size2dOverride: Vector2i
     get() {
       TransferContext.writeArguments()

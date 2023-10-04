@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -183,6 +184,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    * The color to use for environment lighting. Only effective if [environmentMode] is [ENVIRONMENT_MODE_CUSTOM_COLOR].
    */
+  @CoreTypeLocalCopy
   public var environmentCustomColor: Color
     get() {
       TransferContext.writeArguments()

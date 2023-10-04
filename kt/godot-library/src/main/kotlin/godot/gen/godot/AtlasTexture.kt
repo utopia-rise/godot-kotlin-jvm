@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -47,6 +48,7 @@ public open class AtlasTexture : Texture2D() {
   /**
    * The region used to draw the [atlas].
    */
+  @CoreTypeLocalCopy
   public var region: Rect2
     get() {
       TransferContext.writeArguments()
@@ -61,6 +63,7 @@ public open class AtlasTexture : Texture2D() {
   /**
    * The margin around the [region]. Useful for small adjustments. If the [godot.Rect2.size] of this property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the margin.
    */
+  @CoreTypeLocalCopy
   public var margin: Rect2
     get() {
       TransferContext.writeArguments()

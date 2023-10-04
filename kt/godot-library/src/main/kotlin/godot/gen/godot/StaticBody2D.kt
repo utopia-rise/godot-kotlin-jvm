@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
@@ -53,6 +54,7 @@ public open class StaticBody2D : PhysicsBody2D() {
   /**
    * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
    */
+  @CoreTypeLocalCopy
   public var constantLinearVelocity: Vector2
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.NodePath
@@ -60,6 +61,7 @@ public open class Node3D : Node() {
   /**
    * Local space [godot.Transform3D] of this node, with respect to the parent node.
    */
+  @CoreTypeLocalCopy
   public var transform: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -74,6 +76,7 @@ public open class Node3D : Node() {
   /**
    * World3D space (global) [godot.Transform3D] of this node.
    */
+  @CoreTypeLocalCopy
   public var globalTransform: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -89,6 +92,7 @@ public open class Node3D : Node() {
   /**
    * Local position or translation of this node relative to the parent. This is equivalent to `transform.origin`.
    */
+  @CoreTypeLocalCopy
   public var position: Vector3
     get() {
       TransferContext.writeArguments()
@@ -107,6 +111,7 @@ public open class Node3D : Node() {
    *
    * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [rotationDegrees].
    */
+  @CoreTypeLocalCopy
   public var rotation: Vector3
     get() {
       TransferContext.writeArguments()
@@ -121,6 +126,7 @@ public open class Node3D : Node() {
   /**
    * Helper property to access [rotation] in degrees instead of radians.
    */
+  @CoreTypeLocalCopy
   public var rotationDegrees: Vector3
     get() {
       TransferContext.writeArguments()
@@ -136,6 +142,7 @@ public open class Node3D : Node() {
   /**
    * Access to the node rotation as a [godot.Quaternion]. This property is ideal for tweening complex rotations.
    */
+  @CoreTypeLocalCopy
   public var quaternion: Quaternion
     get() {
       TransferContext.writeArguments()
@@ -150,6 +157,7 @@ public open class Node3D : Node() {
   /**
    * Direct access to the 3x3 basis of the [godot.Transform3D] property.
    */
+  @CoreTypeLocalCopy
   public var basis: Basis
     get() {
       TransferContext.writeArguments()
@@ -168,6 +176,7 @@ public open class Node3D : Node() {
    *
    * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [godot.Light3D]s are not visually affected by [scale].
    */
+  @CoreTypeLocalCopy
   public var scale: Vector3
     get() {
       TransferContext.writeArguments()
@@ -226,6 +235,7 @@ public open class Node3D : Node() {
   /**
    * Global position of this node. This is equivalent to `global_transform.origin`.
    */
+  @CoreTypeLocalCopy
   public var globalPosition: Vector3
     get() {
       TransferContext.writeArguments()
@@ -243,6 +253,7 @@ public open class Node3D : Node() {
    *
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    */
+  @CoreTypeLocalCopy
   public var globalRotation: Vector3
     get() {
       TransferContext.writeArguments()
@@ -258,6 +269,7 @@ public open class Node3D : Node() {
   /**
    * Helper property to access [globalRotation] in degrees instead of radians.
    */
+  @CoreTypeLocalCopy
   public var globalRotationDegrees: Vector3
     get() {
       TransferContext.writeArguments()

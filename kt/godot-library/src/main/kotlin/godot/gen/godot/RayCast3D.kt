@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.RID
@@ -74,6 +75,7 @@ public open class RayCast3D : Node3D() {
   /**
    * The ray's destination point, relative to the RayCast's `position`.
    */
+  @CoreTypeLocalCopy
   public var targetPosition: Vector3
     get() {
       TransferContext.writeArguments()
@@ -155,6 +157,7 @@ public open class RayCast3D : Node3D() {
    *
    * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [godot.ProjectSettings.debug/shapes/collision/shapeColor] is used.
    */
+  @CoreTypeLocalCopy
   public var debugShapeCustomColor: Color
     get() {
       TransferContext.writeArguments()

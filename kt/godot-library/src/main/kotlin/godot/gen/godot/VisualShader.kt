@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
@@ -44,6 +45,7 @@ public open class VisualShader : Shader() {
   /**
    * The offset vector of the whole graph.
    */
+  @CoreTypeLocalCopy
   public var graphOffset: Vector2
     get() {
       TransferContext.writeArguments()

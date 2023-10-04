@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantArray
@@ -64,6 +65,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   /**
    * The constant color to blend with. See also [godot.RenderingDevice.drawListSetBlendConstants].
    */
+  @CoreTypeLocalCopy
   public var blendConstant: Color
     get() {
       TransferContext.writeArguments()

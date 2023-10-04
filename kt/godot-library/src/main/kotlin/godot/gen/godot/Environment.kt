@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -61,6 +62,7 @@ public open class Environment : Resource() {
   /**
    * The [godot.core.Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR] background mode.
    */
+  @CoreTypeLocalCopy
   public var backgroundColor: Color
     get() {
       TransferContext.writeArguments()
@@ -168,6 +170,7 @@ public open class Environment : Resource() {
   /**
    * The rotation to use for sky rendering.
    */
+  @CoreTypeLocalCopy
   public var skyRotation: Vector3
     get() {
       TransferContext.writeArguments()
@@ -199,6 +202,7 @@ public open class Environment : Resource() {
   /**
    * The ambient light's [godot.core.Color]. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
    */
+  @CoreTypeLocalCopy
   public var ambientLightColor: Color
     get() {
       TransferContext.writeArguments()
@@ -1016,6 +1020,7 @@ public open class Environment : Resource() {
   /**
    * The fog's color.
    */
+  @CoreTypeLocalCopy
   public var fogLightColor: Color
     get() {
       TransferContext.writeArguments()
@@ -1184,6 +1189,7 @@ public open class Environment : Resource() {
   /**
    * The [godot.core.Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    */
+  @CoreTypeLocalCopy
   public var volumetricFogAlbedo: Color
     get() {
       TransferContext.writeArguments()
@@ -1200,6 +1206,7 @@ public open class Environment : Resource() {
   /**
    * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh shadows.
    */
+  @CoreTypeLocalCopy
   public var volumetricFogEmission: Color
     get() {
       TransferContext.writeArguments()

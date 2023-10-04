@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -20,6 +21,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class CSGBox3D : CSGPrimitive3D() {
+  @CoreTypeLocalCopy
   public var size: Vector3
     get() {
       TransferContext.writeArguments()

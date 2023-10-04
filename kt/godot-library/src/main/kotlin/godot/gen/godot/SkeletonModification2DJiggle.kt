@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.VariantType.BOOL
@@ -135,6 +136,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * The default amount of gravity applied to the Jiggle joints, if they are not overridden.
    */
+  @CoreTypeLocalCopy
   public var gravity: Vector2
     get() {
       TransferContext.writeArguments()

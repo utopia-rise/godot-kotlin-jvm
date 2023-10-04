@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -50,6 +51,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    *
    * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.Control] using the local coordinate system of the [godot.Control].
    */
+  @CoreTypeLocalCopy
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
@@ -67,6 +69,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    *
    * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.CanvasLayer] that the [godot.Control] is in using the coordinate system of the [godot.CanvasLayer].
    */
+  @CoreTypeLocalCopy
   public var globalPosition: Vector2
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.VariantType.BOOL
@@ -45,6 +46,7 @@ public open class GLTFPhysicsShape : Resource() {
           NIL)
     }
 
+  @CoreTypeLocalCopy
   public var size: Vector3
     get() {
       TransferContext.writeArguments()

@@ -45,6 +45,7 @@ import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
+import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GODOT_BASE_TYPE
@@ -475,6 +476,10 @@ class GenerationService(
                     )
                     .build()
             )
+        }
+
+        if (property.isCoreTypeReimplementedInKotlin()) {
+            propertySpecBuilder.addAnnotation(CORE_TYPE_LOCAL_COPY)
         }
 
         val kDoc =

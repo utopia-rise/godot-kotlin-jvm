@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -30,6 +31,7 @@ public open class InputEventPanGesture : InputEventGesture() {
   /**
    * Panning amount since last pan event.
    */
+  @CoreTypeLocalCopy
   public var delta: Vector2
     get() {
       TransferContext.writeArguments()

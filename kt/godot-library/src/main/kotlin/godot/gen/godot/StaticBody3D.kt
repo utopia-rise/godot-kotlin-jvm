@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -53,6 +54,7 @@ public open class StaticBody3D : PhysicsBody3D() {
   /**
    * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
    */
+  @CoreTypeLocalCopy
   public var constantLinearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -69,6 +71,7 @@ public open class StaticBody3D : PhysicsBody3D() {
   /**
    * The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating.
    */
+  @CoreTypeLocalCopy
   public var constantAngularVelocity: Vector3
     get() {
       TransferContext.writeArguments()

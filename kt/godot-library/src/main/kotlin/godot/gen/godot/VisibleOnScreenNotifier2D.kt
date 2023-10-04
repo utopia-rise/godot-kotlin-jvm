@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -47,6 +48,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
   /**
    * The VisibleOnScreenNotifier2D's bounding rectangle.
    */
+  @CoreTypeLocalCopy
   public var rect: Rect2
     get() {
       TransferContext.writeArguments()

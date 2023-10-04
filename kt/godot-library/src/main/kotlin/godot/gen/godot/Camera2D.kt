@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -43,6 +44,7 @@ public open class Camera2D : Node2D() {
   /**
    * The camera's relative offset. Useful for looking around or camera shake animations. The offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and [limitRight].
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -104,6 +106,7 @@ public open class Camera2D : Node2D() {
    *
    * **Note:** [godot.FontFile.oversampling] does *not* take [godot.Camera2D] zoom into account. This means that zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated unless the font is part of a [godot.CanvasLayer] that makes it ignore camera zoom. To ensure text remains crisp regardless of zoom, you can enable MSDF font rendering by enabling [godot.ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [godot.SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
    */
+  @CoreTypeLocalCopy
   public var zoom: Vector2
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
@@ -53,6 +54,7 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_HEIGHT, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var xform: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -108,6 +110,7 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_SKELETON, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var position: Vector3
     get() {
       TransferContext.writeArguments()
@@ -119,6 +122,7 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_POSITION, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var rotation: Quaternion
     get() {
       TransferContext.writeArguments()
@@ -130,6 +134,7 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_ROTATION, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var scale: Vector3
     get() {
       TransferContext.writeArguments()

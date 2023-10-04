@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -49,6 +50,7 @@ public open class FogMaterial : Material() {
   /**
    * The single-scattering [godot.core.Color] of the [godot.FogVolume]. Internally, [albedo] is converted into single-scattering, which is additively blended with other [godot.FogVolume]s and the [godot.Environment.volumetricFogAlbedo].
    */
+  @CoreTypeLocalCopy
   public var albedo: Color
     get() {
       TransferContext.writeArguments()
@@ -63,6 +65,7 @@ public open class FogMaterial : Material() {
   /**
    * The [godot.core.Color] of the light emitted by the [godot.FogVolume]. Emitted light will not cast light or shadows on other objects, but can be useful for modulating the [godot.core.Color] of the [godot.FogVolume] independently from light sources.
    */
+  @CoreTypeLocalCopy
   public var emission: Color
     get() {
       TransferContext.writeArguments()

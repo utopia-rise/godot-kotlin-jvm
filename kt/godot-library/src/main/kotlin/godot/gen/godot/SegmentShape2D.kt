@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -27,6 +28,7 @@ public open class SegmentShape2D : Shape2D() {
   /**
    * The segment's first point position.
    */
+  @CoreTypeLocalCopy
   public var a: Vector2
     get() {
       TransferContext.writeArguments()
@@ -41,6 +43,7 @@ public open class SegmentShape2D : Shape2D() {
   /**
    * The segment's second point position.
    */
+  @CoreTypeLocalCopy
   public var b: Vector2
     get() {
       TransferContext.writeArguments()

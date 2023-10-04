@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -44,6 +45,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing.
    */
+  @CoreTypeLocalCopy
   public var range: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -106,6 +108,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * The position offset the character will be drawn with (in pixels).
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -121,6 +124,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * The color the character will be drawn with.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()

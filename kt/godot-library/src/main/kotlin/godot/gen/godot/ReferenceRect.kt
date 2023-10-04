@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -31,6 +32,7 @@ public open class ReferenceRect : Control() {
   /**
    * Sets the border color of the [godot.ReferenceRect].
    */
+  @CoreTypeLocalCopy
   public var borderColor: Color
     get() {
       TransferContext.writeArguments()

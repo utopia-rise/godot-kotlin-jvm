@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
@@ -63,6 +64,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Margins, in pixels, to offset the origin of the grid in the texture.
    */
+  @CoreTypeLocalCopy
   public var margins: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -79,6 +81,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Separation, in pixels, between each tile texture region of the grid.
    */
+  @CoreTypeLocalCopy
   public var separation: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -95,6 +98,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * The base tile size in the texture (in pixel). This size must be bigger than the TileSet's `tile_size` value.
    */
+  @CoreTypeLocalCopy
   public var textureRegionSize: Vector2i
     get() {
       TransferContext.writeArguments()

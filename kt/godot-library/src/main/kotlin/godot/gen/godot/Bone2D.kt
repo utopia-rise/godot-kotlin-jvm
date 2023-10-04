@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
@@ -39,6 +40,7 @@ public open class Bone2D : Node2D() {
   /**
    * Rest transform of the bone. You can reset the node's transforms to this value using [applyRest].
    */
+  @CoreTypeLocalCopy
   public var rest: Transform2D
     get() {
       TransferContext.writeArguments()

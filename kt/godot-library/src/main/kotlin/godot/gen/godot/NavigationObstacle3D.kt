@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
 import godot.core.RID
@@ -62,6 +63,7 @@ public open class NavigationObstacle3D : Node3D() {
   /**
    * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
    */
+  @CoreTypeLocalCopy
   public var velocity: Vector3
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -50,6 +51,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   /**
    * The touch position, in screen (global) coordinates.
    */
+  @CoreTypeLocalCopy
   public var position: Vector2
     get() {
       TransferContext.writeArguments()

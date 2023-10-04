@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
@@ -32,6 +33,7 @@ public open class BoxShape3D : Shape3D() {
   /**
    * The box's width, height and depth.
    */
+  @CoreTypeLocalCopy
   public var size: Vector3
     get() {
       TransferContext.writeArguments()

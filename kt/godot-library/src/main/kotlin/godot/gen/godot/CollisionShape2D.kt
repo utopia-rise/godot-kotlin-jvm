@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -102,6 +103,7 @@ public open class CollisionShape2D : Node2D() {
    *
    * **Note:** The default value is [godot.ProjectSettings.debug/shapes/collision/shapeColor]. The `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug color.
    */
+  @CoreTypeLocalCopy
   public var debugColor: Color
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Quaternion
 import godot.core.VariantType.NIL
@@ -27,6 +28,7 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
   /**
    * A 4D vector (represented as a [godot.Quaternion]) constant which represents the state of this node.
    */
+  @CoreTypeLocalCopy
   public var constant: Quaternion
     get() {
       TransferContext.writeArguments()

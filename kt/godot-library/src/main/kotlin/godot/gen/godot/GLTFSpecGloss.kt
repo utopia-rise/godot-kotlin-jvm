@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -36,6 +37,7 @@ public open class GLTFSpecGloss : Resource() {
           NIL)
     }
 
+  @CoreTypeLocalCopy
   public var diffuseFactor: Color
     get() {
       TransferContext.writeArguments()
@@ -62,6 +64,7 @@ public open class GLTFSpecGloss : Resource() {
           NIL)
     }
 
+  @CoreTypeLocalCopy
   public var specularFactor: Color
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
@@ -52,6 +53,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint's transform.
    */
+  @CoreTypeLocalCopy
   public var jointOffset: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -68,6 +70,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint's rotation in radians.
    */
+  @CoreTypeLocalCopy
   public var jointRotation: Vector3
     get() {
       TransferContext.writeArguments()
@@ -84,6 +87,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the body's transform.
    */
+  @CoreTypeLocalCopy
   public var bodyOffset: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -243,6 +247,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -259,6 +264,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The PhysicalBone3D's rotational velocity in *radians* per second.
    */
+  @CoreTypeLocalCopy
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()

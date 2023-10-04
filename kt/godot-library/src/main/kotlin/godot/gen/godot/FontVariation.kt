@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Transform2D
@@ -166,6 +167,7 @@ public open class FontVariation : Font() {
    *
    * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    */
+  @CoreTypeLocalCopy
   public var variationTransform: Transform2D
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
@@ -30,6 +31,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * The ParallaxBackground's scroll value. Calculated automatically when using a [godot.Camera2D], but can be used to manually manage scrolling when no camera is present.
    */
+  @CoreTypeLocalCopy
   public var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -46,6 +48,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * The base position offset for all [godot.ParallaxLayer] children.
    */
+  @CoreTypeLocalCopy
   public var scrollBaseOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -62,6 +65,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * The base motion scale for all [godot.ParallaxLayer] children.
    */
+  @CoreTypeLocalCopy
   public var scrollBaseScale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -78,6 +82,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background will stop scrolling. Must be lower than [scrollLimitEnd] to work.
    */
+  @CoreTypeLocalCopy
   public var scrollLimitBegin: Vector2
     get() {
       TransferContext.writeArguments()
@@ -94,6 +99,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
    */
+  @CoreTypeLocalCopy
   public var scrollLimitEnd: Vector2
     get() {
       TransferContext.writeArguments()

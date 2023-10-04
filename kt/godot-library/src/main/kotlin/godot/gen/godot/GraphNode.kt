@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -102,6 +103,7 @@ public open class GraphNode : Container() {
    *
    * **Note:** You cannot use position offset directly, as [godot.GraphEdit] is a [godot.Container].
    */
+  @CoreTypeLocalCopy
   public var positionOffset: Vector2
     get() {
       TransferContext.writeArguments()

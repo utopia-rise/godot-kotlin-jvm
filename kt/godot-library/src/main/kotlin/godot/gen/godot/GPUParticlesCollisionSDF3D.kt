@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -44,6 +45,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small as possible while covering the parts of the scene you need.
    */
+  @CoreTypeLocalCopy
   public var size: Vector3
     get() {
       TransferContext.writeArguments()

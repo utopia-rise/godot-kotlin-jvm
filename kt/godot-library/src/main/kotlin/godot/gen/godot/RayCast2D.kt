@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantType.BOOL
@@ -72,6 +73,7 @@ public open class RayCast2D : Node2D() {
   /**
    * The ray's destination point, relative to the RayCast's `position`.
    */
+  @CoreTypeLocalCopy
   public var targetPosition: Vector2
     get() {
       TransferContext.writeArguments()

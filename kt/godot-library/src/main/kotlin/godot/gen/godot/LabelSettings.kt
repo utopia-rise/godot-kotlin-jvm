@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -79,6 +80,7 @@ public open class LabelSettings : Resource() {
   /**
    * Color of the text.
    */
+  @CoreTypeLocalCopy
   public var fontColor: Color
     get() {
       TransferContext.writeArguments()
@@ -110,6 +112,7 @@ public open class LabelSettings : Resource() {
   /**
    * The color of the outline.
    */
+  @CoreTypeLocalCopy
   public var outlineColor: Color
     get() {
       TransferContext.writeArguments()
@@ -142,6 +145,7 @@ public open class LabelSettings : Resource() {
   /**
    * Color of the shadow effect. If alpha is `0`, no shadow will be drawn.
    */
+  @CoreTypeLocalCopy
   public var shadowColor: Color
     get() {
       TransferContext.writeArguments()
@@ -158,6 +162,7 @@ public open class LabelSettings : Resource() {
   /**
    * Offset of the shadow effect, in pixels.
    */
+  @CoreTypeLocalCopy
   public var shadowOffset: Vector2
     get() {
       TransferContext.writeArguments()

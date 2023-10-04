@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
@@ -47,6 +48,7 @@ public open class Polygon2D : Node2D() {
   /**
    * The polygon's fill color. If `texture` is defined, it will be multiplied by this color. It will also be the default color for vertices not set in `vertex_colors`.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()
@@ -61,6 +63,7 @@ public open class Polygon2D : Node2D() {
   /**
    * The offset applied to each vertex.
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -103,6 +106,7 @@ public open class Polygon2D : Node2D() {
   /**
    * Amount to offset the polygon's `texture`. If `(0, 0)` the texture's origin (its top-left corner) will be placed at the polygon's `position`.
    */
+  @CoreTypeLocalCopy
   public var textureOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -118,6 +122,7 @@ public open class Polygon2D : Node2D() {
   /**
    * Amount to multiply the `uv` coordinates when using a `texture`. Larger values make the texture smaller, and vice versa.
    */
+  @CoreTypeLocalCopy
   public var textureScale: Vector2
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -33,6 +34,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Size of the generated plane.
    */
+  @CoreTypeLocalCopy
   public var size: Vector2
     get() {
       TransferContext.writeArguments()
@@ -79,6 +81,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Offset of the generated plane. Useful for particles.
    */
+  @CoreTypeLocalCopy
   public var centerOffset: Vector3
     get() {
       TransferContext.writeArguments()

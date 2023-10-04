@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -85,6 +86,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    * The multiplier for specular reflection colors. The [godot.Light2D]'s color is also taken into account when determining the reflection color. Only has a visible effect if [godot.Light2D]s are affecting this [godot.CanvasTexture].
    */
+  @CoreTypeLocalCopy
   public var specularColor: Color
     get() {
       TransferContext.writeArguments()

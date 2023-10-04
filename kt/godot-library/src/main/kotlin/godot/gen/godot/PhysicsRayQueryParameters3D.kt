@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantArray
@@ -35,6 +36,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   /**
    * The starting point of the ray being queried for, in global coordinates.
    */
+  @CoreTypeLocalCopy
   public var from: Vector3
     get() {
       TransferContext.writeArguments()
@@ -51,6 +53,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   /**
    * The ending point of the ray being queried for, in global coordinates.
    */
+  @CoreTypeLocalCopy
   public var to: Vector3
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
@@ -84,6 +85,7 @@ public open class CanvasLayer : Node() {
   /**
    * The layer's base offset.
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -112,6 +114,7 @@ public open class CanvasLayer : Node() {
   /**
    * The layer's scale.
    */
+  @CoreTypeLocalCopy
   public var scale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -126,6 +129,7 @@ public open class CanvasLayer : Node() {
   /**
    * The layer's transform.
    */
+  @CoreTypeLocalCopy
   public var transform: Transform2D
     get() {
       TransferContext.writeArguments()

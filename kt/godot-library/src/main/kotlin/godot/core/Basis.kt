@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.EulerOrder
+import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import godot.util.CMP_EPSILON
 import godot.util.RealT
@@ -924,6 +925,7 @@ class Basis() : CoreType {
      * Warning: Writing x.x = 2 will only modify a copy, not the actual object.
      * To modify it, use x().
      * */
+    @CoreTypeLocalCopy
     var x
         get() = getColumn(0)
         set(value) {
@@ -942,6 +944,7 @@ class Basis() : CoreType {
      * Warning: Writing y.x = 2 will only modify a copy, not the actual object.
      * To modify it, use y().
      * */
+    @CoreTypeLocalCopy
     var y
         get() = getColumn(1)
         set(value) {
@@ -960,6 +963,7 @@ class Basis() : CoreType {
      * Warning: Writing z.x = 2 will only modify a copy, not the actual object.
      * To modify it, use z().
      * */
+    @CoreTypeLocalCopy
     var z
         get() = getColumn(2)
         set(value) {

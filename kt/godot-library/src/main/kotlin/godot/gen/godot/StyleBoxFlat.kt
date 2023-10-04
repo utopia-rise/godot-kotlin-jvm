@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -52,6 +53,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The background color of the stylebox.
    */
+  @CoreTypeLocalCopy
   public var bgColor: Color
     get() {
       TransferContext.writeArguments()
@@ -83,6 +85,7 @@ public open class StyleBoxFlat : StyleBox() {
    *
    * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the [godot.StyleBox]'s content margin (see [godot.StyleBox.contentMarginBottom]). It is preferable to increase the content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand margin does not increase the size of the clickable area for [godot.Control]s.
    */
+  @CoreTypeLocalCopy
   public var skew: Vector2
     get() {
       TransferContext.writeArguments()
@@ -161,6 +164,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the color of the border.
    */
+  @CoreTypeLocalCopy
   public var borderColor: Color
     get() {
       TransferContext.writeArguments()
@@ -349,6 +353,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
    */
+  @CoreTypeLocalCopy
   public var shadowColor: Color
     get() {
       TransferContext.writeArguments()
@@ -380,6 +385,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
    */
+  @CoreTypeLocalCopy
   public var shadowOffset: Vector2
     get() {
       TransferContext.writeArguments()

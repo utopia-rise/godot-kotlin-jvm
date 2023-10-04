@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
@@ -44,6 +45,7 @@ public open class VisualShaderNodeVec2Parameter : VisualShaderNodeParameter() {
   /**
    * A default value to be assigned within the shader.
    */
+  @CoreTypeLocalCopy
   public var defaultValue: Vector2
     get() {
       TransferContext.writeArguments()

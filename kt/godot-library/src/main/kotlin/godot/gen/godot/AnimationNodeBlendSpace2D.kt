@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -64,6 +65,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * The blend space's X and Y axes' lower limit for the points' position. See [addBlendPoint].
    */
+  @CoreTypeLocalCopy
   public var minSpace: Vector2
     get() {
       TransferContext.writeArguments()
@@ -80,6 +82,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * The blend space's X and Y axes' upper limit for the points' position. See [addBlendPoint].
    */
+  @CoreTypeLocalCopy
   public var maxSpace: Vector2
     get() {
       TransferContext.writeArguments()
@@ -96,6 +99,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Position increment to snap to when moving a point.
    */
+  @CoreTypeLocalCopy
   public var snap: Vector2
     get() {
       TransferContext.writeArguments()

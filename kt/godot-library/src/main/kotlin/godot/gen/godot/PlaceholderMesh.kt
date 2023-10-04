@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.VariantType.NIL
@@ -31,6 +32,7 @@ public open class PlaceholderMesh : Mesh() {
   /**
    * The smallest [AABB] enclosing this mesh in local space.
    */
+  @CoreTypeLocalCopy
   public var aabb: AABB
     @JvmName("getAabb_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")

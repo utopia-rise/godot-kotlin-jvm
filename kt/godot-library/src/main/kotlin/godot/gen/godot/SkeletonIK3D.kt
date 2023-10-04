@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.StringName
@@ -112,6 +113,7 @@ public open class SkeletonIK3D : Node() {
   /**
    * First target of the IK chain where the tip bone is placed and, if [overrideTipBasis] is `true`, how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used instead and this property is ignored.
    */
+  @CoreTypeLocalCopy
   public var target: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -159,6 +161,7 @@ public open class SkeletonIK3D : Node() {
   /**
    * Secondary target position (first is [target] property or [targetNode]) for the IK chain. Use magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain has more than 2 bones. The middle chain bone position will be linearly interpolated with the magnet position.
    */
+  @CoreTypeLocalCopy
   public var magnet: Vector3
     get() {
       TransferContext.writeArguments()

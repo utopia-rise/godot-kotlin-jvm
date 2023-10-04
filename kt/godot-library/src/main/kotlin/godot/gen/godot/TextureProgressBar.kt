@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -182,6 +183,7 @@ public open class TextureProgressBar : Range() {
   /**
    * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy borders, to avoid transparent margins in your progress texture.
    */
+  @CoreTypeLocalCopy
   public var textureProgressOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -198,6 +200,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's `texture_under` texture.
    */
+  @CoreTypeLocalCopy
   public var tintUnder: Color
     get() {
       TransferContext.writeArguments()
@@ -214,6 +217,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's `texture_over` texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    */
+  @CoreTypeLocalCopy
   public var tintOver: Color
     get() {
       TransferContext.writeArguments()
@@ -230,6 +234,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's `texture_progress` texture.
    */
+  @CoreTypeLocalCopy
   public var tintProgress: Color
     get() {
       TransferContext.writeArguments()
@@ -280,6 +285,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE].
    */
+  @CoreTypeLocalCopy
   public var radialCenterOffset: Vector2
     get() {
       TransferContext.writeArguments()

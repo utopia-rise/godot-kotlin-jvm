@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -231,6 +232,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * The text drawing offset (in pixels).
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()

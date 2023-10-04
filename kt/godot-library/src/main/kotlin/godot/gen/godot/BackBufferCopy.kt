@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.LONG
@@ -46,6 +47,7 @@ public open class BackBufferCopy : Node2D() {
   /**
    * The area covered by the [godot.BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    */
+  @CoreTypeLocalCopy
   public var rect: Rect2
     get() {
       TransferContext.writeArguments()

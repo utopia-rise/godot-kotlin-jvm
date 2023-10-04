@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.RID
@@ -233,6 +234,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
    */
+  @CoreTypeLocalCopy
   public var gravityPointCenter: Vector3
     get() {
       TransferContext.writeArguments()
@@ -249,6 +251,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The area's gravity vector (not normalized).
    */
+  @CoreTypeLocalCopy
   public var gravityDirection: Vector3
     get() {
       TransferContext.writeArguments()

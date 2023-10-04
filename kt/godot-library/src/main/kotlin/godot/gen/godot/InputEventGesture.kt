@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -30,6 +31,7 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
   /**
    * The local gesture position relative to the [godot.Viewport]. If used in [godot.Control.GuiInput], the position is relative to the current [godot.Control] that received this gesture.
    */
+  @CoreTypeLocalCopy
   public var position: Vector2
     get() {
       TransferContext.writeArguments()

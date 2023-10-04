@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -38,6 +39,7 @@ public open class FogVolume : VisualInstance3D() {
    *
    * **Note:** If [shape] is [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE] or [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but you can scale the [godot.FogVolume] node instead.
    */
+  @CoreTypeLocalCopy
   public var size: Vector3
     get() {
       TransferContext.writeArguments()

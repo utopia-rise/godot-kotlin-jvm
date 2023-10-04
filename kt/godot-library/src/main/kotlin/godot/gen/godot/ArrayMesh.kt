@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Dictionary
@@ -149,6 +150,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
    */
+  @CoreTypeLocalCopy
   public var customAabb: AABB
     get() {
       TransferContext.writeArguments()

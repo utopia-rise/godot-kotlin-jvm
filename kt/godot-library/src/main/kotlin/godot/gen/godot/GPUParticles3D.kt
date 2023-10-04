@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Color
@@ -248,6 +249,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    *
    * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
    */
+  @CoreTypeLocalCopy
   public var visibilityAabb: AABB
     get() {
       TransferContext.writeArguments()

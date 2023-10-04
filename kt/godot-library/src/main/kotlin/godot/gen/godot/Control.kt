@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Color
@@ -148,6 +149,7 @@ public open class Control : CanvasItem() {
   /**
    * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes.
    */
+  @CoreTypeLocalCopy
   public var customMinimumSize: Vector2
     get() {
       TransferContext.writeArguments()
@@ -313,6 +315,7 @@ public open class Control : CanvasItem() {
   /**
    * The size of the node's bounding rectangle, in the node's coordinate system. [godot.Container] nodes update this property automatically.
    */
+  @CoreTypeLocalCopy
   public val size: Vector2
     get() {
       TransferContext.writeArguments()
@@ -323,6 +326,7 @@ public open class Control : CanvasItem() {
   /**
    * The node's position, relative to its containing node. It corresponds to the rectangle's top-left corner. The property is not affected by [pivotOffset].
    */
+  @CoreTypeLocalCopy
   public val position: Vector2
     get() {
       TransferContext.writeArguments()
@@ -333,6 +337,7 @@ public open class Control : CanvasItem() {
   /**
    * The node's global position, relative to the world (usually to the [godot.CanvasLayer]).
    */
+  @CoreTypeLocalCopy
   public val globalPosition: Vector2
     get() {
       TransferContext.writeArguments()
@@ -381,6 +386,7 @@ public open class Control : CanvasItem() {
    *
    * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [scale] property.
    */
+  @CoreTypeLocalCopy
   public var scale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -395,6 +401,7 @@ public open class Control : CanvasItem() {
   /**
    * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale], it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the Control's center.
    */
+  @CoreTypeLocalCopy
   public var pivotOffset: Vector2
     get() {
       TransferContext.writeArguments()

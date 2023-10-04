@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
 import godot.core.VariantType.NIL
@@ -27,6 +28,7 @@ public open class WorldBoundaryShape3D : Shape3D() {
   /**
    * The [godot.core.Plane] used by the [godot.WorldBoundaryShape3D] for collision.
    */
+  @CoreTypeLocalCopy
   public var plane: Plane
     get() {
       TransferContext.writeArguments()

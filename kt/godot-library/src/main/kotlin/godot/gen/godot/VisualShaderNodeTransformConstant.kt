@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
 import godot.core.VariantType.NIL
@@ -27,6 +28,7 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
   /**
    * A [godot.Transform3D] constant which represents the state of this node.
    */
+  @CoreTypeLocalCopy
   public var constant: Transform3D
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
@@ -27,6 +28,7 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
   /**
    * A [godot.core.Vector3] constant which represents the state of this node.
    */
+  @CoreTypeLocalCopy
   public var constant: Vector3
     get() {
       TransferContext.writeArguments()

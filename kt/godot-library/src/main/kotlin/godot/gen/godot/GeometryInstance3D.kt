@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.StringName
@@ -125,6 +126,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [godot.MeshInstance3D] or to have fine control over the [godot.MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [godot.RenderingServer.instanceSetIgnoreCulling] on the [godot.GeometryInstance3D]'s [RID].
    */
+  @CoreTypeLocalCopy
   public var customAabb: AABB
     get() {
       TransferContext.writeArguments()

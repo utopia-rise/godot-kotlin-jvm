@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
@@ -46,6 +47,7 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
   /**
    * A default value to be assigned within the shader.
    */
+  @CoreTypeLocalCopy
   public var defaultValue: Transform3D
     get() {
       TransferContext.writeArguments()

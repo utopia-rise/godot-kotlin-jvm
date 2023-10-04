@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -44,6 +45,7 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
   /**
    * A default value to be assigned within the shader.
    */
+  @CoreTypeLocalCopy
   public var defaultValue: Color
     get() {
       TransferContext.writeArguments()

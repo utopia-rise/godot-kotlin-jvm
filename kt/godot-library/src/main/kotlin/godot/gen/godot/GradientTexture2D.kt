@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -102,6 +103,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The initial offset used to fill the texture specified in UV coordinates.
    */
+  @CoreTypeLocalCopy
   public var fillFrom: Vector2
     get() {
       TransferContext.writeArguments()
@@ -118,6 +120,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The final offset used to fill the texture specified in UV coordinates.
    */
+  @CoreTypeLocalCopy
   public var fillTo: Vector2
     get() {
       TransferContext.writeArguments()

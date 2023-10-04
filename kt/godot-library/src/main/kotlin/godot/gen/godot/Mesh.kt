@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Dictionary
@@ -46,6 +47,7 @@ public open class Mesh : Resource() {
   /**
    * Sets a hint to be used for lightmap resolution.
    */
+  @CoreTypeLocalCopy
   public var lightmapSizeHint: Vector2i
     get() {
       TransferContext.writeArguments()

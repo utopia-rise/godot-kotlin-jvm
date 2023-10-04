@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -280,6 +281,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor] will *not* modulate the detail texture. This can be used to color partial areas of a material by not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
    */
+  @CoreTypeLocalCopy
   public var albedoColor: Color
     get() {
       TransferContext.writeArguments()
@@ -479,6 +481,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The emitted light's color. See [emissionEnabled].
    */
+  @CoreTypeLocalCopy
   public var emission: Color
     get() {
       TransferContext.writeArguments()
@@ -1096,6 +1099,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The color to multiply the subsurface scattering transmittance effect with. Ignored if [subsurfScatterSkinMode] is `true`.
    */
+  @CoreTypeLocalCopy
   public var subsurfScatterTransmittanceColor: Color
     get() {
       TransferContext.writeArguments()
@@ -1173,6 +1177,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The color used by the backlight effect. Represents the light passing through an object.
    */
+  @CoreTypeLocalCopy
   public var backlight: Color
     get() {
       TransferContext.writeArguments()
@@ -1358,6 +1363,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    */
+  @CoreTypeLocalCopy
   public var uv1Scale: Vector3
     get() {
       TransferContext.writeArguments()
@@ -1373,6 +1379,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    */
+  @CoreTypeLocalCopy
   public var uv1Offset: Vector3
     get() {
       TransferContext.writeArguments()
@@ -1435,6 +1442,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    */
+  @CoreTypeLocalCopy
   public var uv2Scale: Vector3
     get() {
       TransferContext.writeArguments()
@@ -1450,6 +1458,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    */
+  @CoreTypeLocalCopy
   public var uv2Offset: Vector3
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -38,6 +39,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set as small as possible while covering the parts of the scene you need.
    */
+  @CoreTypeLocalCopy
   public var size: Vector3
     get() {
       TransferContext.writeArguments()

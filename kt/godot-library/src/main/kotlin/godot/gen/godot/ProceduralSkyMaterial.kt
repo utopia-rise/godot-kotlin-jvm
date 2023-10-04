@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -36,6 +37,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the sky at the top. Blends with [skyHorizonColor].
    */
+  @CoreTypeLocalCopy
   public var skyTopColor: Color
     get() {
       TransferContext.writeArguments()
@@ -52,6 +54,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the sky at the horizon. Blends with [skyTopColor].
    */
+  @CoreTypeLocalCopy
   public var skyHorizonColor: Color
     get() {
       TransferContext.writeArguments()
@@ -116,6 +119,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors or opacity independently of the sky energy, which is useful for day/night or weather transitions. Only effective if a texture is defined in [skyCover].
    */
+  @CoreTypeLocalCopy
   public var skyCoverModulate: Color
     get() {
       TransferContext.writeArguments()
@@ -132,6 +136,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the ground at the bottom. Blends with [groundHorizonColor].
    */
+  @CoreTypeLocalCopy
   public var groundBottomColor: Color
     get() {
       TransferContext.writeArguments()
@@ -148,6 +153,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the ground at the horizon. Blends with [groundBottomColor].
    */
+  @CoreTypeLocalCopy
   public var groundHorizonColor: Color
     get() {
       TransferContext.writeArguments()

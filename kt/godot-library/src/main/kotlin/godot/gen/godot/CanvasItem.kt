@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
@@ -98,6 +99,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The color applied to this [godot.CanvasItem]. This property does affect child [godot.CanvasItem]s, unlike [selfModulate] which only affects the node itself.
    */
+  @CoreTypeLocalCopy
   public var modulate: Color
     get() {
       TransferContext.writeArguments()
@@ -114,6 +116,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * **Note:** Internal children (e.g. sliders in [godot.ColorPicker] or tab bar in [godot.TabContainer]) are also not affected by this property (see `include_internal` parameter of [godot.Node.getChild] and other similar methods).
    */
+  @CoreTypeLocalCopy
   public var selfModulate: Color
     get() {
       TransferContext.writeArguments()

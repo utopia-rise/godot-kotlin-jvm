@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
@@ -97,6 +98,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The total gravity vector being currently applied to this body.
    */
+  @CoreTypeLocalCopy
   public val totalGravity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -108,6 +110,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The body's center of mass position relative to the body's center in the global coordinate system.
    */
+  @CoreTypeLocalCopy
   public val centerOfMass: Vector2
     get() {
       TransferContext.writeArguments()
@@ -119,6 +122,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The body's center of mass position in the body's local coordinate system.
    */
+  @CoreTypeLocalCopy
   public val centerOfMassLocal: Vector2
     get() {
       TransferContext.writeArguments()
@@ -146,6 +150,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The body's linear velocity in pixels per second.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -178,6 +183,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The body's transformation matrix.
    */
+  @CoreTypeLocalCopy
   public var transform: Transform2D
     get() {
       TransferContext.writeArguments()

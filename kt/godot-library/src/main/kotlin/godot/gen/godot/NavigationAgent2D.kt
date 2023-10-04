@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -106,6 +107,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * If set a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
    */
+  @CoreTypeLocalCopy
   public var targetPosition: Vector2
     get() {
       TransferContext.writeArguments()
@@ -250,6 +252,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agents and obstacles. When an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal simulation velocity.
    */
+  @CoreTypeLocalCopy
   public var velocity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -443,6 +446,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
    */
+  @CoreTypeLocalCopy
   public var debugPathCustomColor: Color
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.RID
@@ -164,6 +165,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * [/codeblocks]
    */
+  @CoreTypeLocalCopy
   public var inertia: Vector3
     get() {
       TransferContext.writeArguments()
@@ -196,6 +198,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
    */
+  @CoreTypeLocalCopy
   public var centerOfMass: Vector3
     get() {
       TransferContext.writeArguments()
@@ -397,6 +400,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -446,6 +450,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * The RigidBody3D's rotational velocity in *radians* per second.
    */
+  @CoreTypeLocalCopy
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -497,6 +502,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * See [addConstantForce] and [addConstantCentralForce].
    */
+  @CoreTypeLocalCopy
   public var constantForce: Vector3
     get() {
       TransferContext.writeArguments()
@@ -515,6 +521,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * See [addConstantTorque].
    */
+  @CoreTypeLocalCopy
   public var constantTorque: Vector3
     get() {
       TransferContext.writeArguments()

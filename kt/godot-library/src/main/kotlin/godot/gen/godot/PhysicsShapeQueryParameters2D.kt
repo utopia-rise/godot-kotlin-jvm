@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
@@ -88,6 +89,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The motion of the shape being queried for.
    */
+  @CoreTypeLocalCopy
   public var motion: Vector2
     get() {
       TransferContext.writeArguments()
@@ -192,6 +194,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The queried shape's transform matrix.
    */
+  @CoreTypeLocalCopy
   public var transform: Transform2D
     get() {
       TransferContext.writeArguments()

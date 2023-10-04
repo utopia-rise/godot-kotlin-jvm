@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Rect2
@@ -727,6 +728,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The canvas transform of the viewport, useful for changing the on-screen positions of all child [godot.CanvasItem]s. This is relative to the global canvas transform of the viewport.
    */
+  @CoreTypeLocalCopy
   public var canvasTransform: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -743,6 +745,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The global canvas transform of the viewport. The canvas transform is relative to this.
    */
+  @CoreTypeLocalCopy
   public var globalCanvasTransform: Transform2D
     get() {
       TransferContext.writeArguments()

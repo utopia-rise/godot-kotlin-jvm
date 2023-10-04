@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -34,6 +35,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets the color for numbers.
    */
+  @CoreTypeLocalCopy
   public var numberColor: Color
     get() {
       TransferContext.writeArguments()
@@ -50,6 +52,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets the color for symbols.
    */
+  @CoreTypeLocalCopy
   public var symbolColor: Color
     get() {
       TransferContext.writeArguments()
@@ -66,6 +69,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets color for functions. A function is a non-keyword string followed by a '('.
    */
+  @CoreTypeLocalCopy
   public var functionColor: Color
     get() {
       TransferContext.writeArguments()
@@ -82,6 +86,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'.
    */
+  @CoreTypeLocalCopy
   public var memberVariableColor: Color
     get() {
       TransferContext.writeArguments()

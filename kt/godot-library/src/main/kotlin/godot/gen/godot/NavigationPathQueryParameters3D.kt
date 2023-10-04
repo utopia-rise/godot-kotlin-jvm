@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantType.LONG
@@ -51,6 +52,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   /**
    * The pathfinding start position in global coordinates.
    */
+  @CoreTypeLocalCopy
   public var startPosition: Vector3
     get() {
       TransferContext.writeArguments()
@@ -67,6 +69,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   /**
    * The pathfinding target position in global coordinates.
    */
+  @CoreTypeLocalCopy
   public var targetPosition: Vector3
     get() {
       TransferContext.writeArguments()

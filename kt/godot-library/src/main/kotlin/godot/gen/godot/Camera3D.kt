@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
 import godot.core.Projection
@@ -227,6 +228,7 @@ public open class Camera3D : Node3D() {
    *
    * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    */
+  @CoreTypeLocalCopy
   public var frustumOffset: Vector2
     get() {
       TransferContext.writeArguments()

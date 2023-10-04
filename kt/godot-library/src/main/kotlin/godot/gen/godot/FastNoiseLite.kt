@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -60,6 +61,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_FREQUENCY, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var offset: Vector3
     get() {
       TransferContext.writeArguments()

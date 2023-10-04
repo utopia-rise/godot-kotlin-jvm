@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.PackedInt32Array
@@ -407,6 +408,7 @@ public open class NavigationMesh : Resource() {
   /**
    * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its enclosing area.
    */
+  @CoreTypeLocalCopy
   public var filterBakingAabb: AABB
     get() {
       TransferContext.writeArguments()
@@ -424,6 +426,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The position offset applied to the [filterBakingAabb] [AABB].
    */
+  @CoreTypeLocalCopy
   public var filterBakingAabbOffset: Vector3
     get() {
       TransferContext.writeArguments()

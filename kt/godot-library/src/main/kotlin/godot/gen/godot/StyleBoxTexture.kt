@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Rect2
@@ -231,6 +232,7 @@ public open class StyleBoxTexture : StyleBox() {
    *
    * If empty (`Rect2(0, 0, 0, 0)`), the whole texture will be used.
    */
+  @CoreTypeLocalCopy
   public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
@@ -247,6 +249,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Modulates the color of the texture when this style box is drawn.
    */
+  @CoreTypeLocalCopy
   public var modulateColor: Color
     get() {
       TransferContext.writeArguments()

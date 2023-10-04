@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -47,6 +48,7 @@ public open class PrismMesh : PrimitiveMesh() {
   /**
    * Size of the prism.
    */
+  @CoreTypeLocalCopy
   public var size: Vector3
     get() {
       TransferContext.writeArguments()

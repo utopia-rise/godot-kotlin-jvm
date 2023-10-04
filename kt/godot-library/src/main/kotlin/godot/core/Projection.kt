@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import godot.global.GD
 import godot.global.GD.acos
@@ -129,6 +130,7 @@ class Projection(
      *
      * See: [Documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types)
      * */
+    @CoreTypeLocalCopy
     var x
         get() = Vector4(_x)
         set(value) {
@@ -156,6 +158,7 @@ class Projection(
      *
      * See: [Documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types)
      * */
+    @CoreTypeLocalCopy
     var y
         get() = Vector4(_y)
         set(value) {
@@ -183,6 +186,7 @@ class Projection(
      *
      * See: [Documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types)
      * */
+    @CoreTypeLocalCopy
     var z
         get() = Vector4(_z)
         set(value) {
@@ -210,6 +214,7 @@ class Projection(
      *
      * See: [Documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types)
      * */
+    @CoreTypeLocalCopy
     var w
         get() = Vector4(_w)
         set(value) {

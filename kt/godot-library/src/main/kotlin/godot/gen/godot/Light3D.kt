@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -87,6 +88,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * The light's color. An *overbright* color can be used to achieve a result equivalent to increasing the light's [lightEnergy].
    */
+  @CoreTypeLocalCopy
   public var lightColor: Color
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
@@ -48,6 +49,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * The transform applied to the camera's image.
    */
+  @CoreTypeLocalCopy
   public var feedTransform: Transform2D
     get() {
       TransferContext.writeArguments()

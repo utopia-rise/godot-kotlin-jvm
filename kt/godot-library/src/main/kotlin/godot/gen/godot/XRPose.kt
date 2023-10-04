@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform3D
@@ -73,6 +74,7 @@ public open class XRPose : RefCounted() {
   /**
    * The transform containing the original and transform as reported by the XR runtime.
    */
+  @CoreTypeLocalCopy
   public var transform: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -87,6 +89,7 @@ public open class XRPose : RefCounted() {
   /**
    * The linear velocity of this pose.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -102,6 +105,7 @@ public open class XRPose : RefCounted() {
   /**
    * The angular velocity for this pose.
    */
+  @CoreTypeLocalCopy
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -98,6 +99,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    *
    * **Note:** To better fit areas that are not aligned to the grid, you can rotate the [godot.ReflectionProbe] node.
    */
+  @CoreTypeLocalCopy
   public var size: Vector3
     get() {
       TransferContext.writeArguments()
@@ -112,6 +114,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Sets the origin offset to be used when this [godot.ReflectionProbe] is in [boxProjection] mode. This can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing the number of objects that "get in the way" of the reflection.
    */
+  @CoreTypeLocalCopy
   public var originOffset: Vector3
     get() {
       TransferContext.writeArguments()
@@ -228,6 +231,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The custom ambient color to use within the [godot.ReflectionProbe]'s box defined by its [size]. Only effective if [ambientMode] is [AMBIENT_COLOR].
    */
+  @CoreTypeLocalCopy
   public var ambientColor: Color
     get() {
       TransferContext.writeArguments()

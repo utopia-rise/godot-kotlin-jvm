@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -86,6 +87,7 @@ public open class NavigationLink2D : Node2D() {
    *
    * The distance the link will search is controlled by [godot.NavigationServer2D.mapSetLinkConnectionRadius].
    */
+  @CoreTypeLocalCopy
   public var startPosition: Vector2
     get() {
       TransferContext.writeArguments()
@@ -106,6 +108,7 @@ public open class NavigationLink2D : Node2D() {
    *
    * The distance the link will search is controlled by [godot.NavigationServer2D.mapSetLinkConnectionRadius].
    */
+  @CoreTypeLocalCopy
   public var endPosition: Vector2
     get() {
       TransferContext.writeArguments()

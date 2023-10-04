@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedVector2Array
@@ -93,6 +94,7 @@ public open class TileData : Object() {
   /**
    * Offsets the position of where the tile is drawn.
    */
+  @CoreTypeLocalCopy
   public var textureOrigin: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -108,6 +110,7 @@ public open class TileData : Object() {
   /**
    * Color modulation of the tile.
    */
+  @CoreTypeLocalCopy
   public var modulate: Color
     get() {
       TransferContext.writeArguments()
