@@ -1329,7 +1329,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if touch events are available (Android or iOS), the capability is detected on the Webplatform or if [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is `true`.
+   * Returns `true` if touch events are available (Android or iOS), the capability is detected on the Web platform or if [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is `true`.
    */
   public fun isTouchscreenAvailable(): Boolean {
     TransferContext.writeArguments()
@@ -2818,19 +2818,19 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * No vertical synchronization, which means the engine will display frames as fast as possible (tearing may be visible). Framerate is unlimited (nonwithstanding [godot.Engine.maxFps]).
+     * No vertical synchronization, which means the engine will display frames as fast as possible (tearing may be visible). Framerate is unlimited (notwithstanding [godot.Engine.maxFps]).
      */
     VSYNC_DISABLED(0),
     /**
-     * Default vertical synchronization mode, the image is displayed only on vertical blanking intervals (no tearing is visible). Framerate is limited by the monitor refresh rate (nonwithstanding [godot.Engine.maxFps]).
+     * Default vertical synchronization mode, the image is displayed only on vertical blanking intervals (no tearing is visible). Framerate is limited by the monitor refresh rate (notwithstanding [godot.Engine.maxFps]).
      */
     VSYNC_ENABLED(1),
     /**
-     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (nonwithstanding [godot.Engine.maxFps]). Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
+     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (notwithstanding [godot.Engine.maxFps]). Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
      */
     VSYNC_ADAPTIVE(2),
     /**
-     * Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (nonwithstanding [godot.Engine.maxFps]).
+     * Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (notwithstanding [godot.Engine.maxFps]).
      *
      * Although not guaranteed, the images can be rendered as fast as possible, which may reduce input lag (also called "Fast" V-Sync mode). [VSYNC_MAILBOX] works best when at least twice as many frames as the display refresh rate are rendered. Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
      */

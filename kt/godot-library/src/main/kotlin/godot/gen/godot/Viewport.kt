@@ -285,6 +285,8 @@ public open class Viewport internal constructor() : Node() {
    * If `true`, [godot.OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this viewport. For the root viewport, [godot.ProjectSettings.rendering/occlusionCulling/useOcclusionCulling] must be set to `true` instead.
    *
    * **Note:** Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if you actually plan to use it, and think whether your scene can actually benefit from occlusion culling. Large, open scenes with few or no objects blocking the view will generally not benefit much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility ranges ([godot.GeometryInstance3D.visibilityRangeBegin] and [godot.GeometryInstance3D.visibilityRangeEnd]) compared to occlusion culling.
+   *
+   * **Note:** Due to memory constraints, occlusion culling is not supported by default in Web export templates. It can be enabled by compiling custom Web export templates with `module_raycast_enabled=yes`.
    */
   public var useOcclusionCulling: Boolean
     get() {
@@ -373,7 +375,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close).
    *
-   * Enabling temporal antialiasing ([useTaa]) will automatically apply a `-0.5` offset to this value, while enabling FXAA ([screenSpaceAa]) will automatically apply a `-0.25` offset to this value. If both TAA and FXAA are enbled at the same time, an offset of `-0.75` is applied to this value.
+   * Enabling temporal antialiasing ([useTaa]) will automatically apply a `-0.5` offset to this value, while enabling FXAA ([screenSpaceAa]) will automatically apply a `-0.25` offset to this value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this value.
    *
    * **Note:** If [scaling3dScale] is lower than `1.0` (exclusive), [textureMipmapBias] is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `log2(scaling_3d_scale) + mipmap_bias`.
    *

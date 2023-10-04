@@ -5158,6 +5158,8 @@ public object RenderingServer : Object() {
    * Returns the name of the video adapter (e.g. "GeForce GTX 1080/PCIe/SSE2").
    *
    * **Note:** When running a headless or server binary, this function returns an empty string.
+   *
+   * **Note:** On the web platform, some browsers such as Firefox may report a different, fixed GPU name such as "GeForce GTX 980" (regardless of the user's actual GPU model). This is done to make fingerprinting more difficult.
    */
   public fun getVideoAdapterName(): String {
     TransferContext.writeArguments()

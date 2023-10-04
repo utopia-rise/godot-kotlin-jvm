@@ -69,7 +69,7 @@ public open class TextEdit : Control() {
   /**
    * Emitted immediately when the text changes.
    *
-   * When text is added [fromLine] will be less then [toLine]. On a remove [toLine] will be less then [fromLine].
+   * When text is added [fromLine] will be less than [toLine]. On a remove [toLine] will be less than [fromLine].
    */
   public val linesEditedFrom: Signal2<Long, Long> by signal("fromLine", "toLine")
 

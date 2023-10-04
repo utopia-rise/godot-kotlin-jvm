@@ -37,7 +37,7 @@ public open class TileMapPattern : Resource() {
   }
 
   /**
-   * Sets the tile indentifiers for the cell at coordinates [coords]. See [godot.TileMap.setCell].
+   * Sets the tile identifiers for the cell at coordinates [coords]. See [godot.TileMap.setCell].
    */
   @JvmOverloads
   public fun setCell(

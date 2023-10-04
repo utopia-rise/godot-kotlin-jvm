@@ -43,7 +43,7 @@ import kotlin.jvm.JvmOverloads
  * Tutorials:
  * [$DOCS_URL/tutorials/navigation/navigation_using_navigationservers.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationservers.html)
  *
- * NavigationServer2D is the server that handles navigation maps, regions and agents. It does not handle A* navigation from [godot.AStar3D].
+ * NavigationServer3D is the server that handles navigation maps, regions and agents. It does not handle A* navigation from [godot.AStar3D].
  *
  * Maps are made up of regions, which are made of navigation meshes. Together, they define the navigable areas in the 3D world.
  *

@@ -340,7 +340,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Sets the tile indentifiers for the cell on layer [layer] at coordinates [coords]. Each tile of the [godot.TileSet] is identified using three parts:
+   * Sets the tile identifiers for the cell on layer [layer] at coordinates [coords]. Each tile of the [godot.TileSet] is identified using three parts:
    *
    * - The source identifier [sourceId] identifies a [godot.TileSetSource] identifier. See [godot.TileSet.setSourceId],
    *
@@ -594,7 +594,7 @@ public open class TileMap : Node2D() {
   /**
    * Returns a [godot.Vector2i] array with the positions of all cells containing a tile in the given layer. Tiles may be filtered according to their source ([sourceId]), their atlas coordinates ([atlasCoords]) or alternative id ([alternativeTile]).
    *
-   * If a parameter has it's value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default value, this method returns the same result as [getUsedCells].
+   * If a parameter has its value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default value, this method returns the same result as [getUsedCells].
    *
    * A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
    */

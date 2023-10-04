@@ -112,7 +112,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * Sets the absolute maximum of the soundlevel, in decibels.
+   * Sets the absolute maximum of the sound level, in decibels.
    */
   public var maxDb: Float
     get() {

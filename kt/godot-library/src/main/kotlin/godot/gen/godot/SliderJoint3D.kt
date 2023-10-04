@@ -64,7 +64,7 @@ public open class SliderJoint3D : Joint3D() {
      */
     PARAM_LINEAR_LIMIT_SOFTNESS(2),
     /**
-     * The amount of restitution once the limits are surpassed. The lower, the more velocityenergy gets lost.
+     * The amount of restitution once the limits are surpassed. The lower, the more velocity-energy gets lost.
      */
     PARAM_LINEAR_LIMIT_RESTITUTION(3),
     /**

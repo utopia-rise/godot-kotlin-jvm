@@ -26,7 +26,7 @@ import kotlin.Suppress
  *
  * A node that provides a thickened polygon shape (a prism) to a [godot.CollisionObject2D] parent and allows to edit it. The polygon can be concave or convex. This can give a detection shape to an [godot.Area2D] or turn [godot.PhysicsBody2D] into a solid object.
  *
- * **Warning:** A non-uniformly scaled [godot.CollisionShape3D] will likely not behave as expected. Make sure to keep its scale the same on all axes and adjust its shape resource instead.
+ * **Warning:** A non-uniformly scaled [godot.CollisionShape2D] will likely not behave as expected. Make sure to keep its scale the same on all axes and adjust its shape resource instead.
  */
 @GodotBaseType
 public open class CollisionPolygon2D : Node2D() {

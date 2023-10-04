@@ -279,6 +279,8 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
+   *
+   * **Note:** [DRAW_ORDER_INDEX] is the only option that supports motion vectors for effects like TAA. It is suggested to use this draw order if the particles are opaque to fix ghosting artifacts.
    */
   public var drawOrder: DrawOrder
     get() {

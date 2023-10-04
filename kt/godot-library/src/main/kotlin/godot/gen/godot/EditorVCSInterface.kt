@@ -285,7 +285,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   }
 
   /**
-   * Pops up an error message in the edior which is shown as coming from the underlying VCS. Use this to show VCS specific error messages.
+   * Pops up an error message in the editor which is shown as coming from the underlying VCS. Use this to show VCS specific error messages.
    */
   public fun popupError(msg: String): Unit {
     TransferContext.writeArguments(STRING to msg)

@@ -87,9 +87,9 @@ public open class NavigationAgent3D : Node() {
    *
    * - `owner`: The object which manages the link (usually [godot.NavigationLink3D]).
    *
-   * - `link_entry_position`: If `owner` is available and the owner is a [godot.NavigationLink2D], it will contain the global position of the link's point the agent is entering.
+   * - `link_entry_position`: If `owner` is available and the owner is a [godot.NavigationLink3D], it will contain the global position of the link's point the agent is entering.
    *
-   * - `link_exit_position`: If `owner` is available and the owner is a [godot.NavigationLink2D], it will contain the global position of the link's point which the agent is exiting.
+   * - `link_exit_position`: If `owner` is available and the owner is a [godot.NavigationLink3D], it will contain the global position of the link's point which the agent is exiting.
    */
   public val linkReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
 

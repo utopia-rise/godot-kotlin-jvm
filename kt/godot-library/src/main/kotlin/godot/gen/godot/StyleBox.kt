@@ -37,7 +37,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class StyleBox : Resource() {
   /**
-   * The left margin for the contents of this style box.Increasing this value reduces the space available to the contents from the left.
+   * The left margin for the contents of this style box. Increasing this value reduces the space available to the contents from the left.
    *
    * Refer to [contentMarginBottom] for extra considerations.
    */

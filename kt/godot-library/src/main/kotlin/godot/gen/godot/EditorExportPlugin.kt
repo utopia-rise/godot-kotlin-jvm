@@ -104,7 +104,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   /**
    * Customize a scene. If changes are made to it, return the same or a new scene. Otherwise, return `null`. If a new scene is returned, it is up to you to dispose of the old one.
    *
-   * Implementing this method is required if [_beginCustomizeResources] returns `true`.
+   * Implementing this method is required if [_beginCustomizeScenes] returns `true`.
    */
   public open fun _customizeScene(scene: Node, path: String): Node? {
     throw NotImplementedError("_customize_scene is not implemented for EditorExportPlugin")

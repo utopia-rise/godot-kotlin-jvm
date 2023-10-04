@@ -348,7 +348,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Returns `true` if the given position is behind the camera (the blue part of the linked diagram). [godot.See this diagram](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/camera3d_position_frustum.png) for an overview of position query methods.
+   * Returns `true` if the given position is behind the camera (the blue part of the linked diagram). [godot.See this diagram](https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/camera3d_position_frustum.png) for an overview of position query methods.
    *
    * **Note:** A position which returns `false` may still be outside the camera's field of view.
    */
@@ -451,7 +451,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Returns `true` if the given position is inside the camera's frustum (the green part of the linked diagram). [godot.See this diagram](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/camera3d_position_frustum.png) for an overview of position query methods.
+   * Returns `true` if the given position is inside the camera's frustum (the green part of the linked diagram). [godot.See this diagram](https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/camera3d_position_frustum.png) for an overview of position query methods.
    */
   public fun isPositionInFrustum(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
