@@ -82,6 +82,7 @@ object GodotTypes {
     const val nodePath = "NodePath"
     const val node = "Node"
     const val plane = "Plane"
+    const val coreType = "CoreType"
     const val packedByteArray = "PackedByteArray"
     const val packedInt32Array = "PackedInt32Array"
     const val packedInt64Array = "PackedInt64Array"
