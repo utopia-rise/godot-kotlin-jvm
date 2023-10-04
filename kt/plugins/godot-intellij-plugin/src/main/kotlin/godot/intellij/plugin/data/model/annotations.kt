@@ -11,4 +11,5 @@ const val REGISTER_PROPERTY_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJ
 const val EXPORT_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.export}"
 const val REGISTER_SIGNAL_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerSignal}"
 const val CORE_TYPE_HELPER_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.coreTypeHelper}"
+const val CORE_TYPE_LOCAL_COPY_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.coreTypeLocalCopyHelper}"
 const val RPC_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.rpc}"
