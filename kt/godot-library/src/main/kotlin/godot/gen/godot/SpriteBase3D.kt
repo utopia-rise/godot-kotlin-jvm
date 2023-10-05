@@ -161,12 +161,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    */
   public var transparent: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
     }
 
@@ -175,12 +175,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    */
   public var shaded: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
     }
 
@@ -189,12 +189,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    */
   public var doubleSided: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
     }
 
@@ -203,12 +203,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    */
   public var noDepthTest: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, BOOL to value)
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
     }
 
@@ -217,12 +217,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    */
   public var fixedSize: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
     }
 

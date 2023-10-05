@@ -36,13 +36,13 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public var swingSpan: Float
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
     }
 
@@ -53,13 +53,13 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public var twistSpan: Float
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
     }
 
@@ -70,13 +70,13 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public var bias: Float
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
     }
 
@@ -85,13 +85,13 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public var softness: Float
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
     }
 
@@ -100,13 +100,13 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public var relaxation: Float
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
     }
 

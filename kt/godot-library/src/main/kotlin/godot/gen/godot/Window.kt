@@ -361,12 +361,12 @@ public open class Window : Viewport() {
    */
   public var unresizable: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
     }
 
@@ -375,12 +375,12 @@ public open class Window : Viewport() {
    */
   public var borderless: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
     }
 
@@ -389,12 +389,12 @@ public open class Window : Viewport() {
    */
   public var alwaysOnTop: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
     }
 
@@ -407,12 +407,12 @@ public open class Window : Viewport() {
    */
   public var transparent: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, BOOL to value)
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
     }
 
@@ -421,12 +421,12 @@ public open class Window : Viewport() {
    */
   public var unfocusable: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
     }
 
@@ -437,12 +437,12 @@ public open class Window : Viewport() {
    */
   public var popupWindow: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 5)
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5, BOOL to value)
+      TransferContext.writeArguments(LONG to 5L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
     }
 
@@ -455,12 +455,12 @@ public open class Window : Viewport() {
    */
   public var extendToTitle: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 6)
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6, BOOL to value)
+      TransferContext.writeArguments(LONG to 6L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
     }
 
@@ -473,12 +473,12 @@ public open class Window : Viewport() {
    */
   public var mousePassthrough: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 7)
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7, BOOL to value)
+      TransferContext.writeArguments(LONG to 7L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
     }
 

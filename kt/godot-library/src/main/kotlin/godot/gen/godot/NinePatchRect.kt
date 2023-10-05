@@ -88,13 +88,13 @@ public open class NinePatchRect : Control() {
    */
   public var patchMarginLeft: Int
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_PATCH_MARGIN,
           LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, LONG to value.toLong())
+      TransferContext.writeArguments(LONG to 0L, LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN,
           NIL)
     }
@@ -104,13 +104,13 @@ public open class NinePatchRect : Control() {
    */
   public var patchMarginTop: Int
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_PATCH_MARGIN,
           LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, LONG to value.toLong())
+      TransferContext.writeArguments(LONG to 1L, LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN,
           NIL)
     }
@@ -120,13 +120,13 @@ public open class NinePatchRect : Control() {
    */
   public var patchMarginRight: Int
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_PATCH_MARGIN,
           LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, LONG to value.toLong())
+      TransferContext.writeArguments(LONG to 2L, LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN,
           NIL)
     }
@@ -136,13 +136,13 @@ public open class NinePatchRect : Control() {
    */
   public var patchMarginBottom: Int
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_PATCH_MARGIN,
           LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, LONG to value.toLong())
+      TransferContext.writeArguments(LONG to 3L, LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN,
           NIL)
     }

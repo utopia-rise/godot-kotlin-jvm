@@ -386,13 +386,13 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public var drawPass1: Mesh?
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, OBJECT to value)
+      TransferContext.writeArguments(LONG to 0L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
           NIL)
     }
@@ -402,13 +402,13 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public var drawPass2: Mesh?
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, OBJECT to value)
+      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
           NIL)
     }
@@ -418,13 +418,13 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public var drawPass3: Mesh?
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, OBJECT to value)
+      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
           NIL)
     }
@@ -434,13 +434,13 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public var drawPass4: Mesh?
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, OBJECT to value)
+      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
           NIL)
     }

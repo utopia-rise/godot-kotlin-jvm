@@ -203,7 +203,7 @@ public open class FontVariation : Font() {
           UninitializedPropertyAccessException("Cannot access property spacingGlyph: has no getter")
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, LONG to value)
+      TransferContext.writeArguments(LONG to 0L, LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
     }
 
@@ -216,7 +216,7 @@ public open class FontVariation : Font() {
           UninitializedPropertyAccessException("Cannot access property spacingSpace: has no getter")
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, LONG to value)
+      TransferContext.writeArguments(LONG to 1L, LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
     }
 
@@ -228,7 +228,7 @@ public open class FontVariation : Font() {
       throw UninitializedPropertyAccessException("Cannot access property spacingTop: has no getter")
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, LONG to value)
+      TransferContext.writeArguments(LONG to 2L, LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
     }
 
@@ -241,7 +241,7 @@ public open class FontVariation : Font() {
           UninitializedPropertyAccessException("Cannot access property spacingBottom: has no getter")
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, LONG to value)
+      TransferContext.writeArguments(LONG to 3L, LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
     }
 

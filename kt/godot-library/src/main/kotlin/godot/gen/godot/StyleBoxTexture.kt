@@ -58,13 +58,13 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public var textureMarginLeft: Float
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
     }
@@ -78,13 +78,13 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public var textureMarginTop: Float
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
     }
@@ -98,13 +98,13 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public var textureMarginRight: Float
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
     }
@@ -118,13 +118,13 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public var textureMarginBottom: Float
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
     }
@@ -134,13 +134,13 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public var expandMarginLeft: Float
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
           NIL)
     }
@@ -150,13 +150,13 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public var expandMarginTop: Float
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
           NIL)
     }
@@ -166,13 +166,13 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public var expandMarginRight: Float
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
           NIL)
     }
@@ -182,13 +182,13 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public var expandMarginBottom: Float
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
           NIL)
     }

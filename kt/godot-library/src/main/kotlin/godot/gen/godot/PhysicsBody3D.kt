@@ -43,12 +43,12 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public var axisLockLinearX: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
     }
 
@@ -57,12 +57,12 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public var axisLockLinearY: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
     }
 
@@ -71,12 +71,12 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public var axisLockLinearZ: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
     }
 
@@ -85,12 +85,12 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public var axisLockAngularX: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 8)
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8, BOOL to value)
+      TransferContext.writeArguments(LONG to 8L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
     }
 
@@ -99,12 +99,12 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public var axisLockAngularY: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 16)
+      TransferContext.writeArguments(LONG to 16L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 16, BOOL to value)
+      TransferContext.writeArguments(LONG to 16L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
     }
 
@@ -113,12 +113,12 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public var axisLockAngularZ: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 32)
+      TransferContext.writeArguments(LONG to 32L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 32, BOOL to value)
+      TransferContext.writeArguments(LONG to 32L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
     }
 

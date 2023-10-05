@@ -239,13 +239,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var particleFlagAlignY: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARTICLE_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARTICLE_FLAG, NIL)
     }
@@ -255,13 +255,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var particleFlagRotateY: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARTICLE_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARTICLE_FLAG, NIL)
     }
@@ -271,13 +271,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var particleFlagDisableZ: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARTICLE_FLAG, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARTICLE_FLAG, NIL)
     }
@@ -353,13 +353,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var initialVelocityMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -369,13 +369,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var initialVelocityMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -385,13 +385,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var angularVelocityMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -403,13 +403,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var angularVelocityMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -419,13 +419,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var angularVelocityCurve: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, OBJECT to value)
+      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -435,13 +435,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var orbitVelocityMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -453,13 +453,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var orbitVelocityMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -469,13 +469,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var orbitVelocityCurve: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, OBJECT to value)
+      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -485,13 +485,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var linearAccelMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -501,13 +501,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var linearAccelMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -517,13 +517,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var linearAccelCurve: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, OBJECT to value)
+      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -533,13 +533,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var radialAccelMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -549,13 +549,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var radialAccelMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -565,13 +565,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var radialAccelCurve: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, OBJECT to value)
+      TransferContext.writeArguments(LONG to 4L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -581,13 +581,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var tangentialAccelMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 5)
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -597,13 +597,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var tangentialAccelMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 5)
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -613,13 +613,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var tangentialAccelCurve: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 5)
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5, OBJECT to value)
+      TransferContext.writeArguments(LONG to 5L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -629,13 +629,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var dampingMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 6)
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -645,13 +645,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var dampingMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 6)
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -661,13 +661,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var dampingCurve: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 6)
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6, OBJECT to value)
+      TransferContext.writeArguments(LONG to 6L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -677,13 +677,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var angleMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 7)
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -695,13 +695,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var angleMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 7)
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -711,13 +711,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var angleCurve: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 7)
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7, OBJECT to value)
+      TransferContext.writeArguments(LONG to 7L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -727,13 +727,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var scaleMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 8)
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -743,13 +743,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var scaleMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 8)
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -759,13 +759,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var scaleCurve: Material?
     get() {
-      TransferContext.writeArguments(LONG to 8)
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8, OBJECT to value)
+      TransferContext.writeArguments(LONG to 8L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -830,13 +830,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var hueVariationMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 9)
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 9, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -846,13 +846,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var hueVariationMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 9)
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 9, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -862,13 +862,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var hueVariationCurve: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 9)
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 9, OBJECT to value)
+      TransferContext.writeArguments(LONG to 9L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -970,13 +970,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var turbulenceInfluenceMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 13)
+      TransferContext.writeArguments(LONG to 13L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 13, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 13L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -988,13 +988,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var turbulenceInfluenceMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 13)
+      TransferContext.writeArguments(LONG to 13L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 13, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 13L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -1006,13 +1006,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var turbulenceInitialDisplacementMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 14)
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 14, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 14L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -1024,13 +1024,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var turbulenceInitialDisplacementMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 14)
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 14, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 14L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -1040,13 +1040,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var turbulenceInfluenceOverLife: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 12)
+      TransferContext.writeArguments(LONG to 12L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 12, OBJECT to value)
+      TransferContext.writeArguments(LONG to 12L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -1056,13 +1056,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var animSpeedMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 10)
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 10, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 10L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -1074,13 +1074,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var animSpeedMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 10)
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 10, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 10L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -1090,13 +1090,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var animSpeedCurve: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 10)
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 10, OBJECT to value)
+      TransferContext.writeArguments(LONG to 10L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
@@ -1106,13 +1106,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var animOffsetMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 11)
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 11, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 11L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
     }
@@ -1122,13 +1122,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var animOffsetMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 11)
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 11, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 11L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
     }
@@ -1138,13 +1138,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   public var animOffsetCurve: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 11)
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 11, OBJECT to value)
+      TransferContext.writeArguments(LONG to 11L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }

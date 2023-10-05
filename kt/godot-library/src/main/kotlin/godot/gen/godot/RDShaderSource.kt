@@ -31,13 +31,13 @@ public open class RDShaderSource : RefCounted() {
    */
   public var sourceVertex: String
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
           STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, STRING to value)
+      TransferContext.writeArguments(LONG to 0L, STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
           NIL)
     }
@@ -47,13 +47,13 @@ public open class RDShaderSource : RefCounted() {
    */
   public var sourceFragment: String
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
           STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, STRING to value)
+      TransferContext.writeArguments(LONG to 1L, STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
           NIL)
     }
@@ -63,13 +63,13 @@ public open class RDShaderSource : RefCounted() {
    */
   public var sourceTesselationControl: String
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
           STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, STRING to value)
+      TransferContext.writeArguments(LONG to 2L, STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
           NIL)
     }
@@ -79,13 +79,13 @@ public open class RDShaderSource : RefCounted() {
    */
   public var sourceTesselationEvaluation: String
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
           STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, STRING to value)
+      TransferContext.writeArguments(LONG to 3L, STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
           NIL)
     }
@@ -95,13 +95,13 @@ public open class RDShaderSource : RefCounted() {
    */
   public var sourceCompute: String
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
           STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, STRING to value)
+      TransferContext.writeArguments(LONG to 4L, STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
           NIL)
     }

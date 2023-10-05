@@ -68,12 +68,12 @@ public open class Decal : VisualInstance3D() {
    */
   public var textureAlbedo: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, OBJECT to value)
+      TransferContext.writeArguments(LONG to 0L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
     }
 
@@ -86,12 +86,12 @@ public open class Decal : VisualInstance3D() {
    */
   public var textureNormal: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, OBJECT to value)
+      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
     }
 
@@ -104,12 +104,12 @@ public open class Decal : VisualInstance3D() {
    */
   public var textureOrm: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, OBJECT to value)
+      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
     }
 
@@ -120,12 +120,12 @@ public open class Decal : VisualInstance3D() {
    */
   public var textureEmission: Texture2D?
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, OBJECT to value)
+      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
     }
 

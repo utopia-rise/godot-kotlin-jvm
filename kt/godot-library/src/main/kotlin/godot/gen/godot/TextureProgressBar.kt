@@ -71,13 +71,13 @@ public open class TextureProgressBar : Range() {
    */
   public var stretchMarginLeft: Int
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, LONG to value.toLong())
+      TransferContext.writeArguments(LONG to 0L, LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
     }
@@ -87,13 +87,13 @@ public open class TextureProgressBar : Range() {
    */
   public var stretchMarginTop: Int
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, LONG to value.toLong())
+      TransferContext.writeArguments(LONG to 1L, LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
     }
@@ -103,13 +103,13 @@ public open class TextureProgressBar : Range() {
    */
   public var stretchMarginRight: Int
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, LONG to value.toLong())
+      TransferContext.writeArguments(LONG to 2L, LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
     }
@@ -119,13 +119,13 @@ public open class TextureProgressBar : Range() {
    */
   public var stretchMarginBottom: Int
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, LONG to value.toLong())
+      TransferContext.writeArguments(LONG to 3L, LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
     }

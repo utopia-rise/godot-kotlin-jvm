@@ -32,13 +32,13 @@ public open class RDShaderSPIRV : Resource() {
    */
   public var bytecodeVertex: PackedByteArray
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
           PACKED_BYTE_ARRAY)
       return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, PACKED_BYTE_ARRAY to value)
+      TransferContext.writeArguments(LONG to 0L, PACKED_BYTE_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
           NIL)
     }
@@ -48,13 +48,13 @@ public open class RDShaderSPIRV : Resource() {
    */
   public var bytecodeFragment: PackedByteArray
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
           PACKED_BYTE_ARRAY)
       return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, PACKED_BYTE_ARRAY to value)
+      TransferContext.writeArguments(LONG to 1L, PACKED_BYTE_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
           NIL)
     }
@@ -64,13 +64,13 @@ public open class RDShaderSPIRV : Resource() {
    */
   public var bytecodeTesselationControl: PackedByteArray
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
           PACKED_BYTE_ARRAY)
       return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, PACKED_BYTE_ARRAY to value)
+      TransferContext.writeArguments(LONG to 2L, PACKED_BYTE_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
           NIL)
     }
@@ -80,13 +80,13 @@ public open class RDShaderSPIRV : Resource() {
    */
   public var bytecodeTesselationEvaluation: PackedByteArray
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
           PACKED_BYTE_ARRAY)
       return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, PACKED_BYTE_ARRAY to value)
+      TransferContext.writeArguments(LONG to 3L, PACKED_BYTE_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
           NIL)
     }
@@ -96,13 +96,13 @@ public open class RDShaderSPIRV : Resource() {
    */
   public var bytecodeCompute: PackedByteArray
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
           PACKED_BYTE_ARRAY)
       return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, PACKED_BYTE_ARRAY to value)
+      TransferContext.writeArguments(LONG to 4L, PACKED_BYTE_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
           NIL)
     }
@@ -112,13 +112,13 @@ public open class RDShaderSPIRV : Resource() {
    */
   public var compileErrorVertex: String
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, STRING to value)
+      TransferContext.writeArguments(LONG to 0L, STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
     }
@@ -128,13 +128,13 @@ public open class RDShaderSPIRV : Resource() {
    */
   public var compileErrorFragment: String
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, STRING to value)
+      TransferContext.writeArguments(LONG to 1L, STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
     }
@@ -144,13 +144,13 @@ public open class RDShaderSPIRV : Resource() {
    */
   public var compileErrorTesselationControl: String
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, STRING to value)
+      TransferContext.writeArguments(LONG to 2L, STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
     }
@@ -160,13 +160,13 @@ public open class RDShaderSPIRV : Resource() {
    */
   public var compileErrorTesselationEvaluation: String
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, STRING to value)
+      TransferContext.writeArguments(LONG to 3L, STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
     }
@@ -176,13 +176,13 @@ public open class RDShaderSPIRV : Resource() {
    */
   public var compileErrorCompute: String
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, STRING to value)
+      TransferContext.writeArguments(LONG to 4L, STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
     }

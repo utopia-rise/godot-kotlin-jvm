@@ -666,13 +666,13 @@ public open class Viewport internal constructor() : Node() {
    */
   public var positionalShadowAtlasQuad0: PositionalShadowAtlasQuadrantSubdiv
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, LONG to value.id)
+      TransferContext.writeArguments(LONG to 0L, LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
@@ -682,13 +682,13 @@ public open class Viewport internal constructor() : Node() {
    */
   public var positionalShadowAtlasQuad1: PositionalShadowAtlasQuadrantSubdiv
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, LONG to value.id)
+      TransferContext.writeArguments(LONG to 1L, LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
@@ -698,13 +698,13 @@ public open class Viewport internal constructor() : Node() {
    */
   public var positionalShadowAtlasQuad2: PositionalShadowAtlasQuadrantSubdiv
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, LONG to value.id)
+      TransferContext.writeArguments(LONG to 2L, LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
@@ -714,13 +714,13 @@ public open class Viewport internal constructor() : Node() {
    */
   public var positionalShadowAtlasQuad3: PositionalShadowAtlasQuadrantSubdiv
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, LONG to value.id)
+      TransferContext.writeArguments(LONG to 3L, LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }

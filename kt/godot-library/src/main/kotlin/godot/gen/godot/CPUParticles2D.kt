@@ -360,13 +360,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var particleFlagAlignY: Boolean
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARTICLE_FLAG,
           BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARTICLE_FLAG,
           NIL)
     }
@@ -422,13 +422,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var initialVelocityMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -437,13 +437,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var initialVelocityMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -452,13 +452,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var angularVelocityMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -467,13 +467,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var angularVelocityMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -482,13 +482,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var angularVelocityCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, OBJECT to value)
+      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }
@@ -498,13 +498,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var orbitVelocityMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -513,13 +513,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var orbitVelocityMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -528,13 +528,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var orbitVelocityCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, OBJECT to value)
+      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }
@@ -544,13 +544,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var linearAccelMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -559,13 +559,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var linearAccelMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -574,13 +574,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var linearAccelCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, OBJECT to value)
+      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }
@@ -590,13 +590,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var radialAccelMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -605,13 +605,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var radialAccelMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -620,13 +620,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var radialAccelCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 4)
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4, OBJECT to value)
+      TransferContext.writeArguments(LONG to 4L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }
@@ -636,13 +636,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var tangentialAccelMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 5)
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -651,13 +651,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var tangentialAccelMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 5)
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -666,13 +666,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var tangentialAccelCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 5)
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5, OBJECT to value)
+      TransferContext.writeArguments(LONG to 5L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }
@@ -682,13 +682,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var dampingMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 6)
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -697,13 +697,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var dampingMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 6)
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -712,13 +712,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var dampingCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 6)
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6, OBJECT to value)
+      TransferContext.writeArguments(LONG to 6L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }
@@ -728,13 +728,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var angleMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 7)
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -743,13 +743,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var angleMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 7)
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -758,13 +758,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var angleCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 7)
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7, OBJECT to value)
+      TransferContext.writeArguments(LONG to 7L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }
@@ -774,13 +774,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var scaleAmountMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 8)
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -789,13 +789,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var scaleAmountMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 8)
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -804,13 +804,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var scaleAmountCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 8)
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8, OBJECT to value)
+      TransferContext.writeArguments(LONG to 8L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }
@@ -919,13 +919,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var hueVariationMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 9)
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 9, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -934,13 +934,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var hueVariationMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 9)
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 9, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -949,13 +949,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var hueVariationCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 9)
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 9, OBJECT to value)
+      TransferContext.writeArguments(LONG to 9L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }
@@ -965,13 +965,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var animSpeedMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 10)
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 10, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 10L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -982,13 +982,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var animSpeedMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 10)
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 10, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 10L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -997,13 +997,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var animSpeedCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 10)
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 10, OBJECT to value)
+      TransferContext.writeArguments(LONG to 10L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }
@@ -1013,13 +1013,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var animOffsetMin: Float
     get() {
-      TransferContext.writeArguments(LONG to 11)
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 11, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 11L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
     }
 
@@ -1028,13 +1028,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var animOffsetMax: Float
     get() {
-      TransferContext.writeArguments(LONG to 11)
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
           DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 11, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 11L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
     }
 
@@ -1043,13 +1043,13 @@ public open class CPUParticles2D : Node2D() {
    */
   public var animOffsetCurve: Curve?
     get() {
-      TransferContext.writeArguments(LONG to 11)
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 11, OBJECT to value)
+      TransferContext.writeArguments(LONG to 11L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE,
           NIL)
     }

@@ -44,12 +44,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var lightIntensityLumens: Float
     get() {
-      TransferContext.writeArguments(LONG to 20)
+      TransferContext.writeArguments(LONG to 20L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 20, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 20L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -60,12 +60,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var lightIntensityLux: Float
     get() {
-      TransferContext.writeArguments(LONG to 20)
+      TransferContext.writeArguments(LONG to 20L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 20, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 20L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -105,12 +105,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var lightEnergy: Float
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -121,12 +121,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var lightIndirectEnergy: Float
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -137,12 +137,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var lightVolumetricFogEnergy: Float
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -173,12 +173,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var lightSize: Float
     get() {
-      TransferContext.writeArguments(LONG to 5)
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -191,12 +191,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var lightAngularDistance: Float
     get() {
-      TransferContext.writeArguments(LONG to 5)
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -219,12 +219,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var lightSpecular: Float
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -277,12 +277,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var shadowBias: Float
     get() {
-      TransferContext.writeArguments(LONG to 15)
+      TransferContext.writeArguments(LONG to 15L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 15, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 15L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -291,12 +291,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var shadowNormalBias: Float
     get() {
-      TransferContext.writeArguments(LONG to 14)
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 14, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 14L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -321,12 +321,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var shadowTransmittanceBias: Float
     get() {
-      TransferContext.writeArguments(LONG to 19)
+      TransferContext.writeArguments(LONG to 19L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 19, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 19L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -335,12 +335,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var shadowOpacity: Float
     get() {
-      TransferContext.writeArguments(LONG to 17)
+      TransferContext.writeArguments(LONG to 17L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 17, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 17L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 
@@ -349,12 +349,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public var shadowBlur: Float
     get() {
-      TransferContext.writeArguments(LONG to 18)
+      TransferContext.writeArguments(LONG to 18L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 18, DOUBLE to value.toDouble())
+      TransferContext.writeArguments(LONG to 18L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
     }
 

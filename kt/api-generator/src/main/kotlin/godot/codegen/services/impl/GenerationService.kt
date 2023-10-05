@@ -426,7 +426,7 @@ class GenerationService(
             }
 
             val argumentStringTemplate = if (property.isIndexed) {
-                "%T to ${property.internal.index}, $variantTypeToArgumentString"
+                "%T to ${property.internal.index}L, $variantTypeToArgumentString"
             } else {
                 variantTypeToArgumentString
             }
@@ -452,7 +452,7 @@ class GenerationService(
             )
         } else if (property.hasValidGetterInClass) {
             val argumentStringTemplate = if (property.isIndexed) {
-                "%T to ${property.internal.index}"
+                "%T to ${property.internal.index}L"
             } else {
                 ""
             }
