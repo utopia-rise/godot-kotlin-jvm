@@ -92,9 +92,9 @@ class Basis() : CoreType {
                 "The up vector can't be zero."
             }
             val vZ: Vector3 = if (!useModelFront) {
-                target.normalized()
-            } else {
                 -target.normalized()
+            } else {
+                target.normalized()
             }
             val vX: Vector3 = up.cross(vZ)
 
