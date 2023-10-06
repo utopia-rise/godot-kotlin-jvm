@@ -29,6 +29,7 @@ class CopyModificationAnnotator : Annotator {
     private val singleValueTokensToCheck = listOf("=", "+=", "-=", "*=", "/=", "%=")
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
+        return // TODO: enable again after fixing the case `transformMutate { basis.x = Vector3.ZERO }` being flagged falsely as not allowed
         if (!element.isInGodotRoot()) return
 
         val isCoreTypeCopyAssignment = when(element) {
