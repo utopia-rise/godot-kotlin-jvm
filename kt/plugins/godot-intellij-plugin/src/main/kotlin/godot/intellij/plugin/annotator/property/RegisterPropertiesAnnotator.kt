@@ -7,6 +7,7 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
+import godot.intellij.plugin.extension.isCoreType
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.extension.type
@@ -119,10 +120,6 @@ class RegisterPropertiesAnnotator : Annotator {
 
     private fun getInitializerProblemLocation(ktProperty: KtProperty) =
         ktProperty.initializer?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
-
-    private fun KotlinType.isCoreType(): Boolean = getKotlinTypeFqName(false)
-        .removeSuffix("?") == "${godotCorePackage}.${GodotTypes.coreType}"
-        || supertypes().any { supertype -> supertype.isCoreType() }
 
     private fun KotlinType.isSupportedJvmType(): Boolean {
         return KotlinBuiltIns.isPrimitiveTypeOrNullablePrimitiveType(this)
