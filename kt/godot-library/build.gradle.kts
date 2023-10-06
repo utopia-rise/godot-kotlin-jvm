@@ -35,10 +35,37 @@ tasks {
         dependsOn(generateAPI)
     }
 
-    build.get().finalizedBy(shadowJar)
+    assemble.get().finalizedBy(shadowJar)
+
+    // copies the `godot-bootstrap` jar alongside the godot editor executable. Needed for local development
+    val copyBootstrapJar by creating(Copy::class.java) {
+        group = "godot-kotlin-jvm"
+        from(shadowJar)
+        destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
+    }
+
+    // this tasks renames any jar prefixed with `godot-bootstrap` to just `godot-bootstrap.jar`. Needed for bundling the `godot-bootstrap` jar with the pre built editor
+    val renameBootstrapJar by creating(Copy::class) {
+        group = "godot-kotlin-jvm"
+        from(shadowJar)
+        rename { name ->
+            if (name.contains("godot-bootstrap")) {
+                "godot-bootstrap.jar"
+            } else name
+        }
+        destinationDir = project.buildDir.resolve("libs")
+        finalizedBy(copyBootstrapJar)
+    }
+
+    // the shadow jar is only used for the bootstrap jar bundling with the editor
+    val shadowJar = withType<ShadowJar> {
+        archiveBaseName.set("godot-bootstrap")
+        exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
+        finalizedBy(renameBootstrapJar)
+    }
 
     @Suppress("UNUSED_VARIABLE")
-    val jar by getting {
+    val jar by getting(org.gradle.jvm.tasks.Jar::class) {
         outputs.upToDateWhen {
             // force this to always run. So we ensure that the bootstrap jar in the godot bin dir is always up to date
             // only relevant for local testing
@@ -47,24 +74,14 @@ tasks {
         finalizedBy(shadowJar)
     }
 
-    val copyBootstrapJar by creating(Copy::class.java) {
-        group = "godot-kotlin-jvm"
-        from(shadowJar)
-        destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
-        dependsOn(shadowJar)
-    }
-
-    withType<ShadowJar> {
-        archiveBaseName.set("godot-bootstrap")
-        archiveVersion.set("")
-        archiveClassifier.set("")
-        exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
-        finalizedBy(copyBootstrapJar)
-    }
-
     // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
     withType<Jar> {
         dependsOn(generateAPI)
+    }
+
+    // here so the metadata tasks have an explicit dependency on the renameBootstrapJar task. Needed since gradle 8
+    withType<GenerateModuleMetadata> {
+        dependsOn(renameBootstrapJar)
     }
 }
 
@@ -78,8 +95,15 @@ publishing {
             }
             artifactId = "godot-library"
             description = "Contains godot api as kotlin classes and jvm cpp interaction code."
-            artifact(tasks.jar)
-            artifact(tasks.named("sourcesJar"))
+
+            // with this we publish the following artifacts:
+            // - jar <- dependency added by our gradle plugin
+            // - shadow jar <- actually not needed by the user directly, but it does not hurt
+            // - sources jar <- used by the ide to resolve sources
+            // - docs jar <- not needed by us but does not hurt
+            // - pom data <- needed by maven
+            // - module data <- more data for gradle
+            from(components["java"])
         }
     }
 }
