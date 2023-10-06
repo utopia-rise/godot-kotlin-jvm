@@ -1,6 +1,8 @@
 package godot.intellij.plugin.extension
 
 import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.signalPackage
 import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 
@@ -18,3 +20,9 @@ fun KotlinType?.isSignal(): Boolean {
             }
     }
 }
+
+
+
+fun KotlinType.isCoreType(): Boolean = getKotlinTypeFqName(false)
+    .removeSuffix("?") == "$godotCorePackage.${GodotTypes.coreType}"
+    || supertypes().any { supertype -> supertype.isCoreType() }
