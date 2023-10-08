@@ -176,7 +176,6 @@
       { "name" : "engine_call_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_constructor_object_string_name", "parameterTypes" : [] },
-      { "name" : "engine_call_constructor_kt_custom_callable", "parameterTypes" : ["godot.core.KtCustomCallable"] },
       { "name" : "engine_call_copy_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_bind", "parameterTypes" : ["long"] },
@@ -754,14 +753,6 @@
     "name":"godot.core.KtObject",
     "methods":[
       {"name":"_onDestroy","parameterTypes":[] }
-    ]
-  },
-  {
-    "name":"godot.core.KtCustomCallable",
-    "methods":[
-      {"name":"sendTargetToNative","parameterTypes":[] },
-      {"name":"callTargeted","parameterTypes":[] },
-      {"name":"callNotTargeted","parameterTypes":[] }
     ]
   }
 ]

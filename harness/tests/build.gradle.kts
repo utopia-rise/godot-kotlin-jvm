@@ -18,19 +18,19 @@ godot {
 //    androidCompileSdkDir.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30"))
 
     //uncomment to test graal vm native image
-//    isGraalNativeImageExportEnabled.set(true)
-//    graalVmDirectory.set(File(System.getenv("JAVA_HOME")))
-//    additionalGraalResourceConfigurationFiles.set(
-//        arrayOf(
-//            projectDir.resolve("graal").resolve("resource-config.json").absolutePath,
-//        )
-//    )
-//    additionalGraalReflectionConfigurationFiles.set(
-//        arrayOf(
-//            projectDir.resolve("graal").resolve("reflect-config.json").absolutePath,
-//        )
-//    )
-//    windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
+    isGraalNativeImageExportEnabled.set(true)
+    //graalVmDirectory.set(File(System.getenv("JAVA_HOME")))
+    additionalGraalResourceConfigurationFiles.set(
+        arrayOf(
+            projectDir.resolve("graal").resolve("resource-config.json").absolutePath,
+        )
+    )
+    additionalGraalReflectionConfigurationFiles.set(
+        arrayOf(
+            projectDir.resolve("graal").resolve("reflect-config.json").absolutePath,
+        )
+    )
+    windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
 
     // uncomment to test ios
 //    isIOSExportEnabled.set(true)

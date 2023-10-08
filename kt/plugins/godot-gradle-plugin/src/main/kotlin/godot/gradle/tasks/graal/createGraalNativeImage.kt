@@ -43,9 +43,20 @@ fun Project.createGraalNativeImageTask(
                     graalDirectory.resolve("godot-kotlin-graal-jni-config.json").absolutePath + "," +
                     getGraalVmAdditionalJniConfigs()
 
-                val reflectionConfigurationFilesArgument = "-H:ReflectionConfigurationFiles=${getAdditionalGraalReflectionConfigurationFiles()}"
 
-                val resourceConfigurationFilesArgument = "-H:ResourceConfigurationFiles=${getAdditionalGraalResourceConfigurationFiles()}"
+                val additionalConfigFiles = getAdditionalGraalReflectionConfigurationFiles()
+                val reflectionConfigurationFilesArgument = if (additionalConfigFiles.isNotEmpty()) {
+                    "-H:ReflectionConfigurationFiles=${getAdditionalGraalReflectionConfigurationFiles()}"
+                } else {
+                    ""
+                }
+
+                val resourceConfigFiles = getAdditionalGraalResourceConfigurationFiles()
+                val resourceConfigurationFilesArgument = if (resourceConfigFiles.isNotEmpty()) {
+                    "-H:ResourceConfigurationFiles=${getAdditionalGraalResourceConfigurationFiles()}"
+                } else {
+                    ""
+                }
 
                 val verboseArgument = if (godotJvmExtension.isGraalVmNativeImageGenerationVerbose.get()) {
                     "--verbose"
@@ -59,8 +70,9 @@ fun Project.createGraalNativeImageTask(
                     .asFile
                     .resolve("bin")
 
-                if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
-                    commandLine(
+
+                val arguments = if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
+                    mutableListOf(
                         "cmd",
                         "/c",
 
@@ -77,21 +89,14 @@ fun Project.createGraalNativeImageTask(
                         "--shared",
                         "-H:Name=usercode",
                         jniConfigurationFilesArgument,
-                        reflectionConfigurationFilesArgument,
-                        resourceConfigurationFilesArgument,
-                        "-H:IncludeResources=${
-                            resourcesDir.absolutePath.replace(
-                                '\\',
-                                '/'
-                            )
-                        }/main/META-INF/services/*.*",
                         "--no-fallback",
                         verboseArgument,
 
                         ")"
                     )
+
                 } else {
-                    commandLine(
+                    mutableListOf(
                         graalBinDir
                             .resolve("native-image"),
                         "-cp",
@@ -99,13 +104,24 @@ fun Project.createGraalNativeImageTask(
                         "--shared",
                         "-H:Name=usercode",
                         jniConfigurationFilesArgument,
-                        reflectionConfigurationFilesArgument,
-                        resourceConfigurationFilesArgument,
-                        "-H:IncludeResources=${resourcesDir.absolutePath}/main/META-INF/services/*.*",
                         "--no-fallback",
                         verboseArgument,
                     )
                 }
+
+                if(additionalConfigFiles.isNotEmpty()){
+                    arguments.add(reflectionConfigurationFilesArgument)
+                }
+
+                if(resourceConfigFiles.isNotEmpty()){
+                    arguments.add(resourceConfigurationFilesArgument)
+                }
+
+                println(arguments.joinToString(" "))
+
+                commandLine(
+                    arguments
+                )
             }
         }
     }

@@ -200,7 +200,7 @@ open class GodotExtension(objects: ObjectFactory) {
         isGraalNativeImageExportEnabled.set(false)
         graalVmDirectory.set(
             System.getenv("GRAALVM_HOME")?.let {
-                File(it).resolve("bin").resolve("native-image")
+                File(it)
             }
         )
         additionalGraalJniConfigurationFiles.set(arrayOf())
