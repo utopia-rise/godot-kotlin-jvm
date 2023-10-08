@@ -145,7 +145,7 @@ public open class MeshDataTool : RefCounted() {
     TransferContext.writeArguments(OBJECT to mesh, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_CREATE_FROM_SURFACE,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -155,7 +155,7 @@ public open class MeshDataTool : RefCounted() {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_COMMIT_TO_SURFACE,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -343,7 +343,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the metadata associated with the given vertex.
    */
-  public fun setVertexMeta(idx: Int, meta: Any): Unit {
+  public fun setVertexMeta(idx: Int, meta: Any?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_META, NIL)
   }
@@ -401,7 +401,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the metadata of the given edge.
    */
-  public fun setEdgeMeta(idx: Int, meta: Any): Unit {
+  public fun setEdgeMeta(idx: Int, meta: Any?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_EDGE_META, NIL)
   }
@@ -440,7 +440,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the metadata of the given face.
    */
-  public fun setFaceMeta(idx: Int, meta: Any): Unit {
+  public fun setFaceMeta(idx: Int, meta: Any?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_FACE_META, NIL)
   }

@@ -34,7 +34,7 @@ public open class RDSamplerState : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MAG_FILTER,
           LONG)
-      return RenderingDevice.SamplerFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -50,7 +50,7 @@ public open class RDSamplerState : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIN_FILTER,
           LONG)
-      return RenderingDevice.SamplerFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -66,7 +66,7 @@ public open class RDSamplerState : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIP_FILTER,
           LONG)
-      return RenderingDevice.SamplerFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -81,7 +81,7 @@ public open class RDSamplerState : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_U, LONG)
-      return RenderingDevice.SamplerRepeatMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -95,7 +95,7 @@ public open class RDSamplerState : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_V, LONG)
-      return RenderingDevice.SamplerRepeatMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -109,7 +109,7 @@ public open class RDSamplerState : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_W, LONG)
-      return RenderingDevice.SamplerRepeatMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -189,7 +189,7 @@ public open class RDSamplerState : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_COMPARE_OP,
           LONG)
-      return RenderingDevice.CompareOperator.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -235,7 +235,7 @@ public open class RDSamplerState : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_BORDER_COLOR,
           LONG)
-      return RenderingDevice.SamplerBorderColor.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RenderingDevice.SamplerBorderColor.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

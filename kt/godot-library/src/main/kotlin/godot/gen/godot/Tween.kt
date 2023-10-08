@@ -202,7 +202,7 @@ import kotlin.jvm.JvmOverloads
  *
  * Some [godot.Tweener]s use transitions and eases. The first accepts a [enum TransitionType] constant, and refers to the way the timing of the animation is handled (see [easings.net](https://easings.net/) for some examples). The second accepts an [enum EaseType] constant, and controls where the `trans_type` is applied to the interpolation (in the beginning, the end, or both). If you don't know which transition and easing to pick, you can try different [enum TransitionType] constants with [EASE_IN_OUT], and use the one that looks best.
  *
- * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp)
+ * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/tween_cheatsheet.webp)
  *
  * **Note:** Tweens are not designed to be re-used and trying to do so results in an undefined behavior. Create a new Tween for each animation and every time you replay an animation from start. Keep in mind that Tweens start immediately, so only create a Tween when you want to start animating.
  *
@@ -292,7 +292,7 @@ public open class Tween : RefCounted() {
   public fun tweenProperty(
     _object: Object,
     `property`: NodePath,
-    finalVal: Any,
+    finalVal: Any?,
     duration: Double,
   ): PropertyTweener? {
     TransferContext.writeArguments(OBJECT to _object, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
@@ -513,8 +513,8 @@ public open class Tween : RefCounted() {
    */
   public fun tweenMethod(
     method: Callable,
-    from: Any,
-    to: Any,
+    from: Any?,
+    to: Any?,
     duration: Double,
   ): MethodTweener? {
     TransferContext.writeArguments(CALLABLE to method, ANY to from, ANY to to, DOUBLE to duration)
@@ -791,7 +791,7 @@ public open class Tween : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -818,7 +818,7 @@ public open class Tween : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -881,7 +881,7 @@ public open class Tween : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -912,7 +912,7 @@ public open class Tween : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -931,8 +931,8 @@ public open class Tween : RefCounted() {
      * **Note:** If [duration] is equal to `0`, the method will always return the final value, regardless of [elapsedTime] provided.
      */
     public fun interpolateValue(
-      initialValue: Any,
-      deltaValue: Any,
+      initialValue: Any?,
+      deltaValue: Any?,
       elapsedTime: Double,
       duration: Double,
       transType: TransitionType,

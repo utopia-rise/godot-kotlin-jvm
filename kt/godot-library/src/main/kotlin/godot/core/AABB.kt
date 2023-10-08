@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import godot.util.CMP_EPSILON
 import godot.util.RealT
@@ -22,6 +23,7 @@ class AABB(
      * Warning: Writing position.x = 2 will only modify a copy, not the actual object.
      * To modify it, use position().
      * */
+    @CoreTypeLocalCopy
     var position
         get() = Vector3(_position)
         set(value) {
@@ -37,6 +39,7 @@ class AABB(
      * Warning: Writing size.x = 2 will only modify a copy, not the actual object.
      * To modify it, use size().
      * */
+    @CoreTypeLocalCopy
     var size
         get() = Vector3(_size)
         set(value) {
@@ -52,6 +55,7 @@ class AABB(
      * Warning: Writing end.x = 2 will only modify a copy, not the actual object.
      * To modify it, use end().
      * */
+    @CoreTypeLocalCopy
     inline var end: Vector3
         get() = _position + _size
         set(value) {

@@ -68,7 +68,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_DISABLE_MODE, LONG)
-      return CollisionObject3D.DisableMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CollisionObject3D.DisableMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -409,7 +409,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

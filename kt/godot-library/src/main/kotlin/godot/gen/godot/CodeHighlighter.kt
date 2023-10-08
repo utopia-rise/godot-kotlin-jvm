@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -33,6 +35,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets the color for numbers.
    */
+  @CoreTypeLocalCopy
   public var numberColor: Color
     get() {
       TransferContext.writeArguments()
@@ -49,6 +52,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets the color for symbols.
    */
+  @CoreTypeLocalCopy
   public var symbolColor: Color
     get() {
       TransferContext.writeArguments()
@@ -65,6 +69,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets color for functions. A function is a non-keyword string followed by a '('.
    */
+  @CoreTypeLocalCopy
   public var functionColor: Color
     get() {
       TransferContext.writeArguments()
@@ -81,6 +86,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'.
    */
+  @CoreTypeLocalCopy
   public var memberVariableColor: Color
     get() {
       TransferContext.writeArguments()
@@ -146,6 +152,103 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     callConstructor(ENGINECLASS_CODEHIGHLIGHTER, scriptIndex)
     return true
   }
+
+  /**
+   * Sets the color for numbers.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = codehighlighter.numberColor
+   * //Your changes
+   * codehighlighter.numberColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun numberColorMutate(block: Color.() -> Unit): Color = numberColor.apply{
+      block(this)
+      numberColor = this
+  }
+
+
+  /**
+   * Sets the color for symbols.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = codehighlighter.symbolColor
+   * //Your changes
+   * codehighlighter.symbolColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun symbolColorMutate(block: Color.() -> Unit): Color = symbolColor.apply{
+      block(this)
+      symbolColor = this
+  }
+
+
+  /**
+   * Sets color for functions. A function is a non-keyword string followed by a '('.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = codehighlighter.functionColor
+   * //Your changes
+   * codehighlighter.functionColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun functionColorMutate(block: Color.() -> Unit): Color = functionColor.apply{
+      block(this)
+      functionColor = this
+  }
+
+
+  /**
+   * Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = codehighlighter.memberVariableColor
+   * //Your changes
+   * codehighlighter.memberVariableColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun memberVariableColorMutate(block: Color.() -> Unit): Color =
+      memberVariableColor.apply{
+      block(this)
+      memberVariableColor = this
+  }
+
 
   /**
    * Sets the color for a keyword.

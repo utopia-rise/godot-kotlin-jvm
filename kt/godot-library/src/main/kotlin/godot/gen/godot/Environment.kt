@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -50,7 +52,7 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND, LONG)
-      return Environment.BGMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.BGMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -60,6 +62,7 @@ public open class Environment : Resource() {
   /**
    * The [godot.core.Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR] background mode.
    */
+  @CoreTypeLocalCopy
   public var backgroundColor: Color
     get() {
       TransferContext.writeArguments()
@@ -167,6 +170,7 @@ public open class Environment : Resource() {
   /**
    * The rotation to use for sky rendering.
    */
+  @CoreTypeLocalCopy
   public var skyRotation: Vector3
     get() {
       TransferContext.writeArguments()
@@ -187,7 +191,7 @@ public open class Environment : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_SOURCE,
           LONG)
-      return Environment.AmbientSource.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -198,6 +202,7 @@ public open class Environment : Resource() {
   /**
    * The ambient light's [godot.core.Color]. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
    */
+  @CoreTypeLocalCopy
   public var ambientLightColor: Color
     get() {
       TransferContext.writeArguments()
@@ -253,7 +258,7 @@ public open class Environment : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_REFLECTION_SOURCE,
           LONG)
-      return Environment.ReflectionSource.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -268,7 +273,7 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAPPER, LONG)
-      return Environment.ToneMapper.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -754,7 +759,7 @@ public open class Environment : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_Y_SCALE,
           LONG)
-      return Environment.SDFGIYScale.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -910,7 +915,7 @@ public open class Environment : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLEND_MODE,
           LONG)
-      return Environment.GlowBlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Environment.GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -1015,6 +1020,7 @@ public open class Environment : Resource() {
   /**
    * The fog's color.
    */
+  @CoreTypeLocalCopy
   public var fogLightColor: Color
     get() {
       TransferContext.writeArguments()
@@ -1183,6 +1189,7 @@ public open class Environment : Resource() {
   /**
    * The [godot.core.Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    */
+  @CoreTypeLocalCopy
   public var volumetricFogAlbedo: Color
     get() {
       TransferContext.writeArguments()
@@ -1199,6 +1206,7 @@ public open class Environment : Resource() {
   /**
    * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh shadows.
    */
+  @CoreTypeLocalCopy
   public var volumetricFogEmission: Color
     get() {
       TransferContext.writeArguments()
@@ -1455,6 +1463,152 @@ public open class Environment : Resource() {
   }
 
   /**
+   * The [godot.core.Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR] background mode.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.backgroundColor
+   * //Your changes
+   * environment.backgroundColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun backgroundColorMutate(block: Color.() -> Unit): Color = backgroundColor.apply{
+      block(this)
+      backgroundColor = this
+  }
+
+
+  /**
+   * The rotation to use for sky rendering.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.skyRotation
+   * //Your changes
+   * environment.skyRotation = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun skyRotationMutate(block: Vector3.() -> Unit): Vector3 = skyRotation.apply{
+      block(this)
+      skyRotation = this
+  }
+
+
+  /**
+   * The ambient light's [godot.core.Color]. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.ambientLightColor
+   * //Your changes
+   * environment.ambientLightColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun ambientLightColorMutate(block: Color.() -> Unit): Color = ambientLightColor.apply{
+      block(this)
+      ambientLightColor = this
+  }
+
+
+  /**
+   * The fog's color.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.fogLightColor
+   * //Your changes
+   * environment.fogLightColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun fogLightColorMutate(block: Color.() -> Unit): Color = fogLightColor.apply{
+      block(this)
+      fogLightColor = this
+  }
+
+
+  /**
+   * The [godot.core.Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.volumetricFogAlbedo
+   * //Your changes
+   * environment.volumetricFogAlbedo = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun volumetricFogAlbedoMutate(block: Color.() -> Unit): Color =
+      volumetricFogAlbedo.apply{
+      block(this)
+      volumetricFogAlbedo = this
+  }
+
+
+  /**
+   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh shadows.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = environment.volumetricFogEmission
+   * //Your changes
+   * environment.volumetricFogEmission = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun volumetricFogEmissionMutate(block: Color.() -> Unit): Color =
+      volumetricFogEmission.apply{
+      block(this)
+      volumetricFogEmission = this
+  }
+
+
+  /**
    * Sets the intensity of the glow level [idx]. A value above `0.0` enables the level. Each level relies on the previous level. This means that enabling higher glow levels will slow down the glow effect rendering, even if previous levels aren't enabled.
    */
   public fun setGlowLevel(idx: Int, intensity: Float): Unit {
@@ -1510,7 +1664,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1541,7 +1695,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1568,7 +1722,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1601,7 +1755,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1636,7 +1790,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1663,7 +1817,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

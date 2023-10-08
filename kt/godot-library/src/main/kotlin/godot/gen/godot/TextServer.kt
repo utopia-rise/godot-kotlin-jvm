@@ -341,7 +341,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_ANTIALIASING,
         LONG)
-    return TextServer.FontAntialiasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -490,7 +490,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun fontGetHinting(fontRid: RID): Hinting {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_HINTING, LONG)
-    return TextServer.Hinting.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -510,7 +510,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_SUBPIXEL_POSITIONING, LONG)
-    return TextServer.SubpixelPositioning.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1452,7 +1452,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_DIRECTION, LONG)
-    return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1462,7 +1462,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_INFERRED_DIRECTION, LONG)
-    return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1515,7 +1515,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_ORIENTATION, LONG)
-    return TextServer.Orientation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextServer.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1606,7 +1606,7 @@ public open class TextServer internal constructor() : RefCounted() {
   @JvmOverloads
   public fun shapedTextAddObject(
     shaped: RID,
-    key: Any,
+    key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     length: Long = 1,
@@ -1624,7 +1624,7 @@ public open class TextServer internal constructor() : RefCounted() {
   @JvmOverloads
   public fun shapedTextResizeObject(
     shaped: RID,
-    key: Any,
+    key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     baseline: Double = 0.0,
@@ -1901,7 +1901,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns bounding rectangle of the inline object.
    */
-  public fun shapedTextGetObjectRect(shaped: RID, key: Any): Rect2 {
+  public fun shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2 {
     TransferContext.writeArguments(_RID to shaped, ANY to key)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_OBJECT_RECT, RECT2)
@@ -2091,7 +2091,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped, LONG to start, LONG to end)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_DOMINANT_DIRECTION_IN_RANGE, LONG)
-    return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2279,7 +2279,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2318,7 +2318,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2349,7 +2349,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2374,7 +2374,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2425,7 +2425,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2456,7 +2456,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2495,7 +2495,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2530,7 +2530,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2565,7 +2565,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2604,7 +2604,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2671,7 +2671,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2700,7 +2700,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2745,7 +2745,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2820,7 +2820,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2847,7 +2847,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2882,7 +2882,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2909,7 +2909,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2954,7 +2954,7 @@ public open class TextServer internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

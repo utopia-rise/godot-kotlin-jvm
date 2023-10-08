@@ -31,7 +31,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_GET_SOURCE, LONG)
-      return VisualShaderNodeCubemap.Source.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeCubemap.Source.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -63,7 +63,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_GET_TEXTURE_TYPE, LONG)
-      return VisualShaderNodeCubemap.TextureType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeCubemap.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -99,7 +99,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -130,7 +130,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

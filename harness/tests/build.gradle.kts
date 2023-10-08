@@ -17,13 +17,13 @@ godot {
 //    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/30.0.3/d8"))
 //    androidCompileSdkDir.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30"))
 
-    //uncomment to test graal vm native image
+//    uncomment to test graal vm native image
 //    isGraalNativeImageExportEnabled.set(true)
 //    graalVmDirectory.set(File(System.getenv("JAVA_HOME")))
 //    additionalGraalResourceConfigurationFiles.set(
 //        arrayOf(
 //            projectDir.resolve("graal").resolve("resource-config.json").absolutePath,
-//        )
+//         )
 //    )
 //    additionalGraalReflectionConfigurationFiles.set(
 //        arrayOf(

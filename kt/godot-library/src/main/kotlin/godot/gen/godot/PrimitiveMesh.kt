@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.VariantArray
@@ -22,6 +24,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh.
@@ -48,6 +51,7 @@ public open class PrimitiveMesh : Mesh() {
   /**
    * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
    */
+  @CoreTypeLocalCopy
   public var customAabb: AABB
     get() {
       TransferContext.writeArguments()
@@ -114,6 +118,30 @@ public open class PrimitiveMesh : Mesh() {
     callConstructor(ENGINECLASS_PRIMITIVEMESH, scriptIndex)
     return true
   }
+
+  /**
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = primitivemesh.customAabb
+   * //Your changes
+   * primitivemesh.customAabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
+      block(this)
+      customAabb = this
+  }
+
 
   /**
    *

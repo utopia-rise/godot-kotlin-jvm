@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -18,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [godot.Material] used with a [godot.FogVolume] to draw things with the volumetric fog effect.
@@ -47,6 +50,7 @@ public open class FogMaterial : Material() {
   /**
    * The single-scattering [godot.core.Color] of the [godot.FogVolume]. Internally, [albedo] is converted into single-scattering, which is additively blended with other [godot.FogVolume]s and the [godot.Environment.volumetricFogAlbedo].
    */
+  @CoreTypeLocalCopy
   public var albedo: Color
     get() {
       TransferContext.writeArguments()
@@ -61,6 +65,7 @@ public open class FogMaterial : Material() {
   /**
    * The [godot.core.Color] of the light emitted by the [godot.FogVolume]. Emitted light will not cast light or shadows on other objects, but can be useful for modulating the [godot.core.Color] of the [godot.FogVolume] independently from light sources.
    */
+  @CoreTypeLocalCopy
   public var emission: Color
     get() {
       TransferContext.writeArguments()
@@ -122,6 +127,54 @@ public open class FogMaterial : Material() {
     callConstructor(ENGINECLASS_FOGMATERIAL, scriptIndex)
     return true
   }
+
+  /**
+   * The single-scattering [godot.core.Color] of the [godot.FogVolume]. Internally, [albedo] is converted into single-scattering, which is additively blended with other [godot.FogVolume]s and the [godot.Environment.volumetricFogAlbedo].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = fogmaterial.albedo
+   * //Your changes
+   * fogmaterial.albedo = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun albedoMutate(block: Color.() -> Unit): Color = albedo.apply{
+      block(this)
+      albedo = this
+  }
+
+
+  /**
+   * The [godot.core.Color] of the light emitted by the [godot.FogVolume]. Emitted light will not cast light or shadows on other objects, but can be useful for modulating the [godot.core.Color] of the [godot.FogVolume] independently from light sources.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = fogmaterial.emission
+   * //Your changes
+   * fogmaterial.emission = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun emissionMutate(block: Color.() -> Unit): Color = emission.apply{
+      block(this)
+      emission = this
+  }
+
 
   public companion object
 }

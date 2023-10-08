@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantArray
@@ -20,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Provides parameters for [godot.PhysicsDirectSpaceState2D.intersectPoint].
@@ -31,6 +34,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * The position being queried for, in global coordinates.
    */
+  @CoreTypeLocalCopy
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
@@ -132,6 +136,30 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     callConstructor(ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D, scriptIndex)
     return true
   }
+
+  /**
+   * The position being queried for, in global coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicspointqueryparameters2d.position
+   * //Your changes
+   * physicspointqueryparameters2d.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
+      block(this)
+      position = this
+  }
+
 
   public companion object
 }

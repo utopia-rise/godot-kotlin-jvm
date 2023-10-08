@@ -508,16 +508,8 @@ enum class VariantType(
     CALLABLE(
         25,
         { buffer: ByteBuffer, _: Int ->
-            val isCustom = buffer.bool
             val ptr = buffer.long
-
-            MemoryManager.getNativeCoreTypeInstance(ptr) ?: if (!isCustom) {
-                val obj = buffer.obj
-                val stringNamePtr = buffer.long
-                Callable(ptr, obj as godot.Object, StringName(stringNamePtr))
-            } else {
-                throw NoSuchElementException("Cannot find managed kotlin callable with ptr: $ptr")
-            }
+            MemoryManager.getNativeCoreTypeInstance(ptr) ?: Callable(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
             CALLABLE.toGodotNativeCoreType<Callable>(buffer, any)
@@ -688,7 +680,7 @@ enum class VariantType(
     ANY(
         ANY_VARIANT_TYPE,
         { buffer: ByteBuffer, expectedType: Int ->
-            values()[expectedType].toKotlinWithoutNullCheck(buffer, expectedType)
+            entries[expectedType].toKotlinWithoutNullCheck(buffer, expectedType)
         },
         { buffer: ByteBuffer, any: Any ->
             when (any) {
@@ -762,6 +754,10 @@ enum class VariantType(
     }
 
     internal val toKotlin = this.getToKotlinLambdaToExecute(toKotlinWithoutNullCheck)
+
+    companion object {
+        fun from(value: Long) = entries[value.toInt()]
+    }
 }
 
 internal fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> Any?): (ByteBuffer, Boolean) -> Any? {

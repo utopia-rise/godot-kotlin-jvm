@@ -42,9 +42,14 @@ bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
     if (ktProperty) {
         ktProperty->call_get(kt_object, r_ret);
         return true;
-    } else {
-        return false;
     }
+
+    KtSignalInfo* kt_signal {kt_class->get_signal(p_name)};
+    if (kt_signal) {
+        r_ret = Signal(owner, p_name);
+        return true;
+    }
+    return false;
 }
 
 #ifdef TOOLS_ENABLED

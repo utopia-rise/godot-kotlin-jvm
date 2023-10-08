@@ -74,7 +74,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.1.1-stable
+          ref: 4.1.2-stable
 
       - name: Setup Vulkan SDK
         if: matrix.platform == 'macos'
@@ -229,7 +229,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.1.1-stable
+          ref: 4.1.2-stable
 
       - name: Get editor binary
         uses: actions/download-artifact@v3

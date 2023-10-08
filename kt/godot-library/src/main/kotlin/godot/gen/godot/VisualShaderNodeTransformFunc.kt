@@ -30,7 +30,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMFUNC_GET_FUNCTION, LONG)
-      return VisualShaderNodeTransformFunc.Function.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeTransformFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -66,7 +66,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

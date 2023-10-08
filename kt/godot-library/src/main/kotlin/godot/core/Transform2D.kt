@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import godot.util.RealT
 import godot.util.isEqualApprox
@@ -29,6 +30,7 @@ class Transform2D(
      * Warning: Writing x.x = 2 will only modify a copy, not the actual object.
      * To modify it, use x().
      * */
+    @CoreTypeLocalCopy
     var x
         get() = Vector2(_x)
         set(value) {
@@ -44,6 +46,7 @@ class Transform2D(
      * Warning: Writing y.x = 2 will only modify a copy, not the actual object.
      * To modify it, use y().
      * */
+    @CoreTypeLocalCopy
     var y
         get() = Vector2(_y)
         set(value) {
@@ -59,6 +62,7 @@ class Transform2D(
      * Warning: Writing origin.x = 2 will only modify a copy, not the actual object.
      * To modify it, use origin().
      * */
+    @CoreTypeLocalCopy
     var origin
         get() = Vector2(_origin)
         set(value) {

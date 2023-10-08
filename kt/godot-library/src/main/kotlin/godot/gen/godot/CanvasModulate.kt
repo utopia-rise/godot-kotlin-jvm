@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -14,6 +16,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A node that applies a color tint to a canvas.
@@ -25,6 +28,7 @@ public open class CanvasModulate : Node2D() {
   /**
    * The tint color to apply.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()
@@ -40,6 +44,30 @@ public open class CanvasModulate : Node2D() {
     callConstructor(ENGINECLASS_CANVASMODULATE, scriptIndex)
     return true
   }
+
+  /**
+   * The tint color to apply.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = canvasmodulate.color
+   * //Your changes
+   * canvasmodulate.color = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
+  }
+
 
   public companion object
 }

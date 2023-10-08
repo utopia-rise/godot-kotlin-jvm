@@ -176,7 +176,7 @@ public open class OptionButton : Button() {
   /**
    * Sets the metadata of an item. Metadata may be of any type and can be used to store extra information about an item, such as an external string ID.
    */
-  public fun setItemMetadata(idx: Int, metadata: Any): Unit {
+  public fun setItemMetadata(idx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_METADATA, NIL)
   }

@@ -36,7 +36,7 @@ public open class GDExtension : Resource() {
   public fun openLibrary(path: String, entrySymbol: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to entrySymbol)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_OPEN_LIBRARY, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -63,7 +63,7 @@ public open class GDExtension : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GDEXTENSION_GET_MINIMUM_LIBRARY_INITIALIZATION_LEVEL, LONG)
-    return GDExtension.InitializationLevel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GDExtension.InitializationLevel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -101,7 +101,7 @@ public open class GDExtension : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

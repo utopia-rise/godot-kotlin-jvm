@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -26,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Generate an [godot.PrimitiveMesh] from the text.
@@ -88,7 +91,7 @@ public open class TextMesh : PrimitiveMesh() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_HORIZONTAL_ALIGNMENT,
           LONG)
-      return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -104,7 +107,7 @@ public open class TextMesh : PrimitiveMesh() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_VERTICAL_ALIGNMENT,
           LONG)
-      return VerticalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -147,7 +150,7 @@ public open class TextMesh : PrimitiveMesh() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_AUTOWRAP_MODE, LONG)
-      return TextServer.AutowrapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -229,6 +232,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * The text drawing offset (in pixels).
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -247,7 +251,7 @@ public open class TextMesh : PrimitiveMesh() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_TEXT_DIRECTION, LONG)
-      return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -276,7 +280,7 @@ public open class TextMesh : PrimitiveMesh() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TextServer.StructuredTextParser.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -304,6 +308,30 @@ public open class TextMesh : PrimitiveMesh() {
     callConstructor(ENGINECLASS_TEXTMESH, scriptIndex)
     return true
   }
+
+  /**
+   * The text drawing offset (in pixels).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textmesh.offset
+   * //Your changes
+   * textmesh.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+      block(this)
+      offset = this
+  }
+
 
   public companion object
 }

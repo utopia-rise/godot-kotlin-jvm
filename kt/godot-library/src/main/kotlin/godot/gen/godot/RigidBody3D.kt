@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.RID
@@ -163,6 +165,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * [/codeblocks]
    */
+  @CoreTypeLocalCopy
   public var inertia: Vector3
     get() {
       TransferContext.writeArguments()
@@ -182,7 +185,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CENTER_OF_MASS_MODE, LONG)
-      return RigidBody3D.CenterOfMassMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody3D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -195,6 +198,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
    */
+  @CoreTypeLocalCopy
   public var centerOfMass: Vector3
     get() {
       TransferContext.writeArguments()
@@ -386,7 +390,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_FREEZE_MODE, LONG)
-      return RigidBody3D.FreezeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody3D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -396,6 +400,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -417,7 +422,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_LINEAR_DAMP_MODE,
           LONG)
-      return RigidBody3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -445,6 +450,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * The RigidBody3D's rotational velocity in *radians* per second.
    */
+  @CoreTypeLocalCopy
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -466,7 +472,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_ANGULAR_DAMP_MODE,
           LONG)
-      return RigidBody3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -496,6 +502,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * See [addConstantForce] and [addConstantCentralForce].
    */
+  @CoreTypeLocalCopy
   public var constantForce: Vector3
     get() {
       TransferContext.writeArguments()
@@ -514,6 +521,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * See [addConstantTorque].
    */
+  @CoreTypeLocalCopy
   public var constantTorque: Vector3
     get() {
       TransferContext.writeArguments()
@@ -531,6 +539,202 @@ public open class RigidBody3D : PhysicsBody3D() {
     callConstructor(ENGINECLASS_RIGIDBODY3D, scriptIndex)
     return true
   }
+
+  /**
+   * The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body on each axis. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.
+   *
+   * If set to `Vector3.ZERO`, inertia is automatically computed (default value).
+   *
+   * **Note:** This value does not change when inertia is automatically computed. Use [godot.PhysicsServer3D] to get the computed inertia.
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * @onready var ball = $Ball
+   *
+   *
+   *
+   * func get_ball_inertia():
+   *
+   *     return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * private RigidBody3D _ball;
+   *
+   *
+   *
+   * public override void _Ready()
+   *
+   * {
+   *
+   *     _ball = GetNode<RigidBody3D>("Ball");
+   *
+   * }
+   *
+   *
+   *
+   * private Vector3 GetBallInertia()
+   *
+   * {
+   *
+   *     return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rigidbody3d.inertia
+   * //Your changes
+   * rigidbody3d.inertia = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun inertiaMutate(block: Vector3.() -> Unit): Vector3 = inertia.apply{
+      block(this)
+      inertia = this
+  }
+
+
+  /**
+   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
+   *
+   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rigidbody3d.centerOfMass
+   * //Your changes
+   * rigidbody3d.centerOfMass = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun centerOfMassMutate(block: Vector3.() -> Unit): Vector3 = centerOfMass.apply{
+      block(this)
+      centerOfMass = this
+  }
+
+
+  /**
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rigidbody3d.linearVelocity
+   * //Your changes
+   * rigidbody3d.linearVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+      block(this)
+      linearVelocity = this
+  }
+
+
+  /**
+   * The RigidBody3D's rotational velocity in *radians* per second.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rigidbody3d.angularVelocity
+   * //Your changes
+   * rigidbody3d.angularVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+      block(this)
+      angularVelocity = this
+  }
+
+
+  /**
+   * The body's total constant positional forces applied during each physics update.
+   *
+   * See [addConstantForce] and [addConstantCentralForce].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rigidbody3d.constantForce
+   * //Your changes
+   * rigidbody3d.constantForce = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun constantForceMutate(block: Vector3.() -> Unit): Vector3 = constantForce.apply{
+      block(this)
+      constantForce = this
+  }
+
+
+  /**
+   * The body's total constant rotational forces applied during each physics update.
+   *
+   * See [addConstantTorque].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rigidbody3d.constantTorque
+   * //Your changes
+   * rigidbody3d.constantTorque = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun constantTorqueMutate(block: Vector3.() -> Unit): Vector3 = constantTorque.apply{
+      block(this)
+      constantTorque = this
+  }
+
 
   /**
    * Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it works in addition to the usual physics behavior, but the [customIntegrator] property allows you to disable the default behavior and do fully custom force integration for a body.
@@ -700,7 +904,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -723,7 +927,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -746,7 +950,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

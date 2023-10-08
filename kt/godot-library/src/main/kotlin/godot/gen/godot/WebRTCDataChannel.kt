@@ -27,7 +27,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_WRITE_MODE,
           LONG)
-      return WebRTCDataChannel.WriteMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return WebRTCDataChannel.WriteMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -43,7 +43,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_POLL, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun close(): Unit {
@@ -62,7 +62,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_READY_STATE,
         LONG)
-    return WebRTCDataChannel.ChannelState.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return WebRTCDataChannel.ChannelState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun getLabel(): String {
@@ -131,7 +131,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -150,7 +150,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

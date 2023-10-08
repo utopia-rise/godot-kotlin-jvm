@@ -12,7 +12,7 @@ JNI_INIT_STATICS_FOR_CLASS(
     CallableBridge,
     INIT_NATIVE_METHOD("engine_call_constructor", "()J", CallableBridge::engine_call_constructor)
     INIT_NATIVE_METHOD("engine_call_constructor_object_string_name", "()J", CallableBridge::engine_call_constructor_object_string_name)
-    INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/KtCustomCallable;)J", CallableBridge::engine_call_constructor_kt_custom_callable)
+    //INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/KtCustomCallable;)J", CallableBridge::engine_call_constructor_kt_custom_callable)
     INIT_NATIVE_METHOD("engine_call_copy_constructor", "()J", CallableBridge::engine_call_copy_constructor)
     INIT_NATIVE_METHOD("engine_call_bind", "(J)V", CallableBridge::engine_call_bind)
     INIT_NATIVE_METHOD("engine_call_bindv", "(J)V", CallableBridge::engine_call_bindv)
@@ -48,11 +48,12 @@ uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_r
     return reinterpret_cast<uintptr_t>(memnew(Callable(args[0].operator Object*(), args[1].operator StringName())));
 }
 
-uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance) {
-    return reinterpret_cast<uintptr_t>(
-      memnew(Callable(memnew(KtCustomCallable(p_kt_custom_callable_instance))))
-    );
-}
+//TODO: Enable that code again when KtCustomCallable is back
+//uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance) {
+//    return reinterpret_cast<uintptr_t>(
+//      memnew(Callable(memnew(KtCustomCallable(p_kt_custom_callable_instance))))
+//    );
+//}
 
 uintptr_t CallableBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
@@ -64,14 +65,16 @@ uintptr_t CallableBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobjec
 void CallableBridge::engine_call_bind(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
-    uint32_t args_size {transfer_context->read_args_size(env)};
-    Variant arg_store[5];
-    const Variant* arg_pointers[5];
+
+    Variant args[MAX_FUNCTION_ARG_COUNT];
+    uint32_t args_size {transfer_context->read_args(env, args)};
+
+    const Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
     for (uint32_t i = 0; i < args_size; ++i) {
-        arg_store[i] = transfer_context->read_single_arg(env);
-        arg_pointers[i] = &arg_store[i];
+        args_ptr[i] = &args[i];
     }
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->bindp(arg_pointers, args_size)};
+
+    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->bindp(args_ptr, args_size)};
     transfer_context->write_return_value(env, result);
 }
 
@@ -87,31 +90,35 @@ void CallableBridge::engine_call_bindv(JNIEnv* p_raw_env, jobject p_instance, jl
 
 void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    uint32_t args_size {GDKotlin::get_instance().transfer_context->read_args_size(env)};
+    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
 
-    Variant arg_store[5];
-    const Variant* arg_pointers[5];
+    Variant args[MAX_FUNCTION_ARG_COUNT];
+    uint32_t args_size {transfer_context->read_args(env, args)};
+
+    const Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
     for (uint32_t i = 0; i < args_size; ++i) {
-        arg_store[i] = GDKotlin::get_instance().transfer_context->read_single_arg(env);
-        arg_pointers[i] = &arg_store[i];
+        args_ptr[i] = &args[i];
     }
+
     Variant result;
     Callable::CallError error;
-    from_uint_to_ptr<Callable>(p_raw_ptr)->callp(arg_pointers, args_size, result, error);
+    from_uint_to_ptr<Callable>(p_raw_ptr)->callp(args_ptr, args_size, result, error);
     GDKotlin::get_instance().transfer_context->write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_call_deferred(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    uint32_t args_size {GDKotlin::get_instance().transfer_context->read_args_size(env)};
+    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
 
-    Variant arg_store[5];
-    const Variant* arg_pointers[5];
+    Variant args[MAX_FUNCTION_ARG_COUNT];
+    uint32_t args_size {transfer_context->read_args(env, args)};
+
+    const Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
     for (uint32_t i = 0; i < args_size; ++i) {
-        arg_store[i] = GDKotlin::get_instance().transfer_context->read_single_arg(env);
-        arg_pointers[i] = &arg_store[i];
+        args_ptr[i] = &args[i];
     }
-    from_uint_to_ptr<Callable>(p_raw_ptr)->call_deferredp(arg_pointers, args_size);
+
+    from_uint_to_ptr<Callable>(p_raw_ptr)->call_deferredp(args_ptr, args_size);
 }
 
 void CallableBridge::engine_call_callv(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -196,30 +203,33 @@ void CallableBridge::engine_call_is_valid(JNIEnv* p_raw_env, jobject p_instance,
 
 void CallableBridge::engine_call_rpc(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    uint32_t args_size {GDKotlin::get_instance().transfer_context->read_args_size(env)};
+    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
 
-    Variant arg_store[5];
-    const Variant* arg_pointers[5];
+    Variant args[MAX_FUNCTION_ARG_COUNT];
+    uint32_t args_size {transfer_context->read_args(env, args)};
+
+    const Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
     for (uint32_t i = 0; i < args_size; ++i) {
-        arg_store[i] = GDKotlin::get_instance().transfer_context->read_single_arg(env);
-        arg_pointers[i] = &arg_store[i];
+        args_ptr[i] = &args[i];
     }
     Variant instance {*from_uint_to_ptr<Callable>(p_raw_ptr)};
-    instance.call(string_names.func_rpc, arg_pointers);
+    instance.call(string_names.func_rpc, args_ptr);
 }
 
 void CallableBridge::engine_call_rpc_id(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    uint32_t args_size {GDKotlin::get_instance().transfer_context->read_args_size(env)};
+    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
 
-    Variant arg_store[5];
-    const Variant* arg_pointers[5];
+    Variant args[MAX_FUNCTION_ARG_COUNT];
+    uint32_t args_size {transfer_context->read_args(env, args)};
+
+    const Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
     for (uint32_t i = 0; i < args_size; ++i) {
-        arg_store[i] = GDKotlin::get_instance().transfer_context->read_single_arg(env);
-        arg_pointers[i] = &arg_store[i];
+        args_ptr[i] = &args[i];
     }
+
     Variant instance {*from_uint_to_ptr<Callable>(p_raw_ptr)};
-    instance.call(string_names.func_rpc_id, arg_pointers);
+    instance.call(string_names.func_rpc_id, args_ptr);
 }
 
 void CallableBridge::engine_call_unbind(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

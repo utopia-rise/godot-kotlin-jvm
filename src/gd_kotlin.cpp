@@ -239,6 +239,21 @@ void GDKotlin::init() {
 
     jni::Jvm::init(args, configuration.get_vm_type());
     LOG_INFO("Starting JVM ...");
+
+#ifdef DEBUG_ENABLED
+    switch (configuration.get_vm_type()) {
+        case jni::Jvm::JVM:
+            LOG_INFO(vformat("Using jvm type: %s", GdKotlinConfiguration::jvm_string_identifier));
+            break;
+        case jni::Jvm::GRAAL_NATIVE_IMAGE:
+            LOG_INFO(vformat("Using jvm type: %s", GdKotlinConfiguration::graal_native_image_string_identifier));
+            break;
+        case jni::Jvm::ART:
+            LOG_INFO(vformat("Using jvm type: %s", GdKotlinConfiguration::art_string_identifier));
+            break;
+    }
+#endif
+
     auto project_settings = ProjectSettings::get_singleton();
 
     jni::Env env {jni::Jvm::current_env()};
@@ -561,6 +576,5 @@ void GDKotlin::initialize_classes() {
     KtRpcConfig::initialize_class("godot.core.KtRpcConfig");
     KtFunctionInfo::initialize_class("godot.core.KtFunctionInfo");
     KtFunction::initialize_class("godot.core.KtFunction");
-    KtCustomCallable::initialize_class("godot.core.KtCustomCallable");
     KtClass::initialize_class("godot.core.KtClass");
 }

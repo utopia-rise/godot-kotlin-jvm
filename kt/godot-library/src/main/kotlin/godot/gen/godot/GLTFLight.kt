@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -23,9 +25,11 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFLight : Resource() {
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()
@@ -100,6 +104,28 @@ public open class GLTFLight : Resource() {
     callConstructor(ENGINECLASS_GLTFLIGHT, scriptIndex)
     return true
   }
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltflight.color
+   * //Your changes
+   * gltflight.color = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
+  }
+
 
   public fun toNode(): Light3D? {
     TransferContext.writeArguments()

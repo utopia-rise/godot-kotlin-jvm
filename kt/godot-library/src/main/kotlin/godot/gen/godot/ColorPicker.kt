@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
@@ -53,6 +55,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * The currently selected color.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()
@@ -86,7 +89,7 @@ public open class ColorPicker : VBoxContainer() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_COLOR_MODE, LONG)
-      return ColorPicker.ColorModeType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ColorPicker.ColorModeType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -117,7 +120,7 @@ public open class ColorPicker : VBoxContainer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PICKER_SHAPE,
           LONG)
-      return ColorPicker.PickerShapeType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ColorPicker.PickerShapeType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -224,6 +227,30 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   /**
+   * The currently selected color.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = colorpicker.color
+   * //Your changes
+   * colorpicker.color = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
+  }
+
+
+  /**
    * Adds the given color to a list of color presets. The presets are displayed in the color picker and the user will be able to select them.
    *
    * **Note:** The presets list is only for *this* color picker.
@@ -311,7 +338,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -346,7 +373,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

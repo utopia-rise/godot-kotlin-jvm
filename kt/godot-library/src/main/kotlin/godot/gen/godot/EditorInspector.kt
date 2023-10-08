@@ -46,7 +46,7 @@ public open class EditorInspector internal constructor() : ScrollContainer() {
   /**
    * Emitted when a property is keyed in the inspector. Properties can be keyed by clicking the "key" icon next to a property when the Animation panel is toggled.
    */
-  public val propertyKeyed: Signal3<String, Any, Boolean> by signal("property", "value", "advance")
+  public val propertyKeyed: Signal3<String, Any?, Boolean> by signal("property", "value", "advance")
 
   /**
    * Emitted when a property is removed from the inspector.

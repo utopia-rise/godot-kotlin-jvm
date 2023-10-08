@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
@@ -281,6 +283,7 @@ public open class GPUParticles2D : Node2D() {
    *
    * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [godot.core.Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    */
+  @CoreTypeLocalCopy
   public var visibilityRect: Rect2
     get() {
       TransferContext.writeArguments()
@@ -318,7 +321,7 @@ public open class GPUParticles2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_DRAW_ORDER,
           LONG)
-      return GPUParticles2D.DrawOrder.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GPUParticles2D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -398,6 +401,32 @@ public open class GPUParticles2D : Node2D() {
   }
 
   /**
+   * The [godot.core.Rect2] that determines the node's region which needs to be visible on screen for the particle system to be active.
+   *
+   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [godot.core.Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gpuparticles2d.visibilityRect
+   * //Your changes
+   * gpuparticles2d.visibilityRect = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun visibilityRectMutate(block: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
+      block(this)
+      visibilityRect = this
+  }
+
+
+  /**
    * Returns a rectangle containing the positions of all existing particles.
    */
   public fun captureRect(): Rect2 {
@@ -451,7 +480,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -486,7 +515,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

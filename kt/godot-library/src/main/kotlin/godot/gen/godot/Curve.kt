@@ -201,7 +201,7 @@ public open class Curve : Resource() {
   public fun getPointLeftMode(index: Int): TangentMode {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_LEFT_MODE, LONG)
-    return Curve.TangentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Curve.TangentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -210,7 +210,7 @@ public open class Curve : Resource() {
   public fun getPointRightMode(index: Int): TangentMode {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_RIGHT_MODE, LONG)
-    return Curve.TangentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Curve.TangentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -284,7 +284,7 @@ public open class Curve : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

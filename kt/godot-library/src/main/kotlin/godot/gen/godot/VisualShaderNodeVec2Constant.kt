@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -14,6 +16,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [godot.core.Vector2] constant to be used within the visual shader graph.
@@ -25,6 +28,7 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
   /**
    * A [godot.core.Vector2] constant which represents the state of this node.
    */
+  @CoreTypeLocalCopy
   public var constant: Vector2
     get() {
       TransferContext.writeArguments()
@@ -42,6 +46,30 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC2CONSTANT, scriptIndex)
     return true
   }
+
+  /**
+   * A [godot.core.Vector2] constant which represents the state of this node.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visualshadernodevec2constant.constant
+   * //Your changes
+   * visualshadernodevec2constant.constant = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun constantMutate(block: Vector2.() -> Unit): Vector2 = constant.apply{
+      block(this)
+      constant = this
+  }
+
 
   public companion object
 }

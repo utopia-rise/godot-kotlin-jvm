@@ -115,7 +115,7 @@ public open class TabBar : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ALIGNMENT, LONG)
-      return TabBar.AlignmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TabBar.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -144,7 +144,7 @@ public open class TabBar : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_CLOSE_DISPLAY_POLICY, LONG)
-      return TabBar.CloseButtonDisplayPolicy.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TabBar.CloseButtonDisplayPolicy.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -304,7 +304,7 @@ public open class TabBar : Control() {
   public fun getTabTextDirection(tabIdx: Int): Control.TextDirection {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_TEXT_DIRECTION, LONG)
-    return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -412,7 +412,7 @@ public open class TabBar : Control() {
   /**
    * Sets the metadata value for the tab at index [tabIdx], which can be retrieved later using [getTabMetadata].
    */
-  public fun setTabMetadata(tabIdx: Int, metadata: Any): Unit {
+  public fun setTabMetadata(tabIdx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_METADATA, NIL)
   }
@@ -531,7 +531,7 @@ public open class TabBar : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -562,7 +562,7 @@ public open class TabBar : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

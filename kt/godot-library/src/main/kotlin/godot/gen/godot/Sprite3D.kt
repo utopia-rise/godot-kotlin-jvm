@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -22,6 +24,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * 2D sprite node in a 3D world.
@@ -99,6 +102,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    */
+  @CoreTypeLocalCopy
   public var frameCoords: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -128,6 +132,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
    */
+  @CoreTypeLocalCopy
   public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
@@ -143,6 +148,54 @@ public open class Sprite3D : SpriteBase3D() {
     callConstructor(ENGINECLASS_SPRITE3D, scriptIndex)
     return true
   }
+
+  /**
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = sprite3d.frameCoords
+   * //Your changes
+   * sprite3d.frameCoords = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply{
+      block(this)
+      frameCoords = this
+  }
+
+
+  /**
+   * The region of the atlas texture to display. [regionEnabled] must be `true`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = sprite3d.regionRect
+   * //Your changes
+   * sprite3d.regionRect = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
+      block(this)
+      regionRect = this
+  }
+
 
   public companion object
 }

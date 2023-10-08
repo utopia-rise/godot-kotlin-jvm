@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -20,6 +22,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class FastNoiseLite : Noise() {
@@ -28,7 +31,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_NOISE_TYPE,
           LONG)
-      return FastNoiseLite.NoiseType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.NoiseType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -58,6 +61,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_FREQUENCY, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var offset: Vector3
     get() {
       TransferContext.writeArguments()
@@ -74,7 +78,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_FRACTAL_TYPE,
           LONG)
-      return FastNoiseLite.FractalType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.FractalType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -152,7 +156,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_CELLULAR_DISTANCE_FUNCTION, LONG)
-      return FastNoiseLite.CellularDistanceFunction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.CellularDistanceFunction.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -178,7 +182,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_CELLULAR_RETURN_TYPE, LONG)
-      return FastNoiseLite.CellularReturnType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.CellularReturnType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -204,7 +208,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_DOMAIN_WARP_TYPE, LONG)
-      return FastNoiseLite.DomainWarpType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.DomainWarpType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -243,7 +247,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_DOMAIN_WARP_FRACTAL_TYPE, LONG)
-      return FastNoiseLite.DomainWarpFractalType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return FastNoiseLite.DomainWarpFractalType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -295,6 +299,28 @@ public open class FastNoiseLite : Noise() {
     return true
   }
 
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = fastnoiselite.offset
+   * //Your changes
+   * fastnoiselite.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offsetMutate(block: Vector3.() -> Unit): Vector3 = offset.apply{
+      block(this)
+      offset = this
+  }
+
+
   public enum class NoiseType(
     id: Long,
   ) {
@@ -312,7 +338,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -331,7 +357,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -350,7 +376,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -372,7 +398,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -390,7 +416,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -408,7 +434,7 @@ public open class FastNoiseLite : Noise() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

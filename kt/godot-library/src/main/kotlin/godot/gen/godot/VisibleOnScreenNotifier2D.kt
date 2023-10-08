@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -17,6 +19,7 @@ import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Detects when the node extents are visible on screen.
@@ -45,6 +48,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
   /**
    * The VisibleOnScreenNotifier2D's bounding rectangle.
    */
+  @CoreTypeLocalCopy
   public var rect: Rect2
     get() {
       TransferContext.writeArguments()
@@ -62,6 +66,30 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
     callConstructor(ENGINECLASS_VISIBLEONSCREENNOTIFIER2D, scriptIndex)
     return true
   }
+
+  /**
+   * The VisibleOnScreenNotifier2D's bounding rectangle.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visibleonscreennotifier2d.rect
+   * //Your changes
+   * visibleonscreennotifier2d.rect = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
+      block(this)
+      rect = this
+  }
+
 
   /**
    * If `true`, the bounding rectangle is on the screen.

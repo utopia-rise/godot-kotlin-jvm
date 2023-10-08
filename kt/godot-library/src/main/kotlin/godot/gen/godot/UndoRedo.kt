@@ -269,7 +269,7 @@ public open class UndoRedo : Object() {
   public fun addDoProperty(
     _object: Object,
     `property`: StringName,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_PROPERTY, NIL)
@@ -281,7 +281,7 @@ public open class UndoRedo : Object() {
   public fun addUndoProperty(
     _object: Object,
     `property`: StringName,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_PROPERTY, NIL)
@@ -457,7 +457,7 @@ public open class UndoRedo : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

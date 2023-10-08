@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.StringName
@@ -111,6 +113,7 @@ public open class SkeletonIK3D : Node() {
   /**
    * First target of the IK chain where the tip bone is placed and, if [overrideTipBasis] is `true`, how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used instead and this property is ignored.
    */
+  @CoreTypeLocalCopy
   public var target: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -158,6 +161,7 @@ public open class SkeletonIK3D : Node() {
   /**
    * Secondary target position (first is [target] property or [targetNode]) for the IK chain. Use magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain has more than 2 bones. The middle chain bone position will be linearly interpolated with the magnet position.
    */
+  @CoreTypeLocalCopy
   public var magnet: Vector3
     get() {
       TransferContext.writeArguments()
@@ -222,6 +226,54 @@ public open class SkeletonIK3D : Node() {
     callConstructor(ENGINECLASS_SKELETONIK3D, scriptIndex)
     return true
   }
+
+  /**
+   * First target of the IK chain where the tip bone is placed and, if [overrideTipBasis] is `true`, how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used instead and this property is ignored.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = skeletonik3d.target
+   * //Your changes
+   * skeletonik3d.target = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun targetMutate(block: Transform3D.() -> Unit): Transform3D = target.apply{
+      block(this)
+      target = this
+  }
+
+
+  /**
+   * Secondary target position (first is [target] property or [targetNode]) for the IK chain. Use magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain has more than 2 bones. The middle chain bone position will be linearly interpolated with the magnet position.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = skeletonik3d.magnet
+   * //Your changes
+   * skeletonik3d.magnet = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun magnetMutate(block: Vector3.() -> Unit): Vector3 = magnet.apply{
+      block(this)
+      magnet = this
+  }
+
 
   /**
    * Returns the parent [godot.Skeleton3D] Node that was present when SkeletonIK entered the [godot.SceneTree]. Returns null if the parent node was not a [godot.Skeleton3D] Node when SkeletonIK3D entered the [godot.SceneTree].

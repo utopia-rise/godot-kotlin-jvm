@@ -23,21 +23,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
-import godot.core.asStringName
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
-import godot.signals.Signal1
-import godot.signals.Signal10
-import godot.signals.Signal2
-import godot.signals.Signal3
-import godot.signals.Signal4
-import godot.signals.Signal5
-import godot.signals.Signal6
-import godot.signals.Signal7
-import godot.signals.Signal8
-import godot.signals.Signal9
 import godot.signals.signal
-import godot.util.camelToSnakeCase
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -47,7 +35,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.reflect.KCallable
 
 /**
  * Base class for all other classes in the engine.
@@ -102,281 +89,6 @@ public open class Object : KtObject() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_OBJECT, scriptIndex)
     return true
-  }
-
-  public fun Signal0.emit(): Unit {
-    emit(this@Object)
-  }
-
-  @JvmOverloads
-  public inline fun <reified K : () -> Unit> Signal0.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0> Signal1<A0>.emit(a0: A0): Unit {
-    emit(this@Object, a0)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, reified K : (A0) -> Unit> Signal1<A0>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1> Signal2<A0, A1>.emit(a0: A0, a1: A1): Unit {
-    emit(this@Object, a0, a1)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, reified K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2> Signal3<A0, A1, A2>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-  ): Unit {
-    emit(this@Object, a0, a1, a2)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, reified K : (
-    A0,
-    A1,
-    A2,
-  ) -> Unit> Signal3<A0, A1, A2>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3> Signal4<A0, A1, A2, A3>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-  ) -> Unit> Signal4<A0, A1, A2, A3>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3, A4> Signal5<A0, A1, A2, A3, A4>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-  ) -> Unit> Signal5<A0, A1, A2, A3, A4>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3, A4, A5> Signal6<A0, A1, A2, A3, A4, A5>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-    a5: A5,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4, a5)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, A5, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-  ) -> Unit> Signal6<A0, A1, A2, A3, A4, A5>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3, A4, A5, A6> Signal7<A0, A1, A2, A3, A4, A5, A6>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-    a5: A5,
-    a6: A6,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4, a5, a6)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, A5, A6, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-    A6,
-  ) -> Unit> Signal7<A0, A1, A2, A3, A4, A5, A6>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3, A4, A5, A6, A7> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-    a5: A5,
-    a6: A6,
-    a7: A7,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-    A6,
-    A7,
-  ) -> Unit> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3, A4, A5, A6, A7, A8> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-    a5: A5,
-    a6: A6,
-    a7: A7,
-    a8: A8,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-    A6,
-    A7,
-    A8,
-  ) -> Unit> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
-  }
-
-  public fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>
-      Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>.emit(
-    a0: A0,
-    a1: A1,
-    a2: A2,
-    a3: A3,
-    a4: A4,
-    a5: A5,
-    a6: A6,
-    a7: A7,
-    a8: A8,
-    a9: A9,
-  ): Unit {
-    emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9)
-  }
-
-  @JvmOverloads
-  public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, reified K : (
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-    A6,
-    A7,
-    A8,
-    A9,
-  ) -> Unit> Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>.connect(
-    target: Object,
-    method: K,
-    flags: Int = 0,
-  ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
-    return connect(Callable(target, methodName), flags)
   }
 
   /**
@@ -459,7 +171,7 @@ public open class Object : KtObject() {
    *
    * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    */
-  public fun `set`(`property`: StringName, `value`: Any): Unit {
+  public fun `set`(`property`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET, NIL)
   }
@@ -532,7 +244,7 @@ public open class Object : KtObject() {
    *
    * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    */
-  public fun setIndexed(propertyPath: NodePath, `value`: Any): Unit {
+  public fun setIndexed(propertyPath: NodePath, `value`: Any?): Unit {
     TransferContext.writeArguments(NODE_PATH to propertyPath, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_INDEXED, NIL)
   }
@@ -724,7 +436,7 @@ public open class Object : KtObject() {
    *
    * If a script already exists, its instance is detached, and its property values and state are lost. Built-in property values are still kept.
    */
-  public fun setScript(script: Any): Unit {
+  public fun setScript(script: Any?): Unit {
     TransferContext.writeArguments(ANY to script)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_SCRIPT, NIL)
   }
@@ -747,7 +459,7 @@ public open class Object : KtObject() {
    *
    * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
-  public fun setMeta(name: StringName, `value`: Any): Unit {
+  public fun setMeta(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_META, NIL)
   }
@@ -895,7 +607,7 @@ public open class Object : KtObject() {
   public fun emitSignal(signal: StringName, vararg __var_args: Any?): GodotError {
     TransferContext.writeArguments(STRING_NAME to signal,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_EMIT_SIGNAL, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1026,7 +738,7 @@ public open class Object : KtObject() {
    *
    * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [godot.StringName] on each call.
    */
-  public fun setDeferred(`property`: StringName, `value`: Any): Unit {
+  public fun setDeferred(`property`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_DEFERRED, NIL)
   }
@@ -1388,7 +1100,7 @@ public open class Object : KtObject() {
   ): GodotError {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CONNECT, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1534,7 +1246,7 @@ public open class Object : KtObject() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

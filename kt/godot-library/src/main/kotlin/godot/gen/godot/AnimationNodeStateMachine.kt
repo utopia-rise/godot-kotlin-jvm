@@ -63,7 +63,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_STATE_MACHINE_TYPE, LONG)
-      return AnimationNodeStateMachine.StateMachineType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AnimationNodeStateMachine.StateMachineType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -323,7 +323,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

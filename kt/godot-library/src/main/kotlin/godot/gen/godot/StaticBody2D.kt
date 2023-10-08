@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
@@ -18,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 2D physics body that can't be moved by external forces. When moved manually, it doesn't affect other bodies in its path.
@@ -51,6 +54,7 @@ public open class StaticBody2D : PhysicsBody2D() {
   /**
    * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
    */
+  @CoreTypeLocalCopy
   public var constantLinearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -84,6 +88,31 @@ public open class StaticBody2D : PhysicsBody2D() {
     callConstructor(ENGINECLASS_STATICBODY2D, scriptIndex)
     return true
   }
+
+  /**
+   * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = staticbody2d.constantLinearVelocity
+   * //Your changes
+   * staticbody2d.constantLinearVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun constantLinearVelocityMutate(block: Vector2.() -> Unit): Vector2 =
+      constantLinearVelocity.apply{
+      block(this)
+      constantLinearVelocity = this
+  }
+
 
   public companion object
 }

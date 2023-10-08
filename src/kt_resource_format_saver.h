@@ -1,5 +1,6 @@
 #ifndef GODOT_JVM_KT_RESOURCE_FORMAT_SAVER_H
 #define GODOT_JVM_KT_RESOURCE_FORMAT_SAVER_H
+
 #include <core/io/resource_saver.h>
 
 class KtResourceFormatSaver : public ResourceFormatSaver {

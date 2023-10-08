@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import godot.util.RealT
 
@@ -20,6 +21,7 @@ class Transform3D(
      * Warning: Writing basis.x = 2 will only modify a copy, not the actual object.
      * To modify it, use basis().
      * */
+    @CoreTypeLocalCopy
     var basis
         get() = Basis(_basis)
         set(value) {
@@ -35,6 +37,7 @@ class Transform3D(
      * Warning: Writing origin.x = 2 will only modify a copy, not the actual object.
      * To modify it, use origin().
      * */
+    @CoreTypeLocalCopy
     var origin
         get() = Vector3(_origin)
         set(value) {
@@ -148,33 +151,21 @@ class Transform3D(
     fun isFinite() = basis.isFinite() && origin.isFinite()
 
     /**
-     * Returns a copy of the transform rotated such that its -Z axis points towards the target position.
-     * The transform will first be rotated around the given up vector, and then fully aligned to the target by a further rotation around an axis perpendicular to both the target and up vectors.
-     * Operations take place in global space.
+     * Returns a copy of the transform rotated such that the forward axis (-Z) points towards the [target] position.
+     * The up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the forward axis. The resulting transform is orthonormalized. The existing rotation, scale, and skew information from the original transform is discarded. The [target] and [up] vectors cannot be zero, cannot be parallel to each other, and are defined in global/parent space.
+     * If [useModelFront] is true, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).
      */
-    fun lookingAt(target: Vector3, up: Vector3): Transform3D {
+    fun lookingAt(target: Vector3, up: Vector3 = Vector3(0, 1, 0), useModelFront: Boolean = false): Transform3D {
         val t = Transform3D(this._basis, this._origin)
-        t.setLookAt(_origin, target, up)
+        t.setLookAt(_origin, target, up, useModelFront)
         return t
     }
 
-    internal fun setLookAt(eye: Vector3, target: Vector3, up: Vector3) {
-        val x: Vector3
-        var y = up
-        val z = eye - target
-
-        z.normalize()
-        x = y.cross(z)
-        y = z.cross(x)
-        x.normalize()
-        y.normalize()
-
-        // on cpp, this calls basis.set(x, y, z)
-        // which basically does:
-        //  setAxis(0, x)
-        //  setAxis(1, y)
-        //  setAxis(2, z)
-        _basis.set(x, y, z)
+    internal fun setLookAt(eye: Vector3, target: Vector3, up: Vector3, useModelFront: Boolean) {
+        require(!eye.isEqualApprox(target)) {
+            "The eye and target vectors can't be equal."
+        }
+        _basis = Basis.lookingAt(target - eye, up, useModelFront);
         _origin = Vector3(eye)
     }
 

@@ -101,7 +101,7 @@ public open class JSON : Resource() {
   public fun parse(jsonText: String, keepText: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to jsonText, BOOL to keepText)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_PARSE, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -182,7 +182,7 @@ public open class JSON : Resource() {
      */
     @JvmOverloads
     public fun stringify(
-      `data`: Any,
+      `data`: Any?,
       indent: String = "",
       sortKeys: Boolean = true,
       fullPrecision: Boolean = false,

@@ -357,7 +357,7 @@ class Quaternion(
         p_b_t: RealT,
         p_pre_a_t: RealT,
         p_post_b_t: RealT
-    ) : Quaternion {
+    ): Quaternion {
         require(isNormalized()) {
             "The start quaternion must be normalized."
         }
@@ -417,18 +417,26 @@ class Quaternion(
         w = pw
     }
 
-    operator fun times(v: Vector3) =
-        Quaternion(
-            w * v.x + y * v.z - z * v.y,
-            w * v.y + z * v.x - x * v.z,
-            w * v.z + x * v.y - y * v.x,
-            -x * v.x - y * v.y - z * v.z
-        )
+    internal fun xform(v: Vector3): Vector3 {
+        require(isNormalized()) {
+            "The quaternion must be normalized."
+        }
+
+        val u = Vector3(x, y, z)
+        val uv = u.cross(v)
+
+        return v + (uv * w + u.cross(uv)) * 2.0f
+    }
+
+    internal fun xformInv(v: Vector3): Vector3 {
+        return inverse().xform(v)
+    }
 
     operator fun plus(q2: Quaternion) = Quaternion(this.x + q2.x, this.y + q2.y, this.z + q2.z, this.w + q2.w)
 
     operator fun minus(q2: Quaternion) = Quaternion(this.x - q2.x, this.y - q2.y, this.z - q2.z, this.w - q2.w)
 
+    operator fun times(v: Vector3) = xform(v)
     operator fun times(q2: Quaternion) = Quaternion(this.x * q2.x, this.y * q2.y, this.z * q2.z, this.w * q2.w)
     operator fun times(scalar: Int) = Quaternion(x * scalar, y * scalar, z * scalar, w * scalar)
     operator fun times(scalar: Long) = Quaternion(x * scalar, y * scalar, z * scalar, w * scalar)
@@ -471,3 +479,4 @@ operator fun Int.times(quaternion: Quaternion) = quaternion * this
 operator fun Long.times(quaternion: Quaternion) = quaternion * this
 operator fun Float.times(quaternion: Quaternion) = quaternion * this
 operator fun Double.times(quaternion: Quaternion) = quaternion * this
+operator fun Vector3.times(quaternion: Quaternion) = quaternion.xformInv(this)

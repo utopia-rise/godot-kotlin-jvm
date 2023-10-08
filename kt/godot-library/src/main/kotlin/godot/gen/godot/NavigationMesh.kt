@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.PackedInt32Array
@@ -60,7 +62,7 @@ public open class NavigationMesh : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SAMPLE_PARTITION_TYPE, LONG)
-      return NavigationMesh.SamplePartitionType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationMesh.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -76,7 +78,7 @@ public open class NavigationMesh : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_PARSED_GEOMETRY_TYPE, LONG)
-      return NavigationMesh.ParsedGeometryType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationMesh.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -110,7 +112,7 @@ public open class NavigationMesh : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SOURCE_GEOMETRY_MODE, LONG)
-      return NavigationMesh.SourceGeometryMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationMesh.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -406,6 +408,7 @@ public open class NavigationMesh : Resource() {
   /**
    * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its enclosing area.
    */
+  @CoreTypeLocalCopy
   public var filterBakingAabb: AABB
     get() {
       TransferContext.writeArguments()
@@ -423,6 +426,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The position offset applied to the [filterBakingAabb] [AABB].
    */
+  @CoreTypeLocalCopy
   public var filterBakingAabbOffset: Vector3
     get() {
       TransferContext.writeArguments()
@@ -440,6 +444,55 @@ public open class NavigationMesh : Resource() {
     callConstructor(ENGINECLASS_NAVIGATIONMESH, scriptIndex)
     return true
   }
+
+  /**
+   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its enclosing area.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationmesh.filterBakingAabb
+   * //Your changes
+   * navigationmesh.filterBakingAabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun filterBakingAabbMutate(block: AABB.() -> Unit): AABB = filterBakingAabb.apply{
+      block(this)
+      filterBakingAabb = this
+  }
+
+
+  /**
+   * The position offset applied to the [filterBakingAabb] [AABB].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationmesh.filterBakingAabbOffset
+   * //Your changes
+   * navigationmesh.filterBakingAabbOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun filterBakingAabbOffsetMutate(block: Vector3.() -> Unit): Vector3 =
+      filterBakingAabbOffset.apply{
+      block(this)
+      filterBakingAabbOffset = this
+  }
+
 
   /**
    * Based on [value], enables or disables the specified layer in the [geometryCollisionMask], given a [layerNumber] between 1 and 32.
@@ -534,7 +587,7 @@ public open class NavigationMesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -565,7 +618,7 @@ public open class NavigationMesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -596,7 +649,7 @@ public open class NavigationMesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

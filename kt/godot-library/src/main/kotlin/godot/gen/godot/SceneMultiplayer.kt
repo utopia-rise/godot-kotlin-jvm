@@ -170,14 +170,14 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public fun sendAuth(id: Int, `data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(LONG to id.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SEND_AUTH, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun completeAuth(id: Int): GodotError {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_COMPLETE_AUTH,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmOverloads
@@ -189,7 +189,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   ): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id.toLong(), LONG to mode.id, LONG to channel.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEMULTIPLAYER_SEND_BYTES, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

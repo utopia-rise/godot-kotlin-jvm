@@ -7,6 +7,7 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
+import godot.intellij.plugin.extension.isCoreType
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.extension.type
@@ -14,15 +15,19 @@ import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.PropertyRemoveExportAnnotationQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import org.jetbrains.kotlin.asJava.toLightElements
+import org.jetbrains.kotlin.builtins.KotlinBuiltIns
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.types.KotlinType
+import org.jetbrains.kotlin.types.typeUtil.isChar
 import org.jetbrains.kotlin.types.typeUtil.isEnum
 import org.jetbrains.kotlin.types.typeUtil.supertypes
 import org.jetbrains.kotlin.utils.addToStdlib.firstIsInstance
@@ -67,16 +72,6 @@ class RegisterPropertiesAnnotator : Annotator {
                     propertyNotRegisteredQuickFix
                 )
             }
-            if (
-                ktProperty.type()?.supertypes()?.any { it.getKotlinTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true &&
-                ktProperty.type()?.supertypes()?.any { it.getKotlinTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" } == false
-            ) {
-                holder.registerProblem(
-                    GodotPluginBundle.message("problem.property.export.triedToExportObject"),
-                    ktProperty.nameIdentifier ?: ktProperty.navigationElement,
-                    propertyRemoveExportAnnotationQuickFix
-                )
-            }
         }
     }
 
@@ -104,8 +99,37 @@ class RegisterPropertiesAnnotator : Annotator {
                 getInitializerProblemLocation(ktProperty)
             )
         }
+
+
+
+        val isInheritingObject = ktProperty.type()?.supertypes()?.any { it.getKotlinTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true
+        val isCoreType = ktProperty.type()?.isCoreType() == true
+        val isSupportedJvmType = ktProperty.type()?.isSupportedJvmType() == true
+
+        if (
+            !isInheritingObject
+            && !isCoreType
+            && !isSupportedJvmType
+        ) {
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.property.export.triedToExportUnsupportedType"),
+                ktProperty.nameIdentifier ?: ktProperty.navigationElement
+            )
+        }
     }
 
     private fun getInitializerProblemLocation(ktProperty: KtProperty) =
         ktProperty.initializer?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
+
+    private fun KotlinType.isSupportedJvmType(): Boolean {
+        return KotlinBuiltIns.isPrimitiveTypeOrNullablePrimitiveType(this)
+            || KotlinBuiltIns.isString(this)
+            || this.isEnum()
+            || KotlinBuiltIns.isCollectionOrNullableCollection(this)
+            || KotlinBuiltIns.isString(this)
+            || KotlinBuiltIns.isArrayOrPrimitiveArray(this)
+            || this.isChar()
+            || this.supertypes().any { it.isSupportedJvmType() }
+    }
 }
+

@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedVector2Array
@@ -92,6 +94,7 @@ public open class TileData : Object() {
   /**
    * Offsets the position of where the tile is drawn.
    */
+  @CoreTypeLocalCopy
   public var textureOrigin: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -107,6 +110,7 @@ public open class TileData : Object() {
   /**
    * Color modulation of the tile.
    */
+  @CoreTypeLocalCopy
   public var modulate: Color
     get() {
       TransferContext.writeArguments()
@@ -206,6 +210,54 @@ public open class TileData : Object() {
     callConstructor(ENGINECLASS_TILEDATA, scriptIndex)
     return true
   }
+
+  /**
+   * Offsets the position of where the tile is drawn.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = tiledata.textureOrigin
+   * //Your changes
+   * tiledata.textureOrigin = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun textureOriginMutate(block: Vector2i.() -> Unit): Vector2i = textureOrigin.apply{
+      block(this)
+      textureOrigin = this
+  }
+
+
+  /**
+   * Color modulation of the tile.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = tiledata.modulate
+   * //Your changes
+   * tiledata.modulate = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
+      block(this)
+      modulate = this
+  }
+
 
   /**
    * Sets the occluder for the TileSet occlusion layer with index [layerId].
@@ -408,7 +460,7 @@ public open class TileData : Object() {
   /**
    * Sets the tile's custom data value for the TileSet custom data layer with name [layerName].
    */
-  public fun setCustomData(layerName: String, `value`: Any): Unit {
+  public fun setCustomData(layerName: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to layerName, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_CUSTOM_DATA, NIL)
   }
@@ -425,7 +477,7 @@ public open class TileData : Object() {
   /**
    * Sets the tile's custom data value for the TileSet custom data layer with index [layerId].
    */
-  public fun setCustomDataByLayerId(layerId: Int, `value`: Any): Unit {
+  public fun setCustomDataByLayerId(layerId: Int, `value`: Any?): Unit {
     TransferContext.writeArguments(LONG to layerId.toLong(), ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_CUSTOM_DATA_BY_LAYER_ID, NIL)

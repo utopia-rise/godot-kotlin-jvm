@@ -115,7 +115,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_GET_SWITCH_MODE, LONG)
-      return AnimationNodeStateMachineTransition.SwitchMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AnimationNodeStateMachineTransition.SwitchMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -131,7 +131,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_GET_ADVANCE_MODE, LONG)
-      return AnimationNodeStateMachineTransition.AdvanceMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AnimationNodeStateMachineTransition.AdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -217,7 +217,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -244,7 +244,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

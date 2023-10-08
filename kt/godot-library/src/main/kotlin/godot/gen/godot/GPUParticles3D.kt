@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Color
@@ -247,6 +249,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    *
    * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
    */
+  @CoreTypeLocalCopy
   public var visibilityAabb: AABB
     get() {
       TransferContext.writeArguments()
@@ -278,13 +281,15 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
+   *
+   * **Note:** [DRAW_ORDER_INDEX] is the only option that supports motion vectors for effects like TAA. It is suggested to use this draw order if the particles are opaque to fix ghosting artifacts.
    */
   public var drawOrder: DrawOrder
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_ORDER,
           LONG)
-      return GPUParticles3D.DrawOrder.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -300,7 +305,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRANSFORM_ALIGN, LONG)
-      return GPUParticles3D.TransformAlign.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GPUParticles3D.TransformAlign.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -379,45 +384,65 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * [godot.Mesh] that is drawn for the first draw pass.
    */
-  public val drawPass1: Mesh?
+  public var drawPass1: Mesh?
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
+          NIL)
     }
 
   /**
    * [godot.Mesh] that is drawn for the second draw pass.
    */
-  public val drawPass2: Mesh?
+  public var drawPass2: Mesh?
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
+          NIL)
     }
 
   /**
    * [godot.Mesh] that is drawn for the third draw pass.
    */
-  public val drawPass3: Mesh?
+  public var drawPass3: Mesh?
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
+          NIL)
     }
 
   /**
    * [godot.Mesh] that is drawn for the fourth draw pass.
    */
-  public val drawPass4: Mesh?
+  public var drawPass4: Mesh?
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
+          NIL)
     }
 
   /**
@@ -440,13 +465,30 @@ public open class GPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the [godot.Mesh] that is drawn at index [pass].
+   * The [AABB] that determines the node's region which needs to be visible on screen for the particle system to be active.
+   *
+   * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gpuparticles3d.visibilityAabb
+   * //Your changes
+   * gpuparticles3d.visibilityAabb = myCoreType
+   * ``````
    */
-  public fun setDrawPassMesh(pass: Int, mesh: Mesh): Unit {
-    TransferContext.writeArguments(LONG to pass.toLong(), OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
-        NIL)
+  @CoreTypeHelper
+  public open fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply{
+      block(this)
+      visibilityAabb = this
   }
+
 
   /**
    * Restarts the particle emission, clearing existing particles.
@@ -507,7 +549,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -542,7 +584,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -573,7 +615,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -41,6 +43,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Allow overriding the texture size (for 2D only).
    */
+  @CoreTypeLocalCopy
   public var sizeOverride: Vector2
     get() {
       TransferContext.writeArguments()
@@ -78,6 +81,30 @@ public open class PortableCompressedTexture2D : Texture2D() {
   }
 
   /**
+   * Allow overriding the texture size (for 2D only).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = portablecompressedtexture2d.sizeOverride
+   * //Your changes
+   * portablecompressedtexture2d.sizeOverride = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun sizeOverrideMutate(block: Vector2.() -> Unit): Vector2 = sizeOverride.apply{
+      block(this)
+      sizeOverride = this
+  }
+
+
+  /**
    * Initializes the compressed texture from a base image. The compression mode must be provided.
    *
    * [normalMap] is recommended to ensure optimum quality if this image will be used as a normal map.
@@ -103,7 +130,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_FORMAT, LONG)
-    return Image.Format.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -113,7 +140,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_COMPRESSION_MODE, LONG)
-    return PortableCompressedTexture2D.CompressionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return PortableCompressedTexture2D.CompressionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class CompressionMode(
@@ -151,7 +178,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

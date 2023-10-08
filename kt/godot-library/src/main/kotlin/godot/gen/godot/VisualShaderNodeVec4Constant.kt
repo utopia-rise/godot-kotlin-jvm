@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Quaternion
 import godot.core.VariantType.NIL
@@ -14,6 +16,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 4D vector constant to be used within the visual shader graph.
@@ -25,6 +28,7 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
   /**
    * A 4D vector (represented as a [godot.Quaternion]) constant which represents the state of this node.
    */
+  @CoreTypeLocalCopy
   public var constant: Quaternion
     get() {
       TransferContext.writeArguments()
@@ -42,6 +46,30 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC4CONSTANT, scriptIndex)
     return true
   }
+
+  /**
+   * A 4D vector (represented as a [godot.Quaternion]) constant which represents the state of this node.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visualshadernodevec4constant.constant
+   * //Your changes
+   * visualshadernodevec4constant.constant = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun constantMutate(block: Quaternion.() -> Unit): Quaternion = constant.apply{
+      block(this)
+      constant = this
+  }
+
 
   public companion object
 }

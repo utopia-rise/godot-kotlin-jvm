@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -63,6 +65,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The Light2D's [godot.core.Color].
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()
@@ -95,7 +98,7 @@ public open class Light2D internal constructor() : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_BLEND_MODE, LONG)
-      return Light2D.BlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Light2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -191,6 +194,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * [godot.core.Color] of shadows cast by the Light2D.
    */
+  @CoreTypeLocalCopy
   public var shadowColor: Color
     get() {
       TransferContext.writeArguments()
@@ -209,7 +213,7 @@ public open class Light2D internal constructor() : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_FILTER, LONG)
-      return Light2D.ShadowFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Light2D.ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -252,6 +256,54 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   /**
+   * The Light2D's [godot.core.Color].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = light2d.color
+   * //Your changes
+   * light2d.color = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
+  }
+
+
+  /**
+   * [godot.core.Color] of shadows cast by the Light2D.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = light2d.shadowColor
+   * //Your changes
+   * light2d.shadowColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
+      block(this)
+      shadowColor = this
+  }
+
+
+  /**
    * Sets the light's height, which is used in 2D normal mapping. See [godot.PointLight2D.height] and [godot.DirectionalLight2D.height].
    */
   public fun setHeight(height: Float): Unit {
@@ -291,7 +343,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -318,7 +370,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

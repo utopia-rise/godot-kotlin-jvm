@@ -403,16 +403,16 @@ class Invocation : Node3D() {
 		val path = NodePath("CanvasLayer/Button")
 		val getNode2 = getNodeAs<Button>(path)
 
-		noParam.connect(invocation, invocation::hookNoParam)
-		oneParam.connect(invocation, invocation::hookOneParam)
-		twoParam.connect(invocation, invocation::hookTwoParam)
+		noParam.connect(invocation, OtherScript::hookNoParam)
+		oneParam.connect(invocation, OtherScript::hookOneParam)
+		twoParam.connect(invocation, OtherScript::hookTwoParam)
 
-		signalWithMultipleTargets.connect(this, ::targetFunctionOne)
-		signalWithMultipleTargets.connect(this, ::targetFunctionTwo)
+		signalWithMultipleTargets.connect(this, Invocation::targetFunctionOne)
+		signalWithMultipleTargets.connect(this, Invocation::targetFunctionTwo)
 
 		(getNodeOrNull(path) as Button?)?.pressed?.connect(
 			invocation,
-			invocation::hookNoParam
+            OtherScript::hookNoParam
 		)
 		noParam.emit()
 		oneParam.emit(false)

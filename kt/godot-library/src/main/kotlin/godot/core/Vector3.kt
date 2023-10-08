@@ -461,8 +461,11 @@ class Vector3(
     /**
      * Returns the vector reflected from a plane defined by the given normal.
      */
-    fun reflect(by: Vector3): Vector3 {
-        return by - this * this.dot(by) * 2.0
+    fun reflect(normal: Vector3): Vector3 {
+        require(normal.isNormalized()){
+            "The normal Vector3 must be normalized. But got $normal"
+        }
+        return 2.0 * normal * this.dot(normal) - this
     }
 
     /**

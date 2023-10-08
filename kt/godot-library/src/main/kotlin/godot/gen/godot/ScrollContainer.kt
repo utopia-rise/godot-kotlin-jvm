@@ -34,12 +34,16 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScrollContainer : Container() {
   /**
-   * Emitted when scrolling is started.
+   * Emitted when scrolling starts when dragging the scrollable area w*ith a touch event*. This signal is *not* emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.
+   *
+   * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
    */
   public val scrollStarted: Signal0 by signal()
 
   /**
-   * Emitted when scrolling stops.
+   * Emitted when scrolling stops when dragging the scrollable area *with a touch event*. This signal is *not* emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.
+   *
+   * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
    */
   public val scrollEnded: Signal0 by signal()
 
@@ -60,7 +64,7 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   * The current horizontal scroll value. 
+   * The current horizontal scroll value.
    *
    * **Note:** If you are setting this value in the [godot.Node.Ready] function or earlier, it needs to be wrapped with [godot.Object.setDeferred], since scroll bar's [godot.Range.maxValue] is not initialized yet.
    *
@@ -143,7 +147,7 @@ public open class ScrollContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_SCROLL_MODE, LONG)
-      return ScrollContainer.ScrollMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -159,7 +163,7 @@ public open class ScrollContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_SCROLL_MODE, LONG)
-      return ScrollContainer.ScrollMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -255,7 +259,7 @@ public open class ScrollContainer : Container() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

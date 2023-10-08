@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.StringName
@@ -29,6 +31,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A region of 2D space that detects other [godot.CollisionObject2D]s entering or exiting it.
@@ -184,7 +187,7 @@ public open class Area2D : CollisionObject2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_SPACE_OVERRIDE_MODE, LONG)
-      return Area2D.SpaceOverride.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -227,6 +230,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
    */
+  @CoreTypeLocalCopy
   public var gravityPointCenter: Vector2
     get() {
       TransferContext.writeArguments()
@@ -243,6 +247,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * The area's gravity vector (not normalized).
    */
+  @CoreTypeLocalCopy
   public var gravityDirection: Vector2
     get() {
       TransferContext.writeArguments()
@@ -277,7 +282,7 @@ public open class Area2D : CollisionObject2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AREA2D_GET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
-      return Area2D.SpaceOverride.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -309,7 +314,7 @@ public open class Area2D : CollisionObject2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AREA2D_GET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
-      return Area2D.SpaceOverride.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -368,6 +373,56 @@ public open class Area2D : CollisionObject2D() {
     callConstructor(ENGINECLASS_AREA2D, scriptIndex)
     return true
   }
+
+  /**
+   * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = area2d.gravityPointCenter
+   * //Your changes
+   * area2d.gravityPointCenter = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun gravityPointCenterMutate(block: Vector2.() -> Unit): Vector2 =
+      gravityPointCenter.apply{
+      block(this)
+      gravityPointCenter = this
+  }
+
+
+  /**
+   * The area's gravity vector (not normalized).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = area2d.gravityDirection
+   * //Your changes
+   * area2d.gravityDirection = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun gravityDirectionMutate(block: Vector2.() -> Unit): Vector2 =
+      gravityDirection.apply{
+      block(this)
+      gravityDirection = this
+  }
+
 
   /**
    * Returns a list of intersecting [godot.PhysicsBody2D]s and [godot.TileMap]s. The overlapping body's [godot.CollisionObject2D.collisionLayer] must be part of this area's [godot.CollisionObject2D.collisionMask] in order to be detected.
@@ -469,7 +524,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

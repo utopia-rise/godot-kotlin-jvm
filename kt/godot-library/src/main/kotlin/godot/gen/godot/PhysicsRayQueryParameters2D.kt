@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantArray
@@ -21,6 +23,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -33,6 +36,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   /**
    * The starting point of the ray being queried for, in global coordinates.
    */
+  @CoreTypeLocalCopy
   public var from: Vector2
     get() {
       TransferContext.writeArguments()
@@ -49,6 +53,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   /**
    * The ending point of the ray being queried for, in global coordinates.
    */
+  @CoreTypeLocalCopy
   public var to: Vector2
     get() {
       TransferContext.writeArguments()
@@ -146,6 +151,54 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     callConstructor(ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D, scriptIndex)
     return true
   }
+
+  /**
+   * The starting point of the ray being queried for, in global coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsrayqueryparameters2d.from
+   * //Your changes
+   * physicsrayqueryparameters2d.from = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun fromMutate(block: Vector2.() -> Unit): Vector2 = from.apply{
+      block(this)
+      from = this
+  }
+
+
+  /**
+   * The ending point of the ray being queried for, in global coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsrayqueryparameters2d.to
+   * //Your changes
+   * physicsrayqueryparameters2d.to = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun toMutate(block: Vector2.() -> Unit): Vector2 = to.apply{
+      block(this)
+      to = this
+  }
+
 
   public companion object {
     /**

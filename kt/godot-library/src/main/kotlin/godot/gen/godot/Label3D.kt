@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantArray
@@ -54,6 +56,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The text drawing offset (in pixels).
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -72,11 +75,67 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_BILLBOARD_MODE, LONG)
-      return BaseMaterial3D.BillboardMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_BILLBOARD_MODE, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.Light3D] in the [godot.Environment] has effects on the label.
+   */
+  public var shaded: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 0L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_DRAW_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_DRAW_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, text can be seen from the back as well, if `false`, it is invisible when looking at it from behind.
+   */
+  public var doubleSided: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_DRAW_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_DRAW_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, depth testing is disabled and the object will be drawn in render order.
+   */
+  public var noDepthTest: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_DRAW_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_DRAW_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the label is rendered at the same size regardless of distance.
+   */
+  public var fixedSize: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_DRAW_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_DRAW_FLAG, NIL)
     }
 
   /**
@@ -86,7 +145,7 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_ALPHA_CUT_MODE, LONG)
-      return Label3D.AlphaCutMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Label3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -132,7 +191,7 @@ public open class Label3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_ALPHA_ANTIALIASING,
           LONG)
-      return BaseMaterial3D.AlphaAntiAliasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -163,7 +222,7 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_TEXTURE_FILTER, LONG)
-      return BaseMaterial3D.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -211,6 +270,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Text [godot.core.Color] of the [godot.Label3D].
    */
+  @CoreTypeLocalCopy
   public var modulate: Color
     get() {
       TransferContext.writeArguments()
@@ -225,6 +285,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The tint of text outline.
    */
+  @CoreTypeLocalCopy
   public var outlineModulate: Color
     get() {
       TransferContext.writeArguments()
@@ -303,7 +364,7 @@ public open class Label3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_HORIZONTAL_ALIGNMENT,
           LONG)
-      return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -319,7 +380,7 @@ public open class Label3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_VERTICAL_ALIGNMENT,
           LONG)
-      return VerticalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -362,7 +423,7 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_AUTOWRAP_MODE, LONG)
-      return TextServer.AutowrapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -406,7 +467,7 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_TEXT_DIRECTION, LONG)
-      return TextServer.Direction.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -435,7 +496,7 @@ public open class Label3D : GeometryInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TextServer.StructuredTextParser.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -465,21 +526,76 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   /**
-   * If `true`, the specified flag will be enabled. See [enum Label3D.DrawFlags] for a list of flags.
+   * The text drawing offset (in pixels).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = label3d.offset
+   * //Your changes
+   * label3d.offset = myCoreType
+   * ``````
    */
-  public fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_DRAW_FLAG, NIL)
+  @CoreTypeHelper
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+      block(this)
+      offset = this
   }
 
+
   /**
-   * Returns the value of the specified flag.
+   * Text [godot.core.Color] of the [godot.Label3D].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = label3d.modulate
+   * //Your changes
+   * label3d.modulate = myCoreType
+   * ``````
    */
-  public fun getDrawFlag(flag: DrawFlags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_DRAW_FLAG, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  @CoreTypeHelper
+  public open fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
+      block(this)
+      modulate = this
   }
+
+
+  /**
+   * The tint of text outline.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = label3d.outlineModulate
+   * //Your changes
+   * label3d.outlineModulate = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun outlineModulateMutate(block: Color.() -> Unit): Color = outlineModulate.apply{
+      block(this)
+      outlineModulate = this
+  }
+
 
   /**
    * Returns a [godot.TriangleMesh] with the label's vertices following its current configuration (such as its [pixelSize]).
@@ -522,7 +638,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -559,7 +675,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

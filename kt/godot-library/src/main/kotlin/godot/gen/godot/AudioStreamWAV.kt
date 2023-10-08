@@ -54,7 +54,7 @@ public open class AudioStreamWAV : AudioStream() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_GET_FORMAT, LONG)
-      return AudioStreamWAV.Format.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -69,7 +69,7 @@ public open class AudioStreamWAV : AudioStream() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_GET_LOOP_MODE,
           LONG)
-      return AudioStreamWAV.LoopMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AudioStreamWAV.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -151,7 +151,7 @@ public open class AudioStreamWAV : AudioStream() {
   public fun saveToWav(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SAVE_TO_WAV, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Format(
@@ -177,7 +177,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -208,7 +208,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

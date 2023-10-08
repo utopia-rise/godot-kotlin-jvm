@@ -128,7 +128,7 @@ public open class SurfaceTool : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_SKIN_WEIGHT_COUNT,
         LONG)
-    return SurfaceTool.SkinWeightCount.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return SurfaceTool.SkinWeightCount.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -147,7 +147,7 @@ public open class SurfaceTool : RefCounted() {
   public fun getCustomFormat(channelIndex: Int): CustomFormat {
     TransferContext.writeArguments(LONG to channelIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_CUSTOM_FORMAT, LONG)
-    return SurfaceTool.CustomFormat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return SurfaceTool.CustomFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -354,7 +354,7 @@ public open class SurfaceTool : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_PRIMITIVE_TYPE,
         LONG)
-    return Mesh.PrimitiveType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Mesh.PrimitiveType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -466,7 +466,7 @@ public open class SurfaceTool : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -489,7 +489,7 @@ public open class SurfaceTool : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

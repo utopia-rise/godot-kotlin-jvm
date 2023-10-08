@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.StringName
@@ -97,7 +99,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CAST_SHADOWS_SETTING, LONG)
-      return GeometryInstance3D.ShadowCastingSetting.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GeometryInstance3D.ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -124,6 +126,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [godot.MeshInstance3D] or to have fine control over the [godot.MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [godot.RenderingServer.instanceSetIgnoreCulling] on the [godot.GeometryInstance3D]'s [RID].
    */
+  @CoreTypeLocalCopy
   public var customAabb: AABB
     get() {
       TransferContext.writeArguments()
@@ -183,7 +186,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_GI_MODE,
           LONG)
-      return GeometryInstance3D.GIMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GeometryInstance3D.GIMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -199,7 +202,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LIGHTMAP_SCALE, LONG)
-      return GeometryInstance3D.LightmapScale.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GeometryInstance3D.LightmapScale.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -283,7 +286,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_FADE_MODE, LONG)
-      return GeometryInstance3D.VisibilityRangeFadeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -297,6 +300,30 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   /**
+   * Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [godot.MeshInstance3D] or to have fine control over the [godot.MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [godot.RenderingServer.instanceSetIgnoreCulling] on the [godot.GeometryInstance3D]'s [RID].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = geometryinstance3d.customAabb
+   * //Your changes
+   * geometryinstance3d.customAabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
+      block(this)
+      customAabb = this
+  }
+
+
+  /**
    * Set the value of a shader uniform for this instance only ([per-instance uniform]($DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms)). See also [godot.ShaderMaterial.setShaderParameter] to assign a uniform on all instances using the same [godot.ShaderMaterial].
    *
    * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined with `instance uniform ...` rather than `uniform ...` in the shader code.
@@ -305,7 +332,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    *
    * **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D equivalent of this method.
    */
-  public fun setInstanceShaderParameter(name: StringName, `value`: Any): Unit {
+  public fun setInstanceShaderParameter(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_INSTANCE_SHADER_PARAMETER, NIL)
@@ -354,7 +381,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -381,7 +408,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -416,7 +443,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -443,7 +470,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

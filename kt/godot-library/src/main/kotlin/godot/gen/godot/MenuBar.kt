@@ -92,7 +92,7 @@ public open class MenuBar : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_GET_TEXT_DIRECTION, LONG)
-      return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)

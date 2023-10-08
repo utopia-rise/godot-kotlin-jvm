@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -17,6 +19,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -48,6 +51,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   /**
    * The touch position, in screen (global) coordinates.
    */
+  @CoreTypeLocalCopy
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
@@ -107,6 +111,30 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENTOUCH, scriptIndex)
     return true
   }
+
+  /**
+   * The touch position, in screen (global) coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventscreentouch.position
+   * //Your changes
+   * inputeventscreentouch.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
+      block(this)
+      position = this
+  }
+
 
   public companion object
 }

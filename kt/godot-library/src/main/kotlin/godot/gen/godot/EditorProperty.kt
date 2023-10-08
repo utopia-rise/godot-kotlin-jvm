@@ -40,7 +40,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Do not emit this manually, use the [emitChanged] method instead.
    */
-  public val propertyChanged: Signal4<StringName, Any, StringName, Boolean> by signal("property",
+  public val propertyChanged: Signal4<StringName, Any?, StringName, Boolean> by signal("property",
       "value", "field", "changing")
 
   /**
@@ -62,7 +62,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Emit it if you want to key a property with a single value.
    */
-  public val propertyKeyedWithValue: Signal2<StringName, Any> by signal("property", "value")
+  public val propertyKeyedWithValue: Signal2<StringName, Any?> by signal("property", "value")
 
   /**
    * Emitted when a property was checked. Used internally.
@@ -265,7 +265,7 @@ public open class EditorProperty internal constructor() : Container() {
   @JvmOverloads
   public fun emitChanged(
     `property`: StringName,
-    `value`: Any,
+    `value`: Any?,
     `field`: StringName = StringName(""),
     changing: Boolean = false,
   ): Unit {

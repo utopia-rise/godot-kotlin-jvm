@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -17,6 +19,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * An interface to a game world that doesn't create a window or draw to the screen directly.
@@ -35,6 +38,7 @@ public open class SubViewport : Viewport() {
    *
    * **Note:** If the parent node is a [godot.SubViewportContainer] and its [godot.SubViewportContainer.stretch] is `true`, the viewport size cannot be changed manually.
    */
+  @CoreTypeLocalCopy
   public var size: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -49,6 +53,7 @@ public open class SubViewport : Viewport() {
   /**
    * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is disabled.
    */
+  @CoreTypeLocalCopy
   public var size2dOverride: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -87,7 +92,7 @@ public open class SubViewport : Viewport() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_CLEAR_MODE, LONG)
-      return SubViewport.ClearMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return SubViewport.ClearMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -101,7 +106,7 @@ public open class SubViewport : Viewport() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_UPDATE_MODE, LONG)
-      return SubViewport.UpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return SubViewport.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -112,6 +117,56 @@ public open class SubViewport : Viewport() {
     callConstructor(ENGINECLASS_SUBVIEWPORT, scriptIndex)
     return true
   }
+
+  /**
+   * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2 pixels on both dimensions. Otherwise, nothing will be displayed.
+   *
+   * **Note:** If the parent node is a [godot.SubViewportContainer] and its [godot.SubViewportContainer.stretch] is `true`, the viewport size cannot be changed manually.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = subviewport.size
+   * //Your changes
+   * subviewport.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
+      block(this)
+      size = this
+  }
+
+
+  /**
+   * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is disabled.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = subviewport.size2dOverride
+   * //Your changes
+   * subviewport.size2dOverride = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun size2dOverrideMutate(block: Vector2i.() -> Unit): Vector2i = size2dOverride.apply{
+      block(this)
+      size2dOverride = this
+  }
+
 
   public enum class ClearMode(
     id: Long,
@@ -136,7 +191,7 @@ public open class SubViewport : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -171,7 +226,7 @@ public open class SubViewport : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

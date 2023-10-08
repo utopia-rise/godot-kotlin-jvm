@@ -30,7 +30,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESAMPLE3D_GET_SOURCE, LONG)
-      return VisualShaderNodeSample3D.Source.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return VisualShaderNodeSample3D.Source.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -66,7 +66,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.LONG
@@ -16,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Copies a region of the screen (or the whole screen) to a buffer so it can be accessed in your shader scripts using the screen texture (i.e. a uniform sampler with ``hint_screen_texture``).
@@ -34,7 +37,7 @@ public open class BackBufferCopy : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_COPY_MODE,
           LONG)
-      return BackBufferCopy.CopyMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -44,6 +47,7 @@ public open class BackBufferCopy : Node2D() {
   /**
    * The area covered by the [godot.BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    */
+  @CoreTypeLocalCopy
   public var rect: Rect2
     get() {
       TransferContext.writeArguments()
@@ -59,6 +63,30 @@ public open class BackBufferCopy : Node2D() {
     callConstructor(ENGINECLASS_BACKBUFFERCOPY, scriptIndex)
     return true
   }
+
+  /**
+   * The area covered by the [godot.BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = backbuffercopy.rect
+   * //Your changes
+   * backbuffercopy.rect = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
+      block(this)
+      rect = this
+  }
+
 
   public enum class CopyMode(
     id: Long,
@@ -83,7 +111,7 @@ public open class BackBufferCopy : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -70,7 +70,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_GET_FFT_SIZE, LONG)
-      return AudioEffectSpectrumAnalyzer.FFTSize.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AudioEffectSpectrumAnalyzer.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -118,7 +118,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

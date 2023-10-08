@@ -479,7 +479,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the metadata of an item, which may be of any type. You can later get it with [getItemMetadata], which provides a simple way of assigning context data to items.
    */
-  public fun setItemMetadata(index: Int, metadata: Any): Unit {
+  public fun setItemMetadata(index: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_METADATA, NIL)
   }
@@ -608,7 +608,7 @@ public open class PopupMenu : Popup() {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TEXT_DIRECTION,
         LONG)
-    return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -683,7 +683,7 @@ public open class PopupMenu : Popup() {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ACCELERATOR,
         LONG)
-    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

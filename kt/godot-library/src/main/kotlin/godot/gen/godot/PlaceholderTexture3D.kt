@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3I
@@ -14,6 +16,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Placeholder class for a 3-dimensional texture.
@@ -31,6 +34,7 @@ public open class PlaceholderTexture3D : Texture3D() {
   /**
    * The texture's size (in pixels).
    */
+  @CoreTypeLocalCopy
   public var size: Vector3i
     get() {
       TransferContext.writeArguments()
@@ -48,6 +52,30 @@ public open class PlaceholderTexture3D : Texture3D() {
     callConstructor(ENGINECLASS_PLACEHOLDERTEXTURE3D, scriptIndex)
     return true
   }
+
+  /**
+   * The texture's size (in pixels).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = placeholdertexture3d.size
+   * //Your changes
+   * placeholdertexture3d.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun sizeMutate(block: Vector3i.() -> Unit): Vector3i = size.apply{
+      block(this)
+      size = this
+  }
+
 
   public companion object
 }

@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantType.LONG
@@ -19,6 +21,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Provides parameters for 2D navigation path queries.
@@ -49,6 +52,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   /**
    * The pathfinding start position in global coordinates.
    */
+  @CoreTypeLocalCopy
   public var startPosition: Vector2
     get() {
       TransferContext.writeArguments()
@@ -65,6 +69,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   /**
    * The pathfinding target position in global coordinates.
    */
+  @CoreTypeLocalCopy
   public var targetPosition: Vector2
     get() {
       TransferContext.writeArguments()
@@ -102,7 +107,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_PATHFINDING_ALGORITHM, LONG)
-      return NavigationPathQueryParameters2D.PathfindingAlgorithm.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -118,7 +123,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_PATH_POSTPROCESSING, LONG)
-      return NavigationPathQueryParameters2D.PathPostProcessing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -147,6 +152,54 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     return true
   }
 
+  /**
+   * The pathfinding start position in global coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpathqueryparameters2d.startPosition
+   * //Your changes
+   * navigationpathqueryparameters2d.startPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun startPositionMutate(block: Vector2.() -> Unit): Vector2 = startPosition.apply{
+      block(this)
+      startPosition = this
+  }
+
+
+  /**
+   * The pathfinding target position in global coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpathqueryparameters2d.targetPosition
+   * //Your changes
+   * navigationpathqueryparameters2d.targetPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
+      block(this)
+      targetPosition = this
+  }
+
+
   public enum class PathfindingAlgorithm(
     id: Long,
   ) {
@@ -162,7 +215,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -185,7 +238,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -220,7 +273,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

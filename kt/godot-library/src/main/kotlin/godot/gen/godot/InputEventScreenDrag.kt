@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -20,6 +22,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Represents a screen drag event.
@@ -50,6 +53,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
    */
+  @CoreTypeLocalCopy
   public var tilt: Vector2
     get() {
       TransferContext.writeArguments()
@@ -98,6 +102,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag position.
    */
+  @CoreTypeLocalCopy
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
@@ -114,6 +119,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag position relative to the previous position (position at the last frame).
    */
+  @CoreTypeLocalCopy
   public var relative: Vector2
     get() {
       TransferContext.writeArguments()
@@ -130,6 +136,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag velocity.
    */
+  @CoreTypeLocalCopy
   public var velocity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -147,6 +154,102 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENDRAG, scriptIndex)
     return true
   }
+
+  /**
+   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventscreendrag.tilt
+   * //Your changes
+   * inputeventscreendrag.tilt = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun tiltMutate(block: Vector2.() -> Unit): Vector2 = tilt.apply{
+      block(this)
+      tilt = this
+  }
+
+
+  /**
+   * The drag position.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventscreendrag.position
+   * //Your changes
+   * inputeventscreendrag.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
+      block(this)
+      position = this
+  }
+
+
+  /**
+   * The drag position relative to the previous position (position at the last frame).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventscreendrag.relative
+   * //Your changes
+   * inputeventscreendrag.relative = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun relativeMutate(block: Vector2.() -> Unit): Vector2 = relative.apply{
+      block(this)
+      relative = this
+  }
+
+
+  /**
+   * The drag velocity.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventscreendrag.velocity
+   * //Your changes
+   * inputeventscreendrag.velocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
+      block(this)
+      velocity = this
+  }
+
 
   public companion object
 }

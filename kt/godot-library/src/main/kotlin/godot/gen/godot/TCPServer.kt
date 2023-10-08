@@ -49,7 +49,7 @@ public open class TCPServer : RefCounted() {
   public fun listen(port: Int, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_LISTEN, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

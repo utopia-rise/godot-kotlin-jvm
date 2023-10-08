@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantArray
@@ -56,7 +58,7 @@ public open class TileSet : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_SHAPE, LONG)
-      return TileSet.TileShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TileSet.TileShape.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -70,7 +72,7 @@ public open class TileSet : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_LAYOUT, LONG)
-      return TileSet.TileLayout.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TileSet.TileLayout.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -85,7 +87,7 @@ public open class TileSet : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_OFFSET_AXIS,
           LONG)
-      return TileSet.TileOffsetAxis.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TileSet.TileOffsetAxis.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -95,6 +97,7 @@ public open class TileSet : Resource() {
   /**
    * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
    */
+  @CoreTypeLocalCopy
   public var tileSize: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -124,6 +127,30 @@ public open class TileSet : Resource() {
     callConstructor(ENGINECLASS_TILESET, scriptIndex)
     return true
   }
+
+  /**
+   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = tileset.tileSize
+   * //Your changes
+   * tileset.tileSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun tileSizeMutate(block: Vector2i.() -> Unit): Vector2i = tileSize.apply{
+      block(this)
+      tileSize = this
+  }
+
 
   /**
    * Returns a new unused source ID. This generated ID is the same that a call to `add_source` would return.
@@ -419,7 +446,7 @@ public open class TileSet : Resource() {
   public fun getTerrainSetMode(terrainSet: Int): TerrainMode {
     TransferContext.writeArguments(LONG to terrainSet.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_SET_MODE, LONG)
-    return TileSet.TerrainMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TileSet.TerrainMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -665,7 +692,7 @@ public open class TileSet : Resource() {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYER_TYPE,
         LONG)
-    return VariantType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return VariantType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -825,7 +852,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * According to the configured proxies, maps the provided indentifiers to a new set of identifiers. The source ID, atlas coordinates ID and alternative tile ID are returned as a 3 elements Array.
+   * According to the configured proxies, maps the provided identifiers to a new set of identifiers. The source ID, atlas coordinates ID and alternative tile ID are returned as a 3 elements Array.
    *
    * This function first look for matching alternative-level proxies, then coordinates-level proxies, then source-level proxies.
    *
@@ -924,7 +951,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -963,7 +990,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -986,7 +1013,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1065,7 +1092,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1092,7 +1119,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

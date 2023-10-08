@@ -55,7 +55,7 @@ public open class MultiMesh : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_TRANSFORM_FORMAT,
           LONG)
-      return MultiMesh.TransformFormat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return MultiMesh.TransformFormat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -271,7 +271,7 @@ public open class MultiMesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

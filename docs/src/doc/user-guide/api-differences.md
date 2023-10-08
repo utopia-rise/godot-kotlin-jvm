@@ -47,7 +47,7 @@ Node3D.rotation = rotation
 This approach introduces a lot of boilerplate, so this binding provides a concise way of achieving the same behaviour.
 
 ```kotlin
-Node3D.rotation {
+Node3D.rotationMutate {
   y += 10f
 }
 ```

@@ -52,7 +52,7 @@ public open class StreamPeerTLS : StreamPeer() {
   public fun acceptStream(stream: StreamPeer, serverOptions: TLSOptions): GodotError {
     TransferContext.writeArguments(OBJECT to stream, OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_ACCEPT_STREAM, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -67,7 +67,7 @@ public open class StreamPeerTLS : StreamPeer() {
     TransferContext.writeArguments(OBJECT to stream, STRING to commonName, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_CONNECT_TO_STREAM,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -76,7 +76,7 @@ public open class StreamPeerTLS : StreamPeer() {
   public fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTLS_GET_STATUS, LONG)
-    return StreamPeerTLS.Status.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return StreamPeerTLS.Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -128,7 +128,7 @@ public open class StreamPeerTLS : StreamPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

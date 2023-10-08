@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
@@ -27,6 +29,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Provides parameters for [godot.PhysicsDirectSpaceState2D.intersectShape].
@@ -86,6 +89,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The motion of the shape being queried for.
    */
+  @CoreTypeLocalCopy
   public var motion: Vector2
     get() {
       TransferContext.writeArguments()
@@ -190,6 +194,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The queried shape's transform matrix.
    */
+  @CoreTypeLocalCopy
   public var transform: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -241,6 +246,54 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
     callConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D, scriptIndex)
     return true
   }
+
+  /**
+   * The motion of the shape being queried for.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsshapequeryparameters2d.motion
+   * //Your changes
+   * physicsshapequeryparameters2d.motion = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun motionMutate(block: Vector2.() -> Unit): Vector2 = motion.apply{
+      block(this)
+      motion = this
+  }
+
+
+  /**
+   * The queried shape's transform matrix.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsshapequeryparameters2d.transform
+   * //Your changes
+   * physicsshapequeryparameters2d.transform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+      block(this)
+      transform = this
+  }
+
 
   public companion object
 }

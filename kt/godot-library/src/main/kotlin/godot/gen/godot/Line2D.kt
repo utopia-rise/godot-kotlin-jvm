@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedVector2Array
@@ -84,6 +86,7 @@ public open class Line2D : Node2D() {
   /**
    * The line's color. Will not be used if a gradient is set.
    */
+  @CoreTypeLocalCopy
   public var defaultColor: Color
     get() {
       TransferContext.writeArguments()
@@ -130,7 +133,7 @@ public open class Line2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE_MODE, LONG)
-      return Line2D.LineTextureMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Line2D.LineTextureMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -144,7 +147,7 @@ public open class Line2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_JOINT_MODE, LONG)
-      return Line2D.LineJointMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Line2D.LineJointMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -158,7 +161,7 @@ public open class Line2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_BEGIN_CAP_MODE, LONG)
-      return Line2D.LineCapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -172,7 +175,7 @@ public open class Line2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_END_CAP_MODE, LONG)
-      return Line2D.LineCapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -229,6 +232,30 @@ public open class Line2D : Node2D() {
     callConstructor(ENGINECLASS_LINE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The line's color. Will not be used if a gradient is set.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = line2d.defaultColor
+   * //Your changes
+   * line2d.defaultColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun defaultColorMutate(block: Color.() -> Unit): Color = defaultColor.apply{
+      block(this)
+      defaultColor = this
+  }
+
 
   /**
    * Overwrites the position of the point at index [index] with the supplied [position].
@@ -306,7 +333,7 @@ public open class Line2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -333,7 +360,7 @@ public open class Line2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -360,7 +387,7 @@ public open class Line2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

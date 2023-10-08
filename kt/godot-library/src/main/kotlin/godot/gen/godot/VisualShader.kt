@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
@@ -43,6 +45,7 @@ public open class VisualShader : Shader() {
   /**
    * The offset vector of the whole graph.
    */
+  @CoreTypeLocalCopy
   public var graphOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -60,6 +63,30 @@ public open class VisualShader : Shader() {
     callConstructor(ENGINECLASS_VISUALSHADER, scriptIndex)
     return true
   }
+
+  /**
+   * The offset vector of the whole graph.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visualshader.graphOffset
+   * //Your changes
+   * visualshader.graphOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun graphOffsetMutate(block: Vector2.() -> Unit): Vector2 = graphOffset.apply{
+      block(this)
+      graphOffset = this
+  }
+
 
   /**
    * Sets the mode of this shader.
@@ -197,7 +224,7 @@ public open class VisualShader : Shader() {
   ): GodotError {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -323,7 +350,7 @@ public open class VisualShader : Shader() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -350,7 +377,7 @@ public open class VisualShader : Shader() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -401,7 +428,7 @@ public open class VisualShader : Shader() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

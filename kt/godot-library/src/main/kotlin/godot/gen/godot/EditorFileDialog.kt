@@ -54,7 +54,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_ACCESS, LONG)
-      return EditorFileDialog.Access.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return EditorFileDialog.Access.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -69,7 +69,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_DISPLAY_MODE,
           LONG)
-      return EditorFileDialog.DisplayMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return EditorFileDialog.DisplayMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -85,7 +85,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_FILE_MODE,
           LONG)
-      return EditorFileDialog.FileMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return EditorFileDialog.FileMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -276,7 +276,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -303,7 +303,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -326,7 +326,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

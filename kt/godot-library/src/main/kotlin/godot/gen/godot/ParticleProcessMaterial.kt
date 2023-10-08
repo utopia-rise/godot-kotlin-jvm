@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -60,7 +62,7 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_EMISSION_SHAPE, LONG)
-      return ParticleProcessMaterial.EmissionShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ParticleProcessMaterial.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -87,6 +89,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The box's extents if `emission_shape` is set to [EMISSION_SHAPE_BOX].
    */
+  @CoreTypeLocalCopy
   public var emissionBoxExtents: Vector3
     get() {
       TransferContext.writeArguments()
@@ -169,6 +172,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
+  @CoreTypeLocalCopy
   public var emissionRingAxis: Vector3
     get() {
       TransferContext.writeArguments()
@@ -231,8 +235,57 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
+   * Align Y axis of particle with the direction of its velocity.
+   */
+  public var particleFlagAlignY: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 0L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARTICLE_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARTICLE_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, particles rotate around Y axis by [angleMin].
+   */
+  public var particleFlagRotateY: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARTICLE_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARTICLE_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, particles will not move on the z axis.
+   */
+  public var particleFlagDisableZ: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARTICLE_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARTICLE_FLAG, NIL)
+    }
+
+  /**
    * Unit vector specifying the particles' emission direction.
    */
+  @CoreTypeLocalCopy
   public var direction: Vector3
     get() {
       TransferContext.writeArguments()
@@ -281,6 +334,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Gravity applied to every particle.
    */
+  @CoreTypeLocalCopy
   public var gravity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -295,10 +349,433 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
+   * Minimum equivalent of [initialVelocityMax].
+   */
+  public var initialVelocityMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum initial velocity magnitude for each particle. Direction comes from [direction] and [spread].
+   */
+  public var initialVelocityMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 0L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [angularVelocityMax].
+   */
+  public var angularVelocityMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per second.
+   *
+   * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the [godot.BaseMaterial3D] being used to draw the particle is using [godot.BaseMaterial3D.BILLBOARD_PARTICLES].
+   */
+  public var angularVelocityMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's angular velocity (rotation speed) will vary along this [godot.CurveTexture] over its lifetime.
+   */
+  public var angularVelocityCurve: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [orbitVelocityMax].
+   */
+  public var orbitVelocityMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum orbital velocity applied to each particle. Makes the particles circle around origin. Specified in number of full rotations around origin per second.
+   *
+   * Only available when [particleFlagDisableZ] is `true`.
+   */
+  public var orbitVelocityMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's orbital velocity will vary along this [godot.CurveTexture].
+   */
+  public var orbitVelocityCurve: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [linearAccelMax].
+   */
+  public var linearAccelMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum linear acceleration applied to each particle in the direction of motion.
+   */
+  public var linearAccelMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's linear acceleration will vary along this [godot.CurveTexture].
+   */
+  public var linearAccelCurve: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [radialAccelMax].
+   */
+  public var radialAccelMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 4L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum radial acceleration applied to each particle. Makes particle accelerate away from the origin or towards it if negative.
+   */
+  public var radialAccelMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 4L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's radial acceleration will vary along this [godot.CurveTexture].
+   */
+  public var radialAccelCurve: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 4L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [tangentialAccelMax].
+   */
+  public var tangentialAccelMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 5L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum tangential acceleration applied to each particle. Tangential acceleration is perpendicular to the particle's velocity giving the particles a swirling motion.
+   */
+  public var tangentialAccelMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 5L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's tangential acceleration will vary along this [godot.CurveTexture].
+   */
+  public var tangentialAccelCurve: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 5L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [dampingMax].
+   */
+  public var dampingMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 6L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * The maximum rate at which particles lose velocity. For example value of `100` means that the particle will go from `100` velocity to `0` in `1` second.
+   */
+  public var dampingMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 6L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Damping will vary along this [godot.CurveTexture].
+   */
+  public var dampingCurve: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 6L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 6L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [angleMax].
+   */
+  public var angleMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 7L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum initial rotation applied to each particle, in degrees.
+   *
+   * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the [godot.BaseMaterial3D] being used to draw the particle is using [godot.BaseMaterial3D.BILLBOARD_PARTICLES].
+   */
+  public var angleMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 7L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's rotation will be animated along this [godot.CurveTexture].
+   */
+  public var angleCurve: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 7L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 7L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [scaleMax].
+   */
+  public var scaleMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 8L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum initial scale applied to each particle.
+   */
+  public var scaleMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 8L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's scale will vary along this [godot.CurveTexture]. If a [godot.CurveXYZTexture] is supplied instead, the scale will be separated per-axis.
+   */
+  public var scaleCurve: Material?
+    get() {
+      TransferContext.writeArguments(LONG to 8L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 8L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
    * Each particle's initial color. If the [godot.GPUParticles2D]'s `texture` is defined, it will be multiplied by this color.
    *
    * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()
@@ -346,6 +823,54 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_COLOR_INITIAL_RAMP, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [hueVariationMax].
+   */
+  public var hueVariationMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 9L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum initial hue variation applied to each particle. It will shift the particle color's hue.
+   */
+  public var hueVariationMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 9L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's hue will vary along this [godot.CurveTexture].
+   */
+  public var hueVariationCurve: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 9L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 9L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
     }
 
   /**
@@ -405,6 +930,7 @@ public open class ParticleProcessMaterial : Material() {
    *
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    */
+  @CoreTypeLocalCopy
   public var turbulenceNoiseSpeed: Vector3
     get() {
       TransferContext.writeArguments()
@@ -438,6 +964,192 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
+   * Minimum turbulence influence on each particle.
+   *
+   * The actual amount of turbulence influence on each particle is calculated as a random value between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of turbulence influence from [turbulenceInfluenceOverLife].
+   */
+  public var turbulenceInfluenceMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 13L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 13L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum turbulence influence on each particle.
+   *
+   * The actual amount of turbulence influence on each particle is calculated as a random value between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of turbulence influence from [turbulenceInfluenceOverLife].
+   */
+  public var turbulenceInfluenceMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 13L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 13L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Minimum displacement of each particle's spawn position by the turbulence.
+   *
+   * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
+   */
+  public var turbulenceInitialDisplacementMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 14L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 14L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum displacement of each particle's spawn position by the turbulence.
+   *
+   * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
+   */
+  public var turbulenceInitialDisplacementMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 14L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 14L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's amount of turbulence will be influenced along this [godot.CurveTexture] over its life time.
+   */
+  public var turbulenceInfluenceOverLife: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 12L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 12L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [animSpeedMax].
+   */
+  public var animSpeedMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 10L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 10L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum particle animation speed. Animation speed of `1` means that the particles will make full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.
+   *
+   * With animation speed greater than `1`, remember to enable [godot.CanvasItemMaterial.particlesAnimLoop] property if you want the animation to repeat.
+   */
+  public var animSpeedMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 10L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 10L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's animation speed will vary along this [godot.CurveTexture].
+   */
+  public var animSpeedCurve: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 10L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 10L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
+   * Minimum equivalent of [animOffsetMax].
+   */
+  public var animOffsetMin: Float
+    get() {
+      TransferContext.writeArguments(LONG to 11L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 11L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+    }
+
+  /**
+   * Maximum animation offset that corresponds to frame index in the texture. `0` is the first frame, `1` is the last one. See [godot.CanvasItemMaterial.particlesAnimation].
+   */
+  public var animOffsetMax: Float
+    get() {
+      TransferContext.writeArguments(LONG to 11L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 11L, DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+    }
+
+  /**
+   * Each particle's animation offset will vary along this [godot.CurveTexture].
+   */
+  public var animOffsetCurve: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 11L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 11L, OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+    }
+
+  /**
    *
    */
   public var subEmitterMode: SubEmitterMode
@@ -445,7 +1157,7 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_SUB_EMITTER_MODE, LONG)
-      return ParticleProcessMaterial.SubEmitterMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ParticleProcessMaterial.SubEmitterMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -548,7 +1260,7 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_COLLISION_MODE, LONG)
-      return ParticleProcessMaterial.CollisionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ParticleProcessMaterial.CollisionMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -610,80 +1322,155 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   /**
-   * Sets the minimum value range for the given parameter.
+   * The box's extents if `emission_shape` is set to [EMISSION_SHAPE_BOX].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.emissionBoxExtents
+   * //Your changes
+   * particleprocessmaterial.emissionBoxExtents = myCoreType
+   * ``````
    */
-  public fun setParamMin(`param`: Parameter, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MIN, NIL)
+  @CoreTypeHelper
+  public open fun emissionBoxExtentsMutate(block: Vector3.() -> Unit): Vector3 =
+      emissionBoxExtents.apply{
+      block(this)
+      emissionBoxExtents = this
   }
 
-  /**
-   * Returns the minimum value range for the given parameter.
-   */
-  public fun getParamMin(`param`: Parameter): Float {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MIN, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-  }
 
   /**
-   * Sets the maximum value range for the given parameter.
+   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.emissionRingAxis
+   * //Your changes
+   * particleprocessmaterial.emissionRingAxis = myCoreType
+   * ``````
    */
-  public fun setParamMax(`param`: Parameter, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_MAX, NIL)
+  @CoreTypeHelper
+  public open fun emissionRingAxisMutate(block: Vector3.() -> Unit): Vector3 =
+      emissionRingAxis.apply{
+      block(this)
+      emissionRingAxis = this
   }
 
-  /**
-   * Returns the maximum value range for the given parameter.
-   */
-  public fun getParamMax(`param`: Parameter): Float {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_MAX, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-  }
 
   /**
-   * Sets the [godot.Texture2D] for the specified [enum Parameter].
+   * Unit vector specifying the particles' emission direction.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.direction
+   * //Your changes
+   * particleprocessmaterial.direction = myCoreType
+   * ``````
    */
-  public fun setParamTexture(`param`: Parameter, texture: Texture2D): Unit {
-    TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARAM_TEXTURE, NIL)
+  @CoreTypeHelper
+  public open fun directionMutate(block: Vector3.() -> Unit): Vector3 = direction.apply{
+      block(this)
+      direction = this
   }
 
-  /**
-   * Returns the [godot.Texture2D] used by the specified parameter.
-   */
-  public fun getParamTexture(`param`: Parameter): Texture2D? {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARAM_TEXTURE, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-  }
 
   /**
-   * If `true`, enables the specified particle flag. See [enum ParticleFlags] for options.
+   * Gravity applied to every particle.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.gravity
+   * //Your changes
+   * particleprocessmaterial.gravity = myCoreType
+   * ``````
    */
-  public fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_SET_PARTICLE_FLAG, NIL)
+  @CoreTypeHelper
+  public open fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply{
+      block(this)
+      gravity = this
   }
 
+
   /**
-   * Returns `true` if the specified particle flag is enabled. See [enum ParticleFlags] for options.
+   * Each particle's initial color. If the [godot.GPUParticles2D]'s `texture` is defined, it will be multiplied by this color.
+   *
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.color
+   * //Your changes
+   * particleprocessmaterial.color = myCoreType
+   * ``````
    */
-  public fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
-    TransferContext.writeArguments(LONG to particleFlag.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PARTICLEPROCESSMATERIAL_GET_PARTICLE_FLAG, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  @CoreTypeHelper
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
   }
+
+
+  /**
+   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to move in over time.
+   *
+   * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.turbulenceNoiseSpeed
+   * //Your changes
+   * particleprocessmaterial.turbulenceNoiseSpeed = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun turbulenceNoiseSpeedMutate(block: Vector3.() -> Unit): Vector3 =
+      turbulenceNoiseSpeed.apply{
+      block(this)
+      turbulenceNoiseSpeed = this
+  }
+
 
   public enum class Parameter(
     id: Long,
@@ -760,7 +1547,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -791,7 +1578,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -838,7 +1625,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -873,7 +1660,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -904,7 +1691,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

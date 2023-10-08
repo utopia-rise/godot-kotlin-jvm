@@ -361,7 +361,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun getError(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_ERROR, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -557,7 +557,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * **Note:** Not all properties are included. Only properties that are configured with the [PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property by overriding the [godot.Object.GetPropertyList] method in your class. You can also check how property usage is configured by calling [godot.Object.GetPropertyList]. See [enum PropertyUsageFlags] for the possible usage flags.
    */
   @JvmOverloads
-  public fun storeVar(`value`: Any, fullObjects: Boolean = false): Unit {
+  public fun storeVar(`value`: Any?, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_STORE_VAR, NIL)
   }
@@ -621,7 +621,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -656,7 +656,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -729,7 +729,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     public fun getOpenError(): GodotError {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_OPEN_ERROR, LONG)
-      return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**

@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.COLOR
@@ -14,6 +16,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [godot.core.Color] constant to be used within the visual shader graph.
@@ -27,6 +30,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
   /**
    * A [godot.core.Color] constant which represents a state of this node.
    */
+  @CoreTypeLocalCopy
   public var constant: Color
     get() {
       TransferContext.writeArguments()
@@ -44,6 +48,30 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT, scriptIndex)
     return true
   }
+
+  /**
+   * A [godot.core.Color] constant which represents a state of this node.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visualshadernodecolorconstant.constant
+   * //Your changes
+   * visualshadernodecolorconstant.constant = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun constantMutate(block: Color.() -> Unit): Color = constant.apply{
+      block(this)
+      constant = this
+  }
+
 
   public companion object
 }

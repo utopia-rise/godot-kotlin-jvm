@@ -22,7 +22,7 @@ import kotlin.Unit
 /**
  * A physics joint that attaches two 3D physics bodies at a single point, allowing them to freely rotate.
  *
- * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely rotate. For example, a [godot.RigidBody3D] can be attached to a [godot.StaticBody3D] to create a pendulum or a seesaw.
+ * A physics joint that attaches two 3D physics bodies at a single point, allowing them to freely rotate. For example, a [godot.RigidBody3D] can be attached to a [godot.StaticBody3D] to create a pendulum or a seesaw.
  */
 @GodotBaseType
 public open class PinJoint3D : Joint3D() {
@@ -71,7 +71,7 @@ public open class PinJoint3D : Joint3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -132,7 +132,7 @@ public open class AnimationTree : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_PROCESS_CALLBACK, LONG)
-      return AnimationTree.AnimationProcessCallback.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AnimationTree.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -187,7 +187,7 @@ public open class AnimationTree : Node() {
   public open fun _postProcessKeyValue(
     animation: Animation,
     track: Int,
-    `value`: Any,
+    `value`: Any?,
     _object: Object,
     objectIdx: Int,
   ): Any? {
@@ -493,7 +493,7 @@ public open class AnimationTree : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -33,12 +33,6 @@ object SignalProvider {
     @JvmStatic
     @Suppress("UNUSED_PARAMETER")
     fun <P0, P1, P2, P3, P4, P5, P6, P7> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String, p3: String, p4: String, p5: String, p6: String, p7: String) = Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(thisRef, name)
-    @JvmStatic
-    @Suppress("UNUSED_PARAMETER")
-    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String, p3: String, p4: String, p5: String, p6: String, p7: String, p8: String) = Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(thisRef, name)
-    @JvmStatic
-    @Suppress("UNUSED_PARAMETER")
-    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> signal(thisRef: Object, name: String, p0: String, p1: String, p2: String, p3: String, p4: String, p5: String, p6: String, p7: String, p8: String, p9: String) = Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(thisRef, name)
 }
 
 class SignalDelegate<T : Signal>(val factory: () -> T) {
@@ -136,35 +130,4 @@ fun <P0, P1, P2, P3, P4, P5, P6, P7> signal(
         p7: String
 ): SignalDelegateProvider<Signal8<P0, P1, P2, P3, P4, P5, P6, P7>> {
     return SignalDelegateProvider(::Signal8)
-}
-
-@Suppress("UNUSED_PARAMETER")
-fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> signal(
-        p0: String,
-        p1: String,
-        p2: String,
-        p3: String,
-        p4: String,
-        p5: String,
-        p6: String,
-        p7: String,
-        p8: String
-): SignalDelegateProvider<Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>> {
-    return SignalDelegateProvider(::Signal9)
-}
-
-@Suppress("UNUSED_PARAMETER")
-fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> signal(
-        p0: String,
-        p1: String,
-        p2: String,
-        p3: String,
-        p4: String,
-        p5: String,
-        p6: String,
-        p7: String,
-        p8: String,
-        p9: String
-): SignalDelegateProvider<Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>> {
-    return SignalDelegateProvider(::Signal10)
 }

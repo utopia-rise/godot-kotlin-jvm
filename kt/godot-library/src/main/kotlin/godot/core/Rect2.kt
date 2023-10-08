@@ -1,9 +1,9 @@
 package godot.core
 
 import godot.Side
+import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import godot.util.RealT
-import org.w3c.dom.css.Rect
 import kotlin.math.max
 import kotlin.math.min
 
@@ -26,6 +26,7 @@ class Rect2(
      * Warning: Writing position.x = 2 will only modify a copy, not the actual object.
      * To modify it, use position().
      * */
+    @CoreTypeLocalCopy
     var position
         get() = Point2(_position)
         set(value) {
@@ -49,6 +50,7 @@ class Rect2(
      * Warning: Writing size.x = 2 will only modify a copy, not the actual object.
      * To modify it, use size().
      * */
+    @CoreTypeLocalCopy
     var size
         get() = Size2(_size)
         set(value) {
@@ -72,6 +74,7 @@ class Rect2(
      * Warning: Writing end.x = 2 will only modify a copy, not the actual object.
      * To modify it, use end().
      * */
+    @CoreTypeLocalCopy
     inline var end: Vector2
         get() = _position + _size
         set(value) {

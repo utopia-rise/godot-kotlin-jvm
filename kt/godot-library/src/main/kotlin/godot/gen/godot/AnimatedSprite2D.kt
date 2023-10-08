@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantType.BOOL
@@ -180,6 +182,7 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * The texture's drawing offset.
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -226,6 +229,30 @@ public open class AnimatedSprite2D : Node2D() {
     callConstructor(ENGINECLASS_ANIMATEDSPRITE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The texture's drawing offset.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = animatedsprite2d.offset
+   * //Your changes
+   * animatedsprite2d.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+      block(this)
+      offset = this
+  }
+
 
   /**
    * Returns `true` if an animation is currently playing (even if [speedScale] and/or `custom_speed` are `0`).

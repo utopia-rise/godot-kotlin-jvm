@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.RID
@@ -87,6 +89,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The inverse of the inertia of the body.
    */
+  @CoreTypeLocalCopy
   public val inverseInertia: Vector3
     get() {
       TransferContext.writeArguments()
@@ -98,6 +101,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The inverse of the inertia tensor of the body.
    */
+  @CoreTypeLocalCopy
   public val inverseInertiaTensor: Basis
     get() {
       TransferContext.writeArguments()
@@ -109,6 +113,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The total gravity vector being currently applied to this body.
    */
+  @CoreTypeLocalCopy
   public val totalGravity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -120,6 +125,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's center of mass position relative to the body's center in the global coordinate system.
    */
+  @CoreTypeLocalCopy
   public val centerOfMass: Vector3
     get() {
       TransferContext.writeArguments()
@@ -131,6 +137,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's center of mass position in the body's local coordinate system.
    */
+  @CoreTypeLocalCopy
   public val centerOfMassLocal: Vector3
     get() {
       TransferContext.writeArguments()
@@ -142,6 +149,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    *
    */
+  @CoreTypeLocalCopy
   public val principalInertiaAxes: Basis
     get() {
       TransferContext.writeArguments()
@@ -153,6 +161,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's rotational velocity in *radians* per second.
    */
+  @CoreTypeLocalCopy
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -169,6 +178,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's linear velocity in units per second.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -201,6 +211,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's transformation matrix.
    */
+  @CoreTypeLocalCopy
   public var transform: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -218,6 +229,78 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE3D, scriptIndex)
     return true
   }
+
+  /**
+   * The body's rotational velocity in *radians* per second.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsdirectbodystate3d.angularVelocity
+   * //Your changes
+   * physicsdirectbodystate3d.angularVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+      block(this)
+      angularVelocity = this
+  }
+
+
+  /**
+   * The body's linear velocity in units per second.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsdirectbodystate3d.linearVelocity
+   * //Your changes
+   * physicsdirectbodystate3d.linearVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+      block(this)
+      linearVelocity = this
+  }
+
+
+  /**
+   * The body's transformation matrix.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsdirectbodystate3d.transform
+   * //Your changes
+   * physicsdirectbodystate3d.transform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
+      block(this)
+      transform = this
+  }
+
 
   /**
    * Returns the body's velocity at the given relative position, including both translation and rotation.

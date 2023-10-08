@@ -102,13 +102,13 @@ public open class WebSocketPeer : PacketPeer() {
   public fun connectToUrl(url: String, tlsClientOptions: TLSOptions? = null): GodotError {
     TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_CONNECT_TO_URL, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun acceptStream(stream: StreamPeer): GodotError {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_ACCEPT_STREAM, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmOverloads
@@ -116,13 +116,13 @@ public open class WebSocketPeer : PacketPeer() {
       WebSocketPeer.WriteMode.WRITE_MODE_BINARY): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to message, LONG to writeMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SEND, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun sendText(message: String): GodotError {
     TransferContext.writeArguments(STRING to message)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SEND_TEXT, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun wasStringPacket(): Boolean {
@@ -186,7 +186,7 @@ public open class WebSocketPeer : PacketPeer() {
   public fun getReadyState(): State {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_READY_STATE, LONG)
-    return WebSocketPeer.State.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return WebSocketPeer.State.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun getCloseCode(): Int {
@@ -215,7 +215,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -234,7 +234,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

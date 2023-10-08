@@ -53,7 +53,7 @@ public open class JSONRPC : Object() {
    * [action]: The action to be run, as a Dictionary in the form of a JSON-RPC request or notification.
    */
   @JvmOverloads
-  public fun processAction(action: Any, recurse: Boolean = false): Any? {
+  public fun processAction(action: Any?, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_ACTION, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -79,8 +79,8 @@ public open class JSONRPC : Object() {
    */
   public fun makeRequest(
     method: String,
-    params: Any,
-    id: Any,
+    params: Any?,
+    id: Any?,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params, ANY to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_REQUEST, DICTIONARY)
@@ -94,7 +94,7 @@ public open class JSONRPC : Object() {
    *
    * - [id]: The ID of the request this response is targeted to.
    */
-  public fun makeResponse(result: Any, id: Any): Dictionary<Any?, Any?> {
+  public fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -107,7 +107,7 @@ public open class JSONRPC : Object() {
    *
    * - [params]: An array or dictionary of parameters being passed to the method.
    */
-  public fun makeNotification(method: String, params: Any): Dictionary<Any?, Any?> {
+  public fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_NOTIFICATION,
         DICTIONARY)
@@ -166,7 +166,7 @@ public open class JSONRPC : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

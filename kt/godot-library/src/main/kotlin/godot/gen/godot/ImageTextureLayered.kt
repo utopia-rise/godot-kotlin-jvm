@@ -41,7 +41,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
     TransferContext.writeArguments(ARRAY to images)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_CREATE_FROM_IMAGES, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

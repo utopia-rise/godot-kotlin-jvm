@@ -14,7 +14,7 @@ import godot.util.nullptr
 
 
 object GD : GDMath, GDCore, GDRandom, GDPrint {
-    override var rng: RandomNumberGenerator? by godotStatic {
+    override var rng: RandomNumberGenerator by godotStatic {
         RandomNumberGenerator()
     }
 

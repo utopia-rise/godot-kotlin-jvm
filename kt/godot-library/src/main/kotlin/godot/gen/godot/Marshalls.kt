@@ -38,7 +38,7 @@ public object Marshalls : Object() {
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
-  public fun variantToBase64(variant: Any, fullObjects: Boolean = false): String {
+  public fun variantToBase64(variant: Any?, fullObjects: Boolean = false): String {
     TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_VARIANT_TO_BASE64, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

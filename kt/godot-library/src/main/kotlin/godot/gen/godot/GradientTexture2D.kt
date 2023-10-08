@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -18,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -90,7 +93,7 @@ public open class GradientTexture2D : Texture2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL, LONG)
-      return GradientTexture2D.Fill.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GradientTexture2D.Fill.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -100,6 +103,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The initial offset used to fill the texture specified in UV coordinates.
    */
+  @CoreTypeLocalCopy
   public var fillFrom: Vector2
     get() {
       TransferContext.writeArguments()
@@ -116,6 +120,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The final offset used to fill the texture specified in UV coordinates.
    */
+  @CoreTypeLocalCopy
   public var fillTo: Vector2
     get() {
       TransferContext.writeArguments()
@@ -137,7 +142,7 @@ public open class GradientTexture2D : Texture2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_REPEAT,
           LONG)
-      return GradientTexture2D.Repeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GradientTexture2D.Repeat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -148,6 +153,54 @@ public open class GradientTexture2D : Texture2D() {
     callConstructor(ENGINECLASS_GRADIENTTEXTURE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The initial offset used to fill the texture specified in UV coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gradienttexture2d.fillFrom
+   * //Your changes
+   * gradienttexture2d.fillFrom = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun fillFromMutate(block: Vector2.() -> Unit): Vector2 = fillFrom.apply{
+      block(this)
+      fillFrom = this
+  }
+
+
+  /**
+   * The final offset used to fill the texture specified in UV coordinates.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gradienttexture2d.fillTo
+   * //Your changes
+   * gradienttexture2d.fillTo = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun fillToMutate(block: Vector2.() -> Unit): Vector2 = fillTo.apply{
+      block(this)
+      fillTo = this
+  }
+
 
   public enum class Fill(
     id: Long,
@@ -172,7 +225,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -199,7 +252,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

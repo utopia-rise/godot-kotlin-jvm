@@ -138,7 +138,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_POLL, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -155,7 +155,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   ): GodotError {
     TransferContext.writeArguments(LONG to peer.toLong(), OBJECT to _object, STRING_NAME to method, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_RPC, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -163,11 +163,11 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    *
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI behavior via [godot.MultiplayerAPIExtension].
    */
-  public fun objectConfigurationAdd(_object: Object, configuration: Any): GodotError {
+  public fun objectConfigurationAdd(_object: Object, configuration: Any?): GodotError {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_OBJECT_CONFIGURATION_ADD, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -175,11 +175,11 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    *
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI behavior via [godot.MultiplayerAPIExtension].
    */
-  public fun objectConfigurationRemove(_object: Object, configuration: Any): GodotError {
+  public fun objectConfigurationRemove(_object: Object, configuration: Any?): GodotError {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_OBJECT_CONFIGURATION_REMOVE, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -215,7 +215,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

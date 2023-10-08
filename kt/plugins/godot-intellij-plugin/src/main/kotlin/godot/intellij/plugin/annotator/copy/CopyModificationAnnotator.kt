@@ -3,251 +3,178 @@ package godot.intellij.plugin.annotator.copy
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
+import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
-import com.intellij.psi.search.searches.ReferencesSearch
+import com.intellij.psi.PsiField
+import com.intellij.psi.PsiMethod
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.CORE_TYPE_HELPER_ANNOTATION
+import godot.intellij.plugin.data.model.CORE_TYPE_LOCAL_COPY_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.godotCorePackage
-import org.jetbrains.kotlin.descriptors.impl.ClassConstructorDescriptorImpl
-import org.jetbrains.kotlin.idea.base.util.module
+import org.jetbrains.kotlin.asJava.toLightElements
 import org.jetbrains.kotlin.idea.caches.resolve.analyze
 import org.jetbrains.kotlin.idea.references.mainReference
-import org.jetbrains.kotlin.idea.util.findAnnotation
+import org.jetbrains.kotlin.idea.references.resolveToDescriptors
 
-import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
-import org.jetbrains.kotlin.js.resolve.diagnostics.findPsi
 import org.jetbrains.kotlin.lexer.KtSingleValueToken
-import org.jetbrains.kotlin.name.FqName
 
-import org.jetbrains.kotlin.psi.KtAnnotated
-import org.jetbrains.kotlin.psi.KtArrayAccessExpression
 import org.jetbrains.kotlin.psi.KtBinaryExpression
-import org.jetbrains.kotlin.psi.KtCallExpression
-import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtConstructor
+import org.jetbrains.kotlin.psi.KtBlockExpression
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
-import org.jetbrains.kotlin.psi.KtExpression
-import org.jetbrains.kotlin.psi.KtNameReferenceExpression
-import org.jetbrains.kotlin.psi.KtNamedFunction
-import org.jetbrains.kotlin.psi.KtPostfixExpression
-import org.jetbrains.kotlin.psi.KtProperty
-import org.jetbrains.kotlin.psi.KtReferenceExpression
-import org.jetbrains.kotlin.psi.KtReturnExpression
-import org.jetbrains.kotlin.psi.psiUtil.referenceExpression
-import org.jetbrains.kotlin.resolve.bindingContextUtil.getReferenceTargets
+import org.jetbrains.kotlin.psi.KtElement
 import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
-import org.jetbrains.kotlin.types.KotlinType
 
 class CopyModificationAnnotator : Annotator {
     private val singleValueTokensToCheck = listOf("=", "+=", "-=", "*=", "/=", "%=")
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
+        return // TODO: enable again after fixing the case `transformMutate { basis.x = Vector3.ZERO }` being flagged falsely as not allowed
         if (!element.isInGodotRoot()) return
 
-        val isCoreTypeCopyAssignment = when (element) {
+        val isCoreTypeCopyAssignment = when(element) {
+            // examples:
+            //      something = 1
+            //      something += 2
             is KtBinaryExpression -> {
-                val tokenType = element.operationToken
-                if (tokenType is KtSingleValueToken && singleValueTokensToCheck.contains(tokenType.value)) {
-                    element.left?.let { leftExpression ->
-                        if (shouldEvaluate(leftExpression)) {
-                            evaluateExpression(leftExpression)
+                val operation = element.operationToken
+
+                if (operation is KtSingleValueToken && singleValueTokensToCheck.contains(operation.value)) {
+                    element.left?.let { leftOperand ->
+                        if (leftOperand is KtDotQualifiedExpression) {
+                            hasLocalCopyAnnotationInDotQualifiedChain(leftOperand)
                         } else false
                     } ?: false
                 } else false
             }
-            is KtPostfixExpression -> {
-                if (shouldEvaluate(element.baseExpression)) {
-                    element.baseExpression?.let { evaluateExpression(it) } ?: false
-                } else false
-            }
-            /*
-              check if a core type helper function is used on a copied core type
-              example:
-              globalTransform.origin {
-                  x += 3
-              }
-
-              correct would be:
-              globalTransform {
-                  origin {
-                      x += 3
-                  }
-              }
-              or:
-              globalTransform {
-                  origin.x += 3
-              }
-             */
-            is KtDotQualifiedExpression -> {
-                val receiverType = element.receiverExpression.resolveTypeSafe()
-
-                receiverType?.getKotlinTypeFqName(false) != "$godotCorePackage.${GodotTypes.dictionary}" &&
-                    receiverType?.getKotlinTypeFqName(false) != "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" &&
-                    receiverType?.isCoreType() == true &&
-                    (((element.selectorExpression as? KtCallExpression)?.calleeExpression as? KtReferenceExpression)?.mainReference?.resolve() as? KtAnnotated)?.findAnnotation(FqName(CORE_TYPE_HELPER_ANNOTATION)) != null
-            }
+            // examples:
+            //      |-this-------|
+            //      something.else.apply { x = 1.0 }
+            //                |-or this-|
+            //      something.else.apply { x = 1.0 }
+            is KtDotQualifiedExpression -> hasLocalCopyAnnotationInDotQualifiedChain(element)
             else -> false
         }
 
         if (isCoreTypeCopyAssignment) {
+            val relevantParent = getRelevantParent(element)
             holder.registerProblem(
                 GodotPluginBundle.message("problem.general.modificationOfCoreTypeCopy"),
-                element,
+                relevantParent ?: element,
                 problemHighlightType = ProblemHighlightType.WEAK_WARNING
             )
         }
     }
 
-    private fun shouldEvaluate(expression: KtExpression?): Boolean {
+    /**
+     * Checks whether a local copy of a core type is mutated
+     *
+     * This function makes the following assumptions:
+     * - Checks have already taken place that an assignment takes place on a dotQualifiedExpression.
+     *
+     *      Example: `position.x += 1` here this function expects to be called for `position.x` and the callee already
+     *      checked for the assigment
+     *
+     * Exampes:
+     * ```kotlin
+     *     position += Vector3.FORWARD // allowed
+     *     position += Vector3.FORWARD // allowed
+     *     position.x += 1 // not allowed
+     *
+     *     val intermediate = position
+     *     intermediate.x += 1 // allowed
+     *
+     *     val intermediate2 = position
+     *     intermediate.x += 1 // allowed
+     *     position = intermediate2
+     *
+     *     transform.basis.x { y = 1.0 } // not allowed
+     *     transform.basis.x { y = 1.0 } // not allowed
+     *     transform.basis { x = Vector3.ZERO } // not allowed
+     *
+     *     transform = transform.apply { basis { x { y = 1.0 } } } // allowed
+     *     transform = transform.apply { basis { x = Vector3.ZERO } } // allowed
+     *
+     *     node3D.position.x = 1.0 // not allowed
+     * ```
+     */
+    private tailrec fun hasLocalCopyAnnotationInDotQualifiedChain(dotQualifiedExpression: KtDotQualifiedExpression): Boolean {
+        // the selector expression is the right hand side of a dot qualifier expression: `left.right`
+        val selectorExpression = dotQualifiedExpression.selectorExpression ?: return false
+        // the receiver expression is the left hand side of a dot qualifier expression: `left.right`
+        val receiverExpression = dotQualifiedExpression.receiverExpression
+
+        // annotations on the selector expression's reference (usually a property of an object)
+        val selectorAnnotations = selectorExpression
+            .mainReference
+            ?.resolveToDescriptors(selectorExpression.analyze(BodyResolveMode.PARTIAL))
+            ?.flatMap { declarationDescriptor -> declarationDescriptor.annotations }
+            ?.mapNotNull { annotationDescriptor -> annotationDescriptor.fqName?.asString() }
+            ?: emptyList()
+
+        // annotations on the receiver expression's reference (usually a property of an object)
+        val receiverAnnotations = receiverExpression
+            .mainReference
+            ?.resolveToDescriptors(selectorExpression.analyze(BodyResolveMode.PARTIAL))
+            ?.flatMap { declarationDescriptor -> declarationDescriptor.annotations }
+            ?.mapNotNull { annotationDescriptor -> annotationDescriptor.fqName?.asString() }
+            ?: emptyList()
+
+        val selectorReferenceHasLocalCopyAnnotation = selectorAnnotations.contains(CORE_TYPE_LOCAL_COPY_ANNOTATION)
+        val selectorReferenceHasCoreTypeHelperAnnotation = selectorAnnotations.contains(CORE_TYPE_HELPER_ANNOTATION)
+
+        val receiverReferenceHasLocalCopyAnnotation = receiverAnnotations.contains(CORE_TYPE_LOCAL_COPY_ANNOTATION)
+
         return when {
-            expression is KtDotQualifiedExpression &&
-                expression.receiverExpression.resolveTypeSafe()?.isCoreType() == false -> false
-            expression is KtArrayAccessExpression &&
-                expression.arrayExpression?.resolveTypeSafe()?.isCoreType() == false -> false
-            else -> true
-        }
-    }
-
-    private fun evaluateExpression(expression: KtExpression): Boolean {
-        return when (expression) {
-            is KtDotQualifiedExpression -> when (val receiverExpression = expression.receiverExpression) {
-                is KtNameReferenceExpression -> evaluateKtNameReferenceExpression(receiverExpression)
-                is KtCallExpression ->
-                    if (expression.receiverExpression is KtDotQualifiedExpression &&
-                        (expression.receiverExpression as KtDotQualifiedExpression).receiverExpression.resolveTypeSafe()
-                            ?.isPoolArray() == true
-                    ) {
-                        false
-                    } else {
-                        evaluateKtCallExpression(receiverExpression)
-                    }
-                is KtDotQualifiedExpression -> if (receiverExpression.receiverExpression.resolveTypeSafe()?.isPoolArray() != true) {
-                    if (receiverExpression.isConstructorCall()) {
-                        receiverExpression.selectorExpression?.let { evaluateExpression(it) } ?: false
-                    } else {
-                        // call chain check
-                        //
-                        // example:
-                        // val property = someClass.vectorProperty.x
-                        // fun modificationFunction() {
-                        //     property = 1f
-                        // }
-                        //
-                        // this is wrong as we're modifying a property of "by value" core type vectorProperty without reassigning it
-                        if (receiverExpression.receiverExpression.resolveTypeSafe()?.isCoreType() == true && receiverExpression.selectorExpression is KtReferenceExpression) {
-                            true
-                        } else {
-                            evaluateExpression(receiverExpression)
-                        }
-                    }
-                } else {
-                    false
-                }
-
-                is KtArrayAccessExpression ->
-                    receiverExpression
-                        .arrayExpression
-                        ?.resolveTypeSafe()
-                        ?.isPoolArray() != true && expression
-                        .receiverExpression
-                        .resolveTypeSafe()
-                        ?.isCoreType() == true
-                else ->
-                    expression
-                        .receiverExpression
-                        .resolveTypeSafe()
-                        ?.isCoreType() == true && expression.receiverExpression.resolveTypeSafe()?.isPoolArray() != true
-            }
-            is KtArrayAccessExpression -> when (val arrayExpression = expression.arrayExpression) {
-                is KtNameReferenceExpression -> evaluateKtNameReferenceExpression(arrayExpression)
-                is KtCallExpression -> evaluateKtCallExpression(arrayExpression)
-                else -> arrayExpression?.resolveTypeSafe()?.isCoreType() ?: false
-            }
-            is KtNameReferenceExpression -> evaluateKtNameReferenceExpression(expression)
-            is KtCallExpression -> evaluateKtCallExpression(expression)
+            // when the selector reference is a local copy we're definitely modifying a copy (see assumption)
+            selectorReferenceHasLocalCopyAnnotation -> true
+            // when the receiver has a local copy annotation and the selector has a core type helper annotation, it
+            // means that we use the coretype helper on a local copy which is not allowed.
+            // Example: `transform.basis { x = Vector3.ZERO }` as `transform` is already a copy
+            receiverReferenceHasLocalCopyAnnotation && selectorReferenceHasCoreTypeHelperAnnotation -> true
+            // neither the receiver nor the selector had any annotations we care about, so we walk the dot call chain up once more
+            receiverExpression is KtDotQualifiedExpression -> hasLocalCopyAnnotationInDotQualifiedChain(receiverExpression)
+            // in most cases at this point we are at the end of the dot call chain
             else -> false
         }
     }
 
-    private fun evaluateKtNameReferenceExpression(ktNameReferenceExpression: KtNameReferenceExpression): Boolean {
-        val resolvedExpression = ktNameReferenceExpression.mainReference.resolve()
-        return if (resolvedExpression is KtProperty) {
-            val isUsedAsAssignmentLater = ReferencesSearch.search(resolvedExpression).any { psiReference ->
-                val referenceElement = psiReference.element
-                val expressionWithUsage = referenceElement.parent
-                expressionWithUsage is KtBinaryExpression && expressionWithUsage.right == referenceElement
-            }
 
-            when (val initializer = resolvedExpression.initializer) {
-                is KtCallExpression -> !isUsedAsAssignmentLater && evaluateKtCallExpression(initializer)
-                is KtDotQualifiedExpression ->
-                    if (initializer.receiverExpression.isConstructorCall()) {
-                        !isUsedAsAssignmentLater && initializer.selectorExpression?.let { evaluateExpression(it) } ?: false
-                    } else {
-                        !isUsedAsAssignmentLater && evaluateExpression(initializer)
-                    }
-                null ->
-                    !isUsedAsAssignmentLater && resolvedExpression.module?.name?.contains("godot-library") == true
-                else ->
-                    !initializer.isConstructorCall() &&
-                        initializer !is KtNameReferenceExpression &&
-                        initializer.resolveTypeSafe()?.isCoreType() == true &&
-                        !isUsedAsAssignmentLater
-            }
-        } else false
-    }
+    /**
+     * Returns the topmost relevant parent or null if no suitable relevant parent was found.
+     *
+     * The following elements are considered relevant:
+     * - Class
+     * - Property
+     * - Field
+     * - Method
+     * - MethodBody
+     *
+     * This is primarily needed to provide an anchor for annotation holder in expressions where the same problem might
+     * arise multiple times.
+     *
+     * For example local copy modifications of core types in dot call chains: `transform.basis.x` here without the
+     * common parent, the error would be displayed twice for this single line of code. Once for the element `transform`
+     * and once for the element `basis`. But with this function, we use the topmost relevant parent which is the whole
+     * line. And thus even as we add the error twice, we add it twice for the same psi element and thus it is only
+     * displayed once.
+     */
+    private tailrec fun getRelevantParent(element: PsiElement, depth: Int = 0, maxDepth: Int = 50): PsiElement? {
+        val parent = element.parent
 
-    private fun evaluateKtCallExpression(ktCallExpression: KtCallExpression): Boolean {
-        return when (val function = (ktCallExpression.calleeExpression as? KtReferenceExpression)?.mainReference?.resolve()) {
-            is KtNamedFunction ->
-                if (function.hasBlockBody()) {
-                    function
-                        .bodyBlockExpression
-                        ?.statements
-                        ?.filterIsInstance<KtReturnExpression>()
-                        ?.map { it.returnedExpression }
-                        ?.mapNotNull { it }
-                        ?.any { evaluateExpression(it) }
-                        ?: false
-                } else {
-                    function.bodyExpression?.let { evaluateExpression(it) } ?: false
-                }
-            is KtClass -> function.module?.name?.contains("godot-library") == true
-            else -> false
+        val localElement = if (parent is KtElement) {
+            parent.toLightElements().firstOrNull() ?: parent
+        } else {
+            parent
+        }
+        return when(localElement) {
+            is KtBlockExpression -> element
+            is PsiClass -> element
+            is PsiMethod -> element
+            is PsiField -> element
+            else -> if (depth < maxDepth) {
+                getRelevantParent(localElement, depth + 1)
+            } else null
         }
     }
 }
-
-private fun KtExpression.isConstructorCall(): Boolean {
-    val bindingContext = analyze(BodyResolveMode.FULL)
-    return referenceExpression()
-        ?.getReferenceTargets(bindingContext)
-        ?.firstOrNull()
-        ?.let { declarationDescriptor ->
-            val psi = declarationDescriptor.findPsi()
-            psi is KtConstructor<*> || declarationDescriptor is ClassConstructorDescriptorImpl
-        } ?: false
-}
-
-private fun KotlinType.isCoreType(): Boolean = coreTypes
-    .contains(getKotlinTypeFqName(false).removeSuffix("?"))
-
-private fun KotlinType.isPoolArray(): Boolean = packedArrays
-    .contains(getKotlinTypeFqName(false).removeSuffix("?"))
-
-private fun KtExpression.resolveTypeSafe(): KotlinType? {
-    return try {
-        // implementation of now deprecated resolveType()
-        analyze(BodyResolveMode.PARTIAL).getType(this)
-    } catch (e: NullPointerException) {
-        null
-    }
-}
-
-private val coreTypes = GodotTypes.coreTypes.filter { !it.contains("packed", true) }
-
-private val packedArrays = GodotTypes.coreTypes.filter { it.contains("packed", true) }

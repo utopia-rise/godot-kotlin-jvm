@@ -92,7 +92,7 @@ public open class TextureLayered : Texture() {
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_FORMAT, LONG)
-    return Image.Format.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -102,7 +102,7 @@ public open class TextureLayered : Texture() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYERED_TYPE,
         LONG)
-    return TextureLayered.LayeredType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextureLayered.LayeredType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -174,7 +174,7 @@ public open class TextureLayered : Texture() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

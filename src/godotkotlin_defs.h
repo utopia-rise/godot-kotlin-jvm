@@ -3,6 +3,7 @@
 
 // keep in sync with godot.tools.common.constants.FileExtensions.GodotKotlinJvm.registrationFile
 #define GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION "gdj"
+#define GODOT_KOTLIN_SCRIPT_EXTENSION "kt"
 #define GODOT_KOTLIN_PACKAGE "godot"
 #define GODOT_KOTLIN_IDENTATION "    "
 

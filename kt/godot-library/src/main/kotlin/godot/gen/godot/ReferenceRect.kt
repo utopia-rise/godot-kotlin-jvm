@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -18,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A rectangle hint for designing UIs.
@@ -29,6 +32,7 @@ public open class ReferenceRect : Control() {
   /**
    * Sets the border color of the [godot.ReferenceRect].
    */
+  @CoreTypeLocalCopy
   public var borderColor: Color
     get() {
       TransferContext.writeArguments()
@@ -78,6 +82,30 @@ public open class ReferenceRect : Control() {
     callConstructor(ENGINECLASS_REFERENCERECT, scriptIndex)
     return true
   }
+
+  /**
+   * Sets the border color of the [godot.ReferenceRect].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = referencerect.borderColor
+   * //Your changes
+   * referencerect.borderColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply{
+      block(this)
+      borderColor = this
+  }
+
 
   public companion object
 }

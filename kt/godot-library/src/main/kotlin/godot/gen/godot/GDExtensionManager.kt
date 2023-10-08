@@ -37,7 +37,7 @@ public object GDExtensionManager : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_LOAD_EXTENSION,
         LONG)
-    return GDExtensionManager.LoadStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -47,7 +47,7 @@ public object GDExtensionManager : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_RELOAD_EXTENSION,
         LONG)
-    return GDExtensionManager.LoadStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -57,7 +57,7 @@ public object GDExtensionManager : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSIONMANAGER_UNLOAD_EXTENSION,
         LONG)
-    return GDExtensionManager.LoadStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -121,7 +121,7 @@ public object GDExtensionManager : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 }

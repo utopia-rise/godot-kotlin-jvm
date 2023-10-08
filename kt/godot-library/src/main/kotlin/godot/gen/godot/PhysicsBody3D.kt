@@ -38,6 +38,90 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
+  /**
+   * Lock the body's linear movement in the X axis.
+   */
+  public var axisLockLinearX: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
+    }
+
+  /**
+   * Lock the body's linear movement in the Y axis.
+   */
+  public var axisLockLinearY: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
+    }
+
+  /**
+   * Lock the body's linear movement in the Z axis.
+   */
+  public var axisLockLinearZ: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 4L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
+    }
+
+  /**
+   * Lock the body's rotation in the X axis.
+   */
+  public var axisLockAngularX: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 8L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 8L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
+    }
+
+  /**
+   * Lock the body's rotation in the Y axis.
+   */
+  public var axisLockAngularY: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 16L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 16L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
+    }
+
+  /**
+   * Lock the body's rotation in the Z axis.
+   */
+  public var axisLockAngularZ: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 32L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 32L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICSBODY3D, scriptIndex)
     return true
@@ -94,23 +178,6 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM3D to from, VECTOR3 to motion, OBJECT to collision, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision, LONG to maxCollisions.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_TEST_MOVE, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
-
-  /**
-   * Locks or unlocks the specified linear or rotational [axis] depending on the value of [lock].
-   */
-  public fun setAxisLock(axis: PhysicsServer3D.BodyAxis, lock: Boolean): Unit {
-    TransferContext.writeArguments(LONG to axis.id, BOOL to lock)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
-  }
-
-  /**
-   * Returns `true` if the specified linear or rotational [axis] is locked.
-   */
-  public fun getAxisLock(axis: PhysicsServer3D.BodyAxis): Boolean {
-    TransferContext.writeArguments(LONG to axis.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 

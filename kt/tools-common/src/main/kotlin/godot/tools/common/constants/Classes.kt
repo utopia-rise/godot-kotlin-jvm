@@ -39,6 +39,7 @@ object GodotKotlinJvmTypes{
     object Annotations {
         const val godotBaseType = "GodotBaseType"
         const val coreTypeHelper = "CoreTypeHelper"
+        const val coreTypeLocalCopy = "CoreTypeLocalCopy"
 
         const val registerClass = "RegisterClass"
         const val registerConstructor = "RegisterConstructor"
@@ -81,6 +82,7 @@ object GodotTypes {
     const val nodePath = "NodePath"
     const val node = "Node"
     const val plane = "Plane"
+    const val coreType = "CoreType"
     const val packedByteArray = "PackedByteArray"
     const val packedInt32Array = "PackedInt32Array"
     const val packedInt64Array = "PackedInt64Array"
@@ -228,6 +230,7 @@ val VARIANT_TYPE_ANY = ClassName(variantTypePackage, "ANY")
 
 val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.godotBaseType)
 val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeHelper)
+val CORE_TYPE_LOCAL_COPY = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeLocalCopy)
 
 val TRANSFER_CONTEXT = ClassName(godotMemoryPackage, GodotKotlinJvmTypes.transferContext)
 val TYPE_MANAGER = ClassName(godotCorePackage, GodotKotlinJvmTypes.typeManager)

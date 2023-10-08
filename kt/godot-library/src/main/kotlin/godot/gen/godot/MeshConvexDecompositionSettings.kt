@@ -188,7 +188,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS_GET_MODE, LONG)
-      return MeshConvexDecompositionSettings.Mode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return MeshConvexDecompositionSettings.Mode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -270,7 +270,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

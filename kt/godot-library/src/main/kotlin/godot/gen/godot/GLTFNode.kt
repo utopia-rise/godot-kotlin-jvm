@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
@@ -52,6 +54,7 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_HEIGHT, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var xform: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -107,6 +110,7 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_SKELETON, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var position: Vector3
     get() {
       TransferContext.writeArguments()
@@ -118,6 +122,7 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_POSITION, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var rotation: Quaternion
     get() {
       TransferContext.writeArguments()
@@ -129,6 +134,7 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_ROTATION, NIL)
     }
 
+  @CoreTypeLocalCopy
   public var scale: Vector3
     get() {
       TransferContext.writeArguments()
@@ -168,13 +174,101 @@ public open class GLTFNode : Resource() {
     return true
   }
 
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfnode.xform
+   * //Your changes
+   * gltfnode.xform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun xformMutate(block: Transform3D.() -> Unit): Transform3D = xform.apply{
+      block(this)
+      xform = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfnode.position
+   * //Your changes
+   * gltfnode.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply{
+      block(this)
+      position = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfnode.rotation
+   * //Your changes
+   * gltfnode.rotation = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun rotationMutate(block: Quaternion.() -> Unit): Quaternion = rotation.apply{
+      block(this)
+      rotation = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfnode.scale
+   * //Your changes
+   * gltfnode.scale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scaleMutate(block: Vector3.() -> Unit): Vector3 = scale.apply{
+      block(this)
+      scale = this
+  }
+
+
   public fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_ADDITIONAL_DATA, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
-  public fun setAdditionalData(extensionName: StringName, additionalData: Any): Unit {
+  public fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_ADDITIONAL_DATA, NIL)
   }

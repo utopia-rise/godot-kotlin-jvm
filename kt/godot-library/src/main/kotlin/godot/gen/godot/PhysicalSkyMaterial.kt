@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -19,6 +21,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [godot.Sky] [godot.Material] used for a physically based sky.
@@ -50,6 +53,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Controls the [godot.core.Color] of the [godot.Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering). While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [godot.core.Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
    */
+  @CoreTypeLocalCopy
   public var rayleighColor: Color
     get() {
       TransferContext.writeArguments()
@@ -98,6 +102,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Controls the [godot.core.Color] of the [godot.Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering) effect. While not physically accurate, this allows for the creation of alien-looking planets.
    */
+  @CoreTypeLocalCopy
   public var mieColor: Color
     get() {
       TransferContext.writeArguments()
@@ -146,6 +151,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Modulates the [godot.core.Color] on the bottom half of the sky to represent the ground.
    */
+  @CoreTypeLocalCopy
   public var groundColor: Color
     get() {
       TransferContext.writeArguments()
@@ -211,6 +217,78 @@ public open class PhysicalSkyMaterial : Material() {
     callConstructor(ENGINECLASS_PHYSICALSKYMATERIAL, scriptIndex)
     return true
   }
+
+  /**
+   * Controls the [godot.core.Color] of the [godot.Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering). While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [godot.core.Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalskymaterial.rayleighColor
+   * //Your changes
+   * physicalskymaterial.rayleighColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun rayleighColorMutate(block: Color.() -> Unit): Color = rayleighColor.apply{
+      block(this)
+      rayleighColor = this
+  }
+
+
+  /**
+   * Controls the [godot.core.Color] of the [godot.Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering) effect. While not physically accurate, this allows for the creation of alien-looking planets.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalskymaterial.mieColor
+   * //Your changes
+   * physicalskymaterial.mieColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun mieColorMutate(block: Color.() -> Unit): Color = mieColor.apply{
+      block(this)
+      mieColor = this
+  }
+
+
+  /**
+   * Modulates the [godot.core.Color] on the bottom half of the sky to represent the ground.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalskymaterial.groundColor
+   * //Your changes
+   * physicalskymaterial.groundColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun groundColorMutate(block: Color.() -> Unit): Color = groundColor.apply{
+      block(this)
+      groundColor = this
+  }
+
 
   public companion object
 }

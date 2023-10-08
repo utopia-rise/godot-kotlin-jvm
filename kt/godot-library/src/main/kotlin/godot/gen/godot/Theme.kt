@@ -615,7 +615,7 @@ public open class Theme : Resource() {
     dataType: DataType,
     name: StringName,
     themeType: StringName,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_THEME_ITEM, NIL)
@@ -848,7 +848,7 @@ public open class Theme : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -41,7 +41,7 @@ public open class RegEx : RefCounted() {
   public fun compile(pattern: String): GodotError {
     TransferContext.writeArguments(STRING to pattern)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_COMPILE, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmOverloads

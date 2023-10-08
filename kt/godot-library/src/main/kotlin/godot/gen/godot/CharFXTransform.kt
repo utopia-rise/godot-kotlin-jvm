@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -28,6 +30,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Controls how an individual character will be displayed in a [godot.RichTextEffect].
@@ -42,6 +45,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing.
    */
+  @CoreTypeLocalCopy
   public var range: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -104,6 +108,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * The position offset the character will be drawn with (in pixels).
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -119,6 +124,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * The color the character will be drawn with.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()
@@ -234,6 +240,78 @@ public open class CharFXTransform : RefCounted() {
     callConstructor(ENGINECLASS_CHARFXTRANSFORM, scriptIndex)
     return true
   }
+
+  /**
+   * Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = charfxtransform.range
+   * //Your changes
+   * charfxtransform.range = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun rangeMutate(block: Vector2i.() -> Unit): Vector2i = range.apply{
+      block(this)
+      range = this
+  }
+
+
+  /**
+   * The position offset the character will be drawn with (in pixels).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = charfxtransform.offset
+   * //Your changes
+   * charfxtransform.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+      block(this)
+      offset = this
+  }
+
+
+  /**
+   * The color the character will be drawn with.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = charfxtransform.color
+   * //Your changes
+   * charfxtransform.color = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
+  }
+
 
   public companion object
 }

@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
@@ -40,7 +42,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_TYPE,
           LONG)
-      return PhysicalBone3D.JointType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return PhysicalBone3D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -51,6 +53,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint's transform.
    */
+  @CoreTypeLocalCopy
   public var jointOffset: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -67,6 +70,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint's rotation in radians.
    */
+  @CoreTypeLocalCopy
   public var jointRotation: Vector3
     get() {
       TransferContext.writeArguments()
@@ -83,6 +87,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the body's transform.
    */
+  @CoreTypeLocalCopy
   public var bodyOffset: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -179,7 +184,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_DAMP_MODE, LONG)
-      return PhysicalBone3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -213,7 +218,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_DAMP_MODE, LONG)
-      return PhysicalBone3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -242,6 +247,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -258,6 +264,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The PhysicalBone3D's rotational velocity in *radians* per second.
    */
+  @CoreTypeLocalCopy
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -290,6 +297,126 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     callConstructor(ENGINECLASS_PHYSICALBONE3D, scriptIndex)
     return true
   }
+
+  /**
+   * Sets the joint's transform.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalbone3d.jointOffset
+   * //Your changes
+   * physicalbone3d.jointOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun jointOffsetMutate(block: Transform3D.() -> Unit): Transform3D = jointOffset.apply{
+      block(this)
+      jointOffset = this
+  }
+
+
+  /**
+   * Sets the joint's rotation in radians.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalbone3d.jointRotation
+   * //Your changes
+   * physicalbone3d.jointRotation = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun jointRotationMutate(block: Vector3.() -> Unit): Vector3 = jointRotation.apply{
+      block(this)
+      jointRotation = this
+  }
+
+
+  /**
+   * Sets the body's transform.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalbone3d.bodyOffset
+   * //Your changes
+   * physicalbone3d.bodyOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun bodyOffsetMutate(block: Transform3D.() -> Unit): Transform3D = bodyOffset.apply{
+      block(this)
+      bodyOffset = this
+  }
+
+
+  /**
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalbone3d.linearVelocity
+   * //Your changes
+   * physicalbone3d.linearVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+      block(this)
+      linearVelocity = this
+  }
+
+
+  /**
+   * The PhysicalBone3D's rotational velocity in *radians* per second.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicalbone3d.angularVelocity
+   * //Your changes
+   * physicalbone3d.angularVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+      block(this)
+      angularVelocity = this
+  }
+
 
   /**
    * Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it works in addition to the usual physics behavior, but the [customIntegrator] property allows you to disable the default behavior and do fully custom force integration for a body.
@@ -363,7 +490,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -402,7 +529,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

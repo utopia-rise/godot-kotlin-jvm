@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Dictionary
@@ -45,6 +47,7 @@ public open class Mesh : Resource() {
   /**
    * Sets a hint to be used for lightmap resolution.
    */
+  @CoreTypeLocalCopy
   public var lightmapSizeHint: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -61,6 +64,31 @@ public open class Mesh : Resource() {
     callConstructor(ENGINECLASS_MESH, scriptIndex)
     return true
   }
+
+  /**
+   * Sets a hint to be used for lightmap resolution.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = mesh.lightmapSizeHint
+   * //Your changes
+   * mesh.lightmapSizeHint = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun lightmapSizeHintMutate(block: Vector2i.() -> Unit): Vector2i =
+      lightmapSizeHint.apply{
+      block(this)
+      lightmapSizeHint = this
+  }
+
 
   /**
    * Virtual method to override the surface count for a custom class extending [godot.Mesh].
@@ -309,7 +337,7 @@ public open class Mesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -382,7 +410,7 @@ public open class Mesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -433,7 +461,7 @@ public open class Mesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -552,7 +580,7 @@ public open class Mesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -575,7 +603,7 @@ public open class Mesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

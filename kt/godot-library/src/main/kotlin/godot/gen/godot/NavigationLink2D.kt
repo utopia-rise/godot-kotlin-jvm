@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -85,6 +87,7 @@ public open class NavigationLink2D : Node2D() {
    *
    * The distance the link will search is controlled by [godot.NavigationServer2D.mapSetLinkConnectionRadius].
    */
+  @CoreTypeLocalCopy
   public var startPosition: Vector2
     get() {
       TransferContext.writeArguments()
@@ -105,6 +108,7 @@ public open class NavigationLink2D : Node2D() {
    *
    * The distance the link will search is controlled by [godot.NavigationServer2D.mapSetLinkConnectionRadius].
    */
+  @CoreTypeLocalCopy
   public var endPosition: Vector2
     get() {
       TransferContext.writeArguments()
@@ -154,6 +158,62 @@ public open class NavigationLink2D : Node2D() {
     callConstructor(ENGINECLASS_NAVIGATIONLINK2D, scriptIndex)
     return true
   }
+
+  /**
+   * Starting position of the link.
+   *
+   * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
+   * The distance the link will search is controlled by [godot.NavigationServer2D.mapSetLinkConnectionRadius].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationlink2d.startPosition
+   * //Your changes
+   * navigationlink2d.startPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun startPositionMutate(block: Vector2.() -> Unit): Vector2 = startPosition.apply{
+      block(this)
+      startPosition = this
+  }
+
+
+  /**
+   * Ending position of the link.
+   *
+   * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
+   * The distance the link will search is controlled by [godot.NavigationServer2D.mapSetLinkConnectionRadius].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationlink2d.endPosition
+   * //Your changes
+   * navigationlink2d.endPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun endPositionMutate(block: Vector2.() -> Unit): Vector2 = endPosition.apply{
+      block(this)
+      endPosition = this
+  }
+
 
   /**
    * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.

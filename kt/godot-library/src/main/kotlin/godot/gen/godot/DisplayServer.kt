@@ -431,7 +431,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any): Int {
+  public fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any?): Int {
     TransferContext.writeArguments(STRING to menuRoot, ANY to tag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_INDEX_FROM_TAG, LONG)
@@ -545,7 +545,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_ACCELERATOR, LONG)
-    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -711,7 +711,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemTag(
     menuRoot: String,
     idx: Int,
-    tag: Any,
+    tag: Any?,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), ANY to tag)
     TransferContext.callMethod(rawPtr,
@@ -1100,7 +1100,7 @@ public object DisplayServer : Object() {
   public fun mouseGetMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_MODE, LONG)
-    return DisplayServer.MouseMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return DisplayServer.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1329,7 +1329,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if touch events are available (Android or iOS), the capability is detected on the Webplatform or if [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is `true`.
+   * Returns `true` if touch events are available (Android or iOS), the capability is detected on the Web platform or if [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is `true`.
    */
   public fun isTouchscreenAvailable(): Boolean {
     TransferContext.writeArguments()
@@ -1424,7 +1424,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_ORIENTATION, LONG)
-    return DisplayServer.ScreenOrientation.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return DisplayServer.ScreenOrientation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1813,7 +1813,7 @@ public object DisplayServer : Object() {
   public fun windowGetMode(windowId: Int = 0): WindowMode {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_MODE, LONG)
-    return DisplayServer.WindowMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return DisplayServer.WindowMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1984,7 +1984,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_VSYNC_MODE,
         LONG)
-    return DisplayServer.VSyncMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return DisplayServer.VSyncMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2110,7 +2110,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CURSOR_GET_SHAPE,
         LONG)
-    return DisplayServer.CursorShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return DisplayServer.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2163,7 +2163,7 @@ public object DisplayServer : Object() {
   ): GodotError {
     TransferContext.writeArguments(STRING to title, STRING to description, PACKED_STRING_ARRAY to buttons, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_SHOW, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2180,7 +2180,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_INPUT_TEXT,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2251,7 +2251,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_GET_KEYCODE_FROM_PHYSICAL, LONG)
-    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2431,7 +2431,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2468,7 +2468,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2511,7 +2511,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2560,7 +2560,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2647,7 +2647,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2696,7 +2696,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2757,7 +2757,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2810,7 +2810,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2818,19 +2818,19 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * No vertical synchronization, which means the engine will display frames as fast as possible (tearing may be visible). Framerate is unlimited (nonwithstanding [godot.Engine.maxFps]).
+     * No vertical synchronization, which means the engine will display frames as fast as possible (tearing may be visible). Framerate is unlimited (notwithstanding [godot.Engine.maxFps]).
      */
     VSYNC_DISABLED(0),
     /**
-     * Default vertical synchronization mode, the image is displayed only on vertical blanking intervals (no tearing is visible). Framerate is limited by the monitor refresh rate (nonwithstanding [godot.Engine.maxFps]).
+     * Default vertical synchronization mode, the image is displayed only on vertical blanking intervals (no tearing is visible). Framerate is limited by the monitor refresh rate (notwithstanding [godot.Engine.maxFps]).
      */
     VSYNC_ENABLED(1),
     /**
-     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (nonwithstanding [godot.Engine.maxFps]). Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
+     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (notwithstanding [godot.Engine.maxFps]). Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
      */
     VSYNC_ADAPTIVE(2),
     /**
-     * Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (nonwithstanding [godot.Engine.maxFps]).
+     * Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (notwithstanding [godot.Engine.maxFps]).
      *
      * Although not guaranteed, the images can be rendered as fast as possible, which may reduce input lag (also called "Fast" V-Sync mode). [VSYNC_MAILBOX] works best when at least twice as many frames as the display refresh rate are rendered. Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
      */
@@ -2843,7 +2843,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2902,7 +2902,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -2933,7 +2933,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 }

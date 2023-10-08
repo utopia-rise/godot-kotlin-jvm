@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -65,6 +67,70 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
+   * The width of the 9-patch's left column.
+   */
+  public var stretchMarginLeft: Int
+    get() {
+      TransferContext.writeArguments(LONG to 0L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
+    }
+
+  /**
+   * The height of the 9-patch's top row.
+   */
+  public var stretchMarginTop: Int
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
+    }
+
+  /**
+   * The width of the 9-patch's right column.
+   */
+  public var stretchMarginRight: Int
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
+    }
+
+  /**
+   * The height of the 9-patch's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   */
+  public var stretchMarginBottom: Int
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
+    }
+
+  /**
    * [godot.Texture2D] that draws under the progress bar. The bar's background.
    */
   public var textureUnder: Texture2D?
@@ -117,6 +183,7 @@ public open class TextureProgressBar : Range() {
   /**
    * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy borders, to avoid transparent margins in your progress texture.
    */
+  @CoreTypeLocalCopy
   public var textureProgressOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -133,6 +200,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's `texture_under` texture.
    */
+  @CoreTypeLocalCopy
   public var tintUnder: Color
     get() {
       TransferContext.writeArguments()
@@ -149,6 +217,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's `texture_over` texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    */
+  @CoreTypeLocalCopy
   public var tintOver: Color
     get() {
       TransferContext.writeArguments()
@@ -165,6 +234,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's `texture_progress` texture.
    */
+  @CoreTypeLocalCopy
   public var tintProgress: Color
     get() {
       TransferContext.writeArguments()
@@ -215,6 +285,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE].
    */
+  @CoreTypeLocalCopy
   public var radialCenterOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -234,23 +305,126 @@ public open class TextureProgressBar : Range() {
   }
 
   /**
-   * Sets the stretch margin with the specified index. See [stretchMarginBottom] and related properties.
+   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy borders, to avoid transparent margins in your progress texture.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.textureProgressOffset
+   * //Your changes
+   * textureprogressbar.textureProgressOffset = myCoreType
+   * ``````
    */
-  public fun setStretchMargin(margin: Side, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
+  @CoreTypeHelper
+  public open fun textureProgressOffsetMutate(block: Vector2.() -> Unit): Vector2 =
+      textureProgressOffset.apply{
+      block(this)
+      textureProgressOffset = this
   }
 
+
   /**
-   * Returns the stretch margin with the specified index. See [stretchMarginBottom] and related properties.
+   * Multiplies the color of the bar's `texture_under` texture.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.tintUnder
+   * //Your changes
+   * textureprogressbar.tintUnder = myCoreType
+   * ``````
    */
-  public fun getStretchMargin(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  @CoreTypeHelper
+  public open fun tintUnderMutate(block: Color.() -> Unit): Color = tintUnder.apply{
+      block(this)
+      tintUnder = this
   }
+
+
+  /**
+   * Multiplies the color of the bar's `texture_over` texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.tintOver
+   * //Your changes
+   * textureprogressbar.tintOver = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun tintOverMutate(block: Color.() -> Unit): Color = tintOver.apply{
+      block(this)
+      tintOver = this
+  }
+
+
+  /**
+   * Multiplies the color of the bar's `texture_progress` texture.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.tintProgress
+   * //Your changes
+   * textureprogressbar.tintProgress = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun tintProgressMutate(block: Color.() -> Unit): Color = tintProgress.apply{
+      block(this)
+      tintProgress = this
+  }
+
+
+  /**
+   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.radialCenterOffset
+   * //Your changes
+   * textureprogressbar.radialCenterOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun radialCenterOffsetMutate(block: Vector2.() -> Unit): Vector2 =
+      radialCenterOffset.apply{
+      block(this)
+      radialCenterOffset = this
+  }
+
 
   public enum class FillMode(
     id: Long,
@@ -299,7 +473,7 @@ public open class TextureProgressBar : Range() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

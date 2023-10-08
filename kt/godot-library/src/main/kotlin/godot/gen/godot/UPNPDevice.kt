@@ -88,7 +88,7 @@ public open class UPNPDevice : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_GET_IGD_STATUS, LONG)
-      return UPNPDevice.IGDStatus.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return UPNPDevice.IGDStatus.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -155,7 +155,7 @@ public open class UPNPDevice : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

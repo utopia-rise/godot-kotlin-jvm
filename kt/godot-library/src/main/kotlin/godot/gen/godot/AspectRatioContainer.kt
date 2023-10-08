@@ -52,7 +52,7 @@ public open class AspectRatioContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_STRETCH_MODE, LONG)
-      return AspectRatioContainer.StretchMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AspectRatioContainer.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -68,7 +68,7 @@ public open class AspectRatioContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_ALIGNMENT_HORIZONTAL, LONG)
-      return AspectRatioContainer.AlignmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -84,7 +84,7 @@ public open class AspectRatioContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_ALIGNMENT_VERTICAL, LONG)
-      return AspectRatioContainer.AlignmentMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -126,7 +126,7 @@ public open class AspectRatioContainer : Container() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -153,7 +153,7 @@ public open class AspectRatioContainer : Container() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

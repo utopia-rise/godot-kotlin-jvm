@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Dictionary
@@ -137,7 +139,7 @@ public open class ArrayMesh : Mesh() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_MODE,
           LONG)
-      return Mesh.BlendShapeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Mesh.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -148,6 +150,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
    */
+  @CoreTypeLocalCopy
   public var customAabb: AABB
     get() {
       TransferContext.writeArguments()
@@ -178,6 +181,30 @@ public open class ArrayMesh : Mesh() {
     callConstructor(ENGINECLASS_ARRAYMESH, scriptIndex)
     return true
   }
+
+  /**
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = arraymesh.customAabb
+   * //Your changes
+   * arraymesh.customAabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
+      block(this)
+      customAabb = this
+  }
+
 
   /**
    * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called before surface is added.
@@ -335,7 +362,7 @@ public open class ArrayMesh : Mesh() {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_PRIMITIVE_TYPE, LONG)
-    return Mesh.PrimitiveType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Mesh.PrimitiveType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -379,7 +406,7 @@ public open class ArrayMesh : Mesh() {
   public fun lightmapUnwrap(transform: Transform3D, texelSize: Float): GodotError {
     TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_LIGHTMAP_UNWRAP, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

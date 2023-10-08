@@ -45,13 +45,12 @@ import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
+import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GODOT_BASE_TYPE
-import godot.tools.common.constants.GODOT_CALLABLE
-import godot.tools.common.constants.GODOT_ERROR
-import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KT_OBJECT
 import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.TYPE_MANAGER
@@ -136,9 +135,8 @@ class GenerationService(
 
         if (name == GodotKotlinJvmTypes.obj) {
             classTypeBuilder.superclass(KT_OBJECT)
-            classTypeBuilder.generateSignalExtensions()
         }
-        if (name == "Node") {
+        if (name == GodotTypes.node) {
             classTypeBuilder.generateTypesafeRpc()
         }
 
@@ -166,7 +164,7 @@ class GenerationService(
             val propertySpec = generateProperty(enrichedClass, property) ?: continue
             classTypeBuilder.addProperty(propertySpec)
             if (property.hasValidSetterInClass && property.isCoreTypeReimplementedInKotlin()) {
-                generateCoreTypeHelper(enrichedClass, property)
+                classTypeBuilder.addFunction(generateCoreTypeHelper(enrichedClass, property))
             }
         }
 
@@ -257,7 +255,7 @@ class GenerationService(
             .addFunction(
                 FunSpec.builder("from")
                     .addParameter("value", Long::class)
-                    .addStatement("return values().single { it.%N == %N }", "id", "value")
+                    .addStatement("return entries.single { it.%N == %N }", "id", "value")
                     .build()
             )
             .build()
@@ -419,16 +417,16 @@ class GenerationService(
 
             val variantTypeToArgumentString = buildString {
                 append("%T·to·value")
-                
+
                 if (property.isEnum()) {
                     append(".id")
                 }
-                
+
                 append(property.getToBufferCastingMethod())
             }
 
             val argumentStringTemplate = if (property.isIndexed) {
-                "%T to ${property.internal.index}, $variantTypeToArgumentString"
+                "%T to ${property.internal.index}L, $variantTypeToArgumentString"
             } else {
                 variantTypeToArgumentString
             }
@@ -454,7 +452,7 @@ class GenerationService(
             )
         } else if (property.hasValidGetterInClass) {
             val argumentStringTemplate = if (property.isIndexed) {
-                "%T to ${property.internal.index}"
+                "%T to ${property.internal.index}L"
             } else {
                 ""
             }
@@ -480,6 +478,10 @@ class GenerationService(
             )
         }
 
+        if (property.isCoreTypeReimplementedInKotlin()) {
+            propertySpecBuilder.addAnnotation(CORE_TYPE_LOCAL_COPY)
+        }
+
         val kDoc =
             docRepository.findByClassName(enrichedClass.name)?.properties?.get(property.internal.name)?.description
         if (kDoc != null) {
@@ -492,7 +494,7 @@ class GenerationService(
     private fun generateCoreTypeHelper(enrichedClass: EnrichedClass, property: EnrichedProperty): FunSpec {
         val parameterTypeName = property.getCastedType()
         val parameterName = property.name
-        val propertyFunSpec = FunSpec.builder(parameterName)
+        val propertyFunSpec = FunSpec.builder("${parameterName}Mutate")
 
         if (classGraphService.doAncestorsHaveProperty(enrichedClass, property)) {
             propertyFunSpec.addModifiers(KModifier.OVERRIDE)
@@ -503,7 +505,7 @@ class GenerationService(
         return propertyFunSpec
             .addParameter(
                 ParameterSpec.builder(
-                    "schedule",
+                    "block",
                     LambdaTypeName.get(
                         receiver = parameterTypeName.typeName,
                         returnType = UNIT
@@ -514,11 +516,36 @@ class GenerationService(
             .returns(parameterTypeName.typeName)
             .addStatement(
                 """return $parameterName.apply{
-                                            |    schedule(this)
+                                            |    block(this)
                                             |    $parameterName = this
                                             |}
                                             |""".trimMargin()
-            )
+            ).apply {
+                val kDoc = buildString {
+                    val propertyKdoc =
+                        docRepository.findByClassName(enrichedClass.name)?.properties?.get(property.internal.name)?.description
+                    if (propertyKdoc != null) {
+                        appendLine(propertyKdoc.replace("/*", "&#47;*"))
+                        appendLine()
+                    }
+
+                    appendLine("""This is a helper function to make dealing with local copies easier. 
+                    |
+                    |For more information, see our [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+                    |
+                    |Allow to directly modify the local copy of the property and assign it back to the Object.
+                    |
+                    |Prefer that over writing:
+                    |``````
+                    |val myCoreType = ${enrichedClass.name.lowercase()}.${property.name}
+                    |//Your changes
+                    |${enrichedClass.name.lowercase()}.${property.name} = myCoreType
+                    |``````
+                    |""".trimMargin()
+                    )
+                }
+                addKdoc(kDoc)
+            }
             .build()
     }
 
@@ -598,92 +625,6 @@ class GenerationService(
         }
 
         return generatedFunBuilder.build()
-    }
-
-    private fun TypeSpec.Builder.generateSignalExtensions() {
-
-        fun List<TypeVariableName>.toParameterTypes() = this.map {
-            ParameterSpec.builder(it.name.lowercase(Locale.US), it).build()
-        }
-
-        val typeVariablesNames = mutableListOf<TypeVariableName>()
-        for (i in 0..10) {
-            if (i != 0) typeVariablesNames.add(TypeVariableName.invoke("A${i - 1}"))
-
-            val signalType = ClassName("godot.signals", "Signal$i")
-
-            val emitFunBuilder = FunSpec.builder("emit")
-
-            val signalParameterizedType = if (typeVariablesNames.isNotEmpty()) {
-                val parameterSpecs = typeVariablesNames.toParameterTypes()
-                emitFunBuilder.addTypeVariables(typeVariablesNames)
-                emitFunBuilder.addParameters(parameterSpecs)
-                emitFunBuilder.addStatement(
-                    "%L(this@Object, ${
-                        parameterSpecs
-                            .map { it.name }
-                            .reduce { acc, string -> "$acc, $string" }
-                    })",
-                    "emit"
-                )
-                signalType.parameterizedBy(typeVariablesNames)
-            } else {
-                emitFunBuilder.addStatement(
-                    "%L(this@Object)",
-                    "emit"
-                )
-                signalType
-            }
-
-            emitFunBuilder.receiver(signalParameterizedType)
-
-            addFunction(emitFunBuilder.build())
-
-            val kTypeVariable = TypeVariableName.invoke(
-                "K",
-                bounds = arrayOf(
-                    LambdaTypeName.get(
-                        returnType = UNIT,
-                        parameters = typeVariablesNames.toTypedArray()
-                    )
-                )
-            ).copy(reified = true)
-            val connectTypeVariableNames = listOf(
-                *typeVariablesNames.toTypedArray(),
-                kTypeVariable
-            )
-
-            val connectFun = FunSpec.builder("connect")
-                .receiver(signalParameterizedType)
-                .addTypeVariables(connectTypeVariableNames)
-                .addModifiers(KModifier.INLINE)
-                .returns(GODOT_ERROR)
-                .addParameters(
-                    listOf(
-                        ParameterSpec.builder("target", GODOT_OBJECT)
-                            .build(),
-                        ParameterSpec.builder("method", kTypeVariable)
-                            .build(),
-                        ParameterSpec.builder("flags", INT)
-                            .defaultValue("0")
-                            .build()
-                    )
-                )
-                // add @JvmOverloads annotation for java support
-                .addAnnotation(JvmOverloads::class.asClassName())
-
-            connectFun.addCode(
-                """
-                            |val methodName = (method as %T<*>).name.%M().%M()
-                            |return connect(%T(target, methodName), flags)
-                            |""".trimMargin(),
-                ClassName("kotlin.reflect", "KCallable"),
-                MemberName(godotUtilPackage, "camelToSnakeCase"),
-                MemberName(godotCorePackage, "asStringName"),
-                GODOT_CALLABLE
-            )
-            addFunction(connectFun.build())
-        }
     }
 
     private fun TypeSpec.Builder.generateTypesafeRpc() {
@@ -885,7 +826,7 @@ class GenerationService(
         if (methodReturnType.typeName != UNIT) {
             if (callable.isEnum()) {
                 addStatement(
-                    "return·${methodReturnType.className.simpleNames.joinToString(".")}.values()[(%T.readReturnValue(%T)·as·%T).toInt()]",
+                    "return·${methodReturnType.className.simpleNames.joinToString(".")}.from(%T.readReturnValue(%T)·as·%T)",
                     TRANSFER_CONTEXT,
                     VARIANT_TYPE_LONG,
                     LONG

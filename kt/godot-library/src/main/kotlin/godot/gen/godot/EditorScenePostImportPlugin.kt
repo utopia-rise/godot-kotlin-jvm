@@ -114,7 +114,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
   /**
    * Add a specific import option (name and default value only). This function can only be called from [_getImportOptions] and [_getInternalImportOptions].
    */
-  public fun addImportOption(name: String, `value`: Any): Unit {
+  public fun addImportOption(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_ADD_IMPORT_OPTION, NIL)
@@ -127,7 +127,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
   public fun addImportOptionAdvanced(
     type: VariantType,
     name: String,
-    defaultValue: Any,
+    defaultValue: Any?,
     hint: PropertyHint = PropertyHint.PROPERTY_HINT_NONE,
     hintString: String = "",
     usageFlags: Int = 6,
@@ -180,7 +180,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

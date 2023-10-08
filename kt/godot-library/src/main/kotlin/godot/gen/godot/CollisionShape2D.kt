@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -19,6 +21,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A node that provides a [godot.Shape2D] to a [godot.CollisionObject2D] parent.
@@ -100,6 +103,7 @@ public open class CollisionShape2D : Node2D() {
    *
    * **Note:** The default value is [godot.ProjectSettings.debug/shapes/collision/shapeColor]. The `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug color.
    */
+  @CoreTypeLocalCopy
   public var debugColor: Color
     get() {
       TransferContext.writeArguments()
@@ -117,6 +121,32 @@ public open class CollisionShape2D : Node2D() {
     callConstructor(ENGINECLASS_COLLISIONSHAPE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The collision shape debug color.
+   *
+   * **Note:** The default value is [godot.ProjectSettings.debug/shapes/collision/shapeColor]. The `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug color.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = collisionshape2d.debugColor
+   * //Your changes
+   * collisionshape2d.debugColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply{
+      block(this)
+      debugColor = this
+  }
+
 
   public companion object
 }

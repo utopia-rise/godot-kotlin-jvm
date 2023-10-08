@@ -72,7 +72,7 @@ public open class SplitContainer : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_DRAGGER_VISIBILITY, LONG)
-      return SplitContainer.DraggerVisibility.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return SplitContainer.DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -133,7 +133,7 @@ public open class SplitContainer : Container() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

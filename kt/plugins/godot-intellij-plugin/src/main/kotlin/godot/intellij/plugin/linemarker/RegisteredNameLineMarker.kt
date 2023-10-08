@@ -26,6 +26,7 @@ import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
+import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtProperty
 import java.awt.datatransfer.StringSelection
 import javax.swing.Icon
@@ -99,15 +100,25 @@ class RegisteredNameLineMarker : LineMarkerProvider {
                 parent.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) != null -> parent.name?.let { name ->
                     LineMarkerData(
                         identifier = parent.nameIdentifier ?: parent.navigationElement,
-                        convertedName = name,
+                        convertedName = name.convertToSnakeCase(),
                         gutterIcon = IconLoader.getIcon("/linemarkerIcons/icon_member_property.svg", this::class.java)
                     )
                 }
                 parent.findAnnotation(FqName(REGISTER_SIGNAL_ANNOTATION)) != null -> parent.name?.let { name ->
                     LineMarkerData(
                         identifier = parent.nameIdentifier ?: parent.navigationElement,
-                        convertedName = name,
+                        convertedName = name.convertToSnakeCase(),
                         gutterIcon = IconLoader.getIcon("/linemarkerIcons/icon_member_signal.svg", this::class.java)
+                    )
+                }
+                else -> null
+            }
+            is KtFunction -> when {
+                parent.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) != null -> parent.name?.let { name ->
+                    LineMarkerData(
+                        identifier = parent.nameIdentifier ?: parent.navigationElement,
+                        convertedName = name.convertToSnakeCase(),
+                        gutterIcon = IconLoader.getIcon("/linemarkerIcons/icon_member_method.svg", this::class.java)
                     )
                 }
                 else -> null

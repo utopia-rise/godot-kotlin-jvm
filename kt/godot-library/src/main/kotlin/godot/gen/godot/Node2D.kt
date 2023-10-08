@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
@@ -38,6 +40,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Position, relative to the node's parent.
    */
+  @CoreTypeLocalCopy
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
@@ -85,6 +88,7 @@ public open class Node2D : CanvasItem() {
    *
    * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, negative scales on the X axis will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
    */
+  @CoreTypeLocalCopy
   public var scale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -115,6 +119,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Local [godot.core.Transform2D].
    */
+  @CoreTypeLocalCopy
   public var transform: Transform2D
     @JvmName("getTransform_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
@@ -127,6 +132,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Global position.
    */
+  @CoreTypeLocalCopy
   public var globalPosition: Vector2
     get() {
       TransferContext.writeArguments()
@@ -173,6 +179,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Global scale.
    */
+  @CoreTypeLocalCopy
   public var globalScale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -201,6 +208,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Global [godot.core.Transform2D].
    */
+  @CoreTypeLocalCopy
   public var globalTransform: Transform2D
     @JvmName("getGlobalTransform_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
@@ -214,6 +222,153 @@ public open class Node2D : CanvasItem() {
     callConstructor(ENGINECLASS_NODE2D, scriptIndex)
     return true
   }
+
+  /**
+   * Position, relative to the node's parent.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node2d.position
+   * //Your changes
+   * node2d.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
+      block(this)
+      position = this
+  }
+
+
+  /**
+   * The node's scale. Unscaled value: `(1, 1)`.
+   *
+   * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, negative scales on the X axis will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node2d.scale
+   * //Your changes
+   * node2d.scale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
+      block(this)
+      scale = this
+  }
+
+
+  /**
+   * Local [godot.core.Transform2D].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node2d.transform
+   * //Your changes
+   * node2d.transform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+      block(this)
+      transform = this
+  }
+
+
+  /**
+   * Global position.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node2d.globalPosition
+   * //Your changes
+   * node2d.globalPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalPositionMutate(block: Vector2.() -> Unit): Vector2 = globalPosition.apply{
+      block(this)
+      globalPosition = this
+  }
+
+
+  /**
+   * Global scale.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node2d.globalScale
+   * //Your changes
+   * node2d.globalScale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalScaleMutate(block: Vector2.() -> Unit): Vector2 = globalScale.apply{
+      block(this)
+      globalScale = this
+  }
+
+
+  /**
+   * Global [godot.core.Transform2D].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node2d.globalTransform
+   * //Your changes
+   * node2d.globalTransform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalTransformMutate(block: Transform2D.() -> Unit): Transform2D =
+      globalTransform.apply{
+      block(this)
+      globalTransform = this
+  }
+
 
   /**
    * Applies a rotation to the node, in radians, starting from its current rotation.
@@ -276,7 +431,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Returns the angle between the node and the [point] in radians.
    *
-   * [godot.Illustration of the returned angle.](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/node2d_get_angle_to.png)
+   * [godot.Illustration of the returned angle.](https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/node2d_get_angle_to.png)
    */
   public fun getAngleTo(point: Vector2): Float {
     TransferContext.writeArguments(VECTOR2 to point)

@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -63,6 +65,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * The blend space's X and Y axes' lower limit for the points' position. See [addBlendPoint].
    */
+  @CoreTypeLocalCopy
   public var minSpace: Vector2
     get() {
       TransferContext.writeArguments()
@@ -79,6 +82,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * The blend space's X and Y axes' upper limit for the points' position. See [addBlendPoint].
    */
+  @CoreTypeLocalCopy
   public var maxSpace: Vector2
     get() {
       TransferContext.writeArguments()
@@ -95,6 +99,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Position increment to snap to when moving a point.
    */
+  @CoreTypeLocalCopy
   public var snap: Vector2
     get() {
       TransferContext.writeArguments()
@@ -148,7 +153,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_MODE, LONG)
-      return AnimationNodeBlendSpace2D.BlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AnimationNodeBlendSpace2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -178,6 +183,78 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     callConstructor(ENGINECLASS_ANIMATIONNODEBLENDSPACE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The blend space's X and Y axes' lower limit for the points' position. See [addBlendPoint].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = animationnodeblendspace2d.minSpace
+   * //Your changes
+   * animationnodeblendspace2d.minSpace = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun minSpaceMutate(block: Vector2.() -> Unit): Vector2 = minSpace.apply{
+      block(this)
+      minSpace = this
+  }
+
+
+  /**
+   * The blend space's X and Y axes' upper limit for the points' position. See [addBlendPoint].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = animationnodeblendspace2d.maxSpace
+   * //Your changes
+   * animationnodeblendspace2d.maxSpace = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun maxSpaceMutate(block: Vector2.() -> Unit): Vector2 = maxSpace.apply{
+      block(this)
+      maxSpace = this
+  }
+
+
+  /**
+   * Position increment to snap to when moving a point.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = animationnodeblendspace2d.snap
+   * //Your changes
+   * animationnodeblendspace2d.snap = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun snapMutate(block: Vector2.() -> Unit): Vector2 = snap.apply{
+      block(this)
+      snap = this
+  }
+
 
   /**
    * Adds a new point that represents a [node] at the position set by [pos]. You can insert it at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
@@ -317,7 +394,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

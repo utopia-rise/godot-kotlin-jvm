@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.VariantType.BOOL
@@ -24,6 +26,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * General-purpose sprite node.
@@ -76,6 +79,7 @@ public open class Sprite2D : Node2D() {
   /**
    * The texture's drawing offset.
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -160,6 +164,7 @@ public open class Sprite2D : Node2D() {
   /**
    * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    */
+  @CoreTypeLocalCopy
   public var frameCoords: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -189,6 +194,7 @@ public open class Sprite2D : Node2D() {
   /**
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
    */
+  @CoreTypeLocalCopy
   public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
@@ -220,6 +226,78 @@ public open class Sprite2D : Node2D() {
     callConstructor(ENGINECLASS_SPRITE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The texture's drawing offset.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = sprite2d.offset
+   * //Your changes
+   * sprite2d.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+      block(this)
+      offset = this
+  }
+
+
+  /**
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = sprite2d.frameCoords
+   * //Your changes
+   * sprite2d.frameCoords = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply{
+      block(this)
+      frameCoords = this
+  }
+
+
+  /**
+   * The region of the atlas texture to display. [regionEnabled] must be `true`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = sprite2d.regionRect
+   * //Your changes
+   * sprite2d.regionRect = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
+      block(this)
+      regionRect = this
+  }
+
 
   /**
    * Returns `true`, if the pixel at the given position is opaque and `false` in other case.

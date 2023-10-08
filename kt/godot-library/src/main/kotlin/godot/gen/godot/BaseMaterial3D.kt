@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -43,7 +45,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSPARENCY,
           LONG)
-      return BaseMaterial3D.Transparency.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.Transparency.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -91,7 +93,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_ANTIALIASING, LONG)
-      return BaseMaterial3D.AlphaAntiAliasing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -125,7 +127,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BLEND_MODE,
           LONG)
-      return BaseMaterial3D.BlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -141,7 +143,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CULL_MODE,
           LONG)
-      return BaseMaterial3D.CullMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -156,12 +158,26 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DEPTH_DRAW_MODE, LONG)
-      return BaseMaterial3D.DepthDrawMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DEPTH_DRAW_MODE, NIL)
+    }
+
+  /**
+   * If `true`, depth testing is disabled and the object will be drawn in render order.
+   */
+  public var noDepthTest: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 0L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
     }
 
   /**
@@ -174,7 +190,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SHADING_MODE,
           LONG)
-      return BaseMaterial3D.ShadingMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -190,7 +206,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DIFFUSE_MODE,
           LONG)
-      return BaseMaterial3D.DiffuseMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -208,7 +224,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR_MODE,
           LONG)
-      return BaseMaterial3D.SpecularMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.SpecularMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -217,10 +233,55 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * If `true`, the object receives no ambient light.
+   */
+  public var disableAmbientLight: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 14L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 14L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the vertex color is used as albedo color.
+   */
+  public var vertexColorUseAsAlbedo: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, vertex colors are considered to be stored in sRGB color space and are converted to linear color space during rendering. If `false`, vertex colors are considered to be stored in linear color space and are rendered as-is. See also [albedoTextureForceSrgb].
+   *
+   * **Note:** Only effective when using the Forward+ and Mobile rendering methods, not Compatibility.
+   */
+  public var vertexColorIsSrgb: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
    * The material's base color.
    *
    * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor] will *not* modulate the detail texture. This can be used to color partial areas of a material by not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
    */
+  @CoreTypeLocalCopy
   public var albedoColor: Color
     get() {
       TransferContext.writeArguments()
@@ -230,6 +291,68 @@ public open class BaseMaterial3D internal constructor() : Material() {
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALBEDO, NIL)
+    }
+
+  /**
+   * Texture to multiply by [albedoColor]. Used for basic texturing of objects.
+   *
+   * If the texture appears unexpectedly too dark or too bright, check [albedoTextureForceSrgb].
+   */
+  public var albedoTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 0L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * If `true`, forces a conversion of the [albedoTexture] from sRGB color space to linear color space. See also [vertexColorIsSrgb].
+   *
+   * This should only be enabled when needed (typically when using a [godot.ViewportTexture] as [albedoTexture]). If [albedoTextureForceSrgb] is `true` when it shouldn't be, the texture will appear to be too dark. If [albedoTextureForceSrgb] is `false` when it shouldn't be, the texture will appear to be too bright.
+   */
+  public var albedoTextureForceSrgb: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 12L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 12L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * Enables multichannel signed distance field rendering shader. Use [msdfPixelRange] and [msdfOutlineSize] to configure MSDF parameters.
+   */
+  public var albedoTextureMsdf: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 20L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 20L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * The Occlusion/Roughness/Metallic texture to use. This is a more efficient replacement of [aoTexture], [roughnessTexture] and [metallicTexture] in [godot.ORMMaterial3D]. Ambient occlusion is stored in the red channel. Roughness map is stored in the green channel. Metallic map is stored in the blue channel. The alpha channel is ignored.
+   */
+  public var ormTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 17L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 17L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
     }
 
   /**
@@ -265,6 +388,21 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * Texture used to specify metallic for an object. This is multiplied by [metallic].
+   */
+  public var metallicTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
    * Specifies the channel of the [metallicTexture] in which the metallic information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public var metallicTextureChannel: TextureChannel
@@ -272,7 +410,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_METALLIC_TEXTURE_CHANNEL, LONG)
-      return BaseMaterial3D.TextureChannel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -296,6 +434,21 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * Texture used to control the roughness per-pixel. Multiplied by [roughness].
+   */
+  public var roughnessTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
    * Specifies the channel of the [roughnessTexture] in which the roughness information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public var roughnessTextureChannel: TextureChannel
@@ -303,7 +456,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ROUGHNESS_TEXTURE_CHANNEL, LONG)
-      return BaseMaterial3D.TextureChannel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -312,8 +465,23 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * If `true`, the body emits light. Emitting light makes the object appear brighter. The object can also cast light on other objects if a [godot.VoxelGI], SDFGI, or [godot.LightmapGI] is used and this object is used in baked lighting.
+   */
+  public var emissionEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 0L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+    }
+
+  /**
    * The emitted light's color. See [emissionEnabled].
    */
+  @CoreTypeLocalCopy
   public var emission: Color
     get() {
       TransferContext.writeArguments()
@@ -366,12 +534,55 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_OPERATOR, LONG)
-      return BaseMaterial3D.EmissionOperator.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_OPERATOR, NIL)
+    }
+
+  /**
+   * Use `UV2` to read from the [emissionTexture].
+   */
+  public var emissionOnUv2: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 11L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 11L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * Texture that specifies how much surface emits light at a given point.
+   */
+  public var emissionTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * If `true`, normal mapping is enabled. This has a slight performance cost, especially on mobile GPUs.
+   */
+  public var normalEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
     }
 
   /**
@@ -388,6 +599,43 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_NORMAL_SCALE,
           NIL)
+    }
+
+  /**
+   * Texture used to specify the normal at a given pixel. The [normalTexture] only uses the red and green channels; the blue and alpha channels are ignored. The normal read from [normalTexture] is oriented around the surface normal provided by the [godot.Mesh].
+   *
+   * **Note:** The mesh must have both normals and tangents defined in its vertex data. Otherwise, the normal map won't render correctly and will only appear to darken the whole surface. If creating geometry with [godot.SurfaceTool], you can use [godot.SurfaceTool.generateNormals] and [godot.SurfaceTool.generateTangents] to automatically generate normals and tangents respectively.
+   *
+   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
+   *
+   * **Note:** If [detailEnabled] is `true`, the [detailAlbedo] texture is drawn *below* the [normalTexture]. To display a normal map *above* the [detailAlbedo] texture, use [detailNormal] instead.
+   */
+  public var normalTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 4L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * If `true`, rim effect is enabled. Rim lighting increases the brightness at glancing angles on an object.
+   *
+   * **Note:** Rim lighting is not visible if the material's [shadingMode] is [SHADING_MODE_UNSHADED].
+   */
+  public var rimEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
     }
 
   /**
@@ -417,6 +665,37 @@ public open class BaseMaterial3D internal constructor() : Material() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_RIM_TINT, NIL)
+    }
+
+  /**
+   * Texture used to set the strength of the rim lighting effect per-pixel. Multiplied by [rim].
+   */
+  public var rimTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 5L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * If `true`, clearcoat rendering is enabled. Adds a secondary transparent pass to the lighting calculation resulting in an added specular blob. This makes materials appear as if they have a clear layer on them that can be either glossy or rough.
+   *
+   * **Note:** Clearcoat rendering is not visible if the material's [shadingMode] is [SHADING_MODE_UNSHADED].
+   */
+  public var clearcoatEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
     }
 
   /**
@@ -451,6 +730,39 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * Texture that defines the strength of the clearcoat effect and the glossiness of the clearcoat. Strength is specified in the red channel while glossiness is specified in the green channel.
+   */
+  public var clearcoatTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 6L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 6L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * If `true`, anisotropy is enabled. Anisotropy changes the shape of the specular blob and aligns it to tangent space. This is useful for brushed aluminium and hair reflections.
+   *
+   * **Note:** Mesh tangents are needed for anisotropy to work. If the mesh does not contain tangents, the anisotropy effect will appear broken.
+   *
+   * **Note:** Material anisotropy should not to be confused with anisotropic texture filtering, which can be enabled by setting [textureFilter] to [TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC].
+   */
+  public var anisotropyEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 4L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+    }
+
+  /**
    * The strength of the anisotropy effect. This is multiplied by [anisotropyFlowmap]'s alpha channel if a texture is defined there and the texture contains an alpha channel.
    */
   public var anisotropy: Float
@@ -464,6 +776,37 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ANISOTROPY,
           NIL)
+    }
+
+  /**
+   * Texture that offsets the tangent map for anisotropy calculations and optionally controls the anisotropy effect (if an alpha channel is present). The flowmap texture is expected to be a derivative map, with the red channel representing distortion on the X axis and green channel representing distortion on the Y axis. Values below 0.5 will result in negative distortion, whereas values above 0.5 will result in positive distortion.
+   *
+   * If present, the texture's alpha channel will be used to multiply the strength of the [anisotropy] effect. Fully opaque pixels will keep the anisotropy effect's original strength while fully transparent pixels will disable the anisotropy effect entirely. The flowmap texture's blue channel is ignored.
+   */
+  public var anisotropyFlowmap: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 7L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 7L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * If `true`, ambient occlusion is enabled. Ambient occlusion darkens areas based on the [aoTexture].
+   */
+  public var aoEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 5L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
     }
 
   /**
@@ -483,6 +826,35 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * Texture that defines the amount of ambient occlusion for a given point on the object.
+   */
+  public var aoTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 8L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 8L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * If `true`, use `UV2` coordinates to look up from the [aoTexture].
+   */
+  public var aoOnUv2: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 10L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 10L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
    * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public var aoTextureChannel: TextureChannel
@@ -490,12 +862,28 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_AO_TEXTURE_CHANNEL, LONG)
-      return BaseMaterial3D.TextureChannel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_AO_TEXTURE_CHANNEL, NIL)
+    }
+
+  /**
+   * If `true`, height mapping is enabled (also called "parallax mapping" or "depth mapping"). See also [normalEnabled]. Height mapping is a demanding feature on the GPU, so it should only be used on materials where it makes a significant visual difference.
+   *
+   * **Note:** Height mapping is not supported if triplanar mapping is used on the same material. The value of [heightmapEnabled] will be ignored if [uv1Triplanar] is enabled.
+   */
+  public var heightmapEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 6L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 6L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
     }
 
   /**
@@ -601,6 +989,55 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * The texture to use as a height map. See also [heightmapEnabled].
+   *
+   * For best results, the texture should be normalized (with [heightmapScale] reduced to compensate). In [GIMP](https://gimp.org), this can be done using **Colors > Auto > Equalize**. If the texture only uses a small part of its available range, the parallax effect may look strange, especially when the camera moves.
+   *
+   * **Note:** To reduce memory usage and improve loading times, you may be able to use a lower-resolution heightmap texture as most heightmaps are only comprised of low-frequency data.
+   */
+  public var heightmapTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 9L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 9L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * If `true`, interprets the height map texture as a depth map, with brighter values appearing to be "lower" in altitude compared to darker values.
+   *
+   * This can be enabled for compatibility with some materials authored for Godot 3.x. This is not necessary if the Invert import option was used to invert the depth map in Godot 3.x, in which case [heightmapFlipTexture] should remain `false`.
+   */
+  public var heightmapFlipTexture: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 17L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 17L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, subsurface scattering is enabled. Emulates light that penetrates an object's surface, is scattered, and then emerges. Subsurface scattering quality is controlled by [godot.ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringQuality].
+   */
+  public var subsurfScatterEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 7L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 7L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+    }
+
+  /**
    * The strength of the subsurface scattering effect. The depth of the effect is also controlled by [godot.ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringScale], which is set globally.
    */
   public var subsurfScatterStrength: Float
@@ -617,8 +1054,52 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * If `true`, subsurface scattering will use a special mode optimized for the color and density of human skin, such as boosting the intensity of the red channel in subsurface scattering.
+   */
+  public var subsurfScatterSkinMode: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 18L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 18L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * Texture used to control the subsurface scattering strength. Stored in the red texture channel. Multiplied by [subsurfScatterStrength].
+   */
+  public var subsurfScatterTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 10L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 10L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * If `true`, enables subsurface scattering transmittance. Only effective if [subsurfScatterEnabled] is `true`. See also [backlightEnabled].
+   */
+  public var subsurfScatterTransmittanceEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 8L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 8L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+    }
+
+  /**
    * The color to multiply the subsurface scattering transmittance effect with. Ignored if [subsurfScatterSkinMode] is `true`.
    */
+  @CoreTypeLocalCopy
   public var subsurfScatterTransmittanceColor: Color
     get() {
       TransferContext.writeArguments()
@@ -630,6 +1111,21 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSMITTANCE_COLOR, NIL)
+    }
+
+  /**
+   * The texture to use for multiplying the intensity of the subsurface scattering transmitteance intensity. See also [subsurfScatterTexture]. Ignored if [subsurfScatterSkinMode] is `true`.
+   */
+  public var subsurfScatterTransmittanceTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 11L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 11L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
     }
 
   /**
@@ -665,8 +1161,23 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * If `true`, the backlight effect is enabled. See also [subsurfScatterTransmittanceEnabled].
+   */
+  public var backlightEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 9L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 9L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+    }
+
+  /**
    * The color used by the backlight effect. Represents the light passing through an object.
    */
+  @CoreTypeLocalCopy
   public var backlight: Color
     get() {
       TransferContext.writeArguments()
@@ -677,6 +1188,35 @@ public open class BaseMaterial3D internal constructor() : Material() {
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BACKLIGHT, NIL)
+    }
+
+  /**
+   * Texture used to control the backlight effect per-pixel. Added to [backlight].
+   */
+  public var backlightTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 12L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 12L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * If `true`, the refraction effect is enabled. Distorts transparency based on light from behind the object.
+   */
+  public var refractionEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 10L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 10L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
     }
 
   /**
@@ -696,6 +1236,21 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * Texture that controls the strength of the refraction per-pixel. Multiplied by [refractionScale].
+   */
+  public var refractionTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 13L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 13L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
    * Specifies the channel of the [refractionTexture] in which the refraction information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored refraction in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public var refractionTextureChannel: TextureChannel
@@ -703,12 +1258,41 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_REFRACTION_TEXTURE_CHANNEL, LONG)
-      return BaseMaterial3D.TextureChannel.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_REFRACTION_TEXTURE_CHANNEL, NIL)
+    }
+
+  /**
+   * If `true`, enables the detail overlay. Detail is a second texture that gets mixed over the surface of the object based on [detailMask] and [detailAlbedo]'s alpha channel. This can be used to add variation to objects, or to blend between two different albedo/normal textures.
+   */
+  public var detailEnabled: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 11L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 11L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+    }
+
+  /**
+   * Texture used to specify how the detail textures get blended with the base textures. [detailMask] can be used together with [detailAlbedo]'s alpha channel (if any).
+   */
+  public var detailMask: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 14L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 14L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
     }
 
   /**
@@ -719,7 +1303,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_BLEND_MODE, LONG)
-      return BaseMaterial3D.BlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -735,7 +1319,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_UV,
           LONG)
-      return BaseMaterial3D.DetailUV.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -743,8 +1327,43 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * Texture that specifies the color of the detail overlay. [detailAlbedo]'s alpha channel is used as a mask, even when the material is opaque. To use a dedicated texture as a mask, see [detailMask].
+   *
+   * **Note:** [detailAlbedo] is *not* modulated by [albedoColor].
+   */
+  public var detailAlbedo: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 15L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 15L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * Texture that specifies the per-pixel normal of the detail overlay. The [detailNormal] texture only uses the red and green channels; the blue and alpha channels are ignored. The normal read from [detailNormal] is oriented around the surface normal provided by the [godot.Mesh].
+   *
+   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
+   */
+  public var detailNormal: Texture2D?
+    get() {
+      TransferContext.writeArguments(LONG to 16L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 16L, OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    }
+
+  /**
    * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    */
+  @CoreTypeLocalCopy
   public var uv1Scale: Vector3
     get() {
       TransferContext.writeArguments()
@@ -760,6 +1379,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    */
+  @CoreTypeLocalCopy
   public var uv1Offset: Vector3
     get() {
       TransferContext.writeArguments()
@@ -771,6 +1391,20 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV1_OFFSET,
           NIL)
+    }
+
+  /**
+   * If `true`, instead of using `UV` textures will use a triplanar texture lookup to determine how to apply textures. Triplanar uses the orientation of the object's surface to blend between texture coordinates. It reads from the source texture 3 times, once for each axis and then blends between the results based on how closely the pixel aligns with each axis. This is often used for natural features to get a realistic blend of materials. Because triplanar texturing requires many more texture reads per-pixel it is much slower than normal UV texturing. Additionally, because it is blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp texturing.
+   */
+  public var uv1Triplanar: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 6L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 6L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
     }
 
   /**
@@ -792,8 +1426,23 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * If `true`, triplanar mapping for `UV` is calculated in world space rather than object local space. See also [uv1Triplanar].
+   */
+  public var uv1WorldTriplanar: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 8L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 8L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
    * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    */
+  @CoreTypeLocalCopy
   public var uv2Scale: Vector3
     get() {
       TransferContext.writeArguments()
@@ -809,6 +1458,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    */
+  @CoreTypeLocalCopy
   public var uv2Offset: Vector3
     get() {
       TransferContext.writeArguments()
@@ -820,6 +1470,20 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV2_OFFSET,
           NIL)
+    }
+
+  /**
+   * If `true`, instead of using `UV2` textures will use a triplanar texture lookup to determine how to apply textures. Triplanar uses the orientation of the object's surface to blend between texture coordinates. It reads from the source texture 3 times, once for each axis and then blends between the results based on how closely the pixel aligns with each axis. This is often used for natural features to get a realistic blend of materials. Because triplanar texturing requires many more texture reads per-pixel it is much slower than normal UV texturing. Additionally, because it is blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp texturing.
+   */
+  public var uv2Triplanar: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 7L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 7L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
     }
 
   /**
@@ -841,6 +1505,20 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * If `true`, triplanar mapping for `UV2` is calculated in world space rather than object local space. See also [uv2Triplanar].
+   */
+  public var uv2WorldTriplanar: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 9L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 9L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
    * Filter flags for the texture. See [enum TextureFilter] for options.
    *
    * **Note:** [heightmapTexture] is always sampled with linear filtering, even if nearest-neighbor filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need sharper height transitions between pixels, resize the heightmap texture in an image editor with nearest-neighbor filtering.
@@ -850,12 +1528,54 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE_FILTER,
           LONG)
-      return BaseMaterial3D.TextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE_FILTER,
           NIL)
+    }
+
+  /**
+   * Repeat flags for the texture. See [enum TextureFilter] for options.
+   */
+  public var textureRepeat: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 16L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 16L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the object receives no shadow that would otherwise be cast onto it.
+   */
+  public var disableReceiveShadows: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 13L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 13L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, enables the "shadow to opacity" render mode where lighting modifies the alpha so shadowed areas are opaque and non-shadowed areas are transparent. Useful for overlaying shadows onto a camera feed in AR.
+   */
+  public var shadowToOpacity: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 15L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 15L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
     }
 
   /**
@@ -868,12 +1588,26 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BILLBOARD_MODE,
           LONG)
-      return BaseMaterial3D.BillboardMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BILLBOARD_MODE,
           NIL)
+    }
+
+  /**
+   * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding. Only applies when [billboardMode] is not [BILLBOARD_DISABLED].
+   */
+  public var billboardKeepScale: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 5L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
     }
 
   /**
@@ -957,6 +1691,36 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * If `true`, the object is rendered at the same size regardless of distance.
+   */
+  public var fixedSize: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 4L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, render point size can be changed.
+   *
+   * **Note:** This is only effective for objects whose geometry is point-based rather than triangle-based. See also [pointSize].
+   */
+  public var usePointSize: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
    * The point size in pixels. See [usePointSize].
    */
   public var pointSize: Float
@@ -970,6 +1734,20 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_POINT_SIZE,
           NIL)
+    }
+
+  /**
+   * If `true`, enables parts of the shader required for [godot.GPUParticles3D] trails to function. This also requires using a mesh with appropriate skinning, such as [godot.RibbonTrailMesh] or [godot.TubeTrailMesh]. Enabling this feature outside of materials used in [godot.GPUParticles3D] meshes will break material rendering.
+   */
+  public var useParticleTrails: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 19L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 19L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
     }
 
   /**
@@ -1044,7 +1822,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE,
           LONG)
-      return BaseMaterial3D.DistanceFadeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return BaseMaterial3D.DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -1094,55 +1872,199 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * If `true`, enables the specified flag. Flags are optional behavior that can be turned on and off. Only one flag can be enabled at a time with this function, the flag enumerators cannot be bit-masked together to enable or disable multiple flags at once. Flags can also be enabled by setting the corresponding member to `true`. See [enum Flags] enumerator for options.
+   * The material's base color.
+   *
+   * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor] will *not* modulate the detail texture. This can be used to color partial areas of a material by not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = basematerial3d.albedoColor
+   * //Your changes
+   * basematerial3d.albedoColor = myCoreType
+   * ``````
    */
-  public fun setFlag(flag: Flags, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+  @CoreTypeHelper
+  public open fun albedoColorMutate(block: Color.() -> Unit): Color = albedoColor.apply{
+      block(this)
+      albedoColor = this
   }
 
-  /**
-   * Returns `true`, if the specified flag is enabled. See [enum Flags] enumerator for options.
-   */
-  public fun getFlag(flag: Flags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
 
   /**
-   * If `true`, enables the specified [enum Feature]. Many features that are available in [godot.BaseMaterial3D]s need to be enabled before use. This way the cost for using the feature is only incurred when specified. Features can also be enabled by setting the corresponding member to `true`.
+   * The emitted light's color. See [emissionEnabled].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = basematerial3d.emission
+   * //Your changes
+   * basematerial3d.emission = myCoreType
+   * ``````
    */
-  public fun setFeature(feature: Feature, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to feature.id, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+  @CoreTypeHelper
+  public open fun emissionMutate(block: Color.() -> Unit): Color = emission.apply{
+      block(this)
+      emission = this
   }
 
-  /**
-   * Returns `true`, if the specified [enum Feature] is enabled.
-   */
-  public fun getFeature(feature: Feature): Boolean {
-    TransferContext.writeArguments(LONG to feature.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
 
   /**
-   * Sets the texture for the slot specified by [param]. See [enum TextureParam] for available slots.
+   * The color to multiply the subsurface scattering transmittance effect with. Ignored if [subsurfScatterSkinMode] is `true`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = basematerial3d.subsurfScatterTransmittanceColor
+   * //Your changes
+   * basematerial3d.subsurfScatterTransmittanceColor = myCoreType
+   * ``````
    */
-  public fun setTexture(`param`: TextureParam, texture: Texture2D): Unit {
-    TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+  @CoreTypeHelper
+  public open fun subsurfScatterTransmittanceColorMutate(block: Color.() -> Unit): Color =
+      subsurfScatterTransmittanceColor.apply{
+      block(this)
+      subsurfScatterTransmittanceColor = this
   }
 
+
   /**
-   * Returns the [godot.Texture2D] associated with the specified [enum TextureParam].
+   * The color used by the backlight effect. Represents the light passing through an object.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = basematerial3d.backlight
+   * //Your changes
+   * basematerial3d.backlight = myCoreType
+   * ``````
    */
-  public fun getTexture(`param`: TextureParam): Texture2D? {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  @CoreTypeHelper
+  public open fun backlightMutate(block: Color.() -> Unit): Color = backlight.apply{
+      block(this)
+      backlight = this
   }
+
+
+  /**
+   * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = basematerial3d.uv1Scale
+   * //Your changes
+   * basematerial3d.uv1Scale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun uv1ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv1Scale.apply{
+      block(this)
+      uv1Scale = this
+  }
+
+
+  /**
+   * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = basematerial3d.uv1Offset
+   * //Your changes
+   * basematerial3d.uv1Offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun uv1OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv1Offset.apply{
+      block(this)
+      uv1Offset = this
+  }
+
+
+  /**
+   * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = basematerial3d.uv2Scale
+   * //Your changes
+   * basematerial3d.uv2Scale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun uv2ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv2Scale.apply{
+      block(this)
+      uv2Scale = this
+  }
+
+
+  /**
+   * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = basematerial3d.uv2Offset
+   * //Your changes
+   * basematerial3d.uv2Offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun uv2OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv2Offset.apply{
+      block(this)
+      uv2Offset = this
+  }
+
 
   public enum class TextureParam(
     id: Long,
@@ -1231,7 +2153,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1274,7 +2196,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1297,7 +2219,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1336,7 +2258,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1367,7 +2289,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1434,7 +2356,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1465,7 +2387,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1492,7 +2414,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1521,7 +2443,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1548,7 +2470,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1653,7 +2575,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1684,7 +2606,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1711,7 +2633,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1744,7 +2666,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1779,7 +2701,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1802,7 +2724,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1833,7 +2755,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

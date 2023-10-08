@@ -113,7 +113,7 @@ public open class XRController3D : XRNode3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_TRACKER_HAND,
         LONG)
-    return XRPositionalTracker.TrackerHand.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

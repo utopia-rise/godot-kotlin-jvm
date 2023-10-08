@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -15,6 +17,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Box-shaped 3D particle attractor with strength varying within the box, affecting [godot.GPUParticles3D] nodes.
@@ -30,6 +33,7 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
   /**
    * The size of the vector field box in 3D units.
    */
+  @CoreTypeLocalCopy
   public var size: Vector3
     get() {
       TransferContext.writeArguments()
@@ -65,6 +69,30 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
     callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D, scriptIndex)
     return true
   }
+
+  /**
+   * The size of the vector field box in 3D units.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gpuparticlesattractorvectorfield3d.size
+   * //Your changes
+   * gpuparticlesattractorvectorfield3d.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
+      block(this)
+      size = this
+  }
+
 
   public companion object
 }

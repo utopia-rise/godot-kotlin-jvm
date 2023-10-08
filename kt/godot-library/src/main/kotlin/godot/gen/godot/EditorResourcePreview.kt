@@ -51,7 +51,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
     path: String,
     `receiver`: Object,
     receiverFunc: StringName,
-    userdata: Any,
+    userdata: Any?,
   ): Unit {
     TransferContext.writeArguments(STRING to path, OBJECT to receiver, STRING_NAME to receiverFunc, ANY to userdata)
     TransferContext.callMethod(rawPtr,
@@ -67,7 +67,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
     resource: Resource,
     `receiver`: Object,
     receiverFunc: StringName,
-    userdata: Any,
+    userdata: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to resource, OBJECT to receiver, STRING_NAME to receiverFunc, ANY to userdata)
     TransferContext.callMethod(rawPtr,

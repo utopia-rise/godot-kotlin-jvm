@@ -21,11 +21,7 @@ public:
 
     void write_args(jni::Env& p_env, const Variant** p_args, int args_size);
 
-    uint32_t read_args_size(jni::Env& p_env);
-
-    Variant read_single_arg(jni::Env& p_env);
-
-    void read_args(jni::Env& p_env, Variant* args);
+    uint32_t read_args(jni::Env& p_env, Variant* args);
 
     void remove_script_instance(uint64_t id);
 
@@ -40,7 +36,7 @@ public:
 private:
     SharedBuffer* get_buffer(jni::Env& p_env);
 
-    _FORCE_INLINE_ static uint32_t read_args_size(jni::Env& p_env, SharedBuffer* buffer) {
+    _FORCE_INLINE_ static uint32_t read_args_size(SharedBuffer* buffer) {
         uint32_t args_size {decode_uint32(buffer->get_cursor())};
         buffer->increment_position(4);
         return args_size;

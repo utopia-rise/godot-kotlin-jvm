@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -14,6 +16,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -32,6 +35,7 @@ public open class PlaceholderTexture2D : Texture2D() {
   /**
    * The texture's size (in pixels).
    */
+  @CoreTypeLocalCopy
   public var size: Vector2
     @JvmName("getSize_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
@@ -46,6 +50,30 @@ public open class PlaceholderTexture2D : Texture2D() {
     callConstructor(ENGINECLASS_PLACEHOLDERTEXTURE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The texture's size (in pixels).
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = placeholdertexture2d.size
+   * //Your changes
+   * placeholdertexture2d.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
+      block(this)
+      size = this
+  }
+
 
   public companion object
 }

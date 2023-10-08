@@ -3,29 +3,30 @@ package godot.signals
 import godot.Object
 import godot.core.Callable
 import godot.core.CoreType
+import godot.core.GodotError
 import godot.core.StringName
 import godot.core.asStringName
 import godot.global.GD
 import godot.util.camelToSnakeCase
+import kotlin.reflect.KCallable
 
-open class Signal(
+open class Signal internal constructor(
     val godotObject: Object,
     val name: StringName
 ) : CoreType {
+
     constructor(instance: Object, jvmName: String) : this(
         instance,
         jvmName.camelToSnakeCase().removePrefix("_").asStringName()
     )
 
-    val objectId by lazy { godotObject.id }
-
-    protected fun emitSignal(instance: Object, vararg args: Any?) {
-        instance.emitSignal(name, *args)
+    fun emitSignal(vararg args: Any?) {
+        godotObject.emitSignal(name, *args)
     }
 
     fun connect(
         callable: Callable,
-        flags: Int
+        flags: Int = 0
     ) = godotObject.connect(name, callable, flags.toLong())
 
     fun disconnect(callable: Callable) = godotObject.disconnect(name, callable)
@@ -56,57 +57,137 @@ open class Signal(
 }
 
 class Signal0(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(instance: Object) {
-        emitSignal(instance)
+    fun emit() {
+        emitSignal()
+    }
+
+    fun <T : Object> connect(
+        target: T,
+        method: T.() -> Unit,
+        flags: Int = 0,
+    ): GodotError {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return connect(Callable(target, methodName), flags)
+    }
+
+    fun <T : Object> disconnect(
+        target: T,
+        method: T.() -> Unit
+    ) {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return disconnect(Callable(target, methodName))
     }
 }
 
 class Signal1<P0>(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(instance: Object, p0: P0) {
+    fun emit(p0: P0) {
         emitSignal(
-            instance,
             p0
         )
+    }
+
+    fun <T : Object> connect(
+        target: T,
+        method: T.(P0) -> Unit,
+        flags: Int = 0,
+    ): GodotError {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return connect(Callable(target, methodName), flags)
+    }
+
+    fun <T : Object> disconnect(
+        target: T,
+        method: T.(P0) -> Unit
+    ) {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return disconnect(Callable(target, methodName))
     }
 }
 
 class Signal2<P0, P1>(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(instance: Object, p0: P0, p1: P1) {
+    fun emit(p0: P0, p1: P1) {
         emitSignal(
-            instance,
             p0,
             p1
         )
     }
+
+    fun <T : Object> connect(
+        target: T,
+        method: T.(P0, P1) -> Unit,
+        flags: Int = 0,
+    ): GodotError {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return connect(Callable(target, methodName), flags)
+    }
+
+    fun <T : Object> disconnect(
+        target: T,
+        method: T.(P0, P1) -> Unit
+    ) {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return disconnect(Callable(target, methodName))
+    }
 }
 
 class Signal3<P0, P1, P2>(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(instance: Object, p0: P0, p1: P1, p2: P2) {
+    fun emit(p0: P0, p1: P1, p2: P2) {
         emitSignal(
-            instance,
             p0,
             p1,
             p2
         )
     }
+
+    fun <T : Object> connect(
+        target: T,
+        method: T.(P0, P1, P2) -> Unit,
+        flags: Int = 0,
+    ): GodotError {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return connect(Callable(target, methodName), flags)
+    }
+
+    fun <T : Object> disconnect(
+        target: T,
+        method: T.(P0, P1, P2) -> Unit
+    ) {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return disconnect(Callable(target, methodName))
+    }
 }
 
 class Signal4<P0, P1, P2, P3>(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(instance: Object, p0: P0, p1: P1, p2: P2, p3: P3) {
+    fun emit(p0: P0, p1: P1, p2: P2, p3: P3) {
         emitSignal(
-            instance,
             p0,
             p1,
             p2,
             p3
         )
     }
+
+    fun <T : Object> connect(
+        target: T,
+        method: T.(P0, P1, P2, P3) -> Unit,
+        flags: Int = 0,
+    ): GodotError {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return connect(Callable(target, methodName), flags)
+    }
+
+    fun <T : Object> disconnect(
+        target: T,
+        method: T.(P0, P1, P2, P3) -> Unit
+    ) {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return disconnect(Callable(target, methodName))
+    }
 }
 
 class Signal5<P0, P1, P2, P3, P4>(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(instance: Object, p0: P0, p1: P1, p2: P2, p3: P3, p4: P4) {
+    fun emit(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4) {
         emitSignal(
-            instance,
             p0,
             p1,
             p2,
@@ -114,12 +195,28 @@ class Signal5<P0, P1, P2, P3, P4>(instance: Object, name: String) : Signal(insta
             p4
         )
     }
+
+    fun <T : Object> connect(
+        target: T,
+        method: T.(P0, P1, P2, P3, P4) -> Unit,
+        flags: Int = 0,
+    ): GodotError {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return connect(Callable(target, methodName), flags)
+    }
+
+    fun <T : Object> disconnect(
+        target: T,
+        method: T.(P0, P1, P2, P3, P4) -> Unit
+    ) {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return disconnect(Callable(target, methodName))
+    }
 }
 
 class Signal6<P0, P1, P2, P3, P4, P5>(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(instance: Object, p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5) {
+    fun emit(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5) {
         emitSignal(
-            instance,
             p0,
             p1,
             p2,
@@ -128,12 +225,28 @@ class Signal6<P0, P1, P2, P3, P4, P5>(instance: Object, name: String) : Signal(i
             p5
         )
     }
+
+    fun <T : Object> connect(
+        target: T,
+        method: T.(P0, P1, P2, P3, P4, P5) -> Unit,
+        flags: Int = 0,
+    ): GodotError {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return connect(Callable(target, methodName), flags)
+    }
+
+    fun <T : Object> disconnect(
+        target: T,
+        method: T.(P0, P1, P2, P3, P4, P5) -> Unit
+    ) {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return disconnect(Callable(target, methodName))
+    }
 }
 
 class Signal7<P0, P1, P2, P3, P4, P5, P6>(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(instance: Object, p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6) {
+    fun emit(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6) {
         emitSignal(
-            instance,
             p0,
             p1,
             p2,
@@ -143,12 +256,28 @@ class Signal7<P0, P1, P2, P3, P4, P5, P6>(instance: Object, name: String) : Sign
             p6
         )
     }
+
+    fun <T : Object> connect(
+        target: T,
+        method: T.(P0, P1, P2, P3, P4, P5, P6) -> Unit,
+        flags: Int = 0,
+    ): GodotError {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return connect(Callable(target, methodName), flags)
+    }
+
+    fun <T : Object> disconnect(
+        target: T,
+        method: T.(P0, P1, P2, P3, P4, P5, P6) -> Unit
+    ) {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return disconnect(Callable(target, methodName))
+    }
 }
 
 class Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(instance: Object, p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7) {
+    fun emit(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7) {
         emitSignal(
-            instance,
             p0,
             p1,
             p2,
@@ -159,51 +288,21 @@ class Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(instance: Object, name: String) : 
             p7
         )
     }
-}
 
-class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(instance: Object, p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8) {
-        emitSignal(
-            instance,
-            p0,
-            p1,
-            p2,
-            p3,
-            p4,
-            p5,
-            p6,
-            p7,
-            p8
-        )
+    fun <T : Object> connect(
+        target: T,
+        method: T.(P0, P1, P2, P3, P4, P5, P6, P7) -> Unit,
+        flags: Int = 0,
+    ): GodotError {
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return connect(Callable(target, methodName), flags)
     }
-}
 
-class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(instance: Object, name: String) : Signal(instance, name) {
-    fun emit(
-        instance: Object,
-        p0: P0,
-        p1: P1,
-        p2: P2,
-        p3: P3,
-        p4: P4,
-        p5: P5,
-        p6: P6,
-        p7: P7,
-        p8: P8,
-        p9: P9
+    fun <T : Object> disconnect(
+        target: T,
+        method: T.(P0, P1, P2, P3, P4, P5, P6, P7) -> Unit
     ) {
-        emitSignal(
-            instance,
-            p0,
-            p1,
-            p2,
-            p3,
-            p4,
-            p5,
-            p6,
-            p7,
-            p8,
-            p9
-        )
+        val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+        return disconnect(Callable(target, methodName))
     }
 }

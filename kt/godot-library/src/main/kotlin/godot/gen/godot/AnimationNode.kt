@@ -284,7 +284,7 @@ public open class AnimationNode : Resource() {
   /**
    * Sets a custom parameter. These are used as local memory, because resources can be reused across the tree or scenes.
    */
-  public fun setParameter(name: StringName, `value`: Any): Unit {
+  public fun setParameter(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_SET_PARAMETER, NIL)
   }
@@ -325,7 +325,7 @@ public open class AnimationNode : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

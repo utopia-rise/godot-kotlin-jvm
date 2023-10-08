@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
@@ -20,6 +22,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Editor-only helper for setting up root motion in [godot.AnimationTree].
@@ -52,6 +55,7 @@ public open class RootMotionView : VisualInstance3D() {
   /**
    * The grid's color.
    */
+  @CoreTypeLocalCopy
   public var color: Color
     get() {
       TransferContext.writeArguments()
@@ -110,6 +114,30 @@ public open class RootMotionView : VisualInstance3D() {
     callConstructor(ENGINECLASS_ROOTMOTIONVIEW, scriptIndex)
     return true
   }
+
+  /**
+   * The grid's color.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rootmotionview.color
+   * //Your changes
+   * rootmotionview.color = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+      block(this)
+      color = this
+  }
+
 
   public companion object
 }

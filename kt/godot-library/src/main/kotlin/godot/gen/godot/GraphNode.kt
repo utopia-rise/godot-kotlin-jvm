@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -101,6 +103,7 @@ public open class GraphNode : Container() {
    *
    * **Note:** You cannot use position offset directly, as [godot.GraphEdit] is a [godot.Container].
    */
+  @CoreTypeLocalCopy
   public var positionOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -211,7 +214,7 @@ public open class GraphNode : Container() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OVERLAY, LONG)
-      return GraphNode.Overlay.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return GraphNode.Overlay.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -226,7 +229,7 @@ public open class GraphNode : Container() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_TEXT_DIRECTION,
           LONG)
-      return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -251,6 +254,32 @@ public open class GraphNode : Container() {
     callConstructor(ENGINECLASS_GRAPHNODE, scriptIndex)
     return true
   }
+
+  /**
+   * The offset of the GraphNode, relative to the scroll offset of the [godot.GraphEdit].
+   *
+   * **Note:** You cannot use position offset directly, as [godot.GraphEdit] is a [godot.Container].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = graphnode.positionOffset
+   * //Your changes
+   * graphnode.positionOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun positionOffsetMutate(block: Vector2.() -> Unit): Vector2 = positionOffset.apply{
+      block(this)
+      positionOffset = this
+  }
+
 
   /**
    * Sets properties of the slot with the [slotIndex] index.
@@ -570,7 +599,7 @@ public open class GraphNode : Container() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

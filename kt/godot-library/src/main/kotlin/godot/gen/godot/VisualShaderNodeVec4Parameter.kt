@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
@@ -15,6 +17,7 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 4D vector parameter to be used within the visual shader graph.
@@ -42,6 +45,7 @@ public open class VisualShaderNodeVec4Parameter : VisualShaderNodeParameter() {
   /**
    * A default value to be assigned within the shader.
    */
+  @CoreTypeLocalCopy
   public var defaultValue: Vector4
     get() {
       TransferContext.writeArguments()
@@ -59,6 +63,30 @@ public open class VisualShaderNodeVec4Parameter : VisualShaderNodeParameter() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC4PARAMETER, scriptIndex)
     return true
   }
+
+  /**
+   * A default value to be assigned within the shader.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visualshadernodevec4parameter.defaultValue
+   * //Your changes
+   * visualshadernodevec4parameter.defaultValue = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun defaultValueMutate(block: Vector4.() -> Unit): Vector4 = defaultValue.apply{
+      block(this)
+      defaultValue = this
+  }
+
 
   public companion object
 }

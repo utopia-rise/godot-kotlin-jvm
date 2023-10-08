@@ -27,20 +27,24 @@ class ClassRegistrarFileBuilder(
     private val classRegistrarBuilder = TypeSpec
         .classBuilder("${registeredClass.registeredName}Registrar")
         .addModifiers(KModifier.OPEN)
-        .addAnnotation(
-            AnnotationSpec
-                .builder(RegisteredClassMetadata::class.asClassName())
-                .addMember("\"${registeredClass.registeredName}\"")
-                .addMember("\"${registeredClass.godotBaseClass}\"")
-                .addMember("\"${registeredClass.fqName}\"")
-                .addMember("\"${registeredClass.localResourcePathProvider(registeredClass)}\"")
-                .addMember("\"$projectName\"")
-                .addMember("\"${registeredClass.supertypes.joinToString(",") { it.fqName }}\"")
-                .addMember("\"${registeredClass.signals.joinToString(",") { it.fqName }}\"")
-                .addMember("\"${registeredClass.properties.joinToString(",") { it.fqName }}\"")
-                .addMember("\"${registeredClass.functions.joinToString(",") { it.fqName }}\"")
-                .build()
-        )
+        .apply {
+            if (!registeredClass.isAbstract) {
+                addAnnotation(
+                    AnnotationSpec
+                        .builder(RegisteredClassMetadata::class.asClassName())
+                        .addMember("\"${registeredClass.registeredName}\"")
+                        .addMember("\"${registeredClass.godotBaseClass}\"")
+                        .addMember("\"${registeredClass.fqName}\"")
+                        .addMember("\"${registeredClass.localResourcePathProvider(registeredClass)}\"")
+                        .addMember("\"$projectName\"")
+                        .addMember("\"${registeredClass.supertypes.joinToString(",") { it.fqName }}\"")
+                        .addMember("\"${registeredClass.signals.joinToString(",") { it.fqName }}\"")
+                        .addMember("\"${registeredClass.properties.joinToString(",") { it.fqName }}\"")
+                        .addMember("\"${registeredClass.functions.joinToString(",") { it.fqName }}\"")
+                        .build()
+                )
+            }
+        }
         .let { classBuilder ->
             if (registeredClass.isAbstract) {
                 classBuilder.addKdoc("Registrar for abstract class. Does not register any members as it's only used for default value providing if any properties with default values are provided in the abstract class. Members of this abstract class are registered by the inheriting registrars")

@@ -126,7 +126,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun getCellMode(column: Int): TreeCellMode {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CELL_MODE, LONG)
-    return TreeItem.TreeCellMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TreeItem.TreeCellMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -224,7 +224,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun getTextDirection(column: Int): Control.TextDirection {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT_DIRECTION, LONG)
-    return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -241,7 +241,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun getAutowrapMode(column: Int): TextServer.AutowrapMode {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_AUTOWRAP_MODE, LONG)
-    return TextServer.AutowrapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -261,7 +261,7 @@ public open class TreeItem internal constructor() : Object() {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-    return TextServer.StructuredTextParser.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -432,7 +432,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the metadata value for the given column, which can be retrieved later using [getMetadata]. This can be used, for example, to store a reference to the original data.
    */
-  public fun setMetadata(column: Int, meta: Any): Unit {
+  public fun setMetadata(column: Int, meta: Any?): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_METADATA, NIL)
   }
@@ -800,7 +800,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun getTextAlignment(column: Int): HorizontalAlignment {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT_ALIGNMENT, LONG)
-    return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1040,7 +1040,7 @@ public open class TreeItem internal constructor() : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

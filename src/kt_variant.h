@@ -2,7 +2,6 @@
 #define GODOT_JVM_KT_VARIANT_H
 
 #include "jni/wrapper.h"
-#include "kt_custom_callable.h"
 #include "logging.h"
 #include "long_string_queue.h"
 #include "memory/kotlin_binding_manager.h"
@@ -267,19 +266,6 @@ namespace ktvariant {
         append_object(des, src);
     }
 
-    static void to_kvariant_from_CALLABLE(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::CALLABLE);
-        Callable src_callable {src.operator Callable()};
-
-        bool is_callable_custom {src_callable.is_custom()};
-        des->increment_position(encode_uint32(is_callable_custom, des->get_cursor()));
-        append_nativecoretype(des, src_callable);
-        if (!is_callable_custom) {
-            append_object(des, src_callable.get_object());
-            append_nativecoretype(des, src_callable.get_method());
-        }
-    }
-
     static void init_to_kt_methods(void (*to_kt_array[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&)) {
         to_kt_array[Variant::NIL] = to_kvariant_fromNIL;
         to_kt_array[Variant::BOOL] = to_kvariant_fromBOOL;
@@ -302,7 +288,8 @@ namespace ktvariant {
         to_kt_array[Variant::TRANSFORM3D] = to_kvariant_fromTRANSFORM3D;
         to_kt_array[Variant::PROJECTION] = to_kvariant_fromPROJECTION;
         to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
-        to_kt_array[Variant::CALLABLE] = to_kvariant_from_CALLABLE;
+        to_kt_array[Variant::CALLABLE] =  to_kvariant_fromNATIVECORETYPE < Variant::CALLABLE, Callable,
+        &Variant::operator Callable>;
         to_kt_array[Variant::SIGNAL] = to_kvariant_fromSIGNAL;
         to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE < Variant::DICTIONARY, Dictionary,
         &Variant::operator Dictionary>;

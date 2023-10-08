@@ -71,7 +71,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   @JvmOverloads
   public fun setInputPortDefaultValue(
     port: Int,
-    `value`: Any,
+    `value`: Any?,
     prevValue: Any? = null,
   ): Unit {
     TransferContext.writeArguments(LONG to port.toLong(), ANY to value, ANY to prevValue)
@@ -158,7 +158,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

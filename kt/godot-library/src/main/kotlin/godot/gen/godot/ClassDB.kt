@@ -164,11 +164,11 @@ public object ClassDB : Object() {
   public fun classSetProperty(
     _object: Object,
     `property`: StringName,
-    `value`: Any,
+    `value`: Any?,
   ): GodotError {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_SET_PROPERTY, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

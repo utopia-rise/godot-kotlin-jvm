@@ -864,7 +864,7 @@ public open class CodeEdit : TextEdit() {
     insertText: String,
     textColor: Color = Color(Color(1, 1, 1, 1)),
     icon: Resource? = null,
-    `value`: Any = 0,
+    `value`: Any? = 0,
     location: Int = 1024,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, STRING to displayText, STRING to insertText, COLOR to textColor, OBJECT to icon, ANY to value, LONG to location.toLong())
@@ -1023,7 +1023,7 @@ public open class CodeEdit : TextEdit() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1054,7 +1054,7 @@ public open class CodeEdit : TextEdit() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

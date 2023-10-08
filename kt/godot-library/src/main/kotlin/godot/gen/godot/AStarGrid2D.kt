@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
@@ -82,6 +84,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The region of grid cells available for pathfinding. If changed, [update] needs to be called before finding the next path.
    */
+  @CoreTypeLocalCopy
   public var region: Rect2i
     get() {
       TransferContext.writeArguments()
@@ -98,6 +101,7 @@ public open class AStarGrid2D : RefCounted() {
    *
    * *Deprecated.* Use [region] instead.
    */
+  @CoreTypeLocalCopy
   public var size: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -112,6 +116,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The offset of the grid which will be applied to calculate the resulting point position returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
+  @CoreTypeLocalCopy
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -126,6 +131,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The size of the point cell which will be applied to calculate the resulting point position returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
+  @CoreTypeLocalCopy
   public var cellSize: Vector2
     get() {
       TransferContext.writeArguments()
@@ -164,7 +170,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DEFAULT_COMPUTE_HEURISTIC, LONG)
-      return AStarGrid2D.Heuristic.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -180,7 +186,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DEFAULT_ESTIMATE_HEURISTIC, LONG)
-      return AStarGrid2D.Heuristic.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -196,7 +202,7 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_GET_DIAGONAL_MODE,
           LONG)
-      return AStarGrid2D.DiagonalMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return AStarGrid2D.DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -208,6 +214,104 @@ public open class AStarGrid2D : RefCounted() {
     callConstructor(ENGINECLASS_ASTARGRID2D, scriptIndex)
     return true
   }
+
+  /**
+   * The region of grid cells available for pathfinding. If changed, [update] needs to be called before finding the next path.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = astargrid2d.region
+   * //Your changes
+   * astargrid2d.region = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun regionMutate(block: Rect2i.() -> Unit): Rect2i = region.apply{
+      block(this)
+      region = this
+  }
+
+
+  /**
+   * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update] needs to be called before finding the next path.
+   *
+   * *Deprecated.* Use [region] instead.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = astargrid2d.size
+   * //Your changes
+   * astargrid2d.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
+      block(this)
+      size = this
+  }
+
+
+  /**
+   * The offset of the grid which will be applied to calculate the resulting point position returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = astargrid2d.offset
+   * //Your changes
+   * astargrid2d.offset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+      block(this)
+      offset = this
+  }
+
+
+  /**
+   * The size of the point cell which will be applied to calculate the resulting point position returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = astargrid2d.cellSize
+   * //Your changes
+   * astargrid2d.cellSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun cellSizeMutate(block: Vector2.() -> Unit): Vector2 = cellSize.apply{
+      block(this)
+      cellSize = this
+  }
+
 
   /**
    * Called when estimating the cost between a point and the path's ending point.
@@ -404,7 +508,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -439,7 +543,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

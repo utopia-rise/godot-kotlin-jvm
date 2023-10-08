@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -86,9 +88,9 @@ public open class NavigationAgent3D : Node() {
    *
    * - `owner`: The object which manages the link (usually [godot.NavigationLink3D]).
    *
-   * - `link_entry_position`: If `owner` is available and the owner is a [godot.NavigationLink2D], it will contain the global position of the link's point the agent is entering.
+   * - `link_entry_position`: If `owner` is available and the owner is a [godot.NavigationLink3D], it will contain the global position of the link's point the agent is entering.
    *
-   * - `link_exit_position`: If `owner` is available and the owner is a [godot.NavigationLink2D], it will contain the global position of the link's point which the agent is exiting.
+   * - `link_exit_position`: If `owner` is available and the owner is a [godot.NavigationLink3D], it will contain the global position of the link's point which the agent is exiting.
    */
   public val linkReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
 
@@ -105,6 +107,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * If set a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
    */
+  @CoreTypeLocalCopy
   public var targetPosition: Vector3
     get() {
       TransferContext.writeArguments()
@@ -206,7 +209,7 @@ public open class NavigationAgent3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_PATHFINDING_ALGORITHM, LONG)
-      return NavigationPathQueryParameters3D.PathfindingAlgorithm.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationPathQueryParameters3D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -222,7 +225,7 @@ public open class NavigationAgent3D : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_PATH_POSTPROCESSING, LONG)
-      return NavigationPathQueryParameters3D.PathPostProcessing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return NavigationPathQueryParameters3D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -265,6 +268,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agents and obstacles. When an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal simulation velocity.
    */
+  @CoreTypeLocalCopy
   public var velocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -491,6 +495,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
    */
+  @CoreTypeLocalCopy
   public var debugPathCustomColor: Color
     get() {
       TransferContext.writeArguments()
@@ -524,6 +529,79 @@ public open class NavigationAgent3D : Node() {
     callConstructor(ENGINECLASS_NAVIGATIONAGENT3D, scriptIndex)
     return true
   }
+
+  /**
+   * If set a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationagent3d.targetPosition
+   * //Your changes
+   * navigationagent3d.targetPosition = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
+      block(this)
+      targetPosition = this
+  }
+
+
+  /**
+   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agents and obstacles. When an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal simulation velocity.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationagent3d.velocity
+   * //Your changes
+   * navigationagent3d.velocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply{
+      block(this)
+      velocity = this
+  }
+
+
+  /**
+   * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationagent3d.debugPathCustomColor
+   * //Your changes
+   * navigationagent3d.debugPathCustomColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun debugPathCustomColorMutate(block: Color.() -> Unit): Color =
+      debugPathCustomColor.apply{
+      block(this)
+      debugPathCustomColor = this
+  }
+
 
   /**
    * Returns the [RID] of this agent on the [godot.NavigationServer3D].

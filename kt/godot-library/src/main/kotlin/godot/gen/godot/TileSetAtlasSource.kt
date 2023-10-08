@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
@@ -62,6 +64,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Margins, in pixels, to offset the origin of the grid in the texture.
    */
+  @CoreTypeLocalCopy
   public var margins: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -78,6 +81,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Separation, in pixels, between each tile texture region of the grid.
    */
+  @CoreTypeLocalCopy
   public var separation: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -94,6 +98,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * The base tile size in the texture (in pixel). This size must be bigger than the TileSet's `tile_size` value.
    */
+  @CoreTypeLocalCopy
   public var textureRegionSize: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -129,6 +134,79 @@ public open class TileSetAtlasSource : TileSetSource() {
     callConstructor(ENGINECLASS_TILESETATLASSOURCE, scriptIndex)
     return true
   }
+
+  /**
+   * Margins, in pixels, to offset the origin of the grid in the texture.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = tilesetatlassource.margins
+   * //Your changes
+   * tilesetatlassource.margins = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun marginsMutate(block: Vector2i.() -> Unit): Vector2i = margins.apply{
+      block(this)
+      margins = this
+  }
+
+
+  /**
+   * Separation, in pixels, between each tile texture region of the grid.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = tilesetatlassource.separation
+   * //Your changes
+   * tilesetatlassource.separation = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun separationMutate(block: Vector2i.() -> Unit): Vector2i = separation.apply{
+      block(this)
+      separation = this
+  }
+
+
+  /**
+   * The base tile size in the texture (in pixel). This size must be bigger than the TileSet's `tile_size` value.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = tilesetatlassource.textureRegionSize
+   * //Your changes
+   * tilesetatlassource.textureRegionSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun textureRegionSizeMutate(block: Vector2i.() -> Unit): Vector2i =
+      textureRegionSize.apply{
+      block(this)
+      textureRegionSize = this
+  }
+
 
   /**
    * Creates a new tile at coordinates [atlasCoords] with the given [size].

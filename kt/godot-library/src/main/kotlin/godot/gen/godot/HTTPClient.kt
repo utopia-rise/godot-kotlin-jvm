@@ -120,7 +120,7 @@ public open class HTTPClient : RefCounted() {
   ): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong(), OBJECT to tlsOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CONNECT_TO_HOST, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -140,7 +140,7 @@ public open class HTTPClient : RefCounted() {
   ): GodotError {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, PACKED_BYTE_ARRAY to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST_RAW, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -191,7 +191,7 @@ public open class HTTPClient : RefCounted() {
   ): GodotError {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, STRING to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -263,6 +263,8 @@ public open class HTTPClient : RefCounted() {
    * Returns the response's body length.
    *
    * **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.
+   *
+   * **Note:** This function always returns `-1` on the Web platform due to browsers limitations.
    */
   public fun getResponseBodyLength(): Long {
     TransferContext.writeArguments()
@@ -287,7 +289,7 @@ public open class HTTPClient : RefCounted() {
   public fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_STATUS, LONG)
-    return HTTPClient.Status.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return HTTPClient.Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -296,7 +298,7 @@ public open class HTTPClient : RefCounted() {
   public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_POLL, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -440,7 +442,7 @@ public open class HTTPClient : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -495,7 +497,7 @@ public open class HTTPClient : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -754,7 +756,7 @@ public open class HTTPClient : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

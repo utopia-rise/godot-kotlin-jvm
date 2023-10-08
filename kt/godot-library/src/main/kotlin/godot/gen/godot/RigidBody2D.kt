@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantArray
@@ -180,7 +182,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CENTER_OF_MASS_MODE, LONG)
-      return RigidBody2D.CenterOfMassMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -193,6 +195,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
    */
+  @CoreTypeLocalCopy
   public var centerOfMass: Vector2
     get() {
       TransferContext.writeArguments()
@@ -266,7 +269,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
-      return RigidBody2D.CCDMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -384,7 +387,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_FREEZE_MODE, LONG)
-      return RigidBody2D.FreezeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody2D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -394,6 +397,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   /**
    * The body's linear velocity in pixels per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -415,7 +419,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_LINEAR_DAMP_MODE,
           LONG)
-      return RigidBody2D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -464,7 +468,7 @@ public open class RigidBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_ANGULAR_DAMP_MODE,
           LONG)
-      return RigidBody2D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -494,6 +498,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * See [addConstantForce] and [addConstantCentralForce].
    */
+  @CoreTypeLocalCopy
   public var constantForce: Vector2
     get() {
       TransferContext.writeArguments()
@@ -529,6 +534,82 @@ public open class RigidBody2D : PhysicsBody2D() {
     callConstructor(ENGINECLASS_RIGIDBODY2D, scriptIndex)
     return true
   }
+
+  /**
+   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
+   *
+   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rigidbody2d.centerOfMass
+   * //Your changes
+   * rigidbody2d.centerOfMass = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun centerOfMassMutate(block: Vector2.() -> Unit): Vector2 = centerOfMass.apply{
+      block(this)
+      centerOfMass = this
+  }
+
+
+  /**
+   * The body's linear velocity in pixels per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rigidbody2d.linearVelocity
+   * //Your changes
+   * rigidbody2d.linearVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun linearVelocityMutate(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
+      block(this)
+      linearVelocity = this
+  }
+
+
+  /**
+   * The body's total constant positional forces applied during each physics update.
+   *
+   * See [addConstantForce] and [addConstantCentralForce].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rigidbody2d.constantForce
+   * //Your changes
+   * rigidbody2d.constantForce = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun constantForceMutate(block: Vector2.() -> Unit): Vector2 = constantForce.apply{
+      block(this)
+      constantForce = this
+  }
+
 
   /**
    * Allows you to read and safely modify the simulation state for the object. Use this instead of [godot.Node.PhysicsProcess] if you need to directly change the body's `position` or other physics properties. By default, it works in addition to the usual physics behavior, but [customIntegrator] allows you to disable the default behavior and write custom force integration for a body.
@@ -689,7 +770,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -712,7 +793,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -735,7 +816,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -762,7 +843,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

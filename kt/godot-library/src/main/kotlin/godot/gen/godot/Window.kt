@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedStringArray
@@ -141,7 +143,7 @@ public open class Window : Viewport() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MODE, LONG)
-      return Window.Mode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Window.Mode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -169,7 +171,7 @@ public open class Window : Viewport() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_INITIAL_POSITION, LONG)
-      return Window.WindowInitialPosition.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Window.WindowInitialPosition.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -183,6 +185,7 @@ public open class Window : Viewport() {
    *
    * **Note:** This property only works if [initialPosition] is set to [WINDOW_INITIAL_POSITION_ABSOLUTE].
    */
+  @CoreTypeLocalCopy
   public var position: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -197,6 +200,7 @@ public open class Window : Viewport() {
   /**
    * The window's size in pixels.
    */
+  @CoreTypeLocalCopy
   public var size: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -353,10 +357,137 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If `true`, the window can't be resized. Minimize and maximize buttons are disabled.
+   */
+  public var unresizable: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 0L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the window will have no borders.
+   */
+  public var borderless: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the window will be on top of all other windows. Does not work if [transient] is enabled.
+   */
+  public var alwaysOnTop: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.Window]'s background can be transparent. This is best used with embedded windows.
+   *
+   * **Note:** Transparency support is implemented on Linux, macOS and Windows, but availability might vary depending on GPU driver, display manager, and compositor capabilities.
+   *
+   * **Note:** This property has no effect if either [godot.ProjectSettings.display/window/perPixelTransparency/allowed], or the window's [godot.Viewport.transparentBg] is set to `false`.
+   */
+  public var transparent: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.Window] can't be focused nor interacted with. It can still be visible.
+   */
+  public var unfocusable: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 4L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.Window] will be considered a popup. Popups are sub-windows that don't show as separate windows in system's window manager's window list and will send close request when anything is clicked outside of them (unless [exclusive] is enabled).
+   *
+   * **Note:** This property only works with native windows.
+   */
+  public var popupWindow: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 5L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.Window] contents is expanded to the full size of the window, window title bar is transparent.
+   *
+   * **Note:** This property is implemented only on macOS.
+   *
+   * **Note:** This property only works with native windows.
+   */
+  public var extendToTitle: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 6L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 6L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, all mouse events will be passed to the underlying window of the same application. See also [mousePassthroughPolygon].
+   *
+   * **Note:** This property is implemented on Linux (X11), macOS and Windows.
+   *
+   * **Note:** This property only works with native windows.
+   */
+  public var mousePassthrough: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 7L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 7L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
+    }
+
+  /**
    * If non-zero, the [godot.Window] can't be resized to be smaller than this size.
    *
    * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls] is enabled and if its size is bigger.
    */
+  @CoreTypeLocalCopy
   public var minSize: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -373,6 +504,7 @@ public open class Window : Viewport() {
    *
    * **Note:** This property will be ignored if the value is lower than [minSize].
    */
+  @CoreTypeLocalCopy
   public var maxSize: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -387,6 +519,7 @@ public open class Window : Viewport() {
   /**
    * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [godot.Window]'s content will be scaled when the window is resized to a different size.
    */
+  @CoreTypeLocalCopy
   public var contentScaleSize: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -408,7 +541,7 @@ public open class Window : Viewport() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_MODE,
           LONG)
-      return Window.ContentScaleMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Window.ContentScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -424,7 +557,7 @@ public open class Window : Viewport() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_ASPECT,
           LONG)
-      return Window.ContentScaleAspect.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Window.ContentScaleAspect.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -500,6 +633,135 @@ public open class Window : Viewport() {
   }
 
   /**
+   * The window's position in pixels.
+   *
+   * If [godot.ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`, the window's position is in the coordinates of its parent [godot.Viewport].
+   *
+   * **Note:** This property only works if [initialPosition] is set to [WINDOW_INITIAL_POSITION_ABSOLUTE].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.position
+   * //Your changes
+   * window.position = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun positionMutate(block: Vector2i.() -> Unit): Vector2i = position.apply{
+      block(this)
+      position = this
+  }
+
+
+  /**
+   * The window's size in pixels.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.size
+   * //Your changes
+   * window.size = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
+      block(this)
+      size = this
+  }
+
+
+  /**
+   * If non-zero, the [godot.Window] can't be resized to be smaller than this size.
+   *
+   * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls] is enabled and if its size is bigger.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.minSize
+   * //Your changes
+   * window.minSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun minSizeMutate(block: Vector2i.() -> Unit): Vector2i = minSize.apply{
+      block(this)
+      minSize = this
+  }
+
+
+  /**
+   * If non-zero, the [godot.Window] can't be resized to be bigger than this size.
+   *
+   * **Note:** This property will be ignored if the value is lower than [minSize].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.maxSize
+   * //Your changes
+   * window.maxSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun maxSizeMutate(block: Vector2i.() -> Unit): Vector2i = maxSize.apply{
+      block(this)
+      maxSize = this
+  }
+
+
+  /**
+   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [godot.Window]'s content will be scaled when the window is resized to a different size.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.contentScaleSize
+   * //Your changes
+   * window.contentScaleSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun contentScaleSizeMutate(block: Vector2i.() -> Unit): Vector2i =
+      contentScaleSize.apply{
+      block(this)
+      contentScaleSize = this
+  }
+
+
+  /**
    * Returns the ID of the window.
    */
   public fun getWindowId(): Int {
@@ -534,23 +796,6 @@ public open class Window : Viewport() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_SIZE_WITH_DECORATIONS,
         VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-  }
-
-  /**
-   * Sets a specified window flag.
-   */
-  public fun setFlag(flag: Flags, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
-  }
-
-  /**
-   * Returns `true` if the [flag] is set.
-   */
-  public fun getFlag(flag: Flags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1094,7 +1339,7 @@ public open class Window : Viewport() {
   public fun getLayoutDirection(): LayoutDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_LAYOUT_DIRECTION, LONG)
-    return Window.LayoutDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Window.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1256,7 +1501,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1317,7 +1562,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1344,7 +1589,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1379,7 +1624,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1410,7 +1655,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1449,7 +1694,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

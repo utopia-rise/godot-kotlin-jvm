@@ -209,7 +209,7 @@ public open class SkeletonProfile : Resource() {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONPROFILE_GET_TAIL_DIRECTION,
         LONG)
-    return SkeletonProfile.TailDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return SkeletonProfile.TailDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -324,7 +324,7 @@ public open class SkeletonProfile : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Rect2
@@ -212,7 +214,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_2D, LONG)
-      return Viewport.MSAA.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -226,7 +228,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_3D, LONG)
-      return Viewport.MSAA.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -241,7 +243,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_SPACE_AA,
           LONG)
-      return Viewport.ScreenSpaceAA.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.ScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -284,6 +286,8 @@ public open class Viewport internal constructor() : Node() {
    * If `true`, [godot.OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this viewport. For the root viewport, [godot.ProjectSettings.rendering/occlusionCulling/useOcclusionCulling] must be set to `true` instead.
    *
    * **Note:** Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if you actually plan to use it, and think whether your scene can actually benefit from occlusion culling. Large, open scenes with few or no objects blocking the view will generally not benefit much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility ranges ([godot.GeometryInstance3D.visibilityRangeBegin] and [godot.GeometryInstance3D.visibilityRangeEnd]) compared to occlusion culling.
+   *
+   * **Note:** Due to memory constraints, occlusion culling is not supported by default in Web export templates. It can be enabled by compiling custom Web export templates with `module_raycast_enabled=yes`.
    */
   public var useOcclusionCulling: Boolean
     get() {
@@ -325,7 +329,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBUG_DRAW, LONG)
-      return Viewport.DebugDraw.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.DebugDraw.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -342,7 +346,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_MODE,
           LONG)
-      return Viewport.Scaling3DMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.Scaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -372,7 +376,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close).
    *
-   * Enabling temporal antialiasing ([useTaa]) will automatically apply a `-0.5` offset to this value, while enabling FXAA ([screenSpaceAa]) will automatically apply a `-0.25` offset to this value. If both TAA and FXAA are enbled at the same time, an offset of `-0.75` is applied to this value.
+   * Enabling temporal antialiasing ([useTaa]) will automatically apply a `-0.5` offset to this value, while enabling FXAA ([screenSpaceAa]) will automatically apply a `-0.25` offset to this value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this value.
    *
    * **Note:** If [scaling3dScale] is lower than `1.0` (exclusive), [textureMipmapBias] is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `log2(scaling_3d_scale) + mipmap_bias`.
    *
@@ -415,7 +419,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VRS_MODE, LONG)
-      return Viewport.VRSMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.VRSMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -459,7 +463,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, LONG)
-      return Viewport.DefaultCanvasItemTextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.DefaultCanvasItemTextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -475,7 +479,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, LONG)
-      return Viewport.DefaultCanvasItemTextureRepeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.DefaultCanvasItemTextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -602,7 +606,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_OVERSIZE, LONG)
-      return Viewport.SDFOversize.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.SDFOversize.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -616,7 +620,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_SCALE, LONG)
-      return Viewport.SDFScale.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.SDFScale.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -660,50 +664,71 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The subdivision amount of the first quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad0: PositionalShadowAtlasQuadrantSubdiv
+  public var positionalShadowAtlasQuad0: PositionalShadowAtlasQuadrantSubdiv
     get() {
-      TransferContext.writeArguments(LONG to 0)
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
 
   /**
    * The subdivision amount of the second quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad1: PositionalShadowAtlasQuadrantSubdiv
+  public var positionalShadowAtlasQuad1: PositionalShadowAtlasQuadrantSubdiv
     get() {
-      TransferContext.writeArguments(LONG to 1)
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
 
   /**
    * The subdivision amount of the third quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad2: PositionalShadowAtlasQuadrantSubdiv
+  public var positionalShadowAtlasQuad2: PositionalShadowAtlasQuadrantSubdiv
     get() {
-      TransferContext.writeArguments(LONG to 2)
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
 
   /**
    * The subdivision amount of the fourth quadrant on the shadow atlas.
    */
-  public val positionalShadowAtlasQuad3: PositionalShadowAtlasQuadrantSubdiv
+  public var positionalShadowAtlasQuad3: PositionalShadowAtlasQuadrantSubdiv
     get() {
-      TransferContext.writeArguments(LONG to 3)
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
 
   /**
    * The canvas transform of the viewport, useful for changing the on-screen positions of all child [godot.CanvasItem]s. This is relative to the global canvas transform of the viewport.
    */
+  @CoreTypeLocalCopy
   public var canvasTransform: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -720,6 +745,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The global canvas transform of the viewport. The canvas transform is relative to this.
    */
+  @CoreTypeLocalCopy
   public var globalCanvasTransform: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -753,6 +779,56 @@ public open class Viewport internal constructor() : Node() {
     callConstructor(ENGINECLASS_VIEWPORT, scriptIndex)
     return true
   }
+
+  /**
+   * The canvas transform of the viewport, useful for changing the on-screen positions of all child [godot.CanvasItem]s. This is relative to the global canvas transform of the viewport.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = viewport.canvasTransform
+   * //Your changes
+   * viewport.canvasTransform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun canvasTransformMutate(block: Transform2D.() -> Unit): Transform2D =
+      canvasTransform.apply{
+      block(this)
+      canvasTransform = this
+  }
+
+
+  /**
+   * The global canvas transform of the viewport. The canvas transform is relative to this.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = viewport.globalCanvasTransform
+   * //Your changes
+   * viewport.globalCanvasTransform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalCanvasTransformMutate(block: Transform2D.() -> Unit): Transform2D =
+      globalCanvasTransform.apply{
+      block(this)
+      globalCanvasTransform = this
+  }
+
 
   /**
    * Returns the first valid [godot.World2D] for this viewport, searching the [world2d] property of itself and any Viewport ancestor.
@@ -980,16 +1056,6 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
-   */
-  public fun setPositionalShadowAtlasQuadrantSubdiv(quadrant: Int,
-      subdiv: PositionalShadowAtlasQuadrantSubdiv): Unit {
-    TransferContext.writeArguments(LONG to quadrant.toLong(), LONG to subdiv.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
-  }
-
-  /**
    * Stops the input from propagating further down the [godot.SceneTree].
    *
    * **Note:** This does not affect the methods in [godot.Input], only the way events are propagated.
@@ -1092,7 +1158,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1119,7 +1185,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1154,7 +1220,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1181,7 +1247,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1212,7 +1278,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1239,7 +1305,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1358,7 +1424,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1393,7 +1459,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1424,7 +1490,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1459,7 +1525,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1490,7 +1556,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1521,7 +1587,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

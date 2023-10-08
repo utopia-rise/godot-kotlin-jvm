@@ -31,7 +31,7 @@ public open class CanvasItemMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_BLEND_MODE,
           LONG)
-      return CanvasItemMaterial.BlendMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CanvasItemMaterial.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -47,7 +47,7 @@ public open class CanvasItemMaterial : Material() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_LIGHT_MODE,
           LONG)
-      return CanvasItemMaterial.LightMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return CanvasItemMaterial.LightMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -163,7 +163,7 @@ public open class CanvasItemMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -190,7 +190,7 @@ public open class CanvasItemMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

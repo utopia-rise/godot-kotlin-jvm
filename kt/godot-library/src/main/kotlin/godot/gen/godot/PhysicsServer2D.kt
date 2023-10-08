@@ -159,7 +159,7 @@ public object PhysicsServer2D : Object() {
    *
    * **Warning:** In the case of [SHAPE_CONVEX_POLYGON], this method does not check if the points supplied actually form a convex polygon (unlike the [godot.CollisionPolygon2D.polygon] property).
    */
-  public fun shapeSetData(shape: RID, `data`: Any): Unit {
+  public fun shapeSetData(shape: RID, `data`: Any?): Unit {
     TransferContext.writeArguments(_RID to shape, ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_SET_DATA, NIL)
   }
@@ -171,7 +171,7 @@ public object PhysicsServer2D : Object() {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_GET_TYPE,
         LONG)
-    return PhysicsServer2D.ShapeType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return PhysicsServer2D.ShapeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -417,7 +417,7 @@ public object PhysicsServer2D : Object() {
   public fun areaSetParam(
     area: RID,
     `param`: AreaParameter,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_PARAM, NIL)
@@ -587,7 +587,7 @@ public object PhysicsServer2D : Object() {
   public fun bodyGetMode(body: RID): BodyMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_MODE, LONG)
-    return PhysicsServer2D.BodyMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return PhysicsServer2D.BodyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -760,7 +760,7 @@ public object PhysicsServer2D : Object() {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
-    return PhysicsServer2D.CCDMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return PhysicsServer2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -826,7 +826,7 @@ public object PhysicsServer2D : Object() {
   public fun bodySetParam(
     body: RID,
     `param`: BodyParameter,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_PARAM, NIL)
@@ -858,7 +858,7 @@ public object PhysicsServer2D : Object() {
   public fun bodySetState(
     body: RID,
     state: BodyState,
-    `value`: Any,
+    `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_STATE, NIL)
@@ -1304,7 +1304,7 @@ public object PhysicsServer2D : Object() {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_GET_TYPE,
         LONG)
-    return PhysicsServer2D.JointType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return PhysicsServer2D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1380,7 +1380,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1431,7 +1431,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1488,7 +1488,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1523,7 +1523,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1554,7 +1554,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1617,7 +1617,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1640,7 +1640,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1675,7 +1675,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1706,7 +1706,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1739,7 +1739,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1758,7 +1758,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1785,7 +1785,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1812,7 +1812,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1835,7 +1835,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -1862,7 +1862,7 @@ public object PhysicsServer2D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 }

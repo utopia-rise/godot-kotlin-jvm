@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
@@ -96,6 +98,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The total gravity vector being currently applied to this body.
    */
+  @CoreTypeLocalCopy
   public val totalGravity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -107,6 +110,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The body's center of mass position relative to the body's center in the global coordinate system.
    */
+  @CoreTypeLocalCopy
   public val centerOfMass: Vector2
     get() {
       TransferContext.writeArguments()
@@ -118,6 +122,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The body's center of mass position in the body's local coordinate system.
    */
+  @CoreTypeLocalCopy
   public val centerOfMassLocal: Vector2
     get() {
       TransferContext.writeArguments()
@@ -145,6 +150,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The body's linear velocity in pixels per second.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -177,6 +183,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The body's transformation matrix.
    */
+  @CoreTypeLocalCopy
   public var transform: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -194,6 +201,54 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE2D, scriptIndex)
     return true
   }
+
+  /**
+   * The body's linear velocity in pixels per second.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsdirectbodystate2d.linearVelocity
+   * //Your changes
+   * physicsdirectbodystate2d.linearVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun linearVelocityMutate(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
+      block(this)
+      linearVelocity = this
+  }
+
+
+  /**
+   * The body's transformation matrix.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = physicsdirectbodystate2d.transform
+   * //Your changes
+   * physicsdirectbodystate2d.transform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+      block(this)
+      transform = this
+  }
+
 
   /**
    * Returns the body's velocity at the given relative position, including both translation and rotation.

@@ -149,7 +149,7 @@ public object WorkerThreadPool : Object() {
     TransferContext.writeArguments(LONG to taskId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WORKERTHREADPOOL_WAIT_FOR_TASK_COMPLETION, LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

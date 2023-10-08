@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Transform2D
@@ -24,6 +26,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.UninitializedPropertyAccessException
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
@@ -164,6 +167,7 @@ public open class FontVariation : Font() {
    *
    * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    */
+  @CoreTypeLocalCopy
   public var variationTransform: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -190,18 +194,88 @@ public open class FontVariation : Font() {
           ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_OPENTYPE_FEATURES, NIL)
     }
 
+  /**
+   * Extra spacing between graphical glyphs.
+   */
+  public var spacingGlyph: Long
+    get() {
+      throw
+          UninitializedPropertyAccessException("Cannot access property spacingGlyph: has no getter")
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+    }
+
+  /**
+   * Extra width of the space glyphs.
+   */
+  public var spacingSpace: Long
+    get() {
+      throw
+          UninitializedPropertyAccessException("Cannot access property spacingSpace: has no getter")
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+    }
+
+  /**
+   * Extra spacing at the top of the line in pixels.
+   */
+  public var spacingTop: Long
+    get() {
+      throw UninitializedPropertyAccessException("Cannot access property spacingTop: has no getter")
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+    }
+
+  /**
+   * Extra spacing at the bottom of the line in pixels.
+   */
+  public var spacingBottom: Long
+    get() {
+      throw
+          UninitializedPropertyAccessException("Cannot access property spacingBottom: has no getter")
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FONTVARIATION, scriptIndex)
     return true
   }
 
   /**
-   * Sets the spacing for `type` (see [enum TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
+   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
+   *
+   * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = fontvariation.variationTransform
+   * //Your changes
+   * fontvariation.variationTransform = myCoreType
+   * ``````
    */
-  public fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to spacing.id, LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+  @CoreTypeHelper
+  public open fun variationTransformMutate(block: Transform2D.() -> Unit): Transform2D =
+      variationTransform.apply{
+      block(this)
+      variationTransform = this
   }
+
 
   public companion object
 }

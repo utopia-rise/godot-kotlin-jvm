@@ -63,7 +63,7 @@ public open class Shader : Resource() {
   public fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_MODE, LONG)
-    return Shader.Mode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Shader.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -143,7 +143,7 @@ public open class Shader : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -38,7 +38,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     TransferContext.writeArguments(ARRAY to channelsConfig)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_CREATE_SERVER,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmOverloads
@@ -47,7 +47,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     TransferContext.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_CREATE_CLIENT,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmOverloads
@@ -56,7 +56,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     TransferContext.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_CREATE_MESH,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmOverloads
@@ -68,7 +68,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     TransferContext.writeArguments(OBJECT to peer, LONG to peerId.toLong(), LONG to unreliableLifetime.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_ADD_PEER,
         LONG)
-    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun removePeer(peerId: Int): Unit {

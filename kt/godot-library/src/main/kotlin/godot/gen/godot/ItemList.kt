@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedInt32Array
@@ -92,7 +94,7 @@ public open class ItemList : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECT_MODE, LONG)
-      return ItemList.SelectMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ItemList.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -181,7 +183,7 @@ public open class ItemList : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_TEXT_OVERRUN_BEHAVIOR, LONG)
-      return TextServer.OverrunBehavior.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -264,7 +266,7 @@ public open class ItemList : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_MODE, LONG)
-      return ItemList.IconMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return ItemList.IconMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -290,6 +292,7 @@ public open class ItemList : Control() {
    *
    * If either X or Y component is not greater than zero, icon size won't be affected.
    */
+  @CoreTypeLocalCopy
   public var fixedIconSize: Vector2i
     get() {
       TransferContext.writeArguments()
@@ -306,6 +309,32 @@ public open class ItemList : Control() {
     callConstructor(ENGINECLASS_ITEMLIST, scriptIndex)
     return true
   }
+
+  /**
+   * The size all icons will be adjusted to.
+   *
+   * If either X or Y component is not greater than zero, icon size won't be affected.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = itemlist.fixedIconSize
+   * //Your changes
+   * itemlist.fixedIconSize = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun fixedIconSizeMutate(block: Vector2i.() -> Unit): Vector2i = fixedIconSize.apply{
+      block(this)
+      fixedIconSize = this
+  }
+
 
   /**
    * Adds an item to the item list with specified text. Returns the index of an added item.
@@ -385,7 +414,7 @@ public open class ItemList : Control() {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TEXT_DIRECTION,
         LONG)
-    return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -500,7 +529,7 @@ public open class ItemList : Control() {
   /**
    * Sets a value (of any type) to be stored with the item associated with the specified index.
    */
-  public fun setItemMetadata(idx: Int, metadata: Any): Unit {
+  public fun setItemMetadata(idx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_METADATA, NIL)
   }
@@ -740,7 +769,7 @@ public open class ItemList : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -763,7 +792,7 @@ public open class ItemList : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -307,7 +307,7 @@ public open class Tree : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SELECT_MODE, LONG)
-      return Tree.SelectMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return Tree.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -692,7 +692,7 @@ public open class Tree : Control() {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE_ALIGNMENT,
         LONG)
-    return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -711,7 +711,7 @@ public open class Tree : Control() {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE_DIRECTION,
         LONG)
-    return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -779,7 +779,7 @@ public open class Tree : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -812,7 +812,7 @@ public open class Tree : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform3D
@@ -21,6 +23,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This object contains all data related to a pose on a tracked object.
@@ -71,6 +74,7 @@ public open class XRPose : RefCounted() {
   /**
    * The transform containing the original and transform as reported by the XR runtime.
    */
+  @CoreTypeLocalCopy
   public var transform: Transform3D
     get() {
       TransferContext.writeArguments()
@@ -85,6 +89,7 @@ public open class XRPose : RefCounted() {
   /**
    * The linear velocity of this pose.
    */
+  @CoreTypeLocalCopy
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -100,6 +105,7 @@ public open class XRPose : RefCounted() {
   /**
    * The angular velocity for this pose.
    */
+  @CoreTypeLocalCopy
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -120,7 +126,7 @@ public open class XRPose : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRACKING_CONFIDENCE,
           LONG)
-      return XRPose.TrackingConfidence.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+      return XRPose.TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
@@ -132,6 +138,78 @@ public open class XRPose : RefCounted() {
     callConstructor(ENGINECLASS_XRPOSE, scriptIndex)
     return true
   }
+
+  /**
+   * The transform containing the original and transform as reported by the XR runtime.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = xrpose.transform
+   * //Your changes
+   * xrpose.transform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
+      block(this)
+      transform = this
+  }
+
+
+  /**
+   * The linear velocity of this pose.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = xrpose.linearVelocity
+   * //Your changes
+   * xrpose.linearVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+      block(this)
+      linearVelocity = this
+  }
+
+
+  /**
+   * The angular velocity for this pose.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = xrpose.angularVelocity
+   * //Your changes
+   * xrpose.angularVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+      block(this)
+      angularVelocity = this
+  }
+
 
   /**
    * Returns the [transform] with world scale and our reference frame applied. This is the transform used to position [godot.XRNode3D] objects.
@@ -166,7 +244,7 @@ public open class XRPose : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

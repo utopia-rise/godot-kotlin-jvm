@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A camera feed gives you access to a single physical camera attached to your device.
@@ -46,6 +49,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * The transform applied to the camera's image.
    */
+  @CoreTypeLocalCopy
   public var feedTransform: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -62,6 +66,31 @@ public open class CameraFeed : RefCounted() {
     callConstructor(ENGINECLASS_CAMERAFEED, scriptIndex)
     return true
   }
+
+  /**
+   * The transform applied to the camera's image.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = camerafeed.feedTransform
+   * //Your changes
+   * camerafeed.feedTransform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun feedTransformMutate(block: Transform2D.() -> Unit): Transform2D =
+      feedTransform.apply{
+      block(this)
+      feedTransform = this
+  }
+
 
   /**
    * Returns the unique ID for this feed.
@@ -87,7 +116,7 @@ public open class CameraFeed : RefCounted() {
   public fun getPosition(): FeedPosition {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_POSITION, LONG)
-    return CameraFeed.FeedPosition.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return CameraFeed.FeedPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -96,7 +125,7 @@ public open class CameraFeed : RefCounted() {
   public fun getDatatype(): FeedDataType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_DATATYPE, LONG)
-    return CameraFeed.FeedDataType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
+    return CameraFeed.FeedDataType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class FeedDataType(
@@ -126,7 +155,7 @@ public open class CameraFeed : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 
@@ -153,7 +182,7 @@ public open class CameraFeed : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
   }
 

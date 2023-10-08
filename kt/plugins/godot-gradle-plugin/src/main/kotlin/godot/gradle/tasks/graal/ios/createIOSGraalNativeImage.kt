@@ -37,13 +37,26 @@ fun Project.createIOSGraalNativeImageTask(
                 iosGraalConfigDir.resolve(iosJniConfig) + "," +
                 getGraalVmAdditionalJniConfigs()
 
-            val reflectionConfigurationFilesArgument = "-H:ReflectionConfigurationFiles=" +
-                iosGraalConfigDir.resolve(iosReflectionConfig) + "," +
-                getAdditionalGraalReflectionConfigurationFiles()
 
-            val resourceConfigurationFilesArgument = "-H:ResourceConfigurationFiles=" +
-                iosGraalConfigDir.resolve(iosResourceConfig) + "," +
-                getAdditionalGraalResourceConfigurationFiles()
+            val additionalReflectionConfigurationFiles = getAdditionalGraalReflectionConfigurationFiles()
+            val reflectionConfigurationFilesArgument = if (additionalReflectionConfigurationFiles.isNotEmpty()) {
+                "-H:ReflectionConfigurationFiles=" +
+                    iosGraalConfigDir.resolve(iosReflectionConfig) + "," +
+                    getAdditionalGraalReflectionConfigurationFiles()
+            } else {
+                "-H:ReflectionConfigurationFiles=" +
+                    iosGraalConfigDir.resolve(iosReflectionConfig)
+            }
+
+            val additionalResourceConfigurationFiles = getAdditionalGraalResourceConfigurationFiles()
+            val resourceConfigurationFilesArgument = if (additionalResourceConfigurationFiles.isNotEmpty()) {
+                "-H:ResourceConfigurationFiles=" +
+                    iosGraalConfigDir.resolve(iosResourceConfig) + "," +
+                    getAdditionalGraalResourceConfigurationFiles()
+            } else {
+                "-H:ResourceConfigurationFiles=" +
+                    iosGraalConfigDir.resolve(iosResourceConfig)
+            }
 
             val verboseArgument = if (godotJvmExtension.isGraalVmNativeImageGenerationVerbose.get()) {
                 "--verbose"
@@ -54,7 +67,7 @@ fun Project.createIOSGraalNativeImageTask(
             val mainJar = File(libsDir, "main.jar")
             val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
 
-            commandLine(
+            val arguments = arrayOf(
                 godotJvmExtension.graalVmDirectory
                     .get()
                     .asFile
@@ -90,6 +103,12 @@ fun Project.createIOSGraalNativeImageTask(
                 resourceConfigurationFilesArgument,
                 "--no-fallback",
                 verboseArgument,
+            )
+
+            println(arguments.joinToString(" "))
+
+            commandLine(
+                arguments
             )
         }
     }
