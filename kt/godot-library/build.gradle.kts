@@ -19,10 +19,6 @@ kotlin {
     jvmToolchain(11)
 }
 
-java {
-    withSourcesJar()
-}
-
 dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
@@ -79,7 +75,6 @@ publishing {
             artifactId = "godot-library"
             description = "Contains godot api as kotlin classes and jvm cpp interaction code."
             artifact(tasks.jar)
-            artifact(tasks.named("sourcesJar"))
         }
     }
 }
