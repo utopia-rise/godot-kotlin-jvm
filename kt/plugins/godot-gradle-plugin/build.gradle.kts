@@ -5,6 +5,7 @@ plugins {
     `java-gradle-plugin`
     id("com.utopia-rise.godot-publish")
     id("com.utopia-rise.versioninfo")
+    alias(libs.plugins.gradlePublish)
 }
 
 kotlin {

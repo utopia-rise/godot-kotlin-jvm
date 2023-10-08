@@ -13,6 +13,8 @@ jacksonDataFormatXml = "2.10.1"
 
 grgit = "4.1.1"
 
+gradlePublish = "1.2.1"
+
 changelog = "2.1.2"
 gradleIntelliJPlugin = "1.15.0"
 ideaSync = "1.1.7" # https://plugins.gradle.org/plugin/org.jetbrains.gradle.plugin.idea-ext
@@ -34,3 +36,4 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 java = { id = "java" }
 grgit = { id = "org.ajoberstar.grgit", version.ref = "grgit" }
 shadowJar = { id = "com.github.johnrengelman.shadow", version.ref = "shadowJar" }
+gradlePublish = { id = "com.gradle.plugin-publish", version.ref = "gradlePublish" }

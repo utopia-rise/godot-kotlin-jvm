@@ -7,7 +7,7 @@ on:
       - '\d+.\d+.\d+-\d+.\d+.\d+'
 
 jobs:
-  deploy_entry_generator:
+  deploy_tools_common:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Godot JVM module.
