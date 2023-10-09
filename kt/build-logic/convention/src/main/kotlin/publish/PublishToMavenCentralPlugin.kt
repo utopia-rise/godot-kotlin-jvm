@@ -9,23 +9,30 @@ import org.gradle.jvm.tasks.Jar
 import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 
-class PublishToMavenCentralPlugin: Plugin<Project> {
+class PublishToMavenCentralPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         target.plugins.apply("maven-publish")
-        target.plugins.apply("signing")
+
+        val ossrhUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME")
+        val ossrhPassword = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD")
+        val signingKey = target.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII")
+        val signingPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE")
+        val canSign = ossrhUser != null && ossrhPassword != null && signingKey != null && signingPassword != null
+
+        if (canSign) {
+            target.plugins.apply("signing")
+            target.logger.info("Will sign artifact for project \"${target.name}\" and setup publishing")
+        } else {
+            target.logger.warn("Cannot sign project \"${target.name}\" as credentials are missing. Will not setup signing and remote publishing credentials. Publishing will only work to maven local!")
+        }
 
         target.afterEvaluate { project ->
-            val ossrhUser = project.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME")
-            val ossrhPassword = project.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD")
-            val signingKey = project.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII")
-            val signingPassword = project.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE")
-
             val isReleaseMode = !(project.version as String).endsWith("-SNAPSHOT")
 
-            project.extensions.configure(SigningExtension::class.java) { signingExtension ->
-                signingExtension.useInMemoryPgpKeys(signingKey, signingPassword)
-                project.extensions.findByType(PublishingExtension::class.java)?.publications?.all { publication ->
-                    if (signingKey != null && signingPassword != null) { // for local development, If missing in CI it will fail later on deploy so we would notice the issue then
+            if (canSign) { // for local development, If missing in CI it will fail later on deploy so we would notice the issue then
+                project.extensions.configure(SigningExtension::class.java) { signingExtension ->
+                    signingExtension.useInMemoryPgpKeys(signingKey, signingPassword)
+                    project.extensions.findByType(PublishingExtension::class.java)?.publications?.all { publication ->
                         signingExtension.sign(publication)
                     }
                 }
@@ -50,9 +57,11 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                         }
                         mavenArtifactRepository.setUrl(targetRepo)
 
-                        mavenArtifactRepository.credentials { passwordCredentials ->
-                            passwordCredentials.username = ossrhUser
-                            passwordCredentials.password = ossrhPassword
+                        if (canSign) {
+                            mavenArtifactRepository.credentials { passwordCredentials ->
+                                passwordCredentials.username = ossrhUser
+                                passwordCredentials.password = ossrhPassword
+                            }
                         }
                     }
                 }
@@ -116,12 +125,14 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                 }
             }
 
-            project
-                .tasks
-                .filter { task -> task.name.startsWith("publish") }
-                .forEach { task ->
-                    task.dependsOn(project.tasks.withType(Sign::class.java))
-                }
+            if (canSign) {
+                project
+                    .tasks
+                    .filter { task -> task.name.startsWith("publish") }
+                    .forEach { task ->
+                        task.dependsOn(project.tasks.withType(Sign::class.java))
+                    }
+            }
         }
     }
 }
