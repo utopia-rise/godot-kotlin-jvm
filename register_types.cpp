@@ -38,7 +38,7 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
 
 #ifdef TOOLS_ENABLED
     if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
-        //EditorNode::add_init_callback(editor_init);
+        EditorNode::add_init_callback(editor_init);
         //EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
     }
 #endif
