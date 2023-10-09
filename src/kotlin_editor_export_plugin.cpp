@@ -133,4 +133,8 @@ void KotlinEditorExportPlugin::_copy_jre_to(const char* jre_folder, Ref<DirAcces
     }
 }
 
+String KotlinEditorExportPlugin::_get_name() const {
+    return "KotlinScript";
+}
+
 #endif

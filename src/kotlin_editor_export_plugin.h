@@ -12,6 +12,7 @@
 class KotlinEditorExportPlugin : public EditorExportPlugin {
 public:
     void _export_begin(const HashSet<String>& p_features, bool p_debug, const String& p_path, int p_flags) override;
+    String _get_name() const override;
 
 private:
     void _generate_export_configuration_file(jni::Jvm::Type vm_type);
