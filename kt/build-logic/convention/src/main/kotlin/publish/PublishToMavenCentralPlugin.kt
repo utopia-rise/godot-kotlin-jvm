@@ -12,17 +12,17 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         target.plugins.apply("maven-publish")
 
-        val isReleaseMode = !(target.version as String).endsWith("-SNAPSHOT")
+        target.afterEvaluate { project ->
+            val isReleaseMode = !(project.version as String).endsWith("-SNAPSHOT")
 
-        setupSigning(target)
+            setupSigning(project)
 
-        target.afterEvaluate {
-            target.extensions.getByType(JavaPluginExtension::class.java).apply {
+            project.extensions.getByType(JavaPluginExtension::class.java).apply {
                 withJavadocJar()
                 withSourcesJar()
             }
 
-            target.extensions.getByType(PublishingExtension::class.java).apply {
+            project.extensions.getByType(PublishingExtension::class.java).apply {
                 repositories.apply {
                     maven { mavenArtifactRepository ->
                         val targetRepo = if (isReleaseMode) {
@@ -37,8 +37,8 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                     publicationContainer.all {
                         if (this is MavenPublication) {
                             groupId = "com.utopia-rise"
-                            artifactId = target.name
-                            version = target.version as String
+                            artifactId = project.name
+                            version = project.version as String
 
                             pom { mavenPom ->
                                 mavenPom.url.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
@@ -92,30 +92,30 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
         }
     }
 
-    private fun setupSigning(target: Project) {
-        val ossrhUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME")
-        val ossrhPassword = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD")
-        val signingKey = target.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII")
-        val signingPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE")
+    private fun setupSigning(project: Project) {
+        val ossrhUser = project.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME")
+        val ossrhPassword = project.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD")
+        val signingKey = project.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII")
+        val signingPassword = project.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE")
 
         if (signingKey != null && signingPassword != null) { // for local development, If missing in CI it will fail later on deploy so we would notice the issue then
-            target.plugins.apply("signing")
+            project.plugins.apply("signing")
 
-            target.extensions.configure(SigningExtension::class.java) { signingExtension ->
+            project.extensions.configure(SigningExtension::class.java) { signingExtension ->
                 signingExtension.useInMemoryPgpKeys(signingKey, signingPassword)
-                target.extensions.findByType(PublishingExtension::class.java)?.publications?.all { publication ->
+                project.extensions.findByType(PublishingExtension::class.java)?.publications?.all { publication ->
                     signingExtension.sign(publication)
 
-                    target
+                    project
                         .tasks
                         .filter { task -> task.group == "publishing" && task.name.startsWith("publish") }
                         .forEach { task ->
-                            task.dependsOn(target.tasks.withType(Sign::class.java))
+                            task.dependsOn(project.tasks.withType(Sign::class.java))
                         }
                 }
             }
 
-            target.extensions.configure(PublishingExtension::class.java) { publishingExtension ->
+            project.extensions.configure(PublishingExtension::class.java) { publishingExtension ->
                 publishingExtension.repositories { repositoryHandler ->
                     repositoryHandler.maven { mavenArtifactRepository ->
                         mavenArtifactRepository.credentials { passwordCredentials ->
