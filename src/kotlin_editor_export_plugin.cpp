@@ -18,8 +18,8 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 
     bool is_graal_only {false};
     bool is_ios_export {p_features.has("ios")};
-    bool is_android_export {p_features.has("Android")};
-    bool is_osx_export {p_features.has("OSX")};
+    bool is_android_export {p_features.has("android")};
+    bool is_osx_export {p_features.has("macos")};
     if (is_ios_export) {
         _generate_export_configuration_file(jni::Jvm::GRAAL_NATIVE_IMAGE);
         add_ios_project_static_lib(ProjectSettings::get_singleton()->globalize_path("res://build/libs/ios/usercode.a"));
@@ -30,11 +30,11 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         _generate_export_configuration_file(jni::Jvm::ART);
     } else {
         String graal_usercode_lib;
-        if (p_features.has("Windows")) {
+        if (p_features.has("windows")) {
             graal_usercode_lib = "usercode.dll";
         } else if (is_osx_export) {
             graal_usercode_lib = "usercode.dylib";
-        } else if (p_features.has("X11")) {
+        } else if (p_features.has("linuxbsd")) {
             graal_usercode_lib = "usercode.so";
         }
         if (p_features.has(all_jvm_feature)) {
