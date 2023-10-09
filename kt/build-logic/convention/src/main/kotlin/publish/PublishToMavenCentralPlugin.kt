@@ -27,13 +27,6 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                 project.extensions.findByType(PublishingExtension::class.java)?.publications?.all { publication ->
                     if (signingKey != null && signingPassword != null) { // for local development, If missing in CI it will fail later on deploy so we would notice the issue then
                         signingExtension.sign(publication)
-
-                        project
-                            .tasks
-                            .filter { task -> task.group == "publishing" && task.name.startsWith("publish") }
-                            .forEach { task ->
-                                task.dependsOn(project.tasks.withType(Sign::class.java))
-                            }
                     }
                 }
             }
@@ -122,6 +115,13 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                     }
                 }
             }
+
+            project
+                .tasks
+                .filter { task -> task.name.startsWith("publish") }
+                .forEach { task ->
+                    task.dependsOn(project.tasks.withType(Sign::class.java))
+                }
         }
     }
 }
