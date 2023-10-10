@@ -2,6 +2,7 @@ package publish
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.SourceSetContainer
@@ -31,13 +32,9 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                 }
             }
 
-            val stubJavaDocJar = target.tasks.register("stubJavaDocJar", Jar::class.java) {
-                it.archiveClassifier.set("javadoc")
-            }
-
-            val sourceJar = target.tasks.register("sourceJar", Jar::class.java) {
-                it.archiveClassifier.set("sources")
-                it.from(target.extensions.getByType(SourceSetContainer::class.java).getByName("main").allSource)
+            project.extensions.getByType(JavaPluginExtension::class.java).apply {
+                withSourcesJar()
+                withJavadocJar()
             }
 
             project.extensions.getByType(PublishingExtension::class.java).apply {
@@ -57,16 +54,13 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                     }
                 }
                 publications { publicationContainer ->
-                    publicationContainer.all {
-                        if (this is MavenPublication) {
-                            groupId = "com.utopia-rise"
-                            artifactId = project.name
-                            version = project.version as String
+                    publicationContainer.all { publication ->
+                        if (publication is MavenPublication) {
+                            publication.groupId = "com.utopia-rise"
+                            publication.artifactId = project.name
+                            publication.version = project.version as String
 
-                            artifact(sourceJar)
-                            artifact(stubJavaDocJar)
-
-                            pom { mavenPom ->
+                            publication.pom { mavenPom ->
                                 mavenPom.url.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
 
                                 mavenPom.scm { mavenPomScm ->
