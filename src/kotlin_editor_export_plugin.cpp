@@ -116,6 +116,12 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Typ
     for (int i = 0; json_string[i] != '\0'; ++i) {
         json_bytes.push_back(json_string[i]);
     }
+
+    // we manually add the configuration file to the exclude filter to prevent it from being added multiple times
+    // this could happen if a user adds json files globally with the include filter `*.json` for example
+    // it also seems that json files are added by default now, which also triggers this issue
+    get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + configuration_path);
+
     add_file(configuration_path, json_bytes, false);
 }
 
