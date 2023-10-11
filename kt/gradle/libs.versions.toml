@@ -1,6 +1,6 @@
 [versions]
 
-godotKotlinJvm = "0.7.0"
+godotKotlinJvm = "0.7.1"
 kotlin = "1.9.0"
 godot = "4.1.2"
 
