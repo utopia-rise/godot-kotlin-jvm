@@ -390,8 +390,8 @@ jobs:
         run: |
           cp -r misc/dist/macos_template.app .
           mkdir -p macos_template.app/Contents/MacOS
-          cp godot.macos.template_release.universal macos_template.app/Contents/MacOS/godot_macos_release.64
-          cp godot.macos.template_debug.universal macos_template.app/Contents/MacOS/godot_macos_debug.64
+          cp godot.macos.template_release.universal macos_template.app/Contents/MacOS/godot_macos_release.universal
+          cp godot.macos.template_debug.universal macos_template.app/Contents/MacOS/godot_macos_debug.universal
           chmod +x macos_template.app/Contents/MacOS/godot_macos*
           zip -q -9 -r macos.zip macos_template.app
         shell: bash
