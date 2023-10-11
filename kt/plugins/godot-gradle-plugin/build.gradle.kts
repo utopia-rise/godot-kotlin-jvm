@@ -3,9 +3,9 @@ import versioninfo.fullGodotKotlinJvmVersion
 plugins {
     alias(libs.plugins.kotlin.jvm)
     `java-gradle-plugin`
+    alias(libs.plugins.gradlePublish)
     id("com.utopia-rise.godot-publish")
     id("com.utopia-rise.versioninfo")
-    alias(libs.plugins.gradlePublish)
 }
 
 kotlin {
