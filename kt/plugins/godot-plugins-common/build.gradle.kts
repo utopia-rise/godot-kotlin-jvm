@@ -17,13 +17,13 @@ dependencies {
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
-        val godotGradlePlugin by creating(MavenPublication::class) {
+        val godotPluginsCommon by creating(MavenPublication::class) {
             pom {
-                name.set(project.name)
-                description.set("Godot gradle plugin for kotlin language support.")
+                this.name.set(project.name)
+                this.description.set("Common module for godot kotlin jvm plugins.")
             }
             artifactId = project.name
-            description = "Godot gradle plugin for kotlin language support."
+            description = "Common module for godot kotlin jvm plugins."
             from(components.getByName("java"))
         }
     }
