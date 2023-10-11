@@ -72,6 +72,13 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
                             publication.pom { mavenPom ->
                                 mavenPom.url.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
 
+                                if (mavenPom.name.getOrElse("").isNullOrEmpty()) {
+                                    mavenPom.name.set(project.name)
+                                }
+                                if (mavenPom.description.getOrElse("").isNullOrEmpty()) {
+                                    mavenPom.description.set(project.description ?: "Godot kotlin jvm module")
+                                }
+
                                 mavenPom.scm { mavenPomScm ->
                                     mavenPomScm.connection.set("scm:git:https://github.com/utopia-rise/godot-kotlin-jvm")
                                     mavenPomScm.developerConnection.set("scm:git:github.com:utopia-rise/godot-kotlin-jvm.git")
