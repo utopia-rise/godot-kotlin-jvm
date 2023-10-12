@@ -107,9 +107,7 @@ fun Project.createIOSGraalNativeImageTask(
 
             println(arguments.joinToString(" "))
 
-            commandLine(
-                arguments
-            )
+            commandLine(*arguments)
         }
     }
 }
