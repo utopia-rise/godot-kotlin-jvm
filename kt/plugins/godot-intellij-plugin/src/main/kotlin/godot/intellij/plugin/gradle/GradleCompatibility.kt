@@ -18,7 +18,7 @@ object GradleCompatibility {
             )
         }
 
-        val currentVersion = SemVer(GodotBuildProperties.assembledGodotKotlinJvmVersion)
+        val currentVersion = SemVer(GodotBuildProperties.godotKotlinJvmVersion)
 
         if (currentVersion < minimumIdeVersion) {
             return CompatibilityReport.Incompatible(
@@ -26,7 +26,7 @@ object GradleCompatibility {
             )
         }
 
-        val minimumGradleVersion = SemVer(GodotBuildProperties.assembledGodotKotlinJvmVersion)
+        val minimumGradleVersion = SemVer(GodotBuildProperties.godotKotlinJvmVersion)
 
         if (currentGradleVersion < minimumGradleVersion) {
             return CompatibilityReport.Incompatible(
