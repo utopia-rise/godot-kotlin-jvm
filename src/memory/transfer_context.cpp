@@ -29,7 +29,7 @@ TransferContext::~TransferContext() {
     }
 }
 
-SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
+SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
     thread_local static SharedBuffer shared_buffer;
 
     if (unlikely(!shared_buffer.is_init())) {
@@ -55,12 +55,12 @@ void TransferContext::remove_script_instance(uint64_t id) {
 }
 
 void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {
-    SharedBuffer* buffer {get_buffer(p_env)};
+    SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     ktvariant::get_variant_from_buffer(buffer, r_ret);
 }
 
 void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int args_size) {
-    SharedBuffer* buffer {get_buffer(p_env)};
+    SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     buffer->increment_position(encode_uint32(args_size, buffer->get_cursor()));
     for (auto i = 0; i < args_size; ++i) {
         ktvariant::send_variant_to_buffer(*p_args[i], buffer);
@@ -68,7 +68,7 @@ void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int ar
 }
 
 uint32_t TransferContext::read_args(jni::Env& p_env, Variant* args) {
-    SharedBuffer* buffer {get_buffer(p_env)};
+    SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     uint32_t size {read_args_size(buffer)};
     for (uint32_t i = 0; i < size; ++i) {
         ktvariant::get_variant_from_buffer(buffer, args[i]);
@@ -77,7 +77,7 @@ uint32_t TransferContext::read_args(jni::Env& p_env, Variant* args) {
 }
 
 void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
-    write_return_value(get_buffer(p_env), variant);
+    write_return_value(get_and_rewind_buffer(p_env), variant);
 }
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType) {
@@ -91,7 +91,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     jni::Env env {rawEnv};
 
-    SharedBuffer* buffer {transfer_context->get_buffer(env)};
+    SharedBuffer* buffer {transfer_context->get_and_rewind_buffer(env)};
     uint32_t args_size {read_args_size(buffer)};
 
     auto* ptr {reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
@@ -167,7 +167,7 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance
     jni::Env env {p_raw_env};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
 
-    SharedBuffer* buffer {transfer_context->get_buffer(env)};
+    SharedBuffer* buffer {transfer_context->get_and_rewind_buffer(env)};
     buffer->increment_position(encode_uint64(raw_ptr, buffer->get_cursor()));
     buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
 }
@@ -178,7 +178,7 @@ void TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint 
     )};
     jni::Env env {p_raw_env};
 
-    SharedBuffer* buffer {GDKotlin::get_instance().transfer_context->get_buffer(env)};
+    SharedBuffer* buffer {GDKotlin::get_instance().transfer_context->get_and_rewind_buffer(env)};
     buffer->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(singleton), buffer->get_cursor()));
     buffer->increment_position(encode_uint64(singleton->get_instance_id(), buffer->get_cursor()));
 }
