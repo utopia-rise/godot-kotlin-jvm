@@ -444,8 +444,8 @@ public object Input : Object() {
    */
   public fun getMouseButtonMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_BUTTON_MASK, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, false) as Long)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_BUTTON_MASK, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public fun setMouseMode(mode: MouseMode): Unit {

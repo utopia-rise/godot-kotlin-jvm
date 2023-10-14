@@ -146,11 +146,11 @@ public open class TextParagraph : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_BREAK_FLAGS,
-          OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, false) as Long)
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_BREAK_FLAGS,
           NIL)
     }
@@ -162,11 +162,11 @@ public open class TextParagraph : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_JUSTIFICATION_FLAGS, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, false) as Long)
+          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_JUSTIFICATION_FLAGS, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_JUSTIFICATION_FLAGS, NIL)
     }

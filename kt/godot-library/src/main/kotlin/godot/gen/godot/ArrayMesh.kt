@@ -273,7 +273,7 @@ public open class ArrayMesh : Mesh() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     flags: Long = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to flags)
+    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_SURFACE_FROM_ARRAYS,
         NIL)
   }
@@ -350,9 +350,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun surfaceGetFormat(surfIdx: Int): Long {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_FORMAT,
-        OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, false) as Long)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_FORMAT, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

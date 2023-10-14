@@ -164,11 +164,11 @@ public open class TextMesh : PrimitiveMesh() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_GET_JUSTIFICATION_FLAGS,
-          OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, false) as Long)
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTMESH_SET_JUSTIFICATION_FLAGS,
           NIL)
     }

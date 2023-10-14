@@ -132,6 +132,7 @@ val TypedTrait.jvmVariantTypeValue: ClassName
         return when {
             type.isNullOrEmpty() -> VARIANT_TYPE_NIL
             isEnum() -> VARIANT_TYPE_LONG
+            isBitField() -> VARIANT_TYPE_LONG
             type == GodotTypes.bool -> VARIANT_TYPE_BOOL
             type == GodotTypes.int -> VARIANT_TYPE_LONG
             type == GodotTypes.float -> VARIANT_TYPE_DOUBLE

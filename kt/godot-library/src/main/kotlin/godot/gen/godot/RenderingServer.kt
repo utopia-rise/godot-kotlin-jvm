@@ -627,7 +627,7 @@ public object RenderingServer : Object() {
     vertexCount: Int,
     arrayIndex: Int,
   ): Long {
-    TransferContext.writeArguments(OBJECT to format, LONG to vertexCount.toLong(), LONG to arrayIndex.toLong())
+    TransferContext.writeArguments(LONG to format, LONG to vertexCount.toLong(), LONG to arrayIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_OFFSET, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -637,7 +637,7 @@ public object RenderingServer : Object() {
    *
    */
   public fun meshSurfaceGetFormatVertexStride(format: Long, vertexCount: Int): Long {
-    TransferContext.writeArguments(OBJECT to format, LONG to vertexCount.toLong())
+    TransferContext.writeArguments(LONG to format, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_VERTEX_STRIDE, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -647,7 +647,7 @@ public object RenderingServer : Object() {
    *
    */
   public fun meshSurfaceGetFormatAttributeStride(format: Long, vertexCount: Int): Long {
-    TransferContext.writeArguments(OBJECT to format, LONG to vertexCount.toLong())
+    TransferContext.writeArguments(LONG to format, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_ATTRIBUTE_STRIDE, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -657,7 +657,7 @@ public object RenderingServer : Object() {
    *
    */
   public fun meshSurfaceGetFormatSkinStride(format: Long, vertexCount: Int): Long {
-    TransferContext.writeArguments(OBJECT to format, LONG to vertexCount.toLong())
+    TransferContext.writeArguments(LONG to format, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_SKIN_STRIDE, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -684,7 +684,7 @@ public object RenderingServer : Object() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     compressFormat: Long = 0,
   ): Unit {
-    TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to compressFormat)
+    TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFormat)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_ADD_SURFACE_FROM_ARRAYS, NIL)
   }
