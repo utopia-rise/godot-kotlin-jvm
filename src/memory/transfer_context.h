@@ -48,10 +48,6 @@ private:
         }
     }
 
-    _FORCE_INLINE_ static void write_return_value(SharedBuffer* buffer, const Variant& r_ret) {
-        ktvariant::send_variant_to_buffer(r_ret, buffer);
-    }
-
     // clang-format off
     DECLARE_JNI_METHODS(
             JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")

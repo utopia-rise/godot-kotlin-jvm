@@ -77,7 +77,7 @@ uint32_t TransferContext::read_args(jni::Env& p_env, Variant* args) {
 }
 
 void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
-    write_return_value(get_and_rewind_buffer(p_env), variant);
+    ktvariant::send_variant_to_buffer(variant, get_and_rewind_buffer(p_env));
 }
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType) {
@@ -121,7 +121,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
         const Variant& ret_value {methodBind->call(ptr, args_ptr, args_size, r_error)};
 
         buffer->rewind();
-        write_return_value(buffer, ret_value);
+        ktvariant::send_variant_to_buffer(ret_value, buffer);
     } else {
         Variant* args {variant_args + stack_offset};
         read_args_to_array(buffer, args, args_size);
@@ -134,7 +134,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
         stack_offset -= args_size;
 
         buffer->rewind();
-        write_return_value(buffer, ret_value);
+        ktvariant::send_variant_to_buffer(ret_value, buffer);
     }
 
 #ifdef DEBUG_ENABLED
