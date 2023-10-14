@@ -43,7 +43,7 @@ SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
         shared_buffer = SharedBuffer {address, 0};
 #endif
     }
-
+    shared_buffer.rewind();
     return &shared_buffer;
 }
 
@@ -57,7 +57,6 @@ void TransferContext::remove_script_instance(uint64_t id) {
 void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {
     SharedBuffer* buffer {get_buffer(p_env)};
     ktvariant::get_variant_from_buffer(buffer, r_ret);
-    buffer->rewind();
 }
 
 void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int args_size) {
@@ -66,7 +65,6 @@ void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int ar
     for (auto i = 0; i < args_size; ++i) {
         ktvariant::send_variant_to_buffer(*p_args[i], buffer);
     }
-    buffer->rewind();
 }
 
 uint32_t TransferContext::read_args(jni::Env& p_env, Variant* args) {
@@ -75,8 +73,11 @@ uint32_t TransferContext::read_args(jni::Env& p_env, Variant* args) {
     for (uint32_t i = 0; i < size; ++i) {
         ktvariant::get_variant_from_buffer(buffer, args[i]);
     }
-    buffer->rewind();
     return size;
+}
+
+void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
+    write_return_value(get_buffer(p_env), variant);
 }
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType) {
@@ -111,6 +112,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
     if (unlikely(stack_offset + args_size > MAX_STACK_SIZE)) {
         Variant args[MAX_FUNCTION_ARG_COUNT];
         read_args_to_array(buffer, args, args_size);
+        buffer->rewind();
 
         const Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
         for (uint32_t i = 0; i < args_size; i++) {
@@ -122,6 +124,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
     } else {
         Variant* args {variant_args + stack_offset};
         read_args_to_array(buffer, args, args_size);
+        buffer->rewind();
 
         const Variant** args_ptr {variant_args_ptr + stack_offset};
 
@@ -161,11 +164,10 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance
 
     jni::Env env {p_raw_env};
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
-    SharedBuffer* buffer {transfer_context->get_buffer(env)};
 
+    SharedBuffer* buffer {transfer_context->get_buffer(env)};
     buffer->increment_position(encode_uint64(raw_ptr, buffer->get_cursor()));
     buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
-    buffer->rewind();
 }
 
 void TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
@@ -177,7 +179,6 @@ void TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint 
     SharedBuffer* buffer {GDKotlin::get_instance().transfer_context->get_buffer(env)};
     buffer->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(singleton), buffer->get_cursor()));
     buffer->increment_position(encode_uint64(singleton->get_instance_id(), buffer->get_cursor()));
-    buffer->rewind();
 }
 
 void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -188,8 +189,4 @@ void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p
 #endif
 
     memdelete(owner);
-}
-
-void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
-    write_return_value(get_buffer(p_env), variant);
 }

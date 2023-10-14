@@ -46,13 +46,10 @@ private:
         for (uint32_t i = 0; i < args_size; ++i) {
             ktvariant::get_variant_from_buffer(buffer, p_args[i]);
         }
-
-        buffer->rewind();
     }
 
     _FORCE_INLINE_ static void write_return_value(SharedBuffer* buffer, const Variant& r_ret) {
         ktvariant::send_variant_to_buffer(r_ret, buffer);
-        buffer->rewind();
     }
 
     // clang-format off
