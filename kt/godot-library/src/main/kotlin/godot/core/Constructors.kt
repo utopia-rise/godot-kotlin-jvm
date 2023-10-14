@@ -17,14 +17,7 @@ abstract class KtConstructor<T : KtObject>(
     abstract operator fun invoke(): T
 
     fun construct(rawPtr: VoidPtr, instanceId: Long) = KtObject.instantiateWith(rawPtr, instanceId) {
-        val argsSize = TransferContext.buffer.int
-        require(argsSize == parameterCount) {
-            "Expecting $parameterCount parameter(s) for constructor, but got $argsSize instead."
-        }
-        for (i in 0 until parameterCount) {
-            paramsArray[i] = TransferContext.readSingleArgument(parameterTypes[i], parameterNullables[i])
-        }
-        TransferContext.buffer.rewind()
+        TransferContext.readArguments(parameterTypes, parameterNullables, paramsArray)
         val instance = invoke()
         resetParamsArray()
         instance

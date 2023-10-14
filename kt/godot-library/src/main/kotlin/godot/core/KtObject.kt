@@ -79,19 +79,12 @@ abstract class KtObject {
 
     internal inline fun callConstructor(classIndex: Int, scriptIndex: Int): Unit {
         TransferContext.createNativeObject(classIndex, this, scriptIndex)
-        readPtrAndIdFromBuffer()
+        TransferContext.initializeKtObject(this)
     }
 
     internal inline fun getSingleton(classIndex: Int) {
         TransferContext.getSingleton(classIndex)
-        readPtrAndIdFromBuffer()
-    }
-
-    private inline fun readPtrAndIdFromBuffer() {
-        val buffer = TransferContext.buffer
-        rawPtr = buffer.long
-        id = ObjectID(buffer.long)
-        buffer.rewind()
+        TransferContext.initializeKtObject(this)
     }
 
     open fun _onDestroy() = Unit

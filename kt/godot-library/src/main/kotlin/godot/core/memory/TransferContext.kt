@@ -2,6 +2,7 @@ package godot.core.memory
 
 import godot.core.KtObject
 import godot.core.LongStringQueue
+import godot.core.ObjectID
 import godot.core.VariantType
 import godot.tools.common.constants.Constraints
 import godot.util.VoidPtr
@@ -22,31 +23,51 @@ internal object TransferContext {
             return (LongStringQueue.stringMaxSize + 12).coerceAtLeast(68) * Constraints.MAX_FUNCTION_ARG_COUNT + 4
         }
 
-    val buffer by threadLocalLazy<ByteBuffer> {
+    private val buffer by threadLocalLazy<ByteBuffer> {
         val buf = ByteBuffer.allocateDirect(bufferSize)
         buf.order(ByteOrder.LITTLE_ENDIAN)
         buf
     }
 
     fun writeArguments(vararg values: Pair<VariantType, Any?>) {
+        buffer.rewind()
         buffer.putInt(values.size)
         for (value in values) {
             value.first.toGodot(buffer, value.second)
         }
-        buffer.rewind()
     }
 
-    fun readSingleArgument(variantType: VariantType, isNullable: Boolean = false) =
-        variantType.toKotlin(buffer, isNullable)
+    fun readSingleArgument(variantType: VariantType, isNullable: Boolean = false): Any? {
+        buffer.rewind()
+        val argsSize = buffer.int
+        require(argsSize == 1) {
+            "Expecting 1 parameter, but got $argsSize instead."
+        }
+        return variantType.toKotlin(buffer, isNullable)
+    }
+
+    fun readArguments(variantTypes: Array<VariantType>, areNullable: Array<Boolean>, returnArray: Array<Any?>) {
+        buffer.rewind()
+        val argsSize = buffer.int
+        val argumentCount = variantTypes.size
+        require(argsSize == argumentCount) {
+            "Expecting $argumentCount parameter(s), but got $argsSize instead."
+        }
+
+        // Assume that variantTypes and areNullable have the same size and that returnArray is big enough
+        for (i in 0 until argsSize) {
+            returnArray[i] = variantTypes[i].toKotlin(buffer, areNullable[i])
+        }
+    }
 
     fun writeReturnValue(value: Any?, type: VariantType) {
-        type.toGodot(buffer, value)
         buffer.rewind()
+        type.toGodot(buffer, value)
     }
 
     fun readReturnValue(type: VariantType, isNullable: Boolean = false): Any? {
-        val ret = type.toKotlin(buffer, isNullable)
         buffer.rewind()
+        val ret = type.toKotlin(buffer, isNullable)
         return ret
     }
 
@@ -56,6 +77,12 @@ internal object TransferContext {
             methodIndex,
             expectedReturnType.ordinal
         )
+    }
+
+    fun initializeKtObject(obj: KtObject) {
+        buffer.rewind()
+        obj.rawPtr = buffer.long
+        obj.id = ObjectID(buffer.long)
     }
 
     fun removeScriptInstance(id: Long) {
