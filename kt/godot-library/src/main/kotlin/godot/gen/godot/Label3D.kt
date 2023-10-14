@@ -437,11 +437,11 @@ public open class Label3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_JUSTIFICATION_FLAGS,
-          OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, false) as Long)
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_JUSTIFICATION_FLAGS,
           NIL)
     }

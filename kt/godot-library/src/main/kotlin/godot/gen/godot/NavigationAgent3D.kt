@@ -240,11 +240,11 @@ public open class NavigationAgent3D : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_PATH_METADATA_FLAGS, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, false) as Long)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_PATH_METADATA_FLAGS, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_PATH_METADATA_FLAGS, NIL)
     }

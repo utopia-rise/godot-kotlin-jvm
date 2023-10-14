@@ -1129,8 +1129,8 @@ public object DisplayServer : Object() {
   public fun mouseGetButtonState(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_BUTTON_STATE, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, false) as Long)
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_BUTTON_STATE, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

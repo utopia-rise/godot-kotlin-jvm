@@ -170,7 +170,7 @@ public open class FontFile : Font() {
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontStyle()
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FONT_STYLE, NIL)
     }
 

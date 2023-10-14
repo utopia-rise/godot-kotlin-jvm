@@ -8,8 +8,8 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
@@ -129,8 +129,8 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   public fun getModifiersMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_GET_MODIFIERS_MASK, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, false) as Long)
+        ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_GET_MODIFIERS_MASK, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public companion object

@@ -229,7 +229,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], [fontSetEmbolden], or [fontSetTransform] instead.
    */
   public fun fontSetStyle(fontRid: RID, style: Long): Unit {
-    TransferContext.writeArguments(_RID to fontRid, OBJECT to style)
+    TransferContext.writeArguments(_RID to fontRid, LONG to style)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_STYLE, NIL)
   }
 
@@ -238,8 +238,8 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun fontGetStyle(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_STYLE, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, false) as Long)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_STYLE, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -1703,7 +1703,7 @@ public open class TextServer internal constructor() : RefCounted() {
     width: Double,
     justificationFlags: Long = 3,
   ): Double {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, OBJECT to justificationFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to justificationFlags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_FIT_TO_WIDTH,
         DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -1801,7 +1801,7 @@ public open class TextServer internal constructor() : RefCounted() {
     once: Boolean = true,
     breakFlags: Long = 3,
   ): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start, BOOL to once, OBJECT to breakFlags)
+    TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start, BOOL to once, LONG to breakFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_LINE_BREAKS_ADV, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -1817,7 +1817,7 @@ public open class TextServer internal constructor() : RefCounted() {
     start: Long = 0,
     breakFlags: Long = 3,
   ): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to start, OBJECT to breakFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to start, LONG to breakFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_LINE_BREAKS, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -1828,7 +1828,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public fun shapedTextGetWordBreaks(shaped: RID, graphemeFlags: Long = 264): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, OBJECT to graphemeFlags)
+    TransferContext.writeArguments(_RID to shaped, LONG to graphemeFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_WORD_BREAKS, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -1883,7 +1883,7 @@ public open class TextServer internal constructor() : RefCounted() {
     width: Double = 0.0,
     overrunTrimFlags: Long = 0,
   ): Unit {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, OBJECT to overrunTrimFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to overrunTrimFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_OVERRUN_TRIM_TO_WIDTH, NIL)
   }

@@ -51,7 +51,7 @@ public object ResourceSaver : Object() {
     path: String = "",
     flags: Long = 0,
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to resource, STRING to path, OBJECT to flags)
+    TransferContext.writeArguments(OBJECT to resource, STRING to path, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_SAVE, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }

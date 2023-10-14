@@ -12,7 +12,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
@@ -138,11 +137,11 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_METADATA_FLAGS, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, false) as Long)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_METADATA_FLAGS, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_SET_METADATA_FLAGS, NIL)
     }
