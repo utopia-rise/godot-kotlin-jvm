@@ -34,7 +34,7 @@ public:
     static void free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
 private:
-    SharedBuffer* get_buffer(jni::Env& p_env);
+    SharedBuffer* get_and_rewind_buffer(jni::Env& p_env);
 
     _FORCE_INLINE_ static uint32_t read_args_size(SharedBuffer* buffer) {
         uint32_t args_size {decode_uint32(buffer->get_cursor())};
@@ -46,13 +46,6 @@ private:
         for (uint32_t i = 0; i < args_size; ++i) {
             ktvariant::get_variant_from_buffer(buffer, p_args[i]);
         }
-
-        buffer->rewind();
-    }
-
-    _FORCE_INLINE_ static void write_return_value(SharedBuffer* buffer, const Variant& r_ret) {
-        ktvariant::send_variant_to_buffer(r_ret, buffer);
-        buffer->rewind();
     }
 
     // clang-format off
