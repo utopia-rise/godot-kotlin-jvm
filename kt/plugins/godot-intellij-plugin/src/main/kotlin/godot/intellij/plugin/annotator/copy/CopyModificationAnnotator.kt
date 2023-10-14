@@ -8,7 +8,6 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.model.CORE_TYPE_HELPER_ANNOTATION
 import godot.intellij.plugin.data.model.CORE_TYPE_LOCAL_COPY_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
@@ -29,10 +28,9 @@ class CopyModificationAnnotator : Annotator {
     private val singleValueTokensToCheck = listOf("=", "+=", "-=", "*=", "/=", "%=")
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
-        return // TODO: enable again after fixing the case `transformMutate { basis.x = Vector3.ZERO }` being flagged falsely as not allowed
         if (!element.isInGodotRoot()) return
 
-        val isCoreTypeCopyAssignment = when(element) {
+        val isCoreTypeCopyAssignment = when (element) {
             // examples:
             //      something = 1
             //      something += 2
@@ -77,25 +75,42 @@ class CopyModificationAnnotator : Annotator {
      *
      * Exampes:
      * ```kotlin
-     *     position += Vector3.FORWARD // allowed
-     *     position += Vector3.FORWARD // allowed
-     *     position.x += 1 // not allowed
+     *      position += Vector3.FORWARD // allowed
+     *      position += Vector3.FORWARD // allowed
+     *      position.x += 1 // not allowed
      *
-     *     val intermediate = position
-     *     intermediate.x += 1 // allowed
+     *      val intermediate = position
+     *      intermediate.x += 1 // allowed
      *
-     *     val intermediate2 = position
-     *     intermediate.x += 1 // allowed
-     *     position = intermediate2
+     *      val intermediate2 = position
+     *      intermediate.x += 1 // allowed
+     *      position = intermediate2
      *
-     *     transform.basis.x { y = 1.0 } // not allowed
-     *     transform.basis.x { y = 1.0 } // not allowed
-     *     transform.basis { x = Vector3.ZERO } // not allowed
+     *      transform.basis.x { y = 1.0 } // not allowed
+     *      transform.basis.x { y = 1.0 } // not allowed
+     *      transform.basis { x = Vector3.ZERO } // not allowed
      *
-     *     transform = transform.apply { basis { x { y = 1.0 } } } // allowed
-     *     transform = transform.apply { basis { x = Vector3.ZERO } } // allowed
+     *      transformMutate { basis = Basis.IDENTITY } // allowed
+     *      transformMutate { basis.x = Vector3.ZERO } // not allowed
+     *      transformMutate { basis.x.x = 1.0 } // not allowed
      *
-     *     node3D.position.x = 1.0 // not allowed
+     *
+     *      transform = transform.apply { basis { x { y = 1.0 } } } // allowed
+     *      transform = transform.apply { basis { x = Vector3.ZERO } } // allowed
+     *
+     *      node3D.globalPosition = globalPosition // allowed
+     *      node3D.position.x = 1.0 // not allowed
+     *      blubb.transform.basis.x.x = 1.0 // not allowed
+     *
+     *
+     *      val vector3 = Vector3.ZERO
+     *      vector3.x = 1.0 // allowed
+     *
+     *      val testBasis = Basis.IDENTITY
+     *      testBasis.x.x = 1.0 // not allowed
+     *
+     *      val testTransform3D = Transform3D()
+     *      testTransform3D.basis.x.x = 1.0 // not allowed
      * ```
      */
     private tailrec fun hasLocalCopyAnnotationInDotQualifiedChain(dotQualifiedExpression: KtDotQualifiedExpression): Boolean {
@@ -104,36 +119,30 @@ class CopyModificationAnnotator : Annotator {
         // the receiver expression is the left hand side of a dot qualifier expression: `left.right`
         val receiverExpression = dotQualifiedExpression.receiverExpression
 
-        // annotations on the selector expression's reference (usually a property of an object)
-        val selectorAnnotations = selectorExpression
-            .mainReference
-            ?.resolveToDescriptors(selectorExpression.analyze(BodyResolveMode.PARTIAL))
-            ?.flatMap { declarationDescriptor -> declarationDescriptor.annotations }
-            ?.mapNotNull { annotationDescriptor -> annotationDescriptor.fqName?.asString() }
-            ?: emptyList()
+        // if the receiver is a dot expression, we want to check it's selector for a local copy annotation, in any other case we check the main reference
+        // case for dot expression: `basis.[x].x` <- the [x] is the selector of the dot expression [basis.x].[x] we care about
+        val receiverReferenceToCheck =
+            ((receiverExpression as? KtDotQualifiedExpression)?.selectorExpression?.mainReference)
+                ?: receiverExpression.mainReference
 
         // annotations on the receiver expression's reference (usually a property of an object)
-        val receiverAnnotations = receiverExpression
-            .mainReference
+        val receiverAnnotations = receiverReferenceToCheck
             ?.resolveToDescriptors(selectorExpression.analyze(BodyResolveMode.PARTIAL))
             ?.flatMap { declarationDescriptor -> declarationDescriptor.annotations }
             ?.mapNotNull { annotationDescriptor -> annotationDescriptor.fqName?.asString() }
             ?: emptyList()
-
-        val selectorReferenceHasLocalCopyAnnotation = selectorAnnotations.contains(CORE_TYPE_LOCAL_COPY_ANNOTATION)
-        val selectorReferenceHasCoreTypeHelperAnnotation = selectorAnnotations.contains(CORE_TYPE_HELPER_ANNOTATION)
 
         val receiverReferenceHasLocalCopyAnnotation = receiverAnnotations.contains(CORE_TYPE_LOCAL_COPY_ANNOTATION)
 
         return when {
-            // when the selector reference is a local copy we're definitely modifying a copy (see assumption)
-            selectorReferenceHasLocalCopyAnnotation -> true
-            // when the receiver has a local copy annotation and the selector has a core type helper annotation, it
-            // means that we use the coretype helper on a local copy which is not allowed.
-            // Example: `transform.basis { x = Vector3.ZERO }` as `transform` is already a copy
-            receiverReferenceHasLocalCopyAnnotation && selectorReferenceHasCoreTypeHelperAnnotation -> true
-            // neither the receiver nor the selector had any annotations we care about, so we walk the dot call chain up once more
-            receiverExpression is KtDotQualifiedExpression -> hasLocalCopyAnnotationInDotQualifiedChain(receiverExpression)
+            // when the receiver reference has a local copy annotation, it means we're modifying a local copy (see the assumption in the kdoc!)
+            receiverReferenceHasLocalCopyAnnotation -> true
+
+            // the receiver reference did not have any local copy annotation but itself is a dot expression. So we walk up once more to check the rest of the call chain
+            receiverExpression is KtDotQualifiedExpression -> hasLocalCopyAnnotationInDotQualifiedChain(
+                receiverExpression
+            )
+
             // in most cases at this point we are at the end of the dot call chain
             else -> false
         }
@@ -167,7 +176,7 @@ class CopyModificationAnnotator : Annotator {
         } else {
             parent
         }
-        return when(localElement) {
+        return when (localElement) {
             is KtBlockExpression -> element
             is PsiClass -> element
             is PsiMethod -> element
