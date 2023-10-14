@@ -67,8 +67,7 @@ internal object TransferContext {
 
     fun readReturnValue(type: VariantType, isNullable: Boolean = false): Any? {
         buffer.rewind()
-        val ret = type.toKotlin(buffer, isNullable)
-        return ret
+        return type.toKotlin(buffer, isNullable)
     }
 
     fun callMethod(ptr: VoidPtr, methodIndex: Int, expectedReturnType: VariantType) {
