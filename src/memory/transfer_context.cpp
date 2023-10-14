@@ -112,7 +112,6 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
     if (unlikely(stack_offset + args_size > MAX_STACK_SIZE)) {
         Variant args[MAX_FUNCTION_ARG_COUNT];
         read_args_to_array(buffer, args, args_size);
-        buffer->rewind();
 
         const Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
         for (uint32_t i = 0; i < args_size; i++) {
@@ -120,11 +119,13 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
         }
 
         const Variant& ret_value {methodBind->call(ptr, args_ptr, args_size, r_error)};
+
+        buffer->rewind();
         write_return_value(buffer, ret_value);
     } else {
         Variant* args {variant_args + stack_offset};
         read_args_to_array(buffer, args, args_size);
-        buffer->rewind();
+
 
         const Variant** args_ptr {variant_args_ptr + stack_offset};
 
@@ -132,6 +133,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
         const Variant& ret_value {methodBind->call(ptr, args_ptr, args_size, r_error)};
         stack_offset -= args_size;
 
+        buffer->rewind();
         write_return_value(buffer, ret_value);
     }
 
