@@ -1,12 +1,12 @@
 package godot.codegen.models.enriched
 
-import com.squareup.kotlinpoet.ANY
-import godot.codegen.extensions.getTypeClassName
+import godot.codegen.exceptions.TooManyMethodArgument
 import godot.codegen.extensions.isObjectSubClass
 import godot.codegen.models.Argument
 import godot.codegen.models.Method
 import godot.codegen.traits.CallableTrait
 import godot.codegen.workarounds.sanitizeApiType
+import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.extensions.convertToCamelCase
 import java.util.*
@@ -22,7 +22,11 @@ class EnrichedMethod(val internal: Method, engineClassIndexName: String) : Calla
         if (internal.isVirtual && !kotlinName.startsWith("_")) {
             kotlinName = "_$kotlinName"
         }
+
         name = kotlinName
+        if (arguments.size > Constraints.MAX_FUNCTION_ARG_COUNT) {
+            throw TooManyMethodArgument(this)
+        }
     }
 
     var isGetterOrSetter = false
