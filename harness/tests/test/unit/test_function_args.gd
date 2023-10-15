@@ -9,6 +9,14 @@ var test_data = [
 	"arg6",
 	"arg7",
 	"arg8",
+	"arg9",
+	"arg10",
+	"arg11",
+	"arg12",
+	"arg13",
+	"arg14",
+	"arg15",
+	"arg16",
 ]
 
 func test_function_arg_size():

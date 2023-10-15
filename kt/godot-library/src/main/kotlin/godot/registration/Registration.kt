@@ -14,6 +14,14 @@ import godot.core.KtFunction5
 import godot.core.KtFunction6
 import godot.core.KtFunction7
 import godot.core.KtFunction8
+import godot.core.KtFunction9
+import godot.core.KtFunction10
+import godot.core.KtFunction11
+import godot.core.KtFunction12
+import godot.core.KtFunction13
+import godot.core.KtFunction14
+import godot.core.KtFunction15
+import godot.core.KtFunction16
 import godot.core.KtFunctionInfo
 import godot.core.KtObject
 import godot.core.KtProperty
@@ -37,6 +45,14 @@ import kotlin.reflect.KFunction6
 import kotlin.reflect.KFunction7
 import kotlin.reflect.KFunction8
 import kotlin.reflect.KFunction9
+import kotlin.reflect.KFunction10
+import kotlin.reflect.KFunction11
+import kotlin.reflect.KFunction12
+import kotlin.reflect.KFunction13
+import kotlin.reflect.KFunction14
+import kotlin.reflect.KFunction15
+import kotlin.reflect.KFunction16
+import kotlin.reflect.KFunction17
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty
 
@@ -564,6 +580,574 @@ class ClassBuilderDsl<T : KtObject>(
                 p5Type = p5Type,
                 p6Type = p6Type,
                 p7Type = p7Type,
+            )
+        )
+    }
+
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, R : Any?> function(
+        func: KFunction10<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p6Type: Pair<VariantType, Boolean>,
+        p7Type: Pair<VariantType, Boolean>,
+        p8Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        p6: KtFunctionArgument,
+        p7: KtFunctionArgument,
+        p8: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction9(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                        p6.toKtPropertyInfo(),
+                        p7.toKtPropertyInfo(),
+                        p8.toKtPropertyInfo()
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+                p6Type = p6Type,
+                p7Type = p7Type,
+                p8Type = p8Type
+            )
+        )
+    }
+
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R : Any?> function(
+        func: KFunction11<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p6Type: Pair<VariantType, Boolean>,
+        p7Type: Pair<VariantType, Boolean>,
+        p8Type: Pair<VariantType, Boolean>,
+        p9Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        p6: KtFunctionArgument,
+        p7: KtFunctionArgument,
+        p8: KtFunctionArgument,
+        p9: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction10(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                        p6.toKtPropertyInfo(),
+                        p7.toKtPropertyInfo(),
+                        p8.toKtPropertyInfo(),
+                        p9.toKtPropertyInfo()
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+                p6Type = p6Type,
+                p7Type = p7Type,
+                p8Type = p8Type,
+                p9Type = p9Type
+            )
+        )
+    }
+
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R : Any?> function(
+        func: KFunction12<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p6Type: Pair<VariantType, Boolean>,
+        p7Type: Pair<VariantType, Boolean>,
+        p8Type: Pair<VariantType, Boolean>,
+        p9Type: Pair<VariantType, Boolean>,
+        p10Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        p6: KtFunctionArgument,
+        p7: KtFunctionArgument,
+        p8: KtFunctionArgument,
+        p9: KtFunctionArgument,
+        p10: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction11(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                        p6.toKtPropertyInfo(),
+                        p7.toKtPropertyInfo(),
+                        p8.toKtPropertyInfo(),
+                        p9.toKtPropertyInfo(),
+                        p10.toKtPropertyInfo()
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+                p6Type = p6Type,
+                p7Type = p7Type,
+                p8Type = p8Type,
+                p9Type = p9Type,
+                p10Type = p10Type
+            )
+        )
+    }
+
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R : Any?> function(
+        func: KFunction13<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p6Type: Pair<VariantType, Boolean>,
+        p7Type: Pair<VariantType, Boolean>,
+        p8Type: Pair<VariantType, Boolean>,
+        p9Type: Pair<VariantType, Boolean>,
+        p10Type: Pair<VariantType, Boolean>,
+        p11Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        p6: KtFunctionArgument,
+        p7: KtFunctionArgument,
+        p8: KtFunctionArgument,
+        p9: KtFunctionArgument,
+        p10: KtFunctionArgument,
+        p11: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction12(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                        p6.toKtPropertyInfo(),
+                        p7.toKtPropertyInfo(),
+                        p8.toKtPropertyInfo(),
+                        p9.toKtPropertyInfo(),
+                        p10.toKtPropertyInfo(),
+                        p11.toKtPropertyInfo()
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+                p6Type = p6Type,
+                p7Type = p7Type,
+                p8Type = p8Type,
+                p9Type = p9Type,
+                p10Type = p10Type,
+                p11Type = p11Type
+            )
+        )
+    }
+
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R : Any?> function(
+        func: KFunction14<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p6Type: Pair<VariantType, Boolean>,
+        p7Type: Pair<VariantType, Boolean>,
+        p8Type: Pair<VariantType, Boolean>,
+        p9Type: Pair<VariantType, Boolean>,
+        p10Type: Pair<VariantType, Boolean>,
+        p11Type: Pair<VariantType, Boolean>,
+        p12Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        p6: KtFunctionArgument,
+        p7: KtFunctionArgument,
+        p8: KtFunctionArgument,
+        p9: KtFunctionArgument,
+        p10: KtFunctionArgument,
+        p11: KtFunctionArgument,
+        p12: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction13(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                        p6.toKtPropertyInfo(),
+                        p7.toKtPropertyInfo(),
+                        p8.toKtPropertyInfo(),
+                        p9.toKtPropertyInfo(),
+                        p10.toKtPropertyInfo(),
+                        p11.toKtPropertyInfo(),
+                        p12.toKtPropertyInfo()
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+                p6Type = p6Type,
+                p7Type = p7Type,
+                p8Type = p8Type,
+                p9Type = p9Type,
+                p10Type = p10Type,
+                p11Type = p11Type,
+                p12Type = p12Type
+            )
+        )
+    }
+
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R : Any?> function(
+        func: KFunction15<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p6Type: Pair<VariantType, Boolean>,
+        p7Type: Pair<VariantType, Boolean>,
+        p8Type: Pair<VariantType, Boolean>,
+        p9Type: Pair<VariantType, Boolean>,
+        p10Type: Pair<VariantType, Boolean>,
+        p11Type: Pair<VariantType, Boolean>,
+        p12Type: Pair<VariantType, Boolean>,
+        p13Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        p6: KtFunctionArgument,
+        p7: KtFunctionArgument,
+        p8: KtFunctionArgument,
+        p9: KtFunctionArgument,
+        p10: KtFunctionArgument,
+        p11: KtFunctionArgument,
+        p12: KtFunctionArgument,
+        p13: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction14(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                        p6.toKtPropertyInfo(),
+                        p7.toKtPropertyInfo(),
+                        p8.toKtPropertyInfo(),
+                        p9.toKtPropertyInfo(),
+                        p10.toKtPropertyInfo(),
+                        p11.toKtPropertyInfo(),
+                        p12.toKtPropertyInfo(),
+                        p13.toKtPropertyInfo()
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+                p6Type = p6Type,
+                p7Type = p7Type,
+                p8Type = p8Type,
+                p9Type = p9Type,
+                p10Type = p10Type,
+                p11Type = p11Type,
+                p12Type = p12Type,
+                p13Type = p13Type
+            )
+        )
+    }
+
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R : Any?> function(
+        func: KFunction16<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p6Type: Pair<VariantType, Boolean>,
+        p7Type: Pair<VariantType, Boolean>,
+        p8Type: Pair<VariantType, Boolean>,
+        p9Type: Pair<VariantType, Boolean>,
+        p10Type: Pair<VariantType, Boolean>,
+        p11Type: Pair<VariantType, Boolean>,
+        p12Type: Pair<VariantType, Boolean>,
+        p13Type: Pair<VariantType, Boolean>,
+        p14Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        p6: KtFunctionArgument,
+        p7: KtFunctionArgument,
+        p8: KtFunctionArgument,
+        p9: KtFunctionArgument,
+        p10: KtFunctionArgument,
+        p11: KtFunctionArgument,
+        p12: KtFunctionArgument,
+        p13: KtFunctionArgument,
+        p14: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction15(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                        p6.toKtPropertyInfo(),
+                        p7.toKtPropertyInfo(),
+                        p8.toKtPropertyInfo(),
+                        p9.toKtPropertyInfo(),
+                        p10.toKtPropertyInfo(),
+                        p11.toKtPropertyInfo(),
+                        p12.toKtPropertyInfo(),
+                        p13.toKtPropertyInfo(),
+                        p14.toKtPropertyInfo()
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+                p6Type = p6Type,
+                p7Type = p7Type,
+                p8Type = p8Type,
+                p9Type = p9Type,
+                p10Type = p10Type,
+                p11Type = p11Type,
+                p12Type = p12Type,
+                p13Type = p13Type,
+                p14Type = p14Type
+            )
+        )
+    }
+
+    fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R : Any?> function(
+        func: KFunction17<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R>,
+        variantType: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
+        p5Type: Pair<VariantType, Boolean>,
+        p6Type: Pair<VariantType, Boolean>,
+        p7Type: Pair<VariantType, Boolean>,
+        p8Type: Pair<VariantType, Boolean>,
+        p9Type: Pair<VariantType, Boolean>,
+        p10Type: Pair<VariantType, Boolean>,
+        p11Type: Pair<VariantType, Boolean>,
+        p12Type: Pair<VariantType, Boolean>,
+        p13Type: Pair<VariantType, Boolean>,
+        p14Type: Pair<VariantType, Boolean>,
+        p15Type: Pair<VariantType, Boolean>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument,
+        p5: KtFunctionArgument,
+        p6: KtFunctionArgument,
+        p7: KtFunctionArgument,
+        p8: KtFunctionArgument,
+        p9: KtFunctionArgument,
+        p10: KtFunctionArgument,
+        p11: KtFunctionArgument,
+        p12: KtFunctionArgument,
+        p13: KtFunctionArgument,
+        p14: KtFunctionArgument,
+        p15: KtFunctionArgument,
+        returnType: KtFunctionArgument,
+        rpcConfig: KtRpcConfig
+    ) {
+        appendFunction(
+            KtFunction16(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
+                        p0.toKtPropertyInfo(),
+                        p1.toKtPropertyInfo(),
+                        p2.toKtPropertyInfo(),
+                        p3.toKtPropertyInfo(),
+                        p4.toKtPropertyInfo(),
+                        p5.toKtPropertyInfo(),
+                        p6.toKtPropertyInfo(),
+                        p7.toKtPropertyInfo(),
+                        p8.toKtPropertyInfo(),
+                        p9.toKtPropertyInfo(),
+                        p10.toKtPropertyInfo(),
+                        p11.toKtPropertyInfo(),
+                        p12.toKtPropertyInfo(),
+                        p13.toKtPropertyInfo(),
+                        p14.toKtPropertyInfo(),
+                        p15.toKtPropertyInfo()
+                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcConfig = rpcConfig
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type,
+                p5Type = p5Type,
+                p6Type = p6Type,
+                p7Type = p7Type,
+                p8Type = p8Type,
+                p9Type = p9Type,
+                p10Type = p10Type,
+                p11Type = p11Type,
+                p12Type = p12Type,
+                p13Type = p13Type,
+                p14Type = p14Type,
+                p15Type = p15Type
             )
         )
     }
