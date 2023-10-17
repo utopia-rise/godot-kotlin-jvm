@@ -3,7 +3,7 @@ package godot.benchmark.bunnymark
 import godot.Node2D
 import godot.RandomNumberGenerator
 import godot.ResourceLoader
-import godot.Texture
+import godot.Texture2D
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterSignal
@@ -14,13 +14,13 @@ import godot.signals.signal
 class BunnymarkV1DrawTexture : Node2D() {
 
 	@RegisterSignal
-	val signalBenchmarkFinished by signal<Int>("bunnyCount")
+	val benchmarkFinished by signal<Int>("bunnyCount")
 
 	data class Bunny(var position: Vector2, var speed: Vector2)
 
 	private val bunnies = mutableListOf<Bunny>()
 	private val gravity = 500
-	private val bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
+	private val bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture2D
 	private val randomNumberGenerator = RandomNumberGenerator()
 
 	private lateinit var screenSize: Vector2
@@ -77,7 +77,7 @@ class BunnymarkV1DrawTexture : Node2D() {
 			bunny.position = pos
 			bunny.speed = speed
 		}
-		update()
+		queueRedraw()
 	}
 
 	@RegisterFunction
@@ -98,6 +98,6 @@ class BunnymarkV1DrawTexture : Node2D() {
 
 	@RegisterFunction
 	fun finish() {
-		signalBenchmarkFinished.emit(bunnies.size)
+        benchmarkFinished.emit(bunnies.size)
 	}
 }

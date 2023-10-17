@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class BunnymarkV1DrawTexture : Node2D
+public partial class BunnymarkV1DrawTexture : Node2D
 {
     private class Pair
     {
@@ -12,7 +12,7 @@ public class BunnymarkV1DrawTexture : Node2D
 
     List<Pair> bunnies = new List<Pair>();
     Vector2 screenSize;
-    Texture bunnyTexture = (Texture)GD.Load("res://images/godot_bunny.png");
+    Texture2D bunnyTexture = (Texture2D)GD.Load("res://images/godot_bunny.png");
     Random random = new Random();
     int gravity = 500;
 

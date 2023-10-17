@@ -2,19 +2,18 @@ rootProject.name = "godot-kotlin-bunnymark"
 
 includeBuild("../../kt/api-generator") {
     dependencySubstitution {
-        substitute(module("com.utopia-rise:api-generator")).with(project(":"))
+        substitute(module("com.utopia-rise:api-generator")).using(project(":"))
     }
 }
 includeBuild("../../kt") {
     dependencySubstitution {
-        substitute(module("com.utopia-rise:godot-gradle-plugin")).with(project(":godot-gradle-plugin"))
-        substitute(module("com.utopia-rise:godot-runtime")).with(project(":godot-runtime"))
-        substitute(module("com.utopia-rise:godot-library")).with(project(":godot-library"))
-        substitute(module("com.utopia-rise:godot-bootstrap")).with(project(":godot-bootstrap"))
-        substitute(module("com.utopia-rise:godot-kotlin-symbol-processor")).with(project(":godot-kotlin-symbol-processor"))
-        substitute(module("com.utopia-rise:godot-entry-generator")).with(project(":godot-entry-generator"))
+        substitute(module("com.utopia-rise:godot-gradle-plugin")).using(project(":godot-gradle-plugin"))
+        substitute(module("com.utopia-rise:godot-library")).using(project(":godot-library"))
+        substitute(module("com.utopia-rise:godot-kotlin-symbol-processor")).using(project(":godot-kotlin-symbol-processor"))
+        substitute(module("com.utopia-rise:godot-entry-generator")).using(project(":godot-entry-generator"))
     }
 }
+
 
 pluginManagement {
     repositories {

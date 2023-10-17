@@ -1,14 +1,14 @@
 extends Node2D
 
-var bunny_texture = load("res://images/godot_bunny.png")
-var label = Label.new()
-var bunnies = Node2D.new()
-var screen_size
+var bunny_texture := load("res://images/godot_bunny.png") as Texture2D
+var label := Label.new()
+var bunnies := Node2D.new()
+var screen_size := Vector2()
 
 func _ready():
 	add_child(bunnies)
 
-	label.rect_position = Vector2(0, 20)
+	label.position = Vector2(0, 20)
 	add_child(label)
 
 func _process(delta):
@@ -23,10 +23,10 @@ func add_bunny():
 	bunny.speed = Vector2(randi() % 200 + 50, randi() % 200 + 50)
 
 func remove_bunny():
-	var child_count = bunnies.get_child_count()
+	var child_count: int = bunnies.get_child_count()
 	if child_count == 0:
 		return
-	var bunny = bunnies.get_child(child_count - 1)
+	var bunny: Bunny = bunnies.get_child(child_count - 1)
 	bunnies.remove_child(bunny)
 	bunny.queue_free()
 

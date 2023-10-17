@@ -1,9 +1,10 @@
-extends Sprite
 class_name Bunny
+extends Sprite2D
 
-var speed: Vector2
-var grav = 500
-var screen_size
+
+var speed := Vector2()
+var grav := 500
+var screen_size := Vector2()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,8 +15,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	screen_size = get_viewport_rect().size
-	var pos = self.position
-	var speed = self.speed
+	var pos: Vector2 = self.position
+	var speeds: Vector2 = self.speed
 		
 	pos.x += speed.x * delta
 	pos.y += speed.y * delta

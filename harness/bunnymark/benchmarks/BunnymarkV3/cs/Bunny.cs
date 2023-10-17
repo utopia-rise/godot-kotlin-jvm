@@ -1,7 +1,7 @@
 using Godot;
 
 // ReSharper disable once CheckNamespace
-public class Bunny : Sprite
+public partial class Bunny : Sprite2D
 {
     public Vector2 Speed = Vector2.Zero;
 

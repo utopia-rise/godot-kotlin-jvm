@@ -2,11 +2,11 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class BunnymarkV2 : Node2D
+public partial class BunnymarkV2 : Node2D
 {
     Vector2 screenSize;
 
-    Texture bunnyTexture = (Texture)GD.Load("res://images/godot_bunny.png");
+    Texture2D bunnyTexture = (Texture2D)GD.Load("res://images/godot_bunny.png");
     List<Vector2> speeds = new List<Vector2>();
     Random random = new Random();
     int gravity = 500;
@@ -16,7 +16,7 @@ public class BunnymarkV2 : Node2D
     public override void _Ready()
     {
         AddChild(bunnies);
-        label.RectPosition = new Vector2(0, 20);
+        label.Position = new Vector2(0, 20);
         AddChild(label);
     }
 
@@ -28,7 +28,7 @@ public class BunnymarkV2 : Node2D
         var bunnyChildren = bunnies.GetChildren();
         for (var i = 0; i < bunnyChildren.Count; i++)
         {
-            var bunny = (Sprite)bunnyChildren[i];
+            var bunny = (Sprite2D)bunnyChildren[i];
             var position = bunny.Position;
             var speed = speeds[i];
 
@@ -75,7 +75,7 @@ public class BunnymarkV2 : Node2D
 
     public void add_bunny()
     {
-        var bunny = new Sprite();
+        var bunny = new Sprite2D();
         bunny.SetTexture(bunnyTexture);
         bunnies.AddChild(bunny);
         bunny.Position = new Vector2(screenSize.x / 2, screenSize.y / 2);
