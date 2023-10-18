@@ -29,18 +29,14 @@ bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p
 }
 
 void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object) {
-    Object* obj {ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)))};
-    if (obj) {
-        KtBinding* kt_binding = memnew(KtBinding(jni::JObject(p_object)));
-        KotlinBindingManager::bind_object(obj, kt_binding);
-    }
+    ObjectID id {static_cast<uint64_t>(instance_id)};
+    KtBinding* kt_binding = memnew(KtBinding(jni::JObject(p_object)));
+    KotlinBindingManager::bind_object(id, kt_binding);
 }
 
 void MemoryBridge::unbind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object) {
-    Object* obj {ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)))};
-    if (obj) {
-        KotlinBindingManager::unbind_object(obj);
-    }
+    ObjectID id {static_cast<uint64_t>(instance_id)};
+    KotlinBindingManager::unbind_object(id);
 }
 
 void MemoryBridge::decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
