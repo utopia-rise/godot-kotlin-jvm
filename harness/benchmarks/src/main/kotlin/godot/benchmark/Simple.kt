@@ -4,7 +4,7 @@ import godot.Node
 import godot.Object
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
-import godot.core.Transform
+import godot.core.Transform3D
 import godot.core.Vector2
 import godot.core.Vector3
 
@@ -30,7 +30,7 @@ class Simple : Object() {
 
     @RegisterFunction
     fun benchmarkVectors(): Vector3 {
-        var b = Transform()
+        var b = Transform3D()
         b = b.rotated(Vector3.UP, Math.toRadians(60.0))
         b = b.scaled(Vector3(0.5, 0.5, 0.5))
 

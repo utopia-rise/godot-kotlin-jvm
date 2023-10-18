@@ -13,14 +13,14 @@ func benchmark_avg():
 	return total / size
 
 func benchmark_vectors():
-	var b = Transform()
-	b = b.rotated(Vector3.UP, deg2rad(60))
+	var b = Transform3D()
+	b = b.rotated(Vector3.UP, deg_to_rad(60))
 	b = b.scaled(Vector3(0.5, 0.5, 0.5))
 
 	var s: Vector3 = Vector3()
 	for i in range(1000):
 		var v  = Vector3(i, i, i)
-		v = b.xform(v)
+		v = b * (v)
 		s = s + v
 
 	return s

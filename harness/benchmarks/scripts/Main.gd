@@ -11,8 +11,7 @@ var classes = [
 var languages = [
 	Language.new("GDScript", "gd", "res://gd/", false),
 	Language.new("Typed GDScript", "gd", "res://typed_gd/", false),
-	Language.new("Kotlin", "kt", "res://src/main/kotlin/godot/benchmark/", true),
-	Language.new("C# Mono", "cs", "res://csharp/", true)
+	Language.new("Kotlin", "gdj", "res://gdj/godot/benchmark/", true)
 ]
 
 func _init():
@@ -26,7 +25,7 @@ func _init():
 	if args.has("commit"):
 		commit = args.commit
 	else:
-		commit = str(OS.get_datetime().hash())
+		commit = str(Time.get_datetime_dict_from_system().hash())
 			
 	var report = Report.new(commit)
 	
@@ -62,7 +61,7 @@ func __run_benchmark(benchmark: Benchmark, report: Report):
 
 
 func __do_run(iteration: int, benchmark: Benchmark, stats: Stats, is_warmup: bool):
-	var start: float = OS.get_ticks_usec()
+	var start: float = Time.get_ticks_usec()
 	##Loop is costly in GDScropt so to avoid measure the execution time of it, we manually execute the benchmark 30 times.
 	##Godot doesnt' measure time with enough precision so we have to execute the benchmark multiple times to get more than a 1 micro second.
 	benchmark.exec()
@@ -95,18 +94,17 @@ func __do_run(iteration: int, benchmark: Benchmark, stats: Stats, is_warmup: boo
 	benchmark.exec()
 	benchmark.exec()
 	benchmark.exec()
-	var duration: float = OS.get_ticks_usec() - start
+	var duration: float = Time.get_ticks_usec() - start
 	if not is_warmup:
 		stats.add(duration/30)
 		#print("[iteration=%d,run=%d] %dus" % [iteration, run, duration])
 
 func __save_report(report: Report):
-	var f = File.new()
 	var path = "res://build/benchmark-results.json"
+	var file := FileAccess.open("res://build/benchmark-results.json", FileAccess.READ_WRITE)
 	print("Writing results at: %s" % path)
-	f.open(path, File.WRITE_READ)
-	f.store_string(report.to_json())
-	f.close()
+	file.store_string(report.JSON.new().stringify())
+	file.close()
 
 func __parse_args() -> Dictionary:
 	var arguments = {}

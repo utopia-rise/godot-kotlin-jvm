@@ -11,7 +11,7 @@ var stress_size: int = 100
 func _init():
 	for i in range(access_size):
 		objs.append(Node.new())
-		refs.append(File.new())
+		refs.append(RefCounted.new())
 		cores.append(RID())
 
 func _notification(what):
@@ -27,7 +27,7 @@ func benchmark_access_obj() -> void:
 		obj = objs[i]
 		
 func benchmark_access_ref() -> void:
-	var ref: File
+	var ref: RefCounted
 	for i in range(access_size):
 		ref = refs[i]
 		
@@ -43,9 +43,9 @@ func benchmark_stress_object() -> void:
 		obj.free()
 	
 func benchmark_stress_reference() -> void:
-	var ref: File
+	var ref: RefCounted
 	for i in range(stress_size):
-		ref = File.new()
+		ref = RefCounted.new()
 		
 func benchmark_stress_core() -> void:
 	var core: RID
@@ -55,9 +55,9 @@ func benchmark_stress_core() -> void:
 func benchmark_stress_z_mix() -> void:
 	var core: RID
 	var obj: Node
-	var ref: File
+	var ref: RefCounted
 	for i in range(stress_size):
 		obj = Node.new()
 		obj.free()
 		core = RID()
-		ref = File.new()
+		ref = RefCounted.new()

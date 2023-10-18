@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 class_name Report
 
 var data = {}
@@ -19,4 +19,4 @@ func to_json():
 	var json = {}
 	json["commit"] = self.commit
 	json["data"]= self.data
-	return JSON.print(json)
+	return JSON.stringify(json)
