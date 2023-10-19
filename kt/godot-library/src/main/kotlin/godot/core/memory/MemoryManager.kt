@@ -312,7 +312,7 @@ internal object MemoryManager {
                         }
                     }
                 )
-                //MemoryBridge.notifyLeak()
+                MemoryBridge.notifyLeak()
                 break
             }
         }
