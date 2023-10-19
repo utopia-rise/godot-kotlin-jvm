@@ -14,7 +14,7 @@ var languages = [
 	Language.new("Kotlin", "gdj", "res://gdj/godot/benchmark/", true)
 ]
 
-func _init():
+func _initialize ():
 	var args: Dictionary = __parse_args()
 	print("Parsed arguments: %s" % str(args))
 
@@ -43,7 +43,7 @@ func _init():
 	print("Benchmark tests are over!")
 	__save_report(report)
 
-func _idle(delta):
+func _process (delta):
 	return true
 
 
@@ -100,10 +100,10 @@ func __do_run(iteration: int, benchmark: Benchmark, stats: Stats, is_warmup: boo
 		#print("[iteration=%d,run=%d] %dus" % [iteration, run, duration])
 
 func __save_report(report: Report):
-	var path = "res://build/benchmark-results.json"
-	var file := FileAccess.open("res://build/benchmark-results.json", FileAccess.READ_WRITE)
+	var path = "res://benchmark-results.json"
+	var file := FileAccess.open(path, FileAccess.WRITE)
 	print("Writing results at: %s" % path)
-	file.store_string(report.JSON.new().stringify())
+	file.store_string(report.to_json())
 	file.close()
 
 func __parse_args() -> Dictionary:

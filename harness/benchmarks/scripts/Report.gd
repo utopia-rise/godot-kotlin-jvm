@@ -9,7 +9,7 @@ func _init(commit):
 
 func add(benchmark, results):
 	var name = benchmark.name
-	var lang = benchmark.lang
+	var lang = benchmark.lang.name
 	if not data.has(name):
 		data[name] = {}
 
@@ -19,4 +19,4 @@ func to_json():
 	var json = {}
 	json["commit"] = self.commit
 	json["data"]= self.data
-	return JSON.stringify(json)
+	return JSON.stringify(json, "\t")
