@@ -71,7 +71,7 @@ KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
     return binding;
 }
 
-void KotlinBindingManager::bind_object(ObjectID id, KtBinding* kt_binding) {
+void KotlinBindingManager::bind_object(ObjectID id, jni::JObject j_object) {
     spin.lock();
     Object* obj {ObjectDB::get_instance(id)};
     if (!obj) {
@@ -81,7 +81,7 @@ void KotlinBindingManager::bind_object(ObjectID id, KtBinding* kt_binding) {
 
     KotlinBinding* binding =
       reinterpret_cast<KotlinBinding*>(obj->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
-    binding->set_kt_binding(kt_binding);
+    binding->set_kt_binding(j_object);
     spin.unlock();
 }
 

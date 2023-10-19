@@ -33,7 +33,7 @@ public:
     // Doesn't set the KtObject as it doesn't exist yet, bind_object has be used later.
     static KotlinBinding* get_instance_binding(Object* p_object);
 
-    static void bind_object(ObjectID id, KtBinding* kt_binding);
+    static void bind_object(ObjectID id, jni::JObject j_object);
     static void unbind_object(ObjectID id);
 };
 

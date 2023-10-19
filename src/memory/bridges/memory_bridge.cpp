@@ -30,11 +30,11 @@ bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p
 
 void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object) {
     ObjectID id {static_cast<uint64_t>(instance_id)};
-    KtBinding* kt_binding = memnew(KtBinding(jni::JObject(p_object)));
-    KotlinBindingManager::bind_object(id, kt_binding);
+    jni::JObject j_object {p_object};
+    KotlinBindingManager::bind_object(id, j_object);
 }
 
-void MemoryBridge::unbind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object) {
+void MemoryBridge::unbind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
     ObjectID id {static_cast<uint64_t>(instance_id)};
     KotlinBindingManager::unbind_object(id);
 }
