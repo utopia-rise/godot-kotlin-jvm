@@ -53,6 +53,7 @@ nav:
   - User guide:
     - API differences: user-guide/api-differences.md
     - Classes: user-guide/classes.md
+    - Compiling your project: user-guide/compiling-your-project.md
     - Properties: user-guide/properties.md
     - Signals: user-guide/signals.md
     - Functions: user-guide/functions.md
