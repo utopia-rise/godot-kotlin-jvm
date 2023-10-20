@@ -66,7 +66,8 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
                     publicationContainer.all { publication ->
                         if (publication is MavenPublication) {
                             publication.groupId = "com.utopia-rise"
-                            publication.artifactId = project.name
+                            val artifactId = publication.artifactId
+                            publication.artifactId = if (artifactId.isNullOrEmpty()) project.name else artifactId
                             publication.version = project.version as String
 
                             publication.pom { mavenPom ->
