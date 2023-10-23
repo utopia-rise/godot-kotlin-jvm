@@ -13,7 +13,7 @@ plugins {
 val isRelease = project.hasProperty("release")
 
 kotlinDefinitions {
-    definitionsObjectPrefix.set("GodotJvm")
+    definitionsObjectName.set("GodotJvmBuildConfig")
 
     define("DEBUG", !isRelease)
 }

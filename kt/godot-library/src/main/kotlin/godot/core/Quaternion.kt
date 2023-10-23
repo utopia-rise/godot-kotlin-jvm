@@ -3,7 +3,7 @@ package godot.core
 import godot.EulerOrder
 import godot.util.*
 import kotlin.math.*
-import kotlincompile.definitions.GodotJvmDefinitions
+import kotlincompile.definitions.GodotJvmBuildConfig
 
 
 class Quaternion(
@@ -131,7 +131,7 @@ class Quaternion(
      * Z angle).
      */
     fun getEuler(order: EulerOrder = EulerOrder.EULER_ORDER_YXZ): Vector3 {
-        if (GodotJvmDefinitions.DEBUG) {
+        if (GodotJvmBuildConfig.DEBUG) {
             require(isNormalized()) {
                 "The quaternion must be normalized."
             }
@@ -206,7 +206,7 @@ class Quaternion(
      * Sets the quaternion to a rotation which rotates around axis by the specified angle, in radians. The axis must be a normalized vector.
      */
     fun setAxisAndAngle(axis: Vector3, angle: RealT) {
-        if (GodotJvmDefinitions.DEBUG) {
+        if (GodotJvmBuildConfig.DEBUG) {
             require(axis.isNormalized()) { "Axis must be normalized!" }
         }
 
@@ -295,7 +295,7 @@ class Quaternion(
      * amount [weight].
      */
     fun sphericalCubicInterpolate(b: Quaternion, preA: Quaternion, postB: Quaternion, weight: RealT): Quaternion {
-        if (GodotJvmDefinitions.DEBUG) {
+        if (GodotJvmBuildConfig.DEBUG) {
             require(isNormalized()) {
                 "The start quaternion must be normalized."
             }
@@ -365,7 +365,7 @@ class Quaternion(
         p_pre_a_t: RealT,
         p_post_b_t: RealT
     ): Quaternion {
-        if (GodotJvmDefinitions.DEBUG) {
+        if (GodotJvmBuildConfig.DEBUG) {
             require(isNormalized()) {
                 "The start quaternion must be normalized."
             }
@@ -427,7 +427,7 @@ class Quaternion(
     }
 
     internal fun xform(v: Vector3): Vector3 {
-        if (GodotJvmDefinitions.DEBUG) {
+        if (GodotJvmBuildConfig.DEBUG) {
             require(isNormalized()) {
                 "The quaternion must be normalized."
             }

@@ -5,7 +5,7 @@ import godot.annotation.CoreTypeHelper
 import godot.util.RealT
 import godot.util.isEqualApprox
 import godot.util.toRealT
-import kotlincompile.definitions.GodotJvmDefinitions
+import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.acos
 import kotlin.math.atan2
 import kotlin.math.cos
@@ -120,7 +120,7 @@ class Transform2D(
      */
     internal fun affineInvert() {
         val det = basisDeterminant()
-        if (GodotJvmDefinitions.DEBUG) {
+        if (GodotJvmBuildConfig.DEBUG) {
             require(!isEqualApprox(det, 0.0)) { "Determinant is 0!" }
         }
         val idet = -1.0 / det

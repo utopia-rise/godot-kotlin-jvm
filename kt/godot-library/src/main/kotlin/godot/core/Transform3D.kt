@@ -3,7 +3,7 @@ package godot.core
 import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import godot.util.RealT
-import kotlincompile.definitions.GodotJvmDefinitions
+import kotlincompile.definitions.GodotJvmBuildConfig
 
 class Transform3D(
     p_basis: Basis,
@@ -163,7 +163,7 @@ class Transform3D(
     }
 
     internal fun setLookAt(eye: Vector3, target: Vector3, up: Vector3, useModelFront: Boolean) {
-        if (GodotJvmDefinitions.DEBUG) {
+        if (GodotJvmBuildConfig.DEBUG) {
             require(!eye.isEqualApprox(target)) {
                 "The eye and target vectors can't be equal."
             }

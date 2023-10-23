@@ -7,7 +7,7 @@ import godot.core.VariantType
 import godot.tools.common.constants.Constraints
 import godot.util.VoidPtr
 import godot.util.threadLocalLazy
-import kotlincompile.definitions.GodotJvmDefinitions
+import kotlincompile.definitions.GodotJvmBuildConfig
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
@@ -41,7 +41,7 @@ internal object TransferContext {
     fun readSingleArgument(variantType: VariantType, isNullable: Boolean = false): Any? {
         buffer.rewind()
         val argsSize = buffer.int
-        if (GodotJvmDefinitions.DEBUG) {
+        if (GodotJvmBuildConfig.DEBUG) {
             require(argsSize == 1) {
                 "Expecting 1 parameter, but got $argsSize instead."
             }
@@ -53,7 +53,7 @@ internal object TransferContext {
         buffer.rewind()
         val argsSize = buffer.int
         val argumentCount = variantTypes.size
-        if (GodotJvmDefinitions.DEBUG) {
+        if (GodotJvmBuildConfig.DEBUG) {
             require(argsSize == argumentCount) {
                 "Expecting $argumentCount parameter(s), but got $argsSize instead."
             }
