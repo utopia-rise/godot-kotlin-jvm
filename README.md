@@ -2,7 +2,9 @@
 
 # Kotlin/JVM binding for the Godot Game Engine
 
-![godot-kotlin-jvm-icon](.README/logo.png)
+<p align="center">
+<img src=".README/logo.png" width="30%" height="30%">
+</p>
 
 ## Overview
 
