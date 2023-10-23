@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.TextServer.JustificationFlagValue
+import godot.TextServer.LineBreakFlagValue
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedFloat32Array
@@ -142,15 +144,15 @@ public open class TextParagraph : RefCounted() {
   /**
    * Line breaking rules. For more info see [godot.TextServer].
    */
-  public var breakFlags: Long
+  public var breakFlags: TextServer.LineBreakFlag
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_BREAK_FLAGS,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return LineBreakFlagValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_BREAK_FLAGS,
           NIL)
     }
@@ -158,15 +160,15 @@ public open class TextParagraph : RefCounted() {
   /**
    * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
    */
-  public var justificationFlags: Long
+  public var justificationFlags: TextServer.JustificationFlag
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_JUSTIFICATION_FLAGS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_JUSTIFICATION_FLAGS, NIL)
     }

@@ -32,6 +32,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -465,124 +466,117 @@ public open class Mesh : Resource() {
     }
   }
 
-  public enum class ArrayFormat(
-    id: Long,
-  ) {
-    /**
-     * Mesh array contains vertices. All meshes require a vertex array so this should always be present.
-     */
-    ARRAY_FORMAT_VERTEX(1),
-    /**
-     * Mesh array contains normals.
-     */
-    ARRAY_FORMAT_NORMAL(2),
-    /**
-     * Mesh array contains tangents.
-     */
-    ARRAY_FORMAT_TANGENT(4),
-    /**
-     * Mesh array contains colors.
-     */
-    ARRAY_FORMAT_COLOR(8),
-    /**
-     * Mesh array contains UVs.
-     */
-    ARRAY_FORMAT_TEX_UV(16),
-    /**
-     * Mesh array contains second UV.
-     */
-    ARRAY_FORMAT_TEX_UV2(32),
-    /**
-     * Mesh array contains custom channel index 0.
-     */
-    ARRAY_FORMAT_CUSTOM0(64),
-    /**
-     * Mesh array contains custom channel index 1.
-     */
-    ARRAY_FORMAT_CUSTOM1(128),
-    /**
-     * Mesh array contains custom channel index 2.
-     */
-    ARRAY_FORMAT_CUSTOM2(256),
-    /**
-     * Mesh array contains custom channel index 3.
-     */
-    ARRAY_FORMAT_CUSTOM3(512),
-    /**
-     * Mesh array contains bones.
-     */
-    ARRAY_FORMAT_BONES(1024),
-    /**
-     * Mesh array contains bone weights.
-     */
-    ARRAY_FORMAT_WEIGHTS(2048),
-    /**
-     * Mesh array uses indices.
-     */
-    ARRAY_FORMAT_INDEX(4096),
-    /**
-     * Mask of mesh channels permitted in blend shapes.
-     */
-    ARRAY_FORMAT_BLEND_SHAPE_MASK(7),
-    /**
-     * Shift of first custom channel.
-     */
-    ARRAY_FORMAT_CUSTOM_BASE(13),
-    /**
-     * Number of format bits per custom channel. See [enum ArrayCustomFormat].
-     */
-    ARRAY_FORMAT_CUSTOM_BITS(3),
-    /**
-     * Amount to shift [enum ArrayCustomFormat] for custom channel index 0.
-     */
-    ARRAY_FORMAT_CUSTOM0_SHIFT(13),
-    /**
-     * Amount to shift [enum ArrayCustomFormat] for custom channel index 1.
-     */
-    ARRAY_FORMAT_CUSTOM1_SHIFT(16),
-    /**
-     * Amount to shift [enum ArrayCustomFormat] for custom channel index 2.
-     */
-    ARRAY_FORMAT_CUSTOM2_SHIFT(19),
-    /**
-     * Amount to shift [enum ArrayCustomFormat] for custom channel index 3.
-     */
-    ARRAY_FORMAT_CUSTOM3_SHIFT(22),
-    /**
-     * Mask of custom format bits per custom channel. Must be shifted by one of the SHIFT constants. See [enum ArrayCustomFormat].
-     */
-    ARRAY_FORMAT_CUSTOM_MASK(7),
-    /**
-     * Shift of first compress flag. Compress flags should be passed to [godot.ArrayMesh.addSurfaceFromArrays] and [godot.SurfaceTool.commit].
-     */
-    ARRAY_COMPRESS_FLAGS_BASE(25),
-    /**
-     * Flag used to mark that the array contains 2D vertices.
-     */
-    ARRAY_FLAG_USE_2D_VERTICES(33554432),
-    /**
-     * Flag indices that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
-     */
-    ARRAY_FLAG_USE_DYNAMIC_UPDATE(67108864),
-    /**
-     * Flag used to mark that the mesh contains up to 8 bone influences per vertex. This flag indicates that [ARRAY_BONES] and [ARRAY_WEIGHTS] elements will have double length.
-     */
-    ARRAY_FLAG_USE_8_BONE_WEIGHTS(134217728),
-    /**
-     * Flag used to mark that the mesh intentionally contains no vertex array.
-     */
-    ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY(268435456),
-    ;
+  public sealed interface ArrayFormat {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): ArrayFormat = ArrayFormatValue(flag.or(other))
+
+    public infix fun xor(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): ArrayFormat = ArrayFormatValue(flag.xor(other))
+
+    public infix fun and(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): ArrayFormat = ArrayFormatValue(flag.and(other))
+
+    public operator fun plus(other: ArrayFormat): ArrayFormat =
+        ArrayFormatValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): ArrayFormat = ArrayFormatValue(flag.plus(other))
+
+    public operator fun minus(other: ArrayFormat): ArrayFormat =
+        ArrayFormatValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): ArrayFormat = ArrayFormatValue(flag.minus(other))
+
+    public operator fun times(other: ArrayFormat): ArrayFormat =
+        ArrayFormatValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): ArrayFormat = ArrayFormatValue(flag.times(other))
+
+    public operator fun div(other: ArrayFormat): ArrayFormat =
+        ArrayFormatValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): ArrayFormat = ArrayFormatValue(flag.div(other))
+
+    public operator fun rem(other: ArrayFormat): ArrayFormat =
+        ArrayFormatValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): ArrayFormat = ArrayFormatValue(flag.rem(other))
+
+    public fun unaryPlus(): ArrayFormat = ArrayFormatValue(flag.unaryPlus())
+
+    public fun unaryMinus(): ArrayFormat = ArrayFormatValue(flag.unaryMinus())
+
+    public fun inv(): ArrayFormat = ArrayFormatValue(flag.inv())
+
+    public infix fun shl(bits: Int): ArrayFormat = ArrayFormatValue(flag shl bits)
+
+    public infix fun shr(bits: Int): ArrayFormat = ArrayFormatValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): ArrayFormat = ArrayFormatValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val ARRAY_FORMAT_VERTEX: ArrayFormat = ArrayFormatValue(1)
+
+      public val ARRAY_FORMAT_NORMAL: ArrayFormat = ArrayFormatValue(2)
+
+      public val ARRAY_FORMAT_TANGENT: ArrayFormat = ArrayFormatValue(4)
+
+      public val ARRAY_FORMAT_COLOR: ArrayFormat = ArrayFormatValue(8)
+
+      public val ARRAY_FORMAT_TEX_UV: ArrayFormat = ArrayFormatValue(16)
+
+      public val ARRAY_FORMAT_TEX_UV2: ArrayFormat = ArrayFormatValue(32)
+
+      public val ARRAY_FORMAT_CUSTOM0: ArrayFormat = ArrayFormatValue(64)
+
+      public val ARRAY_FORMAT_CUSTOM1: ArrayFormat = ArrayFormatValue(128)
+
+      public val ARRAY_FORMAT_CUSTOM2: ArrayFormat = ArrayFormatValue(256)
+
+      public val ARRAY_FORMAT_CUSTOM3: ArrayFormat = ArrayFormatValue(512)
+
+      public val ARRAY_FORMAT_BONES: ArrayFormat = ArrayFormatValue(1024)
+
+      public val ARRAY_FORMAT_WEIGHTS: ArrayFormat = ArrayFormatValue(2048)
+
+      public val ARRAY_FORMAT_INDEX: ArrayFormat = ArrayFormatValue(4096)
+
+      public val ARRAY_FORMAT_BLEND_SHAPE_MASK: ArrayFormat = ArrayFormatValue(7)
+
+      public val ARRAY_FORMAT_CUSTOM_BASE: ArrayFormat = ArrayFormatValue(13)
+
+      public val ARRAY_FORMAT_CUSTOM_BITS: ArrayFormat = ArrayFormatValue(3)
+
+      public val ARRAY_FORMAT_CUSTOM0_SHIFT: ArrayFormat = ArrayFormatValue(13)
+
+      public val ARRAY_FORMAT_CUSTOM1_SHIFT: ArrayFormat = ArrayFormatValue(16)
+
+      public val ARRAY_FORMAT_CUSTOM2_SHIFT: ArrayFormat = ArrayFormatValue(19)
+
+      public val ARRAY_FORMAT_CUSTOM3_SHIFT: ArrayFormat = ArrayFormatValue(22)
+
+      public val ARRAY_FORMAT_CUSTOM_MASK: ArrayFormat = ArrayFormatValue(7)
+
+      public val ARRAY_COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormatValue(25)
+
+      public val ARRAY_FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormatValue(33554432)
+
+      public val ARRAY_FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormatValue(67108864)
+
+      public val ARRAY_FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormatValue(134217728)
+
+      public val ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormatValue(268435456)
     }
   }
+
+  @JvmInline
+  internal value class ArrayFormatValue internal constructor(
+    public override val flag: Long,
+  ) : ArrayFormat
 
   public enum class BlendShapeMode(
     id: Long,
@@ -609,3 +603,19 @@ public open class Mesh : Resource() {
 
   public companion object
 }
+
+public infix fun Long.or(other: godot.Mesh.ArrayFormat): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.Mesh.ArrayFormat): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.Mesh.ArrayFormat): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.Mesh.ArrayFormat): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.Mesh.ArrayFormat): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.Mesh.ArrayFormat): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.Mesh.ArrayFormat): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.Mesh.ArrayFormat): Long = this.rem(other.flag)

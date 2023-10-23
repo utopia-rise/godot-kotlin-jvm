@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.KeyModifierMaskValue
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -126,11 +127,11 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   /**
    * Returns the keycode combination of modifier keys.
    */
-  public fun getModifiersMask(): Long {
+  public fun getModifiersMask(): KeyModifierMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_GET_MODIFIERS_MASK, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return KeyModifierMaskValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

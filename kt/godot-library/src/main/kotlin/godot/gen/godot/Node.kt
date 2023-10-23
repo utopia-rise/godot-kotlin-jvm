@@ -37,6 +37,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 import kotlin.reflect.KFunction0
 import kotlin.reflect.KFunction1
@@ -296,15 +297,15 @@ public open class Node : Object() {
   /**
    * Set whether the current thread group will process messages (calls to [callDeferredThreadGroup] on threads, and whether it wants to receive them during regular process or physics process callbacks.
    */
-  public var processThreadMessages: Long
+  public var processThreadMessages: ProcessThreadMessages
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_THREAD_MESSAGES,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return ProcessThreadMessagesValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_THREAD_MESSAGES,
           NIL)
     }
@@ -1777,32 +1778,87 @@ public open class Node : Object() {
     }
   }
 
-  public enum class ProcessThreadMessages(
-    id: Long,
-  ) {
-    /**
-     *
-     */
-    FLAG_PROCESS_THREAD_MESSAGES(1),
-    /**
-     *
-     */
-    FLAG_PROCESS_THREAD_MESSAGES_PHYSICS(2),
-    /**
-     *
-     */
-    FLAG_PROCESS_THREAD_MESSAGES_ALL(3),
-    ;
+  public sealed interface ProcessThreadMessages {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: ProcessThreadMessages): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.or(other))
+
+    public infix fun xor(other: ProcessThreadMessages): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.xor(other))
+
+    public infix fun and(other: ProcessThreadMessages): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.and(other))
+
+    public operator fun plus(other: ProcessThreadMessages): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.plus(other))
+
+    public operator fun minus(other: ProcessThreadMessages): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.minus(other))
+
+    public operator fun times(other: ProcessThreadMessages): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.times(other))
+
+    public operator fun div(other: ProcessThreadMessages): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.div(other))
+
+    public operator fun rem(other: ProcessThreadMessages): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag.rem(other))
+
+    public fun unaryPlus(): ProcessThreadMessages = ProcessThreadMessagesValue(flag.unaryPlus())
+
+    public fun unaryMinus(): ProcessThreadMessages = ProcessThreadMessagesValue(flag.unaryMinus())
+
+    public fun inv(): ProcessThreadMessages = ProcessThreadMessagesValue(flag.inv())
+
+    public infix fun shl(bits: Int): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag shl bits)
+
+    public infix fun shr(bits: Int): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): ProcessThreadMessages =
+        ProcessThreadMessagesValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val FLAG_PROCESS_THREAD_MESSAGES: ProcessThreadMessages = ProcessThreadMessagesValue(1)
+
+      public val FLAG_PROCESS_THREAD_MESSAGES_PHYSICS: ProcessThreadMessages =
+          ProcessThreadMessagesValue(2)
+
+      public val FLAG_PROCESS_THREAD_MESSAGES_ALL: ProcessThreadMessages =
+          ProcessThreadMessagesValue(3)
     }
   }
+
+  @JvmInline
+  internal value class ProcessThreadMessagesValue internal constructor(
+    public override val flag: Long,
+  ) : ProcessThreadMessages
 
   public enum class DuplicateFlags(
     id: Long,
@@ -2131,3 +2187,21 @@ public open class Node : Object() {
     }
   }
 }
+
+public infix fun Long.or(other: godot.Node.ProcessThreadMessages): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.Node.ProcessThreadMessages): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.Node.ProcessThreadMessages): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.Node.ProcessThreadMessages): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.Node.ProcessThreadMessages): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.Node.ProcessThreadMessages): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.Node.ProcessThreadMessages): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.Node.ProcessThreadMessages): Long = this.rem(other.flag)

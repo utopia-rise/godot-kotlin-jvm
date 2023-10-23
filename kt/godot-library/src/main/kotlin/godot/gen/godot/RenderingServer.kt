@@ -70,6 +70,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -623,11 +624,11 @@ public object RenderingServer : Object() {
    *
    */
   public fun meshSurfaceGetFormatOffset(
-    format: Long,
+    format: ArrayFormat,
     vertexCount: Int,
     arrayIndex: Int,
   ): Long {
-    TransferContext.writeArguments(LONG to format, LONG to vertexCount.toLong(), LONG to arrayIndex.toLong())
+    TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong(), LONG to arrayIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_OFFSET, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -636,8 +637,8 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun meshSurfaceGetFormatVertexStride(format: Long, vertexCount: Int): Long {
-    TransferContext.writeArguments(LONG to format, LONG to vertexCount.toLong())
+  public fun meshSurfaceGetFormatVertexStride(format: ArrayFormat, vertexCount: Int): Long {
+    TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_VERTEX_STRIDE, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -646,8 +647,8 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun meshSurfaceGetFormatAttributeStride(format: Long, vertexCount: Int): Long {
-    TransferContext.writeArguments(LONG to format, LONG to vertexCount.toLong())
+  public fun meshSurfaceGetFormatAttributeStride(format: ArrayFormat, vertexCount: Int): Long {
+    TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_ATTRIBUTE_STRIDE, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -656,8 +657,8 @@ public object RenderingServer : Object() {
   /**
    *
    */
-  public fun meshSurfaceGetFormatSkinStride(format: Long, vertexCount: Int): Long {
-    TransferContext.writeArguments(LONG to format, LONG to vertexCount.toLong())
+  public fun meshSurfaceGetFormatSkinStride(format: ArrayFormat, vertexCount: Int): Long {
+    TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_SKIN_STRIDE, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -682,9 +683,9 @@ public object RenderingServer : Object() {
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
-    compressFormat: Long = 0,
+    compressFormat: ArrayFormat = RenderingServer.ArrayFormatValue(0),
   ): Unit {
-    TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFormat)
+    TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFormat.flag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_ADD_SURFACE_FROM_ARRAYS, NIL)
   }
@@ -5615,124 +5616,117 @@ public object RenderingServer : Object() {
     }
   }
 
-  public enum class ArrayFormat(
-    id: Long,
-  ) {
-    /**
-     * Flag used to mark a vertex position array.
-     */
-    ARRAY_FORMAT_VERTEX(1),
-    /**
-     * Flag used to mark a normal array.
-     */
-    ARRAY_FORMAT_NORMAL(2),
-    /**
-     * Flag used to mark a tangent array.
-     */
-    ARRAY_FORMAT_TANGENT(4),
-    /**
-     * Flag used to mark a vertex color array.
-     */
-    ARRAY_FORMAT_COLOR(8),
-    /**
-     * Flag used to mark a UV coordinates array.
-     */
-    ARRAY_FORMAT_TEX_UV(16),
-    /**
-     * Flag used to mark a UV coordinates array for the second UV coordinates.
-     */
-    ARRAY_FORMAT_TEX_UV2(32),
-    /**
-     * Flag used to mark an array of custom per-vertex data for the first set of custom data.
-     */
-    ARRAY_FORMAT_CUSTOM0(64),
-    /**
-     * Flag used to mark an array of custom per-vertex data for the second set of custom data.
-     */
-    ARRAY_FORMAT_CUSTOM1(128),
-    /**
-     * Flag used to mark an array of custom per-vertex data for the third set of custom data.
-     */
-    ARRAY_FORMAT_CUSTOM2(256),
-    /**
-     * Flag used to mark an array of custom per-vertex data for the fourth set of custom data.
-     */
-    ARRAY_FORMAT_CUSTOM3(512),
-    /**
-     * Flag used to mark a bone information array.
-     */
-    ARRAY_FORMAT_BONES(1024),
-    /**
-     * Flag used to mark a weights array.
-     */
-    ARRAY_FORMAT_WEIGHTS(2048),
-    /**
-     * Flag used to mark an index array.
-     */
-    ARRAY_FORMAT_INDEX(4096),
-    /**
-     *
-     */
-    ARRAY_FORMAT_BLEND_SHAPE_MASK(7),
-    /**
-     *
-     */
-    ARRAY_FORMAT_CUSTOM_BASE(13),
-    /**
-     *
-     */
-    ARRAY_FORMAT_CUSTOM_BITS(3),
-    /**
-     *
-     */
-    ARRAY_FORMAT_CUSTOM0_SHIFT(13),
-    /**
-     *
-     */
-    ARRAY_FORMAT_CUSTOM1_SHIFT(16),
-    /**
-     *
-     */
-    ARRAY_FORMAT_CUSTOM2_SHIFT(19),
-    /**
-     *
-     */
-    ARRAY_FORMAT_CUSTOM3_SHIFT(22),
-    /**
-     *
-     */
-    ARRAY_FORMAT_CUSTOM_MASK(7),
-    /**
-     *
-     */
-    ARRAY_COMPRESS_FLAGS_BASE(25),
-    /**
-     * Flag used to mark that the array contains 2D vertices.
-     */
-    ARRAY_FLAG_USE_2D_VERTICES(33554432),
-    /**
-     *
-     */
-    ARRAY_FLAG_USE_DYNAMIC_UPDATE(67108864),
-    /**
-     * Flag used to mark that the array uses 8 bone weighs instead of 4.
-     */
-    ARRAY_FLAG_USE_8_BONE_WEIGHTS(134217728),
-    /**
-     *
-     */
-    ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY(268435456),
-    ;
+  public sealed interface ArrayFormat {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): ArrayFormat = ArrayFormatValue(flag.or(other))
+
+    public infix fun xor(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): ArrayFormat = ArrayFormatValue(flag.xor(other))
+
+    public infix fun and(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): ArrayFormat = ArrayFormatValue(flag.and(other))
+
+    public operator fun plus(other: ArrayFormat): ArrayFormat =
+        ArrayFormatValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): ArrayFormat = ArrayFormatValue(flag.plus(other))
+
+    public operator fun minus(other: ArrayFormat): ArrayFormat =
+        ArrayFormatValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): ArrayFormat = ArrayFormatValue(flag.minus(other))
+
+    public operator fun times(other: ArrayFormat): ArrayFormat =
+        ArrayFormatValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): ArrayFormat = ArrayFormatValue(flag.times(other))
+
+    public operator fun div(other: ArrayFormat): ArrayFormat =
+        ArrayFormatValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): ArrayFormat = ArrayFormatValue(flag.div(other))
+
+    public operator fun rem(other: ArrayFormat): ArrayFormat =
+        ArrayFormatValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): ArrayFormat = ArrayFormatValue(flag.rem(other))
+
+    public fun unaryPlus(): ArrayFormat = ArrayFormatValue(flag.unaryPlus())
+
+    public fun unaryMinus(): ArrayFormat = ArrayFormatValue(flag.unaryMinus())
+
+    public fun inv(): ArrayFormat = ArrayFormatValue(flag.inv())
+
+    public infix fun shl(bits: Int): ArrayFormat = ArrayFormatValue(flag shl bits)
+
+    public infix fun shr(bits: Int): ArrayFormat = ArrayFormatValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): ArrayFormat = ArrayFormatValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val ARRAY_FORMAT_VERTEX: ArrayFormat = ArrayFormatValue(1)
+
+      public val ARRAY_FORMAT_NORMAL: ArrayFormat = ArrayFormatValue(2)
+
+      public val ARRAY_FORMAT_TANGENT: ArrayFormat = ArrayFormatValue(4)
+
+      public val ARRAY_FORMAT_COLOR: ArrayFormat = ArrayFormatValue(8)
+
+      public val ARRAY_FORMAT_TEX_UV: ArrayFormat = ArrayFormatValue(16)
+
+      public val ARRAY_FORMAT_TEX_UV2: ArrayFormat = ArrayFormatValue(32)
+
+      public val ARRAY_FORMAT_CUSTOM0: ArrayFormat = ArrayFormatValue(64)
+
+      public val ARRAY_FORMAT_CUSTOM1: ArrayFormat = ArrayFormatValue(128)
+
+      public val ARRAY_FORMAT_CUSTOM2: ArrayFormat = ArrayFormatValue(256)
+
+      public val ARRAY_FORMAT_CUSTOM3: ArrayFormat = ArrayFormatValue(512)
+
+      public val ARRAY_FORMAT_BONES: ArrayFormat = ArrayFormatValue(1024)
+
+      public val ARRAY_FORMAT_WEIGHTS: ArrayFormat = ArrayFormatValue(2048)
+
+      public val ARRAY_FORMAT_INDEX: ArrayFormat = ArrayFormatValue(4096)
+
+      public val ARRAY_FORMAT_BLEND_SHAPE_MASK: ArrayFormat = ArrayFormatValue(7)
+
+      public val ARRAY_FORMAT_CUSTOM_BASE: ArrayFormat = ArrayFormatValue(13)
+
+      public val ARRAY_FORMAT_CUSTOM_BITS: ArrayFormat = ArrayFormatValue(3)
+
+      public val ARRAY_FORMAT_CUSTOM0_SHIFT: ArrayFormat = ArrayFormatValue(13)
+
+      public val ARRAY_FORMAT_CUSTOM1_SHIFT: ArrayFormat = ArrayFormatValue(16)
+
+      public val ARRAY_FORMAT_CUSTOM2_SHIFT: ArrayFormat = ArrayFormatValue(19)
+
+      public val ARRAY_FORMAT_CUSTOM3_SHIFT: ArrayFormat = ArrayFormatValue(22)
+
+      public val ARRAY_FORMAT_CUSTOM_MASK: ArrayFormat = ArrayFormatValue(7)
+
+      public val ARRAY_COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormatValue(25)
+
+      public val ARRAY_FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormatValue(33554432)
+
+      public val ARRAY_FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormatValue(67108864)
+
+      public val ARRAY_FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormatValue(134217728)
+
+      public val ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormatValue(268435456)
     }
   }
+
+  @JvmInline
+  internal value class ArrayFormatValue internal constructor(
+    public override val flag: Long,
+  ) : ArrayFormat
 
   public enum class PrimitiveType(
     id: Long,
@@ -8194,3 +8188,22 @@ public object RenderingServer : Object() {
     }
   }
 }
+
+public infix fun Long.or(other: godot.RenderingServer.ArrayFormat): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RenderingServer.ArrayFormat): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RenderingServer.ArrayFormat): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RenderingServer.ArrayFormat): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RenderingServer.ArrayFormat): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RenderingServer.ArrayFormat): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RenderingServer.ArrayFormat): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RenderingServer.ArrayFormat): Long = this.rem(other.flag)

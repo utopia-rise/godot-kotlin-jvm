@@ -605,10 +605,10 @@ public open class RichTextLabel : Control() {
     language: String = "",
     stParser: TextServer.StructuredTextParser =
         TextServer.StructuredTextParser.STRUCTURED_TEXT_DEFAULT,
-    justificationFlags: Long = 163,
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(163),
     tabStops: PackedFloat32Array = PackedFloat32Array(),
   ): Unit {
-    TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id, LONG to justificationFlags, PACKED_FLOAT_32_ARRAY to tabStops)
+    TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id, LONG to justificationFlags.flag, PACKED_FLOAT_32_ARRAY to tabStops)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_PARAGRAPH, NIL)
   }
 

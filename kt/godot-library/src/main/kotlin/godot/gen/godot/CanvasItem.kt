@@ -778,11 +778,11 @@ public open class CanvasItem internal constructor() : Node() {
     width: Float = -1.0f,
     fontSize: Int = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    justificationFlags: Long = 3,
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STRING, NIL)
   }
 
@@ -799,12 +799,12 @@ public open class CanvasItem internal constructor() : Node() {
     fontSize: Int = 16,
     maxLines: Int = -1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    brkFlags: Long = 3,
-    justificationFlags: Long = 3,
+    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlagValue(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags, LONG to justificationFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE_STRING,
         NIL)
   }
@@ -822,11 +822,11 @@ public open class CanvasItem internal constructor() : Node() {
     fontSize: Int = 16,
     size: Int = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    justificationFlags: Long = 3,
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STRING_OUTLINE, NIL)
   }
 
@@ -844,12 +844,12 @@ public open class CanvasItem internal constructor() : Node() {
     maxLines: Int = -1,
     size: Int = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    brkFlags: Long = 3,
-    justificationFlags: Long = 3,
+    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlagValue(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags, LONG to justificationFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE_STRING_OUTLINE, NIL)
   }

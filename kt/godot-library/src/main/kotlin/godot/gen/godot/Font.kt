@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.TextServer.FontStyleValue
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -181,10 +182,10 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns font style flags, see [enum TextServer.FontStyle].
    */
-  public fun getFontStyle(): Long {
+  public fun getFontStyle(): TextServer.FontStyle {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_FONT_STYLE, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return FontStyleValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -265,11 +266,11 @@ public open class Font internal constructor() : Resource() {
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Float = -1.0f,
     fontSize: Int = 16,
-    justificationFlags: Long = 3,
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Vector2 {
-    TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to justificationFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_STRING_SIZE, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
@@ -286,12 +287,12 @@ public open class Font internal constructor() : Resource() {
     width: Float = -1.0f,
     fontSize: Int = 16,
     maxLines: Int = -1,
-    brkFlags: Long = 3,
-    justificationFlags: Long = 3,
+    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlagValue(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Vector2 {
-    TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to brkFlags, LONG to justificationFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_MULTILINE_STRING_SIZE,
         VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -311,11 +312,11 @@ public open class Font internal constructor() : Resource() {
     width: Float = -1.0f,
     fontSize: Int = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    justificationFlags: Long = 3,
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING, NIL)
   }
 
@@ -334,12 +335,12 @@ public open class Font internal constructor() : Resource() {
     fontSize: Int = 16,
     maxLines: Int = -1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    brkFlags: Long = 3,
-    justificationFlags: Long = 3,
+    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlagValue(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags, LONG to justificationFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING, NIL)
   }
 
@@ -358,11 +359,11 @@ public open class Font internal constructor() : Resource() {
     fontSize: Int = 16,
     size: Int = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    justificationFlags: Long = 3,
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING_OUTLINE, NIL)
   }
 
@@ -382,12 +383,12 @@ public open class Font internal constructor() : Resource() {
     maxLines: Int = -1,
     size: Int = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    brkFlags: Long = 3,
-    justificationFlags: Long = 3,
+    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlagValue(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags, LONG to justificationFlags, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING_OUTLINE,
         NIL)
   }

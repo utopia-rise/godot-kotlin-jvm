@@ -21,4 +21,17 @@ class ClassTypeNameWrapper(val className: ClassName) {
         typeName = typeName.copy(nullable, annotations)
         return this
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ClassTypeNameWrapper
+
+        return className == other.className
+    }
+
+    override fun hashCode(): Int {
+        return className.hashCode()
+    }
 }

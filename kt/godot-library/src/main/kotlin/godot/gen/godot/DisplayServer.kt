@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.MouseButtonMaskValue
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Color
@@ -1126,11 +1127,11 @@ public object DisplayServer : Object() {
   /**
    * Returns the current state of mouse buttons (whether each button is pressed) as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to [godot.Input.getMouseButtonMask].
    */
-  public fun mouseGetButtonState(): Long {
+  public fun mouseGetButtonState(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_BUTTON_STATE, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

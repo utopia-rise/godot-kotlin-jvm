@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.NavigationPathQueryParameters2D.PathMetadataFlagsValue
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
@@ -220,15 +221,15 @@ public open class NavigationAgent2D : Node() {
   /**
    * Additional information to return with the navigation path.
    */
-  public var pathMetadataFlags: Long
+  public var pathMetadataFlags: NavigationPathQueryParameters2D.PathMetadataFlags
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATH_METADATA_FLAGS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_METADATA_FLAGS, NIL)
     }

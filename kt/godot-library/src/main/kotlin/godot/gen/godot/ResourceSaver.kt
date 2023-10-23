@@ -22,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -49,9 +50,9 @@ public object ResourceSaver : Object() {
   public fun save(
     resource: Resource,
     path: String = "",
-    flags: Long = 0,
+    flags: SaverFlags = ResourceSaver.SaverFlags.FLAG_NONE,
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to resource, STRING to path, LONG to flags)
+    TransferContext.writeArguments(OBJECT to resource, STRING to path, LONG to flags.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_SAVE, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -88,50 +89,92 @@ public object ResourceSaver : Object() {
         ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_REMOVE_RESOURCE_FORMAT_SAVER, NIL)
   }
 
-  public enum class SaverFlags(
-    id: Long,
-  ) {
-    /**
-     * No resource saving option.
-     */
-    FLAG_NONE(0),
-    /**
-     * Save the resource with a path relative to the scene which uses it.
-     */
-    FLAG_RELATIVE_PATHS(1),
-    /**
-     * Bundles external resources.
-     */
-    FLAG_BUNDLE_RESOURCES(2),
-    /**
-     * Changes the [godot.Resource.resourcePath] of the saved resource to match its new location.
-     */
-    FLAG_CHANGE_PATH(4),
-    /**
-     * Do not save editor-specific metadata (identified by their `__editor` prefix).
-     */
-    FLAG_OMIT_EDITOR_PROPERTIES(8),
-    /**
-     * Save as big endian (see [godot.FileAccess.bigEndian]).
-     */
-    FLAG_SAVE_BIG_ENDIAN(16),
-    /**
-     * Compress the resource on save using [godot.FileAccess.COMPRESSION_ZSTD]. Only available for binary resource types.
-     */
-    FLAG_COMPRESS(32),
-    /**
-     * Take over the paths of the saved subresources (see [godot.Resource.takeOverPath]).
-     */
-    FLAG_REPLACE_SUBRESOURCE_PATHS(64),
-    ;
+  public sealed interface SaverFlags {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): SaverFlags = SaverFlagsValue(flag.or(other))
+
+    public infix fun xor(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): SaverFlags = SaverFlagsValue(flag.xor(other))
+
+    public infix fun and(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): SaverFlags = SaverFlagsValue(flag.and(other))
+
+    public operator fun plus(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): SaverFlags = SaverFlagsValue(flag.plus(other))
+
+    public operator fun minus(other: SaverFlags): SaverFlags =
+        SaverFlagsValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): SaverFlags = SaverFlagsValue(flag.minus(other))
+
+    public operator fun times(other: SaverFlags): SaverFlags =
+        SaverFlagsValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): SaverFlags = SaverFlagsValue(flag.times(other))
+
+    public operator fun div(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): SaverFlags = SaverFlagsValue(flag.div(other))
+
+    public operator fun rem(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): SaverFlags = SaverFlagsValue(flag.rem(other))
+
+    public fun unaryPlus(): SaverFlags = SaverFlagsValue(flag.unaryPlus())
+
+    public fun unaryMinus(): SaverFlags = SaverFlagsValue(flag.unaryMinus())
+
+    public fun inv(): SaverFlags = SaverFlagsValue(flag.inv())
+
+    public infix fun shl(bits: Int): SaverFlags = SaverFlagsValue(flag shl bits)
+
+    public infix fun shr(bits: Int): SaverFlags = SaverFlagsValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): SaverFlags = SaverFlagsValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val FLAG_NONE: SaverFlags = SaverFlagsValue(0)
+
+      public val FLAG_RELATIVE_PATHS: SaverFlags = SaverFlagsValue(1)
+
+      public val FLAG_BUNDLE_RESOURCES: SaverFlags = SaverFlagsValue(2)
+
+      public val FLAG_CHANGE_PATH: SaverFlags = SaverFlagsValue(4)
+
+      public val FLAG_OMIT_EDITOR_PROPERTIES: SaverFlags = SaverFlagsValue(8)
+
+      public val FLAG_SAVE_BIG_ENDIAN: SaverFlags = SaverFlagsValue(16)
+
+      public val FLAG_COMPRESS: SaverFlags = SaverFlagsValue(32)
+
+      public val FLAG_REPLACE_SUBRESOURCE_PATHS: SaverFlags = SaverFlagsValue(64)
     }
   }
+
+  @JvmInline
+  internal value class SaverFlagsValue internal constructor(
+    public override val flag: Long,
+  ) : SaverFlags
 }
+
+public infix fun Long.or(other: godot.ResourceSaver.SaverFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.ResourceSaver.SaverFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.ResourceSaver.SaverFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.ResourceSaver.SaverFlags): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.ResourceSaver.SaverFlags): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.ResourceSaver.SaverFlags): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.ResourceSaver.SaverFlags): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.ResourceSaver.SaverFlags): Long = this.rem(other.flag)

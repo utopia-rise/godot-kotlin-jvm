@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.RenderingDevice.TextureUsageBitsValue
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -142,15 +143,15 @@ public open class RDTextureFormat : RefCounted() {
   /**
    * The texture's usage bits, which determine what can be done using the texture.
    */
-  public var usageBits: Long
+  public var usageBits: RenderingDevice.TextureUsageBits
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_USAGE_BITS,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return TextureUsageBitsValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_USAGE_BITS,
           NIL)
     }

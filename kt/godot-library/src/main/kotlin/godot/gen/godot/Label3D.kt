@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.TextServer.JustificationFlagValue
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
@@ -433,15 +434,15 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
    */
-  public var justificationFlags: Long
+  public var justificationFlags: TextServer.JustificationFlag
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_GET_JUSTIFICATION_FLAGS,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL3D_SET_JUSTIFICATION_FLAGS,
           NIL)
     }

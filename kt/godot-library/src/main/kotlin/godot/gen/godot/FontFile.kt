@@ -165,12 +165,12 @@ public open class FontFile : Font() {
   /**
    * Font style flags, see [enum TextServer.FontStyle].
    */
-  public var fontStyle: Long
+  public var fontStyle: TextServer.FontStyle
     @JvmName("getFontStyle_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontStyle()
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FONT_STYLE, NIL)
     }
 

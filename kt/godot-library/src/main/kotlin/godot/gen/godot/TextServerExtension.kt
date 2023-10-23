@@ -162,13 +162,13 @@ public open class TextServerExtension : TextServer() {
   /**
    *
    */
-  public open fun _fontSetStyle(fontRid: RID, style: Long): Unit {
+  public open fun _fontSetStyle(fontRid: RID, style: TextServer.FontStyle): Unit {
   }
 
   /**
    *
    */
-  public open fun _fontGetStyle(fontRid: RID): Long {
+  public open fun _fontGetStyle(fontRid: RID): TextServer.FontStyle {
     throw NotImplementedError("_font_get_style is not implemented for TextServerExtension")
   }
 
@@ -1219,7 +1219,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _shapedTextFitToWidth(
     shaped: RID,
     width: Double,
-    justificationFlags: Long,
+    justificationFlags: TextServer.JustificationFlag,
   ): Double {
     throw NotImplementedError("_shaped_text_fit_to_width is not implemented for TextServerExtension")
   }
@@ -1281,7 +1281,7 @@ public open class TextServerExtension : TextServer() {
     width: PackedFloat32Array,
     start: Long,
     once: Boolean,
-    breakFlags: Long,
+    breakFlags: TextServer.LineBreakFlag,
   ): PackedInt32Array {
     throw NotImplementedError("_shaped_text_get_line_breaks_adv is not implemented for TextServerExtension")
   }
@@ -1293,7 +1293,7 @@ public open class TextServerExtension : TextServer() {
     shaped: RID,
     width: Double,
     start: Long,
-    breakFlags: Long,
+    breakFlags: TextServer.LineBreakFlag,
   ): PackedInt32Array {
     throw NotImplementedError("_shaped_text_get_line_breaks is not implemented for TextServerExtension")
   }
@@ -1301,7 +1301,8 @@ public open class TextServerExtension : TextServer() {
   /**
    *
    */
-  public open fun _shapedTextGetWordBreaks(shaped: RID, graphemeFlags: Long): PackedInt32Array {
+  public open fun _shapedTextGetWordBreaks(shaped: RID, graphemeFlags: TextServer.GraphemeFlag):
+      PackedInt32Array {
     throw NotImplementedError("_shaped_text_get_word_breaks is not implemented for TextServerExtension")
   }
 
@@ -1332,7 +1333,7 @@ public open class TextServerExtension : TextServer() {
   public open fun _shapedTextOverrunTrimToWidth(
     shaped: RID,
     width: Double,
-    trimFlags: Long,
+    trimFlags: TextServer.TextOverrunFlag,
   ): Unit {
   }
 
