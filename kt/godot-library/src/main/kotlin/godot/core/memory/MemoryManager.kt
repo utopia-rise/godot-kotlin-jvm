@@ -17,18 +17,8 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
 internal object MemoryManager {
-
-    /** Minimum time before 2 iterations of the thread.*/
-    private const val MIN_DELAY = 0L
-
-    /** Maximum time before 2 iterations of the thread.*/
-    private const val MAX_DELAY = 2000L
-
-    /** The delay between iterations can be increased or decreased by this value.*/
-    private const val INC_DELAY = 100L
-
-    /** Current time between 2 iterations of the thread. */
-    private var current_delay = (MIN_DELAY + MAX_DELAY) / 2L
+    /** The delay between 2 iterations of the memory manager. Set to 60fps.*/
+    private const val DELAY = 1000L / 60L
 
     /** Number of references to check each loop.*/
     private const val CHECK_NUMBER = 256
@@ -173,22 +163,19 @@ internal object MemoryManager {
             if (forceJvmGarbageCollector) {
                 forceJvmGc()
             }
-            val isActive = bindNewObjects() || removeObjectsAndDecrementCounter() || removeNativeCoreTypes()
 
-            if (isActive) {
-                current_delay -= INC_DELAY
-                current_delay = current_delay.coerceAtLeast(MIN_DELAY)
-            } else {
-                current_delay += INC_DELAY
-                current_delay = current_delay.coerceAtMost(MAX_DELAY)
+            var active = true
+            while (active) {
+                active = manageMemory()
             }
 
-            if (current_delay > 0L) {
-                Thread.sleep(current_delay)
-            }
+            Thread.sleep(DELAY)
         }
         gcState = GCState.CLOSED
     }
+
+    private fun manageMemory() = bindNewObjects() || removeObjectsAndDecrementCounter() || removeNativeCoreTypes()
+
 
     /**
      * Binding a newly created KtObject by setting itself in the c++ binding.
@@ -198,9 +185,9 @@ internal object MemoryManager {
         var isActive = false
         var counter = 0
 
-        //Objects in that list don't have a binding yet so we call c++ code to set it
+        //Objects in that list don't have a binding yet,so we call c++ code to set it
         synchronized(ObjectDB) {
-            //In a synchronized block to copy the content into another list so we spend as little time time as possible blocking access to `ObjectDB`.
+            //In a synchronized block to copy the content into another list, so we spend as little time as possible blocking access to `ObjectDB`.
             val size = min(bindingQueue.size, CHECK_NUMBER)
             while (counter < size) {
                 bindingList.add(bindingQueue.removeFirst())
@@ -232,7 +219,7 @@ internal object MemoryManager {
                 val index = ref.id.index
                 val otherRef = ObjectDB[index]
                 //Check if the ref in the DB hasn't been replaced by a new object before the GC could remove it.
-                if (otherRef == ref) {
+                if (otherRef === ref) {
                     ObjectDB[index] = null
                 }
                 deleteList.add(ref)
@@ -299,7 +286,7 @@ internal object MemoryManager {
         while (ObjectDB.any { it != null } || nativeCoreTypeMap.isNotEmpty()) {
 
             forceJvmGc()
-            if (bindNewObjects() || removeObjectsAndDecrementCounter() || removeNativeCoreTypes()) {
+            if (manageMemory()) {
                 begin = Instant.now()
             }
 
@@ -312,7 +299,9 @@ internal object MemoryManager {
                             val leakedObjects = ObjectDB.filterNotNull()
                             appendLine("${leakedObjects.size} Objects:")
                             for (entry in leakedObjects) {
-                                append("    ${entry.get()!!.value!!::class.simpleName} ${entry.id.id}")
+                                val obj = entry.get()!!.value!!
+                                append("    ${obj::class.simpleName} ${entry.id.id} ")
+                                append("C++ instance alive: ${MemoryBridge.checkInstance(obj.rawPtr, obj.id.id)}")
                                 append(System.lineSeparator())
                             }
                             appendLine("${nativeCoreTypeMap.size} Leaked native core types:")

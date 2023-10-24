@@ -3,6 +3,8 @@
 #include "gd_kotlin.h"
 #include "kt_binding.h"
 
+static SpinLock spin;
+
 GDExtensionInstanceBindingCallbacks KotlinBindingManager::_instance_binding_callbacks = {
   &_instance_binding_create_callback,
   &_instance_binding_free_callback,
@@ -20,8 +22,10 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     // Called in the destructor of the Object.
     //  It's the very last action done in the destructor so assume variables local to the Object have been cleaned (including script and extension).
     // There are 2 cases, either an Object has been freed, and we have to release its reference OR it's a Refcounted and the JVM instance is already dead.
+    spin.lock();
     KotlinBinding* binding = reinterpret_cast<KotlinBinding*>(p_binding);
     memdelete(binding);
+    spin.unlock();
 }
 
 GDExtensionBool KotlinBindingManager::_instance_binding_reference_callback(void* p_token, void* p_binding, GDExtensionBool p_reference) {
@@ -67,14 +71,30 @@ KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
     return binding;
 }
 
-void KotlinBindingManager::bind_object(Object* p_object, KtBinding* kt_binding) {
+void KotlinBindingManager::bind_object(ObjectID id, jni::JObject j_object) {
+    spin.lock();
+    Object* obj {ObjectDB::get_instance(id)};
+    if (!obj) {
+        spin.unlock();
+        return;
+    }
+
     KotlinBinding* binding =
-      reinterpret_cast<KotlinBinding*>(p_object->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
-    binding->set_kt_binding(kt_binding);
+      reinterpret_cast<KotlinBinding*>(obj->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
+    binding->set_kt_binding(j_object);
+    spin.unlock();
 }
 
-void KotlinBindingManager::unbind_object(Object* p_object) {
+void KotlinBindingManager::unbind_object(ObjectID id) {
+    spin.lock();
+    Object* obj {ObjectDB::get_instance(id)};
+    if (!obj) {
+        spin.unlock();
+        return;
+    }
+
     KotlinBinding* binding =
-      reinterpret_cast<KotlinBinding*>(p_object->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
+      reinterpret_cast<KotlinBinding*>(obj->get_instance_binding(&GDKotlin::get_instance(), &_instance_binding_callbacks));
     binding->unset_kt_binding();
+    spin.unlock();
 }

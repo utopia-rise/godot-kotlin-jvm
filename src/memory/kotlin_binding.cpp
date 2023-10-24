@@ -34,24 +34,22 @@ bool KotlinBinding::refcount_decremented_unsafe() {
     return refcount == 0;
 }
 
-void KotlinBinding::set_kt_binding(KtBinding* p_kt_binding) {
-    JVM_CRASH_COND_MSG(!p_kt_binding, "Trying to set a null KtBinding  pointer to a binding");
+void KotlinBinding::set_kt_binding(jni::JObject j_object) {
     JVM_CRASH_COND_MSG(kt_binding, "Trying to set a KtBinding on an already bound Object");
+    kt_binding = memnew(KtBinding(j_object));
+
     if (!owner->is_ref_counted()) {
-        kt_binding = p_kt_binding;
         return;
     }
 
     RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
     int refcount = ref->get_reference_count();
 
-    if (refcount == 1 && !p_kt_binding->is_ref_weak()) {
+    if (refcount == 1 && !kt_binding->is_ref_weak()) {
         // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
         // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
-        p_kt_binding->swap_to_weak_unsafe();
+        kt_binding->swap_to_weak_unsafe();
     }
-
-    kt_binding = p_kt_binding;
     status = BindingStatus::BOUND;
 }
 

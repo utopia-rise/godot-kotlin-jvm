@@ -1,8 +1,8 @@
 package godot.benchmark
 
-import godot.File
 import godot.Node
 import godot.Object
+import godot.RefCounted
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.core.RID
@@ -12,7 +12,7 @@ import godot.core.VariantArray
 class Memory : Object() {
 
     private val objs = VariantArray<Node>()
-    private val refs = VariantArray<File>()
+    private val refs = VariantArray<RefCounted>()
     private val cores = VariantArray<RID>()
     private val accessSize = 1000
     private val stressSize = 100
@@ -20,7 +20,7 @@ class Memory : Object() {
     init {
         for (i in 0 until accessSize) {
             objs.append(Node())
-            refs.append(File())
+            refs.append(RefCounted())
             cores.append(RID())
         }
     }
@@ -43,7 +43,7 @@ class Memory : Object() {
 
     @RegisterFunction
     fun benchmarkAccessRef() {
-        var ref: File
+        var ref: RefCounted
         for (i in 0 until accessSize) {
             ref = refs[i]
         }
@@ -68,9 +68,9 @@ class Memory : Object() {
 
     @RegisterFunction
     fun benchmarkStressReference() {
-        var ref: File?
+        var ref: RefCounted
         for (i in 0 until stressSize) {
-            ref = File()
+            ref = RefCounted()
         }
     }
 
@@ -86,12 +86,12 @@ class Memory : Object() {
     fun benchmarkStressZMix() {
         var core: RID?
         var obj: Node
-        var ref: File?
+        var ref: RefCounted?
         for (i in 0 until stressSize) {
             obj = Node()
             obj.free()
             core = RID()
-            ref = File()
+            ref = RefCounted()
         }
     }
 }

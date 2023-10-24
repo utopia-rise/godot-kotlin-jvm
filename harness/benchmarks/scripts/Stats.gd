@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 class_name Stats
 
 const SEC_IN_USEC = 1000000.0

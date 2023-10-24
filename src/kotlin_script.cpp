@@ -54,6 +54,12 @@ ScriptInstance* KotlinScript::instance_create(Object* p_this) {
 
 template<bool isCreator>
 ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_argcount, Object* p_this) {
+    if (isCreator) {
+        KotlinBindingManager::set_instance_binding(p_this);
+    } else {
+        KotlinBindingManager::get_instance_binding(p_this);
+    }
+
     KtClass* kt_class {get_kotlin_class()};
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->resource_path));
@@ -61,13 +67,6 @@ ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_arg
 
     jni::Env env = jni::Jvm::current_env();
     KtObject* wrapped = kt_class->create_instance(env, p_args, p_argcount, p_this);
-
-    if (isCreator) {
-        KotlinBindingManager::set_instance_binding(p_this);
-    } else {
-        KotlinBindingManager::get_instance_binding(p_this);
-    }
-
     return memnew(KotlinInstance(p_this, wrapped, this));
 }
 

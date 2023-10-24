@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 class_name Benchmarks
 
 static func create(langs: Array, name: String) -> Array:
