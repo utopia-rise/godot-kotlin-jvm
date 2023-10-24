@@ -6,6 +6,7 @@ import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import godot.util.nullObjectID
 import godot.util.nullptr
+import kotlincompile.definitions.GodotJvmBuildConfig
 
 @Suppress("LeakingThis")
 abstract class KtObject {
@@ -26,16 +27,20 @@ abstract class KtObject {
 
     var rawPtr: VoidPtr = nullptr
         set(value) {
-            require(field == nullptr) {
-                "rawPtr should only be set once!"
+            if (GodotJvmBuildConfig.DEBUG) {
+                require(field == nullptr) {
+                    "rawPtr should only be set once!"
+                }
             }
             field = value
         }
 
     var id: ObjectID = nullObjectID
         set(value) {
-            require(field == nullObjectID) {
-                "id should only be set once!"
+            if (GodotJvmBuildConfig.DEBUG) {
+                require(field == nullObjectID) {
+                    "id should only be set once!"
+                }
             }
             field = value
         }

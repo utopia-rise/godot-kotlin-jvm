@@ -30,3 +30,9 @@ val Project.ideaExtension: IdeaModel
     ) {
         "idea extension not found"
     }
+
+val Project.isRelease: Boolean
+    get() = hasProperty("release")
+
+val Project.godotLibraryArtifactName: String
+    get() = "godot-library-${if (isRelease) "release" else "debug"}"

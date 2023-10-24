@@ -5,10 +5,16 @@ jobs:
   build-godot-library:
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        name: [Debug, Release]
         include:
-          - os: ubuntu-latest
+          - name: Debug
+            os: ubuntu-latest
             java-version: 11
+            target: debug
+          - name: Release
+            os: ubuntu-latest
+            java-version: 11
+            target: release
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine
@@ -29,7 +35,7 @@ jobs:
         with:
           wrapper-directory: modules/kotlin_jvm/kt/
           build-root-directory: modules/kotlin_jvm/kt/
-          arguments: godot-library:build
+          arguments: godot-library:build -P${{ matrix.target }}
         env:
           GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
           GODOT_KOTLIN_GPG_KEY_PASSPHRASE: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}

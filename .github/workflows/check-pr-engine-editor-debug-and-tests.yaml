@@ -14,10 +14,16 @@ jobs:
   build-godot-bootstrap:
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
+        name: [ Debug, Release ]
         include:
-          - os: ubuntu-latest
+          - name: Debug
+            os: ubuntu-latest
             java-version: 11
+            target: debug
+          - name: Release
+            os: ubuntu-latest
+            java-version: 11
+            target: release
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine
@@ -38,11 +44,11 @@ jobs:
         with:
           wrapper-directory: modules/kotlin_jvm/kt/
           build-root-directory: modules/kotlin_jvm/kt/
-          arguments: godot-library:build
+          arguments: godot-library:build -P${{ matrix.target }}
       - name: Upload godot-bootstrap jar
         uses: actions/upload-artifact@v3
         with:
-          name: godot-bootstrap
+          name: godot-bootstrap-${{ matrix.target }}
           path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
   build-editor-debug:
     strategy:
@@ -138,10 +144,16 @@ jobs:
     needs: [create-macos-universal, build-godot-bootstrap]
     strategy:
       matrix:
-        os: [macos-latest]
+        name: [ Debug, Release ]
         include:
-          - os: macos-latest
+          - name: Debug
+            os: macos-latest
             java-version: 11
+            target: debug
+          - name: Release
+            os: macos-latest
+            java-version: 11
+            target: release
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine
@@ -163,7 +175,7 @@ jobs:
         with:
           wrapper-directory: modules/kotlin_jvm/harness/tests/
           build-root-directory: modules/kotlin_jvm/harness/tests/
-          arguments: build
+          arguments: build -P${{ matrix.target }}
       - name: Download MacOs Editor Debug App
         uses: actions/download-artifact@v1
         with:
@@ -171,10 +183,10 @@ jobs:
       - name: Download godot-bootstrap
         uses: actions/download-artifact@v1
         with:
-          name: godot-bootstrap
+          name: godot-bootstrap-${{ matrix.target }}
       - name: Run Tests
         run: |
-          cp godot-bootstrap/godot-bootstrap.jar macos-editor-debug-app/
+          cp godot-bootstrap-${{ matrix.target }}/godot-bootstrap.jar macos-editor-debug-app/
           cd modules/kotlin_jvm/harness/tests/
           chmod +x run_godot_kotlin_tests.sh
           chmod +x ../../../../macos-editor-debug-app/godot.macos.editor.universal

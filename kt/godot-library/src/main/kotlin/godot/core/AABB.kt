@@ -4,6 +4,7 @@ import godot.annotation.CoreTypeLocalCopy
 import godot.annotation.CoreTypeHelper
 import godot.util.CMP_EPSILON
 import godot.util.RealT
+import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.min
 
 
@@ -425,8 +426,10 @@ class AABB(
      * Returns `true` if the given ray intersects with this [AABB]. Ray length is infinite.
      */
     fun intersectsRay(from: Vector3, dir: Vector3): Boolean {
-        require(size.x >= 0 && size.y >= 0 && size.z >= 0) {
-            "AABB size is negative, this is not supported. Use AABB.abs() to get an AABB with a positive size."
+        if (GodotJvmBuildConfig.DEBUG) {
+            require(size.x >= 0 && size.y >= 0 && size.z >= 0) {
+                "AABB size is negative, this is not supported. Use AABB.abs() to get an AABB with a positive size."
+            }
         }
 
         var c1 = Vector3()
