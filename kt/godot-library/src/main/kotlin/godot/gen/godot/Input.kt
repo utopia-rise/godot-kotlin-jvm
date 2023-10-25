@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.MouseButtonMaskValue
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.VariantArray
@@ -442,10 +443,10 @@ public object Input : Object() {
   /**
    * Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to [godot.DisplayServer.mouseGetButtonState].
    */
-  public fun getMouseButtonMask(): Long {
+  public fun getMouseButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_BUTTON_MASK, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun setMouseMode(mode: MouseMode): Unit {

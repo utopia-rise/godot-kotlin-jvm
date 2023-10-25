@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmInline
 
 /**
  * Provides parameters for 2D navigation path queries.
@@ -133,15 +134,15 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   /**
    * Additional information to include with the navigation path.
    */
-  public var metadataFlags: Long
+  public var metadataFlags: PathMetadataFlags
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_METADATA_FLAGS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_SET_METADATA_FLAGS, NIL)
     }
@@ -241,40 +242,107 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
   }
 
-  public enum class PathMetadataFlags(
-    id: Long,
-  ) {
-    /**
-     * Don't include any additional metadata about the returned path.
-     */
-    PATH_METADATA_INCLUDE_NONE(0),
-    /**
-     * Include the type of navigation primitive (region or link) that each point of the path goes through.
-     */
-    PATH_METADATA_INCLUDE_TYPES(1),
-    /**
-     * Include the [RID]s of the regions and links that each point of the path goes through.
-     */
-    PATH_METADATA_INCLUDE_RIDS(2),
-    /**
-     * Include the `ObjectID`s of the [godot.Object]s which manage the regions and links each point of the path goes through.
-     */
-    PATH_METADATA_INCLUDE_OWNERS(4),
-    /**
-     * Include all available metadata about the returned path.
-     */
-    PATH_METADATA_INCLUDE_ALL(7),
-    ;
+  public sealed interface PathMetadataFlags {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: PathMetadataFlags): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): PathMetadataFlags = PathMetadataFlagsValue(flag.or(other))
+
+    public infix fun xor(other: PathMetadataFlags): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): PathMetadataFlags = PathMetadataFlagsValue(flag.xor(other))
+
+    public infix fun and(other: PathMetadataFlags): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): PathMetadataFlags = PathMetadataFlagsValue(flag.and(other))
+
+    public operator fun plus(other: PathMetadataFlags): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.plus(other))
+
+    public operator fun minus(other: PathMetadataFlags): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.minus(other))
+
+    public operator fun times(other: PathMetadataFlags): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.times(other))
+
+    public operator fun div(other: PathMetadataFlags): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.div(other))
+
+    public operator fun rem(other: PathMetadataFlags): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): PathMetadataFlags =
+        PathMetadataFlagsValue(flag.rem(other))
+
+    public fun unaryPlus(): PathMetadataFlags = PathMetadataFlagsValue(flag.unaryPlus())
+
+    public fun unaryMinus(): PathMetadataFlags = PathMetadataFlagsValue(flag.unaryMinus())
+
+    public fun inv(): PathMetadataFlags = PathMetadataFlagsValue(flag.inv())
+
+    public infix fun shl(bits: Int): PathMetadataFlags = PathMetadataFlagsValue(flag shl bits)
+
+    public infix fun shr(bits: Int): PathMetadataFlags = PathMetadataFlagsValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): PathMetadataFlags = PathMetadataFlagsValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val PATH_METADATA_INCLUDE_NONE: PathMetadataFlags = PathMetadataFlagsValue(0)
+
+      public val PATH_METADATA_INCLUDE_TYPES: PathMetadataFlags = PathMetadataFlagsValue(1)
+
+      public val PATH_METADATA_INCLUDE_RIDS: PathMetadataFlags = PathMetadataFlagsValue(2)
+
+      public val PATH_METADATA_INCLUDE_OWNERS: PathMetadataFlags = PathMetadataFlagsValue(4)
+
+      public val PATH_METADATA_INCLUDE_ALL: PathMetadataFlags = PathMetadataFlagsValue(7)
     }
   }
 
+  @JvmInline
+  internal value class PathMetadataFlagsValue internal constructor(
+    public override val flag: Long,
+  ) : PathMetadataFlags
+
   public companion object
 }
+
+public infix fun Long.or(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.or(other.flag)
+
+public infix fun Long.xor(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.and(other.flag)
+
+public operator fun Long.plus(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long
+    = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long
+    = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long
+    = this.times(other.flag)
+
+public operator fun Long.div(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.rem(other.flag)

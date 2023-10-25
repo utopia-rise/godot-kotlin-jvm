@@ -14,7 +14,6 @@ import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -46,7 +45,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   public open fun _loadImage(
     image: Image,
     fileaccess: FileAccess,
-    flags: Long,
+    flags: ImageFormatLoader.LoaderFlags,
     scale: Float,
   ): GodotError {
     throw NotImplementedError("_load_image is not implemented for ImageFormatLoaderExtension")

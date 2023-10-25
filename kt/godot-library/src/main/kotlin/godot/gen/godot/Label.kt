@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.TextServer.JustificationFlagValue
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat32Array
 import godot.core.VariantArray
@@ -114,15 +115,15 @@ public open class Label : Control() {
   /**
    * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
    */
-  public var justificationFlags: Long
+  public var justificationFlags: TextServer.JustificationFlag
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_JUSTIFICATION_FLAGS,
           LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_JUSTIFICATION_FLAGS,
           NIL)
     }

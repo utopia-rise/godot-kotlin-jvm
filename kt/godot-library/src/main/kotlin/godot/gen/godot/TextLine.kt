@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.TextServer.JustificationFlagValue
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedFloat32Array
@@ -138,14 +139,14 @@ public open class TextLine : RefCounted() {
   /**
    * Line alignment rules. For more info see [godot.TextServer].
    */
-  public var flags: Long
+  public var flags: TextServer.JustificationFlag
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_FLAGS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_SET_FLAGS, NIL)
     }
 

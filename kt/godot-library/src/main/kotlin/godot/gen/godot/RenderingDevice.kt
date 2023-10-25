@@ -40,6 +40,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -130,9 +131,9 @@ public open class RenderingDevice internal constructor() : Object() {
     texture: RID,
     layer: Long,
     `data`: PackedByteArray,
-    postBarrier: Long = 7,
+    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data, LONG to postBarrier.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_UPDATE,
         LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -155,8 +156,9 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns `true` if the specified [format] is supported for the given [usageFlags], `false` otherwise.
    */
-  public fun textureIsFormatSupportedForUsage(format: DataFormat, usageFlags: Long): Boolean {
-    TransferContext.writeArguments(LONG to format.id, LONG to usageFlags)
+  public fun textureIsFormatSupportedForUsage(format: DataFormat, usageFlags: TextureUsageBits):
+      Boolean {
+    TransferContext.writeArguments(LONG to format.id, LONG to usageFlags.flag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_IS_FORMAT_SUPPORTED_FOR_USAGE, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -206,9 +208,9 @@ public open class RenderingDevice internal constructor() : Object() {
     dstMipmap: Long,
     srcLayer: Long,
     dstLayer: Long,
-    postBarrier: Long = 7,
+    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer, LONG to postBarrier.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_COPY, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -226,9 +228,9 @@ public open class RenderingDevice internal constructor() : Object() {
     mipmapCount: Long,
     baseLayer: Long,
     layerCount: Long,
-    postBarrier: Long = 7,
+    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount, LONG to postBarrier.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CLEAR, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -254,9 +256,9 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun textureResolveMultisample(
     fromTexture: RID,
     toTexture: RID,
-    postBarrier: Long = 7,
+    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, LONG to postBarrier.flag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_RESOLVE_MULTISAMPLE, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -586,9 +588,9 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun storageBufferCreate(
     sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
-    usage: Long = 0,
+    usage: StorageBufferUsage = RenderingDevice.StorageBufferUsageValue(0),
   ): RID {
-    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to usage)
+    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to usage.flag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_STORAGE_BUFFER_CREATE, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -646,9 +648,9 @@ public open class RenderingDevice internal constructor() : Object() {
     offset: Long,
     sizeBytes: Long,
     `data`: PackedByteArray,
-    postBarrier: Long = 7,
+    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to postBarrier.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_UPDATE, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -661,9 +663,9 @@ public open class RenderingDevice internal constructor() : Object() {
     buffer: RID,
     offset: Long,
     sizeBytes: Long,
-    postBarrier: Long = 7,
+    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, LONG to postBarrier)
+    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, LONG to postBarrier.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_CLEAR, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -698,12 +700,13 @@ public open class RenderingDevice internal constructor() : Object() {
     multisampleState: RDPipelineMultisampleState,
     stencilState: RDPipelineDepthStencilState,
     colorBlendState: RDPipelineColorBlendState,
-    dynamicStateFlags: Long = 0,
+    dynamicStateFlags: PipelineDynamicStateFlags =
+        RenderingDevice.PipelineDynamicStateFlagsValue(0),
     forRenderPass: Long = 0,
     specializationConstants: VariantArray<RDPipelineSpecializationConstant> =
         godot.core.variantArrayOf(),
   ): RID {
-    TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, LONG to dynamicStateFlags, LONG to forRenderPass, ARRAY to specializationConstants)
+    TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, LONG to dynamicStateFlags.flag, LONG to forRenderPass, ARRAY to specializationConstants)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_RENDER_PIPELINE_CREATE, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -986,8 +989,9 @@ public open class RenderingDevice internal constructor() : Object() {
    * Finishes a list of raster drawing commands created with the `draw_*` methods.
    */
   @JvmOverloads
-  public fun drawListEnd(postBarrier: Long = 7): Unit {
-    TransferContext.writeArguments(LONG to postBarrier)
+  public fun drawListEnd(postBarrier: BarrierMask =
+      RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS): Unit {
+    TransferContext.writeArguments(LONG to postBarrier.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_END, NIL)
   }
 
@@ -1084,8 +1088,9 @@ public open class RenderingDevice internal constructor() : Object() {
    * Finishes a list of compute commands created with the `compute_*` methods.
    */
   @JvmOverloads
-  public fun computeListEnd(postBarrier: Long = 7): Unit {
-    TransferContext.writeArguments(LONG to postBarrier)
+  public fun computeListEnd(postBarrier: BarrierMask =
+      RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS): Unit {
+    TransferContext.writeArguments(LONG to postBarrier.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_END,
         NIL)
   }
@@ -1204,8 +1209,9 @@ public open class RenderingDevice internal constructor() : Object() {
    * Puts a memory barrier in place. This is used for synchronization to avoid data races. See also [fullBarrier], which may be useful for debugging.
    */
   @JvmOverloads
-  public fun barrier(from: Long = 7, to: Long = 7): Unit {
-    TransferContext.writeArguments(LONG to from, LONG to to)
+  public fun barrier(from: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
+      to: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS): Unit {
+    TransferContext.writeArguments(LONG to from.flag, LONG to to.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BARRIER, NIL)
   }
 
@@ -2322,40 +2328,75 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public enum class BarrierMask(
-    id: Long,
-  ) {
-    /**
-     * Raster barrier mask.
-     */
-    BARRIER_MASK_RASTER(1),
-    /**
-     * Compute barrier mask.
-     */
-    BARRIER_MASK_COMPUTE(2),
-    /**
-     * Transfer barrier mask.
-     */
-    BARRIER_MASK_TRANSFER(4),
-    /**
-     * Barrier mask for all types (raster, compute, transfer). Equivalent to `BARRIER_MASK_RASTER | BARRIER_MASK_COMPUTE | BARRIER_MASK_TRANSFER`.
-     */
-    BARRIER_MASK_ALL_BARRIERS(7),
-    /**
-     * No barrier for any type.
-     */
-    BARRIER_MASK_NO_BARRIER(8),
-    ;
+  public sealed interface BarrierMask {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: BarrierMask): BarrierMask = BarrierMaskValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): BarrierMask = BarrierMaskValue(flag.or(other))
+
+    public infix fun xor(other: BarrierMask): BarrierMask = BarrierMaskValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): BarrierMask = BarrierMaskValue(flag.xor(other))
+
+    public infix fun and(other: BarrierMask): BarrierMask = BarrierMaskValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): BarrierMask = BarrierMaskValue(flag.and(other))
+
+    public operator fun plus(other: BarrierMask): BarrierMask =
+        BarrierMaskValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): BarrierMask = BarrierMaskValue(flag.plus(other))
+
+    public operator fun minus(other: BarrierMask): BarrierMask =
+        BarrierMaskValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): BarrierMask = BarrierMaskValue(flag.minus(other))
+
+    public operator fun times(other: BarrierMask): BarrierMask =
+        BarrierMaskValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): BarrierMask = BarrierMaskValue(flag.times(other))
+
+    public operator fun div(other: BarrierMask): BarrierMask =
+        BarrierMaskValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): BarrierMask = BarrierMaskValue(flag.div(other))
+
+    public operator fun rem(other: BarrierMask): BarrierMask =
+        BarrierMaskValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): BarrierMask = BarrierMaskValue(flag.rem(other))
+
+    public fun unaryPlus(): BarrierMask = BarrierMaskValue(flag.unaryPlus())
+
+    public fun unaryMinus(): BarrierMask = BarrierMaskValue(flag.unaryMinus())
+
+    public fun inv(): BarrierMask = BarrierMaskValue(flag.inv())
+
+    public infix fun shl(bits: Int): BarrierMask = BarrierMaskValue(flag shl bits)
+
+    public infix fun shr(bits: Int): BarrierMask = BarrierMaskValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): BarrierMask = BarrierMaskValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val BARRIER_MASK_RASTER: BarrierMask = BarrierMaskValue(1)
+
+      public val BARRIER_MASK_COMPUTE: BarrierMask = BarrierMaskValue(2)
+
+      public val BARRIER_MASK_TRANSFER: BarrierMask = BarrierMaskValue(4)
+
+      public val BARRIER_MASK_ALL_BARRIERS: BarrierMask = BarrierMaskValue(7)
+
+      public val BARRIER_MASK_NO_BARRIER: BarrierMask = BarrierMaskValue(8)
     }
   }
+
+  @JvmInline
+  internal value class BarrierMaskValue internal constructor(
+    public override val flag: Long,
+  ) : BarrierMask
 
   public enum class TextureType(
     id: Long,
@@ -2451,60 +2492,92 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public enum class TextureUsageBits(
-    id: Long,
-  ) {
-    /**
-     * Texture can be sampled.
-     */
-    TEXTURE_USAGE_SAMPLING_BIT(1),
-    /**
-     * Texture can be used as a color attachment in a framebuffer.
-     */
-    TEXTURE_USAGE_COLOR_ATTACHMENT_BIT(2),
-    /**
-     * Texture can be used as a depth/stencil attachment in a framebuffer.
-     */
-    TEXTURE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(4),
-    /**
-     * Texture can be used as a [storage image](https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage).
-     */
-    TEXTURE_USAGE_STORAGE_BIT(8),
-    /**
-     * Texture can be used as a [storage image](https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage) with support for atomic operations.
-     */
-    TEXTURE_USAGE_STORAGE_ATOMIC_BIT(16),
-    /**
-     * Texture can be read back on the CPU using [textureGetData] faster than without this bit, since it is always kept in the system memory.
-     */
-    TEXTURE_USAGE_CPU_READ_BIT(32),
-    /**
-     * Texture can be updated using [textureUpdate].
-     */
-    TEXTURE_USAGE_CAN_UPDATE_BIT(64),
-    /**
-     * Texture can be a source for [textureCopy].
-     */
-    TEXTURE_USAGE_CAN_COPY_FROM_BIT(128),
-    /**
-     * Texture can be a destination for [textureCopy].
-     */
-    TEXTURE_USAGE_CAN_COPY_TO_BIT(256),
-    /**
-     * Texture can be used as a [input attachment](https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment) in a framebuffer.
-     */
-    TEXTURE_USAGE_INPUT_ATTACHMENT_BIT(512),
-    ;
+  public sealed interface TextureUsageBits {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: TextureUsageBits): TextureUsageBits =
+        TextureUsageBitsValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): TextureUsageBits = TextureUsageBitsValue(flag.or(other))
+
+    public infix fun xor(other: TextureUsageBits): TextureUsageBits =
+        TextureUsageBitsValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): TextureUsageBits = TextureUsageBitsValue(flag.xor(other))
+
+    public infix fun and(other: TextureUsageBits): TextureUsageBits =
+        TextureUsageBitsValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): TextureUsageBits = TextureUsageBitsValue(flag.and(other))
+
+    public operator fun plus(other: TextureUsageBits): TextureUsageBits =
+        TextureUsageBitsValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): TextureUsageBits =
+        TextureUsageBitsValue(flag.plus(other))
+
+    public operator fun minus(other: TextureUsageBits): TextureUsageBits =
+        TextureUsageBitsValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): TextureUsageBits =
+        TextureUsageBitsValue(flag.minus(other))
+
+    public operator fun times(other: TextureUsageBits): TextureUsageBits =
+        TextureUsageBitsValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): TextureUsageBits =
+        TextureUsageBitsValue(flag.times(other))
+
+    public operator fun div(other: TextureUsageBits): TextureUsageBits =
+        TextureUsageBitsValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): TextureUsageBits = TextureUsageBitsValue(flag.div(other))
+
+    public operator fun rem(other: TextureUsageBits): TextureUsageBits =
+        TextureUsageBitsValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): TextureUsageBits = TextureUsageBitsValue(flag.rem(other))
+
+    public fun unaryPlus(): TextureUsageBits = TextureUsageBitsValue(flag.unaryPlus())
+
+    public fun unaryMinus(): TextureUsageBits = TextureUsageBitsValue(flag.unaryMinus())
+
+    public fun inv(): TextureUsageBits = TextureUsageBitsValue(flag.inv())
+
+    public infix fun shl(bits: Int): TextureUsageBits = TextureUsageBitsValue(flag shl bits)
+
+    public infix fun shr(bits: Int): TextureUsageBits = TextureUsageBitsValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): TextureUsageBits = TextureUsageBitsValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val TEXTURE_USAGE_SAMPLING_BIT: TextureUsageBits = TextureUsageBitsValue(1)
+
+      public val TEXTURE_USAGE_COLOR_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBitsValue(2)
+
+      public val TEXTURE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT: TextureUsageBits =
+          TextureUsageBitsValue(4)
+
+      public val TEXTURE_USAGE_STORAGE_BIT: TextureUsageBits = TextureUsageBitsValue(8)
+
+      public val TEXTURE_USAGE_STORAGE_ATOMIC_BIT: TextureUsageBits = TextureUsageBitsValue(16)
+
+      public val TEXTURE_USAGE_CPU_READ_BIT: TextureUsageBits = TextureUsageBitsValue(32)
+
+      public val TEXTURE_USAGE_CAN_UPDATE_BIT: TextureUsageBits = TextureUsageBitsValue(64)
+
+      public val TEXTURE_USAGE_CAN_COPY_FROM_BIT: TextureUsageBits = TextureUsageBitsValue(128)
+
+      public val TEXTURE_USAGE_CAN_COPY_TO_BIT: TextureUsageBits = TextureUsageBitsValue(256)
+
+      public val TEXTURE_USAGE_INPUT_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBitsValue(512)
     }
   }
+
+  @JvmInline
+  internal value class TextureUsageBitsValue internal constructor(
+    public override val flag: Long,
+  ) : TextureUsageBits
 
   public enum class TextureSwizzle(
     id: Long,
@@ -2731,24 +2804,76 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public enum class StorageBufferUsage(
-    id: Long,
-  ) {
-    /**
-     *
-     */
-    STORAGE_BUFFER_USAGE_DISPATCH_INDIRECT(1),
-    ;
+  public sealed interface StorageBufferUsage {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: StorageBufferUsage): StorageBufferUsage =
+        StorageBufferUsageValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): StorageBufferUsage = StorageBufferUsageValue(flag.or(other))
+
+    public infix fun xor(other: StorageBufferUsage): StorageBufferUsage =
+        StorageBufferUsageValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): StorageBufferUsage = StorageBufferUsageValue(flag.xor(other))
+
+    public infix fun and(other: StorageBufferUsage): StorageBufferUsage =
+        StorageBufferUsageValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): StorageBufferUsage = StorageBufferUsageValue(flag.and(other))
+
+    public operator fun plus(other: StorageBufferUsage): StorageBufferUsage =
+        StorageBufferUsageValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): StorageBufferUsage =
+        StorageBufferUsageValue(flag.plus(other))
+
+    public operator fun minus(other: StorageBufferUsage): StorageBufferUsage =
+        StorageBufferUsageValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): StorageBufferUsage =
+        StorageBufferUsageValue(flag.minus(other))
+
+    public operator fun times(other: StorageBufferUsage): StorageBufferUsage =
+        StorageBufferUsageValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): StorageBufferUsage =
+        StorageBufferUsageValue(flag.times(other))
+
+    public operator fun div(other: StorageBufferUsage): StorageBufferUsage =
+        StorageBufferUsageValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): StorageBufferUsage =
+        StorageBufferUsageValue(flag.div(other))
+
+    public operator fun rem(other: StorageBufferUsage): StorageBufferUsage =
+        StorageBufferUsageValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): StorageBufferUsage =
+        StorageBufferUsageValue(flag.rem(other))
+
+    public fun unaryPlus(): StorageBufferUsage = StorageBufferUsageValue(flag.unaryPlus())
+
+    public fun unaryMinus(): StorageBufferUsage = StorageBufferUsageValue(flag.unaryMinus())
+
+    public fun inv(): StorageBufferUsage = StorageBufferUsageValue(flag.inv())
+
+    public infix fun shl(bits: Int): StorageBufferUsage = StorageBufferUsageValue(flag shl bits)
+
+    public infix fun shr(bits: Int): StorageBufferUsage = StorageBufferUsageValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): StorageBufferUsage = StorageBufferUsageValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val STORAGE_BUFFER_USAGE_DISPATCH_INDIRECT: StorageBufferUsage =
+          StorageBufferUsageValue(1)
     }
   }
+
+  @JvmInline
+  internal value class StorageBufferUsageValue internal constructor(
+    public override val flag: Long,
+  ) : StorageBufferUsage
 
   public enum class UniformType(
     id: Long,
@@ -3251,48 +3376,102 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public enum class PipelineDynamicStateFlags(
-    id: Long,
-  ) {
-    /**
-     *
-     */
-    DYNAMIC_STATE_LINE_WIDTH(1),
-    /**
-     *
-     */
-    DYNAMIC_STATE_DEPTH_BIAS(2),
-    /**
-     *
-     */
-    DYNAMIC_STATE_BLEND_CONSTANTS(4),
-    /**
-     *
-     */
-    DYNAMIC_STATE_DEPTH_BOUNDS(8),
-    /**
-     *
-     */
-    DYNAMIC_STATE_STENCIL_COMPARE_MASK(16),
-    /**
-     *
-     */
-    DYNAMIC_STATE_STENCIL_WRITE_MASK(32),
-    /**
-     *
-     */
-    DYNAMIC_STATE_STENCIL_REFERENCE(64),
-    ;
+  public sealed interface PipelineDynamicStateFlags {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.or(other))
+
+    public infix fun xor(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.xor(other))
+
+    public infix fun and(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.and(other))
+
+    public operator fun plus(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.plus(other))
+
+    public operator fun minus(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.minus(other))
+
+    public operator fun times(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.times(other))
+
+    public operator fun div(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.div(other))
+
+    public operator fun rem(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.rem(other))
+
+    public fun unaryPlus(): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.unaryPlus())
+
+    public fun unaryMinus(): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag.unaryMinus())
+
+    public fun inv(): PipelineDynamicStateFlags = PipelineDynamicStateFlagsValue(flag.inv())
+
+    public infix fun shl(bits: Int): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag shl bits)
+
+    public infix fun shr(bits: Int): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlagsValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val DYNAMIC_STATE_LINE_WIDTH: PipelineDynamicStateFlags =
+          PipelineDynamicStateFlagsValue(1)
+
+      public val DYNAMIC_STATE_DEPTH_BIAS: PipelineDynamicStateFlags =
+          PipelineDynamicStateFlagsValue(2)
+
+      public val DYNAMIC_STATE_BLEND_CONSTANTS: PipelineDynamicStateFlags =
+          PipelineDynamicStateFlagsValue(4)
+
+      public val DYNAMIC_STATE_DEPTH_BOUNDS: PipelineDynamicStateFlags =
+          PipelineDynamicStateFlagsValue(8)
+
+      public val DYNAMIC_STATE_STENCIL_COMPARE_MASK: PipelineDynamicStateFlags =
+          PipelineDynamicStateFlagsValue(16)
+
+      public val DYNAMIC_STATE_STENCIL_WRITE_MASK: PipelineDynamicStateFlags =
+          PipelineDynamicStateFlagsValue(32)
+
+      public val DYNAMIC_STATE_STENCIL_REFERENCE: PipelineDynamicStateFlags =
+          PipelineDynamicStateFlagsValue(64)
     }
   }
+
+  @JvmInline
+  internal value class PipelineDynamicStateFlagsValue internal constructor(
+    public override val flag: Long,
+  ) : PipelineDynamicStateFlags
 
   public enum class InitialAction(
     id: Long,
@@ -3679,3 +3858,93 @@ public open class RenderingDevice internal constructor() : Object() {
     public final const val INVALID_FORMAT_ID: Long = -1
   }
 }
+
+public infix fun Long.or(other: godot.RenderingDevice.BarrierMask): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RenderingDevice.BarrierMask): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RenderingDevice.BarrierMask): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RenderingDevice.BarrierMask): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RenderingDevice.BarrierMask): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RenderingDevice.BarrierMask): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RenderingDevice.BarrierMask): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RenderingDevice.BarrierMask): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.RenderingDevice.TextureUsageBits): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.rem(other.flag)
+
+public infix fun Long.or(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.rem(other.flag)
+
+public infix fun Long.or(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.rem(other.flag)

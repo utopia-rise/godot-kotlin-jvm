@@ -67,10 +67,16 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
     registrationFileSpec.build().writeTo(this)
 
     for (enum in enumService.getGlobalEnums()) {
-        FileSpec.builder(godotApiPackage, enum.name)
-            .addType(
-                generationService.generateEnum(enum)
-            )
+        val enumAndExtensions = generationService.generateEnum(enum)
+        val fileBuilder = FileSpec.builder(godotApiPackage, enum.name)
+        for (typeSpec in enumAndExtensions.first) {
+            fileBuilder.addType(typeSpec)
+        }
+        for (extension in enumAndExtensions.second) {
+            fileBuilder.addFunction(extension)
+        }
+
+        fileBuilder
             .addFileComment(GENERATED_COMMENT)
             .build()
             .writeTo(this)

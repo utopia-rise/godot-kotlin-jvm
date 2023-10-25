@@ -17,7 +17,6 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -85,7 +84,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
     name: String,
     hintType: PropertyHint,
     hintString: String,
-    usageFlags: Long,
+    usageFlags: PropertyUsageFlags,
     wide: Boolean,
   ): Boolean {
     throw NotImplementedError("_parse_property is not implemented for EditorInspectorPlugin")

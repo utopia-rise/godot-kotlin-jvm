@@ -2,6 +2,8 @@ package godot.codegen.services.impl
 
 import godot.tools.common.constants.GodotTypes
 import godot.codegen.exceptions.NoMatchingEnumFound
+import godot.codegen.extensions.getTypeClassName
+import godot.codegen.extensions.isBitField
 import godot.codegen.models.custom.DefaultEnumValue
 import godot.codegen.poet.ClassTypeNameWrapper
 import godot.codegen.repositories.CoreTypeEnumRepository
@@ -19,7 +21,6 @@ class EnumService(
         val simpleNames = enumClassName.className.simpleNames
         return if (simpleNames.size > 1) {
             val className = simpleNames[0]
-            val enum = simpleNames[1]
             val enrichedEnum = if (GodotTypes.coreTypes.contains(className)) {
                 coreTypeEnumRepository.listForCoreType(className)
             } else {
@@ -27,12 +28,23 @@ class EnumService(
                     .plus(classService.getSingletons())
                     .first { it.name == className }
                     .enums
-            }
-                ?.first { it.name == enum }
+            }?.firstOrNull { it.getTypeClassName() == enumClassName } ?:
+            throw NoMatchingEnumFound(simpleNames.joinToString("."))
+
             val value = enrichedEnum
-                ?.internal
-                ?.values
-                ?.first { it.value == enumValue } ?: throw NoMatchingEnumFound(simpleNames.joinToString("."))
+                .internal
+                .values
+                .firstOrNull { it.value == enumValue } ?:
+                if (enrichedEnum.isBitField()) {
+                    return DefaultEnumValue(
+                        null,
+                        "${enrichedEnum.name}Value($enumValue)",
+                        enrichedEnum.encapsulatingType
+                    )
+                }
+                else {
+                    throw NoMatchingEnumFound(simpleNames.joinToString("."))
+                }
 
             DefaultEnumValue(enrichedEnum, value)
         } else {

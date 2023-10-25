@@ -44,6 +44,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -416,28 +417,28 @@ public open class Control : CanvasItem() {
   /**
    * Tells the parent [godot.Container] nodes how they should resize and place the node on the X axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
    */
-  public var sizeFlagsHorizontal: Long
+  public var sizeFlagsHorizontal: SizeFlags
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_H_SIZE_FLAGS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_H_SIZE_FLAGS, NIL)
     }
 
   /**
    * Tells the parent [godot.Container] nodes how they should resize and place the node on the Y axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
    */
-  public var sizeFlagsVertical: Long
+  public var sizeFlagsVertical: SizeFlags
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_V_SIZE_FLAGS, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
+      return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_V_SIZE_FLAGS, NIL)
     }
 
@@ -2355,46 +2356,72 @@ public open class Control : CanvasItem() {
     }
   }
 
-  public enum class SizeFlags(
-    id: Long,
-  ) {
-    /**
-     * Tells the parent [godot.Container] to align the node with its start, either the top or the left edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
-     *
-     * **Note:** Setting this flag is equal to not having any size flags.
-     */
-    SIZE_SHRINK_BEGIN(0),
-    /**
-     * Tells the parent [godot.Container] to expand the bounds of this node to fill all the available space without pushing any other node. It is mutually exclusive with shrink size flags. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
-     */
-    SIZE_FILL(1),
-    /**
-     * Tells the parent [godot.Container] to let this node take all the available space on the axis you flag. If multiple neighboring nodes are set to expand, they'll share the space based on their stretch ratio. See [sizeFlagsStretchRatio]. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
-     */
-    SIZE_EXPAND(2),
-    /**
-     * Sets the node's size flags to both fill and expand. See [SIZE_FILL] and [SIZE_EXPAND] for more information.
-     */
-    SIZE_EXPAND_FILL(3),
-    /**
-     * Tells the parent [godot.Container] to center the node in the available space. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
-     */
-    SIZE_SHRINK_CENTER(4),
-    /**
-     * Tells the parent [godot.Container] to align the node with its end, either the bottom or the right edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
-     */
-    SIZE_SHRINK_END(8),
-    ;
+  public sealed interface SizeFlags {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): SizeFlags = SizeFlagsValue(flag.or(other))
+
+    public infix fun xor(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): SizeFlags = SizeFlagsValue(flag.xor(other))
+
+    public infix fun and(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): SizeFlags = SizeFlagsValue(flag.and(other))
+
+    public operator fun plus(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): SizeFlags = SizeFlagsValue(flag.plus(other))
+
+    public operator fun minus(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): SizeFlags = SizeFlagsValue(flag.minus(other))
+
+    public operator fun times(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): SizeFlags = SizeFlagsValue(flag.times(other))
+
+    public operator fun div(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): SizeFlags = SizeFlagsValue(flag.div(other))
+
+    public operator fun rem(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): SizeFlags = SizeFlagsValue(flag.rem(other))
+
+    public fun unaryPlus(): SizeFlags = SizeFlagsValue(flag.unaryPlus())
+
+    public fun unaryMinus(): SizeFlags = SizeFlagsValue(flag.unaryMinus())
+
+    public fun inv(): SizeFlags = SizeFlagsValue(flag.inv())
+
+    public infix fun shl(bits: Int): SizeFlags = SizeFlagsValue(flag shl bits)
+
+    public infix fun shr(bits: Int): SizeFlags = SizeFlagsValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): SizeFlags = SizeFlagsValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val SIZE_SHRINK_BEGIN: SizeFlags = SizeFlagsValue(0)
+
+      public val SIZE_FILL: SizeFlags = SizeFlagsValue(1)
+
+      public val SIZE_EXPAND: SizeFlags = SizeFlagsValue(2)
+
+      public val SIZE_EXPAND_FILL: SizeFlags = SizeFlagsValue(3)
+
+      public val SIZE_SHRINK_CENTER: SizeFlags = SizeFlagsValue(4)
+
+      public val SIZE_SHRINK_END: SizeFlags = SizeFlagsValue(8)
     }
   }
+
+  @JvmInline
+  internal value class SizeFlagsValue internal constructor(
+    public override val flag: Long,
+  ) : SizeFlags
 
   public enum class MouseFilter(
     id: Long,
@@ -2592,3 +2619,19 @@ public open class Control : CanvasItem() {
     public final const val NOTIFICATION_LAYOUT_DIRECTION_CHANGED: Long = 49
   }
 }
+
+public infix fun Long.or(other: godot.Control.SizeFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.Control.SizeFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.Control.SizeFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.Control.SizeFlags): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.Control.SizeFlags): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.Control.SizeFlags): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.Control.SizeFlags): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.Control.SizeFlags): Long = this.rem(other.flag)

@@ -50,6 +50,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -228,18 +229,18 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], [fontSetEmbolden], or [fontSetTransform] instead.
    */
-  public fun fontSetStyle(fontRid: RID, style: Long): Unit {
-    TransferContext.writeArguments(_RID to fontRid, LONG to style)
+  public fun fontSetStyle(fontRid: RID, style: FontStyle): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to style.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_STYLE, NIL)
   }
 
   /**
    * Returns font style flags, see [enum FontStyle].
    */
-  public fun fontGetStyle(fontRid: RID): Long {
+  public fun fontGetStyle(fontRid: RID): FontStyle {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_STYLE, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return FontStyleValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1701,9 +1702,9 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun shapedTextFitToWidth(
     shaped: RID,
     width: Double,
-    justificationFlags: Long = 3,
+    justificationFlags: JustificationFlag = TextServer.JustificationFlagValue(3),
   ): Double {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to justificationFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to justificationFlags.flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_FIT_TO_WIDTH,
         DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -1799,9 +1800,9 @@ public open class TextServer internal constructor() : RefCounted() {
     width: PackedFloat32Array,
     start: Long = 0,
     once: Boolean = true,
-    breakFlags: Long = 3,
+    breakFlags: LineBreakFlag = TextServer.LineBreakFlagValue(3),
   ): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start, BOOL to once, LONG to breakFlags)
+    TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start, BOOL to once, LONG to breakFlags.flag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_LINE_BREAKS_ADV, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -1815,9 +1816,9 @@ public open class TextServer internal constructor() : RefCounted() {
     shaped: RID,
     width: Double,
     start: Long = 0,
-    breakFlags: Long = 3,
+    breakFlags: LineBreakFlag = TextServer.LineBreakFlagValue(3),
   ): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to start, LONG to breakFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to start, LONG to breakFlags.flag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_LINE_BREAKS, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -1827,8 +1828,9 @@ public open class TextServer internal constructor() : RefCounted() {
    * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what characters are used for breaking (see [enum GraphemeFlag]).
    */
   @JvmOverloads
-  public fun shapedTextGetWordBreaks(shaped: RID, graphemeFlags: Long = 264): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, LONG to graphemeFlags)
+  public fun shapedTextGetWordBreaks(shaped: RID, graphemeFlags: GraphemeFlag =
+      TextServer.GraphemeFlagValue(264)): PackedInt32Array {
+    TransferContext.writeArguments(_RID to shaped, LONG to graphemeFlags.flag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_WORD_BREAKS, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -1881,9 +1883,9 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun shapedTextOverrunTrimToWidth(
     shaped: RID,
     width: Double = 0.0,
-    overrunTrimFlags: Long = 0,
+    overrunTrimFlags: TextOverrunFlag = TextServer.TextOverrunFlag.OVERRUN_NO_TRIM,
   ): Unit {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to overrunTrimFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to overrunTrimFlags.flag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_OVERRUN_TRIM_TO_WIDTH, NIL)
   }
@@ -2378,56 +2380,93 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public enum class JustificationFlag(
-    id: Long,
-  ) {
-    /**
-     * Do not justify text.
-     */
-    JUSTIFICATION_NONE(0),
-    /**
-     * Justify text by adding and removing kashidas.
-     */
-    JUSTIFICATION_KASHIDA(1),
-    /**
-     * Justify text by changing width of the spaces between the words.
-     */
-    JUSTIFICATION_WORD_BOUND(2),
-    /**
-     * Remove trailing and leading spaces from the justified text.
-     */
-    JUSTIFICATION_TRIM_EDGE_SPACES(4),
-    /**
-     * Only apply justification to the part of the text after the last tab.
-     */
-    JUSTIFICATION_AFTER_LAST_TAB(8),
-    /**
-     * Apply justification to the trimmed line with ellipsis.
-     */
-    JUSTIFICATION_CONSTRAIN_ELLIPSIS(16),
-    /**
-     * Do not apply justification to the last line of the paragraph.
-     */
-    JUSTIFICATION_SKIP_LAST_LINE(32),
-    /**
-     * Do not apply justification to the last line of the paragraph with visible characters (takes precedence over [JUSTIFICATION_SKIP_LAST_LINE]).
-     */
-    JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS(64),
-    /**
-     * Always apply justification to the paragraphs with a single line ([JUSTIFICATION_SKIP_LAST_LINE] and [JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS] are ignored).
-     */
-    JUSTIFICATION_DO_NOT_SKIP_SINGLE_LINE(128),
-    ;
+  public sealed interface JustificationFlag {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: JustificationFlag): JustificationFlag =
+        JustificationFlagValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): JustificationFlag = JustificationFlagValue(flag.or(other))
+
+    public infix fun xor(other: JustificationFlag): JustificationFlag =
+        JustificationFlagValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): JustificationFlag = JustificationFlagValue(flag.xor(other))
+
+    public infix fun and(other: JustificationFlag): JustificationFlag =
+        JustificationFlagValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): JustificationFlag = JustificationFlagValue(flag.and(other))
+
+    public operator fun plus(other: JustificationFlag): JustificationFlag =
+        JustificationFlagValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): JustificationFlag =
+        JustificationFlagValue(flag.plus(other))
+
+    public operator fun minus(other: JustificationFlag): JustificationFlag =
+        JustificationFlagValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): JustificationFlag =
+        JustificationFlagValue(flag.minus(other))
+
+    public operator fun times(other: JustificationFlag): JustificationFlag =
+        JustificationFlagValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): JustificationFlag =
+        JustificationFlagValue(flag.times(other))
+
+    public operator fun div(other: JustificationFlag): JustificationFlag =
+        JustificationFlagValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): JustificationFlag =
+        JustificationFlagValue(flag.div(other))
+
+    public operator fun rem(other: JustificationFlag): JustificationFlag =
+        JustificationFlagValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): JustificationFlag =
+        JustificationFlagValue(flag.rem(other))
+
+    public fun unaryPlus(): JustificationFlag = JustificationFlagValue(flag.unaryPlus())
+
+    public fun unaryMinus(): JustificationFlag = JustificationFlagValue(flag.unaryMinus())
+
+    public fun inv(): JustificationFlag = JustificationFlagValue(flag.inv())
+
+    public infix fun shl(bits: Int): JustificationFlag = JustificationFlagValue(flag shl bits)
+
+    public infix fun shr(bits: Int): JustificationFlag = JustificationFlagValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): JustificationFlag = JustificationFlagValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val JUSTIFICATION_NONE: JustificationFlag = JustificationFlagValue(0)
+
+      public val JUSTIFICATION_KASHIDA: JustificationFlag = JustificationFlagValue(1)
+
+      public val JUSTIFICATION_WORD_BOUND: JustificationFlag = JustificationFlagValue(2)
+
+      public val JUSTIFICATION_TRIM_EDGE_SPACES: JustificationFlag = JustificationFlagValue(4)
+
+      public val JUSTIFICATION_AFTER_LAST_TAB: JustificationFlag = JustificationFlagValue(8)
+
+      public val JUSTIFICATION_CONSTRAIN_ELLIPSIS: JustificationFlag = JustificationFlagValue(16)
+
+      public val JUSTIFICATION_SKIP_LAST_LINE: JustificationFlag = JustificationFlagValue(32)
+
+      public val JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS: JustificationFlag =
+          JustificationFlagValue(64)
+
+      public val JUSTIFICATION_DO_NOT_SKIP_SINGLE_LINE: JustificationFlag =
+          JustificationFlagValue(128)
     }
   }
+
+  @JvmInline
+  internal value class JustificationFlagValue internal constructor(
+    public override val flag: Long,
+  ) : JustificationFlag
 
   public enum class AutowrapMode(
     id: Long,
@@ -2460,44 +2499,80 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public enum class LineBreakFlag(
-    id: Long,
-  ) {
-    /**
-     * Do not break the line.
-     */
-    BREAK_NONE(0),
-    /**
-     * Break the line at the line mandatory break characters (e.g. `"\n"`).
-     */
-    BREAK_MANDATORY(1),
-    /**
-     * Break the line between the words.
-     */
-    BREAK_WORD_BOUND(2),
-    /**
-     * Break the line between any unconnected graphemes.
-     */
-    BREAK_GRAPHEME_BOUND(4),
-    /**
-     * Should be used only in conjunction with [BREAK_WORD_BOUND], break the line between any unconnected graphemes, if it's impossible to break it between the words.
-     */
-    BREAK_ADAPTIVE(8),
-    /**
-     * Remove edge spaces from the broken line segments.
-     */
-    BREAK_TRIM_EDGE_SPACES(16),
-    ;
+  public sealed interface LineBreakFlag {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: LineBreakFlag): LineBreakFlag =
+        LineBreakFlagValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): LineBreakFlag = LineBreakFlagValue(flag.or(other))
+
+    public infix fun xor(other: LineBreakFlag): LineBreakFlag =
+        LineBreakFlagValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): LineBreakFlag = LineBreakFlagValue(flag.xor(other))
+
+    public infix fun and(other: LineBreakFlag): LineBreakFlag =
+        LineBreakFlagValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): LineBreakFlag = LineBreakFlagValue(flag.and(other))
+
+    public operator fun plus(other: LineBreakFlag): LineBreakFlag =
+        LineBreakFlagValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): LineBreakFlag = LineBreakFlagValue(flag.plus(other))
+
+    public operator fun minus(other: LineBreakFlag): LineBreakFlag =
+        LineBreakFlagValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): LineBreakFlag = LineBreakFlagValue(flag.minus(other))
+
+    public operator fun times(other: LineBreakFlag): LineBreakFlag =
+        LineBreakFlagValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): LineBreakFlag = LineBreakFlagValue(flag.times(other))
+
+    public operator fun div(other: LineBreakFlag): LineBreakFlag =
+        LineBreakFlagValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): LineBreakFlag = LineBreakFlagValue(flag.div(other))
+
+    public operator fun rem(other: LineBreakFlag): LineBreakFlag =
+        LineBreakFlagValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): LineBreakFlag = LineBreakFlagValue(flag.rem(other))
+
+    public fun unaryPlus(): LineBreakFlag = LineBreakFlagValue(flag.unaryPlus())
+
+    public fun unaryMinus(): LineBreakFlag = LineBreakFlagValue(flag.unaryMinus())
+
+    public fun inv(): LineBreakFlag = LineBreakFlagValue(flag.inv())
+
+    public infix fun shl(bits: Int): LineBreakFlag = LineBreakFlagValue(flag shl bits)
+
+    public infix fun shr(bits: Int): LineBreakFlag = LineBreakFlagValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): LineBreakFlag = LineBreakFlagValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val BREAK_NONE: LineBreakFlag = LineBreakFlagValue(0)
+
+      public val BREAK_MANDATORY: LineBreakFlag = LineBreakFlagValue(1)
+
+      public val BREAK_WORD_BOUND: LineBreakFlag = LineBreakFlagValue(2)
+
+      public val BREAK_GRAPHEME_BOUND: LineBreakFlag = LineBreakFlagValue(4)
+
+      public val BREAK_ADAPTIVE: LineBreakFlag = LineBreakFlagValue(8)
+
+      public val BREAK_TRIM_EDGE_SPACES: LineBreakFlag = LineBreakFlagValue(16)
     }
   }
+
+  @JvmInline
+  internal value class LineBreakFlagValue internal constructor(
+    public override val flag: Long,
+  ) : LineBreakFlag
 
   public enum class VisibleCharactersBehavior(
     id: Long,
@@ -2569,111 +2644,170 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public enum class TextOverrunFlag(
-    id: Long,
-  ) {
-    /**
-     * No trimming is performed.
-     */
-    OVERRUN_NO_TRIM(0),
-    /**
-     * Trims the text when it exceeds the given width.
-     */
-    OVERRUN_TRIM(1),
-    /**
-     * Trims the text per word instead of per grapheme.
-     */
-    OVERRUN_TRIM_WORD_ONLY(2),
-    /**
-     * Determines whether an ellipsis should be added at the end of the text.
-     */
-    OVERRUN_ADD_ELLIPSIS(4),
-    /**
-     * Determines whether the ellipsis at the end of the text is enforced and may not be hidden.
-     */
-    OVERRUN_ENFORCE_ELLIPSIS(8),
-    /**
-     *
-     */
-    OVERRUN_JUSTIFICATION_AWARE(16),
-    ;
+  public sealed interface TextOverrunFlag {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: TextOverrunFlag): TextOverrunFlag =
+        TextOverrunFlagValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): TextOverrunFlag = TextOverrunFlagValue(flag.or(other))
+
+    public infix fun xor(other: TextOverrunFlag): TextOverrunFlag =
+        TextOverrunFlagValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): TextOverrunFlag = TextOverrunFlagValue(flag.xor(other))
+
+    public infix fun and(other: TextOverrunFlag): TextOverrunFlag =
+        TextOverrunFlagValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): TextOverrunFlag = TextOverrunFlagValue(flag.and(other))
+
+    public operator fun plus(other: TextOverrunFlag): TextOverrunFlag =
+        TextOverrunFlagValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): TextOverrunFlag = TextOverrunFlagValue(flag.plus(other))
+
+    public operator fun minus(other: TextOverrunFlag): TextOverrunFlag =
+        TextOverrunFlagValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): TextOverrunFlag =
+        TextOverrunFlagValue(flag.minus(other))
+
+    public operator fun times(other: TextOverrunFlag): TextOverrunFlag =
+        TextOverrunFlagValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): TextOverrunFlag =
+        TextOverrunFlagValue(flag.times(other))
+
+    public operator fun div(other: TextOverrunFlag): TextOverrunFlag =
+        TextOverrunFlagValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): TextOverrunFlag = TextOverrunFlagValue(flag.div(other))
+
+    public operator fun rem(other: TextOverrunFlag): TextOverrunFlag =
+        TextOverrunFlagValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): TextOverrunFlag = TextOverrunFlagValue(flag.rem(other))
+
+    public fun unaryPlus(): TextOverrunFlag = TextOverrunFlagValue(flag.unaryPlus())
+
+    public fun unaryMinus(): TextOverrunFlag = TextOverrunFlagValue(flag.unaryMinus())
+
+    public fun inv(): TextOverrunFlag = TextOverrunFlagValue(flag.inv())
+
+    public infix fun shl(bits: Int): TextOverrunFlag = TextOverrunFlagValue(flag shl bits)
+
+    public infix fun shr(bits: Int): TextOverrunFlag = TextOverrunFlagValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): TextOverrunFlag = TextOverrunFlagValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val OVERRUN_NO_TRIM: TextOverrunFlag = TextOverrunFlagValue(0)
+
+      public val OVERRUN_TRIM: TextOverrunFlag = TextOverrunFlagValue(1)
+
+      public val OVERRUN_TRIM_WORD_ONLY: TextOverrunFlag = TextOverrunFlagValue(2)
+
+      public val OVERRUN_ADD_ELLIPSIS: TextOverrunFlag = TextOverrunFlagValue(4)
+
+      public val OVERRUN_ENFORCE_ELLIPSIS: TextOverrunFlag = TextOverrunFlagValue(8)
+
+      public val OVERRUN_JUSTIFICATION_AWARE: TextOverrunFlag = TextOverrunFlagValue(16)
     }
   }
 
-  public enum class GraphemeFlag(
-    id: Long,
-  ) {
-    /**
-     * Grapheme is supported by the font, and can be drawn.
-     */
-    GRAPHEME_IS_VALID(1),
-    /**
-     * Grapheme is part of right-to-left or bottom-to-top run.
-     */
-    GRAPHEME_IS_RTL(2),
-    /**
-     * Grapheme is not part of source text, it was added by justification process.
-     */
-    GRAPHEME_IS_VIRTUAL(4),
-    /**
-     * Grapheme is whitespace.
-     */
-    GRAPHEME_IS_SPACE(8),
-    /**
-     * Grapheme is mandatory break point (e.g. `"\n"`).
-     */
-    GRAPHEME_IS_BREAK_HARD(16),
-    /**
-     * Grapheme is optional break point (e.g. space).
-     */
-    GRAPHEME_IS_BREAK_SOFT(32),
-    /**
-     * Grapheme is the tabulation character.
-     */
-    GRAPHEME_IS_TAB(64),
-    /**
-     * Grapheme is kashida.
-     */
-    GRAPHEME_IS_ELONGATION(128),
-    /**
-     * Grapheme is punctuation character.
-     */
-    GRAPHEME_IS_PUNCTUATION(256),
-    /**
-     * Grapheme is underscore character.
-     */
-    GRAPHEME_IS_UNDERSCORE(512),
-    /**
-     * Grapheme is connected to the previous grapheme. Breaking line before this grapheme is not safe.
-     */
-    GRAPHEME_IS_CONNECTED(1024),
-    /**
-     * It is safe to insert a U+0640 before this grapheme for elongation.
-     */
-    GRAPHEME_IS_SAFE_TO_INSERT_TATWEEL(2048),
-    /**
-     * Grapheme is an object replacement character for the embedded object.
-     */
-    GRAPHEME_IS_EMBEDDED_OBJECT(4096),
-    ;
+  @JvmInline
+  internal value class TextOverrunFlagValue internal constructor(
+    public override val flag: Long,
+  ) : TextOverrunFlag
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+  public sealed interface GraphemeFlag {
+    public val flag: Long
+
+    public infix fun or(other: GraphemeFlag): GraphemeFlag = GraphemeFlagValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): GraphemeFlag = GraphemeFlagValue(flag.or(other))
+
+    public infix fun xor(other: GraphemeFlag): GraphemeFlag =
+        GraphemeFlagValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): GraphemeFlag = GraphemeFlagValue(flag.xor(other))
+
+    public infix fun and(other: GraphemeFlag): GraphemeFlag =
+        GraphemeFlagValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): GraphemeFlag = GraphemeFlagValue(flag.and(other))
+
+    public operator fun plus(other: GraphemeFlag): GraphemeFlag =
+        GraphemeFlagValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): GraphemeFlag = GraphemeFlagValue(flag.plus(other))
+
+    public operator fun minus(other: GraphemeFlag): GraphemeFlag =
+        GraphemeFlagValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): GraphemeFlag = GraphemeFlagValue(flag.minus(other))
+
+    public operator fun times(other: GraphemeFlag): GraphemeFlag =
+        GraphemeFlagValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): GraphemeFlag = GraphemeFlagValue(flag.times(other))
+
+    public operator fun div(other: GraphemeFlag): GraphemeFlag =
+        GraphemeFlagValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): GraphemeFlag = GraphemeFlagValue(flag.div(other))
+
+    public operator fun rem(other: GraphemeFlag): GraphemeFlag =
+        GraphemeFlagValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): GraphemeFlag = GraphemeFlagValue(flag.rem(other))
+
+    public fun unaryPlus(): GraphemeFlag = GraphemeFlagValue(flag.unaryPlus())
+
+    public fun unaryMinus(): GraphemeFlag = GraphemeFlagValue(flag.unaryMinus())
+
+    public fun inv(): GraphemeFlag = GraphemeFlagValue(flag.inv())
+
+    public infix fun shl(bits: Int): GraphemeFlag = GraphemeFlagValue(flag shl bits)
+
+    public infix fun shr(bits: Int): GraphemeFlag = GraphemeFlagValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): GraphemeFlag = GraphemeFlagValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val GRAPHEME_IS_VALID: GraphemeFlag = GraphemeFlagValue(1)
+
+      public val GRAPHEME_IS_RTL: GraphemeFlag = GraphemeFlagValue(2)
+
+      public val GRAPHEME_IS_VIRTUAL: GraphemeFlag = GraphemeFlagValue(4)
+
+      public val GRAPHEME_IS_SPACE: GraphemeFlag = GraphemeFlagValue(8)
+
+      public val GRAPHEME_IS_BREAK_HARD: GraphemeFlag = GraphemeFlagValue(16)
+
+      public val GRAPHEME_IS_BREAK_SOFT: GraphemeFlag = GraphemeFlagValue(32)
+
+      public val GRAPHEME_IS_TAB: GraphemeFlag = GraphemeFlagValue(64)
+
+      public val GRAPHEME_IS_ELONGATION: GraphemeFlag = GraphemeFlagValue(128)
+
+      public val GRAPHEME_IS_PUNCTUATION: GraphemeFlag = GraphemeFlagValue(256)
+
+      public val GRAPHEME_IS_UNDERSCORE: GraphemeFlag = GraphemeFlagValue(512)
+
+      public val GRAPHEME_IS_CONNECTED: GraphemeFlag = GraphemeFlagValue(1024)
+
+      public val GRAPHEME_IS_SAFE_TO_INSERT_TATWEEL: GraphemeFlag = GraphemeFlagValue(2048)
+
+      public val GRAPHEME_IS_EMBEDDED_OBJECT: GraphemeFlag = GraphemeFlagValue(4096)
     }
   }
+
+  @JvmInline
+  internal value class GraphemeFlagValue internal constructor(
+    public override val flag: Long,
+  ) : GraphemeFlag
 
   public enum class Hinting(
     id: Long,
@@ -2886,32 +3020,66 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public enum class FontStyle(
-    id: Long,
-  ) {
-    /**
-     * Font is bold.
-     */
-    FONT_BOLD(1),
-    /**
-     * Font is italic or oblique.
-     */
-    FONT_ITALIC(2),
-    /**
-     * Font have fixed-width characters.
-     */
-    FONT_FIXED_WIDTH(4),
-    ;
+  public sealed interface FontStyle {
+    public val flag: Long
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+    public infix fun or(other: FontStyle): FontStyle = FontStyleValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): FontStyle = FontStyleValue(flag.or(other))
+
+    public infix fun xor(other: FontStyle): FontStyle = FontStyleValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): FontStyle = FontStyleValue(flag.xor(other))
+
+    public infix fun and(other: FontStyle): FontStyle = FontStyleValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): FontStyle = FontStyleValue(flag.and(other))
+
+    public operator fun plus(other: FontStyle): FontStyle = FontStyleValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): FontStyle = FontStyleValue(flag.plus(other))
+
+    public operator fun minus(other: FontStyle): FontStyle = FontStyleValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): FontStyle = FontStyleValue(flag.minus(other))
+
+    public operator fun times(other: FontStyle): FontStyle = FontStyleValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): FontStyle = FontStyleValue(flag.times(other))
+
+    public operator fun div(other: FontStyle): FontStyle = FontStyleValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): FontStyle = FontStyleValue(flag.div(other))
+
+    public operator fun rem(other: FontStyle): FontStyle = FontStyleValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): FontStyle = FontStyleValue(flag.rem(other))
+
+    public fun unaryPlus(): FontStyle = FontStyleValue(flag.unaryPlus())
+
+    public fun unaryMinus(): FontStyle = FontStyleValue(flag.unaryMinus())
+
+    public fun inv(): FontStyle = FontStyleValue(flag.inv())
+
+    public infix fun shl(bits: Int): FontStyle = FontStyleValue(flag shl bits)
+
+    public infix fun shr(bits: Int): FontStyle = FontStyleValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): FontStyle = FontStyleValue(flag ushr bits)
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public val FONT_BOLD: FontStyle = FontStyleValue(1)
+
+      public val FONT_ITALIC: FontStyle = FontStyleValue(2)
+
+      public val FONT_FIXED_WIDTH: FontStyle = FontStyleValue(4)
     }
   }
+
+  @JvmInline
+  internal value class FontStyleValue internal constructor(
+    public override val flag: Long,
+  ) : FontStyle
 
   public enum class StructuredTextParser(
     id: Long,
@@ -2960,3 +3128,88 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public companion object
 }
+
+public infix fun Long.or(other: godot.TextServer.JustificationFlag): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.TextServer.JustificationFlag): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.TextServer.JustificationFlag): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.TextServer.JustificationFlag): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.TextServer.JustificationFlag): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.TextServer.JustificationFlag): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.TextServer.JustificationFlag): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.TextServer.JustificationFlag): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.TextServer.LineBreakFlag): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.TextServer.LineBreakFlag): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.TextServer.LineBreakFlag): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.TextServer.LineBreakFlag): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.TextServer.LineBreakFlag): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.TextServer.LineBreakFlag): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.TextServer.LineBreakFlag): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.TextServer.LineBreakFlag): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.TextServer.TextOverrunFlag): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.TextServer.TextOverrunFlag): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.TextServer.TextOverrunFlag): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.TextServer.TextOverrunFlag): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.TextServer.TextOverrunFlag): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.TextServer.TextOverrunFlag): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.TextServer.TextOverrunFlag): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.TextServer.TextOverrunFlag): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.TextServer.GraphemeFlag): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.TextServer.GraphemeFlag): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.TextServer.GraphemeFlag): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.TextServer.GraphemeFlag): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.TextServer.GraphemeFlag): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.TextServer.GraphemeFlag): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.TextServer.GraphemeFlag): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.TextServer.GraphemeFlag): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.TextServer.FontStyle): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.TextServer.FontStyle): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.TextServer.FontStyle): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.TextServer.FontStyle): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.TextServer.FontStyle): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.TextServer.FontStyle): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.TextServer.FontStyle): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.TextServer.FontStyle): Long = this.rem(other.flag)

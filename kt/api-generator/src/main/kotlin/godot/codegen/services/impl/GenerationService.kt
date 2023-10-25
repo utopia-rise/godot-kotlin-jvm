@@ -1,32 +1,12 @@
 package godot.codegen.services.impl
 
-import com.squareup.kotlinpoet.ANY
-import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.CodeBlock
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.INT
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.LONG
-import com.squareup.kotlinpoet.LambdaTypeName
-import com.squareup.kotlinpoet.MemberName
-import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.TypeSpec
-import com.squareup.kotlinpoet.TypeVariableName
-import com.squareup.kotlinpoet.UNIT
-import com.squareup.kotlinpoet.asClassName
 import godot.codegen.constants.jvmMethodToNotGenerate
 import godot.codegen.constants.jvmReservedMethods
 import godot.codegen.exceptions.ClassGenerationException
+import godot.codegen.extensions.*
 import godot.codegen.extensions.applyJvmNameIfNecessary
-import godot.codegen.extensions.getDefaultValueKotlinString
-import godot.codegen.extensions.getTypeClassName
-import godot.codegen.extensions.isCoreTypeReimplementedInKotlin
-import godot.codegen.extensions.isEnum
-import godot.codegen.extensions.jvmVariantTypeValue
 import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedConstant
@@ -140,8 +120,14 @@ class GenerationService(
             classTypeBuilder.generateTypesafeRpc()
         }
 
+        val enumExtensions = mutableListOf<FunSpec>()
+
         for (enum in enrichedClass.enums) {
-            classTypeBuilder.addType(generateEnum(enum, name))
+            val enumAndExtensions = generateEnum(enum, name)
+            enumExtensions.addAll(enumAndExtensions.second)
+            for (typeSpec in enumAndExtensions.first) {
+                classTypeBuilder.addType(typeSpec)
+            }
         }
 
         for (constant in enrichedClass.constants) {
@@ -189,6 +175,10 @@ class GenerationService(
             .builder(godotApiPackage, generatedClass.name ?: throw ClassGenerationException(enrichedClass))
             .addType(generatedClass)
 
+        for (enumExtension in enumExtensions) {
+            fileBuilder.addFunction(enumExtension)
+        }
+
         for (import in enrichedClass.additionalImports) {
             fileBuilder.addImport(import.pckge, import.name)
         }
@@ -221,46 +211,140 @@ class GenerationService(
         ++nextEngineClassIndex
     }
 
-    override fun generateEnum(enum: EnrichedEnum, containingClassName: String?): TypeSpec {
-        val enumBuilder = TypeSpec.enumBuilder(enum.name)
-        enumBuilder.primaryConstructor(
-            FunSpec.constructorBuilder()
-                .addParameter("id", Long::class)
-                .addStatement("this.%N = %N", "id", "id")
+    override fun generateEnum(enum: EnrichedEnum, containingClassName: String?): Pair<List<TypeSpec>, List<FunSpec>> {
+        return if (enum.internal.isBitField) {
+            val packageName = if (enum.encapsulatingType == null) {
+                godotApiPackage
+            } else {
+                "$godotApiPackage.${enum.encapsulatingType.type}"
+            }
+
+            val bitFieldInterfaceName = ClassName(packageName, enum.name)
+
+            val bitFlagValueClassName = "${enum.name}Value"
+
+            val bitFlagValueClass = TypeSpec.classBuilder(bitFlagValueClassName)
+                .addSuperinterface(bitFieldInterfaceName)
+                .addModifiers(KModifier.INTERNAL, KModifier.VALUE)
+                .addAnnotation(JvmInline::class)
+                .addProperty(
+                    PropertySpec.builder(BIT_FLAG_VALUE_MEMBER, LONG)
+                        .addModifiers(KModifier.OVERRIDE)
+                        .initializer(BIT_FLAG_VALUE_MEMBER)
+                        .build()
+                )
+                .primaryConstructor(
+                    FunSpec.constructorBuilder()
+                        .addModifiers(KModifier.INTERNAL)
+                        .addParameter(
+                            ParameterSpec
+                                .builder(BIT_FLAG_VALUE_MEMBER, LONG)
+                                .build()
+                        )
+                        .build()
+                )
                 .build()
-        )
-        enumBuilder.addProperty("id", Long::class)
+            val bitfieldInterface = TypeSpec.interfaceBuilder(enum.name)
+                .addModifiers(KModifier.SEALED)
+                .addProperty(
+                    PropertySpec.builder(BIT_FLAG_VALUE_MEMBER, LONG)
+                        .build()
+                )
 
-        for (value in enum.internal.values) {
-            val valueName = value.name
-            enumBuilder.addEnumConstant(
-                valueName,
-                TypeSpec.anonymousClassBuilder()
-                    .addSuperclassConstructorParameter("%L", value.value)
-                    .also {
-                        val kDoc = if (containingClassName != null) {
-                            docRepository.findByClassName(containingClassName)?.constants?.get(valueName)?.description
-                        } else {
-                            docRepository.findByClassName(enum.name)?.constants?.get(valueName)?.description
-                        }
-                        if (kDoc != null) {
-                            it.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
-                        }
-                    }
+            val logicalOperations = arrayOf("or", "xor", "and")
+            val extensionsOperator = generateBitFlagExtensionsOperators(logicalOperations, enum).toMutableList()
+            bitfieldInterface.generateOperatorMethods(logicalOperations, enum)
+
+            val commonOperators = arrayOf("plus", "minus", "times", "div", "rem")
+            extensionsOperator.addAll(generateBitFlagExtensionsOperators(commonOperators, enum, true))
+            bitfieldInterface.generateOperatorMethods(commonOperators, enum, true)
+
+            val unaryOperations = arrayOf("unaryPlus", "unaryMinus", "inv")
+
+            for (unaryOperation in unaryOperations) {
+                bitfieldInterface.addFunction(
+                    FunSpec.builder(unaryOperation)
+                        .returns(bitFieldInterfaceName)
+                        .addCode(CodeBlock.of("return·%L(%L.%L())", bitFlagValueClassName, BIT_FLAG_VALUE_MEMBER, unaryOperation))
+                        .build()
+                )
+            }
+
+            val shiftOperations = arrayOf("shl", "shr", "ushr")
+            val shiftOperationsParameterName = "bits"
+
+            for (shiftOperation in shiftOperations) {
+                bitfieldInterface.addFunction(
+                    FunSpec.builder(shiftOperation)
+                        .addModifiers(KModifier.INFIX)
+                        .addParameter(shiftOperationsParameterName, INT)
+                        .returns(bitFieldInterfaceName)
+                        .addCode(
+                            CodeBlock.of(
+                                "return·%L(%L·%L·%L)",
+                                bitFlagValueClassName, BIT_FLAG_VALUE_MEMBER, shiftOperation, shiftOperationsParameterName
+                            )
+                        )
+                        .build()
+                )
+            }
+
+            val bitfieldInterfaceCompanion = TypeSpec.companionObjectBuilder()
+
+            for (value in enum.internal.values) {
+                val bitFieldValueClassName = ClassName(packageName, bitFlagValueClassName)
+                bitfieldInterfaceCompanion
+                    .addProperty(
+                        PropertySpec.builder(value.name, bitFieldInterfaceName)
+                            .initializer(CodeBlock.of("%T(%L)", bitFieldValueClassName, value.value))
+                            .build()
+                    )
+            }
+
+            bitfieldInterface.addType(bitfieldInterfaceCompanion.build())
+
+            listOf(bitfieldInterface.build(), bitFlagValueClass) to extensionsOperator
+        } else {
+            val enumBuilder = TypeSpec.enumBuilder(enum.name)
+            enumBuilder.primaryConstructor(
+                FunSpec.constructorBuilder()
+                    .addParameter("id", Long::class)
+                    .addStatement("this.%N = %N", "id", "id")
                     .build()
             )
+            enumBuilder.addProperty("id", Long::class)
+
+            for (value in enum.internal.values) {
+                val valueName = value.name
+                enumBuilder.addEnumConstant(
+                    valueName,
+                    TypeSpec.anonymousClassBuilder()
+                        .addSuperclassConstructorParameter("%L", value.value)
+                        .also {
+                            val kDoc = if (containingClassName != null) {
+                                docRepository.findByClassName(containingClassName)?.constants?.get(valueName)?.description
+                            } else {
+                                docRepository.findByClassName(enum.name)?.constants?.get(valueName)?.description
+                            }
+                            if (kDoc != null) {
+                                it.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
+                            }
+                        }
+                        .build()
+                )
+            }
+
+            val companion = TypeSpec.companionObjectBuilder()
+                .addFunction(
+                    FunSpec.builder("from")
+                        .addParameter("value", Long::class)
+                        .addStatement("return entries.single { it.%N == %N }", "id", "value")
+                        .build()
+                )
+                .build()
+            enumBuilder.addType(companion)
+            listOf(enumBuilder.build()) to listOf()
         }
-
-        val companion = TypeSpec.companionObjectBuilder()
-            .addFunction(
-                FunSpec.builder("from")
-                    .addParameter("value", Long::class)
-                    .addStatement("return entries.single { it.%N == %N }", "id", "value")
-                    .build()
-            )
-            .build()
-        enumBuilder.addType(companion)
-        return enumBuilder.build()
     }
 
     override fun generateConstant(constant: EnrichedConstant, containingClassName: String?): PropertySpec {
@@ -420,6 +504,10 @@ class GenerationService(
 
                 if (property.isEnum()) {
                     append(".id")
+                }
+
+                if (property.isBitField()) {
+                    append(".flag")
                 }
 
                 append(property.getToBufferCastingMethod())
@@ -728,6 +816,7 @@ class GenerationService(
                 append("%T·to·$sanitisedArgumentName${argument.getToBufferCastingMethod()}")
 
                 if (argument.isEnum()) append(".id")
+                if (argument.isBitField()) append(".flag")
 
                 val argumentTypeClassName = argument.getCastedType()
                 val parameterBuilder = ParameterSpec.builder(
@@ -736,7 +825,7 @@ class GenerationService(
                 )
 
                 val defaultValueKotlinCode = argument.getDefaultValueKotlinString()
-                val appliedDefault = if (argument.isEnum() && defaultValueKotlinCode != null) {
+                val appliedDefault = if ((argument.isEnum() || argument.isBitField()) && defaultValueKotlinCode != null) {
                     enumService.findEnumValue(
                         argumentTypeClassName,
                         defaultValueKotlinCode.toInt()
@@ -831,6 +920,15 @@ class GenerationService(
                     VARIANT_TYPE_LONG,
                     LONG
                 )
+            } else if (callable.isBitField()) {
+                val simpleNames = methodReturnType.className.simpleNames
+                addStatement(
+                    "return·%T(%T.readReturnValue(%T)·as·%T)",
+                    ClassName("${methodReturnType.className.packageName}.${simpleNames.subList(0, simpleNames.size - 1).joinToString(".")}", "${callable.getTypeClassName().className.simpleName}Value"),
+                    TRANSFER_CONTEXT,
+                    VARIANT_TYPE_LONG,
+                    LONG
+                )
             } else {
                 addStatement(
                     "return·(%T.readReturnValue(%T, %L)·as·%T)${callable.getFromBufferCastingMethod()}",
@@ -915,5 +1013,96 @@ class GenerationService(
             TYPE_MANAGER,
             clazz.name
         )
+    }
+
+    fun TypeSpec.Builder.generateOperatorMethods(
+        operations: Array<String>,
+        enum: EnrichedEnum,
+        isOperator: Boolean = false
+    ) {
+        val packageName = if (enum.encapsulatingType == null) {
+            godotApiPackage
+        } else {
+            "$godotApiPackage.${enum.encapsulatingType.type}"
+        }
+
+        val bitFieldInterfaceName = ClassName(packageName, enum.name)
+
+        val bitFlagValueClassName = "${enum.name}Value"
+
+        val operatorModifier = if (isOperator) KModifier.OPERATOR else KModifier.INFIX
+
+        for (operation in operations) {
+            this.addFunction(
+                FunSpec.builder(operation)
+                    .addModifiers(operatorModifier)
+                    .addParameter(
+                        ParameterSpec
+                            .builder("other", bitFieldInterfaceName)
+                            .build()
+                    )
+                    .returns(bitFieldInterfaceName)
+                    .addCode(
+                        CodeBlock.of(
+                            "return·%L(%L.%L(other.%L))",
+                            bitFlagValueClassName,
+                            BIT_FLAG_VALUE_MEMBER,
+                            operation,
+                            BIT_FLAG_VALUE_MEMBER
+                        )
+                    )
+                    .build()
+            )
+            this.addFunction(
+                FunSpec.builder(operation)
+                    .addModifiers(operatorModifier)
+                    .addParameter(
+                        ParameterSpec
+                            .builder("other", LONG)
+                            .build()
+                    )
+                    .returns(bitFieldInterfaceName)
+                    .addCode(
+                        CodeBlock.of("return·%L(%L.%L(other))", bitFlagValueClassName, BIT_FLAG_VALUE_MEMBER, operation)
+                    )
+                    .build()
+            )
+        }
+    }
+
+    companion object {
+        private const val BIT_FLAG_VALUE_MEMBER = "flag"
+
+        fun generateBitFlagExtensionsOperators(
+            bitOperations: Array<String>,
+            enum: EnrichedEnum,
+            isOperator: Boolean = false
+        ): List<FunSpec> {
+            val packageName = if (enum.encapsulatingType == null) {
+                godotApiPackage
+            } else {
+                "$godotApiPackage.${enum.encapsulatingType.type}"
+            }
+
+            val bitFieldInterfaceName = ClassName(packageName, enum.name)
+
+            val operatorModifier = if (isOperator) KModifier.OPERATOR else KModifier.INFIX
+
+            return bitOperations
+                .map {
+                    FunSpec.builder(it)
+                        .addModifiers(operatorModifier)
+                        .receiver(LONG)
+                        .addParameter(
+                            ParameterSpec
+                                .builder("other", bitFieldInterfaceName)
+                                .build()
+                        )
+                        .returns(LONG)
+                        .addCode(
+                            CodeBlock.of("return·this.%L(other.%L)", it, BIT_FLAG_VALUE_MEMBER)
+                        ).build()
+                }
+        }
     }
 }

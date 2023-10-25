@@ -8,6 +8,7 @@ import com.squareup.kotlinpoet.LONG
 import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.constants.GodotMeta
+import godot.codegen.models.enriched.EnrichedEnum
 import godot.codegen.models.enriched.EnrichedSignal
 import godot.codegen.poet.ClassTypeNameWrapper
 import godot.codegen.traits.CastableTrait
@@ -44,8 +45,8 @@ import godot.tools.common.constants.signalPackage
 import godot.tools.common.constants.variantTypePackage
 import java.util.*
 
-private const val enumPrefix = "enum::"
-private const val bitfieldPrefix = "bitfield::"
+const val enumPrefix = "enum::"
+const val bitfieldPrefix = "bitfield::"
 
 fun TypedTrait.isCoreType() = isTypedArray() || GodotTypes.coreTypes.find { s -> s == this.type } != null
 fun TypedTrait.isPrimitive() = GodotTypes.primitives.find { s -> s == this.type } != null
@@ -94,7 +95,18 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
                 )
             }
         }
-        isBitField() -> ClassTypeNameWrapper(LONG)
+        isBitField() -> {
+            val containerAndBitfield = type!!.removePrefix(bitfieldPrefix).split('.')
+            val packageName = object : TypedTrait {
+                override val type = containerAndBitfield.first()
+            }.getTypeClassName().className.packageName
+            ClassTypeNameWrapper(
+                ClassName(
+                    packageName,
+                    containerAndBitfield
+                )
+            )
+        }
         type == GodotTypes.bool -> ClassTypeNameWrapper(BOOLEAN)
         type == GodotTypes.int -> ClassTypeNameWrapper(LONG)
         type == GodotTypes.float -> ClassTypeNameWrapper(DOUBLE)
