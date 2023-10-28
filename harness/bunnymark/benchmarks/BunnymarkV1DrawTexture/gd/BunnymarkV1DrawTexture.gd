@@ -1,20 +1,20 @@
 extends Node2D
 
-var bunnies = []
-var bunny_texture = load("res://images/godot_bunny.png")
-var grav = 500
-var screen_size
+var bunnies: Array[Array] = []
+var bunny_texture = load("res://images/godot_bunny.png") as Texture2D
+var grav := 500
+var screen_size := Vector2()
 
 func _draw():
 	for bunny in bunnies:
-		draw_texture(bunny_texture, bunny[0])
+		draw_texture(bunny_texture, bunny[0] as Vector2)
 
 func _process(delta):
 	screen_size = get_viewport_rect().size
 	
 	for bunny in bunnies:
-		var pos = bunny[0]
-		var newPosition = bunny[1]
+		var pos: Vector2 = bunny[0]
+		var newPosition: Vector2 = bunny[1]
 		
 		pos.x += newPosition.x * delta
 		pos.y += newPosition.y * delta
@@ -42,7 +42,7 @@ func _process(delta):
 		
 		bunny[0] = pos
 		bunny[1] = newPosition
-	update()
+	queue_redraw()
 
 func add_bunny():
 	bunnies.append([Vector2(screen_size.x / 2, screen_size.y / 2), Vector2(randi() % 200 + 50, randi() % 200 + 50)])

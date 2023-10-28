@@ -11,13 +11,13 @@ import godot.signals.signal
 class BunnymarkV2 : Node2D() {
 
 	@RegisterSignal
-	val signalBenchmarkFinished by signal<Int>("bunnyCount")
+	val benchmarkFinished by signal<Int>("bunnyCount")
 
 	private val gravity = 500
 	private val bunnySpeeds = mutableListOf<Vector2>()
 	private val label = Label()
 	private val bunnies = Node2D()
-	private val bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
+	private val bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture2D
 	private val randomNumberGenerator = RandomNumberGenerator()
 
 	private lateinit var screenSize: Vector2
@@ -37,7 +37,7 @@ class BunnymarkV2 : Node2D() {
 
 		val bunnyChildren = bunnies.getChildren()
 		for (i in 0 until bunnyChildren.size) {
-			val bunny = bunnyChildren[i]!! as Sprite
+			val bunny = bunnyChildren[i] as Sprite2D
 			val pos = bunny.position
 			val speed = bunnySpeeds[i]
 
@@ -77,7 +77,7 @@ class BunnymarkV2 : Node2D() {
 
 	@RegisterFunction
 	fun addBunny() {
-		val bunny = Sprite()
+		val bunny = Sprite2D()
 		bunny.texture = bunnyTexture
 		bunnies.addChild(bunny)
 		bunny.position = Vector2(screenSize.x / 2, screenSize.y / 2)
@@ -89,7 +89,7 @@ class BunnymarkV2 : Node2D() {
 	@RegisterFunction
 	fun removeBunny() {
 		val childCount = bunnies.getChildCount()
-		if (childCount == 0L) return
+		if (childCount == 0) return
 		bunnies
 			.getChild(childCount - 1)
 			?.let { bunny ->
@@ -101,6 +101,6 @@ class BunnymarkV2 : Node2D() {
 
 	@RegisterFunction
 	fun finish() {
-		signalBenchmarkFinished.emit(bunnySpeeds.size)
+        benchmarkFinished.emit(bunnySpeeds.size)
 	}
 }

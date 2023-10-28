@@ -2,18 +2,18 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class BunnymarkV1Sprites : Node2D
+public partial class BunnymarkV1Sprites : Node2D
 {
     private class Pair
     {
-        public Sprite Sprite;
+        public Sprite2D Sprite2D;
         public Vector2 Vector;
     }
 
     List<Pair> bunnies = new List<Pair>();
     Vector2 screenSize;
 
-    Texture bunnyTexture = (Texture)GD.Load("res://images/godot_bunny.png");
+    Texture2D bunnyTexture = (Texture2D)GD.Load("res://images/godot_bunny.png");
     Random random = new Random();
     int gravity = 500;
 
@@ -23,7 +23,7 @@ public class BunnymarkV1Sprites : Node2D
 
         foreach (var bunny in bunnies)
         {
-            var position = bunny.Sprite.Position;
+            var position = bunny.Sprite2D.Position;
             var newPosition = bunny.Vector;
 
             position.x += newPosition.x * delta;
@@ -62,18 +62,18 @@ public class BunnymarkV1Sprites : Node2D
                 position.y = 0;
             }
 
-            bunny.Sprite.Position = position;
+            bunny.Sprite2D.Position = position;
             bunny.Vector = newPosition;
         }
     }
 
     public void add_bunny()
     {
-        var bunny = new Sprite();
+        var bunny = new Sprite2D();
         bunny.SetTexture(bunnyTexture);
         AddChild(bunny);
         bunny.Position = new Vector2(screenSize.x / 2, screenSize.y / 2);
-        bunnies.Add(new Pair() { Sprite = bunny, Vector = new Vector2(random.Next() % 200 + 50, random.Next() % 200 + 50) });
+        bunnies.Add(new Pair() { Sprite2D = bunny, Vector = new Vector2(random.Next() % 200 + 50, random.Next() % 200 + 50) });
     }
 
     public void remove_bunny()
@@ -84,8 +84,8 @@ public class BunnymarkV1Sprites : Node2D
 
         var bunny = bunnies[bunnies.Count - 1];
         bunnies.RemoveAt(bunnies.Count - 1);
-        RemoveChild(bunny.Sprite);
-        bunny.Sprite.QueueFree();
+        RemoveChild(bunny.Sprite2D);
+        bunny.Sprite2D.QueueFree();
     }
 
     public void finish()

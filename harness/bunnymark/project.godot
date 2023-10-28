@@ -6,58 +6,26 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Sprite",
-"class": "Bunny",
-"language": "GDScript",
-"path": "res://benchmarks/BunnymarkV3/gd/Bunny.gd"
-}, {
-"base": "Node2D",
-"class": "BunnymarkV1DrawTexture",
-"language": "Kotlin",
-"path": "res://src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV1DrawTexture.kt"
-}, {
-"base": "Node2D",
-"class": "BunnymarkV1Sprites",
-"language": "Kotlin",
-"path": "res://src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV1Sprites.kt"
-}, {
-"base": "Node2D",
-"class": "BunnymarkV2",
-"language": "Kotlin",
-"path": "res://src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV2.kt"
-}, {
-"base": "Node2D",
-"class": "BunnymarkV3",
-"language": "Kotlin",
-"path": "res://src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV3.kt"
-}, {
-"base": "Sprite",
-"class": "godot_benchmark_bunnymark_v3_Bunny",
-"language": "Kotlin",
-"path": "res://src/main/kotlin/godot/benchmark/bunnymark/v3/Bunny.kt"
-} ]
-_global_script_class_icons={
-"Bunny": "",
-"BunnymarkV1DrawTexture": "",
-"BunnymarkV1Sprites": "",
-"BunnymarkV2": "",
-"BunnymarkV3": "",
-"godot_benchmark_bunnymark_v3_Bunny": ""
-}
+config_version=5
 
 [application]
 
 config/name="Bunnymark"
 run/main_scene="res://Benchmarker.tscn"
+config/features=PackedStringArray("4.1")
 config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/unsafe_property_access=2
+gdscript/warnings/unsafe_method_access=2
+gdscript/warnings/unsafe_cast=1
+gdscript/warnings/unsafe_call_argument=2
 
 [display]
 
-window/vsync/use_vsync=false
+window/vsync/vsync_mode=false
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/defaults/default_environment="res://default_env.tres"

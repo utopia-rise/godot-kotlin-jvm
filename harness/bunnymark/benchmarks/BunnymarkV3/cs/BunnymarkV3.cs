@@ -1,14 +1,14 @@
 using Godot;
 
 // ReSharper disable once CheckNamespace
-public class BunnymarkV3 : Node2D
+public partial class BunnymarkV3 : Node2D
 {
     [Signal]
     // ReSharper disable once InconsistentNaming
     public delegate void benchmark_finished(long bunnyCount);
 
     private readonly RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-    private readonly Texture bunnyTexture = ResourceLoader.Load<Texture>("res://images/godot_bunny.png");
+    private readonly Texture2D bunnyTexture = ResourceLoader.Load<Texture2D>("res://images/godot_bunny.png");
     private readonly Label label = new Label();
     private readonly Node2D bunnies = new Node2D();
 
@@ -31,7 +31,7 @@ public class BunnymarkV3 : Node2D
 
     public void add_bunny()
     {
-        var bunny = new Bunny {Texture = bunnyTexture};
+        var bunny = new Bunny {Texture2D = bunnyTexture};
         bunnies.AddChild(bunny);
         bunny.Position = new Vector2(screenSize.x / 2, screenSize.y / 2);
         bunny.Speed = new Vector2(randomNumberGenerator.Randi() % 200 + 50, randomNumberGenerator.Randi() % 200 + 50);

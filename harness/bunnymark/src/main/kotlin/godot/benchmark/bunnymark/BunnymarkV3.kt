@@ -12,10 +12,10 @@ import godot.signals.signal
 class BunnymarkV3 : Node2D() {
 
 	@RegisterSignal
-	val signalBenchmarkFinished by signal<Long>("bunnyCount")
+	val benchmarkFinished by signal<Int>("bunnyCount")
 
 	private val randomNumberGenerator = RandomNumberGenerator()
-	private val bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
+	private val bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture2D
 	private val label = Label()
 	private val bunnies = Node2D()
 
@@ -48,7 +48,7 @@ class BunnymarkV3 : Node2D() {
 	@RegisterFunction
 	fun removeBunny() {
 		val childCount = bunnies.getChildCount()
-		if (childCount != 0L) {
+		if (childCount != 0) {
 			val bunny = bunnies.getChild(childCount - 1)
 			bunnies.removeChild(bunny!!)
 			bunny.queueFree()
@@ -57,6 +57,6 @@ class BunnymarkV3 : Node2D() {
 
 	@RegisterFunction
 	fun finish() {
-		signalBenchmarkFinished.emit(bunnies.getChildCount())
+        benchmarkFinished.emit(bunnies.getChildCount())
 	}
 }
