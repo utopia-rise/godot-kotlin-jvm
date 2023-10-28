@@ -38,12 +38,12 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_global_name() const {
-    if (KtClass* kt_class {get_kotlin_class()}) { return kt_class->registered_class_name; }
+    if (KtClass * kt_class {get_kotlin_class()}) { return kt_class->registered_class_name; }
     return StringName();
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    if (KtClass* kt_class {get_kotlin_class()}) { return kt_class->base_godot_class; }
+    if (KtClass * kt_class {get_kotlin_class()}) { return kt_class->base_godot_class; }
     // not found
     return StringName();
 }
@@ -100,8 +100,8 @@ bool KotlinScript::has_method(const StringName& p_method) const {
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
-    if (KtClass* kt_class {get_kotlin_class()}) {
-        if (KtFunction* method {kt_class->get_method(p_method)}) { return method->get_member_info(); }
+    if (KtClass * kt_class {get_kotlin_class()}) {
+        if (KtFunction * method {kt_class->get_method(p_method)}) { return method->get_member_info(); }
     }
     return MethodInfo();
 }
@@ -124,7 +124,7 @@ bool KotlinScript::has_script_signal(const StringName& p_signal) const {
 }
 
 void KotlinScript::get_script_signal_list(List<MethodInfo>* r_signals) const {
-    if (KtClass* kt_class {get_kotlin_class()}) { kt_class->get_signal_list(r_signals); }
+    if (KtClass * kt_class {get_kotlin_class()}) { kt_class->get_signal_list(r_signals); }
 }
 
 bool KotlinScript::get_property_default_value(const StringName& p_property, Variant& r_value) const {
@@ -147,6 +147,15 @@ void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {
 void KotlinScript::get_script_property_list(List<PropertyInfo>* p_list) const {
     KtClass* kt_class {get_kotlin_class()};
     if (kt_class) { kt_class->get_property_list(p_list); }
+}
+
+void KotlinScript::get_script_exported_property_list(List<PropertyInfo>* p_list) const {
+    List<PropertyInfo> all_properties;
+    get_script_property_list(&all_properties);
+
+    for (const PropertyInfo& property_info : all_properties) {
+        if (property_info.usage & PropertyUsageFlags::PROPERTY_USAGE_EDITOR) { p_list->push_back(property_info); }
+    }
 }
 
 KtClass* KotlinScript::get_kotlin_class() const {
@@ -214,9 +223,12 @@ PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_t
 #ifdef TOOLS_ENABLED
     PlaceHolderScriptInstance* placeholder {
       memnew(PlaceHolderScriptInstance(KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
-    p_this->set_script_instance(placeholder);
+
+    List<PropertyInfo> exported_properties;
+    get_script_exported_property_list(&exported_properties);
+    placeholder->update(exported_properties, exported_members_default_value_cache);
+
     placeholders.insert(placeholder);
-    _update_exports(placeholder);
     return placeholder;
 #else
     return nullptr;
@@ -225,29 +237,14 @@ PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_t
 
 void KotlinScript::update_exports() {
 #ifdef TOOLS_ENABLED
-    for (PlaceHolderScriptInstance* script_instance : placeholders) {
-        _update_exports(script_instance);
-    }
-#endif
-}
-
-void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) {
-#ifdef TOOLS_ENABLED
     exported_members_default_value_cache.clear();
 
     Callable::CallError call;
     Object* tmp_object {_new({}, 0, call)};
     KotlinInstance* script_instance {reinterpret_cast<KotlinInstance*>(tmp_object->get_script_instance())};
 
-    List<PropertyInfo> all_properties;
-    get_script_property_list(&all_properties);
-
     List<PropertyInfo> exported_properties;
-    for (const PropertyInfo& property_info : all_properties) {
-        if (property_info.usage & PropertyUsageFlags::PROPERTY_USAGE_EDITOR) {
-            exported_properties.push_back(property_info);
-        }
-    }
+    get_script_exported_property_list(&exported_properties);
 
     for (int i = 0; i < exported_properties.size(); ++i) {
         Variant default_value;
@@ -255,7 +252,11 @@ void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) {
         script_instance->get_or_default(property_name, default_value);
         exported_members_default_value_cache[property_name] = default_value;
     }
-    placeholder->update(exported_properties, exported_members_default_value_cache);
+
+    for (PlaceHolderScriptInstance* placeholder : placeholders) {
+        placeholder->update(exported_properties, exported_members_default_value_cache);
+    }
+
     memdelete(tmp_object);
 #endif
 }

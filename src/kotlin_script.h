@@ -73,7 +73,9 @@ public:
 
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
 
-    void set_path(const String& p_path, bool p_take_over) override;
+    void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
+
+      void set_path(const String& p_path, bool p_take_over) override;
 
     const Variant get_rpc_config() const override;
 
@@ -92,8 +94,6 @@ private:
 #endif
 
     void _placeholder_erased(PlaceHolderScriptInstance* p_placeholder) override;
-
-    void _update_exports(PlaceHolderScriptInstance* placeholder);
 
 public:
     PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
