@@ -126,8 +126,8 @@ class Vector2i(
      * Consider using @GlobalScope.posmod instead if you want to handle negative numbers.
      */
     operator fun rem(other: Vector2i) = Vector2i(
-        x / other.x,
-        y / other.y,
+        x % other.x,
+        y % other.y,
     )
 
     /**
@@ -136,8 +136,8 @@ class Vector2i(
      * Consider using @GlobalScope.posmod instead if you want to handle negative numbers.
      */
     operator fun rem(scalar: Int) = Vector2i(
-        x / scalar,
-        y / scalar,
+        x % scalar,
+        y % scalar,
     )
 
     operator fun get(idx: Int): Int = when (idx) {

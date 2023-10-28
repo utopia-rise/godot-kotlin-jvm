@@ -152,9 +152,9 @@ class Vector3i(
      * Consider using @GlobalScope.posmod instead if you want to handle negative numbers.
      */
     operator fun rem(other: Vector3i) = Vector3i(
-        x / other.x,
-        y / other.y,
-        z / other.z,
+        x % other.x,
+        y % other.y,
+        z % other.z,
     )
 
     /**
@@ -163,9 +163,9 @@ class Vector3i(
      * Consider using @GlobalScope.posmod instead if you want to handle negative numbers.
      */
     operator fun rem(scalar: Int) = Vector3i(
-        x / scalar,
-        y / scalar,
-        z / scalar,
+        x % scalar,
+        y % scalar,
+        z % scalar,
     )
 
     operator fun get(n: Int): Int = when (n) {
